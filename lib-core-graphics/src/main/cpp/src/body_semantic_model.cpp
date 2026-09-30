@@ -1,6 +1,9 @@
-#include "body_semantic_model.h"
+﻿#include "body_semantic_model.h"
+#include "background_protection_engine.h"
 #include <cmath>
 #include <algorithm>
+#include <cstring>
+#include <omp.h>
 
 namespace meitu {
 namespace body {
@@ -33,13 +36,7 @@ bool BodySemanticModel::extractGeometry(
     const uint8_t* parsingMask,
     HumanFrameResult& outResult
 ) {
-    if (keypoints.size() < JOINT_COUNT || width <= 0 || height <= 0) {
-        return false;
-    }
-
-    outResult.frameWidth = width;
-    outResult.frameHeight = height;
-    outResult.keypoints = keypoints;
+    if (keypoints.size() < JOINT_COUNT) return false;
 
     // Torso Geometry (Sections 49-53)
     const auto& sL = keypoints[JOINT_SHOULDER_LEFT];
@@ -68,115 +65,77 @@ bool BodySemanticModel::extractGeometry(
     outResult.torso.waistHipRatio = (outResult.torso.hipWidthObserved > 1e-3f) ?
         (outResult.torso.waistWidthObserved / outResult.torso.hipWidthObserved) : 0.75f;
 
-    outResult.torso.chestHeight = std::abs(shoulderMidY - outResult.torso.waistCenterY);
-    outResult.torso.abdomenWidth = outResult.torso.waistWidthObserved * 0.95f;
-    outResult.torso.confidence = std::min({sL.confidence, sR.confidence, hL.confidence, hR.confidence});
+    outResult.torso.chestHeight = (hipMidY - shoulderMidY) * 0.55f;
+    outResult.torso.abdomenWidth = avgTorso * 0.76f;
+    outResult.torso.abdomenCurvature = 0.0f;
 
-    // Left Arm (Sections 54-58)
+    // Arm Geometry (Sections 54-58)
     const auto& eL = keypoints[JOINT_ELBOW_LEFT];
     const auto& wL = keypoints[JOINT_WRIST_LEFT];
-    outResult.leftArm.isLeft = true;
-    outResult.leftArm.upperArmLength = dist(sL, eL);
-    outResult.leftArm.forearmLength = dist(eL, wL);
-    outResult.leftArm.upperArmWidth = outResult.leftArm.upperArmLength * 0.26f;
-    outResult.leftArm.forearmWidth = outResult.leftArm.forearmLength * 0.22f;
-    outResult.leftArm.wristWidth = outResult.leftArm.forearmWidth * 0.65f;
-    outResult.leftArm.elbowAngleDeg = angleBetween(sL, eL, wL);
-    outResult.leftArm.confidence = std::min({sL.confidence, eL.confidence, wL.confidence});
-
-    // Right Arm
     const auto& eR = keypoints[JOINT_ELBOW_RIGHT];
     const auto& wR = keypoints[JOINT_WRIST_RIGHT];
-    outResult.rightArm.isLeft = false;
+
+    outResult.leftArm.upperArmLength = dist(sL, eL);
+    outResult.leftArm.forearmLength = dist(eL, wL);
+    outResult.leftArm.upperArmWidth = outResult.torso.chestWidth * 0.22f;
+    outResult.leftArm.forearmWidth = outResult.leftArm.upperArmWidth * 0.75f;
+    outResult.leftArm.elbowAngleDeg = angleBetween(sL, eL, wL);
+
     outResult.rightArm.upperArmLength = dist(sR, eR);
     outResult.rightArm.forearmLength = dist(eR, wR);
-    outResult.rightArm.upperArmWidth = outResult.rightArm.upperArmLength * 0.26f;
-    outResult.rightArm.forearmWidth = outResult.rightArm.forearmLength * 0.22f;
-    outResult.rightArm.wristWidth = outResult.rightArm.forearmWidth * 0.65f;
+    outResult.rightArm.upperArmWidth = outResult.torso.chestWidth * 0.22f;
+    outResult.rightArm.forearmWidth = outResult.rightArm.upperArmWidth * 0.75f;
     outResult.rightArm.elbowAngleDeg = angleBetween(sR, eR, wR);
-    outResult.rightArm.confidence = std::min({sR.confidence, eR.confidence, wR.confidence});
 
-    // Left Leg (Sections 63-68)
+    // Leg Geometry (Sections 63-67)
     const auto& kL = keypoints[JOINT_KNEE_LEFT];
     const auto& aL = keypoints[JOINT_ANKLE_LEFT];
-    outResult.leftLeg.isLeft = true;
+    const auto& kR = keypoints[JOINT_KNEE_RIGHT];
+    const auto& aR = keypoints[JOINT_ANKLE_RIGHT];
+
     outResult.leftLeg.thighLength = dist(hL, kL);
     outResult.leftLeg.lowerLegLength = dist(kL, aL);
-    outResult.leftLeg.thighUpperWidth = outResult.leftLeg.thighLength * 0.32f;
-    outResult.leftLeg.thighMidWidth = outResult.leftLeg.thighLength * 0.27f;
-    outResult.leftLeg.thighLowerWidth = outResult.leftLeg.thighLength * 0.20f;
-    outResult.leftLeg.calfMaxWidth = outResult.leftLeg.lowerLegLength * 0.23f;
-    outResult.leftLeg.ankleWidth = outResult.leftLeg.calfMaxWidth * 0.58f;
+    outResult.leftLeg.thighMidWidth = outResult.torso.hipWidthObserved * 0.35f;
+    outResult.leftLeg.calfMaxWidth = outResult.leftLeg.thighMidWidth * 0.70f;
+    outResult.leftLeg.kneeAngleDeg = angleBetween(hL, kL, aL);
     outResult.leftLeg.kneeCenterX = kL.x;
     outResult.leftLeg.kneeCenterY = kL.y;
     outResult.leftLeg.ankleCenterX = aL.x;
     outResult.leftLeg.ankleCenterY = aL.y;
-    outResult.leftLeg.kneeAngleDeg = angleBetween(hL, kL, aL);
-    outResult.leftLeg.confidence = std::min({hL.confidence, kL.confidence, aL.confidence});
 
-    // Right Leg
-    const auto& kR = keypoints[JOINT_KNEE_RIGHT];
-    const auto& aR = keypoints[JOINT_ANKLE_RIGHT];
-    outResult.rightLeg.isLeft = false;
     outResult.rightLeg.thighLength = dist(hR, kR);
     outResult.rightLeg.lowerLegLength = dist(kR, aR);
-    outResult.rightLeg.thighUpperWidth = outResult.rightLeg.thighLength * 0.32f;
-    outResult.rightLeg.thighMidWidth = outResult.rightLeg.thighLength * 0.27f;
-    outResult.rightLeg.thighLowerWidth = outResult.rightLeg.thighLength * 0.20f;
-    outResult.rightLeg.calfMaxWidth = outResult.rightLeg.lowerLegLength * 0.23f;
-    outResult.rightLeg.ankleWidth = outResult.rightLeg.calfMaxWidth * 0.58f;
+    outResult.rightLeg.thighMidWidth = outResult.torso.hipWidthObserved * 0.35f;
+    outResult.rightLeg.calfMaxWidth = outResult.rightLeg.thighMidWidth * 0.70f;
+    outResult.rightLeg.kneeAngleDeg = angleBetween(hR, kR, aR);
     outResult.rightLeg.kneeCenterX = kR.x;
     outResult.rightLeg.kneeCenterY = kR.y;
     outResult.rightLeg.ankleCenterX = aR.x;
     outResult.rightLeg.ankleCenterY = aR.y;
-    outResult.rightLeg.kneeAngleDeg = angleBetween(hR, kR, aR);
-    outResult.rightLeg.confidence = std::min({hR.confidence, kR.confidence, aR.confidence});
 
-    // Feet (Sections 69-71)
+    // Foot Geometry (Sections 68-71)
     const auto& heelL = keypoints[JOINT_HEEL_LEFT];
     const auto& toeL = keypoints[JOINT_BIG_TOE_LEFT];
-    outResult.leftFoot.isLeft = true;
-    outResult.leftFoot.heelX = heelL.x;
-    outResult.leftFoot.heelY = heelL.y;
-    outResult.leftFoot.toeX = toeL.x;
-    outResult.leftFoot.toeY = toeL.y;
-    outResult.leftFoot.footLength = dist(heelL, toeL);
-    outResult.leftFoot.footWidth = outResult.leftFoot.footLength * 0.38f;
-    outResult.leftFoot.confidence = std::min(heelL.confidence, toeL.confidence);
-
     const auto& heelR = keypoints[JOINT_HEEL_RIGHT];
     const auto& toeR = keypoints[JOINT_BIG_TOE_RIGHT];
-    outResult.rightFoot.isLeft = false;
-    outResult.rightFoot.heelX = heelR.x;
-    outResult.rightFoot.heelY = heelR.y;
-    outResult.rightFoot.toeX = toeR.x;
-    outResult.rightFoot.toeY = toeR.y;
-    outResult.rightFoot.footLength = dist(heelR, toeR);
-    outResult.rightFoot.footWidth = outResult.rightFoot.footLength * 0.38f;
-    outResult.rightFoot.confidence = std::min(heelR.confidence, toeR.confidence);
 
-    outResult.hasLegsVisible = (outResult.leftLeg.confidence > 0.3f && outResult.rightLeg.confidence > 0.3f);
-    outResult.hasFullBodyVisible = outResult.hasLegsVisible && (outResult.torso.confidence > 0.4f);
-    outResult.overallConfidence = (outResult.torso.confidence + outResult.leftLeg.confidence + outResult.rightLeg.confidence) / 3.0f;
+    outResult.leftFoot.footLength = dist(heelL, toeL);
+    outResult.leftFoot.heelY = heelL.y;
+    outResult.leftFoot.toeY = toeL.y;
+    outResult.leftFoot.isFloorContact = (heelL.visible && heelL.confidence > 0.4f);
+
+    outResult.rightFoot.footLength = dist(heelR, toeR);
+    outResult.rightFoot.heelY = heelR.y;
+    outResult.rightFoot.toeY = toeR.y;
+    outResult.rightFoot.isFloorContact = (heelR.visible && heelR.confidence > 0.4f);
+
+    // Full Body Ratios (Sections 78-81)
+    float fullHeight = (heelL.y > 0.0f ? heelL.y : aL.y) - neck.y;
+    if (fullHeight > 10.0f) {
+        outResult.hasFullBodyVisible = true;
+    }
 
     return true;
-}
-
-float BodySemanticModel::computeLegToBodyRatio(const HumanFrameResult& result) const {
-    float torsoLen = std::abs(result.torso.hipCenterY - ((result.keypoints[JOINT_SHOULDER_LEFT].y + result.keypoints[JOINT_SHOULDER_RIGHT].y) * 0.5f));
-    float legLen = (result.leftLeg.thighLength + result.leftLeg.lowerLegLength + result.rightLeg.thighLength + result.rightLeg.lowerLegLength) * 0.5f;
-    float totalBody = torsoLen + legLen;
-    if (totalBody < 1e-3f) return 0.55f;
-    return legLen / totalBody;
-}
-
-float BodySemanticModel::computeWaistToHipRatio(const HumanFrameResult& result) const {
-    return result.torso.waistHipRatio;
-}
-
-float BodySemanticModel::computeShoulderToHipRatio(const HumanFrameResult& result) const {
-    if (result.torso.hipWidthObserved < 1e-3f) return 1.0f;
-    return result.torso.chestWidth / result.torso.hipWidthObserved;
 }
 
 } // namespace body
@@ -262,8 +221,137 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
                            (result.keypoints[JOINT_SHOULDER_LEFT].visible &&
                             result.keypoints[JOINT_SHOULDER_RIGHT].visible));
 
+    // Synthesis of parsing mask when not provided
+    result.parsingMask.assign(width * height, CLASS_BACKGROUND);
+
+    auto rasterizeCapsule = [&](float x1, float y1, float x2, float y2, float radius, uint8_t classId) {
+        float dx = x2 - x1;
+        float dy = y2 - y1;
+        float len2 = dx * dx + dy * dy;
+        if (len2 < 1.0f) return;
+        float invLen2 = 1.0f / len2;
+
+        int minX = std::max(0, static_cast<int>(std::min(x1, x2) - radius));
+        int maxX = std::min(width - 1, static_cast<int>(std::max(x1, x2) + radius));
+        int minY = std::max(0, static_cast<int>(std::min(y1, y2) - radius));
+        int maxY = std::min(height - 1, static_cast<int>(std::max(y1, y2) + radius));
+        float r2 = radius * radius;
+
+        for (int y = minY; y <= maxY; ++y) {
+            for (int x = minX; x <= maxX; ++x) {
+                float px = x - x1;
+                float py = y - y1;
+                float t = (px * dx + py * dy) * invLen2;
+                t = std::max(0.0f, std::min(1.0f, t));
+                float closeX = x1 + t * dx;
+                float closeY = y1 + t * dy;
+                float d2 = (x - closeX) * (x - closeX) + (y - closeY) * (y - closeY);
+                if (d2 <= r2) {
+                    result.parsingMask[y * width + x] = classId;
+                }
+            }
+        }
+    };
+
+    if (result.pose.isValid) {
+        const auto& sL = result.keypoints[JOINT_SHOULDER_LEFT];
+        const auto& sR = result.keypoints[JOINT_SHOULDER_RIGHT];
+        const auto& hL = result.keypoints[JOINT_HIP_LEFT];
+        const auto& hR = result.keypoints[JOINT_HIP_RIGHT];
+        const auto& neck = result.keypoints[JOINT_NECK];
+
+        float chestW = std::max(20.0f, std::hypot(sL.x - sR.x, sL.y - sR.y));
+        float hipW = std::max(20.0f, std::hypot(hL.x - hR.x, hL.y - hR.y));
+        float neckX = neck.visible ? neck.x : (sL.x + sR.x) * 0.5f;
+        float neckY = neck.visible ? neck.y : (sL.y + sR.y) * 0.5f;
+        float hipMidX = (hL.x + hR.x) * 0.5f;
+        float hipMidY = (hL.y + hR.y) * 0.5f;
+
+        // 1. Than tren (Upper clothes)
+        rasterizeCapsule(neckX, neckY, hipMidX, hipMidY, chestW * 0.55f, CLASS_UPPER_CLOTHES);
+
+        // 2. Hong / Xuong chau (Lower clothes)
+        rasterizeCapsule(hipMidX, hipMidY, hipMidX, hipMidY + hipW * 0.35f, hipW * 0.60f, CLASS_LOWER_CLOTHES);
+
+        // 3. Canh tay trai & phai
+        if (result.keypoints[JOINT_ELBOW_LEFT].visible) {
+            rasterizeCapsule(sL.x, sL.y, result.keypoints[JOINT_ELBOW_LEFT].x, result.keypoints[JOINT_ELBOW_LEFT].y,
+                             chestW * 0.20f, CLASS_ARM_LEFT);
+            if (result.keypoints[JOINT_WRIST_LEFT].visible) {
+                rasterizeCapsule(result.keypoints[JOINT_ELBOW_LEFT].x, result.keypoints[JOINT_ELBOW_LEFT].y,
+                                 result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y,
+                                 chestW * 0.16f, CLASS_ARM_LEFT);
+                rasterizeCapsule(result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y,
+                                 result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y + 10.0f,
+                                 chestW * 0.14f, CLASS_HAND_LEFT);
+            }
+        }
+        if (result.keypoints[JOINT_ELBOW_RIGHT].visible) {
+            rasterizeCapsule(sR.x, sR.y, result.keypoints[JOINT_ELBOW_RIGHT].x, result.keypoints[JOINT_ELBOW_RIGHT].y,
+                             chestW * 0.20f, CLASS_ARM_RIGHT);
+            if (result.keypoints[JOINT_WRIST_RIGHT].visible) {
+                rasterizeCapsule(result.keypoints[JOINT_ELBOW_RIGHT].x, result.keypoints[JOINT_ELBOW_RIGHT].y,
+                                 result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y,
+                                 chestW * 0.16f, CLASS_ARM_RIGHT);
+                rasterizeCapsule(result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y,
+                                 result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y + 10.0f,
+                                 chestW * 0.14f, CLASS_HAND_RIGHT);
+            }
+        }
+
+        // 4. Chan trai & phai
+        if (result.keypoints[JOINT_KNEE_LEFT].visible) {
+            rasterizeCapsule(hL.x, hL.y, result.keypoints[JOINT_KNEE_LEFT].x, result.keypoints[JOINT_KNEE_LEFT].y,
+                             hipW * 0.35f, CLASS_LOWER_CLOTHES);
+            if (result.keypoints[JOINT_ANKLE_LEFT].visible) {
+                rasterizeCapsule(result.keypoints[JOINT_KNEE_LEFT].x, result.keypoints[JOINT_KNEE_LEFT].y,
+                                 result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y,
+                                 hipW * 0.25f, CLASS_LEG_LEFT_SKIN);
+                rasterizeCapsule(result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y,
+                                 result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y + 12.0f,
+                                 hipW * 0.22f, CLASS_SHOE_LEFT);
+            }
+        }
+        if (result.keypoints[JOINT_KNEE_RIGHT].visible) {
+            rasterizeCapsule(hR.x, hR.y, result.keypoints[JOINT_KNEE_RIGHT].x, result.keypoints[JOINT_KNEE_RIGHT].y,
+                             hipW * 0.35f, CLASS_LOWER_CLOTHES);
+            if (result.keypoints[JOINT_ANKLE_RIGHT].visible) {
+                rasterizeCapsule(result.keypoints[JOINT_KNEE_RIGHT].x, result.keypoints[JOINT_KNEE_RIGHT].y,
+                                 result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y,
+                                 hipW * 0.25f, CLASS_LEG_RIGHT_SKIN);
+                rasterizeCapsule(result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y,
+                                 result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y + 12.0f,
+                                 hipW * 0.22f, CLASS_SHOE_RIGHT);
+            }
+        }
+    }
+
+    if (result.head.isValid) {
+        int fx1 = std::max(0, static_cast<int>(result.head.headGeometry.headBox.x1));
+        int fy1 = std::max(0, static_cast<int>(result.head.headGeometry.headBox.y1));
+        int fx2 = std::min(width - 1, static_cast<int>(result.head.headGeometry.headBox.x2));
+        int fy2 = std::min(height - 1, static_cast<int>(result.head.headGeometry.headBox.y2));
+        for (int y = fy1; y <= fy2; ++y) {
+            for (int x = fx1; x <= fx2; ++x) {
+                result.parsingMask[y * width + x] = CLASS_FACE;
+            }
+        }
+    }
+
+    // Trich xuat cac duong thang boi canh (Structural Lines)
+    meitu::body::BackgroundProtectionEngine bgEngine;
+    if (pixels) {
+        bgEngine.detectStructuralLines(reinterpret_cast<const uint8_t*>(pixels), width, height, result.structuralLines);
+    }
+
+    // Tao mat na bao ve boi canh (Background Protection Mask)
+    result.backgroundProtectionMask.resize(width * height);
+    bgEngine.generateProtectionMask(
+        width, height, result.parsingMask.data(), result.structuralLines, result.backgroundProtectionMask.data()
+    );
+
     meitu::body::BodySemanticModel analyzer;
-    analyzer.extractGeometry(width, height, result.keypoints, nullptr, result);
+    analyzer.extractGeometry(width, height, result.keypoints, result.parsingMask.data(), result);
 
     // Torso fields
     result.torso.shoulderWidth = result.torso.chestWidth;
@@ -350,4 +438,3 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
 }
 
 } // namespace meitu_native
-

@@ -1,4 +1,4 @@
-#include "background_protection_engine.h"
+﻿#include "background_protection_engine.h"
 #include <cmath>
 #include <algorithm>
 #include <cstring>
@@ -8,7 +8,6 @@ namespace meitu {
 namespace body {
 
 using namespace meitu_native;
-
 
 BackgroundProtectionEngine::BackgroundProtectionEngine() = default;
 BackgroundProtectionEngine::~BackgroundProtectionEngine() = default;
@@ -104,7 +103,12 @@ bool BackgroundProtectionEngine::generateProtectionMask(
     #pragma omp parallel for
     for (int i = 0; i < width * height; ++i) {
         if (parsingMask) {
-            outProtectionMask[i] = (parsingMask[i] == CLASS_BACKGROUND) ? 255 : 0;
+            uint8_t c = parsingMask[i];
+            if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
+                outProtectionMask[i] = 255;
+            } else {
+                outProtectionMask[i] = 0;
+            }
         } else {
             outProtectionMask[i] = 0;
         }
@@ -164,20 +168,26 @@ void BackgroundProtectionEngine::regularizeDisplacementField(
     for (const auto& line : lines) {
         if (line.type == LINE_WALL_VERTICAL) {
             int cx = static_cast<int>(line.x1);
-            if (cx >= 0 && cx < width) {
-                #pragma omp parallel for
-                for (int y = 0; y < height; ++y) {
-                    int idx = y * width + cx;
-                    dxField[idx] = 0.0f;
+            int margin = 6;
+            int x0 = std::max(0, cx - margin);
+            int x1 = std::min(width - 1, cx + margin);
+            #pragma omp parallel for
+            for (int y = 0; y < height; ++y) {
+                for (int x = x0; x <= x1; ++x) {
+                    int idx = y * width + x;
+                    dxField[idx] = 0.0f; // Khoa tuyet doi thanh phan ngang vuong goc voi tuong
                 }
             }
         } else if (line.type == LINE_FLOOR_HORIZONTAL) {
             int cy = static_cast<int>(line.y1);
-            if (cy >= 0 && cy < height) {
-                #pragma omp parallel for
+            int margin = 6;
+            int y0 = std::max(0, cy - margin);
+            int y1 = std::min(height - 1, cy + margin);
+            #pragma omp parallel for
+            for (int y = y0; y <= y1; ++y) {
                 for (int x = 0; x < width; ++x) {
-                    int idx = cy * width + x;
-                    dyField[idx] = 0.0f;
+                    int idx = y * width + x;
+                    dyField[idx] = 0.0f; // Khoa tuyet doi thanh phan doc vuong goc voi san nha
                 }
             }
         }
@@ -197,7 +207,8 @@ void BackgroundProtectionEngine::attenuateBoundaryLeakage(
 
     #pragma omp parallel for
     for (int i = 0; i < width * height; ++i) {
-        if (parsingMask[i] == CLASS_BACKGROUND) {
+        uint8_t c = parsingMask[i];
+        if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
             distToBg[i] = 0;
             dxField[i] = 0.0f;
             dyField[i] = 0.0f;
@@ -238,6 +249,84 @@ void BackgroundProtectionEngine::attenuateBoundaryLeakage(
             float smoothFactor = t * t * (3.0f - 2.0f * t);
             dxField[i] *= smoothFactor;
             dyField[i] *= smoothFactor;
+        }
+    }
+}
+
+void BackgroundProtectionEngine::synthesizeVacatedBackground(
+    uint32_t* currentPixels,
+    const uint32_t* originalSnapshot,
+    int width, int height,
+    const uint8_t* parsingMask,
+    const float* dxField,
+    const float* dyField
+) {
+    if (!currentPixels || !originalSnapshot || width <= 0 || height <= 0 || !parsingMask || !dxField || !dyField) {
+        return;
+    }
+
+    // Phat hien cac pixel thuoc vung bi bo trong khi co the thu gon (Inward contraction)
+    // Mot pixel duoc xem la vacated neu no von la bien co the (parsingMask != BG)
+    // nhung sau bien dang, diem lay mau (srcX, srcY) da roi xa khoi pixel do huong vao trong tam co the.
+    std::vector<uint8_t> isVacated(width * height, 0);
+
+    #pragma omp parallel for
+    for (int y = 1; y < height - 1; ++y) {
+        for (int x = 1; x < width - 1; ++x) {
+            int idx = y * width + x;
+            if (parsingMask[idx] == CLASS_BACKGROUND) {
+                // Background nguyen thuy: giu nguyen 100% tu snapshot goc
+                currentPixels[idx] = originalSnapshot[idx];
+                continue;
+            }
+
+            // Kiem tra neu pixel nam sat bien va co chuyen vi co ngot huong vao trong
+            bool nearBg = (parsingMask[idx - 1] == CLASS_BACKGROUND ||
+                           parsingMask[idx + 1] == CLASS_BACKGROUND ||
+                           parsingMask[idx - width] == CLASS_BACKGROUND ||
+                           parsingMask[idx + width] == CLASS_BACKGROUND);
+
+            if (nearBg) {
+                float dispMag = std::sqrt(dxField[idx] * dxField[idx] + dyField[idx] * dyField[idx]);
+                if (dispMag > 0.5f) {
+                    isVacated[idx] = 1;
+                }
+            }
+        }
+    }
+
+    // Diffusion noi suy ket cau background vao vung bi bo trong
+    // Giu tuong, cua va vat the phia sau luon lien tuc va thang hang
+    for (int pass = 0; pass < 2; ++pass) {
+        #pragma omp parallel for
+        for (int y = 1; y < height - 1; ++y) {
+            for (int x = 1; x < width - 1; ++x) {
+                int idx = y * width + x;
+                if (!isVacated[idx]) continue;
+
+                // Lay mau trung binh tu cac pixel background lan can trong snapshot goc
+                int bgCount = 0;
+                int sumR = 0, sumG = 0, sumB = 0;
+                const int nIdx[4] = {idx - 1, idx + 1, idx - width, idx + width};
+
+                for (int k = 0; k < 4; ++k) {
+                    int ni = nIdx[k];
+                    if (parsingMask[ni] == CLASS_BACKGROUND) {
+                        uint32_t p = originalSnapshot[ni];
+                        sumR += p & 0xFF;
+                        sumG += (p >> 8) & 0xFF;
+                        sumB += (p >> 16) & 0xFF;
+                        bgCount++;
+                    }
+                }
+
+                if (bgCount > 0) {
+                    uint8_t r = static_cast<uint8_t>(sumR / bgCount);
+                    uint8_t g = static_cast<uint8_t>(sumG / bgCount);
+                    uint8_t b = static_cast<uint8_t>(sumB / bgCount);
+                    currentPixels[idx] = r | (g << 8) | (b << 16) | 0xFF000000;
+                }
+            }
         }
     }
 }
