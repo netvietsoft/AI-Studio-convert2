@@ -2,6 +2,7 @@
 #include <cmath>
 #include <algorithm>
 #include <cstring>
+#include <vector>
 #include <omp.h>
 
 namespace meitu {
@@ -18,12 +19,15 @@ bool BodyContourEngine::extractSilhouetteContour(
     if (!parsingMask || width <= 2 || height <= 2) return false;
     outContour.clear();
 
+    std::vector<uint8_t> isBoundary(width * height, 0);
+    std::vector<ContourPoint> pointMap(width * height);
+
+    // Identify all boundary pixels and their normals
     for (int y = 1; y < height - 1; ++y) {
         for (int x = 1; x < width - 1; ++x) {
             int idx = y * width + x;
             uint8_t c = parsingMask[idx];
             if (c != CLASS_BACKGROUND) {
-                // Check if adjacent to background
                 uint8_t up = parsingMask[idx - width];
                 uint8_t dn = parsingMask[idx + width];
                 uint8_t lf = parsingMask[idx - 1];
@@ -31,6 +35,7 @@ bool BodyContourEngine::extractSilhouetteContour(
 
                 if (up == CLASS_BACKGROUND || dn == CLASS_BACKGROUND ||
                     lf == CLASS_BACKGROUND || rt == CLASS_BACKGROUND) {
+                    isBoundary[idx] = 1;
                     ContourPoint pt;
                     pt.x = static_cast<float>(x);
                     pt.y = static_cast<float>(y);
@@ -45,11 +50,56 @@ bool BodyContourEngine::extractSilhouetteContour(
                         pt.nx = 1.0f;
                         pt.ny = 0.0f;
                     }
-                    outContour.push_back(pt);
+                    pointMap[idx] = pt;
                 }
             }
         }
     }
+
+    // 8-neighbor offsets
+    const int dx8[8] = {1, 1, 0, -1, -1, -1, 0, 1};
+    const int dy8[8] = {0, 1, 1, 1, 0, -1, -1, -1};
+
+    // Chain boundary pixels into ordered, continuous topological contours
+    std::vector<uint8_t> visited(width * height, 0);
+
+    for (int y = 1; y < height - 1; ++y) {
+        for (int x = 1; x < width - 1; ++x) {
+            int startIdx = y * width + x;
+            if (isBoundary[startIdx] && !visited[startIdx]) {
+                int curX = x;
+                int curY = y;
+                int curIdx = startIdx;
+
+                while (curIdx >= 0 && !visited[curIdx]) {
+                    visited[curIdx] = 1;
+                    outContour.push_back(pointMap[curIdx]);
+
+                    // Look for adjacent unvisited boundary neighbor
+                    int nextIdx = -1;
+                    int nextX = curX, nextY = curY;
+                    for (int dir = 0; dir < 8; ++dir) {
+                        int nx = curX + dx8[dir];
+                        int ny = curY + dy8[dir];
+                        if (nx >= 1 && nx < width - 1 && ny >= 1 && ny < height - 1) {
+                            int nIdx = ny * width + nx;
+                            if (isBoundary[nIdx] && !visited[nIdx]) {
+                                nextIdx = nIdx;
+                                nextX = nx;
+                                nextY = ny;
+                                break;
+                            }
+                        }
+                    }
+
+                    curIdx = nextIdx;
+                    curX = nextX;
+                    curY = nextY;
+                }
+            }
+        }
+    }
+
     return !outContour.empty();
 }
 
@@ -70,12 +120,17 @@ bool BodyContourEngine::smoothContour(
     float wc = 1.0f - 2.0f * (w0 + w1);
 
     for (int i = 2; i < n - 2; ++i) {
-        outContour[i].x = inContour[i - 2].x * w1 + inContour[i - 1].x * w0 +
-                          inContour[i].x * wc +
-                          inContour[i + 1].x * w0 + inContour[i + 2].x * w1;
-        outContour[i].y = inContour[i - 2].y * w1 + inContour[i - 1].y * w0 +
-                          inContour[i].y * wc +
-                          inContour[i + 1].y * w0 + inContour[i + 2].y * w1;
+        // Guard against boundary jumps between disconnected contours
+        float dPrev = std::hypot(inContour[i].x - inContour[i - 1].x, inContour[i].y - inContour[i - 1].y);
+        float dNext = std::hypot(inContour[i + 1].x - inContour[i].x, inContour[i + 1].y - inContour[i].y);
+        if (dPrev <= 2.5f && dNext <= 2.5f) {
+            outContour[i].x = inContour[i - 2].x * w1 + inContour[i - 1].x * w0 +
+                              inContour[i].x * wc +
+                              inContour[i + 1].x * w0 + inContour[i + 2].x * w1;
+            outContour[i].y = inContour[i - 2].y * w1 + inContour[i - 1].y * w0 +
+                              inContour[i].y * wc +
+                              inContour[i + 1].y * w0 + inContour[i + 2].y * w1;
+        }
     }
     return true;
 }

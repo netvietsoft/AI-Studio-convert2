@@ -162,7 +162,7 @@ bool BodySemanticModel::extractGeometry(
     return true;
 }
 
-float BodySemanticModel::computeLegToBodyRatio(const HumanFrameResult& result) {
+float BodySemanticModel::computeLegToBodyRatio(const HumanFrameResult& result) const {
     float torsoLen = std::abs(result.torso.hipCenterY - ((result.keypoints[JOINT_SHOULDER_LEFT].y + result.keypoints[JOINT_SHOULDER_RIGHT].y) * 0.5f));
     float legLen = (result.leftLeg.thighLength + result.leftLeg.lowerLegLength + result.rightLeg.thighLength + result.rightLeg.lowerLegLength) * 0.5f;
     float totalBody = torsoLen + legLen;
@@ -170,11 +170,11 @@ float BodySemanticModel::computeLegToBodyRatio(const HumanFrameResult& result) {
     return legLen / totalBody;
 }
 
-float BodySemanticModel::computeWaistToHipRatio(const HumanFrameResult& result) {
+float BodySemanticModel::computeWaistToHipRatio(const HumanFrameResult& result) const {
     return result.torso.waistHipRatio;
 }
 
-float BodySemanticModel::computeShoulderToHipRatio(const HumanFrameResult& result) {
+float BodySemanticModel::computeShoulderToHipRatio(const HumanFrameResult& result) const {
     if (result.torso.hipWidthObserved < 1e-3f) return 1.0f;
     return result.torso.chestWidth / result.torso.hipWidthObserved;
 }

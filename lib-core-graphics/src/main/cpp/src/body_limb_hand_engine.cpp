@@ -217,37 +217,37 @@ bool BodyLimbHandEngine::applyFootAnkleBeautify(
     const auto& aL = human.keypoints[JOINT_ANKLE_LEFT];
     const auto& aR = human.keypoints[JOINT_ANKLE_RIGHT];
 
-    #pragma omp parallel for
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int idx = y * width + x;
+    auto processAnkle = [&](const BodyKeypoint& ankle) {
+        if (!ankle.visible && ankle.confidence < 0.2f) return;
+        int minX = std::max(0, static_cast<int>(ankle.x - radius));
+        int maxX = std::min(width - 1, static_cast<int>(ankle.x + radius));
+        int minY = std::max(0, static_cast<int>(ankle.y - radius));
+        int maxY = std::min(height - 1, static_cast<int>(ankle.y + radius));
 
-            if (params.preserveShoesRigid && !human.parsingMask.empty()) {
-                uint8_t c = human.parsingMask[idx];
-                if (c == CLASS_SHOE_LEFT || c == CLASS_SHOE_RIGHT) {
-                    continue;
+        #pragma omp parallel for
+        for (int y = minY; y <= maxY; ++y) {
+            for (int x = minX; x <= maxX; ++x) {
+                int idx = y * width + x;
+                if (params.preserveShoesRigid && !human.parsingMask.empty()) {
+                    uint8_t c = human.parsingMask[idx];
+                    if (c == CLASS_SHOE_LEFT || c == CLASS_SHOE_RIGHT) {
+                        continue;
+                    }
+                }
+                float dx = x - ankle.x;
+                float dy = y - ankle.y;
+                float d = std::sqrt(dx * dx + dy * dy);
+                if (d < radius && d > 0.5f) {
+                    float sign = (dx > 0.0f) ? 1.0f : -1.0f;
+                    float w = 1.0f - (d / radius);
+                    dxField[idx] += -sign * maxSlim * w;
                 }
             }
-
-            float dxL = x - aL.x;
-            float dyL = y - aL.y;
-            float dL = std::sqrt(dxL * dxL + dyL * dyL);
-            if (dL < radius && dL > 0.5f) {
-                float sign = (dxL > 0.0f) ? 1.0f : -1.0f;
-                float w = 1.0f - (dL / radius);
-                dxField[idx] += -sign * maxSlim * w;
-            }
-
-            float dxR = x - aR.x;
-            float dyR = y - aR.y;
-            float dR = std::sqrt(dxR * dxR + dyR * dyR);
-            if (dR < radius && dR > 0.5f) {
-                float sign = (dxR > 0.0f) ? 1.0f : -1.0f;
-                float w = 1.0f - (dR / radius);
-                dxField[idx] += -sign * maxSlim * w;
-            }
         }
-    }
+    };
+
+    processAnkle(aL);
+    processAnkle(aR);
 
     if (!human.parsingMask.empty()) {
         bgEngine_.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());

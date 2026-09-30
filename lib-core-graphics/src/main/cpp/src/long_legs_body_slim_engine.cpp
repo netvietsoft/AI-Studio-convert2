@@ -89,6 +89,26 @@ bool LongLegsBodySlimEngine::applyLongLegs(
     float maxThighDisp = (yKnee - yHip) * overallScale * thighScale;
     float maxCalfDisp = (yAnkle - yKnee) * overallScale * calfScale;
 
+    float bodyMinX = 0.0f;
+    float bodyMaxX = static_cast<float>(width - 1);
+    bool useHorizontalBounding = human.parsingMask.empty();
+    if (useHorizontalBounding) {
+        if (human.background.bodyBoundingBox.width() > 10.0f) {
+            bodyMinX = human.background.bodyBoundingBox.x1;
+            bodyMaxX = human.background.bodyBoundingBox.x2;
+        } else if (human.torso.chestWidth > 10.0f) {
+            float cx = human.torso.centerX > 0 ? human.torso.centerX : width * 0.5f;
+            float halfW = human.torso.chestWidth * 1.6f;
+            bodyMinX = std::max(0.0f, cx - halfW);
+            bodyMaxX = std::min(static_cast<float>(width - 1), cx + halfW);
+        } else {
+            bodyMinX = width * 0.15f;
+            bodyMaxX = width * 0.85f;
+        }
+    }
+    float bodyCenterX = (bodyMinX + bodyMaxX) * 0.5f;
+    float bodyHalfW = std::max(1.0f, (bodyMaxX - bodyMinX) * 0.5f);
+
     #pragma omp parallel for
     for (int y = 0; y < height; ++y) {
         float dy = 0.0f;
@@ -104,7 +124,18 @@ bool LongLegsBodySlimEngine::applyLongLegs(
 
         for (int x = 0; x < width; ++x) {
             int idx = y * width + x;
-            dyField[idx] = dy;
+            if (useHorizontalBounding) {
+                float distX = std::abs(x - bodyCenterX);
+                if (distX >= bodyHalfW) {
+                    dyField[idx] = 0.0f;
+                } else {
+                    float t = distX / bodyHalfW;
+                    float wx = std::cos(t * 1.5707963f);
+                    dyField[idx] = dy * wx * wx;
+                }
+            } else {
+                dyField[idx] = dy;
+            }
         }
     }
 
@@ -152,6 +183,26 @@ bool LongLegsBodySlimEngine::applyBodyHeight(
     float torsoDisp = (yHip - yNeck) * heightScale * 0.35f;
     float legDisp = (yAnkle - yHip) * heightScale * 0.65f;
 
+    float bodyMinX = 0.0f;
+    float bodyMaxX = static_cast<float>(width - 1);
+    bool useHorizontalBounding = human.parsingMask.empty();
+    if (useHorizontalBounding) {
+        if (human.background.bodyBoundingBox.width() > 10.0f) {
+            bodyMinX = human.background.bodyBoundingBox.x1;
+            bodyMaxX = human.background.bodyBoundingBox.x2;
+        } else if (human.torso.chestWidth > 10.0f) {
+            float cx = human.torso.centerX > 0 ? human.torso.centerX : width * 0.5f;
+            float halfW = human.torso.chestWidth * 1.6f;
+            bodyMinX = std::max(0.0f, cx - halfW);
+            bodyMaxX = std::min(static_cast<float>(width - 1), cx + halfW);
+        } else {
+            bodyMinX = width * 0.15f;
+            bodyMaxX = width * 0.85f;
+        }
+    }
+    float bodyCenterX = (bodyMinX + bodyMaxX) * 0.5f;
+    float bodyHalfW = std::max(1.0f, (bodyMaxX - bodyMinX) * 0.5f);
+
     #pragma omp parallel for
     for (int y = 0; y < height; ++y) {
         float dy = 0.0f;
@@ -167,7 +218,18 @@ bool LongLegsBodySlimEngine::applyBodyHeight(
 
         for (int x = 0; x < width; ++x) {
             int idx = y * width + x;
-            dyField[idx] = dy;
+            if (useHorizontalBounding) {
+                float distX = std::abs(x - bodyCenterX);
+                if (distX >= bodyHalfW) {
+                    dyField[idx] = 0.0f;
+                } else {
+                    float t = distX / bodyHalfW;
+                    float wx = std::cos(t * 1.5707963f);
+                    dyField[idx] = dy * wx * wx;
+                }
+            } else {
+                dyField[idx] = dy;
+            }
         }
     }
 

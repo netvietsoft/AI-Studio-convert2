@@ -192,23 +192,52 @@ void BackgroundProtectionEngine::attenuateBoundaryLeakage(
 ) {
     if (!parsingMask || !dxField || !dyField || width <= 0 || height <= 0) return;
 
+    int safeMargin = std::max(1, std::min(32, marginPx));
+    std::vector<int> distToBg(width * height, safeMargin + 1);
+
     #pragma omp parallel for
-    for (int y = 1; y < height - 1; ++y) {
-        for (int x = 1; x < width - 1; ++x) {
+    for (int i = 0; i < width * height; ++i) {
+        if (parsingMask[i] == CLASS_BACKGROUND) {
+            distToBg[i] = 0;
+            dxField[i] = 0.0f;
+            dyField[i] = 0.0f;
+        }
+    }
+
+    // Forward distance pass
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
             int idx = y * width + x;
-            if (parsingMask[idx] == CLASS_BACKGROUND) {
-                dxField[idx] = 0.0f;
-                dyField[idx] = 0.0f;
-            } else {
-                bool nearBg = (parsingMask[idx - 1] == CLASS_BACKGROUND ||
-                               parsingMask[idx + 1] == CLASS_BACKGROUND ||
-                               parsingMask[idx - width] == CLASS_BACKGROUND ||
-                               parsingMask[idx + width] == CLASS_BACKGROUND);
-                if (nearBg) {
-                    dxField[idx] *= 0.25f;
-                    dyField[idx] *= 0.25f;
-                }
+            if (distToBg[idx] > 0) {
+                if (x > 0) distToBg[idx] = std::min(distToBg[idx], distToBg[idx - 1] + 1);
+                if (y > 0) distToBg[idx] = std::min(distToBg[idx], distToBg[idx - width] + 1);
             }
+        }
+    }
+
+    // Backward distance pass
+    for (int y = height - 1; y >= 0; --y) {
+        for (int x = width - 1; x >= 0; --x) {
+            int idx = y * width + x;
+            if (distToBg[idx] > 0) {
+                if (x < width - 1) distToBg[idx] = std::min(distToBg[idx], distToBg[idx + 1] + 1);
+                if (y < height - 1) distToBg[idx] = std::min(distToBg[idx], distToBg[idx + width] + 1);
+            }
+        }
+    }
+
+    // Multi-ring smooth boundary attenuation using Hermite smoothstep
+    #pragma omp parallel for
+    for (int i = 0; i < width * height; ++i) {
+        int d = distToBg[i];
+        if (d == 0) {
+            dxField[i] = 0.0f;
+            dyField[i] = 0.0f;
+        } else if (d < safeMargin) {
+            float t = static_cast<float>(d) / static_cast<float>(safeMargin);
+            float smoothFactor = t * t * (3.0f - 2.0f * t);
+            dxField[i] *= smoothFactor;
+            dyField[i] *= smoothFactor;
         }
     }
 }

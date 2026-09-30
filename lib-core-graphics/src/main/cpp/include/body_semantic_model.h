@@ -284,9 +284,9 @@ public:
         HumanFrameResult& outResult
     );
 
-    float computeLegToBodyRatio(const HumanFrameResult& result);
-    float computeWaistToHipRatio(const HumanFrameResult& result);
-    float computeShoulderToHipRatio(const HumanFrameResult& result);
+    float computeLegToBodyRatio(const HumanFrameResult& result) const;
+    float computeWaistToHipRatio(const HumanFrameResult& result) const;
+    float computeShoulderToHipRatio(const HumanFrameResult& result) const;
 };
 
 } // namespace body
