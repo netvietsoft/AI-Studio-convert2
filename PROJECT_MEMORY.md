@@ -559,3 +559,34 @@ ativeGetVideoCompositedFrame.
 - **Bảo Toàn Trạng Thái:** Per-task durable state tại `.ai/state/tasks/<task_id>.json`, Reentrant FileLock bảo vệ `.ai/state.json`.
 - **Bằng Chứng Nguồn Gốc (Provenance):** Bắt buộc liên kết `dispatch_commit_sha`, `github_run_id`, `runner_lane`, `target_commit_sha`, `report_folder`.
 - **Kiểm Thử Nghiệm Thu:** Vượt qua 100% 8 test case bắt buộc A-H trong 2.047s.
+
+---
+
+## 8. HOÀN THÀNH TÁC VỤ TASK_015 — SỬA ĐỔI MỐC GIẢI PHẪU MẮT & MÀY (2026-10-02)
+- **Vấn đề đã khắc phục:** Khắc phục triệt để hiện tượng 22 tính năng Mắt (MOD_02) và 1 tính năng Mày (MOD_03) bị lem xuống vùng miệng/môi do nhầm lẫn mốc giải phẫu trong `PhotoEditorActivity.kt`.
+- **Nghiệm thu:**
+  - Tái kiểm toàn bộ 23 tính năng trên phần cứng vật lý Samsung Galaxy A07 (`SM-A075F`) và Galaxy A50s (`SM-A507FN`).
+  - Vượt qua 100% tiêu chuẩn chất lượng hình ảnh, không lem màu vào môi, đạt 91/104 tính năng PASS.
+  - Báo cáo hoàn tất tại `.ai/reports/TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION/`. Target Commit: `3745e3873ad2521645e649949c6f36bcc76439cd`.
+
+---
+
+## 9. HOÀN THÀNH TÁC VỤ TASK_016 — TÁI KIỂM THỊ GIÁC CHUYÊN BIỆT TAI & RÂU (2026-10-02)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành TASK_016 yêu cầu làm rõ bản chất giữa lỗi giải thuật và tính không tương thích của ảnh kiểm thử cho MOD_07 (Tai) và MOD_08 (Râu).
+- **Kết quả điều tra và xử lý cốt lõi:**
+  1. *MOD_07 (Tai):*
+     - Ảnh `scratch/0.jpg` có tóc trùm kín hai tai -> Động cơ kích hoạt `EarOcclusionGuard` giữ nguyên ảnh (100% `OCCLUSION_GUARD_EXPECTED`).
+     - Tái kiểm trên ảnh lộ tai (`scratch/test_buddha_fixed.png`, `sample_11.png`): Cả 8/8 tính năng Tai (`EAR_01`..`EAR_08`) đạt **`ENGINE_PASS`**, thay đổi từ 1,873 đến 3,009 điểm ảnh, Max Delta lên đến 148.
+     - Thêm cảnh báo HUD thân thiện: `⚠️ Không nhận diện được vành tai (bị tóc che khuất) • Giữ nguyên ảnh`.
+  2. *MOD_08 (Râu):*
+     - Ảnh `scratch/0.jpg` là nữ giới không có nang râu (`ASSET_NOT_APPLICABLE`).
+     - Phát hiện lỗi giải phẫu fallback trong `landmark_fusion.cpp` ánh xạ sai chỉ số 106 sang 478 cho vùng môi/mũi. Đã sửa chuẩn hóa toàn diện 106-to-478 mapping.
+     - Sửa biến `bIntensity` trong `PhotoEditorActivity.kt` để nhận cường độ hợp lệ khi kích hoạt công cụ râu.
+     - Tái kiểm trên ảnh chân dung nam (`scratch/1.jpg`): `BEARD_01`..`BEARD_06` đạt **`ENGINE_PASS`** (thay đổi 1,042 đến 32,522 điểm ảnh, Max Delta 118..142).
+     - `BEARD_07` (Gray Away): Đạt `ASSET_NOT_APPLICABLE` trên ảnh thanh niên không có sợi bạc; đạt `ENGINE_PASS` (thay đổi 32,289 điểm ảnh, Max Delta 33) trên mẫu có sợi bạc.
+- **Nghiệm thu toàn diện:**
+  - Build `./gradlew assembleDebug --no-daemon`: BUILD SUCCESSFUL.
+  - Cài đặt và đối chứng thực tế trên cả 2 thiết bị: `SM-A075F` (Mali-G57 MC2) và `SM-A507FN` (Mali-G72 MP3).
+  - Tổng số 104 tính năng Face & Beauty: **104 / 104 RESOLVED (103 PASS, 1 ASSET_NOT_APPLICABLE / VERIFIED PASS)**.
+  - Số lượng tính năng `NEEDS_FIX` còn lại: **0**.
+  - Toàn bộ hồ sơ báo cáo, CSV và Contact Sheet tại: `.ai/reports/TASK_016_FACE_BEAUTY_EAR_BEARD_SPECIALIZED_VISUAL_RETEST/`.

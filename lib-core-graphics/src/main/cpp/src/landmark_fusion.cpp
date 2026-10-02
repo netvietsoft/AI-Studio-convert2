@@ -75,42 +75,66 @@ FusedFaceGeometry LandmarkFusionEngine::fuse(
 
         // Dinh cam (152) = 106[16]
         geo.dense478[152] = { stabilized106[16 * 2], stabilized106[16 * 2 + 1], 0.0f };
-        // Dinh mui (1) = 106[46], chan mui (2) = 106[49]
-        geo.dense478[1] = { stabilized106[46 * 2], stabilized106[46 * 2 + 1], 0.0f };
-        geo.dense478[2] = { stabilized106[49 * 2], stabilized106[49 * 2 + 1], 0.0f };
-        // Dinh tran (10) = trung diem 2 dau long may (33, 34)
-        geo.dense478[10] = { (stabilized106[33 * 2] + stabilized106[34 * 2]) * 0.5f,
-                             (stabilized106[33 * 2 + 1] + stabilized106[34 * 2 + 1]) * 0.5f, 0.0f };
-        // Moi tren (0) = 106[76], moi duoi (17) = 106[82]
-        geo.dense478[0] = { stabilized106[76 * 2], stabilized106[76 * 2 + 1], 0.0f };
-        geo.dense478[17] = { stabilized106[82 * 2], stabilized106[82 * 2 + 1], 0.0f };
-        // Khoe mieng trai (61) = 106[52], phai (291) = 106[61]
-        geo.dense478[61] = { stabilized106[52 * 2], stabilized106[52 * 2 + 1], 0.0f };
-        geo.dense478[291] = { stabilized106[61 * 2], stabilized106[61 * 2 + 1], 0.0f };
-        // Diem tham chieu da (118)
-        geo.dense478[118] = { (stabilized106[52 * 2] + stabilized106[4 * 2]) * 0.5f,
-                              (stabilized106[52 * 2 + 1] + stabilized106[4 * 2 + 1]) * 0.5f, 0.0f };
+        // Dinh mui (1) = 106[56], chan mui (2) = 106[59]
+        geo.dense478[1] = { stabilized106[56 * 2], stabilized106[56 * 2 + 1], 0.0f };
+        geo.dense478[2] = { stabilized106[59 * 2], stabilized106[59 * 2 + 1], 0.0f };
+        // Dinh tran (10) = trung diem 2 dau long may (38, 43) hoac tran
+        geo.dense478[10] = { (stabilized106[38 * 2] + stabilized106[43 * 2]) * 0.5f,
+                             (stabilized106[38 * 2 + 1] + stabilized106[43 * 2 + 1]) * 0.5f - 40.0f, 0.0f };
+        // Moi tren (0) = 106[94], moi duoi (17) = 106[86]
+        geo.dense478[0] = { stabilized106[94 * 2], stabilized106[94 * 2 + 1], 0.0f };
+        geo.dense478[17] = { stabilized106[86 * 2], stabilized106[86 * 2 + 1], 0.0f };
+        // Khoe mieng trai (61) = 106[90], phai (291) = 106[82]
+        geo.dense478[61] = { stabilized106[90 * 2], stabilized106[90 * 2 + 1], 0.0f };
+        geo.dense478[291] = { stabilized106[82 * 2], stabilized106[82 * 2 + 1], 0.0f };
+        // Diem tham chieu da (118): giua khoe mieng trai va vien ham
+        geo.dense478[118] = { (stabilized106[90 * 2] + stabilized106[4 * 2]) * 0.5f,
+                              (stabilized106[90 * 2 + 1] + stabilized106[4 * 2 + 1]) * 0.5f, 0.0f };
         // Diem ma trai (127), ma phai (356)
-        geo.dense478[127] = { stabilized106[2 * 2], stabilized106[2 * 2 + 1], 0.0f };
-        geo.dense478[356] = { stabilized106[30 * 2], stabilized106[30 * 2 + 1], 0.0f };
+        geo.dense478[127] = { stabilized106[4 * 2], stabilized106[4 * 2 + 1], 0.0f };
+        geo.dense478[356] = { stabilized106[28 * 2], stabilized106[28 * 2 + 1], 0.0f };
 
         // Canh mui, goc mui & vach ngan tu 106
-        geo.dense478[98]  = { stabilized106[48 * 2], stabilized106[48 * 2 + 1], 0.0f };
-        geo.dense478[97]  = { stabilized106[47 * 2], stabilized106[47 * 2 + 1], 0.0f };
-        geo.dense478[327] = { stabilized106[50 * 2], stabilized106[50 * 2 + 1], 0.0f };
-        geo.dense478[326] = { stabilized106[51 * 2], stabilized106[51 * 2 + 1], 0.0f };
-        geo.dense478[164] = { stabilized106[49 * 2], stabilized106[49 * 2 + 1], 0.0f };
+        geo.dense478[98]  = { stabilized106[58 * 2], stabilized106[58 * 2 + 1], 0.0f }; // left alar
+        geo.dense478[97]  = { stabilized106[58 * 2], stabilized106[58 * 2 + 1], 0.0f };
+        geo.dense478[327] = { stabilized106[60 * 2], stabilized106[60 * 2 + 1], 0.0f }; // right alar
+        geo.dense478[326] = { stabilized106[60 * 2], stabilized106[60 * 2 + 1], 0.0f };
+        geo.dense478[164] = { stabilized106[59 * 2], stabilized106[59 * 2 + 1], 0.0f }; // subnasale
 
-        // Lips outer contour
+        // Eye canthus for coordinate axis
+        geo.dense478[133] = { stabilized106[66 * 2], stabilized106[66 * 2 + 1], 0.0f }; // left inner canthus
+        geo.dense478[362] = { stabilized106[76 * 2], stabilized106[76 * 2 + 1], 0.0f }; // right inner canthus
+
+        // Upper lip contour (61, 185, 40, 39, 37, 0, 267, 269, 270, 409, 291)
+        static const int LIP_TOP_478[11] = { 61, 185, 40, 39, 37, 0, 267, 269, 270, 409, 291 };
+        static const int MAP_106_UPPER[11] = { 90, 91, 92, 92, 93, 94, 95, 95, 96, 97, 82 };
+        for (int k = 0; k < 11; ++k) {
+            int p106 = MAP_106_UPPER[k];
+            int p478 = LIP_TOP_478[k];
+            geo.dense478[p478] = { stabilized106[p106 * 2], stabilized106[p106 * 2 + 1], 0.0f };
+        }
+
+        // Lower lip contour (61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291)
+        static const int LIP_BOT_478[11] = { 61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291 };
+        static const int MAP_106_LOWER[11] = { 90, 89, 88, 87, 87, 86, 85, 85, 84, 83, 82 };
+        for (int k = 0; k < 11; ++k) {
+            int p106 = MAP_106_LOWER[k];
+            int p478 = LIP_BOT_478[k];
+            geo.dense478[p478] = { stabilized106[p106 * 2], stabilized106[p106 * 2 + 1], 0.0f };
+        }
+
+        // Lips outer contour polygon for exclusion
         static const int LIPS_OUTER_INDICES[20] = {
             61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291,
             308, 324, 318, 402, 317, 14, 87, 178, 88
         };
+        static const int MAP_106_LIPS_POLY[20] = {
+            90, 89, 88, 87, 87, 86, 85, 85, 84, 83, 82,
+            82, 97, 96, 95, 95, 94, 93, 92, 91
+        };
         for (int i = 0; i < 20; ++i) {
-            int p106 = 52 + (i % 20);
-            if (p106 <= 71) {
-                geo.dense478[LIPS_OUTER_INDICES[i]] = { stabilized106[p106 * 2], stabilized106[p106 * 2 + 1], 0.0f };
-            }
+            int p106 = MAP_106_LIPS_POLY[i];
+            geo.dense478[LIPS_OUTER_INDICES[i]] = { stabilized106[p106 * 2], stabilized106[p106 * 2 + 1], 0.0f };
         }
     }
 

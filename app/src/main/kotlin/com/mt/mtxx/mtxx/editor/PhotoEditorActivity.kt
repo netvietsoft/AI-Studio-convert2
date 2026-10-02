@@ -2897,6 +2897,7 @@ class PhotoEditorActivity : Activity() {
                 val isRightVis = earRep?.isRightEarVisible ?: false
                 if (!isLeftVis && !isRightVis) {
                     Log.i("PhotoEditorActivity", "EarTool: No ear detected or visible for $currentToolId. Leaving image unchanged.")
+                    tvEffectTag.text = "⚠️ Không nhận diện được vành tai (bị tóc che khuất) • Giữ nguyên ảnh"
                     return
                 }
                 val bw = rawOriginalBitmap.width.toFloat()
@@ -3175,7 +3176,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardGrayAway(
                     workingBitmap,
                     bIntensity,
@@ -3189,7 +3190,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     32, 24, 20, // Natural Espresso
@@ -3206,7 +3207,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     28, 22, 18,
@@ -3223,7 +3224,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     28, 22, 18,
@@ -3239,7 +3240,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     28, 22, 18,
@@ -3255,7 +3256,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     26, 20, 18,
@@ -3271,7 +3272,7 @@ class PhotoEditorActivity : Activity() {
                 val bThickness = (1.0f + beardThicknessVal / 100f).coerceIn(0.2f, 2.5f)
                 val bWidth = (1.0f + beardWidthVal / 100f).coerceIn(0.4f, 2.2f)
                 val bHeightOffset = beardHeightOffsetVal.toFloat()
-                val bIntensity = beardIntensity / 100f
+                val bIntensity = (if (beardIntensity > 0) beardIntensity else (if (currentIntensity > 0) currentIntensity else 70)) / 100f
                 MeituNativeEngine.nativeApplyBeardDye(
                     workingBitmap,
                     28, 22, 18,
