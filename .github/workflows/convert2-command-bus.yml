@@ -60,7 +60,6 @@ jobs:
           powershell.exe -NoProfile -ExecutionPolicy Bypass `
             -File ".\scripts\run_agent_from_github_command.ps1" `
             -RepoPath "${{ github.workspace }}" `
-            -CommandId "$cmdId" `
             -ExecutionLane "$lane"
 
       - name: Upload runner logs
