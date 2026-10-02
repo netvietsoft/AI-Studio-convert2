@@ -6,8 +6,17 @@
 #include <vector>
 #include <cstdint>
 #include <vulkan/vulkan.h>
+#include <mutex>
 
 namespace meitu_native::hce {
+
+struct VulkanBufferResource {
+    VkBuffer buffer = VK_NULL_HANDLE;
+    VkDeviceMemory memory = VK_NULL_HANDLE;
+    VkDeviceSize size = 0;
+    bool isHostCoherent = false;
+    void* mappedPtr = nullptr;
+};
 
 struct VulkanDeviceInfo {
     bool isAvailable = false;
@@ -50,14 +59,24 @@ struct VulkanDispatchTrace {
     std::string status = "PENDING";
 };
 
+/**
+ * HairGpuBackend
+ *
+ * Thread Safety Contract:
+ * - Public methods (executePipeline, executeVulkanCompute, executeCpuReference,
+ *   runParityBenchmark, detectCapabilities, getLastDispatchTrace, getDeviceInfo)
+ *   are thread-safe and protected by an internal mutex (mBackendMutex).
+ * - Satisfies Vulkan external synchronization rules for VkCommandPool, VkDescriptorPool,
+ *   and persistent buffer mutations.
+ */
 class HairGpuBackend {
 public:
     static HairGpuBackend& getInstance();
 
     DeviceGpuCapability detectCapabilities();
-    const VulkanDeviceInfo& getDeviceInfo() const { return mDeviceInfo; }
-    const VulkanDispatchTrace& getLastDispatchTrace() const { return mLastTrace; }
-    uint32_t getGpuDispatchCount() const { return mTotalDispatchCount; }
+    VulkanDeviceInfo getDeviceInfo() const;
+    VulkanDispatchTrace getLastDispatchTrace() const;
+    uint32_t getGpuDispatchCount() const;
 
     bool executePipeline(
         const HairRenderInputs& inputs,
@@ -89,9 +108,17 @@ private:
 
     bool initVulkan();
     void cleanupVulkan();
-    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
-    bool createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties,
-                      VkBuffer& buffer, VkDeviceMemory& bufferMemory);
+
+    // Memory and Buffer management
+    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties, bool* outIsCoherent = nullptr);
+    bool allocateBufferResource(VkDeviceSize size, VkBufferUsageFlags usage, VulkanBufferResource& res);
+    void freeBufferResource(VulkanBufferResource& res);
+
+    // Persistent Buffers & Dispatch Isolation
+    bool ensurePersistentBuffers(int totalPixels);
+    void destroyPersistentBuffers();
+
+    mutable std::recursive_mutex mBackendMutex;
 
     DeviceGpuCapability mCaps;
     bool mCapsDetected = false;
@@ -113,6 +140,16 @@ private:
     VkPipelineLayout mPipelineLayout = VK_NULL_HANDLE;
     VkPipeline mComputePipeline = VK_NULL_HANDLE;
     VkDescriptorPool mDescriptorPool = VK_NULL_HANDLE;
+
+    // Persistent Buffer cache
+    int mAllocatedPixelCount = 0;
+    VulkanBufferResource mBufIn;
+    VulkanBufferResource mBufOut;
+    VulkanBufferResource mBufFeat0;
+    VulkanBufferResource mBufFeat1;
+    VkDescriptorSet mDescriptorSet = VK_NULL_HANDLE;
+    VkCommandBuffer mCommandBuffer = VK_NULL_HANDLE;
+    VkFence mFence = VK_NULL_HANDLE;
 
     bool mVulkanInitialized = false;
 };

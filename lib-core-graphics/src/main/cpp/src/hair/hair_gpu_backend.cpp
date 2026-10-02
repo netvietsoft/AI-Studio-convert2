@@ -60,53 +60,255 @@ HairGpuBackend& HairGpuBackend::getInstance() {
     return instance;
 }
 
-uint32_t HairGpuBackend::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) {
-    for (uint32_t i = 0; i < mMemProperties.memoryTypeCount; ++i) {
-        if ((typeFilter & (1 << i)) && (mMemProperties.memoryTypes[i].propertyFlags & properties) == properties) {
-            return i;
-        }
-    }
-    // Fallback: try host visible only
-    for (uint32_t i = 0; i < mMemProperties.memoryTypeCount; ++i) {
-        if ((typeFilter & (1 << i)) && (mMemProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)) {
-            return i;
-        }
-    }
-    return 0;
+VulkanDeviceInfo HairGpuBackend::getDeviceInfo() const {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
+    return mDeviceInfo;
 }
 
-bool HairGpuBackend::createBuffer(
-    VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties,
-    VkBuffer& buffer, VkDeviceMemory& bufferMemory
+VulkanDispatchTrace HairGpuBackend::getLastDispatchTrace() const {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
+    return mLastTrace;
+}
+
+uint32_t HairGpuBackend::getGpuDispatchCount() const {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
+    return mTotalDispatchCount;
+}
+
+uint32_t HairGpuBackend::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties, bool* outIsCoherent) {
+    if (outIsCoherent) *outIsCoherent = false;
+
+    // 1. Try exact requested properties (e.g. HOST_VISIBLE | HOST_COHERENT)
+    for (uint32_t i = 0; i < mMemProperties.memoryTypeCount; ++i) {
+        if ((typeFilter & (1 << i)) && (mMemProperties.memoryTypes[i].propertyFlags & properties) == properties) {
+            if (outIsCoherent) {
+                *outIsCoherent = (mMemProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT) != 0;
+            }
+            return i;
+        }
+    }
+
+    // 2. Explicit Fallback: try host visible only
+    for (uint32_t i = 0; i < mMemProperties.memoryTypeCount; ++i) {
+        if ((typeFilter & (1 << i)) && (mMemProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)) {
+            if (outIsCoherent) {
+                *outIsCoherent = (mMemProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT) != 0;
+            }
+            LOGW("[HCE_VULKAN] Fallback to non-coherent host memory type index %u (isCoherent=%d)", i, (outIsCoherent && *outIsCoherent) ? 1 : 0);
+            return i;
+        }
+    }
+
+    LOGE("[HCE_VULKAN] Failed to find suitable host-visible memory type for filter 0x%x, props 0x%x", typeFilter, properties);
+    return UINT32_MAX;
+}
+
+bool HairGpuBackend::allocateBufferResource(
+    VkDeviceSize size, VkBufferUsageFlags usage, VulkanBufferResource& res
 ) {
+    if (mDevice == VK_NULL_HANDLE) return false;
+    freeBufferResource(res);
+
     VkBufferCreateInfo bufferInfo = {};
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bufferInfo.size = size;
     bufferInfo.usage = usage;
     bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-    if (vkCreateBuffer(mDevice, &bufferInfo, nullptr, &buffer) != VK_SUCCESS) {
-        LOGE("Failed to create Vulkan buffer of size %zu", (size_t)size);
+    VkResult vkRes = vkCreateBuffer(mDevice, &bufferInfo, nullptr, &res.buffer);
+    if (vkRes != VK_SUCCESS) {
+        LOGE("vkCreateBuffer failed for size %zu: %d", (size_t)size, vkRes);
         return false;
     }
 
     VkMemoryRequirements memRequirements;
-    vkGetBufferMemoryRequirements(mDevice, buffer, &memRequirements);
+    vkGetBufferMemoryRequirements(mDevice, res.buffer, &memRequirements);
+
+    bool isCoherent = false;
+    VkMemoryPropertyFlags hostFlags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    uint32_t memTypeIndex = findMemoryType(memRequirements.memoryTypeBits, hostFlags, &isCoherent);
+    if (memTypeIndex == UINT32_MAX) {
+        LOGE("No suitable memory type found for buffer");
+        vkDestroyBuffer(mDevice, res.buffer, nullptr);
+        res.buffer = VK_NULL_HANDLE;
+        return false;
+    }
 
     VkMemoryAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, properties);
+    allocInfo.memoryTypeIndex = memTypeIndex;
 
-    if (vkAllocateMemory(mDevice, &allocInfo, nullptr, &bufferMemory) != VK_SUCCESS) {
-        LOGE("Failed to allocate Vulkan memory of size %zu", (size_t)memRequirements.size);
-        vkDestroyBuffer(mDevice, buffer, nullptr);
-        buffer = VK_NULL_HANDLE;
+    vkRes = vkAllocateMemory(mDevice, &allocInfo, nullptr, &res.memory);
+    if (vkRes != VK_SUCCESS) {
+        LOGE("vkAllocateMemory failed for size %zu: %d", (size_t)memRequirements.size, vkRes);
+        vkDestroyBuffer(mDevice, res.buffer, nullptr);
+        res.buffer = VK_NULL_HANDLE;
         return false;
     }
 
-    vkBindBufferMemory(mDevice, buffer, bufferMemory, 0);
+    vkRes = vkBindBufferMemory(mDevice, res.buffer, res.memory, 0);
+    if (vkRes != VK_SUCCESS) {
+        LOGE("vkBindBufferMemory failed: %d", vkRes);
+        vkFreeMemory(mDevice, res.memory, nullptr);
+        vkDestroyBuffer(mDevice, res.buffer, nullptr);
+        res.memory = VK_NULL_HANDLE;
+        res.buffer = VK_NULL_HANDLE;
+        return false;
+    }
+
+    res.size = size;
+    res.isHostCoherent = isCoherent;
+
+    // Persistently map buffer memory
+    vkRes = vkMapMemory(mDevice, res.memory, 0, size, 0, &res.mappedPtr);
+    if (vkRes != VK_SUCCESS) {
+        LOGE("vkMapMemory failed for size %zu: %d", (size_t)size, vkRes);
+        vkFreeMemory(mDevice, res.memory, nullptr);
+        vkDestroyBuffer(mDevice, res.buffer, nullptr);
+        res.memory = VK_NULL_HANDLE;
+        res.buffer = VK_NULL_HANDLE;
+        res.mappedPtr = nullptr;
+        return false;
+    }
+
     return true;
+}
+
+void HairGpuBackend::freeBufferResource(VulkanBufferResource& res) {
+    if (mDevice != VK_NULL_HANDLE) {
+        if (res.mappedPtr != nullptr && res.memory != VK_NULL_HANDLE) {
+            vkUnmapMemory(mDevice, res.memory);
+            res.mappedPtr = nullptr;
+        }
+        if (res.buffer != VK_NULL_HANDLE) {
+            vkDestroyBuffer(mDevice, res.buffer, nullptr);
+            res.buffer = VK_NULL_HANDLE;
+        }
+        if (res.memory != VK_NULL_HANDLE) {
+            vkFreeMemory(mDevice, res.memory, nullptr);
+            res.memory = VK_NULL_HANDLE;
+        }
+    }
+    res.size = 0;
+    res.isHostCoherent = false;
+    res.mappedPtr = nullptr;
+}
+
+bool HairGpuBackend::ensurePersistentBuffers(int totalPixels) {
+    if (mAllocatedPixelCount == totalPixels &&
+        mBufIn.buffer != VK_NULL_HANDLE &&
+        mBufOut.buffer != VK_NULL_HANDLE &&
+        mBufFeat0.buffer != VK_NULL_HANDLE &&
+        mBufFeat1.buffer != VK_NULL_HANDLE &&
+        mDescriptorSet != VK_NULL_HANDLE &&
+        mCommandBuffer != VK_NULL_HANDLE &&
+        mFence != VK_NULL_HANDLE) {
+        return true;
+    }
+
+    destroyPersistentBuffers();
+
+    VkDeviceSize pixelBufferSize = totalPixels * sizeof(uint32_t);
+    VkDeviceSize feat0BufferSize = totalPixels * sizeof(Vec4);
+    VkDeviceSize feat1BufferSize = totalPixels * sizeof(Vec2);
+
+    bool ok = true;
+    ok &= allocateBufferResource(pixelBufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, mBufIn);
+    ok &= allocateBufferResource(pixelBufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, mBufOut);
+    ok &= allocateBufferResource(feat0BufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, mBufFeat0);
+    ok &= allocateBufferResource(feat1BufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, mBufFeat1);
+
+    if (!ok) {
+        LOGE("[HCE_VULKAN] Failed to allocate persistent buffer resources");
+        destroyPersistentBuffers();
+        return false;
+    }
+
+    // Pre-allocate descriptor set
+    VkDescriptorSetAllocateInfo dsAlloc = {};
+    dsAlloc.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+    dsAlloc.descriptorPool = mDescriptorPool;
+    dsAlloc.descriptorSetCount = 1;
+    dsAlloc.pSetLayouts = &mDescriptorSetLayout;
+
+    VkResult res = vkAllocateDescriptorSets(mDevice, &dsAlloc, &mDescriptorSet);
+    if (res != VK_SUCCESS) {
+        LOGE("vkAllocateDescriptorSets failed: %d", res);
+        destroyPersistentBuffers();
+        return false;
+    }
+
+    VkDescriptorBufferInfo bInfos[4] = {
+        { mBufIn.buffer, 0, pixelBufferSize },
+        { mBufOut.buffer, 0, pixelBufferSize },
+        { mBufFeat0.buffer, 0, feat0BufferSize },
+        { mBufFeat1.buffer, 0, feat1BufferSize }
+    };
+
+    VkWriteDescriptorSet writes[4] = {};
+    for (int b = 0; b < 4; ++b) {
+        writes[b].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+        writes[b].dstSet = mDescriptorSet;
+        writes[b].dstBinding = b;
+        writes[b].dstArrayElement = 0;
+        writes[b].descriptorCount = 1;
+        writes[b].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+        writes[b].pBufferInfo = &bInfos[b];
+    }
+    vkUpdateDescriptorSets(mDevice, 4, writes, 0, nullptr);
+
+    // Pre-allocate Command Buffer
+    VkCommandBufferAllocateInfo cbAlloc = {};
+    cbAlloc.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    cbAlloc.commandPool = mCommandPool;
+    cbAlloc.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    cbAlloc.commandBufferCount = 1;
+
+    res = vkAllocateCommandBuffers(mDevice, &cbAlloc, &mCommandBuffer);
+    if (res != VK_SUCCESS) {
+        LOGE("vkAllocateCommandBuffers failed: %d", res);
+        destroyPersistentBuffers();
+        return false;
+    }
+
+    // Pre-create Fence
+    VkFenceCreateInfo fInfo = {};
+    fInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+    fInfo.flags = 0; // initially unsignaled
+    res = vkCreateFence(mDevice, &fInfo, nullptr, &mFence);
+    if (res != VK_SUCCESS) {
+        LOGE("vkCreateFence failed: %d", res);
+        destroyPersistentBuffers();
+        return false;
+    }
+
+    mAllocatedPixelCount = totalPixels;
+    LOGI("[HCE_VULKAN] Persistent buffers and dispatch objects cached for %d pixels", totalPixels);
+    return true;
+}
+
+void HairGpuBackend::destroyPersistentBuffers() {
+    if (mDevice != VK_NULL_HANDLE) {
+        vkDeviceWaitIdle(mDevice);
+        if (mFence != VK_NULL_HANDLE) {
+            vkDestroyFence(mDevice, mFence, nullptr);
+            mFence = VK_NULL_HANDLE;
+        }
+        if (mCommandBuffer != VK_NULL_HANDLE && mCommandPool != VK_NULL_HANDLE) {
+            vkFreeCommandBuffers(mDevice, mCommandPool, 1, &mCommandBuffer);
+            mCommandBuffer = VK_NULL_HANDLE;
+        }
+        if (mDescriptorSet != VK_NULL_HANDLE && mDescriptorPool != VK_NULL_HANDLE) {
+            vkFreeDescriptorSets(mDevice, mDescriptorPool, 1, &mDescriptorSet);
+            mDescriptorSet = VK_NULL_HANDLE;
+        }
+    }
+    freeBufferResource(mBufIn);
+    freeBufferResource(mBufOut);
+    freeBufferResource(mBufFeat0);
+    freeBufferResource(mBufFeat1);
+    mAllocatedPixelCount = 0;
 }
 
 bool HairGpuBackend::initVulkan() {
@@ -130,19 +332,26 @@ bool HairGpuBackend::initVulkan() {
     VkResult res = vkCreateInstance(&instInfo, nullptr, &mInstance);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateInstance failed with code: %d", res);
+        cleanupVulkan();
         return false;
     }
 
     // 2. Physical Device
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(mInstance, &deviceCount, nullptr);
-    if (deviceCount == 0) {
-        LOGE("No Vulkan physical devices found on system.");
+    res = vkEnumeratePhysicalDevices(mInstance, &deviceCount, nullptr);
+    if (res != VK_SUCCESS || deviceCount == 0) {
+        LOGE("No Vulkan physical devices found on system (code: %d)", res);
+        cleanupVulkan();
         return false;
     }
 
     std::vector<VkPhysicalDevice> devices(deviceCount);
-    vkEnumeratePhysicalDevices(mInstance, &deviceCount, devices.data());
+    res = vkEnumeratePhysicalDevices(mInstance, &deviceCount, devices.data());
+    if (res != VK_SUCCESS) {
+        LOGE("vkEnumeratePhysicalDevices failed: %d", res);
+        cleanupVulkan();
+        return false;
+    }
 
     mPhysicalDevice = VK_NULL_HANDLE;
     for (auto pd : devices) {
@@ -163,6 +372,7 @@ bool HairGpuBackend::initVulkan() {
 
     if (mPhysicalDevice == VK_NULL_HANDLE) {
         LOGE("No physical device supporting compute queue found.");
+        cleanupVulkan();
         return false;
     }
 
@@ -207,6 +417,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateDevice(mPhysicalDevice, &devInfo, nullptr, &mDevice);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateDevice failed: %d", res);
+        cleanupVulkan();
         return false;
     }
     vkGetDeviceQueue(mDevice, mComputeQueueFamilyIndex, 0, &mComputeQueue);
@@ -220,6 +431,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateCommandPool(mDevice, &cpInfo, nullptr, &mCommandPool);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateCommandPool failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
@@ -232,6 +444,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateShaderModule(mDevice, &smInfo, nullptr, &mShaderModule);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateShaderModule failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
@@ -252,6 +465,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateDescriptorSetLayout(mDevice, &dslInfo, nullptr, &mDescriptorSetLayout);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateDescriptorSetLayout failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
@@ -271,6 +485,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreatePipelineLayout(mDevice, &plInfo, nullptr, &mPipelineLayout);
     if (res != VK_SUCCESS) {
         LOGE("vkCreatePipelineLayout failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
@@ -286,6 +501,7 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateComputePipelines(mDevice, VK_NULL_HANDLE, 1, &compInfo, nullptr, &mComputePipeline);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateComputePipelines failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
@@ -304,16 +520,19 @@ bool HairGpuBackend::initVulkan() {
     res = vkCreateDescriptorPool(mDevice, &dpInfo, nullptr, &mDescriptorPool);
     if (res != VK_SUCCESS) {
         LOGE("vkCreateDescriptorPool failed: %d", res);
+        cleanupVulkan();
         return false;
     }
 
     mVulkanInitialized = true;
     mCaps.hasVulkanCompute = true;
-    LOGI("[HCE_VULKAN] Successfully created Vulkan compute pipeline!");
+    LOGI("[HCE_VULKAN] Successfully created Vulkan compute pipeline with zero leaks!");
     return true;
 }
 
 void HairGpuBackend::cleanupVulkan() {
+    destroyPersistentBuffers();
+
     if (mDevice != VK_NULL_HANDLE) {
         vkDeviceWaitIdle(mDevice);
         if (mComputePipeline != VK_NULL_HANDLE) { vkDestroyPipeline(mDevice, mComputePipeline, nullptr); mComputePipeline = VK_NULL_HANDLE; }
@@ -334,6 +553,7 @@ void HairGpuBackend::cleanupVulkan() {
 }
 
 DeviceGpuCapability HairGpuBackend::detectCapabilities() {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
     if (mCapsDetected) return mCaps;
 
     mCaps.hasOpenMP = true;
@@ -345,9 +565,18 @@ DeviceGpuCapability HairGpuBackend::detectCapabilities() {
     mCaps.hasVulkanCompute = vkOk;
     if (vkOk) {
         mCaps.maxComputeWorkGroupInvocations = mDeviceInfo.maxWorkGroupInvocations;
-        mCaps.dedicatedVideoMemoryBytes = 1024 * 1024 * 512;
+
+        // Truthful query: calculate total device-local memory from hardware memory heaps
+        size_t totalDeviceLocal = 0;
+        for (uint32_t i = 0; i < mMemProperties.memoryHeapCount; ++i) {
+            if (mMemProperties.memoryHeaps[i].flags & VK_MEMORY_HEAP_DEVICE_LOCAL_BIT) {
+                totalDeviceLocal += static_cast<size_t>(mMemProperties.memoryHeaps[i].size);
+            }
+        }
+        mCaps.dedicatedVideoMemoryBytes = totalDeviceLocal;
     } else {
         mCaps.maxComputeWorkGroupInvocations = 1024;
+        mCaps.dedicatedVideoMemoryBytes = 0;
     }
 
     mCapsDetected = true;
@@ -359,6 +588,7 @@ bool HairGpuBackend::executePipeline(
     HairRenderOutput& output,
     HairDebugArtifacts* debugArtifacts
 ) {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
     DeviceGpuCapability caps = detectCapabilities();
 
     if (inputs.executionTier == 0 && caps.hasVulkanCompute && !caps.isThermalThrottled) {
@@ -469,6 +699,8 @@ bool HairGpuBackend::executeVulkanCompute(
     HairRenderOutput& output,
     HairDebugArtifacts* debugArtifacts
 ) {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
+
     if (!inputs.srcPixels || !output.dstPixels || inputs.width <= 0 || inputs.height <= 0 || !inputs.p0Matte.alphaData) {
         mLastTrace.status = "FAILED_INVALID_INPUTS";
         mLastTrace.fallbackTriggered = true;
@@ -508,11 +740,26 @@ bool HairGpuBackend::executeVulkanCompute(
         );
     }
 
-    // 2. Chuẩn bị Feature Maps
-    std::vector<Vec4> feature0(total);
-    std::vector<Vec2> feature1(total);
+    // 2. Ensure persistent buffers & dispatch objects cached
+    if (!ensurePersistentBuffers(total)) {
+        mLastTrace.status = "FAILED_BUFFER_ALLOCATION";
+        mLastTrace.fallbackTriggered = true;
+        mLastTrace.fallbackReason = "VK_BUFFER_ALLOC_FAIL";
+        return false;
+    }
 
+    // 3. Upload & Feature Preparation Timing
+    auto tUpload0 = std::chrono::high_resolution_clock::now();
+
+    // Direct upload of srcPixels into persistently mapped buffer
+    VkDeviceSize pixelBufferSize = total * sizeof(uint32_t);
+    std::memcpy(mBufIn.mappedPtr, inputs.srcPixels, pixelBufferSize);
+
+    // Compute feature maps directly into persistently mapped memory
+    Vec4* feat0Ptr = static_cast<Vec4*>(mBufFeat0.mappedPtr);
+    Vec2* feat1Ptr = static_cast<Vec2*>(mBufFeat1.mappedPtr);
     const float* alpha = inputs.p0Matte.alphaData;
+
     #pragma omp parallel for schedule(static, 256)
     for (int i = 0; i < total; ++i) {
         float aVal = alpha[i];
@@ -522,120 +769,63 @@ bool HairGpuBackend::executeVulkanCompute(
         if (texture.isValid) {
             microDetail = (texture.highFreqDetail[i] * 0.6f + texture.directionalResponse[i] * 0.4f) / 255.0f;
         }
-        feature0[i] = { aVal, shadowF, rootF, microDetail };
+        feat0Ptr[i] = { aVal, shadowF, rootF, microDetail };
 
         float hlMask = appearance.isValid ? appearance.highlightMask[i] : 0.0f;
         float flowConf = orientation.isValid ? orientation.confidence[i] : 0.5f;
-        feature1[i] = { hlMask, flowConf };
+        feat1Ptr[i] = { hlMask, flowConf };
     }
 
-    // 3. Khởi tạo 4 Storage Buffers
-    VkDeviceSize pixelBufferSize = total * sizeof(uint32_t);
-    VkDeviceSize feat0BufferSize = total * sizeof(Vec4);
-    VkDeviceSize feat1BufferSize = total * sizeof(Vec2);
-
-    VkBuffer bufIn = VK_NULL_HANDLE, bufOut = VK_NULL_HANDLE;
-    VkBuffer bufFeat0 = VK_NULL_HANDLE, bufFeat1 = VK_NULL_HANDLE;
-    VkDeviceMemory memIn = VK_NULL_HANDLE, memOut = VK_NULL_HANDLE;
-    VkDeviceMemory memFeat0 = VK_NULL_HANDLE, memFeat1 = VK_NULL_HANDLE;
-
-    VkMemoryPropertyFlags hostFlags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
-    bool bOk = true;
-    bOk &= createBuffer(pixelBufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, hostFlags, bufIn, memIn);
-    bOk &= createBuffer(pixelBufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, hostFlags, bufOut, memOut);
-    bOk &= createBuffer(feat0BufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, hostFlags, bufFeat0, memFeat0);
-    bOk &= createBuffer(feat1BufferSize, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, hostFlags, bufFeat1, memFeat1);
-
-    if (!bOk) {
-        LOGE("Failed to allocate GPU storage buffers!");
-        mLastTrace.status = "FAILED_BUFFER_ALLOCATION";
-        mLastTrace.fallbackTriggered = true;
-        mLastTrace.fallbackReason = "VK_BUFFER_ALLOC_FAIL";
-        if (bufIn) vkDestroyBuffer(mDevice, bufIn, nullptr);
-        if (bufOut) vkDestroyBuffer(mDevice, bufOut, nullptr);
-        if (bufFeat0) vkDestroyBuffer(mDevice, bufFeat0, nullptr);
-        if (bufFeat1) vkDestroyBuffer(mDevice, bufFeat1, nullptr);
-        if (memIn) vkFreeMemory(mDevice, memIn, nullptr);
-        if (memOut) vkFreeMemory(mDevice, memOut, nullptr);
-        if (memFeat0) vkFreeMemory(mDevice, memFeat0, nullptr);
-        if (memFeat1) vkFreeMemory(mDevice, memFeat1, nullptr);
-        return false;
+    // Coherency flush for non-coherent host memory
+    std::vector<VkMappedMemoryRange> flushRanges;
+    if (!mBufIn.isHostCoherent) {
+        flushRanges.push_back({ VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, nullptr, mBufIn.memory, 0, VK_WHOLE_SIZE });
     }
-
-    // 4. Đo lường Upload Thời Gian Thực (Upload Latency)
-    auto tUpload0 = std::chrono::high_resolution_clock::now();
-    void* ptrIn = nullptr;
-    vkMapMemory(mDevice, memIn, 0, pixelBufferSize, 0, &ptrIn);
-    std::memcpy(ptrIn, inputs.srcPixels, pixelBufferSize);
-    vkUnmapMemory(mDevice, memIn);
-
-    void* ptrFeat0 = nullptr;
-    vkMapMemory(mDevice, memFeat0, 0, feat0BufferSize, 0, &ptrFeat0);
-    std::memcpy(ptrFeat0, feature0.data(), feat0BufferSize);
-    vkUnmapMemory(mDevice, memFeat0);
-
-    void* ptrFeat1 = nullptr;
-    vkMapMemory(mDevice, memFeat1, 0, feat1BufferSize, 0, &ptrFeat1);
-    std::memcpy(ptrFeat1, feature1.data(), feat1BufferSize);
-    vkUnmapMemory(mDevice, memFeat1);
+    if (!mBufFeat0.isHostCoherent) {
+        flushRanges.push_back({ VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, nullptr, mBufFeat0.memory, 0, VK_WHOLE_SIZE });
+    }
+    if (!mBufFeat1.isHostCoherent) {
+        flushRanges.push_back({ VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE, nullptr, mBufFeat1.memory, 0, VK_WHOLE_SIZE });
+    }
+    if (!flushRanges.empty()) {
+        VkResult fRes = vkFlushMappedMemoryRanges(mDevice, static_cast<uint32_t>(flushRanges.size()), flushRanges.data());
+        if (fRes != VK_SUCCESS) {
+            LOGE("vkFlushMappedMemoryRanges failed: %d", fRes);
+            mLastTrace.status = "FAILED_MEMORY_FLUSH";
+            mLastTrace.fallbackTriggered = true;
+            mLastTrace.fallbackReason = "VK_MEMORY_FLUSH_FAIL";
+            return false;
+        }
+    }
 
     auto tUpload1 = std::chrono::high_resolution_clock::now();
     float uploadMs = std::chrono::duration<float, std::milli>(tUpload1 - tUpload0).count();
 
-    // 5. Cấp phát Descriptor Set & Cập nhật Bindings
-    VkDescriptorSetAllocateInfo dsAlloc = {};
-    dsAlloc.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-    dsAlloc.descriptorPool = mDescriptorPool;
-    dsAlloc.descriptorSetCount = 1;
-    dsAlloc.pSetLayouts = &mDescriptorSetLayout;
-
-    VkDescriptorSet descSet = VK_NULL_HANDLE;
-    if (vkAllocateDescriptorSets(mDevice, &dsAlloc, &descSet) != VK_SUCCESS) {
-        LOGE("Failed to allocate descriptor set");
-        mLastTrace.status = "FAILED_DESCRIPTOR_ALLOC";
+    // 4. Command buffer record
+    VkResult res = vkResetCommandBuffer(mCommandBuffer, 0);
+    if (res != VK_SUCCESS) {
+        LOGE("vkResetCommandBuffer failed: %d", res);
+        mLastTrace.status = "FAILED_CMD_RESET";
         mLastTrace.fallbackTriggered = true;
-        mLastTrace.fallbackReason = "VK_DESCRIPTOR_ALLOC_FAIL";
+        mLastTrace.fallbackReason = "VK_CMD_RESET_FAIL";
         return false;
     }
-
-    VkDescriptorBufferInfo bInfos[4] = {
-        { bufIn, 0, pixelBufferSize },
-        { bufOut, 0, pixelBufferSize },
-        { bufFeat0, 0, feat0BufferSize },
-        { bufFeat1, 0, feat1BufferSize }
-    };
-
-    VkWriteDescriptorSet writes[4] = {};
-    for (int b = 0; b < 4; ++b) {
-        writes[b].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        writes[b].dstSet = descSet;
-        writes[b].dstBinding = b;
-        writes[b].dstArrayElement = 0;
-        writes[b].descriptorCount = 1;
-        writes[b].descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-        writes[b].pBufferInfo = &bInfos[b];
-    }
-    vkUpdateDescriptorSets(mDevice, 4, writes, 0, nullptr);
-
-    // 6. Ghi Command Buffer & Dispatch
-    VkCommandBufferAllocateInfo cbAlloc = {};
-    cbAlloc.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-    cbAlloc.commandPool = mCommandPool;
-    cbAlloc.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    cbAlloc.commandBufferCount = 1;
-
-    VkCommandBuffer cmd = VK_NULL_HANDLE;
-    vkAllocateCommandBuffers(mDevice, &cbAlloc, &cmd);
 
     VkCommandBufferBeginInfo beginInfo = {};
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-    vkBeginCommandBuffer(cmd, &beginInfo);
+    res = vkBeginCommandBuffer(mCommandBuffer, &beginInfo);
+    if (res != VK_SUCCESS) {
+        LOGE("vkBeginCommandBuffer failed: %d", res);
+        mLastTrace.status = "FAILED_CMD_BEGIN";
+        mLastTrace.fallbackTriggered = true;
+        mLastTrace.fallbackReason = "VK_CMD_BEGIN_FAIL";
+        return false;
+    }
 
-    vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_COMPUTE, mComputePipeline);
-    vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_COMPUTE, mPipelineLayout, 0, 1, &descSet, 0, nullptr);
+    vkCmdBindPipeline(mCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, mComputePipeline);
+    vkCmdBindDescriptorSets(mCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, mPipelineLayout, 0, 1, &mDescriptorSet, 0, nullptr);
 
-    // Chuẩn bị Push Constants
     HairVulkanPushConstants pc = {};
     pc.width = inputs.width;
     pc.height = inputs.height;
@@ -659,93 +849,91 @@ bool HairGpuBackend::executeVulkanCompute(
     pc.roiMinY = (inputs.p0Matte.roiMaxY > inputs.p0Matte.roiMinY) ? std::max(0, inputs.p0Matte.roiMinY) : 0;
     pc.roiMaxY = (inputs.p0Matte.roiMaxY > inputs.p0Matte.roiMinY) ? std::min(inputs.height - 1, inputs.p0Matte.roiMaxY) : inputs.height - 1;
 
-    vkCmdPushConstants(cmd, mPipelineLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0, sizeof(pc), &pc);
+    vkCmdPushConstants(mCommandBuffer, mPipelineLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0, sizeof(pc), &pc);
 
     uint32_t groupX = (inputs.width + 15) / 16;
     uint32_t groupY = (inputs.height + 15) / 16;
-    vkCmdDispatch(cmd, groupX, groupY, 1);
+    vkCmdDispatch(mCommandBuffer, groupX, groupY, 1);
 
-    // Memory Barrier đảm bảo ghi hoàn tất trước khi CPU đọc
     VkMemoryBarrier memBarrier = {};
     memBarrier.sType = VK_STRUCTURE_TYPE_MEMORY_BARRIER;
     memBarrier.srcAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
     memBarrier.dstAccessMask = VK_ACCESS_HOST_READ_BIT;
-    vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, VK_PIPELINE_STAGE_HOST_BIT, 0, 1, &memBarrier, 0, nullptr, 0, nullptr);
+    vkCmdPipelineBarrier(mCommandBuffer, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, VK_PIPELINE_STAGE_HOST_BIT, 0, 1, &memBarrier, 0, nullptr, 0, nullptr);
 
-    vkEndCommandBuffer(cmd);
+    res = vkEndCommandBuffer(mCommandBuffer);
+    if (res != VK_SUCCESS) {
+        LOGE("vkEndCommandBuffer failed: %d", res);
+        mLastTrace.status = "FAILED_CMD_END";
+        mLastTrace.fallbackTriggered = true;
+        mLastTrace.fallbackReason = "VK_CMD_END_FAIL";
+        return false;
+    }
 
-    // 7. Thực thi Hàng đợi GPU (Queue Submit) và Đồng bộ qua Fence
-    VkFence fence = VK_NULL_HANDLE;
-    VkFenceCreateInfo fInfo = {};
-    fInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-    vkCreateFence(mDevice, &fInfo, nullptr, &fence);
+    // 5. Submit & Sync
+    res = vkResetFences(mDevice, 1, &mFence);
+    if (res != VK_SUCCESS) {
+        LOGE("vkResetFences failed: %d", res);
+        mLastTrace.status = "FAILED_FENCE_RESET";
+        mLastTrace.fallbackTriggered = true;
+        mLastTrace.fallbackReason = "VK_FENCE_RESET_FAIL";
+        return false;
+    }
 
     VkSubmitInfo submitInfo = {};
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &cmd;
+    submitInfo.pCommandBuffers = &mCommandBuffer;
 
     auto tDisp0 = std::chrono::high_resolution_clock::now();
-    VkResult subRes = vkQueueSubmit(mComputeQueue, 1, &submitInfo, fence);
-
-    if (subRes != VK_SUCCESS) {
-        LOGE("vkQueueSubmit failed with code: %d", subRes);
+    res = vkQueueSubmit(mComputeQueue, 1, &submitInfo, mFence);
+    if (res != VK_SUCCESS) {
+        LOGE("vkQueueSubmit failed with code: %d", res);
         mLastTrace.status = "FAILED_QUEUE_SUBMIT";
         mLastTrace.submitResult = "VK_SUBMIT_ERROR";
         mLastTrace.fallbackTriggered = true;
         mLastTrace.fallbackReason = "VK_QUEUE_SUBMIT_FAILED";
-        vkDestroyFence(mDevice, fence, nullptr);
-        vkFreeCommandBuffers(mDevice, mCommandPool, 1, &cmd);
-        vkFreeDescriptorSets(mDevice, mDescriptorPool, 1, &descSet);
-        vkDestroyBuffer(mDevice, bufIn, nullptr); vkDestroyBuffer(mDevice, bufOut, nullptr);
-        vkDestroyBuffer(mDevice, bufFeat0, nullptr); vkDestroyBuffer(mDevice, bufFeat1, nullptr);
-        vkFreeMemory(mDevice, memIn, nullptr); vkFreeMemory(mDevice, memOut, nullptr);
-        vkFreeMemory(mDevice, memFeat0, nullptr); vkFreeMemory(mDevice, memFeat1, nullptr);
         return false;
     }
 
-    VkResult waitRes = vkWaitForFences(mDevice, 1, &fence, VK_TRUE, 5000000000ULL); // 5s timeout
+    res = vkWaitForFences(mDevice, 1, &mFence, VK_TRUE, 5000000000ULL); // 5s timeout
     auto tDisp1 = std::chrono::high_resolution_clock::now();
     float dispatchMs = std::chrono::duration<float, std::milli>(tDisp1 - tDisp0).count();
 
-    if (waitRes != VK_SUCCESS) {
-        LOGE("vkWaitForFences timed out or error: %d", waitRes);
+    if (res != VK_SUCCESS) {
+        LOGE("vkWaitForFences timed out or error: %d", res);
         mLastTrace.status = "FAILED_FENCE_WAIT";
         mLastTrace.completionResult = "VK_FENCE_TIMEOUT";
         mLastTrace.fallbackTriggered = true;
         mLastTrace.fallbackReason = "VK_FENCE_WAIT_TIMEOUT";
-        vkDestroyFence(mDevice, fence, nullptr);
-        vkFreeCommandBuffers(mDevice, mCommandPool, 1, &cmd);
-        vkFreeDescriptorSets(mDevice, mDescriptorPool, 1, &descSet);
-        vkDestroyBuffer(mDevice, bufIn, nullptr); vkDestroyBuffer(mDevice, bufOut, nullptr);
-        vkDestroyBuffer(mDevice, bufFeat0, nullptr); vkDestroyBuffer(mDevice, bufFeat1, nullptr);
-        vkFreeMemory(mDevice, memIn, nullptr); vkFreeMemory(mDevice, memOut, nullptr);
-        vkFreeMemory(mDevice, memFeat0, nullptr); vkFreeMemory(mDevice, memFeat1, nullptr);
         return false;
     }
 
-    // 8. Đọc kết quả Thực thi GPU ra Bộ đệm Xuất xưởng (Download Latency)
+    // 6. Download / Readback Timing
     auto tDl0 = std::chrono::high_resolution_clock::now();
-    void* ptrOut = nullptr;
-    vkMapMemory(mDevice, memOut, 0, pixelBufferSize, 0, &ptrOut);
-    std::memcpy(output.dstPixels, ptrOut, pixelBufferSize);
-    vkUnmapMemory(mDevice, memOut);
+
+    // Coherency invalidate if needed
+    if (!mBufOut.isHostCoherent) {
+        VkMappedMemoryRange invRange = {};
+        invRange.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
+        invRange.memory = mBufOut.memory;
+        invRange.offset = 0;
+        invRange.size = VK_WHOLE_SIZE;
+        res = vkInvalidateMappedMemoryRanges(mDevice, 1, &invRange);
+        if (res != VK_SUCCESS) {
+            LOGE("vkInvalidateMappedMemoryRanges failed: %d", res);
+        }
+    }
+
+    std::memcpy(output.dstPixels, mBufOut.mappedPtr, pixelBufferSize);
+
     auto tDl1 = std::chrono::high_resolution_clock::now();
     float downloadMs = std::chrono::duration<float, std::milli>(tDl1 - tDl0).count();
-
-    // 9. Dọn dẹp tài nguyên dispatch
-    vkDestroyFence(mDevice, fence, nullptr);
-    vkFreeCommandBuffers(mDevice, mCommandPool, 1, &cmd);
-    vkFreeDescriptorSets(mDevice, mDescriptorPool, 1, &descSet);
-    vkDestroyBuffer(mDevice, bufIn, nullptr); vkDestroyBuffer(mDevice, bufOut, nullptr);
-    vkDestroyBuffer(mDevice, bufFeat0, nullptr); vkDestroyBuffer(mDevice, bufFeat1, nullptr);
-    vkFreeMemory(mDevice, memIn, nullptr); vkFreeMemory(mDevice, memOut, nullptr);
-    vkFreeMemory(mDevice, memFeat0, nullptr); vkFreeMemory(mDevice, memFeat1, nullptr);
 
     auto tEndTotal = std::chrono::high_resolution_clock::now();
     float totalMs = std::chrono::duration<float, std::milli>(tEndTotal - tStartTotal).count();
 
-    // 10. Ghi nhận dấu vết Dispatch Thực (Real Hardware Audit Trace)
+    // 7. Audit trace
     mTotalDispatchCount++;
     mLastTrace.gpuDispatchCount = mTotalDispatchCount;
     mLastTrace.device = mDeviceInfo.deviceName;
@@ -784,6 +972,7 @@ bool HairGpuBackend::runParityBenchmark(
     float& maxDiff, float& meanDiff, float& p95Diff,
     float& cpuTimeMs, float& gpuTimeMs
 ) {
+    std::lock_guard<std::recursive_mutex> lock(mBackendMutex);
     const int total = inputs.width * inputs.height;
     std::vector<uint32_t> cpuOut(total);
     std::vector<uint32_t> gpuOut(total);
