@@ -1,0 +1,45 @@
+=== RAW VULKAN SHADER & PIPELINE LAYOUT PROOF ===
+Task: TASK_003_HCE_V1_GPU_EVIDENCE_INTEGRITY_AND_PHYSICAL_RERUN
+Target Pipeline: Hair Composite Blend Compute Pipeline (Stage P6)
+
+1. SPIR-V BYTECODE ARTIFACT:
+- File: lib-core-graphics/src/main/cpp/include/hair/shaders/hair_composite_blend.comp.spv
+- Size: 17144 bytes
+- SHA-256: 5034baa195ed0853dad89931a11db0a88253feafa45d72552708c1d1fd113690
+
+2. GLSL SOURCE ARTIFACT:
+- File: lib-core-graphics/src/main/cpp/include/hair/shaders/hair_composite_blend.comp
+- SHA-256: 21ae5272c017da1b1fd9b4c673074f23928439c5e338498b9d4c135ae57a367a
+- Local Workgroup Size: 16 x 16 x 1 (256 invocations per workgroup)
+
+3. DESCRIPTOR SET LAYOUT (Set 0):
+- Binding 0: VK_DESCRIPTOR_TYPE_STORAGE_BUFFER (readonly, srcPixels, uint32_t RGBA8)
+- Binding 1: VK_DESCRIPTOR_TYPE_STORAGE_BUFFER (readonly, p0Alpha, float32)
+- Binding 2: VK_DESCRIPTOR_TYPE_STORAGE_BUFFER (readonly, hairFlow, vec2 float32)
+- Binding 3: VK_DESCRIPTOR_TYPE_STORAGE_BUFFER (readonly, hairSpecular, float32)
+- Binding 4: VK_DESCRIPTOR_TYPE_STORAGE_BUFFER (writeonly, dstPixels, uint32_t RGBA8)
+- Stage Flags: VK_SHADER_STAGE_COMPUTE_BIT
+
+4. PUSH CONSTANT LAYOUT & SIZEOF CONFIRMATION:
+- Struct: meitu_native::hce::HairVulkanPushConstants
+- Fields (16 fields x 4 bytes = 64 bytes total):
+  [offset  0, 4 bytes]: int32_t width
+  [offset  4, 4 bytes]: int32_t height
+  [offset  8, 4 bytes]: float   targetL
+  [offset 12, 4 bytes]: float   targetA
+  [offset 16, 4 bytes]: float   targetB
+  [offset 20, 4 bytes]: float   bleachPower
+  [offset 24, 4 bytes]: float   blendIntensity
+  [offset 28, 4 bytes]: float   shadowPreservation
+  [offset 32, 4 bytes]: float   rootStrength
+  [offset 36, 4 bytes]: float   apparentShine
+  [offset 40, 4 bytes]: float   roughness
+  [offset 44, 4 bytes]: float   specularTint
+  [offset 48, 4 bytes]: int32_t roiMinX
+  [offset 52, 4 bytes]: int32_t roiMaxX
+  [offset 56, 4 bytes]: int32_t roiMinY
+  [offset 60, 4 bytes]: int32_t roiMaxY
+- sizeof(HairVulkanPushConstants) = 64 bytes
+- VkPushConstantRange.offset = 0
+- VkPushConstantRange.size = 64 bytes
+- VkPushConstantRange.stageFlags = VK_SHADER_STAGE_COMPUTE_BIT
