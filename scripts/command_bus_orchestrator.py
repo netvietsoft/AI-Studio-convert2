@@ -929,6 +929,7 @@ def main():
     parser_ready = subparsers.add_parser("ready", help="Compute ready commands")
     parser_ready.add_argument("--lane", type=str, default=None, help="Execution lane")
     parser_ready.add_argument("--capacity", type=int, default=2, help="Runner capacity per lane")
+    parser_ready.add_argument("--json", action="store_true", help="Output ready commands as JSON")
 
     # create
     parser_create = subparsers.add_parser("create", help="Create new command")
@@ -997,9 +998,12 @@ def main():
 
     elif args.action == "ready":
         ready = orch.compute_ready_set(lane=args.lane, lane_capacity=args.capacity)
-        print(f"Ready commands count: {len(ready)}")
-        for r in ready:
-            print(f"  READY: {r['command_id']} (task={r['task_id']}, lane={r.get('execution_lane')}, prio={r.get('priority')})")
+        if getattr(args, "json", False):
+            print(json.dumps(ready, indent=2))
+        else:
+            print(f"Ready commands count: {len(ready)}")
+            for r in ready:
+                print(f"  READY: {r['command_id']} (task={r['task_id']}, lane={r.get('execution_lane')}, prio={r.get('priority')})")
 
     elif args.action == "create":
         deps = [d.strip() for d in args.dependencies.split(",") if d.strip()]

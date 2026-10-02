@@ -78,16 +78,30 @@ if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
 }
 
 if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
-    # Pick next ready command from ready set
-    $pendingDir = Join-Path $RepoPath ".ai\commands\pending"
-    $pendingFiles = @(Get-ChildItem -Path $pendingDir -Filter "*.json" -ErrorAction SilentlyContinue)
-    if ($pendingFiles.Count -eq 0) {
-        Write-RunnerLog "No pending commands found. Runner standing down cleanly."
-        exit 0
+    # Query orchestrator for highest-priority ready command
+    $readyArgs = @("ready", "--json")
+    if (-not [string]::IsNullOrWhiteSpace($ExecutionLane) -and $ExecutionLane -ne "default") {
+        $readyArgs += @("--lane", $ExecutionLane)
     }
-    # Pick the first pending file
-    $firstPending = Get-Content -Raw -Path $pendingFiles[0].FullName | ConvertFrom-Json
-    $targetCmdId = [string]$firstPending.command_id
+    $readyJson = & python "scripts\command_bus_orchestrator.py" @readyArgs 2>$null
+    try {
+        $readyList = $readyJson | ConvertFrom-Json
+        if ($readyList -and $readyList.Count -gt 0) {
+            $targetCmdId = [string]$readyList[0].command_id
+        }
+    } catch {}
+
+    if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
+        # Fallback to checking pending directory
+        $pendingDir = Join-Path $RepoPath ".ai\commands\pending"
+        $pendingFiles = @(Get-ChildItem -Path $pendingDir -Filter "*.json" -ErrorAction SilentlyContinue)
+        if ($pendingFiles.Count -eq 0) {
+            Write-RunnerLog "No pending or ready commands found. Runner standing down cleanly."
+            exit 0
+        }
+        $firstPending = Get-Content -Raw -Path $pendingFiles[0].FullName | ConvertFrom-Json
+        $targetCmdId = [string]$firstPending.command_id
+    }
 }
 
 Write-RunnerLog "Selected Command ID: $targetCmdId"
@@ -119,7 +133,7 @@ Write-RunnerLog "Claiming command $targetCmdId for $runnerId..."
 
 $claimOut = & python "scripts\command_bus_orchestrator.py" claim --command-id "$targetCmdId" --runner "$runnerId" 2>&1
 if ($LASTEXITCODE -ne 0 -or $claimOut -notmatch "\[OK\]") {
-    Write-RunnerLog "Could not claim $targetCmdId: $claimOut"
+    Write-RunnerLog "Could not claim ${targetCmdId}: $claimOut"
     exit 0
 }
 
