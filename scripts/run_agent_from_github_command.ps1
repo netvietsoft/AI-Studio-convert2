@@ -132,8 +132,9 @@ $runnerId = if ($env:GITHUB_RUN_ID) { "GITHUB_ACTIONS_$($env:GITHUB_RUN_ID)" } e
 Write-RunnerLog "Claiming command $targetCmdId for $runnerId..."
 
 $claimOut = & python "scripts\command_bus_orchestrator.py" claim --command-id "$targetCmdId" --runner "$runnerId" 2>&1
-if ($LASTEXITCODE -ne 0 -or $claimOut -notmatch "\[OK\]") {
-    Write-RunnerLog "Could not claim ${targetCmdId}: $claimOut"
+$claimExitCode = $LASTEXITCODE
+$claimText = ($claimOut | Out-String)
+if ($claimExitCode -ne 0 -or $claimText -notmatch "\[OK\]\s+CLAIMED") {
     exit 0
 }
 
