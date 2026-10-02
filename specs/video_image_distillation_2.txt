@@ -1,0 +1,783 @@
+https://github.com/CoinCheung/BiSeNet
+https://github.com/lazyboooooy/hair_seg-cmake
+https://github.com/Tencent/ncnn
+https://github.com/Tencent/TNN
+https://developers.google.com/edge/mediapipe/solutions/vision/face_landmarker
+Hãy đọc các thuật toán, hàm , nhận diện chỉnh sửa ảnh tối ưu nhất
+Có thể kế thừa, chưng cất làm sao cho việc chỉnh sửa ảnh trở nên dễ dàng nhất
+Các tác vụ thực hiện : 
+Bắt người, chuyển động
+Thử đồ, thay đồ : vải vóc, quần áo
+thay đổi cấu trúc trang phục, mặc trang phục mới. ghép quần áo vào cơ thể.
+thêm vật thể vào ảnh, 
+Thêm chỉnh sửa outfit ngay trên camrea, 
+https://github.com/yisol/IDM-VTON
+https://github.com/automatic1111/stable-diffusion-webui
+https://github.com/CMU-Perceptual-Computing-Lab/openpose
+https://github.com/open-mmlab/mmpose
+https://github.com/libigl/libigl
+https://github.com/PixarAnimationStudios/OpenSubdiv
+https://github.com/bulletphysics/bullet3
+https://github.com/VincentChen1113/PBD_Cloth_Simulation
+https://github.com/claucambra/PositionBased-ClothSim
+https://github.com/xavieryarde/ClothSimGL
+https://github.com/NVlabs/nvdiffrast
+https://github.com/bulletphysics/bullet3
+https://github.com/VincentChen1113/PBD_Cloth_Simulation
+https://github.com/InteractiveComputerGraphics/PositionBasedDynamics
+https://github.com/opencv/opencv
+https://github.com/NVlabs/addit
+https://github.com/NVlabs/I2SB
+https://github.com/NVIDIA/pix2pixHD
+https://github.com/NVlabs/SPADE
+https://github.com/NVlabs/imaginaire
+Framework image/video synthesis của NVIDIA.
+https://github.com/NVlabs/stylegan3
+https://github.com/NVlabs/stylegan2
+https://github.com/NVlabs/stylegan
+https://github.com/NVlabs/MUNIT
+https://github.com/NVIDIA/vid2vid
+
+Editor video
+                    VIDEO EDITOR 
+                           │
+                    Kotlin / Swift UI
+                           │
+                           ▼
+                     VideoCore C++
+                           │
+     ┌─────────────┬───────┼──────────┬─────────────┐
+     ▼             ▼       ▼          ▼             ▼
+ MediaCore     Timeline   GPU      AudioCore      AI Core
+     │             │       │          │             │
+  FFmpeg          OTIO   Vulkan     FFmpeg       NCNN
+                               Metal     DSP          │
+                                                    │
+                  ┌─────────────────────────────────┤
+                  ▼             ▼          ▼        ▼
+               Person         Face       Body     Object
+               Matting      Tracking   Tracking  Tracking
+                  │
+                  └────────────────┬────────────────┘
+                                   ▼
+                              EffectCore
+                                   │
+             ┌─────────────────────┼────────────────────┐
+             ▼                     ▼                    ▼
+          Filters              Transitions          Beauty
+             │                     │                    │
+             └─────────────────────┼────────────────────┘
+                                   ▼
+                            CompositionCore
+                                   │
+                                   ▼
+                              ExportCore
+                                   │
+                                FFmpeg
+
+
+
+VIDEO EDITOR / VIDEOCORE C++ — REPOSITORY LIST
+===================================================
+
+Mục tiêu:
+Chưng cất các dự án open-source thành VideoCore C++ riêng cho Android/iOS,
+theo kiến trúc NLE + GPU + AI + Beauty, không fork nguyên một editor.
+
+1. FFmpeg
+https://github.com/FFmpeg/FFmpeg
+Vai trò: Decode/encode, mux/demux, codec, audio/video filter, resample, scale.
+Module đích: MediaCore, DecodeCore, EncodeCore, ExportCore.
+
+2. OpenTimelineIO
+https://github.com/AcademySoftwareFoundation/OpenTimelineIO
+Vai trò: Timeline data model, Clip, Track, Transition, Marker, timing.
+Module đích: TimelineCore.
+
+3. libopenshot
+https://github.com/OpenShot/libopenshot
+Vai trò: C++ video editing library; timeline, effects, keyframe, compositing,
+time mapping, audio.
+Module đích: Tham khảo kiến trúc NLE C++.
+
+4. Shotcut
+https://github.com/mltframework/shotcut
+Vai trò: NLE/editor architecture.
+Module đích: Tham khảo UI-editor workflow, timeline/editor integration.
+
+5. MLT
+https://github.com/mltframework/mlt
+Vai trò: Multimedia framework cho NLE.
+Module đích: Tham khảo media graph, producer/filter/consumer architecture.
+
+6. libplacebo
+https://github.com/haasn/libplacebo
+Vai trò: GPU image/video processing, shaders, color/render pipeline.
+Module đích: GPUCore / RenderCore reference.
+
+7. frei0r
+https://github.com/dyne/frei0r
+Vai trò: Video effects/plugin API và thư viện filter.
+Module đích: EffectPlugin architecture.
+
+8. GPAC
+https://github.com/gpac/gpac
+Vai trò: MP4, media packaging, streaming.
+Module đích: Container/Packaging/Export.
+
+9. OpenCV
+https://github.com/opencv/opencv
+Vai trò: Optical flow, tracking, geometry, image processing.
+Module đích: TrackingCore / VisionUtility.
+
+10. OpenColorIO
+https://github.com/AcademySoftwareFoundation/OpenColorIO
+Vai trò: Color management.
+Module đích: ColorManagementCore.
+
+11. whisper.cpp
+https://github.com/ggerganov/whisper.cpp
+Vai trò: Speech-to-text C/C++.
+Module đích: AutoCaptionCore.
+
+12. Rubber Band
+https://github.com/breakfastquay/rubberband
+Vai trò: Audio time stretching và pitch shifting.
+Module đích: AudioSpeed/Pitch Engine.
+Lưu ý: kiểm tra commercial licensing.
+
+13. RIFE NCNN Vulkan
+https://github.com/nihui/rife-ncnn-vulkan
+Vai trò: AI frame interpolation.
+Module đích: AISlowMotionCore.
+
+14. Real-ESRGAN
+https://github.com/xinntao/Real-ESRGAN
+Vai trò: AI super-resolution / restoration.
+Module đích: VideoEnhanceCore.
+
+15. Real-ESRGAN NCNN Vulkan
+https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan
+Vai trò: NCNN/Vulkan deployment cho enhancement.
+Module đích: Mobile AI Enhance.
+
+16. Robust Video Matting
+https://github.com/PeterL1n/RobustVideoMatting
+Vai trò: Temporal human matting.
+Module đích: BackgroundRemovalCore.
+
+17. BackgroundMattingV2
+https://github.com/PeterL1n/BackgroundMattingV2
+Vai trò: High-resolution human/background matting.
+Module đích: MattingCore.
+
+18. MediaPipe
+https://github.com/google-ai-edge/mediapipe
+Vai trò: Face/body/hand landmark và tracking pipelines.
+Module đích: HumanTracking reference.
+
+19. NCNN
+https://github.com/Tencent/ncnn
+Vai trò: C++ mobile inference + Vulkan.
+Module đích: AIRuntime.
+
+20. OpenSubdiv
+https://github.com/PixarAnimationStudios/OpenSubdiv
+Vai trò: GPU/CPU subdivision surface.
+Module đích: 3D/mesh/effect extension.
+
+21. libigl
+https://github.com/libigl/libigl
+Vai trò: C++ geometry processing.
+Module đích: Geometry/mesh deformation.
+
+22. vid2vid
+https://github.com/NVIDIA/vid2vid
+Vai trò: Video-to-video synthesis research.
+Module đích: GenerativeVideo research/reference.
+
+23. Imaginaire
+https://github.com/NVlabs/imaginaire
+Vai trò: NVIDIA image/video synthesis framework.
+Module đích: GenerativeCore research/reference.
+
+24. SAM 2
+https://github.com/facebookresearch/sam2
+Vai trò: Image/video object segmentation.
+Module đích: ObjectMask/VideoObjectTracking research.
+MỤC TIÊU
+
+Xây VideoCore C++ dùng chung:
+Android -> Kotlin UI -> JNI -> C++
+iOS     -> Swift UI  -> ObjC++ -> C++
+
+Core không phụ thuộc UI.
+
+=========================================================
+2. KIẾN TRÚC
+=========================================================
+
+VIDEO EDITOR APP
+       |
+       v
+Kotlin / Swift UI
+       |
+       v
+VIDEOCORE C++
+       |
+       +-- MediaCore
+       |    +-- Demux
+       |    +-- Decode
+       |    +-- Encode
+       |    +-- Mux
+       |    +-- Proxy
+       |    +-- Cache
+       |
+       +-- TimelineCore
+       |    +-- Project
+       |    +-- Sequence
+       |    +-- Track
+       |    +-- Clip
+       |    +-- Transition
+       |    +-- Keyframe
+       |    +-- Marker
+       |    +-- SpeedCurve
+       |
+       +-- RenderCore
+       |    +-- VulkanBackend
+       |    +-- MetalBackend
+       |    +-- Texture
+       |    +-- Shader
+       |    +-- FrameGraph
+       |    +-- Compositor
+       |
+       +-- EffectCore
+       |    +-- Filter
+       |    +-- Transition
+       |    +-- Mask
+       |    +-- Blend
+       |    +-- LUT
+       |    +-- CustomShader
+       |
+       +-- TextCore
+       |    +-- Text
+       |    +-- Subtitle
+       |    +-- Caption
+       |    +-- Animation
+       |    +-- Stroke
+       |    +-- Shadow
+       |
+       +-- AudioCore
+       |    +-- Mixer
+       |    +-- Volume
+       |    +-- Fade
+       |    +-- EQ
+       |    +-- Pitch
+       |    +-- TimeStretch
+       |
+       +-- TrackingCore
+       |    +-- OpticalFlow
+       |    +-- FaceTracking
+       |    +-- BodyTracking
+       |    +-- ObjectTracking
+       |    +-- MaskTracking
+       |
+       +-- AICore
+       |    +-- NCNN
+       |    +-- Caption
+       |    +-- Matting
+       |    +-- Enhance
+       |    +-- Interpolation
+       |    +-- Segmentation
+       |
+       +-- BeautyCore
+       |    +-- Face
+       |    +-- Skin
+       |    +-- Hair
+       |    +-- Body
+       |    +-- Clothes
+       |
+       +-- ExportCore
+            +-- RenderQueue
+            +-- Encoder
+            +-- AudioMux
+            +-- Metadata
+            +-- MP4/MOV/etc.
+
+=========================================================
+3. TIMELINE DATA MODEL
+=========================================================
+
+Project
+ +-- Sequence[]
+      +-- VideoTrack[]
+      +-- AudioTrack[]
+      +-- TextTrack[]
+      +-- StickerTrack[]
+      +-- EffectTrack[]
+      +-- OverlayTrack[]
+
+Clip:
+- source
+- sourceRange
+- timelineRange
+- transform
+- crop
+- opacity
+- speedCurve
+- keyframes
+- effects
+- mask
+- blendMode
+- audioSettings.
+
+=========================================================
+4. MEDIA PIPELINE
+=========================================================
+
+File
+ -> FFmpeg Demux
+ -> Decoder
+ -> Frame Cache
+ -> Timeline Scheduler
+ -> GPU Upload
+ -> Effect Graph
+ -> Composition
+ -> Preview.
+
+Export:
+Timeline
+ -> Render Graph
+ -> Video Encoder
+ -> Audio Encoder
+ -> Mux
+ -> Output.
+
+=========================================================
+5. GPU
+=========================================================
+
+IRenderBackend
+ +-- VulkanBackend Android
+ +-- MetalBackend iOS
+
+GPU chịu:
+- transform;
+- crop;
+- blend;
+- LUT;
+- blur;
+- sharpen;
+- color;
+- mask;
+- transition;
+- beauty warp;
+- compositor.
+
+Không dùng OpenCV làm renderer preview chính.
+
+=========================================================
+6. EFFECT PLUGIN
+=========================================================
+
+IEffect {
+ initialize();
+ setParameter();
+ processFrame();
+ seek();
+ reset();
+}
+
+Effect categories:
+Color
+Blur
+Glow
+Sharpen
+Distortion
+Film
+VHS
+Chromatic
+Motion
+Beauty
+AI
+CustomShader.
+
+=========================================================
+7. AI
+=========================================================
+
+AIRuntime:
+- NCNN cho model mobile.
+- Backend abstraction để thay model/runtime.
+
+AI features:
+- auto caption;
+- remove background;
+- person segmentation;
+- object segmentation;
+- tracking;
+- AI slow motion;
+- upscale;
+- restore;
+- beauty;
+- face/body/hair/clothes;
+- future generative video.
+
+=========================================================
+8. SLOW MOTION
+=========================================================
+
+Normal:
+30fps -> duplicate/interpolate basic.
+
+AI:
+Frame A + Frame B
+ -> RIFE
+ -> intermediate frame
+ -> 60/120fps
+ -> slow motion.
+
+=========================================================
+9. AUTO CAPTION
+=========================================================
+
+Audio
+ -> FFmpeg PCM
+ -> whisper.cpp
+ -> word/text timestamps
+ -> SubtitleTrack
+ -> Text Renderer.
+
+=========================================================
+10. BEAUTY VIDEO
+=========================================================
+
+Frame
+ -> Human Detection
+ -> Face/Body/Hair/Skin/Clothes
+ -> Temporal Tracking
+ -> Beauty Parameters
+ -> Dense Mesh/Mask
+ -> GPU Warp/Appearance
+ -> Compositor.
+
+=========================================================
+11. PROJECT FORMAT
+=========================================================
+
+Project JSON/Binary:
+- version;
+- canvas;
+- fps;
+- assets;
+- tracks;
+- clips;
+- effects;
+- keyframes;
+- captions;
+- templates;
+- AI metadata.
+
+Phải version hóa schema.
+
+=========================================================
+12. PERFORMANCE
+=========================================================
+
+Preview != Export.
+
+Preview:
+- proxy;
+- reduced resolution;
+- cached decode;
+- adaptive AI;
+- GPU effects;
+- dropped-frame strategy.
+
+Export:
+- full resolution;
+- deterministic render;
+- high-quality AI where enabled;
+- final color;
+- encode.
+
+=========================================================
+13. NGUYÊN TẮC
+=========================================================
+
+1. UI không chứa video processing logic.
+2. Timeline không phụ thuộc FFmpeg object trực tiếp.
+3. Effect là plugin/module.
+4. AI model có abstraction.
+5. GPU backend có abstraction.
+6. Android/iOS dùng chung semantic core.
+7. Preview và Export dùng cùng effect semantics.
+8. Project phải save/reload chính xác.
+9. Undo/Redo dùng command/history model.
+10. Mọi thao tác phải non-destructive.
+
+VIDEO EDITOR — ROADMAP CHƯNG CẤT REPO -> C++ PRODUCT
+====================================================
+
+PHASE 01 — MEDIA FOUNDATION
+Nguồn khảo sát:
+- FFmpeg
+- GPAC
+
+Viết:
+MediaSource
+Demuxer
+VideoDecoder
+AudioDecoder
+VideoEncoder
+AudioEncoder
+Muxer
+Frame
+AudioBuffer
+MediaMetadata.
+
+PHASE 02 — TIMELINE
+Nguồn:
+- OpenTimelineIO
+- libopenshot
+- MLT
+
+Viết:
+Project
+Sequence
+Track
+Clip
+Transition
+Marker
+Keyframe
+AnimationCurve
+TimeRange
+TimelineScheduler.
+
+PHASE 03 — GPU RENDERER
+Nguồn:
+- libplacebo
+- frei0r
+- OpenColorIO
+
+Viết:
+IRenderBackend
+VulkanBackend
+MetalBackend
+ShaderProgram
+Texture
+Framebuffer
+RenderNode
+RenderGraph
+Compositor.
+
+PHASE 04 — EDITOR FEATURES
+Viết:
+Trim
+Split
+Delete
+Duplicate
+Reorder
+Overlay
+Crop
+Rotate
+Transform
+Opacity
+Blend
+Freeze
+Reverse
+Speed
+CurveSpeed
+Transition.
+
+PHASE 05 — EFFECT SYSTEM
+Nguồn:
+- frei0r
+- libplacebo
+
+Viết:
+EffectRegistry
+EffectPlugin
+EffectParameter
+ShaderEffect
+TransitionEffect
+MaskEffect
+ColorEffect.
+
+PHASE 06 — AUDIO
+Nguồn:
+- FFmpeg
+- Rubber Band
+
+Viết:
+AudioMixer
+AudioTrack
+Waveform
+Volume
+Fade
+Pitch
+TimeStretch
+AudioEffects.
+
+PHASE 07 — TEXT/CAPTION
+Nguồn:
+- whisper.cpp
+
+Viết:
+SubtitleTrack
+CaptionSegment
+WordTiming
+TextStyle
+TextAnimation
+AutoCaption.
+
+PHASE 08 — VISION/TRACKING
+Nguồn:
+- OpenCV
+- MediaPipe / RTMPose
+- SAM2 research
+
+Viết:
+OpticalFlowTracker
+PersonTracker
+FaceTracker
+BodyTracker
+ObjectTracker
+MaskTracker.
+
+PHASE 09 — VIDEO MATTING
+Nguồn:
+- RobustVideoMatting
+- BackgroundMattingV2
+
+Viết:
+PersonMatting
+TemporalMatting
+BackgroundReplace
+BackgroundBlur.
+
+PHASE 10 — AI SLOW MOTION
+Nguồn:
+- rife-ncnn-vulkan
+
+Viết:
+FrameInterpolator
+SlowMotionEngine.
+
+PHASE 11 — AI ENHANCE
+Nguồn:
+- Real-ESRGAN
+- Real-ESRGAN-ncnn-vulkan
+
+Viết:
+VideoEnhance
+SuperResolution
+DetailRestore.
+
+PHASE 12 — BEAUTY
+Kết nối BeautyCore hiện tại:
+Face
+Hair
+Skin
+Body
+Hand
+Foot
+Clothes.
+
+Viết VideoBeautyTracker để duy trì consistency qua frame.
+
+PHASE 13 — TEMPLATE ENGINE
+Viết:
+TemplateProject
+Placeholder
+MediaReplacement
+PresetAnimation
+PresetEffect
+BeatMarker
+AutoFill.
+
+PHASE 14 — EXPORT
+Viết:
+RenderQueue
+ExportPreset
+HardwareEncoder abstraction
+AudioMux
+Metadata
+Progress
+Cancel/Resume strategy.
+
+PHASE 15 — PRODUCTION HARDENING
+- Crash recovery
+- Autosave
+- Undo/Redo
+- Cache manager
+- Proxy manager
+- memory budget
+- thermal handling
+- low-memory handling
+- GPU capability detection
+- model capability detection.
+
+====================================================
+MODULE OWNERSHIP
+====================================================
+
+FFmpeg:
+Media I/O only.
+
+OpenTimelineIO/libopenshot/MLT:
+Reference timeline architecture.
+
+libplacebo/frei0r:
+Reference rendering/effect architecture.
+
+OpenCV:
+Vision utility/tracking, not primary renderer.
+
+NCNN:
+Mobile AI inference.
+
+Vulkan/Metal:
+Real-time rendering/composition.
+
+BeautyCore:
+Semantic face/body/hair/clothes editing.
+
+====================================================
+LICENSE GATE
+====================================================
+
+Mỗi dependency cần:
+- repository;
+- source license;
+- model/checkpoint license;
+- commercial status;
+- attribution requirement;
+- static/dynamic linking impact;
+- modified/unmodified;
+- distribution requirement.
+
+Không được kết luận model license = source code license.
+
+====================================================
+MỤC TIÊU CUỐI
+====================================================
+
+Không tạo "OpenShot clone".
+
+Tạo:
+
+VIDEOCORE C++
+ + Media Engine
+ + Timeline Engine
+ + GPU Engine
+ + Effect Engine
+ + Audio Engine
+ + Caption Engine
+ + Tracking Engine
+ + AI Engine
+ + Beauty Engine
+ + Template Engine
+ + Export Engine
+
+để UI Android/iOS chỉ là lớp sản phẩm phía trên.

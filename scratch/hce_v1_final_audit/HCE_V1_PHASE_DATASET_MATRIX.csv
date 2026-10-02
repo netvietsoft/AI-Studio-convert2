@@ -1,0 +1,10 @@
+phase,dataset_name,sample_count,sample_ids,annotation_type,ground_truth_or_proxy,tuning_or_holdout,metric_names,gate,source,status
+P0,P0_CANONICAL_SEGMENTATION_SET,62,sample_01..sample_62,ALPHA_MATTE_AND_DEFECT_REGIONS,GROUND_TRUTH,HOLDOUT,tau_aspect|tau_cov|leakage_rate,tau_aspect>=1.80|leakage<=0.05,P0_C_CORRECTION_03,PASS
+P1,P1_ORIENTATION_CANONICAL_SET,62,sample_01..sample_62,STRUCTURE_TENSOR_CONFIDENCE,PROXY,HOLDOUT,mean_confidence|coherence|continuity_ratio,conf>=0.75|coherence>=0.80,P0_CANONICAL_INPUTS,PASS
+P2,P2_TEXTURE_CANONICAL_SET,62,sample_01..sample_62,HIGH_FREQ_ENERGY_SPECTRUM,PROXY,HOLDOUT,hf_retention_ratio|directional_energy_p1|banding_score,hf_retention>=0.85|banding<0.05,REAL_P1_OUTPUTS,PASS
+P3,P3_APPEARANCE_CANONICAL_SET,62,sample_01..sample_62,LUMINANCE_CONTRAST_DECOMPOSITION,PROXY,HOLDOUT,shadow_preservation|highlight_retention|local_contrast,shadow_pres>=0.90|highlight>=0.90,REAL_P0_P1_OUTPUTS,PASS
+P4,P4_DYE_MATERIAL_CANONICAL_SET,62,sample_01..sample_62,OKLAB_DELTA_E_AND_GAMUT,PROXY_PRESET,HOLDOUT,delta_e_oklab|root_darkness_ratio|gamut_violations,delta_e<=2.5|gamut_violations==0,REAL_P2_P3_OUTPUTS,PASS
+P5,P5_SPECULAR_CANONICAL_SET,62,sample_01..sample_62,MARSCHNER_R_LOBE_ADHERENCE,PROXY,HOLDOUT,tangent_adherence|highlight_contrast_gain|helmet_shine_detected,adherence>=0.90|helmet_shine==false,REAL_P1_P3_P4_OUTPUTS,PASS
+P6_CPU,P6_CPU_REFERENCE_BENCH_SET,62,sample_01..sample_62,OPENMP_EXECUTION_TIMINGS,HARDWARE_MEASUREMENT,HOLDOUT,latency_ms|peak_rss_mb|thermal_delta,latency<=250ms|rss<=256mb,SAMSUNG_A50_PHYSICAL,PASS
+P6_GPU,P6_GPU_VULKAN_COMPUTE_SET,62,sample_01..sample_62,VULKAN_QUEUE_DISPATCH,HARDWARE_MEASUREMENT,HOLDOUT,gpu_dispatch_count|queue_latency_ms|parity_level_b,gpu_dispatches>0|parity<=1.0_LSB,SAMSUNG_A50_PHYSICAL,PENDING_DISPATCH_LINKING
+INTEGRATION,HCE_V1_E2E_PIPELINE_SET,62,sample_01..sample_62,E2E_COMPOSITE_AND_LEAKAGE,MIXED_GT_AND_PROXY,HOLDOUT,zero_leakage_protected|delta_e|render_time_ms,leakage<=0.02|delta_e<=2.5|latency<=300ms,INTEGRATED_PIPELINE,PASS_ON_CPU_FALLBACK

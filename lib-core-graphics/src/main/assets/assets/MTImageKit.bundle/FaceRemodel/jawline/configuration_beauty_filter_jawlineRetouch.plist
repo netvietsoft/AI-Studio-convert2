@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ID</key>
+	<integer>1001</integer>
+	<key>FilterPart</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>AnattaBeauty</string>
+			<key>Filters</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>SourceInput</string>
+				</dict>
+				<dict>
+                    <key>Name</key>
+                    <string>UpperEyelidFatRemoval</string>
+                    <key>FromSource</key>
+                    <array>
+                        <string>SourceInput</string>
+                    </array>
+                </dict>
+				<dict>
+					<key>Name</key>
+					<string>JawlineShadow</string>
+					<key>WithFullFaceMask</key>
+					<string>1</string>
+					<!-- 下颌线阴影程度侧脸是否衰减 -->
+					<key>WithProfileFade</key>
+					<string>1</string>
+					<key>WithEnvAdaptive</key>
+					<string>1</string>
+					<!-- 是否多下颌线阴影素材 -->
+					<key>WithMultiShadow</key>
+					<string>1</string>
+					<!-- 下颌线阴影渲染范围，设置为1表示扩大渲染范围 -->
+					<key>ExpandPoints</key>
+					<string>1</string>
+					<!-- 是否开启小人脸衰减 -->
+					<key>WithMiniFace</key>
+					<string>0</string>
+					<key>FromSource</key>
+					<array>
+						<string>UpperEyelidFatRemoval</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>ResultOutput</string>
+					<key>FromSource</key>
+					<array>
+						<string>JawlineShadow</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

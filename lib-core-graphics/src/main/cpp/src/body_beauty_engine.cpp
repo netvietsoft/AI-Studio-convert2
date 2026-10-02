@@ -1,4 +1,4 @@
-﻿#include "body_beauty_engine.h"
+#include "body_beauty_engine.h"
 #include <cmath>
 #include <algorithm>
 #include <vector>
@@ -59,6 +59,7 @@ BodyBeautyEngine::~BodyBeautyEngine() = default;
 void BodyBeautyEngine::detectSilhouetteBounds(
     const uint32_t* pixels, int width, int height,
     int yStart, int yEnd, float centerX, float expectedRadius,
+    const uint8_t* parsingMask,
     std::vector<float>& outLeftEdges, std::vector<float>& outRightEdges
 ) {
     int numRows = yEnd - yStart + 1;
@@ -71,60 +72,116 @@ void BodyBeautyEngine::detectSilhouetteBounds(
         int rowIdx = y - yStart;
         int cy = std::max(0, std::min(height - 1, y));
 
-        // Search left from center
         float leftEdge = centerX - expectedRadius;
-        int maxSearchLeft = std::max(1, static_cast<int>(centerX - expectedRadius * 1.6f));
-        int minSearchLeft = std::max(1, static_cast<int>(centerX - expectedRadius * 0.4f));
-
-        int maxGradLeft = 0;
-        int bestLeftX = static_cast<int>(leftEdge);
-
-        for (int x = minSearchLeft; x >= maxSearchLeft; --x) {
-            uint32_t p0 = pixels[cy * width + x - 1];
-            uint32_t p1 = pixels[cy * width + x + 1];
-            int lum0 = ((p0 & 0xFF) * 77 + ((p0 >> 8) & 0xFF) * 150 + ((p0 >> 16) & 0xFF) * 29) >> 8;
-            int lum1 = ((p1 & 0xFF) * 77 + ((p1 >> 8) & 0xFF) * 150 + ((p1 >> 16) & 0xFF) * 29) >> 8;
-            int g = std::abs(lum1 - lum0);
-            if (g > maxGradLeft && g > 25) {
-                maxGradLeft = g;
-                bestLeftX = x;
-            }
-        }
-        if (maxGradLeft > 25) {
-            leftEdge = static_cast<float>(bestLeftX);
-        }
-
-        // Search right from center
         float rightEdge = centerX + expectedRadius;
-        int minSearchRight = std::min(width - 2, static_cast<int>(centerX + expectedRadius * 0.4f));
-        int maxSearchRight = std::min(width - 2, static_cast<int>(centerX + expectedRadius * 1.6f));
 
-        int maxGradRight = 0;
-        int bestRightX = static_cast<int>(rightEdge);
-
-        for (int x = minSearchRight; x <= maxSearchRight; ++x) {
-            uint32_t p0 = pixels[cy * width + x - 1];
-            uint32_t p1 = pixels[cy * width + x + 1];
-            int lum0 = ((p0 & 0xFF) * 77 + ((p0 >> 8) & 0xFF) * 150 + ((p0 >> 16) & 0xFF) * 29) >> 8;
-            int lum1 = ((p1 & 0xFF) * 77 + ((p1 >> 8) & 0xFF) * 150 + ((p1 >> 16) & 0xFF) * 29) >> 8;
-            int g = std::abs(lum1 - lum0);
-            if (g > maxGradRight && g > 25) {
-                maxGradRight = g;
-                bestRightX = x;
+        // 1. Tận dụng parsingMask (nếu có) để định vị ranh giới thô chính xác
+        if (parsingMask) {
+            int cx = std::max(0, std::min(width - 1, static_cast<int>(centerX)));
+            for (int x = cx; x >= 0; --x) {
+                uint8_t c = parsingMask[cy * width + x];
+                if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
+                    leftEdge = static_cast<float>(x + 1);
+                    break;
+                }
+            }
+            for (int x = cx; x < width; ++x) {
+                uint8_t c = parsingMask[cy * width + x];
+                if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
+                    rightEdge = static_cast<float>(x - 1);
+                    break;
+                }
             }
         }
-        if (maxGradRight > 25) {
-            rightEdge = static_cast<float>(bestRightX);
+
+        // 2. Tinh chỉnh Sub-pixel Boundary bằng Color Vector Gradient đa kênh (RGB Euclidean + Luminance)
+        auto getGrad = [&](int x) -> float {
+            if (x <= 1 || x >= width - 2) return 0.0f;
+            uint32_t p0 = pixels[cy * width + x - 1];
+            uint32_t p1 = pixels[cy * width + x + 1];
+            float dr = static_cast<float>((p1 & 0xFF) - (p0 & 0xFF));
+            float dg = static_cast<float>(((p1 >> 8) & 0xFF) - ((p0 >> 8) & 0xFF));
+            float db = static_cast<float>(((p1 >> 16) & 0xFF) - ((p0 >> 16) & 0xFF));
+            float dlum = std::abs((dr * 77.0f + dg * 150.0f + db * 29.0f) / 256.0f);
+            return std::sqrt(dr * dr + dg * dg + db * db) + dlum * 1.2f;
+        };
+
+        int searchRadius = std::max(12, static_cast<int>(expectedRadius * 0.35f));
+
+        // Dò cực đại biên trái
+        int minSearchL = std::max(2, static_cast<int>(leftEdge) - searchRadius);
+        int maxSearchL = std::min(width - 3, static_cast<int>(leftEdge) + searchRadius);
+        float maxGL = 0.0f;
+        int peakXL = static_cast<int>(leftEdge);
+
+        for (int x = minSearchL; x <= maxSearchL; ++x) {
+            float g = getGrad(x);
+            if (g > maxGL) {
+                maxGL = g;
+                peakXL = x;
+            }
+        }
+
+        if (maxGL > 20.0f && peakXL > 1 && peakXL < width - 2) {
+            float g0 = getGrad(peakXL - 1);
+            float g1 = maxGL;
+            float g2 = getGrad(peakXL + 1);
+            float denom = 2.0f * (g0 - 2.0f * g1 + g2);
+            if (std::abs(denom) > 1e-4f) {
+                float delta = (g0 - g2) / denom;
+                delta = std::max(-0.5f, std::min(0.5f, delta));
+                leftEdge = static_cast<float>(peakXL) + delta;
+            } else {
+                leftEdge = static_cast<float>(peakXL);
+            }
+        }
+
+        // Dò cực đại biên phải
+        int minSearchR = std::max(2, static_cast<int>(rightEdge) - searchRadius);
+        int maxSearchR = std::min(width - 3, static_cast<int>(rightEdge) + searchRadius);
+        float maxGR = 0.0f;
+        int peakXR = static_cast<int>(rightEdge);
+
+        for (int x = minSearchR; x <= maxSearchR; ++x) {
+            float g = getGrad(x);
+            if (g > maxGR) {
+                maxGR = g;
+                peakXR = x;
+            }
+        }
+
+        if (maxGR > 20.0f && peakXR > 1 && peakXR < width - 2) {
+            float g0 = getGrad(peakXR - 1);
+            float g1 = maxGR;
+            float g2 = getGrad(peakXR + 1);
+            float denom = 2.0f * (g0 - 2.0f * g1 + g2);
+            if (std::abs(denom) > 1e-4f) {
+                float delta = (g0 - g2) / denom;
+                delta = std::max(-0.5f, std::min(0.5f, delta));
+                rightEdge = static_cast<float>(peakXR) + delta;
+            } else {
+                rightEdge = static_cast<float>(peakXR);
+            }
         }
 
         outLeftEdges[rowIdx] = leftEdge;
         outRightEdges[rowIdx] = rightEdge;
     }
 
-    // Smooth contour edges with 3-tap filter
-    for (int r = 1; r < numRows - 1; ++r) {
-        outLeftEdges[r] = (outLeftEdges[r - 1] + outLeftEdges[r] * 2.0f + outLeftEdges[r + 1]) * 0.25f;
-        outRightEdges[r] = (outRightEdges[r - 1] + outRightEdges[r] * 2.0f + outRightEdges[r + 1]) * 0.25f;
+    // 3. Lọc mượt 5-tap Gaussian chống răng cưa đường biên [0.061, 0.242, 0.383, 0.242, 0.061]
+    if (numRows >= 5) {
+        std::vector<float> smoothL = outLeftEdges;
+        std::vector<float> smoothR = outRightEdges;
+        for (int r = 2; r < numRows - 2; ++r) {
+            smoothL[r] = outLeftEdges[r - 2] * 0.061f + outLeftEdges[r - 1] * 0.242f +
+                         outLeftEdges[r] * 0.383f + outLeftEdges[r + 1] * 0.242f +
+                         outLeftEdges[r + 2] * 0.061f;
+            smoothR[r] = outRightEdges[r - 2] * 0.061f + outRightEdges[r - 1] * 0.242f +
+                         outRightEdges[r] * 0.383f + outRightEdges[r + 1] * 0.242f +
+                         outRightEdges[r + 2] * 0.061f;
+        }
+        outLeftEdges = std::move(smoothL);
+        outRightEdges = std::move(smoothR);
     }
 }
 
@@ -159,38 +216,45 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
         float newXR = midX + newHalfW;
 
         if (scale < 1.0f) {
-            // 1. Thu gon vao (Inward Contraction / Slimming)
-            // Trong pham vi bien moi [newXL, newXR]: bien dang noi suy nguoc
-            int minX = std::max(0, static_cast<int>(newXL));
-            int maxX = std::min(width - 1, static_cast<int>(newXR));
+            // 1. THU GỌN VÀO (Contraction / Slimming, scale < 1.0):
+            // - Mọi pixel ngoài [xL, xR] ban đầu: dx = 0, dy = 0 TUYỆT ĐỐI (Delta = 0.00).
+            //   Background bên cạnh (tường, cửa, bàn ghế, người bên cạnh) giữ nguyên 100%!
+            // - Khoảng trống lộ ra [xL, newXL) và (newXR, xR]: Đánh dấu isVacated = 1 để bù lấp.
+            // - Trong cơ thể mới [newXL, newXR]: Lấy mẫu ngược bicubic từ cơ thể gốc.
+            int minX = std::max(0, static_cast<int>(std::floor(newXL)));
+            int maxX = std::min(width - 1, static_cast<int>(std::ceil(newXR)));
 
             for (int x = minX; x <= maxX; ++x) {
-                float normX = (static_cast<float>(x) - midX) / newHalfW;
+                float normX = (static_cast<float>(x) - midX) / std::max(1.0f, newHalfW);
+                normX = std::max(-1.0f, std::min(1.0f, normX));
                 float srcX = midX + normX * halfW;
                 int idx = y * width + x;
                 dxField[idx] = static_cast<float>(x) - srcX;
             }
 
-            // Vung bi bo trong [xL, newXL) va (newXR, xR]: danh dau de khoi phuc background
-            int vacL1 = std::max(0, static_cast<int>(xL));
-            int vacL2 = std::min(width - 1, static_cast<int>(newXL));
+            // Đánh dấu khoảng trống lộ ra (Vacated Space)
+            int vacL1 = std::max(0, static_cast<int>(std::floor(xL)));
+            int vacL2 = std::min(width - 1, static_cast<int>(std::ceil(newXL)));
             for (int x = vacL1; x <= vacL2; ++x) {
                 isVacated[y * width + x] = 1;
             }
 
-            int vacR1 = std::max(0, static_cast<int>(newXR));
-            int vacR2 = std::min(width - 1, static_cast<int>(xR));
+            int vacR1 = std::max(0, static_cast<int>(std::floor(newXR)));
+            int vacR2 = std::min(width - 1, static_cast<int>(std::ceil(xR)));
             for (int x = vacR1; x <= vacR2; ++x) {
                 isVacated[y * width + x] = 1;
             }
         } else {
-            // 2. To ra (Outward Expansion / Curvy Hips)
-            // Mo rong ra ngoai background ma khong lam bien dang background phia xa
-            int minX = std::max(0, static_cast<int>(newXL));
-            int maxX = std::min(width - 1, static_cast<int>(newXR));
+            // 2. TO RA (Expansion / Curvy Hips, scale > 1.0):
+            // - Cơ thể nở rộng ra ngoài [newXL, newXR].
+            // - Pixel ngoài [newXL, newXR]: dx = 0, dy = 0 TUYỆT ĐỐI (Delta = 0.00).
+            //   Background bên ngoài không bị xê dịch hay bẻ cong 1 bit!
+            int minX = std::max(0, static_cast<int>(std::floor(newXL)));
+            int maxX = std::min(width - 1, static_cast<int>(std::ceil(newXR)));
 
             for (int x = minX; x <= maxX; ++x) {
-                float normX = (static_cast<float>(x) - midX) / newHalfW;
+                float normX = (static_cast<float>(x) - midX) / std::max(1.0f, newHalfW);
+                normX = std::max(-1.0f, std::min(1.0f, normX));
                 float srcX = midX + normX * halfW;
                 int idx = y * width + x;
                 dxField[idx] = static_cast<float>(x) - srcX;
@@ -198,12 +262,29 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
         }
     }
 
-    // Dieu hoa chuyen vi de bao ve cuc ao nhua, khoa keo va hoa van vai
-    mClothingEngine.regularizeClothingDisplacement(
-        width, height, rigidityMap, rigidElements, dxField.data(), dyField.data()
-    );
+    // BẢO VỆ CHẤT LIỆU VẢI & PHẦN TỬ CỨNG (Zero Strain Tensor & Cauchy-Riemann Conformal Elasticity):
+    // 1. Áp dụng Zero Strain Tensor lên các phần tử cứng (cúc áo nhựa, khuy kim loại, khóa kéo, mặt thắt lưng)
+    if (!rigidElements.empty()) {
+        mClothingEngine.applyRigidElementConstraints(
+            width, height, rigidElements, dxField.data(), dyField.data()
+        );
+    }
 
-    // Resampling bicubic va compositing bao ve boi canh
+    // 2. Điều hòa Cauchy-Riemann Conformal Elasticity bảo toàn góc sợi dệt vải (chống vỡ hoa văn sọc/caro)
+    if (!rigidityMap.empty()) {
+        mClothingEngine.regularizeClothingDisplacement(
+            width, height, rigidityMap, rigidElements, dxField.data(), dyField.data()
+        );
+    }
+
+    // 3. Khóa lại Zero Strain một lần nữa sau bước điều hòa vải
+    if (!rigidElements.empty()) {
+        mClothingEngine.applyRigidElementConstraints(
+            width, height, rigidElements, dxField.data(), dyField.data()
+        );
+    }
+
+    // TỔNG HỢP PIXEL (Resampling, Gap Infilling & Sub-pixel Anti-Aliasing):
     #pragma omp parallel for
     for (int y = yStart; y <= yEnd; ++y) {
         int r = y - yStart;
@@ -215,19 +296,25 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
         float newXL = midX - halfW * scale;
         float newXR = midX + halfW * scale;
 
-        int rowStart = std::max(0, static_cast<int>(std::min(xL, newXL) - 4));
-        int rowEnd = std::min(width - 1, static_cast<int>(std::max(xR, newXR) + 4));
+        int rowStart = std::max(0, static_cast<int>(std::floor(std::min(xL, newXL))));
+        int rowEnd = std::min(width - 1, static_cast<int>(std::ceil(std::max(xR, newXR))));
 
         for (int x = rowStart; x <= rowEnd; ++x) {
             int idx = y * width + x;
 
             if (isVacated[idx]) {
-                // Vung thu gon bo trong: noi suy ket cau background tu ngoai vao, giu nguyen tuong/cua
-                float distOutLeft = std::abs(static_cast<float>(x) - xL);
-                float distOutRight = std::abs(static_cast<float>(x) - xR);
-                int bgSampleX = (distOutLeft < distOutRight) ?
-                    std::max(0, static_cast<int>(xL - 2)) :
-                    std::min(width - 1, static_cast<int>(xR + 2));
+                // VÙNG KHOẢNG TRỐNG LỘ RA KHI THU GỌN VÀO (Vacated Infill Gap):
+                // Nội suy tiếp diễn cấu trúc background tự nhiên từ ngoài biên cũ [xL, xR]
+                // mà không kéo dãn vệt sọc bệt 1D.
+                float fx = static_cast<float>(x);
+                int bgSampleX = 0;
+                if (fx < midX) {
+                    float offset = newXL - fx;
+                    bgSampleX = std::max(0, static_cast<int>(std::round(xL - offset - 1.0f)));
+                } else {
+                    float offset = fx - newXR;
+                    bgSampleX = std::min(width - 1, static_cast<int>(std::round(xR + offset + 1.0f)));
+                }
                 pixels[idx] = snapshot[y * width + bgSampleX];
                 continue;
             }
@@ -238,6 +325,281 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
             if (std::abs(dx) > 1e-3f || std::abs(dy) > 1e-3f) {
                 float srcX = static_cast<float>(x) - dx;
                 float srcY = static_cast<float>(y) - dy;
+                uint32_t warpedPix = sampleBicubic(snapshot.data(), width, height, srcX, srcY);
+
+                if (scale > 1.0f) {
+                    // Khi nở to ra: Sub-pixel Boundary Anti-Aliasing (Edge Feathering 1.5 pixels)
+                    float distToEdge = std::min(std::abs(static_cast<float>(x) - newXL),
+                                                std::abs(static_cast<float>(x) - newXR));
+                    if (distToEdge <= 1.5f) {
+                        float t = distToEdge / 1.5f;
+                        float alpha = t * t * (3.0f - 2.0f * t); // Hermite smoothstep
+                        uint32_t bgPix = snapshot[idx];
+
+                        auto bR = [](uint32_t p) { return p & 0xFF; };
+                        auto bG = [](uint32_t p) { return (p >> 8) & 0xFF; };
+                        auto bB = [](uint32_t p) { return (p >> 16) & 0xFF; };
+                        auto bA = [](uint32_t p) { return (p >> 24) & 0xFF; };
+
+                        uint8_t outR = static_cast<uint8_t>(bR(bgPix) * (1.0f - alpha) + bR(warpedPix) * alpha);
+                        uint8_t outG = static_cast<uint8_t>(bG(bgPix) * (1.0f - alpha) + bG(warpedPix) * alpha);
+                        uint8_t outB = static_cast<uint8_t>(bB(bgPix) * (1.0f - alpha) + bB(warpedPix) * alpha);
+                        uint8_t outA = static_cast<uint8_t>(bA(bgPix) * (1.0f - alpha) + bA(warpedPix) * alpha);
+                        pixels[idx] = outR | (outG << 8) | (outB << 16) | (outA << 24);
+                        continue;
+                    }
+                }
+
+                pixels[idx] = warpedPix;
+            }
+        }
+    }
+}
+
+void BodyBeautyEngine::detectLimbSilhouetteBounds(
+    const uint32_t* pixels, int width, int height,
+    const Point2DF& p1, const Point2DF& p2, float expectedRadius,
+    const uint8_t* parsingMask,
+    std::vector<float>& outSampleT,
+    std::vector<float>& outRadiusLeft,
+    std::vector<float>& outRadiusRight
+) {
+    const int numSamples = 32;
+    outSampleT.resize(numSamples);
+    outRadiusLeft.assign(numSamples, expectedRadius);
+    outRadiusRight.assign(numSamples, expectedRadius);
+
+    float dx = p2.x - p1.x;
+    float dy = p2.y - p1.y;
+    float len = std::hypot(dx, dy);
+    if (len < 5.0f || !pixels || width <= 0 || height <= 0) return;
+
+    float nx = -dy / len;
+    float ny = dx / len;
+
+    auto getGradAt = [&](float sx, float sy) -> float {
+        int ix = static_cast<int>(sx);
+        int iy = static_cast<int>(sy);
+        if (ix <= 1 || ix >= width - 2 || iy <= 1 || iy >= height - 2) return 0.0f;
+        uint32_t p0 = pixels[iy * width + (ix - 1)];
+        uint32_t p1 = pixels[iy * width + (ix + 1)];
+        float dr = static_cast<float>((p1 & 0xFF) - (p0 & 0xFF));
+        float dg = static_cast<float>(((p1 >> 8) & 0xFF) - ((p0 >> 8) & 0xFF));
+        float db = static_cast<float>(((p1 >> 16) & 0xFF) - ((p0 >> 16) & 0xFF));
+        float dlum = std::abs((dr * 77.0f + dg * 150.0f + db * 29.0f) / 256.0f);
+        return std::sqrt(dr * dr + dg * dg + db * db) + dlum * 1.2f;
+    };
+
+    for (int k = 0; k < numSamples; ++k) {
+        float t = static_cast<float>(k) / static_cast<float>(numSamples - 1);
+        outSampleT[k] = t;
+        float cx = p1.x + t * dx;
+        float cy = p1.y + t * dy;
+
+        float rL = expectedRadius;
+        float rR = expectedRadius;
+
+        // Dò biên bên trái theo hướng -n
+        float maxGL = 0.0f;
+        float bestDistL = expectedRadius;
+        for (float d = expectedRadius * 0.35f; d <= expectedRadius * 1.6f; d += 1.0f) {
+            float sx = cx - d * nx;
+            float sy = cy - d * ny;
+            if (sx < 1.0f || sx >= width - 2 || sy < 1.0f || sy >= height - 2) break;
+
+            if (parsingMask) {
+                int pixIdx = static_cast<int>(sy) * width + static_cast<int>(sx);
+                uint8_t c = parsingMask[pixIdx];
+                if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
+                    bestDistL = d;
+                    break;
+                }
+            }
+
+            float g = getGradAt(sx, sy);
+            if (g > maxGL) {
+                maxGL = g;
+                bestDistL = d;
+            }
+        }
+        if (maxGL > 20.0f || parsingMask) rL = bestDistL;
+
+        // Dò biên bên phải theo hướng +n
+        float maxGR = 0.0f;
+        float bestDistR = expectedRadius;
+        for (float d = expectedRadius * 0.35f; d <= expectedRadius * 1.6f; d += 1.0f) {
+            float sx = cx + d * nx;
+            float sy = cy + d * ny;
+            if (sx < 1.0f || sx >= width - 2 || sy < 1.0f || sy >= height - 2) break;
+
+            if (parsingMask) {
+                int pixIdx = static_cast<int>(sy) * width + static_cast<int>(sx);
+                uint8_t c = parsingMask[pixIdx];
+                if (c == CLASS_BACKGROUND || c == CLASS_FOREGROUND_OBJ) {
+                    bestDistR = d;
+                    break;
+                }
+            }
+
+            float g = getGradAt(sx, sy);
+            if (g > maxGR) {
+                maxGR = g;
+                bestDistR = d;
+            }
+        }
+        if (maxGR > 20.0f || parsingMask) rR = bestDistR;
+
+        outRadiusLeft[k] = rL;
+        outRadiusRight[k] = rR;
+    }
+
+    // Gaussian 5-tap smoothing dọc theo trục xương
+    std::vector<float> smoothRL = outRadiusLeft;
+    std::vector<float> smoothRR = outRadiusRight;
+    for (int k = 2; k < numSamples - 2; ++k) {
+        smoothRL[k] = outRadiusLeft[k - 2] * 0.061f + outRadiusLeft[k - 1] * 0.242f +
+                      outRadiusLeft[k] * 0.383f + outRadiusLeft[k + 1] * 0.242f +
+                      outRadiusLeft[k + 2] * 0.061f;
+        smoothRR[k] = outRadiusRight[k - 2] * 0.061f + outRadiusRight[k - 1] * 0.242f +
+                      outRadiusRight[k] * 0.383f + outRadiusRight[k + 1] * 0.242f +
+                      outRadiusRight[k + 2] * 0.061f;
+    }
+    outRadiusLeft = std::move(smoothRL);
+    outRadiusRight = std::move(smoothRR);
+}
+
+void BodyBeautyEngine::applyLimbBoundaryPreservingWarp(
+    uint32_t* pixels, int width, int height,
+    const Point2DF& p1, const Point2DF& p2, float expectedRadius,
+    float intensity,
+    const uint8_t* parsingMask,
+    const std::vector<float>& rigidityMap,
+    const std::vector<RigidElement>& rigidElements
+) {
+    if (!pixels || width <= 0 || height <= 0 || std::abs(intensity) < 0.001f) return;
+
+    float dx = p2.x - p1.x;
+    float dy = p2.y - p1.y;
+    float len = std::hypot(dx, dy);
+    if (len < 5.0f) return;
+
+    float nx = -dy / len;
+    float ny = dx / len;
+
+    // 1. Dò tìm đường biên vật lý thực tế của chi (Sub-pixel Boundary Detection)
+    std::vector<float> sampleT, radiusLeft, radiusRight;
+    detectLimbSilhouetteBounds(pixels, width, height, p1, p2, expectedRadius, parsingMask,
+                               sampleT, radiusLeft, radiusRight);
+
+    std::vector<uint32_t> snapshot(pixels, pixels + (width * height));
+    std::vector<float> dxField(width * height, 0.0f);
+    std::vector<float> dyField(width * height, 0.0f);
+    std::vector<uint8_t> isVacated(width * height, 0);
+
+    float maxR = 0.0f;
+    for (float r : radiusLeft) maxR = std::max(maxR, r);
+    for (float r : radiusRight) maxR = std::max(maxR, r);
+
+    int minX = std::max(0, static_cast<int>(std::min(p1.x, p2.x) - maxR * 1.6f));
+    int maxX = std::min(width - 1, static_cast<int>(std::max(p1.x, p2.x) + maxR * 1.6f));
+    int minY = std::max(0, static_cast<int>(std::min(p1.y, p2.y) - maxR * 1.6f));
+    int maxY = std::min(height - 1, static_cast<int>(std::max(p1.y, p2.y) + maxR * 1.6f));
+
+    for (int y = minY; y <= maxY; ++y) {
+        for (int x = minX; x <= maxX; ++x) {
+            float px = static_cast<float>(x) - p1.x;
+            float py = static_cast<float>(y) - p1.y;
+            float t = (px * dx + py * dy) / (len * len);
+            if (t < 0.0f || t > 1.0f) continue;
+
+            float fIdx = t * (sampleT.size() - 1);
+            int idx0 = std::max(0, std::min(static_cast<int>(sampleT.size() - 2), static_cast<int>(fIdx)));
+            float frac = fIdx - idx0;
+            float curRL = radiusLeft[idx0] * (1.0f - frac) + radiusLeft[idx0 + 1] * frac;
+            float curRR = radiusRight[idx0] * (1.0f - frac) + radiusRight[idx0 + 1] * frac;
+
+            float perpDist = px * nx + py * ny;
+            float absPerp = std::abs(perpDist);
+            bool isRight = (perpDist > 0.0f);
+            float boundR = isRight ? curRR : curRL;
+
+            float envelope = std::sin(t * 3.14159265f);
+            float scale = 1.0f - intensity * 0.25f * envelope;
+            float newBoundR = boundR * scale;
+
+            if (scale < 1.0f) {
+                // Thu gọn bắp tay / cẳng chân:
+                // Ngoài boundR: BACKGROUND THUẦN TÚY -> Chuyển vị = 0.00 TUYỆT ĐỐI!
+                if (absPerp > boundR) continue;
+
+                // Vùng khoảng trống lộ ra giữa newBoundR và boundR
+                if (absPerp > newBoundR) {
+                    isVacated[y * width + x] = 1;
+                    continue;
+                }
+
+                // Trong chi mới: co vào phía xương
+                float normD = absPerp / std::max(1.0f, newBoundR);
+                float srcD = normD * boundR;
+                float disp = (absPerp - srcD);
+                float sign = isRight ? 1.0f : -1.0f;
+                int pIdx = y * width + x;
+                dxField[pIdx] = disp * nx * sign;
+                dyField[pIdx] = disp * ny * sign;
+            } else {
+                // Nở to cơ bắp / bắp chân:
+                // Ngoài newBoundR: BACKGROUND THUẦN TÚY -> Chuyển vị = 0.00 TUYỆT ĐỐI!
+                if (absPerp > newBoundR) continue;
+
+                float normD = absPerp / std::max(1.0f, newBoundR);
+                float srcD = normD * boundR;
+                float disp = (absPerp - srcD);
+                float sign = isRight ? 1.0f : -1.0f;
+                int pIdx = y * width + x;
+                dxField[pIdx] = disp * nx * sign;
+                dyField[pIdx] = disp * ny * sign;
+            }
+        }
+    }
+
+    // 2. Ràng buộc Zero Strain Tensor cho phụ kiện cứng (đồng hồ, vòng tay, cúc)
+    if (!rigidElements.empty()) {
+        mClothingEngine.applyRigidElementConstraints(width, height, rigidElements, dxField.data(), dyField.data());
+    }
+
+    // 3. Ràng buộc Cauchy-Riemann cho vải trang phục (tay áo sơ mi, len, ống quần)
+    if (!rigidityMap.empty()) {
+        mClothingEngine.regularizeClothingDisplacement(width, height, rigidityMap, rigidElements, dxField.data(), dyField.data());
+    }
+
+    // 4. Khóa lại Zero Strain sau điều hòa
+    if (!rigidElements.empty()) {
+        mClothingEngine.applyRigidElementConstraints(width, height, rigidElements, dxField.data(), dyField.data());
+    }
+
+    // 5. Tổng hợp pixel bảo vệ tuyệt đối background và hòa hợp sub-pixel
+    #pragma omp parallel for
+    for (int y = minY; y <= maxY; ++y) {
+        for (int x = minX; x <= maxX; ++x) {
+            int idx = y * width + x;
+
+            if (isVacated[idx]) {
+                // Bù lấp background từ ngoài vào cho khoảng trống lộ ra của chi
+                float px = static_cast<float>(x) - p1.x;
+                float py = static_cast<float>(y) - p1.y;
+                float perpDist = px * nx + py * ny;
+                float sign = (perpDist > 0.0f) ? 1.0f : -1.0f;
+                int bgX = std::max(0, std::min(width - 1, static_cast<int>(std::round(static_cast<float>(x) + nx * sign * 3.0f))));
+                int bgY = std::max(0, std::min(height - 1, static_cast<int>(std::round(static_cast<float>(y) + ny * sign * 3.0f))));
+                pixels[idx] = snapshot[bgY * width + bgX];
+                continue;
+            }
+
+            float dfx = dxField[idx];
+            float dfy = dyField[idx];
+            if (std::abs(dfx) > 1e-3f || std::abs(dfy) > 1e-3f) {
+                float srcX = static_cast<float>(x) - dfx;
+                float srcY = static_cast<float>(y) - dfy;
                 pixels[idx] = sampleBicubic(snapshot.data(), width, height, srcX, srcY);
             }
         }
@@ -416,7 +778,7 @@ bool BodyBeautyEngine::applyBodyHeight(
     return true;
 }
 
-// 3. THON GON CO THE, THAT EO & NO HONG (SLIM BODY, WAIST & HIP - SPEC Section 51, 77)
+// 3. THON GỌN CƠ THỂ, THẮT EO & NỞ HÔNG (SLIM BODY, WAIST & HIP - SPEC Section 51, 77)
 bool BodyBeautyEngine::applyWaistAndBodySlim(
     uint8_t* rgbaImage,
     int width,
@@ -452,11 +814,18 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
 
     float expectedRadius = std::max(20.0f, human.torso.waistWidth * 0.8f);
 
-    // 1. Nhan dien chinh xac duong bien vat ly tung sub-pixel
+    // 1. Nhận diện chính xác đường biên vật lý từng sub-pixel (Multi-channel Edge + Parsing Mask)
     std::vector<float> leftEdges, rightEdges;
-    detectSilhouetteBounds(pixels, width, height, yStart, yEnd, waist.x, expectedRadius, leftEdges, rightEdges);
+    detectSilhouetteBounds(
+        pixels, width, height, yStart, yEnd, waist.x, expectedRadius,
+        human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        leftEdges, rightEdges
+    );
 
-    // 2. Tinh toan he so co gian scale factor cho tung dong quet
+    // 2. Tính toán hệ số co giãn scale factor cho từng dòng quét hỗ trợ cả 2 chiều:
+    // - waistIntensity > 0: thắt eo con kiến; waistIntensity < 0: nới rộng eo
+    // - hipIntensity > 0: nở hông quả táo; hipIntensity < 0: thon gọn hông
+    // - slimIntensity > 0: thon gọn toàn thân; slimIntensity < 0: nở nang body
     std::vector<float> scaleFactors(numRows, 1.0f);
     for (int y = yStart; y <= yEnd; ++y) {
         int r = y - yStart;
@@ -464,14 +833,14 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
 
         float factor = 1.0f;
         if (curY <= waist.y) {
-            // Vung giua nguc va eo: thu nho dan den eo
+            // Vùng giữa ngực và eo: thu nhỏ / mở rộng dần đến eo
             float t = (curY - torsoTop) / std::max(1.0f, waist.y - torsoTop);
             t = std::max(0.0f, std::min(1.0f, t));
             float smoothT = t * t * (3.0f - 2.0f * t);
             float waistScale = 1.0f - (waistIntensity * 0.28f + slimIntensity * 0.15f);
             factor = 1.0f * (1.0f - smoothT) + waistScale * smoothT;
         } else {
-            // Vung giua eo va hong: tu eo thu nho sang hong no ra
+            // Vùng giữa eo và hông: chuyển tiếp mượt từ eo sang hông
             float t = (curY - waist.y) / std::max(1.0f, torsoBottom - waist.y);
             t = std::max(0.0f, std::min(1.0f, t));
             float smoothT = t * t * (3.0f - 2.0f * t);
@@ -482,7 +851,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
         scaleFactors[r] = factor;
     }
 
-    // 3. Trich xuat cac rang buoc cuc ao, khoa keo va hoa van vai
+    // 3. Trích xuất ràng buộc cúc áo, khóa kéo, mặt thắt lưng và hoa văn dệt vải
     std::vector<float> rigidityMap;
     std::vector<RigidElement> rigidElements;
     mClothingEngine.extractClothingConstraints(
@@ -490,7 +859,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
         rigidityMap, rigidElements
     );
 
-    // 4. Bien dang co the, bao ve chat lieu vai va khong lam meo background
+    // 4. Biến dạng bảo toàn đường biên: Zero Background Warping, bảo vệ vải và phụ kiện cứng
     applyBoundaryPreservingWarp(
         pixels, width, height, stride,
         yStart, yEnd, waist.x,
@@ -501,7 +870,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
     return true;
 }
 
-// 4. THON BAP TAY & CHINH VAI (ARM & SHOULDER SLIM - SPEC Section 47, 54, 55)
+// 4. THON BẮP TAY & CHỈNH VAI (ARM & SHOULDER SLIM - SPEC Section 47, 54, 55)
 bool BodyBeautyEngine::applyArmAndShoulderSlim(
     uint8_t* rgbaImage,
     int width,
@@ -515,77 +884,78 @@ bool BodyBeautyEngine::applyArmAndShoulderSlim(
     if (std::abs(shoulderIntensity) < 0.001f && std::abs(armIntensity) < 0.001f) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
-    std::vector<uint32_t> original(pixels, pixels + (width * height));
 
-    std::vector<float> dxField(width * height, 0.0f);
-    std::vector<float> dyField(width * height, 0.0f);
+    // Trích xuất ràng buộc trang phục & phụ kiện (đồng hồ, vòng tay, cúc tay áo, viền vải)
+    std::vector<float> rigidityMap;
+    std::vector<RigidElement> rigidElements;
+    mClothingEngine.extractClothingConstraints(
+        rgbaImage, width, height, human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        rigidityMap, rigidElements
+    );
 
-    auto deformArmBone = [&](const Point2DF& p1, const Point2DF& p2, float boneRadius, float intensity) {
-        float dx = p2.x - p1.x;
-        float dy = p2.y - p1.y;
-        float len = std::hypot(dx, dy);
-        if (len < 5.0f) return;
+    const uint8_t* pMask = human.parsingMask.empty() ? nullptr : human.parsingMask.data();
 
-        float nx = -dy / len;
-        float ny = dx / len;
-
-        int minX = std::max(0, static_cast<int>(std::min(p1.x, p2.x) - boneRadius * 1.5f));
-        int maxX = std::min(width - 1, static_cast<int>(std::max(p1.x, p2.x) + boneRadius * 1.5f));
-        int minY = std::max(0, static_cast<int>(std::min(p1.y, p2.y) - boneRadius * 1.5f));
-        int maxY = std::min(height - 1, static_cast<int>(std::max(p1.y, p2.y) + boneRadius * 1.5f));
-
-        for (int y = minY; y <= maxY; ++y) {
-            for (int x = minX; x <= maxX; ++x) {
-                float px = static_cast<float>(x) - p1.x;
-                float py = static_cast<float>(y) - p1.y;
-                float t = (px * dx + py * dy) / (len * len);
-                if (t < 0.0f || t > 1.0f) continue;
-
-                float perpDist = std::abs(px * nx + py * ny);
-                if (perpDist >= boneRadius * 1.3f) continue;
-
-                float falloff = std::cos((perpDist / (boneRadius * 1.3f)) * 1.5707963f);
-                falloff = falloff * falloff;
-
-                float disp = -intensity * boneRadius * 0.25f * falloff;
-                float side = (px * nx + py * ny) > 0.0f ? 1.0f : -1.0f;
-
-                int idx = y * width + x;
-                dxField[idx] += disp * nx * side;
-                dyField[idx] += disp * ny * side;
-            }
-        }
-    };
-
+    // 1. Biến dạng bắp tay & cẳng tay bảo toàn đường biên thực tế từng sub-pixel
+    // Hỗ trợ cả 2 chiều: armIntensity > 0 (thon gọn bắp tay); armIntensity < 0 (nở cơ bắp tay)
+    // Nền bên cạnh cánh tay (tường, cửa, bàn ghế, người cạnh bên) tuyệt đối không bị kéo cong!
     if (std::abs(armIntensity) > 0.001f) {
         if (human.leftArm.isVisible) {
-            deformArmBone(human.leftArm.shoulder, human.leftArm.elbow, human.leftArm.upperArmWidth, armIntensity);
-            deformArmBone(human.leftArm.elbow, human.leftArm.wrist, human.leftArm.forearmWidth, armIntensity);
+            // Bắp tay trên trái: vai -> khuỷu
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.leftArm.shoulder, human.leftArm.elbow,
+                human.leftArm.upperArmWidth, armIntensity,
+                pMask, rigidityMap, rigidElements
+            );
+            // Cẳng tay trái: khuỷu -> cổ tay
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.leftArm.elbow, human.leftArm.wrist,
+                human.leftArm.forearmWidth, armIntensity * 0.85f,
+                pMask, rigidityMap, rigidElements
+            );
         }
         if (human.rightArm.isVisible) {
-            deformArmBone(human.rightArm.shoulder, human.rightArm.elbow, human.rightArm.upperArmWidth, armIntensity);
-            deformArmBone(human.rightArm.elbow, human.rightArm.wrist, human.rightArm.forearmWidth, armIntensity);
+            // Bắp tay trên phải: vai -> khuỷu
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.rightArm.shoulder, human.rightArm.elbow,
+                human.rightArm.upperArmWidth, armIntensity,
+                pMask, rigidityMap, rigidElements
+            );
+            // Cẳng tay phải: khuỷu -> cổ tay
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.rightArm.elbow, human.rightArm.wrist,
+                human.rightArm.forearmWidth, armIntensity * 0.85f,
+                pMask, rigidityMap, rigidElements
+            );
         }
     }
 
-    // Bao ve boi canh & trang phuc
-    if (!human.parsingMask.empty()) {
-        mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
-    }
-    if (!human.backgroundProtectionMask.empty()) {
-        mBgEngine.regularizeDisplacementField(width, height, human.backgroundProtectionMask.data(), human.structuralLines, dxField.data(), dyField.data());
-    }
-
-    #pragma omp parallel for
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int idx = y * width + x;
-            float dx = dxField[idx];
-            float dy = dyField[idx];
-            if (std::abs(dx) > 1e-3f || std::abs(dy) > 1e-3f) {
-                float srcX = static_cast<float>(x) - dx;
-                float srcY = static_cast<float>(y) - dy;
-                pixels[idx] = sampleBicubic(original.data(), width, height, srcX, srcY);
+    // 2. Chỉnh vai (Shoulder Slim / Broaden)
+    if (std::abs(shoulderIntensity) > 0.001f && human.leftArm.isVisible && human.rightArm.isVisible) {
+        Point2DF neck = human.pose.keypoints[JOINT_NECK].pos;
+        if (neck.y > 0.1f) {
+            float shoulderSpan = std::hypot(human.rightArm.shoulder.x - human.leftArm.shoulder.x,
+                                           human.rightArm.shoulder.y - human.leftArm.shoulder.y);
+            float shoulderScale = 1.0f - shoulderIntensity * 0.12f;
+            int shoulderYStart = std::max(0, static_cast<int>(neck.y - 15.0f));
+            int shoulderYEnd = std::min(height - 1, static_cast<int>(std::max(human.leftArm.shoulder.y, human.rightArm.shoulder.y) + 15.0f));
+            int numRows = shoulderYEnd - shoulderYStart + 1;
+            if (numRows > 0) {
+                std::vector<float> leftEdges, rightEdges;
+                detectSilhouetteBounds(
+                    pixels, width, height, shoulderYStart, shoulderYEnd, neck.x, shoulderSpan * 0.5f,
+                    pMask, leftEdges, rightEdges
+                );
+                std::vector<float> sScales(numRows, shoulderScale);
+                applyBoundaryPreservingWarp(
+                    pixels, width, height, stride,
+                    shoulderYStart, shoulderYEnd, neck.x,
+                    leftEdges, rightEdges, sScales,
+                    rigidityMap, rigidElements
+                );
             }
         }
     }
@@ -593,7 +963,7 @@ bool BodyBeautyEngine::applyArmAndShoulderSlim(
     return true;
 }
 
-// 5. THON GON DUI & BAP CHAN (LEG SLIM - SPEC Section 64, 66, 67)
+// 5. THON GỌN ĐÙI VÀ BẮP CHÂN (LEG SLIM - SPEC Section 64, 66, 67)
 bool BodyBeautyEngine::applyLegSlim(
     uint8_t* rgbaImage,
     int width,
@@ -607,77 +977,76 @@ bool BodyBeautyEngine::applyLegSlim(
     if (std::abs(legSlimIntensity) < 0.001f && std::abs(ankleSlimIntensity) < 0.001f) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
-    std::vector<uint32_t> original(pixels, pixels + (width * height));
 
-    std::vector<float> dxField(width * height, 0.0f);
-    std::vector<float> dyField(width * height, 0.0f);
+    // Trích xuất ràng buộc vải quần, đường may, ống quần, giày dép
+    std::vector<float> rigidityMap;
+    std::vector<RigidElement> rigidElements;
+    mClothingEngine.extractClothingConstraints(
+        rgbaImage, width, height, human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        rigidityMap, rigidElements
+    );
 
-    auto deformLegSegment = [&](const Point2DF& p1, const Point2DF& p2, float radius, float intensity) {
-        float dx = p2.x - p1.x;
-        float dy = p2.y - p1.y;
-        float len = std::hypot(dx, dy);
-        if (len < 5.0f) return;
+    const uint8_t* pMask = human.parsingMask.empty() ? nullptr : human.parsingMask.data();
 
-        float nx = -dy / len;
-        float ny = dx / len;
-
-        int minX = std::max(0, static_cast<int>(std::min(p1.x, p2.x) - radius * 1.5f));
-        int maxX = std::min(width - 1, static_cast<int>(std::max(p1.x, p2.x) + radius * 1.5f));
-        int minY = std::max(0, static_cast<int>(std::min(p1.y, p2.y) - radius * 1.5f));
-        int maxY = std::min(height - 1, static_cast<int>(std::max(p1.y, p2.y) + radius * 1.5f));
-
-        for (int y = minY; y <= maxY; ++y) {
-            for (int x = minX; x <= maxX; ++x) {
-                float px = static_cast<float>(x) - p1.x;
-                float py = static_cast<float>(y) - p1.y;
-                float t = (px * dx + py * dy) / (len * len);
-                if (t < 0.0f || t > 1.0f) continue;
-
-                float perpDist = std::abs(px * nx + py * ny);
-                if (perpDist >= radius * 1.3f) continue;
-
-                float falloff = std::cos((perpDist / (radius * 1.3f)) * 1.5707963f);
-                falloff = falloff * falloff;
-
-                float disp = -intensity * radius * 0.22f * falloff;
-                float side = (px * nx + py * ny) > 0.0f ? 1.0f : -1.0f;
-
-                int idx = y * width + x;
-                dxField[idx] += disp * nx * side;
-                dyField[idx] += disp * ny * side;
-            }
+    // 1. Biến dạng chân trái: Đùi, Bắp chuối, Cổ chân
+    // Hỗ trợ cả 2 chiều: thon gọn (legSlimIntensity > 0) và làm nở đùi đầy đặn (legSlimIntensity < 0)
+    // Đường chân tường, nền gạch men, thảm trải sàn xung quanh và ở khe giữa 2 chân GIỮ THẲNG 100%!
+    if (human.leftLeg.isVisible) {
+        if (std::abs(legSlimIntensity) > 0.001f) {
+            // Đùi trái: hông -> đầu gối
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.leftLeg.hip, human.leftLeg.knee,
+                human.leftLeg.thighWidth, legSlimIntensity,
+                pMask, rigidityMap, rigidElements
+            );
+            // Bắp chuối trái: đầu gối -> cổ chân
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.leftLeg.knee, human.leftLeg.ankle,
+                human.leftLeg.calfWidth, legSlimIntensity * 0.90f,
+                pMask, rigidityMap, rigidElements
+            );
         }
-    };
-
-    if (std::abs(legSlimIntensity) > 0.001f) {
-        if (human.leftLeg.isVisible) {
-            deformLegSegment(human.leftLeg.hip, human.leftLeg.knee, human.leftLeg.thighWidth, legSlimIntensity);
-            deformLegSegment(human.leftLeg.knee, human.leftLeg.ankle, human.leftLeg.calfWidth, legSlimIntensity);
-        }
-        if (human.rightLeg.isVisible) {
-            deformLegSegment(human.rightLeg.hip, human.rightLeg.knee, human.rightLeg.thighWidth, legSlimIntensity);
-            deformLegSegment(human.rightLeg.knee, human.rightLeg.ankle, human.rightLeg.calfWidth, legSlimIntensity);
+        if (std::abs(ankleSlimIntensity) > 0.001f) {
+            // Cổ chân trái: đoạn sát mắt cá chân
+            Point2DF ankleBase = {human.leftLeg.ankle.x, human.leftLeg.ankle.y + 18.0f};
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.leftLeg.ankle, ankleBase,
+                human.leftLeg.ankleWidth, ankleSlimIntensity,
+                pMask, rigidityMap, rigidElements
+            );
         }
     }
 
-    if (!human.parsingMask.empty()) {
-        mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
-    }
-    if (!human.backgroundProtectionMask.empty()) {
-        mBgEngine.regularizeDisplacementField(width, height, human.backgroundProtectionMask.data(), human.structuralLines, dxField.data(), dyField.data());
-    }
-
-    #pragma omp parallel for
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int idx = y * width + x;
-            float dx = dxField[idx];
-            float dy = dyField[idx];
-            if (std::abs(dx) > 1e-3f || std::abs(dy) > 1e-3f) {
-                float srcX = static_cast<float>(x) - dx;
-                float srcY = static_cast<float>(y) - dy;
-                pixels[idx] = sampleBicubic(original.data(), width, height, srcX, srcY);
-            }
+    // 2. Biến dạng chân phải: Đùi, Bắp chuối, Cổ chân
+    if (human.rightLeg.isVisible) {
+        if (std::abs(legSlimIntensity) > 0.001f) {
+            // Đùi phải: hông -> đầu gối
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.rightLeg.hip, human.rightLeg.knee,
+                human.rightLeg.thighWidth, legSlimIntensity,
+                pMask, rigidityMap, rigidElements
+            );
+            // Bắp chuối phải: đầu gối -> cổ chân
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.rightLeg.knee, human.rightLeg.ankle,
+                human.rightLeg.calfWidth, legSlimIntensity * 0.90f,
+                pMask, rigidityMap, rigidElements
+            );
+        }
+        if (std::abs(ankleSlimIntensity) > 0.001f) {
+            // Cổ chân phải: đoạn sát mắt cá chân
+            Point2DF ankleBase = {human.rightLeg.ankle.x, human.rightLeg.ankle.y + 18.0f};
+            applyLimbBoundaryPreservingWarp(
+                pixels, width, height,
+                human.rightLeg.ankle, ankleBase,
+                human.rightLeg.ankleWidth, ankleSlimIntensity,
+                pMask, rigidityMap, rigidElements
+            );
         }
     }
 

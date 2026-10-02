@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>ID</key>
+		<integer>1001</integer>
+		<key>FilterPart</key>
+		<array>
+			<dict>
+				<key>Type</key>
+				<string>AnattaBeauty</string>
+				<key>Filters</key>
+				<array>
+					<dict>
+						<key>Name</key>
+						<string>SourceInput</string>
+					</dict>
+					<!-- 拍后祛斑祛痘 -->
+					<dict>
+						<key>Name</key>
+						<string>FleckFlawClean</string>
+						<key>NeedExternSkinMaskData</key>
+						<string>1</string>
+						<key>IsNeedGlassProtect</key>
+						<string>0</string>
+						<key>FromSource</key>
+						<array>
+							<string>SourceInput</string>
+						</array>
+					</dict>
+					<!-- 实时祛斑祛痘 -->
+					<dict>
+						<key>Name</key>
+						<string>AcneClean</string>
+						<key>IsOnlyPreview</key>
+						<string>0</string>
+						<!-- 祛斑祛痘开关 -->
+						<key>Switch</key>
+						<string>1</string>
+						<!-- 祛斑祛痘程度值 -->
+						<key>Alpha</key>
+						<string>0.35</string>
+						<key>FromSource</key>
+						<array>
+							<string>FleckFlawClean</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>FaceColor</string>
+						<key>Type</key>
+						<string>MTXXFaceColor</string>
+						<key>FromSource</key>
+						<array>
+							<string>AcneClean</string>
+						</array>
+					</dict>
+					<!-- 面部光影平整 -->
+					<dict>
+						<key>Name</key>
+						<string>FacialShadowSmooth</string>
+						<key>Type</key>
+						<string>AllSkin</string>
+						<key>IsMiniFaceLimit</key>
+						<string>0</string>
+						<key>IsOnlyRemoveShadow</key>
+						<string>1</string>
+						<key>IsUseRealtimeMask</key>
+						<string>1</string>
+						<key>IsNeedFaceDarkAlpha</key>
+						<string>1</string>
+						<!-- 去法令纹（新）开关 -->
+						<key>LaughLineSwitch</key>
+						<string>1</string>
+						<!-- 去法令纹（新）程度 -->
+						<key>LaughLineAlpha</key>
+						<string>0.66</string>
+						<!-- 去泪沟开关 -->
+						<key>TearTroughSwitch</key>
+						<string>1</string>
+						<!-- 去泪沟程度 -->
+						<key>TearTroughAlpha</key>
+						<string>0.48</string>
+						<!-- 暗沉开关 -->
+						<key>ShadowSmoothSwitch</key>
+						<string>1</string>
+						<!-- 暗沉平整程度 -->
+						<key>ShadowSmoothAlpha</key>
+						<string>0.54</string>
+						<!-- 肤色矫正类型 -->
+						<key>SkinToneCorrectionType</key>
+						<!-- 1:去青去暗沉  2:仅去红 -->
+						<string>1</string>
+						<!-- 肤色矫正开关 -->
+						<key>SkinToneCorrectionSwitch</key>
+						<string>1</string>
+						<!-- 暗沉去除程度 -->
+						<key>DullnessRemoveAlpha</key>
+						<string>0.5</string>
+						<!-- 去青 -->
+						<key>BlueFaceLightenAlpha</key>
+						<string>0.5</string>
+						<!-- 去红 -->
+						<key>RednessLightenAlpha</key>
+						<string>0</string>
+						<key>FromSource</key>
+						<array>
+							<string>FaceColor</string>
+						</array>
+					</dict>
+					<!-- 法令纹黑眼圈提亮 -->
+					<dict>
+						<key>Name</key>
+						<string>ShadowSmoothBright</string>
+						<key>IsNeedFaceDarkAlpha</key>
+						<string>1</string>
+						<!-- 去法令纹开关 -->
+						<key>LaughLineSwitch</key>
+						<string>1</string>
+						<!-- 去法令纹程度 -->
+						<key>LaughLineAlpha</key>
+						<string>0.3</string>
+						<!-- 去黑眼圈开关 -->
+						<key>RemovePouchSwitch</key>
+						<string>1</string>
+						<!-- 去黑眼圈程度 -->
+						<key>RemovePouchAlpha</key>
+						<string>0.4</string>
+						<key>FromSource</key>
+						<array>
+							<string>FacialShadowSmooth</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>SkinSmooth</string>
+						<key>Type</key>
+						<string>Normal</string>
+						<key>IsNeedFaceAndNeckMask</key>
+						<string>1</string>
+						<key>FaceEdgeDevelop</key>
+						<string>0</string>
+						<key>FromSource</key>
+						<array>
+							<string>ShadowSmoothBright</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>BlurFilter02</string>
+						<key>FromSource</key>
+						<array>
+							<string>SkinSmooth</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>Sharpen</string>
+						<key>Type</key>
+						<string>Clarity</string>
+						<key>TexelSpacing</key>
+						<string>13.5</string>
+						<key>FromSource</key>
+						<array>
+							<string>SkinSmooth</string>
+							<string>BlurFilter02</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>FacialBeautify</string>
+						<key>BrightEyeType</key>
+						<string>1</string>
+						<key>BrightEyeSwitch</key>
+						<string>0</string>
+						<key>WhiteTeethSwitch</key>
+						<string>0</string>
+						<key>RemovePouchSwitch</key>
+						<string>1</string>
+						<key>LaughLineSwitch</key>
+						<string>1</string>
+						<key>FromSource</key>
+						<array>
+							<string>Sharpen</string>
+							<string>BlurFilter02</string>
+						</array>
+					</dict>
+					<!-- 去油 -->
+					<dict>
+						<key>Name</key>
+						<string>CleanShiny</string>
+						<key>Type</key>
+						<string>RealTime</string>
+						<key>AdjustHair</key>
+						<string>0.0</string>
+						<key>AdjustSkin</key>
+						<string>1.0</string>
+						<key>AdjustShiny</key>
+						<string>1.0</string>
+						<key>FromSource</key>
+						<array>
+							<string>FacialBeautify</string>
+						</array>
+					</dict>
+					<!-- 立体 -->
+					<dict>
+						<key>Name</key>
+						<string>ShadowLight</string>
+						<key>IsNeedShadowLightDarkAlpha</key>
+						<string>1</string>
+
+						<key>Type</key>
+						<string>2DSoftLight</string>
+						<!-- 立体开关 -->
+						<key>ShadowLightSwitch</key>
+						<string>0</string>
+						<!-- 立体程度 -->
+						<key>ShadowLightAlpha</key>
+						<string>0.35</string>
+						<key>FromSource</key>
+						<array>
+							<string>CleanShiny</string>
+						</array>
+					</dict>
+					<!--       中性灰缩毛孔            -->
+					<dict>
+						<key>Name</key>
+						<string>FlawSmooth</string>
+						<!-- 中性灰缩毛孔开关 -->
+						<key>FlawCleanSwitch</key>
+						<string>1</string>
+						<!-- 祛黑程度 -->
+						<key>FlawBrightenAlpha</key>
+						<string>0.1</string>
+						<!-- 祛白程度 -->
+						<key>FlawDarkenAlpha</key>
+						<string>0.3</string>
+						<key>FromSource</key>
+						<array>
+							<string>ShadowLight</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>NecklineRemove</string>
+						<key>FromSource</key>
+						<array>
+							<string>FlawSmooth</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>JawlineShadow</string>
+						<key>FromSource</key>
+						<array>
+							<string>NecklineRemove</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>DoubleChin</string>
+						<key>FromSource</key>
+						<array>
+							<string>JawlineShadow</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Name</key>
+						<string>ResultOutput</string>
+						<key>FromSource</key>
+						<array>
+							<string>DoubleChin</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+		</array>
+	</dict>
+</plist>

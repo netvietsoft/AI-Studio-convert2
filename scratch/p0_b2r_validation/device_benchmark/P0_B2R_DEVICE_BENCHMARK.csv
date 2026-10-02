@@ -1,0 +1,18 @@
+StageID,StageName,P50_ms,P95_ms,P99_ms,Status,Notes
+1,BiSeNet,248.238,288.321,310.914,MEASURED,BiSeNet Face Parsing 512x512 NCNN (4 threads)
+2,AdaptiveHairAppearance,0.957462,2.06761,2.31385,MEASURED,Adaptive hair appearance seed calculation
+3,HairHatResolver,1.52039,2.52492,2.56985,MEASURED,Class 18 Hat/Hair disambiguation
+4,LowContrast_P0_FullRes,49.3569,64.9915,69.0875,BASELINE,Full Resolution 960x1280 Laplacian Box Filter
+5,LowContrast_P1_HalfRes,18.1397,26.7628,28.0672,MEASURED,Half Resolution 480x640 linear
+6,LowContrast_P2_ROI,12.4593,17.068,17.3948,MEASURED,Candidate ROI full resolution
+7,LowContrast_P3_ROI_HalfRes,8.51254,13.5338,15.1086,SELECTED,Candidate ROI + Half Resolution (Variant P3)
+8,SubjectGraph,1.16515,3.19992,3.93508,MEASURED,SubjectGraph topological hair clustering
+9,ImageContentGuard,0.630153,1.07608,1.74746,MEASURED,Screen border UI chrome rejection
+10,SemanticTrimap,2.87869,5.24585,6.01231,MEASURED,Semantic Trimap generation
+11,FastGuidedFilter,46.2806,72.1978,93.7492,MEASURED,Fast Guided Filter Box r=12 s=2
+12,LocalColorAffinity,3.79361,8.17446,10.4264,MEASURED,Local Color Affinity matte refinement
+13,SemanticProtection,1.35662,3.309,6.75354,MEASURED,Strict Semantic and UI protection masking
+14,EarOcclusionResolver,0.000077,0.000307,0.000308,EAR_STAGE_NOT_TRIGGERED,Timer clock resolution overhead (ears_sem == 0 in synthetic benchmark input)
+15,HairlineRefinement,0.867769,1.47438,1.73508,MEASURED,Hairline texture-aware softening
+16,TOTAL_P0_B2R_MATTING,69.8508,106.311,141.976,PASS,End-to-End P0-B.2R Matting (P50 <= 85 ms gate passed)
+17,FULL_HAIR_COLOR_RUN,317.6,419.119,452.89,PASS,Total Pipeline (BiSeNet + P0-B.2R Matting)

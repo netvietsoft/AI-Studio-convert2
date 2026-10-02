@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ID</key>
+	<integer>1001</integer>
+	<key>FilterPart</key>
+	<array>
+		<dict>
+			<!-- 滤镜类型：AnattaBeauty美颜 -->
+			<key>Type</key>
+			<string>AnattaBeauty</string>
+			<!-- AnattaBeauty使用滤镜组 -->
+			<key>Filters</key>
+			<array>
+				<dict>
+					<!-- 勿更改，输入纹理SourceInput -->
+					<key>Name</key>
+					<string>SourceInput</string>
+				</dict>
+				<dict>
+					<!-- 面部光影平整 -->
+					<key>Name</key>
+					<string>FacialShadowSmooth</string>
+					<!-- 面部光影平整类型，可选：LaughLine（仅去泪沟去法令纹）， AllSkin（全脸光影平整） -->
+					<key>Type</key>
+					<string>LaughLine</string>
+					<!-- 去泪沟开关 -->
+					<key>TearTrougSwitch</key>
+					<string>1</string>
+					<!-- 去法令纹（新）开关 -->
+					<key>LaughLineSwitch</key>
+					<string>1</string>
+					<!-- 本滤镜的上一个滤镜 -->
+					<key>FromSource</key>
+					<array>
+						<string>SourceInput</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 磨皮 -->
+					<key>Name</key>
+					<string>SkinSmooth</string>
+					<!-- 磨皮类型，可选：Normal，SkinSegment，SkinSmoothIns，DarkDevelop，SkinSegmentDarkDevelop -->
+					<key>Type</key>
+					<string>Normal</string>
+					<!-- 是否开启只对脸+脖子区域磨皮 -->
+					<key>IsNeedFaceAndNeckMask</key>
+					<string>1</string>
+					<!-- 本滤镜的上一个滤镜 -->
+					<key>FromSource</key>
+					<array>
+						<string>FacialShadowSmooth</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<!-- 勿更改，亮眼所需滤镜 -->
+					<string>BlurFilter02</string>
+					<key>FromSource</key>
+					<array>
+						<string>SkinSmooth</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 锐化 -->
+					<key>Name</key>
+					<string>Sharpen</string>
+					<!-- 锐化类型，可选：Clarity，MySharpenSkinMask，EdgeSharpen，USM，Foodie -->
+					<key>Type</key>
+					<string>MySharpenSkinMask</string>
+					<key>ExceptFaceSkin</key>
+					<string>1</string>
+					<key>IsBeautyThreeSharpen</key>
+					<string>1</string>
+					<key>FromSource</key>
+					<array>
+						<string>SkinSmooth</string>
+						<string>SourceInput</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 精细化美颜，包括亮眼，美牙，去黑眼圈，去法令纹 -->
+					<key>Name</key>
+					<string>FacialBeautify</string>
+					<!-- 亮眼类型，可选：0（旧亮眼），1（提亮曲线新亮眼），2（层次感亮眼） -->
+					<key>BrightEyeType</key>
+					<string>1</string>
+					<!-- 亮眼开关 -->
+					<key>BrightEyeSwitch</key>
+					<string>1</string>
+					<!-- 美牙开关 -->
+					<key>WhiteTeethSwitch</key>
+					<string>1</string>
+					<!-- 去黑眼圈开关 -->
+					<key>RemovePouchSwitch</key>
+					<string>1</string>
+					<!-- 去法令纹（旧）开关 -->
+					<key>LaughLineSwitch</key>
+					<string>0</string>
+					<key>FromSource</key>
+					<array>
+						<string>Sharpen</string>
+						<string>BlurFilter02</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 高光阴影 -->
+					<key>Name</key>
+					<string>ShadowLight</string>
+					<!-- 高光阴影类型，可选：3D，2D，2DCurve，2DSoftLight，2.5DLight -->
+					<key>Type</key>
+					<string>2DSoftLight</string>
+					<key>FromSource</key>
+					<array>
+						<string>FacialBeautify</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 调色 -->
+					<key>Name</key>
+					<string>FaceColor</string>
+					<!-- 调色类型：SingleLookup，DoubleLookup，ThripleMixLookup，FaceColor0060，MTXXFaceColor -->
+					<key>Type</key>
+					<string>SingleLookup</string>
+					<key>LutPath</key>
+					<string>Anatta/lookup_table_512_white.png</string>
+					<key>Size</key>
+					<string>64</string>
+					<key>AutoContrastType</key>
+					<string>1</string>
+					<key>AutoContrastSwitch</key>
+					<string>0</string>
+					<key>AutoContrastAlpha</key>
+					<string>1</string>
+					<key>FromSource</key>
+					<array>
+						<string>ShadowLight</string>
+					</array>
+				</dict>
+				<dict>
+					<!-- 勿更改，输出纹理ResultOutput -->
+					<key>Name</key>
+					<string>ResultOutput</string>
+					<key>FromSource</key>
+					<array>
+						<string>FaceColor</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

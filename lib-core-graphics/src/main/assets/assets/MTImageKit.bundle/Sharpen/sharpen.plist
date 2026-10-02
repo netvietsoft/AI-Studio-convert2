@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>ID</key>
+    <integer>1001</integer>
+    <key>FilterPart</key>
+    <array>
+        <dict>
+            <key>Type</key>
+            <string>AnattaBeauty</string>
+            <key>Filters</key>
+            <array>
+                <dict>
+                    <key>Name</key>
+                    <string>SourceInput</string>
+                </dict>
+                <dict>
+                    <key>Name</key>
+                    <string>Sharpen</string>
+                    <key>Type</key>
+                    <string>USMHD</string>
+                    <key>Strength</key>
+                    <string>0.8</string>
+                    <key>ColorThredshold</key>
+                    <string>0.25</string>
+                    <key>Radius</key>
+                    <string>5</string>
+                    <key>USMThredshold</key>
+                    <string>0.4</string>
+                    <key>FromSource</key>
+                    <array>
+                        <string>SourceInput</string>
+                    </array>
+                </dict>
+                <dict>
+                    <key>Name</key>
+                    <string>Sharpen2</string>
+                    <key>Type</key>
+                    <string>USMHD</string>
+                    <key>Strength</key>
+                    <string>0.2</string>
+                    <key>ColorThredshold</key>
+                    <string>0</string>
+                    <key>Radius</key>
+                    <string>2</string>
+                    <key>FromSource</key>
+                    <array>
+                        <string>Sharpen</string>
+                    </array>
+                </dict>
+                <dict>
+                    <key>Name</key>
+                    <string>ResultOutput</string>
+                    <key>FromSource</key>
+                    <array>
+                        <string>Sharpen2</string>
+                    </array>
+                </dict>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>

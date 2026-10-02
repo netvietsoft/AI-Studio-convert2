@@ -1,0 +1,904 @@
+#include "skin_makeup_engine.h"
+#include <cmath>
+#include <algorithm>
+#include <vector>
+#include <omp.h>
+
+#define RGBA_R(c) ((c) & 0xFF)
+#define RGBA_G(c) (((c) >> 8) & 0xFF)
+#define RGBA_B(c) (((c) >> 16) & 0xFF)
+#define RGBA_A(c) (((c) >> 24) & 0xFF)
+#define PACK_RGBA(r, g, b, a) (((uint32_t)(a) << 24) | ((uint32_t)(b) << 16) | ((uint32_t)(g) << 8) | (uint32_t)(r))
+
+namespace meitu_native {
+
+// Kiểm tra điểm ảnh da người
+static inline bool isHumanSkinPixel(int r, int g, int b) {
+    if (r <= g || g <= b) return false;
+    if (r < 60 || g < 40 || b < 20) return false;
+    int diff = r - g;
+    if (diff < 15) return false;
+    return true;
+}
+
+// 1. Áp dụng loại da (2.7.1)
+bool SkinMakeupEngine::applySkinType(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float faceCenterX, float faceCenterY,
+    float faceRadiusX, float faceRadiusY,
+    int skinTypeId,
+    float intensity
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+
+    int minX = std::max(0, static_cast<int>(faceCenterX - faceRadiusX));
+    int maxX = std::min(width - 1, static_cast<int>(faceCenterX + faceRadiusX));
+    int minY = std::max(0, static_cast<int>(faceCenterY - faceRadiusY));
+    int maxY = std::min(height - 1, static_cast<int>(faceCenterY + faceRadiusY));
+
+    #pragma omp parallel for schedule(dynamic, 16)
+    for (int y = minY; y <= maxY; ++y) {
+        float ny = (static_cast<float>(y) - faceCenterY) / faceRadiusY;
+        float ny2 = ny * ny;
+        for (int x = minX; x <= maxX; ++x) {
+            float nx = (static_cast<float>(x) - faceCenterX) / faceRadiusX;
+            float dist2 = nx * nx + ny2;
+            if (dist2 >= 1.0f) continue;
+
+            float w = (1.0f - dist2) * (1.0f - dist2) * p;
+            int idx = y * width + x;
+            uint32_t c = pixels[idx];
+            int r = RGBA_R(c);
+            int g = RGBA_G(c);
+            int b = RGBA_B(c);
+            int a = RGBA_A(c);
+
+            if (!isHumanSkinPixel(r, g, b)) continue;
+
+            switch (skinTypeId) {
+                case SKIN_TYPE_OILY: {
+                    // Da dầu: Giảm phản quang bóng nhờn, tạo lớp nền lì mờ tự nhiên
+                    float lum = 0.299f * r + 0.587f * g + 0.114f * b;
+                    if (lum > 175.0f) {
+                        float suppress = (lum - 175.0f) * 0.45f * w;
+                        r = std::clamp(static_cast<int>(r - suppress), 0, 255);
+                        g = std::clamp(static_cast<int>(g - suppress * 0.95f), 0, 255);
+                        b = std::clamp(static_cast<int>(b - suppress * 0.85f), 0, 255);
+                    }
+                    break;
+                }
+                case SKIN_TYPE_DRY: {
+                    // Da khô: Tăng độ ẩm mướt (Dewy glow) và độ sáng bóng căng tràn
+                    float glow = 18.0f * w;
+                    r = std::clamp(static_cast<int>(r + glow * 1.05f), 0, 255);
+                    g = std::clamp(static_cast<int>(g + glow * 0.95f), 0, 255);
+                    b = std::clamp(static_cast<int>(b + glow * 0.90f), 0, 255);
+                    break;
+                }
+                case SKIN_TYPE_COMBINED: {
+                    // Da hỗn hợp: Kiềm dầu vùng chữ T (trán + sống mũi) và cấp ẩm vùng 2 má
+                    bool isTZone = std::abs(nx) < 0.28f;
+                    if (isTZone) {
+                        float lum = 0.299f * r + 0.587f * g + 0.114f * b;
+                        if (lum > 170.0f) {
+                            float sup = (lum - 170.0f) * 0.35f * w;
+                            r = std::clamp(static_cast<int>(r - sup), 0, 255);
+                            g = std::clamp(static_cast<int>(g - sup), 0, 255);
+                            b = std::clamp(static_cast<int>(b - sup), 0, 255);
+                        }
+                    } else {
+                        float dewy = 12.0f * w;
+                        r = std::clamp(static_cast<int>(r + dewy), 0, 255);
+                        g = std::clamp(static_cast<int>(g + dewy * 0.9f), 0, 255);
+                        b = std::clamp(static_cast<int>(b + dewy * 0.85f), 0, 255);
+                    }
+                    break;
+                }
+                case SKIN_TYPE_SENSITIVE: {
+                    // Da nhạy cảm: Làm dịu các nốt ửng đỏ bất thường (anti-redness)
+                    if (r - g > 35) {
+                        float calm = (r - g - 35) * 0.40f * w;
+                        r = std::clamp(static_cast<int>(r - calm), 0, 255);
+                        g = std::clamp(static_cast<int>(g + calm * 0.3f), 0, 255);
+                    }
+                    break;
+                }
+            }
+            pixels[idx] = PACK_RGBA(r, g, b, a);
+        }
+    }
+    return true;
+}
+
+// 2. Áp dụng công cụ xử lý da chuyên sâu (2.7.2)
+bool SkinMakeupEngine::applySkinTool(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float faceCenterX, float faceCenterY,
+    float noseX, float noseY,
+    float mouthX, float mouthY,
+    float lxEye, float lyEye,
+    float rxEye, float ryEye,
+    int toolId,
+    float intensity
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+    float sx = static_cast<float>(width) / 896.0f;
+    float sy = static_cast<float>(height) / 1200.0f;
+
+    switch (toolId) {
+        case PARAM_SKIN_SMOOTH: {
+            // Làm mịn lụa Bilateral: vùng mặt
+            float radX = 260.0f * sx;
+            float radY = 320.0f * sy;
+            int minX = std::max(1, static_cast<int>(faceCenterX - radX));
+            int maxX = std::min(width - 2, static_cast<int>(faceCenterX + radX));
+            int minY = std::max(1, static_cast<int>(faceCenterY - radY));
+            int maxY = std::min(height - 2, static_cast<int>(faceCenterY + radY));
+
+            std::vector<uint32_t> temp(pixels, pixels + width * height);
+
+            #pragma omp parallel for schedule(dynamic, 16)
+            for (int y = minY; y <= maxY; ++y) {
+                float ny = (y - faceCenterY) / radY;
+                float ny2 = ny * ny;
+                for (int x = minX; x <= maxX; ++x) {
+                    float nx = (x - faceCenterX) / radX;
+                    float d2 = nx * nx + ny2;
+                    if (d2 >= 1.0f) continue;
+
+                    int idx = y * width + x;
+                    uint32_t c = temp[idx];
+                    int r0 = RGBA_R(c);
+                    int g0 = RGBA_G(c);
+                    int b0 = RGBA_B(c);
+                    if (!isHumanSkinPixel(r0, g0, b0)) continue;
+
+                    float sumW = 0.0f;
+                    float sumR = 0.0f, sumG = 0.0f, sumB = 0.0f;
+
+                    for (int dy = -2; dy <= 2; ++dy) {
+                        for (int dx = -2; dx <= 2; ++dx) {
+                            uint32_t nc = temp[(y + dy) * width + (x + dx)];
+                            int nr = RGBA_R(nc);
+                            int ng = RGBA_G(nc);
+                            int nb = RGBA_B(nc);
+
+                            float colorDist = std::abs(r0 - nr) + std::abs(g0 - ng) + std::abs(b0 - nb);
+                            float spatialDist = dx * dx + dy * dy;
+                            float weight = std::exp(-spatialDist / 6.0f) * std::exp(-colorDist / 35.0f);
+
+                            sumW += weight;
+                            sumR += nr * weight;
+                            sumG += ng * weight;
+                            sumB += nb * weight;
+                        }
+                    }
+
+                    if (sumW > 0.001f) {
+                        float blend = (1.0f - d2) * p * 0.85f;
+                        int smoothR = static_cast<int>(sumR / sumW);
+                        int smoothG = static_cast<int>(sumG / sumW);
+                        int smoothB = static_cast<int>(sumB / sumW);
+
+                        int finalR = static_cast<int>(r0 + (smoothR - r0) * blend);
+                        int finalG = static_cast<int>(g0 + (smoothG - g0) * blend);
+                        int finalB = static_cast<int>(b0 + (smoothB - b0) * blend);
+                        pixels[idx] = PACK_RGBA(finalR, finalG, finalB, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        case PARAM_SKIN_BRIGHTEN: {
+            // Nâng tông trắng sứ (Porcelain Whiten)
+            float radX = 260.0f * sx;
+            float radY = 320.0f * sy;
+            int minX = std::max(0, static_cast<int>(faceCenterX - radX));
+            int maxX = std::min(width - 1, static_cast<int>(faceCenterX + radX));
+            int minY = std::max(0, static_cast<int>(faceCenterY - radY));
+            int maxY = std::min(height - 1, static_cast<int>(faceCenterY + radY));
+
+            #pragma omp parallel for schedule(dynamic, 16)
+            for (int y = minY; y <= maxY; ++y) {
+                float ny = (y - faceCenterY) / radY;
+                float ny2 = ny * ny;
+                for (int x = minX; x <= maxX; ++x) {
+                    float nx = (x - faceCenterX) / radX;
+                    float d2 = nx * nx + ny2;
+                    if (d2 >= 1.0f) continue;
+
+                    int idx = y * width + x;
+                    uint32_t c = pixels[idx];
+                    int r = RGBA_R(c);
+                    int g = RGBA_G(c);
+                    int b = RGBA_B(c);
+                    if (!isHumanSkinPixel(r, g, b)) continue;
+
+                    float w = (1.0f - d2) * p;
+                    float boost = 28.0f * w;
+                    int nr = std::clamp(static_cast<int>(r + boost * 0.95f), 0, 255);
+                    int ng = std::clamp(static_cast<int>(g + boost * 1.05f), 0, 255);
+                    int nb = std::clamp(static_cast<int>(b + boost * 1.15f), 0, 255); // Bù tone lam cho da trắng sứ
+                    pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                }
+            }
+            return true;
+        }
+
+        case PARAM_SKIN_EYEBAGS: {
+            // Xóa bọng mắt và quầng thâm: dưới 2 mắt
+            float eyeDist = rxEye - lxEye;
+            float bagRadiusX = 42.0f * sx;
+            float bagRadiusY = 25.0f * sy;
+
+            for (int side = 0; side < 2; ++side) {
+                float bx = (side == 0) ? lxEye : rxEye;
+                float by = ((side == 0) ? lyEye : ryEye) + 26.0f * sy;
+
+                int x0 = std::max(0, static_cast<int>(bx - bagRadiusX));
+                int x1 = std::min(width - 1, static_cast<int>(bx + bagRadiusX));
+                int y0 = std::max(0, static_cast<int>(by - bagRadiusY));
+                int y1 = std::min(height - 1, static_cast<int>(by + bagRadiusY));
+
+                for (int y = y0; y <= y1; ++y) {
+                    float dy = (y - by) / bagRadiusY;
+                    float dy2 = dy * dy;
+                    for (int x = x0; x <= x1; ++x) {
+                        float dx = (x - bx) / bagRadiusX;
+                        float d2 = dx * dx + dy2;
+                        if (d2 >= 1.0f) continue;
+
+                        int idx = y * width + x;
+                        uint32_t c = pixels[idx];
+                        int r = RGBA_R(c);
+                        int g = RGBA_G(c);
+                        int b = RGBA_B(c);
+
+                        float w = (1.0f - d2) * p;
+                        // Nâng sáng quầng thâm và giảm sắc tố tím/đen
+                        float brighten = 35.0f * w;
+                        int nr = std::clamp(static_cast<int>(r + brighten * 1.0f), 0, 255);
+                        int ng = std::clamp(static_cast<int>(g + brighten * 0.95f), 0, 255);
+                        int nb = std::clamp(static_cast<int>(b + brighten * 0.85f), 0, 255);
+                        pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        case PARAM_SKIN_SMILE_LINES: {
+            // Xóa rãnh cười (Nasolabial folds): 2 bên cánh mũi xuống mép miệng
+            float leftLineX = (noseX - 25.0f * sx + mouthX - 35.0f * sx) * 0.5f;
+            float leftLineY = (noseY + 15.0f * sy + mouthY - 10.0f * sy) * 0.5f;
+            float rightLineX = (noseX + 25.0f * sx + mouthX + 35.0f * sx) * 0.5f;
+            float rightLineY = leftLineY;
+
+            float rX = 28.0f * sx;
+            float rY = 40.0f * sy;
+
+            for (int side = 0; side < 2; ++side) {
+                float cx = (side == 0) ? leftLineX : rightLineX;
+                float cy = (side == 0) ? leftLineY : rightLineY;
+
+                int x0 = std::max(0, static_cast<int>(cx - rX));
+                int x1 = std::min(width - 1, static_cast<int>(cx + rX));
+                int y0 = std::max(0, static_cast<int>(cy - rY));
+                int y1 = std::min(height - 1, static_cast<int>(cy + rY));
+
+                for (int y = y0; y <= y1; ++y) {
+                    float dy = (y - cy) / rY;
+                    float dy2 = dy * dy;
+                    for (int x = x0; x <= x1; ++x) {
+                        float dx = (x - cx) / rX;
+                        float d2 = dx * dx + dy2;
+                        if (d2 >= 1.0f) continue;
+
+                        int idx = y * width + x;
+                        uint32_t c = pixels[idx];
+                        int r = RGBA_R(c);
+                        int g = RGBA_G(c);
+                        int b = RGBA_B(c);
+                        if (!isHumanSkinPixel(r, g, b)) continue;
+
+                        float w = (1.0f - d2) * p;
+                        float fill = 25.0f * w;
+                        int nr = std::clamp(static_cast<int>(r + fill), 0, 255);
+                        int ng = std::clamp(static_cast<int>(g + fill * 0.95f), 0, 255);
+                        int nb = std::clamp(static_cast<int>(b + fill * 0.90f), 0, 255);
+                        pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        case PARAM_SKIN_ACNE_REMOVE: {
+            // Xóa thâm mụn AI (Neural Inpainting patch-filter): Làm mờ điểm thâm tối màu cục bộ
+            float radX = 240.0f * sx;
+            float radY = 300.0f * sy;
+            int minX = std::max(1, static_cast<int>(faceCenterX - radX));
+            int maxX = std::min(width - 2, static_cast<int>(faceCenterX + radX));
+            int minY = std::max(1, static_cast<int>(faceCenterY - radY));
+            int maxY = std::min(height - 2, static_cast<int>(faceCenterY + radY));
+
+            #pragma omp parallel for schedule(dynamic, 16)
+            for (int y = minY; y <= maxY; ++y) {
+                for (int x = minX; x <= maxX; ++x) {
+                    int idx = y * width + x;
+                    uint32_t c = pixels[idx];
+                    int r = RGBA_R(c);
+                    int g = RGBA_G(c);
+                    int b = RGBA_B(c);
+                    if (!isHumanSkinPixel(r, g, b)) continue;
+
+                    // Mụn/thâm thường có sắc tố sẫm hoặc đỏ sưng đột ngột
+                    int lum = (r * 299 + g * 587 + b * 114) / 1000;
+                    if (lum < 135 || (r - g > 45 && lum < 160)) {
+                        // Inpaint từ điểm ảnh xung quanh
+                        uint32_t cN = pixels[(y - 1) * width + x];
+                        uint32_t cS = pixels[(y + 1) * width + x];
+                        uint32_t cW = pixels[y * width + (x - 1)];
+                        uint32_t cE = pixels[y * width + (x + 1)];
+
+                        int avgR = (RGBA_R(cN) + RGBA_R(cS) + RGBA_R(cW) + RGBA_R(cE)) / 4;
+                        int avgG = (RGBA_G(cN) + RGBA_G(cS) + RGBA_G(cW) + RGBA_G(cE)) / 4;
+                        int avgB = (RGBA_B(cN) + RGBA_B(cS) + RGBA_B(cW) + RGBA_B(cE)) / 4;
+
+                        int nr = static_cast<int>(r + (avgR - r) * p * 0.9f);
+                        int ng = static_cast<int>(g + (avgG - g) * p * 0.9f);
+                        int nb = static_cast<int>(b + (avgB - b) * p * 0.9f);
+                        pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        default:
+            return false;
+    }
+}
+
+// 3. Đánh son môi Makeup (2.8.2)
+bool SkinMakeupEngine::applyLipstick(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float mouthX, float mouthY,
+    int colorId,
+    int textureId,
+    float intensity,
+    const float* landmarks106
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+    float sx = static_cast<float>(width) / 896.0f;
+    float sy = static_cast<float>(height) / 1200.0f;
+
+    // Bảng 11 màu son Master
+    struct LipColorRGB { int r, g, b; };
+    static const LipColorRGB lipColors[11] = {
+        {255, 164, 175}, // 0: Soft Pink
+        {224, 90, 109},  // 1: French Rose
+        {183, 28, 28},   // 2: Velvet Red
+        {136, 14, 79},   // 3: Cherry Wine
+        {216, 67, 21},   // 4: Chili Orange
+        {215, 204, 200}, // 5: Peach Nude
+        {161, 82, 56},   // 6: Terracotta
+        {142, 36, 170},  // 7: Mauve Purple
+        {255, 112, 67},  // 8: Coral Tangerine
+        {255, 167, 38},  // 9: Honey Glaze
+        {213, 0, 0}      // 10: Ruby Luxury
+    };
+
+    LipColorRGB targetColor = lipColors[std::clamp(colorId, 0, 10)];
+
+    struct Point2D { float x, y; };
+
+    float xLeft = 0.0f;
+    float yLeft = 0.0f;
+    float xRight = 0.0f;
+    float yRight = 0.0f;
+
+    std::vector<Point2D> topCtrl;
+    std::vector<Point2D> botCtrl;
+    std::vector<Point2D> midCtrl;
+
+    if (landmarks106 != nullptr) {
+        xLeft = landmarks106[84 * 2];
+        yLeft = landmarks106[84 * 2 + 1];
+
+        // Khóe môi phải thực tế (Human Oral Commissure):
+        // Landmark 90 có xu hướng dịch nhẹ ra má ngoài ~8px ở ảnh góc nghiêng 3/4
+        xRight = landmarks106[90 * 2] - 7.5f * sx;
+        yRight = landmarks106[90 * 2 + 1] + 1.8f * sy;
+
+        // Tỷ lệ co giãn landmarks theo khóe mép môi thực
+        float origW = landmarks106[90 * 2] - landmarks106[84 * 2];
+        float realW = xRight - xLeft;
+        float scaleX = (origW > 1.0f) ? (realW / origW) : 1.0f;
+
+        auto mapX = [&](float origX) -> float {
+            return xLeft + (origX - landmarks106[84 * 2]) * scaleX;
+        };
+
+        Point2D p84 = {xLeft, yLeft};
+        Point2D p85 = {mapX(landmarks106[85 * 2]), landmarks106[85 * 2 + 1] + 2.0f * sy};
+        Point2D p86 = {mapX(landmarks106[86 * 2]), landmarks106[86 * 2 + 1]};
+        Point2D p87 = {mapX(landmarks106[87 * 2]), landmarks106[87 * 2 + 1]};
+        Point2D p88 = {mapX(landmarks106[88 * 2]), landmarks106[88 * 2 + 1]};
+        Point2D p89 = {mapX(landmarks106[89 * 2]), landmarks106[89 * 2 + 1] + 1.5f * sy};
+        Point2D p90 = {xRight, yRight};
+
+        // Chuẩn hóa đỉnh và rãnh Cupid's Bow tự nhiên
+        float peakY = p87.y - 2.5f * sy;
+        p86.y = std::min(p86.y, peakY);
+        p88.y = std::min(p88.y, peakY);
+
+        Point2D p95 = {mapX(landmarks106[95 * 2]), landmarks106[95 * 2 + 1]};
+        Point2D p94 = {mapX(landmarks106[94 * 2]), landmarks106[94 * 2 + 1]};
+        Point2D p93 = {mapX(landmarks106[93 * 2]), landmarks106[93 * 2 + 1]};
+        Point2D p92 = {mapX(landmarks106[92 * 2]), landmarks106[92 * 2 + 1]};
+        Point2D p91 = {mapX(landmarks106[91 * 2]), landmarks106[91 * 2 + 1]};
+
+        // Điểm kiểm soát Catmull-Rom cho viền môi trên (Top Spline)
+        topCtrl = {p84, p84, p85, p86, p87, p88, p89, p90, p90};
+
+        // Điểm kiểm soát Catmull-Rom cho viền môi dưới: Đầy đặn, tròn viền, phủ kín 100%
+        Point2D p95_ctrl = {p84.x + (p95.x - p84.x) * 0.75f, p84.y + (p95.y - p84.y) * 0.95f + 2.5f * sy};
+        Point2D p94_ctrl = {p94.x, p94.y + 2.0f * sy};
+        Point2D p93_ctrl = {p93.x, p93.y + 1.5f * sy};
+        Point2D p92_ctrl = {p92.x, p92.y + 2.0f * sy};
+        Point2D p91_ctrl = {p90.x - (p90.x - p91.x) * 0.75f, p90.y + (p91.y - p90.y) * 0.95f + 2.5f * sy};
+
+        botCtrl = {p84, p84, p95_ctrl, p94_ctrl, p93_ctrl, p92_ctrl, p91_ctrl, p90, p90};
+
+        Point2D p96 = {mapX(landmarks106[96 * 2]), landmarks106[96 * 2 + 1]};
+        Point2D p97 = {mapX(landmarks106[97 * 2]), landmarks106[97 * 2 + 1]};
+        Point2D p98 = {mapX(landmarks106[98 * 2]), landmarks106[98 * 2 + 1]};
+        Point2D p99 = {mapX(landmarks106[99 * 2]), landmarks106[99 * 2 + 1]};
+        Point2D p100 = {mapX(landmarks106[100 * 2]), landmarks106[100 * 2 + 1]};
+
+        midCtrl = {p84, p84, p96, p97, p98, p99, p100, p90, p90};
+    } else {
+        float hw = 85.0f * sx;
+        float uh = 18.0f * sy;
+        float lh = 25.0f * sy;
+        xLeft = mouthX - hw;
+        xRight = mouthX + hw;
+        yLeft = mouthY;
+        yRight = mouthY;
+
+        Point2D p84 = {xLeft, yLeft};
+        Point2D p85 = {mouthX - hw * 0.55f, mouthY - uh * 0.65f};
+        Point2D p86 = {mouthX - hw * 0.22f, mouthY - uh * 1.05f};
+        Point2D p87 = {mouthX, mouthY - uh * 0.85f};
+        Point2D p88 = {mouthX + hw * 0.22f, mouthY - uh * 1.05f};
+        Point2D p89 = {mouthX + hw * 0.55f, mouthY - uh * 0.65f};
+        Point2D p90 = {xRight, yRight};
+
+        topCtrl = {p84, p84, p85, p86, p87, p88, p89, p90, p90};
+
+        Point2D b1 = {mouthX - hw * 0.65f, mouthY + lh * 0.65f};
+        Point2D b2 = {mouthX - hw * 0.30f, mouthY + lh * 0.95f};
+        Point2D b3 = {mouthX, mouthY + lh};
+        Point2D b4 = {mouthX + hw * 0.30f, mouthY + lh * 0.95f};
+        Point2D b5 = {mouthX + hw * 0.65f, mouthY + lh * 0.65f};
+
+        botCtrl = {p84, p84, b1, b2, b3, b4, b5, p90, p90};
+
+        Point2D m1 = {mouthX - hw * 0.45f, mouthY};
+        Point2D m2 = {mouthX, mouthY};
+        Point2D m3 = {mouthX + hw * 0.45f, mouthY};
+
+        midCtrl = {p84, p84, m1, m2, m3, p90, p90};
+    }
+
+    if (xRight <= xLeft + 4.0f) return false;
+
+    // Hàm nội suy Catmull-Rom Spline
+    auto evalCatmullRom = [](const std::vector<Point2D>& pts, float evalX) -> float {
+        if (evalX <= pts.front().x) return pts.front().y;
+        if (evalX >= pts.back().x) return pts.back().y;
+
+        int nSeg = static_cast<int>(pts.size()) - 3;
+        for (int i = 0; i < nSeg; ++i) {
+            float x1 = pts[i + 1].x;
+            float x2 = pts[i + 2].x;
+            if (evalX >= x1 && evalX <= x2) {
+                float dx = std::max(0.001f, x2 - x1);
+                float t = (evalX - x1) / dx;
+                float t2 = t * t;
+                float t3 = t2 * t;
+
+                Point2D p0 = pts[i];
+                Point2D p1 = pts[i + 1];
+                Point2D p2 = pts[i + 2];
+                Point2D p3 = pts[i + 3];
+
+                float y = 0.5f * (
+                    (2.0f * p1.y) +
+                    (-p0.y + p2.y) * t +
+                    (2.0f * p0.y - 5.0f * p1.y + 4.0f * p2.y - p3.y) * t2 +
+                    (-p0.y + 3.0f * p1.y - 3.0f * p2.y + p3.y) * t3
+                );
+                return y;
+            }
+        }
+        return pts.back().y;
+    };
+
+    // Soft-light blending formula
+    auto softLight = [](float a, float bVal) -> float {
+        float af = a / 255.0f;
+        float bf = bVal / 255.0f;
+        if (bf < 0.5f) {
+            return (2.0 * af * bf + af * af * (1.0f - 2.0f * bf)) * 255.0f;
+        } else {
+            return (2.0 * af * (1.0f - bf) + std::sqrt(std::max(0.0f, af)) * (2.0 * bf - 1.0f)) * 255.0f;
+        }
+    };
+
+    int minX = std::max(0, static_cast<int>(std::floor(xLeft)));
+    int maxX = std::min(width - 1, static_cast<int>(std::ceil(xRight)));
+    float totalW = std::max(1.0f, xRight - xLeft);
+
+    #pragma omp parallel for schedule(dynamic, 8)
+    for (int x = minX; x <= maxX; ++x) {
+        float fx = static_cast<float>(x);
+        float yTop = evalCatmullRom(topCtrl, fx);
+        float yBot = evalCatmullRom(botCtrl, fx);
+        float yMid = evalCatmullRom(midCtrl, fx);
+
+        // Hiệu ứng Overlip (Son tràn viền): Nâng nhẹ 1.8px ở đỉnh & đáy giữa
+        if (textureId == LIP_TEX_OVERLIP) {
+            float relNorm = (fx - xLeft) / totalW;
+            float centerWeight = std::sin(std::clamp(relNorm, 0.0f, 1.0f) * 3.14159265f);
+            yTop -= 1.8f * sy * centerWeight;
+            yBot += 1.8f * sy * centerWeight;
+        }
+
+        // Taper mịn màng ở 2 góc khóe mép môi
+        float relX = (fx - xLeft) / totalW;
+        float cornerTaper = std::min(1.0f, relX * 16.0f) * std::min(1.0f, (1.0f - relX) * 16.0f);
+
+        int minY = std::max(0, static_cast<int>(std::floor(yTop - 2.0f)));
+        int maxY = std::min(height - 1, static_cast<int>(std::ceil(yBot + 2.0f)));
+
+        for (int y = minY; y <= maxY; ++y) {
+            float fy = static_cast<float>(y);
+            float dTop = fy - yTop;
+            float dBot = yBot - fy;
+
+            if (dTop < -0.6f || dBot < -0.6f) continue;
+
+            float wTop = std::clamp((dTop + 0.6f) / 1.2f, 0.0f, 1.0f);
+            float wBot = std::clamp((dBot + 0.6f) / 1.2f, 0.0f, 1.0f);
+            float geomW = std::min(wTop, wBot);
+
+            int idx = y * width + x;
+            uint32_t c = pixels[idx];
+            float r = static_cast<float>(RGBA_R(c));
+            float g = static_cast<float>(RGBA_G(c));
+            float b = static_cast<float>(RGBA_B(c));
+
+            // Bảo vệ men răng
+            if (r > 120.0f && g > 115.0f && b > 105.0f &&
+                std::abs(r - g) < 18.0f && std::abs(r - b) < 22.0f) {
+                continue;
+            }
+            // Bảo vệ hốc miệng sâu
+            if (r < 35.0f && g < 25.0f && b < 25.0f) {
+                continue;
+            }
+
+            // Chỉ số sắc tố Melanin da (Skin Melanin Index)
+            float smi = (g - b) / (g + b + 1.0f);
+
+            // Kiểm soát sinh học ranh giới da quanh môi (Vermilion Border Discrimination):
+            float skinSuppress = 0.0f;
+            if (dTop < 1.8f) {
+                skinSuppress = std::max(skinSuppress, std::clamp((smi - 0.075f) / 0.025f, 0.0f, 1.0f));
+            }
+            if (dBot < 1.5f) {
+                skinSuppress = std::max(skinSuppress, std::clamp((smi - 0.085f) / 0.025f, 0.0f, 1.0f));
+            }
+
+            float finalWeight = geomW * (1.0f - skinSuppress * 0.90f) * cornerTaper;
+            if (finalWeight <= 0.005f) continue;
+
+            // Hiệu ứng Son Lòng Môi (Ombre / Gradient)
+            if (textureId == LIP_TEX_GRADIENT) {
+                float lipHalfSpan = (fy < yMid) ? std::max(1.0f, yMid - yTop) : std::max(1.0f, yBot - yMid);
+                float distFromSeam = std::abs(fy - yMid) / lipHalfSpan;
+                float ombreFactor = std::pow(std::clamp(1.0f - distFromSeam * 0.82f, 0.0f, 1.0f), 1.5f);
+                finalWeight *= ombreFactor;
+            }
+
+            float blend = finalWeight * p * 0.90f;
+
+            float slR = softLight(r, static_cast<float>(targetColor.r));
+            float slG = softLight(g, static_cast<float>(targetColor.g));
+            float slB = softLight(b, static_cast<float>(targetColor.b));
+
+            float nr = r * (1.0f - blend) + slR * blend;
+            float ng = g * (1.0f - blend) + slG * blend;
+            float nb = b * (1.0f - blend) + slB * blend;
+
+            // Hiệu ứng Son Bóng Pha Lê (Glossy / Glass Shimmer)
+            if (textureId == LIP_TEX_GLOSSY) {
+                float distMid = std::abs(fy - (yMid + 6.0f * sy));
+                float relMidX = std::abs(fx - (xLeft + totalW * 0.5f)) / (totalW * 0.28f);
+                if (distMid < 6.0f * sy && relMidX < 1.0f && fy > yMid) {
+                    float spec = std::pow(std::cos(relMidX * 1.5707963f), 4.0f) * (1.0f - distMid / (6.0f * sy));
+                    nr = std::min(255.0f, nr + spec * p * 38.0f);
+                    ng = std::min(255.0f, ng + spec * p * 34.0f);
+                    nb = std::min(255.0f, nb + spec * p * 36.0f);
+                }
+            }
+
+            pixels[idx] = PACK_RGBA(
+                static_cast<int>(std::clamp(nr, 0.0f, 255.0f)),
+                static_cast<int>(std::clamp(ng, 0.0f, 255.0f)),
+                static_cast<int>(std::clamp(nb, 0.0f, 255.0f)),
+                RGBA_A(c)
+            );
+        }
+    }
+
+    return true;
+}
+
+bool SkinMakeupEngine::applyBlush(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float cheekLeftX, float cheekLeftY,
+    float cheekRightX, float cheekRightY,
+    int styleId,
+    float intensity
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+    float sx = static_cast<float>(width) / 896.0f;
+    float sy = static_cast<float>(height) / 1200.0f;
+
+    struct BlushColor { int r, g, b; };
+    static const BlushColor blushPalette[6] = {
+        {255, 171, 145}, // Peachy
+        {244, 143, 177}, // Rosy
+        {215, 138, 110}, // Bronzy
+        {255, 138, 128}, // Coral
+        {255, 183, 77},  // Sun-kissed
+        {206, 147, 216}  // Berry
+    };
+
+    BlushColor bColor = blushPalette[std::clamp(styleId, 0, 5)];
+    float rX = 65.0f * sx;
+    float rY = 45.0f * sy;
+
+    for (int side = 0; side < 2; ++side) {
+        float cx = (side == 0) ? cheekLeftX : cheekRightX;
+        float cy = (side == 0) ? cheekLeftY : cheekRightY;
+
+        int x0 = std::max(0, static_cast<int>(cx - rX));
+        int x1 = std::min(width - 1, static_cast<int>(cx + rX));
+        int y0 = std::max(0, static_cast<int>(cy - rY));
+        int y1 = std::min(height - 1, static_cast<int>(cy + rY));
+
+        for (int y = y0; y <= y1; ++y) {
+            float dy = (y - cy) / rY;
+            float dy2 = dy * dy;
+            for (int x = x0; x <= x1; ++x) {
+                float dx = (x - cx) / rX;
+                float d2 = dx * dx + dy2;
+                if (d2 >= 1.0f) continue;
+
+                int idx = y * width + x;
+                uint32_t c = pixels[idx];
+                int r = RGBA_R(c);
+                int g = RGBA_G(c);
+                int b = RGBA_B(c);
+                if (!isHumanSkinPixel(r, g, b)) continue;
+
+                float blend = (1.0f - d2) * (1.0f - d2) * p * 0.45f;
+                int nr = static_cast<int>(r + (bColor.r - r) * blend);
+                int ng = static_cast<int>(g + (bColor.g - g) * blend);
+                int nb = static_cast<int>(b + (bColor.b - b) * blend);
+                pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+            }
+        }
+    }
+    return true;
+}
+
+// 5. Phấn mắt (Eyeshadow 2.8.4)
+bool SkinMakeupEngine::applyEyeShadow(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float lxEye, float lyEye,
+    float rxEye, float ryEye,
+    int toneId,
+    float intensity
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+    float sx = static_cast<float>(width) / 896.0f;
+    float sy = static_cast<float>(height) / 1200.0f;
+
+    struct ShadowColor { int r, g, b; };
+    static const ShadowColor palette[8] = {
+        {220, 80, 90},   // Red Rose
+        {245, 135, 110}, // Sunset Peach
+        {160, 90, 190},  // Royal Purple
+        {50, 90, 180},   // Sapphire Blue
+        {40, 150, 140},  // Emerald Teal
+        {230, 180, 50},  // Golden Yellow
+        {180, 120, 80},  // Warm Bronze
+        {80, 75, 75}     // Smokey Neutral
+    };
+
+    ShadowColor sColor = palette[std::clamp(toneId, 0, 7)];
+    float rX = 45.0f * sx;
+    float rY = 22.0f * sy;
+
+    for (int side = 0; side < 2; ++side) {
+        float ex = (side == 0) ? lxEye : rxEye;
+        float ey = ((side == 0) ? lyEye : ryEye) - 16.0f * sy; // Bầu mắt trên
+
+        int x0 = std::max(0, static_cast<int>(ex - rX));
+        int x1 = std::min(width - 1, static_cast<int>(ex + rX));
+        int y0 = std::max(0, static_cast<int>(ey - rY));
+        int y1 = std::min(height - 1, static_cast<int>(ey + rY));
+
+        for (int y = y0; y <= y1; ++y) {
+            float dy = (y - ey) / rY;
+            float dy2 = dy * dy;
+            for (int x = x0; x <= x1; ++x) {
+                float dx = (x - ex) / rX;
+                float d2 = dx * dx + dy2;
+                if (d2 >= 1.0f) continue;
+
+                int idx = y * width + x;
+                uint32_t c = pixels[idx];
+                int r = RGBA_R(c);
+                int g = RGBA_G(c);
+                int b = RGBA_B(c);
+
+                float blend = (1.0f - d2) * p * 0.50f;
+                int nr = static_cast<int>(r + (sColor.r - r) * blend);
+                int ng = static_cast<int>(g + (sColor.g - g) * blend);
+                int nb = static_cast<int>(b + (sColor.b - b) * blend);
+                pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+            }
+        }
+    }
+    return true;
+}
+
+// 6. Tạo khối 3D & Wocan (2.8.5)
+bool SkinMakeupEngine::applyContour3D(
+    uint32_t* pixels,
+    int width,
+    int height,
+    float noseX, float noseY,
+    float lxEye, float lyEye,
+    float rxEye, float ryEye,
+    int contourType,
+    float intensity
+) {
+    if (!pixels || width <= 0 || height <= 0 || intensity <= 0.001f) return false;
+    float p = std::clamp(intensity, 0.0f, 1.0f);
+    float sx = static_cast<float>(width) / 896.0f;
+    float sy = static_cast<float>(height) / 1200.0f;
+
+    switch (contourType) {
+        case 0: {
+            // Shadow sống mũi (Nose bridge shading 2 bên)
+            float rX = 14.0f * sx;
+            float rY = 55.0f * sy;
+            for (int side = -1; side <= 1; side += 2) {
+                float cx = noseX + side * 22.0f * sx;
+                float cy = noseY - 20.0f * sy;
+                int x0 = std::max(0, static_cast<int>(cx - rX));
+                int x1 = std::min(width - 1, static_cast<int>(cx + rX));
+                int y0 = std::max(0, static_cast<int>(cy - rY));
+                int y1 = std::min(height - 1, static_cast<int>(cy + rY));
+
+                for (int y = y0; y <= y1; ++y) {
+                    float dy = (y - cy) / rY;
+                    for (int x = x0; x <= x1; ++x) {
+                        float dx = (x - cx) / rX;
+                        float d2 = dx * dx + dy * dy;
+                        if (d2 >= 1.0f) continue;
+                        int idx = y * width + x;
+                        uint32_t c = pixels[idx];
+                        float shade = (1.0f - d2) * p * 22.0f;
+                        int nr = std::max(0, static_cast<int>(RGBA_R(c) - shade));
+                        int ng = std::max(0, static_cast<int>(RGBA_G(c) - shade * 0.95f));
+                        int nb = std::max(0, static_cast<int>(RGBA_B(c) - shade * 0.90f));
+                        pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        case 1: {
+            // Highlight sống mũi (Nose bridge highlight)
+            float rX = 10.0f * sx;
+            float rY = 55.0f * sy;
+            float cx = noseX;
+            float cy = noseY - 20.0f * sy;
+            int x0 = std::max(0, static_cast<int>(cx - rX));
+            int x1 = std::min(width - 1, static_cast<int>(cx + rX));
+            int y0 = std::max(0, static_cast<int>(cy - rY));
+            int y1 = std::min(height - 1, static_cast<int>(cy + rY));
+
+            for (int y = y0; y <= y1; ++y) {
+                float dy = (y - cy) / rY;
+                for (int x = x0; x <= x1; ++x) {
+                    float dx = (x - cx) / rX;
+                    float d2 = dx * dx + dy * dy;
+                    if (d2 >= 1.0f) continue;
+                    int idx = y * width + x;
+                    uint32_t c = pixels[idx];
+                    float light = (1.0f - d2) * p * 28.0f;
+                    int nr = std::min(255, static_cast<int>(RGBA_R(c) + light));
+                    int ng = std::min(255, static_cast<int>(RGBA_G(c) + light));
+                    int nb = std::min(255, static_cast<int>(RGBA_B(c) + light * 1.05f));
+                    pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                }
+            }
+            return true;
+        }
+
+        case 2:
+        case 3: {
+            // Wocan 3D (Bọng mắt cười tằm nằm / Aegyo Sal): dải sáng bóng ngay dưới mi dưới
+            float wocanRadiusX = 35.0f * sx;
+            float wocanRadiusY = 8.0f * sy;
+
+            for (int side = 0; side < 2; ++side) {
+                float wx = (side == 0) ? lxEye : rxEye;
+                float wy = ((side == 0) ? lyEye : ryEye) + 16.0f * sy;
+
+                int x0 = std::max(0, static_cast<int>(wx - wocanRadiusX));
+                int x1 = std::min(width - 1, static_cast<int>(wx + wocanRadiusX));
+                int y0 = std::max(0, static_cast<int>(wy - wocanRadiusY));
+                int y1 = std::min(height - 1, static_cast<int>(wy + wocanRadiusY));
+
+                for (int y = y0; y <= y1; ++y) {
+                    float dy = (y - wy) / wocanRadiusY;
+                    for (int x = x0; x <= x1; ++x) {
+                        float dx = (x - wx) / wocanRadiusX;
+                        float d2 = dx * dx + dy * dy;
+                        if (d2 >= 1.0f) continue;
+                        int idx = y * width + x;
+                        uint32_t c = pixels[idx];
+                        float light = (1.0f - d2) * p * 26.0f;
+                        int nr = std::min(255, static_cast<int>(RGBA_R(c) + light));
+                        int ng = std::min(255, static_cast<int>(RGBA_G(c) + light * 0.95f));
+                        int nb = std::min(255, static_cast<int>(RGBA_B(c) + light * 0.90f));
+                        pixels[idx] = PACK_RGBA(nr, ng, nb, RGBA_A(c));
+                    }
+                }
+            }
+            return true;
+        }
+
+        default:
+            return false;
+    }
+}
+
+} // namespace meitu_native

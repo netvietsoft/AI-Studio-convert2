@@ -1,0 +1,636 @@
+PHASE P0-C — CORRECTION 02
+FINAL ROLLBACK EXECUTION CLOSURE & HISTORICAL DEFECT TRACE NORMALIZATION
+MASTER AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+TASK TYPE: FINAL EVIDENCE CLOSURE ONLY
+OWNER: Agent 0 — CEO / ORCHESTRATOR
+PRIOR STATUS: P0_C_CORRECTION_NEEDS_FIX
+ALGORITHM STATUS: PASS
+PRODUCTION STATUS: PASS
+P1–P6 STATUS: STRICTLY BLOCKED
+
+PURPOSE:
+Đóng 2 vấn đề cuối cùng còn lại sau Independent Audit của P0-C Correction 01:
+
+C4-FINAL:
+Rollback execution evidence chưa chứng minh deterministic restore đúng các file production P0-C.
+
+TRACE-FINAL:
+Historical defect IDs G1/G2/G3 bị đổi nghĩa giữa các report, gây hỏng traceability.
+
+KHÔNG được sửa thuật toán Hair Matting.
+KHÔNG tuning threshold/formula.
+KHÔNG mở P1.
+KHÔNG thêm model/cloud/generative.
+
+======================================================================
+1. GOVERNING RULE
+======================================================================
+
+Correction 02 chỉ được sửa:
+
+- rollback procedure;
+- rollback execution evidence;
+- traceability/documentation của historical defect IDs;
+- manifest/hash/report phụ thuộc;
+- test evidence liên quan.
+
+Production Hair Matting code hiện tại phải giữ nguyên nếu rollback test không phát hiện
+lỗi production độc lập.
+
+Nếu phát hiện production code thay đổi ngoài expected frozen hashes:
+STOP = P0_C_CORRECTION02_PRODUCTION_DRIFT.
+
+======================================================================
+2. ISSUE A — DETERMINISTIC ROLLBACK OF ACTUAL P0-C FILES
+======================================================================
+
+Correction 01 hiện đã xác nhận:
+
+PRE_P0C_SHA =
+0cf048740c65b678c0a7e562df28338493a41567
+
+Production P0-C frozen files hiện gồm tối thiểu:
+
+1. lib-core-graphics/src/main/cpp/include/hair_matting_engine.h
+2. lib-core-graphics/src/main/cpp/src/hair_matting_engine.cpp
+3. lib-core-graphics/src/main/cpp/include/ai/bisenet_face_parser.h
+4. lib-core-graphics/src/main/cpp/src/ai/bisenet_face_parser.cpp
+5. lib-core-graphics/src/main/cpp/src/jni_bridge.cpp
+6. lib-core-graphics/src/main/kotlin/com/meitu/core/nativeengine/MeituNativeEngine.kt
+
+Rollback evidence cũ đã dùng command trên các file không phải toàn bộ production P0-C.
+Correction 02 phải sửa đúng vấn đề này.
+
+======================================================================
+3. REQUIRED SHA DISCOVERY
+======================================================================
+
+Agent phải xác định và ghi rõ:
+
+PRE_P0C_SHA
+P0C_CORRECTION01_SHA hoặc ACTIVE_INTEGRATION_SHA
+ACTIVE_TREE_SHA
+
+Nếu Correction 01 chưa có commit riêng:
+- tạo evidence rõ ràng của current working tree;
+- không tự commit nếu workflow chưa cho phép;
+- nhưng phải xác định source state bằng file hashes + git diff + tree/commit context.
+
+Output:
+P0_C_CORRECTION02_GIT_STATE.md
+
+Required fields:
+repo_root
+branch
+HEAD
+PRE_P0C_SHA
+integration_commit_if_any
+tree_sha
+git_status
+changed_files
+production_file_hashes.
+
+======================================================================
+4. CANONICAL ROLLBACK FILE SET
+======================================================================
+
+Tạo machine-readable file:
+
+P0_C_CORRECTION02_ROLLBACK_FILESET.csv
+
+Columns:
+relative_path
+exists_at_pre_p0c
+exists_at_current
+pre_p0c_sha256
+current_sha256
+rollback_action
+notes.
+
+Không được hardcode file list mà không xác minh bằng:
+
+git diff --name-status PRE_P0C_SHA..CURRENT_STATE
+
+và source trace P0-C.
+
+Nếu có file production khác thuộc P0-C nhưng không nằm trong 6 file trên:
+phải bổ sung.
+
+======================================================================
+5. DETERMINISTIC SOURCE RESTORE PROCEDURE
+======================================================================
+
+Trong isolated worktree / disposable branch ONLY.
+
+Canonical restore pattern:
+
+git restore --source="$PRE_P0C_SHA" -- <EXACT_P0C_FILESET>
+
+Nếu file nào không tồn tại tại PRE_P0C_SHA nhưng được tạo mới bởi P0-C:
+phải xử lý bằng đúng Git semantics, ví dụ remove tracked file trong rollback state
+theo evidence thực tế.
+
+Không được dùng:
+
+git checkout HEAD -- ...
+git restore --source=HEAD ...
+git reset --hard trên main/master.
+
+Output procedure:
+P0_C_CORRECTION02_ROLLBACK_PROCEDURE.md
+
+======================================================================
+6. REQUIRED ROLLBACK EXECUTION TEST
+======================================================================
+
+Phải thực thi thật trong isolated worktree.
+
+State A — CURRENT INTEGRATED STATE
+1. Checkout/copy current integrated state.
+2. Verify current 6+ production hashes match Correction 01 freeze.
+3. Build:
+   - :lib-core-graphics:assembleDebug
+   - :app:assembleDebug
+4. Record result.
+
+State B — PRE-P0C ROLLBACK STATE
+5. Apply exact rollback file set from PRE_P0C_SHA.
+6. Verify each file hash/state against PRE_P0C_SHA.
+7. Clean build.
+8. Run minimum smoke test / legacy Hair Matting fallback path.
+9. Confirm no compile/link/JNI errors.
+
+State C — RESTORE CURRENT INTEGRATION
+10. Restore current integrated state from exact integration commit/hash or saved patch/artifact.
+11. Verify every production file hash returns EXACTLY to Correction 01 frozen hash.
+12. Clean build.
+13. Run P0 smoke/regression subset.
+14. Verify no residual diff caused by rollback exercise.
+
+======================================================================
+7. REQUIRED ROLLBACK EVIDENCE
+======================================================================
+
+Create:
+
+P0_C_CORRECTION02_ROLLBACK_EXECUTION_EVIDENCE.md
+P0_C_CORRECTION02_ROLLBACK_HASH_MATRIX.csv
+
+Hash matrix columns:
+
+relative_path
+pre_p0c_hash
+current_expected_hash
+rollback_observed_hash
+restored_observed_hash
+rollback_match
+restore_match
+status.
+
+PASS requires:
+- rollback_observed_hash == pre_p0c_hash where file existed;
+- restored_observed_hash == current_expected_hash;
+- build PASS in rollback state;
+- build PASS after restore;
+- no unrelated file changes.
+
+======================================================================
+8. RUNTIME FEATURE FLAG ROLLBACK
+======================================================================
+
+Retest Level 1 runtime rollback independently.
+
+Verify:
+
+HairMattingEngine::setP0B2REnabled(false)
+
+Expected:
+- P0-B.2R native pipeline bypassed;
+- documented legacy path used;
+- valid alpha buffer;
+- no crash;
+- no stale output;
+- no cloud;
+- no state corruption;
+- flag can be re-enabled.
+
+Record:
+P0_C_CORRECTION02_RUNTIME_FALLBACK_TEST.md
+
+Do not claim "zero downtime" unless actually demonstrated at runtime.
+Allowed wording:
+"Runtime fallback toggle completed without process restart in the documented test."
+
+======================================================================
+9. ISSUE B — HISTORICAL DEFECT ID NORMALIZATION
+======================================================================
+
+Historical defect IDs must keep one meaning across the full P0 history.
+
+Canonical definitions from prior accepted P0 reports:
+
+G1 = Blonde / Light / Highlight Hair Loss
+G2 = BiSeNet Class-18 Hair-vs-Hat Confusion
+G3 = Ear Occlusion / Hard-Zero Strand Loss
+R1 = High-Exposure Facial / Forehead Skin Leakage
+R2 = Screenshot / UI / Geometry False Positive Leakage
+
+Correction 01 must NOT redefine:
+
+G1 = Ear Leakage
+G2 = Hairline Clamping
+G3 = Neck / Collar Boundary
+
+Those can be tracked as separate subcases or new IDs, but may not reuse G1/G2/G3.
+
+======================================================================
+10. HISTORICAL TRACE AUDIT
+======================================================================
+
+Search all P0 documents for:
+
+"G1"
+"G2"
+"G3"
+"R1"
+"R2"
+
+Create:
+
+P0_C_CORRECTION02_HISTORICAL_DEFECT_TRACE.csv
+
+Columns:
+
+document
+section
+defect_id
+meaning_used
+canonical_meaning
+match
+action
+evidence_reference.
+
+Every mismatch must be corrected.
+
+======================================================================
+11. DEFECT ID POLICY
+======================================================================
+
+Canonical IDs:
+
+G1 — BLONDE_LIGHT_HIGHLIGHT_LOSS
+G2 — HAIR_HAT_CLASS18_CONFUSION
+G3 — EAR_OCCLUSION_STRAND_LOSS
+R1 — HIGH_EXPOSURE_SKIN_LEAKAGE
+R2 — SCREENSHOT_UI_GEOMETRY_LEAKAGE
+
+If additional defect categories need tracking, create new IDs.
+
+Example:
+H1 — HAIRLINE_CLAMPING
+N1 — NECK_COLLAR_BOUNDARY
+
+Do NOT repurpose G1/G2/G3.
+
+======================================================================
+12. REQUIRED DOCUMENT CORRECTIONS
+======================================================================
+
+At minimum review/correct:
+
+P0_C_CORRECTION_MASTER_REPORT.md
+P0_C_TEST_REPORT.md
+P0_C_REVIEW_REPORT.md
+P0_C_CORRECTION_FREEZE_RECORD.md
+P0_C_CORRECTION_MANIFEST.csv
+any historical summary/report containing G1/G2/G3/R1/R2.
+
+Do not alter raw test metrics solely to rename defect IDs.
+
+======================================================================
+13. REVALIDATION OF HISTORICAL DEFECT CLOSURES
+======================================================================
+
+After ID correction, show evidence for canonical defects:
+
+G1:
+- at least known blonde/light/highlight samples;
+- report core preservation.
+
+G2:
+- hat/cap/headwear samples;
+- report hat false positive.
+
+G3:
+- ear-occlusion samples;
+- report ear preservation/leakage.
+
+R1:
+- sample_26 / high exposure cases;
+- report skin/forehead leakage and core retention.
+
+R2:
+- edge_05 / edge_06 / robustness screenshot cases;
+- report UI/BG leakage and letterbox behavior.
+
+Do not invent new numbers.
+Use existing raw regression evidence or rerun if necessary.
+
+======================================================================
+14. NO ALGORITHM CHANGE
+======================================================================
+
+Correction 02 must not change:
+
+- tau_aspect 1.80;
+- Hair Matting formulas;
+- thresholds;
+- P0 model;
+- JNI production behavior except documentation/testing if no actual defect;
+- output contract.
+
+If any algorithm/source modification becomes necessary:
+STATUS = P0_C_CORRECTION02_NEEDS_TECHNICAL_REVIEW
+STOP.
+
+======================================================================
+15. CSV VALIDATION
+======================================================================
+
+All new CSV files must parse with:
+
+- Python csv;
+- pandas.read_csv.
+
+Validate:
+column count
+row count
+unique keys where applicable
+no malformed quoting
+no accidental NaN/Inf
+no duplicate file paths in hash matrix
+all boolean/status values legal.
+
+Create:
+P0_C_CORRECTION02_CSV_VALIDATION_REPORT.md
+
+======================================================================
+16. CORRECTION 02 MANIFEST / FREEZE
+======================================================================
+
+Preserve Correction 01 unchanged as prior evidence.
+
+Create new versioned folder:
+
+scratch/p0_c_integration/P0_C_CORRECTION_02/
+
+At minimum include:
+
+P0_C_CORRECTION02_MASTER_REPORT.md
+P0_C_CORRECTION02_GIT_STATE.md
+P0_C_CORRECTION02_ROLLBACK_FILESET.csv
+P0_C_CORRECTION02_ROLLBACK_PROCEDURE.md
+P0_C_CORRECTION02_ROLLBACK_EXECUTION_EVIDENCE.md
+P0_C_CORRECTION02_ROLLBACK_HASH_MATRIX.csv
+P0_C_CORRECTION02_RUNTIME_FALLBACK_TEST.md
+P0_C_CORRECTION02_HISTORICAL_DEFECT_TRACE.csv
+P0_C_CORRECTION02_CSV_VALIDATION_REPORT.md
+P0_C_CORRECTION02_MANIFEST.csv
+P0_C_CORRECTION02_FREEZE.sha256
+P0_C_CORRECTION02_FREEZE_RECORD.md
+
+Include corrected reports if modified.
+
+======================================================================
+17. HASH POLICY
+======================================================================
+
+Hash all Correction 02 artifacts plus every production file used as current frozen state.
+
+Do not reuse old SHA if file changed.
+
+Do not silently overwrite Correction 01 hashes.
+
+Generate:
+P0_C_CORRECTION02_FREEZE.sha256
+
+Verify with:
+sha256sum -c
+
+Record exact pass count.
+
+======================================================================
+18. TESTER GATE
+======================================================================
+
+Independent Tester must verify:
+
+[ ] Actual rollback file set is complete.
+[ ] Rollback to PRE_P0C_SHA state performed.
+[ ] Rollback build PASS.
+[ ] Restore to current integrated state performed.
+[ ] Current hashes restored exactly.
+[ ] Runtime feature flag fallback PASS.
+[ ] Historical defect IDs normalized.
+[ ] Canonical G1/G2/G3/R1/R2 evidence still PASS.
+[ ] No production algorithm changes.
+[ ] P1–P6 not started.
+
+Output:
+P0_C_CORRECTION02_TEST_REPORT.md
+
+Allowed verdict:
+TESTER_PASS
+TESTER_NEEDS_FIX.
+
+======================================================================
+19. REVIEWER GATE
+======================================================================
+
+Independent Reviewer verifies:
+
+- Git procedure deterministic;
+- rollback commands operate on actual P0-C files;
+- no destructive main/master operation;
+- hashes prove state restoration;
+- defect taxonomy is historically consistent;
+- no algorithm drift;
+- evidence wording not overstated.
+
+Output:
+P0_C_CORRECTION02_REVIEW_REPORT.md
+
+Allowed:
+REVIEWER_PASS
+REVIEWER_NEEDS_FIX.
+
+======================================================================
+20. FINAL HARD GATES
+======================================================================
+
+All must PASS:
+
+[ ] PRE_P0C_SHA independently verified.
+[ ] Current production file set independently discovered.
+[ ] Exact rollback file set documented.
+[ ] Actual production P0-C files restored in isolated worktree.
+[ ] Rollback state hashes match PRE_P0C state.
+[ ] Rollback state clean build PASS.
+[ ] Current integrated state restored after rollback.
+[ ] Restored hashes exactly match Correction 01 expected hashes.
+[ ] Restored current state clean build PASS.
+[ ] Runtime feature flag fallback retested.
+[ ] No unrelated file modified.
+[ ] G1 meaning restored to Blonde/Light/Highlight Loss.
+[ ] G2 meaning restored to Hair/Hat Class-18 Confusion.
+[ ] G3 meaning restored to Ear Occlusion Strand Loss.
+[ ] R1 meaning remains High Exposure Skin Leakage.
+[ ] R2 meaning remains Screenshot/UI/Geometry Leakage.
+[ ] Historical reports corrected consistently.
+[ ] Canonical defect closures supported by evidence.
+[ ] No algorithm change.
+[ ] CSV validation PASS.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] Correction 02 manifest PASS.
+[ ] Correction 02 SHA-256 verification PASS.
+[ ] P1–P6 remain blocked.
+
+======================================================================
+21. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_FINAL_PASS_RECONFIRMED
+
+or
+
+P0_C_CORRECTION02_NEEDS_FIX
+
+or
+
+P0_C_CORRECTION02_PRODUCTION_DRIFT
+
+or
+
+P0_C_CORRECTION02_EVIDENCE_CONTRADICTION
+
+or
+
+P0_C_CORRECTION02_NEEDS_TECHNICAL_REVIEW.
+
+======================================================================
+22. P0_FINAL_PASS_RECONFIRMED RULE
+======================================================================
+
+Only issue P0_FINAL_PASS_RECONFIRMED if:
+
+1. deterministic rollback is physically demonstrated on actual P0-C production files;
+2. pre-P0C and current hashes are both proven;
+3. build passes before/after restore;
+4. G1/G2/G3/R1/R2 meanings are historically normalized;
+5. Tester and Reviewer PASS;
+6. Correction 02 evidence is frozen;
+7. P1–P6 remain untouched.
+
+======================================================================
+23. REQUIRED FINAL REPORT
+======================================================================
+
+File:
+P0_C_CORRECTION02_MASTER_REPORT.md
+
+Sections:
+
+1. EXECUTIVE STATUS
+2. INPUT STATE
+3. PRE_P0C SHA VERIFICATION
+4. CURRENT P0-C FILESET DISCOVERY
+5. ROLLBACK FILESET
+6. ROLLBACK PROCEDURE
+7. ROLLBACK EXECUTION
+8. PRE-P0C HASH VERIFICATION
+9. ROLLBACK BUILD RESULT
+10. CURRENT STATE RESTORATION
+11. CURRENT HASH VERIFICATION
+12. CURRENT BUILD RESULT
+13. RUNTIME FALLBACK TEST
+14. HISTORICAL DEFECT TAXONOMY
+15. G1 TRACE
+16. G2 TRACE
+17. G3 TRACE
+18. R1 TRACE
+19. R2 TRACE
+20. CORRECTED DOCUMENTS
+21. ALGORITHM IMMUTABILITY
+22. CSV VALIDATION
+23. TESTER VERDICT
+24. REVIEWER VERDICT
+25. MANIFEST
+26. SHA-256 FREEZE
+27. FINAL HARD-GATE CHECKLIST
+28. FINAL DECISION
+29. STOP CONDITION.
+
+======================================================================
+24. STOP CONDITION
+======================================================================
+
+After report:
+
+If P0_FINAL_PASS_RECONFIRMED:
+- P0 CLOSED.
+- STOP.
+- Do not start P1 automatically.
+
+If any other verdict:
+- STOP.
+- P1–P6 remain blocked.
+
+======================================================================
+25. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+01. Snapshot current Git/source state.
+02. Preserve Correction 01 unchanged.
+03. Independently discover actual P0-C production file set.
+04. Verify PRE_P0C_SHA.
+05. Build rollback file-set CSV.
+06. Create isolated worktree from current integrated state.
+07. Verify current hashes.
+08. Restore exact P0-C files from PRE_P0C_SHA.
+09. Verify rollback hashes.
+10. Clean build rollback state.
+11. Smoke test legacy/fallback behavior.
+12. Restore current integration state.
+13. Verify current hashes exactly.
+14. Clean build restored state.
+15. Retest runtime feature flag fallback.
+16. Audit every G1/G2/G3/R1/R2 reference.
+17. Normalize historical defect taxonomy.
+18. Verify canonical defect closure evidence.
+19. Validate CSVs.
+20. Tester gate.
+21. Reviewer gate.
+22. Generate Correction 02 manifest.
+23. Generate SHA-256 freeze.
+24. Produce master report.
+25. Return exactly one allowed verdict.
+26. STOP.
+
+NO P1.
+NO P2.
+NO P3.
+NO P4.
+NO P5.
+NO P6.
+NO ALGORITHM TUNING.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.
+
+======================================================================
+END OF P0-C CORRECTION 02 MASTER SPEC
+======================================================================

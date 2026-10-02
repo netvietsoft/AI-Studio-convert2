@@ -1,0 +1,1344 @@
+HAIR COLOR ENGINE V3 — MASTER IMPLEMENTATION SPEC FOR AUTONOMOUS AGENT
+========================================================================
+Status: PRODUCTION IMPLEMENTATION STANDARD
+Scope: Hair Color / Hair Dye Engine
+Target: Android + iOS
+Primary Core: Shared C++20
+Android Runtime: Kotlin + JNI + NCNN + Vulkan
+iOS Runtime: Swift/ObjC++ + Core C++ + Metal
+Architecture: LOCAL-FIRST / GPU-FIRST / MODEL-REPLACEABLE / NON-DESTRUCTIVE
+Cloud: OPTIONAL ONLY FOR GENERATIVE HD
+
+========================================================================
+0. QUY TẮC BẮT BUỘC CHO AGENT
+========================================================================
+
+Agent phải coi tài liệu này là source of truth cho kế hoạch triển khai Hair Color V3.
+
+Không được tự ý:
+- nhảy phase;
+- thay đổi kiến trúc tổng;
+- đưa Cloud thành dependency bắt buộc;
+- gọi heuristic là phép đo vật lý;
+- tuyên bố chất lượng/FPS nếu chưa benchmark;
+- sửa vùng ngoài tóc;
+- thay hairstyle khi user chỉ yêu cầu đổi màu;
+- thay face/identity/background/clothes;
+- thêm model không có license audit;
+- coi tên class "Matting" là bằng chứng đã có true matting.
+
+Thứ tự bắt buộc:
+
+P0 Hair Matting
+-> P1 Hair Orientation / Flow
+-> P2 Orientation-aware Texture
+-> P3 Appearance / Shadow / Highlight
+-> P4 Hair Dye Material
+-> P5 Anisotropic Specular
+-> P6 GPU Vulkan / Metal
+-> P7 Generative HD OPTIONAL.
+
+P0-P6 = LOCAL MOBILE CORE.
+
+P7 = OPTIONAL:
+- Local generative nếu thiết bị đủ mạnh;
+- Cloud fallback nếu thiết bị không đủ mạnh.
+
+Không triển khai P7 trước khi P0-P6 có baseline hoạt động và validation.
+
+Mỗi phase:
+AUDIT -> DESIGN -> IMPLEMENT -> TEST -> BENCHMARK -> VALIDATE -> PASS.
+
+Nếu chưa PASS:
+không chuyển phase tiếp theo.
+
+========================================================================
+1. AS-IS — GROUND TRUTH TỪ SOURCE AUDIT MỚI NHẤT
+========================================================================
+
+1.1 ENTRY FLOW
+
+Android UI:
+app/src/main/kotlin/com/mt/mtxx/mtxx/editor/PhotoEditorActivity.kt
+
+applyCurrentTool():
+- tool_hair_dye
+- tool_hair_color
+- tool_hair_rose_gold
+
+JNI Kotlin:
+lib-core-graphics/src/main/kotlin/com/meitu/core/nativeengine/MeituNativeEngine.kt
+
+nativeApplyHairStrandDye(
+    bitmap,
+    presetId,
+    intensity,
+    gloss
+)
+
+JNI C++:
+lib-core-graphics/src/main/cpp/src/jni_bridge.cpp
+
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyHairStrandDye()
+
+Current processing directly locks Android Bitmap pixels.
+
+1.2 CURRENT HAIR AI
+
+Model:
+BiSeNet 19-Class Face Parser.
+
+Runtime:
+NCNN.
+
+Input:
+512 x 512 x 3 RGB.
+
+Output:
+512 x 512 x 19.
+
+Hair:
+Class 17.
+
+Current extraction:
+19-class logits
+-> argmax categorical mask
+-> class 17
+-> binary hair mask.
+
+BiSeNet remains useful as coarse semantic anchor.
+
+It is NOT sufficient by itself for fine hair alpha matting.
+
+1.3 CURRENT HAIR MASK / MATTING
+
+Current implementation:
+BiSeNet binary mask
+-> conditional morphological propagation
+-> protection barriers
+-> luminance-based feather
+-> bilinear upscale.
+
+Current system DOES NOT contain an industrial-grade dedicated hair matting
+solver according to the latest audit.
+
+Do not describe the current output as "true physical sub-pixel hair matte"
+merely because alpha values become continuous after interpolation/feathering.
+
+1.4 CURRENT HAIRLINE / FLYAWAY
+
+Current hairline:
+primarily determined by BiSeNet Hair vs Skin boundary and rule-based protection.
+
+Current flyaway recovery:
+conditional propagation based partly on luminance/background rules.
+
+Known issues:
+- forehead hairline can appear too sharp;
+- very thin flyaways can be cut;
+- boundary quality depends on coarse semantic segmentation.
+
+1.5 CURRENT HAIR ORIENTATION
+
+NOT FOUND.
+
+Current code has no confirmed:
+- Structure Tensor Hair Flow;
+- Gabor Orientation Field;
+- Steerable Hair Direction Field;
+- Tangent Vector Field.
+
+1.6 CURRENT TEXTURE / APPEARANCE
+
+Current hair_strand_dye.cpp includes:
+- origLum;
+- baseLum;
+- midLum;
+- microDetail;
+- strandRatio;
+- synthetic specular.
+
+Current tri-band approximation:
+baseLum: wide blur approximately r=8px.
+midLum: narrow blur approximately r=2px.
+microDetail = origLum - midLum.
+
+This is 2D image-frequency processing.
+
+It is NOT:
+- anatomical root/body/tip detection;
+- physical strand geometry;
+- physical melanin measurement;
+- spectral measurement.
+
+1.7 CURRENT ROSE GOLD
+
+Latest audited preset:
+
+target RGB approximately:
+218, 138, 132
+
+bleachPower:
+0.85
+
+defaultGloss:
+0.65.
+
+Current chromaticity is essentially shared across the hair region.
+
+Per-pixel luminance/detail modulation exists, but root/body/tip chromatic
+variation is not yet modeled.
+
+1.8 CURRENT INTENSITY
+
+Latest audit reports:
+
+p = intensity / 100.
+
+For 80%:
+p = 0.80.
+
+Final blend:
+blend = alpha * p.
+
+This supersedes the earlier audit that reported p^2 behavior.
+
+Agent must verify current source before modifying intensity logic.
+
+1.9 CURRENT PERFORMANCE
+
+Latest audit reports approximately:
+960x1280 image:
+~950 ms before OpenMP
+-> ~135 ms with OpenMP
+on Samsung Galaxy SM-A075F.
+
+Treat these numbers as current audit measurements only.
+
+Re-benchmark after each major architecture change.
+
+1.10 CURRENT RENDERER
+
+Current Hair Color execution:
+CPU C++ direct pixel buffer.
+
+OpenMP:
+CPU parallelization only.
+
+No confirmed Vulkan/OpenGL ES execution in current nativeApplyHairStrandDye path.
+
+1.11 CURRENT GENERATIVE AI
+
+ABSENT.
+
+Current Hair Color path has no:
+- Stable Diffusion;
+- SDXL;
+- GAN;
+- generative inpainting.
+
+========================================================================
+2. CURRENT ROOT CAUSE
+========================================================================
+
+Primary visual defect:
+Hair looks partially like a pink color coating rather than naturally recolored hair.
+
+Confirmed/strongly supported engineering causes:
+
+1. Coarse semantic hair mask.
+2. No dedicated high-quality hair matting pipeline.
+3. No Hair Orientation/Flow.
+4. No orientation-aware strand texture processing.
+5. Shared Rose Gold chromaticity over most of hair.
+6. Simplified luminance lift.
+7. Simplified isotropic specular.
+8. No anatomical/root-body-tip color variation.
+9. Linear alpha composition remains a major final color-composition mechanism.
+10. Very thin flyaways/hairline are not robustly represented.
+
+Terminology correction:
+
+DO NOT call current:
+melaninLift
+
+"physical melanin bleaching".
+
+Correct name:
+Luminance Lift Heuristic
+or
+Melanin-inspired Lift Approximation.
+
+DO NOT claim RGB image measures true pheomelanin/eumelanin concentration.
+
+Correct term:
+Warm Undertone Appearance Estimate
+or
+Warm Bleach Undertone Simulation.
+
+DO NOT promise:
+"Flawless 100% Bit-Accurate Salon Output".
+
+Correct target:
+"Validated High-Quality Hair Recolor Output".
+
+========================================================================
+3. TARGET ARCHITECTURE
+========================================================================
+
+                     MOBILE LOCAL CORE
+
+                         INPUT
+                           |
+                           v
+                Hair Semantic Segmentation
+                           |
+                           v
+                     P0 Hair Matting
+                           |
+                           v
+                Hairline / Fine Hair Alpha
+                           |
+                           v
+                 P1 Hair Orientation / Flow
+                           |
+                           v
+               P2 Orientation-aware Texture
+                           |
+                           v
+                P3 Appearance Decomposition
+               Shadow / Mid / Highlight / Detail
+                           |
+                           v
+                    P4 Dye Material
+               Root / Body / Tip / Multi-tone
+                           |
+                           v
+                P5 Anisotropic Highlight
+                           |
+                           v
+                 P6 Vulkan / Metal Render
+                           |
+                           v
+              Original-vs-Edited Validation
+                           |
+                 +---------+---------+
+                 |                   |
+                PASS                FAIL
+                 |                   |
+                 v                   v
+               OUTPUT          CORRECT / RETRY
+
+
+OPTIONAL HIGH QUALITY:
+
+                  USER SELECTS AI HAIR HD
+                           |
+                           v
+                       Hair ROI
+                           |
+             +-------------+-------------+
+             |                           |
+       DEVICE CAPABLE               DEVICE LIMITED
+             |                           |
+             v                           v
+     Local Generative              Cloud Generative
+             |                           |
+             +-------------+-------------+
+                           |
+                           v
+                       Validation
+                           |
+                           v
+                         Output
+
+========================================================================
+4. P0 — HAIR MATTING [FIRST PRIORITY]
+========================================================================
+
+OBJECTIVE:
+
+Replace:
+binary semantic mask + heuristic feather + bilinear upscale
+
+with:
+high-quality continuous hair alpha matte.
+
+P0 must be completed BEFORE P1.
+
+4.1 REQUIRED AUDIT
+
+Before writing a new model/backend, Agent must search project for:
+- hair_matting_mobile.param
+- hair_matting_mobile.bin
+- HairMattingEngine
+- all model initialization paths
+- all extractor calls
+- dead code
+- unused inference paths.
+
+For existing hair_matting_mobile model, report:
+
+Model path:
+Model size:
+NCNN input blob:
+NCNN output blob:
+Input resolution:
+Input format:
+Normalization:
+Output format:
+Expected alpha:
+Actual inference call:
+Runtime:
+RAM:
+License:
+Source/provenance:
+Current reason not used:
+Can activate safely: YES/NO.
+
+If information cannot be proven:
+write NOT FOUND.
+
+4.2 P0 TARGET INTERFACE
+
+struct HairMatte {
+    ImageFloat alphaFullRes;
+    ImageFloat confidence;
+    ImageFloat hairCoreMask;
+    ImageFloat transitionMask;
+    ImageFloat hairlineMask;
+    ImageFloat fineHairMask;
+};
+
+class IHairMattingBackend {
+public:
+    virtual bool initialize(const ModelConfig&) = 0;
+
+    virtual HairMatte infer(
+        const ImageRGBA& image,
+        const HairSemanticMask& coarseMask
+    ) = 0;
+
+    virtual MattingBackendInfo info() const = 0;
+};
+
+Potential backends:
+- Existing NCNN hair_matting_mobile;
+- future NCNN deep matting;
+- guided/refinement fallback.
+
+Business logic must not depend on one specific model.
+
+4.3 P0 PIPELINE
+
+Original Full Resolution
+        +
+BiSeNet Coarse Hair Mask
+        |
+        v
+Transition Region / Trimap
+        |
+        v
+Hair Matting Backend
+        |
+        v
+Full-resolution Boundary Refinement
+        |
+        +-> Hair Core
+        +-> Hairline
+        +-> Fine/Flyaway
+        +-> Confidence
+        |
+        v
+Final Hair Alpha.
+
+4.4 P0 ACCEPTANCE
+
+PASS only if:
+
+[ ] Actual matting inference path is proven.
+[ ] Alpha is continuous or equivalent high-quality matte.
+[ ] Hairline improves over current baseline.
+[ ] Thin/fine hair retention improves.
+[ ] No material increase in face leakage.
+[ ] No material increase in background leakage.
+[ ] No obvious halo at full resolution.
+[ ] Confidence map exists or uncertainty is otherwise represented.
+[ ] Latency benchmark exists.
+[ ] RAM benchmark exists.
+[ ] Device test exists.
+[ ] Fallback exists.
+[ ] Model/code licenses documented.
+
+========================================================================
+5. P1 — HAIR ORIENTATION / FLOW
+========================================================================
+
+OBJECTIVE:
+Estimate visible hair direction from the source image.
+
+Required:
+
+struct HairFlowPixel {
+    float tangentX;
+    float tangentY;
+    float angle;
+    float coherence;
+    float curvature;
+    float confidence;
+};
+
+class HairOrientationAnalyzer {
+public:
+    HairFlowMap analyze(
+        const ImageRGBA& image,
+        const HairMatte& matte
+    );
+};
+
+V1 recommended:
+Structure Tensor.
+
+Candidate steps:
+
+RGB
+-> luminance
+-> gradients
+-> local tensor
+-> smoothing
+-> eigen analysis
+-> tangent direction
+-> coherence
+-> confidence.
+
+Possible research:
+- Structure Tensor;
+- Gabor;
+- steerable filters.
+
+Do not infer confident flow where texture evidence is weak.
+
+P1 PASS:
+
+[ ] Debug flow visualization exists.
+[ ] Flow follows visible straight hair.
+[ ] Flow follows curls/waves reasonably.
+[ ] No strong fake flow outside hair.
+[ ] Low-evidence regions get low confidence.
+[ ] Mobile latency benchmark exists.
+
+========================================================================
+6. P2 — ORIENTATION-AWARE HAIR STRUCTURE / TEXTURE
+========================================================================
+
+OBJECTIVE:
+Preserve strand/curl texture instead of processing hair as an isotropic 2D surface.
+
+Required maps:
+
+struct HairStructure {
+    ImageFloat lowFrequency;
+    ImageFloat midFrequency;
+    ImageFloat highFrequency;
+    ImageFloat ridgeResponse;
+    ImageFloat creviceResponse;
+    ImageFloat confidence;
+};
+
+Replace or augment isotropic box blur with direction-aware processing.
+
+Candidates:
+- directional bilateral;
+- anisotropic smoothing;
+- guided filter;
+- Gabor response;
+- flow-guided sampling.
+
+Rules:
+
+Dark crevices must not be lifted to the same luminance as exposed strands.
+
+High-frequency texture must not simply be multiplied by a static dye RGB.
+
+P2 PASS:
+
+[ ] More original strand detail than baseline.
+[ ] Curl crevices remain deep.
+[ ] No artificial sharpening halo.
+[ ] No background texture enters hair.
+[ ] Hairline remains stable.
+
+========================================================================
+7. P3 — APPEARANCE / LIGHTING DECOMPOSITION
+========================================================================
+
+OBJECTIVE:
+Estimate visually useful appearance layers.
+
+struct HairAppearance {
+    ImageFloat baseLuminance;
+    ImageFloat shadow;
+    ImageFloat midtone;
+    ImageFloat highlight;
+    ImageFloat specularCandidate;
+    ImageFloat ambientOcclusionApprox;
+    ImageFloat confidence;
+};
+
+Important:
+
+These are estimates from RGB.
+
+Do NOT call them:
+- exact illumination;
+- exact physical AO;
+- true melanin;
+- true optical coefficients.
+
+The purpose is visual preservation.
+
+P3 PASS:
+
+[ ] Dark crevices preserved.
+[ ] Existing highlights remain coherent.
+[ ] Hair volume reads naturally.
+[ ] Dye no longer flattens the full hair mass.
+
+========================================================================
+8. P4 — MULTI-TONE HAIR DYE MATERIAL
+========================================================================
+
+OBJECTIVE:
+Replace single static RGB preset with semantic multi-tone dye material.
+
+struct HairDyeMaterial {
+    Color rootTone;
+    Color bodyTone;
+    Color tipTone;
+
+    Color shadowTone;
+    Color midTone;
+    Color highlightTone;
+
+    Color warmUndertone;
+
+    float dyeStrength;
+    float liftStrength;
+    float rootStrength;
+    float tipStrength;
+    float warmth;
+    float saturation;
+    float highlightStrength;
+    float specularStrength;
+
+    float preserveLuminance;
+    float preserveTexture;
+};
+
+RoseGold must be a material preset.
+
+RoseGoldMaterial
+|
++-- RootTone
++-- BodyTone
++-- TipTone
++-- ShadowTone
++-- MidTone
++-- HighlightTone
++-- WarmUndertone
++-- DyeStrength
++-- LiftStrength
++-- PreserveLuminance
++-- PreserveTexture
++-- SpecularStrength.
+
+8.1 ROOT/BODY/TIP
+
+If anatomical root position cannot be proven from RGB:
+use estimated scalp/hairline distance and confidence.
+
+Do not call estimated region "true biological root".
+
+Use:
+EstimatedRootRegion.
+
+8.2 WARM UNDERTONE
+
+The system may simulate a warm bleach undertone for dark hair.
+
+Do NOT claim it measures actual pheomelanin.
+
+Name:
+WarmBleachUndertone.
+
+8.3 INTENSITY
+
+User intensity must have one documented semantic.
+
+Recommended:
+
+UserIntensity
+-> controls primary dyeStrength.
+
+Other effects use separate derived/explicit parameters:
+- liftStrength;
+- warmth;
+- highlightStrength;
+- specularStrength.
+
+No accidental:
+p * p
+or repeated intensity application.
+
+Every parameter must have:
+- range;
+- default;
+- formula;
+- owner stage.
+
+P4 PASS:
+
+[ ] Rose Gold is not one static RGB everywhere.
+[ ] Dark and light source regions respond differently.
+[ ] Root/body/tip can vary when confidence supports it.
+[ ] Shadow remains darker than exposed strand.
+[ ] Highlight remains plausible.
+[ ] Intensity semantics documented.
+[ ] No duplicate intensity multiplication.
+[ ] Texture preserved.
+
+========================================================================
+9. P5 — ANISOTROPIC HAIR HIGHLIGHT
+========================================================================
+
+OBJECTIVE:
+Make highlight respond to hair direction.
+
+Inputs:
+HairFlow
+HairAppearance
+HairDyeMaterial.
+
+V1:
+use mobile-friendly anisotropic approximation.
+
+Research references may include:
+- Kajiya-Kay;
+- Marschner.
+
+Full physically based Marschner implementation is NOT mandatory.
+
+Do not implement expensive physical simulation merely to satisfy terminology.
+
+Required visual behavior:
+- highlight elongated along/relative to hair flow;
+- curls produce curved/coherent highlight bands;
+- no spherical plastic glow;
+- highlight does not overwrite dark crevices.
+
+P5 PASS:
+
+[ ] Direction-sensitive highlight.
+[ ] Better visual result than isotropic baseline.
+[ ] Stable at hairline.
+[ ] Stable across curls.
+[ ] Mobile performance measured.
+
+========================================================================
+10. P6 — GPU RENDERER
+========================================================================
+
+P0-P5 algorithms must remain backend-independent where practical.
+
+Android:
+Vulkan preferred.
+
+iOS:
+Metal.
+
+Target graph:
+
+OriginalTexture
+HairAlpha
+HairFlow
+HairStructure
+HairAppearance
+HairDyeMaterial
+        |
+        v
+HairDyeRenderGraph
+        |
+        +-> Material Recolor
+        +-> Texture Preservation
+        +-> Shadow/Mid/Highlight
+        +-> Anisotropic Specular
+        +-> Boundary Composite
+        |
+        v
+OutputTexture.
+
+C++ shared logic:
+- data structures;
+- parameters;
+- algorithms where portable;
+- render graph description;
+- validation.
+
+Platform backend:
+- Vulkan;
+- Metal.
+
+P6 BENCHMARK:
+
+Record:
+- resolution;
+- device;
+- CPU time;
+- GPU time;
+- AI inference time;
+- RAM;
+- GPU memory if available;
+- thermal state;
+- FPS;
+- battery impact where practical.
+
+Targets:
+720p/1080p preview.
+>=30 FPS target.
+60 FPS preferred on capable devices.
+
+These are targets, NOT guaranteed claims.
+
+========================================================================
+11. P7 — OPTIONAL GENERATIVE HD
+========================================================================
+
+P7 is NOT required for basic Hair Color.
+
+Use only when generative pixels materially improve quality.
+
+Examples:
+- missing fine strands;
+- difficult reconstruction;
+- large hairstyle edit;
+- hair removal/reconstruction;
+- high-end photo export;
+- severe source limitations.
+
+Pipeline:
+
+Original
+-> Hair Matte
+-> Hair ROI
+-> Preserve Mask
+-> Generative Request
+-> Local or Cloud Backend
+-> Composite
+-> Original-vs-Edited Validation.
+
+Interface:
+
+class IHairGenerativeBackend {
+public:
+    virtual GenerationResult recolor(
+        const ImageRGBA& source,
+        const ImageFloat& hairMask,
+        const HairDyeMaterial& material,
+        const GenerationConfig& config
+    ) = 0;
+};
+
+Implementations can include:
+- Local model;
+- Cloud model;
+- future diffusion/inpainting model.
+
+Do not hard-code SDXL into business logic.
+
+========================================================================
+12. LOCAL / CLOUD POLICY
+========================================================================
+
+LOCAL MANDATORY:
+- segmentation;
+- matting;
+- hair flow;
+- texture;
+- appearance;
+- material recolor;
+- preview;
+- standard photo export;
+- standard video Hair Color.
+
+OPTIONAL LOCAL/CLOUD:
+- Generative HD;
+- high-compute reconstruction;
+- advanced hairstyle generation.
+
+Offline behavior:
+P0-P6 must remain usable without Internet after required local model packs are installed.
+
+Cloud failure must not break standard Hair Color.
+
+========================================================================
+13. VIDEO HAIR COLOR
+========================================================================
+
+Do not run expensive inference blindly on every frame.
+
+Pipeline:
+
+AI Keyframe
+-> Hair Segmentation
+-> Hair Matting
+-> Hair Flow
+-> Temporal Tracking / Optical Flow
+-> Intermediate Propagation
+-> Confidence Check
+-> Adaptive Re-anchor.
+
+Re-anchor on:
+- scene cut;
+- large pose change;
+- strong occlusion;
+- confidence drop;
+- tracking drift;
+- rapid head rotation.
+
+Temporal targets:
+- no color flicker;
+- no mask pumping;
+- no hairline crawling;
+- no highlight flicker.
+
+========================================================================
+14. C++ MODULE STANDARD
+========================================================================
+
+core/hair/
+|
++-- segmentation/
+|   +-- HairSegmentation.h/.cpp
+|
++-- matting/
+|   +-- IHairMattingBackend.h
+|   +-- HairMatting.cpp
+|   +-- HairBoundaryRefiner.cpp
+|   +-- HairlineRefiner.cpp
+|   +-- FineHairRefiner.cpp
+|
++-- flow/
+|   +-- HairOrientation.cpp
+|   +-- HairFlow.cpp
+|
++-- structure/
+|   +-- HairStructureAnalyzer.cpp
+|   +-- HairTextureAnalyzer.cpp
+|   +-- HairCreviceAnalyzer.cpp
+|
++-- appearance/
+|   +-- HairAppearanceAnalyzer.cpp
+|   +-- HairShadowAnalyzer.cpp
+|   +-- HairHighlightAnalyzer.cpp
+|
++-- material/
+|   +-- HairDyeMaterial.cpp
+|   +-- HairDyePreset.cpp
+|   +-- HairUndertone.cpp
+|
++-- render/
+|   +-- HairColorEngine.cpp
+|   +-- HairRenderGraph.cpp
+|   +-- HairSpecular.cpp
+|
++-- temporal/
+|   +-- HairTemporalTracker.cpp
+|
++-- validation/
+    +-- HairEditValidator.cpp
+
+renderer/
++-- vulkan/
+|   +-- HairDyeVulkan.*
+|
++-- metal/
+    +-- HairDyeMetal.*
+
+generative/hair/
++-- IHairGenerativeBackend.h
++-- HairGenerativeRouter.cpp
++-- HairHDReconstruction.cpp.
+
+Do not create duplicate modules if equivalent project modules already exist.
+Audit first, then refactor/reuse.
+
+========================================================================
+15. REFERENCE-BASED VALIDATION
+========================================================================
+
+MANDATORY INPUT:
+
+ORIGINAL_IMAGE
+EDITED_IMAGE
+USER_REQUEST
+TARGET_REGION
+EDIT_PARAMETERS.
+
+Core rule:
+
+ORIGINAL IMAGE =
+ground truth for everything user did NOT request to change.
+
+USER REQUEST =
+ground truth for what user DID request to change.
+
+Validation:
+
+1. POSITION_ACCURACY
+2. COLOR_ACCURACY
+3. SHAPE_PRESERVATION
+4. USER_INTENT_SCORE
+5. UNWANTED_CHANGE_SCORE
+6. ARTIFACT_SCORE
+7. TECHNICAL_QUALITY
+8. NATURALNESS.
+
+Hair-specific:
+- hair coverage;
+- hairline quality;
+- fine strand retention;
+- skin leakage;
+- face leakage;
+- ear leakage;
+- background leakage;
+- clothes leakage;
+- hairstyle preservation;
+- texture preservation;
+- crevice depth;
+- highlight coherence;
+- shadow preservation;
+- color consistency;
+- temporal consistency.
+
+========================================================================
+16. HARD FAIL RULES
+========================================================================
+
+Immediate FAIL if:
+- wrong target region;
+- main user request not performed;
+- face/identity changed;
+- background changed without request;
+- clothes changed without request;
+- hairstyle changed when only color requested;
+- hairline materially altered without request;
+- major hair region missing;
+- severe halo;
+- severe cutout;
+- obvious color leakage;
+- severe texture flattening;
+- output corrupted.
+
+A more beautiful image does NOT compensate for wrong user intent.
+
+Priority:
+1. Correct User Intent
+2. Preserve Untouched Regions
+3. Correct Geometry/Color
+4. Artifact Control
+5. Technical Quality
+6. Aesthetic Preference.
+
+========================================================================
+17. AUTOMATED RETRY
+========================================================================
+
+GENERATE
+-> COMPARE ORIGINAL
+-> VALIDATE
+-> PASS -> OUTPUT
+-> FAIL
+-> CLASSIFY FAILURE
+-> CORRECTION INSTRUCTION
+-> REPROCESS
+-> VALIDATE AGAIN.
+
+FailureReason:
+- wrong_position;
+- wrong_color;
+- wrong_shape;
+- unwanted_change;
+- identity_changed;
+- background_changed;
+- hairstyle_changed;
+- hairline_error;
+- fine_hair_loss;
+- texture_flattened;
+- shadow_flattened;
+- highlight_error;
+- leakage;
+- artifact;
+- temporal_flicker;
+- user_intent_not_satisfied.
+
+Set retry limit.
+Never create infinite retry loop.
+
+========================================================================
+18. TEST DATASET
+========================================================================
+
+Create a fixed regression set containing:
+
+Hair:
+- black;
+- dark brown;
+- light brown;
+- blonde;
+- gray.
+
+Structure:
+- straight;
+- wavy;
+- curly;
+- tight curl;
+- short/buzz;
+- long;
+- fine flyaway;
+- dense hair.
+
+Background:
+- white;
+- dark;
+- textured;
+- outdoor;
+- backlit.
+
+Lighting:
+- soft;
+- hard;
+- side light;
+- low light;
+- warm;
+- cool.
+
+Occlusion:
+- glasses;
+- ears;
+- hands;
+- hat boundary;
+- face overlap.
+
+Do not optimize only for one test image.
+
+========================================================================
+19. AGENT EXECUTION CONTRACT
+========================================================================
+
+For EVERY phase Agent must output:
+
+A. AUDIT
+-------
+File
+Class
+Function
+Current Algorithm
+Current Data Flow
+Model
+Runtime
+Performance
+Known Bugs
+Dead Code
+NOT FOUND items.
+
+B. GAP
+-----
+What is missing?
+Why does it affect output?
+Severity:
+CRITICAL / HIGH / MEDIUM / LOW.
+
+C. DESIGN
+--------
+New architecture.
+Interfaces.
+Data structures.
+Algorithms.
+Fallback.
+Error handling.
+Performance plan.
+
+D. IMPLEMENTATION PLAN
+----------------------
+Files CREATE.
+Files MODIFY.
+Classes CREATE.
+Functions CREATE.
+Functions MODIFY.
+Dependencies.
+Model assets.
+Migration steps.
+
+E. IMPLEMENTATION
+-----------------
+Implement only current approved phase.
+
+F. TEST
+------
+Unit Test.
+Integration Test.
+Visual Regression.
+Original-vs-Edited.
+Device Test.
+Performance Benchmark.
+
+G. REPORT
+--------
+Before result.
+After result.
+Metrics.
+Remaining issues.
+PASS / NEED_FIX / FAIL.
+
+========================================================================
+20. SOURCE TRACEABILITY
+========================================================================
+
+For AS-IS claims Agent MUST cite:
+FILE
++ CLASS
++ FUNCTION
++ LINE/RANGE where practical.
+
+If no implementation:
+NOT FOUND.
+
+For models:
+MODEL FILE
++ SOURCE
++ LICENSE
++ CHECKSUM
++ INPUT
++ OUTPUT
++ RUNTIME.
+
+Never infer checkpoint/model license from source-code repository license.
+
+========================================================================
+21. PERFORMANCE POLICY
+========================================================================
+
+Performance optimizations must not reduce correctness silently.
+
+Priority:
+
+Correctness
+-> visual quality
+-> stability
+-> memory
+-> latency
+-> battery.
+
+Device-adaptive quality may adjust:
+- resolution;
+- model size;
+- inference frequency;
+- refinement radius;
+- shader quality;
+- generative availability.
+
+But must preserve:
+- target region;
+- identity;
+- hair shape;
+- no leakage.
+
+========================================================================
+22. PHASE GATE
+========================================================================
+
+PHASE STATUS:
+
+BLOCKED:
+required source/model/license missing.
+
+IMPLEMENTING:
+work in progress.
+
+NEED_FIX:
+implementation exists but acceptance failed.
+
+PASS:
+all mandatory acceptance criteria met.
+
+Only PASS unlocks next phase.
+
+========================================================================
+23. IMMEDIATE NEXT TASK FOR AGENT
+========================================================================
+
+DO NOT START P1-P7 YET.
+
+START P0 ONLY.
+
+TASK:
+
+1. Audit hair_matting_mobile.param/.bin completely.
+2. Trace why model is loaded but not actively used, if that remains true in current source.
+3. Determine exact input/output tensors.
+4. Build a controlled inference test.
+5. Compare:
+   A = current BiSeNet + heuristic mask
+   B = existing hair_matting_mobile result.
+6. Test on fixed hair dataset.
+7. Measure:
+   - hairline;
+   - fine hair;
+   - leakage;
+   - halo;
+   - latency;
+   - RAM.
+8. Decide:
+   ACTIVATE_EXISTING_MODEL
+   or
+   REJECT_EXISTING_MODEL.
+9. If rejected, document technical reason before proposing replacement.
+10. Implement only the approved P0 matting path.
+11. Run Original-vs-Edited validation.
+12. Produce P0 report.
+13. Stop and wait at PHASE GATE unless P0 = PASS.
+
+========================================================================
+24. FINAL ENGINE PRINCIPLES
+========================================================================
+
+SEGMENTATION IS NOT MATTING.
+
+CONTINUOUS ALPHA CREATED BY BLUR/INTERPOLATION IS NOT AUTOMATICALLY
+A TRUE HAIR MATTING SOLUTION.
+
+MATTING IS NOT HAIR STRUCTURE.
+
+HAIR STRUCTURE IS NOT HAIR MATERIAL.
+
+HAIR MATERIAL IS NOT ONE RGB VALUE.
+
+RGB APPEARANCE ESTIMATION IS NOT A PHYSICAL MEASUREMENT OF MELANIN.
+
+WARM UNDERTONE SIMULATION IS NOT A MEASUREMENT OF PHEOMELANIN.
+
+ANISOTROPIC APPROXIMATION MAY BE MORE PRACTICAL THAN FULL PHYSICAL
+HAIR SCATTERING ON MOBILE.
+
+GPU IS AN EXECUTION BACKEND, NOT A SUBSTITUTE FOR A CORRECT ALGORITHM.
+
+GENERATIVE AI IS OPTIONAL AND MUST NOT BE REQUIRED FOR STANDARD HAIR COLOR.
+
+CLOUD IS FALLBACK/HD INFRASTRUCTURE, NOT THE CORE HAIR COLOR ENGINE.
+
+ORIGINAL IMAGE IS GROUND TRUTH FOR ALL UNREQUESTED REGIONS.
+
+USER REQUEST IS GROUND TRUTH FOR THE REQUESTED CHANGE.
+
+THE ENGINE MUST FIRST BE CORRECT, THEN NATURAL, THEN FAST.
+========================================================================

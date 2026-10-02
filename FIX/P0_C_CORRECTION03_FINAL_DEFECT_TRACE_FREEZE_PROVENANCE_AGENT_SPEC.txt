@@ -1,0 +1,486 @@
+PHASE P0-C — CORRECTION 03
+FINAL DEFECT-EVIDENCE TRACE & FREEZE-PROVENANCE CLOSURE
+MASTER AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+TASK TYPE: FINAL DOCUMENTARY / EVIDENCE CLOSURE
+OWNER: Agent 0 — CEO / ORCHESTRATOR
+PRIOR AGENT VERDICT: P0_FINAL_PASS_RECONFIRMED
+INDEPENDENT AUDIT STATUS: HOLD — 2 EVIDENCE CONSISTENCY ITEMS REMAIN
+P0 ALGORITHM STATUS: DO NOT MODIFY
+P0 PRODUCTION STATUS: DO NOT MODIFY
+P1–P6 STATUS: STRICTLY BLOCKED
+
+MISSION
+------
+Correction 03 chỉ được dùng để đóng 2 vấn đề evidence/traceability cuối cùng:
+
+A. DEFECT-EVIDENCE TRACE:
+   Một số sample được gán cho G1/G2/G3 trong Correction 02 không khớp với
+   semantic identity đã dùng trong các báo cáo canonical trước đó.
+
+B. FREEZE-PROVENANCE:
+   CMakeLists.txt xuất hiện như production file thứ 7 trong Correction 02,
+   nhưng Correction 01 freeze registry trước đó chỉ niêm phong 6 production
+   source files. Phải xác định chính xác CMakeLists.txt có thuộc P0-C integration
+   hay không, thay đổi ở commit/task nào, và nguồn hash hiện tại/pre-P0C.
+
+KHÔNG sửa thuật toán.
+KHÔNG tune threshold.
+KHÔNG sửa model.
+KHÔNG mở P1–P6.
+KHÔNG tạo thêm heuristic.
+KHÔNG thay đổi acceptance gate.
+
+======================================================================
+1. SOURCE-OF-TRUTH PRIORITY
+======================================================================
+
+Ưu tiên evidence:
+
+1. Frozen raw dataset manifest / sample metadata.
+2. Raw regression CSV.
+3. Historical accepted reports before Correction 01/02.
+4. Git history / diff / hashes.
+5. Correction 01/02 reports.
+6. Executive summary.
+
+Nếu report mâu thuẫn raw sample identity:
+RAW SAMPLE METADATA thắng.
+
+Nếu Correction 02 gán một sample sai loại:
+sửa trace/documentation, không sửa raw metrics.
+
+======================================================================
+2. CANONICAL HISTORICAL DEFECT TAXONOMY
+======================================================================
+
+Canonical IDs:
+
+G1 = BLONDE_LIGHT_HIGHLIGHT_LOSS
+G2 = HAIR_HAT_CLASS18_CONFUSION
+G3 = EAR_OCCLUSION_STRAND_LOSS
+R1 = HIGH_EXPOSURE_SKIN_LEAKAGE
+R2 = SCREENSHOT_UI_GEOMETRY_LEAKAGE
+H1 = HAIRLINE_CLAMPING
+N1 = NECK_COLLAR_BOUNDARY
+
+Không được đổi nghĩa các ID trên.
+
+======================================================================
+3. ISSUE A — DEFECT-EVIDENCE SAMPLE TRACE AUDIT
+======================================================================
+
+Correction 02 hiện gán ví dụ:
+
+- G2 có `edge_08`, `robustness_02`
+- G3 có `holdout_07`
+
+Nhưng historical canonical reports trước đó đã dùng:
+- `edge_08` như multi-person case;
+- `robustness_01`–`robustness_03` như UI/screenshot robustness cases;
+- G2 Hair/Hat từng được verify bằng headwear/cap cases;
+- G3 Ear Occlusion từng được verify bằng ear-contact cases.
+
+Không được giả định sample type theo tên.
+Phải trace metadata gốc.
+
+======================================================================
+4. REQUIRED SAMPLE IDENTITY TABLE
+======================================================================
+
+Tạo:
+
+P0_C_CORRECTION03_SAMPLE_IDENTITY_CANONICAL.csv
+
+Columns:
+
+sample_id
+dataset_partition
+canonical_scenario
+contains_hair
+contains_hat_or_headwear
+contains_visible_ear_occlusion
+is_screenshot_or_ui
+is_multi_person
+is_high_exposure
+source_metadata
+source_artifact
+sha256_if_available
+notes.
+
+Ít nhất phải audit toàn bộ sample được dùng cho:
+
+G1
+G2
+G3
+R1
+R2
+H1
+N1.
+
+======================================================================
+5. DEFECT-TO-SAMPLE EVIDENCE MATRIX
+======================================================================
+
+Tạo:
+
+P0_C_CORRECTION03_DEFECT_EVIDENCE_MATRIX.csv
+
+Columns:
+
+defect_id
+canonical_meaning
+sample_id
+sample_scenario
+metric_name
+metric_value
+gate
+relevant_to_defect
+evidence_source
+status
+notes.
+
+Rule:
+
+- G2 chỉ dùng sample thực sự có hat/headwear/class18 confusion evidence.
+- G3 chỉ dùng sample thực sự có visible ear/ear-occlusion relevance.
+- R2 chỉ dùng screenshot/UI/geometry cases.
+- Multi-person case không được dùng làm primary hat evidence nếu metadata không có hat.
+- Screenshot case không được dùng làm primary hat evidence nếu không có headwear.
+
+======================================================================
+6. REQUIRED CANONICAL DEFECT EVIDENCE
+======================================================================
+
+G1 — BLONDE/LIGHT/HIGHLIGHT:
+Use only known light/blonde/highlight cases confirmed by metadata.
+
+G2 — HAIR/HAT:
+Use headwear/cap cases confirmed by metadata.
+Expected historical candidates may include cases such as holdout_11,
+robustness_06/robustness_11 or equivalent ONLY IF raw metadata confirms.
+
+G3 — EAR OCCLUSION:
+Use visible ear-contact/ear-occlusion cases confirmed by metadata.
+Expected historical candidates may include edge_07 or equivalent ONLY IF metadata confirms.
+
+R1 — HIGH EXPOSURE:
+Use sample_26/high-exposure cases if metadata confirms.
+
+R2 — UI/SCREENSHOT:
+Use edge_05, edge_06, robustness screenshot cases if metadata confirms.
+
+No sample shall be assigned based purely on previous prose.
+
+======================================================================
+7. CORRECT HISTORICAL TRACE ONLY
+======================================================================
+
+If Correction 02 mapped the wrong sample to a defect:
+
+Allowed:
+- fix defect trace CSV;
+- fix report text;
+- fix tester/reviewer trace statements;
+- regenerate manifest/hash.
+
+Forbidden:
+- alter raw metric;
+- alter sample file;
+- alter algorithm;
+- re-label raw sample content without source metadata.
+
+======================================================================
+8. ISSUE B — CMakeLists.txt FREEZE PROVENANCE
+======================================================================
+
+Correction 02 reports 7 production files including:
+
+lib-core-graphics/src/main/cpp/CMakeLists.txt
+
+But prior Correction 01 freeze registry listed production source files without
+CMakeLists.txt.
+
+Agent must determine:
+
+1. Was CMakeLists.txt changed by P0-C?
+2. Exact commit/task that changed it.
+3. What exact lines changed?
+4. Why was it omitted from Correction 01 freeze?
+5. Is hash 7331c185... the current P0-C-integrated canonical value?
+6. Is pre-P0C hash 5185508... reproducible from PRE_P0C_SHA?
+7. Does rollback truly require CMakeLists.txt?
+8. Are any OTHER P0-C production/build files still missing from freeze?
+
+======================================================================
+9. REQUIRED GIT PROVENANCE AUDIT
+======================================================================
+
+Run/record:
+
+git diff --name-status PRE_P0C_SHA..CURRENT_STATE
+git diff PRE_P0C_SHA..CURRENT_STATE -- lib-core-graphics/src/main/cpp/CMakeLists.txt
+git log --follow -- lib-core-graphics/src/main/cpp/CMakeLists.txt
+git ls-tree PRE_P0C_SHA -- <path>
+git hash-object <current file>
+
+Create:
+
+P0_C_CORRECTION03_CMAKE_PROVENANCE.md
+
+Must state:
+
+PRE_P0C_SHA
+current commit/tree
+pre hash
+current hash
+diff lines
+task/commit introducing change
+reason for change
+whether required for P0-C build
+whether Correction 01 omission was evidence omission or non-P0 change.
+
+======================================================================
+10. COMPLETE P0-C FILESET DISCOVERY
+======================================================================
+
+Re-run file discovery from Git, not from hand-written lists.
+
+Create:
+
+P0_C_CORRECTION03_COMPLETE_PRODUCTION_FILESET.csv
+
+Columns:
+
+relative_path
+change_type
+introduced_by_p0c
+modified_by_p0c
+required_for_p0c
+pre_p0c_exists
+pre_p0c_hash
+current_hash
+present_in_correction01_freeze
+present_in_correction02_freeze
+action.
+
+PASS requires:
+- no undiscovered P0-C production/build file remains.
+
+======================================================================
+11. CMAKE DECISION
+======================================================================
+
+CASE A:
+CMakeLists.txt was modified by P0-C and required by P0-C:
+- Keep it in Correction 03 canonical production freeze.
+- Record Correction 01 omission as evidence-package incompleteness.
+- Do NOT change current CMake content if correct.
+- Re-freeze complete file set.
+
+CASE B:
+CMakeLists.txt changed after PRE_P0C but not by P0-C:
+- Remove it from P0-C production ownership.
+- Keep rollback procedure scoped to actual P0-C files.
+- Document external ownership.
+
+CASE C:
+Cannot establish provenance:
+STATUS = P0_C_CORRECTION03_EVIDENCE_CONTRADICTION
+STOP.
+
+======================================================================
+12. ROLLBACK EVIDENCE RECONCILIATION
+======================================================================
+
+Do NOT rerun full rollback unless provenance findings invalidate Correction 02.
+
+If file-set changes:
+- update rollback file set;
+- rerun rollback hash matrix for affected set;
+- rerun clean build rollback/current;
+- regenerate rollback evidence.
+
+If file-set does not change:
+- independently verify existing Correction 02 hash matrix and build logs.
+
+======================================================================
+13. NO PRODUCTION MODIFICATION RULE
+======================================================================
+
+Correction 03 should normally be docs/evidence only.
+
+If any production source/build file must change:
+STATUS = P0_C_CORRECTION03_TECHNICAL_CHANGE_REQUIRED
+STOP.
+
+Do not self-authorize code changes.
+
+======================================================================
+14. TESTER GATE
+======================================================================
+
+Independent Tester verifies:
+
+[ ] Sample identity table derived from metadata/raw evidence.
+[ ] G1/G2/G3/R1/R2/H1/N1 mappings are semantically correct.
+[ ] No wrong sample scenario remains attached to a defect.
+[ ] CMake provenance proven.
+[ ] Complete P0-C production/build file set proven.
+[ ] Rollback file set remains valid or has been revalidated.
+[ ] No algorithm/code change.
+[ ] P1–P6 still blocked.
+
+Output:
+P0_C_CORRECTION03_TEST_REPORT.md
+
+Allowed:
+TESTER_PASS
+TESTER_NEEDS_FIX.
+
+======================================================================
+15. REVIEWER GATE
+======================================================================
+
+Independent Reviewer verifies:
+
+- defect taxonomy continuity across P0 history;
+- sample scenario correctness;
+- Git provenance;
+- freeze completeness;
+- rollback scope;
+- no report overclaim;
+- no code modification.
+
+Output:
+P0_C_CORRECTION03_REVIEW_REPORT.md
+
+Allowed:
+REVIEWER_PASS
+REVIEWER_NEEDS_FIX.
+
+======================================================================
+16. REQUIRED ARTIFACTS
+======================================================================
+
+Create:
+
+scratch/p0_c_integration/P0_C_CORRECTION_03/
+
+P0_C_CORRECTION03_MASTER_REPORT.md
+P0_C_CORRECTION03_SAMPLE_IDENTITY_CANONICAL.csv
+P0_C_CORRECTION03_DEFECT_EVIDENCE_MATRIX.csv
+P0_C_CORRECTION03_CMAKE_PROVENANCE.md
+P0_C_CORRECTION03_COMPLETE_PRODUCTION_FILESET.csv
+P0_C_CORRECTION03_TEST_REPORT.md
+P0_C_CORRECTION03_REVIEW_REPORT.md
+P0_C_CORRECTION03_MANIFEST.csv
+P0_C_CORRECTION03_FREEZE.sha256
+P0_C_CORRECTION03_FREEZE_RECORD.md
+
+Include corrected Correction 02 docs only if changed.
+
+======================================================================
+17. FINAL HARD GATES
+======================================================================
+
+All must PASS:
+
+[ ] Canonical sample identity source established.
+[ ] edge_08 scenario verified correctly.
+[ ] robustness_02 scenario verified correctly.
+[ ] holdout_07 scenario verified correctly.
+[ ] G1 evidence uses correct light/blonde samples.
+[ ] G2 evidence uses actual headwear/class18 samples.
+[ ] G3 evidence uses actual ear-occlusion samples.
+[ ] R1 evidence uses high-exposure samples.
+[ ] R2 evidence uses screenshot/UI samples.
+[ ] H1/N1 remain separate IDs.
+[ ] No raw metrics altered.
+[ ] CMake provenance established.
+[ ] Complete P0-C file set discovered from Git.
+[ ] No missing P0-C production/build file.
+[ ] Rollback file set consistent with discovered ownership.
+[ ] No production algorithm/source change.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] New manifest generated.
+[ ] SHA-256 freeze verified.
+[ ] P1–P6 remain blocked.
+
+======================================================================
+18. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_FINAL_PASS_RECONFIRMED
+
+or
+
+P0_C_CORRECTION03_NEEDS_FIX
+
+or
+
+P0_C_CORRECTION03_EVIDENCE_CONTRADICTION
+
+or
+
+P0_C_CORRECTION03_TECHNICAL_CHANGE_REQUIRED.
+
+======================================================================
+19. PASS MEANING
+======================================================================
+
+P0_FINAL_PASS_RECONFIRMED may be issued only if:
+
+- defect IDs are tied to semantically correct samples;
+- freeze ownership/file set is complete;
+- CMake provenance is resolved;
+- rollback scope is proven;
+- no code change occurred;
+- Tester and Reviewer pass;
+- Correction 03 package is frozen.
+
+After PASS:
+P0 = CLOSED.
+STOP.
+Do NOT auto-start P1.
+
+======================================================================
+20. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+01. Preserve Correction 01 and 02 unchanged.
+02. Read raw sample metadata / dataset manifest.
+03. Build canonical sample identity CSV.
+04. Audit G1/G2/G3/R1/R2/H1/N1 mappings.
+05. Correct wrong defect-to-sample mappings.
+06. Audit CMake Git provenance.
+07. Re-discover complete P0-C file set from Git.
+08. Reconcile rollback ownership/scope.
+09. Rerun rollback only if file-set changes.
+10. Verify no production modification.
+11. Tester gate.
+12. Reviewer gate.
+13. Generate Correction 03 manifest.
+14. Generate SHA-256 freeze.
+15. Produce master report.
+16. Return exactly one allowed verdict.
+17. STOP.
+
+NO P1.
+NO P2.
+NO P3.
+NO P4.
+NO P5.
+NO P6.
+NO ALGORITHM TUNING.
+NO PRODUCTION CHANGE WITHOUT NEW AUTHORIZATION.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.
+
+======================================================================
+END OF P0-C CORRECTION 03 MASTER SPEC
+======================================================================

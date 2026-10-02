@@ -1,0 +1,1141 @@
+PHASE P0-B.2R — ROBUSTNESS & PERFORMANCE CLOSURE
+MASTER AGENT EXECUTION SPECIFICATION
+============================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+DOCUMENT TYPE: Mandatory Autonomous Agent Execution Order
+PHASE: P0-B.2R
+STATUS: APPROVED TO EXECUTE
+PREVIOUS DECISION: P0_B2_NEEDS_FIX
+P0 OVERALL: NOT PASS
+PRODUCTION INTEGRATION: BLOCKED
+P1 HAIR ORIENTATION: BLOCKED
+NEW MODEL: BLOCKED
+CLOUD / GENERATIVE: BLOCKED
+SCOPE: P0 HAIR MATTING — ROBUSTNESS + PERFORMANCE CLOSURE ONLY
+REFERENCE DEVICE: Samsung Galaxy SM-A075F / Helio G99 / Android 14 / ARM64-v8a
+PRINCIPLES: EVIDENCE-BASED / LOCAL-FIRST / ROI-FIRST / NON-DESTRUCTIVE
+
+======================================================================
+0. MISSION
+======================================================================
+
+P0-B.2R là vòng sửa hẹp sau P0-B.2.
+
+KHÔNG được tiếp tục vá pipeline bằng heuristic không giới hạn.
+KHÔNG redesign toàn bộ P0.
+KHÔNG chuyển sang P1.
+KHÔNG production integration.
+
+Chỉ xử lý 3 nhiệm vụ:
+
+R1 — HIGH-EXPOSURE HAIR RECOVERY
+     Đóng failure sample_26: Hair Core 73.3% < 75%.
+
+R2 — SCREENSHOT SEMANTIC GEOMETRY
+     Kiểm chứng và sửa nguyên nhân geometry/aspect-ratio trước khi thêm
+     heuristic UI/background mới.
+
+R3 — PERFORMANCE CLOSURE
+     Giảm chi phí LowContrastHairResolver/P0 Matting bằng ROI/downsample
+     nhưng không làm giảm chất lượng.
+
+======================================================================
+1. VERIFIED BASELINE FROM P0-B.2
+======================================================================
+
+Dataset:
+30 Regression
+12 Existing Holdout
+8 New Edge Holdout
+TOTAL = 50.
+
+Result:
+PASS = 46/50 = 92.0%.
+FAIL = 4/50 = 8.0%.
+
+F1 Low-Contrast Dark Hair:
+sample_05:
+P0-B.1 Core = 74.2%
+P0-B.2 Core = 84.3%
+Background Leakage = 0.280%
+=> F1 CLOSED.
+
+Remaining failures:
+
+A. sample_26
+Hair Core = 73.3%
+Required >= 75%.
+Reported context: high exposure / weak hair-vs-forehead contrast.
+
+B. holdout_07
+UI Leakage = 0.000%
+Background Leakage = 16.415%.
+
+C. edge_05
+UI Leakage = 0.000%
+Background Leakage = 15.872%.
+
+D. edge_06
+UI Leakage = 0.000%
+Background Leakage = 12.491%.
+
+Reported hypothesis:
+screenshot aspect ratio 1280x576 = 2.22:1 is distorted when fed into
+BiSeNet 512x512 and complex background may be misclassified as Class 18.
+
+THIS IS A HYPOTHESIS TO TEST, NOT A PROVEN ROOT CAUSE.
+
+======================================================================
+2. VERIFIED PERFORMANCE BASELINE
+======================================================================
+
+Physical device:
+Samsung Galaxy SM-A075F.
+
+Resolution:
+960x1280 for native benchmark.
+
+Measured P50:
+
+BiSeNet                         239.33 ms
+Adaptive Hair Appearance         1.00 ms
+Hair/Hat Resolver                1.52 ms
+LowContrastHairResolver         53.49 ms
+SubjectGraph                     1.21 ms
+ImageContentGuard                0.64 ms
+Trimap                           3.73 ms
+Guided Filter                   45.55 ms
+Color Affinity                   4.63 ms
+Semantic Protection              1.34 ms
+Ear Resolver                     1.09 ms
+Hairline Refinement              0.85 ms
+
+P0-B.2 Matting P50             114.94 ms
+P0-B.2 Matting P95             177.07 ms
+P0-B.2 Matting P99             272.84 ms
+
+Full Pipeline P50              355.65 ms
+Peak RAM                       320.70 MB
+
+Performance Gate from P0-B.2:
+P0 Matting P50 <= 85 ms.
+
+The previous report estimated that 1/2-resolution texture processing
+might reduce LowContrastHairResolver cost.
+
+That estimate is NOT MEASURED.
+
+P0-B.2R must benchmark it.
+
+======================================================================
+3. SCOPE FREEZE
+======================================================================
+
+Freeze unless strictly required by R1/R2/R3:
+
+AdaptiveHairAppearance
+HairHatResolver
+EarOcclusionResolver
+SemanticTrimapGenerator
+ImageContentGuard behavior already proven
+HairlineRefinement
+Rose Gold / Hair Dye Engine
+Hair Material
+Hair Texture
+Hair Specular
+Production JNI/API behavior.
+
+DO NOT:
+- add new AI model;
+- replace BiSeNet;
+- download ONNX/NCNN/checkpoint;
+- add cloud;
+- add generative;
+- start P1;
+- implement Hair Flow;
+- redesign dye color;
+- alter hairstyle.
+
+======================================================================
+4. R1 — HIGH-EXPOSURE HAIR RECOVERY
+======================================================================
+
+TARGET:
+sample_26.
+
+Baseline:
+Hair Core = 73.3%.
+Gate >= 75%.
+
+The Agent must first reproduce the failure and prove where alpha/core is
+lost.
+
+Required diagnostics:
+
+01_original.png
+02_semantic_overlay.png
+03_hair_seed.png
+04_candidate_probability.png
+05_skin_protection.png
+06_connectivity_map.png
+07_texture_map.png
+08_alpha_p0_b2.png
+09_failure_core_map.png
+10_forehead_hairline_crop.png
+
+Analyze separately:
+
+- overexposed hair;
+- forehead skin;
+- hair/skin boundary;
+- hair core;
+- uncertain region.
+
+======================================================================
+5. R1 — PROHIBITED FIXES
+======================================================================
+
+CẤM:
+
+- threshold riêng sample_26;
+- filename condition;
+- “if exposure high then alpha += X”;
+- global dilation;
+- relaxing skin protection globally;
+- reducing semantic protection globally;
+- painting entire scalp as hair;
+- using fixed brightness threshold.
+
+======================================================================
+6. R1 — REQUIRED APPROACH
+======================================================================
+
+Use existing evidence framework.
+
+Add exposure robustness only if evidence proves it is necessary.
+
+Candidate evidence:
+
+P_exposure_hair =
+    w_seed * SeedSimilarity
+  + w_conn * Connectivity
+  + w_texture * TextureSimilarity
+  + w_edge * EdgeContinuity
+  + w_semantic * SemanticConfidence
+  + w_localContrast * LocalContrastStructure
+  - w_skin * SkinConfidence
+  - w_bg * BackgroundPenalty;
+
+Important:
+
+Brightness/exposure is contextual metadata, NOT Hair proof.
+
+A bright pixel must never automatically become hair.
+
+======================================================================
+7. LOCAL CONTRAST STRUCTURE
+======================================================================
+
+When absolute hair-vs-skin color difference collapses due to exposure,
+compare local structure.
+
+Possible lightweight evidence:
+
+- local gradient consistency;
+- local variance;
+- local Laplacian residual;
+- relation to confirmed hair seed;
+- geodesic connection to confirmed core;
+- boundary continuity.
+
+Do not implement Hair Orientation.
+
+======================================================================
+8. R1 CONFIDENCE POLICY
+======================================================================
+
+HIGH confidence:
+allow recovery.
+
+MEDIUM confidence:
+soft alpha only.
+
+LOW confidence:
+preserve current conservative result.
+
+If candidate overlaps strong skin evidence:
+do not recover unless independent Hair evidence is sufficiently strong.
+
+======================================================================
+9. R1 ACCEPTANCE
+======================================================================
+
+sample_26:
+
+Hair Core >= 75%.
+
+AND:
+
+Forehead Leakage <= accepted baseline.
+Face Leakage <= accepted baseline.
+Hairline no material regression.
+No hairstyle expansion.
+No fake fringe.
+No scalp painting.
+
+Also rerun:
+sample_04
+sample_09
+sample_11
+sample_25
+sample_26
+holdout_09
+holdout_10
+holdout_12.
+
+======================================================================
+10. R2 — SCREENSHOT SEMANTIC GEOMETRY
+======================================================================
+
+Current failures:
+
+holdout_07 BG Leak = 16.415%.
+edge_05 BG Leak = 15.872%.
+edge_06 BG Leak = 12.491%.
+
+UI flat panels/icons have already been rejected.
+
+Remaining problem:
+complex/non-flat background inside screenshot is being included.
+
+Before adding another heuristic, test whether semantic preprocessing
+geometry is responsible.
+
+======================================================================
+11. R2 — PREPROCESSING AUDIT
+======================================================================
+
+Audit exact current BiSeNet preprocessing.
+
+Report:
+
+INPUT ORIGINAL W/H
+TARGET W/H
+RESIZE MODE
+ASPECT RATIO PRESERVED? YES/NO
+LETTERBOX? YES/NO
+CROP? YES/NO
+INTERPOLATION
+PADDING VALUE
+MASK REMAP METHOD
+COORDINATE TRANSFORM
+POSTPROCESS RESIZE METHOD.
+
+Trace:
+FILE
+CLASS
+FUNCTION
+LINE/RANGE.
+
+If any item cannot be proven:
+NOT FOUND.
+
+======================================================================
+12. R2 — REQUIRED A/B/C GEOMETRY EXPERIMENT
+======================================================================
+
+Run identical BiSeNet/model/weights with ONLY preprocessing geometry
+changed.
+
+MODE A — CURRENT
+Current production/prototype preprocessing.
+
+MODE B — ASPECT-PRESERVING LETTERBOX
+Original
+ -> scale preserving aspect ratio
+ -> pad to 512x512
+ -> BiSeNet
+ -> remove padding from semantic output
+ -> inverse transform to original coordinates.
+
+MODE C — SUBJECT ROI
+Original
+ -> detect SubjectGraph bounding region
+ -> add documented context margin
+ -> preserve aspect ratio
+ -> map to 512x512
+ -> BiSeNet
+ -> inverse-map ROI semantic result
+ -> merge conservatively with full-frame semantic information.
+
+Do not change model weights.
+
+======================================================================
+13. GEOMETRY TRANSFORM CONTRACT
+======================================================================
+
+For Letterbox:
+
+scale = min(512/W, 512/H)
+
+newW = round(W * scale)
+newH = round(H * scale)
+
+padX = (512 - newW) / 2
+padY = (512 - newH) / 2
+
+Store:
+
+struct SemanticTransform {
+    float scale;
+    int resizedWidth;
+    int resizedHeight;
+    int padLeft;
+    int padTop;
+    int inputWidth;
+    int inputHeight;
+};
+
+Inverse mapping must be deterministic.
+
+No semantic coordinate may be mapped by guessed scale factors.
+
+======================================================================
+14. SUBJECT ROI CONTRACT
+======================================================================
+
+ROI must include:
+- face/head;
+- all connected plausible hair;
+- configurable context margin.
+
+Do not crop hair touching border.
+
+Do not crop long hair extending below face.
+
+Use subject geometry as seed, then expand ROI conservatively.
+
+Multi-person:
+each subject may require ROI or combined subject ROI.
+
+Do not silently drop second person.
+
+======================================================================
+15. R2 EXPERIMENT METRICS
+======================================================================
+
+For each Mode A/B/C report:
+
+Class17 pixels
+Class18 pixels
+Hair Candidate pixels
+Hair Core Preservation
+Background Leakage
+UI Leakage
+Face Leakage
+Border Hair Retention
+Secondary Subject Retention
+Runtime.
+
+Mandatory samples:
+
+holdout_07
+edge_05
+edge_06
+holdout_03
+edge_07
+edge_08
+holdout_11
+sample_20.
+
+======================================================================
+16. R2 DECISION RULE
+======================================================================
+
+Select geometry mode only if:
+
+- reduces screenshot background leakage;
+- does not regress ordinary portraits;
+- does not delete border-touch hair;
+- does not break multi-person;
+- does not turn cap into hair;
+- does not create bald false positive.
+
+Do NOT select based on one screenshot.
+
+======================================================================
+17. IF GEOMETRY FIX FAILS
+======================================================================
+
+If A/B/C prove that preprocessing geometry is NOT the main cause:
+
+STOP R2 expansion.
+
+Do not add unlimited UI heuristics.
+
+Record:
+
+SEMANTIC_ANCHOR_LIMITATION_CONFIRMED
+
+and provide evidence.
+
+This is a possible trigger for:
+P0_CLASSICAL_APPROACH_INSUFFICIENT
+or future P0-D MODEL REPLACEMENT EVALUATION.
+
+Do not download a model automatically.
+
+======================================================================
+18. R3 — PERFORMANCE CLOSURE
+======================================================================
+
+Current primary new cost:
+
+LowContrastHairResolver P50 = 53.49 ms.
+
+Goal:
+reduce cost without quality regression.
+
+Test implementations separately.
+
+======================================================================
+19. R3 VARIANT MATRIX
+======================================================================
+
+VARIANT P0:
+Current full-resolution implementation.
+Baseline only.
+
+VARIANT P1:
+Texture-energy computation at 1/2 linear resolution.
+
+VARIANT P2:
+Texture-energy only inside Hair Candidate ROI.
+
+VARIANT P3:
+ROI + 1/2 linear resolution.
+
+OPTIONAL P4:
+ROI + adaptive resolution based on ROI size.
+
+Do not combine all changes before individual measurement.
+
+======================================================================
+20. ROI-FIRST PERFORMANCE DESIGN
+======================================================================
+
+Do not run expensive texture processing over pixels known to be irrelevant.
+
+Construct ROI from:
+- confirmed hair core;
+- unknown boundary;
+- bounded candidate expansion;
+- hair-over-ear candidate;
+- low-contrast candidate.
+
+ROI must be padded by documented margin.
+
+Outside ROI:
+retain existing semantic/protection result.
+
+======================================================================
+21. DOWNSAMPLE SAFETY
+======================================================================
+
+For downsampled texture:
+
+- preserve coordinate transform;
+- compute evidence low-res;
+- upsample confidence/evidence;
+- perform final alpha decision at original resolution;
+- do not directly use low-res binary mask as final matte.
+
+Hairline/flyaway final alpha remains high-resolution.
+
+======================================================================
+22. PERFORMANCE ACCEPTANCE
+======================================================================
+
+Primary gate:
+
+P0-B.2R Matting P50 <= 85 ms
+
+on:
+Samsung Galaxy SM-A075F
+same resolution
+same build class
+same thread policy
+comparable thermal state.
+
+Also report:
+P95
+P99.
+
+No hidden average.
+
+Quality has priority over speed.
+
+A fast variant that breaks quality is REJECTED.
+
+======================================================================
+23. PERFORMANCE STABILITY
+======================================================================
+
+Report:
+warmup iterations
+measured iterations
+CPU thread count
+CPU utilization
+Peak RSS/VmHWM
+thermal state
+battery temperature if available
+compiler
+optimization flags
+ABI
+build type.
+
+Do not call an estimated runtime “measured”.
+
+======================================================================
+24. REQUIRED REGRESSION AFTER ANY FIX
+======================================================================
+
+After final R1/R2/R3 candidate is selected:
+
+RUN ALL 50 EXISTING SAMPLES AGAIN.
+
+Not only failures.
+
+Required:
+30 Regression
+12 Existing Holdout
+8 Edge Holdout.
+
+All previous hard-negative cases remain mandatory.
+
+======================================================================
+25. NEW ROBUSTNESS HOLDOUT
+======================================================================
+
+Add >= 12 NEW untouched samples.
+
+Minimum:
+
+2 high-exposure portraits
+2 low-contrast hair/skin cases
+3 portrait screenshots with complex/non-flat background
+1 screenshot no face
+1 border-touch hair
+1 multi-person
+1 hat/cap
+1 bald/no-hair.
+
+These samples must not be used for tuning.
+
+If used for tuning after failure:
+change role and add replacement unseen holdout.
+
+======================================================================
+26. HARD NEGATIVE TESTS
+======================================================================
+
+Mandatory:
+
+BALD
+CAP
+HAT
+HOOD
+HEAD COVERING
+HAIR ACCESSORY
+UI WITHOUT PERSON
+UI WITH PERSON
+DARK BACKGROUND
+SKIN SIMILAR TO HAIR
+TEXT/ICON NEAR HEAD.
+
+No negative test may be removed because it fails.
+
+======================================================================
+27. REQUIRED ARTIFACTS — GEOMETRY
+======================================================================
+
+For each screenshot failure export:
+
+01_original.png
+02_mode_A_input.png
+03_mode_A_semantic.png
+04_mode_A_alpha.png
+05_mode_B_letterbox_input.png
+06_mode_B_semantic.png
+07_mode_B_inverse_mapped.png
+08_mode_B_alpha.png
+09_mode_C_roi.png
+10_mode_C_semantic.png
+11_mode_C_inverse_mapped.png
+12_mode_C_alpha.png
+13_A_B_C_composite.png
+14_class18_difference.png
+15_background_leak_difference.png.
+
+======================================================================
+28. REQUIRED ARTIFACTS — PERFORMANCE
+======================================================================
+
+For performance variants:
+
+P0_current_alpha.png
+P1_halfres_alpha.png
+P2_roi_alpha.png
+P3_roi_halfres_alpha.png
+
+Difference:
+P0_vs_P1_diff.png
+P0_vs_P2_diff.png
+P0_vs_P3_diff.png.
+
+Hairline crops and flyaway crops mandatory.
+
+======================================================================
+29. QUALITY METRICS
+======================================================================
+
+Report:
+
+Hair Core Preservation
+Hairline Naturalness Proxy
+Fine Hair Recall Proxy
+Flyaway Recall Proxy
+Face Leakage
+Forehead Leakage
+Ear Leakage
+Clothes Leakage
+Background Leakage
+UI Leakage
+Hat/Accessory False Positive
+Bald False Positive
+Border Hair Retention
+Secondary Subject Retention
+Hairstyle Stability.
+
+If no manually labeled alpha:
+NO GROUND-TRUTH ALPHA.
+
+======================================================================
+30. PASS POLICY FOR 50 EXISTING SAMPLES
+======================================================================
+
+P0-B.2R may not PASS with known hard-gate failure in the existing
+50-sample suite.
+
+Required:
+
+50 / 50 existing samples pass applicable hard gates.
+
+Do not hide a failure behind average pass rate.
+
+======================================================================
+31. NEW HOLDOUT POLICY
+======================================================================
+
+New robustness holdout must also pass applicable hard gates.
+
+Any critical:
+- fake hair;
+- hat recolor;
+- face/background severe leakage;
+- missing real hair;
+- secondary person deletion;
+- border hair deletion
+
+=> FAIL.
+
+======================================================================
+32. ORIGINAL-VS-EDITED VALIDATION
+======================================================================
+
+For each final candidate:
+
+ORIGINAL_IMAGE
+EDITED_IMAGE
+USER_REQUEST
+TARGET_REGION
+EDIT_PARAMETERS.
+
+Original is ground truth for all unrequested regions.
+
+Validate:
+- only intended hair color changes;
+- face unchanged;
+- eyes/brows unchanged;
+- skin unchanged;
+- clothes unchanged;
+- background unchanged;
+- UI unchanged;
+- accessory unchanged;
+- hairstyle unchanged.
+
+Hard Fail:
+unrequested structural/content modification.
+
+======================================================================
+33. SOURCE TRACEABILITY
+======================================================================
+
+Every AS-IS claim:
+FILE
+CLASS
+FUNCTION
+LINE/RANGE.
+
+Every code change:
+OLD BEHAVIOR
+NEW BEHAVIOR
+REASON
+TEST
+RESULT.
+
+Every metric:
+sample
+dataset role
+method
+version.
+
+Every benchmark:
+device
+build
+resolution
+threads
+iterations.
+
+Unknown:
+NOT FOUND.
+
+======================================================================
+34. UNIT TESTS
+======================================================================
+
+SemanticTransform:
+- landscape
+- portrait
+- square
+- extreme aspect ratio
+- inverse mapping.
+
+Subject ROI:
+- long hair
+- border-touch
+- multi-person
+- no face.
+
+Exposure recovery:
+- high exposure hair
+- bright skin
+- bright background
+- blonde hair.
+
+Performance:
+- ROI empty
+- ROI full-frame
+- tiny ROI
+- border ROI.
+
+======================================================================
+35. REQUIRED DIRECTORY
+======================================================================
+
+scratch/p0_b2r_validation/
+
+P0_B2R_REPORT.md
+P0_B2R_METRICS.csv
+
+geometry_ab/
+  holdout_07/
+  edge_05/
+  edge_06/
+
+exposure/
+  sample_26/
+
+performance/
+  P0/
+  P1/
+  P2/
+  P3/
+
+regression_50/
+robustness_holdout/
+negative_tests/
+border_tests/
+multi_person/
+failure_cases/
+blind_review/
+
+device_benchmark/
+  P0_B2R_DEVICE_BENCHMARK.csv
+
+source_trace/
+  SOURCE_TRACE.md
+
+config/
+  P0_B2R_CONFIG.md
+
+======================================================================
+36. BLIND REVIEW
+======================================================================
+
+Do not label algorithm before review.
+
+For geometry:
+VERSION A
+VERSION B
+VERSION C.
+
+For performance:
+compare selected optimized matte vs full-resolution reference.
+
+Review:
+Hair completeness
+Hairline
+Fine hair
+Flyaway
+Background leakage
+UI leakage
+Naturalness
+Artifacts.
+
+Reveal only after scoring.
+
+======================================================================
+37. REQUIRED REPORT STRUCTURE
+======================================================================
+
+Report must begin exactly:
+
+PHASE P0-B.2R — ROBUSTNESS & PERFORMANCE CLOSURE — EXECUTION REPORT
+
+Sections:
+
+1. EXECUTIVE STATUS
+2. VERIFIED P0-B.2 BASELINE
+3. SOURCE AUDIT
+4. R1 HIGH-EXPOSURE ROOT CAUSE
+5. R1 IMPLEMENTATION
+6. R1 BEFORE/AFTER
+7. BISEnet PREPROCESSING AUDIT
+8. GEOMETRY MODE A
+9. GEOMETRY MODE B
+10. GEOMETRY MODE C
+11. A/B/C COMPARISON
+12. R2 FINAL DECISION
+13. PERFORMANCE BASELINE
+14. PERFORMANCE P1 — HALF RES
+15. PERFORMANCE P2 — ROI
+16. PERFORMANCE P3 — ROI + HALF RES
+17. QUALITY/PERFORMANCE MATRIX
+18. SELECTED FINAL CANDIDATE
+19. 50-SAMPLE FULL REGRESSION
+20. NEW ROBUSTNESS HOLDOUT
+21. NEGATIVE TESTS
+22. BORDER-TOUCH TEST
+23. MULTI-PERSON TEST
+24. BLIND REVIEW
+25. ORIGINAL-VS-EDITED VALIDATION
+26. DEVICE BENCHMARK
+27. MEMORY/THERMAL
+28. FAILURE CASES
+29. SOURCE TRACEABILITY
+30. FINAL PHASE DECISION.
+
+======================================================================
+38. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_B2R_PASS
+
+or
+
+P0_B2R_NEEDS_FIX
+
+or
+
+P0_CLASSICAL_APPROACH_INSUFFICIENT.
+
+======================================================================
+39. P0_B2R_PASS REQUIREMENTS
+======================================================================
+
+ALL must be true:
+
+[ ] sample_26 Hair Core >= 75%.
+[ ] sample_26 no material skin/forehead regression.
+[ ] holdout_07 passes.
+[ ] edge_05 passes.
+[ ] edge_06 passes.
+[ ] screenshot complex background leakage within accepted gate.
+[ ] UI Leakage no regression.
+[ ] border-touch hair PASS.
+[ ] multi-person PASS.
+[ ] bald PASS.
+[ ] cap/hat/headwear PASS.
+[ ] bright/blonde/highlight PASS.
+[ ] ear occlusion PASS.
+[ ] fine hair PASS.
+[ ] flyaway PASS.
+[ ] 50/50 existing applicable hard gates PASS.
+[ ] >=12 new untouched robustness holdout PASS.
+[ ] P0 Matting P50 <= 85 ms.
+[ ] P95/P99 reported.
+[ ] no critical Original-vs-Edited failure.
+[ ] no production modification.
+[ ] P1 not started.
+
+======================================================================
+40. WHEN TO DECLARE CLASSICAL APPROACH INSUFFICIENT
+======================================================================
+
+Do not continue patching indefinitely.
+
+Return:
+P0_CLASSICAL_APPROACH_INSUFFICIENT
+
+if evidence shows one or more:
+
+- screenshot/background problem persists after correct geometry;
+- fixes require sample-specific heuristics;
+- fixing leakage repeatedly destroys Hair Core;
+- fixing Hair Core repeatedly creates leakage;
+- parameter set cannot generalize;
+- new holdout repeatedly exposes same architectural limitation;
+- P0 cannot meet quality/performance simultaneously;
+- classical complexity becomes unreasonable for mobile.
+
+======================================================================
+41. IF CLASSICAL APPROACH IS INSUFFICIENT
+======================================================================
+
+STOP.
+
+Do not download model.
+
+Prepare only a recommendation for future:
+
+P0-D — MODEL REPLACEMENT EVALUATION.
+
+Future P0-D must separately evaluate:
+model quality
+true matting behavior
+mobile latency
+model size
+RAM
+NCNN compatibility
+license
+checkpoint provenance
+commercial-use rights
+Android/iOS portability.
+
+======================================================================
+42. IF P0_B2R_PASS
+======================================================================
+
+STOP.
+
+Do not integrate production automatically.
+
+The next separately approved phase is:
+
+P0-C — PRODUCTION INTEGRATION.
+
+P0-C later must cover:
+feature flag
+legacy fallback
+A/B switch
+rollback
+JNI integration
+memory lifecycle
+crash safety
+production regression
+device regression.
+
+P0-B.2R does not execute P0-C.
+
+======================================================================
+43. IF P0_B2R_NEEDS_FIX
+======================================================================
+
+STOP.
+
+Do not automatically create another B-phase.
+
+Report whether remaining failure is:
+
+LOCAL_FIXABLE
+or
+ARCHITECTURAL.
+
+Provide evidence and wait for approval.
+
+======================================================================
+44. STOP CONDITION
+======================================================================
+
+After final report:
+
+STOP ALL TECHNICAL WORK.
+
+DO NOT:
+- start P1;
+- modify production;
+- integrate candidate;
+- download model;
+- add cloud;
+- add generative;
+- redesign hair dye;
+- add texture/orientation/specular;
+- optimize unrelated modules.
+
+======================================================================
+45. FINAL ENGINEERING RULES
+======================================================================
+
+CORRECTNESS BEFORE OPTIMIZATION.
+GENERALIZATION BEFORE PRODUCTION.
+MEASURE BEFORE CLAIM.
+TEST GEOMETRY BEFORE ADDING HEURISTICS.
+ROI BEFORE FULL-FRAME EXPENSIVE PROCESSING.
+DOWNSAMPLE EVIDENCE, NOT FINAL HAIR MATTE.
+PRESERVE ORIGINAL OUTSIDE USER REQUEST.
+NO KNOWN HARD FAILURE MAY BE HIDDEN BY AVERAGE.
+DO NOT PATCH CLASSICAL PIPELINE FOREVER.
+P0 MUST CLOSE BEFORE P1.
+
+======================================================================
+46. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+EXECUTE ONLY P0-B.2R:
+
+1. Freeze P0-B.2 code/config.
+2. Reproduce all 4 remaining failures.
+3. Audit exact BiSeNet preprocessing geometry.
+4. Diagnose sample_26.
+5. Implement minimal exposure robustness if evidence requires.
+6. Run screenshot geometry A/B/C.
+7. Select geometry only from measured evidence.
+8. Benchmark P0/P1/P2/P3 performance variants.
+9. Select fastest variant that preserves quality.
+10. Run all 50 existing samples.
+11. Run >=12 untouched robustness holdout.
+12. Run all negative tests.
+13. Run border-touch/multi-person tests.
+14. Run Original-vs-Edited validation.
+15. Benchmark physical Galaxy SM-A075F.
+16. Generate report/artifacts/source trace.
+17. Return exactly one allowed final decision.
+18. STOP.
+
+NO P1.
+NO PRODUCTION INTEGRATION.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.

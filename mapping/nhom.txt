@@ -1,0 +1,28 @@
+graph TD
+    subgraph TẦNG 0 - NỀN TẢNG BẮT BUỘC (P0)
+        G1[Nhóm 1: Core Graphics JNI<br>lib-core-graphics]
+        G2[Nhóm 2: Common UI & Base<br>lib-common-ui]
+    end
+    subgraph TẦNG 1 - TÍNH NĂNG ĐỘC LẬP (P1)
+        G3[Nhóm 3: On-Device AI Engine<br>lib-ai-engine]
+        G4[Nhóm 4: Photo Editor & Beauty<br>lib-photo-editor]
+    end
+    subgraph TẦNG 2 - MỞ RỘNG & KINH DOANH (P2)
+        G5[Nhóm 5: RoboNeo & LayerFlow<br>lib-roboneo]
+        G6[Nhóm 6: Video Engine & FFmpeg<br>lib-video-engine]
+        G7[Nhóm 7: VIP Paywall & Billing<br>lib-billing]
+    end
+    subgraph TẦNG 3 - TỔNG HỢP ỨNG DỤNG (P3)
+        G8[Nhóm 8: App Shell, Room DB, Navigation<br>app]
+    end
+    G1 --> G3
+    G1 --> G4
+    G2 --> G4
+    G3 --> G4
+    G1 --> G5
+    G1 --> G6
+    G2 --> G7
+    G4 --> G8
+    G5 --> G8
+    G6 --> G8
+    G7 --> G8

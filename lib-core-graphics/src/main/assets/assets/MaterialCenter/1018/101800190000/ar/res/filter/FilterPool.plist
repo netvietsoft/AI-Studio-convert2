@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<array>
+		<!-- 垂直高斯 -->
+		<dict>
+			<key>Name</key><string>Gaussian9VValue</string>
+			<key>VSPath</key><string>Shaders/MTFilter_Gaussian9VValue.vs</string>
+			<key>FSPath</key><string>Shaders/MTFilter_Gaussian9VValue.fs</string>
+			<key>Params</key>
+			<array>
+				<!-- 垂直偏移 -->
+				<dict>
+					<!-- 高斯程度 -->
+					<key>Key</key><string>singleStepOffset</string>
+					<key>DataType</key><string>float</string>
+					<key>Value</key><string>0.004</string>
+				</dict>
+				<dict>
+					<!-- 透明度 -->
+					<key>Key</key><string>Alpha</string>
+					<key>DataType</key><string>float</string>
+					<key>Value</key><string>0.3</string>
+				</dict>
+			</array>
+		</dict>
+		<!-- 水平高斯 -->
+		<dict>
+			<key>Name</key><string>Gaussian9HValue</string>
+			<key>VSPath</key><string>Shaders/MTFilter_Gaussian9HValue.vs</string>
+			<key>FSPath</key><string>Shaders/MTFilter_Gaussian9HValue.fs</string>
+			<key>Params</key>
+			<array>
+				<!-- 水平偏移 -->
+				<dict>
+					<!-- 高斯程度 -->
+					<key>Key</key><string>singleStepOffset</string>
+					<key>DataType</key><string>float</string>
+					<key>Value</key><string>0.004</string>
+				</dict>
+				<dict>
+					<!-- 透明度 -->
+					<key>Key</key><string>Alpha</string>
+					<key>DataType</key><string>float</string>
+					<key>Value</key><string>0.3</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Blur</string>
+			<key>Type</key><string>RefOperator</string>
+			<key>Operator</key>
+			<array>
+				<dict>
+					<key>FilterName</key><string>Gaussian9VValue</string>
+					<key>UseParams</key><string>0</string>
+					<key>SrcTexture</key><string>SrcTexture</string>
+					<key>DestTexture</key><string>TempTextureA</string>
+				</dict>
+				<dict>
+					<key>FilterName</key><string>Gaussian9HValue</string>
+					<key>UseParams</key><string>0</string>
+					<key>SrcTexture</key><string>TempTextureA</string>
+					<key>DestTexture</key><string>DestTexture</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</plist>

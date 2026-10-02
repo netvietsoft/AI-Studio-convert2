@@ -1,0 +1,1386 @@
+HAIR COLOR ENGINE — PHASE P1–P6
+PARALLEL DEVELOPMENT + GATED INTEGRATION
+MASTER MULTI-AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+DOCUMENT TYPE: SEPARATE WRITTEN AUTHORIZATION PACKAGE
+AUTHORITY: Chairman / Agent 0 — CEO / ORCHESTRATOR
+EXECUTION MODEL: PARALLEL DEVELOPMENT — GATED INTEGRATION
+P0 STATUS: CLOSED / FROZEN / P0_FINAL_PASS_RECONFIRMED
+P1–P6 STATUS AFTER THIS DOCUMENT: AUTHORIZED FOR CONTROLLED DEVELOPMENT
+P7 GENERATIVE HD: NOT AUTHORIZED
+CLOUD AS CORE DEPENDENCY: FORBIDDEN
+NEW P0 MODIFICATION: FORBIDDEN WITHOUT CHANGE REQUEST
+
+PRIMARY PRINCIPLE:
+P1–P6 MAY DEVELOP IN PARALLEL AFTER CONTRACT FREEZE.
+INTEGRATION / MERGE / FINAL ACCEPTANCE MUST FOLLOW THE DEPENDENCY GRAPH.
+
+======================================================================
+0. PURPOSE
+======================================================================
+
+Mục tiêu:
+
+Từ P0 Hair Matting đã production-integrated và frozen, phát triển đồng thời:
+
+P1 — Hair Orientation / Flow Field
+P2 — Flow-Aware Hair Texture
+P3 — Hair Appearance / Shadow / Highlight Preservation
+P4 — Hair Dye Material / Color Response
+P5 — Anisotropic Specular / Strand-Aligned Reflection
+P6 — GPU Production Backend / Vulkan + Metal-ready Architecture
+
+để đạt Hair Recolor Output có tính thuyết phục thị giác cao:
+
+- không tô màu phẳng;
+- bảo toàn cấu trúc tóc;
+- màu đi theo lọn/sợi;
+- giữ chiều sâu vùng tối;
+- giữ/tái tạo highlight hợp lý;
+- phản xạ chạy theo hướng tóc;
+- không lem da/nền/UI/phụ kiện;
+- non-destructive;
+- local-first;
+- device-adaptive;
+- production measurable.
+
+P7 Generative HD là OPTIONAL FUTURE PHASE và không nằm trong quyền thực thi này.
+
+======================================================================
+1. NON-NEGOTIABLE P0 FREEZE
+======================================================================
+
+P0 Hair Matting đã đóng.
+
+P1–P6 chỉ được CONSUME P0 output contract.
+
+Không được:
+- sửa P0 threshold;
+- sửa BiSeNet P0 preprocessing;
+- thay P0 model;
+- thêm P0 heuristic;
+- thay P0 metric;
+- phá P0 output semantics;
+- sửa frozen P0 source để tiện cho downstream.
+
+Nếu downstream cần thêm dữ liệu:
+- tạo downstream adapter;
+- hoặc mở formal CHANGE REQUEST;
+- không sửa P0 trực tiếp.
+
+======================================================================
+2. DEVELOPMENT WORKSPACE STANDARD
+======================================================================
+
+Tuân thủ tuyệt đối:
+
+- AGENTS.md
+- Docs/rules.md
+- Development_Workspace_Standard_V2.1_Design_Gated
+- `.ai/locks.json`
+- Git branch/worktree discipline
+- Task Graph
+- machine-readable task assignment
+- Tester independent
+- Reviewer independent
+- Orchestrator single-writer state management
+
+Không direct-write main/master.
+
+Mỗi writing Agent:
+- 1 branch;
+- 1 worktree;
+- explicit files_allowed;
+- explicit files_forbidden;
+- lock lease;
+- fencing token;
+- heartbeat.
+
+======================================================================
+3. EXECUTION AMENDMENT
+======================================================================
+
+Văn bản này thay thế quy tắc cũ:
+
+"P1 PASS hoàn toàn rồi mới được bắt đầu P2; P2 PASS rồi mới bắt đầu P3..."
+
+BẰNG:
+
+"PARALLEL DEVELOPMENT — GATED INTEGRATION"
+
+Ý nghĩa:
+
+- Task implementation được phép overlap.
+- Mock/fixture được phép dùng để unblock downstream development.
+- Mock PASS không đồng nghĩa Phase PASS.
+- Real integration phải dùng output thật của upstream.
+- Final acceptance phải theo dependency graph.
+- Không phase nào được PASS chỉ bằng synthetic upstream.
+
+======================================================================
+4. DEPENDENCY TYPES
+======================================================================
+
+Mọi task phải phân biệt 4 loại dependency:
+
+START_DEPENDENCY:
+Không được bắt đầu task nếu dependency chưa xong.
+
+CONTRACT_DEPENDENCY:
+Được bắt đầu sau khi interface contract đã freeze, dù upstream implementation chưa xong.
+
+MERGE_DEPENDENCY:
+Không được merge vào integration branch khi upstream required implementation chưa ổn định.
+
+ACCEPTANCE_DEPENDENCY:
+Không được tuyên bố phase PASS cho đến khi validation dùng real upstream outputs.
+
+======================================================================
+5. TOP-LEVEL DEPENDENCY GRAPH
+======================================================================
+
+P0 FROZEN
+   |
+   v
+HCE-C0 — SHARED CONTRACT FREEZE
+   |
+   +-----------------------------+-----------------------------+
+   |                             |                             |
+   v                             v                             v
+P1 FLOW                    P3 APPEARANCE                  P6 GPU BASE
+   |                             |                             |
+   |                             |                             |
+   +-----------> P2 TEXTURE      +-----------> P4 MATERIAL    |
+   |                 |                         |               |
+   |                 +------------+------------+               |
+   |                              |                            |
+   +---------------------------> P5 SPECULAR <-----------------+
+                                  |
+                                  v
+                         INTEGRATION WORKTREE
+                                  |
+                                  v
+                          END-TO-END VALIDATION
+                                  |
+                                  v
+                         HAIR COLOR V1 ACCEPTANCE
+
+P1–P6 development can overlap.
+Merge and acceptance cannot ignore dependencies.
+
+======================================================================
+6. ORCHESTRATOR TASK GROUPS
+======================================================================
+
+Agent 0 must create at minimum:
+
+HCE-C0-CONTRACT
+HCE-P1-ARCH
+HCE-P1-IMPL
+HCE-P1-TEST
+
+HCE-P2-ARCH
+HCE-P2-IMPL
+HCE-P2-TEST
+
+HCE-P3-ARCH
+HCE-P3-IMPL
+HCE-P3-TEST
+
+HCE-P4-ARCH
+HCE-P4-IMPL
+HCE-P4-TEST
+
+HCE-P5-ARCH
+HCE-P5-IMPL
+HCE-P5-TEST
+
+HCE-P6-ARCH
+HCE-P6-IMPL
+HCE-P6-BENCH
+
+HCE-INTEGRATION
+HCE-E2E-TEST
+HCE-VISUAL-REVIEW
+HCE-PERF
+HCE-FINAL-REVIEW
+HCE-FINAL-FREEZE
+
+======================================================================
+7. RECOMMENDED WORKTREES
+======================================================================
+
+hair-contract/
+hair-p1-orientation/
+hair-p2-texture/
+hair-p3-appearance/
+hair-p4-material/
+hair-p5-specular/
+hair-p6-gpu/
+hair-integration/
+hair-test/
+hair-review/
+
+Không share một worktree cho hai Agent ghi code.
+
+======================================================================
+8. HCE-C0 — SHARED CONTRACT FREEZE
+======================================================================
+
+HCE-C0 là START_DEPENDENCY bắt buộc trước khi P1–P6 implementation bắt đầu.
+
+Agent Architect phải audit code thực tế và freeze interfaces.
+
+Không được invent symbol rồi giả vờ production đã có.
+
+Required contracts:
+
+A. P0 Hair Matte Adapter
+B. Hair Orientation Field
+C. Hair Structure / Texture Representation
+D. Hair Appearance Context
+E. Hair Dye Material Parameters
+F. Hair Specular Parameters
+G. Hair Render Inputs
+H. Hair Render Output
+I. Device/GPU Capability Contract
+J. Debug/Benchmark Contract
+
+Create:
+Docs/Architecture/HairEngine/HCE_CONTRACT_V1.md
+
+======================================================================
+9. CONTRACT VERSIONING
+======================================================================
+
+Contract version:
+
+HCE_CONTRACT_V1
+
+Sau freeze:
+
+Mọi contract change cần:
+- change request;
+- Architect approval;
+- Agent 0 approval;
+- downstream impact matrix;
+- invalidated tests list;
+- migration plan.
+
+Không silent change struct.
+
+======================================================================
+10. P0 ADAPTER CONTRACT
+======================================================================
+
+P1–P6 consume frozen P0 Hair Matte.
+
+Adapter must expose, based on actual P0 contract:
+
+- alpha;
+- width;
+- height;
+- coordinate space;
+- ROI/head region if available;
+- protected non-hair mask if available;
+- subject IDs if available;
+- error/fallback state.
+
+If a field is not present in P0:
+do not invent it.
+Derive downstream or mark unavailable.
+
+======================================================================
+11. P1 — HAIR ORIENTATION / FLOW FIELD
+======================================================================
+
+GOAL:
+Estimate dominant local hair direction / tangent field over valid hair regions.
+
+P1 does NOT recolor hair.
+
+P1 output is structural guidance for P2/P5.
+
+Expected conceptual output:
+
+HairOrientationField:
+- dirX
+- dirY
+- confidence
+- validity
+- optional multi-scale coherence
+
+Exact symbol names must be selected after code audit.
+
+======================================================================
+12. P1 INPUTS
+======================================================================
+
+Required:
+
+- original RGB/luminance;
+- P0 alpha matte;
+- hair ROI;
+- image resolution.
+
+Optional:
+- semantic information if already legitimately available.
+
+Forbidden:
+- using target dye color to infer orientation;
+- using cloud;
+- generative hallucination;
+- modifying P0.
+
+======================================================================
+13. P1 ALGORITHM CANDIDATES
+======================================================================
+
+Architect/Agent shall evaluate at least:
+
+A. Structure Tensor
+- image gradients Ix, Iy;
+- tensor J = [[Ix², IxIy], [IxIy, Iy²]];
+- Gaussian/local smoothing;
+- principal eigenvector;
+- hair tangent perpendicular/consistent with strand structure.
+
+B. Oriented Filter Bank / Gabor
+- response at multiple angles;
+- choose dominant orientation;
+- confidence from peak separation.
+
+C. Multi-scale Hessian / ridge direction
+for fine strand/ridge patterns.
+
+D. Hybrid:
+Structure Tensor primary
++ Gabor fallback in low-confidence regions
++ spatial coherence regularization.
+
+Do not claim best algorithm before benchmark.
+
+======================================================================
+14. P1 REQUIRED FUNCTIONS
+======================================================================
+
+Minimum logical functions:
+
+computeHairGradients(...)
+computeStructureTensor(...)
+estimatePrincipalOrientation(...)
+normalizeOrientationPiPeriodic(...)
+estimateOrientationConfidence(...)
+regularizeOrientationField(...)
+maskOrientationByHairAlpha(...)
+upsampleOrRefineOrientation(...)
+validateOrientationContinuity(...)
+
+Optional:
+computeGaborOrientation(...)
+fuseMultiScaleOrientation(...)
+
+Function names may differ but responsibilities must exist.
+
+======================================================================
+15. P1 ANGLE SEMANTICS
+======================================================================
+
+Hair orientation is PI-periodic:
+
+theta and theta + pi represent same strand direction.
+
+Do not interpolate raw angle linearly across wrap boundaries.
+
+Recommended representation:
+
+vx = cos(2*theta)
+vy = sin(2*theta)
+
+interpolate/regularize doubled-angle vector,
+then recover:
+
+theta = 0.5 * atan2(vy, vx)
+
+======================================================================
+16. P1 CONFIDENCE
+======================================================================
+
+Confidence must distinguish:
+- strong directional strand region;
+- isotropic/flat hair core;
+- boundary uncertainty;
+- low texture;
+- highlight saturation.
+
+Possible structure tensor coherence:
+
+C = (lambda1 - lambda2) / (lambda1 + lambda2 + eps)
+
+Freeze formula only after experiments.
+
+======================================================================
+17. P1 TESTS
+======================================================================
+
+At minimum:
+
+- straight vertical hair;
+- horizontal fringe;
+- diagonal strands;
+- curly hair;
+- wavy hair;
+- dark hair;
+- blonde/highlight hair;
+- low contrast hair;
+- border strands;
+- flyaways;
+- multi-person;
+- screenshot portraits where P0 still returns valid hair.
+
+Metrics:
+- angular error where labeled/reference available;
+- orientation continuity;
+- boundary stability;
+- confidence calibration;
+- runtime;
+- memory.
+
+If no GT orientation:
+explicitly label proxy metrics.
+
+======================================================================
+18. P1 ACCEPTANCE
+======================================================================
+
+P1 PASS requires:
+
+- contract compliant;
+- no direction outside valid hair except tolerated boundary;
+- PI-periodicity correct;
+- continuity validated;
+- confidence meaningful;
+- representative visual vector overlays reviewed;
+- measured performance;
+- no P0 regression;
+- Tester PASS;
+- Reviewer PASS.
+
+======================================================================
+19. P2 — FLOW-AWARE HAIR TEXTURE
+======================================================================
+
+GOAL:
+Preserve/enhance hair strand texture aligned to P1 flow so recoloring does not
+look like a flat painted mask.
+
+P2 development may start after HCE-C0 using synthetic/mock flow fields.
+
+P2 acceptance requires real P1 output.
+
+======================================================================
+20. P2 CORE REPRESENTATION
+======================================================================
+
+P2 should operate on:
+
+- original luminance/chroma;
+- P0 alpha;
+- P1 orientation;
+- orientation confidence;
+- multi-scale local detail.
+
+Possible outputs:
+
+HairTextureContext:
+- strand_detail;
+- low_frequency_structure;
+- high_frequency_detail;
+- directional_response;
+- texture_confidence.
+
+Do not create fake strand pattern globally.
+
+======================================================================
+21. P2 ALGORITHM CANDIDATES
+======================================================================
+
+Evaluate:
+
+- directional high-pass along/across flow;
+- oriented DoG/Gabor detail decomposition;
+- steerable filters;
+- anisotropic smoothing;
+- flow-guided bilateral filter;
+- multi-scale detail separation.
+
+Principle:
+
+Preserve original real texture first.
+Synthesize/enhance only when required and confidence allows.
+
+======================================================================
+22. P2 REQUIRED FUNCTIONS
+======================================================================
+
+extractHairLuminance(...)
+decomposeLowHighFrequency(...)
+sampleAlongFlow(...)
+sampleAcrossFlow(...)
+computeDirectionalDetail(...)
+computeTextureConfidence(...)
+preserveOriginalStrandDetail(...)
+suppressColorBanding(...)
+composeFlowAwareTexture(...)
+
+Optional:
+steerableFilterBank(...)
+directionalBilateral(...)
+
+======================================================================
+23. P2 MOCK CONTRACT
+======================================================================
+
+Before P1 ready, P2 may use:
+
+- constant flow;
+- radial synthetic flow;
+- curved Bezier flow;
+- known analytical vector field.
+
+Every test artifact must be marked:
+MOCK_ORIENTATION.
+
+Mock tests cannot produce P2_FINAL_PASS.
+
+======================================================================
+24. P3 — APPEARANCE / SHADOW / HIGHLIGHT
+======================================================================
+
+GOAL:
+Separate/preserve perceptual appearance so dye transform keeps 3D depth.
+
+P3 can develop largely in parallel against original image + P0 fixtures.
+
+P3 should model appearance, NOT claim physical melanin measurement.
+
+======================================================================
+25. P3 COMPONENTS
+======================================================================
+
+HairAppearanceContext may include:
+
+- base luminance;
+- local shadow;
+- midtone;
+- highlight;
+- local contrast;
+- exposure context;
+- root-depth context;
+- confidence.
+
+Potential decomposition:
+
+L = Base + Detail
+
+or multiplicative/log-domain variants.
+
+Need compare experimentally.
+
+======================================================================
+26. P3 REQUIRED FUNCTIONS
+======================================================================
+
+extractHairAppearance(...)
+estimateLowFrequencyIllumination(...)
+estimateShadowMask(...)
+estimateHighlightMask(...)
+estimateLocalContrast(...)
+estimateRootDepthContext(...)
+protectSpecularHighlights(...)
+protectDeepShadows(...)
+buildAppearanceContext(...)
+
+No universal "shadow = dark pixel" rule.
+
+======================================================================
+27. P3 VALIDATION
+======================================================================
+
+Test:
+- black hair;
+- brown hair;
+- blonde;
+- high exposure;
+- backlight;
+- studio highlight;
+- glossy hair;
+- low contrast;
+- curly depth;
+- deep roots.
+
+Check:
+- shadow preserved;
+- highlight preserved;
+- face/background unchanged;
+- no chalky flattening;
+- no clipped highlight;
+- no crushed roots.
+
+======================================================================
+28. P4 — HAIR DYE MATERIAL / COLOR RESPONSE
+======================================================================
+
+GOAL:
+Convert source hair appearance toward target salon color while retaining
+structural/lighting context.
+
+P4 is not:
+RGB overlay.
+
+P4 must not claim direct physical pheomelanin/melanin measurement from one image.
+
+======================================================================
+29. P4 INPUTS
+======================================================================
+
+- original color;
+- P0 alpha;
+- P3 appearance context;
+- optional P2 texture;
+- target dye parameters;
+- intensity;
+- tone family;
+- warmth/coolness;
+- darkness/lift constraints.
+
+======================================================================
+30. P4 COLOR SPACE
+======================================================================
+
+Evaluate perceptual color operations in:
+
+- linear RGB where physically meaningful;
+- Lab/OKLab for perceptual color difference/control;
+- HSV/HSL only where limited utility exists.
+
+Do not perform final material transform solely in naive HSV hue rotation.
+
+======================================================================
+31. P4 MATERIAL MODEL
+======================================================================
+
+Define target as parameters, not one RGB:
+
+HairDyeMaterialParams:
+- target_lightness
+- target_chroma
+- target_hue
+- warmth
+- saturation_limit
+- root_strength
+- highlight_strength
+- shadow_strength
+- blend_intensity
+- optional tone curve
+
+Exact schema frozen by Architect.
+
+======================================================================
+32. P4 REQUIRED FUNCTIONS
+======================================================================
+
+analyzeSourceHairColor(...)
+convertColorSpace(...)
+computeDyeResponse(...)
+applyTargetHueChroma(...)
+preserveShadowDepth(...)
+preserveHighlightEnergy(...)
+applyRootDarkness(...)
+applyMaterialToneCurve(...)
+clampOutOfGamut(...)
+blendWithOriginal(...)
+computeDyeConfidence(...)
+
+======================================================================
+33. P4 DIFFICULT TRANSFORMS
+======================================================================
+
+Must explicitly test:
+
+- black -> dark brown;
+- black -> copper brown;
+- black -> ash brown;
+- brown -> blonde-like light tone;
+- blonde -> warm copper;
+- blonde -> cool ash;
+- saturated red/burgundy;
+- gray/silver hair.
+
+Do not overpromise source-to-target transformations requiring unobservable
+bleaching chemistry.
+
+======================================================================
+34. P5 — ANISOTROPIC SPECULAR
+======================================================================
+
+GOAL:
+Preserve/create strand-aligned reflection response so recolored hair retains
+realistic directional gloss.
+
+P5 development may start with synthetic orientation/material fixtures.
+
+P5 acceptance requires real P1 + P3 + P4 outputs.
+
+======================================================================
+35. P5 MODEL REFERENCES
+======================================================================
+
+Allowed references:
+- Kajiya-Kay inspired anisotropic shading;
+- Marschner-inspired concepts;
+- tangent-based highlight approximation.
+
+Full physical Marschner scattering is NOT mandatory for V1.
+
+Do not claim physical accuracy unless implemented/validated.
+
+======================================================================
+36. P5 REQUIRED INPUTS
+======================================================================
+
+- hair tangent/orientation from P1;
+- appearance/highlight context from P3;
+- material parameters from P4;
+- optional light/view approximation from 2D image context;
+- confidence.
+
+======================================================================
+37. P5 REQUIRED FUNCTIONS
+======================================================================
+
+deriveTangentField(...)
+estimateSpecularConfidence(...)
+computeAnisotropicLobe(...)
+alignHighlightToFlow(...)
+preserveOriginalSpecular(...)
+suppressSpecularOutsideHair(...)
+blendSpecularResponse(...)
+limitHighlightClipping(...)
+
+If no reliable light direction exists:
+use image-driven existing highlight as anchor rather than inventing global lighting.
+
+======================================================================
+38. P5 VALIDATION
+======================================================================
+
+Check:
+- highlight elongated along strands;
+- no plastic helmet shine;
+- no cross-strand glow;
+- no shine on face/background;
+- dark roots remain dimensional;
+- glossy source remains glossy;
+- matte hair does not become artificially wet.
+
+======================================================================
+39. P6 — GPU PRODUCTION BACKEND
+======================================================================
+
+GOAL:
+Move appropriate P1–P5 computations to GPU while preserving reference outputs
+within approved numeric tolerance.
+
+Android:
+Vulkan primary candidate where device capability permits.
+
+iOS:
+Architecture must remain Metal-ready.
+
+P6 development can start immediately after HCE-C0 on generic kernels,
+buffer abstractions, capability detection, benchmark harness.
+
+P6 final integration waits stabilized P1–P5 contracts.
+
+======================================================================
+40. P6 PRINCIPLES
+======================================================================
+
+GPU-FIRST does not mean GPU-only.
+
+Need:
+- capability detection;
+- fallback;
+- deterministic reference path;
+- memory control;
+- thermal-aware quality tiers;
+- no crash on unsupported device.
+
+======================================================================
+41. P6 GPU MODULES
+======================================================================
+
+Potential kernels:
+
+- gradient / structure tensor;
+- orientation coherence;
+- directional filtering;
+- blur/box filter;
+- texture decomposition;
+- color-space transform;
+- dye material transform;
+- anisotropic highlight;
+- alpha composite;
+- resize/upsample;
+- ROI dispatch.
+
+Do not port a stage to GPU if transfer overhead makes it slower.
+
+======================================================================
+42. P6 REFERENCE PARITY
+======================================================================
+
+Maintain CPU/reference implementation where practical.
+
+For each GPU kernel:
+- reference input;
+- reference output;
+- max abs diff;
+- mean abs diff;
+- perceptual delta where appropriate;
+- runtime CPU;
+- runtime GPU;
+- transfer overhead;
+- memory.
+
+Tolerance must be declared before final benchmark.
+
+======================================================================
+43. DEVICE-ADAPTIVE QUALITY TIERS
+======================================================================
+
+Architect may define:
+
+TIER A:
+High-end GPU, full-resolution directional/detail/specular.
+
+TIER B:
+Mid-range device, ROI + reduced-resolution selected stages.
+
+TIER C:
+Low-end/fallback, simplified but visually safe path.
+
+Quality tier must not violate:
+- protected non-hair;
+- alpha safety;
+- no crash;
+- non-destructive behavior.
+
+======================================================================
+44. THERMAL-AWARE POLICY
+======================================================================
+
+No "thermal risk = none".
+
+Measure:
+- cold run;
+- warm run;
+- repeated run;
+- latency drift;
+- device thermal state when available.
+
+If thermal pressure:
+reduce optional quality stages before compromising segmentation/protection.
+
+======================================================================
+45. INTEGRATION WORKTREE
+======================================================================
+
+Only dedicated Integration Agent may assemble cross-phase pipeline.
+
+Integration order:
+
+P0
+-> P1
+-> P2
+-> P3
+-> P4
+-> P5
+-> P6 backend
+
+Exact render order may be refined by Architect,
+but any reorder must be documented.
+
+No six-way direct merge to main.
+
+======================================================================
+46. REAL-OUTPUT ACCEPTANCE RULE
+======================================================================
+
+Mock development is allowed.
+
+Final acceptance requires:
+
+P2 uses real P1.
+P4 uses real P3.
+P5 uses real P1/P3/P4.
+P6 uses real stabilized P1–P5 graph.
+End-to-end uses real P0–P6.
+
+No phase final PASS from mock-only integration.
+
+======================================================================
+47. VISUAL ACCEPTANCE REFERENCE
+======================================================================
+
+Final Hair Color V1 must be judged on difficult realistic transformations,
+including dark hair -> warm copper/brown similar to salon-reference imagery.
+
+Visual criteria:
+
+- roots retain depth;
+- strand texture visible;
+- highlight follows hair flow;
+- shadow separation remains;
+- flyaways preserved;
+- hairline natural;
+- no flat paint appearance;
+- no helmet shine;
+- no skin/background/UI leakage;
+- target color perceptually coherent.
+
+Do not use "100% real" claim.
+
+Use:
+"Validated High-Quality Hair Recolor Output"
+only if evidence supports it.
+
+======================================================================
+48. ORIGINAL-VS-EDITED PRINCIPLE
+======================================================================
+
+Original image is ground truth for every unrequested region.
+
+User-requested hair color is ground truth for intended semantic change.
+
+Every phase must protect:
+- face;
+- skin;
+- ears unless physically occluded by hair;
+- neck;
+- clothing;
+- background;
+- UI;
+- accessories/headwear.
+
+======================================================================
+49. REQUIRED TEST SETS
+======================================================================
+
+Maintain:
+- P0 canonical regression;
+- P1 orientation fixtures;
+- P2 texture fixtures;
+- P3 lighting/appearance set;
+- P4 color transformation set;
+- P5 gloss/specular set;
+- P6 performance/device set;
+- end-to-end untouched holdout.
+
+Do not tune on final untouched holdout.
+
+If a holdout enters tuning:
+reclassify it and replace it with a new untouched sample.
+
+======================================================================
+50. END-TO-END OUTPUT ARTIFACTS
+======================================================================
+
+For representative cases export:
+
+01_original
+02_p0_alpha
+03_p1_flow_overlay
+04_p1_confidence
+05_p2_texture
+06_p3_shadow
+07_p3_highlight
+08_p4_material_color
+09_p5_specular
+10_final_cpu_reference
+11_final_gpu
+12_difference_heatmap
+13_boundary_zoom
+14_original_vs_final
+
+No manual retouch.
+
+======================================================================
+51. BENCHMARKING
+======================================================================
+
+Every phase:
+P50
+P95
+P99
+memory
+resolution
+device
+build
+threads/backend
+warmup
+iteration count.
+
+Do not promise latency before measurement.
+
+P6 must report:
+CPU/reference
+GPU
+transfer overhead
+full end-to-end.
+
+======================================================================
+52. PHASE GATES
+======================================================================
+
+Each phase retains:
+
+AUDIT
+-> DESIGN
+-> IMPLEMENT
+-> TEST
+-> BENCHMARK
+-> VALIDATE
+-> PASS
+
+Parallelization changes scheduling, not quality gates.
+
+======================================================================
+53. P1 FINAL VERDICT
+======================================================================
+
+Allowed:
+P1_PASS
+P1_NEEDS_FIX
+P1_BLOCKED.
+
+======================================================================
+54. P2 FINAL VERDICT
+======================================================================
+
+Allowed:
+P2_PASS
+P2_NEEDS_FIX
+P2_BLOCKED.
+
+======================================================================
+55. P3 FINAL VERDICT
+======================================================================
+
+Allowed:
+P3_PASS
+P3_NEEDS_FIX
+P3_BLOCKED.
+
+======================================================================
+56. P4 FINAL VERDICT
+======================================================================
+
+Allowed:
+P4_PASS
+P4_NEEDS_FIX
+P4_BLOCKED.
+
+======================================================================
+57. P5 FINAL VERDICT
+======================================================================
+
+Allowed:
+P5_PASS
+P5_NEEDS_FIX
+P5_BLOCKED.
+
+======================================================================
+58. P6 FINAL VERDICT
+======================================================================
+
+Allowed:
+P6_PASS
+P6_NEEDS_FIX
+P6_BLOCKED.
+
+======================================================================
+59. HAIR COLOR V1 FINAL ACCEPTANCE
+======================================================================
+
+Hair Color V1 may be accepted only when:
+
+[ ] P0 frozen/unchanged.
+[ ] P1 PASS using real production inputs.
+[ ] P2 PASS using real P1.
+[ ] P3 PASS.
+[ ] P4 PASS.
+[ ] P5 PASS using real flow/material.
+[ ] P6 PASS on supported device backend.
+[ ] Full P0–P6 regression PASS.
+[ ] No critical protected-region leakage.
+[ ] End-to-end visual review PASS.
+[ ] CPU/GPU parity within approved tolerances.
+[ ] Device benchmark documented.
+[ ] Memory/thermal documented.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] Manifest/freeze generated.
+[ ] P7 not required.
+
+Allowed final Hair V1:
+HAIR_COLOR_V1_PASS
+HAIR_COLOR_V1_NEEDS_FIX.
+
+======================================================================
+60. AGENT OWNERSHIP MODEL
+======================================================================
+
+Recommended:
+
+Agent 0 — Orchestrator / Task Graph / state
+Agent 1 — Architect / HCE-C0
+Implementation Agents — P1/P2/P3/P4/P5/P6
+Integration Agent — cross-phase merge only
+Tester Agent — tests only, no production fixes
+Fixer Agent — assigned defects only
+Reviewer Agent — independent review
+Security/Privacy Agent — local-first audit
+Documentation Agent — evidence/manifests
+
+Canonical role definitions remain governed by Workspace Standard.
+
+======================================================================
+61. FILE LOCK RULE
+======================================================================
+
+Before write:
+Acquire `.ai/locks.json` lease.
+
+No write without valid:
+lease_id
+expiry
+fencing_token.
+
+If lease lost:
+STOP WRITING.
+
+Shared headers/contracts:
+single owner only.
+
+======================================================================
+62. SHARED CONTRACT FILE OWNERSHIP
+======================================================================
+
+Only Architect/Orchestrator may modify frozen HCE contract files.
+
+Phase agents may propose change requests but not edit contract directly after freeze.
+
+======================================================================
+63. MERGE POLICY
+======================================================================
+
+Phase branches do not merge directly to main.
+
+Flow:
+
+phase worktree
+-> phase review
+-> phase tests
+-> integration branch
+-> integration tests
+-> final reviewer
+-> approved merge.
+
+======================================================================
+64. MOCK / FIXTURE LABELING
+======================================================================
+
+All synthetic test outputs must contain metadata:
+
+upstream_source = MOCK
+fixture_version
+contract_version
+
+Production validation must contain:
+
+upstream_source = REAL
+
+No ambiguous artifact.
+
+======================================================================
+65. DEBUG TRACE
+======================================================================
+
+Each stage should support debug trace without shipping sensitive raw data.
+
+Debug outputs local-only.
+
+No automatic cloud upload.
+
+No personal image telemetry.
+
+======================================================================
+66. SECURITY / PRIVACY
+======================================================================
+
+Hair processing remains local-first.
+
+No raw image upload.
+No alpha upload.
+No flow-field upload.
+No debug artifact upload.
+
+Cloud is outside scope.
+
+======================================================================
+67. FAILURE / FALLBACK
+======================================================================
+
+If P1 confidence low:
+downstream must degrade safely.
+
+If P2 fails:
+preserve original texture.
+
+If P3 fails:
+preserve original appearance.
+
+If P4 fails:
+return original/controlled blend.
+
+If P5 fails:
+preserve original highlight rather than invent shine.
+
+If P6 unsupported:
+use safe reference/fallback path.
+
+No crash.
+No stale output.
+
+======================================================================
+68. CHANGE CONTROL
+======================================================================
+
+Any attempt to reopen P0:
+requires explicit P0 CHANGE REQUEST.
+
+Any new model:
+requires separate authorization.
+
+Any cloud fallback:
+requires separate authorization.
+
+Any P7 generative:
+requires separate authorization.
+
+======================================================================
+69. REQUIRED DOCUMENTS PER PHASE
+======================================================================
+
+For each Pn:
+
+Pn_ARCHITECTURE.md
+Pn_ALGORITHM_SPEC.md
+Pn_API_CONTRACT.md
+Pn_TASK_GRAPH.md
+Pn_TEST_PLAN.md
+Pn_METRICS.csv
+Pn_BENCHMARK.csv
+Pn_VISUAL_REPORT.md
+Pn_TEST_REPORT.md
+Pn_REVIEW_REPORT.md
+Pn_MANIFEST.csv
+Pn_FREEZE.sha256
+Pn_FINAL_REPORT.md
+
+======================================================================
+70. INITIAL AUTHORIZED EXECUTION ORDER
+======================================================================
+
+01. Verify P0_FINAL_PASS_RECONFIRMED package exists.
+02. Read Workspace Standard.
+03. Agent 0 creates Hair Engine master task graph.
+04. Agent 1 audits actual downstream code/API.
+05. Freeze HCE_CONTRACT_V1.
+06. Create branches/worktrees/locks for P1–P6.
+07. Start P1 real implementation.
+08. Start P2 mock-contract implementation.
+09. Start P3 real appearance primitives.
+10. Start P4 material primitives against fixtures.
+11. Start P5 specular prototype against mock flow/material.
+12. Start P6 GPU abstraction/kernels/benchmark harness.
+13. Run independent phase tests continuously.
+14. Stabilize P1 contract/output.
+15. Replace P2/P5 mock flow with real P1.
+16. Stabilize P3/P4.
+17. Feed real P3/P4 into P5.
+18. Stabilize P1–P5 contracts.
+19. Integrate P6 real kernels.
+20. Dedicated integration worktree assembles P0–P6.
+21. Run full regression/visual/performance suite.
+22. Tester gate.
+23. Reviewer gate.
+24. Fix defects through assigned Fixer only.
+25. Revalidate affected/full gates.
+26. Freeze P1–P6 evidence.
+27. Issue HAIR_COLOR_V1_PASS or HAIR_COLOR_V1_NEEDS_FIX.
+28. STOP.
+29. Do not start P7 automatically.
+
+======================================================================
+71. STOP CONDITIONS
+======================================================================
+
+STOP affected task if:
+
+- P0 frozen source modified without authorization;
+- contract changed without change request;
+- lock lost;
+- test evidence fabricated/missing;
+- phase claims PASS using mock upstream only;
+- raw image/network policy violated;
+- new model/cloud/generative introduced;
+- acceptance metric changed after result;
+- hidden sample removed to obtain PASS.
+
+======================================================================
+72. FINAL DIRECTIVE
+======================================================================
+
+AUTHORIZED:
+P1–P6 CONTROLLED PARALLEL DEVELOPMENT.
+
+NOT AUTHORIZED:
+P7.
+Cloud core dependency.
+P0 modification.
+Unreviewed direct merge.
+
+Execution doctrine:
+
+PARALLEL DEVELOPMENT
++
+FROZEN CONTRACTS
++
+PER-TASK WORKTREES
++
+FILE LOCKS
++
+REAL-UPSTREAM FINAL VALIDATION
++
+GATED INTEGRATION
++
+INDEPENDENT TEST/REVIEW.
+
+======================================================================
+END OF MASTER SPEC
+======================================================================

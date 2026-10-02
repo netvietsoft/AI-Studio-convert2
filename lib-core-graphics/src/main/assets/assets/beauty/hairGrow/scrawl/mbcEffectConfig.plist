@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MBCCoreEffects</key>
+	<array>
+		<dict>
+			<key>EffectType</key>
+			<string>MBCScrawEffect</string>
+			<key>LayerName</key>
+			<string>ScrawPaintMask</string>
+			<key>CustomParam</key>
+			<dict>
+				<key>PenType</key>
+				<string>Image</string>
+				<key>PenImagePath</key>
+				<string>pen/radial.png</string>		
+				<key>EraserTextureName</key>
+				<string>EraserMask</string>									
+			</dict>
+		</dict>
+		<dict>
+			<key>EffectType</key>
+			<string>AREffect</string>
+			<key>LayerName</key>
+			<string>AR</string>			
+			<key>TextureRequire:TextureName</key>
+			<array>
+				<string>ImportTexture0:ScrawPaintMask</string>
+				<string>ImportTexture1:EraserMask</string>
+				<!-- 橡皮擦的时候用恢复图 -->
+				<string>ImportTexture2:OrignEraserImage</string> 
+				<string>ImportTexture3:EffectImage</string> 
+			</array>
+			<key>CustomParam</key>
+			<dict>
+				<key>LayerOrder</key>
+				<array>
+					<dict>
+						<key>LayerName</key>
+						<string>MaskShow</string>
+						<key>ConfigPath</key>
+						<string>maskshow/configuration.plist</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

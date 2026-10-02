@@ -1,0 +1,1140 @@
+PHASE P0-C — PRODUCTION INTEGRATION & FINAL P0 ACCEPTANCE
+MASTER AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+PHASE: P0-C
+PHASE NAME: Production Integration & Final P0 Acceptance
+OWNER: Agent 0 — CEO / ORCHESTRATOR
+EXECUTION MODE: CONTROLLED PRODUCTION INTEGRATION
+PRECONDITION:
+  P0_B2R_ALGORITHM_GATE = PASS
+  P0_B2R_EVIDENCE_PACKAGE = FROZEN / PASS
+  P0_B2R_EVIDENCE_FREEZE_PASS = REQUIRED
+
+P0 STATUS BEFORE THIS TASK: NOT YET FINAL
+P1 STATUS: BLOCKED
+P2–P6 STATUS: BLOCKED FOR PRODUCTION INTEGRATION
+NEW MODEL: FORBIDDEN
+CLOUD: FORBIDDEN
+GENERATIVE: FORBIDDEN
+UNRELATED REFACTOR: FORBIDDEN
+
+======================================================================
+0. MISSION
+======================================================================
+
+Mục tiêu của P0-C:
+
+Đưa candidate Hair Matting đã được chấp nhận tại P0-B.2R từ môi trường
+validation/scratch vào production Hair Engine một cách có kiểm soát, sau đó
+nghiệm thu P0 trên đường chạy production thực tế.
+
+P0-C KHÔNG phải phase nghiên cứu thuật toán.
+
+P0-C KHÔNG được:
+- thiết kế Hair Matting mới;
+- thay model;
+- thêm heuristic mới để làm đẹp metric;
+- thay acceptance criteria;
+- bắt đầu Hair Orientation / P1;
+- thêm cloud;
+- thêm generative;
+- tối ưu module không liên quan.
+
+P0-C chỉ được:
+
+FREEZE VERIFY
+-> INTEGRATION PLAN
+-> PRODUCTION PORT
+-> BUILD
+-> API/JNI VALIDATION
+-> DEVICE TEST
+-> REGRESSION
+-> PERFORMANCE
+-> MEMORY/THERMAL
+-> VISUAL VALIDATION
+-> ROLLBACK/FALLBACK
+-> FINAL P0 ACCEPTANCE
+-> FREEZE
+-> STOP.
+
+======================================================================
+1. CANONICAL INPUTS
+======================================================================
+
+Agent phải đọc và xác minh tối thiểu:
+
+1. AGENTS.md
+2. Docs/rules.md
+3. Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt
+4. P0_B2R_FINAL_EVIDENCE_CORRECTION_FREEZE_AGENT_SPEC.txt
+5. P0_B2R_FINAL_EVIDENCE_CORRECTION_REPORT.md
+6. P0_B2R_REPORT.md
+7. P0_B2R_METRICS_CANONICAL.csv
+8. P0_B2R_METRIC_DEFINITIONS.md
+9. P0_B2R_METRIC_RECONCILIATION.csv
+10. P0_B2R_CSV_VALIDATION_REPORT.md
+11. device_benchmark/P0_B2R_DEVICE_BENCHMARK.csv
+12. geometry_ab/GEOMETRY_AB_METRICS.csv
+13. source_trace/SOURCE_TRACE.md
+14. config/P0_B2R_CONFIG.md
+15. P0_B2R_FINAL_EVIDENCE_MANIFEST.csv
+16. P0_B2R_FINAL_FREEZE.sha256
+17. P0_B2R_FINAL_FREEZE_RECORD.md
+18. Current production Hair Matting implementation
+19. JNI/API contracts liên quan
+20. Existing Hair Engine regression tests.
+
+Nếu artifact bắt buộc bị thiếu hoặc hash không khớp:
+STATUS = BLOCKED_EVIDENCE_INTEGRITY
+STOP.
+
+======================================================================
+2. PRE-INTEGRATION FREEZE VERIFICATION
+======================================================================
+
+Trước khi sửa production:
+
+- Verify SHA-256 của toàn bộ P0-B.2R frozen evidence.
+- Verify manifest.
+- Verify evidence version.
+- Verify Git commit hiện tại.
+- Verify git status.
+- Verify production tree hiện tại.
+- Verify không có Agent khác đang giữ lock trên production Hair paths.
+- Verify P1 chưa bắt đầu.
+- Verify candidate source/config cần port đúng với evidence đã freeze.
+
+Output:
+P0_C_PREINTEGRATION_FREEZE_VERIFICATION.md
+
+Required result:
+FREEZE_VERIFIED
+
+Nếu không:
+STOP.
+
+======================================================================
+3. AGENT 0 — TASK GRAPH
+======================================================================
+
+Agent 0 phải tạo Task Graph trước khi code.
+
+Khuyến nghị:
+
+TASK-P0C-01  Freeze Verification
+TASK-P0C-02  Production Diff Mapping
+TASK-P0C-03  Integration Contract
+TASK-P0C-04  Production Port
+TASK-P0C-05  Build/JNI Validation
+TASK-P0C-06  Regression Validation
+TASK-P0C-07  Device Performance
+TASK-P0C-08  Visual/Original-vs-Edited Validation
+TASK-P0C-09  Reviewer Audit
+TASK-P0C-10  Final P0 Acceptance & Freeze
+
+Mỗi task phải có:
+- owner;
+- dependencies;
+- branch;
+- worktree;
+- files_allowed;
+- files_forbidden;
+- acceptance criteria;
+- required evidence;
+- test commands;
+- rollback point.
+
+======================================================================
+4. CONCURRENCY / WORKTREE RULE
+======================================================================
+
+Tuân thủ Development Workspace Standard.
+
+Không code trực tiếp main.
+
+Mỗi Agent ghi code phải có branch/worktree riêng.
+
+Ví dụ:
+
+agent/p0c-integration/TASK-P0C-04
+agent/p0c-test/TASK-P0C-06
+agent/p0c-review/TASK-P0C-09
+
+Không cho hai Agent đồng thời ghi cùng production path.
+
+Bắt buộc kiểm tra:
+.ai/locks.json
+
+Lock phải tuân thủ:
+lease_id
+expires_at
+fencing_token
+heartbeat.
+
+Tester không sửa production.
+Reviewer không tự sửa production.
+Fixer chỉ sửa khi có bug report được Orchestrator giao.
+
+======================================================================
+5. PRODUCTION DIFF MAPPING
+======================================================================
+
+Trước khi port code, tạo:
+
+P0_C_PRODUCTION_DIFF_MAP.md
+
+Phải xác định:
+
+A. Candidate component nào đang ở scratch/validation.
+B. Production component tương ứng.
+C. Function/class cần port.
+D. Config/constant cần port.
+E. API/JNI có thay đổi không.
+F. Memory ownership có thay đổi không.
+G. Threading có thay đổi không.
+H. Tensor/image format có thay đổi không.
+I. Coordinate transform có thay đổi không.
+J. Error/fallback behavior có thay đổi không.
+
+Không port mù bằng copy toàn thư mục.
+
+======================================================================
+6. ALGORITHM IMMUTABILITY RULE
+======================================================================
+
+P0-C phải giữ nguyên logic candidate đã được P0-B.2R nghiệm thu.
+
+Allowed:
+- namespace/package adaptation;
+- production API wiring;
+- JNI binding;
+- build-system registration;
+- memory ownership adaptation;
+- buffer conversion;
+- logging;
+- feature flag;
+- error handling;
+- production-safe resource loading;
+- deterministic configuration plumbing.
+
+Forbidden:
+- đổi threshold Hair Matting;
+- đổi formula;
+- thêm heuristic;
+- đổi semantic rule;
+- đổi geometry rule;
+- đổi LowContrast logic;
+- đổi hairline logic;
+- đổi metric definition;
+- đổi model;
+- tuning theo test failure.
+
+Nếu integration buộc phải thay thuật toán:
+P0_C_ALGORITHM_DRIFT_DETECTED
+STOP.
+Escalate về Orchestrator.
+
+======================================================================
+7. REQUIRED PRODUCTION PIPELINE
+======================================================================
+
+Production P0 phải có trace rõ ràng từ input tới alpha output.
+
+Expected conceptual chain:
+
+Input RGB
+  ↓
+Preprocessing / Semantic Geometry Handling
+  ↓
+BiSeNet Semantic Anchor
+  ↓
+Adaptive Hair Appearance
+  ↓
+Hair/Hat Resolution
+  ↓
+Low-Contrast Hair Recovery
+  ↓
+Subject Graph / Image Content Guard
+  ↓
+Trimap
+  ↓
+Guided Refinement
+  ↓
+Color Affinity
+  ↓
+Semantic / UI Protection
+  ↓
+Ear Occlusion handling when applicable
+  ↓
+Hairline Refinement
+  ↓
+Final Hair Alpha
+  ↓
+Hair Engine Consumer
+
+Agent phải map exact production implementation vào chain này.
+
+Không được giả định stage tồn tại.
+Phải trace file/function thực tế.
+
+======================================================================
+8. P0 OUTPUT CONTRACT
+======================================================================
+
+P0-C phải đóng băng contract đầu ra để P1 sử dụng sau này.
+
+Tạo:
+P0_HAIR_MATTE_OUTPUT_CONTRACT.md
+
+Tối thiểu định nghĩa:
+
+- alpha type;
+- alpha range;
+- width/height;
+- coordinate space;
+- orientation;
+- stride;
+- pixel format;
+- CPU/GPU ownership;
+- lifetime;
+- thread safety;
+- synchronization;
+- ROI semantics;
+- invalid/no-hair behavior;
+- bald behavior;
+- multiple subjects behavior;
+- border behavior;
+- error code;
+- fallback behavior;
+- determinism expectations.
+
+Ví dụ logic contract:
+
+alpha ∈ [0,1]
+
+0 = protected non-hair
+1 = high-confidence hair
+(0,1) = soft transition / partial coverage
+
+Nhưng exact implementation phải lấy từ code/evidence thực tế.
+
+======================================================================
+9. JNI/API INTEGRATION
+======================================================================
+
+Nếu Android sử dụng JNI:
+
+Audit:
+- JNI signature;
+- Java/Kotlin declaration;
+- native registration;
+- input bitmap/buffer;
+- color order;
+- row stride;
+- rotation;
+- EXIF orientation;
+- output allocation;
+- native memory release;
+- exception path;
+- thread attach/detach;
+- lifecycle;
+- repeated-call behavior.
+
+Không được có:
+- leaked global refs;
+- dangling native pointer;
+- double free;
+- use-after-free;
+- bitmap lock không unlock;
+- silent RGB/BGR mismatch.
+
+Output:
+P0_C_JNI_API_AUDIT.md
+
+======================================================================
+10. BUILD MATRIX
+======================================================================
+
+Build production artifact tối thiểu theo ABI mà project thực tế hỗ trợ.
+
+Nếu hiện project support:
+- arm64-v8a
+- armeabi-v7a
+- x86_64
+
+thì build cả 3.
+
+Không tự claim ABI nếu build config không có.
+
+Record:
+compiler
+NDK
+CMake
+build flags
+optimization
+NCNN/Vulkan flags
+commit
+artifact hash.
+
+Required:
+CLEAN BUILD.
+
+======================================================================
+11. FEATURE FLAG
+======================================================================
+
+Production integration phải có khả năng kiểm soát rollout nếu kiến trúc project
+cho phép.
+
+Khuyến nghị:
+
+HAIR_MATTING_P0_B2R_ENABLED
+
+Phải có:
+- ON path;
+- OFF path;
+- safe fallback;
+- no crash if model/resource unavailable.
+
+Không được để fallback cloud.
+
+Fallback phải local và được document.
+
+======================================================================
+12. FAILURE BEHAVIOR
+======================================================================
+
+Định nghĩa rõ khi:
+
+- model load fail;
+- image invalid;
+- image too small;
+- unsupported format;
+- memory allocation fail;
+- semantic inference fail;
+- no subject;
+- bald/no hair;
+- timeout/internal error.
+
+Không trả alpha rác.
+
+Không crash.
+
+Không silently use stale previous-frame mask.
+
+======================================================================
+13. REGRESSION SUITE
+======================================================================
+
+P0-C phải chạy lại canonical validation suite trên production path.
+
+Required baseline:
+
+30 Regression
+12 Existing Holdout
+8 Edge Holdout
+12 Robustness Holdout
+
+TOTAL = 62.
+
+Không dùng scratch pipeline để thay thế production test.
+
+Input phải đi qua production call path.
+
+Output alpha phải lấy từ production call path.
+
+======================================================================
+14. REGRESSION SOURCE OF TRUTH
+======================================================================
+
+Canonical metrics phải dùng định nghĩa đã freeze tại:
+
+P0_B2R_METRIC_DEFINITIONS.md
+
+Không được đổi denominator/ROI/gate.
+
+Nếu production output khác candidate:
+ghi discrepancy.
+
+Không được sửa canonical CSV để làm production PASS.
+
+Tạo:
+P0_C_PRODUCTION_REGRESSION_METRICS.csv
+
+======================================================================
+15. REQUIRED KNOWN CASES
+======================================================================
+
+Bắt buộc trace riêng:
+
+sample_05
+sample_20
+sample_26
+holdout_03
+holdout_07
+holdout_11
+edge_05
+edge_06
+edge_07
+edge_08
+
+Và các robustness cases:
+R01–R12.
+
+Mục tiêu:
+xác nhận các failure từng được sửa không tái xuất hiện sau production port.
+
+======================================================================
+16. NEGATIVE CASES
+======================================================================
+
+Bắt buộc có:
+
+- bald/no-hair;
+- cap/headwear;
+- screenshot/no valid subject;
+- protected UI;
+- non-hair background;
+- border-touch;
+- multiple subjects.
+
+Không được chỉ test ảnh đẹp có tóc rõ.
+
+======================================================================
+17. PRODUCTION PARITY
+======================================================================
+
+So sánh Candidate vs Production trên cùng input.
+
+Tạo:
+P0_C_CANDIDATE_VS_PRODUCTION_PARITY.csv
+
+Fields tối thiểu:
+
+sample_id
+candidate_metric
+production_metric
+absolute_delta
+alpha_diff_mean
+alpha_diff_p95
+alpha_diff_max
+gate_result
+notes.
+
+Nếu có deterministic pixel-level parity:
+ghi exact.
+
+Nếu floating-point/backend tạo sai số:
+định nghĩa tolerance trước khi xem kết quả.
+
+Không chọn tolerance sau khi thấy failure.
+
+======================================================================
+18. ORIGINAL-VS-EDITED VALIDATION
+======================================================================
+
+Original là ground truth cho mọi vùng không được yêu cầu thay đổi.
+
+P0 chỉ tạo matte nên validation phải kiểm tra:
+
+- face protected;
+- forehead protected;
+- ears protected khi không bị tóc che;
+- neck protected;
+- clothing protected;
+- background protected;
+- hat/accessory protected;
+- UI protected;
+- border hair retained;
+- fine hair/flyaway không bị cắt thô.
+
+Không dùng câu:
+"perfect"
+"flawless"
+"100% salon"
+nếu không có metric tương ứng.
+
+======================================================================
+19. VISUAL ARTIFACT PACK
+======================================================================
+
+Với representative cases, xuất:
+
+01_original.png
+02_semantic.png
+03_trimap.png
+04_alpha.png
+05_alpha_on_black.png
+06_alpha_on_white.png
+07_boundary_zoom.png
+08_composite_debug.png
+
+Không chỉnh tay artifact sau khi pipeline xuất.
+
+Artifact phải trace được sample ID + build hash.
+
+======================================================================
+20. DEVICE VALIDATION
+======================================================================
+
+Primary device:
+Samsung Galaxy SM-A075F / Android 14 / ARM64
+theo baseline P0-B.2R.
+
+Nếu project có thêm device thật:
+có thể test bổ sung nhưng không thay primary baseline.
+
+Record:
+device model
+SoC
+Android version
+ABI
+thermal state if measurable
+battery state if relevant
+build type
+run count
+image resolution.
+
+======================================================================
+21. PERFORMANCE BENCHMARK
+======================================================================
+
+Benchmark phải chạy production path.
+
+Required:
+warmup
+>= 50 measured iterations
+same representative resolution as baseline where possible.
+
+Report:
+P50
+P95
+P99
+
+Separate:
+BiSeNet
+P0 post-processing
+Total P0 Matting
+Full production call.
+
+Không cộng percentile từng stage để suy ra total percentile.
+
+======================================================================
+22. PERFORMANCE GATE
+======================================================================
+
+Primary gate giữ theo approved P0-B.2R target:
+
+P0 Matting P50 <= 85 ms
+
+trên primary device/configuration comparable.
+
+Baseline reference:
+P0-B.2R P50 = 69.85 ms.
+
+69.85 ms là baseline measured, KHÔNG phải production result mặc định.
+
+P0-C phải đo lại.
+
+Nếu >85 ms:
+P0_C_PERFORMANCE_FAIL
+
+Không tuning thuật toán trong P0-C.
+Root-cause trước.
+
+======================================================================
+23. P95/P99
+======================================================================
+
+P95/P99 bắt buộc report.
+
+Không đặt PASS threshold mới nếu trước đó chưa được phê duyệt.
+
+Dùng để phát hiện:
+- jitter;
+- allocation spikes;
+- scheduling;
+- thermal degradation;
+- resource reload;
+- lock contention.
+
+Nếu tail latency bất thường:
+flag REVIEW_REQUIRED.
+
+======================================================================
+24. MEMORY VALIDATION
+======================================================================
+
+Record:
+baseline RSS
+peak RSS/VmHWM
+post-run RSS
+repeated-call behavior.
+
+Reference previous measured peak:
+344.76 MB.
+
+Không mặc định production phải đúng 344.76 MB.
+
+Check:
+- monotonic memory growth;
+- native leak;
+- bitmap leak;
+- tensor reuse;
+- model duplicate load;
+- repeated initialization.
+
+Nếu memory tăng liên tục theo iteration:
+FAIL.
+
+======================================================================
+25. SOAK TEST
+======================================================================
+
+Chạy repeated production calls.
+
+Khuyến nghị:
+>= 300 iterations nếu thời gian/môi trường cho phép.
+
+Nếu không thể:
+report exact count.
+
+Track:
+RSS
+crash
+ANR
+native exception
+latency drift
+thermal trend.
+
+Không claim "no memory leak" chỉ từ 50 iterations.
+
+======================================================================
+26. THERMAL VALIDATION
+======================================================================
+
+Không dùng claim "zero thermal risk".
+
+Report:
+- test duration;
+- iteration count;
+- initial/final thermal status nếu đọc được;
+- latency drift;
+- CPU/GPU frequency nếu có evidence;
+- observed throttling/not observed.
+
+Allowed:
+"No thermal throttling was observed during the documented run."
+
+Not allowed:
+"Thermal risk = none."
+
+======================================================================
+27. CONCURRENCY / THREAD SAFETY
+======================================================================
+
+Test production Hair Matte API dưới:
+
+- repeated sequential calls;
+- app lifecycle re-entry;
+- cancellation if supported;
+- concurrent call behavior if API allows;
+- orientation changes;
+- rapid image switching.
+
+Nếu API không support concurrent execution:
+document explicit serialization contract.
+
+======================================================================
+28. RESOURCE LIFECYCLE
+======================================================================
+
+Verify:
+
+Model load once where intended.
+Model unload deterministic.
+No repeated heavy initialization per frame unless designed.
+No stale output reuse.
+No resource race during Activity/Fragment lifecycle.
+No crash on app background/foreground.
+
+======================================================================
+29. ERROR INJECTION
+======================================================================
+
+Ít nhất test:
+
+- missing model file;
+- corrupt/invalid image;
+- allocation failure simulation if harness supports;
+- unsupported input;
+- empty/no subject.
+
+Expected:
+controlled error/fallback.
+
+No crash.
+
+======================================================================
+30. ROLLBACK
+======================================================================
+
+P0-C phải có rollback plan trước merge.
+
+Create:
+P0_C_ROLLBACK_PLAN.md
+
+Include:
+- pre-integration commit;
+- integration commit(s);
+- feature flag rollback;
+- files changed;
+- model/resource changes;
+- commands/procedure;
+- data compatibility;
+- expected restored state.
+
+Rollback phải không phụ thuộc internet/cloud.
+
+======================================================================
+31. SECURITY / PRIVACY
+======================================================================
+
+P0 Hair Matting phải giữ LOCAL-FIRST.
+
+Verify:
+- input image không tự upload;
+- alpha mask không tự upload;
+- debug artifact không gửi network;
+- logs không chứa raw personal image data;
+- temporary artifact lifecycle được kiểm soát.
+
+Không thêm telemetry ảnh trong P0-C.
+
+======================================================================
+32. REVIEWER GATE
+======================================================================
+
+Reviewer phải độc lập kiểm tra:
+
+- algorithm drift;
+- architecture;
+- JNI/API;
+- ownership;
+- memory;
+- thread safety;
+- performance evidence;
+- metric integrity;
+- production parity;
+- rollback;
+- source trace;
+- prohibited scope.
+
+Reviewer không tự sửa code.
+
+Output:
+P0_C_REVIEW_REPORT.md
+
+Allowed:
+REVIEW_PASS
+REVIEW_NEEDS_FIX
+REVIEW_BLOCKED.
+
+======================================================================
+33. TESTER GATE
+======================================================================
+
+Tester chạy:
+
+- unit;
+- integration;
+- regression;
+- device;
+- negative;
+- performance;
+- lifecycle;
+- soak where applicable.
+
+Tester không sửa production.
+
+Output:
+P0_C_TEST_REPORT.md
+
+Nếu lỗi:
+create bug report
+-> Agent 0
+-> Fixer assigned
+-> retest.
+
+======================================================================
+34. FIX CYCLE RULE
+======================================================================
+
+Fixer chỉ sửa production integration defect.
+
+Nếu root cause là algorithm:
+STOP.
+
+Không cho Fixer:
+- đổi acceptance criteria;
+- sửa test để PASS;
+- giảm threshold;
+- xóa sample;
+- thay metric;
+- thêm heuristic Hair Matting mới.
+
+Nếu algorithm change required:
+P0_C_ALGORITHM_DRIFT_REQUIRED
+STOP / ESCALATE.
+
+======================================================================
+35. FINAL P0 ACCEPTANCE GATES
+======================================================================
+
+Tất cả phải PASS:
+
+[ ] Frozen P0-B.2R evidence verified.
+[ ] Production candidate source traced.
+[ ] No unauthorized algorithm drift.
+[ ] Production build clean.
+[ ] Required ABI build clean.
+[ ] JNI/API validated.
+[ ] Resource lifecycle validated.
+[ ] Error/fallback behavior validated.
+[ ] 62 canonical samples executed through production path.
+[ ] 62 applicable sample gates PASS.
+[ ] Known historical failures remain closed.
+[ ] Negative cases PASS.
+[ ] Candidate-vs-production parity acceptable.
+[ ] Original-vs-Edited protection PASS.
+[ ] P0 Matting production P50 <= 85 ms on primary comparable device.
+[ ] P95/P99 reported.
+[ ] No critical latency regression.
+[ ] No monotonic memory growth observed in documented run.
+[ ] Peak memory reported.
+[ ] Thermal behavior documented without overclaim.
+[ ] Thread/lifecycle behavior validated.
+[ ] Rollback tested/documented.
+[ ] Local-first/privacy constraints preserved.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] Production artifact hashes generated.
+[ ] Final report complete.
+[ ] P1 has NOT started during P0-C.
+
+======================================================================
+36. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_FINAL_PASS
+
+or
+
+P0_C_NEEDS_FIX
+
+or
+
+P0_C_ALGORITHM_DRIFT_DETECTED
+
+or
+
+P0_C_BLOCKED_EVIDENCE_INTEGRITY.
+
+No other final status.
+
+======================================================================
+37. P0_FINAL_PASS MEANING
+======================================================================
+
+P0_FINAL_PASS means only:
+
+- P0 Hair Matting candidate has been integrated into production;
+- production implementation passed the approved P0 validation gates;
+- evidence has been frozen;
+- P0 Hair Matting is closed for the tested scope.
+
+It DOES NOT mean:
+- all possible images are perfect;
+- all devices have been validated;
+- Hair Color Engine is complete;
+- P1–P6 are complete;
+- salon realism is achieved.
+
+======================================================================
+38. AFTER P0_FINAL_PASS
+======================================================================
+
+Only after P0_FINAL_PASS:
+
+P0 = CLOSED.
+
+Then Agent 0 may prepare a SEPARATE authorization package for:
+
+P1 — Hair Orientation / Flow
+P2 — Flow-Aware Texture
+P3 — Appearance / Shadow / Highlight
+P4 — Hair Dye Material
+P5 — Anisotropic Specular
+P6 — GPU Vulkan / Metal
+
+Future recommended execution architecture:
+PARALLEL DEVELOPMENT + GATED INTEGRATION.
+
+But this P0-C specification DOES NOT authorize P1–P6.
+
+======================================================================
+39. FINAL PRODUCTION FREEZE
+======================================================================
+
+If P0_FINAL_PASS:
+
+Generate:
+
+P0_FINAL_REPORT.md
+P0_FINAL_PRODUCTION_MANIFEST.csv
+P0_FINAL_FREEZE.sha256
+P0_FINAL_FREEZE_RECORD.md
+P0_HAIR_MATTE_OUTPUT_CONTRACT.md
+P0_C_PRODUCTION_REGRESSION_METRICS.csv
+P0_C_CANDIDATE_VS_PRODUCTION_PARITY.csv
+P0_C_DEVICE_BENCHMARK.csv
+P0_C_TEST_REPORT.md
+P0_C_REVIEW_REPORT.md
+P0_C_ROLLBACK_PLAN.md
+
+Hash final production binaries/artifacts where applicable.
+
+======================================================================
+40. REQUIRED FINAL REPORT
+======================================================================
+
+File:
+P0_FINAL_REPORT.md
+
+Must begin:
+
+PHASE P0-C — PRODUCTION INTEGRATION & FINAL P0 ACCEPTANCE — EXECUTION REPORT
+
+Required sections:
+
+1. EXECUTIVE STATUS
+2. AUTHORIZATION & SCOPE
+3. FROZEN EVIDENCE VERIFICATION
+4. SOURCE / GIT STATE
+5. TASK GRAPH
+6. PRODUCTION DIFF MAP
+7. ALGORITHM IMMUTABILITY AUDIT
+8. PRODUCTION PIPELINE TRACE
+9. P0 OUTPUT CONTRACT
+10. JNI/API INTEGRATION
+11. BUILD MATRIX
+12. FEATURE FLAG / FALLBACK
+13. ERROR HANDLING
+14. 62-SAMPLE PRODUCTION REGRESSION
+15. HISTORICAL FAILURE CASES
+16. NEGATIVE CASES
+17. CANDIDATE VS PRODUCTION PARITY
+18. ORIGINAL VS EDITED VALIDATION
+19. VISUAL ARTIFACT REVIEW
+20. DEVICE INFORMATION
+21. PERFORMANCE P50/P95/P99
+22. MEMORY
+23. SOAK
+24. THERMAL
+25. THREAD / LIFECYCLE
+26. SECURITY / PRIVACY
+27. TESTER REPORT
+28. REVIEWER REPORT
+29. ROLLBACK
+30. PRODUCTION MANIFEST
+31. SHA256 FREEZE
+32. FINAL HARD-GATE CHECKLIST
+33. FINAL DECISION
+34. STOP CONDITION.
+
+======================================================================
+41. STOP CONDITION
+======================================================================
+
+After P0-C report:
+
+If P0_FINAL_PASS:
+- freeze P0;
+- STOP;
+- do NOT automatically start P1.
+
+If P0_C_NEEDS_FIX:
+- STOP;
+- report exact integration defect;
+- wait for authorization/fix assignment.
+
+If P0_C_ALGORITHM_DRIFT_DETECTED:
+- STOP immediately;
+- do not modify algorithm;
+- escalate.
+
+If P0_C_BLOCKED_EVIDENCE_INTEGRITY:
+- STOP;
+- repair evidence chain before production integration.
+
+======================================================================
+42. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+EXECUTE ONLY PHASE P0-C.
+
+ORDER:
+
+01. Read canonical runtime law.
+02. Verify P0-B.2R frozen evidence and SHA-256.
+03. Snapshot Git/source state.
+04. Verify locks/worktrees.
+05. Build Task Graph.
+06. Create production diff map.
+07. Freeze integration contract.
+08. Port approved candidate into production.
+09. Audit algorithm immutability.
+10. Integrate JNI/API/build/resource lifecycle.
+11. Build required ABIs.
+12. Run unit/integration tests.
+13. Run 62-sample production regression.
+14. Run known historical failure cases.
+15. Run negative cases.
+16. Compare candidate vs production.
+17. Run Original-vs-Edited validation.
+18. Generate visual artifacts.
+19. Benchmark primary physical device.
+20. Measure P50/P95/P99.
+21. Measure memory.
+22. Run soak test.
+23. Record thermal behavior.
+24. Validate lifecycle/thread behavior.
+25. Validate failure/fallback.
+26. Validate local-first/privacy.
+27. Tester gate.
+28. Reviewer gate.
+29. Resolve integration-only bugs if authorized.
+30. Re-run affected/full gates.
+31. Generate rollback plan.
+32. Generate final production manifest.
+33. Generate SHA-256 freeze.
+34. Generate P0_FINAL_REPORT.md.
+35. Return exactly one allowed final decision.
+36. STOP.
+
+NO P1.
+NO P2.
+NO P3.
+NO P4.
+NO P5.
+NO P6.
+NO NEW HAIR MODEL.
+NO CLOUD.
+NO GENERATIVE.
+NO UNRELATED REFACTOR.
+
+======================================================================
+END OF P0-C MASTER AGENT EXECUTION SPECIFICATION
+======================================================================

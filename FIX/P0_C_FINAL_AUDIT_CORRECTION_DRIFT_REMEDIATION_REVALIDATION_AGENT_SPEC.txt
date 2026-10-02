@@ -1,0 +1,1061 @@
+PHASE P0-C — FINAL AUDIT CORRECTION, DRIFT REMEDIATION & REVALIDATION
+MASTER AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+TASK TYPE: CORRECTIVE AUDIT + CONTROLLED REMEDIATION + REVALIDATION
+OWNER: Agent 0 — CEO / ORCHESTRATOR
+PRIOR AGENT VERDICT: P0_FINAL_PASS
+INDEPENDENT AUDIT STATUS: HOLD / NEEDS CORRECTION
+P1–P6 STATUS: BLOCKED
+PRODUCTION FEATURE SCOPE: P0 Hair Matting only
+
+PURPOSE:
+Sửa đúng các mâu thuẫn/evidence gaps còn lại trong gói P0-C trước khi công nhận
+P0_FINAL_PASS độc lập và mở quyền lập kế hoạch P1–P6.
+
+THIS TASK IS NOT:
+- một phase thuật toán mới;
+- tuning Hair Matting mới;
+- thêm heuristic;
+- đổi model;
+- thêm cloud/generative;
+- tối ưu ngoài phạm vi;
+- mở P1.
+
+======================================================================
+0. GOVERNING PRINCIPLE
+======================================================================
+
+Không sửa báo cáo để khớp code.
+Không sửa code để khớp báo cáo.
+Phải xác định SOURCE OF TRUTH trước.
+
+Thứ tự ưu tiên evidence:
+
+1. Frozen P0-B.2R canonical evidence/config đã SHA-256 freeze.
+2. Production source thực tế.
+3. Raw benchmark/regression/parity artifacts.
+4. Build logs / toolchain config.
+5. Derived reports.
+6. Executive summary.
+
+Nếu report mâu thuẫn raw evidence:
+RAW EVIDENCE THẮNG.
+
+Nếu production source mâu thuẫn frozen approved algorithm:
+ALGORITHM DRIFT phải được khai báo, không được che bằng wording.
+
+======================================================================
+1. AUTHORIZED SCOPE
+======================================================================
+
+Agent được phép:
+
+A. Read-only audit tất cả frozen P0-B.2R/P0-C artifacts.
+B. Sửa documentation/evidence serialization.
+C. Sửa benchmark/test instrumentation trong scratch/test harness.
+D. Rerun build/test/benchmark.
+E. Chỉ khi ALGORITHM DRIFT được xác minh:
+   được phép sửa production source DUY NHẤT để khôi phục chính xác frozen
+   P0-B.2R approved algorithm/parameter/formula.
+F. Regenerate manifests/hashes/final report sau khi revalidation PASS.
+
+Không được:
+- tạo threshold mới;
+- tune theo failure;
+- đổi acceptance gate;
+- thêm sample-specific condition;
+- đổi metric để PASS;
+- xóa test;
+- sửa model;
+- sửa P1–P6;
+- thêm cloud/generative;
+- refactor không liên quan.
+
+======================================================================
+2. MANDATORY INPUTS
+======================================================================
+
+Đọc tối thiểu:
+
+- AGENTS.md
+- Docs/rules.md
+- Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt
+
+P0-B.2R frozen package:
+- P0_B2R_FINAL_EVIDENCE_CORRECTION_REPORT.md
+- P0_B2R_REPORT.md
+- P0_B2R_METRICS_CANONICAL.csv
+- P0_B2R_METRIC_DEFINITIONS.md
+- P0_B2R_METRIC_RECONCILIATION.csv
+- P0_B2R_CSV_VALIDATION_REPORT.md
+- device_benchmark/P0_B2R_DEVICE_BENCHMARK.csv
+- geometry_ab/GEOMETRY_AB_METRICS.csv
+- source_trace/SOURCE_TRACE.md
+- config/P0_B2R_CONFIG.md
+- P0_B2R_FINAL_EVIDENCE_MANIFEST.csv
+- P0_B2R_FINAL_FREEZE.sha256
+- P0_B2R_FINAL_FREEZE_RECORD.md
+
+P0-C package:
+- P0_C_PREINTEGRATION_FREEZE_VERIFICATION.md
+- P0_C_TASK_GRAPH.md
+- P0_C_PRODUCTION_DIFF_MAP.md
+- P0_HAIR_MATTE_OUTPUT_CONTRACT.md
+- P0_C_JNI_API_AUDIT.md
+- P0_C_PRODUCTION_REGRESSION_METRICS.csv
+- P0_C_CANDIDATE_VS_PRODUCTION_PARITY.csv
+- P0_C_DEVICE_BENCHMARK.csv
+- P0_C_TEST_REPORT.md
+- P0_C_REVIEW_REPORT.md
+- P0_C_ROLLBACK_PLAN.md
+- P0_FINAL_PRODUCTION_MANIFEST.csv
+- P0_FINAL_FREEZE.sha256
+- P0_FINAL_FREEZE_RECORD.md
+- P0_FINAL_REPORT.md
+
+Production source:
+- lib-core-graphics/src/main/cpp/include/hair_matting_engine.h
+- lib-core-graphics/src/main/cpp/src/hair_matting_engine.cpp
+- lib-core-graphics/src/main/cpp/include/ai/bisenet_face_parser.h
+- lib-core-graphics/src/main/cpp/src/ai/bisenet_face_parser.cpp
+- JNI bridge source(s)
+- Gradle/CMake/NDK configuration.
+
+Nếu thiếu artifact bắt buộc:
+STATUS = P0_C_CORRECTION_BLOCKED_MISSING_EVIDENCE
+STOP.
+
+======================================================================
+3. CORRECTION ISSUE C1 — LETTERBOX THRESHOLD 1.80 vs 1.45
+======================================================================
+
+Đây là issue CRITICAL.
+
+Các tài liệu hiện có đang mâu thuẫn:
+
+A. P0_C_PRODUCTION_DIFF_MAP.md ghi:
+   tau_aspect = 1.80
+   và nói lấy STRICTLY từ frozen P0_B2R_CONFIG.md.
+
+B. P0_C_REVIEW_REPORT.md ghi:
+   approved threshold = 1.45
+   production = aspect > 1.45
+   và đánh dấu MATCH.
+
+C. P0_FINAL_REPORT.md ghi:
+   Mode B Adaptive Letterbox if aspect > 1.45.
+
+Không được chọn 1.45 hoặc 1.80 theo kết quả mong muốn.
+
+======================================================================
+4. C1 — SOURCE-OF-TRUTH AUDIT
+======================================================================
+
+Agent phải trace:
+
+1. Frozen:
+   config/P0_B2R_CONFIG.md
+2. Frozen source trace:
+   source_trace/SOURCE_TRACE.md
+3. Frozen geometry experiment:
+   GEOMETRY_AB_METRICS.csv
+4. Candidate code/harness used to produce PASS evidence.
+5. Production:
+   BiSeNetFaceParser::parseFace19Adaptive
+6. Any duplicated constants/macros/config values.
+7. Reviewer/report generation source.
+
+Tạo:
+P0_C_C1_ASPECT_THRESHOLD_TRACE.md
+
+Required fields:
+
+artifact
+file
+function_or_section
+value
+classification
+hash/version
+effective_at_runtime
+notes.
+
+======================================================================
+5. C1 — DECISION TREE
+======================================================================
+
+CASE A:
+Frozen approved value = 1.80
+Production source = 1.80
+Reports say 1.45
+
+=> DOCUMENTATION_DRIFT_ONLY.
+=> Do NOT touch production algorithm.
+=> Correct all reports/reviewer docs to 1.80.
+=> Revalidate hashes and claims.
+
+CASE B:
+Frozen approved value = 1.80
+Production source = 1.45
+
+=> ALGORITHM_DRIFT_CONFIRMED.
+=> Existing "zero algorithm drift" claim is INVALID.
+=> Authorized correction:
+   restore production threshold EXACTLY to 1.80.
+=> No additional tuning.
+=> Full rebuild + full regression + parity + benchmark mandatory.
+
+CASE C:
+Frozen approved value = 1.45
+Production source = 1.45
+Diff map says 1.80
+
+=> DOCUMENTATION_DRIFT_ONLY.
+=> Correct diff map/config reference chain.
+=> Must explain why frozen config appears as 1.80 if that file truly says 1.80.
+=> If frozen evidence itself is internally contradictory:
+   STATUS = P0_C_EVIDENCE_CONTRADICTION
+   STOP.
+
+CASE D:
+Cannot prove canonical frozen value.
+
+=> P0_C_EVIDENCE_CONTRADICTION
+=> STOP.
+
+======================================================================
+6. C1 — FULL PARAMETER IMMUTABILITY RE-AUDIT
+======================================================================
+
+Vì đã phát hiện ít nhất một possible threshold discrepancy, không chỉ kiểm 1 biến.
+
+Generate:
+P0_C_ALGORITHM_PARAMETER_PARITY.csv
+
+Columns:
+
+parameter_id
+stage
+frozen_value
+production_value
+frozen_source
+production_source
+exact_match
+impact
+action.
+
+Audit tối thiểu:
+
+- semantic class mapping;
+- aspect threshold;
+- letterbox scale/padding/inverse mapping;
+- appearance thresholds/formulas;
+- Hair/Hat resolver thresholds;
+- LowContrast P3 ROI margin;
+- LowContrast downsample factor;
+- trimap kernel/rules;
+- guided filter r;
+- guided filter s;
+- guided filter epsilon;
+- local affinity kernel;
+- sigma_s;
+- sigma_c;
+- semantic protection rules;
+- ear resolver rules;
+- hairline texture threshold;
+- alpha minimum strand;
+- any skin/forehead clamp values.
+
+Không được kết luận "zero algorithm drift" nếu bảng này chưa exact-match
+hoặc chưa có documented justified numeric tolerance cho floating constants.
+
+======================================================================
+7. CORRECTION ISSUE C2 — PERFORMANCE BENCHMARK COMPARABILITY
+======================================================================
+
+P0-C Tester Report hiện ghi benchmark frame:
+512 x 512.
+
+P0-C production gate lại được so với P0-B.2R target/baseline.
+
+Agent phải xác minh frozen P0-B.2R benchmark thực tế sử dụng:
+- input resolution nào;
+- preprocessing nào;
+- measured stage boundaries nào;
+- warmup/iteration count;
+- CPU threads;
+- device state;
+- build flags.
+
+Không được mặc định 512x512 là comparable.
+
+======================================================================
+8. C2 — REQUIRED BENCHMARK MATRIX
+======================================================================
+
+Tạo:
+P0_C_BENCHMARK_COMPARABILITY_MATRIX.md
+
+Columns:
+
+benchmark_id
+phase
+device
+input_resolution
+preprocess
+build_type
+ABI
+threads
+warmup
+iterations
+stage_definition
+P50
+P95
+P99
+comparable_to_gate
+reason.
+
+Nếu frozen baseline là 960x1280:
+phải rerun production P0-C tại 960x1280.
+
+Nếu baseline là resolution khác:
+dùng đúng resolution đó.
+
+Ngoài baseline-comparable run, có thể giữ 512x512 như supplemental benchmark,
+nhưng không dùng supplemental benchmark để thay hard gate.
+
+======================================================================
+9. C2 — HARD PERFORMANCE GATE
+======================================================================
+
+Hard Gate chỉ được đánh giá trên comparable configuration:
+
+P0 Matting P50 <= 85 ms
+
+Report:
+P50
+P95
+P99
+full pipeline P50/P95/P99
+device
+resolution
+threads
+build flags
+thermal state.
+
+Nếu comparable P50 > 85 ms:
+P0_C_CORRECTION_NEEDS_FIX
+
+Không tuning algorithm trong task này để kéo metric xuống.
+
+======================================================================
+10. CORRECTION ISSUE C3 — JNI AUDIT COVERAGE GAP
+======================================================================
+
+P0_C_JNI_API_AUDIT.md hiện audit các method như:
+- nativeInitHairMatting
+- nativeApplyHairStrandDye
+
+Trong khi P0_FINAL_REPORT.md tuyên bố production expose:
+- nativeExtractHairMatte
+- nativeSetP0B2REnabled
+- nativeIsP0B2REnabled
+
+Agent phải audit JNI surface THỰC TẾ từ source, không dựa vào report.
+
+======================================================================
+11. C3 — REQUIRED JNI INVENTORY
+======================================================================
+
+Generate:
+P0_C_JNI_SURFACE_INVENTORY.csv
+
+Fields:
+
+jni_symbol
+java_kotlin_declaration
+cpp_location
+signature
+input_types
+output_types
+bitmap_or_array_pin
+release_path
+exception_path
+threading
+lifecycle
+null_handling
+format_validation
+status.
+
+Audit mọi JNI symbol liên quan P0 Hair Matting.
+
+Tối thiểu verify:
+
+- nativeExtractHairMatte
+- nativeSetP0B2REnabled
+- nativeIsP0B2REnabled
+- nativeInitHairMatting if actually used
+- nativeApplyHairStrandDye if part of current call path.
+
+Không được audit method không tồn tại như thể tồn tại.
+
+======================================================================
+12. C3 — JNI SAFETY GATES
+======================================================================
+
+PASS yêu cầu:
+
+[ ] JNI signature exact match.
+[ ] Native registration/export exact.
+[ ] No dangling pointer.
+[ ] Every Get*/pin has corresponding Release/unpin.
+[ ] AndroidBitmap_lockPixels paired with unlock.
+[ ] No return path skips release.
+[ ] RGBA/RGB/BGR order explicitly verified.
+[ ] Stride handled.
+[ ] Rotation/orientation contract handled/documented.
+[ ] Null/invalid input handled.
+[ ] No stale buffer.
+[ ] Feature flag thread safety verified.
+[ ] Re-entry/lifecycle behavior verified.
+
+Update:
+P0_C_JNI_API_AUDIT.md
+
+======================================================================
+13. CORRECTION ISSUE C4 — ROLLBACK IS NOT DETERMINISTIC ENOUGH
+======================================================================
+
+Current rollback plan contains wording equivalent to:
+"Pre-Integration Head Commit: commit hash preceding TASK-P0C-04"
+
+and example commands:
+git checkout HEAD -- <files>
+
+This is not sufficient after integration is committed.
+
+Agent must establish an exact immutable rollback point.
+
+======================================================================
+14. C4 — EXACT PRE-INTEGRATION SHA
+======================================================================
+
+P0_C_PREINTEGRATION_FREEZE_VERIFICATION.md previously reported:
+HEAD = 0cf048740c65b678c0a7e562df28338493a41567
+
+Treat this only as a CANDIDATE pre-integration SHA until independently verified.
+
+Verify:
+
+git show <sha>
+git diff <sha>..integration_commit -- protected files
+git merge-base
+task/commit chronology
+production file hashes at <sha>.
+
+If verified, define:
+
+PRE_P0C_SHA=<exact_sha>
+P0C_INTEGRATION_SHA=<exact_sha>
+
+Do not use vague "commit preceding task".
+
+======================================================================
+15. C4 — ROLLBACK PROCEDURE
+======================================================================
+
+Rollback plan must support:
+
+LEVEL 1 — runtime feature flag
+- verified actual call path;
+- verified fallback output;
+- verified no crash.
+
+LEVEL 2 — source restore
+Example only after verified SHA:
+
+git restore --source="$PRE_P0C_SHA" -- \
+  lib-core-graphics/src/main/cpp/include/hair_matting_engine.h \
+  lib-core-graphics/src/main/cpp/src/hair_matting_engine.cpp \
+  lib-core-graphics/src/main/cpp/include/ai/bisenet_face_parser.h \
+  lib-core-graphics/src/main/cpp/src/ai/bisenet_face_parser.cpp
+
+OR:
+git revert <integration_commit>
+
+Choose one canonical procedure.
+
+Do NOT use:
+git checkout HEAD -- ...
+as the claimed pre-integration restore mechanism.
+
+======================================================================
+16. C4 — ROLLBACK TEST
+======================================================================
+
+Perform in isolated worktree.
+
+Verify:
+
+1. P0-C enabled build works.
+2. Restore/revert to PRE_P0C state.
+3. Clean build.
+4. Legacy fallback behavior matches expected baseline.
+5. Return to P0-C integration commit.
+6. Clean build.
+7. Hashes restore exactly.
+
+Output:
+P0_C_ROLLBACK_EXECUTION_EVIDENCE.md
+
+Do not execute destructive reset on main/master.
+
+======================================================================
+17. CORRECTION ISSUE C5 — PARITY CLAIM RECONCILIATION
+======================================================================
+
+Current parity evidence reportedly has:
+
+- 62 samples.
+- alpha_diff_mean = 0.0.
+- alpha_diff_p95 = 0.0.
+- alpha_diff_max = 0.0.
+- absolute_delta non-zero on multiple rows, up to 0.05%.
+
+Meanwhile reports claim:
+"100% deterministic bit/pixel parity".
+
+This must be reconciled.
+
+======================================================================
+18. C5 — DEFINE PARITY LEVELS
+======================================================================
+
+Use exactly these terms:
+
+LEVEL A — BYTE/PIXEL EXACT PARITY
+Candidate alpha and production alpha are identical element-by-element
+under same dtype/layout, preferably with identical SHA-256 buffer hash.
+
+LEVEL B — NUMERIC ALPHA PARITY WITH TOLERANCE
+Per-pixel float values differ but remain within predefined epsilon.
+
+LEVEL C — METRIC PARITY WITH TOLERANCE
+Derived metrics differ within accepted tolerance, but pixel equality is not proven.
+
+Do not call LEVEL C "bit/pixel parity".
+
+======================================================================
+19. C5 — REQUIRED RAW PARITY EXPORT
+======================================================================
+
+Generate:
+P0_C_PARITY_RAW_EVIDENCE.csv
+
+Fields:
+
+sample_id
+candidate_metric_raw
+production_metric_raw
+metric_formula
+metric_roi
+reported_candidate_metric
+reported_production_metric
+absolute_delta_raw
+candidate_alpha_sha256
+production_alpha_sha256
+element_count
+different_element_count
+max_abs_alpha_diff
+mean_abs_alpha_diff
+p95_abs_alpha_diff
+parity_level
+status.
+
+No rounded-only metrics as source of truth.
+
+======================================================================
+20. C5 — PARITY DECISION
+======================================================================
+
+If candidate_alpha_sha256 == production_alpha_sha256 for all 62:
+- LEVEL A allowed.
+- Explain any non-zero displayed metric delta as report/export artifact;
+  fix CSV/report so the numbers no longer contradict exact identity.
+
+If hashes differ but numeric diff <= predefined epsilon:
+- LEVEL B.
+- Remove "bit/pixel parity".
+- Use "numeric parity within tolerance".
+
+If only final metric delta <=0.05%:
+- LEVEL C.
+- Use "metric parity within approved tolerance".
+
+If tolerance was chosen after seeing results:
+- invalid.
+- require predeclared tolerance or reviewer approval.
+
+======================================================================
+21. CORRECTION ISSUE C6 — NDK / TOOLCHAIN VERSION CONFLICT
+======================================================================
+
+Current evidence contains inconsistent toolchain claims such as:
+- NDK r26b
+- NDK 25.1.8937393 / r25-class
+
+Determine actual toolchain from:
+
+- android.ndkVersion / gradle.properties
+- Gradle build log
+- CMake configure output
+- `$ANDROID_NDK_HOME/source.properties` if applicable
+- compiled binary build metadata where available.
+
+Generate:
+P0_C_TOOLCHAIN_SOURCE_OF_TRUTH.md
+
+Update ALL reports to one verified toolchain version.
+
+Do not write "r26b" and "25.1.8937393" simultaneously unless two different
+builds genuinely used two different NDKs, in which case label each run.
+
+======================================================================
+22. CORRECTION ISSUE C7 — EAR RESOLVER TIMING
+======================================================================
+
+P0-B.2R evidence previously classified Ear Resolver as NOT_TRIGGERED in the
+non-ear benchmark scenario.
+
+P0-C report now displays:
+< 0.01 ms
+
+Agent must determine whether:
+
+A. Ear stage actually triggered in P0-C benchmark.
+B. It was bypassed.
+C. Timer measured only branch overhead.
+
+Required fields:
+
+iteration
+ear_candidate_count
+ear_pixel_count
+triggered
+elapsed_ns
+elapsed_ms.
+
+Generate:
+P0_C_EAR_RESOLVER_TIMING_AUDIT.csv
+
+======================================================================
+23. C7 — ALLOWED REPORTING
+======================================================================
+
+If trigger_count = 0:
+report:
+N/A — EAR_STAGE_NOT_TRIGGERED
+
+Do not report <0.01 ms as algorithm execution latency.
+
+If triggered:
+report actual measured distribution.
+
+Recommended:
+add dedicated ear-positive microbenchmark using known ear-occlusion samples,
+without replacing main end-to-end benchmark.
+
+======================================================================
+24. OVERCLAIM CLEANUP
+======================================================================
+
+Search final package for:
+
+100% deterministic
+bit/pixel parity
+perfectly preserved
+zero risk
+zero downtime
+leak-free
+zero memory leaks
+permanently frozen
+100% protected
+exact implementation
+mathematically exact
+certified
+guaranteed
+all images
+all devices.
+
+Do NOT mechanically delete valid quantified claims.
+
+Rule:
+A claim must state scope.
+
+Examples allowed:
+"62/62 canonical samples passed applicable gates."
+"No monotonic RSS growth observed over 300 invocations."
+"No thermal throttling was observed during the documented 42-minute run."
+"Zero UI leakage measured on the listed screenshot samples."
+
+Not allowed without stronger evidence:
+"Zero memory leaks" solely from RSS observation.
+"Perfectly preserved outside hair."
+"Zero risk."
+"100% bit parity" without byte/pixel evidence.
+
+Create/update:
+P0_C_CLAIM_CORRECTION_LOG.md
+
+======================================================================
+25. PRODUCTION SOURCE MODIFICATION POLICY
+======================================================================
+
+Production source modification is allowed ONLY if C1 confirms actual algorithm drift.
+
+Allowed:
+- restore exact frozen approved constant/formula;
+- fix wiring required to make production match frozen candidate.
+
+Forbidden:
+- tuning;
+- new heuristics;
+- new thresholds;
+- performance shortcuts changing output;
+- changing P0 output contract;
+- adding model/cloud/generative.
+
+Every production change must have:
+
+TASK ID
+before hash
+after hash
+exact reason
+frozen source reference
+review
+regression.
+
+======================================================================
+26. REVALIDATION AFTER ANY PRODUCTION CHANGE
+======================================================================
+
+If even one production code line changes:
+
+MANDATORY FULL REVALIDATION:
+
+1. Clean multi-ABI build.
+2. Full app build.
+3. 62-sample production regression.
+4. Candidate-vs-production parity.
+5. Historical defects G1/G2/G3/R1/R2.
+6. Bald/headwear/UI/border/multi-person negative/edge cases.
+7. Comparable device benchmark.
+8. Memory/soak.
+9. Thermal observation.
+10. JNI/API audit.
+11. Rollback test.
+12. Tester review.
+13. Independent reviewer review.
+
+No partial rerun accepted for final PASS.
+
+======================================================================
+27. REVALIDATION IF DOCS-ONLY
+======================================================================
+
+If production code is proven already correct and only docs/evidence were wrong:
+
+Still rerun/verify:
+
+- comparable benchmark if C2 unresolved;
+- JNI inventory/audit;
+- rollback execution evidence;
+- parity raw evidence;
+- toolchain source;
+- ear timing classification;
+- manifest/hash consistency.
+
+62 regression may be recomputed from preserved raw evidence if no production change,
+but must be independently parsed/recounted.
+
+======================================================================
+28. CSV / DATA INTEGRITY
+======================================================================
+
+All CSV outputs must:
+
+- UTF-8;
+- standard quoting;
+- parse with Python csv;
+- parse with pandas;
+- stable column count;
+- unique sample IDs where applicable;
+- no NaN/Inf unless schema explicitly allows;
+- distinguish NA from zero;
+- contain raw values where a claim depends on precision.
+
+Create:
+P0_C_CORRECTION_CSV_VALIDATION_REPORT.md
+
+======================================================================
+29. HASH / MANIFEST VERSIONING
+======================================================================
+
+Do NOT silently overwrite the old freeze as though it never existed.
+
+Preserve old P0-C package as:
+SUPERSEDED / PRE-CORRECTION EVIDENCE
+
+Generate new versioned package:
+
+P0_C_CORRECTION_01/
+
+At minimum:
+
+P0_C_CORRECTION_MASTER_REPORT.md
+P0_C_C1_ASPECT_THRESHOLD_TRACE.md
+P0_C_ALGORITHM_PARAMETER_PARITY.csv
+P0_C_BENCHMARK_COMPARABILITY_MATRIX.md
+P0_C_JNI_SURFACE_INVENTORY.csv
+P0_C_JNI_API_AUDIT.md
+P0_C_ROLLBACK_EXECUTION_EVIDENCE.md
+P0_C_PARITY_RAW_EVIDENCE.csv
+P0_C_TOOLCHAIN_SOURCE_OF_TRUTH.md
+P0_C_EAR_RESOLVER_TIMING_AUDIT.csv
+P0_C_CLAIM_CORRECTION_LOG.md
+P0_C_CORRECTION_CSV_VALIDATION_REPORT.md
+P0_C_CORRECTION_MANIFEST.csv
+P0_C_CORRECTION_FREEZE.sha256
+P0_C_CORRECTION_FREEZE_RECORD.md
+
+If production source changes, include new production source hashes.
+
+======================================================================
+30. TASK GRAPH
+======================================================================
+
+Agent 0 must create:
+
+TASK-P0C-F01 — Snapshot & Evidence Integrity
+TASK-P0C-F02 — Aspect Threshold Source-of-Truth
+TASK-P0C-F03 — Full Algorithm Parameter Parity Audit
+TASK-P0C-F04 — Drift Remediation IF REQUIRED
+TASK-P0C-F05 — Benchmark Comparability Rerun
+TASK-P0C-F06 — Full JNI Surface Audit
+TASK-P0C-F07 — Rollback Hardening & Execution Test
+TASK-P0C-F08 — Raw Parity Reconstruction
+TASK-P0C-F09 — Toolchain + Ear Timing Reconciliation
+TASK-P0C-F10 — Full/Required Revalidation
+TASK-P0C-F11 — Tester Gate
+TASK-P0C-F12 — Reviewer Gate
+TASK-P0C-F13 — Corrected Final Freeze & Report
+
+Respect worktree/lock rules.
+
+======================================================================
+31. FINAL HARD GATES
+======================================================================
+
+All applicable gates must PASS:
+
+[ ] Frozen P0-B.2R hash integrity verified.
+[ ] Canonical aspect threshold proven.
+[ ] Production aspect threshold matches frozen approved value.
+[ ] Full parameter/formula parity audit complete.
+[ ] No unresolved algorithm drift.
+[ ] Benchmark gate uses comparable baseline configuration.
+[ ] Comparable P0 Matting P50 <= 85 ms.
+[ ] P95/P99 reported.
+[ ] JNI surface inventory complete.
+[ ] Actual Hair Matting JNI methods audited.
+[ ] Exact PRE_P0C_SHA verified.
+[ ] Exact integration SHA verified.
+[ ] Rollback executed successfully in isolated worktree.
+[ ] Parity level correctly classified.
+[ ] Raw parity evidence supports claim.
+[ ] Toolchain version reconciled.
+[ ] Ear timing correctly classified.
+[ ] 62 canonical samples still PASS if production changed.
+[ ] Historical defects remain closed.
+[ ] Negative cases remain PASS.
+[ ] Memory/soak evidence valid.
+[ ] Thermal wording scoped to observed run.
+[ ] Claim overstatements corrected.
+[ ] CSVs dual-parser valid.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] New manifest generated.
+[ ] New SHA-256 freeze generated.
+[ ] P1–P6 not started.
+
+======================================================================
+32. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_FINAL_PASS_RECONFIRMED
+
+or
+
+P0_C_CORRECTION_NEEDS_FIX
+
+or
+
+P0_C_ALGORITHM_DRIFT_UNRESOLVED
+
+or
+
+P0_C_EVIDENCE_CONTRADICTION
+
+or
+
+P0_C_CORRECTION_BLOCKED_MISSING_EVIDENCE.
+
+======================================================================
+33. MEANING OF P0_FINAL_PASS_RECONFIRMED
+======================================================================
+
+Only use P0_FINAL_PASS_RECONFIRMED if:
+
+- threshold/config contradiction is fully resolved;
+- production matches frozen approved P0-B.2R algorithm;
+- benchmark is comparable;
+- JNI audit covers actual surface;
+- rollback is executable from exact SHA;
+- parity claim matches raw evidence;
+- toolchain/ear timing conflicts are resolved;
+- all required tests/reviews PASS;
+- corrected evidence package is frozen.
+
+It means:
+P0 Hair Matting may be considered CLOSED for the validated scope.
+
+It does NOT mean:
+- all images;
+- all devices;
+- Hair Color Engine P1–P6 complete;
+- salon realism achieved.
+
+======================================================================
+34. P1–P6 RULE
+======================================================================
+
+During this correction task:
+
+P1 = BLOCKED
+P2 = BLOCKED
+P3 = BLOCKED
+P4 = BLOCKED
+P5 = BLOCKED
+P6 = BLOCKED
+
+Only after:
+P0_FINAL_PASS_RECONFIRMED
+
+may Agent 0 prepare a separate P1–P6 authorization package.
+
+Do not auto-start any later phase.
+
+======================================================================
+35. REQUIRED FINAL REPORT
+======================================================================
+
+File:
+P0_C_CORRECTION_MASTER_REPORT.md
+
+Required sections:
+
+1. EXECUTIVE STATUS
+2. INPUT EVIDENCE INVENTORY
+3. OLD FREEZE PRESERVATION
+4. C1 ASPECT THRESHOLD TRACE
+5. C1 FINAL SOURCE OF TRUTH
+6. FULL ALGORITHM PARAMETER PARITY
+7. ALGORITHM DRIFT DECISION
+8. PRODUCTION CHANGE LOG IF ANY
+9. C2 BENCHMARK COMPARABILITY
+10. C2 COMPARABLE DEVICE RESULTS
+11. C3 JNI SURFACE INVENTORY
+12. C3 JNI SAFETY AUDIT
+13. C4 PRE-INTEGRATION SHA
+14. C4 ROLLBACK EXECUTION
+15. C5 PARITY LEVEL DEFINITION
+16. C5 RAW PARITY EVIDENCE
+17. C6 TOOLCHAIN SOURCE OF TRUTH
+18. C7 EAR TIMING AUDIT
+19. CLAIM CORRECTION LOG
+20. CSV VALIDATION
+21. REGRESSION / HISTORICAL CASES
+22. MEMORY / SOAK
+23. THERMAL
+24. TESTER VERDICT
+25. REVIEWER VERDICT
+26. NEW MANIFEST
+27. NEW SHA-256 FREEZE
+28. FINAL HARD-GATE CHECKLIST
+29. FINAL DECISION
+30. STOP CONDITION.
+
+======================================================================
+36. STOP CONDITIONS
+======================================================================
+
+STOP immediately if:
+
+- canonical frozen threshold cannot be established;
+- frozen evidence is internally contradictory;
+- production drift requires any tuning beyond exact restoration;
+- benchmark cannot be reproduced comparably;
+- rollback SHA cannot be proven;
+- raw parity evidence contradicts PASS materially;
+- Tester or Reviewer fails;
+- P1/P2/P3/P4/P5/P6 has started.
+
+======================================================================
+37. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+EXECUTE ONLY THIS CORRECTION TASK:
+
+01. Snapshot current state.
+02. Preserve old P0-C freeze unchanged.
+03. Verify all available hashes.
+04. Trace 1.80 vs 1.45 to canonical frozen source.
+05. Audit all P0 algorithm parameters/formulas.
+06. If drift confirmed, restore exact frozen value only.
+07. Build clean across supported ABIs.
+08. Establish benchmark baseline comparability.
+09. Rerun comparable physical-device benchmark.
+10. Inventory actual JNI symbols.
+11. Audit actual Hair Matting JNI methods.
+12. Verify exact PRE_P0C_SHA and integration SHA.
+13. Execute rollback test in isolated worktree.
+14. Rebuild raw candidate-vs-production parity evidence.
+15. Classify parity as Level A/B/C.
+16. Reconcile NDK/toolchain version.
+17. Reconcile Ear Resolver timing.
+18. Correct overclaims.
+19. If production changed: rerun full 62 + all gates.
+20. Validate all CSVs with two parsers.
+21. Tester gate.
+22. Reviewer gate.
+23. Generate correction manifest.
+24. Generate SHA-256 freeze.
+25. Generate P0_C_CORRECTION_MASTER_REPORT.md.
+26. Return exactly one allowed final decision.
+27. STOP.
+
+NO P1.
+NO P2.
+NO P3.
+NO P4.
+NO P5.
+NO P6.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.
+NO UNRELATED REFACTOR.
+
+======================================================================
+END OF MASTER CORRECTION SPEC
+======================================================================

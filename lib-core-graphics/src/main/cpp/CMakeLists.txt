@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
+include_directories(include/media/video)
+include_directories(include/vision/tracking)
+include_directories(include/beauty)
+include_directories(include/ai)
 
 # Bat co toi uu hoa toc do cao va da luong OpenMP
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fopenmp -fvisibility=default -ffast-math")
@@ -34,7 +38,6 @@ add_library(
     src/teeth_ear_engine.cpp
     src/camera_shutter_pipeline.cpp
     src/yuv_converter.cpp
-    src/video_timeline_compositor.cpp
     src/ncnn_face_engine.cpp
     src/dense_facemesh_478.cpp
     src/face_retouch_detail.cpp
@@ -42,6 +45,14 @@ add_library(
     src/landmark_fusion.cpp
     src/hair_matting_engine.cpp
     src/hair_strand_dye.cpp
+    src/hair_engine.cpp
+    src/hair/hair_orientation_engine.cpp
+    src/hair/hair_texture_engine.cpp
+    src/hair/hair_appearance_engine.cpp
+    src/hair/hair_dye_material_engine.cpp
+    src/hair/hair_anisotropic_specular_engine.cpp
+    src/hair/hair_gpu_backend.cpp
+    src/hair/hair_color_pipeline.cpp
     src/beard_dye_engine.cpp
     src/id_photo_collage_engine.cpp
     src/head_semantic_model.cpp
@@ -66,12 +77,18 @@ add_library(
     src/body_semantic_model.cpp
     src/body_beauty_engine.cpp
     src/full_human_beauty_controller.cpp
+    src/ai/bisenet_face_parser.cpp
+    src/media/video/native_video_decoder.cpp
+    src/media/video/video_frame_pool.cpp
+    src/media/video/video_timeline_compositor.cpp
+    src/vision/tracking/optical_flow_tracker.cpp
     src/jni_bridge.cpp
 )
 
 find_library(log-lib log)
 find_library(jnigraphics-lib jnigraphics)
 find_library(android-lib android)
+find_library(mediandk-lib mediandk)
 
 target_link_libraries(
     meitu_reborn_native
@@ -79,6 +96,7 @@ target_link_libraries(
     ${log-lib}
     ${jnigraphics-lib}
     ${android-lib}
+    ${mediandk-lib}
     m
     -fopenmp
     -static-openmp

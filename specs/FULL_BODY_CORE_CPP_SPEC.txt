@@ -1,0 +1,1519 @@
+PHẦN II — FULL BODY CORE C++ / HUMAN SEMANTIC GEOMETRY & BODY BEAUTY ENGINE
+================================================================================
+Tài liệu nối tiếp: CORE_CPP_HEAD_FACE_HAIR_SKIN_BEAUTY_ENGINE_SPEC
+Mục tiêu: mở rộng Head Semantic Engine thành Full Human Semantic Anatomy,
+Geometry, Appearance, Pose, Deformation & Generative Editing Engine.
+
+================================================================================
+41. KIẾN TRÚC FULL HUMAN
+================================================================================
+
+INPUT PHOTO / CAMERA / VIDEO
+        |
+        v
+PERSON DETECTION
+        |
+        +-----------------------------+
+        |                             |
+        v                             v
+HEAD ENGINE                    BODY POSE ENGINE
+106 + 468/478                  WholeBody keypoints
+        |                             |
+        +-------------+---------------+
+                      |
+                      v
+              HUMAN PARSING
+                      |
+        +-------------+-------------+
+        |             |             |
+        v             v             v
+      SKIN         CLOTHES       ACCESSORIES
+        |             |             |
+        +-------------+-------------+
+                      |
+                      v
+              DEPTH / NORMAL
+                      |
+                      v
+           HUMAN GEOMETRY CORE
+                      |
+       +--------------+--------------+
+       |              |              |
+       v              v              v
+    SKELETON       CONTOUR       BODY MESH
+       |              |              |
+       +--------------+--------------+
+                      |
+                      v
+              TEMPORAL TRACKER
+                      |
+                      v
+               BODY BEAUTY CORE
+                      |
+        +-------------+-------------+
+        |             |             |
+        v             v             v
+   GEOMETRY       APPEARANCE    GENERATIVE
+     EDIT             EDIT      RECONSTRUCTION
+        |             |             |
+        +-------------+-------------+
+                      |
+                      v
+              GPU DEFORMATION
+                      |
+             Vulkan / Metal
+                      |
+                      v
+                   OUTPUT
+
+================================================================================
+42. BODY SEMANTIC MODEL
+================================================================================
+
+FullHumanModel
+|
++-- Head
++-- Neck
++-- Shoulder
++-- Clavicle
++-- Chest/Torso
++-- Back
++-- Waist
++-- Abdomen
++-- Pelvis/Hip
++-- Left/Right Arm
+|   +-- Upper Arm
+|   +-- Elbow
+|   +-- Forearm
+|   +-- Wrist
+|   +-- Hand
+|       +-- Palm
+|       +-- Thumb
+|       +-- Index
+|       +-- Middle
+|       +-- Ring
+|       +-- Little finger
+|       +-- Nails
++-- Left/Right Leg
+|   +-- Thigh
+|   +-- Knee
+|   +-- Shin
+|   +-- Calf
+|   +-- Ankle
+|   +-- Foot
+|       +-- Heel
+|       +-- Instep
+|       +-- Sole
+|       +-- Toes
++-- Clothes
++-- Shoes
++-- Accessories
++-- Foreground Occluders
++-- Background
+
+Mỗi vùng cần:
+mask, contour, skeleton anchors, dense boundary, geometry,
+depth, appearance, visibility, confidence, temporal state.
+
+================================================================================
+43. HUMAN POSE / SKELETON ENGINE
+================================================================================
+
+Mục tiêu:
+- Xác định cấu trúc xương biểu kiến và quan hệ các khớp.
+- Không coi skeleton 2D là giải phẫu xương thật.
+- Ước lượng pose 2D/2.5D/3D khi model hỗ trợ.
+
+Key regions:
+head, neck, shoulders, elbows, wrists, hands,
+spine/torso center, hips, knees, ankles, feet.
+
+WholeBody model có thể bổ sung:
+- hand keypoints;
+- foot keypoints;
+- face keypoints.
+
+PoseState:
+- keypoints[]
+- confidence[]
+- jointAngles[]
+- limbLengths2D[]
+- estimatedDepth[]
+- poseOrientation
+- visibility[]
+- occlusionState[].
+
+Ứng dụng:
+- body geometry;
+- tracking;
+- pose-aware deformation;
+- xác định tay/chân nào ở trước;
+- bảo vệ khớp khi kéo dài/thun ngắn.
+
+================================================================================
+44. BODY PARSING / HUMAN SEGMENTATION
+================================================================================
+
+Semantic classes đề xuất:
+
+background
+hair
+face
+neck
+torso_skin
+left_arm
+right_arm
+left_hand
+right_hand
+upper_clothes
+lower_clothes
+dress
+skirt
+pants
+left_leg_skin
+right_leg_skin
+left_foot
+right_foot
+left_shoe
+right_shoe
+hat
+glasses
+bag
+accessory
+foreground_object.
+
+Parsing phải có:
+- classMask;
+- probability/confidence;
+- boundary confidence;
+- occlusion relation.
+
+Không được coi clothing contour là body contour thật.
+Ví dụ áo khoác rộng không cho biết chính xác vòng eo bên dưới.
+
+================================================================================
+45. BODY CONTOUR ENGINE
+================================================================================
+
+Input:
+Pose + Human Parsing + Depth + Edge + Temporal Tracking.
+
+Tạo:
+- visibleBodyContour;
+- clothingContour;
+- estimatedAnatomicalContour;
+- confidenceContour.
+
+Phân biệt:
+1. OBSERVED CONTOUR: biên thực sự thấy trên ảnh.
+2. CLOTHING CONTOUR: biên quần áo.
+3. ESTIMATED BODY CONTOUR: body shape model ước lượng.
+4. EDIT CONTOUR: biên sau chỉnh sửa.
+
+Không trộn bốn loại trên.
+
+OpenCV có thể hỗ trợ:
+mask morphology -> findContours -> curve simplification
+-> boundary smoothing -> temporal contour stabilization.
+
+================================================================================
+46. NECK / CỔ
+================================================================================
+
+Nhận diện:
+- neck left/right boundary;
+- front neck;
+- under-chin;
+- neck-shoulder transition;
+- hair-neck boundary;
+- clothes-neck boundary.
+
+Geometry:
+neckWidth
+neckVisibleLength
+neckCenterLine
+neckTilt
+neckShoulderAngle
+headNeckAlignment.
+
+Chỉnh sửa:
+- cổ thon/rộng;
+- cổ dài/ngắn biểu kiến;
+- chỉnh alignment;
+- giảm vùng dưới cằm;
+- tone matching đầu/cổ.
+
+Ràng buộc:
+Head edit và Body edit phải gặp nhau tại Neck Constraint Zone.
+Không để đầu "trôi" khỏi thân.
+
+================================================================================
+47. SHOULDER / VAI
+================================================================================
+
+Nhận diện:
+left/right shoulder point
+shoulder contour
+trapezius transition
+neck-shoulder junction
+upper-arm junction.
+
+Geometry:
+shoulderWidth
+shoulderSlope
+leftRightShoulderHeight
+shoulderRotation
+shoulderDepthEstimate.
+
+Chỉnh:
+- vai rộng/hẹp;
+- nâng/hạ vai;
+- chỉnh vai xuôi/ngang biểu kiến;
+- cân bằng vai trái/phải.
+
+Deformation phải lan mềm:
+neck -> shoulder -> upper arm -> torso.
+
+Không kéo riêng shoulder keypoint.
+
+================================================================================
+48. CLAVICLE / XƯƠNG QUAI XANH
+================================================================================
+
+Ước lượng vùng xương quai xanh khi nhìn thấy:
+- left/right clavicle line;
+- supraclavicular region;
+- neck base;
+- shoulder transition.
+
+Appearance:
+highlight/shadow/edge cues.
+
+Chỉnh ảnh:
+- tăng/giảm độ rõ;
+- local light/shadow;
+- liên kết contour cổ-vai.
+
+Không tuyên bố xác định chính xác cấu trúc xương bị che bởi quần áo.
+
+================================================================================
+49. CHEST / UPPER TORSO — THÂN TRÊN
+================================================================================
+
+Nhận diện:
+- torso center;
+- left/right torso boundary;
+- upper chest;
+- ribcage region estimate;
+- shoulder/chest transition;
+- chest/waist transition.
+
+Geometry:
+torsoWidth
+upperTorsoWidth
+chestHeight
+torsoRotation
+torsoTilt
+depthEstimate.
+
+Chỉnh:
+- thân trên rộng/hẹp;
+- cân đối hai bên;
+- posture appearance;
+- torso proportion.
+
+Nếu bị quần áo che:
+body geometry là estimation, không phải contour da quan sát trực tiếp.
+
+================================================================================
+50. BACK / LƯNG
+================================================================================
+
+Nhận diện khi người quay nghiêng/sau:
+- upper back;
+- mid back;
+- lower back;
+- spine center estimate;
+- shoulder blade region appearance;
+- back-waist transition.
+
+Chỉnh:
+- width;
+- posture appearance;
+- symmetry;
+- local contour.
+
+Pose phải xác định front/back/side trước khi áp thuật toán.
+
+================================================================================
+51. WAIST / EO
+================================================================================
+
+Đây là module quan trọng của Body Beauty.
+
+Input:
+- pose;
+- torso mask;
+- clothing mask;
+- left/right contour;
+- hip;
+- ribcage estimate;
+- depth;
+- background mask.
+
+WaistGeometry:
+waistCenter
+waistWidthObserved
+waistWidthEstimated
+leftWaistCurve
+rightWaistCurve
+waistHipRatioEstimate
+confidence.
+
+Slim Waist:
+BeautyParameter
+ -> target waist region
+ -> left/right influence curves
+ -> torso constraints
+ -> hip/rib constraints
+ -> background protection
+ -> clothing-aware deformation
+ -> dense mesh warp.
+
+Phải tránh:
+- cong tường;
+- cong cửa;
+- kéo bàn ghế;
+- méo họa tiết quần áo;
+- bóp tay nếu tay đặt sát eo.
+
+================================================================================
+52. ABDOMEN / BỤNG
+================================================================================
+
+Nhận diện:
+upper abdomen
+mid abdomen
+lower abdomen
+waist transition
+pelvis transition.
+
+Geometry:
+abdomenWidth
+centerLine
+localDepthEstimate
+contourCurvature.
+
+Chỉnh:
+- thu gọn vùng bụng;
+- contour smoothing;
+- proportion correction;
+- local shadow/highlight.
+
+Không dùng texture/shadow đơn lẻ để suy luận tình trạng sức khỏe.
+
+================================================================================
+53. PELVIS / HIP — XƯƠNG CHẬU / HÔNG
+================================================================================
+
+Input:
+hip keypoints
+lower torso mask
+pants/skirt/dress mask
+leg roots
+depth.
+
+Geometry:
+hipWidthObserved
+hipWidthEstimated
+pelvisOrientation
+leftHipCurve
+rightHipCurve
+hipWaistTransition.
+
+Chỉnh:
+- hông rộng/hẹp;
+- tăng/giảm curve;
+- cân đối hai bên;
+- chuyển tiếp eo-hông.
+
+Khi mặc váy rộng:
+estimated body geometry confidence phải giảm.
+
+================================================================================
+54. ARM SYSTEM — TAY
+================================================================================
+
+Mỗi bên:
+Shoulder -> UpperArm -> Elbow -> Forearm -> Wrist -> Hand.
+
+ArmModel:
+jointAnchors
+centerLine
+segmentLengths
+segmentWidths
+contours
+depthOrder
+visibility
+confidence.
+
+Chỉnh:
+- tay thon;
+- bắp tay nhỏ/to biểu kiến;
+- cẳng tay thon;
+- kéo dài/rút ngắn tay;
+- cân đối trái/phải.
+
+Không thay đổi chiều dài bằng cách kéo wrist duy nhất.
+Phải piecewise deform UpperArm + Forearm.
+
+================================================================================
+55. UPPER ARM — BẮP TAY
+================================================================================
+
+Nhận diện:
+shoulder-arm junction
+inner/outer contour
+elbow transition.
+
+Geometry:
+upperArmLength
+upperArmWidth
+axis
+localContour
+depth.
+
+Slim Upper Arm:
+- giữ shoulder;
+- giữ elbow;
+- thu contour theo centerline;
+- bảo vệ background;
+- bảo vệ torso nếu tay chồng lên thân.
+
+================================================================================
+56. ELBOW — KHUỶU TAY
+================================================================================
+
+Nhận diện:
+joint center
+inner/outer elbow contour
+upperArm/forearm transition
+bend angle.
+
+ElbowConstraint:
+khớp phải giữ continuity khi tay gập.
+
+Chỉnh tay không được:
+- tạo khớp gãy;
+- làm elbow quá nhỏ;
+- làm texture da bị kéo không tự nhiên.
+
+================================================================================
+57. FOREARM — CẲNG TAY
+================================================================================
+
+Geometry:
+forearmLength
+proximalWidth
+distalWidth
+axis
+contour
+wristTransition.
+
+Chỉnh:
+- thon/rộng;
+- dài/ngắn;
+- cân đối.
+
+Deformation weight giảm dần gần elbow/wrist để giữ khớp.
+
+================================================================================
+58. WRIST — CỔ TAY
+================================================================================
+
+Nhận diện:
+forearm-hand junction
+left/right wrist contour
+wrist center.
+
+Geometry:
+wristWidth
+wristOrientation
+handAlignment.
+
+Chỉnh:
+- nhỏ/rộng;
+- alignment.
+
+Phải bảo vệ:
+watch
+bracelet
+sleeve
+hand accessories.
+
+Accessory cần transform riêng thay vì warp như da.
+
+================================================================================
+59. HAND ENGINE — BÀN TAY
+================================================================================
+
+Cần hand landmarks chi tiết.
+
+Hand:
+wrist
+palm
+thumb
+index
+middle
+ring
+little finger.
+
+Mỗi ngón:
+MCP/PIP/DIP/tip hoặc topology tương ứng model.
+
+HandGeometry:
+palmWidth
+palmLength
+fingerLengths
+fingerWidths
+jointAngles
+handPose
+left/right hand classification
+visibility/confidence.
+
+Chức năng:
+- bàn tay nhỏ/to;
+- tay thon;
+- ngón dài/ngắn;
+- ngón thon;
+- chỉnh nhẹ pose/spacing;
+- skin/texture/color;
+- nail editing.
+
+Ràng buộc rất cao vì bàn tay dễ lộ lỗi giải phẫu.
+
+================================================================================
+60. PALM / BACK OF HAND
+================================================================================
+
+Phân biệt:
+palm-facing
+back-of-hand
+side-view
+unknown.
+
+Nhận diện:
+palm contour
+knuckle regions
+thenar/hypothenar appearance nếu nhìn thấy
+wrist transition.
+
+Chỉnh:
+- width/length;
+- contour;
+- skin smoothing;
+- tone.
+
+Không áp cùng texture algorithm cho lòng bàn tay và mu bàn tay nếu appearance khác.
+
+================================================================================
+61. FINGER ENGINE — NGÓN TAY
+================================================================================
+
+Mỗi finger:
+base
+joint1
+joint2
+tip
+left/right contour
+nail nếu nhìn thấy.
+
+Geometry:
+length
+width profile
+joint angles
+curvature
+depth order.
+
+Chỉnh:
+- dài/ngắn;
+- thon;
+- straighten appearance nhẹ;
+- spacing.
+
+Khi các ngón chồng nhau:
+occluded segment không được coi là visible contour.
+
+Generative reconstruction có thể cần cho thay đổi lớn.
+
+================================================================================
+62. NAIL ENGINE — MÓNG TAY
+================================================================================
+
+Nhận diện:
+nail plate mask
+nail boundary
+finger boundary
+highlight.
+
+Chức năng:
+- màu sơn;
+- gloss/matte;
+- apparent nail length;
+- shape;
+- nail art overlay.
+
+Phải giữ perspective, finger pose, lighting và occlusion.
+
+================================================================================
+63. LEG SYSTEM — CHÂN
+================================================================================
+
+Mỗi bên:
+Hip -> Thigh -> Knee -> Lower Leg -> Ankle -> Foot.
+
+LegModel:
+jointAnchors
+centerLine
+segmentLengths
+segmentWidths
+contours
+depthOrder
+visibility/confidence.
+
+Chức năng:
+- chân dài;
+- chân thon;
+- đùi;
+- bắp chân;
+- cổ chân;
+- cân đối hai chân.
+
+================================================================================
+64. THIGH — ĐÙI
+================================================================================
+
+Nhận diện:
+hip-thigh junction
+inner/outer contour
+knee transition.
+
+Geometry:
+thighLength
+upper/mid/lowerWidth
+axis
+depth
+contour.
+
+Chỉnh:
+- thon/rộng;
+- dài/ngắn;
+- contour smooth.
+
+Nếu mặc quần/váy:
+phải phân biệt clothing contour với estimated leg geometry.
+
+================================================================================
+65. KNEE — ĐẦU GỐI
+================================================================================
+
+Nhận diện:
+knee center
+inner/outer contour
+thigh/shin transition
+bend angle.
+
+KneeConstraint:
+- giữ joint position hợp lý;
+- giữ bend;
+- tránh kéo texture tạo gối méo.
+
+================================================================================
+66. SHIN / LOWER LEG — CẲNG CHÂN
+================================================================================
+
+Nhận diện:
+knee transition
+shin line appearance
+calf region
+ankle transition.
+
+Geometry:
+lowerLegLength
+upper/mid/lowerWidth
+axis
+contour.
+
+Chỉnh:
+- dài/ngắn;
+- thon;
+- straightness appearance;
+- cân đối.
+
+================================================================================
+67. CALF — BẮP CHÂN
+================================================================================
+
+Phân tích:
+calf maximum width
+inner/outer calf curve
+calf-to-ankle transition.
+
+Chỉnh:
+- giảm/tăng volume biểu kiến;
+- thon contour;
+- symmetry.
+
+Không làm mất tự nhiên của knee/ankle transition.
+
+================================================================================
+68. ANKLE — CỔ CHÂN
+================================================================================
+
+Nhận diện:
+lower-leg/foot junction
+inner/outer ankle contour
+ankle center
+foot orientation.
+
+Geometry:
+ankleWidth
+ankleAngle
+legFootAlignment.
+
+Chỉnh:
+- cổ chân thon;
+- width;
+- alignment.
+
+Bảo vệ:
+shoe straps
+socks
+anklets.
+
+================================================================================
+69. FOOT ENGINE — BÀN CHÂN
+================================================================================
+
+Nhận diện:
+heel
+ankle
+instep
+medial/lateral boundary
+forefoot
+toes
+sole khi thấy.
+
+FootGeometry:
+footLength
+footWidth
+heelPosition
+toeLine
+orientation
+perspective
+visibility.
+
+Chỉnh:
+- bàn chân nhỏ/to;
+- dài/ngắn biểu kiến;
+- width;
+- alignment.
+
+Không biến dạng shoe cùng kiểu với da.
+Shoe là semantic object riêng.
+
+================================================================================
+70. TOE ENGINE — NGÓN CHÂN
+================================================================================
+
+Nếu độ phân giải đủ:
+- big toe;
+- toe 2–5;
+- toe tips;
+- toe spacing;
+- nail masks.
+
+Chỉnh nhẹ:
+- spacing;
+- length/width;
+- nail appearance.
+
+Confidence thấp -> không tự động áp chỉnh sửa chi tiết.
+
+================================================================================
+71. FOOTWEAR / SHOES
+================================================================================
+
+Semantic:
+shoe
+heel
+sole
+strap
+upper
+toe box.
+
+Khi chỉnh chân:
+- shoe có thể phải rigid/near-rigid transform;
+- không warp chất liệu giày như da;
+- giữ logo/pattern/edge;
+- giữ tiếp xúc sàn.
+
+High heel cần foot-shoe pose nhất quán.
+
+================================================================================
+72. BODY SKIN ENGINE
+================================================================================
+
+Tách:
+face skin
+neck skin
+torso skin
+arm skin
+hand skin
+leg skin
+foot skin.
+
+Appearance:
+tone
+luminance
+texture
+local contrast
+highlight/shadow
+uneven color
+spot-like features.
+
+Chỉnh:
+- smoothing;
+- tone;
+- brightness;
+- color matching giữa vùng;
+- local blemish correction;
+- texture preservation.
+
+Phải bù ánh sáng trước khi so sánh màu các vùng xa nhau.
+
+================================================================================
+73. CLOTHING-AWARE ENGINE
+================================================================================
+
+Nhận diện:
+top
+shirt
+jacket
+dress
+skirt
+pants
+shorts
+sleeves
+collar
+belt
+socks
+shoes.
+
+Mục tiêu:
+Body reshape không phá:
+- seam;
+- stripe;
+- plaid;
+- button;
+- zipper;
+- pocket;
+- logo;
+- fabric texture.
+
+Clothing Constraint Map:
+rigid features
+semi-rigid features
+elastic fabric regions
+occluded body regions.
+
+================================================================================
+74. BODY DEPTH / OCCLUSION
+================================================================================
+
+Cần xác định thứ tự:
+background
+back limb
+torso
+front limb
+clothes/accessory
+foreground object.
+
+Ví dụ:
+tay đặt trước eo.
+
+Slim Waist:
+không được bóp tay theo eo.
+
+Cần:
+depth ordering + instance masks + occlusion graph.
+
+OcclusionGraph ví dụ:
+LeftHand > Shirt > Torso > Background.
+
+================================================================================
+75. LONG LEGS — KÉO DÀI CHÂN
+================================================================================
+
+Không:
+ankle.y += X.
+
+Nên chia:
+pelvis anchor
+upper thigh zone
+knee constraint
+lower leg zone
+ankle constraint
+foot transform.
+
+LongLegParameter
+ -> distribute scale across thigh/lower leg
+ -> preserve knee proportions
+ -> preserve foot
+ -> preserve floor contact
+ -> protect background
+ -> adjust clothing
+ -> temporal stabilization.
+
+Có thể cho:
+UpperLegRatio
+LowerLegRatio
+OverallLegLength.
+
+================================================================================
+76. BODY HEIGHT
+================================================================================
+
+Tăng chiều cao khác Long Legs.
+
+BodyHeight có thể phân phối:
+torso
+thigh
+lower leg.
+
+Giữ:
+head size
+hand size
+foot size
+joint proportion
+floor contact.
+
+Không scale toàn ảnh theo Y.
+
+================================================================================
+77. SLIM BODY
+================================================================================
+
+SlimBody không phải scale ngang toàn thân.
+
+Phân vùng:
+shoulder
+chest
+waist
+abdomen
+hip
+thigh
+calf
+arm.
+
+Mỗi vùng có strength riêng.
+
+Ví dụ:
+BodySlimProfile {
+ shoulder: 0.05
+ torso: 0.10
+ waist: 0.25
+ hip: 0.08
+ thigh: 0.10
+ calf: 0.05
+}
+
+Sau đó Constraint Solver tạo deformation field liên tục.
+
+================================================================================
+78. BODY PROPORTION ENGINE
+================================================================================
+
+Parameters:
+headBodyRatio
+shoulderHipRatio
+torsoLegRatio
+waistHipRatio
+upperLowerLegRatio
+armTorsoRatio.
+
+Chỉ là mô hình hình học/chỉnh ảnh.
+Không dùng các tỷ lệ này để đưa ra đánh giá sức khỏe hay chuẩn cơ thể.
+
+================================================================================
+79. POSTURE / DÁNG ĐỨNG
+================================================================================
+
+Ước lượng:
+shoulder line
+spine/torso centerline
+pelvis orientation
+knee alignment
+head-body alignment.
+
+Chỉnh appearance:
+- straighten torso nhẹ;
+- cân vai;
+- head alignment;
+- pose symmetry.
+
+Chỉnh pose lớn cần generative model/3D body model;
+2D warp đơn thuần dễ sai anatomy/background.
+
+================================================================================
+80. DENSE BODY MESH
+================================================================================
+
+Pose keypoints không đủ cho Beauty.
+
+Pipeline:
+WholeBody Keypoints
++
+Human Parsing
++
+Dense Contour
++
+Depth
++
+Body Shape Prior
+      |
+      v
+Body Geometry
+      |
+      v
+Dense Deformation Mesh
+      |
+      v
+GPU Warp.
+
+Mesh có thể 1500–5000+ vertices tùy ROI/device.
+Không bắt buộc AI phải dự đoán từng vertex.
+
+================================================================================
+81. BODY SHAPE / 3D OPTIONAL
+================================================================================
+
+V2/V3 có thể thêm parametric/dense 3D human body model.
+
+Ứng dụng:
+- side pose;
+- body rotation;
+- posture;
+- depth-aware reshape;
+- clothing/body relation.
+
+Nhưng không bắt buộc cho V1 mobile real-time.
+
+2D/2.5D hybrid thường nhẹ hơn:
+Pose + Parsing + Contour + Depth + Dense Mesh.
+
+================================================================================
+82. BACKGROUND PROTECTION
+================================================================================
+
+Một trong các lỗi dễ thấy nhất:
+Slim Waist -> tường cong.
+Long Legs -> sàn kéo.
+Slim Arm -> cửa biến dạng.
+
+Cần:
+BackgroundMask
+StructuralLineDetection
+ProtectedRegionMap
+ForegroundDepth
+BodyInfluenceMap.
+
+Deformation field:
+weight = high trong body
+-> falloff tại boundary
+-> zero trong protected background.
+
+Nếu contour di chuyển lớn:
+background hole phải được inpaint/reconstruct.
+
+================================================================================
+83. STRUCTURAL LINE PROTECTION
+================================================================================
+
+Phát hiện/ước lượng:
+vertical lines
+horizontal lines
+door frame
+wall edge
+table edge
+floor line.
+
+Không phải để hiểu semantic hoàn hảo;
+mục tiêu là tạo Protected Geometry Constraints.
+
+Body warp solver phải giảm displacement ở các cấu trúc nền quan trọng.
+
+================================================================================
+84. MULTI-PERSON
+================================================================================
+
+Mỗi người:
+PersonInstance {
+ id
+ mask
+ pose
+ depthOrder
+ bodyGeometry
+ beautyParameters
+ trackingState
+}
+
+Beauty có thể:
+- chỉnh person được chọn;
+- không ảnh hưởng người cạnh bên.
+
+Nếu hai người overlap:
+instance segmentation + occlusion graph bắt buộc.
+
+================================================================================
+85. VIDEO TEMPORAL ENGINE
+================================================================================
+
+Theo dõi:
+person ID
+pose
+body contour
+clothes mask
+hands/feet
+depth ordering.
+
+Pipeline:
+AI observation
+-> confidence
+-> tracker
+-> motion model
+-> adaptive smoothing
+-> re-anchor.
+
+Không smooth giống nhau:
+Torso contour: High
+Waist: High
+Hip: High
+Thigh: Medium/High
+Knee: Medium
+Ankle: Medium
+Hand/Finger: Low/Adaptive
+Foot: Medium.
+
+================================================================================
+86. GENERATIVE BODY EDITING
+================================================================================
+
+Generative AI cần khi:
+- body contour di chuyển lớn;
+- background bị lộ;
+- tay/chân bị che;
+- đổi pose lớn;
+- đổi quần áo;
+- reconstruction vùng cơ thể không nhìn thấy.
+
+C++ Core chịu trách nhiệm:
+mask
+geometry
+constraints
+ROI
+composition
+quality check.
+
+Generative model chịu trách nhiệm:
+synthesize missing visual content.
+
+================================================================================
+87. BODY BEAUTY PARAMETER API
+================================================================================
+
+Body:
+BodyHeight
+BodyWidth
+SlimBody
+TorsoLength
+
+Shoulder:
+ShoulderWidth
+ShoulderSlope
+ShoulderBalance
+
+Waist:
+WaistWidth
+WaistCurve
+
+Hip:
+HipWidth
+HipCurve
+
+Arm:
+UpperArmWidth
+ForearmWidth
+ArmLength
+WristWidth
+
+Hand:
+HandSize
+PalmWidth
+FingerLength
+FingerWidth
+
+Leg:
+LegLength
+ThighWidth
+CalfWidth
+LowerLegWidth
+AnkleWidth
+
+Foot:
+FootSize
+FootLength
+FootWidth
+
+Posture:
+ShoulderBalance
+TorsoAlignment
+HeadBodyAlignment.
+
+================================================================================
+88. DEFORMATION CONSTRAINT SOLVER
+================================================================================
+
+Input:
+BeautyParameters
+SemanticMasks
+Skeleton
+Contours
+Depth
+ClothingConstraints
+AccessoryConstraints
+BackgroundConstraints
+OcclusionGraph.
+
+Output:
+DenseDisplacementField.
+
+Energy/constraint objectives:
+- target shape;
+- smoothness;
+- joint continuity;
+- boundary consistency;
+- protected background;
+- rigid accessory preservation;
+- clothing feature preservation;
+- temporal consistency.
+
+================================================================================
+89. SOURCE TREE MỞ RỘNG
+================================================================================
+
+BeautyCore/
++ body/
+  + BodySemanticModel.cpp
+  + BodyGeometry.cpp
+  + BodyContour.cpp
+  + BodyPose.cpp
+  + BodyDepth.cpp
+  + BodyOcclusion.cpp
+
++ torso/
+  + ShoulderGeometry.cpp
+  + ChestGeometry.cpp
+  + BackGeometry.cpp
+  + WaistGeometry.cpp
+  + AbdomenGeometry.cpp
+  + HipGeometry.cpp
+
++ arm/
+  + ArmGeometry.cpp
+  + UpperArm.cpp
+  + Elbow.cpp
+  + Forearm.cpp
+  + Wrist.cpp
+
++ hand/
+  + HandGeometry.cpp
+  + Palm.cpp
+  + FingerGeometry.cpp
+  + Nail.cpp
+
++ leg/
+  + LegGeometry.cpp
+  + Thigh.cpp
+  + Knee.cpp
+  + LowerLeg.cpp
+  + Calf.cpp
+  + Ankle.cpp
+
++ foot/
+  + FootGeometry.cpp
+  + ToeGeometry.cpp
+  + Footwear.cpp
+
++ clothing/
+  + ClothingParsing.cpp
+  + ClothingConstraints.cpp
+  + PatternProtection.cpp
+
++ background/
+  + BackgroundProtection.cpp
+  + StructuralLineProtection.cpp
+
++ body_beauty/
+  + BodyBeautyController.cpp
+  + SlimBody.cpp
+  + WaistReshape.cpp
+  + HipReshape.cpp
+  + ShoulderReshape.cpp
+  + ArmReshape.cpp
+  + HandReshape.cpp
+  + LegReshape.cpp
+  + LongLeg.cpp
+  + FootReshape.cpp
+  + Posture.cpp
+
++ deformation/
+  + BodyInfluenceMap.cpp
+  + BodyConstraintSolver.cpp
+  + DenseBodyMesh.cpp
+  + BodyWarp.cpp
+
+================================================================================
+90. FULL HUMAN DATA STRUCTURE
+================================================================================
+
+HumanFrameResult {
+ PersonID;
+ HeadFrameResult head;
+ BodyPose pose;
+ BodyParsing parsing;
+ TorsoGeometry torso;
+ ShoulderGeometry shoulders;
+ WaistGeometry waist;
+ HipGeometry hip;
+ ArmGeometry leftArm;
+ ArmGeometry rightArm;
+ HandGeometry leftHand;
+ HandGeometry rightHand;
+ LegGeometry leftLeg;
+ LegGeometry rightLeg;
+ FootGeometry leftFoot;
+ FootGeometry rightFoot;
+ ClothingModel clothes;
+ AccessoryModel accessories;
+ BodyDepth depth;
+ OcclusionGraph occlusion;
+ BackgroundConstraints background;
+ ConfidenceMap confidence;
+ TemporalState temporal;
+}
+
+================================================================================
+91. FULL BEAUTY PIPELINE CHỐT
+================================================================================
+
+CAMERA / IMAGE
+      |
+      v
+PERSON + FACE DETECTION
+      |
+      +-------------------------------+
+      |                               |
+      v                               v
+HEAD SEMANTIC ENGINE            BODY POSE ENGINE
+      |                               |
+      +---------------+---------------+
+                      |
+                      v
+               HUMAN PARSING
+                      |
+                      v
+             DEPTH / OCCLUSION
+                      |
+                      v
+              HUMAN GEOMETRY
+       Skeleton + Contour + Mesh
+                      |
+                      v
+                TRACKING CORE
+                      |
+                      v
+              BEAUTY CONTROLLER
+                      |
+        +-------------+-------------+
+        |             |             |
+        v             v             v
+      HEAD           BODY        APPEARANCE
+     BEAUTY         BEAUTY         EDIT
+        |             |             |
+        +-------------+-------------+
+                      |
+                      v
+             CONSTRAINT SOLVER
+                      |
+                      v
+             DENSE HUMAN MESH
+                      |
+                      v
+             GPU DEFORMATION
+                      |
+             +--------+--------+
+             |                 |
+          VULKAN             METAL
+          Android             iOS
+             |                 |
+             +--------+--------+
+                      |
+                      v
+                   OUTPUT
+
+================================================================================
+92. NGUYÊN TẮC CUỐI
+================================================================================
+
+1. Skeleton != body contour.
+2. Clothing contour != anatomical body contour.
+3. 2D RGB không nhìn xuyên quần áo/vật thể.
+4. Vùng bị che chỉ có thể estimate hoặc synthesize.
+5. Pose keypoints không đủ để nắn body chất lượng cao.
+6. Body Beauty cần Pose + Parsing + Contour + Depth + Dense Mesh.
+7. Tay/ngón/chân/ngón chân phải có topology và confidence riêng.
+8. Background phải là constraint bắt buộc.
+9. Clothing/accessories cần policy biến dạng riêng.
+10. Video cần tracking + temporal stabilization.
+11. C++ giữ semantic geometry/deformation/tracking.
+12. GPU thực hiện warp/composition.
+13. Generative AI xử lý phần không tồn tại trong ảnh nguồn.
+14. UI chỉ gửi semantic beauty parameters, không kéo landmark trực tiếp.
+15. Mọi kết quả ước lượng phải có confidence/visibility.
+16. Không dùng hình dáng cơ thể để suy luận sức khỏe hoặc đưa ra chuẩn thẩm mỹ.
+17. Kiến trúc phải cho phép thay model AI mà không viết lại BeautyCore.
+
+KẾT LUẬN:
+Core tổng thể nên được định nghĩa là:
+
+FULL HUMAN SEMANTIC GEOMETRY + APPEARANCE + BEAUTY ENGINE
+
+gồm:
+HEAD ENGINE
++ BODY POSE
++ HUMAN PARSING
++ BODY CONTOUR
++ DEPTH/OCCLUSION
++ BODY GEOMETRY
++ HAND/FOOT DETAIL
++ CLOTHING CONSTRAINTS
++ BACKGROUND PROTECTION
++ TEMPORAL TRACKING
++ DEFORMATION SOLVER
++ GENERATIVE RECONSTRUCTION
++ GPU RENDERING.
+
+================================================================================
+END OF PART II
+================================================================================

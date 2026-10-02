@@ -1,0 +1,607 @@
+ĐẶC TẢ KỸ THUẬT CORE C++ — HEAD / FACE / HAIR / SKIN BEAUTY ENGINE
+=====================================================================
+Phiên bản: Architecture Specification v1.0
+Mục tiêu: Core C++ nhận diện, mô hình hóa và chỉnh sửa vùng đầu–mặt–tóc–da–cổ cho Photo/Video Beauty Editor.
+Nền tảng: Android + iOS
+Core: C++
+AI Runtime: NCNN qua abstraction
+GPU: Vulkan/GLES (Android), Metal (iOS)
+
+0. NGUYÊN TẮC
+--------------
+Không thiết kế kiểu landmark index -> kéo điểm -> warp trực tiếp.
+
+Pipeline:
+IMAGE/VIDEO -> Detection -> Dense Landmark -> Semantic Segmentation
+-> Depth/Surface Geometry -> Appearance Analysis -> Temporal Tracking
+-> Semantic Head Model -> Geometry/Texture/Generative Editing
+-> GPU Composition -> OUTPUT.
+
+5 lớp dữ liệu:
+1) Landmark: điểm mốc hình học.
+2) Semantic Region: pixel thuộc da/tóc/môi/răng/tai/cổ/background...
+3) Geometry: contour, mesh, curvature, depth tương đối, normal, pose.
+4) Appearance: màu, texture, bóng, highlight, shadow, contrast.
+5) Occlusion: tóc/kính/tay/phụ kiện/vật thể che khuất.
+
+Ảnh RGB chỉ cho phép ước lượng appearance; không coi là phép đo quang phổ vật lý.
+
+1. KIẾN TRÚC TỔNG THỂ
+-----------------------
+PHOTO/CAMERA/VIDEO
+ -> Preprocessing C++
+ -> SCRFD/Head Detection
+ -> AI Inference Hub
+    + 106 semantic landmark
+    + 468/478 dense landmark
+    + Head/Hair/Skin/Feature Parsing
+    + Depth/Normal estimation
+ -> Temporal Tracking
+ -> Head Semantic Model
+ -> Geometry + Appearance + Occlusion Engine
+ -> Beauty Engine
+    + Deformation
+    + Texture Editing
+    + Generative Reconstruction
+ -> GPU Compositor
+ -> OUTPUT
+
+2. HEAD MODEL
+-------------
+HEAD gồm:
+Skull/head shape, scalp, hair, forehead, temple, face, ears, eyes,
+eyebrows, eyelashes, nose, cheeks, jaw, chin, philtrum, mouth, lips,
+teeth, beard/moustache, neck, clavicle/upper shoulder transition,
+glasses, earrings, hat, mask, hair accessories và các vật thể che.
+
+Dữ liệu chung:
+- headBoundingBox
+- headMask / headContour
+- faceMask / hairMask / neckMask / accessoryMask
+- headPose yaw/pitch/roll
+- estimatedDepth
+- visibilityMap
+- confidenceMap.
+
+3. KÍCH THƯỚC ĐẦU / VÒM ĐẦU / VÒM TRÁN
+------------------------------------------
+Nhận diện/ước lượng:
+- đỉnh đầu, hai biên thái dương, hairline;
+- vòm sọ, chiều rộng/cao đầu;
+- tỷ lệ mặt/đầu;
+- chiều cao/rộng/vòm trán;
+- pose và mức che khuất.
+
+HeadGeometry:
+headWidth, headHeight, crownHeight, foreheadHeight, foreheadWidth,
+templeWidth, faceToHeadRatio, pose, visibleContourConfidence.
+
+Không lấy hair contour làm skull contour tuyệt đối:
+observedHead = estimatedSkull + hairVolume + pose.
+
+Chỉnh sửa:
+- đầu to/nhỏ;
+- tỷ lệ đầu/mặt;
+- vòm đầu;
+- thái dương;
+- chiều cao/rộng trán.
+
+Ràng buộc:
+không kéo background, tai, kính, mũ sai; giữ tóc bám đầu và continuity đầu-cổ.
+
+4. SCALP — DA ĐẦU
+-------------------
+Phân biệt visibleScalp, occludedScalp, estimatedScalp.
+
+ScalpModel:
+scalpMaskVisible, scalpMaskEstimated, scalpContour, scalpColorEstimate,
+scalpTextureEstimate, hairOcclusionMap, confidenceMap.
+
+Xóa toàn bộ tóc:
+Hair Segmentation -> Hair Mask -> Estimate Scalp Geometry
+-> Estimate Scalp Appearance -> Generative Inpainting/Reconstruction
+-> Boundary Refinement -> Lighting/Texture Matching -> Final Scalp.
+
+Vùng da đầu bị tóc che không tồn tại trong ảnh nguồn; kết quả là tái tạo hợp lý,
+không phải phục hồi chính xác dữ liệu gốc.
+
+5. HAIR ENGINE — TÓC
+----------------------
+Nhận diện vùng:
+hair mask, hairline, bangs/fringe, top/crown, side hair, back hair,
+hair-skin/background/ear/neck boundaries.
+
+Phân tích cấu trúc:
+orientation field, curl/wave, volume, apparent density, relative length,
+khối lượng/độ dày biểu kiến, parting line, flyaway hair, bang shape.
+Không yêu cầu đếm chính xác từng sợi khi độ phân giải không đủ.
+
+Appearance:
+baseColor, localColorMap, highlightMap, shadowMap, apparentShine,
+localContrast, saturation, roughnessEstimate, lightingDirectionEstimate.
+
+Chỉnh sửa:
+đổi màu/highlight/ombre; sáng/tối; bóng; volume; dày/mỏng biểu kiến;
+đổi đường rẽ; mái; thẳng/xoăn; thay kiểu; xóa tóc; thêm tóc.
+
+Đổi màu:
+HairMask + Orientation + Luminance + Highlight/Shadow
+-> material-aware recolor -> preserve strand texture/illumination.
+
+Thay kiểu tóc cần:
+head/scalp geometry + pose + ear + forehead/hairline + depth ordering
++ occlusion + generative model hoặc hair asset/3D representation.
+
+6. SKIN ENGINE — DA
+--------------------
+Semantic segmentation:
+face skin, forehead, cheek, nose skin, chin, ear skin, neck skin,
+visible scalp. Lip/hair/beard/brow/lash tách riêng.
+
+Appearance:
+localTone, luminance, chroma, redness-like estimate, color cast,
+localContrast, texture, poreVisibility, highlight, shadow, illumination.
+
+So sánh cục bộ:
+forehead / left cheek / right cheek / nose / chin / neck,
+sau khi bù ảnh hưởng ánh sáng tương đối.
+
+Mask chỉnh ảnh:
+acne-like spot, freckle, mole, dark spot, redness, wrinkle,
+under-eye darkness, uneven tone.
+Các nhãn này chỉ phục vụ chỉnh ảnh, không phải chẩn đoán.
+
+Chức năng:
+smooth, texture preservation, spot/healing, wrinkle reduction,
+brightness/tone/warm-cool/rosy/skin-color transform/local dodge-burn.
+
+Skin smoothing:
+SkinMask -> edge-aware processing -> frequency/detail preservation
+-> exclude eye/brow/lip/hair -> local strength map -> GPU composite.
+
+Thu gọn khuôn mặt thuộc Geometry Engine; Skin Engine cung cấp semantic mask.
+
+7. FOREHEAD / TEMPLE
+----------------------
+Biên: dưới hairline, trên eyebrows, giữa hai temple.
+Geometry: height, width, curvature estimate, symmetry, temple transition,
+hairline shape.
+
+Chức năng:
+mở/thu trán; tăng/giảm chiều cao; thái dương; hairline; tone/highlight/shadow.
+
+Ràng buộc:
+không kéo hair texture như skin, không thay eyebrow ngoài ý muốn,
+không phá temple-ear transition.
+
+8. EAR ENGINE
+-------------
+Nhận diện: helix, antihelix, lobe, ear-face attachment, hair occlusion,
+earrings/accessories.
+Geometry: visibleMask, contour, width, height, projectionEstimate,
+lobeSize, rotation, visibilityConfidence.
+
+Chỉnh: to/nhỏ, rộng/hẹp, dài/ngắn, dái tai, độ vểnh biểu kiến, vị trí, tone.
+Bảo vệ tóc, khuyên tai, background và attachment tai-mặt.
+
+9. FACE CONTOUR
+-----------------
+Contour: temple -> cheek -> jaw angle -> jaw -> chin -> jaw -> cheek -> temple.
+Input: dense landmarks + face/hair/ear/neck/beard masks + depth + pose.
+
+Parameters:
+faceWidth, upper/mid/lowerFaceWidth, faceHeight, jawWidth, cheekWidth,
+chinWidth, faceAspectRatio, symmetry.
+
+Chức năng:
+Slim Face, Small Face, V-Line, short/wide/narrow face, symmetry correction,
+local contour adjustment.
+
+Nếu model có ước lượng age/gender presentation, chỉ coi là thuộc tính appearance
+không chắc chắn; Beauty control chủ yếu dựa geometry và lựa chọn người dùng.
+
+10. EYEBROW — LÔNG MÀY
+------------------------
+Mỗi bên: mask, upper/lower boundary, head/body/tail, length, thickness,
+arch, angle, spacing, orientation field.
+Ước lượng apparent density, local strand direction, texture, color, brightness.
+
+Chỉnh:
+dày/mỏng, dài/ngắn, nâng/hạ, arch/tail, nét, màu, texture,
+fill vùng thưa, thay style.
+
+11. EYELASH — LÔNG MI
+---------------------
+Nhận diện upper/lower lash region, eyelid boundary, orientation,
+apparent density, length/curvature estimate.
+
+Chỉnh:
+dày/mỏng, dài/ngắn, cong, nét, màu, thêm lash style.
+Render phải theo eyelid curve, pose và blink; không phủ iris/sclera sai.
+
+12. EYE ENGINE — MẮT
+----------------------
+Semantic:
+upper/lower eyelid, inner/outer canthus, sclera, iris, pupil nếu đủ dữ liệu,
+eyelash, tear line, under-eye.
+
+Geometry:
+width, height, aperture, tilt, corners, lid curves, irisCenter,
+irisRadiusEstimate, symmetry.
+
+Appearance:
+sclera brightness, redness-like color, iris color/contrast,
+specular/catchlight, shadow.
+
+Chỉnh:
+mắt to/nhỏ, rộng/hẹp, cao/thấp, tilt, đuôi mắt, mí/double-eyelid effect,
+iris apparent size/color, giảm đỏ, sclera brightening, clarity, catchlight.
+
+Ràng buộc:
+giữ blink, gaze, iris alignment, asymmetry tự nhiên và temporal stability.
+
+13. NOSE ENGINE — MŨI
+-----------------------
+Semantic:
+nasal root, bridge, dorsum, tip, left/right ala, columella,
+nostrils, nasolabial và nose-cheek transition.
+
+Geometry:
+bridgeLength/Width, noseWidth, tipPosition, tipProjectionEstimate,
+alaWidth, nostrilWidth, noseLength, rotation, symmetry, poseRelativeDepth.
+
+Appearance:
+bridge highlight, sidewall shadow, tip highlight, nostril darkness, texture.
+
+Chỉnh:
+nâng/hạ sống; rộng/hẹp; to/nhỏ; thu cánh; chóp; dài/ngắn;
+hướng; bất đối xứng; highlight/shadow theo geometry mới.
+
+Deformation:
+parameter -> local deformation field -> root/cheek/philtrum constraints
+-> depth-aware deformation -> appearance correction.
+
+14. CHEEK / CHEEKBONE — MÁ / GÒ MÁ
+------------------------------------
+Regions: left/right cheek, zygomatic, mid-cheek, under-eye cheek,
+nasolabial, cheek-jaw transition.
+Geometry: cheekWidth, cheekVolumeEstimate, cheekbonePosition,
+cheekboneProjectionEstimate, leftRightBalance.
+
+Chỉnh:
+thon/đầy má, gò má biểu kiến, width, hõm má, làm mềm nasolabial appearance.
+Phương pháp: dense mesh + weighted field + shading compensation.
+
+15. JAW — HÀM
+-------------
+Nhận diện ear attachment -> jaw angle -> mandibular contour -> chin.
+Biết skin/beard/hair/ear/neck/clothes/background.
+
+Geometry:
+jawWidth, jawAngle, lowerFaceWidth, mandibularCurve, symmetry, chinTransition.
+
+Chỉnh:
+slim/wide jaw, V-Line, soft jaw, jaw angle, asymmetry.
+
+Boundary protection:
+không kéo tóc/cổ/background/tai sai; râu bám theo da phải deform nhất quán.
+
+16. CHIN — CẰM
+----------------
+Regions: apex, bottom, left/right edge, labiomental transition,
+jaw transition, submental boundary.
+Parameters:
+ChinWidth, ChinHeight, ChinLength, ChinProjectionEstimate,
+ChinRoundness, ChinSharpness, ChinSymmetry.
+
+Chỉnh:
+dài/ngắn, rộng/hẹp, nhọn/tròn, trái/phải, projection biểu kiến,
+cân đối với jaw/mouth.
+
+17. PHILTRUM — NHÂN TRUNG
+-------------------------
+Regions: base of nose, philtral columns, central groove,
+Cupid's bow transition, upper lip.
+Parameters: length, width, grooveDepthAppearance, symmetry, noseLipRelationship.
+Chỉnh: dài/ngắn, rộng/hẹp, độ rõ/shading; giữ continuity mũi-môi.
+
+18. MOUTH / LIP ENGINE
+-----------------------
+Segmentation:
+outer lip, upper/lower lip, vermilion boundary, corners, Cupid's bow,
+oral cavity, teeth, gum nếu thấy.
+
+Geometry:
+mouthWidth/Height, upper/lowerLipThickness, cornerPosition,
+lipCurvature, opening, symmetry.
+
+Appearance:
+lipColor, texture, gloss, highlight, saturation, local shading.
+
+Chỉnh:
+miệng to/nhỏ/rộng/hẹp; môi trên/dưới; nâng khóe; smile appearance;
+Cupid's bow; color; matte/gloss; texture.
+
+Video phải giữ speech, smile dynamics, opening và lip-teeth occlusion.
+
+19. TEETH — RĂNG
+----------------
+Segmentation: lip / oral cavity / gum / teeth / visible boundaries / highlights.
+Chỉnh: whitening, reduce yellow cast, brightness, contrast, local cleanup.
+Giữ separation, shading, edges, mouth shadow, enamel-like texture/highlight.
+
+20. BEARD / MOUSTACHE — RÂU
+-----------------------------
+Regions: moustache, chin/jaw/cheek beard, sideburn.
+Analysis: mask, apparent density, length, orientation, color, texture,
+skin visibility, boundary.
+
+Chỉnh: xóa, thưa/dày, màu, nét, style, thêm râu.
+
+Remove:
+BeardMask -> structure removal -> skin reconstruction -> texture synthesis
+-> color/lighting matching -> boundary refinement.
+
+21. NECK — CỔ
+-------------
+Nhận diện left/right contour, under-chin, front neck, jaw-neck,
+hair-neck, clothes-neck, shoulder transition.
+Geometry: neckWidth, visibleLength, contours, headNeckAlignment.
+
+Chỉnh: thon/rộng, dài/ngắn biểu kiến, contour, dưới cằm, face-neck tone match.
+Không làm collar/clothes biến dạng sai.
+
+22. CLAVICLE / UPPER SHOULDER
+------------------------------
+Nhận diện neck base, left/right clavicle appearance, shoulder line,
+skin-clothes boundary.
+Chỉnh shoulder transition, apparent neck length, local highlight/shadow.
+Đây là cầu nối HeadGeometry -> BodyGeometry.
+
+23. ACCESSORY / OCCLUSION ENGINE
+--------------------------------
+Nhận diện glasses, sunglasses, earrings, hat, mask, hair clips,
+hand/phone/object over face.
+Mỗi region có:
+semantic class, confidence, depth order, preserve/deform policy.
+
+Ví dụ Slim Face + Glasses:
+mặt deform; kính chỉ reposition/transform khi cần; không warp kính như da.
+
+24. DEPTH / NORMAL / LIGHTING
+------------------------------
+DepthMap: relative surface depth.
+NormalMap: surface orientation estimate.
+Lighting: dominant direction, intensity distribution, shadow/highlight.
+
+Dùng cho:
+nose/cheek reshape, forehead, relighting, hair recolor, makeup,
+3D-consistent deformation.
+Monocular depth không phải kích thước vật lý tuyệt đối.
+
+25. HYBRID LANDMARK
+-------------------
+FACE
+ + 106 Semantic Landmarks
+ + 468/478 Dense Landmarks
+ + Semantic Segmentation
+ + Depth
+ -> Landmark Fusion
+ -> Semantic Face Geometry
+ -> Dense Beauty Mesh 800–1500+ vertices.
+
+106 = compatibility/semantic anchors.
+468/478 = dense local geometry.
+Beauty mesh không bắt buộc trùng topology model.
+
+26. TEMPORAL TRACKING
+-----------------------
+Raw AI -> Confidence Validation -> Outlier Rejection -> Pose
+-> Motion Estimation -> Optical Flow/Tracker -> Adaptive Temporal Filter
+-> Velocity Prediction -> AI Re-anchor -> Stable Semantic Geometry.
+
+Smoothing:
+Jaw/Contour High
+Cheek High/Medium
+Nose Medium
+Forehead Medium
+Brow Medium
+Eye Low/Adaptive
+Lash Low/Adaptive
+Mouth Low/Adaptive
+Hair boundary Medium.
+
+27. OPENCV
+----------
+Vai trò phụ trợ:
+resize/crop/rotate/color conversion; affine/perspective;
+optical flow; contours; morphology; mask refinement; triangulation;
+geometric utilities.
+
+SegmentationMask -> morphology -> contour -> boundary smoothing -> Geometry.
+Render cuối ưu tiên GPU, không dùng CPU OpenCV làm Beauty renderer chính.
+
+28. NCNN / INFERENCE ABSTRACTION
+---------------------------------
+NCNN chạy các model mobile tương thích:
+SCRFD, Landmark106, Dense Landmark, Head/Hair/Skin Parsing, Depth...
+
+Không khóa BeautyCore vào NCNN:
+IInferenceBackend
+ + NCNNBackend
+ + CoreMLBackend optional
+ + ONNXBackend optional.
+
+29. GENERATIVE RECONSTRUCTION
+-----------------------------
+Bắt buộc/đáng dùng khi pixel cần thiết không tồn tại:
+- remove all hair -> scalp;
+- remove beard -> hidden skin;
+- remove glasses -> hidden eye/skin;
+- major hairstyle replacement;
+- reconstruct occluded ear;
+- large geometry change;
+- fill background sau contour movement.
+
+SemanticMask + Geometry + VisibleContext -> GenerativeModel
+-> GeneratedRegion -> Boundary/Color/Lighting Match -> GPU Composite.
+
+Luôn phân biệt observed / transformed / synthesized pixels.
+
+30. BEAUTY PARAMETER LAYER
+---------------------------
+UI không thao tác landmark trực tiếp.
+
+Face: FaceSize, FaceWidth, SlimFace, VLine, JawWidth, CheekWidth,
+ChinLength, ChinWidth.
+Forehead: ForeheadHeight/Width, TempleWidth.
+Eye: EyeSize/Width/Height/Tilt, IrisSize, EyeBrightness.
+Nose: NoseSize/Width, BridgeWidth, BridgeHeightAppearance, TipSize,
+AlaWidth, NoseLength.
+Mouth: MouthWidth, LipThicknessUpper/Lower, Smile, CupidBow.
+Hair: HairVolume/Color/Brightness/Shine/CurlAmount.
+Skin: Smooth/Texture/Brightness/Tone/RednessCorrection/SpotRemoval/WrinkleReduction.
+Ear: EarSize/Width/Height/ProjectionAppearance.
+Neck: NeckWidth/NeckLengthAppearance.
+
+31. DEFORMATION ENGINE
+------------------------
+Parameter -> Semantic Target -> Anchor Set -> Influence Radius
+-> Weight Function -> Boundary/Depth/Occlusion Constraints
+-> Displacement Field -> Dense Mesh -> GPU Warp.
+
+Hỗ trợ:
+radial, directional, curve-based, cage, piecewise affine,
+mesh deformation, depth-aware deformation.
+
+Mục tiêu:
+continuity, smoothness, identity preservation, boundary preservation,
+temporal stability.
+
+32. DATA STRUCTURE
+------------------
+HeadFrameResult:
+- HeadGeometry
+- FaceGeometry
+- HairModel
+- SkinModel
+- EarModel L/R
+- BrowModel L/R
+- LashModel L/R
+- EyeModel L/R
+- NoseModel
+- CheekModel L/R
+- JawModel
+- ChinModel
+- PhiltrumModel
+- MouthModel
+- TeethModel
+- BeardModel
+- NeckModel
+- AccessoryModel
+- DepthModel
+- LightingModel
+- OcclusionMap
+- ConfidenceMap.
+
+Mỗi region có mask, contour, landmarks, geometry, appearance,
+confidence, visibility, temporal state.
+
+33. SOURCE TREE ĐỀ XUẤT
+-------------------------
+BeautyCore/
++ core/ FrameContext, CoordinateSystem, Confidence
++ inference/ IInferenceBackend, NCNNBackend
++ detector/ FaceDetector, HeadDetector
++ landmark/ Landmark106, DenseFaceLandmark, LandmarkFusion
++ parsing/ HeadParsing, HairSegmentation, SkinSegmentation,
+           FeatureSegmentation, AccessorySegmentation
++ geometry/ Head, Face, Forehead, Ear, Eye, Nose, Cheek, Jaw,
+            Chin, Mouth, Neck, MeshGenerator
++ appearance/ Skin, Hair, Eye, Lip, Teeth, LightingEstimator
++ tracking/ HeadTracker, LandmarkTracker, OpticalFlowTracker,
+            TemporalFilter, MotionPredictor
++ beauty/ BeautyController, FaceReshape, ForeheadReshape, EyeReshape,
+          NoseReshape, CheekReshape, JawReshape, ChinReshape,
+          MouthReshape, EarReshape, NeckReshape, HairEditor, SkinEditor
++ deformation/ InfluenceMap, ConstraintSolver, MeshDeformer, DepthAwareWarp
++ reconstruction/ ReconstructionInterface, InpaintCoordinator
++ opencv/ ImagePreprocess, MaskProcessor, ContourProcessor, OpticalFlow
++ renderer/ common, vulkan, gles, metal
++ platform/ android/JNI, ios/BeautyBridge.mm.
+
+34. ANDROID / iOS
+-------------------
+Android:
+CameraX -> Buffer -> C++ NDK -> AI Backend -> Semantic Head Model
+-> Tracking/Geometry -> Beauty -> Vulkan/GLES -> Surface.
+Kotlin chỉ UI/camera lifecycle/state.
+
+iOS:
+AVFoundation -> CVPixelBuffer -> Objective-C++ -> BeautyCore C++
+-> AI Backend -> Semantic Head Model -> Tracking/Geometry
+-> Beauty -> Metal -> Output.
+Swift chỉ UI/camera lifecycle/editor state.
+
+35. PERFORMANCE SCHEDULER
+-------------------------
+Không chạy mọi model mỗi frame.
+
+Ví dụ:
+Frame0: detector + landmarks + parsing + depth.
+Frame1: tracker + optical flow + lightweight update.
+Frame2: tracker.
+Frame3: landmark re-anchor.
+Khi confidence giảm: detector re-anchor.
+
+Scheduler dựa motion, confidence, face size, occlusion,
+device performance, thermal state.
+Tối ưu: FP16/INT8 nếu đạt chất lượng, NEON, multithreading, GPU.
+
+36. QUALITY / VALIDATION
+-------------------------
+Accuracy:
+mask IoU, landmark error, contour error.
+
+Stability:
+jitter, temporal drift, re-detection jump.
+
+Beauty:
+boundary/background distortion, identity preservation, symmetry,
+texture preservation.
+
+Performance:
+latency, FPS, CPU/GPU, memory, battery, thermal.
+
+Edge cases:
+profile/extreme pose, smile, blink, open mouth, glasses, beard,
+long hair, bangs, hat, hand occlusion, low light, backlight, multiple faces.
+
+37. KIẾN TRÚC CHỐT
+------------------
+HEAD AI ENGINE
+ -> Dense Geometry (106 + 468/478)
+ -> Semantic Parsing
+ -> Appearance/Depth/Occlusion
+ -> Tracking
+ -> HEAD SEMANTIC MODEL
+ -> FaceGeometry + HairSystem + SkinSystem
+ -> BEAUTY CORE C++
+ -> Geometry Edit + Texture Edit + Generative Edit
+ -> Vulkan(Android) / Metal(iOS)
+ -> OUTPUT.
+
+Core mới nên được định nghĩa:
+HEAD SEMANTIC GEOMETRY + APPEARANCE + BEAUTY ENGINE,
+không chỉ là Face Landmark Engine.
+
+38. GIỚI HẠN KỸ THUẬT / TÍNH CHÍNH XÁC
+-----------------------------------------
+1. RGB 2D không cung cấp trực tiếp giải phẫu bên trong.
+2. Monocular depth là ước lượng.
+3. RGB thông thường không đo trực tiếp phổ hấp thụ vật liệu.
+4. Vùng bị che không thể phục hồi chính xác; Generative AI chỉ tái tạo hợp lý.
+5. Các mask như acne/redness/wrinkle chỉ dùng chỉnh ảnh, không chẩn đoán.
+6. Beauty controls ưu tiên lựa chọn người dùng, không tự áp chuẩn thẩm mỹ theo tuổi/giới.
+7. Model/code bên thứ ba phải kiểm tra license trước khi đóng gói thương mại.
+8. Confidence/visibility phải đi cùng mọi kết quả AI để Core biết khi nào không nên chỉnh.

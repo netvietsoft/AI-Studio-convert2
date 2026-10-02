@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FilterPart</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>Reshape</string>
+			<key>Filters</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>SourceInput</string>
+				</dict>
+				<!-- 面部提拉 -->
+				<dict>
+					<key>Name</key>
+					<string>FacialLifting</string>
+					<key>FromSource</key>
+					<array>
+						<string>SourceInput</string>
+					</array>
+				</dict>
+				<!-- 眼部去脂顺滑 -->
+				<dict>
+					<key>Name</key>
+					<string>UpperEyelidRadianSmooth</string>
+					<key>LeftRightSideThres</key>
+					<string>0.8</string>
+					<key>FromSource</key>
+					<array>
+						<string>FacialLifting</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>ResultOutput</string>
+					<key>FromSource</key>
+					<array>
+						<string>UpperEyelidRadianSmooth</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ID</key>
+	<integer>1001</integer>
+	<key>FilterPart</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>AnattaBeauty</string>
+			<key>Filters</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>SourceInput</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>DodgeBurn</string>
+					<!-- 匀肤类型 iOS 0，安卓 1 -->
+					<key>Type</key>
+					<string>2</string>
+                    <key>Switch</key>
+					<string>1</string>
+					<!-- 匀肤程度 -->
+					<key>Alpha</key>
+					<string>1.0</string>
+					<key>FromSource</key>
+					<array>
+						<string>SourceInput</string>
+					</array>
+				</dict>
+                <dict>
+					<key>Name</key>
+					<string>FacialShadowSmooth</string>
+                    <!-- 去黑眼圈 平整 -->
+                    <key>TearTroughSwitch</key>
+					<string>1</string>
+					<key>TearTroughAlpha</key>
+					<string>0.7</string>
+                    <!-- 去法令纹 平整 -->
+                    <key>LaughLineSwitch</key>
+					<string>1</string>
+					<key>LaughLineAlpha</key>
+					<string>0.6</string>
+					<key>FromSource</key>
+					<array>
+						<string>DodgeBurn</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>ShadowSmoothBright</string>
+                    <!-- 去黑眼圈 提亮 -->
+                    <key>RemovePouchSwitch</key>
+					<string>1</string>
+					<key>RemovePouchAlpha</key>
+					<string>0.7</string>
+                    <!-- 去法令纹 提亮 -->
+                    <key>LaughLineSwitch</key>
+					<string>1</string>
+					<key>LaughLineAlpha</key>
+					<string>0.6</string>
+					<key>FromSource</key>
+					<array>
+						<string>FacialShadowSmooth</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>ShadowLight</string>
+					<key>Type</key>
+					<string>2DSoftLight</string>
+                    <key>Switch</key>
+					<string>1</string>
+					<!-- 五官立体程度 -->
+					<key>Alpha</key>
+					<string>0.7</string>
+					<key>FromSource</key>
+					<array>
+						<string>ShadowSmoothBright</string>
+					</array>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>ResultOutput</string>
+					<key>FromSource</key>
+					<array>
+						<string>ShadowLight</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

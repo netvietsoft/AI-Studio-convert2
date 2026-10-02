@@ -1,0 +1,898 @@
+PHASE P0-B.2R — FINAL EVIDENCE CORRECTION & FREEZE
+MANDATORY AGENT EXECUTION SPECIFICATION
+============================================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+TASK TYPE: DOCUMENT / EVIDENCE CORRECTION ONLY
+STATUS: APPROVED TO EXECUTE
+ALGORITHM STATUS: P0_B2R_ALGORITHM_GATE = PASS
+EVIDENCE PACKAGE STATUS: PASS_WITH_DOCUMENT_CORRECTIONS
+P0-C PRODUCTION INTEGRATION: BLOCKED UNTIL THIS TASK PASSES
+P1 HAIR ORIENTATION/FLOW: BLOCKED
+ALGORITHM MODIFICATION: STRICTLY FORBIDDEN
+PRODUCTION SOURCE MODIFICATION: STRICTLY FORBIDDEN
+
+REFERENCE REPORT:
+P0_B2R_REPORT.md
+
+REFERENCE DATA:
+P0_B2R_METRICS.csv
+GEOMETRY_AB_METRICS.csv
+P0_B2R_DEVICE_BENCHMARK.csv
+SOURCE_TRACE.md
+
+======================================================================
+0. MISSION
+======================================================================
+
+Mục tiêu duy nhất của task này là đóng sạch hồ sơ bằng chứng của
+P0-B.2R trước khi cho phép mở P0-C Production Integration.
+
+KHÔNG phải phase thuật toán mới.
+KHÔNG phải P0-B.2R.1.
+KHÔNG chạy nghiên cứu Hair Matting mới.
+KHÔNG thay đổi kết quả thuật toán để làm đẹp báo cáo.
+
+Agent chỉ được:
+
+1. Chuẩn hóa claim Root Cause R2.
+2. Đối soát và thống nhất metric screenshot.
+3. Xác minh benchmark Ear Occlusion Resolver = 0.00 ms.
+4. Sửa tính toàn vẹn/khả năng parse của P0_B2R_METRICS.csv.
+5. Revalidate toàn bộ tài liệu phụ thuộc.
+6. Regenerate manifest/hash nếu artifact thay đổi.
+7. Freeze evidence package.
+8. Xuất final correction report.
+9. STOP.
+
+======================================================================
+1. BASELINE ĐƯỢC PHÉP GIỮ NGUYÊN
+======================================================================
+
+Các kết quả sau KHÔNG được tự ý thay đổi nếu không phát hiện lỗi dữ liệu:
+
+R1 sample_26:
+- Hair Core P0-B.2: 73.28%.
+- Hair Core P0-B.2R: 78.71%.
+- Forehead Skin Leakage: 0.000%.
+- Background Leakage: 1.401%.
+- Hairline Naturalness: 85.3.
+
+R3:
+- LowContrastHairResolver selected Variant P3.
+- Resolver P50 = 8.51 ms.
+- P0-B.2R Matting P50 = 69.85 ms.
+- Full Run P50 = 317.60 ms.
+- Peak RAM RSS = 344.76 MB.
+
+Regression:
+- 30 Regression PASS.
+- 12 Existing Holdout PASS.
+- 8 Edge Holdout PASS.
+- 12 New Robustness Holdout PASS.
+- Reported total = 62/62.
+
+Final algorithm decision:
+P0_B2R_PASS.
+
+Task này KHÔNG được biến P0_B2R_PASS thành một claim rộng hơn như:
+"perfect on all images", "zero leakage universally", "100% accurate",
+"production proven", hoặc tương đương.
+
+======================================================================
+2. ISSUE E1 — ROOT CAUSE CLAIM NORMALIZATION
+======================================================================
+
+P0_B2R_REPORT hiện có claim tương đương:
+
+"100% do geometric distortion"
+"nguyên nhân duy nhất và trực tiếp"
+
+Trong khi A/B/C experiment trực tiếp chứng minh trên nhóm failure screenshot
+được thử rằng aspect-preserving preprocessing làm giảm mạnh false positive.
+
+Agent phải sửa wording để evidence và claim cùng cấp.
+
+ALLOWED CLAIM:
+
+"Trong các screenshot failure được kiểm thử ở P0-B.2R, A/B/C experiment
+cho thấy anisotropic resize là nguyên nhân chính được quan sát; Mode B
+aspect-preserving letterbox loại bỏ phần lớn Class-18 false positive và
+đưa Background Leakage xuống dưới gate."
+
+Có thể dùng wording tương đương nhưng phải giữ 3 nguyên tắc:
+
+- Không dùng "100% root cause".
+- Không dùng "only/unique cause" nếu chưa có bằng chứng loại trừ toàn bộ
+  nguyên nhân khác.
+- Không suy rộng từ 3 failure sang mọi screenshot hoặc mọi ảnh.
+
+======================================================================
+3. E1 — REQUIRED SEARCH
+======================================================================
+
+Search toàn bộ evidence package các cụm:
+
+100%
+100 percent
+duy nhất
+only cause
+unique cause
+completely proven
+triệt để
+tuyệt đối
+perfect
+zero leakage
+zero failure
+zero risk
+hoàn hảo
+
+Không bắt buộc xóa mọi từ "100%" hoặc "zero".
+
+Ví dụ hợp lệ:
+"62/62 = 100% của test suite này."
+"0 pixels trong vùng metric được định nghĩa."
+
+Không hợp lệ:
+"100% chính xác cho mọi ảnh."
+"zero leakage" mà không nói dataset/ROI/metric scope.
+
+Mọi sửa claim phải ghi vào:
+CLAIM_CORRECTION_LOG.md
+
+Fields:
+FILE
+SECTION
+OLD CLAIM
+NEW CLAIM
+REASON
+EVIDENCE SOURCE
+SEVERITY.
+
+======================================================================
+4. ISSUE E2 — SCREENSHOT METRIC RECONCILIATION
+======================================================================
+
+P0_B2R_REPORT có ít nhất hai bộ số:
+
+Executive/final result:
+holdout_07 ~0.03%
+edge_05 ~0.00%
+edge_06 ~0.00%
+
+A/B/C geometry table Mode B:
+holdout_07 0.07%
+edge_05 0.01%
+edge_06 0.02%
+
+Không được tự chọn số nhỏ hơn.
+
+Agent phải truy nguyên nguồn.
+
+======================================================================
+5. E2 — SOURCE-OF-TRUTH PROCEDURE
+======================================================================
+
+Đối với từng sample:
+
+holdout_07
+edge_05
+edge_06
+
+Trace:
+
+RAW INPUT
+-> GEOMETRY MODE
+-> SEMANTIC OUTPUT
+-> P0-B.2R FINAL ALPHA
+-> COMPOSITE
+-> METRIC FUNCTION
+-> METRIC CSV
+-> REPORT TABLE
+-> EXECUTIVE SUMMARY.
+
+Xác định liệu hai bộ số là:
+
+A. Hai stage khác nhau:
+   Geometry-only output vs final post-protection output.
+
+B. Hai metric definition khác nhau.
+
+C. Hai ROI denominator khác nhau.
+
+D. Rounding difference.
+
+E. Stale data.
+
+F. Documentation error.
+
+G. Measurement error.
+
+Không được phỏng đoán.
+
+======================================================================
+6. E2 — REQUIRED METRIC SCHEMA
+======================================================================
+
+Mỗi metric phải có:
+
+metric_name
+sample_id
+pipeline_stage
+algorithm_variant
+numerator_pixels
+denominator_pixels
+value_raw
+value_percent
+roi_definition
+mask_definition
+source_file
+source_function
+artifact_version.
+
+Ví dụ:
+
+BackgroundLeakage {
+ sample_id: holdout_07
+ pipeline_stage: FINAL_P0_B2R_ALPHA
+ variant: MODE_B_PLUS_FINAL_PROTECTION
+ numerator_pixels: ...
+ denominator_pixels: ...
+ value_percent: ...
+}
+
+Nếu số liệu A/B/C là geometry-only:
+phải ghi rõ:
+GEOMETRY_STAGE_BACKGROUND_LEAKAGE.
+
+Nếu số liệu final là sau protection:
+phải ghi:
+FINAL_PIPELINE_BACKGROUND_LEAKAGE.
+
+Không được đặt hai metric khác stage cùng tên mà không chú thích.
+
+======================================================================
+7. E2 — SINGLE SOURCE OF TRUTH
+======================================================================
+
+Tạo:
+
+P0_B2R_METRIC_DEFINITIONS.md
+P0_B2R_METRIC_RECONCILIATION.csv
+
+P0_B2R_METRIC_RECONCILIATION.csv tối thiểu có:
+
+sample_id
+metric
+geometry_stage_value
+final_pipeline_value
+reason_for_difference
+authoritative_value_for_final_gate
+source_artifact.
+
+Executive Summary phải dùng FINAL GATE metric.
+
+A/B/C section phải dùng GEOMETRY EXPERIMENT metric.
+
+Không ép hai giá trị thành giống nhau nếu thực tế chúng đo ở hai stage.
+
+======================================================================
+8. ISSUE E3 — EAR OCCLUSION RESOLVER 0.00 MS
+======================================================================
+
+Stage-by-stage benchmark hiện báo:
+
+Ear Occlusion Resolver:
+P50 = 0.00 ms
+P95 = 0.00 ms
+P99 = 0.00 ms.
+
+Không được diễn giải thành "zero computational cost"
+nếu chưa chứng minh.
+
+Phải xác định chính xác một trong các trạng thái:
+
+EAR_STAGE_BYPASSED
+EAR_STAGE_NOT_TRIGGERED
+EAR_STAGE_BELOW_TIMER_RESOLUTION
+EAR_STAGE_FUSED_WITH_OTHER_STAGE
+EAR_STAGE_INSTRUMENTATION_MISSING
+EAR_STAGE_MEASURED_NONZERO
+OTHER.
+
+======================================================================
+9. E3 — BENCHMARK AUDIT PROCEDURE
+======================================================================
+
+Audit:
+
+- benchmark call chain;
+- timer start/stop;
+- clock source;
+- timer resolution;
+- units;
+- number of iterations;
+- warmup;
+- whether ear condition triggered;
+- number of pixels processed;
+- whether compiler optimized code away;
+- whether stage is included elsewhere.
+
+Required evidence:
+
+FILE
+FUNCTION
+LINE/RANGE
+CALL COUNT
+TRIGGER COUNT
+TIMER TYPE
+RAW SAMPLE VALUES.
+
+Nếu stage không trigger:
+report N/A or BYPASSED, không ghi 0.00 ms như measured cost.
+
+Nếu measured < display precision:
+report "< measurement/display resolution" hoặc tăng precision.
+
+Nếu instrumentation thiếu:
+report NOT MEASURED.
+
+Nếu thực sự measured:
+xuất đủ raw timings và percentile calculation.
+
+======================================================================
+10. E3 — NO ALGORITHM CHANGE RULE
+======================================================================
+
+Có thể sửa benchmark instrumentation trong scratch/test harness.
+
+KHÔNG được sửa production algorithm.
+
+Nếu cần trigger Ear Resolver:
+dùng existing ear-occlusion test samples.
+
+Không thay đổi algorithm chỉ để tạo số benchmark.
+
+======================================================================
+11. ISSUE E4 — CSV STRUCTURAL INTEGRITY
+======================================================================
+
+P0_B2R_METRICS.csv phải là CSV hợp lệ và parse được bằng parser chuẩn.
+
+Không được chấp nhận file mà:
+- số field giữa các row không đồng nhất;
+- delimiter bị vỡ;
+- quote không đóng;
+- header mismatch;
+- duplicate malformed header;
+- newline trong field không quote;
+- encoding lỗi;
+- numeric field chứa text không định nghĩa;
+- percent và decimal trộn không schema.
+
+======================================================================
+12. E4 — REQUIRED CSV VALIDATION
+======================================================================
+
+Dùng ít nhất 2 independent parsers nếu môi trường có sẵn.
+
+Ví dụ:
+Python csv
+Python pandas
+
+Hoặc parser chuẩn tương đương.
+
+Validate:
+
+UTF-8
+header
+column count
+row count
+unique sample ID
+required fields
+numeric parse
+null policy
+enum policy
+duplicate row
+NaN/Inf
+percentage range
+gate result consistency.
+
+Output:
+P0_B2R_CSV_VALIDATION_REPORT.md.
+
+======================================================================
+13. E4 — DATA PRESERVATION
+======================================================================
+
+Sửa CSV chỉ được sửa cấu trúc/serialization nếu raw data đúng.
+
+KHÔNG:
+- thay metric để PASS;
+- xóa row fail;
+- đổi sample ID;
+- tự điền số thiếu;
+- đổi denominator;
+- làm tròn để qua gate.
+
+Nếu phát hiện data thực sự sai:
+mark DATA_DISCREPANCY
+và STOP final freeze cho tới khi reconciled bằng raw evidence.
+
+======================================================================
+14. CSV CANONICAL SCHEMA
+======================================================================
+
+Nếu schema hiện tại chưa rõ, tạo canonical export.
+
+Khuyến nghị tối thiểu:
+
+sample_id
+dataset_group
+dataset_role
+hair_core_preservation_pct
+forehead_leakage_pct
+face_leakage_pct
+ear_leakage_pct
+background_leakage_pct
+ui_leakage_pct
+hat_accessory_fp_pct
+bald_fp_pct
+border_hair_retention_pct
+secondary_subject_retention_pct
+hairline_score
+fine_hair_score
+flyaway_score
+applicable_gate
+gate_result
+notes
+artifact_version.
+
+Không bắt buộc field không áp dụng phải = 0.
+Dùng NA/blank theo schema đã document.
+
+======================================================================
+15. 62-SAMPLE COUNT VALIDATION
+======================================================================
+
+Verify independently:
+
+30 Regression
+12 Existing Holdout
+8 Edge Holdout
+12 New Robustness Holdout
+TOTAL 62.
+
+Check:
+- unique IDs = 62;
+- no duplicate sample counted twice;
+- no missing sample;
+- no hidden exclusion;
+- dataset role consistent;
+- PASS calculation derives from row-level gates.
+
+Output count matrix vào CSV validation report.
+
+======================================================================
+16. 62/62 CLAIM POLICY
+======================================================================
+
+Nếu validation xác nhận:
+có thể ghi:
+
+"62/62 samples in the P0-B.2R validation suite passed all applicable
+defined gates."
+
+Không ghi:
+
+"Algorithm is 100% accurate."
+"All real-world images pass."
+"Zero failure universally."
+
+======================================================================
+17. BENCHMARK RECONCILIATION
+======================================================================
+
+Verify exact relationship:
+
+LowContrastHairResolver P3 P50 = 8.51 ms.
+P0 Matting P50 = 69.85 ms.
+Full Run P50 = 317.60 ms.
+Peak RSS = 344.76 MB.
+
+Do not sum independent P50/P95/P99 stage percentiles and call the sum
+pipeline percentile.
+
+Pipeline percentile must come from per-run total timing.
+
+Document:
+PER_STAGE_PERCENTILES
+vs
+END_TO_END_PERCENTILES.
+
+======================================================================
+18. PERFORMANCE CLAIM NORMALIZATION
+======================================================================
+
+Allowed:
+
+"P0 Matting P50 measured 69.85 ms on Samsung Galaxy SM-A075F under the
+documented benchmark configuration."
+
+Not allowed:
+
+"69.85 ms on all Android devices."
+"Real-time guaranteed."
+"No thermal risk."
+"Zero performance risk."
+
+Thermal claims must state duration/iterations/environment measured.
+
+======================================================================
+19. MEMORY CLAIM NORMALIZATION
+======================================================================
+
+Peak RSS 344.76 MB may be stated as measured under benchmark conditions.
+
+Do not write:
+"memory safe universally"
+"no memory leak"
+unless a dedicated leak/soak test proves it.
+
+If only VmHWM was measured:
+call it Peak RSS/VmHWM evidence.
+
+======================================================================
+20. SOURCE TRACEABILITY AUDIT
+======================================================================
+
+Review SOURCE_TRACE.md.
+
+Every key claim must trace to:
+
+SOURCE CLAIM:
+file/class/function/line-range.
+
+MEASURED CLAIM:
+raw artifact + metric function + configuration.
+
+OBSERVED CLAIM:
+image/artifact + reviewer procedure.
+
+INFERRED CLAIM:
+must be labeled INFERRED.
+
+No source:
+NOT FOUND.
+
+======================================================================
+21. REQUIRED DOCUMENT CORRECTIONS
+======================================================================
+
+At minimum review/update:
+
+P0_B2R_REPORT.md
+P0_B2R_METRICS.csv
+SOURCE_TRACE.md
+P0_B2R_CONFIG.md
+GEOMETRY_AB_METRICS.csv
+P0_B2R_DEVICE_BENCHMARK.csv
+
+Create:
+
+P0_B2R_FINAL_EVIDENCE_CORRECTION_REPORT.md
+CLAIM_CORRECTION_LOG.md
+P0_B2R_METRIC_DEFINITIONS.md
+P0_B2R_METRIC_RECONCILIATION.csv
+P0_B2R_CSV_VALIDATION_REPORT.md.
+
+======================================================================
+22. ARTIFACT MANIFEST
+======================================================================
+
+Generate canonical manifest after corrections:
+
+P0_B2R_FINAL_EVIDENCE_MANIFEST.csv
+
+Fields:
+
+relative_path
+file_size_bytes
+sha256
+artifact_type
+artifact_version
+source_status
+notes.
+
+All final evidence files must be included.
+
+======================================================================
+23. HASH FREEZE
+======================================================================
+
+After all corrections:
+
+Generate:
+P0_B2R_FINAL_FREEZE.sha256
+
+Hash:
+final report
+metrics
+metric definitions
+metric reconciliation
+CSV validation
+geometry metrics
+device benchmark
+source trace
+config
+claim correction log
+evidence manifest.
+
+Do not regenerate after freeze without incrementing evidence version.
+
+======================================================================
+24. FREEZE RECORD
+======================================================================
+
+Create:
+
+P0_B2R_FINAL_FREEZE_RECORD.md
+
+Include:
+
+Task ID
+Date/time
+Git commit if available
+Git status
+Production source hash/tree hash if available
+Evidence version
+Artifact count
+Manifest SHA256
+Algorithm changed? NO
+Production changed? NO
+P1 started? NO
+Final evidence decision.
+
+======================================================================
+25. PRODUCTION SOURCE PROTECTION
+======================================================================
+
+Before and after task record:
+
+git status
+git diff --stat
+git diff for protected production paths
+commit hash if available.
+
+Protected:
+lib-core-graphics/
+production JNI/API
+shipping Hair Color pipeline.
+
+Expected:
+NO ALGORITHM CHANGE.
+
+Documentation/scratch corrections are allowed.
+
+======================================================================
+26. FINAL HARD GATES
+======================================================================
+
+All must PASS:
+
+[ ] E1 overclaim corrected.
+[ ] No unsupported unique-cause claim remains.
+[ ] E2 screenshot metrics reconciled.
+[ ] Metric stage/denominator definitions documented.
+[ ] Executive summary uses authoritative final-gate metric.
+[ ] Geometry table uses geometry-stage metric.
+[ ] E3 Ear Resolver 0.00 ms explained with evidence.
+[ ] Benchmark terminology corrected if needed.
+[ ] E4 P0_B2R_METRICS.csv parses cleanly.
+[ ] Row/column structure valid.
+[ ] 62 unique samples independently confirmed.
+[ ] Dataset counts = 30+12+8+12.
+[ ] Gate results derive from row metrics.
+[ ] No data silently altered to create PASS.
+[ ] Source trace updated.
+[ ] Claim correction log complete.
+[ ] Manifest generated.
+[ ] SHA256 freeze generated.
+[ ] Production source unchanged.
+[ ] Algorithm unchanged.
+[ ] P1 not started.
+
+======================================================================
+27. HARD FAIL CONDITIONS
+======================================================================
+
+Immediate fail if:
+
+- Agent changes Hair Matting algorithm.
+- Agent changes production source.
+- Agent changes metric values without raw evidence.
+- Agent deletes failed/inconsistent evidence.
+- Agent silently changes denominator.
+- Agent fabricates raw timing.
+- Agent labels estimate as measured.
+- Agent hides unresolved contradiction.
+- CSV still cannot be parsed reliably.
+- 62-sample count cannot be reproduced.
+- hash manifest does not match files.
+- P1 is started.
+
+======================================================================
+28. REQUIRED FINAL REPORT
+======================================================================
+
+File:
+P0_B2R_FINAL_EVIDENCE_CORRECTION_REPORT.md
+
+Must begin exactly:
+
+PHASE P0-B.2R — FINAL EVIDENCE CORRECTION & FREEZE — EXECUTION REPORT
+
+Required sections:
+
+1. EXECUTIVE STATUS
+2. INPUT ARTIFACT INVENTORY
+3. PRODUCTION SOURCE PROTECTION CHECK
+4. E1 ROOT-CAUSE CLAIM AUDIT
+5. E1 CLAIM CORRECTIONS
+6. E2 SCREENSHOT METRIC TRACE
+7. E2 METRIC RECONCILIATION
+8. E2 FINAL SOURCE OF TRUTH
+9. E3 EAR RESOLVER BENCHMARK AUDIT
+10. E3 FINAL BENCHMARK INTERPRETATION
+11. E4 CSV STRUCTURAL AUDIT
+12. E4 CSV REPAIR
+13. 62-SAMPLE INDEPENDENT COUNT
+14. GATE RECOMPUTATION
+15. PERFORMANCE RECONCILIATION
+16. MEMORY/THERMAL CLAIM AUDIT
+17. SOURCE TRACEABILITY AUDIT
+18. CLAIM CORRECTION LOG SUMMARY
+19. FINAL ARTIFACT MANIFEST
+20. SHA256 FREEZE
+21. FINAL HARD-GATE CHECKLIST
+22. FINAL DECISION
+23. STOP CONDITION.
+
+======================================================================
+29. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+P0_B2R_EVIDENCE_FREEZE_PASS
+
+or
+
+P0_B2R_EVIDENCE_NEEDS_FIX
+
+or
+
+P0_B2R_EVIDENCE_CONTRADICTION_FOUND.
+
+Meaning:
+
+P0_B2R_EVIDENCE_FREEZE_PASS:
+- algorithm gate remains PASS;
+- evidence package is internally consistent;
+- artifacts parse/trace correctly;
+- package may proceed to P0-C authorization.
+
+P0_B2R_EVIDENCE_NEEDS_FIX:
+- documentation/artifact problem remains;
+- algorithm is not automatically invalidated;
+- P0-C remains blocked.
+
+P0_B2R_EVIDENCE_CONTRADICTION_FOUND:
+- evidence contradicts a material P0_B2R_PASS claim;
+- STOP;
+- no P0-C;
+- escalate for independent technical review.
+
+======================================================================
+30. RELATIONSHIP TO ALGORITHM VERDICT
+======================================================================
+
+This task MUST preserve separation:
+
+ALGORITHM VERDICT:
+P0_B2R_PASS
+
+EVIDENCE VERDICT:
+one of the 3 values in Section 29.
+
+Do not rewrite algorithm verdict merely because a CSV quote/format issue
+exists.
+
+But if material evidence contradicts the algorithm verdict:
+use P0_B2R_EVIDENCE_CONTRADICTION_FOUND.
+
+======================================================================
+31. P0-C AUTHORIZATION RULE
+======================================================================
+
+Only if:
+
+FINAL DECISION = P0_B2R_EVIDENCE_FREEZE_PASS
+
+then status becomes:
+
+P0-C_PRODUCTION_INTEGRATION = ELIGIBLE_FOR_SEPARATE_AUTHORIZATION.
+
+This task DOES NOT authorize P0-C execution.
+
+======================================================================
+32. P1 RULE
+======================================================================
+
+P1 remains BLOCKED.
+
+Even after evidence freeze:
+P0-C must be separately executed and accepted before P0 is formally
+closed and P1 can be considered.
+
+======================================================================
+33. STOP CONDITION
+======================================================================
+
+After final evidence report and freeze:
+
+STOP ALL WORK.
+
+DO NOT:
+- modify algorithm;
+- modify production;
+- start P0-C automatically;
+- start P1;
+- add AI model;
+- add cloud;
+- add generative;
+- optimize unrelated modules.
+
+Wait for next authorization.
+
+======================================================================
+34. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+EXECUTE ONLY:
+P0-B.2R FINAL EVIDENCE CORRECTION & FREEZE.
+
+ORDER:
+
+1. Snapshot source/evidence state.
+2. Verify production source unchanged.
+3. Audit root-cause wording.
+4. Correct unsupported root-cause overclaims.
+5. Trace holdout_07/edge_05/edge_06 metrics end-to-end.
+6. Generate metric definitions.
+7. Generate reconciliation CSV.
+8. Audit Ear Resolver 0.00 ms.
+9. Correct benchmark interpretation.
+10. Parse/validate P0_B2R_METRICS.csv.
+11. Repair serialization/schema only where evidence supports it.
+12. Independently recount 62 samples.
+13. Recompute gates from canonical metrics.
+14. Audit performance/memory/thermal wording.
+15. Update source trace.
+16. Generate claim correction log.
+17. Generate final evidence manifest.
+18. Generate SHA256 freeze.
+19. Generate freeze record.
+20. Produce final correction report.
+21. Return exactly one allowed evidence decision.
+22. STOP.
+
+NO ALGORITHM CHANGE.
+NO PRODUCTION CHANGE.
+NO P0-C EXECUTION.
+NO P1.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.
+
+============================================================
+END OF SPECIFICATION
+============================================================

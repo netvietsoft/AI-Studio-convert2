@@ -1,0 +1,904 @@
+HAIR COLOR ENGINE V1 — FINAL EVIDENCE AUDIT CORRECTION 01
+P1–P6 REAL-PIPELINE PROOF, GPU PROVENANCE & VISUAL QUALITY CLOSURE
+MASTER AGENT EXECUTION SPECIFICATION
+======================================================================
+
+PROJECT: CONVERT2 — Hair Color Engine
+TASK TYPE: FINAL ACCEPTANCE EVIDENCE AUDIT / CORRECTION
+OWNER: Agent 0 — CEO / ORCHESTRATOR
+PRIOR AGENT VERDICT: HAIR_COLOR_V1_PASS
+INDEPENDENT AUDIT STATUS: HOLD — EVIDENCE PACKAGE NOT YET SUFFICIENTLY PROVEN
+P0 STATUS: CLOSED / FROZEN / DO NOT MODIFY
+P1–P6 STATUS: IMPLEMENTED ACCORDING TO EXECUTION REPORT, FINAL ACCEPTANCE NOT YET INDEPENDENTLY CONFIRMED
+P7 STATUS: STRICTLY BLOCKED
+
+PURPOSE
+-------
+Báo cáo hiện tại tuyên bố P1–P6 hoàn thành và HAIR_COLOR_V1_PASS, nhưng trước khi
+đóng Hair Color V1 phải chứng minh bằng raw evidence rằng:
+
+1. P1–P6 thực sự chạy bằng REAL upstream outputs, không phải mock/fixture.
+2. "GPU parity = 0.000" là kết quả của GPU execution thật, không phải CPU fallback.
+3. 62 mẫu P0 không bị gọi sai là "Ground Truth" cho các metric P1–P6 nếu không có
+   nhãn ground-truth tương ứng.
+4. Các metric P1/P2/P3/P4/P5 có định nghĩa, công thức, dataset, gate và source rõ ràng.
+5. Chất lượng hình ảnh end-to-end được kiểm chứng trên output thực tế.
+6. P0 frozen source/hash không bị thay đổi trong integration P1–P6.
+7. JNI/app thực tế gọi HairColorPipeline mới.
+8. Performance/memory/thermal của full P0–P6 được đo trên thiết bị thật.
+9. Không có overclaim kiểu "100%", "triệt để", "tuyệt đối" nếu raw evidence không hỗ trợ.
+
+KHÔNG được tự sửa thuật toán để làm đẹp bằng chứng.
+Nếu phát hiện lỗi thuật toán, STOP và báo NEEDS_FIX.
+
+======================================================================
+1. SOURCE OF TRUTH
+======================================================================
+
+Ưu tiên:
+
+1. Production source / shader / binary / runtime trace.
+2. Raw test images and raw generated outputs.
+3. Raw CSV metrics.
+4. Device benchmark logs.
+5. Phase manifests + SHA-256.
+6. Tester/Reviewer reports.
+7. Executive summary.
+
+Nếu report mâu thuẫn raw evidence:
+RAW EVIDENCE THẮNG.
+
+======================================================================
+2. ISSUE E1 — "GROUND-TRUTH 62 SAMPLES" TERMINOLOGY
+======================================================================
+
+Báo cáo hiện gọi:
+"Ground-Truth 62 mẫu".
+
+Phải xác định chính xác:
+
+- 62 mẫu có ground-truth alpha hay chỉ canonical regression?
+- Có ground-truth orientation field không?
+- Có ground-truth texture map không?
+- Có ground-truth shadow/highlight decomposition không?
+- Có target hair color reference không?
+- Có ground-truth specular field không?
+
+Nếu không có annotation thật:
+KHÔNG dùng "Ground Truth" cho toàn bộ P1–P6.
+
+Allowed wording:
+"Canonical 62-sample regression suite"
+"Reference validation set"
+"Proxy-metric validation set"
+
+Create:
+HCE_V1_DATASET_GROUND_TRUTH_AUDIT.md
+
+======================================================================
+3. ISSUE E2 — PHASE-SPECIFIC DATASET SUFFICIENCY
+======================================================================
+
+62 P0 segmentation samples không tự động đủ để nghiệm thu:
+
+P1 orientation
+P2 texture
+P3 lighting
+P4 dye material
+P5 anisotropic specular
+P6 GPU
+
+Agent phải lập:
+
+HCE_V1_PHASE_DATASET_MATRIX.csv
+
+Columns:
+phase
+dataset_name
+sample_count
+sample_ids
+annotation_type
+ground_truth_or_proxy
+tuning_or_holdout
+metric_names
+gate
+source
+status.
+
+Mỗi phase phải có dataset phù hợp với chính metric của phase.
+
+======================================================================
+4. ISSUE E3 — P1 ORIENTATION EVIDENCE
+======================================================================
+
+Current claim:
+- mean confidence = 0.842
+- continuous orientation
+- zero leakage.
+
+Không đủ để chứng minh orientation đúng.
+
+Required:
+
+P1 raw evidence:
+- flow/orientation map;
+- confidence map;
+- hair matte;
+- vector overlay;
+- test metadata.
+
+Metrics:
+- angular error where reference orientation exists;
+- if no GT: clearly label proxy metric;
+- coherence;
+- continuity;
+- boundary validity;
+- percentage valid orientation inside hair;
+- orientation outside hair;
+- low-confidence percentage.
+
+Required formula documentation:
+P1_METRIC_DEFINITIONS.md
+
+If mean confidence 0.842:
+must define exact confidence formula and distribution, not only mean.
+
+======================================================================
+5. ISSUE E4 — P2 TEXTURE CLAIMS
+======================================================================
+
+Current report says:
+"100% natural strand preservation"
+"no artificial detail"
+"no banding".
+
+These are overclaims unless objectively measured.
+
+Required:
+- before/after high-frequency spectrum;
+- directional energy aligned to P1;
+- texture energy preservation ratio;
+- banding detector metric;
+- difference images;
+- representative crops.
+
+Create:
+P2_TEXTURE_EVIDENCE.csv
+P2_TEXTURE_VISUAL_AUDIT.md
+
+Allowed wording must be scoped to tested samples.
+
+======================================================================
+6. ISSUE E5 — P3 SHADOW/HIGHLIGHT EVIDENCE
+======================================================================
+
+Current claim:
+shadow preservation score = 0.965.
+
+Must define:
+- formula;
+- ROI;
+- source image;
+- how shadow/reference region is selected;
+- how highlight mask is defined;
+- whether metric is proxy or GT.
+
+Required outputs:
+- shadow map;
+- highlight map;
+- local contrast map;
+- final retained luminance;
+- difference map.
+
+Create:
+P3_APPEARANCE_METRIC_DEFINITIONS.md
+P3_APPEARANCE_EVIDENCE.csv
+
+======================================================================
+7. ISSUE E6 — P4 DYE MATERIAL EVIDENCE
+======================================================================
+
+Current claim:
+Delta E = 1.25 OKLab
+root darkness = 90%
+gamut lock = 100%
+"melanin lift curve".
+
+Required corrections:
+
+A. State whether "melanin" is:
+- purely an appearance-control parameter;
+- or an inferred physical pigment measurement.
+
+If no physical spectroscopy/measurement:
+do not claim physical melanin estimation.
+
+B. Delta E:
+Specify:
+- exact formula;
+- OKLab delta norm or another metric;
+- target reference;
+- where target reference comes from;
+- whether target is synthetic preset or real salon reference;
+- ROI.
+
+C. Root darkness:
+Define exact ratio and ROI.
+
+D. Gamut:
+Define gamut target and out-of-gamut test.
+
+Create:
+P4_DYE_MATERIAL_METRIC_DEFINITIONS.md
+P4_DYE_MATERIAL_EVIDENCE.csv
+
+======================================================================
+8. ISSUE E7 — P5 SPECULAR CLAIMS
+======================================================================
+
+Current report says:
+"Marschner R-Lobe"
+direction adherence = 0.978
+"completely eliminates helmet shine".
+
+Need prove implementation level.
+
+Required:
+- mathematical formula actually implemented;
+- source lines;
+- whether it is full Marschner or Marschner-inspired approximation;
+- tangent inputs;
+- highlight anchor;
+- lobe width/strength;
+- dielectric/specular assumptions.
+
+If only simplified lobe:
+wording must be:
+"Marschner-inspired / R-lobe-inspired anisotropic approximation"
+not "full Marschner model".
+
+Create:
+P5_SPECULAR_MODEL_TRACE.md
+P5_SPECULAR_EVIDENCE.csv
+
+Helmet-shine claim must be scoped to tested cases.
+
+======================================================================
+9. ISSUE E8 — P6 ACTUAL GPU EXECUTION PROOF
+======================================================================
+
+This is CRITICAL.
+
+Current report says:
+- Vulkan Compute / Metal-ready
+- CPU/GPU parity = 0.000.
+
+Need prove GPU path was actually executed.
+
+Required evidence on Android physical device:
+
+- Vulkan physical device name;
+- vendor ID / device ID;
+- API version;
+- selected queue family;
+- compute pipeline creation;
+- shader module list;
+- SPIR-V hashes;
+- descriptor bindings;
+- dispatch dimensions;
+- GPU buffer allocation;
+- command buffer submission;
+- fence/semaphore completion;
+- CPU fallback flag;
+- per-stage backend used;
+- timestamp query or host-measured GPU timing.
+
+Create:
+P6_GPU_RUNTIME_PROVENANCE.md
+P6_GPU_DISPATCH_TRACE.csv
+P6_SHADER_MANIFEST.csv
+
+PASS requires real Vulkan dispatch evidence.
+
+"Metal-ready" means architecture compatibility only.
+Do not claim Metal runtime PASS unless executed on Apple device with actual Metal backend.
+
+======================================================================
+10. GPU FALLBACK SEPARATION
+======================================================================
+
+Every P6 test row must contain:
+
+backend_requested
+backend_selected
+fallback_triggered
+fallback_reason
+gpu_dispatch_count
+cpu_stage_count
+status.
+
+If `gpu_dispatch_count = 0`:
+that run is CPU, not GPU.
+
+CPU fallback must never be presented as GPU parity evidence.
+
+======================================================================
+11. ISSUE E9 — CPU/GPU PARITY
+======================================================================
+
+Current claim:
+Max Abs Diff = 0.000.
+
+Required:
+
+HCE_CPU_GPU_PARITY_RAW.csv
+
+Fields:
+sample_id
+stage
+cpu_buffer_sha256
+gpu_buffer_sha256
+element_count
+different_elements
+max_abs_diff
+mean_abs_diff
+p95_abs_diff
+tolerance
+backend_proof_id
+status.
+
+Parity classes:
+
+LEVEL A:
+byte-identical.
+
+LEVEL B:
+numeric parity within predefined tolerance.
+
+LEVEL C:
+perceptual/output metric parity.
+
+Do not state "100% exact GPU parity" unless LEVEL A is proven from actual GPU output.
+
+======================================================================
+12. ISSUE E10 — FULL P0→P6 PIPELINE PROVENANCE
+======================================================================
+
+Need prove actual production path:
+
+P0 Hair Matte
+-> P1 Orientation
+-> P2 Texture
+-> P3 Appearance
+-> P4 Dye Material
+-> P5 Specular
+-> P6 backend
+-> Composite Output.
+
+Create:
+HCE_V1_PRODUCTION_PIPELINE_TRACE.md
+
+For each stage:
+source file
+entry function
+input contract
+output contract
+backend
+runtime trace marker
+error/fallback behavior.
+
+======================================================================
+13. JNI / APP ROUTING PROOF
+======================================================================
+
+Current report says:
+nativeApplyHairStrandDye routes to HairColorPipeline.
+
+Verify actual source and runtime.
+
+Required:
+- Kotlin declaration;
+- JNI symbol;
+- C++ route;
+- HairColorPipeline call;
+- return path;
+- bitmap lock/unlock;
+- error handling;
+- feature flag;
+- backend selection.
+
+Create:
+HCE_V1_JNI_PIPELINE_AUDIT.md
+
+Also provide one runtime trace showing:
+Android UI call -> Kotlin -> JNI -> HairColorPipeline -> P1...P6 -> output.
+
+======================================================================
+14. ISSUE E11 — P0 FREEZE INTEGRITY
+======================================================================
+
+Recalculate current hashes for all P0 frozen files.
+
+Compare against:
+P0_C_CORRECTION03_FREEZE.sha256
+
+Create:
+HCE_V1_P0_FREEZE_VERIFICATION.md
+
+If any P0 file hash changed:
+STATUS = HCE_V1_P0_DRIFT_DETECTED
+STOP.
+
+Downstream integration must not silently modify P0.
+
+======================================================================
+15. ISSUE E12 — END-TO-END VISUAL ARTIFACTS
+======================================================================
+
+The report claims 14 artifacts exist.
+
+Need actual artifact inventory.
+
+For each representative case:
+
+01_original
+02_p0_alpha
+03_p1_flow_overlay
+04_p1_confidence
+05_p2_texture
+06_p3_shadow
+07_p3_highlight
+08_p4_material_color
+09_p5_specular
+10_final_cpu_reference
+11_final_gpu
+12_difference_heatmap
+13_boundary_zoom
+14_original_vs_final
+
+Create:
+HCE_V1_VISUAL_ARTIFACT_MANIFEST.csv
+
+Fields:
+case_id
+artifact_name
+path
+sha256
+resolution
+generated_by
+backend
+manual_edit
+status.
+
+`manual_edit` must be false.
+
+======================================================================
+16. REQUIRED REPRESENTATIVE COLOR TRANSFORMS
+======================================================================
+
+Final V1 must include real end-to-end examples for at least:
+
+- black -> dark brown
+- black -> copper brown
+- black -> ash brown
+- brown -> warm copper
+- blonde -> ash/cool
+- blonde -> warm
+- red/burgundy
+- gray/silver
+- high-exposure hair
+- curly/wavy hair
+- fine/flyaway hair
+- headwear negative
+- multi-person
+
+Not every transformation needs the same quality score,
+but failures must be disclosed.
+
+======================================================================
+17. REALISM REVIEW
+======================================================================
+
+Create:
+HCE_V1_REALISM_REVIEW.md
+
+Review dimensions:
+- root depth;
+- strand texture;
+- directional consistency;
+- shadow depth;
+- highlight continuity;
+- specular alignment;
+- color coherence;
+- boundary quality;
+- flyaway preservation;
+- skin/background protection;
+- absence of flat-paint look;
+- absence of plastic/helmet shine.
+
+Use panel/blind review if available.
+
+Do not claim salon realism solely from algorithm metrics.
+
+======================================================================
+18. ISSUE E13 — FULL DEVICE PERFORMANCE
+======================================================================
+
+Need full P0–P6 timings, not only build success.
+
+On primary physical Android device report:
+
+P0
+P1
+P2
+P3
+P4
+P5
+P6/Composite
+TOTAL
+
+For:
+P50
+P95
+P99
+
+Also:
+input resolution
+GPU backend
+quality tier
+warmup
+iteration count
+thermal state
+RSS
+GPU/CPU memory if available.
+
+Create:
+HCE_V1_DEVICE_BENCHMARK.csv
+
+======================================================================
+19. QUALITY TIER PERFORMANCE
+======================================================================
+
+If Tier A/B/C exists:
+
+Benchmark each supported tier.
+
+Fields:
+tier
+resolution
+backend
+stages_enabled
+P50
+P95
+P99
+peak_rss
+visual_score_or_proxy
+thermal_notes.
+
+Do not claim tier support if no runtime execution test.
+
+======================================================================
+20. MEMORY / SOAK / THERMAL
+======================================================================
+
+Run:
+- repeated end-to-end calls;
+- at least documented iteration count;
+- no monotonic memory growth;
+- no crash/ANR;
+- thermal behavior recorded.
+
+Allowed wording:
+"No thermal throttling was observed during the documented run."
+
+Not allowed:
+"Thermal risk = zero."
+
+======================================================================
+21. PROTECTED REGION VALIDATION
+======================================================================
+
+"Zero leakage" must be metric-based.
+
+For each case:
+face
+forehead
+ears
+neck
+clothing
+background
+UI
+headwear/accessory.
+
+Create:
+HCE_V1_PROTECTED_REGION_METRICS.csv
+
+Do not collapse all into one universal "zero leakage" claim if some regions were N/A.
+
+Use NA, not zero, for absent regions.
+
+======================================================================
+22. MOCK-TO-REAL AUDIT
+======================================================================
+
+Because P1–P6 were developed in parallel, prove every final phase used REAL upstream:
+
+Create:
+HCE_V1_UPSTREAM_PROVENANCE.csv
+
+Fields:
+phase
+artifact
+upstream_phase
+upstream_source
+contract_version
+mock_used_during_dev
+mock_present_in_final_validation
+status.
+
+Final validation requires:
+mock_present_in_final_validation = false.
+
+======================================================================
+23. PHASE FREEZE AUDIT
+======================================================================
+
+For each:
+P1_FREEZE.sha256
+P2_FREEZE.sha256
+P3_FREEZE.sha256
+P4_FREEZE.sha256
+P5_FREEZE.sha256
+P6_FREEZE.sha256
+HCE_FINAL_FREEZE.sha256
+
+Verify:
+- parser/format;
+- every path exists;
+- every SHA matches;
+- no duplicate path conflict;
+- source hashes correspond to currently built binaries.
+
+Create:
+HCE_V1_FREEZE_AUDIT.md
+
+======================================================================
+24. CLAIM NORMALIZATION
+======================================================================
+
+Search for:
+100%
+zero leakage
+absolute parity
+perfect
+triệt để
+completely
+guaranteed
+never crash
+ground truth
+full Marschner
+melanin measurement
+Metal supported
+
+Every claim must be scoped.
+
+Examples:
+
+Good:
+"62/62 canonical regression samples passed applicable protection gates."
+"Actual Vulkan run on device X produced max_abs_diff <= epsilon."
+"Structure-tensor confidence mean was 0.842 on dataset Y."
+
+Bad:
+"100% natural texture preservation."
+"Perfect GPU parity" without actual GPU proof.
+"Ground Truth 62 samples" without annotations.
+"Full Marschner" if only approximation.
+
+Create:
+HCE_V1_CLAIM_CORRECTION_LOG.md
+
+======================================================================
+25. FINAL TESTER GATE
+======================================================================
+
+Independent Tester validates:
+
+[ ] P0 hashes unchanged.
+[ ] P1–P6 use real upstream outputs.
+[ ] Phase-specific datasets valid.
+[ ] P1 metrics reproducible.
+[ ] P2 texture evidence valid.
+[ ] P3 appearance evidence valid.
+[ ] P4 dye evidence valid.
+[ ] P5 model claim matches implementation.
+[ ] Actual GPU dispatch proven.
+[ ] CPU/GPU parity from actual GPU output.
+[ ] JNI routes app to new pipeline.
+[ ] Visual artifacts complete.
+[ ] Protected-region metrics valid.
+[ ] Device benchmark complete.
+[ ] Memory/thermal evidence valid.
+[ ] Phase freezes verified.
+[ ] P7 remains blocked.
+
+Output:
+HCE_V1_FINAL_TEST_REPORT.md
+
+Allowed:
+TESTER_PASS
+TESTER_NEEDS_FIX.
+
+======================================================================
+26. FINAL REVIEWER GATE
+======================================================================
+
+Independent Reviewer audits:
+
+- architecture;
+- contracts;
+- mock-to-real provenance;
+- algorithm claims;
+- GPU execution;
+- metrics;
+- overclaims;
+- visual artifacts;
+- performance;
+- freeze integrity.
+
+Output:
+HCE_V1_FINAL_REVIEW_REPORT.md
+
+Allowed:
+REVIEWER_PASS
+REVIEWER_NEEDS_FIX.
+
+======================================================================
+27. FINAL HARD GATES
+======================================================================
+
+All must PASS:
+
+[ ] P0 freeze unchanged.
+[ ] HCE_CONTRACT_V1 frozen and matched.
+[ ] P1 real-output validation PASS.
+[ ] P2 real-P1 validation PASS.
+[ ] P3 validation PASS.
+[ ] P4 validation PASS.
+[ ] P5 real P1/P3/P4 validation PASS.
+[ ] P6 actual GPU runtime proven.
+[ ] CPU/GPU parity classified correctly.
+[ ] 62-sample terminology corrected if not GT.
+[ ] Phase-specific validation datasets documented.
+[ ] Real end-to-end P0→P6 pipeline proven.
+[ ] JNI route proven.
+[ ] 14-artifact sets verified.
+[ ] Protected-region metrics valid.
+[ ] Realism review complete.
+[ ] Device P50/P95/P99 measured.
+[ ] Memory/soak documented.
+[ ] Thermal wording scoped.
+[ ] Mock removed from final validation.
+[ ] Phase freezes verified.
+[ ] Claims normalized.
+[ ] Tester PASS.
+[ ] Reviewer PASS.
+[ ] P7 remains blocked.
+
+======================================================================
+28. FINAL DECISION — ONLY ALLOWED VALUES
+======================================================================
+
+HAIR_COLOR_V1_PASS_RECONFIRMED
+
+or
+
+HAIR_COLOR_V1_NEEDS_FIX
+
+or
+
+HCE_V1_GPU_PROOF_INSUFFICIENT
+
+or
+
+HCE_V1_P0_DRIFT_DETECTED
+
+or
+
+HCE_V1_EVIDENCE_CONTRADICTION.
+
+======================================================================
+29. REQUIRED FINAL PACKAGE
+======================================================================
+
+Create:
+
+scratch/hce_v1_final_audit/
+
+HCE_V1_FINAL_AUDIT_MASTER_REPORT.md
+HCE_V1_DATASET_GROUND_TRUTH_AUDIT.md
+HCE_V1_PHASE_DATASET_MATRIX.csv
+P1_METRIC_DEFINITIONS.md
+P2_TEXTURE_EVIDENCE.csv
+P2_TEXTURE_VISUAL_AUDIT.md
+P3_APPEARANCE_METRIC_DEFINITIONS.md
+P3_APPEARANCE_EVIDENCE.csv
+P4_DYE_MATERIAL_METRIC_DEFINITIONS.md
+P4_DYE_MATERIAL_EVIDENCE.csv
+P5_SPECULAR_MODEL_TRACE.md
+P5_SPECULAR_EVIDENCE.csv
+P6_GPU_RUNTIME_PROVENANCE.md
+P6_GPU_DISPATCH_TRACE.csv
+P6_SHADER_MANIFEST.csv
+HCE_CPU_GPU_PARITY_RAW.csv
+HCE_V1_PRODUCTION_PIPELINE_TRACE.md
+HCE_V1_JNI_PIPELINE_AUDIT.md
+HCE_V1_P0_FREEZE_VERIFICATION.md
+HCE_V1_VISUAL_ARTIFACT_MANIFEST.csv
+HCE_V1_REALISM_REVIEW.md
+HCE_V1_DEVICE_BENCHMARK.csv
+HCE_V1_PROTECTED_REGION_METRICS.csv
+HCE_V1_UPSTREAM_PROVENANCE.csv
+HCE_V1_FREEZE_AUDIT.md
+HCE_V1_CLAIM_CORRECTION_LOG.md
+HCE_V1_FINAL_TEST_REPORT.md
+HCE_V1_FINAL_REVIEW_REPORT.md
+HCE_V1_FINAL_MANIFEST.csv
+HCE_V1_FINAL_FREEZE.sha256
+HCE_V1_FINAL_FREEZE_RECORD.md
+
+======================================================================
+30. STOP CONDITION
+======================================================================
+
+If HAIR_COLOR_V1_PASS_RECONFIRMED:
+- Hair Color V1 is CLOSED for validated scope.
+- STOP.
+- Do not start P7 automatically.
+
+If any other verdict:
+- STOP.
+- Do not hide missing evidence.
+- Do not tune silently.
+- Return exact failed gate(s).
+
+======================================================================
+31. IMMEDIATE EXECUTION ORDER
+======================================================================
+
+01. Preserve current P1–P6 package unchanged.
+02. Verify P0 freeze hashes.
+03. Audit 62-sample terminology.
+04. Build phase-specific dataset matrix.
+05. Audit P1 raw orientation evidence.
+06. Audit P2 texture evidence.
+07. Audit P3 appearance evidence.
+08. Audit P4 dye material evidence.
+09. Audit P5 specular implementation/model claim.
+10. Prove actual Vulkan GPU runtime execution.
+11. Recompute CPU/GPU parity from actual GPU buffers.
+12. Trace full production P0→P6 call graph.
+13. Audit JNI routing.
+14. Verify 14-artifact sets.
+15. Audit protected-region metrics.
+16. Audit mock-to-real provenance.
+17. Benchmark full P0–P6 on device.
+18. Validate memory/soak/thermal.
+19. Verify all phase freezes.
+20. Normalize claims.
+21. Tester gate.
+22. Reviewer gate.
+23. Generate final manifest.
+24. Generate SHA-256 freeze.
+25. Issue exactly one allowed final verdict.
+26. STOP.
+
+NO P7.
+NO CLOUD.
+NO NEW MODEL.
+NO P0 MODIFICATION.
+NO SILENT ALGORITHM TUNING.
+
+======================================================================
+END OF HCE V1 FINAL AUDIT CORRECTION 01 SPEC
+======================================================================

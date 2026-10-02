@@ -1,0 +1,706 @@
+PHASE P0-B.2 — EDGE CASE CLOSURE
+MASTER AGENT EXECUTION SPECIFICATION
+====================================
+
+PROJECT: CONVERT — Hair Color / Hair Dye Engine
+DOCUMENT TYPE: Mandatory Autonomous Agent Execution Order
+PHASE: P0-B.2
+STATUS: APPROVED TO EXECUTE
+P0 OVERALL: NOT PASS
+PRODUCTION INTEGRATION: BLOCKED
+P1 HAIR ORIENTATION: BLOCKED
+SCOPE: P0 HAIR MATTING ONLY
+REFERENCE DEVICE: Samsung Galaxy SM-A075F
+PRINCIPLES: LOCAL-FIRST / EVIDENCE-BASED / NON-DESTRUCTIVE
+
+======================================================================
+0. MỤC ĐÍCH
+======================================================================
+P0-B.2 là vòng EDGE CASE CLOSURE cho candidate Classical Hair Matting.
+Không redesign toàn bộ P0. Không mở phase mới. Không sửa production.
+
+Chỉ xử lý:
+F1 — LOW-CONTRAST DARK HAIR: tóc tối + nền tối.
+F2 — SCREENSHOT/UI-CHROME FALSE POSITIVE.
+
+Sau sửa phải chứng minh không regression toàn bộ P0-B.1.
+
+======================================================================
+1. GROUND TRUTH HIỆN TẠI
+======================================================================
+P0-A:
+- hair_matting_mobile đã audit và REJECT; không kích hoạt lại.
+
+P0-B:
+- Classical Semantic Trimap + Guided Filter + Color Affinity cải thiện
+  hairline/fine hair/flyaway/leakage nhưng lỗi tóc sáng do lum < 0.44.
+
+P0-B.1:
+- Adaptive Hair Appearance.
+- Hair/Hat Disambiguation.
+- Ear Occlusion Resolver.
+- 30 regression + 12 holdout.
+- P0_B1_NEEDS_FIX.
+
+Measured trên Samsung Galaxy SM-A075F, 960x1280:
+BiSeNet P50             239.76 ms
+Adaptive Seed             1.01 ms
+Hair/Hat Resolver         1.47 ms
+Trimap                    3.78 ms
+Guided Filter            48.86 ms
+Color Affinity           11.97 ms
+Semantic Protection       1.17 ms
+Ear Resolver              1.01 ms
+Hairline/Composite        6.74 ms
+P0-B.1 Matting P50       76.54 ms
+Full Pipeline P50       316.56 ms
+Peak RAM                301.05 MB
+
+Remaining verified failures:
+F1 sample_05: Hair Core Preservation 74.2%, dark hair + dark gradient,
+weak color separation.
+F2 holdout_03/holdout_07: screenshot/UI chrome causes local Background
+Leakage ~18%.
+
+======================================================================
+2. SCOPE LOCK — TUYỆT ĐỐI KHÔNG LÀM
+======================================================================
+- P1 Hair Flow/Orientation
+- P2 Texture
+- P3 Appearance
+- P4 Hair Material/Rose Gold/Undertone
+- P5 Specular
+- P6 Vulkan/Metal
+- Generative AI
+- Cloud
+- Video tracking/optical flow/cache
+- BiSeNet replacement
+- New AI model
+- Production integration
+
+Freeze P0-B.1 trừ thay đổi tối thiểu bắt buộc cho F1/F2.
+
+======================================================================
+3. QUY TẮC KỸ THUẬT
+======================================================================
+- Evidence before conclusion.
+- No per-image tuning.
+- No filename-specific branches.
+- No dark-hair preset.
+- No "near border = UI".
+- No "largest component only".
+- No class18=hair shortcut.
+- No estimated number labeled MEASURED.
+- No "perfect/100% solved/zero leakage" nếu metric không chứng minh.
+- Nếu chưa có alpha vẽ tay: ghi NO GROUND-TRUTH ALPHA.
+
+======================================================================
+4. FIX F1 — LOW-CONTRAST DARK HAIR
+======================================================================
+Vấn đề: Hair Color ≈ Background Color nên color distance không đủ.
+
+Tạo:
+LowContrastHairResolver.h/.cpp
+
+struct LowContrastHairEvidence {
+    float seedSimilarity;
+    float connectivity;
+    float textureSimilarity;
+    float edgeContinuity;
+    float spatialPrior;
+    float semanticConfidence;
+    float backgroundPenalty;
+    float confidence;
+};
+
+struct LowContrastHairResult {
+    ImageFloat probability;
+    ImageFloat confidence;
+};
+
+4.1 Connectivity
+Candidate được mở rộng khi:
+- connected tới confirmed hair core;
+- propagation path nhất quán;
+- không xuyên protected semantic;
+- propagation distance hợp lý;
+- confidence không sụp.
+CẤM unrestricted flood-fill.
+
+4.2 Texture similarity
+Có thể dùng lightweight:
+- gradient magnitude;
+- gradient histogram;
+- local variance;
+- Laplacian energy;
+- small LBP-like descriptor nếu có bằng chứng;
+- multi-scale luminance residual hiện có.
+Không làm Hair Orientation ở đây.
+
+4.3 Edge continuity
+Không cho propagation vượt strong incompatible boundary.
+
+4.4 Spatial prior
+Face/head geometry chỉ là weak prior.
+Tóc có thể vượt skull, phủ vai/tai và chạm border.
+Không tạo anatomical cage cứng.
+
+4.5 Background penalty
+Disconnected + large background + no semantic/texture evidence
+=> tăng background penalty.
+
+Concept:
+P_dark_hair =
+ w_seed*SeedSimilarity +
+ w_connectivity*Connectivity +
+ w_texture*TextureSimilarity +
+ w_edge*EdgeContinuity +
+ w_spatial*SpatialPrior +
+ w_semantic*SemanticConfidence -
+ w_background*BackgroundPenalty;
+
+Weights:
+- document;
+- global;
+- không tune theo filename;
+- có sensitivity report.
+
+Nếu evidence thấp:
+preserve confirmed core + conservative fallback.
+Không fabricate hair.
+
+F1 HARD GATE:
+sample_05 phải vượt project Hair Core threshold mà không làm tăng đáng kể
+dark-background leakage.
+
+======================================================================
+5. FIX F2 — SCREENSHOT/UI-CHROME REJECTION
+======================================================================
+Tạo:
+ImageContentGuard.h/.cpp
+SubjectGraph.h/.cpp
+
+enum class ContentRegionType {
+    SUBJECT_CONTENT,
+    POSSIBLE_UI,
+    CONFIRMED_UI,
+    BACKGROUND,
+    UNKNOWN
+};
+
+struct ContentGuardResult {
+    ImageMask protectedSubject;
+    ImageMask uiRejectMask;
+    ImageFloat uiProbability;
+    ImageFloat confidence;
+};
+
+Subject Graph:
+Face Instance
+ -> Head Region
+ -> Semantic Hair Components
+ -> Boundary Candidates
+ -> Hair Matte.
+
+Hair candidate phải có quan hệ hợp lý với ít nhất một valid SubjectGraph.
+
+UI evidence có thể gồm:
+- flat rectangular regions;
+- long straight horizontal/vertical edges;
+- repeated aligned rectangles;
+- toolbar/status/navigation geometry;
+- text/icon-like high-frequency clusters;
+- component xa face/head;
+- component disconnected khỏi subject;
+- repeated UI spacing.
+
+Không feature đơn lẻ nào là proof.
+
+CẤM:
+if nearBorder => UI.
+
+Tóc thật chạm top/left/right/bottom vẫn phải giữ nếu subject connectivity
+hợp lệ.
+
+======================================================================
+6. MULTI-PERSON SAFETY
+======================================================================
+CẤM chỉ giữ largest component.
+
+Nếu nhiều face hợp lệ:
+SubjectGraph[0..N-1].
+
+Mỗi subject sở hữu:
+face/head/hair components/boundary candidates.
+
+UI rejection phải bảo toàn tóc của mọi subject hợp lệ.
+
+Nếu app hiện có selected subject/face:
+dùng selection đó.
+Nếu không có:
+report ambiguity; không tự phát minh behavior.
+
+======================================================================
+7. DATASET & ANTI-OVERFITTING
+======================================================================
+Chạy lại:
+- 30 regression cũ.
+- 12 holdout cũ.
+Không xóa/thay failure.
+
+Thêm >=8 NEW EDGE HOLDOUT chưa dùng tune:
+E01 dark hair + dark background
+E02 dark hair + dark gradient
+E03 low-light portrait
+E04 low-light + noise
+E05 screenshot/UI portrait
+E06 screenshot/UI portrait
+E07 real hair touching image border
+E08 multi-person
+
+Khuyến nghị thêm:
+hat near border; hair-over-ear low light; gray hair dark background;
+curly hair textured dark background.
+
+Negative set:
+bald, hat, cap, hood/head covering, accessory, similar-color background,
+skin with similar luminance.
+
+Ghi dataset role:
+TRAIN/TUNE / REGRESSION / HOLDOUT / NEGATIVE.
+
+Nếu edge holdout được dùng để tune sau failure thì nó không còn là true
+holdout; phải ghi lại role và có holdout mới.
+
+======================================================================
+8. ARTIFACT BẮT BUỘC
+======================================================================
+Mỗi sample liên quan xuất:
+01_original.png
+02_semantic_overlay.png
+03_subject_graph.png
+04_p0_b1_alpha.png
+05_p0_b2_alpha.png
+06_alpha_diff.png
+07_p0_b1_composite.png
+08_p0_b2_composite.png
+09_core_crop.png
+10_boundary_crop.png
+11_background_or_ui_crop.png
+12_confidence_map.png
+
+F1 thêm:
+13_connectivity_map.png
+14_texture_similarity.png
+15_background_penalty.png
+
+F2 thêm:
+13_ui_probability.png
+14_ui_reject_mask.png
+15_subject_connectivity.png
+
+======================================================================
+9. METRICS
+======================================================================
+Hair:
+Hair Core Preservation
+Hairline Naturalness Proxy
+Fine Hair Recall Proxy
+Flyaway Recall Proxy
+Hairstyle Stability
+
+Leakage:
+Face / Forehead / Ear / Neck / Clothes / Background / UI Leakage
+
+Negative:
+Bald / Hat / Cap / Hood / Accessory False Positive
+
+Subject:
+Subject Hair Retention
+Secondary Subject Retention
+Border-touch Hair Retention
+
+Nếu không có hand-labeled alpha:
+NO GROUND-TRUTH ALPHA.
+Không gọi proxy là ground-truth accuracy.
+
+======================================================================
+10. HARD GATES
+======================================================================
+F1:
+[ ] sample_05 Hair Core >= project acceptance threshold
+[ ] dark background leakage không material regression
+[ ] no uncontrolled flood fill
+[ ] hairline no regression
+[ ] fine hair no regression
+[ ] flyaway no regression
+[ ] hairstyle no regression
+[ ] new dark-hair holdout PASS
+
+F2:
+[ ] holdout_03 UI false-positive fixed
+[ ] holdout_07 UI false-positive fixed
+[ ] UI leakage materially reduced
+[ ] border-touch hair retained
+[ ] multi-person retained
+[ ] hat/cap/headwear no regression
+[ ] text/icons not Hair
+[ ] subject selection behavior documented
+
+Global:
+[ ] bright hair
+[ ] blonde
+[ ] highlight
+[ ] gray
+[ ] dark hair
+[ ] Hair/Hat
+[ ] cap
+[ ] hood
+[ ] bald
+[ ] ear occlusion
+[ ] hairline
+[ ] fine hair
+[ ] flyaway
+[ ] face
+[ ] clothes
+[ ] background
+all no critical regression.
+
+======================================================================
+11. ORIGINAL-VS-EDITED VALIDATION
+======================================================================
+Inputs:
+ORIGINAL_IMAGE / EDITED_IMAGE / USER_REQUEST / TARGET_REGION /
+EDIT_PARAMETERS.
+
+Original = ground truth cho vùng user không yêu cầu đổi.
+User request = ground truth cho vùng yêu cầu đổi.
+
+Hard Fail:
+- UI painted as hair
+- background painted as hair
+- hat painted as hair
+- bald scalp gets fake hair
+- real hair removed
+- face identity changed
+- clothing/background/accessory changed ngoài yêu cầu
+
+======================================================================
+12. C++ STRUCTURE
+======================================================================
+Suggested experimental modules:
+hair/matting/
+ AdaptiveHairAppearance.*
+ HairHatResolver.*
+ EarOcclusionResolver.*
+ LowContrastHairResolver.*
+ ImageContentGuard.*
+ SubjectGraph.*
+ SemanticTrimapGenerator.*
+ FastGuidedHairMatting.*
+ HairBoundaryRefiner.*
+
+Trước khi tạo file: SEARCH CODEBASE.
+Không duplicate module tương đương.
+Ghi source trace cho mọi reuse/new code.
+
+======================================================================
+13. UNIT TEST
+======================================================================
+LowContrastHairResolver:
+- connected dark hair retained
+- disconnected dark background rejected
+- protected semantic blocks propagation
+- low confidence conservative fallback
+
+ImageContentGuard:
+- disconnected toolbar rejected
+- border-touch hair retained
+- multi-person retained
+- cap remains accessory
+- UI island far from subject rejected
+
+SubjectGraph:
+- one person
+- two people
+- no face
+- screenshot portrait
+- overlapping people nếu có sample
+
+No-face phải có explicit fallback.
+
+======================================================================
+14. DEVICE BENCHMARK
+======================================================================
+Reference:
+Samsung Galaxy SM-A075F / Helio G99 / ARM64-v8a / Android 14 /
+960x1280.
+
+Đo riêng:
+1 BiSeNet
+2 Adaptive Hair Appearance
+3 Hair/Hat Resolver
+4 LowContrastHairResolver
+5 SubjectGraph
+6 ImageContentGuard
+7 Trimap
+8 Guided Filter
+9 Color Affinity
+10 Semantic Protection
+11 Ear Resolver
+12 Hairline Refinement
+13 TOTAL P0-B.2
+14 FULL HAIR COLOR RUN
+
+Bắt buộc:
+P50 / P95 / P99
+Peak RAM
+CPU load
+thread count
+thermal
+iterations
+warmup
+build type
+ABI
+compiler
+
+Baseline P0-B.1 Matting P50 = 76.54 ms.
+Target P0-B.2 P50 <= 85 ms dưới điều kiện tương đương.
+
+Nếu >85 ms:
+NEEDS_OPTIMIZATION, trừ khi correctness tradeoff được báo cáo riêng.
+
+Không tối ưu BiSeNet trong phase này.
+Không tuyên bố 30 FPS/live-ready.
+
+======================================================================
+15. SOURCE TRACEABILITY
+======================================================================
+Mọi AS-IS claim:
+FILE / CLASS / FUNCTION / LINE-RANGE nếu có.
+
+Mọi algorithm:
+FILE / CLASS-FUNCTION / PURPOSE / INPUT / OUTPUT / COMPLEXITY / FALLBACK.
+
+Mọi metric:
+dataset / sample / method / version.
+
+Mọi benchmark:
+device / OS / build / compiler / ABI / threads / resolution / warmup /
+iterations.
+
+Không có bằng chứng => NOT FOUND.
+
+======================================================================
+16. FAILURE CLASSIFICATION
+======================================================================
+LOW_CONTRAST_HAIR_LOSS
+DARK_BACKGROUND_LEAKAGE
+UI_FALSE_POSITIVE
+BORDER_HAIR_LOSS
+SECONDARY_PERSON_LOSS
+HAIR_CORE_LOSS
+BRIGHT_HAIR_LOSS
+HAT_AS_HAIR
+HAIR_AS_HAT
+EAR_LEAKAGE
+HAIR_OVER_EAR_LOSS
+FACE_LEAKAGE
+BACKGROUND_LEAKAGE
+FLYAWAY_LOSS
+HALO
+CUTOUT
+BALD_FALSE_POSITIVE
+ACCESSORY_FALSE_POSITIVE
+PERFORMANCE_REGRESSION
+OTHER
+
+Mỗi failure:
+Sample ID
+Dataset Role
+Expected
+Actual
+Region
+Failure Type
+Root Cause
+Confidence
+Evidence
+Metric
+Suggested Fix
+Regression Risk
+
+======================================================================
+17. DELIVERABLES
+======================================================================
+scratch/p0_b2_validation/
+ P0_B2_REPORT.md
+ P0_B2_METRICS.csv
+ regression/
+ existing_holdout/
+ edge_holdout/
+ negative_tests/
+ dark_hair_tests/
+ ui_guard_tests/
+ border_tests/
+ multi_person_tests/
+ failure_cases/
+ blind_review/
+ device_benchmark/P0_B2_DEVICE_BENCHMARK.csv
+ source_trace/SOURCE_TRACE.md
+ config/P0_B2_CONFIG.md
+
+Không silently overwrite artifact; record version.
+
+======================================================================
+18. BLIND REVIEW
+======================================================================
+Ẩn algorithm:
+VERSION A / VERSION B.
+So sánh P0-B.1 vs P0-B.2.
+Có thể thêm production baseline thành C.
+
+Review trước reveal:
+hair completeness
+hairline
+fine hair
+leakage
+UI rejection
+border hair
+naturalness
+artifact.
+
+======================================================================
+19. REPORT FORMAT
+======================================================================
+Báo cáo phải bắt đầu chính xác:
+
+PHASE P0-B.2 — EDGE CASE CLOSURE — EXECUTION REPORT
+
+Sections:
+1 EXECUTIVE STATUS
+2 GROUND TRUTH BASELINE
+3 SOURCE CHANGES
+4 F1 ROOT CAUSE
+5 F1 IMPLEMENTATION
+6 F1 BEFORE/AFTER
+7 F2 ROOT CAUSE
+8 F2 IMPLEMENTATION
+9 F2 BEFORE/AFTER
+10 30-IMAGE REGRESSION
+11 12 EXISTING HOLDOUT
+12 NEW EDGE HOLDOUT
+13 NEGATIVE TESTS
+14 BORDER-TOUCH TEST
+15 MULTI-PERSON TEST
+16 BLIND REVIEW
+17 ORIGINAL-VS-EDITED VALIDATION
+18 DEVICE BENCHMARK
+19 PERFORMANCE COMPARISON
+20 FAILURE CASES
+21 SOURCE TRACEABILITY
+22 FINAL DECISION
+
+======================================================================
+20. FINAL DECISION — CHỈ 1 TRONG 3
+======================================================================
+P0_B2_PASS
+
+hoặc
+
+P0_B2_NEEDS_FIX
+
+hoặc
+
+P0_CLASSICAL_APPROACH_INSUFFICIENT
+
+P0_B2_PASS chỉ có nghĩa đủ điều kiện TRÌNH P0-C.
+Không được tự production integrate.
+
+Nếu NEEDS_FIX:
+STOP; không tự tạo P0-B.3.
+
+Nếu CLASSICAL_APPROACH_INSUFFICIENT:
+STOP; không tải model.
+Chỉ đề xuất P0-D MODEL REPLACEMENT EVALUATION để phê duyệt riêng.
+
+======================================================================
+21. P0-D NẾU SAU NÀY ĐƯỢC PHÊ DUYỆT
+======================================================================
+Model replacement phải audit riêng:
+quality
+size
+runtime
+RAM
+NCNN compatibility
+license
+checkpoint/model license
+provenance
+mobile performance.
+
+P0-B.2 KHÔNG được thực hiện phần này.
+
+======================================================================
+22. STOP CONDITION
+======================================================================
+Sau report:
+STOP ALL WORK.
+
+DO NOT:
+- start P1
+- modify production Hair Color
+- add model
+- add cloud
+- add generative
+- redesign Rose Gold
+- implement orientation
+- implement material
+- implement specular
+- optimize unrelated modules
+
+======================================================================
+23. FINAL ENGINEERING PRINCIPLES
+======================================================================
+1 CORRECTNESS BEFORE OPTIMIZATION.
+2 GENERALIZATION BEFORE PRODUCTION.
+3 CONNECTIVITY IS EVIDENCE, NOT PROOF.
+4 COLOR SIMILARITY IS EVIDENCE, NOT PROOF.
+5 BORDER CONTACT DOES NOT MEAN UI.
+6 CLASS 18 DOES NOT MEAN HAIR.
+7 DARK PIXEL DOES NOT MEAN HAIR.
+8 SUBJECT GRAPH MUST SUPPORT MULTI-PERSON.
+9 DO NOT IMPROVE RECALL BY PAINTING BACKGROUND.
+10 DO NOT IMPROVE UI REJECTION BY DELETING BORDER HAIR.
+11 NO GROUND-TRUTH ALPHA => METRICS ARE PROXIES.
+12 MEASURED != ESTIMATED.
+13 P0-B.2 PASS != PRODUCTION INTEGRATION.
+14 P0 MUST CLOSE BEFORE P1.
+15 ORIGINAL IMAGE IS GROUND TRUTH FOR UNREQUESTED REGIONS.
+
+======================================================================
+24. IMMEDIATE AGENT COMMAND
+======================================================================
+EXECUTE ONLY P0-B.2.
+
+ORDER:
+1 Audit current P0-B.1 source.
+2 Freeze current configuration.
+3 Reproduce F1/F2 and record baseline.
+4 Implement LowContrastHairResolver.
+5 Implement SubjectGraph + ImageContentGuard.
+6 Run unit tests.
+7 Run 30 regression.
+8 Run 12 existing holdout.
+9 Run >=8 new untouched edge holdout.
+10 Run negative tests.
+11 Run border-touch and multi-person tests.
+12 Run Original-vs-Edited validation.
+13 Benchmark physical device.
+14 Generate all artifacts/reports.
+15 Return exactly one permitted final decision.
+16 STOP.
+
+NO P1.
+NO PRODUCTION MODIFICATION.
+NO NEW MODEL.
+NO CLOUD.
+NO GENERATIVE.
