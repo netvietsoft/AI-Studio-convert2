@@ -1,0 +1,11 @@
+component,status,current_implementation,target_implementation,gap_severity,action_required
+vulkan_instance,IMPLEMENTED,VkInstance created with validation layers,VkInstance on Android,NONE,None
+vulkan_physical_device,IMPLEMENTED,Enumerated Mali/Adreno GPUs,Select compute queue family,NONE,None
+vulkan_logical_device,IMPLEMENTED,VkDevice created with compute queue,VkDevice with memory properties,NONE,None
+compute_shader_glsl,IMPLEMENTED,hair_color.comp and specular.comp,Optimized subgroup compute shaders,LOW,None
+spirv_bytecode,IMPLEMENTED,Precompiled and embedded in native lib,Vulkan shader module loaded,NONE,None
+descriptor_set_layout,IMPLEMENTED,VkDescriptorSetLayout defined,Bind input/output textures,MEDIUM,Bind VkImageView
+buffer_allocation,PARTIAL,Host-visible staging buffers,Device-local VkBuffer / AHardwareBuffer,HIGH,Allocate device local memory
+command_buffer_record,PARTIAL,Command pool initialized,Record vkCmdDispatch and pipeline barrier,CRITICAL,Implement full recording
+command_submit,STUBBED,Falls back to execute_cpu_fallback(),vkQueueSubmit with VkFence synchronization,CRITICAL,Implement real queue submit
+bitmap_readback,STUBBED,Direct CPU memory copy,vkCmdCopyImageToBuffer / AHardwareBuffer lock,HIGH,Implement zero-copy readback
