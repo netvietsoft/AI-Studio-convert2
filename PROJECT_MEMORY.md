@@ -608,3 +608,23 @@ ativeGetVideoCompositedFrame.
      - Thống kê toàn hệ thống: **103 PASS (99.04%) + 1 NOT_APPLICABLE (0.96%) = 104 RESOLVED (100.0%, 0 NEEDS_FIX)**.
   5. *Kiểm tra Build & Regression:* `./gradlew compileDebugKotlin --no-daemon` BUILD SUCCESSFUL (1m 1s); `./gradlew :app:testDebugUnitTest --no-daemon` 100% tests PASS (22s).
   6. *Lập danh mục Mirror và Báo cáo khiếm khuyết Report Drive:* Tạo `10_MIRROR_MANIFEST.md` / `10_MIRROR_MANIFEST.csv` (20 items) và `11_PROCESS_DEFECT_REPORT.md` (ghi nhận trạng thái thiếu OAuth write credentials mà không chặn tiến trình kỹ thuật).
+
+
+---
+
+## 11. HOÀN THÀNH TÁC VỤ TASK_018 — CHUẨN HÓA TRẠNG THÁI, THƯ VIỆN ẢNH VÀ ĐÓNG GÓI CHUYỂN GIAO (2026-10-03)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE` (Doc ID: `17-3KxUT1eXp5XN74i0RYEsRZuz4J2qhOdwFGfzSutuE`).
+- **Nội dung thực thi & giải quyết dứt điểm:**
+  1. *Đính chính Commit SHA của TASK_016:* Thay thế giá trị kế thừa sai thành `f5502ddcbf86db6e95f4ca02f5029bac1f1a99a6` trong `.ai/state.json` và toàn bộ các tệp per-task state liên quan.
+  2. *Bảo tồn phân loại Gate 7 chuẩn xác:* Phân tách tuyệt đối giữa 103 PASS (99.04%) và 1 ASSET_NOT_APPLICABLE (0.96%) cho `BEARD_07`, không gộp sai thành 104 PASS trong `face_beauty_audit_summary`. Tổng số 104 tính năng đạt 100.0% resolved (0 lỗi NEEDS_FIX).
+  3. *Xuất bản Curated Visual Gallery:* Tập hợp và phân loại 17 tấm contact sheet chất lượng cao nhất bao phủ đầy đủ 104 tính năng vào `.ai/reports/TASK_018.../gallery/`, kèm chỉ mục chi tiết `03_GALLERY_INDEX.md`.
+  4. *Kiểm tra hồi quy kỹ thuật (Build & Tests):*
+     - `./gradlew.bat compileDebugKotlin --no-daemon`: BUILD SUCCESSFUL trong 58s.
+     - `python -m unittest discover tests`: 9/9 PASS trong 2.385s.
+     - Bảo toàn nguyên vẹn 100% sửa đổi mắt/mày (`3745e38`) và tai/râu (`f5502dd`) tại HEAD, zero thay đổi mã nguồn ngoài phạm vi.
+  5. *Phát tín hiệu Event Provenance trên Persistent Control PR #1:* Đã phát 5 comment sự kiện `CONVERT2_EVENT_V1` `REPORT_READY` cho TASK_014, TASK_015, TASK_016, TASK_017, và TASK_018.
+  6. *Thiết lập GitHub Transfer Artifact:* Đã tạo workflow `.github/workflows/convert2-final-gallery-transfer.yml` đóng gói artifact `CONVERT2_FACE_BEAUTY_FINAL_GALLERY` (17 ảnh + 8 báo cáo).
+  7. *Canonical Report Drive Mirror & Tuân thủ HARD RULE:*
+     - Do runner cục bộ thiếu Google Drive OAuth write credentials để đẩy trực tiếp vào Drive folder `10i9FPylaxB5mXvXV_V0v2MRL-sIkRwnR`, tuân thủ nghiêm ngặt **HARD RULE** của Chủ tịch: Không làm test xanh giả tạo, không báo cáo khống PASS.
+     - Kết luận thẩm định chính thức: `FACE_BEAUTY_FINAL_CLOSURE_BLOCKED_REMOTE_MIRROR`.
+- **Trạng thái sẵn sàng:** Toàn bộ dữ liệu Face & Beauty đã đóng băng và chuẩn hóa 100%, sẵn sàng bước vào giai đoạn **Full-App E2E Release Readiness Audit** sau khi transfer sang Google Drive hoàn tất.

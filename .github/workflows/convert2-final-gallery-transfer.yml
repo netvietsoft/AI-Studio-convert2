@@ -1,0 +1,47 @@
+name: CONVERT2 Face Beauty Final Gallery Transfer Artifact
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".ai/reports/TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-and-upload-gallery:
+    name: Package and Upload Final Gallery Artifact
+    runs-on: [self-hosted, Windows, convert2]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify Gallery and Report Integrity
+        shell: powershell
+        run: |
+          $reportDir = ".ai\reports\TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE"
+          $galleryDir = "$reportDir\gallery"
+          if (-not (Test-Path $galleryDir)) {
+            Write-Error "Gallery directory not found at $galleryDir"
+            exit 1
+          }
+          $images = Get-ChildItem -Path $galleryDir -Filter "*.png"
+          Write-Host "Found $($images.Count) gallery contact sheets."
+          if ($images.Count -lt 17) {
+            Write-Error "Expected at least 17 contact sheets, found $($images.Count)"
+            exit 1
+          }
+          Write-Host "Gallery package verification: PASS"
+
+      - name: Upload Face & Beauty Final Gallery Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CONVERT2_FACE_BEAUTY_FINAL_GALLERY
+          path: |
+            .ai/reports/TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE/
+          if-no-files-found: error
+          retention-days: 30

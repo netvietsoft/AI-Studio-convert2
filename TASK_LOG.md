@@ -978,3 +978,33 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
      * Ghi nhận khiếm khuyết thiếu OAuth write credentials trong `11_PROCESS_DEFECT_REPORT.md`.
 - **KẾT LUẬN:**
   \mathbf{TASK\_017\_PASS}
+
+
+---
+
+### [2026-10-03 06:07:00 - 06:15:00] TASK_018: FACE BEAUTY FINAL EVIDENCE AND GALLERY CLOSURE
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE (Doc ID: `17-3KxUT1eXp5XN74i0RYEsRZuz4J2qhOdwFGfzSutuE`)
+- **Phân loại tác vụ:** FINAL EVIDENCE / STATE RECONCILIATION / CURATED GALLERY / EVENT LOGGING
+- **Tiến trình thực thi:**
+  1. **Đính chính SHA TASK_016:**
+     * Đã gán chuẩn `task_016_retest_sha` thành `f5502ddcbf86db6e95f4ca02f5029bac1f1a99a6` trong `.ai/state.json`, `.ai/state/tasks/TASK_016...json`, và `.ai/state/tasks/TASK_015...json`.
+  2. **Bảo tồn phân loại Gate 7 chuẩn xác:**
+     * Đã phân tách rành mạch: 103 PASS (99.04%) + 1 NOT_APPLICABLE (0.96%) = 104 RESOLVED (100.0%, 0 NEEDS_FIX).
+     * Tuyệt đối không gộp NOT_APPLICABLE thành PASS giả tạo trong `face_beauty_audit_summary`.
+  3. **Xuất bản Curated Visual Gallery (17 Contact Sheets):**
+     * Đã tập hợp và đóng gói 17 tấm contact sheet chất lượng cao nhất vào `.ai/reports/TASK_018_FACE_BEAUTY_FINAL_EVIDENCE_AND_GALLERY_CLOSURE/gallery/`.
+     * Lập chỉ mục đầy đủ ánh xạ tới từng module, commit nguồn, thiết bị kiểm thử và verdict trong `03_GALLERY_INDEX.md`.
+  4. **Kiểm tra biên dịch & bảo toàn sửa đổi mã nguồn:**
+     * `./gradlew.bat compileDebugKotlin --no-daemon`: BUILD SUCCESSFUL (58s).
+     * `python -m unittest discover tests`: 9/9 PASS (2.385s).
+     * Mã nguồn sửa đổi mắt/mày (TASK_015) và tai/râu (TASK_016) giữ nguyên 100% tại HEAD, không có thay đổi mã nguồn ngoài phạm vi ủy quyền.
+  5. **Phát sự kiện Event Provenance trên Persistent Control PR #1:**
+     * Đã phát các tín hiệu `CONVERT2_EVENT_V1` `REPORT_READY` cho TASK_014, TASK_015, TASK_016, TASK_017, và TASK_018 tới PR #1.
+  6. **Thiết lập GitHub Transfer Artifact:**
+     * Tạo workflow `.github/workflows/convert2-final-gallery-transfer.yml` để đóng gói artifact `CONVERT2_FACE_BEAUTY_FINAL_GALLERY` phục vụ chuyển giao tới Google Drive.
+  7. **Canonical Report Drive Mirror:**
+     * Do runner cục bộ thiếu Google OAuth write token để đẩy trực tiếp vào Drive folder `10i9FPylaxB5mXvXV_V0v2MRL-sIkRwnR`, tuân thủ nghiêm ngặt **HARD RULE**: Không báo cáo khống PASS.
+     * Đánh dấu Remote Mirror Status: `BLOCKED`.
+- **KẾT LUẬN THẨM ĐỊNH:**
+  $$\mathbf{FACE\_BEAUTY\_FINAL\_CLOSURE\_BLOCKED\_REMOTE\_MIRROR}$$
