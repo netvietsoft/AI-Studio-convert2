@@ -838,3 +838,36 @@ Package: `com.mt.mtxx.mtxx.convert` | Activity: `com.mt.mtxx.mtxx.camera.CameraA
      * Đã tạo đủ 11-13 tài liệu, metrics, benchmarks, test reports, review reports, manifest và tệp băm SHA-256 cho từng phase P1 đến P6 và thư mục Integration.
 - **KẾT LUẬN CUỐI CÙNG:**
   $$\mathbf{HAIR\_COLOR\_V1\_PASS}$$
+
+
+---
+
+### [2026-10-02 20:05:00 - 20:18:00] TASK_011: MULTI-AGENT / MULTI-TASK COMMAND BUS ORCHESTRATOR
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** `TASK_011_MULTI_AGENT_MULTI_TASK_COMMAND_BUS_ORCHESTRATOR_ACTIVE` (Doc ID: `10rb1eU56r22pk4dSjRnFdvE-tzG2Yvhnigx6sT_E81E`)
+- **Phân loại tác vụ:** SYSTEM INFRASTRUCTURE — Tuyệt đối cách ly khỏi mã nguồn tính năng sản phẩm (Hair/Face)
+- **Tiêu chuẩn áp dụng:** Development Workspace Standard V2.1.2 & 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD
+- **Tiến trình thực thi:**
+  1. **Thiết kế & Triển khai Lõi Điều Phối Lệnh V2 (`scripts/command_bus_orchestrator.py`):**
+     * Thiết lập cấu trúc thư mục trạng thái lệnh bất biến `.ai/commands/{pending, claimed, running, completed, failed, history}`.
+     * Cơ chế khóa Reentrant FileLock bảo vệ ghi tệp nguyên tử trên Windows/POSIX.
+     * Phát hiện xung đột tài nguyên module và chồng lấn đường dẫn file (`paths_conflict`).
+     * Đồ thị phụ thuộc (DAG): Lệnh downstream tự động chờ lệnh upstream hoàn thành.
+     * Khóa chống chạy trùng lũy đẳng `${task_id}:${task_revision}`.
+     * Thu hồi tự động runner gặp sự cố (Stale Lease Recovery), zero duplication.
+     * Chuyển đổi tương thích ngược `migrate_next_command()` từ `NEXT_COMMAND.json`.
+  2. **Nâng cấp Cấu hình GitHub Actions CI/CD (`.github/workflows/convert2-command-bus.yml`):**
+     * Độc lập hóa concurrency theo lane (`convert2-command-bus-${{ inputs.execution_lane }}`), loại bỏ hiện tượng triệt tiêu chéo.
+     * Bổ sung `workflow_dispatch` hỗ trợ chỉ định command ID và force rerun.
+     * Tự động lưu vết `GITHUB_RUN_ID`, `workflow_url`, `dispatch_commit_sha`.
+  3. **Nâng cấp Runner Script (`scripts/run_agent_from_github_command.ps1`):**
+     * Tích hợp gọi `command_bus_orchestrator.py claim`, `start`, `complete`, `fail`.
+     * Báo cáo trung thực trạng thái `QUEUED` khi chưa rảnh runner hoặc đang bị khóa.
+  4. **Nâng cấp Watchdog Script (`CONVERT2_Agent_Watchdog_V2.ps1`):**
+     * Tự động gọi `migrate` và `recover` trước mỗi chu kỳ khởi chạy Agent turn.
+  5. **Kiểm Thử Toàn Diện 9/9 Test Cases (`tests/test_command_bus_orchestrator.py`):**
+     * Vượt qua 100% tất cả 8 test case bắt buộc (A đến H) và test phụ trợ logic đường dẫn trong 2.047 giây.
+  6. **Gói Báo Cáo Nghiệm Thu 9 Phần:**
+     * Lưu trữ tại `.ai/reports/TASK_011_MULTI_AGENT_MULTI_TASK_COMMAND_BUS_ORCHESTRATOR/`.
+- **KẾT LUẬN CUỐI CÙNG:**
+  $$\mathbf{TASK\_011\_PASS}$$

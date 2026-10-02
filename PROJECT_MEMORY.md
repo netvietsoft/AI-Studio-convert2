@@ -544,3 +544,18 @@ ativeGetVideoCompositedFrame.
   - `assembleDebug --no-daemon`: BUILD SUCCESSFUL in 1m 4s (C++ CMake & APK clean 100%).
   - `test_photo_reference_validator.py`: PASS 8/8 tiêu chí (Position 100.0, Color 100.0, User Intent 98.0, Original Preservation 2.0, Artifact 0.0, Technical Quality 95.0, Naturalness 94.0).
   - Tệp kết quả bàn giao: `F:\CONVERT\com.mt.mtxx.mtxx\Yeucau\ketqua_nhuom_toc_rose_gold_chuan.png` và `BAO_CAO_NGHIEM_THU_NHUOM_TOC.md`.
+
+
+---
+
+## 7. KIẾN TRÚC MULTI-AGENT / MULTI-TASK COMMAND BUS ORCHESTRATOR (TASK_011 HOÀN TẤT)
+- **Chuẩn Giao Thức:** `CONVERT2_COMMAND_V2` (thay thế triệt để single-slot `NEXT_COMMAND.json`).
+- **Phân Vùng Lệnh Bất Biến:** `.ai/commands/{pending, claimed, running, completed, failed, history}/<command_id>.json`.
+- **Cơ Chế Khóa Hai Tầng:**
+  1. `locked_modules`: Khóa module độc quyền (`core-graphics`, `photo-editor`, `video-engine`, `billing`, `infra`).
+  2. `paths_conflict`: Phát hiện chồng lấn đường dẫn/glob, tự động serialize các tác vụ chung mã nguồn.
+- **Quản Trị Đồ Thị Phụ Thuộc (DAG):** Downstream tự động chờ upstream hoàn thành (`WAITING_DEPENDENCY`).
+- **Phục Hồi Sự Cố Tự Động:** Thu hồi lệnh quá hạn lease về `PENDING`, tăng `retry_count`, zero duplicate.
+- **Bảo Toàn Trạng Thái:** Per-task durable state tại `.ai/state/tasks/<task_id>.json`, Reentrant FileLock bảo vệ `.ai/state.json`.
+- **Bằng Chứng Nguồn Gốc (Provenance):** Bắt buộc liên kết `dispatch_commit_sha`, `github_run_id`, `runner_lane`, `target_commit_sha`, `report_folder`.
+- **Kiểm Thử Nghiệm Thu:** Vượt qua 100% 8 test case bắt buộc A-H trong 2.047s.

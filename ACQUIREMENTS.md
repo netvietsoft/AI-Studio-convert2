@@ -69,3 +69,14 @@
   - Virtual Try-on & Vải vóc: `IDM-VTON`, `OpenPose`, `MMPose`, `libigl`, `OpenSubdiv`, `Bullet3`, `PositionBasedDynamics`.
   - Image Synthesis: `OpenCV`, `pix2pixHD`, `SPADE`, `imaginaire`, `StyleGAN3`, `addit`.
   - VideoCore C++ Architecture: `FFmpeg`, `OpenTimelineIO`, `libopenshot`, `Shotcut`, `MLT`, `libplacebo`, `RIFE NCNN Vulkan`, `Real-ESRGAN NCNN Vulkan`, `Robust Video Matting`.
+
+---
+
+### [ACQ-006] Kiến Trúc Command Bus Bất Biến & Kiểm Soát Xung Đột Tài Nguyên Đa Tác Vụ (CONVERT2_COMMAND_V2)
+- **Bối cảnh:** Khi mở rộng hệ thống từ thực thi đơn nhiệm sang điều phối song song nhiều AI Agent (Multi-Agent / Multi-Task), mô hình single-slot `NEXT_COMMAND.json` dễ bị ghi đè, nghẽn cổ chai và xung đột mã nguồn.
+- **Giải pháp tối ưu:**
+  1. **Mô hình lệnh bất biến theo thư mục trạng thái:** Phân chia lệnh độc lập vào `.ai/commands/{pending, claimed, running, completed, failed, history}/<command_id>.json`.
+  2. **Kiểm soát xung đột hai tầng:** Kết hợp `locked_modules` (khóa phân hệ logic) và `paths_conflict` (nhận diện chồng lấn glob và tiền tố thư mục file). Khi phát hiện xung đột, chuyển trạng thái sang `QUEUED` thay vì cố tình chạy song song gây xung đột Git.
+  3. **Khóa chống trùng lũy đẳng:** `anti_duplicate_key = task_id + ":" + task_revision`, tự động loại bỏ lệnh phát trùng nhưng cho phép cập nhật phiên bản mới.
+  4. **Thu hồi lease xác định (Stale Lease Recovery):** Khóa thuê có hạn dùng (`lease_expires_at`). Khi runner crash hoặc ngắt mạng, Orchestrator tự động thu hồi lệnh về `PENDING`, tăng `retry_count`, tuyệt đối không nhân bản task.
+  5. **Bảo toàn nguồn gốc 5 thành phần (Provenance Guards):** Bắt buộc liên kết `dispatch_commit_sha`, `github_run_id`, `runner_lane`, `target_commit_sha`, và `report_folder` trước khi đóng dấu `COMPLETED`.

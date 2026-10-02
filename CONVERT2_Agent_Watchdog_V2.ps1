@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$RepoPath = (Get-Location).Path,
     [int]$IntervalSeconds = 180,
     [int]$PrintTimeoutMinutes = 45,
@@ -167,6 +167,12 @@ try {
         $stamp = $start.ToString("yyyyMMdd_HHmmss")
         $runLog = Join-Path $LogDir "agent_run_$stamp.log"
         $headBefore = Get-GitHead
+
+        # Reconcile Command Bus (migrate legacy commands and recover stale leases)
+        if (Test-Path (Join-Path $RepoPath "scripts\command_bus_orchestrator.py")) {
+            try { & python (Join-Path $RepoPath "scripts\command_bus_orchestrator.py") migrate 2>$null | Out-Null } catch {}
+            try { & python (Join-Path $RepoPath "scripts\command_bus_orchestrator.py") recover 2>$null | Out-Null } catch {}
+        }
 
         Write-WatchdogLog "Launching Antigravity turn. HEAD(before)=$headBefore"
 

@@ -4,15 +4,33 @@ on:
   push:
     branches: [main]
     paths:
+      - ".ai/commands/pending/**"
       - ".ai/commands/NEXT_COMMAND.json"
+      - "scripts/command_bus_orchestrator.py"
   workflow_dispatch:
+    inputs:
+      command_id:
+        description: "Specific Command ID to execute (leave empty to pick highest priority ready command)"
+        required: false
+        type: string
+        default: ""
+      execution_lane:
+        description: "Execution Lane"
+        required: false
+        type: string
+        default: "default"
+      force_rerun:
+        description: "Force execution regardless of existing completion"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   pull-requests: write
 
 concurrency:
-  group: convert2-agent-command-bus
+  group: convert2-command-bus-${{ inputs.execution_lane || 'default' }}
   cancel-in-progress: false
 
 jobs:
@@ -27,13 +45,23 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Execute CONVERT2 Agent command
+      - name: Reconcile and Execute CONVERT2 Command
         shell: powershell
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
+          $lane = "${{ inputs.execution_lane }}"
+          if ([string]::IsNullOrWhiteSpace($lane)) { $lane = "default" }
+          
+          $cmdId = "${{ inputs.command_id }}"
+
           powershell.exe -NoProfile -ExecutionPolicy Bypass `
             -File ".\scripts\run_agent_from_github_command.ps1" `
             -RepoPath "${{ github.workspace }}" `
-            -CommandFile ".ai\commands\NEXT_COMMAND.json"
+            -CommandId "$cmdId" `
+            -ExecutionLane "$lane"
 
       - name: Upload runner logs
         if: always()

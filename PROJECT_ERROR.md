@@ -44,3 +44,11 @@
   `am start -S -n com.mt.mtxx.mtxx.convert/com.mt.mtxx.mtxx.video.VideoEditorActivity`
   và `am start -S -n com.mt.mtxx.mtxx.convert/com.mt.mtxx.mtxx.editor.PhotoEditorActivity`.
 - **Quy tắc phòng ngừa:** Luôn tra cứu `AndroidManifest.xml` kết hợp `namespace` và `applicationIdSuffix` để xác định chính xác Intent target component.
+
+---
+
+### [ERR-006] Lock Recursion Deadlock trên Windows `msvcrt.locking`
+- **Thời điểm phát hiện:** 2026-10-02 trong quá trình triển khai `CommandBusOrchestrator` (`TASK_011`).
+- **Nguyên nhân gốc rễ:** Trên hệ điều hành Windows, thư viện chuẩn C runtime `msvcrt.locking` khóa tệp tin theo vùng byte cố định. Khi một hàm gọi lồng (`migrate_next_command()` gọi `create_command()`), cả hai cùng cố gắng acquire `FileLock` trên cùng một tệp `.bus.lock`. Do `msvcrt.locking` không tự động hỗ trợ reentrancy trên cùng tiến trình, tiến trình tự chặn chính nó và rơi vào deadlock chờ timeout.
+- **Giải pháp triệt để:** Triển khai lớp `FileLock` hỗ trợ reentrancy (`threading.local()` lưu trữ độ sâu lồng `count`), đồng thời khởi tạo ghi 1 byte ban đầu (`os.write(fd, b'0')`) và `os.lseek(fd, 0, os.SEEK_SET)` để `msvcrt.locking` luôn khóa trên byte tồn tại hợp lệ.
+- **Quy tắc phòng ngừa:** Mọi cơ chế FileLock đa nền tảng (Windows/POSIX) trong dự án phải được thiết kế reentrant và kiểm thử với các hàm gọi lồng trước khi đưa vào vận hành.
