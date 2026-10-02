@@ -89,6 +89,7 @@ find_library(log-lib log)
 find_library(jnigraphics-lib jnigraphics)
 find_library(android-lib android)
 find_library(mediandk-lib mediandk)
+find_library(vulkan-lib vulkan)
 
 target_link_libraries(
     meitu_reborn_native
@@ -97,6 +98,7 @@ target_link_libraries(
     ${jnigraphics-lib}
     ${android-lib}
     ${mediandk-lib}
+    ${vulkan-lib}
     m
     -fopenmp
     -static-openmp

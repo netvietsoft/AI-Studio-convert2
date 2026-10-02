@@ -1196,6 +1196,16 @@ object MeituNativeEngine {
             isRightArmOccludingTorso = raw[23] > 0.5f
         )
     }
+
+    // ================= 90. HCE V1 VULKAN COMPUTE RUNTIME & HARDWARE BENCHMARK =================
+    @JvmStatic
+    external fun nativeGetVulkanInfo(): String
+
+    @JvmStatic
+    external fun nativeGetVulkanDispatchTrace(): String
+
+    @JvmStatic
+    external fun nativeRunHceDeviceBenchmark(bitmap: Bitmap, iterations: Int = 1): String
 }
 
 

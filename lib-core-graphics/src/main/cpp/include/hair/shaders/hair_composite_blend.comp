@@ -1,0 +1,184 @@
+#version 450
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
+
+// Binding 0: Input pixels (RGBA8 packed into uint32)
+layout(std430, set = 0, binding = 0) readonly buffer InputBuffer {
+    uint in_pixels[];
+};
+
+// Binding 1: Output pixels (RGBA8 packed into uint32)
+layout(std430, set = 0, binding = 1) writeonly buffer OutputBuffer {
+    uint out_pixels[];
+};
+
+// Binding 2: Features (vec4: x=alpha, y=shadowFactor, z=rootDepthContext, w=textureDetail)
+layout(std430, set = 0, binding = 2) readonly buffer FeatureBuffer0 {
+    vec4 feature_maps[];
+};
+
+// Binding 3: Specular Features (vec2: x=highlightMask, y=flowConfidence)
+layout(std430, set = 0, binding = 3) readonly buffer FeatureBuffer1 {
+    vec2 spec_features[];
+};
+
+// Push constants for Salon Dye and Specular parameters
+layout(push_constant) uniform PushConstants {
+    int width;
+    int height;
+    float targetL;
+    float targetA;
+    float targetB;
+    float bleachPower;
+    float blendIntensity;
+    float shadowPreservation;
+    float rootStrength;
+    float apparentShine;
+    float roughness;
+    float specularTint;
+    int roiMinX;
+    int roiMaxX;
+    int roiMinY;
+    int roiMaxY;
+} pc;
+
+float toLinear(float c) {
+    return (c <= 0.04045) ? (c / 12.92) : pow((c + 0.055) / 1.055, 2.4);
+}
+
+float fromLinear(float c) {
+    c = clamp(c, 0.0, 1.0);
+    return (c <= 0.0031308) ? (c * 12.92) : (1.055 * pow(c, 1.0 / 2.4) - 0.055);
+}
+
+void sRGBToOKLab(float r, float g, float b, out float L, out float a, out float bCoord) {
+    float lr = toLinear(r);
+    float lg = toLinear(g);
+    float lb = toLinear(b);
+
+    float l_val = max(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb, 0.0);
+    float m_val = max(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb, 0.0);
+    float s_val = max(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb, 0.0);
+
+    float l = pow(l_val, 1.0 / 3.0);
+    float m = pow(m_val, 1.0 / 3.0);
+    float s = pow(s_val, 1.0 / 3.0);
+
+    L = 0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s;
+    a = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s;
+    bCoord = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
+}
+
+void oklabTosRGB(float L, float a, float bCoord, out float r, out float g, out float b) {
+    float l = L + 0.3963377774 * a + 0.2158037573 * bCoord;
+    float m = L - 0.1055613458 * a - 0.0638541728 * bCoord;
+    float s = L - 0.0894841775 * a - 1.2914855480 * bCoord;
+
+    float l3 = l * l * l;
+    float m3 = m * m * m;
+    float s3 = s * s * s;
+
+    float lr = +4.0767434721 * l3 - 3.3077115913 * m3 + 0.2309699292 * s3;
+    float lg = -1.2684380046 * l3 + 2.6097574011 * m3 - 0.3413193965 * s3;
+    float lb = -0.0041960863 * l3 - 0.7034186147 * m3 + 1.7076147010 * s3;
+
+    r = fromLinear(lr);
+    g = fromLinear(lg);
+    b = fromLinear(lb);
+}
+
+void main() {
+    ivec2 coord = ivec2(gl_GlobalInvocationID.xy);
+    if (coord.x >= pc.width || coord.y >= pc.height) {
+        return;
+    }
+
+    int idx = coord.y * pc.width + coord.x;
+    uint c = in_pixels[idx];
+
+    // Check ROI
+    if (coord.x < pc.roiMinX || coord.x > pc.roiMaxX || coord.y < pc.roiMinY || coord.y > pc.roiMaxY) {
+        out_pixels[idx] = c;
+        return;
+    }
+
+    vec4 feat0 = feature_maps[idx];
+    float aVal = feat0.x;
+    if (aVal < 0.01) {
+        out_pixels[idx] = c;
+        return;
+    }
+
+    float shadowF = feat0.y;
+    float rootF = feat0.z;
+    float microDetail = feat0.w;
+
+    vec2 feat1 = spec_features[idx];
+    float hlMask = feat1.x;
+    float flowConf = feat1.y;
+
+    float origR = float(c & 0xFFu) / 255.0;
+    float origG = float((c >> 8u) & 0xFFu) / 255.0;
+    float origB = float((c >> 16u) & 0xFFu) / 255.0;
+    uint origA = (c >> 24u) & 0xFFu;
+
+    // OKLab conversion
+    float origL, origOklabA, origOklabB;
+    sRGBToOKLab(origR, origG, origB, origL, origOklabA, origOklabB);
+
+    // 1. P3 Shadow Depth
+    float creviceFactor = pow(shadowF, 1.35);
+    float effectiveDepth = creviceFactor * pc.shadowPreservation + (1.0 - pc.shadowPreservation);
+
+    // 2. Root darkness
+    float rootDarknessScale = 1.0 - (1.0 - rootF) * (1.0 - pc.rootStrength) * 0.4;
+
+    // 3. Bleach / Tone Lift
+    float liftAmount = (pc.targetL - origL);
+    float finalL = origL + liftAmount * pc.bleachPower * effectiveDepth * rootDarknessScale;
+
+    // 4. Texture compensation
+    finalL += microDetail * (1.2 * effectiveDepth);
+    finalL = clamp(finalL, 0.01, 0.99);
+
+    // 5. Chroma / Hue Blend
+    float dyeA = pc.targetA * effectiveDepth;
+    float dyeB = pc.targetB * effectiveDepth;
+    float blendedA = origOklabA * (1.0 - pc.blendIntensity) + dyeA * pc.blendIntensity;
+    float blendedB = origOklabB * (1.0 - pc.blendIntensity) + dyeB * pc.blendIntensity;
+
+    // 6. Recolor back to sRGB
+    float outR, outG, outB;
+    oklabTosRGB(finalL, blendedA, blendedB, outR, outG, outB);
+
+    // 7. Alpha Compositing
+    float blendWeight = clamp(aVal * pc.blendIntensity, 0.0, 1.0);
+    float recoloredR = origR * (1.0 - blendWeight) + outR * blendWeight;
+    float recoloredG = origG * (1.0 - blendWeight) + outG * blendWeight;
+    float recoloredB = origB * (1.0 - blendWeight) + outB * blendWeight;
+
+    // 8. P5 Specular Highlight (Marschner R-Lobe)
+    float finalR = recoloredR;
+    float finalG = recoloredG;
+    float finalB = recoloredB;
+
+    if (aVal >= 0.02 && shadowF >= 0.25) {
+        float specularLobe = hlMask * pc.apparentShine * (0.65 + 0.35 * flowConf);
+        if (specularLobe > 0.005) {
+            float tint = clamp(pc.specularTint, 0.0, 1.0);
+            float glintR = 1.0 * (1.0 - tint) + recoloredR * tint;
+            float glintG = 1.0 * (1.0 - tint) + recoloredG * tint;
+            float glintB = 1.0 * (1.0 - tint) + recoloredB * tint;
+
+            float specWeight = clamp(specularLobe * aVal, 0.0, 0.85);
+            finalR = recoloredR + (glintR - recoloredR) * specWeight;
+            finalG = recoloredG + (glintG - recoloredG) * specWeight;
+            finalB = recoloredB + (glintB - recoloredB) * specWeight;
+        }
+    }
+
+    uint uR = uint(clamp(round(finalR * 255.0), 0.0, 255.0));
+    uint uG = uint(clamp(round(finalG * 255.0), 0.0, 255.0));
+    uint uB = uint(clamp(round(finalB * 255.0), 0.0, 255.0));
+
+    out_pixels[idx] = (origA << 24u) | (uB << 16u) | (uG << 8u) | uR;
+}

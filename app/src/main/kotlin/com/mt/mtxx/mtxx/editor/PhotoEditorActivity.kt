@@ -1279,6 +1279,15 @@ class PhotoEditorActivity : Activity() {
             } catch (_: Throwable) {}
         }
 
+        if (intent.getBooleanExtra("run_hce_benchmark", false)) {
+            val benchBmp = if (::originalBitmap.isInitialized) originalBitmap else if (::currentProcessedBitmap.isInitialized) currentProcessedBitmap else null
+            if (benchBmp != null) {
+                val iter = intent.getIntExtra("benchmark_iterations", 3)
+                val benchRes = MeituNativeEngine.nativeRunHceDeviceBenchmark(benchBmp, iter)
+                Log.i("PhotoEditorActivity", "[HCE_DEVICE_BENCHMARK_RESULT] $benchRes")
+            }
+        }
+
         handleEditorIntent(intent, density)
     }
 

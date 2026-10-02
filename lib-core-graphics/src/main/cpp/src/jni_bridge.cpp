@@ -41,6 +41,7 @@
 #include "ai/bisenet_face_parser.h"
 #include "media/video/video_timeline_compositor.h"
 #include "hair/hair_color_pipeline.h"
+#include "hair/hair_gpu_backend.h"
 
 #define TAG "MeituRebornNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
@@ -4190,6 +4191,107 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeVideoClear(
 ) {
     g_videoCompositor.clearClips();
     return JNI_TRUE;
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeGetVulkanInfo(
+    JNIEnv* env, jclass clazz
+) {
+    auto& backend = meitu_native::hce::HairGpuBackend::getInstance();
+    backend.detectCapabilities();
+    const auto& dev = backend.getDeviceInfo();
+
+    char buf[512];
+    snprintf(buf, sizeof(buf),
+        "available=%d;name=%s;vendorID=%u;deviceID=%u;driverVersion=%u;apiVersion=%u;computeQueue=%u;maxInvocations=%u;maxWorkGroupSize=[%u,%u,%u];maxWorkGroupCount=[%u,%u,%u]",
+        dev.isAvailable ? 1 : 0,
+        dev.deviceName.c_str(),
+        dev.vendorID, dev.deviceID, dev.driverVersion, dev.apiVersion,
+        dev.computeQueueFamily, dev.maxWorkGroupInvocations,
+        dev.maxWorkGroupSize[0], dev.maxWorkGroupSize[1], dev.maxWorkGroupSize[2],
+        dev.maxWorkGroupCount[0], dev.maxWorkGroupCount[1], dev.maxWorkGroupCount[2]
+    );
+    return env->NewStringUTF(buf);
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeGetVulkanDispatchTrace(
+    JNIEnv* env, jclass clazz
+) {
+    auto& backend = meitu_native::hce::HairGpuBackend::getInstance();
+    const auto& t = backend.getLastDispatchTrace();
+
+    char buf[1024];
+    snprintf(buf, sizeof(buf),
+        "%s,%s,%s,%s,%s,%s,%u,%u,%u,%u,%u,%u,%u,%u,%s,%s,%s,%s,%.2f,%.2f,%.2f,%.2f,%s,%s",
+        t.sampleId.c_str(), t.stage.c_str(), t.device.c_str(),
+        t.backendRequested.c_str(), t.backendSelected.c_str(),
+        t.shaderSha256.c_str(), t.queueFamily,
+        t.workgroupX, t.workgroupY, t.workgroupZ,
+        t.dispatchX, t.dispatchY, t.dispatchZ,
+        t.gpuDispatchCount,
+        t.submitResult.c_str(), t.completionResult.c_str(),
+        t.fallbackTriggered ? "true" : "false", t.fallbackReason.c_str(),
+        t.uploadMs, t.dispatchMs, t.downloadMs, t.totalMs,
+        t.outputConsumed ? "true" : "false", t.status.c_str()
+    );
+    return env->NewStringUTF(buf);
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeRunHceDeviceBenchmark(
+    JNIEnv* env, jclass clazz,
+    jobject bitmap, jint iterations
+) {
+    if (!bitmap) return env->NewStringUTF("ERROR_NULL_BITMAP");
+    AndroidBitmapInfo info;
+    if (AndroidBitmap_getInfo(env, bitmap, &info) < 0) return env->NewStringUTF("ERROR_BITMAP_INFO");
+    if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) return env->NewStringUTF("ERROR_FORMAT");
+
+    void* pixelAddr = nullptr;
+    if (AndroidBitmap_lockPixels(env, bitmap, &pixelAddr) < 0) return env->NewStringUTF("ERROR_LOCK");
+
+    int width = static_cast<int>(info.width);
+    int height = static_cast<int>(info.height);
+
+    const MeituReborn::FusedFaceGeometry& fused = MeituReborn::LandmarkFusionEngine::getInstance().getLastFusedGeometry();
+    std::vector<float> p0Alpha;
+    meitu_native::HairMattingEngine::getInstance().extractFullSizeMatte(
+        static_cast<uint32_t*>(pixelAddr), width, height, fused, p0Alpha
+    );
+
+    meitu_native::hce::P0HairMatteAdapter adapter;
+    adapter.width = width; adapter.height = height; adapter.alphaData = p0Alpha.data();
+    adapter.strideBytes = width * sizeof(float); adapter.isValid = true;
+    adapter.roiMinX = 0; adapter.roiMaxX = width - 1; adapter.roiMinY = 0; adapter.roiMaxY = height - 1;
+
+    meitu_native::hce::HairDyeMaterialParams mat;
+    mat.targetLightness = 65.0f; mat.targetChroma = 45.0f; mat.targetHue = 18.0f; mat.bleachPower = 0.85f; mat.blendIntensity = 0.8f;
+    meitu_native::hce::HairSpecularParams spec;
+    spec.apparentShine = 0.65f; spec.roughness = 0.35f; spec.specularTint = 0.20f;
+
+    meitu_native::hce::HairRenderInputs inputs;
+    inputs.srcPixels = static_cast<const uint32_t*>(pixelAddr);
+    inputs.width = width; inputs.height = height;
+    inputs.p0Matte = adapter; inputs.material = mat; inputs.specular = spec;
+
+    float maxDiff = 0.0f, meanDiff = 0.0f, p95Diff = 0.0f, cpuTime = 0.0f, gpuTime = 0.0f;
+    auto& backend = meitu_native::hce::HairGpuBackend::getInstance();
+    bool benchOk = backend.runParityBenchmark(inputs, maxDiff, meanDiff, p95Diff, cpuTime, gpuTime);
+
+    AndroidBitmap_unlockPixels(env, bitmap);
+
+    if (!benchOk) return env->NewStringUTF("BENCHMARK_FAILED");
+
+    const auto& trace = backend.getLastDispatchTrace();
+    char resBuf[1024];
+    snprintf(resBuf, sizeof(resBuf),
+        "resolution=%dx%d;device=%s;backend=%s;cpu_ms=%.2f;gpu_ms=%.2f;upload_ms=%.2f;dispatch_ms=%.2f;download_ms=%.2f;max_diff=%.3f;mean_diff=%.3f;p95_diff=%.3f;dispatch_count=%u",
+        width, height, trace.device.c_str(), trace.backendSelected.c_str(),
+        cpuTime, gpuTime, trace.uploadMs, trace.dispatchMs, trace.downloadMs,
+        maxDiff, meanDiff, p95Diff, trace.gpuDispatchCount
+    );
+    return env->NewStringUTF(resBuf);
 }
 
 

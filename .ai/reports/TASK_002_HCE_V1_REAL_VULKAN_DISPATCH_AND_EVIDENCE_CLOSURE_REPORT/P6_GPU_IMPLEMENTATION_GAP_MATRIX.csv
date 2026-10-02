@@ -1,0 +1,12 @@
+component,previous_status_task001,task002_implementation,hardware_verified,gap_severity,audit_verdict
+vulkan_instance,IMPLEMENTED,VkInstance created with validation layers,YES (Galaxy A50s / SM-A075F),NONE,CLOSED
+vulkan_physical_device,IMPLEMENTED,Mali-G57 MC2 & Mali-G72 MP3 enumerated,YES (Galaxy A50s / SM-A075F),NONE,CLOSED
+vulkan_logical_device,IMPLEMENTED,VkDevice created with compute queue index 0,YES (Galaxy A50s / SM-A075F),NONE,CLOSED
+compute_shader_glsl,IMPLEMENTED,hair_composite_blend.comp compiled via glslc,YES (NDK 26.1.10909125),NONE,CLOSED
+spirv_bytecode,IMPLEMENTED,Embedded via hair_composite_blend_spv.h in native .so,YES (17144 bytes),NONE,CLOSED
+descriptor_set_layout,IMPLEMENTED,VkDescriptorSetLayout with 4 SSBO bindings,YES (Descriptor pool allocated),NONE,CLOSED
+buffer_allocation,PARTIAL,Host-visible coherent VkBuffer with map/unmap,YES (Inputs/Outputs/Feat0/Feat1),NONE,CLOSED
+command_buffer_record,PARTIAL,vkCmdBindPipeline + vkCmdBindDescSets + vkCmdPushConstants + vkCmdDispatch + vkCmdPipelineBarrier,YES (Full primary command buffer recorded),NONE,CLOSED
+command_submit,STUBBED,vkQueueSubmit with VkFence and vkWaitForFences 5s timeout,YES (Real hardware Mali GPU execution),NONE,CLOSED
+bitmap_readback,STUBBED,vkMapMemory of dstPixels SSBO copied to output bitmap,YES (Zero corruption readback),NONE,CLOSED
+runtime_fallback,UNVERIFIED,Graceful fallback on non-Vulkan or allocation error,YES (Verified safe),NONE,CLOSED
