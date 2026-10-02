@@ -13,7 +13,7 @@ repository_url: https://github.com/netvietsoft/AI-Studio-convert2
 branch: main
 base_commit_sha: 0cf048753239a5ca52c7be0da7ca7bb594895697
 parent_sha: 26db75aa3c877e7800aa9c396e370a2028411328
-target_commit_sha: PENDING_COMMIT
+target_commit_sha: 62b4f1c36d9abb19bb92bd0cbe432ba219554f4e
 commit_subject: feat(hce): Hair Color Engine V1 Real Vulkan Compute Dispatch & Evidence Closure
 changed_files: 9 files changed
 build_status: BUILD SUCCESSFUL (lib_core_graphics:assembleDebug, app:assembleDebug)
