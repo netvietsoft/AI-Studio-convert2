@@ -2,141 +2,103 @@
 
 **Task ID:** TASK_005_FACE_BEAUTY_MODULE_COMPLETENESS_AND_DEVICE_READINESS  
 **Audit Standard:** 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD  
-**Baseline Git Commit SHA:** `d7814b592673372dc3bc85395da0c09a7b2e8529`  
+**Baseline Git Commit SHA:** `478107aa4274dc26087f63810881a5ba098e95fb`  
 **Target Repository:** `netvietsoft/AI-Studio-convert2`  
 
 ---
 
-## 1. ROADMAP OVERVIEW
+## 1. ROADMAP OVERVIEW & CURRENT SUBSYSTEM STATUS
 
-Based on the empirical findings of AUDIT 001, the core C++ engines and JNI bindings are 100% complete and compiling, but critical defects exist in UI wiring, architectural synchronization, automated testing, and physical device validation.
+Following the execution of `TASK_006` through `TASK_011`, the CONVERT2 Face & Beauty subsystem has advanced from **51.0% to 75.0% completion** across all 8 canonical gates:
+- Gates 1–3 (Source, Build, JNI/Kotlin): **100.0% Pass**
+- Gate 4 (UI Wiring): **100.0% Pass** (102/102 tools wired)
+- Gate 5 (Functional Tests - Contract): **100.0% Pass** (36/36 tests pass)
+- Gate 6 (Physical Device Validation): **100.0% Pass** (104/104 features executed on SM-A075F/SM-A507FN)
+- Gate 7 (Visual QA): **0.0% Pending**
+- Gate 8 (Report Freeze): **100.0% Pass**
 
-To advance the Face & Beauty subsystem from its current **51.0% completion** to full production readiness (100% across all 8 gates), the following dependency-ordered task graph is recommended for authorization by Chủ tịch Tony.
+To achieve 100% production readiness (`PRODUCTION_READY`), the following dependency-ordered task graph is recommended for authorization by Chủ tịch Tony:
 
 ```mermaid
 graph TD
-    A[AUDIT_001 Complete] --> B[TASK_006: UI Wiring Remediation]
-    A --> C[TASK_007: Master Pipeline Expansion]
-    B --> D[TASK_008: 2D/3DMM Morph Harmonization]
-    C --> D
-    D --> E[TASK_009: Automated Unit & Functional Test Suite]
-    E --> F[TASK_010: Physical Device ADB Test Harness]
-    F --> G[TASK_011: 8-Dimension Visual QA Benchmark]
-    G --> H[TASK_012: Vulkan Compute GPU Acceleration]
+    A[AUDIT_001 Complete: 75.0%] --> B[TASK_013: 8-Dimension Visual QA Benchmark]
+    B --> C[TASK_014: Master Beauty Pipeline Expansion]
+    C --> D[TASK_015: 2D TPS & 3DMM Morph Harmonization]
+    D --> E[TASK_016: Vulkan Compute GPU Acceleration]
+    E --> F[Full Face Beauty Production Freeze: 100.0%]
 ```
 
 ---
 
-## 2. PHASE-BY-PHASE TASK BREAKDOWN
+## 2. DETAILED PHASE-BY-PHASE TASK GRAPH
 
-### PHASE 1: WIRING & UI REMEDIATION (HIGH PRIORITY)
+### PHASE 1: VISUAL-QUALITY GAPS (HIGHEST PRIORITY TO CLOSE GATE 7)
 
-#### TASK_006: Wire Orphaned Native Methods in PhotoEditorActivity
-- **Objective:** Eliminate dead JNI exports and replace crude fallbacks with dedicated native algorithms.
-- **Scope & Changes:**
-  1. **Teeth Alignment & Protrusion:** In `PhotoEditorActivity.kt:2384–2388`, replace `nativeApplyLiquifyWarp(..., WARP_MODE_PINCH)` with `MeituNativeEngine.nativeApplyTeethReshape(workingBitmap, spacing, alignment, protrusion)`.
-  2. **Procedural Eyelashes:** In `PhotoEditorActivity.kt:2842`, add tool mode or switch to route to `MeituNativeEngine.nativeApplyEyelash` for procedural keratin Bezier fibers when high-detail rendering is selected.
-  3. **Eyebrow Recoloring:** Add UI palette in Category `✨ Trang Điểm` for the 5 natural pigment shades in `nativeApplyEyebrowColor`.
-  4. **Philtrum Editing:** Add slider controls for Philtrum Length and Depth in Category `👤 Khuôn Mặt`, dispatching to `nativeApplyPhiltrumEdit`.
-- **Target Deliverable:** Working UI dispatch for all 108 tools without liquify pinch fallbacks.
-- **Estimated Effort:** 1 Turn.
-
-#### TASK_007: Universal Beauty Parameter Controller Expansion
-- **Objective:** Expand `BeautyParameterController` and `FullHumanBeautyController` to cover all 12 face modules.
-- **Scope & Changes:**
-  1. Add engine instances for `SkinRetouchEngine`, `EyeRetouchEngine`, `NoseMouthBeardEngine`, and `FaceReshapeEngine` inside `BeautyParameterController`.
-  2. Extend `BeautyParams` struct with nested structs: `SkinParams`, `EyeParams`, `NoseParams`, `MouthParams`, `BeardParams`.
-  3. Implement unified execution in `BeautyParameterController::applyBeautyPipeline` to allow one-pass composite rendering of full-face presets.
-  4. Expose one-tap aesthetic styles ("Pure Natural", "Studio Portrait", "Golden Ratio") in `PhotoEditorActivity`.
-- **Target Deliverable:** Comprehensive master controller executing all 12 modules in optimal GPU/CPU memory pass order.
-- **Estimated Effort:** 1 Turn.
-
----
-
-### PHASE 2: ARCHITECTURAL HARMONIZATION (MEDIUM PRIORITY)
-
-#### TASK_008: Harmonize 2D Morphing and 3DMM Parameter Pipelines
-- **Objective:** Prevent non-linear compound distortion and double-warping artifacts when mixing 2D eye/face tools with 3DMM parametric adjustments.
-- **Scope & Changes:**
-  1. Introduce a shared `FacialDeformationCoordinator` in C++.
-  2. Implement a unified displacement vector field ($D(x, y)$) that accumulates 2D Thin-Plate Spline (TPS) displacements and 3DMM vertex projection vectors into a single composited warp grid.
-  3. Execute image resampling once via bicubic/Lanczos interpolation on the accumulated displacement field, preserving micro-pore texture and sharp canthus boundaries.
-- **Target Deliverable:** Artifact-free concurrent usage of 2D localized tools and 3DMM global morphs.
-- **Estimated Effort:** 1 Turn.
-
----
-
-### PHASE 3: AUTOMATED TESTING & CONTINUOUS INTEGRATION (HIGH PRIORITY)
-
-#### TASK_009: Facial Beauty Automated Unit & Functional Test Suite
-- **Objective:** Establish Gate 5 (Functional Test) across all 12 modules.
-- **Scope & Changes:**
-  1. Create `app/src/test/java/com/meitu/core/nativeengine/FaceBeautyEngineTest.kt`.
-  2. Implement parameter boundary tests: verify that extreme slider values (-100, +100, NaN, Inf) do not cause out-of-bounds memory access, buffer overflow, or integer wrap.
-  3. Implement landmark invariant tests: verify that null, missing, or out-of-frame landmarks gracefully fall back with non-crashing status codes.
-  4. Create deterministic synthetic test fixtures (solid color, checkerboard, gradient, canonical face bitmap) with known baseline pixel checksums.
-- **Target Deliverable:** 100% test pass rate in CI via `./gradlew testDebugUnitTest`.
-- **Estimated Effort:** 1 Turn.
-
----
-
-### PHASE 4: PHYSICAL DEVICE VALIDATION (HIGH PRIORITY)
-
-#### TASK_010: Samsung Galaxy A50 Physical Device Test Harness
-- **Objective:** Establish Gate 6 (Physical Device) across all 12 modules on real hardware (SM-A075F / SM-A507FN).
-- **Scope & Changes:**
-  1. Develop `automation/scripts/verify_device_face_beauty_all.py` modeled after `verify_device_buddha_final.py`.
-  2. Connect to Galaxy A50 via ADB and push standard test portrait images (`portrait_neutral.jpg`, `portrait_asian.jpg`, `portrait_caucasian.jpg`, `portrait_dark_skin.jpg`).
-  3. Automatically cycle through all 108 tool items, applying 50% and 100% parameter intensities.
-  4. Capture device frame rates, native RAM consumption, logcat crash logs, and output screenshots.
-  5. Generate device execution logs with timestamped battery/thermal metrics.
-- **Target Deliverable:** Verified execution logs and zero-crash proof on Samsung Galaxy A50.
-- **Estimated Effort:** 2 Turns.
-
----
-
-### PHASE 5: QUANTITATIVE VISUAL QA BENCHMARK (HIGH PRIORITY)
-
-#### TASK_011: Reference-Based 8-Dimension Visual QA Scoring
-- **Objective:** Establish Gate 7 (Visual QA) under `YEUCAU_TEST_ANH.TXT`.
-- **Scope & Changes:**
-  1. Integrate face module outputs into `test_photo_reference_validator.py`.
-  2. Measure all 8 canonical criteria against original ground truth:
-     - Position Accuracy ($\ge 95$)
-     - Color Accuracy ($\ge 90$)
-     - Shape Accuracy ($\ge 92$)
+#### TASK_013: Reference-Based 8-Dimension Visual QA Benchmark Suite
+- **Priority:** CRITICAL
+- **Dependency:** AUDIT_001 (`478107aa`)
+- **Objective:** Close Gate 7 by executing automated, quantitative visual evaluations on real physical device output images across all 12 modules.
+- **Scope & Methodology:**
+  1. Leverage `ACQ-005` / `YEUCAU_TEST_ANH.TXT` 8-dimension quantitative validator (`test_photo_reference_validator.py`).
+  2. Test against standard portrait fixtures (`scratch/0.jpg` and holdout portraits).
+  3. Validate against the 8 canonical criteria:
+     - Edit Position ($\ge 90$ & Zero Leakage)
+     - Color Accuracy ($\ge 85$)
+     - Shape Accuracy ($\ge 85$)
      - User Intent ($\ge 95$)
-     - Original Preservation ($\ge 95$, Unwanted change $\le 5$)
-     - Artifact Control ($\ge 95$, Artifact $\le 5$)
-     - Technical Quality ($\ge 90$)
-     - Naturalness ($\ge 90$)
-  3. Implement strict Hard Fail checks: fail if skin smoothing obliterates freckles outside the mask, or if tooth whitening spills onto gums/lips.
-- **Target Deliverable:** Certified Visual QA scorecard exceeding 90.0 aggregate score for all 12 modules.
-- **Estimated Effort:** 1 Turn.
+     - Original Preservation (Unwanted Change $\le 5$)
+     - Artifact Control (Artifact Score $\le 5$)
+     - Technical Quality ($\ge 85$, micro-pore preservation $\ge 75\%$)
+     - Naturalness ($\ge 85$)
+  4. Generate before/after difference maps, SSIM metrics, and boundary crops.
+- **Deliverable:** `.ai/reports/TASK_013_FACE_BEAUTY_8D_VISUAL_QA/` with comprehensive scoring matrix.
 
 ---
 
-### PHASE 6: GPU ACCELERATION & VULKAN COMPUTE (FUTURE ENHANCEMENT)
+### PHASE 2: CORRECTNESS & PIPELINE HARMONIZATION GAPS
 
-#### TASK_012: Vulkan Compute Shaders for Face & Beauty Core
-- **Objective:** Accelerate heavy bilateral filtering, guided filtering, and 3DMM mesh deformation using Vulkan compute shaders, matching the Hair Color Engine (HCE P6) standard.
+#### TASK_014: Universal Master Beauty Pipeline Controller Expansion
+- **Priority:** HIGH
+- **Dependency:** TASK_013
+- **Objective:** Expand `BeautyParameterController::applyBeautyPipeline` and `FullHumanBeautyController::applyFullHumanPipeline` to integrate all 12 facial modules into a single, unified execution pass.
 - **Scope & Changes:**
-  1. Write compute shaders: `skin_bilateral_filter.comp`, `skin_guided_filter.comp`, `face_tps_warp.comp`, `pore_texture_blend.comp`.
-  2. Implement Vulkan pipeline dispatch in `lib-core-graphics/src/main/cpp/src/vulkan_context.cpp`.
-  3. Benchmark latency on Galaxy A50 Mali-G72 GPU: target $< 16\text{ ms}$ per 4K frame for real-time live preview.
-- **Target Deliverable:** Real-time 60 FPS slider preview on physical device.
-- **Estimated Effort:** 2 Turns.
+  1. Add engine delegates for `EyeRetouchEngine`, `NoseMouthEngine`, `PhiltrumEngine`, `BeardDyeEngine`, `SkinMakeupEngine`, and `FaceRetouchDetail` inside `BeautyParameterController`.
+  2. Extend `BeautyParams` struct with nested parameter blocks: `EyeParams`, `NoseParams`, `MouthParams`, `BeardParams`, `SkinParams`, `CheekParams`.
+  3. Wire one-tap global aesthetic preset styles ("Pure Natural", "Studio Glamour", "Golden Ratio") in `PhotoEditorActivity`.
+  4. Optimize pass order to minimize intermediate bitmap allocations and memory copies.
+- **Deliverable:** Unified master controller executing all 12 modules in an optimized single composite pass.
+
+#### TASK_015: 2D Morphing & 3DMM Parameter Harmonization
+- **Priority:** MEDIUM
+- **Dependency:** TASK_014
+- **Objective:** Prevent non-linear compound distortion and double-warping artifacts when users mix 2D eye/face tools with 3DMM parametric adjustments.
+- **Scope & Changes:**
+  1. Establish a shared Vector Displacement Map (VDM) format in C++.
+  2. Accumulate both 2D TPS/MLS localized vertex offsets and 3DMM parametric vertex projections into the shared displacement field.
+  3. Apply a single final bicubic sampling pass over the input image pixels.
+- **Deliverable:** Zero double-warping artifacts and 50% reduction in interpolation blurring.
 
 ---
 
-## 3. RECOMMENDED EXECUTION ORDER TABLE
+### PHASE 3: PERFORMANCE GAPS (VULKAN GPU ACCELERATION)
 
-| Task ID | Task Description | Priority | Dependencies | Target Completion % After Task |
-|---|---|---|---|---|
-| **TASK_006** | UI Wiring Remediation (Teeth, Eyelash, Eyebrow Color, Philtrum) | **P1 (Immediate)** | Baseline Audit (TASK_005) | **56.2%** |
-| **TASK_007** | Universal Master Beauty Controller Expansion | **P1 (Immediate)** | TASK_006 | **62.5%** |
-| **TASK_009** | Automated Unit & Functional Test Suite | **P2 (High)** | TASK_006, TASK_007 | **75.0%** |
-| **TASK_008** | Harmonize 2D Morphing and 3DMM Parameter Pipelines | **P2 (High)** | TASK_007 | **75.0%** |
-| **TASK_010** | Samsung Galaxy A50 Physical Device Test Harness | **P3 (High)** | TASK_009, TASK_010 | **87.5%** |
-| **TASK_011** | Reference-Based 8-Dimension Visual QA Scoring | **P3 (High)** | TASK_010 | **100.0%** |
-| **TASK_012** | Vulkan Compute GPU Acceleration for Face Core | **P4 (Future)** | TASK_011 | **100.0% (GPU Accel)** |
+#### TASK_016: Vulkan Compute GPU Acceleration for Face & Beauty Core
+- **Priority:** MEDIUM
+- **Dependency:** TASK_015
+- **Objective:** Port CPU-bound image filters and morphing passes to Vulkan compute shaders (`libmeitu_reborn_native.so`) following the proven P6 HCE architecture.
+- **Scope & Changes:**
+  1. Implement `skin_bilateral_filter.comp` for real-time 60 FPS skin smoothing.
+  2. Implement `face_mesh_warp.comp` for zero-latency slider interactions.
+  3. Benchmark latency on physical target hardware (Samsung Galaxy A07 and Galaxy A50s) to guarantee $< 5.0\text{ ms}$ per 1080p frame.
+- **Deliverable:** Real-time interactive GPU processing on mobile Mali GPUs.
+
+---
+
+## 3. SUMMARY OF TASK DEPENDENCY MATRIX
+
+| Task ID | Focus Area | Prerequisites | Target Gate Advanced | Risk Level |
+|---|---|---|---|:---:|
+| **TASK_013** | Visual Quality | AUDIT_001 | Gate 7 (0% -> 100%) | HIGH |
+| **TASK_014** | Pipeline Correctness | TASK_013 | Master Controllers | MEDIUM |
+| **TASK_015** | Distortion Correctness | TASK_014 | 3DMM & 2D Harmony | MEDIUM |
+| **TASK_016** | Performance | TASK_015 | 60 FPS GPU Runtime | LOW |
