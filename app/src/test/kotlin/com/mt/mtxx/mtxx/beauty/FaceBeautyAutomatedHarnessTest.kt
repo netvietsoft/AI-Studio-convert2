@@ -6,6 +6,8 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.security.MessageDigest
+import com.meitu.core.nativeengine.MeituNativeEngine
+import com.mt.mtxx.mtxx.editor.PhotoEditorActivity
 
 /**
  * Independent Automated Test Harness for Face & Beauty Modules (TASK_008).
@@ -444,43 +446,71 @@ class FaceBeautyAutomatedHarnessTest {
     }
 
     @Test
-    fun testAll104FeaturesPassVerification() {
-        val all = FaceBeautyTestabilityRegistry.ALL_104_FEATURES
-        var passedCount = 0
-        val failureList = mutableListOf<String>()
+    fun testGate5DualMetricRecalculation() {
+        val metrics = FaceBeautyTestabilityRegistry.calculateGate5Metrics()
+        assertEquals("Total features denominator must be exactly 104", 104, metrics.totalFeaturesDenominator)
+        assertEquals("Contract/metadata coverage must be 100.0%", 100.0f, metrics.contractMetadataCoveragePct, 1e-4f)
+        assertEquals("All 104 features have verified contract/metadata", 104, metrics.contractMetadataCoverageCount)
+        assertEquals(102, metrics.kotlinDispatchCoverageCount)
+        assertEquals(102f / 104f * 100f, metrics.kotlinDispatchCoveragePct, 1e-2f)
 
-        for (feat in all) {
-            val pass = when (feat.testabilityClass) {
-                TestabilityClass.CLASS_A_PARAMETER_CLAMPING_AND_TRANSFORM -> {
-                    val vMin = FaceBeautyTestabilityRegistry.clampParameter(feat.sliderMin, feat.sliderMin, feat.sliderMax)
-                    val vMax = FaceBeautyTestabilityRegistry.clampParameter(feat.sliderMax, feat.sliderMin, feat.sliderMax)
-                    vMin == feat.sliderMin && vMax == feat.sliderMax
-                }
-                TestabilityClass.CLASS_B_LANDMARK_AND_GEOMETRIC_BOUNDS -> {
-                    FaceBeautyTestabilityRegistry.validateLandmark(0.5f, 0.5f) &&
-                            !FaceBeautyTestabilityRegistry.validateLandmark(-0.5f, 0.5f)
-                }
-                TestabilityClass.CLASS_C_DISCRETE_PRESET_AND_COLOR_PALETTE -> {
-                    FaceBeautyTestabilityRegistry.validateDiscretePresetIndex(0, 5) == 0 &&
-                            FaceBeautyTestabilityRegistry.validateDiscretePresetIndex(-1, 5) == 0
-                }
-                TestabilityClass.CLASS_D_UNCHANGED_REGION_AND_ROI_PRESERVATION -> {
-                    val roi = FaceBeautyTestabilityRegistry.computeRoiBox(0.5f, 0.5f, 0.1f, 0.1f, 100, 100)
-                    !FaceBeautyTestabilityRegistry.isPixelInRoi(10, 10, roi)
-                }
-                TestabilityClass.CLASS_E_PIPELINE_CONTRACT_AND_CRASH_SAFETY -> {
-                    feat.cppSymbol.isNotEmpty() && feat.jniFunction.isNotEmpty() && feat.kotlinBinding.isNotEmpty()
-                }
-            }
+        // Real Engine Execution on Host JVM must be HONESTLY accounted as 0.0%
+        assertEquals("Host real engine execution coverage must be honestly reported as 0.0%", 0.0f, metrics.hostRealEngineExecutionPct, 1e-4f)
+        assertEquals("Zero C++ native engine methods can execute natively on Windows Host JVM", 0, metrics.hostRealEngineExecutionCount)
 
-            if (pass) {
-                passedCount++
-            } else {
-                failureList.add("${feat.featureId} (${feat.featureName})")
+        // Physical Device Readiness & Execution (Gate 6) is 100.0% (104 of 104)
+        assertEquals("Physical device readiness and execution (Gate 6) is 100.0%", 100.0f, metrics.deviceReadinessCoveragePct, 1e-4f)
+        assertEquals(104, metrics.deviceReadinessCoverageCount)
+    }
+
+    @Test
+    fun testProductionJniBindingsReflection() {
+        val declaredMethods = MeituNativeEngine::class.java.declaredMethods.map { it.name }.toSet()
+        for (feat in FaceBeautyTestabilityRegistry.ALL_104_FEATURES) {
+            val methodName = feat.kotlinBinding.substringAfter("MeituNativeEngine.")
+            assertTrue(
+                "Method $methodName for feature ${feat.featureId} (${feat.featureName}) must be declared in production MeituNativeEngine",
+                declaredMethods.contains(methodName)
+            )
+        }
+    }
+
+    @Test
+    fun testProductionUiToolsWiringVerification() {
+        val allProdTools = PhotoEditorActivity.PRODUCTION_CATEGORIES.flatMap { it.tools }.map { it.id }.toSet()
+        for (feat in FaceBeautyTestabilityRegistry.ALL_104_FEATURES) {
+            if (feat.uiToolId != "NONE") {
+                assertTrue(
+                    "Tool ${feat.uiToolId} for feature ${feat.featureId} (${feat.featureName}) must exist in production PhotoEditorActivity.PRODUCTION_CATEGORIES",
+                    allProdTools.contains(feat.uiToolId)
+                )
             }
         }
+    }
 
-        assertTrue("Failure list must be empty: $failureList", failureList.isEmpty())
-        assertEquals("Exactly 104 features must pass deterministic verification", 104, passedCount)
+    @Test
+    fun testProductionParameterNormalizationFormulas() {
+        // Test Teeth Reshape
+        assertEquals(0.0f, PhotoEditorActivity.computeTeethReshapeValue(0), 1e-4f)
+        assertEquals(50.0f, PhotoEditorActivity.computeTeethReshapeValue(100), 1e-4f)
+        assertEquals(-50.0f, PhotoEditorActivity.computeTeethReshapeValue(-100), 1e-4f)
+
+        // Test Philtrum
+        assertEquals(PhotoEditorActivity.PARAM_PHILTRUM_LENGTH, PhotoEditorActivity.mapPhiltrumTool("tool_philtrum_high"))
+        assertEquals(PhotoEditorActivity.PARAM_PHILTRUM_CUPID_ACCENT, PhotoEditorActivity.mapPhiltrumTool("tool_philtrum_warp"))
+        assertEquals(PhotoEditorActivity.PARAM_PHILTRUM_GROOVE_DEPTH, PhotoEditorActivity.mapPhiltrumTool("tool_philtrum_depth"))
+
+        // Test Brow Color
+        assertEquals(PhotoEditorActivity.BROW_COLOR_BLACK, PhotoEditorActivity.mapBrowColor("tool_brow_color_black"))
+        assertEquals(PhotoEditorActivity.BROW_COLOR_DARK_BROWN, PhotoEditorActivity.mapBrowColor("tool_brow_color_dark_brown"))
+
+        // Test Lash
+        val (len, dens, _) = PhotoEditorActivity.computeLashParameters("tool_lash_density", 0.5f)
+        assertEquals(1.0f, len, 1e-4f)
+        assertEquals(1.5f, dens, 1e-4f)
+
+        // Test Ear Style
+        assertEquals(4, PhotoEditorActivity.mapEarStyleCode("tool_ear_buddha"))
+        assertEquals(0, PhotoEditorActivity.mapEarStyleCode("tool_ear_elf"))
     }
 }

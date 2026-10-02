@@ -39,171 +39,92 @@ import kotlin.math.min
  */
 class PhotoEditorActivity : Activity() {
 
+    data class ToolItem(
+        val id: String,
+        val name: String,
+        val nameEn: String,
+        val isVip: Boolean,
+        val nativeLib: String,
+        val defaultVal: Int,
+        val minVal: Int,
+        val maxVal: Int,
+        val unit: String
+    )
+    data class CategoryItem(val id: String, val title: String, val subtitle: String, val tools: List<ToolItem>)
+
     companion object {
         private const val REQUEST_PICK_IMAGE = 1001
         private const val MAX_UNDO_STACK = 10
-    }
 
-    /** Định dạng nhãn hiển thị cho thanh trượt lưỡng cực [-100, +100] / Format label for bipolar slider */
-    private fun formatSliderText(value: Int, unit: String): String {
-        return if (unit == "%") {
-            if (value > 0) "+$value%" else if (value < 0) "$value%" else "0%"
-        } else {
-            if (value > 0) "+$value$unit" else if (value < 0) "$value$unit" else "0$unit"
+        const val PARAM_PHILTRUM_LENGTH = 1701
+        const val PARAM_PHILTRUM_WIDTH = 1702
+        const val PARAM_PHILTRUM_GROOVE_DEPTH = 1703
+        const val PARAM_PHILTRUM_CUPID_ACCENT = 1704
+
+        const val BROW_COLOR_BLACK = 0
+        const val BROW_COLOR_DARK_BROWN = 1
+        const val BROW_COLOR_LIGHT_BROWN = 2
+        const val BROW_COLOR_ASH_GRAY = 3
+        const val BROW_COLOR_AUBURN = 4
+
+        const val PARAM_NORMAL_NOSE_SCULPT = 2402
+        const val PARAM_CLAVICLE_HIGHLIGHT = 2201
+        const val PARAM_SHOULDER_SLIM = 2203
+
+        const val TEETH_SHAPE_SIZE = 0
+        const val TEETH_SHAPE_ALIGN = 1
+        const val TEETH_SHAPE_PROTRUSION = 2
+
+        @JvmStatic
+        fun mapPhiltrumTool(toolId: String): Int? = when (toolId) {
+            "tool_philtrum_high" -> PARAM_PHILTRUM_LENGTH
+            "tool_philtrum_warp" -> PARAM_PHILTRUM_CUPID_ACCENT
+            "tool_philtrum_depth" -> PARAM_PHILTRUM_GROOVE_DEPTH
+            "tool_philtrum_width" -> PARAM_PHILTRUM_WIDTH
+            else -> null
         }
-    }
 
+        @JvmStatic
+        fun mapBrowColor(toolId: String): Int? = when (toolId) {
+            "tool_brow_color_black" -> BROW_COLOR_BLACK
+            "tool_brow_color_dark_brown" -> BROW_COLOR_DARK_BROWN
+            "tool_brow_color_light_brown" -> BROW_COLOR_LIGHT_BROWN
+            "tool_brow_color_ash_gray" -> BROW_COLOR_ASH_GRAY
+            "tool_brow_color_auburn" -> BROW_COLOR_AUBURN
+            else -> null
+        }
 
-    private lateinit var canvasContainer: FrameLayout
-    private lateinit var ivCanvasPreview: ImageView
-    private lateinit var tvEffectTag: TextView
-    private lateinit var tvNativeLibInfo: TextView
-    private lateinit var sliderContainer: LinearLayout
-    private lateinit var tvToolTitle: TextView
-    private lateinit var tvSliderValue: TextView
-    private lateinit var seekBarIntensity: SeekBar
-    private lateinit var subToolsScroll: HorizontalScrollView
-    private lateinit var subToolsContainer: LinearLayout
-    private lateinit var categoryContainer: LinearLayout
-    private lateinit var categoryScroll: HorizontalScrollView
+        @JvmStatic
+        fun computeTeethReshapeValue(sliderIntensity: Int): Float {
+            val p = sliderIntensity.toFloat() / 100f
+            return p * 50.0f
+        }
 
-    private lateinit var rawOriginalBitmap: Bitmap
-    private lateinit var baseLayerBitmap: Bitmap
-    private lateinit var originalBitmap: Bitmap // Giữ tương thích tham chiếu ảnh gốc ban đầu
-    private lateinit var currentProcessedBitmap: Bitmap
-
-    private val undoStack = Stack<Bitmap>()
-    private val redoStack = Stack<Bitmap>()
-
-    private var currentCategory = "👤 Khuôn Mặt"
-    private var currentToolId = "tool_eye_enlarge"
-    private var currentToolName = "Mở to mắt (Enlarge)"
-    private var currentToolEn = "Zoom Eye Deform"
-    private var currentNativeLib = "libmeitu_reborn_native.so"
-    private var currentIntensity = 0
-
-        private var isComparingOriginal = false
-
-    // Beard Tuning State (Độ dày mỏng, Cao thấp, Độ rộng, Đậm nhạt C++)
-    private var beardParamMode = "intensity" // "intensity", "thickness", "width", "height"
-    private var beardIntensity = 0 // -100..100 (%), default 0 = Neutral
-    private var beardThicknessVal = 0 // -100..100 (%), default 0 = Neutral (1.0f)
-    private var beardWidthVal = 0 // -100..100 (%), default 0 = Neutral (1.0f)
-    private var beardHeightOffsetVal = 0 // -100..+100 (px)
-    private var beardHorizontalOffsetVal = 0 // -100..+100 (px)
-    private var isDraggingBeard = false
-    private var dragStartX = 0f
-    private var dragStartY = 0f
-    private var dragInitOffsetH = 0
-    private var dragInitOffsetV = 0
-    private lateinit var dragBeardHud: LinearLayout
-    private lateinit var tvDragBeardText: TextView
-    private lateinit var btnResetBeardPos: TextView
-    private lateinit var chipBeardHorizontal: TextView
-    private var activeBeardStyle = 1 // 1: Mustache & Goatee, 0: Full Chinstrap, 2: Mustache, 3: Goatee
-    private var activeBeardR = 32
-    private var activeBeardG = 24
-    private var activeBeardB = 20
-    private var isBeardDyeCustomActive = false
-    private val beardBitmaps = mutableMapOf<String, Bitmap>()
-    private val beardThumbnails = mutableMapOf<String, Bitmap>()
-    private lateinit var beardColorScroll: HorizontalScrollView
-    private lateinit var beardColorContainer: LinearLayout
-    private val beardColorChips = mutableListOf<TextView>()
-
-    data class BeardColorOption(val name: String, val r: Int, val g: Int, val b: Int, val isNatural: Boolean)
-    private val beardColorList = listOf(
-        BeardColorOption("🔘 Tự Nhiên", 0, 0, 0, true),
-        BeardColorOption("⬛ Đen Tuyền", 22, 18, 16, false),
-        BeardColorOption("🟫 Nâu Espresso", 45, 30, 22, false),
-        BeardColorOption("🟤 Nâu Hạt Dẻ", 78, 48, 32, false),
-        BeardColorOption("🟡 Vàng Caramel", 115, 80, 48, false),
-        BeardColorOption("⚪ Bạc Khói", 145, 145, 150, false),
-        BeardColorOption("🍷 Đỏ Burgundy", 95, 25, 38, false),
-        BeardColorOption("✨ Bạch Kim", 165, 150, 120, false)
-    )
-
-    private fun getBeardBitmap(filename: String): Bitmap? {
-        if (beardBitmaps.containsKey(filename)) return beardBitmaps[filename]
-        return try {
-            assets.open("beards/$filename").use { inputStream ->
-                val bmp = BitmapFactory.decodeStream(inputStream)
-                if (bmp != null) beardBitmaps[filename] = bmp
-                bmp
+        @JvmStatic
+        fun computeLashParameters(toolId: String, p: Float): Triple<Float, Float, Float> {
+            val clampedP = p.coerceIn(0f, 1f)
+            return when (toolId) {
+                "tool_lash_density" -> Triple(1.0f, 1.0f + clampedP, 0.0f)
+                "tool_lash_length" -> Triple(1.0f + clampedP * 1.2f, 1.0f, 0.0f)
+                "tool_lash_curl" -> Triple(1.0f, 1.0f, clampedP * 2.0f)
+                else -> Triple(1.0f, 1.0f, 0.0f)
             }
-        } catch (e: Exception) {
-            null
         }
-    }
 
-    private val materialBitmaps = mutableMapOf<String, Bitmap>()
-    private fun getMaterialBitmap(assetPath: String): Bitmap? {
-        if (materialBitmaps.containsKey(assetPath)) return materialBitmaps[assetPath]
-        return try {
-            assets.open(assetPath).use { inputStream ->
-                val bmp = BitmapFactory.decodeStream(inputStream)
-                if (bmp != null) materialBitmaps[assetPath] = bmp
-                bmp
-            }
-        } catch (e: Exception) {
-            android.util.Log.e("PhotoEditorActivity", "Error loading material asset: $assetPath: ${e.message}")
-            null
+        @JvmStatic
+        fun mapEarStyleCode(toolId: String): Int = when (toolId) {
+            "tool_ear_buddha" -> 4
+            "tool_ear_mouse" -> 3
+            "tool_ear_pig" -> 2
+            "tool_ear_elf", "tool_ear_size" -> 0
+            "tool_ear_press" -> 1
+            "tool_ear_thickness" -> 5
+            "tool_ear_protrude" -> 6
+            else -> 4
         }
-    }
 
-    private fun getBeardThumbnail(filename: String, density: Float): Bitmap? {
-        if (beardThumbnails.containsKey(filename)) return beardThumbnails[filename]
-        val fullBmp = getBeardBitmap(filename) ?: return null
-        return try {
-            val size = (38 * density).toInt()
-            val thumb = Bitmap.createScaledBitmap(fullBmp, size, size, true)
-            beardThumbnails[filename] = thumb
-            thumb
-        } catch (e: Exception) {
-            null
-        }
-    }
-    private lateinit var beardTuningScroll: HorizontalScrollView
-    private lateinit var beardTuningContainer: LinearLayout
-    private lateinit var chipBeardIntensity: TextView
-    private lateinit var chipBeardThickness: TextView
-    private lateinit var chipBeardWidth: TextView
-    private lateinit var chipBeardHeight: TextView
-
-    private lateinit var filterLutProcessor: FilterLutProcessor
-    private lateinit var faceParsingEngine: FaceParsingEngine
-    private lateinit var faceDetector: FaceDetector106
-
-    // Tọa độ giải phẫu khuôn mặt mẫu (chuẩn hóa theo kích thước ảnh thật)
-    private var lxEye = 325f
-    private var lyEye = 430f
-    private var rxEye = 571f
-    private var ryEye = 430f
-    private var noseX = 448f
-    private var noseY = 560f
-    private var mouthX = 448f
-    private var mouthY = 665f
-    private var chinX = 448f
-    private var chinY = 780f
-    private var lJawX = 240f
-    private var lJawY = 540f
-    private var rJawX = 656f
-    private var rJawY = 540f
-    private var lEarX = 195f
-    private var lEarY = 490f
-    private var rEarX = 700f
-    private var rEarY = 490f
-
-    private var landmarks106: FloatArray = FloatArray(212)
-    private var detectedIrisTrack: FaceDetector106.IrisTrackInfo? = null
-    private var detectedLeftSmileLine: FloatArray? = null
-    private var detectedRightSmileLine: FloatArray? = null
-    private var detectedCanthusPoints: FloatArray? = null
-    private var detectedDenseMesh478: FloatArray? = null
-    private var hasRealFace = false
-
-    // Danh sách 14 danh mục chuẩn Meitu v12.17.8 bao phủ toàn diện theo FUNCTIONAL_MAP_MEITU.txt
-    private val categories = listOf(
+        @JvmStatic
+        val PRODUCTION_CATEGORIES: List<CategoryItem> = listOf(
         // 1. FACE (Khuôn Mặt) — MTARBeautyParm.java (2.2.1 OVERALL & 2.2.2 RATIO / SHAPE)
         CategoryItem("cat_face", "👤 Khuôn Mặt", "Face & Ratio", listOf(
             // 2.2.1 OVERALL (Tổng Thể Khuôn Mặt)
@@ -516,6 +437,7 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_body_waist", "Eo thon con kiến (Waist) [VIP]", "Slim Waist Warp", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_shoulder", "Vai vuông móc áo (Shoulder)", "Straight Shoulder", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_neck", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_clavicle_enhance", "Xương quai xanh quyến rũ (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_legs", "Kéo dài chân tỉ lệ vàng", "Golden Ratio Legs", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_chest", "Nâng ngực tự nhiên (Chest)", "Chest Natural Enlarge", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
@@ -592,18 +514,168 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_ai_eraser", "Tẩy Xóa Vật Thể AI Inpaint", "AI Object Eraser Inpaint", true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
         ))
     )
-    data class CategoryItem(val id: String, val title: String, val subtitle: String, val tools: List<ToolItem>)
-    data class ToolItem(
-        val id: String,
-        val name: String,
-        val nameEn: String,
-        val isVip: Boolean,
-        val nativeLib: String,
-        val defaultVal: Int,
-        val minVal: Int,
-        val maxVal: Int,
-        val unit: String
+    }
+
+    /** Định dạng nhãn hiển thị cho thanh trượt lưỡng cực [-100, +100] / Format label for bipolar slider */
+    private fun formatSliderText(value: Int, unit: String): String {
+        return if (unit == "%") {
+            if (value > 0) "+$value%" else if (value < 0) "$value%" else "0%"
+        } else {
+            if (value > 0) "+$value$unit" else if (value < 0) "$value$unit" else "0$unit"
+        }
+    }
+
+
+    private lateinit var canvasContainer: FrameLayout
+    private lateinit var ivCanvasPreview: ImageView
+    private lateinit var tvEffectTag: TextView
+    private lateinit var tvNativeLibInfo: TextView
+    private lateinit var sliderContainer: LinearLayout
+    private lateinit var tvToolTitle: TextView
+    private lateinit var tvSliderValue: TextView
+    private lateinit var seekBarIntensity: SeekBar
+    private lateinit var subToolsScroll: HorizontalScrollView
+    private lateinit var subToolsContainer: LinearLayout
+    private lateinit var categoryContainer: LinearLayout
+    private lateinit var categoryScroll: HorizontalScrollView
+
+    private lateinit var rawOriginalBitmap: Bitmap
+    private lateinit var baseLayerBitmap: Bitmap
+    private lateinit var originalBitmap: Bitmap // Giữ tương thích tham chiếu ảnh gốc ban đầu
+    private lateinit var currentProcessedBitmap: Bitmap
+
+    private val undoStack = Stack<Bitmap>()
+    private val redoStack = Stack<Bitmap>()
+
+    private var currentCategory = "👤 Khuôn Mặt"
+    private var currentToolId = "tool_eye_enlarge"
+    private var currentToolName = "Mở to mắt (Enlarge)"
+    private var currentToolEn = "Zoom Eye Deform"
+    private var currentNativeLib = "libmeitu_reborn_native.so"
+    private var currentIntensity = 0
+
+        private var isComparingOriginal = false
+
+    // Beard Tuning State (Độ dày mỏng, Cao thấp, Độ rộng, Đậm nhạt C++)
+    private var beardParamMode = "intensity" // "intensity", "thickness", "width", "height"
+    private var beardIntensity = 0 // -100..100 (%), default 0 = Neutral
+    private var beardThicknessVal = 0 // -100..100 (%), default 0 = Neutral (1.0f)
+    private var beardWidthVal = 0 // -100..100 (%), default 0 = Neutral (1.0f)
+    private var beardHeightOffsetVal = 0 // -100..+100 (px)
+    private var beardHorizontalOffsetVal = 0 // -100..+100 (px)
+    private var isDraggingBeard = false
+    private var dragStartX = 0f
+    private var dragStartY = 0f
+    private var dragInitOffsetH = 0
+    private var dragInitOffsetV = 0
+    private lateinit var dragBeardHud: LinearLayout
+    private lateinit var tvDragBeardText: TextView
+    private lateinit var btnResetBeardPos: TextView
+    private lateinit var chipBeardHorizontal: TextView
+    private var activeBeardStyle = 1 // 1: Mustache & Goatee, 0: Full Chinstrap, 2: Mustache, 3: Goatee
+    private var activeBeardR = 32
+    private var activeBeardG = 24
+    private var activeBeardB = 20
+    private var isBeardDyeCustomActive = false
+    private val beardBitmaps = mutableMapOf<String, Bitmap>()
+    private val beardThumbnails = mutableMapOf<String, Bitmap>()
+    private lateinit var beardColorScroll: HorizontalScrollView
+    private lateinit var beardColorContainer: LinearLayout
+    private val beardColorChips = mutableListOf<TextView>()
+
+    data class BeardColorOption(val name: String, val r: Int, val g: Int, val b: Int, val isNatural: Boolean)
+    private val beardColorList = listOf(
+        BeardColorOption("🔘 Tự Nhiên", 0, 0, 0, true),
+        BeardColorOption("⬛ Đen Tuyền", 22, 18, 16, false),
+        BeardColorOption("🟫 Nâu Espresso", 45, 30, 22, false),
+        BeardColorOption("🟤 Nâu Hạt Dẻ", 78, 48, 32, false),
+        BeardColorOption("🟡 Vàng Caramel", 115, 80, 48, false),
+        BeardColorOption("⚪ Bạc Khói", 145, 145, 150, false),
+        BeardColorOption("🍷 Đỏ Burgundy", 95, 25, 38, false),
+        BeardColorOption("✨ Bạch Kim", 165, 150, 120, false)
     )
+
+    private fun getBeardBitmap(filename: String): Bitmap? {
+        if (beardBitmaps.containsKey(filename)) return beardBitmaps[filename]
+        return try {
+            assets.open("beards/$filename").use { inputStream ->
+                val bmp = BitmapFactory.decodeStream(inputStream)
+                if (bmp != null) beardBitmaps[filename] = bmp
+                bmp
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private val materialBitmaps = mutableMapOf<String, Bitmap>()
+    private fun getMaterialBitmap(assetPath: String): Bitmap? {
+        if (materialBitmaps.containsKey(assetPath)) return materialBitmaps[assetPath]
+        return try {
+            assets.open(assetPath).use { inputStream ->
+                val bmp = BitmapFactory.decodeStream(inputStream)
+                if (bmp != null) materialBitmaps[assetPath] = bmp
+                bmp
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("PhotoEditorActivity", "Error loading material asset: $assetPath: ${e.message}")
+            null
+        }
+    }
+
+    private fun getBeardThumbnail(filename: String, density: Float): Bitmap? {
+        if (beardThumbnails.containsKey(filename)) return beardThumbnails[filename]
+        val fullBmp = getBeardBitmap(filename) ?: return null
+        return try {
+            val size = (38 * density).toInt()
+            val thumb = Bitmap.createScaledBitmap(fullBmp, size, size, true)
+            beardThumbnails[filename] = thumb
+            thumb
+        } catch (e: Exception) {
+            null
+        }
+    }
+    private lateinit var beardTuningScroll: HorizontalScrollView
+    private lateinit var beardTuningContainer: LinearLayout
+    private lateinit var chipBeardIntensity: TextView
+    private lateinit var chipBeardThickness: TextView
+    private lateinit var chipBeardWidth: TextView
+    private lateinit var chipBeardHeight: TextView
+
+    private lateinit var filterLutProcessor: FilterLutProcessor
+    private lateinit var faceParsingEngine: FaceParsingEngine
+    private lateinit var faceDetector: FaceDetector106
+
+    // Tọa độ giải phẫu khuôn mặt mẫu (chuẩn hóa theo kích thước ảnh thật)
+    private var lxEye = 325f
+    private var lyEye = 430f
+    private var rxEye = 571f
+    private var ryEye = 430f
+    private var noseX = 448f
+    private var noseY = 560f
+    private var mouthX = 448f
+    private var mouthY = 665f
+    private var chinX = 448f
+    private var chinY = 780f
+    private var lJawX = 240f
+    private var lJawY = 540f
+    private var rJawX = 656f
+    private var rJawY = 540f
+    private var lEarX = 195f
+    private var lEarY = 490f
+    private var rEarX = 700f
+    private var rEarY = 490f
+
+    private var landmarks106: FloatArray = FloatArray(212)
+    private var detectedIrisTrack: FaceDetector106.IrisTrackInfo? = null
+    private var detectedLeftSmileLine: FloatArray? = null
+    private var detectedRightSmileLine: FloatArray? = null
+    private var detectedCanthusPoints: FloatArray? = null
+    private var detectedDenseMesh478: FloatArray? = null
+    private var hasRealFace = false
+
+    // Danh sách 14 danh mục chuẩn Meitu v12.17.8 bao phủ toàn diện theo FUNCTIONAL_MAP_MEITU.txt
+    private val categories = PRODUCTION_CATEGORIES
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
