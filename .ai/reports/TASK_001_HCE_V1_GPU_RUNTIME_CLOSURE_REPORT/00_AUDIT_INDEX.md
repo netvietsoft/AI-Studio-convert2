@@ -12,8 +12,8 @@ final_verdict: HCE_V1_GPU_RUNTIME_NEEDS_FIX
 repository_url: https://github.com/netvietsoft/AI-Studio-convert2
 branch: main
 base_commit_sha: 0cf048753239a5ca52c7be0da7ca7bb594895697
-parent_sha: 0cf048753239a5ca52c7be0da7ca7bb594895697
-target_commit_sha: d971feace95f5c531d0637b3b3a36ef1983c276b
+parent_sha: d971feace95f5c531d0637b3b3a36ef1983c276b
+target_commit_sha: bc106f81e640adffab87d4b4a395c873f1d8c1e4
 commit_subject: feat(hce): Hair Color Engine V1 Native Core, P0-P6 Parallel Engines & Audit Correction 01
 changed_files: 8079 files changed, 1093668 insertions(+)
 build_status: BUILD SUCCESSFUL (lib_core_graphics_assembleDebug: 41s, app_assembleDebug: 28s)
