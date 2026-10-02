@@ -1,4 +1,4 @@
-﻿param(
+param(
     [Parameter(Mandatory = $true)]
     [string]$RepoPath,
 
@@ -87,9 +87,28 @@ if (Test-Path $processedFile) {
     }
 }
 
-if ($processed -contains [string]$command.command_id) {
-    Write-RunnerLog "Duplicate command ignored: $($command.command_id)"
+$antiDupKey = if ($command.anti_duplicate_key) { [string]$command.anti_duplicate_key } else { "$($command.task_id):$($command.command_id)" }
+
+if ($processed -contains [string]$command.command_id -or $processed -contains $antiDupKey) {
+    Write-RunnerLog "Duplicate command ignored: $antiDupKey"
     exit 0
+}
+
+# Validation: reject stale command/task mismatch against local completed state
+$stateFile = Join-Path $RepoPath ".ai\state.json"
+if (Test-Path $stateFile) {
+    try {
+        $stateObj = Get-Content -Raw $stateFile | ConvertFrom-Json
+        if ($stateObj.last_completed_task_id -and $stateObj.last_completed_task_id -eq $command.task_id) {
+            $lastMod = $stateObj.last_completed_task_modified_time
+            if ($command.issued_at -and $lastMod -and ([DateTime]$command.issued_at -le [DateTime]$lastMod)) {
+                Write-RunnerLog "REJECTED: Stale command for already completed task: $($command.task_id) (last_completed=$lastMod)"
+                exit 0
+            }
+        }
+    } catch {
+        Write-RunnerLog "Notice: state.json check skipped: $($_.Exception.Message)"
+    }
 }
 
 $prompt = @"

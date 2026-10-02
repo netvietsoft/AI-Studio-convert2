@@ -123,6 +123,121 @@ class PhotoEditorActivity : Activity() {
             else -> 4
         }
 
+        data class DeviceFeatureSuiteItem(
+            val featureId: String,
+            val moduleId: String,
+            val toolId: String,
+            val testIntensity: Int = 50
+        )
+
+        @JvmStatic
+        val DEVICE_SUITE_104_FEATURES: List<DeviceFeatureSuiteItem> = listOf(
+            DeviceFeatureSuiteItem("EYE_01", "MOD_01", "tool_eye_enlarge", 50),
+            DeviceFeatureSuiteItem("EYE_02", "MOD_01", "tool_eye_bright", 50),
+            DeviceFeatureSuiteItem("EYE_03", "MOD_01", "tool_eye_clarity", 50),
+            DeviceFeatureSuiteItem("EYE_04", "MOD_01", "tool_eye_remove_redness", 50),
+            DeviceFeatureSuiteItem("EYE_05", "MOD_01", "tool_skin_eyebags", 50),
+            DeviceFeatureSuiteItem("EYE_06", "MOD_01", "tool_eye_end", 50),
+            DeviceFeatureSuiteItem("EYE_07", "MOD_01", "tool_eye_inner_corner", 50),
+            DeviceFeatureSuiteItem("EYE_08", "MOD_01", "tool_eye_outer_corner", 50),
+            DeviceFeatureSuiteItem("EYE_09", "MOD_01", "tool_eye_preset_origin", 50),
+            DeviceFeatureSuiteItem("EYE_10", "MOD_01", "tool_eye_preset_spiced_tea", 50),
+            DeviceFeatureSuiteItem("EYE_11", "MOD_01", "tool_eye_phoenix", 50),
+            DeviceFeatureSuiteItem("EYE_12", "MOD_01", "tool_eye_preset_soft_grace", 50),
+            DeviceFeatureSuiteItem("EYE_13", "MOD_01", "tool_eye_preset_pink_tale", 50),
+            DeviceFeatureSuiteItem("EYE_14", "MOD_01", "tool_eye_preset_tender_ai", 50),
+            DeviceFeatureSuiteItem("EYE_15", "MOD_01", "tool_eye_preset_pure_crystal", 50),
+            DeviceFeatureSuiteItem("EYE_16", "MOD_01", "tool_eye_double_eyelid", 50),
+            DeviceFeatureSuiteItem("EYE_17", "MOD_01", "tool_eye_double_eyelid", 50),
+            DeviceFeatureSuiteItem("EYE_18", "MOD_01", "tool_eye_double_eyelid", 50),
+            DeviceFeatureSuiteItem("EYE_19", "MOD_01", "tool_eye_double_eyelid", 50),
+            DeviceFeatureSuiteItem("EYE_20", "MOD_01", "tool_catchlight_star", 50),
+            DeviceFeatureSuiteItem("EYE_21", "MOD_01", "tool_eye_color_natural", 50),
+            DeviceFeatureSuiteItem("EYE_22", "MOD_01", "tool_eye_red_flash", 50),
+            DeviceFeatureSuiteItem("BROW_01", "MOD_02", "tool_brow_density", 50),
+            DeviceFeatureSuiteItem("BROW_02", "MOD_02", "tool_brow_thickness", 50),
+            DeviceFeatureSuiteItem("BROW_03", "MOD_02", "tool_brow_arch", 50),
+            DeviceFeatureSuiteItem("BROW_04", "MOD_02", "tool_3dmm_brow_height", 50),
+            DeviceFeatureSuiteItem("BROW_05", "MOD_02", "tool_3dmm_brow_shape", 50),
+            DeviceFeatureSuiteItem("BROW_06", "MOD_02", "tool_brow_color_black", 50),
+            DeviceFeatureSuiteItem("LASH_01", "MOD_03", "tool_lash_density", 50),
+            DeviceFeatureSuiteItem("LASH_02", "MOD_03", "tool_lash_length", 50),
+            DeviceFeatureSuiteItem("LASH_03", "MOD_03", "tool_lash_curl", 50),
+            DeviceFeatureSuiteItem("LASH_04", "MOD_03", "tool_lash_density", 50),
+            DeviceFeatureSuiteItem("NOSE_01", "MOD_04", "tool_nose_resize", 50),
+            DeviceFeatureSuiteItem("NOSE_02", "MOD_04", "tool_nose_root", 50),
+            DeviceFeatureSuiteItem("NOSE_03", "MOD_04", "tool_nose_narrow", 50),
+            DeviceFeatureSuiteItem("NOSE_04", "MOD_04", "tool_nose_tip", 50),
+            DeviceFeatureSuiteItem("NOSE_05", "MOD_04", "tool_3dmm_nose_tip", 50),
+            DeviceFeatureSuiteItem("NOSE_06", "MOD_04", "tool_nose_shrink", 50),
+            DeviceFeatureSuiteItem("NOSE_07", "MOD_04", "tool_3dmm_nose_bridge", 50),
+            DeviceFeatureSuiteItem("NOSE_08", "MOD_04", "tool_philtrum_high", 50),
+            DeviceFeatureSuiteItem("NOSE_09", "MOD_04", "tool_philtrum_depth", 50),
+            DeviceFeatureSuiteItem("LIP_01", "MOD_05", "tool_lip_overall", 50),
+            DeviceFeatureSuiteItem("LIP_02", "MOD_05", "tool_mouth_width", 50),
+            DeviceFeatureSuiteItem("LIP_03", "MOD_05", "tool_lip_upper", 50),
+            DeviceFeatureSuiteItem("LIP_04", "MOD_05", "tool_lip_lower", 50),
+            DeviceFeatureSuiteItem("LIP_05", "MOD_05", "tool_mouth_smile", 50),
+            DeviceFeatureSuiteItem("LIP_06", "MOD_05", "tool_comic_mouth_m", 50),
+            DeviceFeatureSuiteItem("LIP_07", "MOD_05", "tool_3dmm_smile", 50),
+            DeviceFeatureSuiteItem("LIP_08", "MOD_05", "tool_lip_french_rose", 50),
+            DeviceFeatureSuiteItem("LIP_09", "MOD_05", "tool_lip_glossy_coral", 50),
+            DeviceFeatureSuiteItem("LIP_10", "MOD_05", "tool_lip_velvet_red", 50),
+            DeviceFeatureSuiteItem("LIP_11", "MOD_05", "tool_lip_overlip_terracotta", 50),
+            DeviceFeatureSuiteItem("LIP_12", "MOD_05", "tool_lip_gradient_ruby", 50),
+            DeviceFeatureSuiteItem("TEETH_01", "MOD_06", "tool_teeth_whiten", 50),
+            DeviceFeatureSuiteItem("TEETH_02", "MOD_06", "tool_teeth_align", 50),
+            DeviceFeatureSuiteItem("TEETH_03", "MOD_06", "tool_teeth_protrusion", 50),
+            DeviceFeatureSuiteItem("TEETH_04", "MOD_06", "tool_teeth_enamel", 50),
+            DeviceFeatureSuiteItem("EAR_01", "MOD_07", "tool_ear_buddha", 50),
+            DeviceFeatureSuiteItem("EAR_02", "MOD_07", "tool_ear_mouse", 50),
+            DeviceFeatureSuiteItem("EAR_03", "MOD_07", "tool_ear_pig", 50),
+            DeviceFeatureSuiteItem("EAR_04", "MOD_07", "tool_ear_elf", 50),
+            DeviceFeatureSuiteItem("EAR_05", "MOD_07", "tool_ear_press", 50),
+            DeviceFeatureSuiteItem("EAR_06", "MOD_07", "tool_ear_protrude", 50),
+            DeviceFeatureSuiteItem("EAR_07", "MOD_07", "tool_ear_thickness", 50),
+            DeviceFeatureSuiteItem("EAR_08", "MOD_07", "tool_ear_rosy", 50),
+            DeviceFeatureSuiteItem("BEARD_01", "MOD_08", "tool_beard_thickness", 50),
+            DeviceFeatureSuiteItem("BEARD_02", "MOD_08", "tool_beard_dye", 50),
+            DeviceFeatureSuiteItem("BEARD_03", "MOD_08", "tool_beard_mustache_only", 50),
+            DeviceFeatureSuiteItem("BEARD_04", "MOD_08", "tool_beard_goatee_only", 50),
+            DeviceFeatureSuiteItem("BEARD_05", "MOD_08", "tool_beard_quai_non", 50),
+            DeviceFeatureSuiteItem("BEARD_06", "MOD_08", "tool_beard_mustache_goatee", 50),
+            DeviceFeatureSuiteItem("BEARD_07", "MOD_08", "tool_beard_gray_away", 50),
+            DeviceFeatureSuiteItem("CHEEK_01", "MOD_09", "tool_face_cheekbone", 50),
+            DeviceFeatureSuiteItem("CHEEK_02", "MOD_09", "tool_contour_nose", 50),
+            DeviceFeatureSuiteItem("CHEEK_03", "MOD_09", "tool_contour_wocan", 50),
+            DeviceFeatureSuiteItem("CHEEK_04", "MOD_09", "tool_blush_peachy", 50),
+            DeviceFeatureSuiteItem("CHEEK_05", "MOD_09", "tool_blush_rosy", 50),
+            DeviceFeatureSuiteItem("CHEEK_06", "MOD_09", "tool_blush_sun_kissed", 50),
+            DeviceFeatureSuiteItem("SKIN_01", "MOD_10", "tool_skin_smooth", 50),
+            DeviceFeatureSuiteItem("SKIN_02", "MOD_10", "tool_skin_bright", 50),
+            DeviceFeatureSuiteItem("SKIN_03", "MOD_10", "tool_skin_tone_rosy", 50),
+            DeviceFeatureSuiteItem("SKIN_04", "MOD_10", "tool_skin_acne", 50),
+            DeviceFeatureSuiteItem("SKIN_05", "MOD_10", "tool_skin_clear", 50),
+            DeviceFeatureSuiteItem("SKIN_06", "MOD_10", "tool_skin_detail", 50),
+            DeviceFeatureSuiteItem("SKIN_07", "MOD_10", "tool_skin_oil_control", 50),
+            DeviceFeatureSuiteItem("SKIN_08", "MOD_10", "tool_skin_tone_honey", 50),
+            DeviceFeatureSuiteItem("SKIN_09", "MOD_10", "tool_skin_smile_lines", 50),
+            DeviceFeatureSuiteItem("SKIN_10", "MOD_10", "tool_skin_neck_lines", 50),
+            DeviceFeatureSuiteItem("SKIN_11", "MOD_10", "tool_skin_eyebags", 50),
+            DeviceFeatureSuiteItem("CONTOUR_01", "MOD_11", "tool_face_vline", 50),
+            DeviceFeatureSuiteItem("CONTOUR_02", "MOD_11", "tool_face_mandible", 50),
+            DeviceFeatureSuiteItem("CONTOUR_03", "MOD_11", "tool_face_chin", 50),
+            DeviceFeatureSuiteItem("CONTOUR_04", "MOD_11", "tool_3dmm_chin", 50),
+            DeviceFeatureSuiteItem("CONTOUR_05", "MOD_11", "tool_face_temple", 50),
+            DeviceFeatureSuiteItem("CONTOUR_06", "MOD_11", "tool_face_forehead", 50),
+            DeviceFeatureSuiteItem("CONTOUR_07", "MOD_11", "tool_3dmm_jaw", 50),
+            DeviceFeatureSuiteItem("CONTOUR_08", "MOD_11", "tool_face_narrow", 50),
+            DeviceFeatureSuiteItem("CONTOUR_09", "MOD_11", "tool_face_small", 50),
+            DeviceFeatureSuiteItem("PARSE_01", "MOD_12", "tool_face_smooth", 50),
+            DeviceFeatureSuiteItem("PARSE_02", "MOD_12", "tool_face_smooth", 50),
+            DeviceFeatureSuiteItem("PARSE_03", "MOD_12", "tool_face_smooth", 50),
+            DeviceFeatureSuiteItem("PARSE_04", "MOD_12", "tool_hair_line", 50),
+            DeviceFeatureSuiteItem("PARSE_05", "MOD_12", "NONE", 50),
+            DeviceFeatureSuiteItem("PARSE_06", "MOD_12", "NONE", 50)
+        )
+
         @JvmStatic
         val PRODUCTION_CATEGORIES: List<CategoryItem> = listOf(
         // 1. FACE (Khuôn Mặt) — MTARBeautyParm.java (2.2.1 OVERALL & 2.2.2 RATIO / SHAPE)
@@ -1362,6 +1477,12 @@ class PhotoEditorActivity : Activity() {
                     loadUserPhoto(b)
                 }
             } catch (_: Throwable) {}
+        }
+
+        if (intent.getBooleanExtra("run_face_beauty_device_suite", false)) {
+            window.decorView.postDelayed({
+                executeFaceBeautyDeviceSuite(intent)
+            }, 600)
         }
 
         if (intent.getBooleanExtra("run_hce_benchmark", false)) {
@@ -3593,4 +3714,97 @@ class PhotoEditorActivity : Activity() {
             subToolsContainer.addView(card)
         }
     }
+
+    private fun executeFaceBeautyDeviceSuite(intent: Intent) {
+        Thread {
+            try {
+                Log.i("FaceBeautyDeviceRunner", "=== STARTING FACE & BEAUTY PHYSICAL DEVICE SUITE (104 FEATURES) ===")
+                val bmp = if (::baseLayerBitmap.isInitialized) baseLayerBitmap else if (::originalBitmap.isInitialized) originalBitmap else null
+                if (bmp == null) {
+                    Log.e("FaceBeautyDeviceRunner", "FAILED: Base bitmap is null, cannot execute suite")
+                    return@Thread
+                }
+
+                val results = mutableListOf<String>()
+                var passedCount = 0
+                var failedCount = 0
+                val startTimeTotal = System.currentTimeMillis()
+
+                for (item in DEVICE_SUITE_104_FEATURES) {
+                    val featId = item.featureId
+                    val modId = item.moduleId
+                    val toolId = item.toolId
+                    val intensity = item.testIntensity
+
+                    val t0 = System.nanoTime()
+                    var status = "PASS"
+                    var errorMsg = ""
+
+                    try {
+                        if (toolId == "NONE" || toolId.isEmpty()) {
+                            val workingBmp = bmp.copy(Bitmap.Config.ARGB_8888, true)
+                            if (featId == "PARSE_05") {
+                                MeituNativeEngine.nativeApplyMasterBeautyPipeline(workingBmp, landmarks106, FloatArray(32) { 0.5f })
+                            } else if (featId == "PARSE_06") {
+                                MeituNativeEngine.nativeApplyFullHumanBeauty(workingBmp, landmarks106, null, FloatArray(32) { 0.5f }, FloatArray(16) { 0.5f })
+                            }
+                        } else {
+                            val syncLock = java.lang.Object()
+                            runOnUiThread {
+                                try {
+                                    currentIntensity = intensity
+                                    currentToolId = toolId
+                                    applyCurrentToolToBitmap()
+                                } finally {
+                                    synchronized(syncLock) {
+                                        syncLock.notifyAll()
+                                    }
+                                }
+                            }
+                            synchronized(syncLock) {
+                                syncLock.wait(100)
+                            }
+                        }
+                    } catch (e: Throwable) {
+                        status = "FAIL"
+                        errorMsg = e.message ?: "Unknown error"
+                    }
+
+                    val elapsedMs = (System.nanoTime() - t0) / 1_000_000.0
+                    val invariantOk = if (::currentProcessedBitmap.isInitialized) {
+                        !currentProcessedBitmap.isRecycled && currentProcessedBitmap.width > 0 && currentProcessedBitmap.height > 0
+                    } else true
+
+                    if (status == "PASS" && invariantOk) {
+                        passedCount++
+                    } else {
+                        failedCount++
+                        status = "FAIL"
+                    }
+
+                    val logLine = "[FACE_BEAUTY_DEV_EXEC] FEATURE=$featId MOD=$modId TOOL=$toolId LATENCY_MS=${String.format(java.util.Locale.US, "%.2f", elapsedMs)} INVARIANT=${if (invariantOk) "PASS" else "FAIL"} STATUS=$status"
+                    Log.i("FaceBeautyDeviceRunner", logLine)
+                    results.add("{\"feature_id\":\"$featId\",\"module_id\":\"$modId\",\"tool_id\":\"$toolId\",\"latency_ms\":${String.format(java.util.Locale.US, "%.2f", elapsedMs)},\"invariant\":\"${if (invariantOk) "PASS" else "FAIL"}\",\"status\":\"$status\"}")
+                }
+
+                val totalDurationMs = System.currentTimeMillis() - startTimeTotal
+                Log.i("FaceBeautyDeviceRunner", "[FACE_BEAUTY_DEVICE_SUITE_COMPLETED] TOTAL_EXECUTED=104 TOTAL_PASSED=$passedCount TOTAL_FAILED=$failedCount DURATION_TOTAL_MS=$totalDurationMs")
+
+                try {
+                    val reportJson = "{\n  \"device_model\": \"${android.os.Build.MODEL}\",\n  \"device_product\": \"${android.os.Build.PRODUCT}\",\n  \"android_version\": \"${android.os.Build.VERSION.RELEASE}\",\n  \"sdk_int\": ${android.os.Build.VERSION.SDK_INT},\n  \"total_executed\": 104,\n  \"total_passed\": $passedCount,\n  \"total_failed\": $failedCount,\n  \"duration_total_ms\": $totalDurationMs,\n  \"features\": [\n    " + results.joinToString(",\n    ") + "\n  ]\n}"
+                    val outFile = java.io.File(getExternalFilesDir(null) ?: filesDir, "face_beauty_device_execution_report.json")
+                    java.io.FileOutputStream(outFile).use { fos ->
+                        fos.write(reportJson.toByteArray(Charsets.UTF_8))
+                        fos.flush()
+                    }
+                    Log.i("FaceBeautyDeviceRunner", "[REPORT_SAVED] Path: ${outFile.absolutePath}")
+                } catch (e: Throwable) {
+                    Log.w("FaceBeautyDeviceRunner", "Could not save JSON report: ${e.message}")
+                }
+            } catch (e: Throwable) {
+                Log.e("FaceBeautyDeviceRunner", "Error in device execution suite: ${e.message}", e)
+            }
+        }.start()
+    }
+
 }
