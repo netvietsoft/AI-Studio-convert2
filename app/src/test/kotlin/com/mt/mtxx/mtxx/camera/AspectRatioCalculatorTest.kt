@@ -15,10 +15,10 @@ class AspectRatioCalculatorTest {
         assertEquals(3, r43.w)
         assertEquals(4, r43.h)
 
-        // 16:9 Ratio
-        val r169 = CameraActivity.AspectRatio.RATIO_16_9
-        assertEquals(9, r169.w)
-        assertEquals(16, r169.h)
+        // 9:16 Ratio
+        val r916 = CameraActivity.AspectRatio.RATIO_9_16
+        assertEquals(9, r916.w)
+        assertEquals(16, r916.h)
 
         // 1:1 Square Ratio
         val r11 = CameraActivity.AspectRatio.RATIO_1_1
@@ -32,7 +32,7 @@ class AspectRatioCalculatorTest {
             return when (ratio) {
                 CameraActivity.AspectRatio.RATIO_1_1 -> w
                 CameraActivity.AspectRatio.RATIO_4_3 -> (w * 4) / 3
-                CameraActivity.AspectRatio.RATIO_16_9 -> (w * 16) / 9
+                CameraActivity.AspectRatio.RATIO_9_16 -> (w * 16) / 9
                 CameraActivity.AspectRatio.RATIO_FULL -> (w * 19) / 9
             }
         }
@@ -40,6 +40,6 @@ class AspectRatioCalculatorTest {
         val baseWidth = 600
         assertEquals(600, calcHeight(baseWidth, CameraActivity.AspectRatio.RATIO_1_1))
         assertEquals(800, calcHeight(baseWidth, CameraActivity.AspectRatio.RATIO_4_3))
-        assertEquals(1066, calcHeight(baseWidth, CameraActivity.AspectRatio.RATIO_16_9))
+        assertEquals(1066, calcHeight(baseWidth, CameraActivity.AspectRatio.RATIO_9_16))
     }
 }

@@ -11,10 +11,10 @@ class CameraConfigTest {
     fun testCameraModesCompleteness() {
         val modes = CameraActivity.CameraMode.values()
         assertEquals(4, modes.size)
+        assertTrue(modes.contains(CameraActivity.CameraMode.PORTRAIT))
         assertTrue(modes.contains(CameraActivity.CameraMode.PHOTO))
-        assertTrue(modes.contains(CameraActivity.CameraMode.PORTRAIT_BOKEH))
-        assertTrue(modes.contains(CameraActivity.CameraMode.SHORT_VIDEO))
-        assertTrue(modes.contains(CameraActivity.CameraMode.NIGHT_AI))
+        assertTrue(modes.contains(CameraActivity.CameraMode.VIDEO))
+        assertTrue(modes.contains(CameraActivity.CameraMode.MORE))
     }
 
     @Test

@@ -428,6 +428,7 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_mouth_lateral", "Dịch chuyển miệng (Lateral)", "Mouth Lateral Move", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_philtrum_high", "Thu ngắn nhân trung (Philtrum)", "Philtrum High Lift", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_philtrum_warp", "Uốn nét nhân trung (Cupid)", "Cupid Bow Philtrum", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_philtrum_depth", "Độ sâu rãnh nhân trung", "3D Philtrum Groove Depth", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_comic_mouth_m", "Môi cười cánh én M [VIP]", "Comic M-Shape Lips", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_convex_mouth", "Thu môi nhô vổ (Convex)", "Convex Retraction", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_mouth_smile", "Khóe cười rạng rỡ (Smile)", "Smile Lip Lifter C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
@@ -489,6 +490,18 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_shadow_smokey", "Phấn mắt khói Smokey Brown", "Smokey Shadow VIP", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_contour_nose", "Tạo khối sống mũi 3D", "Nose Bridge Contour", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_contour_wocan", "Bọng mắt cười Wocan 3D", "Aegyo Sal Wocan 3D", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            // CHÂN MÀY & LÔNG MI C++ (EYEBROW & EYELASH NATIVE ENGINE)
+            ToolItem("tool_brow_thickness", "Độ Dày Chân Mày", "Eyebrow Thickness C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_arch", "Độ Cong Đỉnh Mày", "Eyebrow Arch C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_density", "Mật Độ Sợi Chân Mày", "Eyebrow Density C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_color_black", "Chân mày: Đen Tự Nhiên", "Eyebrow Natural Black", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_color_dark_brown", "Chân mày: Nâu Đen", "Eyebrow Dark Brown", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_color_light_brown", "Chân mày: Nâu Sáng", "Eyebrow Light Brown", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_color_ash_gray", "Chân mày: Xám Tro", "Eyebrow Ash Gray", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_brow_color_auburn", "Chân mày: Nâu Đỏ Ánh Đồng", "Eyebrow Auburn", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_lash_density", "Lông mi: Độ Dày Dặn", "Keratin Lash Density C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_lash_length", "Lông mi: Chiều Dài", "Keratin Lash Length C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_lash_curl", "Lông mi: Độ Cong Vút", "Keratin Lash Curl C++", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             // TRANG ĐIỂM 3D TỪ BỘ MATERIAL MEITU (4001, beautyPart3, 4005)
             ToolItem("tool_lip_dudu_3d", "Son 3D DuDu [Mitu]", "material/makeup/lip_lut.png", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_skin_watery_3d", "Da Căng Bóng [Mitu]", "3D Highlight Shimmer", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
@@ -2278,10 +2291,25 @@ class PhotoEditorActivity : Activity() {
                 MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2606, p)
             }
             "tool_philtrum_high" -> {
-                MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2607, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyPhiltrumEdit(workingBitmap, lmk, 1701, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2607, p)
+                }
             }
             "tool_philtrum_warp" -> {
-                MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2608, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyPhiltrumEdit(workingBitmap, lmk, 1704, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2608, p)
+                }
+            }
+            "tool_philtrum_depth" -> {
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyPhiltrumEdit(workingBitmap, lmk, 1703, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2608, p)
+                }
             }
             "tool_comic_mouth_m" -> {
                 MeituNativeEngine.nativeApplyMouthReshape(workingBitmap, mouthX, mouthY, 2609, p)
@@ -2381,10 +2409,39 @@ class PhotoEditorActivity : Activity() {
                 val radY = (mouthH * 0.9f).coerceIn(18f * sx, 45f * sx)
                 MeituNativeEngine.nativeApplyTeethWhitening(workingBitmap, mouthX, mouthY, radX, radY, 2, p)
             }
-            "tool_teeth_align", "tool_teeth_protrusion" -> {
-                val warpStrength = (p * 1.3f).coerceIn(0f, 1.5f)
-                val radius = 55f * sx
-                MeituNativeEngine.nativeApplyLiquifyWarp(workingBitmap, mouthX, mouthY + 8f * sx, mouthX, mouthY + 8f * sx, radius, warpStrength, MTLiquifyImage.WARP_MODE_PINCH)
+            "tool_teeth_align" -> {
+                val mouthW = if (landmarks106.size >= 106 * 2) {
+                    Math.abs(landmarks106[90 * 2] - landmarks106[84 * 2])
+                } else 130f * sx
+                val mouthH = if (landmarks106.size >= 106 * 2) {
+                    Math.abs(landmarks106[93 * 2 + 1] - landmarks106[87 * 2 + 1])
+                } else 35f * sx
+                val radX = (mouthW * 0.55f).coerceAtLeast(35f * sx)
+                val radY = (mouthH * 0.9f).coerceIn(18f * sx, 45f * sx)
+                val reshapeVal = p * 50.0f
+                val ok = MeituNativeEngine.nativeApplyTeethReshape(workingBitmap, mouthX, mouthY, radX, radY, 1, reshapeVal)
+                if (!ok) {
+                    val warpStrength = (p * 1.3f).coerceIn(0f, 1.5f)
+                    val radius = 55f * sx
+                    MeituNativeEngine.nativeApplyLiquifyWarp(workingBitmap, mouthX, mouthY + 8f * sx, mouthX, mouthY + 8f * sx, radius, warpStrength, MTLiquifyImage.WARP_MODE_PINCH)
+                }
+            }
+            "tool_teeth_protrusion" -> {
+                val mouthW = if (landmarks106.size >= 106 * 2) {
+                    Math.abs(landmarks106[90 * 2] - landmarks106[84 * 2])
+                } else 130f * sx
+                val mouthH = if (landmarks106.size >= 106 * 2) {
+                    Math.abs(landmarks106[93 * 2 + 1] - landmarks106[87 * 2 + 1])
+                } else 35f * sx
+                val radX = (mouthW * 0.55f).coerceAtLeast(35f * sx)
+                val radY = (mouthH * 0.9f).coerceIn(18f * sx, 45f * sx)
+                val reshapeVal = p * 50.0f
+                val ok = MeituNativeEngine.nativeApplyTeethReshape(workingBitmap, mouthX, mouthY, radX, radY, 2, reshapeVal)
+                if (!ok) {
+                    val warpStrength = (p * 1.3f).coerceIn(0f, 1.5f)
+                    val radius = 55f * sx
+                    MeituNativeEngine.nativeApplyLiquifyWarp(workingBitmap, mouthX, mouthY + 8f * sx, mouthX, mouthY + 8f * sx, radius, warpStrength, MTLiquifyImage.WARP_MODE_PINCH)
+                }
             }
 
             // ================= 7. THẨM MỸ TAI (EARS C++ ENGINE) =================
@@ -2469,7 +2526,11 @@ class PhotoEditorActivity : Activity() {
                 MeituNativeEngine.nativeApplyEyeShadow(workingBitmap, lxEye, lyEye, rxEye, ryEye, 7, p)
             }
             "tool_contour_nose" -> {
-                MeituNativeEngine.nativeApplyContour3D(workingBitmap, noseX, noseY, lxEye, lyEye, rxEye, ryEye, 0, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyNormalSculpting(workingBitmap, lmk, 2402, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyContour3D(workingBitmap, noseX, noseY, lxEye, lyEye, rxEye, ryEye, 0, p)
+                }
             }
             "tool_contour_wocan" -> {
                 MeituNativeEngine.nativeApplyContour3D(workingBitmap, noseX, noseY, lxEye, lyEye, rxEye, ryEye, 3, p)
@@ -2797,11 +2858,14 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_shoulder" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
-                params[7] = p // shoulderSlim
-                params[8] = p * 0.5f // shoulderBalance
-                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3007, p)
+                val okClavicle = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2203, p)
+                if (!okClavicle) {
+                    val params = FloatArray(16)
+                    params[7] = p // shoulderSlim
+                    params[8] = p * 0.5f // shoulderBalance
+                    val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                    if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3007, p)
+                }
             }
             "tool_body_arm", "tool_arm_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
@@ -2820,7 +2884,8 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_clavicle_enhance" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 4, p)
+                val ok = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2201, p)
+                if (!ok) MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 4, p)
             }
             "tool_face_neck_tone" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
@@ -2838,17 +2903,56 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 4, p)
             }
+            "tool_brow_color_black" -> {
+                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 0, p)
+            }
+            "tool_brow_color_dark_brown" -> {
+                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 1, p)
+            }
+            "tool_brow_color_light_brown" -> {
+                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 2, p)
+            }
+            "tool_brow_color_ash_gray" -> {
+                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 3, p)
+            }
+            "tool_brow_color_auburn" -> {
+                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 4, p)
+            }
             "tool_lash_density" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 6, p)
+                val ok = MeituNativeEngine.nativeApplyEyelash(
+                    workingBitmap, lmk, 0, p.coerceIn(0f, 1f),
+                    lengthScale = 1.0f,
+                    densityScale = 1.0f + p.coerceIn(0f, 1f),
+                    curlAngle = 0.0f
+                )
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 6, p)
+                }
             }
             "tool_lash_length" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 7, p)
+                val ok = MeituNativeEngine.nativeApplyEyelash(
+                    workingBitmap, lmk, 0, p.coerceIn(0f, 1f),
+                    lengthScale = 1.0f + p.coerceIn(0f, 1.2f),
+                    densityScale = 1.0f,
+                    curlAngle = 0.0f
+                )
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 7, p)
+                }
             }
             "tool_lash_curl" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 8, p)
+                val ok = MeituNativeEngine.nativeApplyEyelash(
+                    workingBitmap, lmk, 0, p.coerceIn(0f, 1f),
+                    lengthScale = 1.0f,
+                    densityScale = 1.0f,
+                    curlAngle = p.coerceIn(0f, 1f) * 2.0f
+                )
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 8, p)
+                }
             }
             "tool_scalp_reconstruct" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
