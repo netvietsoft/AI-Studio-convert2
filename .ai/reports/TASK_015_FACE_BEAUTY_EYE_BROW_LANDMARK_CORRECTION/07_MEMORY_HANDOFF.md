@@ -1,48 +1,66 @@
-# 07: BẢN BÀN GIAO BỘ NHỚ NGỮ CẢNH & TRẠNG THÁI HỆ THỐNG
-# (Durable Memory Handoff & Architecture Guarantees)
+# TASK_015: MEMORY HANDOFF & STATE CONTINUITY
 
-**Nhiệm vụ:** `TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION`  
-**Dự án:** CONVERT2 — Hair Color Engine & Face/Beauty Engine  
-**Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1  
-**Thời điểm bàn giao:** 2026-10-02 23:07:00 +07:00  
-
----
-
-## 1. CÁC ĐẢM BẢO KIẾN TRÚC ĐÃ ĐƯỢC THIẾT LẬP VĨNH VIỄN (PERMANENT GUARANTEES)
-
-1. **Khử Bất Tương Thích Tọa Độ Điểm Mốc 106 Điểm (Zero Landmark Conflict):**
-   - Sự sai lệch giữa quy ước điểm mốc của `FaceDetector106.kt` (điểm 104/105 thuộc khoang miệng) và kỳ vọng của C++ native (`landmarks106[104]` và `[105]` là hai con ngươi mắt) đã được giải quyết vĩnh viễn ở tầng Kotlin Adapter trong `PhotoEditorActivity.kt`.
-   - Mọi luồng truyền dữ liệu xuống native đều ghi đè chỉ số `104` và `105` bằng tọa độ mắt thực tế được trích xuất an toàn qua `resolveEyeAnchors`.
-
-2. **Bảo Lưu Tuyệt Đối Vùng Miệng (Zero Mouth Pollution):**
-   - Đã kiểm chứng thực nghiệm trên 2 thiết bị vật lý thật: Samsung Galaxy A07 (`SM-A075F`) và Samsung Galaxy A50s (`SM-A507FN`).
-   - Cả 28 tính năng (22 mắt + 6 lông mày) đều đạt:
-     $$\text{Mouth Mean Diff} = 0.0000 \text{ LSB}, \quad \text{Mouth Max Diff} = 0.0 \text{ LSB}$$
-   - Không còn hiện tượng biến dạng môi hay khoang miệng khi sử dụng tính năng mắt hoặc chân mày.
-
-3. **Tính Nhất Quán Toán Học 100% Của Ma Trận Đánh Giá (Scorecard Reconciliation):**
-   - Đã công khai làm rõ nguyên nhân chênh lệch 68 vs 65 trong bản nháp sơ bộ TASK_014: con số thực tế trước khi sửa là `65/104 PASS`.
-   - Sau khi áp dụng bản vá `TASK_015`, cả 22 tính năng Mắt và 4 tính năng Chân mày còn lại đều đạt chuẩn xuất sắc, đưa tổng số tính năng hoàn thiện đạt chuẩn trực quan lên **104/104 (100.0%)**.
-
-4. **Bảo Vệ Lõi Frozen P0–P6 (Zero Native Pollution):**
-   - Toàn bộ thư mục `lib-core-graphics/src/main/cpp/*` và các mô hình P0–P6 không bị thay đổi bất kỳ một byte nào.
-   - Nguyên tắc Hiến pháp Vận hành được tuân thủ nghiêm ngặt.
+**Authority:** Chủ tịch Tony (Chairman)  
+**Protocol:** CONVERT2_COMMAND_V2  
+**Task ID:** `TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION`  
+**From:** Agent 0 (CEO / Orchestrator)  
+**To:** Next Autonomous Agent / Task Scanner Loop  
+**Date:** 2026-10-02  
+**Verdict:** **VISUAL_CORRECTION_PASS** (93/104 Overall, 28/28 Eye & Brow Target Features Passing on Hardware)
 
 ---
 
-## 2. TRẠNG THÁI KIỂM THỬ VÀ MÃ NGUỒN (VERIFICATION & SOURCE STATE)
+## 1. Current State Snapshot
 
-- **Unit Tests:** 41/41 tests passing (tăng từ 36 lên 41 nhờ bộ kiểm thử mới `EyeBrowLandmarkCorrectionRegressionTest`).
-- **Build Status:** `assembleDebug` thành công, APK 212 MB, cài đặt và chạy mượt mà trên cả Android 15 và Android 11.
-- **Git State:**
-  - File sửa đổi sản phẩm: `app/src/main/kotlin/com/mt/mtxx/mtxx/editor/PhotoEditorActivity.kt`
-  - File test mới: `app/src/test/kotlin/com/mt/mtxx/mtxx/editor/EyeBrowLandmarkCorrectionRegressionTest.kt`
-  - Báo cáo hoàn chỉnh: Thư mục `.ai/reports/TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION/` (8 file nghiệm thu).
+- **Task Status:** `COMPLETED`
+- **Subsystem:** Face & Beauty Processing Engine (104 features across 12 modules)
+- **Overall Completion:** **89.4%** (93 PASS, 11 NEEDS_FIX)
+- **Primary Physical Device:** Samsung Galaxy A07 (`SM-A075F` / `192.168.1.18:40159`)
+- **Secondary Physical Device:** Samsung Galaxy A50s (`SM-A507FN` / `192.168.1.2:41775`)
+- **Evidence Archive:** `.ai/evidence/visual/TASK_015/run_SM_A075F/`
+  - Baseline: `before_clean.png` (960x1280 RGBA)
+  - 28 Eye & Brow After Images (`MOD_01_EYE_01_after.png` .. `MOD_01_EYE_22_after.png`, `MOD_02_BROW_01_after.png` .. `MOD_02_BROW_06_after.png`)
+  - Execution Report: `face_beauty_device_execution_report.json` (104/104 executed, 0 crashes)
+  - Contact Sheets: `04_EYE_CONTACT_SHEET.png` (1692x2070), `05_BROW_CONTACT_SHEET.png` (1692x658)
+- **Report Package:** `.ai/reports/TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION/` (8 complete deliverables)
 
 ---
 
-## 3. HƯỚNG DẪN CHO CHU KỲ KẾ TIẾP (NEXT CYCLE DIRECTIVES)
+## 2. Frozen Scope & Boundary Invariants
 
-1. Lệnh điều phối `TASK_015_EXECUTE_20261002T223500+0700` đã hoàn thành đầy đủ các tiêu chí kỹ thuật và chứng từ, chuyển sang trạng thái `COMPLETED`.
-2. File trạng thái `.ai/state.json` được cập nhật với `last_completed_task_id = "TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION"`.
-3. Hệ thống chuyển sang trạng thái `IDLE_WAIT_FOR_TASK`, sẵn sàng tiếp nhận nhiệm vụ kế tiếp (ví dụ `TASK_012` hoặc nhiệm vụ mới từ Task Drive).
+1. **P0 Model & Heuristics:**
+   - Strictly FROZEN (`tau_aspect = 1.80` untouched).
+   - BiSeNet 19-class parser intact.
+   - NCNN hair matting model intact.
+2. **C++ Native Core:**
+   - `libmeitu_reborn_native.so` headers, CMake, and native implementations were completely preserved.
+   - All improvements achieved via Kotlin routing, geometric validation layers, and landmark array synchronization.
+3. **Evidence Integrity:**
+   - No mock data.
+   - All pixel difference calculations and contact sheets generated directly from raw RGBA frames pulled from SM-A075F.
+
+---
+
+## 3. Residual Scope for Next Active Task (TASK_016 Recommendation)
+
+The 11 remaining `NEEDS_FIX` features from the reconciled 104-feature suite are:
+1. **MOD_05 (Lips & Mouth - 4 features):**
+   - `tool_lip_dudu_3d`, `tool_lip_matte`, `tool_lip_gloss`, `tool_mouth_smile_depth`
+2. **MOD_07 (Face Liquify & Morph - 2 features):**
+   - `tool_liquify_asymmetry_correct`, `tool_3dmm_philtrum`
+3. **MOD_09 (Skin Retouch & Tone - 2 features):**
+   - `tool_skin_wrinkles_forehead`, `tool_skin_nasolabial`
+4. **MOD_10 (Makeup Material - 1 feature):**
+   - `tool_makeup_blush_cream`
+5. **MOD_11 (Advanced Anatomy - 2 features):**
+   - `tool_ear_elf_shape`, `tool_neck_clavicle_depth`
+
+Upon issuance of `STATUS: ACTIVE` for TASK_016 or next authorized directive, the incoming agent can address these 11 residual items to achieve 104/104 (100%) Face Beauty production readiness.
+
+---
+
+## 4. Execution State File Update Instructions
+
+The incoming agent or loop supervisor should maintain:
+- `.ai/state/tasks/TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION.json` marked as `COMPLETED`.
+- `.ai/state.json` with `agent_state: "IDLE_WAIT_FOR_TASK"`, `last_completed_task_id: "TASK_015_FACE_BEAUTY_EYE_BROW_LANDMARK_CORRECTION"`.
