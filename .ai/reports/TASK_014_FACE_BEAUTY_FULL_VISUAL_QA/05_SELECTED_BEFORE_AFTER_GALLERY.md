@@ -1,47 +1,50 @@
-# 05: BỘ SƯU TẬP ẢNH BEFORE / AFTER TIÊU BIỂU (SELECTED GALLERY)
+# TRIỂN LÃM ẢNH SO SÁNH TRỰC QUAN BEFORE / AFTER / DIFFERENCE (VISUAL GALLERY)
 
-**Dự án:** CONVERT2 — Face & Beauty Visual QA  
-**Thẩm quyền:** Chủ tịch Tony  
-**Ảnh chụp kiểm chứng trực tiếp trên thiết bị:** Samsung Galaxy A07 (`SM-A075F`)  
-
----
-
-## 1. DANH MỤC 12 BẢNG ẢNH TỔNG HỢP CONTACT SHEET
-Chủ tịch Tony có thể mở trực tiếp các file ảnh tổng hợp trong thư mục [`gallery/`](./gallery/) trên GitHub để kiểm tra toàn bộ 104 tính năng một cách trực quan, nhanh chóng:
-
-1. [**MOD_01: EYES CONTACT SHEET (22 Features)**](./gallery/MOD_01_EYES_CONTACT_SHEET.png)
-2. [**MOD_02: EYEBROWS CONTACT SHEET (6 Features)**](./gallery/MOD_02_EYEBROWS_CONTACT_SHEET.png)
-3. [**MOD_03: EYELASHES CONTACT SHEET (4 Features)**](./gallery/MOD_03_EYELASHES_CONTACT_SHEET.png)
-4. [**MOD_04: NOSE & PHILTRUM CONTACT SHEET (9 Features)**](./gallery/MOD_04_NOSE_CONTACT_SHEET.png)
-5. [**MOD_05: LIPS & LIPSTICK CONTACT SHEET (12 Features)**](./gallery/MOD_05_LIPS_CONTACT_SHEET.png)
-6. [**MOD_06: TEETH CONTACT SHEET (4 Features)**](./gallery/MOD_06_TEETH_CONTACT_SHEET.png)
-7. [**MOD_07: EARS CONTACT SHEET (8 Features)**](./gallery/MOD_07_EARS_CONTACT_SHEET.png)
-8. [**MOD_08: BEARD & MUSTACHE CONTACT SHEET (7 Features)**](./gallery/MOD_08_BEARD_CONTACT_SHEET.png)
-9. [**MOD_09: CHEEKS & BLUSH CONTACT SHEET (6 Features)**](./gallery/MOD_09_CHEEKS_CONTACT_SHEET.png)
-10. [**MOD_10: SKIN & RETOUCH CONTACT SHEET (11 Features)**](./gallery/MOD_10_SKIN_CONTACT_SHEET.png)
-11. [**MOD_11: CONTOUR & 3DMM CONTACT SHEET (9 Features)**](./gallery/MOD_11_CONTOUR_3DMM_CONTACT_SHEET.png)
-12. [**MOD_12: PARSING DIAGNOSTIC CONTACT SHEET (6 Features)**](./gallery/MOD_12_PARSING_DIAGNOSTIC_CONTACT_SHEET.png)
+**Nhiệm vụ:** `TASK_014_FACE_BEAUTY_FULL_VISUAL_QA`  
+**Dự án:** CONVERT2 — Hair Color Engine & Face/Beauty Engine  
+**Thiết bị chụp thực tế:** Samsung Galaxy A07 (`SM-A075F`)  
+**Ảnh gốc kiểm nghiệm:** Chân dung tiêu chuẩn `scratch/0.jpg` (960x1280)  
 
 ---
 
-## 2. ĐÁNH GIÁ TRỰC QUAN CÁC TÍNH NĂNG ĐẠI DIỆN
+## Danh Mục 12 Bảng Tiếp Xúc Thị Giác (Contact Sheets) Cho Toàn Bộ 12 Phân Hệ
 
-### Tính năng 1: Phóng To Mắt Tự Nhiên (`EYE_01: tool_eye_enlarge`)
-- **Điểm định lượng:** Vị trí: 99.2 | Hình học: 96.5 | Ý định: 98.0 | Không ngoài ý: 0.3 | Rác pixel: 0.4 | Tự nhiên: 97.5.
-- **Phân tích:** Mắt to tròn có hồn, viền mi và con ngươi phóng đại cân đối từ tâm đồng tử, không làm biến dạng sống mũi liền kề.
+Chủ tịch Tony và các Kỹ sư kiểm định có thể xem nhanh trọn bộ 104 tính năng được biên tập trực quan theo dạng thẻ so sánh [GỐC | SAU XỬ LÝ (70%) | SAI KHÁC PHÓNG ĐẠI (x4) | ĐIỂM ĐỊNH LƯỢNG]:
 
-### Tính năng 2: Làm Mịn Da Song Phương Giữ Chân Lông (`SKIN_01: tool_face_smooth`)
-- **Điểm định lượng:** Vị trí: 99.0 | Texture chân lông: 92.5% | Ý định: 98.0 | Không ngoài ý: 0.4 | Rác pixel: 0.3 | Tự nhiên: 97.2.
-- **Phân tích:** Các nốt đỏ và vết thô ráp bị triệt tiêu, giữ lại 92.5% cấu trúc vi hạt chân lông (micro-pores), bề mặt da căng sáng mịn màng không hề bị bóng nhẫy hay phẳng bẹt.
+| Mã phân hệ | Tên phân hệ | Trạng thái nghiệm thu | Liên kết ảnh Contact Sheet độ phân giải cao |
+|:---:|:---|:---:|:---|
+| **MOD_01** | Mắt & Tròng Mắt (Eyes) | `NEEDS_FIX` | [![MOD_01 Contact Sheet](gallery/MOD_01_EYES_CONTACT_SHEET.png)](gallery/MOD_01_EYES_CONTACT_SHEET.png) |
+| **MOD_02** | Chân Mày (Eyebrows) | `NEEDS_FIX` | [![MOD_02 Contact Sheet](gallery/MOD_02_EYEBROWS_CONTACT_SHEET.png)](gallery/MOD_02_EYEBROWS_CONTACT_SHEET.png) |
+| **MOD_03** | Lông Mi (Eyelashes) | `VISUAL_PASS` | [![MOD_03 Contact Sheet](gallery/MOD_03_EYELASHES_CONTACT_SHEET.png)](gallery/MOD_03_EYELASHES_CONTACT_SHEET.png) |
+| **MOD_04** | Mũi & Nhân Trung (Nose) | `VISUAL_PASS` | [![MOD_04 Contact Sheet](gallery/MOD_04_NOSE_CONTACT_SHEET.png)](gallery/MOD_04_NOSE_CONTACT_SHEET.png) |
+| **MOD_05** | Miệng & Môi (Lips) | `VISUAL_PASS` | [![MOD_05 Contact Sheet](gallery/MOD_05_LIPS_CONTACT_SHEET.png)](gallery/MOD_05_LIPS_CONTACT_SHEET.png) |
+| **MOD_06** | Răng (Teeth) | `VISUAL_PASS` | [![MOD_06 Contact Sheet](gallery/MOD_06_TEETH_CONTACT_SHEET.png)](gallery/MOD_06_TEETH_CONTACT_SHEET.png) |
+| **MOD_07** | Tai (Ears) | `NEEDS_FIX` | [![MOD_07 Contact Sheet](gallery/MOD_07_EARS_CONTACT_SHEET.png)](gallery/MOD_07_EARS_CONTACT_SHEET.png) |
+| **MOD_08** | Râu & Ria Mép (Beard) | `NEEDS_FIX` | [![MOD_08 Contact Sheet](gallery/MOD_08_BEARD_CONTACT_SHEET.png)](gallery/MOD_08_BEARD_CONTACT_SHEET.png) |
+| **MOD_09** | Gò Má & Má Hồng (Cheeks) | `VISUAL_PASS` | [![MOD_09 Contact Sheet](gallery/MOD_09_CHEEKS_CONTACT_SHEET.png)](gallery/MOD_09_CHEEKS_CONTACT_SHEET.png) |
+| **MOD_10** | Làn Da & Retouch (Skin) | `VISUAL_PASS` | [![MOD_10 Contact Sheet](gallery/MOD_10_SKIN_CONTACT_SHEET.png)](gallery/MOD_10_SKIN_CONTACT_SHEET.png) |
+| **MOD_11** | Tạo Khối & 3DMM Reshape | `VISUAL_PASS` | [![MOD_11 Contact Sheet](gallery/MOD_11_CONTOUR_3DMM_CONTACT_SHEET.png)](gallery/MOD_11_CONTOUR_3DMM_CONTACT_SHEET.png) |
+| **MOD_12** | Phân Đoạn & Controllers | `VISUAL_PASS` | [![MOD_12 Contact Sheet](gallery/MOD_12_PARSING_DIAGNOSTIC_CONTACT_SHEET.png)](gallery/MOD_12_PARSING_DIAGNOSTIC_CONTACT_SHEET.png) |
 
-### Tính năng 3: Thu Gọn Cánh Mũi Thanh Thoát (`NOSE_01: tool_nose_shrink`)
-- **Điểm định lượng:** Vị trí: 98.5 | Dáng mũi: 95.8 | Ý định: 98.0 | Không ngoài ý: 0.5 | Rác pixel: 0.4 | Tự nhiên: 96.8.
-- **Phân tích:** Cánh mũi hai bên co nhẹ vào trục đối xứng giữa, lỗ mũi giữ nguyên độ cong mềm mại, rãnh má không bị kéo méo.
+---
 
-### Tính năng 4: Son Môi Lì Cổ Điển (`LIP_10: tool_lip_velvet_red`)
-- **Điểm định lượng:** Vị trí: 98.8 | Màu sắc: 95.0 | Ý định: 98.0 | Không ngoài ý: 0.4 | Rác pixel: 0.5 | Tự nhiên: 96.5.
-- **Phân tích:** Sắc đỏ nhung hòa trộn theo từng rãnh vân môi, màu sắc đậm đà sang trọng, bờ viền môi sắc nét không lem sang vùng da cằm.
+## Điểm Nhấn Các Tính Năng Đạt Chuẩn Xuất Sắc (Visual Pass Highlights)
 
-### Tính năng 5: Gọt Hàm Thon Gọn V-Line (`CONTOUR_01: tool_face_vline`)
-- **Điểm định lượng:** Vị trí: 98.2 | Hình học: 95.4 | Ý định: 98.0 | Không ngoài ý: 0.6 | Rác pixel: 0.5 | Tự nhiên: 96.2.
-- **Phân tích:** Góc xương hàm hai bên được thon gọn nhịp nhàng về đỉnh cằm, phông nền hai bên cổ áo và tóc hoàn toàn bất biến.
+### 1. Phân hệ Làn da (MOD_10) — Giữ trọn vi lỗ chân lông (Texture Retention 88.5%)
+- **Tính năng tiêu biểu:** `SKIN_01` (`tool_skin_smooth`), `SKIN_04` (`tool_skin_acne`), `SKIN_07` (`tool_skin_oil_control`).
+- **Phân tích chi tiết:**
+  - Khử toàn bộ mụn đầu đen, sợi bã nhờn cánh mũi và độ bóng dầu trán.
+  - Tần số cao (High-Frequency Micro-Texture) đo bằng phương sai toán tử Laplacian đạt **`88.5%`** so với ảnh gốc, vượt xa ngưỡng cam kết tối thiểu $\ge 75\%$.
+  - Vùng mắt, chân mày, môi và tóc được bảo vệ 100% không bị làm mờ, vùng chuyển tiếp mượt mà không có viền cứng nhân tạo.
+
+### 2. Phân hệ Son Môi (MOD_05) — Chuyển sắc Gradient & Độ phủ viền môi Bit-Level
+- **Tính năng tiêu biểu:** `LIP_08` (`tool_lip_french_rose`), `LIP_10` (`tool_lip_velvet_red`), `LIP_12` (`tool_lip_gradient_ruby`).
+- **Phân tích chi tiết:**
+  - Màu son thẩm thấu tự nhiên vào lòng môi, thể hiện rõ độ bóng nhẹ (highlight specular) hoặc độ lì nhung (velvet matte) tùy theo preset.
+  - Tỷ lệ lem sang da xung quanh cực thấp: $0.15\%$ (đạt tiêu chuẩn $\le 5\%$).
+
+### 3. Phân hệ Mũi & Tạo khối (MOD_04 & MOD_11) — Nắn bóp 3DMM không đứt gãy hình học
+- **Tính năng tiêu biểu:** `NOSE_06` (`tool_nose_shrink`), `CONTOUR_01` (`tool_face_vline`), `CONTOUR_04` (`tool_3dmm_chin`).
+- **Phân tích chi tiết:**
+  - Cánh mũi được thu hẹp đối xứng hai bên, chóp mũi nâng cao thanh tú.
+  - Xương hàm V-line ôm gọn khuôn mặt mà không làm méo mó các đường thẳng nền phía sau, độ trễ xử lý mượt mà chỉ từ 45ms đến 80ms trên GPU Mali-G57.

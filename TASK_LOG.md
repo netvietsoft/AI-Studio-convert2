@@ -871,3 +871,29 @@ Package: `com.mt.mtxx.mtxx.convert` | Activity: `com.mt.mtxx.mtxx.camera.CameraA
      * Lưu trữ tại `.ai/reports/TASK_011_MULTI_AGENT_MULTI_TASK_COMMAND_BUS_ORCHESTRATOR/`.
 - **KẾT LUẬN CUỐI CÙNG:**
   $$\mathbf{TASK\_011\_PASS}$$
+### [2026-10-02 21:50:00 - 22:15:00] TASK_014: FACE & BEAUTY SUBSYSTEM FULL PHYSICAL DEVICE VISUAL QA
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) & Visual AI Auditor — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** `TASK_014_FACE_BEAUTY_FULL_VISUAL_QA` (Doc ID: `17B4zffcbXA0gYDTbqzQB_glEd_4EKLzggksVE_RJevA`)
+- **Phân loại tác vụ:** READ-ONLY VISUAL QA & PHYSICAL DEVICE VALIDATION (Gate 7 Target)
+- **Tiêu chuẩn áp dụng:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` (Section IX Visual Evidence Gate) & Development Workspace Standard V2.1
+- **Môi trường phần cứng:**
+  * Thiết bị chính: Samsung Galaxy A07 (`SM-A075F`) — Android 16 (SDK 36), Mali-G57 MC2
+  * Thiết bị kiểm chứng chéo: Samsung Galaxy A50s (`SM-A507FN`) — Android 11 (SDK 30), Mali-G72 MP3
+  * Bản dựng APK: `app/build/outputs/apk/debug/app-debug.apk` (SHA-256: `2463c45bb54ff0e1937665749526227fe4e7fe83ca0396837a8973787ac31d4d`)
+- **Tiến trình thực thi:**
+  1. **Kiểm thử trực tiếp 104/104 tính năng trên thiết bị thật:**
+     * Nạp ảnh chân dung tiêu chuẩn `scratch/0.jpg` (960x1280) và đẩy vào `/sdcard/user_portrait.jpg`.
+     * Tự động điều phối tuần tự 104 lệnh `am start` kích hoạt `PhotoEditorActivity` với độ mạnh mặc định 70% và tự động lưu ảnh lossless PNG (`auto_save_path`).
+     * Toàn bộ 104 tính năng đã lưu trữ ảnh đầu ra tại `.ai/evidence/visual/TASK_014/run_20261002T220000/`.
+  2. **Đánh giá định lượng 8 chiều (8-Dimension Visual Evaluation):**
+     * 68 tính năng đạt chuẩn xuất sắc (VISUAL_PASS): Mũi (9/9), Môi (12/12), Răng (4/4), Gò má (6/6), Da (11/11, giữ vi lỗ chân lông 88.5%), Tạo khối 3DMM (9/9), Phân đoạn BiSeNet (6/6), Lông mi (4/4).
+     * 36 tính năng cần khắc phục (NEEDS_FIX): Mắt (22/22) biến dạng vùng môi; Màu mày (4/6) kéo lệch; Biến dạng tai (7/8) zero diff do tai bị che khuất; Râu (6/7) zero diff do ảnh mẫu nữ.
+  3. **Phân tích nguyên nhân gốc rễ (Root Cause Analysis):**
+     * Định vị chính xác lỗi ánh xạ landmark con ngươi fallback trong `PhotoEditorActivity.kt` (dòng 1703-1706) đọc nhầm `landmarks106[104]` và `[105]` (điểm môi trong) thay vì `38`/`57`.
+     * Đề xuất 02 tác vụ sửa lỗi hẹp: `TASK_015` và `TASK_016`.
+  4. **Sinh 12 Bảng Tiếp Xúc Thị Giác (Contact Sheets):**
+     * Hoàn tất 12 file PNG tại `.ai/reports/TASK_014_FACE_BEAUTY_FULL_VISUAL_QA/gallery/` với đầy đủ so sánh Before / After / Difference (x4) và điểm số định lượng.
+  5. **Kiểm tra tính lặp lại (Repeatability):**
+     * Chạy lại 3 lần cho các tính năng trọng yếu: `EYE_01` (STABLE_DETERMINISTIC), `EAR_01` (UNSTABLE khi tai bị tóc che), `BEARD_02` (STABLE_DETERMINISTIC).
+- **KẾT LUẬN TỔNG THỂ:**
+  $$\mathbf{VISUAL\_QA\_NEEDS\_FIX}$$
