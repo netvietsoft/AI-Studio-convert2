@@ -1,0 +1,45 @@
+name: CONVERT2 Agent Command Bus
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".ai/commands/NEXT_COMMAND.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: convert2-agent-command-bus
+  cancel-in-progress: false
+
+jobs:
+  execute-command:
+    runs-on: [self-hosted, Windows, convert2]
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Execute CONVERT2 Agent command
+        shell: powershell
+        run: |
+          powershell.exe -NoProfile -ExecutionPolicy Bypass `
+            -File ".\scripts\run_agent_from_github_command.ps1" `
+            -RepoPath "${{ github.workspace }}" `
+            -CommandFile ".ai\commands\NEXT_COMMAND.json"
+
+      - name: Upload runner logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: convert2-agent-command-${{ github.run_id }}
+          path: .ai/runner/
+          if-no-files-found: ignore
+          retention-days: 14
