@@ -590,3 +590,21 @@ ativeGetVideoCompositedFrame.
   - Tổng số 104 tính năng Face & Beauty: **104 / 104 RESOLVED (103 PASS, 1 ASSET_NOT_APPLICABLE / VERIFIED PASS)**.
   - Số lượng tính năng `NEEDS_FIX` còn lại: **0**.
   - Toàn bộ hồ sơ báo cáo, CSV và Contact Sheet tại: `.ai/reports/TASK_016_FACE_BEAUTY_EAR_BEARD_SPECIALIZED_VISUAL_RETEST/`.
+
+---
+
+## 10. HOÀN THÀNH TÁC VỤ TASK_017 — HIỆU ĐÍNH NGUỒN GỐC, RUNNER VÀ BẰNG CHỨNG ĐA THIẾT BỊ (2026-10-03)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành TASK_017 (Doc ID: `1lJqXjXWaIVWCqDf4QY0T7f4En0u42AUlheyDILbERqg`) nhằm hiệu đính dứt điểm các khiếm khuyết audit của TASK_016.
+- **Các hạng mục đã giải quyết triệt để 100%:**
+  1. *Hiệu đính Target Commit SHA:* Thay thế SHA giả lập bằng chuỗi băm Git rev-parse chính xác tuyệt đối: `f5502ddcbf86db6e95f4ca02f5029bac1f1a99a6`. Đồng bộ vào toàn bộ command bus và state files.
+  2. *Bóc tách Actions Provenance:* Loại bỏ triệt để định danh Run ID `37028118019` (thuộc TASK_015). Ghi nhận minh bạch Run dispatch lỗi `37037134655` (commit `3401a1c`), tiến trình phục hồi thực thi cục bộ `AGENT_WATCHDOG_V2_LOCAL`, và Run CI đẩy kết quả `37039843854` (commit `41757eb`).
+  3. *Bằng chứng vật lý độc lập cho cả hai thiết bị phần cứng:* Chạy kiểm thử song song 8 tính năng Tai và 7 tính năng Râu trên cả 2 thiết bị online thật:
+     - `SM-A075F` (Samsung Galaxy A07, Mali-G57 MC2, Android 15): 8 Ear PASS (1,873–3,009 px), 6 Beard PASS (1,042–32,522 px), Logcat: 5.99 MB.
+     - `SM-A507FN` (Samsung Galaxy A50s, Mali-G72 MP3, Android 11): 8 Ear PASS (1,891–3,062 px), 6 Beard PASS (1,111–32,148 px), Logcat: 2.23 MB.
+     - Trích xuất đầy đủ ảnh output, diff heatmap, contact sheets độc lập cho từng thiết bị.
+  4. *Phân tách rành mạch trạng thái PASS và NOT_APPLICABLE cho BEARD_07:*
+     - Trên mẫu chuẩn `scratch/1.jpg`: Phân loại chính trực là `ASSET_NOT_APPLICABLE` (0 px thay đổi do không có sợi bạc).
+     - Trên mẫu thực chứng `scratch/1_gray_stubble.png`: Đạt `PASS` với 1,722 px (A07) và 1,680 px (A50s), max_delta=110.
+     - Thống kê toàn hệ thống: **103 PASS (99.04%) + 1 NOT_APPLICABLE (0.96%) = 104 RESOLVED (100.0%, 0 NEEDS_FIX)**.
+  5. *Kiểm tra Build & Regression:* `./gradlew compileDebugKotlin --no-daemon` BUILD SUCCESSFUL (1m 1s); `./gradlew :app:testDebugUnitTest --no-daemon` 100% tests PASS (22s).
+  6. *Lập danh mục Mirror và Báo cáo khiếm khuyết Report Drive:* Tạo `10_MIRROR_MANIFEST.md` / `10_MIRROR_MANIFEST.csv` (20 items) và `11_PROCESS_DEFECT_REPORT.md` (ghi nhận trạng thái thiếu OAuth write credentials mà không chặn tiến trình kỹ thuật).

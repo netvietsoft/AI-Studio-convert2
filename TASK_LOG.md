@@ -948,3 +948,33 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
      * Lưu trữ đầy đủ 8 file tại .ai/reports/TASK_016_FACE_BEAUTY_EAR_BEARD_SPECIALIZED_VISUAL_RETEST/.
 - **KẾT LUẬN:**
   \mathbf{TASK\_016\_PASS}
+
+---
+
+### [2026-10-03 01:10:00 - 01:25:00] TASK_017: TASK_016 PROVENANCE & DUAL-DEVICE EVIDENCE CORRECTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_017_TASK016_PROVENANCE_EVIDENCE_MIRROR_CORRECTION_ACTIVE (Doc ID: `1lJqXjXWaIVWCqDf4QY0T7f4En0u42AUlheyDILbERqg`)
+- **Phân loại tác vụ:** AUDIT EVIDENCE CORRECTION, HARDENING & PHYSICAL RE-VERIFICATION
+- **Tiến trình thực thi:**
+  1. **Hiệu đính Target Commit SHA:**
+     * Trích xuất và thay thế SHA giả lập bằng chuỗi băm Git rev-parse chính xác: `f5502ddcbf86db6e95f4ca02f5029bac1f1a99a6`.
+     * Đồng bộ toàn diện vào `.ai/state.json`, `.ai/commands/completed/`, `.ai/commands/history/`, và `.ai/state/tasks/`.
+  2. **Bóc tách Actions Provenance:**
+     * Loại bỏ Run ID `37028118019` của TASK_015.
+     * Ghi nhận minh bạch Run dispatch thất bại `37037134655` (commit `3401a1c`), tiến trình phục hồi cục bộ `AGENT_WATCHDOG_V2_LOCAL`, và Run CI push `37039843854` (commit `41757eb`).
+  3. **Kiểm thử thực nghiệm độc lập trên cả 2 thiết bị phần cứng thật:**
+     * SM-A075F (Mali-G57 MC2, Android 15): 8 Ear PASS (1,873–3,009 px), 6 Beard PASS (1,042–32,522 px), Logcat: 5.99 MB.
+     * SM-A507FN (Mali-G72 MP3, Android 11): 8 Ear PASS (1,891–3,062 px), 6 Beard PASS (1,111–32,148 px), Logcat: 2.23 MB.
+     * Tạo 4 contact sheet độc lập độ phân giải cao và lưu trữ 100% tệp ảnh output / diff heatmap.
+  4. **Phân định rành mạch PASS và NOT_APPLICABLE:**
+     * `BEARD_07` trên ảnh chuẩn `scratch/1.jpg`: `ASSET_NOT_APPLICABLE` (0 px thay đổi).
+     * `BEARD_07` trên ảnh có râu bạc `scratch/1_gray_stubble.png`: `PASS` (1,722 px trên A07, 1,680 px trên A50s, max_delta=110).
+     * Chỉ số toàn hệ thống: **103 PASS (99.04%) + 1 NOT_APPLICABLE (0.96%) = 104 RESOLVED (100.0%, 0 NEEDS_FIX)**.
+  5. **Kiểm tra Build & Unit Tests:**
+     * `./gradlew compileDebugKotlin --no-daemon`: BUILD SUCCESSFUL (1m 1s).
+     * `./gradlew :app:testDebugUnitTest --no-daemon`: 100% tests PASS (22s).
+  6. **Gói Báo Cáo Nghiệm Thu & Report Drive Defect:**
+     * Lập danh mục 20 tệp trong `10_MIRROR_MANIFEST.md` / `10_MIRROR_MANIFEST.csv`.
+     * Ghi nhận khiếm khuyết thiếu OAuth write credentials trong `11_PROCESS_DEFECT_REPORT.md`.
+- **KẾT LUẬN:**
+  \mathbf{TASK\_017\_PASS}
