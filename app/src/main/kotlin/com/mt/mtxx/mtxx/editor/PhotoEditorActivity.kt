@@ -67,6 +67,16 @@ class PhotoEditorActivity : Activity() {
         const val BROW_COLOR_ASH_GRAY = 3
         const val BROW_COLOR_AUBURN = 4
 
+        // Eyebrow & Eyelash Engine parameters (matching C++ EyebrowLashEngine)
+        const val PARAM_BROW_THICKNESS = 1
+        const val PARAM_BROW_ARCH = 2
+        const val PARAM_BROW_LENGTH = 3
+        const val PARAM_BROW_DENSITY_FILL = 4
+        const val PARAM_BROW_COLOR = 5
+        const val PARAM_LASH_DENSITY = 6
+        const val PARAM_LASH_LENGTH = 7
+        const val PARAM_LASH_CURL = 8
+
         const val PARAM_NORMAL_NOSE_SCULPT = 2402
         const val PARAM_CLAVICLE_HIGHLIGHT = 2201
         const val PARAM_SHOULDER_SLIM = 2203
@@ -121,6 +131,158 @@ class PhotoEditorActivity : Activity() {
             "tool_ear_thickness" -> 5
             "tool_ear_protrude" -> 6
             else -> 4
+        }
+
+        /**
+         * Validates eye geometry: left eye must be to the left of right eye,
+         * distance must be reasonable relative to face bounds or image dimensions,
+         * and eye Y should be above mouth/nose.
+         */
+        @JvmStatic
+        fun isValidEyeGeometry(
+            lx: Float, ly: Float,
+            rx: Float, ry: Float,
+            mouthY: Float = 0f,
+            imageWidth: Int = 0,
+            imageHeight: Int = 0
+        ): Boolean {
+            if (lx <= 0f || ly <= 0f || rx <= 0f || ry <= 0f) return false
+            if (lx >= rx) return false
+            val dx = rx - lx
+            val dy = ry - ly
+            val dist = kotlin.math.hypot(dx, dy)
+            if (dist < 10f) return false
+            if (imageWidth > 0 && dist > imageWidth * 0.85f) return false
+            if (mouthY > 0f && (ly >= mouthY || ry >= mouthY)) return false
+            if (imageHeight > 0 && (ly > imageHeight * 0.9f || ry > imageHeight * 0.9f)) return false
+            return true
+        }
+
+        /**
+         * Resolves anatomically correct eye coordinates from:
+         * 1) Iris tracking (if valid and verified)
+         * 2) Landmarks 106 contour centroid / pupil points:
+         *    - Left eye: contour 62..71, pupil 70
+         *    - Right eye: contour 72..81, pupil 80
+         * 3) Face bounds anatomical proportions
+         */
+        @JvmStatic
+        fun resolveEyeAnchors(
+            detectedIrisTrack: FaceDetector106.IrisTrackInfo?,
+            landmarks106: FloatArray?,
+            faceBounds: RectF?,
+            imageWidth: Int,
+            imageHeight: Int,
+            mouthY: Float = 0f
+        ): FloatArray {
+            // Try 1: Iris track
+            if (detectedIrisTrack != null) {
+                val lx = detectedIrisTrack.leftCenterX
+                val ly = detectedIrisTrack.leftCenterY
+                val rx = detectedIrisTrack.rightCenterX
+                val ry = detectedIrisTrack.rightCenterY
+                if (isValidEyeGeometry(lx, ly, rx, ry, mouthY, imageWidth, imageHeight)) {
+                    return floatArrayOf(lx, ly, rx, ry)
+                }
+            }
+
+            // Try 2: Anatomical landmarks (62..71 for left eye, 72..81 for right eye)
+            if (landmarks106 != null && landmarks106.size >= 82 * 2) {
+                var sumLx = 0f
+                var sumLy = 0f
+                for (i in 62..71) {
+                    sumLx += landmarks106[i * 2]
+                    sumLy += landmarks106[i * 2 + 1]
+                }
+                val lxCentroid = sumLx / 10f
+                val lyCentroid = sumLy / 10f
+
+                var sumRx = 0f
+                var sumRy = 0f
+                for (i in 72..81) {
+                    sumRx += landmarks106[i * 2]
+                    sumRy += landmarks106[i * 2 + 1]
+                }
+                val rxCentroid = sumRx / 10f
+                val ryCentroid = sumRy / 10f
+
+                if (isValidEyeGeometry(lxCentroid, lyCentroid, rxCentroid, ryCentroid, mouthY, imageWidth, imageHeight)) {
+                    return floatArrayOf(lxCentroid, lyCentroid, rxCentroid, ryCentroid)
+                }
+
+                val lxPupil = landmarks106[70 * 2]
+                val lyPupil = landmarks106[70 * 2 + 1]
+                val rxPupil = landmarks106[80 * 2]
+                val ryPupil = landmarks106[80 * 2 + 1]
+                if (isValidEyeGeometry(lxPupil, lyPupil, rxPupil, ryPupil, mouthY, imageWidth, imageHeight)) {
+                    return floatArrayOf(lxPupil, lyPupil, rxPupil, ryPupil)
+                }
+            }
+
+            // Try 3: Face bounds anatomical proportion (Eyes at ~38% from top of face, 30% and 70% width)
+            if (faceBounds != null && faceBounds.width() > 10f && faceBounds.height() > 10f) {
+                val lx = faceBounds.left + faceBounds.width() * 0.30f
+                val ly = faceBounds.top + faceBounds.height() * 0.38f
+                val rx = faceBounds.left + faceBounds.width() * 0.70f
+                val ry = faceBounds.top + faceBounds.height() * 0.38f
+                return floatArrayOf(lx, ly, rx, ry)
+            }
+
+            // Try 4: Image proportion fallback (Eyes at 35% and 65% width, 40% height)
+            val w = if (imageWidth > 0) imageWidth.toFloat() else 1000f
+            val h = if (imageHeight > 0) imageHeight.toFloat() else 1000f
+            return floatArrayOf(w * 0.35f, h * 0.40f, w * 0.65f, h * 0.40f)
+        }
+
+        /**
+         * Resolves eyebrow anchors from:
+         * 1) Landmarks 106 eyebrow contours:
+         *    - Left eyebrow: 33..42 (arch = 37)
+         *    - Right eyebrow: 43..52 (arch = 47)
+         * 2) Proportions relative to eyes and face bounds
+         */
+        @JvmStatic
+        fun resolveBrowAnchors(
+            landmarks106: FloatArray?,
+            lxEye: Float, lyEye: Float,
+            rxEye: Float, ryEye: Float
+        ): FloatArray {
+            if (landmarks106 != null && landmarks106.size >= 53 * 2) {
+                val lArchX = landmarks106[37 * 2]
+                val lArchY = landmarks106[37 * 2 + 1]
+                val rArchX = landmarks106[47 * 2]
+                val rArchY = landmarks106[47 * 2 + 1]
+                if (lArchX > 0f && rArchX > lArchX && lArchY > 0f && rArchY > 0f) {
+                    return floatArrayOf(lArchX, lArchY, rArchX, rArchY)
+                }
+
+                var sumLx = 0f
+                var sumLy = 0f
+                for (i in 33..42) {
+                    sumLx += landmarks106[i * 2]
+                    sumLy += landmarks106[i * 2 + 1]
+                }
+                var sumRx = 0f
+                var sumRy = 0f
+                for (i in 43..52) {
+                    sumRx += landmarks106[i * 2]
+                    sumRy += landmarks106[i * 2 + 1]
+                }
+                val lCentroidX = sumLx / 10f
+                val lCentroidY = sumLy / 10f
+                val rCentroidX = sumRx / 10f
+                val rCentroidY = sumRy / 10f
+                if (lCentroidX > 0f && rCentroidX > lCentroidX) {
+                    return floatArrayOf(lCentroidX, lCentroidY, rCentroidX, rCentroidY)
+                }
+            }
+
+            val eyeDist = kotlin.math.hypot(rxEye - lxEye, ryEye - lyEye).coerceAtLeast(20f)
+            val lBrowX = lxEye
+            val lBrowY = lyEye - 0.25f * eyeDist
+            val rBrowX = rxEye
+            val rBrowY = ryEye - 0.25f * eyeDist
+            return floatArrayOf(lBrowX, lBrowY, rBrowX, rBrowY)
         }
 
         data class DeviceFeatureSuiteItem(
@@ -766,6 +928,10 @@ class PhotoEditorActivity : Activity() {
     private var lyEye = 430f
     private var rxEye = 571f
     private var ryEye = 430f
+    private var lBrowX = 325f
+    private var lBrowY = 370f
+    private var rBrowX = 571f
+    private var rBrowY = 370f
     private var noseX = 448f
     private var noseY = 560f
     private var mouthX = 448f
@@ -1650,6 +1816,10 @@ class PhotoEditorActivity : Activity() {
         lyEye = 455f * sy
         rxEye = 558f * sx
         ryEye = 455f * sy
+        lBrowX = 336f * sx
+        lBrowY = 390f * sy
+        rBrowX = 558f * sx
+        rBrowY = 390f * sy
         noseX = 455f * sx
         noseY = 570f * sy
         mouthX = 455f * sx
@@ -1699,11 +1869,33 @@ class PhotoEditorActivity : Activity() {
                     // Mouth: 84 (left corner), 90 (right corner), 87 (upper lip), 93 (lower lip)
                     mouthX = (landmarks106[84 * 2] + landmarks106[90 * 2]) * 0.5f
                     mouthY = (landmarks106[87 * 2 + 1] + landmarks106[93 * 2 + 1]) * 0.5f
-                    // Eyes: 104 (left pupil), 105 (right pupil)
-                    lxEye = detectedIrisTrack?.leftCenterX ?: landmarks106[104 * 2]
-                    lyEye = detectedIrisTrack?.leftCenterY ?: landmarks106[104 * 2 + 1]
-                    rxEye = detectedIrisTrack?.rightCenterX ?: landmarks106[105 * 2]
-                    ryEye = detectedIrisTrack?.rightCenterY ?: landmarks106[105 * 2 + 1]
+                    // Eyes: Anatomically resolved and geometry sanity-checked
+                    val eyeAnchors = resolveEyeAnchors(
+                        detectedIrisTrack,
+                        landmarks106,
+                        faceRes.faceBounds,
+                        baseLayerBitmap.width,
+                        baseLayerBitmap.height,
+                        mouthY
+                    )
+                    lxEye = eyeAnchors[0]
+                    lyEye = eyeAnchors[1]
+                    rxEye = eyeAnchors[2]
+                    ryEye = eyeAnchors[3]
+
+                    // Overwrite landmarks106[104] and [105] with verified eye pupil coordinates
+                    // so native C++ head_semantic_model, 3DMM reshape, and eyebrow engine do not pollute mouth
+                    landmarks106[104 * 2] = lxEye
+                    landmarks106[104 * 2 + 1] = lyEye
+                    landmarks106[105 * 2] = rxEye
+                    landmarks106[105 * 2 + 1] = ryEye
+
+                    // Eyebrows: Resolved from landmarks 33..42 and 43..52
+                    val browAnchors = resolveBrowAnchors(landmarks106, lxEye, lyEye, rxEye, ryEye)
+                    lBrowX = browAnchors[0]
+                    lBrowY = browAnchors[1]
+                    rBrowX = browAnchors[2]
+                    rBrowY = browAnchors[3]
                     val earInitRep = landmarks106.let {
                         MeituNativeEngine.getEarAnatomyReport(baseLayerBitmap, it, baseLayerBitmap.width, baseLayerBitmap.height)
                     }
@@ -1795,6 +1987,10 @@ class PhotoEditorActivity : Activity() {
                 lyEye = fallbackCy - fallbackRy * 0.35f
                 rxEye = fallbackCx + fallbackRx * 0.45f
                 ryEye = fallbackCy - fallbackRy * 0.35f
+                lBrowX = fallbackCx - fallbackRx * 0.45f
+                lBrowY = fallbackCy - fallbackRy * 0.55f
+                rBrowX = fallbackCx + fallbackRx * 0.45f
+                rBrowY = fallbackCy - fallbackRy * 0.55f
                 mouthX = fallbackCx
                 mouthY = fallbackCy + fallbackRy * 0.45f
                 lJawX = fallbackCx - fallbackRx * 0.85f
@@ -1819,10 +2015,18 @@ class PhotoEditorActivity : Activity() {
         landmarks106[16 * 2 + 1] = chinY
         landmarks106[28 * 2] = rJawX
         landmarks106[28 * 2 + 1] = rJawY
-        landmarks106[38 * 2] = lxEye
-        landmarks106[38 * 2 + 1] = lyEye
-        landmarks106[57 * 2] = rxEye
-        landmarks106[57 * 2 + 1] = ryEye
+        landmarks106[37 * 2] = lBrowX
+        landmarks106[37 * 2 + 1] = lBrowY
+        landmarks106[47 * 2] = rBrowX
+        landmarks106[47 * 2 + 1] = rBrowY
+        landmarks106[70 * 2] = lxEye
+        landmarks106[70 * 2 + 1] = lyEye
+        landmarks106[80 * 2] = rxEye
+        landmarks106[80 * 2 + 1] = ryEye
+        landmarks106[104 * 2] = lxEye
+        landmarks106[104 * 2 + 1] = lyEye
+        landmarks106[105 * 2] = rxEye
+        landmarks106[105 * 2 + 1] = ryEye
         landmarks106[46 * 2] = noseX
         landmarks106[46 * 2 + 1] = noseY
         landmarks106[72 * 2] = mouthX - 75f * sx
@@ -2062,8 +2266,8 @@ class PhotoEditorActivity : Activity() {
      */
 
     private fun applyIrisColorOrLegacy(bitmap: Bitmap, toneId: Int, p: Float, lx: Float, ly: Float, rx: Float, ry: Float) {
-        if (detectedIrisTrack != null) {
-            val iris = detectedIrisTrack!!
+        val iris = detectedIrisTrack
+        if (iris != null && isValidEyeGeometry(iris.leftCenterX, iris.leftCenterY, iris.rightCenterX, iris.rightCenterY, mouthY, bitmap.width, bitmap.height)) {
             MeituNativeEngine.nativeApplyIrisMakeup(
                 bitmap,
                 iris.leftCenterX, iris.leftCenterY, iris.leftRadius,
@@ -2076,8 +2280,8 @@ class PhotoEditorActivity : Activity() {
     }
 
     private fun applyCatchlightOrLegacy(bitmap: Bitmap, typeId: Int, p: Float, lx: Float, ly: Float, rx: Float, ry: Float) {
-        if (detectedIrisTrack != null) {
-            val iris = detectedIrisTrack!!
+        val iris = detectedIrisTrack
+        if (iris != null && isValidEyeGeometry(iris.leftCenterX, iris.leftCenterY, iris.rightCenterX, iris.rightCenterY, mouthY, bitmap.width, bitmap.height)) {
             MeituNativeEngine.nativeApplyIrisMakeup(
                 bitmap,
                 iris.leftCenterX, iris.leftCenterY, iris.leftRadius,
@@ -2225,13 +2429,25 @@ class PhotoEditorActivity : Activity() {
                 MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4109, p)
             }
             "tool_3dmm_brow_shape" -> {
-                MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 500004, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_THICKNESS, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 500004, p)
+                }
             }
             "tool_3dmm_brow_thickness" -> {
-                MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4189, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_THICKNESS, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4189, p)
+                }
             }
             "tool_3dmm_brow_height" -> {
-                MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4181, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_ARCH, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4181, p)
+                }
             }
             "tool_3dmm_lips" -> {
                 MeituNativeEngine.nativeApply3DMMParam(workingBitmap, landmarks106, 4188, p)
@@ -2333,8 +2549,8 @@ class PhotoEditorActivity : Activity() {
                 MeituNativeEngine.nativeApplyEyeShape(workingBitmap, lxEye, lyEye, rxEye, ryEye, 223112, p)
             }
             "tool_eye_pupil", "tool_eye_pupil_enlarge" -> {
-                if (detectedIrisTrack != null) {
-                    val iris = detectedIrisTrack!!
+                val iris = detectedIrisTrack
+                if (iris != null && isValidEyeGeometry(iris.leftCenterX, iris.leftCenterY, iris.rightCenterX, iris.rightCenterY, mouthY, workingBitmap.width, workingBitmap.height)) {
                     MeituNativeEngine.nativeApplyIrisMakeup(
                         workingBitmap,
                         iris.leftCenterX, iris.leftCenterY, iris.leftRadius,
@@ -3086,30 +3302,59 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_brow_thickness" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 1, p)
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_THICKNESS, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrow(workingBitmap, lxEye, lyEye, rxEye, ryEye, 3, p)
+                }
             }
             "tool_brow_arch" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 2, p)
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_ARCH, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrow(workingBitmap, lxEye, lyEye, rxEye, ryEye, 2, p)
+                }
             }
             "tool_brow_density" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, 4, p)
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_DENSITY_FILL, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrow(workingBitmap, lxEye, lyEye, rxEye, ryEye, 4, p)
+                }
             }
             "tool_brow_color_black" -> {
-                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 0, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_COLOR, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 0, p)
+                }
             }
             "tool_brow_color_dark_brown" -> {
-                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 1, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_COLOR, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 1, p)
+                }
             }
             "tool_brow_color_light_brown" -> {
-                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 2, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_COLOR, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 2, p)
+                }
             }
             "tool_brow_color_ash_gray" -> {
-                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 3, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_COLOR, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 3, p)
+                }
             }
             "tool_brow_color_auburn" -> {
-                MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 4, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyEyebrowLash(workingBitmap, lmk, PARAM_BROW_COLOR, p)
+                if (!ok) {
+                    MeituNativeEngine.nativeApplyEyebrowColor(workingBitmap, lxEye, lyEye, rxEye, ryEye, 4, p)
+                }
             }
             "tool_lash_density" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
