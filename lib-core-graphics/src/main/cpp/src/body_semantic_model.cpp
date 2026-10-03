@@ -1,5 +1,7 @@
 #include "body_semantic_model.h"
 #include "background_protection_engine.h"
+#include "ai/movenet_pose_estimator.h"
+#include "ai/selfie_human_parser.h"
 #include <cmath>
 #include <algorithm>
 #include <cstring>
@@ -179,243 +181,38 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
         }
     }
 
-    if (numGiven == 0 && result.head.isValid) {
-        float throatY = result.head.neckClavicle.throatCenter.y;
-        float throatX = result.head.neckClavicle.throatCenter.x;
-        float neckW = std::max(20.0f, result.head.neckClavicle.neckWidth);
-        float headH = std::max(25.0f, result.head.headGeometry.headBox.y2 - result.head.headGeometry.headBox.y1);
-        float availableH = static_cast<float>(height) - throatY;
-        float headUnits = availableH / headH;
+    bool hasRealGivenPose = false;
+    for (size_t i = 0; i < JOINT_COUNT; ++i) {
+        if (result.keypoints[i].visible) {
+            hasRealGivenPose = true;
+            break;
+        }
+    }
 
-        // Head and Neck
-        result.keypoints[JOINT_NOSE].x = result.head.nose.tip.x;
-        result.keypoints[JOINT_NOSE].y = result.head.nose.tip.y;
-        result.keypoints[JOINT_NOSE].confidence = 0.95f;
-        result.keypoints[JOINT_NOSE].visible = true;
-
-        result.keypoints[JOINT_NECK].x = throatX;
-        result.keypoints[JOINT_NECK].y = throatY;
-        result.keypoints[JOINT_NECK].confidence = 0.90f;
-        result.keypoints[JOINT_NECK].visible = true;
-
-        // Shoulders
-        float shoulderY = throatY + neckW * 0.8f;
-        float sLX = throatX - neckW * 1.5f;
-        float sRX = throatX + neckW * 1.5f;
-        bool shoulderInBounds = (shoulderY < static_cast<float>(height) - 5.0f);
-
-        result.keypoints[JOINT_SHOULDER_LEFT].x = sLX;
-        result.keypoints[JOINT_SHOULDER_LEFT].y = shoulderY;
-        result.keypoints[JOINT_SHOULDER_LEFT].confidence = shoulderInBounds ? 0.75f : 0.0f;
-        result.keypoints[JOINT_SHOULDER_LEFT].visible = shoulderInBounds;
-
-        result.keypoints[JOINT_SHOULDER_RIGHT].x = sRX;
-        result.keypoints[JOINT_SHOULDER_RIGHT].y = shoulderY;
-        result.keypoints[JOINT_SHOULDER_RIGHT].confidence = shoulderInBounds ? 0.75f : 0.0f;
-        result.keypoints[JOINT_SHOULDER_RIGHT].visible = shoulderInBounds;
-
-        // Torso / Hips: Requires headUnits >= 2.2f and within image bounds
-        float estTorsoHeight = headH * 2.2f;
-        float hipY = throatY + estTorsoHeight;
-        bool hipInBounds = (headUnits >= 2.2f && hipY < static_cast<float>(height) - 15.0f);
-
-        result.keypoints[JOINT_SPINE_MID].x = throatX;
-        result.keypoints[JOINT_SPINE_MID].y = throatY + estTorsoHeight * 0.5f;
-        result.keypoints[JOINT_SPINE_MID].confidence = hipInBounds ? 0.65f : 0.0f;
-        result.keypoints[JOINT_SPINE_MID].visible = hipInBounds;
-
-        result.keypoints[JOINT_PELVIS_CENTER].x = throatX;
-        result.keypoints[JOINT_PELVIS_CENTER].y = hipY;
-        result.keypoints[JOINT_PELVIS_CENTER].confidence = hipInBounds ? 0.65f : 0.0f;
-        result.keypoints[JOINT_PELVIS_CENTER].visible = hipInBounds;
-
-        result.keypoints[JOINT_HIP_LEFT].x = throatX - neckW * 1.2f;
-        result.keypoints[JOINT_HIP_LEFT].y = hipY;
-        result.keypoints[JOINT_HIP_LEFT].confidence = hipInBounds ? 0.60f : 0.0f;
-        result.keypoints[JOINT_HIP_LEFT].visible = hipInBounds;
-
-        result.keypoints[JOINT_HIP_RIGHT].x = throatX + neckW * 1.2f;
-        result.keypoints[JOINT_HIP_RIGHT].y = hipY;
-        result.keypoints[JOINT_HIP_RIGHT].confidence = hipInBounds ? 0.60f : 0.0f;
-        result.keypoints[JOINT_HIP_RIGHT].visible = hipInBounds;
-
-        // Arms: Elbows and Wrists
-        float elbowY = throatY + headH * 1.3f;
-        float wristY = throatY + headH * 2.3f;
-        bool elbowInBounds = (headUnits >= 1.5f && elbowY < static_cast<float>(height) - 10.0f);
-        bool wristInBounds = (headUnits >= 2.5f && wristY < static_cast<float>(height) - 10.0f);
-
-        result.keypoints[JOINT_ELBOW_LEFT].x = sLX - neckW * 0.5f;
-        result.keypoints[JOINT_ELBOW_LEFT].y = elbowY;
-        result.keypoints[JOINT_ELBOW_LEFT].confidence = elbowInBounds ? 0.55f : 0.0f;
-        result.keypoints[JOINT_ELBOW_LEFT].visible = elbowInBounds;
-
-        result.keypoints[JOINT_ELBOW_RIGHT].x = sRX + neckW * 0.5f;
-        result.keypoints[JOINT_ELBOW_RIGHT].y = elbowY;
-        result.keypoints[JOINT_ELBOW_RIGHT].confidence = elbowInBounds ? 0.55f : 0.0f;
-        result.keypoints[JOINT_ELBOW_RIGHT].visible = elbowInBounds;
-
-        result.keypoints[JOINT_WRIST_LEFT].x = sLX - neckW * 0.4f;
-        result.keypoints[JOINT_WRIST_LEFT].y = wristY;
-        result.keypoints[JOINT_WRIST_LEFT].confidence = wristInBounds ? 0.50f : 0.0f;
-        result.keypoints[JOINT_WRIST_LEFT].visible = wristInBounds;
-
-        result.keypoints[JOINT_WRIST_RIGHT].x = sRX + neckW * 0.4f;
-        result.keypoints[JOINT_WRIST_RIGHT].y = wristY;
-        result.keypoints[JOINT_WRIST_RIGHT].confidence = wristInBounds ? 0.50f : 0.0f;
-        result.keypoints[JOINT_WRIST_RIGHT].visible = wristInBounds;
-
-        // Legs: Knees and Ankles
-        float kneeY = hipY + headH * 1.8f;
-        float ankleY = kneeY + headH * 1.8f;
-        bool kneeInBounds = (headUnits >= 4.2f && kneeY < static_cast<float>(height) - 20.0f);
-        bool ankleInBounds = (headUnits >= 6.0f && ankleY < static_cast<float>(height) - 10.0f);
-
-        result.keypoints[JOINT_KNEE_LEFT].x = throatX - neckW * 1.0f;
-        result.keypoints[JOINT_KNEE_LEFT].y = kneeY;
-        result.keypoints[JOINT_KNEE_LEFT].confidence = kneeInBounds ? 0.55f : 0.0f;
-        result.keypoints[JOINT_KNEE_LEFT].visible = kneeInBounds;
-
-        result.keypoints[JOINT_KNEE_RIGHT].x = throatX + neckW * 1.0f;
-        result.keypoints[JOINT_KNEE_RIGHT].y = kneeY;
-        result.keypoints[JOINT_KNEE_RIGHT].confidence = kneeInBounds ? 0.55f : 0.0f;
-        result.keypoints[JOINT_KNEE_RIGHT].visible = kneeInBounds;
-
-        result.keypoints[JOINT_ANKLE_LEFT].x = throatX - neckW * 0.9f;
-        result.keypoints[JOINT_ANKLE_LEFT].y = ankleY;
-        result.keypoints[JOINT_ANKLE_LEFT].confidence = ankleInBounds ? 0.50f : 0.0f;
-        result.keypoints[JOINT_ANKLE_LEFT].visible = ankleInBounds;
-
-        result.keypoints[JOINT_ANKLE_RIGHT].x = throatX + neckW * 0.9f;
-        result.keypoints[JOINT_ANKLE_RIGHT].y = ankleY;
-        result.keypoints[JOINT_ANKLE_RIGHT].confidence = ankleInBounds ? 0.50f : 0.0f;
-        result.keypoints[JOINT_ANKLE_RIGHT].visible = ankleInBounds;
-
-        // Feet
-        result.keypoints[JOINT_HEEL_LEFT].x = result.keypoints[JOINT_ANKLE_LEFT].x;
-        result.keypoints[JOINT_HEEL_LEFT].y = ankleY + 15.0f;
-        result.keypoints[JOINT_HEEL_LEFT].confidence = (ankleInBounds && result.keypoints[JOINT_HEEL_LEFT].y < static_cast<float>(height)) ? 0.45f : 0.0f;
-        result.keypoints[JOINT_HEEL_LEFT].visible = (result.keypoints[JOINT_HEEL_LEFT].confidence > 0.0f);
-
-        result.keypoints[JOINT_HEEL_RIGHT].x = result.keypoints[JOINT_ANKLE_RIGHT].x;
-        result.keypoints[JOINT_HEEL_RIGHT].y = ankleY + 15.0f;
-        result.keypoints[JOINT_HEEL_RIGHT].confidence = (ankleInBounds && result.keypoints[JOINT_HEEL_RIGHT].y < static_cast<float>(height)) ? 0.45f : 0.0f;
-        result.keypoints[JOINT_HEEL_RIGHT].visible = (result.keypoints[JOINT_HEEL_RIGHT].confidence > 0.0f);
-
-        for (int j = 0; j < JOINT_COUNT; ++j) {
-            result.keypoints[j].pos = {result.keypoints[j].x, result.keypoints[j].y};
-            result.keypoints[j].isVisible = result.keypoints[j].visible;
+    // Phase 01: If posePoints was not supplied, run real MoveNet SinglePose Lightning NCNN inference
+    if (!hasRealGivenPose && pixels != nullptr && meitu::ai::MoveNetPoseEstimator::getInstance().isInitialized()) {
+        std::vector<BodyKeypoint> detectedKp;
+        bool okPose = meitu::ai::MoveNetPoseEstimator::getInstance().detectPose(pixels, width, height, detectedKp);
+        if (okPose && detectedKp.size() >= JOINT_COUNT) {
+            result.keypoints = detectedKp;
+            hasRealGivenPose = true;
         }
     }
 
     result.pose.keypoints = result.keypoints;
-    result.pose.isValid = (result.keypoints[JOINT_NECK].visible ||
-                           (result.keypoints[JOINT_SHOULDER_LEFT].visible &&
-                            result.keypoints[JOINT_SHOULDER_RIGHT].visible));
+    result.pose.isValid = hasRealGivenPose && (
+        (result.keypoints[JOINT_SHOULDER_LEFT].visible && result.keypoints[JOINT_SHOULDER_RIGHT].visible) ||
+        result.keypoints[JOINT_NECK].visible ||
+        (result.keypoints[JOINT_HIP_LEFT].visible && result.keypoints[JOINT_HIP_RIGHT].visible)
+    );
 
-    // Synthesis of parsing mask when not provided
+    // Phase 02: Real Human Parsing via MediaPipe Selfie Segmentation NCNN model
     result.parsingMask.assign(width * height, CLASS_BACKGROUND);
-
-    auto rasterizeCapsule = [&](float x1, float y1, float x2, float y2, float radius, uint8_t classId) {
-        float dx = x2 - x1;
-        float dy = y2 - y1;
-        float len2 = dx * dx + dy * dy;
-        if (len2 < 1.0f) return;
-        float invLen2 = 1.0f / len2;
-
-        int minX = std::max(0, static_cast<int>(std::min(x1, x2) - radius));
-        int maxX = std::min(width - 1, static_cast<int>(std::max(x1, x2) + radius));
-        int minY = std::max(0, static_cast<int>(std::min(y1, y2) - radius));
-        int maxY = std::min(height - 1, static_cast<int>(std::max(y1, y2) + radius));
-        float r2 = radius * radius;
-
-        for (int y = minY; y <= maxY; ++y) {
-            for (int x = minX; x <= maxX; ++x) {
-                float px = x - x1;
-                float py = y - y1;
-                float t = (px * dx + py * dy) * invLen2;
-                t = std::max(0.0f, std::min(1.0f, t));
-                float closeX = x1 + t * dx;
-                float closeY = y1 + t * dy;
-                float d2 = (x - closeX) * (x - closeX) + (y - closeY) * (y - closeY);
-                if (d2 <= r2) {
-                    result.parsingMask[y * width + x] = classId;
-                }
-            }
-        }
-    };
-
-    if (result.pose.isValid) {
-        const auto& sL = result.keypoints[JOINT_SHOULDER_LEFT];
-        const auto& sR = result.keypoints[JOINT_SHOULDER_RIGHT];
-        const auto& hL = result.keypoints[JOINT_HIP_LEFT];
-        const auto& hR = result.keypoints[JOINT_HIP_RIGHT];
-        const auto& neck = result.keypoints[JOINT_NECK];
-
-        float chestW = std::max(20.0f, std::hypot(sL.x - sR.x, sL.y - sR.y));
-        float hipW = std::max(20.0f, std::hypot(hL.x - hR.x, hL.y - hR.y));
-        float neckX = neck.visible ? neck.x : (sL.x + sR.x) * 0.5f;
-        float neckY = neck.visible ? neck.y : (sL.y + sR.y) * 0.5f;
-        float hipMidX = (hL.x + hR.x) * 0.5f;
-        float hipMidY = (hL.y + hR.y) * 0.5f;
-
-        // 1. Than tren (Upper clothes)
-        rasterizeCapsule(neckX, neckY, hipMidX, hipMidY, chestW * 0.55f, CLASS_UPPER_CLOTHES);
-
-        // 2. Hong / Xuong chau (Lower clothes)
-        rasterizeCapsule(hipMidX, hipMidY, hipMidX, hipMidY + hipW * 0.35f, hipW * 0.60f, CLASS_LOWER_CLOTHES);
-
-        // 3. Canh tay trai & phai
-        if (result.keypoints[JOINT_ELBOW_LEFT].visible) {
-            rasterizeCapsule(sL.x, sL.y, result.keypoints[JOINT_ELBOW_LEFT].x, result.keypoints[JOINT_ELBOW_LEFT].y,
-                             chestW * 0.20f, CLASS_ARM_LEFT);
-            if (result.keypoints[JOINT_WRIST_LEFT].visible) {
-                rasterizeCapsule(result.keypoints[JOINT_ELBOW_LEFT].x, result.keypoints[JOINT_ELBOW_LEFT].y,
-                                 result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y,
-                                 chestW * 0.16f, CLASS_ARM_LEFT);
-                rasterizeCapsule(result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y,
-                                 result.keypoints[JOINT_WRIST_LEFT].x, result.keypoints[JOINT_WRIST_LEFT].y + 10.0f,
-                                 chestW * 0.14f, CLASS_HAND_LEFT);
-            }
-        }
-        if (result.keypoints[JOINT_ELBOW_RIGHT].visible) {
-            rasterizeCapsule(sR.x, sR.y, result.keypoints[JOINT_ELBOW_RIGHT].x, result.keypoints[JOINT_ELBOW_RIGHT].y,
-                             chestW * 0.20f, CLASS_ARM_RIGHT);
-            if (result.keypoints[JOINT_WRIST_RIGHT].visible) {
-                rasterizeCapsule(result.keypoints[JOINT_ELBOW_RIGHT].x, result.keypoints[JOINT_ELBOW_RIGHT].y,
-                                 result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y,
-                                 chestW * 0.16f, CLASS_ARM_RIGHT);
-                rasterizeCapsule(result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y,
-                                 result.keypoints[JOINT_WRIST_RIGHT].x, result.keypoints[JOINT_WRIST_RIGHT].y + 10.0f,
-                                 chestW * 0.14f, CLASS_HAND_RIGHT);
-            }
-        }
-
-        // 4. Chan trai & phai
-        if (result.keypoints[JOINT_KNEE_LEFT].visible) {
-            rasterizeCapsule(hL.x, hL.y, result.keypoints[JOINT_KNEE_LEFT].x, result.keypoints[JOINT_KNEE_LEFT].y,
-                             hipW * 0.35f, CLASS_LOWER_CLOTHES);
-            if (result.keypoints[JOINT_ANKLE_LEFT].visible) {
-                rasterizeCapsule(result.keypoints[JOINT_KNEE_LEFT].x, result.keypoints[JOINT_KNEE_LEFT].y,
-                                 result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y,
-                                 hipW * 0.25f, CLASS_LEG_LEFT_SKIN);
-                rasterizeCapsule(result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y,
-                                 result.keypoints[JOINT_ANKLE_LEFT].x, result.keypoints[JOINT_ANKLE_LEFT].y + 12.0f,
-                                 hipW * 0.22f, CLASS_SHOE_LEFT);
-            }
-        }
-        if (result.keypoints[JOINT_KNEE_RIGHT].visible) {
-            rasterizeCapsule(hR.x, hR.y, result.keypoints[JOINT_KNEE_RIGHT].x, result.keypoints[JOINT_KNEE_RIGHT].y,
-                             hipW * 0.35f, CLASS_LOWER_CLOTHES);
-            if (result.keypoints[JOINT_ANKLE_RIGHT].visible) {
-                rasterizeCapsule(result.keypoints[JOINT_KNEE_RIGHT].x, result.keypoints[JOINT_KNEE_RIGHT].y,
-                                 result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y,
-                                 hipW * 0.25f, CLASS_LEG_RIGHT_SKIN);
-                rasterizeCapsule(result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y,
-                                 result.keypoints[JOINT_ANKLE_RIGHT].x, result.keypoints[JOINT_ANKLE_RIGHT].y + 12.0f,
-                                 hipW * 0.22f, CLASS_SHOE_RIGHT);
-            }
-        }
+    bool hasRealParsing = false;
+    if (pixels != nullptr && meitu::ai::SelfieHumanParser::getInstance().isInitialized()) {
+        hasRealParsing = meitu::ai::SelfieHumanParser::getInstance().generateParsingMask(
+            pixels, width, height, result.keypoints, result.parsingMask, &result.overallConfidence
+        );
     }
 
     if (result.head.isValid) {
@@ -425,7 +222,9 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
         int fy2 = std::min(height - 1, static_cast<int>(result.head.headGeometry.headBox.y2));
         for (int y = fy1; y <= fy2; ++y) {
             for (int x = fx1; x <= fx2; ++x) {
-                result.parsingMask[y * width + x] = CLASS_FACE;
+                if (!hasRealParsing || result.parsingMask[y * width + x] != CLASS_BACKGROUND) {
+                    result.parsingMask[y * width + x] = CLASS_FACE;
+                }
             }
         }
     }
@@ -539,38 +338,44 @@ int BodySemanticEngine::checkToolApplicability(
     if (!human.isValid) return APPLICABILITY_INVALID;
 
     if (toolId == "tool_body_legs" || toolId == "tool_long_legs" || toolId == "tool_leg_length") {
-        return (human.hasLegsVisible || human.leftLeg.isVisible || human.rightLeg.isVisible) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        return (human.pose.isValid && (human.hasLegsVisible || human.leftLeg.isVisible || human.rightLeg.isVisible)) ?
+               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_leg_slim" || toolId == "tool_body_legs_slim") {
-        return (human.leftLeg.isVisible || human.rightLeg.isVisible) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        return (human.pose.isValid && (human.leftLeg.isVisible || human.rightLeg.isVisible)) ?
+               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_height" || toolId == "tool_height") {
         bool hasTorso = human.keypoints[JOINT_HIP_LEFT].visible && human.keypoints[JOINT_HIP_RIGHT].visible;
-        return (hasTorso || human.hasLegsVisible) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        return (human.pose.isValid && (hasTorso || human.hasLegsVisible)) ?
+               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_waist" || toolId == "tool_body_slim" || toolId == "tool_body_hip" || toolId == "tool_hip_enhance") {
-        bool hasWaist = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible ||
-                        (human.torso.waistCenterY > 0.0f && human.torso.waistCenterY < static_cast<float>(human.frameHeight) - 20.0f);
-        return hasWaist ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        bool hasTorsoShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
+        bool hasHips = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible;
+        return (human.pose.isValid && hasTorsoShoulders && hasHips) ?
+               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_chest") {
-        bool hasChest = (human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible &&
-                         human.torso.chestCenter.y < static_cast<float>(human.frameHeight) - 15.0f);
-        return hasChest ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        bool hasChest = human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible &&
+                        human.torso.chestCenter.y < static_cast<float>(human.frameHeight) - 15.0f;
+        return (human.pose.isValid && hasChest) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_shoulder" || toolId == "tool_neck_slim" || toolId == "tool_body_neck" ||
         toolId == "tool_neck_length" || toolId == "tool_swan_neck" || toolId == "tool_clavicle_enhance" ||
         toolId == "tool_face_neck_tone") {
-        return human.keypoints[JOINT_NECK].visible ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        bool hasShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
+        return hasShoulders ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_arm" || toolId == "tool_arm_slim") {
-        return (human.leftArm.isVisible || human.rightArm.isVisible) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        return (human.pose.isValid && (human.leftArm.isVisible || human.rightArm.isVisible)) ?
+               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_skin_smooth" || toolId == "tool_body_skin_whiten") {
-        return APPLICABILITY_APPLICABLE;
+        return human.isValid ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
 
-    return APPLICABILITY_APPLICABLE;
+    return human.isValid ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
 }
 
 } // namespace meitu_native

@@ -1,0 +1,16 @@
+tool_id,canonical_native_method,prerequisites,neural_pose_required,neural_parsing_required,param_index_or_mode,warp_strategy
+tool_body_slim,nativeApplyBodyBeauty,pose.isValid && pose.hasTorso,TRUE,TRUE,2,Inward MLS Contraction + Vacated Hole Infill
+tool_body_waist,nativeApplyBodyBeauty,pose.isValid && pose.hasTorso,TRUE,TRUE,3,Waist Inward Bilateral Warp + Hole Infill
+tool_body_shoulder,nativeApplyBodyBeauty,pose.isValid && pose.hasShoulders,TRUE,TRUE,7,Shoulder Span MLS Warp + BG Preservation
+tool_body_arm,nativeApplyBodyBeauty,pose.isValid && pose.hasArms,TRUE,TRUE,9,Arm Boundary Preserving Radial MLS Warp
+tool_body_legs,nativeApplyBodyBeauty,pose.isValid && pose.hasLegs,TRUE,TRUE,10,Limb Boundary Preserving MLS Warp
+tool_long_legs,nativeApplyBodyBeauty,pose.isValid && pose.hasLegs,TRUE,TRUE,10,Vertical Limb Stretch with Floor Anchor
+tool_body_height,nativeApplyBodyBeauty,pose.isValid && pose.hasWholeBody,TRUE,TRUE,0,Full Body Vertical Metric Scaling
+tool_body_chest,nativeApplyChestReshape,pose.isValid && pose.hasTorso,TRUE,TRUE,-1,Dual Hemisphere Dual Radial MLS Warping
+tool_body_hip,nativeApplyBodyBeauty,pose.isValid && pose.hasHips,TRUE,TRUE,5,Outward Bilateral Composite Warp
+tool_body_neck,nativeApplyNeckClavicle,pose.isValid || head.isHeadValid,FALSE,TRUE,1,Lateral Neck Inward MLS Warp
+tool_neck_length,nativeApplyNeckClavicle,pose.isValid || head.isHeadValid,FALSE,TRUE,2,Vertical Neck Stretch with Chin Anchor
+tool_clavicle_enhance,nativeApplyClavicleShoulderEdit,pose.isValid || head.isHeadValid,FALSE,TRUE,2201,Clavicle Ridge Shadow/Highlight Shading
+tool_body_skin_smooth,nativeApplyBodyBeauty,pose.isValid || parsing.hasPerson,FALSE,TRUE,13,Person Mask Bounded Bilateral Pore Filter
+tool_body_skin_whiten,nativeApplyBodyBeauty,pose.isValid || parsing.hasPerson,FALSE,TRUE,14,Person Mask Bounded Melanin Curve Shift
+tool_face_neck_tone,nativeApplyNeckClavicle,head.isHeadValid,FALSE,TRUE,5,Facial LAB Skin Tone Transfer to Neck Mask

@@ -1,4 +1,4 @@
-﻿#ifndef MEITU_BACKGROUND_PROTECTION_ENGINE_H
+#ifndef MEITU_BACKGROUND_PROTECTION_ENGINE_H
 #define MEITU_BACKGROUND_PROTECTION_ENGINE_H
 
 #include <vector>
@@ -56,7 +56,21 @@ public:
         int width, int height,
         const uint8_t* parsingMask,
         const float* dxField,
-        const float* dyField
+        const float* dyField,
+        const std::vector<meitu_native::StructuralLine>* lines = nullptr
+    );
+
+    /**
+     * @brief Structure-aware reconstruction of newly exposed vacated holes.
+     * Preserves straight lines (doors, walls, floor lines) and texture continuity.
+     */
+    void reconstructVacatedHoles(
+        uint32_t* currentPixels,
+        const uint32_t* originalSnapshot,
+        int width, int height,
+        const uint8_t* isVacatedMask,
+        const uint8_t* parsingMask,
+        const std::vector<meitu_native::StructuralLine>* lines = nullptr
     );
 };
 

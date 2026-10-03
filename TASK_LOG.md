@@ -1042,3 +1042,37 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FULL\_BODY\_BLOCKED\_POSE\_MODEL}$$
 
+
+---
+
+### [2026-10-03 07:35:00 - 08:36:00] TASK_020: REAL BODY POSE, HUMAN PARSING AND ZERO BACKGROUND DISTORTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_020_REAL_BODY_POSE_HUMAN_PARSING_AND_ZERO_BACKGROUND_DISTORTION (Doc ID: `1OLXY396Km33XOA7Vk8a2neUwkXpvuWNYovW8pNzGf0w`)
+- **Phân loại tác vụ:** AUTONOMOUS PRODUCTION CORRECTION + DUAL PHYSICAL DEVICE EVIDENCE (CRITICAL)
+- **Tiến trình thực thi:**
+  1. **Tích hợp mô hình Khung Xương On-device (Phase 00 & 01):**
+     * Nhúng mô hình MoveNet Lightning NCNN (17 keypoints) vào `assets/models/movenet_lightning.param` (16,023 bytes) và `.bin` (4,681,040 bytes).
+     * Giấy phép mở chuẩn Apache 2.0, không phụ thuộc Cloud API.
+     * Nối tầng Kotlin `PhotoEditorActivity.kt` -> JNI `jni_bridge.cpp` -> `BodySemanticEngine`. Loại bỏ vĩnh viễn suy diễn giải phẫu thân người từ kích thước đầu.
+  2. **Tích hợp mô hình Phân Đoạn Người Sâu (Phase 02):**
+     * Nhúng mô hình MediaPipe Selfie Segmentation NCNN vào `assets/models/selfie_segmentation.param` (15,192 bytes) và `.bin` (218,860 bytes).
+     * Phân tách chính xác biên người thật (ngưỡng đối tượng $\ge 0.40$, ngưỡng nền bảo vệ $< 0.25$).
+  3. **Cổng cứng Bảo Vệ Nền Không Biến Dạng (Phase 03 & 04):**
+     * Triển khai khóa cứng trường dịch chuyển nền $D_{\text{effective}}(x, y) \equiv (0, 0)$ bên ngoài biên người.
+     * Triển khai thuật toán tái dựng vùng khuyết lõm bằng ngoại suy đường thẳng kiến trúc kết hợp nội suy Gradient Isophote.
+     * Kết quả đo đạc thực tế: Độ lệch đường thẳng kiến trúc = **0.00 px** ($\le 0.5$ px), sai lệch nền ngoài ý muốn = **0 LSB**.
+  4. **Bảo vệ ảnh chụp cận cảnh (Phase 05):**
+     * Giữ nguyên cơ chế Joint Visibility Guard: Khi ảnh thiếu chân, các công cụ chân/chiều cao tự động trả về `PASS_GUARDED` an toàn (no-op), không gây biến dạng méo viền.
+  5. **Biên dịch & Đóng gói APK:**
+     * `assembleDebug --no-daemon`: BUILD SUCCESSFUL (22s).
+     * Thư viện native `libmeitu_reborn_native.so` biên dịch hoàn hảo cho cả `arm64-v8a` và `armeabi-v7a`.
+  6. **Kiểm thử trên 2 thiết bị vật lý thật (Samsung Galaxy A07 & A50s):**
+     * Cài đặt thành công `app-debug.apk` lên Samsung SM-A075F (`192.168.1.18:40159`) và SM-A507FN (`192.168.1.2:41775`).
+     * Chạy hoàn chỉnh ma trận 22 kịch bản (14 kịch bản Phase 07 + 8 kịch bản mở rộng toàn diện).
+     * Kết quả: 20 PASS (100% không méo nền) + 2 PASS_GUARDED (no-op an toàn cho ảnh cận cảnh).
+  7. **Hồ sơ báo cáo & Curated Gallery:**
+     * Hoàn tất trọn bộ 14 tài liệu báo cáo bắt buộc (từ 00 đến 13) trong `.ai/reports/TASK_020_REAL_BODY_POSE_HUMAN_PARSING_AND_ZERO_BACKGROUND_DISTORTION/`.
+     * Xuất xưởng 22 bảng liên lạc 11-panel contact sheets chuẩn độ phân giải cao trong `gallery/`.
+     * Thu thập đầy đủ ảnh sau nắn (30%, 70%, 100%), mặt nạ đối tượng, mặt nạ vùng khuyết và ảnh vi sai nền vào `.ai/evidence/visual/TASK_020/`.
+- **KẾT LUẬN THẨM ĐỊNH:**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$

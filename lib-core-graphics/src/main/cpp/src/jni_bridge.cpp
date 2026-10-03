@@ -39,6 +39,8 @@
 #include "body_beauty_engine.h"
 #include "full_human_beauty_controller.h"
 #include "ai/bisenet_face_parser.h"
+#include "ai/movenet_pose_estimator.h"
+#include "ai/selfie_human_parser.h"
 #include "media/video/video_timeline_compositor.h"
 #include "hair/hair_color_pipeline.h"
 #include "hair/hair_gpu_backend.h"
@@ -4374,8 +4376,101 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeRunHceDeviceBenchmark(
     return env->NewStringUTF(resBuf);
 }
 
+// 89. Body Pose Estimator (MoveNet SinglePose Lightning v4)
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeInitBodyPoseEstimator(
+    JNIEnv* env, jclass clazz,
+    jstring paramPath, jstring binPath
+) {
+    if (!paramPath || !binPath) return JNI_FALSE;
+    const char* cParam = env->GetStringUTFChars(paramPath, nullptr);
+    const char* cBin = env->GetStringUTFChars(binPath, nullptr);
+    bool ok = meitu::ai::MoveNetPoseEstimator::getInstance().init(cParam, cBin);
+    env->ReleaseStringUTFChars(paramPath, cParam);
+    env->ReleaseStringUTFChars(binPath, cBin);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
 
+extern "C" JNIEXPORT jfloatArray JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeDetectBodyPose(
+    JNIEnv* env, jclass clazz,
+    jobject bitmap
+) {
+    if (!bitmap) return nullptr;
+    AndroidBitmapInfo info;
+    if (AndroidBitmap_getInfo(env, bitmap, &info) < 0 || info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        return nullptr;
+    }
+    void* pixelAddr = nullptr;
+    if (AndroidBitmap_lockPixels(env, bitmap, &pixelAddr) < 0) return nullptr;
 
+    std::vector<meitu_native::BodyKeypoint> kps;
+    bool ok = meitu::ai::MoveNetPoseEstimator::getInstance().detectPose(
+        static_cast<const uint32_t*>(pixelAddr),
+        info.width, info.height,
+        kps
+    );
 
+    AndroidBitmap_unlockPixels(env, bitmap);
 
+    if (!ok || kps.empty()) return nullptr;
 
+    jsize totalFloats = static_cast<jsize>(kps.size() * 3);
+    jfloatArray result = env->NewFloatArray(totalFloats);
+    std::vector<float> buffer(totalFloats);
+    for (size_t i = 0; i < kps.size(); ++i) {
+        buffer[i * 3 + 0] = kps[i].x;
+        buffer[i * 3 + 1] = kps[i].y;
+        buffer[i * 3 + 2] = kps[i].confidence;
+    }
+    env->SetFloatArrayRegion(result, 0, totalFloats, buffer.data());
+    return result;
+}
+
+// 90. Human Parsing & Segmentation (MediaPipe MobileNetV3 Selfie Segmentation)
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeInitHumanParsing(
+    JNIEnv* env, jclass clazz,
+    jstring paramPath, jstring binPath
+) {
+    if (!paramPath || !binPath) return JNI_FALSE;
+    const char* cParam = env->GetStringUTFChars(paramPath, nullptr);
+    const char* cBin = env->GetStringUTFChars(binPath, nullptr);
+    bool ok = meitu::ai::SelfieHumanParser::getInstance().init(cParam, cBin);
+    env->ReleaseStringUTFChars(paramPath, cParam);
+    env->ReleaseStringUTFChars(binPath, cBin);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeSegmentHuman(
+    JNIEnv* env, jclass clazz,
+    jobject bitmap,
+    jbyteArray outMask
+) {
+    if (!bitmap || !outMask) return JNI_FALSE;
+    AndroidBitmapInfo info;
+    if (AndroidBitmap_getInfo(env, bitmap, &info) < 0 || info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        return JNI_FALSE;
+    }
+    jsize len = env->GetArrayLength(outMask);
+    if (len < static_cast<jsize>(info.width * info.height)) return JNI_FALSE;
+
+    void* pixelAddr = nullptr;
+    if (AndroidBitmap_lockPixels(env, bitmap, &pixelAddr) < 0) return JNI_FALSE;
+
+    std::vector<float> prob;
+    std::vector<uint8_t> binMask;
+    bool ok = meitu::ai::SelfieHumanParser::getInstance().segmentPerson(
+        static_cast<const uint32_t*>(pixelAddr),
+        info.width, info.height,
+        prob, binMask
+    );
+
+    if (ok && binMask.size() == static_cast<size_t>(info.width * info.height)) {
+        env->SetByteArrayRegion(outMask, 0, info.width * info.height, reinterpret_cast<const jbyte*>(binMask.data()));
+    }
+
+    AndroidBitmap_unlockPixels(env, bitmap);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}

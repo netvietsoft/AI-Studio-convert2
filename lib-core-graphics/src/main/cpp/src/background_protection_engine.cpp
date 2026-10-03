@@ -1,4 +1,4 @@
-﻿#include "background_protection_engine.h"
+#include "background_protection_engine.h"
 #include <cmath>
 #include <algorithm>
 #include <cstring>
@@ -253,21 +253,160 @@ void BackgroundProtectionEngine::attenuateBoundaryLeakage(
     }
 }
 
+void BackgroundProtectionEngine::reconstructVacatedHoles(
+    uint32_t* currentPixels,
+    const uint32_t* originalSnapshot,
+    int width, int height,
+    const uint8_t* isVacatedMask,
+    const uint8_t* parsingMask,
+    const std::vector<meitu_native::StructuralLine>* lines
+) {
+    if (!currentPixels || !originalSnapshot || width <= 0 || height <= 0 || !isVacatedMask) {
+        return;
+    }
+
+    #pragma omp parallel for
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            int idx = y * width + x;
+            if (!isVacatedMask[idx]) {
+                if (parsingMask && parsingMask[idx] == CLASS_BACKGROUND) {
+                    currentPixels[idx] = originalSnapshot[idx];
+                }
+                continue;
+            }
+
+            // 1. Kiem tra xem co duong thang cau truc (tuong, cua, san nha) cat qua pixel bi bo trong khong
+            bool lineHandled = false;
+            if (lines) {
+                for (const auto& line : *lines) {
+                    if (line.type == LINE_WALL_VERTICAL && std::abs(static_cast<float>(x) - line.x1) <= 3.5f) {
+                        uint32_t topPix = 0, botPix = 0;
+                        bool hasTop = false, hasBot = false;
+                        for (int dy = 1; dy <= 40; ++dy) {
+                            int sy = y - dy;
+                            if (sy >= 0 && (!isVacatedMask[sy * width + x] || (parsingMask && parsingMask[sy * width + x] == CLASS_BACKGROUND))) {
+                                topPix = originalSnapshot[sy * width + x];
+                                hasTop = true;
+                                break;
+                            }
+                        }
+                        for (int dy = 1; dy <= 40; ++dy) {
+                            int sy = y + dy;
+                            if (sy < height && (!isVacatedMask[sy * width + x] || (parsingMask && parsingMask[sy * width + x] == CLASS_BACKGROUND))) {
+                                botPix = originalSnapshot[sy * width + x];
+                                hasBot = true;
+                                break;
+                            }
+                        }
+                        if (hasTop && hasBot) {
+                            uint8_t r = static_cast<uint8_t>(((topPix & 0xFF) + (botPix & 0xFF)) >> 1);
+                            uint8_t g = static_cast<uint8_t>((((topPix >> 8) & 0xFF) + ((botPix >> 8) & 0xFF)) >> 1);
+                            uint8_t b = static_cast<uint8_t>((((topPix >> 16) & 0xFF) + ((botPix >> 16) & 0xFF)) >> 1);
+                            currentPixels[idx] = r | (g << 8) | (b << 16) | 0xFF000000;
+                            lineHandled = true;
+                            break;
+                        } else if (hasTop) {
+                            currentPixels[idx] = topPix;
+                            lineHandled = true;
+                            break;
+                        } else if (hasBot) {
+                            currentPixels[idx] = botPix;
+                            lineHandled = true;
+                            break;
+                        }
+                    } else if (line.type == LINE_FLOOR_HORIZONTAL && std::abs(static_cast<float>(y) - line.y1) <= 3.5f) {
+                        uint32_t leftPix = 0, rightPix = 0;
+                        bool hasLeft = false, hasRight = false;
+                        for (int dx = 1; dx <= 40; ++dx) {
+                            int sx = x - dx;
+                            if (sx >= 0 && (!isVacatedMask[y * width + sx] || (parsingMask && parsingMask[y * width + sx] == CLASS_BACKGROUND))) {
+                                leftPix = originalSnapshot[y * width + sx];
+                                hasLeft = true;
+                                break;
+                            }
+                        }
+                        for (int dx = 1; dx <= 40; ++dx) {
+                            int sx = x + dx;
+                            if (sx < width && (!isVacatedMask[y * width + sx] || (parsingMask && parsingMask[y * width + sx] == CLASS_BACKGROUND))) {
+                                rightPix = originalSnapshot[y * width + sx];
+                                hasRight = true;
+                                break;
+                            }
+                        }
+                        if (hasLeft && hasRight) {
+                            uint8_t r = static_cast<uint8_t>(((leftPix & 0xFF) + (rightPix & 0xFF)) >> 1);
+                            uint8_t g = static_cast<uint8_t>((((leftPix >> 8) & 0xFF) + ((rightPix >> 8) & 0xFF)) >> 1);
+                            uint8_t b = static_cast<uint8_t>((((leftPix >> 16) & 0xFF) + ((rightPix >> 16) & 0xFF)) >> 1);
+                            currentPixels[idx] = r | (g << 8) | (b << 16) | 0xFF000000;
+                            lineHandled = true;
+                            break;
+                        } else if (hasLeft) {
+                            currentPixels[idx] = leftPix;
+                            lineHandled = true;
+                            break;
+                        } else if (hasRight) {
+                            currentPixels[idx] = rightPix;
+                            lineHandled = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (lineHandled) continue;
+
+            // 2. Tinh toan noi suy ket cau huong Gradient (Isophote Directional Continuity)
+            float sumW = 0.0f;
+            float sumR = 0.0f, sumG = 0.0f, sumB = 0.0f;
+            const int dirs[8][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}, {-1,-1}, {1,-1}, {-1,1}, {1,1}};
+
+            for (int d = 0; d < 8; ++d) {
+                int stepX = dirs[d][0];
+                int stepY = dirs[d][1];
+                for (int s = 1; s <= 24; ++s) {
+                    int nx = x + stepX * s;
+                    int ny = y + stepY * s;
+                    if (nx < 0 || nx >= width || ny < 0 || ny >= height) break;
+                    int nidx = ny * width + nx;
+                    if (!isVacatedMask[nidx] && (!parsingMask || parsingMask[nidx] == CLASS_BACKGROUND)) {
+                        uint32_t p = originalSnapshot[nidx];
+                        float dist = static_cast<float>(s);
+                        float weight = 1.0f / (dist * dist);
+                        sumR += (p & 0xFF) * weight;
+                        sumG += ((p >> 8) & 0xFF) * weight;
+                        sumB += ((p >> 16) & 0xFF) * weight;
+                        sumW += weight;
+                        break;
+                    }
+                }
+            }
+
+            if (sumW > 1e-4f) {
+                uint8_t r = static_cast<uint8_t>(std::max(0.0f, std::min(255.0f, sumR / sumW)));
+                uint8_t g = static_cast<uint8_t>(std::max(0.0f, std::min(255.0f, sumG / sumW)));
+                uint8_t b = static_cast<uint8_t>(std::max(0.0f, std::min(255.0f, sumB / sumW)));
+                currentPixels[idx] = r | (g << 8) | (b << 16) | 0xFF000000;
+            } else {
+                currentPixels[idx] = originalSnapshot[idx];
+            }
+        }
+    }
+}
+
 void BackgroundProtectionEngine::synthesizeVacatedBackground(
     uint32_t* currentPixels,
     const uint32_t* originalSnapshot,
     int width, int height,
     const uint8_t* parsingMask,
     const float* dxField,
-    const float* dyField
+    const float* dyField,
+    const std::vector<meitu_native::StructuralLine>* lines
 ) {
     if (!currentPixels || !originalSnapshot || width <= 0 || height <= 0 || !parsingMask || !dxField || !dyField) {
         return;
     }
 
-    // Phat hien cac pixel thuoc vung bi bo trong khi co the thu gon (Inward contraction)
-    // Mot pixel duoc xem la vacated neu no von la bien co the (parsingMask != BG)
-    // nhung sau bien dang, diem lay mau (srcX, srcY) da roi xa khoi pixel do huong vao trong tam co the.
     std::vector<uint8_t> isVacated(width * height, 0);
 
     #pragma omp parallel for
@@ -275,12 +414,10 @@ void BackgroundProtectionEngine::synthesizeVacatedBackground(
         for (int x = 1; x < width - 1; ++x) {
             int idx = y * width + x;
             if (parsingMask[idx] == CLASS_BACKGROUND) {
-                // Background nguyen thuy: giu nguyen 100% tu snapshot goc
                 currentPixels[idx] = originalSnapshot[idx];
                 continue;
             }
 
-            // Kiem tra neu pixel nam sat bien va co chuyen vi co ngot huong vao trong
             bool nearBg = (parsingMask[idx - 1] == CLASS_BACKGROUND ||
                            parsingMask[idx + 1] == CLASS_BACKGROUND ||
                            parsingMask[idx - width] == CLASS_BACKGROUND ||
@@ -295,40 +432,7 @@ void BackgroundProtectionEngine::synthesizeVacatedBackground(
         }
     }
 
-    // Diffusion noi suy ket cau background vao vung bi bo trong
-    // Giu tuong, cua va vat the phia sau luon lien tuc va thang hang
-    for (int pass = 0; pass < 2; ++pass) {
-        #pragma omp parallel for
-        for (int y = 1; y < height - 1; ++y) {
-            for (int x = 1; x < width - 1; ++x) {
-                int idx = y * width + x;
-                if (!isVacated[idx]) continue;
-
-                // Lay mau trung binh tu cac pixel background lan can trong snapshot goc
-                int bgCount = 0;
-                int sumR = 0, sumG = 0, sumB = 0;
-                const int nIdx[4] = {idx - 1, idx + 1, idx - width, idx + width};
-
-                for (int k = 0; k < 4; ++k) {
-                    int ni = nIdx[k];
-                    if (parsingMask[ni] == CLASS_BACKGROUND) {
-                        uint32_t p = originalSnapshot[ni];
-                        sumR += p & 0xFF;
-                        sumG += (p >> 8) & 0xFF;
-                        sumB += (p >> 16) & 0xFF;
-                        bgCount++;
-                    }
-                }
-
-                if (bgCount > 0) {
-                    uint8_t r = static_cast<uint8_t>(sumR / bgCount);
-                    uint8_t g = static_cast<uint8_t>(sumG / bgCount);
-                    uint8_t b = static_cast<uint8_t>(sumB / bgCount);
-                    currentPixels[idx] = r | (g << 8) | (b << 16) | 0xFF000000;
-                }
-            }
-        }
-    }
+    reconstructVacatedHoles(currentPixels, originalSnapshot, width, height, isVacated.data(), parsingMask, lines);
 }
 
 } // namespace body

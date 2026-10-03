@@ -78,6 +78,8 @@ add_library(
     src/body_beauty_engine.cpp
     src/full_human_beauty_controller.cpp
     src/ai/bisenet_face_parser.cpp
+    src/ai/movenet_pose_estimator.cpp
+    src/ai/selfie_human_parser.cpp
     src/media/video/native_video_decoder.cpp
     src/media/video/video_frame_pool.cpp
     src/media/video/video_timeline_compositor.cpp

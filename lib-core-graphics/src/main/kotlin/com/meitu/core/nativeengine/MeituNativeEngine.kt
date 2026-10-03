@@ -1082,6 +1082,20 @@ object MeituNativeEngine {
     @JvmStatic
     external fun nativeExtractBiSeNetClassMask(mask512: ByteArray, classId: Int, outAlpha512: ByteArray): Boolean
 
+    // 92. MoveNet SinglePose Lightning v4 Body Pose Estimator (Apache 2.0)
+    @JvmStatic
+    external fun nativeInitBodyPoseEstimator(paramPath: String, binPath: String): Boolean
+
+    @JvmStatic
+    external fun nativeDetectBodyPose(bitmap: Bitmap): FloatArray?
+
+    // 93. MediaPipe MobileNetV3 Selfie Human Parsing & Segmentation (Apache 2.0)
+    @JvmStatic
+    external fun nativeInitHumanParsing(paramPath: String, binPath: String): Boolean
+
+    @JvmStatic
+    external fun nativeSegmentHuman(bitmap: Bitmap, outMask: ByteArray): Boolean
+
     // 91. C++ Video Timeline Compositor (NDK MediaCodec + Optical Flow + LUT Filters)
     @JvmStatic
     external fun nativeVideoInitCompositor(): Boolean

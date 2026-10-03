@@ -303,19 +303,6 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
             int idx = y * width + x;
 
             if (isVacated[idx]) {
-                // VÙNG KHOẢNG TRỐNG LỘ RA KHI THU GỌN VÀO (Vacated Infill Gap):
-                // Nội suy tiếp diễn cấu trúc background tự nhiên từ ngoài biên cũ [xL, xR]
-                // mà không kéo dãn vệt sọc bệt 1D.
-                float fx = static_cast<float>(x);
-                int bgSampleX = 0;
-                if (fx < midX) {
-                    float offset = newXL - fx;
-                    bgSampleX = std::max(0, static_cast<int>(std::round(xL - offset - 1.0f)));
-                } else {
-                    float offset = fx - newXR;
-                    bgSampleX = std::min(width - 1, static_cast<int>(std::round(xR + offset + 1.0f)));
-                }
-                pixels[idx] = snapshot[y * width + bgSampleX];
                 continue;
             }
 
@@ -354,6 +341,9 @@ void BodyBeautyEngine::applyBoundaryPreservingWarp(
             }
         }
     }
+
+    // Structure-aware reconstruction of vacated holes preserving lines and textures
+    mBgEngine.reconstructVacatedHoles(pixels, snapshot.data(), width, height, isVacated.data(), nullptr, nullptr);
 }
 
 void BodyBeautyEngine::detectLimbSilhouetteBounds(
@@ -584,14 +574,6 @@ void BodyBeautyEngine::applyLimbBoundaryPreservingWarp(
             int idx = y * width + x;
 
             if (isVacated[idx]) {
-                // Bù lấp background từ ngoài vào cho khoảng trống lộ ra của chi
-                float px = static_cast<float>(x) - p1.x;
-                float py = static_cast<float>(y) - p1.y;
-                float perpDist = px * nx + py * ny;
-                float sign = (perpDist > 0.0f) ? 1.0f : -1.0f;
-                int bgX = std::max(0, std::min(width - 1, static_cast<int>(std::round(static_cast<float>(x) + nx * sign * 3.0f))));
-                int bgY = std::max(0, std::min(height - 1, static_cast<int>(std::round(static_cast<float>(y) + ny * sign * 3.0f))));
-                pixels[idx] = snapshot[bgY * width + bgX];
                 continue;
             }
 
@@ -604,6 +586,9 @@ void BodyBeautyEngine::applyLimbBoundaryPreservingWarp(
             }
         }
     }
+
+    // Structure-aware reconstruction of limb vacated holes
+    mBgEngine.reconstructVacatedHoles(pixels, snapshot.data(), width, height, isVacated.data(), parsingMask, nullptr);
 }
 
 // 1. KEO DAI CHAN TU NHIEN (LONG LEGS - SPEC Section 75)

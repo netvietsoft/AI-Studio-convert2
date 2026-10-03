@@ -946,6 +946,7 @@ class PhotoEditorActivity : Activity() {
     private var detectedCanthusPoints: FloatArray? = null
     private var detectedDenseMesh478: FloatArray? = null
     private var hasRealFace = false
+    private var cachedPosePoints: FloatArray? = null
 
     // Danh sách 14 danh mục chuẩn Meitu v12.17.8 bao phủ toàn diện theo FUNCTIONAL_MAP_MEITU.txt
     private val categories = PRODUCTION_CATEGORIES
@@ -1003,8 +1004,46 @@ class PhotoEditorActivity : Activity() {
                 binFile.absolutePath
             )
             Log.i("PhotoEditorActivity", "NCNN Hair Matting Initialized in Activity: $hairMattingOk")
+
+            // 2. MoveNet SinglePose Lightning v4 Body Pose Estimator (Apache 2.0)
+            val poseParam = java.io.File(modelDir, "movenet_lightning.param")
+            val poseBin = java.io.File(modelDir, "movenet_lightning.bin")
+            if (!poseParam.exists() || poseParam.length() == 0L) {
+                assets.open("models/movenet_lightning.param").use { inp ->
+                    java.io.FileOutputStream(poseParam).use { out -> inp.copyTo(out) }
+                }
+            }
+            if (!poseBin.exists() || poseBin.length() == 0L) {
+                assets.open("models/movenet_lightning.bin").use { inp ->
+                    java.io.FileOutputStream(poseBin).use { out -> inp.copyTo(out) }
+                }
+            }
+            val poseOk = MeituNativeEngine.nativeInitBodyPoseEstimator(
+                poseParam.absolutePath,
+                poseBin.absolutePath
+            )
+            Log.i("PhotoEditorActivity", "MoveNet Body Pose Estimator Initialized in Activity: $poseOk")
+
+            // 3. MediaPipe MobileNetV3 Selfie Segmentation Human Parser (Apache 2.0)
+            val segParam = java.io.File(modelDir, "selfie_segmentation.param")
+            val segBin = java.io.File(modelDir, "selfie_segmentation.bin")
+            if (!segParam.exists() || segParam.length() == 0L) {
+                assets.open("models/selfie_segmentation.param").use { inp ->
+                    java.io.FileOutputStream(segParam).use { out -> inp.copyTo(out) }
+                }
+            }
+            if (!segBin.exists() || segBin.length() == 0L) {
+                assets.open("models/selfie_segmentation.bin").use { inp ->
+                    java.io.FileOutputStream(segBin).use { out -> inp.copyTo(out) }
+                }
+            }
+            val parsingOk = MeituNativeEngine.nativeInitHumanParsing(
+                segParam.absolutePath,
+                segBin.absolutePath
+            )
+            Log.i("PhotoEditorActivity", "MediaPipe Human Parsing Initialized in Activity: $parsingOk")
         } catch (e: Throwable) {
-            Log.w("PhotoEditorActivity", "Failed to init Hair Matting: ${e.message}")
+            Log.w("PhotoEditorActivity", "Failed to init Hair/Body Models: ${e.message}")
         }
 
         initDefaultPortraitPhoto()
@@ -1826,6 +1865,15 @@ class PhotoEditorActivity : Activity() {
         lEarY = 490f * sy
         rEarX = 700f * sx
         rEarY = 490f * sy
+
+        // AI Body Pose Estimator (MoveNet SinglePose Lightning v4 - Apache 2.0)
+        try {
+            cachedPosePoints = MeituNativeEngine.nativeDetectBodyPose(baseLayerBitmap)
+            Log.i("PhotoEditorActivity", "Detected Body Pose: ${cachedPosePoints != null && cachedPosePoints!!.isNotEmpty()}")
+        } catch (e: Throwable) {
+            Log.w("PhotoEditorActivity", "Body pose detection failed: ${e.message}")
+            cachedPosePoints = null
+        }
 
         hasRealFace = false
         // Thử chạy AI Face Detector 106 điểm nếu có và hợp lệ
@@ -3290,7 +3338,7 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(17)
                 params[2] = p // slimBody
-                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_slim: not applicable for current image framing")
                 }
@@ -3300,7 +3348,7 @@ class PhotoEditorActivity : Activity() {
                 val params = FloatArray(17)
                 params[3] = p // waistSlim
                 params[4] = p * 0.8f // waistCurve
-                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_waist: not applicable for current image framing")
                 }
@@ -3312,7 +3360,7 @@ class PhotoEditorActivity : Activity() {
                     val params = FloatArray(17)
                     params[7] = p // shoulderSlim
                     params[8] = p * 0.5f // shoulderBalance
-                    val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                    val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                     if (!ok) {
                         android.util.Log.d("PhotoEditorActivity", "tool_body_shoulder: not applicable or failed")
                     }
@@ -3322,7 +3370,7 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(17)
                 params[9] = p // armSlim
-                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_neck", "tool_neck_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
@@ -3424,7 +3472,7 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(17)
                 params[10] = p // longLegs
-                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_legs: not applicable for current image framing (legs not in frame)")
                 }
@@ -3433,11 +3481,11 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(17)
                 params[0] = p // bodyHeight
-                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_chest" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val ok = MeituNativeEngine.nativeApplyChestReshape(workingBitmap, null, lmk, p)
+                val ok = MeituNativeEngine.nativeApplyChestReshape(workingBitmap, cachedPosePoints, lmk, p)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_chest: not applicable for current image framing")
                 }
@@ -3446,7 +3494,7 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(17)
                 params[5] = p // hipEnhance
-                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_hip: not applicable for current image framing")
                 }
@@ -3455,13 +3503,13 @@ class PhotoEditorActivity : Activity() {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(16)
                 params[13] = p // bodySkinSmooth
-                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_skin_whiten" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val params = FloatArray(16)
                 params[14] = p // bodySkinWhiten
-                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
+                MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
 
             // ================= 11. AI RETOUCH (2.12 SMART BEAUTIFY) =================
