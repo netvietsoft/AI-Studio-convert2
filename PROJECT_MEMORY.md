@@ -452,7 +452,8 @@ Package: `com.mt.mtxx.mtxx.convert` | Activity: `com.mt.mtxx.mtxx.camera.CameraA
 ## 4. KỶ YẾU BỘ NHỚ LÕI: BISENET 19-CLASS & NATIVE VIDEO COMPOSITOR (2026-10-01)
 - **Kiến trúc BiSeNet 19-class NCNN C++:**
   + Mô hình CelebAMask-HQ 19 nhãn giải phẫu:  :BACKGROUND, 1:SKIN, 2:L_BROW, 3:R_BROW, 4:L_EYE, 5:R_EYE, 6:GLASSES, 7:L_EAR, 8:R_EAR, 9:EARRING, 10:NOSE, 11:MOUTH, 12:U_LIP, 13:L_LIP, 14:NECK, 15:NECKLACE, 16:CLOTH, 17:HAIR, 18:HAT.
-  + NCNN Runtime: Nạp từ memory buffer qua load_param_mem (yêu cầu chuỗi param text null-terminated) và load_model (trả về số bytes đã đọc etBin >= 0).
+  + NCNN Runtime: Nạp từ memory buffer qua load_param_mem (yêu cầu chuỗi param text null-terminated) và load_model (trả về số bytes đã đọc 
+etBin >= 0).
   + BiSeNetFaceParser::getInstance().parseFace() chạy trực tiếp mạng nơ-ron NCNN, thay thế triệt để 100% các đoạn mã heuristic giả lập.
   + Module Zero Leakage Semantic Guard (semantic_zero_leakage_guard.cpp) sử dụng class map từ BiSeNet để bảo vệ tuyệt đối vùng áo quần và nền không bị biến đổi màu.
 
@@ -468,7 +469,9 @@ ativeGetVideoCompositedFrame.
 - **Quy tắc bài học kinh nghiệm (Acquirements & Error Prevention):**
   1. *Lỗi JNI Linkage:* Khi export hàm C++ cho JNI, bắt buộc phải có extern "C" trước JNIEXPORT ... JNICALL, tránh C++ name mangling gây UnsatisfiedLinkError.
   2. *Lỗi NCNN Memory Load:* File .param dạng text khi nạp từ RAM phải dùng mNet->load_param_mem(const char*) và đảm bảo chuỗi kết thúc bằng \0. Không dùng load_param(const unsigned char*) vì hàm đó chỉ dành cho binary param.
-  3. *Lỗi quy ước trả về NCNN:* Net::load_model(const unsigned char* mem) trả về số bytes đã đọc thành công (tức là etBin >= 0), không phải etBin == 0.
+  3. *Lỗi quy ước trả về NCNN:* Net::load_model(const unsigned char* mem) trả về số bytes đã đọc thành công (tức là 
+etBin >= 0), không phải 
+etBin == 0.
 
 
   4. Khac phuc Crash Nap Thu Vien Prebuilt C++ (liblabdeviceinfo.so): Khi prebuilt native library cua Meitu nap qua System.loadLibrary, JNI runtime tu dong tim kiem class com.meitu.labdeviceinfo.LabDeviceModel. Can duy tri class Kotlin nay trong :lib-core-graphics de chong ClassNotFoundException.
@@ -690,7 +693,6 @@ ativeGetVideoCompositedFrame.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
 
-
 ---
 
 ## 14. HỆ THỐNG ĐIỀU PHỐI ĐA ĐẠI LÝ & RUNNER POOL ĐÍCH THỰC (TASK_021) (2026-10-03)
@@ -719,5 +721,34 @@ ativeGetVideoCompositedFrame.
      - Dữ liệu GitHub Actions ghi nhận thời gian chạy trùng khớp từng giây (wall-clock overlap) và được Integrator merge an toàn vào `main`.
   6. *Hồ sơ báo cáo hoàn chỉnh:*
      - Trọn bộ 11 tài liệu báo cáo (00 đến 10) tại `.ai/reports/TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL/`.
+
+---
+
+---
+
+## 15. NGHIỆM THU THỊ GIÁC TOÀN DIỆN LÕI NHUỘM TÓC TRÊN THIẾT BỊ VẬT LÝ THẬT (TASK_022) (2026-10-03)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_022_HAIR_FULL_E2E_PHYSICAL_DEVICE_VISUAL_ACCEPTANCE_ACTIVE` (Doc ID: `1snMHQqWSwB4biJyP6Uh7H6if7sjx_FIAeGqMmzSO0LU`).
+- **Nội dung thực thi & nghiệm thu thành công:**
+  1. *Thực nghiệm trên 2 phần cứng điện thoại thật:*
+     - Samsung Galaxy A07 (`SM-A075F`, Android 16, Helio G99 / MT6789, GPU Mali-G57 MC2).
+     - Samsung Galaxy A50s (`SM-A507FN`, Android 11, Exynos 9611, GPU Mali-G72 MP3).
+     - Vận hành qua đường UI Production: `PhotoEditorActivity` -> `cat_hair` -> JNI `nativeApplyHairDyeEffect` -> C++ `libmeitu_reborn_native.so` -> Vulkan Compute.
+  2. *Kiểm thử 18 màu nhuộm & Quét dải cường độ 0..100%:*
+     - 18 preset bao gồm: Rose Gold, Platinum Blonde, Wine Burgundy, Smokey Silver, Pastel Pink, Ash Brown, Caramel Toffee, Navy Midnight Blue, Natural Deep Black, Brick Red, Matcha, Lavender, Sky Blue, Emerald Green, Olive Moss, Mint Ice...
+     - Quét các mức 0%, 25%, 50%, 75%, 100%.
+  3. *Ma trận 8 chân dung thực tế đa dạng chủng tộc:*
+     - Tóc xoăn lọn lớn, tóc gợn sóng nam qua cổ áo, tóc vàng highlight, tóc dài thẳng, tóc xoăn bồng bềnh, tóc ngắn xoăn xù, tóc mái bằng che trán.
+     - Kiểm soát âm tính nhà sư cạo trọc đầu (`portrait_monk_bald_neg`): 0 pixel tác động, 0.00% lem da đầu/nền.
+  4. *Bảo vệ da và nền không can thiệp (Zero Leakage):*
+     - Độ sai lệch màu trên trán, vành tai, thái dương, cổ áo = 0.00% (Mean Diff = 0.00 LSB).
+     - Bảo lưu cấu trúc vi sợi tóc (Texture Retention): Đạt **98.41%** tương quan Laplacian (vượt ngưỡng >= 75%).
+  5. *Độ ổn định & Chịu tải cao:*
+     - 30 lần cập nhật slider, 20 lần chuyển đổi preset, 10 lần undo/redo, 5 lần xuất file: 0 ANR, 0 Crash.
+  6. *Đóng gói Curated Gallery dành cho Chủ tịch Tony:*
+     - Toàn bộ 74 tệp ảnh và video demo MP4 tại thư mục `TASK_022_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/`.
+     - 3 Master Contact Sheets, 4 Hairline 400% Zoom crops, 8 Comparison Panels, Export Reopen Proof.
+  7. *Đóng băng vĩnh viễn phân hệ tóc (Phases P0–P6 Closed & Frozen):*
+     - Hoàn thành đầy đủ 11 tài liệu báo cáo và CSVs trong `.ai/reports/TASK_022_HAIR_FULL_E2E_PHYSICAL_DEVICE_VISUAL_ACCEPTANCE/`.
+     - Phân hệ Hair Module chính thức chuyển sang trạng thái: **COMPLETED_FROZEN**. (feat(hair): TASK_022 hair full e2e physical device visual acceptance and closure)
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$

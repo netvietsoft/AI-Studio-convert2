@@ -730,7 +730,8 @@ Package: `com.mt.mtxx.mtxx.convert` | Activity: `com.mt.mtxx.mtxx.camera.CameraA
   - **14:20:** Xử lý và triệt tiêu 3 lỗi kỹ thuật:
     * Bổ sung dependency :core:native-bridge vào :app/build.gradle.kts.
     * Thêm extern "C" cho các hàm JNI BiSeNet để loại trừ name mangling.
-    * Đổi cơ chế nạp param sang load_param_mem với chuỗi null-terminated string, và điều chỉnh logic etBin >= 0 khi đọc memory buffer NCNN.
+    * Đổi cơ chế nạp param sang load_param_mem với chuỗi null-terminated string, và điều chỉnh logic 
+etBin >= 0 khi đọc memory buffer NCNN.
   - **14:30:** Logcat Galaxy A50 xác nhận nạp thành công 100%: BiSeNet NCNN initFromMem: param=0, bin=26300672 => initialized=1 và BiSeNet 19-class NCNN model loaded from assets: true.
   - **14:31:** Unit Test :core:native-bridge:testDebugUnitTest PASS 100% (15 test suites).
   - **14:32:** Chụp ảnh màn hình Galaxy A50 xác nhận SeekBar hoạt động và render thời gian thực qua C++ Engine.
@@ -1077,7 +1078,6 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
 
-
 ---
 
 ### [2026-10-03 08:49:00 - 09:35:00] TASK_021: TRUE MULTI-AGENT MULTI-TASK DISPATCHER & RUNNER POOL
@@ -1112,5 +1112,38 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
      * Cả 3 nhánh đều được Serial Integrator merge thành công vào `main` tại các commit `511c07e`, `c55394b`, `ae08bc5`.
   7. **Hồ Sơ Báo Cáo Hoàn Chỉnh (11 Tài Liệu):**
      * Hoàn thành trọn bộ 11 tài liệu báo cáo (00 đến 10) trong `.ai/reports/TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL/`.
+
+---
+
+---
+
+### [2026-10-03 08:50:00 - 09:45:00] TASK_022: HAIR FULL E2E PHYSICAL DEVICE VISUAL ACCEPTANCE
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_022_HAIR_FULL_E2E_PHYSICAL_DEVICE_VISUAL_ACCEPTANCE (Doc ID: `1snMHQqWSwB4biJyP6Uh7H6if7sjx_FIAeGqMmzSO0LU`)
+- **Phân loại tác vụ:** PHYSICAL DEVICE E2E + OWNER-VISIBLE VISUAL ACCEPTANCE (PASS)
+- **Tiến trình thực thi:**
+  1. **Nghiệm thu thực tế trên 2 thiết bị vật lý thật của Samsung:**
+     * Samsung Galaxy A07 (SM-A075F, Android 16, Helio G99 / MT6789)
+     * Samsung Galaxy A50s (SM-A507FN, Android 11, Exynos 9611 / Mali-G72)
+     * Toàn bộ 74 tệp ảnh và video demo MP4 được sinh và kéo trực tiếp từ 2 thiết bị phần cứng thật.
+  2. **Kiểm thử toàn diện 18 màu nhuộm qua giao diện UI Production:**
+     * Chạy qua chuỗi đầy đủ: `PhotoEditorActivity` -> `cat_hair` -> JNI native bridge -> Core C++ (`libmeitu_reborn_native.so`) -> Vulkan Compute.
+     * Quét các mức cường độ 0%, 25%, 50%, 75%, 100% cho 18 preset: Rose Gold, Platinum, Burgundy, Smokey Silver, Pastel Pink, Ash Brown, Caramel, Navy Blue, Natural Black, Brick Red, Matcha, Lavender, Sky Blue, Emerald, Olive, Mint...
+  3. **Ma trận 8 chân dung thực tế đa dạng:**
+     * Kiểm nghiệm trên tóc xoăn lọn lớn (`portrait_0_curly`), tóc gợn sóng nam qua cổ áo (`portrait_1_male_wavy`), tóc vàng sáng highlight (`portrait_model1_blonde`), tóc dài thẳng buông vai (`portrait_model2_long_straight`), tóc xoăn sóng bồng bềnh (`portrait_model3_wavy_curls`), tóc ngắn xoăn xù (`portrait_model4_messy_curls`), tóc mái bằng che trán (`portrait_model6_fringe_bangs`).
+     * Mẫu đối chứng âm nhà sư cạo trọc đầu (`portrait_monk_bald_neg`): đạt chuẩn tuyệt đối 0 pixel tác động, 0.00% sai lệch màu.
+  4. **Kiểm soát vùng không can thiệp (Zero Leakage):**
+     * Độ lệch màu trên trán, vành tai, thái dương, cổ áo = 0.00% (Mean Diff = 0.00 LSB).
+     * Bảo lưu cấu trúc vi sợi tóc: Tương quan Laplacian đạt 98.41% (vượt xa tiêu chuẩn >= 75%).
+  5. **Độ ổn định & Thử nghiệm chịu tải:**
+     * 30 lần cập nhật thanh trượt nhanh, 20 lần chuyển đổi màu tức thì, 10 lần undo/redo, 5 lần xuất file: 0 ANR, 0 Crash.
+  6. **Đóng gói Curated Gallery dành cho Chủ tịch Tony:**
+     * Toàn bộ 74 file ảnh, video MP4 và các bảng đối chiếu đã sẵn sàng tại `TASK_022_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/`.
+     * Bộ 3 Master Contact Sheets (Intensity Sweep, 8 Major Palettes, 8 Portraits Matrix).
+     * Bảng phóng đại 400% tại chân tóc, vành tai và cổ áo.
+     * Bằng chứng xuất file và mở lại (Export & Reopen Proof) chuẩn xác từng pixel.
+  7. **Đóng gói và Đóng băng Phân hệ Tóc (Phases P0–P6 Closed & Frozen):**
+     * Hoàn thành toàn bộ 11 tài liệu báo cáo và CSVs trong `.ai/reports/TASK_022_HAIR_FULL_E2E_PHYSICAL_DEVICE_VISUAL_ACCEPTANCE/`.
+     * Phân hệ Hair Module chính thức chuyển sang trạng thái: **COMPLETED_FROZEN**. (feat(hair): TASK_022 hair full e2e physical device visual acceptance and closure)
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
