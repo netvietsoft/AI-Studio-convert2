@@ -52,3 +52,20 @@
 - **Nguyên nhân gốc rễ:** Trên hệ điều hành Windows, thư viện chuẩn C runtime `msvcrt.locking` khóa tệp tin theo vùng byte cố định. Khi một hàm gọi lồng (`migrate_next_command()` gọi `create_command()`), cả hai cùng cố gắng acquire `FileLock` trên cùng một tệp `.bus.lock`. Do `msvcrt.locking` không tự động hỗ trợ reentrancy trên cùng tiến trình, tiến trình tự chặn chính nó và rơi vào deadlock chờ timeout.
 - **Giải pháp triệt để:** Triển khai lớp `FileLock` hỗ trợ reentrancy (`threading.local()` lưu trữ độ sâu lồng `count`), đồng thời khởi tạo ghi 1 byte ban đầu (`os.write(fd, b'0')`) và `os.lseek(fd, 0, os.SEEK_SET)` để `msvcrt.locking` luôn khóa trên byte tồn tại hợp lệ.
 - **Quy tắc phòng ngừa:** Mọi cơ chế FileLock đa nền tảng (Windows/POSIX) trong dự án phải được thiết kế reentrant và kiểm thử với các hàm gọi lồng trước khi đưa vào vận hành.
+
+---
+
+### [ERR-007] Biến dạng méo mó ảnh chân dung cận cảnh do nội suy Pose toàn thân giả mạo (TASK_019)
+- **Thời điểm phát hiện:** 2026-10-03 trong quá trình kiểm toán toàn diện hệ thống Full Body Beauty (`TASK_019`).
+- **Nguyên nhân gốc rễ:**
+  1. Kho mã nguồn chỉ có model AI mặt (SCRFD, Landmark106, BiSeNet 19 classes), hoàn toàn thiếu mô hình Pose toàn thân 17 điểm MoveNet/BlazePose.
+  2. Khi `posePoints == null`, hàm `extractHumanModel()` tự suy luận tọa độ vai, eo, hông, chân từ cằm và đỉnh đầu. Trên ảnh cận cảnh (Bust portrait), chân không hề xuất hiện nhưng thuật toán vẫn nội suy kéo dài đến đáy ảnh, gán nhãn `result.isValid = true` và `overallConfidence = 0.95f`.
+  3. Các thuật toán kéo dài chân (`applyLongLegs`) và tăng chiều cao (`applyBodyHeight`) mù quáng kéo dãn toàn bộ nửa dưới ảnh ($0.48\text{--}0.92 \times \text{height}$), làm biến dạng áo, bàn ghế, phông nền.
+  4. Công cụ ngực `tool_body_chest` trước đó gọi fallback `BodyHairEngine::applyBodyReshape` với tọa độ cố định của ảnh 896x1200 (ngực tại Y=880), gây méo hình ảnh khi kích thước ảnh thay đổi.
+- **Giải pháp triệt để:**
+  1. Triển khai phân loại khung hình giải phẫu: $\text{headUnits} = \text{availableH} / \text{headH}$. Nếu $\text{headUnits} < 2.2$ (ảnh cận cảnh), đánh dấu nghiêm ngặt các khớp hông/đầu gối/cổ chân là `visible = false` ($c = 0.0f$).
+  2. Thêm rào chắn kiểm soát hiển thị khớp `hasLegsVisible`: Nếu đầu gối/cổ chân không nằm trong khung hình, `applyLongLegs` và `applyBodyHeight` lập tức trả về `false` (no-op), đảm bảo giữ nguyên 100% pixel gốc (0 px unwanted change).
+  3. Triển khai hàm nắn ngực chuẩn giải phẫu `applyChestReshape` neo theo xương quai xanh và vai, bảo vệ viền nền bằng `attenuateBoundaryLeakage` và nội suy subpixel bicubic, thay thế hoàn toàn fallback 896x1200.
+  4. Đưa ra chỉ số tin cậy động `overallConfidence` tính từ các khớp thực tế thay vì gán cứng 0.95f.
+- **Quy tắc phòng ngừa:** Tuyệt đối cấm warp hình học dựa trên tọa độ giả định ngoài khung hình. Mọi công cụ chỉnh sửa giải phẫu phải kiểm tra tính hiện diện và độ tin cậy của khớp (`checkToolApplicability`) trước khi áp dụng biến dạng.
+

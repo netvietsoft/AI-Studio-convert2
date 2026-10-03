@@ -23,6 +23,7 @@ struct BodyBeautyParameters {
     float waistCurve = 0.0f;       // Uốn cong eo đồng hồ cát [0.0 .. 1.0]
     float hipEnhance = 0.0f;       // Nở hông quả táo / thon hông [-1.0 .. 1.0]
     float abdomenSlim = 0.0f;      // Giảm mỡ bụng phẳng / nở bụng [-1.0 .. 1.0]
+    float chestEnhance = 0.0f;     // Nâng ngực tự nhiên / thon ngực [-1.0 .. 1.0]
 
     // 3. Shoulder & Posture (SPEC Sections 47, 79)
     float shoulderSlim = 0.0f;     // Gọt thon vai / mở rộng vai [-1.0 .. 1.0]
@@ -91,6 +92,19 @@ public:
         float slimIntensity,
         float waistIntensity,
         float hipIntensity
+    );
+
+    /**
+     * @brief Nâng ngực / thon ngực tự nhiên theo giải phẫu học (Chest Reshape - SPEC Section 50).
+     * Xác định tọa độ ngực chuẩn từ khớp vai và xương đòn, bảo vệ trang phục và đường nền xung quanh.
+     */
+    bool applyChestReshape(
+        uint8_t* rgbaImage,
+        int width,
+        int height,
+        int stride,
+        const HumanFrameResult& human,
+        float intensity
     );
 
     /**

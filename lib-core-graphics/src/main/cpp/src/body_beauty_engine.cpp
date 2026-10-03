@@ -619,6 +619,10 @@ bool BodyBeautyEngine::applyLongLegs(
         return false;
     }
 
+    if (!human.hasLegsVisible && !human.leftLeg.isVisible && !human.rightLeg.isVisible) {
+        return false;
+    }
+
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
     std::vector<uint32_t> original(pixels, pixels + (width * height));
 
@@ -626,10 +630,8 @@ bool BodyBeautyEngine::applyLongLegs(
     float kneeY = (human.leftLeg.knee.y + human.rightLeg.knee.y) * 0.5f;
     float ankleY = (human.leftLeg.ankle.y + human.rightLeg.ankle.y) * 0.5f;
 
-    if (ankleY <= hipY + 10.0f) {
-        hipY = height * 0.48f;
-        kneeY = height * 0.70f;
-        ankleY = height * 0.92f;
+    if (ankleY <= hipY + 15.0f) {
+        return false;
     }
 
     float legHeight = ankleY - hipY;
@@ -699,6 +701,10 @@ bool BodyBeautyEngine::applyBodyHeight(
         return false;
     }
 
+    if (!human.hasLegsVisible && !human.leftLeg.isVisible && !human.rightLeg.isVisible) {
+        return false;
+    }
+
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
     std::vector<uint32_t> original(pixels, pixels + (width * height));
 
@@ -706,10 +712,8 @@ bool BodyBeautyEngine::applyBodyHeight(
     float hipY = human.torso.hipCenter.y;
     float ankleY = (human.leftLeg.ankle.y + human.rightLeg.ankle.y) * 0.5f;
 
-    if (ankleY <= neckY + 20.0f) {
-        neckY = height * 0.22f;
-        hipY = height * 0.50f;
-        ankleY = height * 0.92f;
+    if (hipY <= neckY + 15.0f || ankleY <= hipY + 15.0f) {
+        return false;
     }
 
     float totalBodyH = ankleY - neckY;
@@ -866,6 +870,113 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
         leftEdges, rightEdges, scaleFactors,
         rigidityMap, rigidElements
     );
+
+    return true;
+}
+
+// 3.5. NÂNG NGỰC / THON NGỰC TỰ NHIÊN (CHEST RESHAPE - SPEC Section 50)
+bool BodyBeautyEngine::applyChestReshape(
+    uint8_t* rgbaImage,
+    int width,
+    int height,
+    int stride,
+    const HumanFrameResult& human,
+    float intensity
+) {
+    if (!rgbaImage || width <= 0 || height <= 0 || std::abs(intensity) < 0.001f || !human.isValid) {
+        return false;
+    }
+
+    const auto& sL = human.keypoints[JOINT_SHOULDER_LEFT];
+    const auto& sR = human.keypoints[JOINT_SHOULDER_RIGHT];
+    if (!sL.visible && !sR.visible) return false;
+
+    float sDist = std::hypot(sR.x - sL.x, sR.y - sL.y);
+    if (sDist < 15.0f) return false;
+
+    float throatX = human.keypoints[JOINT_NECK].visible ? human.keypoints[JOINT_NECK].x : (sL.x + sR.x) * 0.5f;
+    float throatY = human.keypoints[JOINT_NECK].visible ? human.keypoints[JOINT_NECK].y : (sL.y + sR.y) * 0.5f;
+
+    float chestY = throatY + sDist * 0.48f;
+    if (chestY >= static_cast<float>(height) - 10.0f) {
+        return false; // Chest is off-screen
+    }
+
+    float leftChestX = throatX - sDist * 0.24f;
+    float rightChestX = throatX + sDist * 0.24f;
+    float radius = sDist * 0.28f;
+
+    uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
+    std::vector<uint32_t> snapshot(pixels, pixels + (width * height));
+    std::vector<float> dxField(width * height, 0.0f);
+    std::vector<float> dyField(width * height, 0.0f);
+
+    float p = std::clamp(intensity, -1.0f, 1.0f);
+    float maxPush = radius * 0.22f * p;
+
+    int minX = std::max(0, static_cast<int>(leftChestX - radius * 1.5f));
+    int maxX = std::min(width - 1, static_cast<int>(rightChestX + radius * 1.5f));
+    int minY = std::max(0, static_cast<int>(chestY - radius * 1.5f));
+    int maxY = std::min(height - 1, static_cast<int>(chestY + radius * 1.5f));
+
+    for (int y = minY; y <= maxY; ++y) {
+        float curY = static_cast<float>(y);
+        for (int x = minX; x <= maxX; ++x) {
+            float curX = static_cast<float>(x);
+
+            // Left breast contribution
+            float dL = std::hypot(curX - leftChestX, curY - chestY);
+            float dxL = 0.0f, dyL = 0.0f;
+            if (dL < radius && radius > 1.0f) {
+                float normD = dL / radius;
+                float wL = std::cos(normD * 1.5707963f);
+                wL = wL * wL;
+                if (dL > 1e-3f) {
+                    dxL = ((curX - leftChestX) / dL) * maxPush * wL;
+                    dyL = ((curY - chestY) / dL) * maxPush * wL;
+                }
+            }
+
+            // Right breast contribution
+            float dR = std::hypot(curX - rightChestX, curY - chestY);
+            float dxR = 0.0f, dyR = 0.0f;
+            if (dR < radius && radius > 1.0f) {
+                float normD = dR / radius;
+                float wR = std::cos(normD * 1.5707963f);
+                wR = wR * wR;
+                if (dR > 1e-3f) {
+                    dxR = ((curX - rightChestX) / dR) * maxPush * wR;
+                    dyR = ((curY - chestY) / dR) * maxPush * wR;
+                }
+            }
+
+            int idx = y * width + x;
+            dxField[idx] = dxL + dxR;
+            dyField[idx] = dyL + dyR;
+        }
+    }
+
+    // Protect background and regularize
+    if (!human.parsingMask.empty()) {
+        mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
+    }
+    if (!human.backgroundProtectionMask.empty()) {
+        mBgEngine.regularizeDisplacementField(width, height, human.backgroundProtectionMask.data(), human.structuralLines, dxField.data(), dyField.data());
+    }
+
+    #pragma omp parallel for
+    for (int y = minY; y <= maxY; ++y) {
+        for (int x = minX; x <= maxX; ++x) {
+            int idx = y * width + x;
+            float dfx = dxField[idx];
+            float dfy = dyField[idx];
+            if (std::abs(dfx) > 1e-3f || std::abs(dfy) > 1e-3f) {
+                float srcX = static_cast<float>(x) - dfx;
+                float srcY = static_cast<float>(y) - dfy;
+                pixels[idx] = sampleBicubic(snapshot.data(), width, height, srcX, srcY);
+            }
+        }
+    }
 
     return true;
 }
@@ -1141,10 +1252,17 @@ bool BodyBeautyEngine::processFullBodyBeauty(
         applyLongLegs(rgbaImage, width, height, stride, human, params.longLegs);
     }
 
+    // Giai doan 2.5: Dinh hinh nguc tu nhien (Chest Reshape - Section 50)
+    if (std::abs(params.chestEnhance) > 0.001f) {
+        applyChestReshape(rgbaImage, width, height, stride, human, params.chestEnhance);
+    }
+
     // Giai doan 3: Thon gon eo & than nguoi (Waist & Body Slim - Section 51, 77)
-    if (std::abs(params.slimBody) > 0.001f || std::abs(params.waistSlim) > 0.001f || std::abs(params.hipEnhance) > 0.001f) {
+    if (std::abs(params.slimBody) > 0.001f || std::abs(params.waistSlim) > 0.001f ||
+        std::abs(params.hipEnhance) > 0.001f || std::abs(params.abdomenSlim) > 0.001f) {
+        float effectiveWaist = params.waistSlim + params.abdomenSlim * 0.4f;
         applyWaistAndBodySlim(rgbaImage, width, height, stride, human,
-                              params.slimBody, params.waistSlim, params.hipEnhance);
+                              params.slimBody, effectiveWaist, params.hipEnhance);
     }
 
     // Giai doan 4: Thon bap tay & chinh vai (Arm & Shoulder Slim - Section 47, 54)

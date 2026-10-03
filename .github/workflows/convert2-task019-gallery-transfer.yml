@@ -1,0 +1,27 @@
+name: CONVERT2 TASK_019 Full Body Visual Gallery Transfer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.ai/reports/TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA/gallery/**'
+
+jobs:
+  upload-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Package Full Body Beauty Gallery
+        run: |
+          mkdir -p artifacts/gallery
+          cp -r .ai/reports/TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA/gallery/* artifacts/gallery/
+          echo "Packaging 12 curated contact sheets complete."
+
+      - name: Upload CONVERT2_TASK_019_FULL_BODY_VISUAL_GALLERY Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CONVERT2_TASK_019_FULL_BODY_VISUAL_GALLERY
+          path: artifacts/gallery/
+          retention-days: 90

@@ -1012,6 +1012,25 @@ object MeituNativeEngine {
         params: FloatArray
     ): Boolean
 
+    // 87b. C++ Native Body Tool Applicability Guard (TASK_019)
+    @JvmStatic
+    external fun nativeCheckBodyToolApplicability(
+        toolId: String,
+        posePoints: FloatArray?,
+        headLandmarks: FloatArray?,
+        width: Int,
+        height: Int
+    ): Int
+
+    // 87c. C++ Native Anatomical Chest Reshape (TASK_019)
+    @JvmStatic
+    external fun nativeApplyChestReshape(
+        bitmap: Bitmap,
+        posePoints: FloatArray?,
+        headLandmarks: FloatArray?,
+        intensity: Float
+    ): Boolean
+
     // 88. C++ Native Master Full Human Beauty Pipeline (SPEC Section 91)
     @JvmStatic
     external fun nativeApplyFullHumanBeauty(

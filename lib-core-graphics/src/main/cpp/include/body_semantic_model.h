@@ -236,6 +236,12 @@ struct HumanFrameResult {
     float overallConfidence{0.0f};
 };
 
+enum BodyToolApplicability {
+    APPLICABILITY_INVALID = -1,
+    APPLICABILITY_NOT_APPLICABLE = 0,
+    APPLICABILITY_APPLICABLE = 1
+};
+
 class BodySemanticEngine {
 public:
     static HumanFrameResult extractHumanModel(
@@ -244,6 +250,11 @@ public:
         const uint32_t* pixels,
         int width,
         int height
+    );
+
+    static int checkToolApplicability(
+        const std::string& toolId,
+        const HumanFrameResult& human
     );
 };
 

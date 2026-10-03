@@ -628,3 +628,32 @@ ativeGetVideoCompositedFrame.
      - Do runner cục bộ thiếu Google Drive OAuth write credentials để đẩy trực tiếp vào Drive folder `10i9FPylaxB5mXvXV_V0v2MRL-sIkRwnR`, tuân thủ nghiêm ngặt **HARD RULE** của Chủ tịch: Không làm test xanh giả tạo, không báo cáo khống PASS.
      - Kết luận thẩm định chính thức: `FACE_BEAUTY_FINAL_CLOSURE_BLOCKED_REMOTE_MIRROR`.
 - **Trạng thái sẵn sàng:** Toàn bộ dữ liệu Face & Beauty đã đóng băng và chuẩn hóa 100%, sẵn sàng bước vào giai đoạn **Full-App E2E Release Readiness Audit** sau khi transfer sang Google Drive hoàn tất.
+
+---
+
+## 12. KIỂM TOÁN, TÁI CẤU TRÚC VÀ XÁC MINH TOÀN DIỆN HỆ THỐNG FULL BODY BEAUTY (TASK_019) (2026-10-03)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA` (Doc ID: `1nVZBo79hiRlblJvHQtdCBjvGfXA0IilgI3y0V9657C4`).
+- **Nội dung thực thi & giải quyết dứt điểm:**
+  1. *Kiểm toán 25 năng lực Body (A–Y):*
+     - Xuất bản ma trận toàn diện `01_CURRENT_ARCHITECTURE_AND_FEATURE_MATRIX.csv` đối soát toàn bộ đường dẫn gọi từ UI -> Kotlin -> JNI -> C++ Core Engine.
+  2. *Triệt tiêu toàn bộ Fallback tọa độ cố định 896x1200:*
+     - Loại bỏ các lệnh gọi magic ID 3001..3011 trong `PhotoEditorActivity.kt`.
+     - Xây dựng hàm nắn ngực chuẩn giải phẫu `applyChestReshape` neo theo xương quai xanh và vai, bảo vệ viền nền bằng `attenuateBoundaryLeakage` và nội suy subpixel bicubic.
+  3. *Bảo vệ tuyệt đối ảnh chân dung cận cảnh (Bust Crop Guard):*
+     - Đưa vào tỷ lệ giải phẫu $\text{headUnits} = \text{availableH} / \text{headH}$. Nếu $\text{headUnits} < 2.2$ (ảnh cận cảnh), khớp hông, đầu gối, cổ chân được đánh dấu `visible = false` ($c = 0.0f$).
+     - Các thuật toán kéo chân (`applyLongLegs`) và tăng chiều cao (`applyBodyHeight`) lập tức trả về `false` (no-op), đảm bảo **0 px unwanted change** trên ảnh cận cảnh.
+  4. *Đấu nối tham số mảng 17 phần tử & JNI Bridge:*
+     - Nối trực tiếp `chestEnhance` (param 16) và `abdomenSlim` (param 15) vào `processFullBodyBeauty`.
+     - Xuất khẩu hàm tiền kiểm dụng cụ `nativeCheckBodyToolApplicability`.
+  5. *Kiểm thử tự động & Bằng chứng thực tế trên 2 thiết bị vật lý:*
+     - `./gradlew.bat assembleDebug --no-daemon`: BUILD SUCCESSFUL (1m 8s).
+     - `FullBodyBeautyRegressionTest.kt`: 6/6 PASS (100%).
+     - Triển khai và xác thực thành công trên Samsung Galaxy A07 (SM-A075F, Mali-G57 MC2) và Samsung Galaxy A50s (SM-A507FN, Mali-G72 MP3).
+  6. *Hồ sơ báo cáo & Xuất xưởng 12 Contact Sheets chuẩn:*
+     - Hoàn thành đầy đủ 14 báo cáo (00 đến 13) trong `.ai/reports/TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA/`.
+     - Xuất bản 12 contact sheet 4 cột (BEFORE | AFTER 70% | MAX SANITY | DIFF) trong `gallery/`.
+     - Tạo workflow GitHub Actions `.github/workflows/convert2-task019-gallery-transfer.yml` (Artifact: `CONVERT2_TASK_019_FULL_BODY_VISUAL_GALLERY`).
+  7. *Xác minh Finding H & Kết luận chính thức:*
+     - Kho mã nguồn hoàn toàn thiếu model Pose toàn thân 17 điểm MoveNet/BlazePose.
+     - Tuân thủ Hiến pháp: Không báo cáo PASS khống.
+     - Kết luận thẩm định chính thức: `FULL_BODY_BLOCKED_POSE_MODEL`.

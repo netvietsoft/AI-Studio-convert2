@@ -3288,40 +3288,48 @@ class PhotoEditorActivity : Activity() {
             // ================= 10. THON DÁNG & FULL BODY BEAUTY (SPEC Sections 41-87) =================
             "tool_body_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[2] = p // slimBody
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3001, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_slim: not applicable for current image framing")
+                }
             }
             "tool_body_waist" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[3] = p // waistSlim
                 params[4] = p * 0.8f // waistCurve
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3004, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_waist: not applicable for current image framing")
+                }
             }
             "tool_body_shoulder" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val okClavicle = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2203, p)
                 if (!okClavicle) {
-                    val params = FloatArray(16)
+                    val params = FloatArray(17)
                     params[7] = p // shoulderSlim
                     params[8] = p * 0.5f // shoulderBalance
                     val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                    if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3007, p)
+                    if (!ok) {
+                        android.util.Log.d("PhotoEditorActivity", "tool_body_shoulder: not applicable or failed")
+                    }
                 }
             }
             "tool_body_arm", "tool_arm_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[9] = p // armSlim
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
             }
             "tool_body_neck", "tool_neck_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
                 val ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 1, p)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3008, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_neck_slim: failed")
+                }
             }
             "tool_neck_length", "tool_swan_neck" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
@@ -3414,26 +3422,34 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_legs", "tool_long_legs", "tool_leg_length" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[10] = p // longLegs
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3002, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_legs: not applicable for current image framing (legs not in frame)")
+                }
             }
             "tool_body_height", "tool_height" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[0] = p // bodyHeight
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
             }
             "tool_body_chest" -> {
-                MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3010, p)
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val ok = MeituNativeEngine.nativeApplyChestReshape(workingBitmap, null, lmk, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_chest: not applicable for current image framing")
+                }
             }
             "tool_body_hip", "tool_hip_enhance" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[5] = p // hipEnhance
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, null, lmk, params)
-                if (!ok) MeituNativeEngine.nativeApplyBodyReshape(workingBitmap, 3011, p)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_hip: not applicable for current image framing")
+                }
             }
             "tool_body_skin_smooth" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null

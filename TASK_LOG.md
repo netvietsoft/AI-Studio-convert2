@@ -1008,3 +1008,37 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
      * Đánh dấu Remote Mirror Status: `BLOCKED`.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FACE\_BEAUTY\_FINAL\_CLOSURE\_BLOCKED\_REMOTE\_MIRROR}$$
+
+---
+
+### [2026-10-03 06:50:00 - 07:22:00] TASK_019: FULL BODY BEAUTY REAUDIT, REBUILD AND VISUAL QA
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA (Doc ID: `1nVZBo79hiRlblJvHQtdCBjvGfXA0IilgI3y0V9657C4`)
+- **Phân loại tác vụ:** FULL RE-AUDIT + NARROW PRODUCTION CORRECTION + PHYSICAL VISUAL QA (CRITICAL)
+- **Tiến trình thực thi:**
+  1. **Khảo sát & Kiểm toán toàn diện 25 năng lực Body (A–Y):**
+     * Xuất bản ma trận đầy đủ `01_CURRENT_ARCHITECTURE_AND_FEATURE_MATRIX.csv` đối chiếu mã nguồn, JNI, Kotlin, công cụ UI, và bằng chứng thiết bị.
+  2. **Xác minh Finding H (Mô hình Pose On-device):**
+     * Kho mã nguồn chỉ chứa các mô hình nhận diện khuôn mặt (`bisenet_face_19`, `facemesh`, `landmark106`, `scrfd_500m_kps`), hoàn toàn không có mô hình pose toàn thân 17 điểm MoveNet/BlazePose.
+     * Tuân thủ Hiến pháp: Tuyệt đối không giả mạo kết quả PASS khi chưa có mô hình pose thực thụ. Ghi nhận chính thức: `FULL_BODY_BLOCKED_POSE_MODEL`.
+  3. **Loại bỏ triệt để Fallback tọa độ cố định 896x1200:**
+     * Ngắt bỏ toàn bộ các lệnh gọi cũ `nativeApplyBodyReshape` (IDs 3001..3011) trong `PhotoEditorActivity.kt`.
+     * Triển khai hàm nắn ngực chuẩn giải phẫu `applyChestReshape` neo theo xương quai xanh và vai, bảo vệ viền nền bằng `attenuateBoundaryLeakage` và nội suy subpixel bicubic.
+  4. **Triển khai bảo vệ ảnh chân dung cận cảnh (Bust Crop Guard):**
+     * Tính toán tỷ lệ `headUnits = availableH / headH`.
+     * Khi `headUnits < 2.2` (ảnh cận mặt/ngực), các khớp hông/đầu gối/cổ chân được đánh dấu `visible = false` ($c = 0.0f$).
+     * Các công cụ chân và chiều cao (`applyLongLegs`, `applyBodyHeight`) an toàn trả về `false` (no-op), chấm dứt hoàn toàn hiện tượng kéo dãn méo mó trên ảnh cận cảnh (0 px unwanted change).
+  5. **Tích hợp tham số & JNI Bridge:**
+     * Mở rộng mảng tham số 17 phần tử (`FloatArray(17)`). Nối trực tiếp `chestEnhance` (param 16) và `abdomenSlim` (param 15) vào lõi C++ Native.
+     * Cung cấp cơ chế tiền kiểm dụng cụ `nativeCheckBodyToolApplicability`.
+  6. **Kiểm thử tự động & Thiết bị thực tế:**
+     * `./gradlew.bat assembleDebug --no-daemon`: BUILD SUCCESSFUL (1m 8s).
+     * `FullBodyBeautyRegressionTest.kt`: 6/6 PASS (100%).
+     * Nạp và kiểm nghiệm thực tế trên Samsung Galaxy A07 (SM-A075F) và Samsung Galaxy A50s (SM-A507FN).
+  7. **Hồ sơ báo cáo & Curated Gallery (12 Contact Sheets):**
+     * Hoàn thành toàn bộ 14 báo cáo bắt buộc (00 đến 13) trong `.ai/reports/TASK_019_FULL_BODY_BEAUTY_REAUDIT_REBUILD_AND_VISUAL_QA/`.
+     * Xuất xưởng 12 tấm contact sheet chuẩn 4 cột (BEFORE | AFTER 70% | MAX SANITY | DIFF) trong `gallery/`.
+     * Thiết lập workflow GitHub Actions `.github/workflows/convert2-task019-gallery-transfer.yml` (Artifact: `CONVERT2_TASK_019_FULL_BODY_VISUAL_GALLERY`).
+- **KẾT LUẬN THẨM ĐỊNH:**
+  $$\mathbf{FULL\_BODY\_BLOCKED\_POSE\_MODEL}$$
+

@@ -3635,6 +3635,7 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyBodyBeauty(
         if (pLen > 13) params.bodySkinSmooth = p[13];
         if (pLen > 14) params.bodySkinWhiten = p[14];
         if (pLen > 15) params.bodySkinToneMatch = p[15];
+        if (pLen > 16) params.chestEnhance = p[16];
     }
 
     meitu_native::HumanFrameResult human = meitu_native::BodySemanticEngine::extractHumanModel(
@@ -3646,6 +3647,85 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyBodyBeauty(
         static_cast<uint8_t*>(pixelAddr),
         info.width, info.height, info.stride,
         human, params
+    );
+
+    AndroidBitmap_unlockPixels(env, bitmap);
+    return success ? JNI_TRUE : JNI_FALSE;
+}
+
+// 87b. C++ Native Body Tool Applicability Guard (TASK_019)
+extern "C" JNIEXPORT jint JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeCheckBodyToolApplicability(
+    JNIEnv* env, jclass clazz,
+    jstring jtoolId,
+    jfloatArray jposePoints,
+    jfloatArray jheadLandmarks,
+    jint width, jint height
+) {
+    if (!jtoolId || width <= 0 || height <= 0) return -1;
+    const char* toolStr = env->GetStringUTFChars(jtoolId, nullptr);
+    std::string toolId(toolStr ? toolStr : "");
+    if (toolStr) env->ReleaseStringUTFChars(jtoolId, toolStr);
+
+    std::vector<float> posePoints;
+    if (jposePoints) {
+        jsize len = env->GetArrayLength(jposePoints);
+        posePoints.resize(len);
+        env->GetFloatArrayRegion(jposePoints, 0, len, posePoints.data());
+    }
+
+    std::vector<float> headLandmarks;
+    if (jheadLandmarks) {
+        jsize len = env->GetArrayLength(jheadLandmarks);
+        headLandmarks.resize(len);
+        env->GetFloatArrayRegion(jheadLandmarks, 0, len, headLandmarks.data());
+    }
+
+    meitu_native::HumanFrameResult human = meitu_native::BodySemanticEngine::extractHumanModel(
+        posePoints, headLandmarks, nullptr, width, height
+    );
+
+    return meitu_native::BodySemanticEngine::checkToolApplicability(toolId, human);
+}
+
+// 87c. C++ Native Anatomical Chest Reshape (TASK_019)
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyChestReshape(
+    JNIEnv* env, jclass clazz,
+    jobject bitmap,
+    jfloatArray jposePoints,
+    jfloatArray jheadLandmarks,
+    jfloat intensity
+) {
+    if (!bitmap || std::abs(intensity) < 0.001f) return JNI_FALSE;
+    AndroidBitmapInfo info;
+    if (AndroidBitmap_getInfo(env, bitmap, &info) < 0 || info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) return JNI_FALSE;
+    void* pixelAddr = nullptr;
+    if (AndroidBitmap_lockPixels(env, bitmap, &pixelAddr) < 0) return JNI_FALSE;
+
+    std::vector<float> posePoints;
+    if (jposePoints) {
+        jsize len = env->GetArrayLength(jposePoints);
+        posePoints.resize(len);
+        env->GetFloatArrayRegion(jposePoints, 0, len, posePoints.data());
+    }
+
+    std::vector<float> headLandmarks;
+    if (jheadLandmarks) {
+        jsize len = env->GetArrayLength(jheadLandmarks);
+        headLandmarks.resize(len);
+        env->GetFloatArrayRegion(jheadLandmarks, 0, len, headLandmarks.data());
+    }
+
+    meitu_native::HumanFrameResult human = meitu_native::BodySemanticEngine::extractHumanModel(
+        posePoints, headLandmarks, static_cast<const uint32_t*>(pixelAddr), info.width, info.height
+    );
+
+    meitu_native::BodyBeautyEngine engine;
+    bool success = engine.applyChestReshape(
+        static_cast<uint8_t*>(pixelAddr),
+        info.width, info.height, info.stride,
+        human, intensity
     );
 
     AndroidBitmap_unlockPixels(env, bitmap);
