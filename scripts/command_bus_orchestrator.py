@@ -1030,20 +1030,39 @@ class CommandBusOrchestrator:
 
             # 3. Attempt merge
             merge_msg = f"chore(integrate): merge {branch} for {command_id}"
-            merge_proc = subprocess.run(["git", "merge", "--no-ff", diff_ref, "-m", merge_msg], cwd=str(self.repo_root), capture_output=True, text=True)
+            merge_proc = subprocess.run(["git", "merge", "--no-ff", "-X", "no-renames", diff_ref, "-m", merge_msg], cwd=str(self.repo_root), capture_output=True, text=True)
             if merge_proc.returncode != 0:
-                subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
-                err_msg = f"BLOCKED_MERGE_CONFLICT: Merge conflict merging {branch} into main: {merge_proc.stderr or merge_proc.stdout}"
-                self._update_task_state(task_id, {
-                    "status": "BLOCKED_MERGE_CONFLICT",
-                    "error_message": err_msg,
-                    "updated_at": get_iso_now()
-                })
-                cmd["status"] = "BLOCKED_MERGE_CONFLICT"
-                cmd["error_message"] = err_msg
-                self._write_json(path, cmd)
-                self.rebuild_index()
-                return False, err_msg, cmd
+                # Check if conflicts are strictly within shared reconciled metadata
+                status_proc = subprocess.run(["git", "status", "--porcelain"], cwd=str(self.repo_root), capture_output=True, text=True)
+                conflicts = [line for line in status_proc.stdout.splitlines() if line.startswith("UU ") or line.startswith("AA ") or line.startswith("DU ") or line.startswith("UD ")]
+                auto_resolvable = True
+                for c in conflicts:
+                    c_file = c[3:].strip()
+                    if not is_shared_reconciled_path(c_file):
+                        auto_resolvable = False
+                        break
+
+                if auto_resolvable and conflicts:
+                    for c in conflicts:
+                        c_file = c[3:].strip()
+                        subprocess.run(["git", "checkout", "--theirs", c_file], cwd=str(self.repo_root), capture_output=True)
+                        subprocess.run(["git", "add", c_file], cwd=str(self.repo_root), capture_output=True)
+                    self.rebuild_index()
+                    subprocess.run(["git", "add", ".ai/commands", ".ai/state"], cwd=str(self.repo_root), capture_output=True)
+                    subprocess.run(["git", "commit", "-m", merge_msg], cwd=str(self.repo_root), capture_output=True)
+                else:
+                    subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
+                    err_msg = f"BLOCKED_MERGE_CONFLICT: Merge conflict merging {branch} into main: {merge_proc.stderr or merge_proc.stdout}"
+                    self._update_task_state(task_id, {
+                        "status": "BLOCKED_MERGE_CONFLICT",
+                        "error_message": err_msg,
+                        "updated_at": get_iso_now()
+                    })
+                    cmd["status"] = "BLOCKED_MERGE_CONFLICT"
+                    cmd["error_message"] = err_msg
+                    self._write_json(path, cmd)
+                    self.rebuild_index()
+                    return False, err_msg, cmd
 
             # 4. Successful merge: get target commit SHA
             target_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(self.repo_root), text=True).strip()
