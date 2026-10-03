@@ -58,6 +58,12 @@ jobs:
             -ReservationToken "${{ inputs.reservation_token }}" `
             -ExecutionLane "${{ inputs.execution_lane || 'default' }}"
 
+      - name: Validate Lifecycle Invariants
+        if: always()
+        shell: powershell
+        run: |
+          python -m unittest tests/test_command_bus_lifecycle_invariants.py
+
       - name: Upload runner logs
         if: always()
         uses: actions/upload-artifact@v4

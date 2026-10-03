@@ -61,3 +61,8 @@ jobs:
             --command-id "$COMMAND_ID" \
             --branch "$BRANCH" \
             --lease-token "$LEASE_TOKEN"
+
+      - name: Validate Lifecycle Invariants
+        run: |
+          python scripts/command_bus_orchestrator.py validate-lifecycle
+          python -m unittest tests/test_command_bus_lifecycle_invariants.py

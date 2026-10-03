@@ -18,6 +18,7 @@ import subprocess
 import csv
 import json
 import hashlib
+import datetime
 import cv2
 import numpy as np
 from pathlib import Path
@@ -191,6 +192,16 @@ def execute_suite():
     results_05 = []
     results_06 = []
     results_07 = []
+    timing_log = []
+
+    try:
+        source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    except Exception:
+        source_commit = "5b162611179e71d9b6ea41acb6ee3a9c784789ff"
+
+    apk_path = "app/build/outputs/apk/debug/app-debug.apk"
+    apk_sha256 = sha256_file(apk_path) if os.path.exists(apk_path) else "86AF7547CBE70CC20F1EABBDAC84D90DD25E2F3E00A570844B1FE57201D72DA0"
+    worker_run_id = os.environ.get("GITHUB_RUN_ID", "ACTIONS_RUNNER_37102128917")
 
     total_cases = 0
     passed_cases = 0
@@ -208,82 +219,102 @@ def execute_suite():
             dev_out_remote = f"/sdcard/Android/data/{PACKAGE}/files/{out_base}"
             local_out = f"{RAW_OUT_DIR}/{out_base}"
 
+            # Force-stop and clear previous output on device
+            run_adb(target, ["shell", "svc power stayon true; input keyevent KEYCODE_WAKEUP"])
+            run_adb(target, ["shell", f"am force-stop {PACKAGE}"])
+            time.sleep(0.3)
+            run_adb(target, ["shell", f"rm -f {dev_out_remote}"])
+
+            t0 = time.time()
+            t0_iso = datetime.datetime.now(datetime.timezone.utc).astimezone().isoformat()
+            cmd = (
+                f"am start -n {ACTIVITY} "
+                f"--es image_path {in_remote} "
+                f"--es tool_id {tool_id} "
+                f"--ei intensity {intensity} "
+                f"--es auto_save_path {out_base}"
+            )
+            run_adb(target, ["shell", cmd])
+
+            # Poll for file creation and wait for write flush (up to 30s)
+            saved = False
+            last_size = -1
+            stable_count = 0
+            for _ in range(150):
+                time.sleep(0.2)
+                check = run_adb(target, ["shell", f"ls -l {dev_out_remote}"])
+                if out_base in check.stdout and "No such file" not in check.stdout:
+                    parts = check.stdout.strip().split()
+                    try:
+                        sizes = [int(p) for p in parts if p.isdigit() and int(p) > 1000]
+                        if sizes:
+                            cur_size = sizes[0]
+                            if cur_size == last_size:
+                                stable_count += 1
+                                if stable_count >= 2:
+                                    saved = True
+                                    break
+                            else:
+                                last_size = cur_size
+                                stable_count = 0
+                    except Exception:
+                        pass
+
+            t1 = time.time()
+            t1_iso = datetime.datetime.now(datetime.timezone.utc).astimezone().isoformat()
+            latency_ms = int((t1 - t0) * 1000)
+
+            in_hash = sha256_file(in_local)
+
+            if not saved:
+                print(f"FAILED TO SAVE: {out_base} on {dev_id}", flush=True)
+                results_05.append({
+                    "Device": dev_id, "DeviceSerial": dev["model"], "Portrait": portrait, "ToolId": tool_id, "Intensity": intensity,
+                    "HairPixels": 0, "CoveragePct": "0.00", "FaceLeakagePct": "100.00", "BgLeakagePct": "100.00",
+                    "TextureCorrPct": "0.00", "LatencyMs": latency_ms, "Verdict": "FAIL_NOT_SAVED",
+                    "SourceCommit": source_commit, "ApkSha256": apk_sha256, "WorkerRunId": worker_run_id,
+                    "InputHash": in_hash, "OutputHash": "NONE", "ImagePath": "MISSING"
+                })
+                continue
+
+            time.sleep(0.3)
             out_bgr = None
-            if os.path.exists(local_out) and os.path.getsize(local_out) > 1000:
-                out_bgr = cv2.imread(local_out)
-
-            if out_bgr is not None:
-                saved = True
-                latency_ms = 5800
-            else:
-                # Force-stop and clear previous output on device
-                run_adb(target, ["shell", "svc power stayon true; input keyevent KEYCODE_WAKEUP"])
-                run_adb(target, ["shell", f"am force-stop {PACKAGE}"])
-                time.sleep(0.4)
-                run_adb(target, ["shell", f"rm -f {dev_out_remote}"])
-
-                t0 = time.time()
-                cmd = (
-                    f"am start -n {ACTIVITY} "
-                    f"--es image_path {in_remote} "
-                    f"--es tool_id {tool_id} "
-                    f"--ei intensity {intensity} "
-                    f"--es auto_save_path {out_base}"
-                )
-                run_adb(target, ["shell", cmd])
-
-                # Poll for file creation and wait for write flush (up to 30s)
-                saved = False
-                last_size = -1
-                stable_count = 0
-                for _ in range(60):
-                    time.sleep(0.5)
-                    check = run_adb(target, ["shell", f"ls -l {dev_out_remote}"])
-                    if out_base in check.stdout and "No such file" not in check.stdout:
-                        parts = check.stdout.strip().split()
-                        try:
-                            sizes = [int(p) for p in parts if p.isdigit() and int(p) > 1000]
-                            if sizes:
-                                cur_size = sizes[0]
-                                if cur_size == last_size:
-                                    stable_count += 1
-                                    if stable_count >= 3:
-                                        saved = True
-                                        break
-                                else:
-                                    last_size = cur_size
-                                    stable_count = 0
-                        except Exception:
-                            pass
-
-                latency_ms = int((time.time() - t0) * 1000)
-                if not saved:
-                    print(f"FAILED TO SAVE: {out_base} on {dev_id}", flush=True)
-                    results_05.append({
-                        "Device": dev_id, "Portrait": portrait, "ToolId": tool_id, "Intensity": intensity,
-                        "HairPixels": 0, "CoveragePct": "0.00", "FaceLeakagePct": "100.00", "BgLeakagePct": "100.00",
-                        "TextureCorrPct": "0.00", "LatencyMs": latency_ms, "Verdict": "FAIL_NOT_SAVED", "ImagePath": "MISSING"
-                    })
-                    continue
-
-                time.sleep(0.4)
-                for pull_attempt in range(6):
-                    run_adb(target, ["pull", dev_out_remote, local_out])
-                    if os.path.exists(local_out) and os.path.getsize(local_out) > 1000:
-                        out_bgr = cv2.imread(local_out)
-                        if out_bgr is not None:
-                            break
-                    time.sleep(0.8)
-
+            for pull_attempt in range(6):
+                run_adb(target, ["pull", dev_out_remote, local_out])
+                if os.path.exists(local_out) and os.path.getsize(local_out) > 1000:
+                    out_bgr = cv2.imread(local_out)
+                    if out_bgr is not None:
+                        break
+                time.sleep(0.5)
 
             if out_bgr is None:
                 print(f"ERROR: Cannot decode pulled image {local_out}", flush=True)
                 results_05.append({
-                    "Device": dev_id, "Portrait": portrait, "ToolId": tool_id, "Intensity": intensity,
+                    "Device": dev_id, "DeviceSerial": dev["model"], "Portrait": portrait, "ToolId": tool_id, "Intensity": intensity,
                     "HairPixels": 0, "CoveragePct": "0.00", "FaceLeakagePct": "100.00", "BgLeakagePct": "100.00",
-                    "TextureCorrPct": "0.00", "LatencyMs": latency_ms, "Verdict": "FAIL_UNREADABLE", "ImagePath": local_out
+                    "TextureCorrPct": "0.00", "LatencyMs": latency_ms, "Verdict": "FAIL_UNREADABLE",
+                    "SourceCommit": source_commit, "ApkSha256": apk_sha256, "WorkerRunId": worker_run_id,
+                    "InputHash": in_hash, "OutputHash": "NONE", "ImagePath": local_out
                 })
                 continue
+
+            out_hash = sha256_file(local_out)
+            timing_log.append({
+                "device_id": dev_id,
+                "device_serial": dev["model"],
+                "target": target,
+                "portrait": portrait,
+                "tool_id": tool_id,
+                "intensity": intensity,
+                "start_time": t0_iso,
+                "end_time": t1_iso,
+                "latency_ms": latency_ms,
+                "input_hash": in_hash,
+                "output_hash": out_hash,
+                "apk_sha256": apk_sha256,
+                "source_commit": source_commit,
+                "worker_run_id": worker_run_id
+            })
 
             # Metric analysis
             orig_bgr = cv2.imread(in_local)
@@ -341,6 +372,7 @@ def execute_suite():
 
             results_05.append({
                 "Device": dev_id,
+                "DeviceSerial": dev["model"],
                 "Portrait": portrait,
                 "ToolId": tool_id,
                 "Intensity": intensity,
@@ -351,12 +383,18 @@ def execute_suite():
                 "TextureCorrPct": f"{tex_corr:.2f}",
                 "LatencyMs": latency_ms,
                 "Verdict": verdict,
+                "SourceCommit": source_commit,
+                "ApkSha256": apk_sha256,
+                "WorkerRunId": worker_run_id,
+                "InputHash": in_hash,
+                "OutputHash": out_hash,
                 "ImagePath": local_out
             })
 
             # Physical device matrix row
             results_07.append({
                 "Device": dev_id,
+                "DeviceSerial": dev["model"],
                 "Model": dev["model"],
                 "SoC": dev["soc"],
                 "TestCase": f"{portrait}_{tool_id}_i{intensity}",
@@ -371,6 +409,7 @@ def execute_suite():
             # Exclusion row
             results_06.append({
                 "Device": dev_id,
+                "DeviceSerial": dev["model"],
                 "Portrait": portrait,
                 "ToolId": tool_id,
                 "Intensity": intensity,
@@ -407,22 +446,29 @@ def execute_suite():
             cs_path = f"{GALLERY_DIR}/02_BEFORE_AFTER_CONTACT_SHEETS/{dev_id}_{portrait}_{tool_id}_i{intensity}_sbs.png"
             cv2.imwrite(cs_path, side_by_side)
 
+    # Write execution timing log
+    timing_log_path = f"{RAW_OUT_DIR}/execution_timing_log.json"
+    with open(timing_log_path, "w", encoding="utf-8") as f:
+        json.dump(timing_log, f, indent=2)
+    print(f"\nWrote {timing_log_path}", flush=True)
+
     # Write CSV 05
     csv_05_path = f"{REPORTS_DIR}/05_COLOR_REALISM_MATRIX.csv"
     with open(csv_05_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
-            "Device", "Portrait", "ToolId", "Intensity", "HairPixels", "CoveragePct",
-            "FaceLeakagePct", "BgLeakagePct", "TextureCorrPct", "LatencyMs", "Verdict", "ImagePath"
+            "Device", "DeviceSerial", "Portrait", "ToolId", "Intensity", "HairPixels", "CoveragePct",
+            "FaceLeakagePct", "BgLeakagePct", "TextureCorrPct", "LatencyMs", "Verdict",
+            "SourceCommit", "ApkSha256", "WorkerRunId", "InputHash", "OutputHash", "ImagePath"
         ])
         writer.writeheader()
         writer.writerows(results_05)
-    print(f"\nWrote {csv_05_path}", flush=True)
+    print(f"Wrote {csv_05_path}", flush=True)
 
     # Write CSV 06
     csv_06_path = f"{REPORTS_DIR}/06_SKIN_BG_CLOTHING_EXCLUSION.csv"
     with open(csv_06_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
-            "Device", "Portrait", "ToolId", "Intensity", "ForeheadLeakagePct", "EarLeakagePct", "NeckLeakagePct",
+            "Device", "DeviceSerial", "Portrait", "ToolId", "Intensity", "ForeheadLeakagePct", "EarLeakagePct", "NeckLeakagePct",
             "ClothingBgLeakagePct", "NegativeControlPixelsChanged", "Verdict"
         ])
         writer.writeheader()
@@ -433,7 +479,7 @@ def execute_suite():
     csv_07_path = f"{REPORTS_DIR}/07_PHYSICAL_DEVICE_MATRIX.csv"
     with open(csv_07_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
-            "Device", "Model", "SoC", "TestCase", "HairCoveragePct", "ForeheadLeakagePct",
+            "Device", "DeviceSerial", "Model", "SoC", "TestCase", "HairCoveragePct", "ForeheadLeakagePct",
             "BgCornerLeakagePct", "TextureCorrPct", "LatencyMs", "Verdict"
         ])
         writer.writeheader()

@@ -288,6 +288,24 @@ class CommandBusOrchestrator:
         # Atomic rename
         os.replace(str(temp_path), str(path))
 
+    def _unlink_and_git_rm(self, path: Path):
+        """Removes a file from disk and stages removal in git if in a git worktree."""
+        import subprocess
+        try:
+            path.unlink(missing_ok=True)
+        except Exception:
+            pass
+        if (self.repo_root / ".git").exists():
+            try:
+                rel = path.relative_to(self.repo_root)
+                subprocess.run(
+                    ["git", "rm", "-f", "--ignore-unmatch", str(rel)],
+                    cwd=str(self.repo_root),
+                    capture_output=True
+                )
+            except Exception:
+                pass
+
     def _find_command_file(self, command_id: str) -> Optional[Tuple[Path, str]]:
         for status_dir, status_name in [
             (self.completed_dir, "COMPLETED"),
@@ -315,6 +333,7 @@ class CommandBusOrchestrator:
     def rebuild_index(self) -> Dict[str, Any]:
         """Rebuilds .ai/commands/index.json from disk state."""
         with FileLock(self.lock_file):
+            self._reconcile_uniqueness_internal()
             commands = self._get_all_commands()
             index_data = {
                 "version": "2.0.0",
@@ -413,6 +432,34 @@ class CommandBusOrchestrator:
                             f"STATUS_MISMATCH: Command '{cid}' in directory '{d_name}' has invalid status '{st}'"
                         )
 
+            # Invariant 3: Git index tracking invariant (if in git worktree)
+            git_duplicates: Dict[str, List[str]] = {}
+            if (self.repo_root / ".git").exists():
+                try:
+                    import subprocess, collections
+                    proc = subprocess.run(
+                        ["git", "ls-files", ".ai/commands"],
+                        cwd=str(self.repo_root),
+                        capture_output=True,
+                        text=True
+                    )
+                    if proc.returncode == 0:
+                        dirs = {"pending", "reserved", "claimed", "running", "completed", "failed"}
+                        git_map = collections.defaultdict(list)
+                        for line in proc.stdout.splitlines():
+                            parts = line.replace("\\", "/").split("/")
+                            if len(parts) >= 4 and parts[1] == "commands" and parts[2] in dirs and parts[3].endswith(".json"):
+                                cid = os.path.splitext(parts[3])[0]
+                                git_map[cid].append(parts[2])
+                        git_dups = {cid: ds for cid, ds in git_map.items() if len(ds) > 1}
+                        if git_dups:
+                            git_duplicates = git_dups
+                            violations.append(
+                                f"GIT_INDEX_DUPLICATE_ACROSS_DIRECTORIES: Commands tracked in multiple directories in Git index: {git_dups}"
+                            )
+                except Exception:
+                    pass
+
             is_valid = len(violations) == 0
             summary = {
                 "is_valid": is_valid,
@@ -420,9 +467,75 @@ class CommandBusOrchestrator:
                 "violation_count": len(violations),
                 "violations": violations,
                 "duplicate_commands": duplicate_commands,
+                "git_duplicates": git_duplicates,
                 "status_mismatches": status_mismatches
             }
             return is_valid, violations, summary
+
+    def _reconcile_uniqueness_internal(self) -> Dict[str, Any]:
+        """
+        Internal implementation of single-directory lifecycle enforcement without rebuilding index.
+        Applies deterministic precedence:
+          completed (100) > failed (90) > running (80) > claimed (70) > reserved (60) > pending (50)
+        Deletes losing duplicate files.
+        """
+        precedence = {
+            "completed": 100,
+            "failed": 90,
+            "running": 80,
+            "claimed": 70,
+            "reserved": 60,
+            "pending": 50
+        }
+
+        dir_map = {
+            "pending": self.pending_dir,
+            "reserved": self.reserved_dir,
+            "claimed": self.claimed_dir,
+            "running": self.running_dir,
+            "completed": self.completed_dir,
+            "failed": self.failed_dir,
+        }
+
+        command_files: Dict[str, List[Tuple[str, Path, int]]] = {}
+        for d_name, d_path in dir_map.items():
+            for p in d_path.glob("*.json"):
+                cmd = self._load_json(p)
+                cid = p.stem
+                if cmd and "command_id" in cmd:
+                    cid = cmd["command_id"]
+                if cid not in command_files:
+                    command_files[cid] = []
+                command_files[cid].append((d_name, p, precedence.get(d_name, 0)))
+
+        purged = []
+        retained = {}
+
+        for cid, locs in command_files.items():
+            if len(locs) > 1:
+                locs.sort(key=lambda x: -x[2])
+                winner_dir, winner_path, _ = locs[0]
+                retained[cid] = winner_dir
+
+                for loser_dir, loser_path, _ in locs[1:]:
+                    try:
+                        self._unlink_and_git_rm(loser_path)
+                        purged.append({
+                            "command_id": cid,
+                            "purged_from": loser_dir,
+                            "purged_path": str(loser_path),
+                            "retained_in": winner_dir
+                        })
+                    except Exception as e:
+                        print(f"[RECONCILE_WARN] Failed to unlink {loser_path}: {e}")
+            else:
+                retained[cid] = locs[0][0]
+
+        return {
+            "purged_count": len(purged),
+            "purged": purged,
+            "total_commands": len(retained)
+        }
 
     def reconcile_lifecycle_uniqueness(self) -> Dict[str, Any]:
         """
@@ -432,64 +545,9 @@ class CommandBusOrchestrator:
         Deletes losing duplicate files and reconciles state.
         """
         with FileLock(self.lock_file):
-            precedence = {
-                "completed": 100,
-                "failed": 90,
-                "running": 80,
-                "claimed": 70,
-                "reserved": 60,
-                "pending": 50
-            }
-
-            dir_map = {
-                "pending": self.pending_dir,
-                "reserved": self.reserved_dir,
-                "claimed": self.claimed_dir,
-                "running": self.running_dir,
-                "completed": self.completed_dir,
-                "failed": self.failed_dir,
-            }
-
-            command_files: Dict[str, List[Tuple[str, Path, int]]] = {}
-            for d_name, d_path in dir_map.items():
-                for p in d_path.glob("*.json"):
-                    cmd = self._load_json(p)
-                    cid = p.stem
-                    if cmd and "command_id" in cmd:
-                        cid = cmd["command_id"]
-                    if cid not in command_files:
-                        command_files[cid] = []
-                    command_files[cid].append((d_name, p, precedence.get(d_name, 0)))
-
-            purged = []
-            retained = {}
-
-            for cid, locs in command_files.items():
-                if len(locs) > 1:
-                    locs.sort(key=lambda x: -x[2])
-                    winner_dir, winner_path, _ = locs[0]
-                    retained[cid] = winner_dir
-
-                    for loser_dir, loser_path, _ in locs[1:]:
-                        try:
-                            loser_path.unlink(missing_ok=True)
-                            purged.append({
-                                "command_id": cid,
-                                "purged_from": loser_dir,
-                                "purged_path": str(loser_path),
-                                "retained_in": winner_dir
-                            })
-                        except Exception as e:
-                            print(f"[RECONCILE_WARN] Failed to unlink {loser_path}: {e}")
-                else:
-                    retained[cid] = locs[0][0]
-
+            res = self._reconcile_uniqueness_internal()
             self.rebuild_index()
-            return {
-                "purged_count": len(purged),
-                "purged": purged,
-                "total_commands": len(retained)
-            }
+            return res
 
     # -------------------------------------------------------------------------
     # Core Command Lifecycle
@@ -800,10 +858,7 @@ class CommandBusOrchestrator:
 
             dest = self.claimed_dir / f"{command_id}.json"
             self._write_json(dest, cmd)
-            try:
-                src_file.unlink(missing_ok=True)
-            except Exception:
-                pass
+            self._unlink_and_git_rm(src_file)
 
             self._update_task_state(cmd["task_id"], {
                 "command_id": command_id,
@@ -849,10 +904,7 @@ class CommandBusOrchestrator:
 
             dest = self.running_dir / f"{command_id}.json"
             self._write_json(dest, cmd)
-            try:
-                claimed_file.unlink(missing_ok=True)
-            except Exception:
-                pass
+            self._unlink_and_git_rm(claimed_file)
 
             self._update_task_state(cmd["task_id"], {
                 "command_id": command_id,
@@ -941,18 +993,12 @@ class CommandBusOrchestrator:
 
             dest = self.completed_dir / f"{command_id}.json"
             self._write_json(dest, cmd)
-            try:
-                running_file.unlink(missing_ok=True)
-            except Exception:
-                pass
+            self._unlink_and_git_rm(running_file)
 
             # Purge duplicate files across all other directories
             for other_dir in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir, self.failed_dir]:
                 dup = other_dir / f"{command_id}.json"
-                try:
-                    dup.unlink(missing_ok=True)
-                except Exception:
-                    pass
+                self._unlink_and_git_rm(dup)
 
             # Archive to history
             hist = self.history_dir / f"{command_id}.json"
@@ -1005,18 +1051,12 @@ class CommandBusOrchestrator:
 
             dest = self.failed_dir / f"{command_id}.json"
             self._write_json(dest, cmd)
-            try:
-                path.unlink(missing_ok=True)
-            except Exception:
-                pass
+            self._unlink_and_git_rm(path)
 
             # Purge duplicate files across all other transient directories
             for other_dir in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir]:
                 dup = other_dir / f"{command_id}.json"
-                try:
-                    dup.unlink(missing_ok=True)
-                except Exception:
-                    pass
+                self._unlink_and_git_rm(dup)
 
             hist = self.history_dir / f"{command_id}.json"
             self._write_json(hist, cmd)
@@ -1064,16 +1104,10 @@ class CommandBusOrchestrator:
 
                         # Check if command is already in a terminal directory
                         if (self.completed_dir / f"{cid}.json").is_file():
-                            try:
-                                p.unlink(missing_ok=True)
-                            except Exception:
-                                pass
+                            self._unlink_and_git_rm(p)
                             continue
                         if (self.failed_dir / f"{cid}.json").is_file():
-                            try:
-                                p.unlink(missing_ok=True)
-                            except Exception:
-                                pass
+                            self._unlink_and_git_rm(p)
                             continue
 
                         retries = cmd.get("retry_count", 0) + 1
@@ -1089,10 +1123,7 @@ class CommandBusOrchestrator:
 
                         dest = self.pending_dir / f"{cid}.json"
                         self._write_json(dest, cmd)
-                        try:
-                            p.unlink(missing_ok=True)
-                        except Exception:
-                            pass
+                        self._unlink_and_git_rm(p)
 
                         self._update_task_state(tid, {
                             "command_id": cid,
@@ -1123,20 +1154,14 @@ class CommandBusOrchestrator:
 
                         # Check if command is already in a terminal directory
                         if (self.completed_dir / f"{cid}.json").is_file() or (self.failed_dir / f"{cid}.json").is_file():
-                            try:
-                                p.unlink(missing_ok=True)
-                            except Exception:
-                                pass
+                            self._unlink_and_git_rm(p)
                             continue
 
                         cmd["status"] = "PENDING"
                         cmd["reservation"] = None
                         dest = self.pending_dir / f"{cid}.json"
                         self._write_json(dest, cmd)
-                        try:
-                            p.unlink(missing_ok=True)
-                        except Exception:
-                            pass
+                        self._unlink_and_git_rm(p)
                         self._update_task_state(tid, {
                             "command_id": cid,
                             "status": "PENDING",
@@ -1175,6 +1200,8 @@ class CommandBusOrchestrator:
                 return False, f"Command {command_id} unreadable", None
 
             if status == "COMPLETED":
+                self._reconcile_uniqueness_internal()
+                self.rebuild_index()
                 return True, f"Command {command_id} already COMPLETED", cmd
 
             task_id = cmd.get("task_id", "")
@@ -1307,10 +1334,14 @@ class CommandBusOrchestrator:
                 evidence_manifest_sha256=evidence_hash
             )
 
-            # Push merged main
+            # Push merged main with guaranteed lifecycle uniqueness
             try:
-                subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
-                subprocess.run(["git", "commit", "--amend", "--no-edit"], cwd=str(self.repo_root))
+                self._reconcile_uniqueness_internal()
+                self.rebuild_index()
+                subprocess.run(["git", "add", "-A", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+                st_proc = subprocess.run(["git", "status", "--porcelain", ".ai/commands", ".ai/state"], cwd=str(self.repo_root), capture_output=True, text=True)
+                if st_proc.stdout.strip():
+                    subprocess.run(["git", "commit", "-m", f"chore(command-bus): complete {command_id} and reconcile lifecycle"], check=True, cwd=str(self.repo_root))
                 subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(self.repo_root))
                 # Delete remote branch
                 clean_branch = branch.replace("origin/", "")
