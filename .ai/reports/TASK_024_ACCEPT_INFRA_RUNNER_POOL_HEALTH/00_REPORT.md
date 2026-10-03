@@ -4,16 +4,16 @@
 **Execution Lane:** infra-runner-health  
 **Host Machine:** OSIN  
 **Host User:** PC  
-**Working Directory:** C:\actions-runner-03\_work\AI-Studio-convert2\AI-Studio-convert2  
-**Audit Timestamp:** 2026-10-03T20:43:53.3990383+07:00  
+**Working Directory:** C:\actions-runner\convert2\AI-Studio-convert2\AI-Studio-convert2  
+**Audit Timestamp:** 2026-10-04T00:36:15.8535350+07:00  
 
 ---
 
 ## 1. RUNNER POOL STATUS
 - **Total Registered Runners:** 3
-- **GitHub API Round-trip Latency:** 857 ms
+- **GitHub API Round-trip Latency:** 1041 ms
 - **Active Pool Members:**
-  - **CONVERT2-WINDOWS-01** (ID: 2): Status=online, Busy=True, Labels=[self-hosted, Windows, X64, convert2, worker-1]
+  - **CONVERT2-WINDOWS-01** (ID: 2): Status=online, Busy=Win32_Process: Runner.Worker.exe (Handle = "66132") Win32_Process: Runner.Worker.exe (Handle = "14580"), Labels=[self-hosted, Windows, X64, convert2, worker-1]
   - **CONVERT2-WINDOWS-02** (ID: 3): Status=online, Busy=False, Labels=[self-hosted, Windows, X64, convert2, worker-2]
   - **CONVERT2-WINDOWS-03** (ID: 4): Status=online, Busy=True, Labels=[self-hosted, Windows, X64, convert2, worker-3]
 
