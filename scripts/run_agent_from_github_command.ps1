@@ -4,7 +4,9 @@ param(
 
     [string]$CommandId = "",
 
-    [string]$CommandFile = ".ai\commands\NEXT_COMMAND.json",
+    [string]$ReservationToken = "",
+
+    [string]$CommandFile = "",
 
     [string]$ExecutionLane = "default",
 
@@ -51,7 +53,7 @@ try {
     Write-RunnerLog "Migration notice: $($_.Exception.Message)"
 }
 
-# Step 2: Recover any stale leases
+# Step 2: Recover any stale leases and reservations
 Write-RunnerLog "Checking for stale lease recoveries..."
 try {
     & python "scripts\command_bus_orchestrator.py" recover | Out-Null
@@ -59,26 +61,29 @@ try {
     Write-RunnerLog "Recovery notice: $($_.Exception.Message)"
 }
 
-# Step 3: Resolve target Command ID
+# Step 3: Resolve target Command ID with strict explicit binding
 $targetCmdId = $CommandId
 
-if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
-    # Check if CommandFile was explicitly provided and exists
-    $resolvedCommandPath = Join-Path $RepoPath $CommandFile
-    if (Test-Path $resolvedCommandPath) {
-        try {
-            $rawCmd = Get-Content -Raw -Path $resolvedCommandPath | ConvertFrom-Json
-            if ($rawCmd.migrated_to_command_id) {
-                $targetCmdId = [string]$rawCmd.migrated_to_command_id
-            } elseif ($rawCmd.command_id) {
-                $targetCmdId = [string]$rawCmd.command_id
-            }
-        } catch {}
+if (-not [string]::IsNullOrWhiteSpace($targetCmdId)) {
+    Write-RunnerLog "Explicit Command ID provided: $targetCmdId (Strict binding enforced)"
+    
+    # Locate command file strictly
+    $cmdFile = $null
+    foreach ($sub in @("reserved", "pending", "claimed", "running", "completed")) {
+        $candidatePath = Join-Path $RepoPath ".ai\commands\$sub\$targetCmdId.json"
+        if (Test-Path $candidatePath) {
+            $cmdFile = $candidatePath
+            Write-RunnerLog "Located command file in .ai\commands\$sub\$targetCmdId.json"
+            break
+        }
     }
-}
 
-if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
-    # Query orchestrator for highest-priority ready command
+    if (-not $cmdFile) {
+        Fail "BLOCKED_BINDING_MISMATCH: Command file not found for explicit command_id '$targetCmdId'"
+    }
+} else {
+    # Fallback ONLY when CommandId was not supplied (local watchdog / standalone mode)
+    Write-RunnerLog "No explicit CommandId provided. Computing ready set from orchestrator..."
     $readyArgs = @("ready", "--json")
     if (-not [string]::IsNullOrWhiteSpace($ExecutionLane) -and $ExecutionLane -ne "default") {
         $readyArgs += @("--lane", $ExecutionLane)
@@ -92,33 +97,20 @@ if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
     } catch {}
 
     if ([string]::IsNullOrWhiteSpace($targetCmdId)) {
-        # Fallback to checking pending directory
-        $pendingDir = Join-Path $RepoPath ".ai\commands\pending"
-        $pendingFiles = @(Get-ChildItem -Path $pendingDir -Filter "*.json" -ErrorAction SilentlyContinue)
-        if ($pendingFiles.Count -eq 0) {
-            Write-RunnerLog "No pending or ready commands found. Runner standing down cleanly."
-            exit 0
-        }
-        $firstPending = Get-Content -Raw -Path $pendingFiles[0].FullName | ConvertFrom-Json
-        $targetCmdId = [string]$firstPending.command_id
+        Write-RunnerLog "No ready commands found. Runner standing down cleanly."
+        exit 0
+    }
+
+    $cmdFile = Join-Path $RepoPath ".ai\commands\reserved\$targetCmdId.json"
+    if (-not (Test-Path $cmdFile)) {
+        $cmdFile = Join-Path $RepoPath ".ai\commands\pending\$targetCmdId.json"
+    }
+    if (-not (Test-Path $cmdFile)) {
+        Fail "Command file not found for resolved command $targetCmdId"
     }
 }
 
 Write-RunnerLog "Selected Command ID: $targetCmdId"
-
-# Find command JSON file
-$cmdFile = Join-Path $RepoPath ".ai\commands\pending\$targetCmdId.json"
-if (-not (Test-Path $cmdFile)) {
-    # Could be in claimed or running or already completed
-    $found = Get-ChildItem -Path (Join-Path $RepoPath ".ai\commands") -Recurse -Filter "$targetCmdId.json" | Select-Object -First 1
-    if ($found) {
-        Write-RunnerLog "Notice: Command $targetCmdId located in $($found.Directory.Name)"
-        $cmdFile = $found.FullName
-    } else {
-        Fail "Command file not found for $targetCmdId"
-    }
-}
-
 $command = Get-Content -Raw -Path $cmdFile | ConvertFrom-Json
 
 # Anti-duplicate & Status check
@@ -131,10 +123,19 @@ if ($command.status -eq "COMPLETED") {
 $runnerId = if ($env:GITHUB_RUN_ID) { "GITHUB_ACTIONS_$($env:GITHUB_RUN_ID)" } else { "LOCAL_WATCHDOG_$([Environment]::MachineName)" }
 Write-RunnerLog "Claiming command $targetCmdId for $runnerId..."
 
-$claimOut = & python "scripts\command_bus_orchestrator.py" claim --command-id "$targetCmdId" --runner "$runnerId" 2>&1
+$claimArgs = @("claim", "--command-id", $targetCmdId, "--runner", $runnerId)
+if (-not [string]::IsNullOrWhiteSpace($ReservationToken)) {
+    $claimArgs += @("--reservation-token", $ReservationToken)
+}
+
+$claimOut = & python "scripts\command_bus_orchestrator.py" @claimArgs 2>&1
 $claimExitCode = $LASTEXITCODE
 $claimText = ($claimOut | Out-String)
 if ($claimExitCode -ne 0 -or $claimText -notmatch "\[OK\]\s+CLAIMED") {
+    if ($claimText -match "BLOCKED_BINDING_MISMATCH") {
+        Fail "BLOCKED_BINDING_MISMATCH: $claimText"
+    }
+    Write-RunnerLog "Claim stood down or rejected: $claimText"
     exit 0
 }
 
@@ -162,7 +163,15 @@ if ($LASTEXITCODE -ne 0) {
     Fail "Failed to transition $targetCmdId to RUNNING: $startOut"
 }
 
-# Step 6: Formulate prompt and invoke agy turn
+# Step 6: Isolated Task Branch Setup
+$taskBranch = "agent/$targetCmdId"
+Write-RunnerLog "Setting up isolated task branch: $taskBranch..."
+& git checkout -B "$taskBranch"
+if ($LASTEXITCODE -ne 0) {
+    Fail "Failed to checkout isolated task branch $taskBranch"
+}
+
+# Step 7: Formulate prompt and invoke agy turn
 $prompt = @"
 CONVERT2 AUTONOMOUS EXECUTION
 
@@ -208,59 +217,118 @@ try {
 }
 
 $finalHead = (& git rev-parse HEAD).Trim()
-Write-RunnerLog "agy turn finished. ExitCode=$rc HEAD=$finalHead"
+$currentBranch = (& git rev-parse --abbrev-ref HEAD).Trim()
+Write-RunnerLog "agy turn finished. ExitCode=$rc HEAD=$finalHead on branch $currentBranch"
 
-# Step 7: Record runner state
-@{
-    protocol = "CONVERT2_RUNNER_STATE_V2"
-    command_id = $targetCmdId
-    task_id = [string]$command.task_id
-    finished_at = (Get-Date).ToString("o")
-    exit_code = $rc
-    dispatch_head_sha = $headSha
-    final_head_sha = $finalHead
-} | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $runnerDir "last_run.json")
+if ($currentBranch -eq "main" -or [string]::IsNullOrWhiteSpace($taskBranch) -or $currentBranch -ne $taskBranch) {
+    # Direct main execution (e.g. initial bootstrapping or legacy runner)
+    Write-RunnerLog "Direct main execution detected on branch $currentBranch."
 
-# Step 8: Complete or Fail Command in Command Bus
-$taskStateFile = Join-Path $RepoPath ".ai\state\tasks\$($command.task_id).json"
-$targetSha = $finalHead
-$reportFolder = ""
-$evidenceHash = ""
+    # Record runner state
+    @{
+        protocol = "CONVERT2_RUNNER_STATE_V2"
+        command_id = $targetCmdId
+        task_id = [string]$command.task_id
+        task_branch = $currentBranch
+        finished_at = (Get-Date).ToString("o")
+        exit_code = $rc
+        dispatch_head_sha = $headSha
+        final_head_sha = $finalHead
+    } | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $runnerDir "last_run.json")
 
-if (Test-Path $taskStateFile) {
-    try {
-        $tsObj = Get-Content -Raw -Path $taskStateFile | ConvertFrom-Json
-        if ($tsObj.target_commit_sha) { $targetSha = [string]$tsObj.target_commit_sha }
-        if ($tsObj.report_folder) { $reportFolder = [string]$tsObj.report_folder }
-        if ($tsObj.evidence_manifest_sha256) { $evidenceHash = [string]$tsObj.evidence_manifest_sha256 }
-    } catch {}
-}
+    # Complete or fail directly
+    $taskStateFile = Join-Path $RepoPath ".ai\state\tasks\$($command.task_id).json"
+    $targetSha = $finalHead
+    $reportFolder = ""
+    $evidenceHash = ""
 
-# Fallback: check global state.json if task state hasn't populated report_folder
-if ([string]::IsNullOrWhiteSpace($reportFolder)) {
-    $gStateFile = Join-Path $RepoPath ".ai\state.json"
-    if (Test-Path $gStateFile) {
+    if (Test-Path $taskStateFile) {
         try {
-            $gsObj = Get-Content -Raw -Path $gStateFile | ConvertFrom-Json
-            if ($gsObj.last_report_folder) { $reportFolder = [string]$gsObj.last_report_folder }
+            $tsObj = Get-Content -Raw -Path $taskStateFile | ConvertFrom-Json
+            if ($tsObj.target_commit_sha) { $targetSha = [string]$tsObj.target_commit_sha }
+            if ($tsObj.report_folder) { $reportFolder = [string]$tsObj.report_folder }
+            if ($tsObj.evidence_manifest_sha256) { $evidenceHash = [string]$tsObj.evidence_manifest_sha256 }
         } catch {}
     }
-}
 
-if ($rc -eq 0 -and (-not [string]::IsNullOrWhiteSpace($reportFolder))) {
-    Write-RunnerLog "Completing command $targetCmdId in orchestrator..."
-    & python "scripts\command_bus_orchestrator.py" complete `
-        --command-id "$targetCmdId" `
-        --lease-token "$leaseToken" `
-        --target-sha "$targetSha" `
-        --report "$reportFolder" `
-        --manifest-hash "$evidenceHash" | Out-Null
-    Write-RunnerLog "Command $targetCmdId completed successfully."
-} elseif ($rc -ne 0) {
-    Write-RunnerLog "Failing command $targetCmdId in orchestrator..."
-    & python "scripts\command_bus_orchestrator.py" fail `
-        --command-id "$targetCmdId" `
-        --lease-token "$leaseToken" `
-        --error "agy execution exited with error code $rc" | Out-Null
-    throw "agy exited with code $rc"
+    if ([string]::IsNullOrWhiteSpace($reportFolder)) {
+        $gStateFile = Join-Path $RepoPath ".ai\state.json"
+        if (Test-Path $gStateFile) {
+            try {
+                $gsObj = Get-Content -Raw -Path $gStateFile | ConvertFrom-Json
+                if ($gsObj.last_report_folder) { $reportFolder = [string]$gsObj.last_report_folder }
+            } catch {}
+        }
+    }
+
+    if ($rc -eq 0 -and (-not [string]::IsNullOrWhiteSpace($reportFolder))) {
+        Write-RunnerLog "Completing command $targetCmdId in orchestrator directly..."
+        & python "scripts\command_bus_orchestrator.py" complete `
+            --command-id "$targetCmdId" `
+            --lease-token "$leaseToken" `
+            --target-sha "$targetSha" `
+            --report "$reportFolder" `
+            --manifest-hash "$evidenceHash" | Out-Null
+        Write-RunnerLog "Command $targetCmdId completed successfully."
+    } elseif ($rc -ne 0) {
+        Write-RunnerLog "Failing command $targetCmdId in orchestrator..."
+        & python "scripts\command_bus_orchestrator.py" fail `
+            --command-id "$targetCmdId" `
+            --lease-token "$leaseToken" `
+            --error "agy execution exited with error code $rc" | Out-Null
+        throw "agy exited with code $rc"
+    }
+} else {
+    # Task branch execution
+    Write-RunnerLog "Pushing task branch $taskBranch to remote..."
+    & git add -A
+    & git commit -m "feat($($command.task_id)): autonomous task execution for $targetCmdId" --allow-empty
+    & git push origin "$taskBranch" --force
+    Write-RunnerLog "Task branch $taskBranch pushed successfully."
+
+    # Record runner state
+    @{
+        protocol = "CONVERT2_RUNNER_STATE_V2"
+        command_id = $targetCmdId
+        task_id = [string]$command.task_id
+        task_branch = $taskBranch
+        finished_at = (Get-Date).ToString("o")
+        exit_code = $rc
+        dispatch_head_sha = $headSha
+        final_head_sha = $finalHead
+    } | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $runnerDir "last_run.json")
+
+    # Trigger Serial Integrator
+    if ($rc -eq 0) {
+        Write-RunnerLog "Triggering Serial Integrator for $taskBranch..."
+        if ($env:GITHUB_RUN_ID -and (Get-Command gh -ErrorAction SilentlyContinue)) {
+            try {
+                & gh workflow run convert2-integrator.yml `
+                    -f command_id="$targetCmdId" `
+                    -f branch="$taskBranch" `
+                    -f lease_token="$leaseToken" | Out-Null
+                Write-RunnerLog "Dispatched convert2-integrator.yml for $targetCmdId."
+            } catch {
+                Write-RunnerLog "gh trigger notice: $($_.Exception.Message); running local integrator fallback..."
+                & python "scripts\command_bus_orchestrator.py" integrate `
+                    --command-id "$targetCmdId" `
+                    --branch "$taskBranch" `
+                    --lease-token "$leaseToken"
+            }
+        } else {
+            # Standalone / local watchdog integration
+            & python "scripts\command_bus_orchestrator.py" integrate `
+                --command-id "$targetCmdId" `
+                --branch "$taskBranch" `
+                --lease-token "$leaseToken"
+        }
+        Write-RunnerLog "Command $targetCmdId processing completed."
+    } else {
+        Write-RunnerLog "Failing command $targetCmdId in orchestrator..."
+        & python "scripts\command_bus_orchestrator.py" fail `
+            --command-id "$targetCmdId" `
+            --lease-token "$leaseToken" `
+            --error "agy execution exited with error code $rc" | Out-Null
+        throw "agy exited with code $rc"
+    }
 }

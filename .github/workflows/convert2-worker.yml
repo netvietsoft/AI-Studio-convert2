@@ -1,16 +1,14 @@
-name: CONVERT2 Agent Command Bus
+name: CONVERT2 Agent Worker
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".ai/commands/pending/**"
-      - ".ai/commands/NEXT_COMMAND.json"
-      - "scripts/command_bus_orchestrator.py"
   workflow_dispatch:
     inputs:
       command_id:
-        description: "Specific Command ID to execute (leave empty to pick highest priority ready command)"
+        description: "Exact Command ID to execute"
+        required: true
+        type: string
+      reservation_token:
+        description: "Reservation Token"
         required: false
         type: string
         default: ""
@@ -19,18 +17,13 @@ on:
         required: false
         type: string
         default: "default"
-      force_rerun:
-        description: "Force execution regardless of existing completion"
-        required: false
-        type: boolean
-        default: false
 
 permissions:
   contents: write
-  pull-requests: write
+  actions: write
 
 concurrency:
-  group: convert2-command-bus-${{ inputs.command_id || github.run_id }}
+  group: convert2-worker-${{ inputs.command_id }}
   cancel-in-progress: false
 
 jobs:
@@ -45,29 +38,26 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Reconcile and Execute CONVERT2 Command
+      - name: Run Agent Worker
         shell: powershell
         env:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $lane = "${{ inputs.execution_lane }}"
-          if ([string]::IsNullOrWhiteSpace($lane)) { $lane = "default" }
-          
-          $cmdId = "${{ inputs.command_id }}"
-
           powershell.exe -NoProfile -ExecutionPolicy Bypass `
             -File ".\scripts\run_agent_from_github_command.ps1" `
             -RepoPath "${{ github.workspace }}" `
-            -CommandId "$cmdId" `
-            -ExecutionLane "$lane"
+            -CommandId "${{ inputs.command_id }}" `
+            -ReservationToken "${{ inputs.reservation_token }}" `
+            -ExecutionLane "${{ inputs.execution_lane || 'default' }}"
 
       - name: Upload runner logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: convert2-agent-command-${{ github.run_id }}
+          name: convert2-worker-${{ inputs.command_id }}-${{ github.run_id }}
           path: .ai/runner/
           if-no-files-found: ignore
           retention-days: 14

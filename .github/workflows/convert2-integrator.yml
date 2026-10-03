@@ -1,0 +1,57 @@
+name: CONVERT2 Serial Integrator
+
+on:
+  workflow_dispatch:
+    inputs:
+      command_id:
+        description: "Command ID being integrated"
+        required: true
+        type: string
+      branch:
+        description: "Task branch to integrate"
+        required: true
+        type: string
+      lease_token:
+        description: "Lease token for command completion"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: convert2-integrator
+  cancel-in-progress: false
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Reconcile and Merge Task Branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMAND_ID: ${{ inputs.command_id }}
+          BRANCH: ${{ inputs.branch }}
+          LEASE_TOKEN: ${{ inputs.lease_token }}
+        run: |
+          git config user.name "convert2-integrator[bot]"
+          git config user.email "convert2-integrator@netviet.internal"
+          python scripts/command_bus_orchestrator.py integrate \
+            --command-id "$COMMAND_ID" \
+            --branch "$BRANCH" \
+            --lease-token "$LEASE_TOKEN"

@@ -38,6 +38,7 @@ PRIORITY_MAP = {
 
 VALID_STATUSES = {
     "PENDING",
+    "RESERVED",
     "QUEUED",
     "WAITING_DEPENDENCY",
     "CLAIMED",
@@ -46,6 +47,9 @@ VALID_STATUSES = {
     "COMPLETED",
     "FAILED",
     "BLOCKED",
+    "BLOCKED_BINDING_MISMATCH",
+    "BLOCKED_MERGE_CONFLICT",
+    "BLOCKED_UNAUTHORIZED_PATH",
     "STALE_RECOVERABLE"
 }
 
@@ -131,13 +135,54 @@ def normalize_path_pattern(pattern: str) -> str:
     return pattern.replace('\\', '/').strip('/')
 
 
+SHARED_RECONCILED_PATHS = {
+    ".ai/state",
+    ".ai/state/*",
+    ".ai/state/**",
+    ".ai/commands",
+    ".ai/commands/*",
+    ".ai/commands/**",
+    ".ai/runner",
+    ".ai/runner/*",
+    ".ai/runner/**",
+    "project_memory.md",
+    "project_error.md",
+    "task_log.md"
+}
+
+
 def paths_conflict(p1: str, p2: str) -> bool:
     """
     Check if two file path patterns conflict (overlap).
     Handles globbing (*, **) and prefix / exact matches.
+    Shared integrator-reconciled paths (.ai/state/**, .ai/commands/**, TASK_LOG.md, PROJECT_MEMORY.md)
+    do not block concurrency as they are safely serialized and reconciled by the Integrator.
+    Disjoint task reports (.ai/reports/TASK_A/** vs .ai/reports/TASK_B/**) do not conflict.
     """
     p1 = normalize_path_pattern(p1)
     p2 = normalize_path_pattern(p2)
+
+    # If both are shared integrator-reconciled metadata paths, no conflict
+    if p1.lower() in SHARED_RECONCILED_PATHS and p2.lower() in SHARED_RECONCILED_PATHS:
+        return False
+
+    # Disjoint task-specific report directories do not conflict
+    if p1.lower().startswith(".ai/reports/") and p2.lower().startswith(".ai/reports/"):
+        parts1 = p1.split('/')
+        parts2 = p2.split('/')
+        f1 = parts1[2] if len(parts1) > 2 else ""
+        f2 = parts2[2] if len(parts2) > 2 else ""
+        if f1 and f2 and f1 != f2:
+            return False
+
+    # Disjoint task-specific state files do not conflict
+    if p1.lower().startswith(".ai/state/tasks/") and p2.lower().startswith(".ai/state/tasks/"):
+        parts1 = p1.split('/')
+        parts2 = p2.split('/')
+        f1 = parts1[3] if len(parts1) > 3 else ""
+        f2 = parts2[3] if len(parts2) > 3 else ""
+        if f1 and f2 and f1 != f2:
+            return False
 
     if p1 == p2:
         return True
@@ -177,6 +222,7 @@ class CommandBusOrchestrator:
 
         self.bus_dir = self.repo_root / ".ai" / "commands"
         self.pending_dir = self.bus_dir / "pending"
+        self.reserved_dir = self.bus_dir / "reserved"
         self.claimed_dir = self.bus_dir / "claimed"
         self.running_dir = self.bus_dir / "running"
         self.completed_dir = self.bus_dir / "completed"
@@ -194,7 +240,7 @@ class CommandBusOrchestrator:
         self._ensure_dirs()
 
     def _ensure_dirs(self):
-        for d in [self.pending_dir, self.claimed_dir, self.running_dir,
+        for d in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir,
                   self.completed_dir, self.failed_dir, self.history_dir,
                   self.tasks_state_dir]:
             d.mkdir(parents=True, exist_ok=True)
@@ -219,6 +265,7 @@ class CommandBusOrchestrator:
     def _find_command_file(self, command_id: str) -> Optional[Tuple[Path, str]]:
         for status_dir, status_name in [
             (self.pending_dir, "PENDING"),
+            (self.reserved_dir, "RESERVED"),
             (self.claimed_dir, "CLAIMED"),
             (self.running_dir, "RUNNING"),
             (self.completed_dir, "COMPLETED"),
@@ -232,7 +279,7 @@ class CommandBusOrchestrator:
     def _get_all_commands(self) -> Dict[str, Dict[str, Any]]:
         """Return dict of command_id -> command dict for all active and completed commands."""
         commands = {}
-        for status_dir in [self.pending_dir, self.claimed_dir, self.running_dir, self.completed_dir, self.failed_dir]:
+        for status_dir in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir, self.completed_dir, self.failed_dir]:
             for p in status_dir.glob("*.json"):
                 cmd = self._load_json(p)
                 if cmd and "command_id" in cmd:
@@ -248,6 +295,7 @@ class CommandBusOrchestrator:
                 "updated_at": get_iso_now(),
                 "counts": {
                     "pending": len(list(self.pending_dir.glob("*.json"))),
+                    "reserved": len(list(self.reserved_dir.glob("*.json"))),
                     "claimed": len(list(self.claimed_dir.glob("*.json"))),
                     "running": len(list(self.running_dir.glob("*.json"))),
                     "completed": len(list(self.completed_dir.glob("*.json"))),
@@ -366,7 +414,7 @@ class CommandBusOrchestrator:
             # Active commands holding locks
             active_cmds = [
                 c for c in all_cmds.values()
-                if c.get("status") in ["CLAIMED", "RUNNING"]
+                if c.get("status") in ["RESERVED", "CLAIMED", "RUNNING"]
             ]
 
             # Completed tasks for dependency resolution
@@ -470,26 +518,97 @@ class CommandBusOrchestrator:
 
             return ready_list
 
+    def reserve_commands(self,
+                         dispatcher_run_id: str,
+                         specific_command_id: Optional[str] = None,
+                         lane: Optional[str] = None,
+                         capacity: int = 3) -> List[Dict[str, Any]]:
+        """
+        Atomically transitions eligible pending commands from PENDING to RESERVED.
+        Moves pending/<command_id>.json -> reserved/<command_id>.json.
+        Records reservation metadata:
+          - reservation_token
+          - dispatcher_run_id
+          - reserved_at
+        Returns list of reserved command dicts.
+        """
+        with FileLock(self.lock_file):
+            ready_cmds = self.compute_ready_set(lane=lane, lane_capacity=capacity)
+            if specific_command_id:
+                ready_cmds = [c for c in ready_cmds if c["command_id"] == specific_command_id]
+
+            reserved_list = []
+            now = get_iso_now()
+
+            for cmd in ready_cmds[:capacity]:
+                cid = cmd["command_id"]
+                tid = cmd["task_id"]
+                pending_file = self.pending_dir / f"{cid}.json"
+                if not pending_file.is_file():
+                    continue
+
+                res_token = uuid.uuid4().hex
+                cmd["status"] = "RESERVED"
+                cmd["reservation"] = {
+                    "reservation_token": res_token,
+                    "dispatcher_run_id": dispatcher_run_id,
+                    "reserved_at": now,
+                    "reservation_sha": None
+                }
+
+                dest = self.reserved_dir / f"{cid}.json"
+                self._write_json(dest, cmd)
+                try:
+                    pending_file.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
+                self._update_task_state(tid, {
+                    "command_id": cid,
+                    "status": "RESERVED",
+                    "reservation_token": res_token,
+                    "dispatcher_run_id": dispatcher_run_id,
+                    "reserved_at": now,
+                    "updated_at": now
+                })
+
+                reserved_list.append(cmd)
+
+            if reserved_list:
+                self.rebuild_index()
+
+            return reserved_list
+
     def claim_command(self,
                       command_id: str,
                       runner_identity: str,
-                      lease_seconds: int = 1800) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
+                      lease_seconds: int = 1800,
+                      reservation_token: Optional[str] = None) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
         """
-        Atomically claims a pending command for a runner.
-        Moves pending/<command_id>.json -> claimed/<command_id>.json.
+        Atomically claims a pending or reserved command for a runner.
+        Moves reserved/<command_id>.json (or pending) -> claimed/<command_id>.json.
         """
         with FileLock(self.lock_file):
-            pending_file = self.pending_dir / f"{command_id}.json"
-            if not pending_file.is_file():
+            src_file = self.reserved_dir / f"{command_id}.json"
+            if not src_file.is_file():
+                src_file = self.pending_dir / f"{command_id}.json"
+
+            if not src_file.is_file():
                 # Check where it currently is
                 res = self._find_command_file(command_id)
                 if res:
                     return False, f"Cannot claim command {command_id}: currently in status {res[1]}", None
                 return False, f"Command {command_id} not found", None
 
-            cmd = self._load_json(pending_file)
+            cmd = self._load_json(src_file)
             if not cmd:
                 return False, f"Command {command_id} unreadable", None
+
+            # Verify reservation token if command was reserved
+            if cmd.get("status") == "RESERVED":
+                expected_token = cmd.get("reservation", {}).get("reservation_token")
+                if reservation_token and expected_token and reservation_token != expected_token:
+                    return False, f"BLOCKED_BINDING_MISMATCH: Provided reservation token does not match reservation for {command_id}", None
 
             lease_token = uuid.uuid4().hex
             now = datetime.datetime.now(datetime.timezone.utc)
@@ -507,7 +626,7 @@ class CommandBusOrchestrator:
             dest = self.claimed_dir / f"{command_id}.json"
             self._write_json(dest, cmd)
             try:
-                pending_file.unlink(missing_ok=True)
+                src_file.unlink(missing_ok=True)
             except Exception:
                 pass
 
@@ -782,9 +901,244 @@ class CommandBusOrchestrator:
                             "retries": retries
                         })
 
+            # Check reserved commands for stale reservation timeout (15 mins)
+            for p in self.reserved_dir.glob("*.json"):
+                cmd = self._load_json(p)
+                if not cmd or not cmd.get("reservation"):
+                    continue
+                res_time_str = cmd["reservation"].get("reserved_at")
+                if not res_time_str:
+                    continue
+                try:
+                    res_time = datetime.datetime.fromisoformat(res_time_str)
+                    if now - res_time > datetime.timedelta(seconds=900):
+                        cid = cmd["command_id"]
+                        tid = cmd["task_id"]
+                        cmd["status"] = "PENDING"
+                        cmd["reservation"] = None
+                        dest = self.pending_dir / f"{cid}.json"
+                        self._write_json(dest, cmd)
+                        try:
+                            p.unlink(missing_ok=True)
+                        except Exception:
+                            pass
+                        self._update_task_state(tid, {
+                            "command_id": cid,
+                            "status": "PENDING",
+                            "recovered_stale_at": get_iso_now()
+                        })
+                        recovered.append({"command_id": cid, "task_id": tid, "reason": "expired_reservation"})
+                except Exception:
+                    pass
+
             if recovered:
                 self.rebuild_index()
         return recovered
+
+    def integrate_branch(self,
+                         command_id: str,
+                         branch: str,
+                         lease_token: Optional[str] = None) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
+        """
+        Serial Integrator:
+        1. Checks out main and pulls latest.
+        2. Inspects branch diff against main to verify allowed_paths and locked_modules.
+        3. Merges branch into main.
+        4. In case of merge conflict, records BLOCKED_MERGE_CONFLICT and aborts merge safely.
+        5. In case of success, records completion, pushes main, and reconciles state.
+        """
+        import subprocess
+
+        with FileLock(self.lock_file):
+            res = self._find_command_file(command_id)
+            if not res:
+                return False, f"Command {command_id} not found", None
+
+            path, status = res
+            cmd = self._load_json(path)
+            if not cmd:
+                return False, f"Command {command_id} unreadable", None
+
+            if status == "COMPLETED":
+                return True, f"Command {command_id} already COMPLETED", cmd
+
+            task_id = cmd.get("task_id", "")
+            allowed_paths = cmd.get("allowed_paths", [])
+
+            # 1. Fetch origin and inspect diff
+            try:
+                subprocess.run(["git", "fetch", "origin"], check=True, cwd=str(self.repo_root), capture_output=True)
+                subprocess.run(["git", "checkout", "main"], check=True, cwd=str(self.repo_root), capture_output=True)
+                subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True, cwd=str(self.repo_root), capture_output=True)
+            except Exception as e:
+                return False, f"Git fetch/checkout main failed: {e}", None
+
+            # Get list of changed files
+            diff_ref = f"origin/{branch}" if subprocess.run(["git", "rev-parse", "--verify", f"origin/{branch}"], cwd=str(self.repo_root), capture_output=True).returncode == 0 else branch
+            diff_proc = subprocess.run(["git", "diff", "--name-only", "main..." + diff_ref], cwd=str(self.repo_root), capture_output=True, text=True)
+            changed_files = [line.strip() for line in diff_proc.stdout.splitlines() if line.strip()]
+
+            # 2. Path gate: verify each file against allowed_paths
+            if allowed_paths:
+                unauthorized = []
+                for cf in changed_files:
+                    norm_cf = normalize_path_pattern(cf)
+                    matched = False
+                    for ap in allowed_paths:
+                        norm_ap = normalize_path_pattern(ap)
+                        if paths_conflict(norm_cf, norm_ap):
+                            matched = True
+                            break
+                    if not matched:
+                        unauthorized.append(cf)
+
+                if unauthorized:
+                    err_msg = f"BLOCKED_UNAUTHORIZED_PATH: Modified files outside allowed_paths: {unauthorized}"
+                    self._update_task_state(task_id, {
+                        "status": "BLOCKED_UNAUTHORIZED_PATH",
+                        "error_message": err_msg,
+                        "updated_at": get_iso_now()
+                    })
+                    cmd["status"] = "BLOCKED_UNAUTHORIZED_PATH"
+                    cmd["error_message"] = err_msg
+                    self._write_json(path, cmd)
+                    self.rebuild_index()
+                    return False, err_msg, cmd
+
+            # 3. Attempt merge
+            merge_msg = f"chore(integrate): merge {branch} for {command_id}"
+            merge_proc = subprocess.run(["git", "merge", "--no-ff", diff_ref, "-m", merge_msg], cwd=str(self.repo_root), capture_output=True, text=True)
+            if merge_proc.returncode != 0:
+                subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
+                err_msg = f"BLOCKED_MERGE_CONFLICT: Merge conflict merging {branch} into main: {merge_proc.stderr or merge_proc.stdout}"
+                self._update_task_state(task_id, {
+                    "status": "BLOCKED_MERGE_CONFLICT",
+                    "error_message": err_msg,
+                    "updated_at": get_iso_now()
+                })
+                cmd["status"] = "BLOCKED_MERGE_CONFLICT"
+                cmd["error_message"] = err_msg
+                self._write_json(path, cmd)
+                self.rebuild_index()
+                return False, err_msg, cmd
+
+            # 4. Successful merge: get target commit SHA
+            target_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(self.repo_root), text=True).strip()
+
+            # Find report folder from task state
+            task_state_file = self.tasks_state_dir / f"{task_id}.json"
+            ts_data = self._load_json(task_state_file) or {}
+            report_folder = ts_data.get("report_folder") or f".ai/reports/{task_id}"
+            evidence_hash = ts_data.get("evidence_manifest_sha256") or "NOT_SPECIFIED"
+
+            # Use lease token from command if none supplied
+            if not lease_token and cmd.get("lease"):
+                lease_token = cmd["lease"].get("lease_token")
+
+            # Complete command
+            ok, comp_msg, comp_cmd = self.complete_command(
+                command_id=command_id,
+                lease_token=lease_token or "SERIAL_INTEGRATOR_LEASE",
+                target_commit_sha=target_sha,
+                report_folder=report_folder,
+                evidence_manifest_sha256=evidence_hash
+            )
+
+            # Push merged main
+            try:
+                subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+                subprocess.run(["git", "commit", "--amend", "--no-edit"], cwd=str(self.repo_root))
+                subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(self.repo_root))
+                # Delete remote branch
+                clean_branch = branch.replace("origin/", "")
+                subprocess.run(["git", "push", "origin", "--delete", clean_branch], cwd=str(self.repo_root), capture_output=True)
+            except Exception as e:
+                print(f"Warning during push/branch cleanup: {e}")
+
+            return True, f"INTEGRATED: {branch} merged into main at {target_sha}", comp_cmd
+
+    def dispatch_commands(self,
+                          dispatcher_run_id: str,
+                          specific_command_id: Optional[str] = None,
+                          lane: Optional[str] = None,
+                          max_dispatch: int = 3) -> List[Dict[str, Any]]:
+        """
+        Dispatcher Gate:
+        1. Evaluates ready commands and reserves up to capacity.
+        2. Commits and pushes reservations atomically to main.
+        3. Dispatches convert2-worker.yml for each reserved command with explicit binding.
+        """
+        import subprocess
+
+        # Step 1: Reserve commands
+        reserved = self.reserve_commands(
+            dispatcher_run_id=dispatcher_run_id,
+            specific_command_id=specific_command_id,
+            lane=lane,
+            capacity=max_dispatch
+        )
+
+        if not reserved:
+            print(f"[DISPATCH] No eligible commands ready for dispatch.")
+            return []
+
+        # Step 2: Push reservations atomically to main
+        try:
+            subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+            commit_msg = f"chore(command-bus): reserve {len(reserved)} command(s) for dispatch [run {dispatcher_run_id}]"
+            subprocess.run(["git", "commit", "-m", commit_msg], check=True, cwd=str(self.repo_root))
+
+            # Push with retry
+            pushed = False
+            for attempt in range(3):
+                p_res = subprocess.run(["git", "push", "origin", "main"], cwd=str(self.repo_root))
+                if p_res.returncode == 0:
+                    pushed = True
+                    break
+                subprocess.run(["git", "pull", "--rebase", "origin", "main"], cwd=str(self.repo_root))
+
+            if not pushed:
+                print("[DISPATCH_ERROR] Failed to push reservations to main after 3 attempts.")
+                return []
+        except Exception as e:
+            print(f"[DISPATCH_ERROR] Git commit/push failed: {e}")
+            return []
+
+        res_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(self.repo_root), text=True).strip()
+
+        # Step 3: Dispatch worker workflows
+        dispatched = []
+        for cmd in reserved:
+            cid = cmd["command_id"]
+            cmd_lane = cmd.get("execution_lane", "default")
+            res_token = cmd.get("reservation", {}).get("reservation_token", "")
+
+            # Update reservation_sha in command file
+            res_file = self.reserved_dir / f"{cid}.json"
+            if res_file.is_file():
+                c_data = self._load_json(res_file)
+                if c_data and c_data.get("reservation"):
+                    c_data["reservation"]["reservation_sha"] = res_sha
+                    self._write_json(res_file, c_data)
+
+            # Trigger worker workflow via gh CLI
+            dispatch_args = [
+                "gh", "workflow", "run", "convert2-worker.yml",
+                "-f", f"command_id={cid}",
+                "-f", f"reservation_token={res_token}",
+                "-f", f"execution_lane={cmd_lane}",
+                "-r", "main"
+            ]
+            print(f"[DISPATCH] Triggering worker for {cid} (lane={cmd_lane}, reservation_token={res_token[:8]}...)...")
+            res = subprocess.run(dispatch_args, capture_output=True, text=True)
+            if res.returncode == 0:
+                print(f"[DISPATCH_OK] Dispatched {cid} successfully.")
+                dispatched.append(cmd)
+            else:
+                print(f"[DISPATCH_WARN] Failed to trigger worker via gh: {res.stderr}")
+                dispatched.append(cmd)
+
+        return dispatched
 
     # -------------------------------------------------------------------------
     # Legacy Migration (NEXT_COMMAND.json)
@@ -944,11 +1298,32 @@ def main():
     parser_create.add_argument("--locked-modules", default="", help="Comma-separated locked module names")
     parser_create.add_argument("--command-id", default=None, help="Optional specific command ID")
 
+    # reserve
+    parser_reserve = subparsers.add_parser("reserve", help="Reserve eligible ready commands")
+    parser_reserve.add_argument("--dispatcher-run-id", required=True, help="Dispatcher run ID")
+    parser_reserve.add_argument("--command-id", default=None, help="Specific command ID")
+    parser_reserve.add_argument("--lane", default=None, help="Execution lane")
+    parser_reserve.add_argument("--capacity", type=int, default=3, help="Max reservation capacity")
+
+    # dispatch
+    parser_dispatch = subparsers.add_parser("dispatch", help="Reserve and dispatch eligible commands")
+    parser_dispatch.add_argument("--dispatcher-run-id", required=True, help="Dispatcher run ID")
+    parser_dispatch.add_argument("--command-id", default=None, help="Specific command ID")
+    parser_dispatch.add_argument("--lane", default=None, help="Execution lane")
+    parser_dispatch.add_argument("--max-dispatch", type=int, default=3, help="Max concurrent dispatch count")
+
+    # integrate
+    parser_integrate = subparsers.add_parser("integrate", help="Serial branch integration gate")
+    parser_integrate.add_argument("--command-id", required=True, help="Command ID to integrate")
+    parser_integrate.add_argument("--branch", required=True, help="Branch to integrate into main")
+    parser_integrate.add_argument("--lease-token", default=None, help="Lease token")
+
     # claim
-    parser_claim = subparsers.add_parser("claim", help="Claim a pending command")
+    parser_claim = subparsers.add_parser("claim", help="Claim a pending or reserved command")
     parser_claim.add_argument("--command-id", required=True, help="Command ID to claim")
     parser_claim.add_argument("--runner", required=True, help="Runner identity")
     parser_claim.add_argument("--lease", type=int, default=1800, help="Lease duration in seconds")
+    parser_claim.add_argument("--reservation-token", default=None, help="Reservation token if command was reserved")
 
     # start
     parser_start = subparsers.add_parser("start", help="Start execution of a claimed command")
@@ -1005,6 +1380,36 @@ def main():
             for r in ready:
                 print(f"  READY: {r['command_id']} (task={r['task_id']}, lane={r.get('execution_lane')}, prio={r.get('priority')})")
 
+    elif args.action == "reserve":
+        res = orch.reserve_commands(
+            dispatcher_run_id=args.dispatcher_run_id,
+            specific_command_id=args.command_id,
+            lane=args.lane,
+            capacity=args.capacity
+        )
+        print(f"Reserved {len(res)} command(s):")
+        for r in res:
+            print(f"  RESERVED: {r['command_id']} (task={r['task_id']}, token={r['reservation']['reservation_token']})")
+
+    elif args.action == "dispatch":
+        disp = orch.dispatch_commands(
+            dispatcher_run_id=args.dispatcher_run_id,
+            specific_command_id=args.command_id,
+            lane=args.lane,
+            max_dispatch=args.max_dispatch
+        )
+        print(f"Dispatched {len(disp)} command(s).")
+
+    elif args.action == "integrate":
+        ok, msg, data = orch.integrate_branch(
+            command_id=args.command_id,
+            branch=args.branch,
+            lease_token=args.lease_token
+        )
+        print(f"[{'OK' if ok else 'FAIL'}] {msg}")
+        if not ok:
+            sys.exit(1)
+
     elif args.action == "create":
         deps = [d.strip() for d in args.dependencies.split(",") if d.strip()]
         paths = [p.strip() for p in args.allowed_paths.split(",") if p.strip()]
@@ -1026,7 +1431,12 @@ def main():
             print(json.dumps(data, indent=2))
 
     elif args.action == "claim":
-        ok, msg, data = orch.claim_command(args.command_id, args.runner, args.lease)
+        ok, msg, data = orch.claim_command(
+            args.command_id,
+            args.runner,
+            args.lease,
+            reservation_token=args.reservation_token
+        )
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
         if data:
             print(json.dumps(data, indent=2))

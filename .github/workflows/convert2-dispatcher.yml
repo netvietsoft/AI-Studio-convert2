@@ -1,0 +1,64 @@
+name: CONVERT2 Command Bus Dispatcher
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".ai/commands/pending/**"
+      - ".ai/commands/NEXT_COMMAND.json"
+      - "scripts/command_bus_orchestrator.py"
+  workflow_dispatch:
+    inputs:
+      command_id:
+        description: "Specific Command ID to dispatch (optional)"
+        required: false
+        type: string
+        default: ""
+      execution_lane:
+        description: "Execution Lane filter"
+        required: false
+        type: string
+        default: ""
+  schedule:
+    - cron: "*/3 * * * *"
+
+concurrency:
+  group: convert2-dispatcher
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Reserve and Dispatch Commands
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          SPECIFIC_CMD: ${{ inputs.command_id }}
+          LANE: ${{ inputs.execution_lane }}
+        run: |
+          git config user.name "convert2-dispatcher[bot]"
+          git config user.email "convert2-dispatcher@netviet.internal"
+          python scripts/command_bus_orchestrator.py dispatch \
+            --dispatcher-run-id "$GITHUB_RUN_ID" \
+            --command-id "$SPECIFIC_CMD" \
+            --lane "$LANE" \
+            --max-dispatch 3
