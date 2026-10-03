@@ -1194,8 +1194,47 @@ class CommandBusOrchestrator:
                 print(f"[DISPATCH_OK] Dispatched {cid} successfully.")
                 dispatched.append(cmd)
             else:
-                print(f"[DISPATCH_WARN] Failed to trigger worker via gh: {res.stderr}")
-                dispatched.append(cmd)
+                # Never report a green dispatcher when no Worker was actually started.
+                # Roll the reservation back to pending so a later dispatcher can retry.
+                err = (res.stderr or res.stdout or "unknown gh workflow dispatch error").strip()
+                print(f"[DISPATCH_ERROR] Failed to trigger worker for {cid}: {err}")
+                current = self._load_json(res_file) if res_file.is_file() else cmd
+                if current:
+                    current["status"] = "PENDING"
+                    current["reservation"] = None
+                    current["dispatch_error"] = {
+                        "dispatcher_run_id": dispatcher_run_id,
+                        "failed_at": get_iso_now(),
+                        "error": err
+                    }
+                    self._write_json(self.pending_dir / f"{cid}.json", current)
+                    try:
+                        res_file.unlink(missing_ok=True)
+                    except Exception:
+                        pass
+                    self._update_task_state(current.get("task_id", ""), {
+                        "command_id": cid,
+                        "status": "PENDING",
+                        "dispatch_error": err,
+                        "updated_at": get_iso_now()
+                    })
+                self.rebuild_index()
+
+        # Persist reservation SHA / rollback state and fail loudly if any worker dispatch failed.
+        subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+        if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=str(self.repo_root)).returncode != 0:
+            subprocess.run(["git", "commit", "-m",
+                            f"chore(command-bus): persist dispatch outcome [run {dispatcher_run_id}]"],
+                           check=True, cwd=str(self.repo_root))
+            subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True, cwd=str(self.repo_root))
+            subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(self.repo_root))
+
+        if len(dispatched) != len(reserved):
+            failed_count = len(reserved) - len(dispatched)
+            raise RuntimeError(
+                f"Worker dispatch failed for {failed_count}/{len(reserved)} reserved command(s); "
+                "failed commands were returned to pending."
+            )
 
         return dispatched
 
