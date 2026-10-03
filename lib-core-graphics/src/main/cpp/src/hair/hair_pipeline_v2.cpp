@@ -321,9 +321,21 @@ bool HairPipelineV2::applyConfidenceAndExclusion(
 ) {
     outConfidenceMatte.assign(width * height, 0.0f);
 
+    int bgY = static_cast<int>(std::ceil(0.16f * height));
+    int bgX1 = static_cast<int>(std::ceil(0.22f * width));
+    int bgX2 = static_cast<int>(std::floor(0.78f * width));
+
+    int fhY1 = height / 3;
+    int fhY2 = static_cast<int>(0.49f * height);
+    int fhX1 = static_cast<int>(0.37f * width);
+    int fhX2 = static_cast<int>(0.63f * width);
+
     #pragma omp parallel for schedule(static, 32)
     for (int y = 0; y < height; ++y) {
         int yOff = y * width;
+        bool inBgY = (y < bgY);
+        bool inFhY = (y >= fhY1 && y <= fhY2);
+
         for (int x = 0; x < width; ++x) {
             int idx = yOff + x;
             uint8_t lbl = fullLabels[idx];
@@ -337,7 +349,13 @@ bool HairPipelineV2::applyConfidenceAndExclusion(
                 continue;
             }
 
-            // 2. Strict skin exclusion: zero tolerance for skin pixels even if misclassified as hair
+            // 2. Strict background corner exclusion: eliminate stray corner labels in top outer corners
+            if (inBgY && (x < bgX1 || x >= bgX2)) {
+                outConfidenceMatte[idx] = 0.0f;
+                continue;
+            }
+
+            // 3. Strict skin exclusion: zero tolerance for skin pixels even if misclassified as hair
             uint32_t c = srcPixels[idx];
             int r = RGBA_R(c);
             int g = RGBA_G(c);
@@ -347,13 +365,14 @@ bool HairPipelineV2::applyConfidenceAndExclusion(
                 continue;
             }
 
-            // 3. Strict background corner exclusion: eliminate stray corner labels in top 15% outer corners
-            int bgY = static_cast<int>(std::ceil(0.15f * height));
-            int bgX1 = static_cast<int>(std::ceil(0.20f * width));
-            int bgX2 = static_cast<int>(std::floor(0.80f * width));
-            if (y < bgY && (x < bgX1 || x >= bgX2)) {
-                outConfidenceMatte[idx] = 0.0f;
-                continue;
+            // 4. Strict Forehead Box Protection: zero tolerance for any skin/near-skin in forehead zone
+            if (inFhY && (x >= fhX1 && x <= fhX2)) {
+                float yVal = 0.299f * r + 0.587f * g + 0.114f * b;
+                float cr = (r - yVal) * 0.713f + 128.0f;
+                if ((cr >= 125.0f && cr <= 180.0f && r > b) || (r > g && g >= b)) {
+                    outConfidenceMatte[idx] = 0.0f;
+                    continue;
+                }
             }
 
             float conf = inMatte[idx];
@@ -494,19 +513,11 @@ bool HairPipelineV2::transformColor(
         float outR, outG, outB;
         oklabTosRGB(finalL, finalA, finalB, outR, outG, outB);
 
-        // 3. Exact linear strand micro-texture preservation: add back 100% of high-frequency fiber details
-        float strandR = origR[i] - baseR[i];
-        float strandG = origG[i] - baseG[i];
-        float strandB = origB_f[i] - baseB_f[i];
-
-        int finalRed = static_cast<int>(std::round(outR * 255.0f + strandR));
-        int finalGreen = static_cast<int>(std::round(outG * 255.0f + strandG));
-        int finalBlue = static_cast<int>(std::round(outB * 255.0f + strandB));
-
+        // 3. Output smooth base dye illumination (exact 100% linear high-frequency strand fibers injected in Stage 9)
         outColorPixels[i] = PACK_RGBA(
-            clampU8(finalRed),
-            clampU8(finalGreen),
-            clampU8(finalBlue),
+            clampU8(static_cast<int>(std::round(outR * 255.0f))),
+            clampU8(static_cast<int>(std::round(outG * 255.0f))),
+            clampU8(static_cast<int>(std::round(outB * 255.0f))),
             RGBA_A(c)
         );
     }
@@ -657,7 +668,7 @@ bool HairPipelineV2::executePipelineV2(
     // Stage 9: High-Frequency Strand Texture Micro-Injection
     // Decompose composited image into low-pass base illumination and inject 100% original strand micro-fibers
     if (materialParams.blendIntensity > 0.01f) {
-        const int r_box = 2; // 5x5 box filter for precise micro-strand decomposition
+        const int r_box = 3; // 7x7 box filter matching base illumination decomposition
         std::vector<float> origR(width * height), origG(width * height), origB(width * height);
         std::vector<float> baseOrigR(width * height), baseOrigG(width * height), baseOrigB(width * height);
         std::vector<float> compR(width * height), compG(width * height), compB(width * height);
@@ -689,9 +700,9 @@ bool HairPipelineV2::executePipelineV2(
             float conf = confidenceMatte[i];
             if (conf < 0.02f) continue;
 
-            float strandR = (origR[i] - baseOrigR[i]) * 1.1f;
-            float strandG = (origG[i] - baseOrigG[i]) * 1.1f;
-            float strandB = (origB[i] - baseOrigB[i]) * 1.1f;
+            float strandR = origR[i] - baseOrigR[i];
+            float strandG = origG[i] - baseOrigG[i];
+            float strandB = origB[i] - baseOrigB[i];
 
             int finalRed = static_cast<int>(std::round(baseCompR[i] + strandR));
             int finalGreen = static_cast<int>(std::round(baseCompG[i] + strandG));
