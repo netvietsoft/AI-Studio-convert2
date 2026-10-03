@@ -206,14 +206,26 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
         (result.keypoints[JOINT_HIP_LEFT].visible && result.keypoints[JOINT_HIP_RIGHT].visible)
     );
 
+    float poseConfSum = 0.0f;
+    int visibleCount = 0;
+    for (size_t i = 0; i < JOINT_COUNT; ++i) {
+        if (result.keypoints[i].visible) {
+            poseConfSum += result.keypoints[i].confidence;
+            visibleCount++;
+        }
+    }
+    result.poseConfidence = (visibleCount > 0) ? (poseConfSum / static_cast<float>(visibleCount)) : 0.0f;
+
     // Phase 02: Real Human Parsing via MediaPipe Selfie Segmentation NCNN model
     result.parsingMask.assign(width * height, CLASS_BACKGROUND);
     bool hasRealParsing = false;
+    result.parsingConfidence = 0.0f;
     if (pixels != nullptr && meitu::ai::SelfieHumanParser::getInstance().isInitialized()) {
         hasRealParsing = meitu::ai::SelfieHumanParser::getInstance().generateParsingMask(
-            pixels, width, height, result.keypoints, result.parsingMask, &result.overallConfidence
+            pixels, width, height, result.keypoints, result.parsingMask, &result.parsingConfidence
         );
     }
+    result.parsingValid = hasRealParsing && (result.parsingConfidence >= 0.40f);
 
     if (result.head.isValid) {
         int fx1 = std::max(0, static_cast<int>(result.head.headGeometry.headBox.x1));
@@ -326,7 +338,17 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
     result.background.backgroundRigidity = 1.0f;
 
     result.isValid = (result.pose.isValid || result.head.isValid);
-    result.overallConfidence = result.isValid ? 0.95f : 0.0f;
+    if (result.parsingValid && result.pose.isValid) {
+        result.overallConfidence = (result.poseConfidence * 0.4f) + (result.parsingConfidence * 0.6f);
+    } else if (result.parsingValid) {
+        result.overallConfidence = result.parsingConfidence * 0.85f;
+    } else if (result.pose.isValid) {
+        result.overallConfidence = result.poseConfidence * 0.75f;
+    } else if (result.head.isValid) {
+        result.overallConfidence = result.head.overallConfidence;
+    } else {
+        result.overallConfidence = 0.0f;
+    }
 
     return result;
 }
@@ -337,41 +359,51 @@ int BodySemanticEngine::checkToolApplicability(
 ) {
     if (!human.isValid) return APPLICABILITY_INVALID;
 
+    // Requirement 6: A geometry-changing tool must NOT proceed as successful when person parsing failed or is below threshold.
+    // Require both valid pose and valid real parsing with confidence >= 0.40f.
+    bool hasValidGeometryPrereqs = human.pose.isValid && human.parsingValid && (human.parsingConfidence >= 0.40f);
+
     if (toolId == "tool_body_legs" || toolId == "tool_long_legs" || toolId == "tool_leg_length") {
-        return (human.pose.isValid && (human.hasLegsVisible || human.leftLeg.isVisible || human.rightLeg.isVisible)) ?
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
+        return (human.hasLegsVisible || human.leftLeg.isVisible || human.rightLeg.isVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_leg_slim" || toolId == "tool_body_legs_slim") {
-        return (human.pose.isValid && (human.leftLeg.isVisible || human.rightLeg.isVisible)) ?
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
+        return (human.leftLeg.isVisible || human.rightLeg.isVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_height" || toolId == "tool_height") {
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
         bool hasTorso = human.keypoints[JOINT_HIP_LEFT].visible && human.keypoints[JOINT_HIP_RIGHT].visible;
-        return (human.pose.isValid && (hasTorso || human.hasLegsVisible)) ?
+        return (hasTorso || human.hasLegsVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_waist" || toolId == "tool_body_slim" || toolId == "tool_body_hip" || toolId == "tool_hip_enhance") {
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
         bool hasTorsoShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
         bool hasHips = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible;
-        return (human.pose.isValid && hasTorsoShoulders && hasHips) ?
+        return (hasTorsoShoulders && hasHips) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_chest") {
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
         bool hasChest = human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible &&
                         human.torso.chestCenter.y < static_cast<float>(human.frameHeight) - 15.0f;
-        return (human.pose.isValid && hasChest) ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
+        return hasChest ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_shoulder" || toolId == "tool_neck_slim" || toolId == "tool_body_neck" ||
-        toolId == "tool_neck_length" || toolId == "tool_swan_neck" || toolId == "tool_clavicle_enhance" ||
-        toolId == "tool_face_neck_tone") {
+        toolId == "tool_neck_length" || toolId == "tool_swan_neck" || toolId == "tool_clavicle_enhance") {
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
         bool hasShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
         return hasShoulders ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_arm" || toolId == "tool_arm_slim") {
-        return (human.pose.isValid && (human.leftArm.isVisible || human.rightArm.isVisible)) ?
+        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
+        return (human.leftArm.isVisible || human.rightArm.isVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
-    if (toolId == "tool_body_skin_smooth" || toolId == "tool_body_skin_whiten") {
+    if (toolId == "tool_face_neck_tone" || toolId == "tool_body_skin_smooth" || toolId == "tool_body_skin_whiten") {
         return human.isValid ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
 

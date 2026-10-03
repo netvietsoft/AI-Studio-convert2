@@ -157,11 +157,23 @@ bool SelfieHumanParser::generateParsingMask(
 
     float fgRatio = static_cast<float>(fgCount) / static_cast<float>(width * height);
     if (outConfidence) {
-        // High confidence when foreground covers reasonable portrait/body proportion (5% - 95%)
-        if (fgRatio >= 0.03f && fgRatio <= 0.95f) {
-            *outConfidence = 0.95f;
+        if (fgCount > 0) {
+            double sumFgProb = 0.0;
+            for (int i = 0; i < width * height; ++i) {
+                if (binMask[i] > 0) {
+                    sumFgProb += prob[i];
+                }
+            }
+            float meanFgProb = static_cast<float>(sumFgProb / fgCount);
+            if (fgRatio < 0.02f) {
+                *outConfidence = meanFgProb * (fgRatio / 0.02f);
+            } else if (fgRatio > 0.98f) {
+                *outConfidence = meanFgProb * ((1.0f - fgRatio) / 0.02f);
+            } else {
+                *outConfidence = meanFgProb;
+            }
         } else {
-            *outConfidence = 0.20f;
+            *outConfidence = 0.0f;
         }
     }
 

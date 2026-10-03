@@ -3336,6 +3336,11 @@ class PhotoEditorActivity : Activity() {
             // ================= 10. THON DÁNG & FULL BODY BEAUTY (SPEC Sections 41-87) =================
             "tool_body_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_slim", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_slim: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[2] = p // slimBody
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
@@ -3345,6 +3350,11 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_waist" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_waist", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_waist: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[3] = p // waistSlim
                 params[4] = p * 0.8f // waistCurve
@@ -3355,19 +3365,26 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_shoulder" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val okClavicle = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2203, p)
-                if (!okClavicle) {
-                    val params = FloatArray(17)
-                    params[7] = p // shoulderSlim
-                    params[8] = p * 0.5f // shoulderBalance
-                    val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
-                    if (!ok) {
-                        android.util.Log.d("PhotoEditorActivity", "tool_body_shoulder: not applicable or failed")
-                    }
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_shoulder", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_shoulder: not applicable for current image framing (app=$app)")
+                    return
+                }
+                val params = FloatArray(17)
+                params[7] = p // shoulderSlim
+                params[8] = p * 0.5f // shoulderBalance
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_shoulder: not applicable or failed")
                 }
             }
             "tool_body_arm", "tool_arm_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_arm", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_arm: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[9] = p // armSlim
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
@@ -3470,6 +3487,11 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_legs", "tool_long_legs", "tool_leg_length" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_legs", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_legs: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[10] = p // longLegs
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
@@ -3477,14 +3499,38 @@ class PhotoEditorActivity : Activity() {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_legs: not applicable for current image framing (legs not in frame)")
                 }
             }
+            "tool_leg_slim", "tool_body_legs_slim" -> {
+                val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_leg_slim", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_leg_slim: not applicable for current image framing (app=$app)")
+                    return
+                }
+                val params = FloatArray(17)
+                params[11] = p // legSlim
+                val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
+                if (!ok) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_leg_slim: not applicable or failed")
+                }
+            }
             "tool_body_height", "tool_height" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_height", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_height: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[0] = p // bodyHeight
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_chest" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_chest", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_chest: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val ok = MeituNativeEngine.nativeApplyChestReshape(workingBitmap, cachedPosePoints, lmk, p)
                 if (!ok) {
                     android.util.Log.d("PhotoEditorActivity", "tool_body_chest: not applicable for current image framing")
@@ -3492,6 +3538,11 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_hip", "tool_hip_enhance" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
+                val app = MeituNativeEngine.nativeCheckBodyToolApplicability("tool_body_hip", cachedPosePoints, lmk, workingBitmap.width, workingBitmap.height)
+                if (app <= 0) {
+                    android.util.Log.d("PhotoEditorActivity", "tool_body_hip: not applicable for current image framing (app=$app)")
+                    return
+                }
                 val params = FloatArray(17)
                 params[5] = p // hipEnhance
                 val ok = MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)

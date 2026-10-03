@@ -600,7 +600,8 @@ bool BodyBeautyEngine::applyLongLegs(
     const HumanFrameResult& human,
     float intensity
 ) {
-    if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f || !human.isValid) {
+    if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f ||
+        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
         return false;
     }
 
@@ -682,7 +683,8 @@ bool BodyBeautyEngine::applyBodyHeight(
     const HumanFrameResult& human,
     float intensity
 ) {
-    if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f || !human.isValid) {
+    if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f ||
+        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
         return false;
     }
 
@@ -780,7 +782,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     float maxInt = std::max(std::abs(slimIntensity), std::max(std::abs(waistIntensity), std::abs(hipIntensity)));
-    if (maxInt < 0.001f || !human.isValid) return false;
+    if (maxInt < 0.001f || !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
@@ -789,6 +791,10 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
     Point2DF hip = human.torso.hipCenter;
 
     if (waist.y <= 0.1f) {
+        bool hasHips = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible;
+        if (!hasHips) {
+            return false;
+        }
         waist = {width * 0.5f, height * 0.45f};
         chest = {width * 0.5f, height * 0.30f};
         hip = {width * 0.5f, height * 0.58f};
@@ -868,7 +874,8 @@ bool BodyBeautyEngine::applyChestReshape(
     const HumanFrameResult& human,
     float intensity
 ) {
-    if (!rgbaImage || width <= 0 || height <= 0 || std::abs(intensity) < 0.001f || !human.isValid) {
+    if (!rgbaImage || width <= 0 || height <= 0 || std::abs(intensity) < 0.001f ||
+        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
         return false;
     }
 
@@ -978,6 +985,7 @@ bool BodyBeautyEngine::applyArmAndShoulderSlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     if (std::abs(shoulderIntensity) < 0.001f && std::abs(armIntensity) < 0.001f) return false;
+    if (!human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
@@ -1071,6 +1079,7 @@ bool BodyBeautyEngine::applyLegSlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     if (std::abs(legSlimIntensity) < 0.001f && std::abs(ankleSlimIntensity) < 0.001f) return false;
+    if (!human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
