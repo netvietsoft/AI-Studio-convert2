@@ -1,0 +1,59 @@
+name: CONVERT2 Hair V2 Visual Gallery & Report Package Transfer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/**'
+      - '.ai/reports/TASK_028_TASK027_EVIDENCE_PROVENANCE_LIFECYCLE_AND_DRIVE_MIRROR_CORRECTION/**'
+      - '.ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION/**'
+      - 'TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/**'
+
+permissions:
+  contents: read
+
+jobs:
+  package-and-upload-hair-gallery:
+    name: Package and Upload Hair V2 Gallery & Evidence Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Lifecycle Invariants Before Packaging
+        run: |
+          python scripts/command_bus_orchestrator.py validate-lifecycle
+
+      - name: Package Hair V2 Visual Gallery and Reports
+        run: |
+          mkdir -p artifacts/reports/TASK_027
+          mkdir -p artifacts/reports/TASK_028
+          mkdir -p artifacts/reports/TASK_029
+          mkdir -p artifacts/gallery
+          if [ -d ".ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION" ]; then
+            cp -r .ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/* artifacts/reports/TASK_027/
+          fi
+          if [ -d ".ai/reports/TASK_028_TASK027_EVIDENCE_PROVENANCE_LIFECYCLE_AND_DRIVE_MIRROR_CORRECTION" ]; then
+            cp -r .ai/reports/TASK_028_TASK027_EVIDENCE_PROVENANCE_LIFECYCLE_AND_DRIVE_MIRROR_CORRECTION/* artifacts/reports/TASK_028/
+          fi
+          if [ -d ".ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION" ]; then
+            cp -r .ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION/* artifacts/reports/TASK_029/
+          fi
+          if [ -d "TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY" ]; then
+            cp -r TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/* artifacts/gallery/
+          fi
+          echo "Packaging Hair V2 visual gallery and reports complete."
+
+      - name: Upload CONVERT2_HAIR_V2_PHYSICAL_GALLERY Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CONVERT2_HAIR_V2_PHYSICAL_GALLERY
+          path: artifacts/gallery/
+          retention-days: 90
+
+      - name: Upload CONVERT2_HAIR_V2_REPORT_PACKAGE Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CONVERT2_HAIR_V2_REPORT_PACKAGE
+          path: artifacts/reports/
+          retention-days: 90
