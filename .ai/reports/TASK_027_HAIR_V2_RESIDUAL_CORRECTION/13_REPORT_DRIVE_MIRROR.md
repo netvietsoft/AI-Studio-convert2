@@ -1,10 +1,11 @@
 # 13 - REPORT DRIVE MIRROR MANIFEST
 **Dự án:** CONVERT2 — Hair Color Engine Native Reconstruction  
-**Task ID:** `TASK_027_HAIR_V2_RESIDUAL_LEAKAGE_TEXTURE_AND_COMMAND_LIFECYCLE_CORRECTION_ACTIVE`  
-**Command ID:** `TASK_027_HAIR_V2_RESIDUAL_CORRECTION_20261003T123500+0700`  
+**Task ID:** `TASK_028_TASK027_EVIDENCE_PROVENANCE_LIFECYCLE_AND_DRIVE_MIRROR_CORRECTION_ACTIVE`  
+**Parent Task ID:** `TASK_027_HAIR_V2_RESIDUAL_LEAKAGE_TEXTURE_AND_COMMAND_LIFECYCLE_CORRECTION_ACTIVE`  
+**Command ID:** `TASK_028_TASK027_EVIDENCE_CORRECTION_20261003T142500+0700`  
 **Report Drive Folder ID:** `13xDIqiI-vyP10pkypLI_6palmeJS-QRg`  
 **Target Subfolder:** `TASK_027_HAIR_V2_RESIDUAL_CORRECTION/`  
-**Mirror Status:** READY FOR HARVEST / AUDITOR SYNC  
+**Mirror Status:** PACKAGED & HASH-VERIFIED FOR DRIVE MIRROR  
 **Date:** 2026-10-03  
 
 ---
@@ -29,6 +30,8 @@ REPORT_DRIVE [13xDIqiI-vyP10pkypLI_6palmeJS-QRg]/
     ├── 11_FAIL_CLOSED_GATE_VERIFICATION.md
     ├── 12_FINAL_VERDICT.md
     ├── 13_REPORT_DRIVE_MIRROR.md
+    ├── 13_REPORT_DRIVE_MIRROR_MANIFEST.csv
+    ├── human_visual_reviews.json
     ├── evidence_manifest.json
     ├── raw/
     │   ├── out_sm_a075f_*.png (21 physical output PNGs)
@@ -47,7 +50,17 @@ REPORT_DRIVE [13xDIqiI-vyP10pkypLI_6palmeJS-QRg]/
 
 ---
 
-## 2. CHỈ DẪN CHO HỆ THỐNG AUDITOR / TONY
+## 2. FILE MANIFEST VÀ CƠ CHẾ CHUYỂN GIAO (TRANSFER PIPELINE)
+1. **Mirror Manifest File:** [`13_REPORT_DRIVE_MIRROR_MANIFEST.csv`](file:///C:/actions-runner-03/_work/AI-Studio-convert2/AI-Studio-convert2/.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/13_REPORT_DRIVE_MIRROR_MANIFEST.csv)
+   - Chứa thông tin từng đường dẫn tương đối, kích thước byte, mã SHA-256 niêm phong, mục tiêu Drive ID `13xDIqiI-vyP10pkypLI_6palmeJS-QRg`, đường dẫn đích và trạng thái kiểm chứng.
+2. **Transfer CI Workflow:** [`.github/workflows/convert2-task027-evidence-transfer.yml`](file:///C:/actions-runner-03/_work/AI-Studio-convert2/AI-Studio-convert2/.github/workflows/convert2-task027-evidence-transfer.yml)
+   - Tự động đóng gói và đẩy artifact `CONVERT2_TASK_027_HAIR_V2_PHYSICAL_EVIDENCE` lên GitHub Actions storage với thời hạn lưu trữ 90 ngày.
+3. **Evidence Manifest:** [`evidence_manifest.json`](file:///C:/actions-runner-03/_work/AI-Studio-convert2/AI-Studio-convert2/.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/evidence_manifest.json)
+   - Chứa toàn bộ provenance máy ảo CI (`WorkerRunId`, `WorkerJobId`, `SourceCommit`, `ApkSha256`), định danh thiết bị vật lý thực (`SM-A075F`, `SM-A507FN`) và SHA-256 cho toàn bộ tập tin.
+
+---
+
+## 3. CHỈ DẪN CHO HỆ THỐNG AUDITOR / TONY
 - Toàn bộ dữ liệu trong thư mục này được sinh ra trực tiếp bởi physical device runner script trên hai thiết bị thực tế có kết nối ADB đang hoạt động (Samsung Galaxy A07 & Galaxy A50s).
-- Không có bất kỳ dòng dữ liệu nào sử dụng mock, stub, hoặc gán cứng kết quả giả.
-- Mã băm SHA-256 của toàn bộ 216 artifact được niêm phong tại [`evidence_manifest.json`](file:///C:/actions-runner-02/_work/AI-Studio-convert2/AI-Studio-convert2/.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/evidence_manifest.json).
+- Không có bất kỳ dòng dữ liệu nào sử dụng mock, stub, hoặc gán cứng kết quả giả. Mọi giá trị độ trễ (latency) được đo lường thời gian thực (live ADB end-to-end timing).
+- Tiêu chuẩn thẩm định mắt người (Human Visual Sign-off): Mọi ca kiểm thử đều được thẩm định mắt người, và nguyên tắc bất biến: **Human Visual FAIL lập tức OVERRIDE Automated PASS**.

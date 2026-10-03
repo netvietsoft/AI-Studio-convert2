@@ -1,0 +1,47 @@
+name: CONVERT2 TASK_027 Hair Physical Device Evidence Transfer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/**'
+      - 'TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/**'
+
+permissions:
+  contents: read
+
+jobs:
+  upload-evidence:
+    name: Package and Upload TASK_027 Hair Evidence Artifacts
+    runs-on: [self-hosted, Windows, convert2]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify Evidence Integrity and Mirror Manifest
+        shell: powershell
+        run: |
+          $manifest = ".ai\reports\TASK_027_HAIR_V2_RESIDUAL_CORRECTION\evidence_manifest.json"
+          $mirrorCsv = ".ai\reports\TASK_027_HAIR_V2_RESIDUAL_CORRECTION\13_REPORT_DRIVE_MIRROR_MANIFEST.csv"
+          if (-not (Test-Path $manifest)) {
+            Write-Error "Manifest not found at $manifest"
+            exit 1
+          }
+          if (-not (Test-Path $mirrorCsv)) {
+            Write-Error "Mirror CSV not found at $mirrorCsv"
+            exit 1
+          }
+          Write-Host "TASK_027 Evidence and Mirror manifests verified."
+
+      - name: Upload TASK_027 Evidence Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CONVERT2_TASK_027_HAIR_V2_PHYSICAL_EVIDENCE
+          path: |
+            .ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/
+            TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/
+          if-no-files-found: error
+          retention-days: 90

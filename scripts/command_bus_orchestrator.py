@@ -1277,39 +1277,76 @@ class CommandBusOrchestrator:
             report_folder = ts_data.get("report_folder") or f".ai/reports/{task_id}"
             evidence_hash = ts_data.get("evidence_manifest_sha256") or "NOT_SPECIFIED"
 
-            # Ensure command file is in running directory after merge
+            # Check if command is already completed on the merged branch
+            completed_file = self.completed_dir / f"{command_id}.json"
             running_file = self.running_dir / f"{command_id}.json"
-            if not running_file.is_file():
-                found_res = self._find_command_file(command_id)
-                if found_res:
-                    f_path, f_status = found_res
-                    c_data = self._load_json(f_path)
-                    if c_data:
-                        c_data["status"] = "RUNNING"
-                        self._write_json(running_file, c_data)
-                        try:
-                            f_path.unlink(missing_ok=True)
-                        except Exception:
-                            pass
 
-            # Complete command
-            cmd_curr = self._load_json(running_file) or cmd
-            actual_lease = lease_token or (cmd_curr.get("lease") or {}).get("lease_token") or "SERIAL_INTEGRATOR_LEASE"
-            if cmd_curr.get("lease"):
-                cmd_curr["lease"]["lease_token"] = actual_lease
+            if completed_file.is_file():
+                # Already marked COMPLETED on task branch; update target_commit_sha and provenance cleanly
+                c_data = self._load_json(completed_file)
+                if c_data:
+                    c_data["status"] = "COMPLETED"
+                    if not c_data.get("provenance"):
+                        c_data["provenance"] = {}
+                    c_data["provenance"]["target_commit_sha"] = target_sha
+                    c_data["provenance"]["report_folder"] = report_folder
+                    c_data["provenance"]["evidence_manifest_sha256"] = evidence_hash
+                    c_data["provenance"]["completed_at"] = get_iso_now()
+                    self._write_json(completed_file, c_data)
+                # Purge from running if it existed anywhere
+                running_file.unlink(missing_ok=True)
+                comp_cmd = c_data
+            else:
+                # Ensure command file is in running directory after merge
+                if not running_file.is_file():
+                    found_res = self._find_command_file(command_id)
+                    if found_res:
+                        f_path, f_status = found_res
+                        c_data = self._load_json(f_path)
+                        if c_data:
+                            c_data["status"] = "RUNNING"
+                            self._write_json(running_file, c_data)
+                            try:
+                                f_path.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+
+                # Complete command
+                cmd_curr = self._load_json(running_file) or cmd
+                actual_lease = lease_token or (cmd_curr.get("lease") or {}).get("lease_token") or "SERIAL_INTEGRATOR_LEASE"
+                if not cmd_curr.get("lease"):
+                    cmd_curr["lease"] = {
+                        "lease_token": actual_lease,
+                        "lease_holder": "SERIAL_INTEGRATOR",
+                        "leased_at": get_iso_now(),
+                        "lease_expires_at": get_iso_now(),
+                        "heartbeat_at": get_iso_now()
+                    }
+                else:
+                    cmd_curr["lease"]["lease_token"] = actual_lease
                 self._write_json(running_file, cmd_curr)
 
-            ok, comp_msg, comp_cmd = self.complete_command(
-                command_id=command_id,
-                lease_token=actual_lease,
-                target_commit_sha=target_sha,
-                report_folder=report_folder,
-                evidence_manifest_sha256=evidence_hash
-            )
+                ok, comp_msg, comp_cmd = self.complete_command(
+                    command_id=command_id,
+                    lease_token=actual_lease,
+                    target_commit_sha=target_sha,
+                    report_folder=report_folder,
+                    evidence_manifest_sha256=evidence_hash
+                )
+                if not ok:
+                    raise RuntimeError(f"Failed to complete command {command_id} during integration: {comp_msg}")
 
-            # Push merged main
+            # Reconcile lifecycle uniqueness across all command directories
+            self.reconcile_lifecycle_uniqueness()
+
+            # Enforce lifecycle invariant check
+            is_valid, violations, _ = self.validate_lifecycle_invariants()
+            if not is_valid:
+                raise RuntimeError(f"Lifecycle invariant validation failed after integrating {command_id}: {violations}")
+
+            # Push merged main with all deletions staged (-A)
             try:
-                subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+                subprocess.run(["git", "add", "-A", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
                 subprocess.run(["git", "commit", "--amend", "--no-edit"], cwd=str(self.repo_root))
                 subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(self.repo_root))
                 # Delete remote branch

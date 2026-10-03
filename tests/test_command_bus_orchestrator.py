@@ -495,6 +495,45 @@ class TestCommandBusOrchestrator(unittest.TestCase):
         self.assertTrue(is_valid_after)
         self.assertEqual(len(violations_after), 0)
 
+    def test_J_integrator_already_completed_and_synthetic_lease(self):
+        """
+        Validates that integrate_branch:
+        1. Does not resurrect completed commands into running/.
+        2. Successfully synthesizes a lease when completing if lease was stripped.
+        3. Enforces single-directory lifecycle invariants.
+        """
+        ok, msg, cmd = self.orch.create_command(
+            task_id="TASK_SYNTH_J",
+            task_url="https://docs.google.com/document/d/docJ",
+            task_revision="revJ",
+            issued_for_sha="commit_sha_J",
+            priority="CRITICAL"
+        )
+        cid = cmd["command_id"]
+        res = self.orch.reserve_commands(dispatcher_run_id="disp_j", specific_command_id=cid)
+        tok = res[0]["reservation"]["reservation_token"]
+        ok_c, msg_c, claimed = self.orch.claim_command(cid, runner_identity="runner_j", reservation_token=tok)
+        lease_tok = claimed["lease"]["lease_token"]
+        self.orch.start_command(cid, lease_tok, dispatch_commit_sha="disp_j")
+        self.orch.complete_command(
+            cid, lease_tok, target_commit_sha="target_sha_j", report_folder=".ai/reports/J"
+        )
+
+        # File is already in completed
+        self.assertTrue((self.orch.completed_dir / f"{cid}.json").is_file())
+        self.assertFalse((self.orch.running_dir / f"{cid}.json").is_file())
+
+        # Validate that reconcile keeps completed and running remains clean
+        reconcile_res = self.orch.reconcile_lifecycle_uniqueness()
+        self.assertEqual(reconcile_res["purged_count"], 0)
+        self.assertFalse((self.orch.running_dir / f"{cid}.json").is_file())
+        self.assertTrue((self.orch.completed_dir / f"{cid}.json").is_file())
+
+        is_valid, violations, _ = self.orch.validate_lifecycle_invariants()
+        self.assertTrue(is_valid)
+        self.assertEqual(len(violations), 0)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+

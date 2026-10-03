@@ -59,8 +59,10 @@ jobs:
           git config user.email "convert2-dispatcher@netviet.internal"
           # Reconcile stale reservations/leases before selecting ready commands.
           python scripts/command_bus_orchestrator.py recover --timeout 1800
+          python scripts/command_bus_orchestrator.py reconcile-lifecycle
+          python scripts/command_bus_orchestrator.py validate-lifecycle
           python scripts/command_bus_orchestrator.py rebuild-index
-          git add .ai/commands .ai/state || true
+          git add -A .ai/commands .ai/state || true
           if ! git diff --cached --quiet; then
             git commit -m "chore(command-bus): reconcile stale state before dispatch [run $GITHUB_RUN_ID]"
             git pull --rebase origin main

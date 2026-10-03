@@ -58,6 +58,11 @@ jobs:
             -ReservationToken "${{ inputs.reservation_token }}" `
             -ExecutionLane "${{ inputs.execution_lane || 'default' }}"
 
+      - name: Validate Command Lifecycle Invariants
+        shell: powershell
+        run: |
+          python scripts/command_bus_orchestrator.py validate-lifecycle
+
       - name: Upload runner logs
         if: always()
         uses: actions/upload-artifact@v4
