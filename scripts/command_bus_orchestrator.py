@@ -290,12 +290,12 @@ class CommandBusOrchestrator:
 
     def _find_command_file(self, command_id: str) -> Optional[Tuple[Path, str]]:
         for status_dir, status_name in [
-            (self.pending_dir, "PENDING"),
-            (self.reserved_dir, "RESERVED"),
-            (self.claimed_dir, "CLAIMED"),
-            (self.running_dir, "RUNNING"),
             (self.completed_dir, "COMPLETED"),
             (self.failed_dir, "FAILED"),
+            (self.running_dir, "RUNNING"),
+            (self.claimed_dir, "CLAIMED"),
+            (self.reserved_dir, "RESERVED"),
+            (self.pending_dir, "PENDING"),
         ]:
             target = status_dir / f"{command_id}.json"
             if target.is_file():
@@ -341,6 +341,155 @@ class CommandBusOrchestrator:
             }
             self._write_json(self.index_file, index_data)
             return index_data
+
+    def validate_lifecycle_invariants(self) -> Tuple[bool, List[str], Dict[str, Any]]:
+        """
+        Validates the fundamental command lifecycle invariants:
+        1. Single-Directory Invariant: Each command ID must exist in strictly ONE directory among:
+           [pending, reserved, claimed, running, completed, failed].
+        2. Status Alignment: Internal command status must match directory semantics:
+           - pending: PENDING, QUEUED, WAITING_DEPENDENCY
+           - reserved: RESERVED
+           - claimed: CLAIMED
+           - running: RUNNING
+           - completed: COMPLETED
+           - failed: FAILED, BLOCKED, BLOCKED_*
+        """
+        with FileLock(self.lock_file):
+            valid_statuses = {
+                "pending": {"PENDING", "QUEUED", "WAITING_DEPENDENCY"},
+                "reserved": {"RESERVED"},
+                "claimed": {"CLAIMED"},
+                "running": {"RUNNING"},
+                "completed": {"COMPLETED"},
+                "failed": {"FAILED", "BLOCKED", "BLOCKED_BINDING_MISMATCH", "BLOCKED_MERGE_CONFLICT", "BLOCKED_UNAUTHORIZED_PATH", "STALE_RECOVERABLE"}
+            }
+
+            dir_map = {
+                "pending": self.pending_dir,
+                "reserved": self.reserved_dir,
+                "claimed": self.claimed_dir,
+                "running": self.running_dir,
+                "completed": self.completed_dir,
+                "failed": self.failed_dir,
+            }
+
+            command_locations: Dict[str, List[Dict[str, Any]]] = {}
+            for d_name, d_path in dir_map.items():
+                for p in d_path.glob("*.json"):
+                    cmd = self._load_json(p)
+                    cid = p.stem
+                    if cmd and "command_id" in cmd:
+                        cid = cmd["command_id"]
+                    if cid not in command_locations:
+                        command_locations[cid] = []
+                    command_locations[cid].append({
+                        "dir": d_name,
+                        "path": str(p),
+                        "status": cmd.get("status") if cmd else None
+                    })
+
+            violations: List[str] = []
+            duplicate_commands: Dict[str, List[str]] = {}
+            status_mismatches: List[Dict[str, Any]] = []
+
+            for cid, locs in command_locations.items():
+                if len(locs) > 1:
+                    dirs_found = [loc["dir"] for loc in locs]
+                    duplicate_commands[cid] = dirs_found
+                    violations.append(
+                        f"DUPLICATE_ACROSS_DIRECTORIES: Command '{cid}' exists in multiple directories: {dirs_found}"
+                    )
+                for loc in locs:
+                    d_name = loc["dir"]
+                    st = loc["status"]
+                    if st and st not in valid_statuses.get(d_name, set()):
+                        status_mismatches.append({
+                            "command_id": cid,
+                            "directory": d_name,
+                            "status": st
+                        })
+                        violations.append(
+                            f"STATUS_MISMATCH: Command '{cid}' in directory '{d_name}' has invalid status '{st}'"
+                        )
+
+            is_valid = len(violations) == 0
+            summary = {
+                "is_valid": is_valid,
+                "total_unique_commands": len(command_locations),
+                "violation_count": len(violations),
+                "violations": violations,
+                "duplicate_commands": duplicate_commands,
+                "status_mismatches": status_mismatches
+            }
+            return is_valid, violations, summary
+
+    def reconcile_lifecycle_uniqueness(self) -> Dict[str, Any]:
+        """
+        Enforces that each command ID exists in strictly ONE directory.
+        If duplicates are found across directories, applies deterministic precedence:
+          completed (100) > failed (90) > running (80) > claimed (70) > reserved (60) > pending (50)
+        Deletes losing duplicate files and reconciles state.
+        """
+        with FileLock(self.lock_file):
+            precedence = {
+                "completed": 100,
+                "failed": 90,
+                "running": 80,
+                "claimed": 70,
+                "reserved": 60,
+                "pending": 50
+            }
+
+            dir_map = {
+                "pending": self.pending_dir,
+                "reserved": self.reserved_dir,
+                "claimed": self.claimed_dir,
+                "running": self.running_dir,
+                "completed": self.completed_dir,
+                "failed": self.failed_dir,
+            }
+
+            command_files: Dict[str, List[Tuple[str, Path, int]]] = {}
+            for d_name, d_path in dir_map.items():
+                for p in d_path.glob("*.json"):
+                    cmd = self._load_json(p)
+                    cid = p.stem
+                    if cmd and "command_id" in cmd:
+                        cid = cmd["command_id"]
+                    if cid not in command_files:
+                        command_files[cid] = []
+                    command_files[cid].append((d_name, p, precedence.get(d_name, 0)))
+
+            purged = []
+            retained = {}
+
+            for cid, locs in command_files.items():
+                if len(locs) > 1:
+                    locs.sort(key=lambda x: -x[2])
+                    winner_dir, winner_path, _ = locs[0]
+                    retained[cid] = winner_dir
+
+                    for loser_dir, loser_path, _ in locs[1:]:
+                        try:
+                            loser_path.unlink(missing_ok=True)
+                            purged.append({
+                                "command_id": cid,
+                                "purged_from": loser_dir,
+                                "purged_path": str(loser_path),
+                                "retained_in": winner_dir
+                            })
+                        except Exception as e:
+                            print(f"[RECONCILE_WARN] Failed to unlink {loser_path}: {e}")
+                else:
+                    retained[cid] = locs[0][0]
+
+            self.rebuild_index()
+            return {
+                "purged_count": len(purged),
+                "purged": purged,
+                "total_commands": len(retained)
+            }
 
     # -------------------------------------------------------------------------
     # Core Command Lifecycle
@@ -797,6 +946,14 @@ class CommandBusOrchestrator:
             except Exception:
                 pass
 
+            # Purge duplicate files across all other directories
+            for other_dir in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir, self.failed_dir]:
+                dup = other_dir / f"{command_id}.json"
+                try:
+                    dup.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
             # Archive to history
             hist = self.history_dir / f"{command_id}.json"
             self._write_json(hist, cmd)
@@ -853,6 +1010,14 @@ class CommandBusOrchestrator:
             except Exception:
                 pass
 
+            # Purge duplicate files across all other transient directories
+            for other_dir in [self.pending_dir, self.reserved_dir, self.claimed_dir, self.running_dir]:
+                dup = other_dir / f"{command_id}.json"
+                try:
+                    dup.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
             hist = self.history_dir / f"{command_id}.json"
             self._write_json(hist, cmd)
 
@@ -871,7 +1036,7 @@ class CommandBusOrchestrator:
         """
         Scans CLAIMED and RUNNING commands.
         If a lease has expired without heartbeat, resets it to PENDING (or STALE_RECOVERABLE).
-        Never duplicates completed tasks.
+        Never duplicates completed tasks or resurrects terminal commands.
         """
         recovered = []
         with FileLock(self.lock_file):
@@ -896,6 +1061,21 @@ class CommandBusOrchestrator:
                     if now > exp_dt:
                         cid = cmd["command_id"]
                         tid = cmd["task_id"]
+
+                        # Check if command is already in a terminal directory
+                        if (self.completed_dir / f"{cid}.json").is_file():
+                            try:
+                                p.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+                            continue
+                        if (self.failed_dir / f"{cid}.json").is_file():
+                            try:
+                                p.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+                            continue
+
                         retries = cmd.get("retry_count", 0) + 1
                         cmd["retry_count"] = retries
                         cmd["status"] = "PENDING"
@@ -940,6 +1120,15 @@ class CommandBusOrchestrator:
                     if now - res_time > datetime.timedelta(seconds=900):
                         cid = cmd["command_id"]
                         tid = cmd["task_id"]
+
+                        # Check if command is already in a terminal directory
+                        if (self.completed_dir / f"{cid}.json").is_file() or (self.failed_dir / f"{cid}.json").is_file():
+                            try:
+                                p.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+                            continue
+
                         cmd["status"] = "PENDING"
                         cmd["reservation"] = None
                         dest = self.pending_dir / f"{cid}.json"
@@ -1463,6 +1652,18 @@ def main():
     parser_fail.add_argument("--lease-token", required=True, help="Lease token")
     parser_fail.add_argument("--error", required=True, help="Error message")
 
+    # validate-lifecycle
+    subparsers.add_parser("validate-lifecycle", help="Validate single-directory lifecycle invariants")
+
+    # reconcile-lifecycle
+    subparsers.add_parser("reconcile-lifecycle", help="Reconcile lifecycle uniqueness across directories")
+
+    # heartbeat
+    parser_heartbeat = subparsers.add_parser("heartbeat", help="Send heartbeat to extend lease")
+    parser_heartbeat.add_argument("--command-id", required=True, help="Command ID")
+    parser_heartbeat.add_argument("--lease-token", required=True, help="Lease token")
+    parser_heartbeat.add_argument("--extend", type=int, default=1800, help="Seconds to extend lease")
+
     args = parser.parse_args()
     if not args.action:
         parser.print_help()
@@ -1569,6 +1770,27 @@ def main():
 
     elif args.action == "fail":
         ok, msg, data = orch.fail_command(args.command_id, args.lease_token, args.error)
+        print(f"[{'OK' if ok else 'FAIL'}] {msg}")
+
+    elif args.action == "validate-lifecycle":
+        is_valid, violations, summary = orch.validate_lifecycle_invariants()
+        print(f"[{'PASS' if is_valid else 'FAIL'}] Lifecycle Invariant Validation")
+        if violations:
+            print(f"Found {len(violations)} violation(s):")
+            for v in violations:
+                print(f"  - {v}")
+            sys.exit(1)
+        else:
+            print("All command lifecycle invariants satisfied: each command in strictly one directory.")
+
+    elif args.action == "reconcile-lifecycle":
+        res = orch.reconcile_lifecycle_uniqueness()
+        print(f"Reconciled lifecycle uniqueness: purged {res['purged_count']} duplicate(s).")
+        for p in res.get("purged", []):
+            print(f"  - Purged {p['command_id']} from {p['purged_from']} (retained in {p['retained_in']})")
+
+    elif args.action == "heartbeat":
+        ok, msg = orch.heartbeat_command(args.command_id, args.lease_token, args.extend)
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
 
 

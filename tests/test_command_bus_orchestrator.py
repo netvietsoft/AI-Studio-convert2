@@ -430,6 +430,71 @@ class TestCommandBusOrchestrator(unittest.TestCase):
         self.assertEqual(cmp_cmd["provenance"]["target_commit_sha"], "target_sha_h_valid")
         self.assertEqual(cmp_cmd["provenance"]["evidence_manifest_sha256"], "abcd1234efgh")
 
+    def test_I_lifecycle_invariants_and_anti_duplicate_reconciliation(self):
+        """
+        Mandatory Test I:
+        - Detect duplicate command files across directories.
+        - Reconcile duplicates deterministically favoring completed/failed terminal states.
+        - Prevent recover_stale_leases from resurrecting completed or failed commands into pending.
+        """
+        # 1. Create and complete a command
+        ok, _, cmd = self.orch.create_command(
+            task_id="TASK_SYNTH_I",
+            task_url="https://docs.google.com/docI",
+            task_revision="revI",
+            issued_for_sha="commit_sha_I"
+        )
+        cid = cmd["command_id"]
+        _, _, cl = self.orch.claim_command(cid, runner_identity="runner-i")
+        tok = cl["lease"]["lease_token"]
+        self.orch.start_command(cid, tok, dispatch_commit_sha="disp_i")
+        self.orch.complete_command(
+            cid, tok, target_commit_sha="target_sha_i", report_folder=".ai/reports/I"
+        )
+
+        # Baseline should be 100% valid
+        is_valid, violations, _ = self.orch.validate_lifecycle_invariants()
+        self.assertTrue(is_valid)
+        self.assertEqual(len(violations), 0)
+
+        # 2. Artificially plant a duplicate file in pending and in running
+        fake_pending = dict(cmd)
+        fake_pending["status"] = "PENDING"
+        fake_running = dict(cmd)
+        fake_running["status"] = "RUNNING"
+        fake_running["lease"] = {
+            "lease_token": "stale_token",
+            "lease_holder": "stale_runner",
+            "leased_at": "2026-10-01T00:00:00+00:00",
+            "lease_expires_at": "2026-10-01T00:30:00+00:00"  # Expired
+        }
+        self.orch._write_json(self.orch.pending_dir / f"{cid}.json", fake_pending)
+        self.orch._write_json(self.orch.running_dir / f"{cid}.json", fake_running)
+
+        # Validation must now fail with DUPLICATE_ACROSS_DIRECTORIES
+        is_valid, violations, summary = self.orch.validate_lifecycle_invariants()
+        self.assertFalse(is_valid)
+        self.assertIn(cid, summary["duplicate_commands"])
+
+        # 3. Test recover_stale_leases: it must NOT re-pend an already completed command!
+        rec = self.orch.recover_stale_leases()
+        # The running file should be purged without being re-added as pending
+        self.assertFalse((self.orch.running_dir / f"{cid}.json").is_file())
+
+        # 4. Reconcile uniqueness
+        reconcile_res = self.orch.reconcile_lifecycle_uniqueness()
+        self.assertGreaterEqual(reconcile_res["purged_count"], 1)
+
+        # Must retain strictly the completed file
+        self.assertTrue((self.orch.completed_dir / f"{cid}.json").is_file())
+        self.assertFalse((self.orch.pending_dir / f"{cid}.json").is_file())
+        self.assertFalse((self.orch.running_dir / f"{cid}.json").is_file())
+
+        # Now validation must be 100% PASS
+        is_valid_after, violations_after, _ = self.orch.validate_lifecycle_invariants()
+        self.assertTrue(is_valid_after)
+        self.assertEqual(len(violations_after), 0)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
