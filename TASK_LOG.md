@@ -1359,3 +1359,47 @@ unning: 0).
      * Thư mục hồ sơ kiểm toán đầy đủ: `.ai/reports/TASK_032_TASK031_STATE_PROVENANCE_OWNER_GATE_CORRECTION/`.
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
+
+---
+
+### [2026-10-04 05:25:00] TASK_033: TASK032 WORKFLOW PROVENANCE AND COMMAND BUS CLOSURE CORRECTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_033_TASK032_WORKFLOW_PROVENANCE_CLOSURE_20261004T052000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_033_TASK032_WORKFLOW_PROVENANCE_COMMAND_BUS_CLOSURE_CORRECTION_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Phân làn thực thi (Lane):** `task032-provenance-closure` (Runner: `CONVERT2-WINDOWS-03`)
+- **Điều phối GitHub Actions:**
+  * Dispatcher Run ID: `37157700576` (Commit: `f085e808119e7f6b209f15c2269275dc4b719cdf`)
+  * Agent Worker Run ID: `37157772171` (Job ID: `111304692810`)
+  * Workflow URL: `https://github.com/netvietsoft/AI-Studio-convert2/actions/runs/37157772171`
+- **Nội dung hoàn tất:**
+  1. **Đóng khép chuỗi nguồn gốc hoàn chỉnh (Workflow Provenance Closure) cho TASK_032:**
+     * Hòa giải và cập nhật chính xác `target_commit_sha` (`3da5ebbc22004e4d2186f87f809e270b5f7c29f2`) và mã băm bằng chứng (`B16D94061A06A717889DEDEA3E9F99B65B82412E765EE614E38E45B413F61BBB`) trong lệnh `.ai/commands/completed/TASK_032...json`.
+     * Cập nhật trạng thái nhiệm vụ `.ai/state/tasks/TASK_032...json` với đầy đủ mã băm gói deliverable `CONVERT2_TASK032_REPORT_PACKAGE.zip` (`5F278F534EB88A44F8707BF72FAEE06E7FF89DBE427B201BBF052830061CB392`).
+  2. **Thực thi và điều phối chuẩn mực qua Command Bus Dispatcher & Worker:**
+     * Tuân thủ triệt để Điều XXV của `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` về chuỗi bắt buộc: TASK_CREATED -> TASK_DISPATCHED -> TASK_EXECUTING -> COMPLETED.
+     * Xác lập định danh thực thi trên nhánh cách ly `agent/TASK_033_TASK032_WORKFLOW_PROVENANCE_CLOSURE_20261004T052000+0700`.
+  3. **Đồng bộ chân lý trạng thái hệ thống (.ai/state.json):**
+     * Cập nhật khối `provenance` toàn cục phản ánh đúng luồng thực thi GitHub Actions và runner chính thức.
+     * Cập nhật khối `git` ghi nhận các mốc commit `task_031_implementation_sha`, `task_032_correction_sha`, `task_033_closure_sha`.
+     * Bổ sung tóm tắt hoàn tất `task_033_summary` với mã băm gói deliverable và manifest.
+  4. **Bảo tồn 100% Thuật toán C++ Native (Zero Functional Diff):**
+     * `git diff origin/main -- lib-core-graphics/` = 0 byte thay đổi.
+  5. **Bảo tồn Tuyệt đối Cổng Thẩm định Thị giác Chủ tịch Tony:**
+     * Nghiêm cấm tuyên bố `PASS` toàn diện khi Chủ tịch chưa trực tiếp xem và duyệt ảnh trên máy thật.
+     * Trạng thái kỹ thuật: `PASS`.
+     * Trạng thái cổng thị giác Chủ tịch: `PENDING_OWNER_EVALUATION`.
+     * Trạng thái hệ thống chính thức: `TECHNICAL_PASS_AWAITING_OWNER_VISUAL`.
+  6. **Vượt qua 100% Bộ Kiểm thử Tự động & Regression Guards:**
+     * `tests/test_command_bus_lifecycle_invariants.py`: 6/6 PASS.
+     * `tests/test_command_bus_orchestrator.py`: 10/10 PASS.
+     * `tests/test_state_truth_and_gate_consistency.py`: 5/5 PASS.
+     * `scripts/verify_evidence_provenance_guards.py`: 5/5 PASS.
+  7. **Đóng gói Hồ sơ Kiểm toán Đầy đủ:**
+     * Thư mục hồ sơ: `.ai/reports/TASK_033_TASK032_WORKFLOW_PROVENANCE_COMMAND_BUS_CLOSURE_CORRECTION/`.
+     * Gói lưu trữ: `CONVERT2_TASK033_REPORT_PACKAGE.zip` (27,795 bytes, SHA-256: `32FF3C110BC38CACA6D917A3B7C8D6C4EECFA1E0C696DF5B157DBA3B4A350E4D`).
+     * Bảng kê: `TASK_033_EVIDENCE_MANIFEST.sha256` (SHA-256: `5F8CD558FA016D97647056A85C034F188832493686C301FE19E181693FD41105`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
+
