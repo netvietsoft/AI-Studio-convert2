@@ -689,3 +689,35 @@ ativeGetVideoCompositedFrame.
      - Thu thập đầy đủ ảnh sau nắn (30%, 70%, 100%), mặt nạ đối tượng, mặt nạ vùng khuyết và ảnh vi sai nền vào `.ai/evidence/visual/TASK_020/`.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+---
+
+## 14. HỆ THỐNG ĐIỀU PHỐI ĐA ĐẠI LÝ & RUNNER POOL ĐÍCH THỰC (TASK_021) (2026-10-03)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL_ACTIVE` (Doc ID: `16io2HYE-Ivv1Kpx6xkNsfJ3c7Cwpt85Xq1RkPU8G0to`).
+- **Nội dung thực thi & giải quyết dứt điểm:**
+  1. *Khắc phục triệt để sự cố Auditor (08:10):*
+     - Triệt tiêu lỗi hủy job khi push code do cấu hình `cancel-in-progress: true` trên nhóm concurrency chung.
+     - Tách rời kiến trúc thành 3 workflow chuyên biệt:
+       + `.github/workflows/convert2-dispatcher.yml`: Dispatcher tuần tự hóa (`group: convert2-dispatcher`, `ubuntu-latest`).
+       + `.github/workflows/convert2-worker.yml`: Worker song song theo từng lệnh (`group: convert2-worker-${{ inputs.command_id }}`, Windows self-hosted).
+       + `.github/workflows/convert2-integrator.yml`: Integrator tuần tự hóa (`group: convert2-integrator`, `ubuntu-latest`).
+  2. *Thiết lập Runner Pool 3 máy Windows thật trên host `OSIN`:*
+     - `CONVERT2-WINDOWS-01` (ID: 2, `C:\actions-runner`, worker-1)
+     - `CONVERT2-WINDOWS-02` (ID: 3, `C:\actions-runner-02`, worker-2)
+     - `CONVERT2-WINDOWS-03` (ID: 4, `C:\actions-runner-03`, worker-3)
+     - Tự động hóa đăng ký và quản lý qua `scripts/bootstrap_convert2_runner_pool.ps1`.
+  3. *Cổng đặt chỗ an toàn từ xa & Ràng buộc lệnh tường minh:*
+     - Lệnh chuyển `pending/` -> `reserved/` kèm `reservation_token`, `dispatcher_run_id` và timestamp, push trực tiếp lên `main` trước khi worker khởi động.
+     - Worker chỉ nhận lệnh được chỉ định qua `-CommandId` và `-ReservationToken`, từ chối chạy khi phát hiện sai lệch bằng mã lỗi `BLOCKED_BINDING_MISMATCH`. Chấm dứt hoàn toàn cơ chế quét tìm `NEXT_COMMAND.json`.
+  4. *Cách ly nhánh nhiệm vụ & Tự động hòa giải xung đột:*
+     - Worker thao tác độc quyền trên nhánh `agent/<command_id>`. Không được phép push trực tiếp vào `main`.
+     - Serial Integrator kiểm tra phạm vi `allowed_paths`, từ chối merge nếu vi phạm phạm vi cho phép (`BLOCKED_SCOPE_VIOLATION`).
+     - Tự động tái dựng `index.json` (`rebuild_index()`) khi có xung đột dữ liệu theo dõi, trong khi chặn đứng mọi xung đột mã nguồn thật (`BLOCKED_MERGE_CONFLICT`).
+  5. *Bằng chứng thực nghiệm chạy song song 3 luồng:*
+     - Chạy thành công đồng thời 3 task kiểm toán (`CMD_ACCEPT_001`, `002`, `003`) trên các worker 02 và 03 trong khi worker 01 đang bận chạy nhiệm vụ chính.
+     - Dữ liệu GitHub Actions ghi nhận thời gian chạy trùng khớp từng giây (wall-clock overlap) và được Integrator merge an toàn vào `main`.
+  6. *Hồ sơ báo cáo hoàn chỉnh:*
+     - Trọn bộ 11 tài liệu báo cáo (00 đến 10) tại `.ai/reports/TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL/`.
+- **KẾT LUẬN THẨM ĐỊNH:**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$

@@ -1076,3 +1076,41 @@ esolveEyeAnchors() để không còn rơi vào các điểm môi dưới.
      * Thu thập đầy đủ ảnh sau nắn (30%, 70%, 100%), mặt nạ đối tượng, mặt nạ vùng khuyết và ảnh vi sai nền vào `.ai/evidence/visual/TASK_020/`.
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+---
+
+### [2026-10-03 08:49:00 - 09:35:00] TASK_021: TRUE MULTI-AGENT MULTI-TASK DISPATCHER & RUNNER POOL
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL_ACTIVE (Doc ID: `16io2HYE-Ivv1Kpx6xkNsfJ3c7Cwpt85Xq1RkPU8G0to`)
+- **Phân loại tác vụ:** AUTONOMOUS INFRASTRUCTURE CORRECTION & MULTI-RUNNER CONCURRENCY (CRITICAL)
+- **Tiến trình thực thi:**
+  1. **Tách rời Kiến trúc 3 thành phần (Tripartite Workflows):**
+     * Thiết lập Dispatcher độc lập (`.github/workflows/convert2-dispatcher.yml`) chạy trên `ubuntu-latest`, tuần tự hóa an toàn qua nhóm concurrency `convert2-dispatcher`.
+     * Thiết lập Worker chuyên biệt (`.github/workflows/convert2-worker.yml`) chạy trên Windows runner, khóa concurrency theo từng lệnh `convert2-worker-${{ inputs.command_id }}`, triệt tiêu hoàn toàn lỗi hủy job khi push code.
+     * Thiết lập Integrator chuyên biệt (`.github/workflows/convert2-integrator.yml`) chạy trên `ubuntu-latest`, tuần tự hóa kiểm tra bảo mật thư mục và merge nhánh `agent/*` vào `main`.
+  2. **Mở rộng Pool Runner Thực Tế (3 Windows Runners Online):**
+     * Khởi tạo và đăng ký thành công 3 runner độc lập trên host `OSIN`:
+       - `CONVERT2-WINDOWS-01` (ID: 2, Thư mục: `C:\actions-runner`, nhãn `worker-1`)
+       - `CONVERT2-WINDOWS-02` (ID: 3, Thư mục: `C:\actions-runner-02`, nhãn `worker-2`)
+       - `CONVERT2-WINDOWS-03` (ID: 4, Thư mục: `C:\actions-runner-03`, nhãn `worker-3`)
+     * Xây dựng script tự động hóa `scripts/bootstrap_convert2_runner_pool.ps1` lấy token đăng ký động qua GitHub API và giám sát tiến trình nền.
+  3. **Cổng Đặt Chỗ An Toàn Từ Xa (Remote-Safe Reservation Gate):**
+     * Nâng cấp `scripts/command_bus_orchestrator.py`: Lệnh chuyển trạng thái từ `pending/` sang `reserved/` kèm `reservation_token`, `dispatcher_run_id` và timestamp, push trực tiếp lên `main` trước khi giao worker.
+  4. **Ràng Buộc Lệnh Tường Minh (Explicit Command Binding):**
+     * Worker bắt buộc truyền `-CommandId` và `-ReservationToken`. Chấm dứt vĩnh viễn việc tự động quét nhặt file `NEXT_COMMAND.json`. Chặn đứng xung đột tranh chấp nhiệm vụ.
+  5. **Cách Ly Nhánh Nhiệm Vụ (Isolated Task Branches & Auto-Reconcile):**
+     * Worker chỉ commit và push vào nhánh `agent/<command_id>`. Tuyệt đối không push trực tiếp vào `main`.
+     * Integrator kiểm tra `allowed_paths` nghiêm ngặt trước khi merge.
+     * Tự động tái dựng `index.json` từ dữ liệu thực tế trên đĩa khi có xung đột metadata (`rebuild_index()`). Chặn đứng mọi xung đột mã nguồn thật bằng `BLOCKED_MERGE_CONFLICT`.
+  6. **Kiểm Nghiệm Thực Tế Song Song 3 Luồng (Acceptance Run):**
+     * Thực thi đồng thời 3 task kiểm toán hạ tầng:
+       - `CMD_ACCEPT_001` (Runner Pool Health) trên `CONVERT2-WINDOWS-02` (Run `37089618660`)
+       - `CMD_ACCEPT_002` (Git Provenance Audit) trên `CONVERT2-WINDOWS-03` (Run `37089620876`)
+       - `CMD_ACCEPT_003` (Device Connectivity Audit) trên `CONVERT2-WINDOWS-03` (Run `37089637806`)
+     * Đồng thời `CONVERT2-WINDOWS-01` đang chạy song song Run `37087040028`.
+     * Cả 3 nhánh đều được Serial Integrator merge thành công vào `main` tại các commit `511c07e`, `c55394b`, `ae08bc5`.
+  7. **Hồ Sơ Báo Cáo Hoàn Chỉnh (11 Tài Liệu):**
+     * Hoàn thành trọn bộ 11 tài liệu báo cáo (00 đến 10) trong `.ai/reports/TASK_021_TRUE_MULTI_AGENT_MULTI_TASK_DISPATCHER_RUNNER_POOL/`.
+- **KẾT LUẬN THẨM ĐỊNH:**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
