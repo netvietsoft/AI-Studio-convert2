@@ -993,6 +993,11 @@ class CommandBusOrchestrator:
 
             # 1. Fetch origin and inspect diff
             try:
+                # Explicitly fetch the target branch to ensure it exists locally under refs/remotes/origin/
+                subprocess.run(
+                    ["git", "fetch", "origin", f"+refs/heads/{branch}:refs/remotes/origin/{branch}"],
+                    cwd=str(self.repo_root), capture_output=True
+                )
                 subprocess.run(["git", "fetch", "origin"], check=True, cwd=str(self.repo_root), capture_output=True)
                 subprocess.run(["git", "checkout", "main"], check=True, cwd=str(self.repo_root), capture_output=True)
                 subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True, cwd=str(self.repo_root), capture_output=True)
@@ -1000,7 +1005,13 @@ class CommandBusOrchestrator:
                 return False, f"Git fetch/checkout main failed: {e}", None
 
             # Get list of changed files
-            diff_ref = f"origin/{branch}" if subprocess.run(["git", "rev-parse", "--verify", f"origin/{branch}"], cwd=str(self.repo_root), capture_output=True).returncode == 0 else branch
+            diff_ref = f"origin/{branch}"
+            if subprocess.run(["git", "rev-parse", "--verify", diff_ref], cwd=str(self.repo_root), capture_output=True).returncode != 0:
+                if subprocess.run(["git", "rev-parse", "--verify", branch], cwd=str(self.repo_root), capture_output=True).returncode == 0:
+                    diff_ref = branch
+                else:
+                    return False, f"FETCH_ERROR: Target branch '{branch}' not found on origin or locally", None
+
             diff_proc = subprocess.run(["git", "diff", "--name-only", "main..." + diff_ref], cwd=str(self.repo_root), capture_output=True, text=True)
             changed_files = [line.strip() for line in diff_proc.stdout.splitlines() if line.strip()]
 
@@ -1035,7 +1046,7 @@ class CommandBusOrchestrator:
                 # Check if conflicts are strictly within shared reconciled metadata
                 status_proc = subprocess.run(["git", "status", "--porcelain"], cwd=str(self.repo_root), capture_output=True, text=True)
                 conflicts = [line for line in status_proc.stdout.splitlines() if line.startswith("UU ") or line.startswith("AA ") or line.startswith("DU ") or line.startswith("UD ")]
-                auto_resolvable = True
+                auto_resolvable = bool(conflicts)
                 for c in conflicts:
                     c_file = c[3:].strip()
                     if not is_shared_reconciled_path(c_file):
@@ -1050,7 +1061,7 @@ class CommandBusOrchestrator:
                     self.rebuild_index()
                     subprocess.run(["git", "add", ".ai/commands", ".ai/state"], cwd=str(self.repo_root), capture_output=True)
                     subprocess.run(["git", "commit", "-m", merge_msg], cwd=str(self.repo_root), capture_output=True)
-                else:
+                elif conflicts:
                     subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
                     err_msg = f"BLOCKED_MERGE_CONFLICT: Merge conflict merging {branch} into main: {merge_proc.stderr or merge_proc.stdout}"
                     self._update_task_state(task_id, {
@@ -1062,6 +1073,10 @@ class CommandBusOrchestrator:
                     cmd["error_message"] = err_msg
                     self._write_json(path, cmd)
                     self.rebuild_index()
+                    return False, err_msg, cmd
+                else:
+                    subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
+                    err_msg = f"MERGE_ERROR: Failed to merge {diff_ref} into main: {(merge_proc.stderr or merge_proc.stdout).strip()}"
                     return False, err_msg, cmd
 
             # 4. Successful merge: get target commit SHA
@@ -1188,6 +1203,9 @@ class CommandBusOrchestrator:
                 "-f", f"execution_lane={cmd_lane}",
                 "-r", "main"
             ]
+            runner_label = cmd.get("runner_label")
+            if runner_label:
+                dispatch_args.extend(["-f", f"runner_label={runner_label}"])
             print(f"[DISPATCH] Triggering worker for {cid} (lane={cmd_lane}, reservation_token={res_token[:8]}...)...")
             res = subprocess.run(dispatch_args, capture_output=True, text=True)
             if res.returncode == 0:
