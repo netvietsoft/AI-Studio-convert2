@@ -123,5 +123,5 @@ $taskStatePayload = @{
 }
 
 $taskStatePayload | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $taskStateDir "$TaskId.json")
-Write-Host "Task state updated for $TaskId: COMPLETED"
+Write-Host "Task state updated for $($TaskId): COMPLETED"
 exit 0

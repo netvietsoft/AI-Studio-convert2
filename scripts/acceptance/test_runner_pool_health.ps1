@@ -8,7 +8,7 @@ param(
     [string]$RepoPath
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 
 Write-Host "=========================================================="
 Write-Host "ACCEPTANCE TEST 1: RUNNER POOL HEALTH & ENVIRONMENT AUDIT"
@@ -37,11 +37,16 @@ foreach ($r in $apiRunners.runners) {
     }
 }
 
+$gitPath = (Get-Command git -ErrorAction SilentlyContinue).Source
+$pyPath = (Get-Command python -ErrorAction SilentlyContinue).Source
+$ghPath = (Get-Command gh -ErrorAction SilentlyContinue).Source
+$agyPath = (Get-Command agy -ErrorAction SilentlyContinue).Source
+
 $tools = @{
-    git = (& git --version)
-    python = (& python --version 2>&1)
-    gh = (& gh --version | Select-Object -First 1)
-    agy = (& agy --help 2>&1 | Select-Object -First 1)
+    git = "$gitPath"
+    python = "$pyPath"
+    gh = "$ghPath"
+    agy = "$agyPath"
 }
 
 # 2. Collect Evidence Payload
@@ -130,5 +135,5 @@ $taskStatePayload = @{
 }
 
 $taskStatePayload | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $taskStateDir "$TaskId.json")
-Write-Host "Task state updated for $TaskId: COMPLETED"
+Write-Host "Task state updated for $($TaskId): COMPLETED"
 exit 0

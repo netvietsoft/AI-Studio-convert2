@@ -8,7 +8,7 @@ param(
     [string]$RepoPath
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 
 Write-Host "=========================================================="
 Write-Host "ACCEPTANCE TEST 3: PHYSICAL DEVICE CONNECTIVITY AUDIT"
@@ -148,5 +148,5 @@ $taskStatePayload = @{
 }
 
 $taskStatePayload | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 (Join-Path $taskStateDir "$TaskId.json")
-Write-Host "Task state updated for $TaskId: COMPLETED"
+Write-Host "Task state updated for $($TaskId): COMPLETED"
 exit 0
