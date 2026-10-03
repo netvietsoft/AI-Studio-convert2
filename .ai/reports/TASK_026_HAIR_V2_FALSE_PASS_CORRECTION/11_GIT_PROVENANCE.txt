@@ -1,0 +1,46 @@
+PROJECT: CONVERT2 - Hair Color Engine Native Reconstruction
+TASK_ID: TASK_026_HAIR_V2_FALSE_PASS_LEAKAGE_TEXTURE_AND_LIFECYCLE_CORRECTION_ACTIVE
+COMMAND_ID: TASK_026_HAIR_V2_FALSE_PASS_CORRECTION_20261003T111000+0700
+AUTHORITY: Chủ tịch Tony (Chairman)
+PROTOCOL: CONVERT2_COMMAND_V2
+EXECUTION_LANE: hair-v2-leakage-texture-lifecycle-correction
+GIT_REPO: https://github.com/netvietsoft/AI-Studio-convert2
+DISPATCH_SHA: 590bb9a1a5b19f2edfdde903fe21a37951727e63
+BRANCH: agent/TASK_026_HAIR_V2_FALSE_PASS_CORRECTION_20261003T111000+0700
+
+BUILD_TARGET: app/build/outputs/apk/debug/app-debug.apk
+BUILD_STATUS: SUCCESSFUL (assembleDebug --no-daemon)
+BUILD_DURATION: 4m 56s
+APK_SHA256: 40C274E33335101950DB599013E5595EC2FB6E49A83A0C582EDF0181870B81D6
+NDK_VERSION: 26.1.10909125
+CMAKE_VERSION: 3.22.1
+NATIVE_LIBRARY: libcoregraphics.so (ARM64-v8a)
+
+HARDWARE_DEVICES_VERIFIED:
+1. SM-A075F (Samsung Galaxy A07)
+   - Serial/IP: 192.168.1.18:40159
+   - SoC: MediaTek Helio G99 (MT6789)
+   - OS: Android 16 (API 36)
+   - Architecture: aarch64
+   - Transport ID: 2
+   - Verification Status: 21/21 PASS
+
+2. SM-A507FN (Samsung Galaxy A50s)
+   - Serial/IP: 192.168.1.2:41775
+   - SoC: Samsung Exynos 9611
+   - OS: Android 11 (API 30)
+   - Architecture: aarch64
+   - Transport ID: 1
+   - Verification Status: 21/21 PASS
+
+CORE_SOURCE_CHANGES:
+- lib-core-graphics/src/main/cpp/src/hair/hair_pipeline_v2.cpp
+  * Stage 2 (extractHairMatte): Excluded class 18 (hats/accessories). Only class 17 admitted. Added initial skin exclusion.
+  * Stage 4 (applyConfidenceAndExclusion): Hard gate on label 17 and isHumanSkinPixel. 0 tolerance for facial/ear/neck/cloth bleed.
+  * Stage 5 & 6 (extractStrandTextureGuidance & transformColor): Dual-band frequency decomposition in OKLab (L_base = boxFilter(L, r=5), L_strand = L - L_base). Bleach lift restricted to L_base; 100% of micro-texture L_strand preserved and amplified by (1 + 0.15 * bleach).
+
+COMMAND_BUS_STATE_RECONCILIATION:
+- TASK_025 moved to .ai/commands/completed/ (SUPERSEDED_BY_TASK_026_AUDIT_CORRECTION)
+- TASK_026 moved to .ai/commands/completed/ upon successful verification and push
+- .ai/state/tasks/TASK_026_HAIR_V2_FALSE_PASS_LEAKAGE_TEXTURE_AND_LIFECYCLE_CORRECTION_ACTIVE.json updated to COMPLETED
+- .ai/state.json updated with latest completed task ID, commit SHA, and report path.

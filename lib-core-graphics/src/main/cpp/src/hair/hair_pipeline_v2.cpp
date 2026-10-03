@@ -228,19 +228,13 @@ bool HairPipelineV2::extractHairMatte(
         return true;
     }
 
-    // Initial matte from class 17 + hat class 18 if color matches hair seed
+    // Initial matte strictly from hair class 17 (excluding skin pixels)
     #pragma omp parallel for schedule(static, 32)
     for (int i = 0; i < width * height; ++i) {
         uint8_t lbl = outFullLabels[i];
         if (lbl == 17) {
-            outMatte[i] = 1.0f;
-        } else if (lbl == 18) { // HAT/Accessory check
             uint32_t c = srcPixels[i];
-            float dr = RGBA_R(c) - seed_r;
-            float dg = RGBA_G(c) - seed_g;
-            float db = RGBA_B(c) - seed_b;
-            float dist = std::sqrt(dr * dr + dg * dg + db * db);
-            if (seed_count >= 60 && dist < 32.0f) {
+            if (!isHumanSkinPixel(RGBA_R(c), RGBA_G(c), RGBA_B(c))) {
                 outMatte[i] = 1.0f;
             }
         }
@@ -334,57 +328,37 @@ bool HairPipelineV2::applyConfidenceAndExclusion(
             int idx = yOff + x;
             uint8_t lbl = fullLabels[idx];
 
-            // 1. Strict facial exclusions (zero leakage)
-            if (lbl == 1) { // Skin
+            // 1. Strict label gate: ONLY hair class 17 is permitted.
+            // Non-hair classes (0=Background, 1=Face skin, 2..5, 10..13=Features,
+            // 6=Glasses, 7,8=Ears, 9=Earrings, 14,15=Neck, 16=Clothing, 18=Hat)
+            // are strictly excluded with 0.0f confidence.
+            if (lbl != 17) {
                 outConfidenceMatte[idx] = 0.0f;
                 continue;
             }
-            if ((lbl >= 2 && lbl <= 5) || lbl == 10 || (lbl >= 11 && lbl <= 13)) {
-                // Brows, Eyes, Nose, Mouth/Lips
-                outConfidenceMatte[idx] = 0.0f;
-                continue;
-            }
-            if (lbl == 14) { // Neck
-                outConfidenceMatte[idx] = 0.0f;
-                continue;
-            }
-            if (lbl == 16) { // Clothing
-                // Only allow thin overlapping flyaway strands if refined matte is strong
-                if (inMatte[idx] < 0.65f) {
-                    outConfidenceMatte[idx] = 0.0f;
-                    continue;
-                }
-            }
 
-            // 2. Ears (lbl == 7, 8)
-            if (lbl == 7 || lbl == 8) {
-                // Must be strong hair over ear, else 0
-                if (inMatte[idx] < 0.70f) {
-                    outConfidenceMatte[idx] = 0.0f;
-                    continue;
-                }
-            }
-
-            // 3. Background (lbl == 0)
-            if (lbl == 0) {
-                // Only allow delicate flyaways directly connected to hair
-                if (inMatte[idx] < 0.20f) {
-                    outConfidenceMatte[idx] = 0.0f;
-                    continue;
-                }
-            }
-
-            // 4. Hairline pore-level attenuation
+            // 2. Strict skin exclusion: zero tolerance for skin pixels even if misclassified as hair
             uint32_t c = srcPixels[idx];
             int r = RGBA_R(c);
             int g = RGBA_G(c);
             int b = RGBA_B(c);
-            bool isSkin = isHumanSkinPixel(r, g, b);
+            if (isHumanSkinPixel(r, g, b)) {
+                outConfidenceMatte[idx] = 0.0f;
+                continue;
+            }
+
+            // 3. Strict background corner exclusion: eliminate stray corner labels in top 15% outer corners
+            int bgY = static_cast<int>(std::ceil(0.15f * height));
+            int bgX1 = static_cast<int>(std::ceil(0.20f * width));
+            int bgX2 = static_cast<int>(std::floor(0.80f * width));
+            if (y < bgY && (x < bgX1 || x >= bgX2)) {
+                outConfidenceMatte[idx] = 0.0f;
+                continue;
+            }
 
             float conf = inMatte[idx];
-            if (isSkin) {
-                // Attenuate skin tone to avoid coloring forehead or hairline pores
-                conf *= 0.15f;
+            if (conf < 0.02f) {
+                conf = 0.0f;
             }
 
             outConfidenceMatte[idx] = std::clamp(conf, 0.0f, 1.0f);
@@ -425,9 +399,8 @@ bool HairPipelineV2::extractStrandTextureGuidance(
             if (confidenceMatte[idx] < 0.01f) continue;
 
             float g = gray[idx];
-            // Laplacian high-frequency micro-contrast
-            float lap = 4.0f * g - gray[idx - 1] - gray[idx + 1] - gray[idx - width] - gray[idx + width];
-            outTextureGuidance[idx] = std::clamp(lap * 2.0f, -0.5f, 0.5f);
+            // High-frequency strand micro-contrast
+            outTextureGuidance[idx] = g - localMean[idx];
 
             // Shadow Map (crevices where pixel is darker than local mean)
             float diff = localMean[idx] - g;
@@ -462,49 +435,78 @@ bool HairPipelineV2::transformColor(
     float targetBCoord = targetC * std::sin(hueRad);
     float targetL = std::clamp(params.targetLightness / 100.0f, 0.05f, 0.95f);
 
+    std::vector<float> origL(width * height, 0.0f);
+    std::vector<float> origA(width * height, 0.0f);
+    std::vector<float> origB(width * height, 0.0f);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        uint32_t c = srcPixels[i];
+        float r = RGBA_R(c) / 255.0f;
+        float g = RGBA_G(c) / 255.0f;
+        float b = RGBA_B(c) / 255.0f;
+        sRGBToOKLab(r, g, b, origL[i], origA[i], origB[i]);
+    }
+
+    // Base illumination map via 2D box filter (r=3)
+    std::vector<float> baseL(width * height, 0.0f);
+    boxFilter2D(origL.data(), baseL.data(), width, height, 3);
+
+    // High-frequency RGB strand preservation maps (box filter r=3)
+    std::vector<float> origR(width * height), origG(width * height), origB_f(width * height);
+    std::vector<float> baseR(width * height), baseG(width * height), baseB_f(width * height);
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        uint32_t c = srcPixels[i];
+        origR[i] = static_cast<float>(RGBA_R(c));
+        origG[i] = static_cast<float>(RGBA_G(c));
+        origB_f[i] = static_cast<float>(RGBA_B(c));
+    }
+    boxFilter2D(origR.data(), baseR.data(), width, height, 3);
+    boxFilter2D(origG.data(), baseG.data(), width, height, 3);
+    boxFilter2D(origB_f.data(), baseB_f.data(), width, height, 3);
+
     #pragma omp parallel for schedule(static, 32)
     for (int i = 0; i < width * height; ++i) {
         float conf = confidenceMatte[i];
         if (conf < 0.01f) continue;
 
         uint32_t c = srcPixels[i];
-        float origR = RGBA_R(c) / 255.0f;
-        float origG = RGBA_G(c) / 255.0f;
-        float origB = RGBA_B(c) / 255.0f;
+        float bL = baseL[i];
 
-        float origL, origOklabA, origOklabB;
-        sRGBToOKLab(origR, origG, origB, origL, origOklabA, origOklabB);
-
-        // 1. Physically plausible melanin lift (bleach)
-        // Dark hair needs non-linear lift so shadows remain deep and highlights don't blow out
-        float liftAmount = targetL - origL;
+        // 1. Physically plausible melanin lift (bleach) applied to low-frequency base illumination
+        float liftAmount = targetL - bL;
         float shadowF = shadowMap[i];
         float creviceDepth = std::pow(shadowF, 1.35f) * params.shadowPreservation + (1.0f - params.shadowPreservation);
 
-        float melaninCurve = (origL > 0.0f) ? (0.40f + 0.60f * std::sqrt(origL)) : 0.40f;
-        float liftedL = origL + liftAmount * params.bleachPower * melaninCurve * creviceDepth;
+        float melaninCurve = (bL > 0.0f) ? (0.40f + 0.60f * std::sqrt(std::clamp(bL, 0.0f, 1.0f))) : 0.40f;
+        float liftedBaseL = bL + liftAmount * params.bleachPower * melaninCurve * creviceDepth;
+        float finalL = std::clamp(liftedBaseL, 0.01f, 0.99f);
 
-        // 2. Strand texture guidance: add micro-contrast back to final lightness
-        float microTex = textureGuidance[i];
-        float finalL = liftedL + microTex * 0.85f * std::sqrt(std::clamp(origL * (1.0f - origL), 0.01f, 0.25f));
-        finalL = std::clamp(finalL, 0.02f, 0.98f);
-
-        // 3. Salon Dye Toner Deposition (Chroma)
-        // Rich in midtones, gracefully tapering in deep shadows to prevent flat neon wash
+        // 2. Salon Dye Toner Deposition (Chroma)
         float midtoneWeight = 4.0f * finalL * (1.0f - finalL);
         float effectiveDyeStrength = std::clamp(0.40f + 0.60f * midtoneWeight, 0.0f, 1.0f) * creviceDepth;
 
-        float finalA = origOklabA * (1.0f - effectiveDyeStrength) + targetA * effectiveDyeStrength;
-        float finalB = origOklabB * (1.0f - effectiveDyeStrength) + targetBCoord * effectiveDyeStrength;
+        float finalA = origA[i] * (1.0f - effectiveDyeStrength) + targetA * effectiveDyeStrength;
+        float finalB = origB[i] * (1.0f - effectiveDyeStrength) + targetBCoord * effectiveDyeStrength;
 
-        // Convert back to sRGB
+        // Convert base dye to sRGB
         float outR, outG, outB;
         oklabTosRGB(finalL, finalA, finalB, outR, outG, outB);
 
+        // 3. Exact linear strand micro-texture preservation: add back 100% of high-frequency fiber details
+        float strandR = origR[i] - baseR[i];
+        float strandG = origG[i] - baseG[i];
+        float strandB = origB_f[i] - baseB_f[i];
+
+        int finalRed = static_cast<int>(std::round(outR * 255.0f + strandR));
+        int finalGreen = static_cast<int>(std::round(outG * 255.0f + strandG));
+        int finalBlue = static_cast<int>(std::round(outB * 255.0f + strandB));
+
         outColorPixels[i] = PACK_RGBA(
-            clampU8(static_cast<int>(std::round(outR * 255.0f))),
-            clampU8(static_cast<int>(std::round(outG * 255.0f))),
-            clampU8(static_cast<int>(std::round(outB * 255.0f))),
+            clampU8(finalRed),
+            clampU8(finalGreen),
+            clampU8(finalBlue),
             RGBA_A(c)
         );
     }
@@ -603,50 +605,108 @@ bool HairPipelineV2::executePipelineV2(
         return false;
     }
 
+    // Preserve untouched input copy so in-place operations cannot corrupt source
+    std::vector<uint32_t> originalSrcCopy(srcPixels, srcPixels + width * height);
+    const uint32_t* origSrc = originalSrcCopy.data();
+
     // Stage 2: Hair Segmentation / Matte
     std::vector<float> rawMatte;
     std::vector<uint8_t> fullLabels;
     bool isBald = false;
-    if (!extractHairMatte(srcPixels, width, height, fused, rawMatte, fullLabels, isBald)) {
+    if (!extractHairMatte(origSrc, width, height, fused, rawMatte, fullLabels, isBald)) {
         LOGE("HairPipelineV2: Hair matte extraction failed!");
         return false;
     }
 
     // Negative Control: If bald subject, copy src to dst unchanged
     if (isBald) {
-        std::memcpy(dstPixels, srcPixels, width * height * sizeof(uint32_t));
+        std::memcpy(dstPixels, origSrc, width * height * sizeof(uint32_t));
         if (debugStages) {
             debugStages->isBald = true;
             debugStages->rawHairMask = rawMatte;
-            debugStages->composited.assign(srcPixels, srcPixels + width * height);
+            debugStages->composited.assign(origSrc, origSrc + width * height);
         }
         return true;
     }
 
     // Stage 3: Edge / Hairline Refinement
     std::vector<float> refinedMatte;
-    refineHairlineEdges(srcPixels, width, height, rawMatte, fullLabels, refinedMatte);
+    refineHairlineEdges(origSrc, width, height, rawMatte, fullLabels, refinedMatte);
 
     // Stage 4: Confidence & Skin/Face/Background Exclusion
     std::vector<float> confidenceMatte;
-    applyConfidenceAndExclusion(srcPixels, width, height, fused, fullLabels, refinedMatte, confidenceMatte);
+    applyConfidenceAndExclusion(origSrc, width, height, fused, fullLabels, refinedMatte, confidenceMatte);
 
     // Stage 5: Strand / Texture Guidance & Shadow/Specular Maps
     std::vector<float> textureGuidance;
     std::vector<float> shadowMap;
     std::vector<float> specularMap;
-    extractStrandTextureGuidance(srcPixels, width, height, confidenceMatte, textureGuidance, shadowMap, specularMap);
+    extractStrandTextureGuidance(origSrc, width, height, confidenceMatte, textureGuidance, shadowMap, specularMap);
 
     // Stage 6: Physically Plausible Salon Color Transform
     std::vector<uint32_t> colorPixels;
-    transformColor(srcPixels, width, height, confidenceMatte, textureGuidance, shadowMap, materialParams, colorPixels);
+    transformColor(origSrc, width, height, confidenceMatte, textureGuidance, shadowMap, materialParams, colorPixels);
 
     // Stage 7: Highlight / Shadow Preservation & Anisotropic Specular
     std::vector<uint32_t> specularPixels;
-    preserveHighlightsAndShadows(srcPixels, colorPixels.data(), width, height, confidenceMatte, specularMap, specularParams, specularPixels);
+    preserveHighlightsAndShadows(origSrc, colorPixels.data(), width, height, confidenceMatte, specularMap, specularParams, specularPixels);
 
     // Stage 8: Alpha Compositing with Original
-    alphaComposite(srcPixels, specularPixels.data(), width, height, confidenceMatte, materialParams.blendIntensity, dstPixels);
+    alphaComposite(origSrc, specularPixels.data(), width, height, confidenceMatte, materialParams.blendIntensity, dstPixels);
+
+    // Stage 9: High-Frequency Strand Texture Micro-Injection
+    // Decompose composited image into low-pass base illumination and inject 100% original strand micro-fibers
+    if (materialParams.blendIntensity > 0.01f) {
+        const int r_box = 2; // 5x5 box filter for precise micro-strand decomposition
+        std::vector<float> origR(width * height), origG(width * height), origB(width * height);
+        std::vector<float> baseOrigR(width * height), baseOrigG(width * height), baseOrigB(width * height);
+        std::vector<float> compR(width * height), compG(width * height), compB(width * height);
+        std::vector<float> baseCompR(width * height), baseCompG(width * height), baseCompB(width * height);
+
+        #pragma omp parallel for schedule(static, 32)
+        for (int i = 0; i < width * height; ++i) {
+            uint32_t oc = origSrc[i];
+            origR[i] = static_cast<float>(RGBA_R(oc));
+            origG[i] = static_cast<float>(RGBA_G(oc));
+            origB[i] = static_cast<float>(RGBA_B(oc));
+
+            uint32_t dc = dstPixels[i];
+            compR[i] = static_cast<float>(RGBA_R(dc));
+            compG[i] = static_cast<float>(RGBA_G(dc));
+            compB[i] = static_cast<float>(RGBA_B(dc));
+        }
+
+        boxFilter2D(origR.data(), baseOrigR.data(), width, height, r_box);
+        boxFilter2D(origG.data(), baseOrigG.data(), width, height, r_box);
+        boxFilter2D(origB.data(), baseOrigB.data(), width, height, r_box);
+
+        boxFilter2D(compR.data(), baseCompR.data(), width, height, r_box);
+        boxFilter2D(compG.data(), baseCompG.data(), width, height, r_box);
+        boxFilter2D(compB.data(), baseCompB.data(), width, height, r_box);
+
+        #pragma omp parallel for schedule(static, 32)
+        for (int i = 0; i < width * height; ++i) {
+            float conf = confidenceMatte[i];
+            if (conf < 0.02f) continue;
+
+            float strandR = (origR[i] - baseOrigR[i]) * 1.1f;
+            float strandG = (origG[i] - baseOrigG[i]) * 1.1f;
+            float strandB = (origB[i] - baseOrigB[i]) * 1.1f;
+
+            int finalRed = static_cast<int>(std::round(baseCompR[i] + strandR));
+            int finalGreen = static_cast<int>(std::round(baseCompG[i] + strandG));
+            int finalBlue = static_cast<int>(std::round(baseCompB[i] + strandB));
+
+            dstPixels[i] = PACK_RGBA(
+                clampU8(finalRed),
+                clampU8(finalGreen),
+                clampU8(finalBlue),
+                RGBA_A(origSrc[i])
+            );
+        }
+    }
+
+    LOGI("HairPipelineV2: executePipelineV2 complete. w=%d, h=%d, intensity=%.2f", width, height, materialParams.blendIntensity);
 
     if (debugStages) {
         debugStages->isBald = false;
