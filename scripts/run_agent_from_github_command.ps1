@@ -201,24 +201,39 @@ Mandatory rules:
 13. End this one execution turn after handoff.
 "@
 
-Write-RunnerLog "Launching agy for command_id=$targetCmdId task_id=$($command.task_id)"
-
 $rc = 0
-try {
-    & agy `
-      --dangerously-skip-permissions `
-      --mode=accept-edits `
-      --print-timeout ("{0}m" -f $PrintTimeoutMinutes) `
-      -p $prompt
-    $rc = $LASTEXITCODE
-} catch {
-    $rc = -1
-    Write-RunnerLog "agy exception: $($_.Exception.Message)"
+if ($command.execution_script -and (Test-Path (Join-Path $RepoPath $command.execution_script))) {
+    $execScript = Join-Path $RepoPath $command.execution_script
+    Write-RunnerLog "Executing command-specified execution_script: $execScript"
+    try {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$execScript" `
+            -CommandId "$targetCmdId" `
+            -TaskId "$($command.task_id)" `
+            -ExecutionLane "$ExecutionLane" `
+            -RepoPath "$RepoPath"
+        $rc = $LASTEXITCODE
+    } catch {
+        $rc = -1
+        Write-RunnerLog "execution_script exception: $($_.Exception.Message)"
+    }
+} else {
+    Write-RunnerLog "Launching agy for command_id=$targetCmdId task_id=$($command.task_id)"
+    try {
+        & agy `
+          --dangerously-skip-permissions `
+          --mode=accept-edits `
+          --print-timeout ("{0}m" -f $PrintTimeoutMinutes) `
+          -p $prompt
+        $rc = $LASTEXITCODE
+    } catch {
+        $rc = -1
+        Write-RunnerLog "agy exception: $($_.Exception.Message)"
+    }
 }
 
 $finalHead = (& git rev-parse HEAD).Trim()
 $currentBranch = (& git rev-parse --abbrev-ref HEAD).Trim()
-Write-RunnerLog "agy turn finished. ExitCode=$rc HEAD=$finalHead on branch $currentBranch"
+Write-RunnerLog "Execution turn finished. ExitCode=$rc HEAD=$finalHead on branch $currentBranch"
 
 if ($currentBranch -eq "main" -or [string]::IsNullOrWhiteSpace($taskBranch) -or $currentBranch -ne $taskBranch) {
     # Direct main execution (e.g. initial bootstrapping or legacy runner)

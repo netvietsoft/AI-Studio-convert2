@@ -17,6 +17,11 @@ on:
         required: false
         type: string
         default: "default"
+      runner_label:
+        description: "Target specific runner label (default: convert2 for any pool runner)"
+        required: false
+        type: string
+        default: "convert2"
 
 permissions:
   contents: write
@@ -28,7 +33,7 @@ concurrency:
 
 jobs:
   execute-command:
-    runs-on: [self-hosted, Windows, convert2]
+    runs-on: [self-hosted, Windows, "${{ inputs.runner_label || 'convert2' }}"]
     timeout-minutes: 120
 
     steps:

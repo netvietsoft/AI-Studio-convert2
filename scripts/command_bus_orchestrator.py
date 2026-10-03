@@ -151,6 +151,17 @@ SHARED_RECONCILED_PATHS = {
 }
 
 
+def is_shared_reconciled_path(p: str) -> bool:
+    norm = normalize_path_pattern(p).lower()
+    if norm in SHARED_RECONCILED_PATHS:
+        return True
+    if norm.startswith(".ai/state") or norm.startswith(".ai/commands") or norm.startswith(".ai/runner"):
+        return True
+    if norm in ["task_log.md", "project_memory.md", "project_error.md"]:
+        return True
+    return False
+
+
 def paths_conflict(p1: str, p2: str) -> bool:
     """
     Check if two file path patterns conflict (overlap).
@@ -163,7 +174,7 @@ def paths_conflict(p1: str, p2: str) -> bool:
     p2 = normalize_path_pattern(p2)
 
     # If both are shared integrator-reconciled metadata paths, no conflict
-    if p1.lower() in SHARED_RECONCILED_PATHS and p2.lower() in SHARED_RECONCILED_PATHS:
+    if is_shared_reconciled_path(p1) and is_shared_reconciled_path(p2):
         return False
 
     # Disjoint task-specific report directories do not conflict
@@ -172,15 +183,6 @@ def paths_conflict(p1: str, p2: str) -> bool:
         parts2 = p2.split('/')
         f1 = parts1[2] if len(parts1) > 2 else ""
         f2 = parts2[2] if len(parts2) > 2 else ""
-        if f1 and f2 and f1 != f2:
-            return False
-
-    # Disjoint task-specific state files do not conflict
-    if p1.lower().startswith(".ai/state/tasks/") and p2.lower().startswith(".ai/state/tasks/"):
-        parts1 = p1.split('/')
-        parts2 = p2.split('/')
-        f1 = parts1[3] if len(parts1) > 3 else ""
-        f2 = parts2[3] if len(parts2) > 3 else ""
         if f1 and f2 and f1 != f2:
             return False
 
