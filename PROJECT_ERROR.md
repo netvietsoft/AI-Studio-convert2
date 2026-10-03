@@ -69,3 +69,17 @@
   4. Đưa ra chỉ số tin cậy động `overallConfidence` tính từ các khớp thực tế thay vì gán cứng 0.95f.
 - **Quy tắc phòng ngừa:** Tuyệt đối cấm warp hình học dựa trên tọa độ giả định ngoài khung hình. Mọi công cụ chỉnh sửa giải phẫu phải kiểm tra tính hiện diện và độ tin cậy của khớp (`checkToolApplicability`) trước khi áp dụng biến dạng.
 
+---
+
+### [ERR-008] Mâu thuẫn trạng thái (State Contradiction) và False PASS khi Cổng Ngoài Chưa Hoàn Thành (TASK_029 / TASK_030)
+- **Thời điểm phát hiện:** 2026-10-03 trong quá trình kiểm toán tự trị `TASK_030`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong `scripts/command_bus_orchestrator.py`, phương thức `_reconcile_global_state_on_completion` gán cứng `state["verdict"] = "PASS"` sau khi lệnh hoàn tất lưu trữ.
+  2. Dù báo cáo văn bản và các trường kiểm soát cổng ghi nhận `CONFIRMATION_REQUIRED` / `BLOCKED_AWAITING_WRITE_AUTHORIZATION` cho cổng Google Report Drive Mirror, trường `verdict` ở cấp cao nhất trong `.ai/state.json` vẫn bị ghi đè thành `PASS`.
+  3. Thiếu unit test tự động để bắt lỗi mâu thuẫn giữa `verdict` và các cổng ngoài.
+- **Giải pháp triệt để:**
+  1. Tái cấu trúc `_reconcile_global_state_on_completion` và `complete_command`: Bổ sung tham số `verdict`, đồng thời thiết lập rào chắn tự động: Nếu `confirmation_gate.status` hoặc `report_drive_mirror_verdict` khác `PASS`, `verdict` bị cưỡng chế cấm nhận giá trị `PASS`.
+  2. Tạo bộ kiểm thử tự động `tests/test_state_truth_and_gate_consistency.py` (5 tests) chạy định kỳ trong CI/CD để chặn đứng mọi false PASS giả tạo.
+  3. Cập nhật trạng thái `.ai/state.json` thành `BLOCKED_EXTERNAL_AUTH` một cách minh bạch, nhất quán trên mọi trường dữ liệu.
+- **Quy tắc phòng ngừa:** TUYỆT ĐỐI KHÔNG gán cứng `verdict = PASS` trong bất kỳ orchestrator hoặc script nào. Trạng thái phán quyết tối cao phải là hàm phụ thuộc có kiểm chứng thực nghiệm của 100% các cổng nghiệm thu.
+

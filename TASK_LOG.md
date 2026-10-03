@@ -1176,4 +1176,41 @@ unning: 0).
   6. **Cổng Report Drive Mirror:**
      * Ghi nhận trung thực CONFIRMATION_REQUIRED do thư mục chia sẻ Google Drive yêu cầu quyền ghi có xác thực hoặc tải lên thủ công tệp transfer package.
 - **KẾT LUẬN THẨM ĐỊNH:**
-  \\mathbf{FINAL\\_VERDICT:\\ NEEDS\\_FIX\\_CONFIRMATION\\_REQUIRED}
+  $$\mathbf{FINAL\_VERDICT:\ NEEDS\_FIX\_CONFIRMATION\_REQUIRED}$$
+
+---
+
+### [2026-10-03 19:25:00 - 19:48:00] TASK_030: TASK029 VERDICT STATE TRUTH AND REPORT DRIVE MIRROR COMPLETION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Căn cứ văn bản ủy quyền:** TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION_ACTIVE (Doc ID: [`1n6yXhlx-MrxDm6eXjxRGQEGCIdRdOJ052M2TMn_kr_Q`](https://docs.google.com/document/d/1n6yXhlx-MrxDm6eXjxRGQEGCIdRdOJ052M2TMn_kr_Q/edit))
+- **Phân loại tác vụ:** P0 INFRA / STATE TRUTH & REPORT DRIVE MIRROR GATE HARDENING
+- **Tiến trình thực thi:**
+  1. **Khôi phục Chân Lý Trạng Thái (State Truth):**
+     * Phát hiện và khắc phục triệt để mâu thuẫn trạng thái từ TASK_029 (`verdict: PASS` trong khi các cổng ghi `CONFIRMATION_REQUIRED`).
+     * Đồng bộ hóa toàn diện `.ai/state.json`: `verdict: "BLOCKED_EXTERNAL_AUTH"`, `task_status: "TASK_030_BLOCKED_EXTERNAL_AUTH"`, `confirmation_gate.status: "BLOCKED_EXTERNAL_AUTH"`, `report_drive_mirror_verdict: "BLOCKED_EXTERNAL_AUTH"`.
+     * Xây dựng bộ kiểm thử tính nhất quán `tests/test_state_truth_and_gate_consistency.py`: **5/5 tests PASS**. Cấm vĩnh viễn việc gán verdict PASS khi có cổng ngoài chưa đạt chuẩn.
+     * Cải tiến `scripts/command_bus_orchestrator.py`: Xóa bỏ gán cứng `state["verdict"] = "PASS"`, bổ sung rào chắn tự động hạ verdict về trạng thái nghẽn nếu cổng ngoài chưa hoàn thành.
+  2. **Cổng Report Drive Mirror & Kiểm kê Từ xa:**
+     * Thư mục đích: `13xDIqiI-vyP10pkypLI_6palmeJS-QRg`.
+     * Đóng gói và kiểm chứng băm SHA-256 từng byte:
+       - TASK_028: `A0B71D6AB352052C9A94689F41869E09AFAC4760A88C1BACB5794FDC7FC32BCF` (Khớp 100%)
+       - TASK_027: `2E537AA18D05B86CB59CAB1AEC0366C14F880EFA32519898BA2D2AF491CB79D6` (Khớp 100%)
+       - TASK_029: `74F98C2B4BAA810AA176706BD62FA4CABCAF2598E7F87735687DE2CDE5805590` (Mới tạo)
+       - Master Bundle: `8462032F23F3D3F8B8C52A2E373B0FB1C9575132425ABDA1691AF60A26F3E09B` (Gộp cả 3 gói)
+     * Thử nghiệm upload trực tiếp qua Google Drive API: Nhận mã `HTTP 401 Unauthorized` (`CREDENTIALS_MISSING: Login Required`).
+     * Kiểm kê từ xa: Xác nhận thư mục có 3 mục hiện hữu, chưa có các gói Hair V2 do thiếu quyền ghi.
+     * Tuyên bố trung thực **`BLOCKED_EXTERNAL_AUTH`**, nêu rõ điều kiện tiên quyết thiếu (`GDRIVE_SERVICE_ACCOUNT_KEY`).
+  3. **Tự động hóa Bền vững (Durable Automation):**
+     * Tạo công cụ `scripts/mirror_reports_to_gdrive.py` hỗ trợ kiểm kê từ xa và upload có kiểm chứng.
+     * Cập nhật GitHub Actions workflow `.github/workflows/convert2-task027-task028-hair-gallery-transfer.yml` tích hợp test tính nhất quán và bước mirror gateway.
+  4. **Chu kỳ Vòng đời Command Bus & Kiểm toán TASK_024:**
+     * Lệnh TASK_030 đi qua đầy đủ chu kỳ: `PENDING` -> `CLAIMED` -> `RUNNING` -> `COMPLETED`.
+     * Bảo tồn nguyên vẹn và kiểm toán riêng biệt lệnh tồn đọng `TASK_024` trong `reserved/` theo chỉ đạo của Chủ tịch (không xóa bỏ âm thầm).
+     * Toàn bộ 6 tests tại `tests/test_command_bus_lifecycle_invariants.py` đạt **PASS (100%)**.
+  5. **Bảo tồn tính bất biến HairPipelineV2:**
+     * `git diff HEAD -- lib-core-graphics/` hoàn toàn rỗng (0 dòng thay đổi).
+  6. **Hồ sơ kiểm toán hoàn chỉnh:**
+     * Tạo đầy đủ 10 tài liệu kiểm toán và log thô tại `.ai/reports/TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION/`.
+- **KẾT LUẬN THẨM ĐỊNH (STOP CONDITION):**
+  $$\mathbf{FINAL\_VERDICT:\ BLOCKED\_EXTERNAL\_AUTH}$$
+  *(Toàn bộ 6 cổng kỹ thuật A, C, D, E, F, G đạt PASS 100%; Cổng B ghi nhận trung thực BLOCKED_EXTERNAL_AUTH chờ cung cấp secret GDRIVE_SERVICE_ACCOUNT_KEY hoặc upload thủ công gói chuyển giao)*

@@ -381,7 +381,7 @@ class CommandBusOrchestrator:
                 "claimed": {"CLAIMED"},
                 "running": {"RUNNING"},
                 "completed": {"COMPLETED"},
-                "failed": {"FAILED", "BLOCKED", "BLOCKED_BINDING_MISMATCH", "BLOCKED_MERGE_CONFLICT", "BLOCKED_UNAUTHORIZED_PATH", "STALE_RECOVERABLE"}
+                "failed": {"FAILED", "BLOCKED", "BLOCKED_BINDING_MISMATCH", "BLOCKED_MERGE_CONFLICT", "BLOCKED_UNAUTHORIZED_PATH", "STALE_RECOVERABLE", "BLOCKED_EXTERNAL_AUTH"}
             }
 
             dir_map = {
@@ -951,7 +951,8 @@ class CommandBusOrchestrator:
                          target_commit_sha: str,
                          report_folder: str,
                          evidence_manifest_sha256: Optional[str] = None,
-                         conclusion: str = "SUCCESS") -> Tuple[bool, str, Optional[Dict[str, Any]]]:
+                         conclusion: str = "SUCCESS",
+                         verdict: Optional[str] = None) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
         """
         Marks command COMPLETED with mandatory provenance.
         Enforces:
@@ -984,6 +985,8 @@ class CommandBusOrchestrator:
 
             cmd["status"] = "COMPLETED"
             cmd["execution_identity"] = exec_id
+            if verdict:
+                cmd["verdict"] = verdict
             cmd["provenance"] = {
                 "target_commit_sha": target_commit_sha,
                 "report_folder": report_folder,
@@ -1013,11 +1016,12 @@ class CommandBusOrchestrator:
                 "report_folder": report_folder,
                 "finished_at": now,
                 "conclusion": conclusion,
+                "verdict": verdict or "PASS",
                 "updated_at": now
             })
 
             # Safely reconcile global state without overwriting other tasks
-            self._reconcile_global_state_on_completion(cmd)
+            self._reconcile_global_state_on_completion(cmd, verdict=verdict)
 
             self.rebuild_index()
             return True, f"COMPLETED: {command_id}", cmd
@@ -1547,9 +1551,10 @@ class CommandBusOrchestrator:
         current.update(updates)
         self._write_json(state_file, current)
 
-    def _reconcile_global_state_on_completion(self, completed_cmd: Dict[str, Any]):
+    def _reconcile_global_state_on_completion(self, completed_cmd: Dict[str, Any], verdict: Optional[str] = None):
         """
         Safely reconciles global .ai/state.json without race conditions or overwriting other tasks.
+        Enforces STATE TRUTH: verdict cannot be blindly PASS if mandatory external gates are unresolved.
         """
         task_id = completed_cmd.get("task_id")
         provenance = completed_cmd.get("provenance", {})
@@ -1562,7 +1567,29 @@ class CommandBusOrchestrator:
         state["last_target_commit_sha"] = provenance.get("target_commit_sha")
         state["last_scan_time"] = get_iso_now()
         state["agent_state"] = "IDLE_WAIT_FOR_TASK"
-        state["verdict"] = "PASS"
+
+        # Determine truthful verdict
+        resolved_verdict = verdict or completed_cmd.get("verdict")
+        confirmation_status = state.get("confirmation_gate", {}).get("status")
+        mirror_verdict = state.get("report_drive_mirror_verdict")
+
+        if not resolved_verdict:
+            if confirmation_status in ["CONFIRMATION_REQUIRED", "BLOCKED_EXTERNAL_AUTH"]:
+                resolved_verdict = confirmation_status
+            elif mirror_verdict in ["CONFIRMATION_REQUIRED", "BLOCKED_EXTERNAL_AUTH", "NEEDS_FIX"]:
+                resolved_verdict = mirror_verdict
+            elif exec_id.get("conclusion") not in [None, "SUCCESS"]:
+                resolved_verdict = "NEEDS_FIX"
+            else:
+                resolved_verdict = "PASS"
+
+        # Invariant: PASS is strictly forbidden when mandatory external gates are unresolved
+        if (confirmation_status and confirmation_status not in ["PASS", "COMPLETED"]) or \
+           (mirror_verdict and mirror_verdict not in ["PASS", "COMPLETED"]):
+            if resolved_verdict == "PASS":
+                resolved_verdict = confirmation_status or mirror_verdict or "BLOCKED_EXTERNAL_AUTH"
+
+        state["verdict"] = resolved_verdict
 
         # Update provenance block
         if "provenance" not in state or not isinstance(state["provenance"], dict):
@@ -1676,6 +1703,7 @@ def main():
     parser_complete.add_argument("--target-sha", required=True, help="Target commit SHA")
     parser_complete.add_argument("--report", required=True, help="Report folder path")
     parser_complete.add_argument("--manifest-hash", default=None, help="Evidence manifest SHA-256")
+    parser_complete.add_argument("--verdict", default=None, help="Explicit final task verdict")
 
     # fail
     parser_fail = subparsers.add_parser("fail", help="Mark a command failed")
@@ -1795,7 +1823,8 @@ def main():
 
     elif args.action == "complete":
         ok, msg, data = orch.complete_command(
-            args.command_id, args.lease_token, args.target_sha, args.report, args.manifest_hash
+            args.command_id, args.lease_token, args.target_sha, args.report, args.manifest_hash,
+            conclusion="SUCCESS", verdict=args.verdict
         )
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
 

@@ -1,0 +1,35 @@
+======================================================================
+TEST SUITE: tests/test_command_bus_lifecycle_invariants.py
+TASK: TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION_ACTIVE
+TIMESTAMP: 2026-10-03T19:45:06+07:00
+COMMAND: python tests/test_command_bus_lifecycle_invariants.py
+======================================================================
+
+test_live_repository_no_simultaneous_running_completed (__main__.TestCommandBusLifecycleInvariants.test_live_repository_no_simultaneous_running_completed)
+Invariant 2: No command can exist simultaneously in running/ and completed/. ... ok
+test_live_repository_zero_duplicates (__main__.TestCommandBusLifecycleInvariants.test_live_repository_zero_duplicates)
+Invariant 1: Live repository must contain strictly ZERO duplicates across all directories. ... ok
+test_live_repository_zero_git_tracked_duplicates (__main__.TestCommandBusLifecycleInvariants.test_live_repository_zero_git_tracked_duplicates)
+Invariant 6: Git index must contain strictly ZERO duplicate commands across directories. ... ok
+test_rebuild_index_automatically_purges_duplicates (__main__.TestCommandBusLifecycleInvariants.test_rebuild_index_automatically_purges_duplicates)
+Invariant 4: rebuild_index() must automatically purge duplicates without manual intervention. ... ok
+test_reconcile_lifecycle_deterministic_precedence (__main__.TestCommandBusLifecycleInvariants.test_reconcile_lifecycle_deterministic_precedence)
+Invariant 3: Reconcile must strictly favor terminal states (completed/failed over running/pending). ... ok
+test_recover_stale_leases_never_resurrects_terminal_commands (__main__.TestCommandBusLifecycleInvariants.test_recover_stale_leases_never_resurrects_terminal_commands)
+Invariant 5: Expired leases in running/claimed must never resurrect already completed commands. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.254s
+
+OK
+
+======================================================================
+SUMMARY: 6/6 TESTS PASS (100.0%)
+LIFECYCLE INVARIANTS SATISFIED:
+- Single-Directory Invariant: PASS (Zero duplicates across directories)
+- Mutual Exclusion (running vs completed): PASS
+- Deterministic Precedence: PASS
+- Auto-purge during index rebuild: PASS
+- Stale Lease Guard: PASS (Terminal commands protected from resurrection)
+- Git Tracking Uniqueness: PASS (Zero duplicate tracked commands)
+======================================================================

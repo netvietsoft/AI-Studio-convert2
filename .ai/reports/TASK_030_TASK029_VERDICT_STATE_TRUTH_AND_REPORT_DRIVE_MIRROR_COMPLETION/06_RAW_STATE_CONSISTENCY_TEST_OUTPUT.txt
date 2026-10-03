@@ -1,0 +1,32 @@
+======================================================================
+TEST SUITE: tests/test_state_truth_and_gate_consistency.py
+TASK: TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION_ACTIVE
+TIMESTAMP: 2026-10-03T19:45:15+07:00
+COMMAND: python tests/test_state_truth_and_gate_consistency.py
+======================================================================
+
+test_package_sha256_truthfulness (__main__.TestStateTruthAndGateConsistency.test_package_sha256_truthfulness)
+Invariant 4: Deliverable package hashes must match canonical constants. ... ok
+test_simulated_false_pass_rejection (__main__.TestStateTruthAndGateConsistency.test_simulated_false_pass_rejection)
+Invariant 5: Validator rejects any synthetic state that sets verdict=PASS with unresolved gates. ... ok
+test_task_status_verdict_coherence (__main__.TestStateTruthAndGateConsistency.test_task_status_verdict_coherence)
+Invariant 3: task_status, verdict, and confirmation_gate must be mutually coherent. ... ok
+test_verdict_cannot_be_pass_when_confirmation_gate_active (__main__.TestStateTruthAndGateConsistency.test_verdict_cannot_be_pass_when_confirmation_gate_active)
+Invariant 1: If confirmation_gate is active/unresolved, verdict MUST NOT be PASS. ... ok
+test_verdict_cannot_be_pass_when_report_mirror_unresolved (__main__.TestStateTruthAndGateConsistency.test_verdict_cannot_be_pass_when_report_mirror_unresolved)
+Invariant 2: If report_drive_mirror_verdict is not PASS, verdict MUST NOT be PASS. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.003s
+
+OK
+
+======================================================================
+SUMMARY: 5/5 TESTS PASS (100.0%)
+INVARIANTS VERIFIED:
+1. No false PASS when confirmation gate active (PASS)
+2. No false PASS when Report Drive mirror unresolved (PASS)
+3. Mutually coherent task_status, verdict, and confirmation_gate (PASS)
+4. Canonical package hashes match constants (PASS)
+5. Synthetic false PASS rejection verified (PASS)
+======================================================================

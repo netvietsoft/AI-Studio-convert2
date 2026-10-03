@@ -7,6 +7,7 @@ on:
       - '.ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/**'
       - '.ai/reports/TASK_028_TASK027_EVIDENCE_PROVENANCE_LIFECYCLE_AND_DRIVE_MIRROR_CORRECTION/**'
       - '.ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION/**'
+      - '.ai/reports/TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION/**'
       - 'TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/**'
 
 permissions:
@@ -20,15 +21,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Validate Lifecycle Invariants Before Packaging
         run: |
           python scripts/command_bus_orchestrator.py validate-lifecycle
+
+      - name: Validate State Truth & Gate Consistency
+        run: |
+          python tests/test_state_truth_and_gate_consistency.py
 
       - name: Package Hair V2 Visual Gallery and Reports
         run: |
           mkdir -p artifacts/reports/TASK_027
           mkdir -p artifacts/reports/TASK_028
           mkdir -p artifacts/reports/TASK_029
+          mkdir -p artifacts/reports/TASK_030
           mkdir -p artifacts/gallery
           if [ -d ".ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION" ]; then
             cp -r .ai/reports/TASK_027_HAIR_V2_RESIDUAL_CORRECTION/* artifacts/reports/TASK_027/
@@ -38,6 +49,9 @@ jobs:
           fi
           if [ -d ".ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION" ]; then
             cp -r .ai/reports/TASK_029_TASK028_REPORT_DRIVE_MIRROR_AND_COMMAND_INDEX_CLOSURE_CORRECTION/* artifacts/reports/TASK_029/
+          fi
+          if [ -d ".ai/reports/TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION" ]; then
+            cp -r .ai/reports/TASK_030_TASK029_VERDICT_STATE_TRUTH_AND_REPORT_DRIVE_MIRROR_COMPLETION/* artifacts/reports/TASK_030/
           fi
           if [ -d "TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY" ]; then
             cp -r TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY/* artifacts/gallery/
@@ -57,3 +71,10 @@ jobs:
           name: CONVERT2_HAIR_V2_REPORT_PACKAGE
           path: artifacts/reports/
           retention-days: 90
+
+      - name: Execute Report Drive Mirror Gateway & Remote Inventory Verification
+        env:
+          GDRIVE_SERVICE_ACCOUNT_KEY: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          python scripts/mirror_reports_to_gdrive.py --exit-zero
+          echo "Mirror gateway execution complete. Results saved in scratch/mirror_gateway_results.json"
