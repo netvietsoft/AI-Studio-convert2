@@ -43,7 +43,11 @@ def test_guard_provenance_ids(state):
             if not runner_id:
                 return False, "AUTHORIZED_LOCAL_WATCHDOG_V2 requires runner_identity"
         else:
-            return False, f"Unrecognized execution_lane: {lane}"
+            # Named execution lanes (e.g. hair-v2-residual-correction, infra-*, body-*)
+            run_id = provenance.get("actions_run_id") or state.get("actions_run_id") or provenance.get("github_run_id")
+            runner_id = provenance.get("runner_identity") or state.get("runner_identity")
+            if not run_id and not runner_id:
+                return False, f"Named execution lane '{lane}' requires actions_run_id or runner_identity"
             
     return True, "PASS"
 

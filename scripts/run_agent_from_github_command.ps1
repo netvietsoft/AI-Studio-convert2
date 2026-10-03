@@ -61,6 +61,17 @@ try {
     Write-RunnerLog "Recovery notice: $($_.Exception.Message)"
 }
 
+# Step 2b: Enforce command lifecycle uniqueness invariant
+Write-RunnerLog "Asserting command lifecycle uniqueness invariants..."
+try {
+    & python "scripts\command_bus_orchestrator.py" assert-lifecycle-uniqueness
+    if ($LASTEXITCODE -ne 0) {
+        Fail "CI Invariant Violated: Duplicate command files exist across lifecycle directories!"
+    }
+} catch {
+    Fail "Command lifecycle invariant assertion failed: $($_.Exception.Message)"
+}
+
 # Step 3: Resolve target Command ID with strict explicit binding
 $targetCmdId = $CommandId
 

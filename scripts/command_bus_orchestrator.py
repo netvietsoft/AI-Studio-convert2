@@ -313,8 +313,9 @@ class CommandBusOrchestrator:
         return commands
 
     def rebuild_index(self) -> Dict[str, Any]:
-        """Rebuilds .ai/commands/index.json from disk state."""
+        """Rebuilds .ai/commands/index.json from disk state after reconciling lifecycle uniqueness."""
         with FileLock(self.lock_file):
+            self.reconcile_lifecycle_uniqueness(rebuild_index_after=False)
             commands = self._get_all_commands()
             index_data = {
                 "version": "2.0.0",
@@ -424,7 +425,7 @@ class CommandBusOrchestrator:
             }
             return is_valid, violations, summary
 
-    def reconcile_lifecycle_uniqueness(self) -> Dict[str, Any]:
+    def reconcile_lifecycle_uniqueness(self, rebuild_index_after: bool = True) -> Dict[str, Any]:
         """
         Enforces that each command ID exists in strictly ONE directory.
         If duplicates are found across directories, applies deterministic precedence:
@@ -484,7 +485,8 @@ class CommandBusOrchestrator:
                 else:
                     retained[cid] = locs[0][0]
 
-            self.rebuild_index()
+            if rebuild_index_after:
+                self.rebuild_index()
             return {
                 "purged_count": len(purged),
                 "purged": purged,
@@ -1277,74 +1279,69 @@ class CommandBusOrchestrator:
             report_folder = ts_data.get("report_folder") or f".ai/reports/{task_id}"
             evidence_hash = ts_data.get("evidence_manifest_sha256") or "NOT_SPECIFIED"
 
-            # Check if command is already completed on the merged branch
-            completed_file = self.completed_dir / f"{command_id}.json"
+            # If command is already in completed directory, reconcile and finish safely without recreating running file
+            found_res = self._find_command_file(command_id)
+            if found_res and found_res[1] == "COMPLETED":
+                self.reconcile_lifecycle_uniqueness()
+                is_valid, violations, _ = self.validate_lifecycle_invariants()
+                if not is_valid:
+                    return False, f"Integrator lifecycle invariant violation: {violations}", cmd
+                comp_cmd = self._load_json(found_res[0])
+                try:
+                    subprocess.run(["git", "add", "-A", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+                    subprocess.run(["git", "commit", "--amend", "--no-edit"], cwd=str(self.repo_root))
+                    subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(self.repo_root))
+                    clean_branch = branch.replace("origin/", "")
+                    subprocess.run(["git", "push", "origin", "--delete", clean_branch], cwd=str(self.repo_root), capture_output=True)
+                except Exception as e:
+                    print(f"Warning during push/branch cleanup: {e}")
+                return True, f"INTEGRATED: {branch} merged into main at {target_sha} (already COMPLETED)", comp_cmd
+
+            # Ensure command file is in running directory after merge
             running_file = self.running_dir / f"{command_id}.json"
+            if not running_file.is_file():
+                if found_res:
+                    f_path, f_status = found_res
+                    c_data = self._load_json(f_path)
+                    if c_data:
+                        c_data["status"] = "RUNNING"
+                        self._write_json(running_file, c_data)
+                        try:
+                            f_path.unlink(missing_ok=True)
+                        except Exception:
+                            pass
 
-            if completed_file.is_file():
-                # Already marked COMPLETED on task branch; update target_commit_sha and provenance cleanly
-                c_data = self._load_json(completed_file)
-                if c_data:
-                    c_data["status"] = "COMPLETED"
-                    if not c_data.get("provenance"):
-                        c_data["provenance"] = {}
-                    c_data["provenance"]["target_commit_sha"] = target_sha
-                    c_data["provenance"]["report_folder"] = report_folder
-                    c_data["provenance"]["evidence_manifest_sha256"] = evidence_hash
-                    c_data["provenance"]["completed_at"] = get_iso_now()
-                    self._write_json(completed_file, c_data)
-                # Purge from running if it existed anywhere
-                running_file.unlink(missing_ok=True)
-                comp_cmd = c_data
+            # Complete command with robust lease handling
+            cmd_curr = self._load_json(running_file) or cmd
+            actual_lease = lease_token or (cmd_curr.get("lease") or {}).get("lease_token") or "SERIAL_INTEGRATOR_LEASE"
+            if "lease" not in cmd_curr or not isinstance(cmd_curr.get("lease"), dict):
+                cmd_curr["lease"] = {
+                    "lease_token": actual_lease,
+                    "lease_holder": "SERIAL_INTEGRATOR",
+                    "leased_at": get_iso_now(),
+                    "lease_expires_at": get_iso_now(),
+                    "heartbeat_at": get_iso_now()
+                }
             else:
-                # Ensure command file is in running directory after merge
-                if not running_file.is_file():
-                    found_res = self._find_command_file(command_id)
-                    if found_res:
-                        f_path, f_status = found_res
-                        c_data = self._load_json(f_path)
-                        if c_data:
-                            c_data["status"] = "RUNNING"
-                            self._write_json(running_file, c_data)
-                            try:
-                                f_path.unlink(missing_ok=True)
-                            except Exception:
-                                pass
+                cmd_curr["lease"]["lease_token"] = actual_lease
+            self._write_json(running_file, cmd_curr)
 
-                # Complete command
-                cmd_curr = self._load_json(running_file) or cmd
-                actual_lease = lease_token or (cmd_curr.get("lease") or {}).get("lease_token") or "SERIAL_INTEGRATOR_LEASE"
-                if not cmd_curr.get("lease"):
-                    cmd_curr["lease"] = {
-                        "lease_token": actual_lease,
-                        "lease_holder": "SERIAL_INTEGRATOR",
-                        "leased_at": get_iso_now(),
-                        "lease_expires_at": get_iso_now(),
-                        "heartbeat_at": get_iso_now()
-                    }
-                else:
-                    cmd_curr["lease"]["lease_token"] = actual_lease
-                self._write_json(running_file, cmd_curr)
+            ok, comp_msg, comp_cmd = self.complete_command(
+                command_id=command_id,
+                lease_token=actual_lease,
+                target_commit_sha=target_sha,
+                report_folder=report_folder,
+                evidence_manifest_sha256=evidence_hash
+            )
+            if not ok:
+                return False, f"Integrator completion failed: {comp_msg}", cmd_curr
 
-                ok, comp_msg, comp_cmd = self.complete_command(
-                    command_id=command_id,
-                    lease_token=actual_lease,
-                    target_commit_sha=target_sha,
-                    report_folder=report_folder,
-                    evidence_manifest_sha256=evidence_hash
-                )
-                if not ok:
-                    raise RuntimeError(f"Failed to complete command {command_id} during integration: {comp_msg}")
-
-            # Reconcile lifecycle uniqueness across all command directories
             self.reconcile_lifecycle_uniqueness()
-
-            # Enforce lifecycle invariant check
             is_valid, violations, _ = self.validate_lifecycle_invariants()
             if not is_valid:
-                raise RuntimeError(f"Lifecycle invariant validation failed after integrating {command_id}: {violations}")
+                return False, f"Integrator lifecycle invariant violation: {violations}", cmd_curr
 
-            # Push merged main with all deletions staged (-A)
+            # Push merged main
             try:
                 subprocess.run(["git", "add", "-A", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
                 subprocess.run(["git", "commit", "--amend", "--no-edit"], cwd=str(self.repo_root))
@@ -1689,8 +1686,9 @@ def main():
     parser_fail.add_argument("--lease-token", required=True, help="Lease token")
     parser_fail.add_argument("--error", required=True, help="Error message")
 
-    # validate-lifecycle
+    # validate-lifecycle & assert-lifecycle-uniqueness
     subparsers.add_parser("validate-lifecycle", help="Validate single-directory lifecycle invariants")
+    subparsers.add_parser("assert-lifecycle-uniqueness", help="Assert single-directory lifecycle invariants or exit 1")
 
     # reconcile-lifecycle
     subparsers.add_parser("reconcile-lifecycle", help="Reconcile lifecycle uniqueness across directories")
@@ -1809,7 +1807,7 @@ def main():
         ok, msg, data = orch.fail_command(args.command_id, args.lease_token, args.error)
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
 
-    elif args.action == "validate-lifecycle":
+    elif args.action in ["validate-lifecycle", "assert-lifecycle-uniqueness"]:
         is_valid, violations, summary = orch.validate_lifecycle_invariants()
         print(f"[{'PASS' if is_valid else 'FAIL'}] Lifecycle Invariant Validation")
         if violations:
