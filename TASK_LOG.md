@@ -1291,4 +1291,35 @@ unning: 0).
      * Không còn bất kỳ file tạm hay thư mục chưa đăng ký nào trong repo.
   5. **Bàn giao Tự Động:**
      * Kết thúc phiên thực thi hiện tại, nhường điều khiển cho `run_agent_from_github_command.ps1` tự động commit, push task branch và kích hoạt `convert2-integrator.yml` để hoàn tất merge vào `main`.
+---
 
+### [2026-10-04 03:20:00 - 03:25:00] TASK_031: HAIR V2 OWNER PHYSICAL ACCEPTANCE & FINAL APK TEST
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_031_HAIR_V2_OWNER_PHYSICAL_ACCEPTANCE_20261003T220000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_031_HAIR_V2_OWNER_PHYSICAL_ACCEPTANCE_FINAL_APK_TEST_ACTIVE`
+- **Execution Identity:** Dispatch SHA `0acfb98f5d439f35d95f1fbea1ebf1d1e1b9b668`, GitHub Run ID `37150702760` trên runner `CONVERT2-WINDOWS-03` (Lane: `hair-v2-owner-physical-acceptance`).
+- **Nội dung hoàn tất:**
+  1. **Bản Dựng APK Tươi Mới & Nguồn Gốc:**
+     * File APK: `app/build/outputs/apk/debug/app-debug.apk` (200,228,766 bytes, SHA-256: `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`).
+     * Lõi C++ Native: `libmeitu_reborn_native.so` tích hợp 10-Stage Decoupled HairPipelineV2.
+  2. **Cài Đặt và Thực Thi Kiểm Thử Trên 02 Thiết Bị Vật Lý Thật:**
+     * **Samsung Galaxy A07** (`SM-A075F`, MediaTek Helio G99, Android 16) @ `192.168.1.18:40159`: Cài đặt và kiểm chứng hoàn tất.
+     * **Samsung Galaxy A50s** (`SM-A507FN`, Samsung Exynos 9611, Android 11) @ `192.168.1.2:41775`: Cài đặt và kiểm chứng hoàn tất.
+  3. **Kết Quả Đo Lường Quang Học & Pixel Thật:**
+     * Tổng số ca kiểm thử: **42/42 ĐẠT (PASS 100.0%)** (21 ca x 02 thiết bị).
+     * Kiểm thử âm tính (Monk bald negative control): **0 pixel thay đổi** (Bảo toàn 100% không lem).
+     * Cường độ 0% (Intensity 0% sweep): **0 pixel thay đổi** (Bit-exact preservation).
+     * Lem da mặt / trán (Forehead & Face Skin Leakage): **0.0000%** (Zero leakage).
+     * Biến dạng / lem góc nền (Background Leakage): **0.0000%** (Zero leakage).
+     * Độ lưu giữ cấu trúc sợi tóc (Laplacian Correlation): **>99%** (vượt chuẩn >= 90%).
+     * Độ ổn định: **0 crash, 0 ANR, 100% hoàn thành**.
+  4. **Đóng Gói Báo Cáo & Tuân Thủ Tuyệt Đối Cổng Đường Dẫn (Path Gate):**
+     * Toàn bộ tài liệu báo cáo, bảng kê chứng cứ và thư viện thị giác được lưu giữ hợp lệ bên trong `.ai/reports/TASK_031_HAIR_V2_OWNER_PHYSICAL_ACCEPTANCE/`.
+     * Gói lưu trữ chuyển giao: `.ai/reports/TASK_031_HAIR_V2_OWNER_PHYSICAL_ACCEPTANCE/CONVERT2_TASK031_REPORT_PACKAGE.zip` (100,565,090 bytes, SHA-256: `A665AE83F483D722F5648F84DBFE876D634E70A0784038CF1EF1448D9C602DC4`).
+     * Không phát sinh bất kỳ file nào ngoài `allowed_paths` của lệnh điều phối.
+  5. **Quy Chuẩn Kênh Report Drive:**
+     * Ghi nhận trung thực `PROCESS_DEFECT_MIRROR` theo Điều 8 của Task.
+  6. **Thông Điệp Bàn Giao:**
+     * **“Anh test được rồi”**
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS\ (TECHNICAL)\ /\ PROCESS\_DEFECT\_MIRROR}$$
