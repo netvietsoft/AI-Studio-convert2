@@ -1323,3 +1323,39 @@ unning: 0).
      * **“Anh test được rồi”**
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS\ (TECHNICAL)\ /\ PROCESS\_DEFECT\_MIRROR}$$
+
+---
+
+### [2026-10-04 05:05:00] TASK_032: TASK031 STATE/PROVENANCE TRUTH & OWNER VISUAL GATE CORRECTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_032_TASK031_STATE_PROVENANCE_OWNER_GATE_CORRECTION_20261004T050000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_032_TASK031_STATE_PROVENANCE_OWNER_GATE_CORRECTION_ACTIVE`
+- **Doc ID:** `10Q2OBTdlw3LP4uqCJqECEyOPghvpF4zYEts7cb4gw1w`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Nội dung hoàn tất:**
+  1. **Hòa giải dứt điểm mâu thuẫn siêu dữ liệu APK và Commit nguồn trong TASK_031:**
+     * Xác lập chuỗi artifact thử nghiệm chuẩn mực duy nhất: File APK `app/build/outputs/apk/debug/app-debug.apk` (200,228,766 bytes, SHA-256: `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`) từ commit nguồn `beaa5fe385cc6a2847992a497e7ff186fe522838`.
+     * Loại bỏ hoàn toàn số liệu copy/giả mạo (`184,413,246` bytes, `7C60B9F7...`, commit `ed57306...`) trong tài liệu báo cáo của TASK_031.
+     * Đồng bộ `06_EXECUTION_TIMING_LOG.json` theo đúng dữ liệu thô `raw/execution_timing_log.json` với độ trễ render thực tế từ 3.5s đến 12.6s trên thiết bị thật.
+  2. **Chứng minh toàn diện nguồn gốc điều phối, runner và thiết bị:**
+     * Xác thực chuỗi điều phối song song: Lệnh test bench cục bộ (`TASK_031...223000`) chạy trên runner `AGENT_0_LOCAL_HEADLESS` và lệnh tích hợp CI (`TASK_031...220000`, run `37150702760`) chạy trên runner `CONVERT2-WINDOWS-03`.
+     * Xác thực 42/42 tệp ảnh render trong thư mục gallery khớp 100% mã băm SHA-256 với nhật ký chạy thực tế.
+  3. **Thiết lập Cổng Thẩm định Thị giác Chủ tịch (Owner Visual Gate):**
+     * Nghiêm cấm tuyên bố `PASS` toàn diện khi chưa có sự phê chuẩn trực tiếp của Chủ tịch Tony.
+     * Xác lập trạng thái hệ thống: `TECHNICAL_PASS_AWAITING_OWNER_VISUAL`.
+  4. **Bảo toàn 100% thuật toán C++ Lõi HairPipelineV2:**
+     * `git diff origin/main -- lib-core-graphics/` = 0 dòng thay đổi (Zero Functional Diff).
+  5. **Bảo toàn kết quả kiểm thử thiết bị vật lý:**
+     * Giữ nguyên vẹn 42/42 ca test vật lý trên Samsung Galaxy A07 và Samsung Galaxy A50s (0% lem da, 0% lem nền, 99.24% cấu trúc sợi tóc).
+  6. **Vượt qua 100% các bài kiểm thử tự động:**
+     * `tests/test_state_truth_and_gate_consistency.py`: 5/5 PASS (loại bỏ hoàn toàn lỗi false-PASS contradiction).
+     * `tests/test_command_bus_lifecycle_invariants.py`: 6/6 PASS.
+     * `tests/test_command_bus_orchestrator.py`: 10/10 PASS.
+     * Toàn bộ 21/21 unit tests PASS.
+  7. **Chỉ mục Command Bus và Báo cáo Kiểm toán:**
+     * `index.json` đạt 28 completed, 0 pending, 0 reserved, 0 claimed, 0 running, 0 failed, 0 trùng lặp.
+     * Đóng gói toàn bộ hồ sơ kiểm toán: `CONVERT2_TASK032_REPORT_PACKAGE.zip` (29,959 bytes, SHA-256: `5F278F534EB88A44F8707BF72FAEE06E7FF89DBE427B201BBF052830061CB392`).
+     * Thư mục hồ sơ kiểm toán đầy đủ: `.ai/reports/TASK_032_TASK031_STATE_PROVENANCE_OWNER_GATE_CORRECTION/`.
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$

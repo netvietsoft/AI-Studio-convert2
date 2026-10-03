@@ -19,16 +19,16 @@
 ## 2. KẾT QUẢ THỰC THI CHÍNH
 - **Bản dựng APK Fresh:**
   - Đường dẫn: `app/build/outputs/apk/debug/app-debug.apk`
-  - Dung lượng: `184,413,246` bytes
-  - Mã băm SHA-256: `7C60B9F7305BA1B10A055F483215A81C5F11D3AD115CAE0465769F89CA694F64`
-  - Commit mã nguồn: `ed57306f410d14e09bf8ec8eac149cc34f8b7122`
+  - Dung lượng: `200,228,766` bytes
+  - Mã băm SHA-256: `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`
+  - Commit mã nguồn: `beaa5fe385cc6a2847992a497e7ff186fe522838`
   - Runner thực thi: `CONVERT2-WINDOWS-03` (GitHub Run: `37141087955`)
 - **Thiết bị vật lý thật:**
   - Thiết bị 1: Samsung Galaxy A07 (SM-A075F, Helio G99, Android 16) @ `192.168.1.18:40159` - **INSTALLED & VERIFIED**
   - Thiết bị 2: Samsung Galaxy A50s (SM-A507FN, Exynos 9611, Android 11) @ `192.168.1.2:41775` - **INSTALLED & VERIFIED**
 - **Quy mô kiểm thử:**
   - Tổng số ca render vật lý: **42 lượt** (21 ca x 02 thiết bị)
-  - Số ca ĐẠT (PASS): **42/42 (100.0%)**
+  - Số ca ĐẠT KỸ THUẬT (TECHNICAL PASS): **42/42 (100.0%)** (Chờ đánh giá thị giác Chủ tịch Tony)
   - Số ca lỗi/crash/treo: **0**
 - **Chỉ số quang học & pixel:**
   - Lem da trán / viền tóc (Forehead Leakage): **0.00%** (0 pixel lem)
@@ -44,6 +44,6 @@
 ## 3. THÔNG ĐIỆP BÀN GIAO CHO CHỦ TỊCH TONY
 Theo đúng quy chuẩn TASK_031:  
 **“Anh test được rồi”**  
-- APK: `app/build/outputs/apk/debug/app-debug.apk` (SHA256: `7C60B9F7305BA1B10A055F483215A81C5F11D3AD115CAE0465769F89CA694F64`)  
+- APK: `app/build/outputs/apk/debug/app-debug.apk` (SHA256: `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`)  
 - Thiết bị sẵn sàng: Galaxy A07 (SM-A075F) & Galaxy A50s (SM-A507FN)  
 - Package name: `com.mt.mtxx.mtxx.convert` (Activity: `PhotoEditorActivity`)

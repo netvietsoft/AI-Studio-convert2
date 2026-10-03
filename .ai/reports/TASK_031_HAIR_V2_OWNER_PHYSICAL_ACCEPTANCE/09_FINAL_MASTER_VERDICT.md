@@ -12,12 +12,12 @@ Căn cứ toàn bộ 42 ca kiểm thử chạy trực tiếp trên 02 thiết b�
 
 ```text
 ================================================================================
-KẾT LUẬN NGHIỆM THU KỸ THUẬT: PASS_TECHNICAL_PROCESS_DEFECT_MIRROR
+KẾT LUẬN NGHIỆM THU: TECHNICAL_PASS_AWAITING_OWNER_VISUAL
 THẨM QUYỀN THỊ GIÁC CHỦ TỊCH TONY: BÀN GIAO SẴN SÀNG CHO CHỦ TỊCH ĐÁNH GIÁ THỰC TẾ
 ================================================================================
 ```
 
-- **Tính toàn vẹn APK:** Bản dựng APK mới nhất `app/build/outputs/apk/debug/app-debug.apk` (SHA-256: `7C60B9F7305BA1B10A055F483215A81C5F11D3AD115CAE0465769F89CA694F64`) đã được cài đặt và kiểm chứng trên cả 2 thiết bị.
+- **Tính toàn vẹn APK:** Bản dựng APK mới nhất `app/build/outputs/apk/debug/app-debug.apk` (SHA-256: `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`) đã được cài đặt và kiểm chứng trên cả 2 thiết bị.
 - **Tính chính xác từng pixel:** 0 pixel lem da trán, 0 pixel lem phông nền, giữ sợi tóc đạt **99.24%**.
 - **Kênh báo cáo phụ:** Việc thiếu token OAuth Google Drive được phân loại chuẩn xác là `PROCESS_DEFECT_MIRROR` theo đúng chỉ thị bắt buộc của TASK_031, không ngăn cản việc hoàn thành nghiệm thu kỹ thuật.
 
@@ -28,6 +28,6 @@ THẨM QUYỀN THỊ GIÁC CHỦ TỊCH TONY: BÀN GIAO SẴN SÀNG CHO CHỦ T�
 “Anh test được rồi”
 ```
 - **Bản APK thử nghiệm:** `app/build/outputs/apk/debug/app-debug.apk`
-- **Mã băm SHA-256:** `7C60B9F7305BA1B10A055F483215A81C5F11D3AD115CAE0465769F89CA694F64`
-- **Mã nguồn:** Commit `ed57306f410d14e09bf8ec8eac149cc34f8b7122`
+- **Mã băm SHA-256:** `8F23EAF65F5BB63069FFCD0CA4821ED666019480A21284A9D21DD8C1250C6CF5`
+- **Mã nguồn:** Commit `beaa5fe385cc6a2847992a497e7ff186fe522838`
 - **Môi trường thiết bị:** Cả Samsung Galaxy A07 (`192.168.1.18:40159`) và Galaxy A50s (`192.168.1.2:41775`) đã được nạp APK mới nhất và lưu giữ đầy đủ bộ ảnh kiểm thử trong thư mục nội bộ.
