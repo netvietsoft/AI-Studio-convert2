@@ -695,6 +695,13 @@ object MeituNativeEngine {
         gloss: Float = 0.5f
     ): Boolean
 
+    // TASK_025: Hair Pipeline V2 Feature Flag
+    @JvmStatic
+    external fun nativeSetHairPipelineV2Enabled(enabled: Boolean)
+
+    @JvmStatic
+    external fun nativeIsHairPipelineV2Enabled(): Boolean
+
     // 56. C++ Native Beard Gray Away (Target Gray Strands, Zero Skin Bleed)
     @JvmStatic
     external fun nativeApplyBeardGrayAway(

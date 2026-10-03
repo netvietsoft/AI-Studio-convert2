@@ -53,6 +53,7 @@ add_library(
     src/hair/hair_anisotropic_specular_engine.cpp
     src/hair/hair_gpu_backend.cpp
     src/hair/hair_color_pipeline.cpp
+    src/hair/hair_pipeline_v2.cpp
     src/beard_dye_engine.cpp
     src/id_photo_collage_engine.cpp
     src/head_semantic_model.cpp

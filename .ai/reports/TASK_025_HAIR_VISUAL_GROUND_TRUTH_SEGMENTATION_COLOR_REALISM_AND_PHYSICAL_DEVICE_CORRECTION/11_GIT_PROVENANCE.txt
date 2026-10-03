@@ -1,0 +1,66 @@
+TASK_025 GIT PROVENANCE RECORD & AUDIT TRAIL
+======================================================================
+Task ID:       TASK_025_HAIR_VISUAL_GROUND_TRUTH_SEGMENTATION_COLOR_REALISM_AND_PHYSICAL_DEVICE_CORRECTION_ACTIVE
+Authority:     Tony (Chairman)
+Status:        ACTIVE -> COMPLETE
+Branch:        main
+Git Remote:    https://github.com/netvietsoft/AI-Studio-convert2
+Target APK:    app/build/outputs/apk/debug/app-debug.apk
+APK SHA-256:   AACDC34AF5638661DEAF87A1B4F70299EFD3AAEEC4581997AC371CF0C81A2E48
+Target Commit: 245ceb45283db8ee9281dddb96cf50901e913a57
+Base Commit:   83d59ce34f3b890a880ae6644ec3cbe99c362153
+Parent Task:   TASK_022_HAIR_FULL_E2E_DEVICE_VISUAL_ACCEPTANCE_AND_CLOSURE (Rejected: NEEDS_FIX)
+Remediation:   HairPipelineV2 Complete 10-Stage Architecture & Dual-Device Verification
+
+AFFECTED C++ / KOTLIN NATIVE FILES:
+----------------------------------------------------------------------
+1. lib-core-graphics/src/main/cpp/include/hair/hair_pipeline_v2.h (NEW)
+   - 10-stage decoupled pipeline definition
+   - OKLab color conversion functions
+   - Feature flag sHairPipelineV2Enabled controls (rollback safe)
+   - Intermediate stage diagnostics struct
+
+2. lib-core-graphics/src/main/cpp/src/hair/hair_pipeline_v2.cpp (NEW)
+   - OpenMP parallelized multi-threaded implementation
+   - Stage 01: Input buffer normalization and gamut clamp
+   - Stage 02: P0 BiSeNet/SelfieSeg hair parsing
+   - Stage 03: Guided Filter (r=4, eps=0.01) hairline refinement
+   - Stage 04: Confidence & facial skin / ear / clothing exclusion
+   - Stage 05: Strand & texture guidance (Laplacian correlation >= 95%)
+   - Stage 06: Shadow & specular map extraction
+   - Stage 07: Non-linear exponential melanin lift
+   - Stage 08: Salon dye OKLab transform with parabolic midtone chroma
+   - Stage 09: Specular highlight neutral luster preservation
+   - Stage 10: Alpha composite and color clamping
+   - Bald negative control minimum coverage gate (< 0.15% = 0 modified pixels)
+
+3. lib-core-graphics/src/main/cpp/CMakeLists.txt (MODIFIED)
+   - Registered src/hair/hair_pipeline_v2.cpp in libmeitu_reborn_native.so
+
+4. lib-core-graphics/src/main/cpp/include/hair/hair_color_pipeline.h (MODIFIED)
+   - Added setPipelineV2Enabled / isPipelineV2Enabled
+
+5. lib-core-graphics/src/main/cpp/src/hair/hair_color_pipeline.cpp (MODIFIED)
+   - Routed processHairColor & processPresetDye to HairPipelineV2
+
+6. lib-core-graphics/src/main/cpp/src/jni_bridge.cpp (MODIFIED)
+   - Exposed nativeSetHairPipelineV2Enabled & nativeIsHairPipelineV2Enabled
+   - Integrated HairPipelineV2 into nativeApplyCustomHairDye
+
+7. lib-core-graphics/src/main/kotlin/com/meitu/core/nativeengine/MeituNativeEngine.kt (MODIFIED)
+   - Added nativeSetHairPipelineV2Enabled & nativeIsHairPipelineV2Enabled external declarations
+
+AUDITED PHYSICAL DEVICES:
+----------------------------------------------------------------------
+1. Samsung Galaxy A07 (SM-A075F)
+   - SoC: MediaTek Helio G99 (mt6789)
+   - OS: Android 16 (BP4A.251205.006.A075FXXS5CZF2)
+   - Serial: R83L****
+   - Endpoint: 192.168.1.18:40159
+
+2. Samsung Galaxy A50s (SM-A507FN)
+   - SoC: Samsung Exynos 9611 (universal9611)
+   - OS: Android 11 (RP1A.200720.012.A507FNXXS7DWD1)
+   - Serial: R58M****
+   - Endpoint: 192.168.1.2:41775
+======================================================================

@@ -44,6 +44,7 @@
 #include "media/video/video_timeline_compositor.h"
 #include "hair/hair_color_pipeline.h"
 #include "hair/hair_gpu_backend.h"
+#include "hair/hair_pipeline_v2.h"
 
 #define TAG "MeituRebornNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
@@ -2711,19 +2712,66 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyCustomHairDye(
 
     const MeituReborn::FusedFaceGeometry& fused = MeituReborn::LandmarkFusionEngine::getInstance().getLastFusedGeometry();
 
-    bool success = meitu_native::HairStrandDyeEngine::applyCustomStrandDye(
-        static_cast<uint32_t*>(pixelAddr),
-        static_cast<int>(info.width),
-        static_cast<int>(info.height),
-        fused,
-        targetR, targetG, targetB,
-        bleachPower,
-        intensity,
-        gloss
-    );
+    bool success = false;
+    if (meitu_native::hce::HairPipelineV2::isEnabled()) {
+        float L, a, bCoord;
+        meitu_native::hce::HairPipelineV2::sRGBToOKLab(targetR / 255.0f, targetG / 255.0f, targetB / 255.0f, L, a, bCoord);
+        meitu_native::hce::HairDyeMaterialParams mat;
+        mat.blendIntensity = std::clamp(intensity, 0.0f, 1.0f);
+        mat.shadowPreservation = 0.88f;
+        mat.rootStrength = 0.92f;
+        mat.bleachPower = std::clamp(bleachPower, 0.0f, 1.0f);
+        mat.targetLightness = std::clamp(L * 100.0f, 5.0f, 95.0f);
+        float c = std::sqrt(a * a + bCoord * bCoord);
+        mat.targetChroma = std::clamp(c / 0.28f * 100.0f, 0.0f, 100.0f);
+        float hDeg = std::atan2(bCoord, a) * 57.2957795f;
+        if (hDeg < 0.0f) hDeg += 360.0f;
+        mat.targetHue = hDeg;
+
+        meitu_native::hce::HairSpecularParams spec;
+        spec.apparentShine = std::clamp(gloss, 0.0f, 1.0f);
+        spec.roughness = 0.32f;
+        spec.specularTint = 0.15f;
+        spec.preserveOriginalGlint = true;
+
+        success = meitu_native::hce::HairPipelineV2::getInstance().executePipelineV2(
+            static_cast<uint32_t*>(pixelAddr),
+            static_cast<uint32_t*>(pixelAddr),
+            static_cast<int>(info.width),
+            static_cast<int>(info.height),
+            fused,
+            mat,
+            spec
+        );
+    } else {
+        success = meitu_native::HairStrandDyeEngine::applyCustomStrandDye(
+            static_cast<uint32_t*>(pixelAddr),
+            static_cast<int>(info.width),
+            static_cast<int>(info.height),
+            fused,
+            targetR, targetG, targetB,
+            bleachPower,
+            intensity,
+            gloss
+        );
+    }
 
     AndroidBitmap_unlockPixels(env, bitmap);
     return success ? JNI_TRUE : JNI_FALSE;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeSetHairPipelineV2Enabled(
+    JNIEnv* env, jclass clazz, jboolean enabled
+) {
+    meitu_native::hce::HairPipelineV2::setEnabled(enabled == JNI_TRUE);
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeIsHairPipelineV2Enabled(
+    JNIEnv* env, jclass clazz
+) {
+    return meitu_native::hce::HairPipelineV2::isEnabled() ? JNI_TRUE : JNI_FALSE;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL

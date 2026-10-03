@@ -1,4 +1,5 @@
 #include "hair/hair_color_pipeline.h"
+#include "hair/hair_pipeline_v2.h"
 #include "hair/hair_gpu_backend.h"
 #include "hair_matting_engine.h"
 #include <algorithm>
@@ -9,6 +10,14 @@ namespace meitu_native::hce {
 HairColorPipeline& HairColorPipeline::getInstance() {
     static HairColorPipeline instance;
     return instance;
+}
+
+void HairColorPipeline::setPipelineV2Enabled(bool enabled) {
+    HairPipelineV2::setEnabled(enabled);
+}
+
+bool HairColorPipeline::isPipelineV2Enabled() {
+    return HairPipelineV2::isEnabled();
 }
 
 bool HairColorPipeline::processHairColor(
@@ -22,6 +31,13 @@ bool HairColorPipeline::processHairColor(
 ) {
     if (!inoutPixels || width <= 0 || height <= 0) {
         return false;
+    }
+
+    // Feature Flag: If V2 is enabled, execute Hair Pipeline V2 (TASK_025)
+    if (HairPipelineV2::isEnabled()) {
+        return HairPipelineV2::getInstance().executePipelineV2(
+            inoutPixels, inoutPixels, width, height, fused, materialParams, specularParams
+        );
     }
 
     // 1. Tiêu thụ P0 Hair Matte (FROZEN P0 CONTRACT)
@@ -96,6 +112,12 @@ bool HairColorPipeline::processPresetDye(
     float gloss,
     HairDebugArtifacts* debugArtifacts
 ) {
+    if (HairPipelineV2::isEnabled()) {
+        return HairPipelineV2::getInstance().executePresetDyeV2(
+            inoutPixels, inoutPixels, width, height, fused, presetId, intensity, gloss
+        );
+    }
+
     HairDyeMaterialParams mat;
     mat.blendIntensity = std::clamp(intensity, 0.0f, 1.0f);
     mat.shadowPreservation = 0.85f;

@@ -39,6 +39,9 @@ public:
         HairDebugArtifacts* debugArtifacts = nullptr
     );
 
+    static void setPipelineV2Enabled(bool enabled);
+    static bool isPipelineV2Enabled();
+
 private:
     HairColorPipeline() = default;
     ~HairColorPipeline() = default;
