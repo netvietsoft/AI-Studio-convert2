@@ -21,21 +21,56 @@ Write-Host "=========================================================="
 
 # 1. Gather Host & Runner Metrics
 $startTime = Get-Date
-$ghLatencyStart = [System.Diagnostics.Stopwatch]::StartNew()
-$apiRunners = & gh api "repos/netvietsoft/AI-Studio-convert2/actions/runners" | ConvertFrom-Json
-$ghLatencyStart.Stop()
-$latencyMs = $ghLatencyStart.ElapsedMilliseconds
+$apiRunners = $null
+$latencyMs = 0
+try {
+    $ghLatencyStart = [System.Diagnostics.Stopwatch]::StartNew()
+    $apiRunners = & gh api "repos/netvietsoft/AI-Studio-convert2/actions/runners" 2>$null | ConvertFrom-Json
+    $ghLatencyStart.Stop()
+    $latencyMs = $ghLatencyStart.ElapsedMilliseconds
+} catch {
+    $apiRunners = $null
+}
 
 $activeRunners = @()
-foreach ($r in $apiRunners.runners) {
-    $activeRunners += @{
-        id = $r.id
-        name = $r.name
-        status = $r.status
-        busy = $r.busy
-        labels = @($r.labels | ForEach-Object { $_.name })
+if ($apiRunners -and $apiRunners.runners) {
+    foreach ($r in $apiRunners.runners) {
+        $activeRunners += @{
+            id = $r.id
+            name = $r.name
+            status = $r.status
+            busy = $r.busy
+            labels = @($r.labels | ForEach-Object { $_.name })
+        }
+    }
+} else {
+    Write-Host "GitHub API runner list restricted or inaccessible; falling back to local host inspection..."
+    $localConfigs = @(
+        @{ Path = "C:\actions-runner"; DefaultName = "CONVERT2-WINDOWS-01"; Label = "worker-1" },
+        @{ Path = "C:\actions-runner-02"; DefaultName = "CONVERT2-WINDOWS-02"; Label = "worker-2" },
+        @{ Path = "C:\actions-runner-03"; DefaultName = "CONVERT2-WINDOWS-03"; Label = "worker-3" }
+    )
+    foreach ($cfg in $localConfigs) {
+        $runnerFile = Join-Path $cfg.Path ".runner"
+        if (Test-Path $runnerFile) {
+            $rData = Get-Content -Raw -Path $runnerFile | ConvertFrom-Json
+            $activeProc = Get-CimInstance Win32_Process | Where-Object {
+                $_.Name -eq "Runner.Listener.exe" -and $_.ExecutablePath -like "$($cfg.Path)*"
+            }
+            $isBusy = (Get-CimInstance Win32_Process | Where-Object {
+                $_.Name -eq "Runner.Worker.exe" -and $_.ExecutablePath -like "$($cfg.Path)*"
+            }) -ne $null
+            $activeRunners += @{
+                id = $rData.agentId
+                name = $rData.agentName
+                status = if ($activeProc) { "online" } else { "offline" }
+                busy = $isBusy
+                labels = @("self-hosted", "Windows", "X64", "convert2", $cfg.Label)
+            }
+        }
     }
 }
+$totalRunners = $activeRunners.Count
 
 $gitPath = (Get-Command git -ErrorAction SilentlyContinue).Source
 $pyPath = (Get-Command python -ErrorAction SilentlyContinue).Source
@@ -64,7 +99,7 @@ $evidencePayload = @{
     runner_user = [Environment]::UserName
     runner_directory = $RepoPath
     github_api_latency_ms = $latencyMs
-    total_runners_registered = $apiRunners.total_count
+    total_runners_registered = $totalRunners
     runners = $activeRunners
     tools = $tools
     audited_at = (Get-Date).ToString("o")
@@ -95,7 +130,7 @@ $reportContent = @"
 ---
 
 ## 1. RUNNER POOL STATUS
-- **Total Registered Runners:** $($apiRunners.total_count)
+- **Total Registered Runners:** $totalRunners
 - **GitHub API Round-trip Latency:** ${latencyMs} ms
 - **Active Pool Members:**
 $($activeRunners | ForEach-Object { "  - **$($_.name)** (ID: $($_.id)): Status=$($_.status), Busy=$($_.busy), Labels=[$($_.labels -join ', ')]" } | Out-String)

@@ -212,26 +212,51 @@ foreach ($r in $poolConfig) {
     }
 }
 
-# 5. Verify Pool Status via GitHub API
-Start-Sleep -Seconds 3
+# 5. Verify Pool Status via GitHub API or Local Process Inspection
+Start-Sleep -Seconds 2
 Write-BootstrapLog "=========================================================="
 Write-BootstrapLog "CURRENT GITHUB ACTIONS RUNNER POOL INVENTORY"
 Write-BootstrapLog "=========================================================="
 
-$apiRunners = & gh api "$RepoApi/actions/runners" | ConvertFrom-Json
-$onlineCount = 0
-
-foreach ($runner in $apiRunners.runners) {
-    $lbls = ($runner.labels | ForEach-Object { $_.name }) -join ", "
-    $isOnline = ($runner.status -eq "online")
-    if ($isOnline) { $onlineCount++ }
-    $statusText = if ($isOnline) { "[ONLINE]" } else { "[OFFLINE]" }
-    $busyText = if ($runner.busy) { "(BUSY)" } else { "(IDLE)" }
-    Write-BootstrapLog "$statusText $($runner.name) (ID: $($runner.id)) $busyText - Labels: [$lbls]"
+$apiRunners = $null
+try {
+    $apiRunners = & gh api "$RepoApi/actions/runners" 2>$null | ConvertFrom-Json
+} catch {
+    $apiRunners = $null
 }
 
-Write-BootstrapLog "----------------------------------------------------------"
-Write-BootstrapLog "Summary: $onlineCount / $($apiRunners.total_count) runners ONLINE (Capacity: $onlineCount)"
+$onlineCount = 0
+
+if ($apiRunners -and $apiRunners.runners) {
+    foreach ($runner in $apiRunners.runners) {
+        $lbls = ($runner.labels | ForEach-Object { $_.name }) -join ", "
+        $isOnline = ($runner.status -eq "online")
+        if ($isOnline) { $onlineCount++ }
+        $statusText = if ($isOnline) { "[ONLINE]" } else { "[OFFLINE]" }
+        $busyText = if ($runner.busy) { "(BUSY)" } else { "(IDLE)" }
+        Write-BootstrapLog "$statusText $($runner.name) (ID: $($runner.id)) $busyText - Labels: [$lbls]"
+    }
+    Write-BootstrapLog "----------------------------------------------------------"
+    Write-BootstrapLog "Summary: $onlineCount / $($apiRunners.total_count) runners ONLINE (Capacity: $onlineCount)"
+} else {
+    Write-BootstrapLog "GitHub API runner query restricted or unavailable; checking local runner listeners on host..." "INFO"
+    foreach ($r in $poolConfig) {
+        $activeListeners = Get-CimInstance Win32_Process | Where-Object {
+            $_.Name -eq "Runner.Listener.exe" -and $_.ExecutablePath -like "$($r.Path)*"
+        }
+        $activeWorkers = Get-CimInstance Win32_Process | Where-Object {
+            $_.Name -eq "Runner.Worker.exe" -and $_.ExecutablePath -like "$($r.Path)*"
+        }
+        $isOnline = ($activeListeners -ne $null)
+        if ($isOnline) { $onlineCount++ }
+        $statusText = if ($isOnline) { "[ONLINE]" } else { "[OFFLINE]" }
+        $busyText = if ($activeWorkers) { "(BUSY)" } else { "(IDLE)" }
+        $pidText = if ($activeListeners) { "(PID: $($activeListeners.ProcessId))" } else { "" }
+        Write-BootstrapLog "$statusText $($r.Name) $pidText $busyText - Work: $($r.Work), Label: $($r.Label)"
+    }
+    Write-BootstrapLog "----------------------------------------------------------"
+    Write-BootstrapLog "Summary: $onlineCount / $($poolConfig.Count) local runners ONLINE (Capacity: $onlineCount)"
+}
 
 if ($onlineCount -lt 3) {
     Write-BootstrapLog "WARNING: Capacity ($onlineCount) is below target of 3 concurrent runners." "WARN"
