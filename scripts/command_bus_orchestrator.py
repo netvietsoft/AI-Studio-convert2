@@ -212,6 +212,30 @@ def paths_conflict(p1: str, p2: str) -> bool:
     return False
 
 
+def file_matches_allowed_path(filepath: str, allowed_pattern: str) -> bool:
+    """
+    Check if a specific file path falls within an allowed path pattern.
+    Supports exact path, prefix directory (dir/**, dir/*), and fnmatch wildcards.
+    """
+    f = normalize_path_pattern(filepath).lower()
+    p = normalize_path_pattern(allowed_pattern).lower()
+
+    if f == p:
+        return True
+
+    if p.endswith("/**"):
+        prefix = p[:-3]
+        if f == prefix or f.startswith(prefix + "/"):
+            return True
+
+    if p.endswith("/*"):
+        prefix = p[:-2]
+        if f == prefix or f.startswith(prefix + "/"):
+            return True
+
+    return fnmatch.fnmatch(f, p)
+
+
 class CommandBusOrchestrator:
     """
     Manages the multi-agent / multi-task command lifecycle and dispatch.
@@ -985,12 +1009,9 @@ class CommandBusOrchestrator:
                 unauthorized = []
                 for cf in changed_files:
                     norm_cf = normalize_path_pattern(cf)
-                    matched = False
-                    for ap in allowed_paths:
-                        norm_ap = normalize_path_pattern(ap)
-                        if paths_conflict(norm_cf, norm_ap):
-                            matched = True
-                            break
+                    if is_shared_reconciled_path(norm_cf):
+                        continue
+                    matched = any(file_matches_allowed_path(norm_cf, ap) for ap in allowed_paths)
                     if not matched:
                         unauthorized.append(cf)
 
@@ -1033,14 +1054,31 @@ class CommandBusOrchestrator:
             report_folder = ts_data.get("report_folder") or f".ai/reports/{task_id}"
             evidence_hash = ts_data.get("evidence_manifest_sha256") or "NOT_SPECIFIED"
 
-            # Use lease token from command if none supplied
-            if not lease_token and cmd.get("lease"):
-                lease_token = cmd["lease"].get("lease_token")
+            # Ensure command file is in running directory after merge
+            running_file = self.running_dir / f"{command_id}.json"
+            if not running_file.is_file():
+                found_res = self._find_command_file(command_id)
+                if found_res:
+                    f_path, f_status = found_res
+                    c_data = self._load_json(f_path)
+                    if c_data:
+                        c_data["status"] = "RUNNING"
+                        self._write_json(running_file, c_data)
+                        try:
+                            f_path.unlink(missing_ok=True)
+                        except Exception:
+                            pass
 
             # Complete command
+            cmd_curr = self._load_json(running_file) or cmd
+            actual_lease = lease_token or (cmd_curr.get("lease") or {}).get("lease_token") or "SERIAL_INTEGRATOR_LEASE"
+            if cmd_curr.get("lease"):
+                cmd_curr["lease"]["lease_token"] = actual_lease
+                self._write_json(running_file, cmd_curr)
+
             ok, comp_msg, comp_cmd = self.complete_command(
                 command_id=command_id,
-                lease_token=lease_token or "SERIAL_INTEGRATOR_LEASE",
+                lease_token=actual_lease,
                 target_commit_sha=target_sha,
                 report_folder=report_folder,
                 evidence_manifest_sha256=evidence_hash
