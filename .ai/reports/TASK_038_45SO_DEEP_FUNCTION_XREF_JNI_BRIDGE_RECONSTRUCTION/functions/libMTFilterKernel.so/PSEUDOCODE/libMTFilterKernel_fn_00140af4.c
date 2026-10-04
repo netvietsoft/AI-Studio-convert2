@@ -1,0 +1,25 @@
+// Reconstructed Pseudocode for libMTFilterKernel_fn_00140af4 (_ZN14MTFilterKernel27reLoadMaterialWithScaleTypeEPhiiRiS1_NS_19TEMPFILE_SCALE_TYPEE)
+// Library: libMTFilterKernel.so | RVA: 0x00140af4 | Size: 1164 bytes
+// Visibility: EXPORTED | Semantic: GPU_FBO_RENDER_PASS
+// Referenced Strings:
+
+void libMTFilterKernel_fn_00140af4(void* env, void* obj, ...) {
+    call_func_0x001b42a0(...);
+    call_func_0x001b45f0(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b45f0(...);
+    call_func_0x001b4290(...);
+    call_func_0x001b42b0(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b42c0(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b4290(...);
+    call_func_0x001b4290(...);
+    call_func_0x001b42b0(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b4290(...);
+    call_func_0x001b42a0(...);
+    call_func_0x001b4290(...);
+    return;
+}
