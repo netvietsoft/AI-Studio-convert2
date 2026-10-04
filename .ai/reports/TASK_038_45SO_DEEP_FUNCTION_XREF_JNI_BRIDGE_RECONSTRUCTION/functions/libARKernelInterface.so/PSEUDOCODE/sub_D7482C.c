@@ -1,0 +1,7 @@
+// Function: sub_D7482C
+// RVA: 0xd7482c, Size: 216 bytes
+int64_t sub_D7482C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_D74A10(...); // call internal at 0xd748dc
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0xd74900
+}

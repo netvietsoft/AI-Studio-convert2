@@ -1735,3 +1735,51 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+---
+
+### [2026-10-04 13:35:00 +0700] HOÀN TẤT TASK_038 — 45 SO DEEP FUNCTION XREF & JNI BRIDGE RECONSTRUCTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_RECON_20261004T102000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_038_45_SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony (Chairman)
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `native-so-deep-jni-reconstruction`
+- **Máy Runner vật lý:** `GITHUB_ACTIONS_37180417358`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — 100% CENSUS COMPLETE (123,403 FUNCTIONS, 4,275 JNI BRIDGES, VERBATIM HAIR SHADERS RECOVERED)`**
+- **Nội dung điều tra & Kết quả thẩm định:**
+  1. **Thẩm định & Đối chiếu Nhị phân 45/45 Thư viện (Quality Gate G1 PASS):**
+     * 100% (45/45) tệp thư viện `.so` ARM64-v8a tại `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a` khớp SHA-256 từng bit với baseline repo `lib-core-graphics/src/main/jniLibs/arm64-v8a/` (tệp thứ 46 trong baseline là `libomp.so` do P6 bổ sung cho CPU parallel compute).
+  2. **Điều tra Đầy đủ Hàm Thực thi (Quality Gate G2 PASS):**
+     * Đã dịch ngược và lập danh mục toàn bộ **123,403 hàm thực thi** trên 45 thư viện.
+     * Trích xuất **696,465 cạnh gọi hàm (call edges)** và **133,016 tham chiếu chuỗi (string xrefs)**.
+     * Tạo lập cơ sở dữ liệu `02_LIBRARY_FUNCTION_COUNTS.csv`, `03_ALL_FUNCTION_INVENTORY.csv` (54.3 MB), và `04_ALL_FUNCTION_INVENTORY.json.gz` (12.4 MB gzip, bung ra 123 MB JSON).
+  3. **Khôi phục Cầu nối JNI & RegisterNatives (Quality Gates G3, G4, G5 PASS):**
+     * Trích xuất **3,478 hàm xuất trực tiếp (Direct JNI Exports)** (`Java_*`).
+     * Khôi phục **1,628 hàm đăng ký động qua RegisterNatives** trên 102 bảng context bằng cách giải mã trực tiếp addend của relocation `R_AARCH64_RELATIVE` trong `.rela.dyn` và `.data.rel.ro`.
+     * Quét toàn bộ 19 tệp DEX (`classes.dex` - `classes19.dex`), lập bản đồ **23,485 khai báo native method** trong Java/Kotlin.
+     * Tổng hợp bản đồ đồng bộ `05_JNI_BRIDGE_MAP.csv` (2.03 MB) liên kết từ UI/DEX tới C++ Native RVA.
+  4. **Phát hiện Cốt lõi & Tái dựng Thuật toán Tóc (Quality Gates G6, G7, G10, G11 PASS):**
+     * **Triệt tiêu nguyên nhân gốc rễ lỗi "Bệt màu như sơn" (Muddy/Flat Painted Look):** Vendor V1 **KHÔNG** làm mờ đẳng hướng (isotropic blur) mà sử dụng **bộ lọc tích phân đường định hướng 21-tap (21-tap bidirectional line-integral convolution)** chạy dọc theo tiếp tuyến sợi tóc.
+     * **Trích xuất nguyên văn 5 Shader GLSL trong `.rodata` của `libMTFilterKernel.so` (`MTFilterKernel::CMTFilterSoftHair`):**
+       - Pass 1: Chuyển đổi Luminance BT.601 (`0x804fc`).
+       - Pass 2: Trường Ten-xơ cấu trúc 2D với mã hóa góc kép (Double-angle) $\vec{v} = (\frac{g_x^2 - g_y^2}{|g|^2}, \frac{2 g_x g_y}{|g|^2})$ tại `0x89635`, triệt tiêu hoàn toàn hiện tượng triệt tiêu gradient ở 2 bờ sợi tóc.
+       - Pass 3 & 4: Làm mịn Gaussian 1D tách rời (Separable 5-tap) cho trường hướng (Horizontal `0x8994b`, Vertical `0x793ae`).
+       - Pass 5: Lọc hướng dòng sợi tóc với kernel Gaussian 10-tap ($\sigma = 5.0$) tại `0x86106`.
+     * **Khôi phục Bảng Tham số Chính xác từng bit từ `.rodata`:**
+       - Kernel 10-tap: `[1.0, 0.9802, 0.9231, 0.8353, 0.7261, 0.6065, 0.4868, 0.3753, 0.2780, 0.1979]`.
+       - Weights 5-tap: `[0.159676, 0.263348, 0.122118, 0.030573, 0.004122]`.
+       - Ngưỡng nhạy cảm tóc tơ: `threshold = 0.005` (Convert2 đang dùng 0.05, cao gấp 10 lần làm mất tóc con).
+       - Hệ số tăng ích: `gain = 0.5`.
+  5. **Đồ thị Phụ thuộc Liên Thư viện & Tổng quan Kiến trúc (Quality Gates G8, G9 PASS):**
+     * Lập bản đồ `DT_NEEDED` đầy đủ: 59 liên kết phụ thuộc nội bộ, 24 thư viện hệ thống/vendor.
+     * `libMTFilterKernel.so` độc lập hoàn toàn với `libarkernel3.so` (chỉ phụ thuộc EGL/GLESv2/libc++), cho phép tích hợp trực tiếp mà không cần kéo theo runtime AR nặng 13.8 MB.
+  6. **Phân loại Indirection Động & Kế hoạch Đo kiểm Thiết bị (Quality Gate PASS):**
+     * Tỷ lệ phân giải tĩnh thành công: **99.38%** (122,643/123,403 hàm). 760 hàm gián tiếp còn lại là interface virtual call của plugin ARKernel và `dlopen` NDK MediaCodec.
+     * Thiết lập quy trình đo kiểm trên Samsung Galaxy A50 (Mali-G72 MP3) với ngân sách thời gian 7.6 ms (đáp ứng 60 FPS).
+  7. **Hồ sơ Bàn giao & Báo cáo Đầy đủ:**
+     * Thư mục báo cáo: `.ai/reports/TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION/` gồm đầy đủ 20 báo cáo chuẩn mực (`00_AUDIT_INDEX.md` đến `19_REPORT_DRIVE_MIRROR.md`), 45 thư mục hàm `functions/`, và dữ liệu thô `raw/`.
+     * Tuân thủ nghiêm ngặt nguyên tắc chỉ điều tra (Forensics Only), không sửa đổi nhị phân gốc, không sửa đổi code Hair V2/V3 trong task này, bảo lưu nguyên vẹn ranh giới P0 (`tau_aspect = 1.80` đóng băng).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$

@@ -1,0 +1,86 @@
+// Function: sub_BC81A0
+// RVA: 0xbc81a0, Size: 436 bytes
+int64_t sub_BC81A0(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_BC99BC(...); // call internal at 0xbc81a8
+    sub_BCA44C(...); // call internal at 0xbc81ac
+    sub_BCAFF8(...); // call internal at 0xbc81b0
+    sub_BCB6E8(...); // call internal at 0xbc81b4
+    sub_BCB774(...); // call internal at 0xbc81b8
+    sub_BCBEAC(...); // call internal at 0xbc81bc
+    sub_BCE53C(...); // call internal at 0xbc81c0
+    sub_BCF4C4(...); // call internal at 0xbc81c4
+    sub_BD0064(...); // call internal at 0xbc81c8
+    sub_BD08F4(...); // call internal at 0xbc81cc
+    sub_BD16F8(...); // call internal at 0xbc81d0
+    sub_BD263C(...); // call internal at 0xbc81d4
+    sub_BD2D80(...); // call internal at 0xbc81d8
+    sub_BD359C(...); // call internal at 0xbc81dc
+    sub_BD6420(...); // call internal at 0xbc81e0
+    sub_BD76DC(...); // call internal at 0xbc81e4
+    sub_BD7E0C(...); // call internal at 0xbc81e8
+    sub_BD8208(...); // call internal at 0xbc81ec
+    sub_BD8A0C(...); // call internal at 0xbc81f0
+    sub_BD9220(...); // call internal at 0xbc81f4
+    sub_BD9C84(...); // call internal at 0xbc81f8
+    sub_BDB19C(...); // call internal at 0xbc81fc
+    sub_BDBE78(...); // call internal at 0xbc8200
+    sub_BDC268(...); // call internal at 0xbc8204
+    sub_BDDA4C(...); // call internal at 0xbc8208
+    sub_BE2134(...); // call internal at 0xbc820c
+    sub_BE2748(...); // call internal at 0xbc8210
+    sub_BE27DC(...); // call internal at 0xbc8214
+    sub_BE456C(...); // call internal at 0xbc8218
+    sub_BE534C(...); // call internal at 0xbc821c
+    sub_BE84F4(...); // call internal at 0xbc8220
+    sub_BE9094(...); // call internal at 0xbc8224
+    sub_BEB190(...); // call internal at 0xbc8228
+    sub_BEBE0C(...); // call internal at 0xbc822c
+    sub_BEC280(...); // call internal at 0xbc8230
+    sub_BEC308(...); // call internal at 0xbc8234
+    sub_BECD68(...); // call internal at 0xbc8238
+    sub_BED2A8(...); // call internal at 0xbc823c
+    sub_BF98D4(...); // call internal at 0xbc8240
+    sub_BFA1E8(...); // call internal at 0xbc8244
+    sub_BFA984(...); // call internal at 0xbc8248
+    sub_BFAF54(...); // call internal at 0xbc824c
+    sub_BFB2F8(...); // call internal at 0xbc8250
+    sub_BFB774(...); // call internal at 0xbc8254
+    sub_BFEDB8(...); // call internal at 0xbc8258
+    sub_BFB774(...); // call internal at 0xbc825c
+    sub_BFFD2C(...); // call internal at 0xbc8260
+    sub_C00D30(...); // call internal at 0xbc8264
+    sub_C01E7C(...); // call internal at 0xbc8268
+    sub_C026D0(...); // call internal at 0xbc826c
+    sub_C036A4(...); // call internal at 0xbc8270
+    sub_C044A8(...); // call internal at 0xbc8274
+    sub_C04F3C(...); // call internal at 0xbc8278
+    sub_C05CC4(...); // call internal at 0xbc827c
+    sub_C063E0(...); // call internal at 0xbc8280
+    sub_C06AF8(...); // call internal at 0xbc8284
+    sub_C072CC(...); // call internal at 0xbc8288
+    sub_C084DC(...); // call internal at 0xbc828c
+    sub_C08BA4(...); // call internal at 0xbc8290
+    sub_C096F8(...); // call internal at 0xbc8294
+    sub_C09B38(...); // call internal at 0xbc8298
+    sub_C09ED4(...); // call internal at 0xbc829c
+    sub_C0A1AC(...); // call internal at 0xbc82a0
+    sub_C0A85C(...); // call internal at 0xbc82a4
+    sub_C0ACA4(...); // call internal at 0xbc82a8
+    sub_C0ED90(...); // call internal at 0xbc82ac
+    sub_C0F5A4(...); // call internal at 0xbc82b0
+    sub_C0FC50(...); // call internal at 0xbc82b4
+    sub_C0FFFC(...); // call internal at 0xbc82b8
+    sub_C12B48(...); // call internal at 0xbc82bc
+    sub_C130B4(...); // call internal at 0xbc82c0
+    sub_C139E8(...); // call internal at 0xbc82c4
+    sub_F0CB90(...); // call internal at 0xbc82e0
+    sub_F0CE7C(...); // call internal at 0xbc82f4
+    sub_BC8354(...); // call internal at 0xbc8304
+    sub_6B7518(...); // call internal at 0xbc8308
+    sub_F0D500(...); // call internal at 0xbc8314
+    const char* str = "Invalid number of parameters (expected 1).";
+    const char* str = "lua_GPFace_getAge - Failed to match the given parameters to a valid function signature.";
+    sub_F0D5D0(...); // call internal at 0xbc8338
+    sub_F0E498(...); // call internal at 0xbc8340
+    return a0;
+}

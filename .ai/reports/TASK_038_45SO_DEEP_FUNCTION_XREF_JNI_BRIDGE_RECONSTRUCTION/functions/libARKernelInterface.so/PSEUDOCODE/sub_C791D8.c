@@ -1,0 +1,6 @@
+// Function: sub_C791D8
+// RVA: 0xc791d8, Size: 20 bytes
+int64_t sub_C791D8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "vector";
+    sub_55DE7C(...); // call internal at 0xc791e8
+}

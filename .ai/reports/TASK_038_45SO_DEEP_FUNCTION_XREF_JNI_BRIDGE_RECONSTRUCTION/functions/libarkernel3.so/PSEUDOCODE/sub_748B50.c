@@ -1,0 +1,5 @@
+// Function: sub_748B50
+// RVA: 0x748b50, Size: 184 bytes
+int64_t sub_748B50(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+}

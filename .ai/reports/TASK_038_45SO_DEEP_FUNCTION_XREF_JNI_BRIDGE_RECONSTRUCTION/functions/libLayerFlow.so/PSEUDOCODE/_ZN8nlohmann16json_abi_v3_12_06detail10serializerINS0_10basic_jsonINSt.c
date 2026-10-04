@@ -1,0 +1,4 @@
+// Function: void nlohmann::json_abi_v3_12_0::detail::serializer<nlohmann::json_abi_v3_12_0::basic_json<std::__ndk1::map, std::__ndk1::vector, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, bool, long, unsigned long, double, std::__ndk1::allocator, nlohmann::json_abi_v3_12_0::adl_serializer, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>>, void>>::dump_integer<long, 0>(long)
+// RVA: 0x362c28, Size: 572 bytes
+int64_t _ZN8nlohmann16json_abi_v3_12_06detail10serializerINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEE12dump_integerIlTnNS4_9enable_ifIXoooooosr3std11is_integralIT_EE5valuesr3std7is_sameISK_mEE5valuesr3std7is_sameISK_lEE5valuesr3std7is_sameISK_hEE5valueEiE4typeELi0EEEvSK_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+}

@@ -1,0 +1,6 @@
+// Function: sub_AB4730
+// RVA: 0xab4730, Size: 60 bytes
+int64_t sub_AB4730(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_AB3E84(...); // call internal at 0xab4740
+    return a0;
+}

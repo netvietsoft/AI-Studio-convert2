@@ -1,0 +1,68 @@
+// Function: sub_580CA4
+// RVA: 0x580ca4, Size: 1404 bytes
+int64_t sub_580CA4(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "com/meitu/mtlab/arkernelinterface/interaction/ARKernelTextInteraction$ARKernelTextPathConfig";
+    (*x8)(...);
+    const char* str = "<init>";
+    const char* str = "()V";
+    (*x8)(...);
+    const char* str = "enable";
+    (*x8)(...);
+    const char* str = "jsonPath";
+    const char* str = "Ljava/lang/String;";
+    (*x8)(...);
+    const char* str = "perpendicular";
+    (*x8)(...);
+    const char* str = "reverse";
+    (*x8)(...);
+    const char* str = "scaleY";
+    (*x8)(...);
+    const char* str = "pathLengthUseRatio";
+    (*x8)(...);
+    const char* str = "positionOffset";
+    (*x8)(...);
+    const char* str = "textBound";
+    (*x8)(...);
+    const char* str = "bendAngle";
+    (*x8)(...);
+    const char* str = "enableBend";
+    (*x8)(...);
+    const char* str = "progress";
+    (*x8)(...);
+    const char* str = "firstMarginRatio";
+    (*x8)(...);
+    const char* str = "lastMarginRatio";
+    (*x8)(...);
+    const char* str = "enableAspectRatio";
+    (*x8)(...);
+    const char* str = "aspectRatio";
+    (*x8)(...);
+    const char* str = "curveTextType";
+    (*x8)(...);
+    const char* str = "spacing";
+    (*x8)(...);
+    const char* str = "centerOffset";
+    (*x8)(...);
+    sub_55D808(...); // call internal at 0x580fbc
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    return a0;
+}

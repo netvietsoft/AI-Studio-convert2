@@ -1,0 +1,5 @@
+// Function: sub_89994C
+// RVA: 0x89994c, Size: 32 bytes
+int64_t sub_89994C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+}

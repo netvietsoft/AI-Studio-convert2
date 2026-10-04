@@ -1,0 +1,8 @@
+// Function: sub_A5DA04
+// RVA: 0xa5da04, Size: 196 bytes
+int64_t sub_A5DA04(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_106B470(...); // call internal at 0xa5da38
+    (*x8)(...);
+    return a0;
+    sub_106B814(...); // call internal at 0xa5dac4
+}

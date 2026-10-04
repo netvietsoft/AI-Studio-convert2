@@ -1,0 +1,65 @@
+// Function: sub_DB98F8
+// RVA: 0xdb98f8, Size: 4096 bytes
+int64_t sub_DB98F8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_DB8CF0(...); // call internal at 0xdb9938
+    sub_DBAD0C(...); // call internal at 0xdb9a64
+    sub_DB6704(...); // call internal at 0xdb9a70
+    sub_DBAD0C(...); // call internal at 0xdb9a8c
+    sub_DB65E0(...); // call internal at 0xdb9a98
+    sub_DB6704(...); // call internal at 0xdb9aa8
+    return a0;
+    sub_DBAD0C(...); // call internal at 0xdb9b24
+    sub_DB65E0(...); // call internal at 0xdb9b30
+    sub_DB6704(...); // call internal at 0xdb9b44
+    sub_DBAD0C(...); // call internal at 0xdb9bd4
+    sub_DB6704(...); // call internal at 0xdb9be0
+    sub_DBAD0C(...); // call internal at 0xdb9c08
+    sub_DB6704(...); // call internal at 0xdb9c14
+    sub_DBAD0C(...); // call internal at 0xdb9c60
+    sub_DB6704(...); // call internal at 0xdb9c6c
+    sub_DB64D8(...); // call internal at 0xdb9de4
+    sub_DB64D8(...); // call internal at 0xdb9dfc
+    sub_DB8B68(...); // call internal at 0xdb9e2c
+    sub_DB64D8(...); // call internal at 0xdb9e50
+    sub_DB64D8(...); // call internal at 0xdb9e6c
+    sub_DB64D8(...); // call internal at 0xdb9e8c
+    sub_DB64D8(...); // call internal at 0xdb9ea0
+    sub_DB6424(...); // call internal at 0xdb9ec0
+    sub_DB64D8(...); // call internal at 0xdb9f2c
+    sub_DB64D8(...); // call internal at 0xdb9f48
+    sub_DB64D8(...); // call internal at 0xdb9f64
+    sub_DB64D8(...); // call internal at 0xdb9f78
+    sub_DB6424(...); // call internal at 0xdb9f98
+    sub_DB64D8(...); // call internal at 0xdba008
+    sub_DB64D8(...); // call internal at 0xdba020
+    sub_DB64D8(...); // call internal at 0xdba03c
+    sub_DB64D8(...); // call internal at 0xdba050
+    sub_DB6424(...); // call internal at 0xdba070
+    sub_DB9860(...); // call internal at 0xdba10c
+    sub_DB9860(...); // call internal at 0xdba118
+    sub_DB9860(...); // call internal at 0xdba12c
+    sub_DB9860(...); // call internal at 0xdba138
+    sub_DB9860(...); // call internal at 0xdba14c
+    sub_DB9860(...); // call internal at 0xdba158
+    sub_DA6094(...); // call internal at 0xdba1a4
+    sub_DA60B0(...); // call internal at 0xdba200
+    sub_DA6094(...); // call internal at 0xdba254
+    sub_DA60B0(...); // call internal at 0xdba2b8
+    sub_DA6094(...); // call internal at 0xdba310
+    sub_DA60B0(...); // call internal at 0xdba368
+    sub_DB6888(...); // call internal at 0xdba3d0
+    sub_DA6094(...); // call internal at 0xdba480
+    sub_DA60B0(...); // call internal at 0xdba4d4
+    sub_DB84FC(...); // call internal at 0xdba51c
+    sub_DA6094(...); // call internal at 0xdba54c
+    sub_DA60B0(...); // call internal at 0xdba5a0
+    sub_DA6094(...); // call internal at 0xdba60c
+    sub_DA60B0(...); // call internal at 0xdba664
+    sub_DBAD0C(...); // call internal at 0xdba6d4
+    sub_DB6704(...); // call internal at 0xdba6e0
+    sub_DB9660(...); // call internal at 0xdba754
+    sub_DB84FC(...); // call internal at 0xdba774
+    sub_DA6094(...); // call internal at 0xdba7a4
+    sub_DA60B0(...); // call internal at 0xdba7f0
+    sub_DB9660(...); // call internal at 0xdba838
+}

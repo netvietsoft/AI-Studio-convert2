@@ -1,0 +1,53 @@
+// Function: LayerFlowNS::CLFFormulaRenderPlugin::timingLayer(std::__ndk1::shared_ptr<LayerFlowNS::CLFBaseLayer>, long)
+// RVA: 0x3dcbc8, Size: 1180 bytes
+int64_t _ZN11LayerFlowNS22CLFFormulaRenderPlugin11timingLayerENSt6__ndk110shared_ptrINS_12CLFBaseLayerEEEl(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "layer";
+    _ZN8nlohmann16json_abi_v3_12_06detail20external_constructorILNS1_7value_tE3EE9constructINS0_10basic_jsonINSt6__ndk13mapENS7_6vectorENS7_12basic_stringIcNS7_11char_traitsIcEENS7_9allocatorIcEEEEblmdSD_NS0_14adl_serializerENS9_IhNSD_IhEEEEvEEA6_cTnNS7_9enable_ifIXntsr3std7is_sameIT0_NT_8string_tEEE5valueEiE4typeELi0EEEvRSN_RKSM_(...); // call internal at 0x3dcc0c
+    (*x9)(...);
+    _Znwm(...); // call PLT API at 0x3dcc38
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEC2ESt16initializer_listINS0_6detail8json_refISE_EEEbNSG_7value_tE(...); // call internal at 0x3dcc70
+    const char* str = "cost";
+    _ZN8nlohmann16json_abi_v3_12_06detail20external_constructorILNS1_7value_tE3EE9constructINS0_10basic_jsonINSt6__ndk13mapENS7_6vectorENS7_12basic_stringIcNS7_11char_traitsIcEENS7_9allocatorIcEEEEblmdSD_NS0_14adl_serializerENS9_IhNSD_IhEEEEvEEA5_cTnNS7_9enable_ifIXntsr3std7is_sameIT0_NT_8string_tEEE5valueEiE4typeELi0EEEvRSN_RKSM_(...); // call internal at 0x3dcc8c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEC2ESt16initializer_listINS0_6detail8json_refISE_EEEbNSG_7value_tE(...); // call internal at 0x3dccb4
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEC2ESt16initializer_listINS0_6detail8json_refISE_EEEbNSG_7value_tE(...); // call internal at 0x3dccd4
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dcce0
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dccf0
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dcd00
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dcd0c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dcd1c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dcd28
+    _ZdlPv(...); // call PLT API at 0x3dcd38
+    (*x8)(...);
+    (*x8)(...);
+    const char* str = "material_id";
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEixIKcEERSE_PT_(...); // call internal at 0x3dce34
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dce5c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE9push_backERKSE_(...); // call internal at 0x3dce68
+    (*x8)(...);
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x3dce9c
+    return a0;
+    sub_2BF8C4(...); // call internal at 0x3dcee0
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvED2Ev(...); // call internal at 0x3dceec
+    sub_2BF8C4(...); // call internal at 0x3dcef4
+    _ZNSt6__ndk116__variant_detail6__dtorINS0_8__traitsIJ15LFOriginModular22LFIdentityPhotoModular15LFPuzzleModular20LFPuzzleFrameModular20LFPuzzleImageModular21LFPuzzleLayoutModular21LFPuzzleFusionModular21LFPuzzleSpliceModular19LFAutoBeautyModular17LFCreativeModular22LFSpecialEffectModular13LFEditModular16LFEnhanceModular16LFCompareModular19LFBgBeautifyModular15LFFilterModular16LFStickerModular20LFLiveStickerModular13LFMarkModular14LFFrameModular13LFTextModular13LFBlurModular18LFAutoBrushModular19LFSkinWhitenModular19LFSkinGlowUpModular20LFOneTapPhotoModular19LFFaceRemoldModular17LFFaceFullModular15LFMakeUpModular18LFMakeupBagModular17LFWakeSkinModular21LFDermabrasionModular14LFMatteModular13LFAkneModular17LFFixTeethModular18LFBodyShapeModular18LFHeadScaleModular21LFWrinkleCleanModular17LFSlimmingModular12LFEyeModular18LFDenseHairModular23LFOneClickBeautyModular19LFAutoMosaicModular25LFAutoColorCorrectModular17LFAutoSlimModular25LFAutoWrinkleCleanModular25LFAutoDermabrasionModular19LFAutoRemoveModular19LFCommonAigcModularEEELNS0_6_TraitE1EED2Ev(...); // call internal at 0x3dcf00
+    sub_2BF8C4(...); // call internal at 0x3dcf08
+    sub_357F90(...); // call internal at 0x3dcf14
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvED2Ev(...); // call internal at 0x3dcf24
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf34
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf3c
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf58
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf60
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE4dataD2Ev(...); // call internal at 0x3dcf70
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf90
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcf98
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE4dataD2Ev(...); // call internal at 0x3dcfac
+    _ZdlPv(...); // call PLT API at 0x3dcfe0
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dcffc
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x3dd020
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE4dataD2Ev(...); // call internal at 0x3dd038
+    sub_526544(...); // call internal at 0x3dd050
+    __stack_chk_fail(...); // call PLT API at 0x3dd054
+    sub_2BF8C4(...); // call internal at 0x3dd058
+    sub_2BF8C4(...); // call internal at 0x3dd05c
+    sub_2BF8C4(...); // call internal at 0x3dd060
+}

@@ -1,0 +1,7 @@
+// Function: sub_21B060
+// RVA: 0x21b060, Size: 44 bytes
+int64_t sub_21B060(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_21556C(...); // call internal at 0x21b080
+    return a0;
+    return a0;
+}

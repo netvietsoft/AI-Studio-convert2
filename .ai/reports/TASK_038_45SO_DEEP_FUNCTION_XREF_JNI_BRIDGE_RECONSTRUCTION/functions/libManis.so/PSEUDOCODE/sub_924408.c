@@ -1,0 +1,49 @@
+// Function: sub_924408
+// RVA: 0x924408, Size: 4096 bytes
+int64_t sub_924408(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_93A75C(...); // call internal at 0x92445c
+    sub_93A75C(...); // call internal at 0x9244fc
+    sub_93A75C(...); // call internal at 0x92453c
+    sub_93A75C(...); // call internal at 0x924584
+    sub_93A75C(...); // call internal at 0x9245c8
+    sub_925BD4(...); // call internal at 0x9245dc
+    sub_925D6C(...); // call internal at 0x9245f8
+    sub_93A75C(...); // call internal at 0x924668
+    sub_927588(...); // call internal at 0x9246bc
+    sub_927588(...); // call internal at 0x9247f4
+    sub_925BD4(...); // call internal at 0x924810
+    sub_925D6C(...); // call internal at 0x924824
+    sub_93A75C(...); // call internal at 0x9249dc
+    sub_927588(...); // call internal at 0x924a24
+    sub_927588(...); // call internal at 0x924ab0
+    sub_927588(...); // call internal at 0x924b0c
+    sub_93A75C(...); // call internal at 0x924b9c
+    sub_93A75C(...); // call internal at 0x924ba8
+    sub_93A75C(...); // call internal at 0x924bf0
+    sub_927588(...); // call internal at 0x924c90
+    sub_926708(...); // call internal at 0x924ce4
+    sub_926708(...); // call internal at 0x924cf0
+    sub_927588(...); // call internal at 0x924db0
+    sub_927588(...); // call internal at 0x924e20
+    sub_93A75C(...); // call internal at 0x924e48
+    sub_93A75C(...); // call internal at 0x924f1c
+    sub_93A75C(...); // call internal at 0x924fc4
+    sub_93A75C(...); // call internal at 0x92500c
+    sub_93A75C(...); // call internal at 0x92501c
+    sub_93A75C(...); // call internal at 0x92502c
+    sub_926708(...); // call internal at 0x925044
+    sub_93A75C(...); // call internal at 0x925054
+    sub_928B60(...); // call internal at 0x925074
+    sub_927588(...); // call internal at 0x9250b8
+    sub_93A75C(...); // call internal at 0x925148
+    sub_927588(...); // call internal at 0x925198
+    sub_93A75C(...); // call internal at 0x9251b0
+    sub_928E40(...); // call internal at 0x9251d0
+    sub_927588(...); // call internal at 0x925238
+    sub_93A75C(...); // call internal at 0x925264
+    sub_93A75C(...); // call internal at 0x9252c0
+    sub_927588(...); // call internal at 0x925320
+    sub_93A75C(...); // call internal at 0x92536c
+    sub_93A75C(...); // call internal at 0x9253dc
+    sub_92EB50(...); // call internal at 0x9253fc
+}

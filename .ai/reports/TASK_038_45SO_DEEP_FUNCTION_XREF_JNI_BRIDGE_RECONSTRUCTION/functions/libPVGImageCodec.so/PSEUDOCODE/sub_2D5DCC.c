@@ -1,0 +1,6 @@
+// Function: sub_2D5DCC
+// RVA: 0x2d5dcc, Size: 344 bytes
+int64_t sub_2D5DCC(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+    sub_2D58B0(...); // call internal at 0x2d5ebc
+}

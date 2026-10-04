@@ -1,0 +1,15 @@
+// Function: sub_EAE9FC
+// RVA: 0xeae9fc, Size: 196 bytes
+int64_t sub_EAE9FC(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_B7868C(...); // call internal func at 0xeaea20
+    sub_EB307C(...); // call internal func at 0xeaea30
+    sub_B79DC8(...); // call internal func at 0xeaea48
+    const char* s_212699 = "ThemeStyle"; // string xref
+    sub_B791A8(...); // call internal func at 0xeaea68
+    sub_B79670(...); // call internal func at 0xeaea74
+    const char* s_1d991f = "Invalid number of parameters (expected 1)."; // string xref
+    const char* s_2722be = "lua_Label_getStyle - Failed to match the given parameters to a valid function signature."; // string xref
+    sub_B78DE0(...); // call internal func at 0xeaea94
+    sub_B79CA8(...); // call internal func at 0xeaea9c
+    return a0;
+}

@@ -1,0 +1,5 @@
+// Function: mtlabar3::TextPathConfiguration::operator=(mtlabar3::TextPathConfiguration const&)
+// RVA: 0xa28818, Size: 4 bytes
+int64_t _ZN8mtlabar321TextPathConfigurationaSERKS0_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+}

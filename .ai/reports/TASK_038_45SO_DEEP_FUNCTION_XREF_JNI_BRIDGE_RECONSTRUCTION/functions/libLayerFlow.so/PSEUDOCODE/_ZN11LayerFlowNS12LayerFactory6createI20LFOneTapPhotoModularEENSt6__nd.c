@@ -1,0 +1,16 @@
+// Function: std::__ndk1::unique_ptr<LayerFlowNS::CLFBaseLayer, std::__ndk1::default_delete<LayerFlowNS::CLFBaseLayer>> LayerFlowNS::LayerFactory::create<LFOneTapPhotoModular>(LFOneTapPhotoModular const&)
+// RVA: 0x34fea8, Size: 416 bytes
+int64_t _ZN11LayerFlowNS12LayerFactory6createI20LFOneTapPhotoModularEENSt6__ndk110unique_ptrINS_12CLFBaseLayerENS3_14default_deleteIS5_EEEERKT_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _Znwm(...); // call PLT API at 0x34fed8
+    _ZN11LayerFlowNS19CLFOneTapPhotoLayerC2Ev(...); // call internal at 0x34fee0
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_(...); // call PLT API at 0x34ff00
+    sub_2BC260(...); // call internal at 0x34ff64
+    (*x8)(...);
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_(...); // call PLT API at 0x34ffd4
+    return a0;
+    sub_2BF8C4(...); // call internal at 0x350004
+    _ZdlPv(...); // call PLT API at 0x350010
+    (*x8)(...);
+    sub_526544(...); // call internal at 0x350040
+    __stack_chk_fail(...); // call PLT API at 0x350044
+}

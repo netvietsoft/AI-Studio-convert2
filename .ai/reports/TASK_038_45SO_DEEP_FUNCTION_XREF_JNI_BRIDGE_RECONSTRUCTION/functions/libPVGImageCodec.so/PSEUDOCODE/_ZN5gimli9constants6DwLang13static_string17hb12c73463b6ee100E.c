@@ -1,0 +1,58 @@
+// Function: gimli::constants::DwLang::static_string::hb12c73463b6ee100
+// RVA: 0x3465ec, Size: 992 bytes
+int64_t _ZN5gimli9constants6DwLang13static_string17hb12c73463b6ee100E(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "DW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitiveDW_ID_down_caseDW_ID_up_caseDW_ID_case_sensitiveDW_CC_hi_userDW_CC_lo_u";
+    const char* str = "DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitiveDW_ID_down_caseDW_ID_up_caseDW_ID_case_sensitiveDW_CC_hi_userD";
+    const char* str = "DW_LANG_ALTIUM_AssemblerDW_LANG_SUN_AssemblerDW_LANG_GOOGLE_RenderScriptDW_LANG_Mips_AssemblerDW_LANG_hi_userDW_LANG_lo_userDW_L";
+    const char* str = "DW_LANG_GOOGLE_RenderScriptDW_LANG_Mips_AssemblerDW_LANG_hi_userDW_LANG_lo_userDW_LANG_Ada2012DW_LANG_Ada2005DW_LANG_Fortran18DW";
+    const char* str = "DW_LANG_hi_userDW_LANG_lo_userDW_LANG_Ada2012DW_LANG_Ada2005DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plu";
+    const char* str = "DW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitiveDW_ID_down_caseDW_ID_up_caseDW_ID_case_sensitiveD";
+    const char* str = "DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitiveDW_ID_down_caseDW_ID_up_caseDW";
+    const char* str = "DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitiveDW_ID_down_case";
+    const char* str = "DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID_case_insensitive";
+    const char* str = "DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADDR_noneDwAddrDW_ID";
+    const char* str = "DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_C89DwLangDW_ADD";
+    const char* str = "DW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LANG_CDW_LANG_";
+    const char* str = "DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG_Ada83DW_LA";
+    const char* str = "DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plus_plusDW_LANG";
+    const char* str = "DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cobol74DW_LANG_C_plu";
+    const char* str = "DW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85DW_LANG_Cob";
+    const char* str = "DW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_LANG_Cobol85";
+    const char* str = "DW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran90DW_LANG_Fortran77DW_";
+    const char* str = "DW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_LANG_Fortran";
+    const char* str = "DW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Modula2DW_L";
+    const char* str = "DW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_JavaDW_LANG_Mo";
+    const char* str = "DW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LANG_C99DW_LANG_";
+    const char* str = "DW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_Ada95DW_LA";
+    const char* str = "DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fortran95DW_LANG_";
+    const char* str = "DW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LANG_PLIDW_LANG_Fo";
+    const char* str = "DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_plusDW_LANG_ObjCDW_LAN";
+    const char* str = "DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG_UPCDW_LANG_ObjC_plus_";
+    const char* str = "DW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_LANG_DDW_LANG";
+    const char* str = "DW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LANG_PythonDW_";
+    const char* str = "DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_OpenCLDW_LA";
+    const char* str = "DW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LANG_GoDW_LANG_";
+    const char* str = "DW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG_Modula3DW_LA";
+    const char* str = "DW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_HaskellDW_LANG";
+    const char* str = "DW_LANG_DylanDW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C_plus_plus_03DW_LANG_H";
+    const char* str = "DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus_plus_11DW_LANG_C";
+    const char* str = "DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OCamlDW_LANG_C_plus";
+    const char* str = "DW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW_LANG_RustDW_LANG_OC";
+    const char* str = "DW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_JuliaDW_LANG_SwiftDW_LANG_C11DW";
+    const char* str = "DW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_JuliaDW_LANG_Swift";
+    const char* str = "DW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanDW_LANG_Juli";
+    const char* str = "DW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_14DW_LANG_DylanD";
+    const char* str = "DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran03DW_LANG_C_plus_plus_1";
+    const char* str = "DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_Fortran08DW_LANG_Fortran0";
+    const char* str = "DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScriptDW_LANG_For";
+    const char* str = "DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_LANG_RenderScript";
+    const char* str = "DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinDW_LANG_BLISSDW_";
+    const char* str = "DW_LANG_Ada2005DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_ZigDW_LANG_KotlinD";
+    const char* str = "DW_LANG_Ada2012DW_LANG_Ada2005DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_CrystalDW_LANG_Zig";
+    const char* str = "DW_LANG_SUN_AssemblerDW_LANG_GOOGLE_RenderScriptDW_LANG_Mips_AssemblerDW_LANG_hi_userDW_LANG_lo_userDW_LANG_Ada2012DW_LANG_Ada20";
+    const char* str = "DW_LANG_lo_userDW_LANG_Ada2012DW_LANG_Ada2005DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plus_20DW_LANG_C_plus_plus_17DW_LANG_Cry";
+    const char* str = "DW_LANG_Mips_AssemblerDW_LANG_hi_userDW_LANG_lo_userDW_LANG_Ada2012DW_LANG_Ada2005DW_LANG_Fortran18DW_LANG_C17DW_LANG_C_plus_plu";
+    const char* str = "DW_LANG_BORLAND_DelphiDW_LANG_ALTIUM_AssemblerDW_LANG_SUN_AssemblerDW_LANG_GOOGLE_RenderScriptDW_LANG_Mips_AssemblerDW_LANG_hi_u";
+    return a0;
+    return a0;
+}

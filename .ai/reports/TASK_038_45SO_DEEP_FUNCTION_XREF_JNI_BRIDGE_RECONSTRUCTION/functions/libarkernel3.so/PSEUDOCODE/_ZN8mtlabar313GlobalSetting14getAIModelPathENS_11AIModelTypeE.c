@@ -1,0 +1,7 @@
+// Function: mtlabar3::GlobalSetting::getAIModelPath(mtlabar3::AIModelType)
+// RVA: 0x6592dc, Size: 48 bytes
+int64_t _ZN8mtlabar313GlobalSetting14getAIModelPathENS_11AIModelTypeE(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_65884C(...); // call internal at 0x6592ec
+    sub_65930C(...); // call internal at 0x6592fc
+    sub_CCCCBC(...); // call internal at 0x659308
+}

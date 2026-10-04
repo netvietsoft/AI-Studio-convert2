@@ -1,0 +1,6 @@
+// Function: sub_4FA660
+// RVA: 0x4fa660, Size: 24 bytes
+int64_t sub_4FA660(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "/home/meitu/apollo-ws/modules/core/src/system.cpp";
+    sub_4FA914(...); // call internal at 0x4fa674
+}

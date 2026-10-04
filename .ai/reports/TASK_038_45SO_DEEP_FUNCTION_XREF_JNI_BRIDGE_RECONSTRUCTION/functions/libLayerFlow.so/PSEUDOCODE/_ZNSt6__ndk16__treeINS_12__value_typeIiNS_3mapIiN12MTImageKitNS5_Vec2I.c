@@ -1,0 +1,12 @@
+// Function: std::__ndk1::__tree_iterator<std::__ndk1::__value_type<int, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>>, std::__ndk1::__tree_node<std::__ndk1::__value_type<int, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>>, void*>*, long> std::__ndk1::__tree<std::__ndk1::__value_type<int, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>>, std::__ndk1::__map_value_compare<int, std::__ndk1::__value_type<int, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>>, std::__ndk1::less<int>, true>, std::__ndk1::allocator<std::__ndk1::__value_type<int, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>>>>::__emplace_multi<std::__ndk1::pair<int const, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>> const&>(std::__ndk1::pair<int const, std::__ndk1::map<int, MTImageKitNS::_Vec2<float>, std::__ndk1::less<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, MTImageKitNS::_Vec2<float>>>>> const&)
+// RVA: 0x419b1c, Size: 360 bytes
+int64_t _ZNSt6__ndk16__treeINS_12__value_typeIiNS_3mapIiN12MTImageKitNS5_Vec2IfEENS_4lessIiEENS_9allocatorINS_4pairIKiS5_EEEEEEEENS_19__map_value_compareIiSE_S7_Lb1EEENS8_ISE_EEE15__emplace_multiIJRKNS9_ISA_SD_EEEEENS_15__tree_iteratorISE_PNS_11__tree_nodeISE_PvEElEEDpOT_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _Znwm(...); // call PLT API at 0x419b54
+    _ZNSt6__ndk13mapIiN12MTImageKitNS5_Vec2IfEENS_4lessIiEENS_9allocatorINS_4pairIKiS3_EEEEE6insertB8ne180000INS_20__map_const_iteratorINS_21__tree_const_iteratorINS_12__value_typeIiS3_EEPNS_11__tree_nodeISG_PvEElEEEEEEvT_SN_(...); // call internal at 0x419b8c
+    sub_2BC34C(...); // call internal at 0x419bf0
+    return a0;
+    sub_2ECA94(...); // call internal at 0x419c5c
+    sub_419C84(...); // call internal at 0x419c64
+    sub_526544(...); // call internal at 0x419c7c
+    __stack_chk_fail(...); // call PLT API at 0x419c80
+}

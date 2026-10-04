@@ -1,0 +1,11 @@
+// Function: std::__ndk1::unique_ptr<LayerFlowNS::CLFBaseLayer, std::__ndk1::default_delete<LayerFlowNS::CLFBaseLayer>> LayerFlowNS::LayerFactory::create<LFPuzzleLayoutModular>(LFPuzzleLayoutModular const&)
+// RVA: 0x34e99c, Size: 308 bytes
+int64_t _ZN11LayerFlowNS12LayerFactory6createI21LFPuzzleLayoutModularEENSt6__ndk110unique_ptrINS_12CLFBaseLayerENS3_14default_deleteIS5_EEEERKT_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _Znwm(...); // call PLT API at 0x34e9bc
+    _ZNSt6__ndk16chrono12steady_clock3nowEv(...); // call PLT API at 0x34ea74
+    _ZNSt6__ndk116__variant_detail12__assignmentINS0_8__traitsIJ15LFOriginModular22LFIdentityPhotoModular15LFPuzzleModular20LFPuzzleFrameModular20LFPuzzleImageModular21LFPuzzleLayoutModular21LFPuzzleFusionModular21LFPuzzleSpliceModular19LFAutoBeautyModular17LFCreativeModular22LFSpecialEffectModular13LFEditModular16LFEnhanceModular16LFCompareModular19LFBgBeautifyModular15LFFilterModular16LFStickerModular20LFLiveStickerModular13LFMarkModular14LFFrameModular13LFTextModular13LFBlurModular18LFAutoBrushModular19LFSkinWhitenModular19LFSkinGlowUpModular20LFOneTapPhotoModular19LFFaceRemoldModular17LFFaceFullModular15LFMakeUpModular18LFMakeupBagModular17LFWakeSkinModular21LFDermabrasionModular14LFMatteModular13LFAkneModular17LFFixTeethModular18LFBodyShapeModular18LFHeadScaleModular21LFWrinkleCleanModular17LFSlimmingModular12LFEyeModular18LFDenseHairModular23LFOneClickBeautyModular19LFAutoMosaicModular25LFAutoColorCorrectModular17LFAutoSlimModular25LFAutoWrinkleCleanModular25LFAutoDermabrasionModular19LFAutoRemoveModular19LFCommonAigcModularEEEE12__assign_altB8ne180000ILm5ES8_RKS8_EEvRNS0_5__altIXT_ET0_EEOT1_(...); // call internal at 0x34ea8c
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_(...); // call PLT API at 0x34ea98
+    return a0;
+    (*x8)(...);
+    sub_526544(...); // call internal at 0x34eacc
+}

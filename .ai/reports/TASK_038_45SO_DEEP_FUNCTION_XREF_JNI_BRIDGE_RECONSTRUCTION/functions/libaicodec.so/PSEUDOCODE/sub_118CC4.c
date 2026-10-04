@@ -1,0 +1,13 @@
+// Function: sub_118CC4
+// RVA: 0x118cc4, Size: 296 bytes
+int64_t sub_118CC4(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiPKcEENS_22__unordered_map_hasherIiS4_NS_4hashIiEENS_8equal_toIiEELb1EEENS_21__unordered_map_equalIiS4_S9_S7_Lb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIiJRKNS_4pairIKiS3_EEEEENSH_INS_15__hash_iteratorIPNS_11__hash_nodeIS4_PvEEEEbEERKT_DpOT0_(...); // call imported API via PLT at 0x118d24
+    _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiPKcEENS_22__unordered_map_hasherIiS4_NS_4hashIiEENS_8equal_toIiEELb1EEENS_21__unordered_map_equalIiS4_S9_S7_Lb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIiJRKNS_4pairIKiS3_EEEEENSH_INS_15__hash_iteratorIPNS_11__hash_nodeIS4_PvEEEEbEERKT_DpOT0_(...); // call imported API via PLT at 0x118d38
+    _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiPKcEENS_22__unordered_map_hasherIiS4_NS_4hashIiEENS_8equal_toIiEELb1EEENS_21__unordered_map_equalIiS4_S9_S7_Lb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIiJRKNS_4pairIKiS3_EEEEENSH_INS_15__hash_iteratorIPNS_11__hash_nodeIS4_PvEEEEbEERKT_DpOT0_(...); // call imported API via PLT at 0x118d50
+    _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiPKcEENS_22__unordered_map_hasherIiS4_NS_4hashIiEENS_8equal_toIiEELb1EEENS_21__unordered_map_equalIiS4_S9_S7_Lb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIiJRKNS_4pairIKiS3_EEEEENSH_INS_15__hash_iteratorIPNS_11__hash_nodeIS4_PvEEEEbEERKT_DpOT0_(...); // call imported API via PLT at 0x118d64
+    _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiPKcEENS_22__unordered_map_hasherIiS4_NS_4hashIiEENS_8equal_toIiEELb1EEENS_21__unordered_map_equalIiS4_S9_S7_Lb1EEENS_9allocatorIS4_EEE25__emplace_unique_key_argsIiJRKNS_4pairIKiS3_EEEEENSH_INS_15__hash_iteratorIPNS_11__hash_nodeIS4_PvEEEEbEERKT_DpOT0_(...); // call imported API via PLT at 0x118d7c
+    __cxa_atexit(...); // call imported API via PLT at 0x118d98
+    return a0;
+    sub_11877C(...); // call internal func at 0x118dcc
+    __stack_chk_fail(...); // call imported API via PLT at 0x118de8
+}

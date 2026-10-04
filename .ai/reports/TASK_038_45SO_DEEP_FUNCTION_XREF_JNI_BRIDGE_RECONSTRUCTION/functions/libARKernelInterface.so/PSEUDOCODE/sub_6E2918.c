@@ -1,0 +1,62 @@
+// Function: sub_6E2918
+// RVA: 0x6e2918, Size: 996 bytes
+int64_t sub_6E2918(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_D5DBE8(...); // call internal at 0x6e29d4
+    sub_D5EE3C(...); // call internal at 0x6e29dc
+    sub_DAD750(...); // call internal at 0x6e29f4
+    sub_DAD748(...); // call internal at 0x6e29fc
+    sub_D5FC0C(...); // call internal at 0x6e2a0c
+    sub_DAD814(...); // call internal at 0x6e2a14
+    sub_DAD750(...); // call internal at 0x6e2a2c
+    sub_DAD748(...); // call internal at 0x6e2a34
+    sub_D5FC0C(...); // call internal at 0x6e2a44
+    sub_DAD814(...); // call internal at 0x6e2a4c
+    sub_DAD750(...); // call internal at 0x6e2a64
+    sub_DAD748(...); // call internal at 0x6e2a6c
+    sub_D5FC0C(...); // call internal at 0x6e2a7c
+    sub_DAD814(...); // call internal at 0x6e2a84
+    sub_DAD750(...); // call internal at 0x6e2a9c
+    sub_DAD748(...); // call internal at 0x6e2aa4
+    sub_D5FC0C(...); // call internal at 0x6e2ab4
+    sub_DAD814(...); // call internal at 0x6e2abc
+    sub_DAD750(...); // call internal at 0x6e2ad4
+    sub_DAD748(...); // call internal at 0x6e2adc
+    sub_D5FC0C(...); // call internal at 0x6e2aec
+    sub_DAD814(...); // call internal at 0x6e2af4
+    sub_DAD750(...); // call internal at 0x6e2b0c
+    sub_DAD748(...); // call internal at 0x6e2b14
+    sub_D5FC0C(...); // call internal at 0x6e2b24
+    sub_DAD814(...); // call internal at 0x6e2b2c
+    sub_DAD750(...); // call internal at 0x6e2b44
+    sub_DAD748(...); // call internal at 0x6e2b4c
+    sub_D5FC0C(...); // call internal at 0x6e2b5c
+    sub_DAD814(...); // call internal at 0x6e2b64
+    sub_DAD750(...); // call internal at 0x6e2b7c
+    sub_DAD748(...); // call internal at 0x6e2b84
+    sub_D5FC0C(...); // call internal at 0x6e2b94
+    sub_DAD814(...); // call internal at 0x6e2b9c
+    sub_DACA1C(...); // call internal at 0x6e2bb0
+    sub_DACA1C(...); // call internal at 0x6e2bc4
+    sub_DACA1C(...); // call internal at 0x6e2bd8
+    sub_DACA1C(...); // call internal at 0x6e2bec
+    sub_D5E028(...); // call internal at 0x6e2c44
+    sub_DACA8C(...); // call internal at 0x6e2c4c
+    sub_DACA8C(...); // call internal at 0x6e2c54
+    sub_DACA8C(...); // call internal at 0x6e2c5c
+    sub_DACA8C(...); // call internal at 0x6e2c64
+    sub_DAD814(...); // call internal at 0x6e2c6c
+    sub_DAD814(...); // call internal at 0x6e2c74
+    sub_DAD814(...); // call internal at 0x6e2c7c
+    sub_DAD814(...); // call internal at 0x6e2c84
+    sub_DAD814(...); // call internal at 0x6e2c8c
+    sub_DAD814(...); // call internal at 0x6e2c94
+    sub_DAD814(...); // call internal at 0x6e2c9c
+    sub_DAD814(...); // call internal at 0x6e2ca4
+    sub_D5DBFC(...); // call internal at 0x6e2cac
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0x6e2cdc
+    sub_D7FB9C(...); // call internal at 0x6e2ce8
+    sub_6BBAD4(...); // call internal at 0x6e2cec
+    sub_6BC168(...); // call internal at 0x6e2cf4
+    sub_6BC170(...); // call internal at 0x6e2cf8
+}

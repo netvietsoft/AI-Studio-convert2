@@ -1,0 +1,7 @@
+// Function: sub_64528C
+// RVA: 0x64528c, Size: 28 bytes
+int64_t sub_64528C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_646500(...); // call internal at 0x645298
+    return a0;
+    sub_562D14(...); // call internal at 0x6452a4
+}

@@ -1,0 +1,7 @@
+// Function: sub_412FAC
+// RVA: 0x412fac, Size: 76 bytes
+int64_t sub_412FAC(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_412FF8(...); // call internal at 0x412fd0
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0x412ff4
+}
