@@ -1,0 +1,65 @@
+// Function: sub_103F480
+// RVA: 0x103f480, Size: 4096 bytes
+int64_t sub_103F480(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_103E878(...); // call internal at 0x103f4c0
+    sub_1040894(...); // call internal at 0x103f5ec
+    sub_103C28C(...); // call internal at 0x103f5f8
+    sub_1040894(...); // call internal at 0x103f614
+    sub_103C168(...); // call internal at 0x103f620
+    sub_103C28C(...); // call internal at 0x103f630
+    return a0;
+    sub_1040894(...); // call internal at 0x103f6ac
+    sub_103C168(...); // call internal at 0x103f6b8
+    sub_103C28C(...); // call internal at 0x103f6cc
+    sub_1040894(...); // call internal at 0x103f75c
+    sub_103C28C(...); // call internal at 0x103f768
+    sub_1040894(...); // call internal at 0x103f790
+    sub_103C28C(...); // call internal at 0x103f79c
+    sub_1040894(...); // call internal at 0x103f7e8
+    sub_103C28C(...); // call internal at 0x103f7f4
+    sub_103C060(...); // call internal at 0x103f96c
+    sub_103C060(...); // call internal at 0x103f984
+    sub_103E6F0(...); // call internal at 0x103f9b4
+    sub_103C060(...); // call internal at 0x103f9d8
+    sub_103C060(...); // call internal at 0x103f9f4
+    sub_103C060(...); // call internal at 0x103fa14
+    sub_103C060(...); // call internal at 0x103fa28
+    sub_103BFAC(...); // call internal at 0x103fa48
+    sub_103C060(...); // call internal at 0x103fab4
+    sub_103C060(...); // call internal at 0x103fad0
+    sub_103C060(...); // call internal at 0x103faec
+    sub_103C060(...); // call internal at 0x103fb00
+    sub_103BFAC(...); // call internal at 0x103fb20
+    sub_103C060(...); // call internal at 0x103fb90
+    sub_103C060(...); // call internal at 0x103fba8
+    sub_103C060(...); // call internal at 0x103fbc4
+    sub_103C060(...); // call internal at 0x103fbd8
+    sub_103BFAC(...); // call internal at 0x103fbf8
+    sub_103F3E8(...); // call internal at 0x103fc94
+    sub_103F3E8(...); // call internal at 0x103fca0
+    sub_103F3E8(...); // call internal at 0x103fcb4
+    sub_103F3E8(...); // call internal at 0x103fcc0
+    sub_103F3E8(...); // call internal at 0x103fcd4
+    sub_103F3E8(...); // call internal at 0x103fce0
+    sub_103955C(...); // call internal at 0x103fd2c
+    sub_1039578(...); // call internal at 0x103fd88
+    sub_103955C(...); // call internal at 0x103fddc
+    sub_1039578(...); // call internal at 0x103fe40
+    sub_103955C(...); // call internal at 0x103fe98
+    sub_1039578(...); // call internal at 0x103fef0
+    sub_103C410(...); // call internal at 0x103ff58
+    sub_103955C(...); // call internal at 0x1040008
+    sub_1039578(...); // call internal at 0x104005c
+    sub_103E084(...); // call internal at 0x10400a4
+    sub_103955C(...); // call internal at 0x10400d4
+    sub_1039578(...); // call internal at 0x1040128
+    sub_103955C(...); // call internal at 0x1040194
+    sub_1039578(...); // call internal at 0x10401ec
+    sub_1040894(...); // call internal at 0x104025c
+    sub_103C28C(...); // call internal at 0x1040268
+    sub_103F1E8(...); // call internal at 0x10402dc
+    sub_103E084(...); // call internal at 0x10402fc
+    sub_103955C(...); // call internal at 0x104032c
+    sub_1039578(...); // call internal at 0x1040378
+    sub_103F1E8(...); // call internal at 0x10403c0
+}

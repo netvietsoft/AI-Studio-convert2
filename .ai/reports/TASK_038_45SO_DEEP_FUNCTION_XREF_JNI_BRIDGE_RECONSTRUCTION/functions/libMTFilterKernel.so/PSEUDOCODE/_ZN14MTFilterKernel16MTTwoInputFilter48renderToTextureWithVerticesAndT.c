@@ -1,0 +1,27 @@
+// Function: MTFilterKernel::MTTwoInputFilter::renderToTextureWithVerticesAndTextureCoordinates(float const*, float const*, MTFilterKernel::GPUImageFramebuffer*, MTFilterKernel::GPUImageFramebuffer*)
+// RVA: 0x10c838, Size: 484 bytes
+int64_t _ZN14MTFilterKernel16MTTwoInputFilter48renderToTextureWithVerticesAndTextureCoordinatesEPKfS2_PNS_19GPUImageFramebufferES4_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv(...); // call internal at 0x10c860
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv(...); // call internal at 0x10c874
+    (*x9)(...);
+    glClearColor(...); // call PLT API at 0x10c8a8
+    glClear(...); // call PLT API at 0x10c8b0
+    const char* str = "inputImageTexture";
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj(...); // call internal at 0x10c8d4
+    const char* str = "inputImageTexture2";
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj(...); // call internal at 0x10c8f4
+    const char* str = "/home/meitu/apollo-ws/src/MLabFilterOnline/MTFilter/FilterCore/MTTwoInputFilter.cpp";
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl(...); // call internal at 0x10c92c
+    const char* str = "position";
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE(...); // call internal at 0x10c940
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl(...); // call internal at 0x10c970
+    const char* str = "inputTextureCoordinate";
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE(...); // call internal at 0x10c984
+    _ZN14MTFilterKernel12MTFilterBase29textureCoordinatesForRotationENS_20GPUImageRotationModeE(...); // call internal at 0x10c99c
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl(...); // call internal at 0x10c9c0
+    const char* str = "inputTextureCoordinate2";
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE(...); // call internal at 0x10c9d4
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii(...); // call internal at 0x10c9f4
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv(...); // call internal at 0x10c9fc
+    return a0;
+}

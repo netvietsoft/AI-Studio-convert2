@@ -1,0 +1,7 @@
+// Function: sub_8F9484
+// RVA: 0x8f9484, Size: 112 bytes
+int64_t sub_8F9484(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_8F4C28(...); // call internal at 0x8f94bc
+    _ZdlPv(...); // call PLT API at 0x8f94e0
+    return a0;
+}

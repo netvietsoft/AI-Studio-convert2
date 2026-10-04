@@ -1,0 +1,11 @@
+// Function: sub_9EACD0
+// RVA: 0x9eacd0, Size: 156 bytes
+int64_t sub_9EACD0(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_A7FC58(...); // call internal at 0x9eacf0
+    sub_A7B280(...); // call internal at 0x9ead04
+    _ZdlPv(...); // call PLT API at 0x9ead18
+    return a0;
+    _ZdlPv(...); // call PLT API at 0x9ead4c
+    sub_106B814(...); // call internal at 0x9ead64
+    __stack_chk_fail(...); // call PLT API at 0x9ead68
+}

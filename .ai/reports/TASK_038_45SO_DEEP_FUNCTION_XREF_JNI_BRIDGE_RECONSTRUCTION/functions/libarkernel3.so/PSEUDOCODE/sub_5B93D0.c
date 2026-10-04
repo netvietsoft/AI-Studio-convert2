@@ -1,0 +1,99 @@
+// Function: sub_5B93D0
+// RVA: 0x5b93d0, Size: 2924 bytes
+int64_t sub_5B93D0(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_E168C4(...); // call internal at 0x5b9418
+    sub_E168C4(...); // call internal at 0x5b9420
+    sub_B02560(...); // call internal at 0x5b9428
+    sub_A05C28(...); // call internal at 0x5b9434
+    sub_A04DCC(...); // call internal at 0x5b943c
+    sub_A04E7C(...); // call internal at 0x5b9448
+    sub_A04F4C(...); // call internal at 0x5b9454
+    sub_CC6308(...); // call internal at 0x5b9464
+    sub_CC6308(...); // call internal at 0x5b9470
+    sub_A05278(...); // call internal at 0x5b94a0
+    sub_A05278(...); // call internal at 0x5b94ac
+    sub_A05278(...); // call internal at 0x5b94bc
+    sub_A05278(...); // call internal at 0x5b959c
+    sub_E16C18(...); // call internal at 0x5b9614
+    sub_A05BD0(...); // call internal at 0x5b961c
+    sub_A05BD0(...); // call internal at 0x5b9630
+    sub_E16C18(...); // call internal at 0x5b9644
+    sub_A05BD0(...); // call internal at 0x5b964c
+    sub_A05BD0(...); // call internal at 0x5b9660
+    sub_A05278(...); // call internal at 0x5b9670
+    sub_A05278(...); // call internal at 0x5b9680
+    sub_B03488(...); // call internal at 0x5b9690
+    sub_B5422C(...); // call internal at 0x5b9694
+    sub_A05BD0(...); // call internal at 0x5b96b8
+    sub_A05BD0(...); // call internal at 0x5b96c8
+    sub_E16C18(...); // call internal at 0x5b9760
+    sub_CC6404(...); // call internal at 0x5b976c
+    sub_E16C18(...); // call internal at 0x5b9790
+    sub_CC6404(...); // call internal at 0x5b9798
+    sub_E168E4(...); // call internal at 0x5b97ac
+    sub_5B8A70(...); // call internal at 0x5b97cc
+    sub_E168FC(...); // call internal at 0x5b97d4
+    sub_E168E4(...); // call internal at 0x5b97e0
+    sub_5B8A70(...); // call internal at 0x5b9800
+    sub_E168FC(...); // call internal at 0x5b9808
+    sub_A05278(...); // call internal at 0x5b9844
+    sub_CC6404(...); // call internal at 0x5b9870
+    sub_CC6404(...); // call internal at 0x5b98f4
+    sub_CC6404(...); // call internal at 0x5b9924
+    sub_E168E4(...); // call internal at 0x5b993c
+    sub_5B8A70(...); // call internal at 0x5b9960
+    sub_CC6404(...); // call internal at 0x5b996c
+    sub_E168D8(...); // call internal at 0x5b99a4
+    sub_E16C18(...); // call internal at 0x5b99b0
+    sub_E168FC(...); // call internal at 0x5b99b8
+    sub_E168E4(...); // call internal at 0x5b99c4
+    sub_5B8A70(...); // call internal at 0x5b99e8
+    sub_E168FC(...); // call internal at 0x5b99f0
+    sub_CC6028(...); // call internal at 0x5b99f8
+    sub_CC6028(...); // call internal at 0x5b9a00
+    sub_E168FC(...); // call internal at 0x5b9a08
+    sub_E168FC(...); // call internal at 0x5b9a10
+    return a0;
+    sub_E16C18(...); // call internal at 0x5b9a50
+    sub_A05BD0(...); // call internal at 0x5b9a58
+    sub_A05BD0(...); // call internal at 0x5b9a6c
+    const char* str = "pe is aiLightSource_UNDEFINED";
+    sub_E16C18(...); // call internal at 0x5b9a80
+    sub_5D4734(...); // call internal at 0x5b9b00
+    sub_CC6404(...); // call internal at 0x5b9b2c
+    const char* str = "moment";
+    sub_E16C18(...); // call internal at 0x5b9b5c
+    sub_CC6404(...); // call internal at 0x5b9b6c
+    sub_E168E4(...); // call internal at 0x5b9b84
+    sub_5B8A70(...); // call internal at 0x5b9ba4
+    sub_E168FC(...); // call internal at 0x5b9bac
+    sub_E168E4(...); // call internal at 0x5b9bb8
+    sub_5B8A70(...); // call internal at 0x5b9bdc
+    sub_CC6404(...); // call internal at 0x5b9bf0
+    const char* str = "moment";
+    sub_E16C18(...); // call internal at 0x5b9c24
+    sub_CC6404(...); // call internal at 0x5b9c3c
+    sub_E168E4(...); // call internal at 0x5b9c58
+    sub_5B8A70(...); // call internal at 0x5b9c78
+    sub_E168FC(...); // call internal at 0x5b9c80
+    sub_E168E4(...); // call internal at 0x5b9c8c
+    sub_5B8A70(...); // call internal at 0x5b9cb0
+    sub_CC6404(...); // call internal at 0x5b9cc8
+    sub_CC6404(...); // call internal at 0x5b9cd8
+    const char* str = "moment";
+    sub_E16C18(...); // call internal at 0x5b9d08
+    sub_A05278(...); // call internal at 0x5b9d24
+    sub_E168D8(...); // call internal at 0x5b9d94
+    sub_5B8A70(...); // call internal at 0x5b9db8
+    sub_5BA2D8(...); // call internal at 0x5b9dd4
+    sub_5BA2D8(...); // call internal at 0x5b9dec
+    sub_5BA2D8(...); // call internal at 0x5b9e04
+    sub_5BA2D8(...); // call internal at 0x5b9e1c
+    sub_E168FC(...); // call internal at 0x5b9ecc
+    sub_CC6028(...); // call internal at 0x5b9ee4
+    sub_CC6028(...); // call internal at 0x5b9eec
+    sub_E168FC(...); // call internal at 0x5b9f0c
+    sub_E168FC(...); // call internal at 0x5b9f14
+    sub_106B814(...); // call internal at 0x5b9f2c
+    __stack_chk_fail(...); // call PLT API at 0x5b9f30
+}

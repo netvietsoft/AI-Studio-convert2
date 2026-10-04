@@ -1,0 +1,5 @@
+// Function: sub_47AC78
+// RVA: 0x47ac78, Size: 308 bytes
+int64_t sub_47AC78(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+}

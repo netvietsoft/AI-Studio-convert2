@@ -1,0 +1,25 @@
+// Function: gimli::constants::DwAte::static_string::hbf1e2b876367eb8b
+// RVA: 0x345a54, Size: 376 bytes
+int64_t _ZN5gimli9constants5DwAte13static_string17hbf1e2b876367eb8bE(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "DW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start_lengthDW_LLE_base_addressDW_LLE_default_locationDW_LLE_offset_pairDW_LLE_sta";
+    const char* str = "DW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start_lengthDW_LLE_base_addressDW_LLE_default_locationDW_LLE_offset_";
+    const char* str = "DW_ATE_hi_userDW_ATE_lo_userDW_ATE_ASCIIDW_ATE_UCSDW_ATE_UTFDW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_e";
+    const char* str = "DW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start_lengthDW_LLE_base_addressDW_LLE_default_lo";
+    const char* str = "DW_ATE_floatDW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start_lengthDW_LLE_base_addressDW_LL";
+    const char* str = "DW_ATE_signedDW_ATE_floatDW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start_lengthDW_LLE_base";
+    const char* str = "DW_ATE_signed_charDW_ATE_signedDW_ATE_floatDW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_pairDW_LLE_start";
+    const char* str = "DW_ATE_unsignedDW_ATE_signed_charDW_ATE_signedDW_ATE_floatDW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDwAteDW_LLE_GNU_view_p";
+    const char* str = "DW_ATE_unsigned_charDW_ATE_unsignedDW_ATE_signed_charDW_ATE_signedDW_ATE_floatDW_ATE_complex_floatDW_ATE_booleanDW_ATE_addressDw";
+    const char* str = "DW_ATE_imaginary_floatDW_ATE_unsigned_charDW_ATE_unsignedDW_ATE_signed_charDW_ATE_signedDW_ATE_floatDW_ATE_complex_floatDW_ATE_b";
+    const char* str = "DW_ATE_packed_decimalDW_ATE_imaginary_floatDW_ATE_unsigned_charDW_ATE_unsignedDW_ATE_signed_charDW_ATE_signedDW_ATE_floatDW_ATE_";
+    const char* str = "DW_ATE_numeric_stringDW_ATE_packed_decimalDW_ATE_imaginary_floatDW_ATE_unsigned_charDW_ATE_unsignedDW_ATE_signed_charDW_ATE_sign";
+    const char* str = "DW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_decimalDW_ATE_imaginary_floatDW_ATE_unsigned_charDW_ATE_unsignedDW_ATE_signed_ch";
+    const char* str = "DW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_decimalDW_ATE_imaginary_floatDW_ATE_unsigned_charDW_ATE_unsig";
+    const char* str = "DW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_decimalDW_ATE_imaginary_floatDW_ATE_unsi";
+    const char* str = "DW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_decimalDW_ATE_imagin";
+    const char* str = "DW_ATE_UTFDW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_decimalDW_";
+    const char* str = "DW_ATE_UCSDW_ATE_UTFDW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW_ATE_packed_";
+    const char* str = "DW_ATE_ASCIIDW_ATE_UCSDW_ATE_UTFDW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_numeric_stringDW";
+    const char* str = "DW_ATE_lo_userDW_ATE_ASCIIDW_ATE_UCSDW_ATE_UTFDW_ATE_decimal_floatDW_ATE_unsigned_fixedDW_ATE_signed_fixedDW_ATE_editedDW_ATE_nu";
+    return a0;
+}

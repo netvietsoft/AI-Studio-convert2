@@ -1,0 +1,12 @@
+// Function: sub_70AF3C
+// RVA: 0x70af3c, Size: 740 bytes
+int64_t sub_70AF3C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZNSt6__ndk111__call_onceERVmPvPFvS2_E(...); // call PLT API at 0x70afb8
+    const char* str = "a]'";
+    const char* str = "Mizar";
+    __android_log_print(...); // call PLT API at 0x70b0e0
+    fprintf(...); // call PLT API at 0x70b1cc
+    (*x26)(...);
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0x70b21c
+}

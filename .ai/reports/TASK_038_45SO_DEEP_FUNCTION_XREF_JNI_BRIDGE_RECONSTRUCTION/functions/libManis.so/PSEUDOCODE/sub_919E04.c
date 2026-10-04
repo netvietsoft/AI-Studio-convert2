@@ -1,0 +1,6 @@
+// Function: sub_919E04
+// RVA: 0x919e04, Size: 76 bytes
+int64_t sub_919E04(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_9194F8(...); // call internal at 0x919e20
+    return a0;
+}

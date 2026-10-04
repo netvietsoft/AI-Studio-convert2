@@ -1,0 +1,7 @@
+// Function: LayerFlowNS::LFResourceDownloaderPlugin::putLocalMaterials(std::__ndk1::map<long, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, std::__ndk1::less<long>, std::__ndk1::allocator<std::__ndk1::pair<long const, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>>>>, std::__ndk1::map<long, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, std::__ndk1::less<long>, std::__ndk1::allocator<std::__ndk1::pair<long const, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>>>>)
+// RVA: 0x4648dc, Size: 108 bytes
+int64_t _ZN11LayerFlowNS26LFResourceDownloaderPlugin17putLocalMaterialsENSt6__ndk13mapIlNS1_12basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEENS1_4lessIlEENS6_INS1_4pairIKlS8_EEEEEESF_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZNSt6__ndk16__treeINS_12__value_typeIlNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEENS_19__map_value_compareIlS8_NS_4lessIlEELb1EEENS5_IS8_EEE14__assign_multiINS_21__tree_const_iteratorIS8_PNS_11__tree_nodeIS8_PvEElEEEEvT_SM_(...); // call internal at 0x46490c
+    _ZNSt6__ndk16__treeINS_12__value_typeIlNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEENS_19__map_value_compareIlS8_NS_4lessIlEELb1EEENS5_IS8_EEE14__assign_multiINS_21__tree_const_iteratorIS8_PNS_11__tree_nodeIS8_PvEElEEEEvT_SM_(...); // call internal at 0x464938
+    return a0;
+}

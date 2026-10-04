@@ -1,0 +1,12 @@
+// Function: sub_B6F3B8
+// RVA: 0xb6f3b8, Size: 660 bytes
+int64_t sub_B6F3B8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    memset(...); // call PLT API at 0xb6f414
+    memmove(...); // call PLT API at 0xb6f44c
+    memmove(...); // call PLT API at 0xb6f48c
+    memset(...); // call PLT API at 0xb6f4b4
+    memmove(...); // call PLT API at 0xb6f57c
+    const char* str = "00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263";
+    const char* str = "00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263";
+    return a0;
+}

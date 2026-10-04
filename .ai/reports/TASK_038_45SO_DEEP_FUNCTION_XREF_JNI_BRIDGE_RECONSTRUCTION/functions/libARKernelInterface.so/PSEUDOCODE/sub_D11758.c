@@ -1,0 +1,6 @@
+// Function: sub_D11758
+// RVA: 0xd11758, Size: 84 bytes
+int64_t sub_D11758(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_576ECC(...); // call internal at 0xd11790
+    return a0;
+}

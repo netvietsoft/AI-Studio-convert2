@@ -1,0 +1,87 @@
+// Function: sub_60AF48
+// RVA: 0x60af48, Size: 492 bytes
+int64_t sub_60AF48(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_6135F8(...); // call internal at 0x60af50
+    sub_613FD8(...); // call internal at 0x60af54
+    sub_60CB70(...); // call internal at 0x60af58
+    sub_628F04(...); // call internal at 0x60af5c
+    sub_608844(...); // call internal at 0x60af60
+    sub_6318C8(...); // call internal at 0x60af64
+    sub_6335CC(...); // call internal at 0x60af68
+    sub_627DE0(...); // call internal at 0x60af6c
+    sub_9E58A8(...); // call internal at 0x60af70
+    sub_9E5E90(...); // call internal at 0x60af74
+    sub_9E6CB0(...); // call internal at 0x60af78
+    sub_9E78E4(...); // call internal at 0x60af7c
+    sub_9E8020(...); // call internal at 0x60af80
+    sub_60B7FC(...); // call internal at 0x60af84
+    sub_60A4EC(...); // call internal at 0x60af88
+    sub_621514(...); // call internal at 0x60af8c
+    sub_621BDC(...); // call internal at 0x60af90
+    sub_624444(...); // call internal at 0x60af94
+    sub_62394C(...); // call internal at 0x60af98
+    sub_61AC68(...); // call internal at 0x60af9c
+    sub_62E008(...); // call internal at 0x60afa0
+    sub_624F3C(...); // call internal at 0x60afa4
+    sub_625370(...); // call internal at 0x60afa8
+    sub_60E9C4(...); // call internal at 0x60afac
+    sub_61A2F8(...); // call internal at 0x60afb0
+    sub_60FFC8(...); // call internal at 0x60afb4
+    sub_614F14(...); // call internal at 0x60afb8
+    sub_635BE0(...); // call internal at 0x60afbc
+    sub_6326AC(...); // call internal at 0x60afc0
+    sub_614E5C(...); // call internal at 0x60afc4
+    sub_60E480(...); // call internal at 0x60afc8
+    sub_610D20(...); // call internal at 0x60afcc
+    sub_60AE60(...); // call internal at 0x60afd0
+    sub_60F0F0(...); // call internal at 0x60afd4
+    sub_60F038(...); // call internal at 0x60afd8
+    sub_5B5808(...); // call internal at 0x60afdc
+    sub_626D64(...); // call internal at 0x60afe0
+    sub_621460(...); // call internal at 0x60afe4
+    sub_6274A0(...); // call internal at 0x60afe8
+    sub_6113D0(...); // call internal at 0x60afec
+    sub_627D2C(...); // call internal at 0x60aff0
+    sub_61FCA0(...); // call internal at 0x60aff4
+    sub_63691C(...); // call internal at 0x60aff8
+    sub_620AF0(...); // call internal at 0x60affc
+    sub_60A0B8(...); // call internal at 0x60b000
+    sub_6342E8(...); // call internal at 0x60b004
+    sub_61BD70(...); // call internal at 0x60b008
+    sub_61CCB0(...); // call internal at 0x60b00c
+    sub_6296D4(...); // call internal at 0x60b010
+    sub_629E54(...); // call internal at 0x60b014
+    sub_62A73C(...); // call internal at 0x60b018
+    sub_608380(...); // call internal at 0x60b01c
+    sub_63829C(...); // call internal at 0x60b020
+    sub_62BA80(...); // call internal at 0x60b024
+    sub_62D2CC(...); // call internal at 0x60b028
+    sub_627964(...); // call internal at 0x60b02c
+    sub_62ABEC(...); // call internal at 0x60b030
+    sub_63716C(...); // call internal at 0x60b034
+    sub_62DD60(...); // call internal at 0x60b038
+    sub_61AA30(...); // call internal at 0x60b03c
+    sub_61D280(...); // call internal at 0x60b040
+    sub_637A48(...); // call internal at 0x60b044
+    sub_638FFC(...); // call internal at 0x60b048
+    sub_639680(...); // call internal at 0x60b04c
+    sub_611AF4(...); // call internal at 0x60b050
+    sub_60A5A4(...); // call internal at 0x60b054
+    sub_639C14(...); // call internal at 0x60b058
+    sub_D7C64C(...); // call internal at 0x60b05c
+    sub_E2B97C(...); // call internal at 0x60b064
+    sub_B783A0(...); // call internal at 0x60b080
+    sub_B7868C(...); // call internal at 0x60b094
+    sub_60B134(...); // call internal at 0x60b0a4
+    sub_5EBAF4(...); // call internal at 0x60b0a8
+    sub_B79DC8(...); // call internal at 0x60b0bc
+    const char* str = "Drawable";
+    sub_B791A8(...); // call internal at 0x60b0dc
+    sub_B79670(...); // call internal at 0x60b0e8
+    const char* str = "Invalid number of parameters (expected 1).";
+    const char* str = "lua_DBSprite_toDrawable - Failed to match the given parameters to a valid function signature.";
+    sub_B78DE0(...); // call internal at 0x60b108
+    sub_B79CA8(...); // call internal at 0x60b110
+    sub_B78CDC(...); // call internal at 0x60b120
+    return a0;
+}

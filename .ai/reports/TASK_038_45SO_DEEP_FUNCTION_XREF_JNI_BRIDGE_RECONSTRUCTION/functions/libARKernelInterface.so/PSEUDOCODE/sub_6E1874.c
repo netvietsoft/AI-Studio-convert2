@@ -1,0 +1,189 @@
+// Function: sub_6E1874
+// RVA: 0x6e1874, Size: 3064 bytes
+int64_t sub_6E1874(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_DAD750(...); // call internal at 0x6e18d0
+    sub_D44604(...); // call internal at 0x6e18d4
+    sub_DB0624(...); // call internal at 0x6e18e4
+    sub_DB0808(...); // call internal at 0x6e18f4
+    sub_D614B4(...); // call internal at 0x6e1904
+    sub_D80EE8(...); // call internal at 0x6e190c
+    sub_D82630(...); // call internal at 0x6e1914
+    sub_D613C4(...); // call internal at 0x6e191c
+    sub_D5DA68(...); // call internal at 0x6e1948
+    sub_D5E028(...); // call internal at 0x6e1968
+    sub_D613B4(...); // call internal at 0x6e1980
+    sub_D613EC(...); // call internal at 0x6e1988
+    sub_6E1208(...); // call internal at 0x6e19a4
+    sub_D5DBE8(...); // call internal at 0x6e19b0
+    sub_D5F204(...); // call internal at 0x6e19bc
+    sub_DACFA8(...); // call internal at 0x6e19d0
+    sub_DACFA8(...); // call internal at 0x6e19e4
+    sub_D5FB4C(...); // call internal at 0x6e19f0
+    sub_D5FB4C(...); // call internal at 0x6e19fc
+    const char* str = "u_worldViewProjectionMatrix";
+    sub_D80558(...); // call internal at 0x6e1a0c
+    sub_D5C944(...); // call internal at 0x6e1a14
+    const char* str = "u_color";
+    sub_D80558(...); // call internal at 0x6e1a24
+    sub_D5C88C(...); // call internal at 0x6e1a2c
+    sub_D7FFBC(...); // call internal at 0x6e1a38
+    sub_D7FFBC(...); // call internal at 0x6e1a48
+    const char* str = "externalMask";
+    sub_D41EDC(...); // call internal at 0x6e1a80
+    sub_D424A8(...); // call internal at 0x6e1a8c
+    sub_D84CF4(...); // call internal at 0x6e1a90
+    sub_DA2ED4(...); // call internal at 0x6e1a94
+    sub_D42610(...); // call internal at 0x6e1aa8
+    sub_D421D0(...); // call internal at 0x6e1ab0
+    sub_D421F4(...); // call internal at 0x6e1ac0
+    glViewport(...); // call PLT API at 0x6e1ad4
+    glClearColor(...); // call PLT API at 0x6e1ae8
+    glClear(...); // call PLT API at 0x6e1af0
+    sub_D613F4(...); // call internal at 0x6e1af8
+    sub_DAD0A0(...); // call internal at 0x6e1b00
+    sub_DAD0A0(...); // call internal at 0x6e1b08
+    sub_D5DBFC(...); // call internal at 0x6e1b10
+    sub_D5DBFC(...); // call internal at 0x6e1b18
+    sub_D5DBFC(...); // call internal at 0x6e1b20
+    sub_DAD814(...); // call internal at 0x6e1b28
+    sub_D7FFBC(...); // call internal at 0x6e1b38
+    sub_D7FFBC(...); // call internal at 0x6e1b48
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0x6e1b80
+    sub_D44604(...); // call internal at 0x6e1bc4
+    sub_6C7340(...); // call internal at 0x6e1bd4
+    sub_6C7348(...); // call internal at 0x6e1be4
+    sub_6E0E30(...); // call internal at 0x6e1bf8
+    sub_D44604(...); // call internal at 0x6e1c04
+    sub_6C697C(...); // call internal at 0x6e1c14
+    const char* str = "preprocess";
+    const char* str = "i<ResourcePoolCanvas><ResourcePoolCanvas>";
+    sub_D93800(...); // call internal at 0x6e1c60
+    sub_DAFD30(...); // call internal at 0x6e1c80
+    sub_DAFD40(...); // call internal at 0x6e1c90
+    sub_DAFAA4(...); // call internal at 0x6e1ca0
+    sub_DAFAB4(...); // call internal at 0x6e1ccc
+    sub_72801C(...); // call internal at 0x6e1cdc
+    sub_DACA1C(...); // call internal at 0x6e1cf8
+    sub_728638(...); // call internal at 0x6e1d04
+    sub_DACA8C(...); // call internal at 0x6e1d0c
+    sub_DACFA8(...); // call internal at 0x6e1d38
+    sub_728608(...); // call internal at 0x6e1d40
+    sub_DAD034(...); // call internal at 0x6e1d50
+    sub_DAD34C(...); // call internal at 0x6e1d5c
+    sub_72867C(...); // call internal at 0x6e1d68
+    sub_DAD0A0(...); // call internal at 0x6e1d70
+    sub_DAD0A0(...); // call internal at 0x6e1d78
+    sub_728628(...); // call internal at 0x6e1d80
+    sub_7286E8(...); // call internal at 0x6e1d88
+    sub_728610(...); // call internal at 0x6e1d90
+    sub_7286AC(...); // call internal at 0x6e1d9c
+    sub_D5DA68(...); // call internal at 0x6e1da4
+    sub_D5E028(...); // call internal at 0x6e1dc4
+    sub_72835C(...); // call internal at 0x6e1dcc
+    sub_D5DBE8(...); // call internal at 0x6e1ddc
+    sub_D5F204(...); // call internal at 0x6e1de8
+    sub_D7FB90(...); // call internal at 0x6e1e00
+    sub_DAFAA4(...); // call internal at 0x6e1e14
+    sub_DAFAAC(...); // call internal at 0x6e1e28
+    sub_D7FB90(...); // call internal at 0x6e1e5c
+    sub_D7FED0(...); // call internal at 0x6e1e68
+    sub_D7FBB4(...); // call internal at 0x6e1e70
+    sub_D7FED0(...); // call internal at 0x6e1e7c
+    sub_DAF584(...); // call internal at 0x6e1e8c
+    sub_DAFD50(...); // call internal at 0x6e1e98
+    sub_DAF63C(...); // call internal at 0x6e1ea4
+    sub_DAF45C(...); // call internal at 0x6e1eac
+    sub_DAFD30(...); // call internal at 0x6e1eb4
+    sub_DAFD40(...); // call internal at 0x6e1ec4
+    sub_D7FBB4(...); // call internal at 0x6e1ed4
+    sub_D5DBFC(...); // call internal at 0x6e1edc
+    sub_D5DBFC(...); // call internal at 0x6e1ee4
+    sub_7280AC(...); // call internal at 0x6e1eec
+    sub_DAFAB4(...); // call internal at 0x6e1f10
+    sub_6BC1BC(...); // call internal at 0x6e1f28
+    sub_6E1208(...); // call internal at 0x6e1f4c
+    sub_D5DBE8(...); // call internal at 0x6e1f58
+    sub_D5F204(...); // call internal at 0x6e1f64
+    sub_DAFD30(...); // call internal at 0x6e1f6c
+    sub_DAFD40(...); // call internal at 0x6e1f78
+    sub_DAFD30(...); // call internal at 0x6e1f98
+    sub_DAFD40(...); // call internal at 0x6e1fac
+    sub_DAFAB4(...); // call internal at 0x6e1fcc
+    sub_D5DA68(...); // call internal at 0x6e1fdc
+    sub_6C6F34(...); // call internal at 0x6e1fe4
+    sub_6C6F3C(...); // call internal at 0x6e1ff0
+    sub_D5E028(...); // call internal at 0x6e2010
+    sub_6BBA68(...); // call internal at 0x6e2018
+    sub_D5DBE8(...); // call internal at 0x6e2028
+    sub_D5F204(...); // call internal at 0x6e2034
+    sub_DAD750(...); // call internal at 0x6e204c
+    sub_DAF5EC(...); // call internal at 0x6e2058
+    sub_DAD814(...); // call internal at 0x6e2060
+    sub_DB0018(...); // call internal at 0x6e2068
+    sub_DAD750(...); // call internal at 0x6e2084
+    sub_6C0E2C(...); // call internal at 0x6e209c
+    sub_DAD814(...); // call internal at 0x6e20a4
+    sub_6C0FC0(...); // call internal at 0x6e20b0
+    sub_DAFAAC(...); // call internal at 0x6e20b8
+    sub_6E246C(...); // call internal at 0x6e20c4
+    sub_D5DBFC(...); // call internal at 0x6e20cc
+    sub_D5DBFC(...); // call internal at 0x6e20d4
+    sub_DAFD30(...); // call internal at 0x6e20e0
+    sub_DAFD40(...); // call internal at 0x6e20ec
+    sub_DAFD30(...); // call internal at 0x6e20f8
+    sub_DAFD40(...); // call internal at 0x6e2104
+    sub_6E1874(...); // call internal at 0x6e211c
+    sub_DAFAB4(...); // call internal at 0x6e2134
+    sub_DAD818(...); // call internal at 0x6e2138
+    sub_DAF5EC(...); // call internal at 0x6e2144
+    sub_DB0018(...); // call internal at 0x6e214c
+    (*x8)(...);
+    sub_DAF45C(...); // call internal at 0x6e216c
+    sub_D44604(...); // call internal at 0x6e2178
+    sub_6C697C(...); // call internal at 0x6e2188
+    const char* str = "preprocess";
+    const char* str = "i<ResourcePoolCanvas><ResourcePoolCanvas>";
+    sub_D93800(...); // call internal at 0x6e21d4
+    sub_6BC1A4(...); // call internal at 0x6e21f4
+    sub_6C7358(...); // call internal at 0x6e2200
+    sub_DB0000(...); // call internal at 0x6e2210
+    sub_DAF63C(...); // call internal at 0x6e221c
+    sub_D5DA68(...); // call internal at 0x6e2230
+    sub_D5E028(...); // call internal at 0x6e2250
+    sub_DAFAB4(...); // call internal at 0x6e2268
+    sub_DAD818(...); // call internal at 0x6e226c
+    sub_DAF5EC(...); // call internal at 0x6e2278
+    sub_DB0030(...); // call internal at 0x6e2288
+    sub_DAFAAC(...); // call internal at 0x6e2298
+    sub_DAFAAC(...); // call internal at 0x6e22a4
+    sub_DB0010(...); // call internal at 0x6e22b0
+    sub_D7FED0(...); // call internal at 0x6e22bc
+    sub_D7FED0(...); // call internal at 0x6e22c8
+    sub_DAFD50(...); // call internal at 0x6e22f0
+    sub_DB0000(...); // call internal at 0x6e22fc
+    sub_DAF63C(...); // call internal at 0x6e2308
+    sub_DAF430(...); // call internal at 0x6e2310
+    sub_D5DA68(...); // call internal at 0x6e231c
+    sub_D5E028(...); // call internal at 0x6e233c
+    sub_DAFAA4(...); // call internal at 0x6e2344
+    sub_DAFAAC(...); // call internal at 0x6e235c
+    sub_DB0010(...); // call internal at 0x6e2398
+    sub_D7FED0(...); // call internal at 0x6e23a4
+    sub_DB0010(...); // call internal at 0x6e23ac
+    sub_D7FED0(...); // call internal at 0x6e23b8
+    sub_DAF584(...); // call internal at 0x6e23c8
+    sub_DAFD50(...); // call internal at 0x6e23d4
+    sub_DB0000(...); // call internal at 0x6e23e0
+    sub_D5DBFC(...); // call internal at 0x6e23e8
+    sub_6E0DC0(...); // call internal at 0x6e23f0
+    sub_DAF430(...); // call internal at 0x6e23f8
+    sub_DAF430(...); // call internal at 0x6e2400
+    sub_D5DBFC(...); // call internal at 0x6e2408
+    sub_D5DBFC(...); // call internal at 0x6e2410
+    sub_D5DBFC(...); // call internal at 0x6e2418
+    sub_DAF430(...); // call internal at 0x6e2420
+    sub_DAF430(...); // call internal at 0x6e2428
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0x6e2468
+}

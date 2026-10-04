@@ -1,0 +1,155 @@
+// Function: sub_C3EC8C
+// RVA: 0xc3ec8c, Size: 4096 bytes
+int64_t sub_C3EC8C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    (*x8)(...); // indirect call at 0xc3ecc8
+    (*x8)(...); // indirect call at 0xc3ecdc
+    (*x8)(...); // indirect call at 0xc3ecf0
+    (*x8)(...); // indirect call at 0xc3ed04
+    (*x8)(...); // indirect call at 0xc3ed18
+    (*x8)(...); // indirect call at 0xc3ed30
+    (*x8)(...); // indirect call at 0xc3ed48
+    (*x8)(...); // indirect call at 0xc3ed5c
+    sub_C1C81C(...); // call internal func at 0xc3ed68
+    (*x8)(...); // indirect call at 0xc3ed7c
+    (*x8)(...); // indirect call at 0xc3ed90
+    (*x8)(...); // indirect call at 0xc3eda0
+    (*x8)(...); // indirect call at 0xc3edac
+    (*x8)(...); // indirect call at 0xc3ee00
+    (*x8)(...); // indirect call at 0xc3ee14
+    (*x8)(...); // indirect call at 0xc3ee2c
+    (*x8)(...); // indirect call at 0xc3ee50
+    void* g_10a7f90 = (void*)0x10a7f90; // global ref
+    (*x8)(...); // indirect call at 0xc3eee0
+    (*x8)(...); // indirect call at 0xc3ef50
+    (*x8)(...); // indirect call at 0xc3ef78
+    (*x8)(...); // indirect call at 0xc3efa0
+    (*x8)(...); // indirect call at 0xc3efb4
+    (*x8)(...); // indirect call at 0xc3efe4
+    (*x8)(...); // indirect call at 0xc3effc
+    (*x8)(...); // indirect call at 0xc3f010
+    (*x8)(...); // indirect call at 0xc3f034
+    (*x8)(...); // indirect call at 0xc3f04c
+    (*x8)(...); // indirect call at 0xc3f068
+    (*x8)(...); // indirect call at 0xc3f080
+    sub_BE8034(...); // call internal func at 0xc3f0c4
+    (*x8)(...); // indirect call at 0xc3f0d8
+    (*x8)(...); // indirect call at 0xc3f10c
+    (*x8)(...); // indirect call at 0xc3f120
+    sub_C1C81C(...); // call internal func at 0xc3f12c
+    (*x8)(...); // indirect call at 0xc3f174
+    (*x8)(...); // indirect call at 0xc3f188
+    sub_C1C81C(...); // call internal func at 0xc3f194
+    (*x8)(...); // indirect call at 0xc3f1a8
+    (*x8)(...); // indirect call at 0xc3f1bc
+    (*x8)(...); // indirect call at 0xc3f1d4
+    (*x8)(...); // indirect call at 0xc3f1f0
+    (*x8)(...); // indirect call at 0xc3f20c
+    (*x8)(...); // indirect call at 0xc3f228
+    (*x8)(...); // indirect call at 0xc3f244
+    (*x8)(...); // indirect call at 0xc3f258
+    sub_C1C81C(...); // call internal func at 0xc3f264
+    (*x8)(...); // indirect call at 0xc3f2b0
+    (*x8)(...); // indirect call at 0xc3f2c8
+    (*x8)(...); // indirect call at 0xc3f2e8
+    (*x8)(...); // indirect call at 0xc3f300
+    (*x8)(...); // indirect call at 0xc3f31c
+    (*x8)(...); // indirect call at 0xc3f34c
+    (*x8)(...); // indirect call at 0xc3f368
+    (*x8)(...); // indirect call at 0xc3f388
+    (*x8)(...); // indirect call at 0xc3f3a4
+    (*x8)(...); // indirect call at 0xc3f3d0
+    (*x8)(...); // indirect call at 0xc3f3e4
+    (*x8)(...); // indirect call at 0xc3f3f8
+    (*x8)(...); // indirect call at 0xc3f40c
+    (*x8)(...); // indirect call at 0xc3f420
+    (*x8)(...); // indirect call at 0xc3f434
+    (*x8)(...); // indirect call at 0xc3f44c
+    (*x8)(...); // indirect call at 0xc3f464
+    (*x8)(...); // indirect call at 0xc3f4ac
+    (*x8)(...); // indirect call at 0xc3f4c0
+    (*x8)(...); // indirect call at 0xc3f4d4
+    (*x8)(...); // indirect call at 0xc3f4e8
+    (*x8)(...); // indirect call at 0xc3f4fc
+    (*x8)(...); // indirect call at 0xc3f514
+    (*x8)(...); // indirect call at 0xc3f528
+    (*x8)(...); // indirect call at 0xc3f55c
+    (*x8)(...); // indirect call at 0xc3f570
+    (*x8)(...); // indirect call at 0xc3f584
+    (*x8)(...); // indirect call at 0xc3f598
+    (*x8)(...); // indirect call at 0xc3f5ac
+    (*x8)(...); // indirect call at 0xc3f5c0
+    (*x8)(...); // indirect call at 0xc3f5d8
+    (*x8)(...); // indirect call at 0xc3f5ec
+    (*x8)(...); // indirect call at 0xc3f600
+    (*x8)(...); // indirect call at 0xc3f614
+    (*x8)(...); // indirect call at 0xc3f62c
+    (*x8)(...); // indirect call at 0xc3f640
+    (*x8)(...); // indirect call at 0xc3f658
+    (*x8)(...); // indirect call at 0xc3f66c
+    (*x8)(...); // indirect call at 0xc3f680
+    (*x8)(...); // indirect call at 0xc3f694
+    (*x8)(...); // indirect call at 0xc3f6ac
+    (*x8)(...); // indirect call at 0xc3f6c0
+    (*x8)(...); // indirect call at 0xc3f6d4
+    (*x8)(...); // indirect call at 0xc3f6e8
+    sub_BE8108(...); // call internal func at 0xc3f6f4
+    (*x8)(...); // indirect call at 0xc3f704
+    (*x8)(...); // indirect call at 0xc3f710
+    sub_C3D524(...); // call internal func at 0xc3f714
+    (*x8)(...); // indirect call at 0xc3f734
+    (*x8)(...); // indirect call at 0xc3f748
+    (*x8)(...); // indirect call at 0xc3f75c
+    (*x8)(...); // indirect call at 0xc3f770
+    (*x8)(...); // indirect call at 0xc3f7a4
+    (*x8)(...); // indirect call at 0xc3f7b8
+    sub_C1C81C(...); // call internal func at 0xc3f7c4
+    (*x8)(...); // indirect call at 0xc3f7e4
+    (*x8)(...); // indirect call at 0xc3f7f8
+    (*x8)(...); // indirect call at 0xc3f810
+    (*x8)(...); // indirect call at 0xc3f824
+    (*x8)(...); // indirect call at 0xc3f83c
+    (*x8)(...); // indirect call at 0xc3f850
+    (*x8)(...); // indirect call at 0xc3f86c
+    (*x8)(...); // indirect call at 0xc3f880
+    (*x8)(...); // indirect call at 0xc3f894
+    (*x8)(...); // indirect call at 0xc3f8a8
+    (*x8)(...); // indirect call at 0xc3f8bc
+    (*x8)(...); // indirect call at 0xc3f8e8
+    (*x8)(...); // indirect call at 0xc3f8fc
+    (*x8)(...); // indirect call at 0xc3f910
+    (*x8)(...); // indirect call at 0xc3f924
+    (*x8)(...); // indirect call at 0xc3f938
+    (*x8)(...); // indirect call at 0xc3f94c
+    (*x8)(...); // indirect call at 0xc3f96c
+    (*x8)(...); // indirect call at 0xc3f980
+    (*x8)(...); // indirect call at 0xc3f9ac
+    (*x8)(...); // indirect call at 0xc3f9c0
+    (*x8)(...); // indirect call at 0xc3f9d4
+    (*x8)(...); // indirect call at 0xc3f9e8
+    (*x8)(...); // indirect call at 0xc3f9fc
+    (*x8)(...); // indirect call at 0xc3fa10
+    (*x8)(...); // indirect call at 0xc3fa28
+    (*x8)(...); // indirect call at 0xc3fa3c
+    (*x8)(...); // indirect call at 0xc3fa5c
+    (*x8)(...); // indirect call at 0xc3fa70
+    (*x8)(...); // indirect call at 0xc3fa84
+    (*x8)(...); // indirect call at 0xc3fa98
+    (*x8)(...); // indirect call at 0xc3faac
+    (*x8)(...); // indirect call at 0xc3fac0
+    (*x8)(...); // indirect call at 0xc3fadc
+    (*x8)(...); // indirect call at 0xc3fb00
+    (*x8)(...); // indirect call at 0xc3fb14
+    (*x8)(...); // indirect call at 0xc3fb28
+    (*x8)(...); // indirect call at 0xc3fb3c
+    (*x8)(...); // indirect call at 0xc3fb50
+    (*x8)(...); // indirect call at 0xc3fb64
+    (*x8)(...); // indirect call at 0xc3fb78
+    (*x8)(...); // indirect call at 0xc3fb94
+    (*x8)(...); // indirect call at 0xc3fba8
+    (*x8)(...); // indirect call at 0xc3fbbc
+    (*x8)(...); // indirect call at 0xc3fbdc
+    (*x8)(...); // indirect call at 0xc3fc08
+    return a0;
+    (*x8)(...); // indirect call at 0xc3fc58
+    (*x8)(...); // indirect call at 0xc3fc6c
+}

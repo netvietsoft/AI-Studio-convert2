@@ -1,0 +1,11 @@
+// Function: LayerFlowNS::CLFBaseLayer* LayerFlowNS::LayerFactory::createLayer<LFEnhanceModular>(LFEnhanceModular const&)
+// RVA: 0x329794, Size: 96 bytes
+int64_t _ZN11LayerFlowNS12LayerFactory11createLayerI16LFEnhanceModularEEPNS_12CLFBaseLayerERKT_(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _Znwm(...); // call PLT API at 0x3297a8
+    _ZN11LayerFlowNS15CLFEnhanceLayerC1Ev(...); // call internal at 0x3297b0
+    _ZNSt6__ndk116__variant_detail12__assignmentINS0_8__traitsIJ15LFOriginModular22LFIdentityPhotoModular15LFPuzzleModular20LFPuzzleFrameModular20LFPuzzleImageModular21LFPuzzleLayoutModular21LFPuzzleFusionModular21LFPuzzleSpliceModular19LFAutoBeautyModular17LFCreativeModular22LFSpecialEffectModular13LFEditModular16LFEnhanceModular16LFCompareModular19LFBgBeautifyModular15LFFilterModular16LFStickerModular20LFLiveStickerModular13LFMarkModular14LFFrameModular13LFTextModular13LFBlurModular18LFAutoBrushModular19LFSkinWhitenModular19LFSkinGlowUpModular20LFOneTapPhotoModular19LFFaceRemoldModular17LFFaceFullModular15LFMakeUpModular18LFMakeupBagModular17LFWakeSkinModular21LFDermabrasionModular14LFMatteModular13LFAkneModular17LFFixTeethModular18LFBodyShapeModular18LFHeadScaleModular21LFWrinkleCleanModular17LFSlimmingModular12LFEyeModular18LFDenseHairModular23LFOneClickBeautyModular19LFAutoMosaicModular25LFAutoColorCorrectModular17LFAutoSlimModular25LFAutoWrinkleCleanModular25LFAutoDermabrasionModular19LFAutoRemoveModular19LFCommonAigcModularEEEE12__assign_altB8ne180000ILm12ESF_RKSF_EEvRNS0_5__altIXT_ET0_EEOT1_(...); // call internal at 0x3297c0
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_(...); // call PLT API at 0x3297cc
+    return a0;
+    _ZdlPv(...); // call PLT API at 0x3297e8
+    sub_526544(...); // call internal at 0x3297f0
+}

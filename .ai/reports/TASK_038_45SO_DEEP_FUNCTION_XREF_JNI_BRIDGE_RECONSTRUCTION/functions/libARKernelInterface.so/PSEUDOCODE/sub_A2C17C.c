@@ -1,0 +1,7 @@
+// Function: sub_A2C17C
+// RVA: 0xa2c17c, Size: 136 bytes
+int64_t sub_A2C17C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_6FD768(...); // call internal at 0xa2c1dc
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0xa2c200
+}

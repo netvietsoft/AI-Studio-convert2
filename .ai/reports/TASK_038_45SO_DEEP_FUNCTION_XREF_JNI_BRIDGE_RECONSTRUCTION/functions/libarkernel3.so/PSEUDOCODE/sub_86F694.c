@@ -1,0 +1,7 @@
+// Function: sub_86F694
+// RVA: 0x86f694, Size: 64 bytes
+int64_t sub_86F694(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_86EAEC(...); // call internal at 0x86f6b0
+    _ZdlPv(...); // call PLT API at 0x86f6c4
+    return a0;
+}

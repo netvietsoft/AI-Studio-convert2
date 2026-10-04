@@ -1,0 +1,7 @@
+// Function: sub_B5E36C
+// RVA: 0xb5e36c, Size: 60 bytes
+int64_t sub_B5E36C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_B5E3A8(...); // call internal at 0xb5e380
+    _ZdlPv(...); // call PLT API at 0xb5e398
+    return a0;
+}

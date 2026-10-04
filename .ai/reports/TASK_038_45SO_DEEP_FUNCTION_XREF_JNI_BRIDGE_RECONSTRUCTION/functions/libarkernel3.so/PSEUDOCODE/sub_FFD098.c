@@ -1,0 +1,7 @@
+// Function: sub_FFD098
+// RVA: 0xffd098, Size: 152 bytes
+int64_t sub_FFD098(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_564178(...); // call internal at 0xffd0d4
+    sub_564178(...); // call internal at 0xffd0f8
+    return a0;
+}

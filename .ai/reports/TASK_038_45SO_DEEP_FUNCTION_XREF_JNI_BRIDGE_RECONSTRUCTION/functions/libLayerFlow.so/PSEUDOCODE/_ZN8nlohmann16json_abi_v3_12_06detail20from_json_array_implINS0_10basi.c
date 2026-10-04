@@ -1,0 +1,12 @@
+// Function: decltype(fp0.reserve(std::declval<std::__ndk1::vector<LayerFlowNS::CLFCreativeEffectStickerConfig, std::__ndk1::allocator<LayerFlowNS::CLFCreativeEffectStickerConfig>>::size_type>()), fp.get<std::__ndk1::vector<LayerFlowNS::CLFCreativeEffectStickerConfig, std::__ndk1::allocator<LayerFlowNS::CLFCreativeEffectStickerConfig>>::value_type>(), (void)()) nlohmann::json_abi_v3_12_0::detail::from_json_array_impl<nlohmann::json_abi_v3_12_0::basic_json<std::__ndk1::map, std::__ndk1::vector, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, bool, long, unsigned long, double, std::__ndk1::allocator, nlohmann::json_abi_v3_12_0::adl_serializer, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>>, void>, std::__ndk1::vector<LayerFlowNS::CLFCreativeEffectStickerConfig, std::__ndk1::allocator<LayerFlowNS::CLFCreativeEffectStickerConfig>>, 0>(nlohmann::json_abi_v3_12_0::basic_json<std::__ndk1::map, std::__ndk1::vector, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, bool, long, unsigned long, double, std::__ndk1::allocator, nlohmann::json_abi_v3_12_0::adl_serializer, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>>, void> const&, std::__ndk1::vector<LayerFlowNS::CLFCreativeEffectStickerConfig, std::__ndk1::allocator<LayerFlowNS::CLFCreativeEffectStickerConfig>>&, nlohmann::json_abi_v3_12_0::detail::priority_tag<1u>)
+// RVA: 0x398b30, Size: 420 bytes
+int64_t _ZN8nlohmann16json_abi_v3_12_06detail20from_json_array_implINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEENS6_IN11LayerFlowNS30CLFCreativeEffectStickerConfigENSA_ISI_EEEETnNS4_9enable_ifIXsr3std13is_assignableIRT0_SM_EE5valueEiE4typeELi0EEEDTcmcmcldtfp0_7reserveclsr3stdE7declvalINSM_9size_typeEEEEcldtfp_3getINSM_10value_typeEEEcvv_EERKT_SN_NS1_12priority_tagILj1EEE(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_398CD4(...); // call internal at 0x398ba0
+    sub_398E60(...); // call internal at 0x398c34
+    _ZN11LayerFlowNS30CLFCreativeEffectStickerConfigD2Ev(...); // call internal at 0x398c58
+    _ZdlPv(...); // call PLT API at 0x398c6c
+    return a0;
+    sub_37D274(...); // call internal at 0x398cb4
+    sub_526544(...); // call internal at 0x398ccc
+    __stack_chk_fail(...); // call PLT API at 0x398cd0
+}

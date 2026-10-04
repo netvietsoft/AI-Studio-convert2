@@ -1,0 +1,11 @@
+// Function: sub_C3FBA4
+// RVA: 0xc3fba4, Size: 140 bytes
+int64_t sub_C3FBA4(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "arkernel";
+    const char* str = "SkeletonService::getSkeleton: _multiModelSkeletonCount exceed skeleton count";
+    sub_5A6B20(...); // call internal at 0xc3fbf8
+    const char* str = "arkernel";
+    const char* str = "SkeletonService::getSkeleton: _multiModelSkeletonCount exceed skeleton count";
+    __android_log_print(...); // call PLT API at 0xc3fc14
+    return a0;
+}

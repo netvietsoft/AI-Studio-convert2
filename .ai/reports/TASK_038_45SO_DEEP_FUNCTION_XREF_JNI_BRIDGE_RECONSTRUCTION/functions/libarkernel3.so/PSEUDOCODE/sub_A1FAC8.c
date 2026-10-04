@@ -1,0 +1,6 @@
+// Function: sub_A1FAC8
+// RVA: 0xa1fac8, Size: 108 bytes
+int64_t sub_A1FAC8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    (*x8)(...);
+    return a0;
+}

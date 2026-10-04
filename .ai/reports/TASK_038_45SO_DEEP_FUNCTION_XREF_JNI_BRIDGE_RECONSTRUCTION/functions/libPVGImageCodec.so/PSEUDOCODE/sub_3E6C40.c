@@ -1,0 +1,6 @@
+// Function: sub_3E6C40
+// RVA: 0x3e6c40, Size: 76 bytes
+int64_t sub_3E6C40(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_3E970C(...); // call internal at 0x3e6c7c
+    return a0;
+}

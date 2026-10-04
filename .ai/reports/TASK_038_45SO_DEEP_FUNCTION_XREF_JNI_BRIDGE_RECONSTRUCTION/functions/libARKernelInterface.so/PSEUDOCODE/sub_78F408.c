@@ -1,0 +1,7 @@
+// Function: sub_78F408
+// RVA: 0x78f408, Size: 152 bytes
+int64_t sub_78F408(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_594A10(...); // call internal at 0x78f444
+    sub_594A10(...); // call internal at 0x78f468
+    return a0;
+}

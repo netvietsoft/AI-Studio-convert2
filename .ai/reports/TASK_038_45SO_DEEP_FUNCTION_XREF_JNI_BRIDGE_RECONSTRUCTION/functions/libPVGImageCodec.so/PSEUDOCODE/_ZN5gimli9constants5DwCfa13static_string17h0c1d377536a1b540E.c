@@ -1,0 +1,37 @@
+// Function: gimli::constants::DwCfa::static_string::h0c1d377536a1b540
+// RVA: 0x34353c, Size: 556 bytes
+int64_t _ZN5gimli9constants5DwCfa13static_string17h0c1d377536a1b540E(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "DW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChildrenDW_TAG_BORLAND_Delphi_variantDW_TAG_BORLAND_Delphi_setDW_TAG_BORLA";
+    const char* str = "DW_CFA_nopDW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChildrenDW_TAG_BORLAND_Delphi_variant";
+    const char* str = "DW_CFA_set_locDW_CFA_nopDW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChildrenDW_TAG_BORLAND_";
+    const char* str = "DW_CFA_advance_loc4DW_CFA_advance_loc2DW_CFA_advance_loc1DW_CFA_set_locDW_CFA_nopDW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDw";
+    const char* str = "DW_CFA_offset_extendedDW_CFA_advance_loc4DW_CFA_advance_loc2DW_CFA_advance_loc1DW_CFA_set_locDW_CFA_nopDW_CFA_restoreDW_CFA_offs";
+    const char* str = "DW_CFA_restore_extendedDW_CFA_offset_extendedDW_CFA_advance_loc4DW_CFA_advance_loc2DW_CFA_advance_loc1DW_CFA_set_locDW_CFA_nopDW";
+    const char* str = "DW_CFA_registerDW_CFA_same_valueDW_CFA_restore_extendedDW_CFA_offset_extendedDW_CFA_advance_loc4DW_CFA_advance_loc2DW_CFA_advanc";
+    const char* str = "DW_CFA_remember_stateDW_CFA_registerDW_CFA_same_valueDW_CFA_restore_extendedDW_CFA_offset_extendedDW_CFA_advance_loc4DW_CFA_adva";
+    const char* str = "DW_CFA_restore_stateDW_CFA_remember_stateDW_CFA_registerDW_CFA_same_valueDW_CFA_restore_extendedDW_CFA_offset_extendedDW_CFA_adv";
+    const char* str = "DW_CFA_def_cfaDW_CFA_restore_stateDW_CFA_remember_stateDW_CFA_registerDW_CFA_same_valueDW_CFA_restore_extendedDW_CFA_offset_exte";
+    const char* str = "DW_CFA_def_cfa_registerDW_CFA_def_cfaDW_CFA_restore_stateDW_CFA_remember_stateDW_CFA_registerDW_CFA_same_valueDW_CFA_restore_ext";
+    const char* str = "DW_CFA_def_cfa_offsetDW_CFA_def_cfa_registerDW_CFA_def_cfaDW_CFA_restore_stateDW_CFA_remember_stateDW_CFA_registerDW_CFA_same_va";
+    const char* str = "DW_CFA_offset_extended_sfDW_CFA_expressionDW_CFA_def_cfa_expressionDW_CFA_def_cfa_offsetDW_CFA_def_cfa_registerDW_CFA_def_cfaDW_";
+    const char* str = "DW_CFA_def_cfa_sfDW_CFA_offset_extended_sfDW_CFA_expressionDW_CFA_def_cfa_expressionDW_CFA_def_cfa_offsetDW_CFA_def_cfa_register";
+    const char* str = "DW_CFA_val_offsetDW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfDW_CFA_offset_extended_sfDW_CFA_expressionDW_CFA_def_cfa_expressionDW_";
+    const char* str = "DW_CFA_val_offset_sfDW_CFA_val_offsetDW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfDW_CFA_offset_extended_sfDW_CFA_expressionDW_CFA_d";
+    const char* str = "DW_CFA_val_expressionDW_CFA_val_offset_sfDW_CFA_val_offsetDW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfDW_CFA_offset_extended_sfDW_C";
+    const char* str = "DW_CFA_lo_userDW_CFA_val_expressionDW_CFA_val_offset_sfDW_CFA_val_offsetDW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfDW_CFA_offset_e";
+    const char* str = "DW_CFA_MIPS_advance_loc8DW_CFA_hi_userDW_CFA_lo_userDW_CFA_val_expressionDW_CFA_val_offset_sfDW_CFA_val_offsetDW_CFA_def_cfa_off";
+    const char* str = "DW_CFA_GNU_negative_offset_extendedDW_CFA_GNU_args_sizeDW_CFA_GNU_window_saveDW_CFA_MIPS_advance_loc8DW_CFA_hi_userDW_CFA_lo_use";
+    const char* str = "DW_CFA_hi_userDW_CFA_lo_userDW_CFA_val_expressionDW_CFA_val_offset_sfDW_CFA_val_offsetDW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfD";
+    const char* str = "DW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChildrenDW_TAG_BORLAND_Delphi_variantDW_TAG_BOR";
+    const char* str = "DW_CFA_advance_loc1DW_CFA_set_locDW_CFA_nopDW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChil";
+    const char* str = "DW_CFA_advance_loc2DW_CFA_advance_loc1DW_CFA_set_locDW_CFA_nopDW_CFA_restoreDW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesD";
+    const char* str = "DW_CFA_same_valueDW_CFA_restore_extendedDW_CFA_offset_extendedDW_CFA_advance_loc4DW_CFA_advance_loc2DW_CFA_advance_loc1DW_CFA_se";
+    const char* str = "DW_CFA_def_cfa_expressionDW_CFA_def_cfa_offsetDW_CFA_def_cfa_registerDW_CFA_def_cfaDW_CFA_restore_stateDW_CFA_remember_stateDW_C";
+    const char* str = "DW_CFA_expressionDW_CFA_def_cfa_expressionDW_CFA_def_cfa_offsetDW_CFA_def_cfa_registerDW_CFA_def_cfaDW_CFA_restore_stateDW_CFA_r";
+    const char* str = "DW_CFA_def_cfa_offset_sfDW_CFA_def_cfa_sfDW_CFA_offset_extended_sfDW_CFA_expressionDW_CFA_def_cfa_expressionDW_CFA_def_cfa_offse";
+    const char* str = "DW_CFA_GNU_window_saveDW_CFA_MIPS_advance_loc8DW_CFA_hi_userDW_CFA_lo_userDW_CFA_val_expressionDW_CFA_val_offset_sfDW_CFA_val_of";
+    const char* str = "DW_CFA_GNU_args_sizeDW_CFA_GNU_window_saveDW_CFA_MIPS_advance_loc8DW_CFA_hi_userDW_CFA_lo_userDW_CFA_val_expressionDW_CFA_val_of";
+    const char* str = "DW_CFA_offsetDW_CFA_advance_locDwCfaDW_CHILDREN_yesDW_CHILDREN_noDwChildrenDW_TAG_BORLAND_Delphi_variantDW_TAG_BORLAND_Delphi_se";
+    return a0;
+    return a0;
+}

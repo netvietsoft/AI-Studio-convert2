@@ -1,0 +1,62 @@
+// Function: sub_580150
+// RVA: 0x580150, Size: 1368 bytes
+int64_t sub_580150(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    const char* str = "com/meitu/mtlab/arkernelinterface/interaction/ARKernelTextInteraction$ARKernelTextBackgroundColorConfig";
+    (*x8)(...);
+    const char* str = "<init>";
+    const char* str = "()V";
+    (*x8)(...);
+    const char* str = "enable";
+    (*x8)(...);
+    const char* str = "editable";
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    const char* str = "bColorWork";
+    (*x8)(...);
+    const char* str = "margin";
+    (*x8)(...);
+    const char* str = "roundWeight";
+    (*x8)(...);
+    const char* str = "marginExtendCoefLeft";
+    (*x8)(...);
+    const char* str = "marginExtendCoefTop";
+    (*x8)(...);
+    const char* str = "marginExtendCoefRight";
+    (*x8)(...);
+    const char* str = "marginExtendCoefBottom";
+    (*x8)(...);
+    const char* str = "marginShiftX";
+    (*x8)(...);
+    const char* str = "marginShiftY";
+    (*x8)(...);
+    const char* str = "marginExtendX";
+    (*x8)(...);
+    const char* str = "marginExtendY";
+    (*x8)(...);
+    const char* str = "fillType";
+    (*x8)(...);
+    sub_55D808(...); // call internal at 0x580468
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    (*x8)(...);
+    return a0;
+}

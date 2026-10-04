@@ -1,0 +1,6 @@
+// Function: MTFilterKernel::MTSimpleBodyMaskFilter::~MTSimpleBodyMaskFilter()
+// RVA: 0xe81f0, Size: 36 bytes
+int64_t _ZN14MTFilterKernel22MTSimpleBodyMaskFilterD0Ev(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZN14MTFilterKernel22MTSimpleBodyMaskFilterD1Ev(...); // call internal at 0xe8200
+    _ZdlPv(...); // call PLT API at 0xe8210
+}

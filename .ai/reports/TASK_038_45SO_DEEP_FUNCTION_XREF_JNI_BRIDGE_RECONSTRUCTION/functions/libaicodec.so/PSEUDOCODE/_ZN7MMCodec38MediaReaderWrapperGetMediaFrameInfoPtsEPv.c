@@ -1,0 +1,15 @@
+// Function: MMCodec::MediaReaderWrapperGetMediaFrameInfoPts(void*)
+// RVA: 0x18ff4c, Size: 196 bytes
+int64_t _ZN7MMCodec38MediaReaderWrapperGetMediaFrameInfoPtsEPv(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    return a0;
+    return a0;
+    const char* s_83cec = "MediaReaderWrapperGetMediaFrameInfoPts"; // string xref
+    const char* s_7d752 = "MTMV_AICodec"; // string xref
+    const char* s_803de = "[%s(%d)]:> MediaReaderWrapper %s frameInfoHandle is null"; // string xref
+    __android_log_print(...); // call imported API via PLT at 0x18ffc0
+    const char* s_83cec = "MediaReaderWrapperGetMediaFrameInfoPts"; // string xref
+    const char* s_6f134 = "%s/MTMV_AICodec: [%s(%d)]:> MediaReaderWrapper %s frameInfoHandle is null
+"; // string xref
+    _ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz(...); // call imported API via PLT at 0x190000
+    return a0;
+}

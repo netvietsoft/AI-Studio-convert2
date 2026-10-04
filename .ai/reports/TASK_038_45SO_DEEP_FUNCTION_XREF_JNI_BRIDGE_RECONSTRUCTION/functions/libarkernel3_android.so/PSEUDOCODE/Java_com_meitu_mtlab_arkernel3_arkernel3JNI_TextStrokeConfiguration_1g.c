@@ -1,0 +1,6 @@
+// Function: Java_com_meitu_mtlab_arkernel3_arkernel3JNI_TextStrokeConfiguration_1getColorWork
+// RVA: 0x8c034, Size: 28 bytes
+int64_t Java_com_meitu_mtlab_arkernel3_arkernel3JNI_TextStrokeConfiguration_1getColorWork(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZNK8mtlabar323TextStrokeConfiguration12getColorWorkEv(...); // call PLT API at 0x8c040
+    return a0;
+}

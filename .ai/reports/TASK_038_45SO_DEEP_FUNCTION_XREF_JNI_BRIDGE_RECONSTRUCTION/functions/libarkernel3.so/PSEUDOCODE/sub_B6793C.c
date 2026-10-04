@@ -1,0 +1,11 @@
+// Function: sub_B6793C
+// RVA: 0xb6793c, Size: 188 bytes
+int64_t sub_B6793C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_5604D4(...); // call internal at 0xb67968
+    sub_B6A6D4(...); // call internal at 0xb67988
+    _ZdlPv(...); // call PLT API at 0xb6799c
+    return a0;
+    _ZdlPv(...); // call PLT API at 0xb679d8
+    sub_106B814(...); // call internal at 0xb679f0
+    __stack_chk_fail(...); // call PLT API at 0xb679f4
+}

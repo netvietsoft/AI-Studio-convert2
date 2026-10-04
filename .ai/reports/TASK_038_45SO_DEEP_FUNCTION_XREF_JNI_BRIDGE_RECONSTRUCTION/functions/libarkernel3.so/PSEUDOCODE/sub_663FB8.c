@@ -1,0 +1,16 @@
+// Function: sub_663FB8
+// RVA: 0x663fb8, Size: 392 bytes
+int64_t sub_663FB8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_5AAF6C(...); // call internal at 0x663fe8
+    sub_66427C(...); // call internal at 0x663ffc
+    sub_664334(...); // call internal at 0x664010
+    return a0;
+    __cxa_allocate_exception(...); // call PLT API at 0x6640b0
+    const char* str = "The map exceeds its maximum bucket count.";
+    _ZNSt11logic_errorC2EPKc(...); // call PLT API at 0x6640c0
+    __cxa_throw(...); // call PLT API at 0x6640fc
+    __cxa_free_exception(...); // call PLT API at 0x664110
+    sub_664458(...); // call internal at 0x66411c
+    sub_106B814(...); // call internal at 0x664138
+    __stack_chk_fail(...); // call PLT API at 0x66413c
+}

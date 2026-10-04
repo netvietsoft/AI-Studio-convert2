@@ -1,0 +1,7 @@
+// Function: sub_6A81E8
+// RVA: 0x6a81e8, Size: 252 bytes
+int64_t sub_6A81E8(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_5949A8(...); // call internal at 0x6a820c
+    sub_594E7C(...); // call internal at 0x6a8284
+    return a0;
+}

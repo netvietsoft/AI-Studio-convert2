@@ -1,0 +1,7 @@
+// Function: sub_EB75B0
+// RVA: 0xeb75b0, Size: 112 bytes
+int64_t sub_EB75B0(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    (*x8)(...);
+    (*x8)(...);
+    return a0;
+}

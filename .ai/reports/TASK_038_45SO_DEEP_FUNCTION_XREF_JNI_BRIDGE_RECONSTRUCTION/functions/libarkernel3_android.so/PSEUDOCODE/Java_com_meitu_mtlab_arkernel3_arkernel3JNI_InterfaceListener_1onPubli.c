@@ -1,0 +1,7 @@
+// Function: Java_com_meitu_mtlab_arkernel3_arkernel3JNI_InterfaceListener_1onPublicParamConfigurationLoadFinish
+// RVA: 0x98638, Size: 148 bytes
+int64_t Java_com_meitu_mtlab_arkernel3_arkernel3JNI_InterfaceListener_1onPublicParamConfigurationLoadFinish(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    (*x8)(...);
+    (*x8)(...);
+    return a0;
+}

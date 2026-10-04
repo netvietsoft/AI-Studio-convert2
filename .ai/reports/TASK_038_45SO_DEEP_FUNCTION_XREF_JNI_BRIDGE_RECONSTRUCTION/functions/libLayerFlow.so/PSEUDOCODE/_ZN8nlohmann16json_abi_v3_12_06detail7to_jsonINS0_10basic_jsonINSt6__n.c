@@ -1,0 +1,15 @@
+// Function: void nlohmann::json_abi_v3_12_0::detail::to_json<nlohmann::json_abi_v3_12_0::basic_json<std::__ndk1::map, std::__ndk1::vector, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, bool, long, unsigned long, double, std::__ndk1::allocator, nlohmann::json_abi_v3_12_0::adl_serializer, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>>, void>, double, double, 0>(nlohmann::json_abi_v3_12_0::basic_json<std::__ndk1::map, std::__ndk1::vector, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, bool, long, unsigned long, double, std::__ndk1::allocator, nlohmann::json_abi_v3_12_0::adl_serializer, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>>, void>&, std::__ndk1::pair<double, double> const&)
+// RVA: 0x305ab0, Size: 264 bytes
+int64_t _ZN8nlohmann16json_abi_v3_12_06detail7to_jsonINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEddTnNS4_9enable_ifIXaasr3std16is_constructibleIT_T0_EE5valuesr3std16is_constructibleISI_T1_EE5valueEiE4typeELi0EEEvRSI_RKNS4_4pairISJ_SK_EE(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEC2ESt16initializer_listINS0_6detail8json_refISE_EEEbNSG_7value_tE(...); // call internal at 0x305b14
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x305b3c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x305b4c
+    _ZN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE10json_value7destroyENS0_6detail7value_tE(...); // call internal at 0x305b58
+    return a0;
+    sub_2BF8C4(...); // call internal at 0x305b80
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x305b8c
+    _ZN8nlohmann16json_abi_v3_12_06detail8json_refINS0_10basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS0_14adl_serializerENS6_IhNSA_IhEEEEvEEED2Ev(...); // call internal at 0x305b94
+    sub_526544(...); // call internal at 0x305bac
+    __stack_chk_fail(...); // call PLT API at 0x305bb0
+    sub_2BF8C4(...); // call internal at 0x305bb4
+}

@@ -1,0 +1,8 @@
+// Function: sub_B7173C
+// RVA: 0xb7173c, Size: 152 bytes
+int64_t sub_B7173C(int64_t a0, int64_t a1, int64_t a2, int64_t a3) {
+    sub_917644(...); // call internal at 0xb7178c
+    _ZdlPv(...); // call PLT API at 0xb717a4
+    return a0;
+    __stack_chk_fail(...); // call PLT API at 0xb717d0
+}
