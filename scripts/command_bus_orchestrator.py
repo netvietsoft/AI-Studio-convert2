@@ -1458,14 +1458,87 @@ class CommandBusOrchestrator:
                 dispatch_args.extend(["-f", f"runner_label={runner_label}"])
             print(f"[DISPATCH] Triggering worker for {cid} (lane={cmd_lane}, reservation_token={res_token[:8]}...)...")
             res = subprocess.run(dispatch_args, capture_output=True, text=True)
+            dispatch_error = None
             if res.returncode == 0:
-                print(f"[DISPATCH_OK] Dispatched {cid} successfully.")
-                dispatched.append(cmd)
+                # gh workflow run returning 0 only proves that GitHub accepted the
+                # workflow_dispatch request.  It does NOT prove that a self-hosted
+                # Worker was assigned or that the command was claimed.
+                #
+                # Require a durable ACK written by the Worker to origin/main:
+                # lease + execution_identity and CLAIMED/RUNNING status.  Without
+                # this handshake a command must never remain RESERVED forever.
+                ack_deadline = time.time() + 90
+                acked = False
+                while time.time() < ack_deadline:
+                    subprocess.run(
+                        ["git", "fetch", "origin", "main"],
+                        cwd=str(self.repo_root),
+                        capture_output=True,
+                        text=True
+                    )
+                    remote_path = f".ai/commands/reserved/{cid}.json"
+                    remote = subprocess.run(
+                        ["git", "show", f"origin/main:{remote_path}"],
+                        cwd=str(self.repo_root),
+                        capture_output=True,
+                        text=True
+                    )
+                    if remote.returncode == 0:
+                        try:
+                            remote_cmd = json.loads(remote.stdout)
+                            lease = remote_cmd.get("lease")
+                            exec_id = remote_cmd.get("execution_identity")
+                            remote_status = remote_cmd.get("status")
+                            if lease and exec_id and remote_status in {"CLAIMED", "RUNNING"}:
+                                acked = True
+                                print(
+                                    f"[DISPATCH_ACK] Worker claimed {cid} "
+                                    f"(status={remote_status}, run_id={exec_id.get('run_id')})."
+                                )
+                                break
+                        except (json.JSONDecodeError, TypeError):
+                            pass
+                    else:
+                        # The Worker may move the command out of reserved very
+                        # quickly. Check running/completed as positive ACK paths.
+                        for remote_dir in ("running", "completed"):
+                            moved = subprocess.run(
+                                ["git", "show", f"origin/main:.ai/commands/{remote_dir}/{cid}.json"],
+                                cwd=str(self.repo_root),
+                                capture_output=True,
+                                text=True
+                            )
+                            if moved.returncode == 0:
+                                try:
+                                    moved_cmd = json.loads(moved.stdout)
+                                    if moved_cmd.get("execution_identity"):
+                                        acked = True
+                                        print(f"[DISPATCH_ACK] Worker advanced {cid} to {remote_dir}.")
+                                        break
+                                except (json.JSONDecodeError, TypeError):
+                                    pass
+                        if acked:
+                            break
+                    time.sleep(5)
+
+                if acked:
+                    print(f"[DISPATCH_OK] Dispatched and acknowledged {cid}.")
+                    dispatched.append(cmd)
+                else:
+                    dispatch_error = (
+                        "Worker ACK timeout after workflow_dispatch: no durable "
+                        "lease/execution_identity CLAIM observed within 90s"
+                    )
             else:
-                # Never report a green dispatcher when no Worker was actually started.
-                # Roll the reservation back to pending so a later dispatcher can retry.
-                err = (res.stderr or res.stdout or "unknown gh workflow dispatch error").strip()
-                print(f"[DISPATCH_ERROR] Failed to trigger worker for {cid}: {err}")
+                dispatch_error = (
+                    res.stderr or res.stdout or "unknown gh workflow dispatch error"
+                ).strip()
+
+            if dispatch_error:
+                # Never report a green dispatcher when no Worker actually claimed
+                # the command. Roll the reservation back to pending so the next
+                # dispatcher cycle can retry instead of leaving a dead reservation.
+                print(f"[DISPATCH_ERROR] {cid}: {dispatch_error}")
                 current = self._load_json(res_file) if res_file.is_file() else cmd
                 if current:
                     current["status"] = "PENDING"
@@ -1473,7 +1546,7 @@ class CommandBusOrchestrator:
                     current["dispatch_error"] = {
                         "dispatcher_run_id": dispatcher_run_id,
                         "failed_at": get_iso_now(),
-                        "error": err
+                        "error": dispatch_error
                     }
                     self._write_json(self.pending_dir / f"{cid}.json", current)
                     try:
@@ -1483,7 +1556,7 @@ class CommandBusOrchestrator:
                     self._update_task_state(current.get("task_id", ""), {
                         "command_id": cid,
                         "status": "PENDING",
-                        "dispatch_error": err,
+                        "dispatch_error": dispatch_error,
                         "updated_at": get_iso_now()
                     })
                 self.rebuild_index()
