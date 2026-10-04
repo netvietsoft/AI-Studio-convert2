@@ -1626,4 +1626,47 @@ unning: 0).
      * Thư mục báo cáo: `.ai/reports/TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK/` gồm 11 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `10_REPORT_DRIVE_MIRROR.md`) cùng cây dữ liệu thô `raw/`.
      * Gói nén deliverables: `CONVERT2_TASK042_REPORT_PACKAGE.zip` (31,967 bytes, SHA-256: `398512A1AEB1FEB731DBA2BF8475CF5059DE46042E2BD17892EAD2DE9463A94A`).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ NEEDS\_FIX\ (PREDECESSOR\ OVERRIDDEN\ BY\ OWNER\ AUDIT\ \&\ TASK\_043)}$$
+  *(Ghi chú: Kết luận PASS ban đầu của TASK_042 đã bị ghi đè thành NEEDS_FIX theo chỉ thị kiểm toán của Chủ tịch Tony và nhiệm vụ khắc phục TASK_043 do các khiếm khuyết về nguồn gốc ảnh test thiết bị thật, hiện tượng suy giảm chi tiết tóc xoăn ngắn và mâu thuẫn mốc thời gian).*
+
+---
+
+### [2026-10-04 13:25:00 +0700] HOÀN TẤT TASK_043 — TASK042 BENCHMARK PROVENANCE & TRUE DEVICE A/B CORRECTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_043_TASK042_TRUE_DEVICE_AB_CORRECTION_20261004T124000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_043_TASK042_BENCHMARK_PROVENANCE_AND_TRUE_DEVICE_AB_CORRECTION_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `task042-true-device-ab-correction`
+- **Máy Runner điều phối:** `CONVERT2-WINDOWS-02` (GitHub Actions Run `37180418538`)
+- **Thiết bị vật lý thật thực thi đo kiểm:**
+  1. **Samsung Galaxy A07 (`SM-A075F`)** — Android 15 (API 35), SoC MediaTek Helio G99 / Cortex-A76/A55, ADB `192.168.1.18:40159`.
+  2. **Samsung Galaxy A50s (`SM-A507FN`)** — Android 11 (API 30), SoC Exynos 9611 / Cortex-A73/A53, ADB `192.168.1.2:41775`.
+- **Kết luận thẩm định (Final Verdict):** **`PASS — TRUE PHYSICAL-DEVICE A/B PROVENANCE ESTABLISHED & REGRESSION ROOT CAUSE IDENTIFIED`**
+- **Nội dung điều tra & Kết quả khắc phục triệt để 5 khiếm khuyết của TASK_042:**
+  1. **Khắc phục Khiếm khuyết 1 & 2 — Nguồn gốc Nhị phân & Đo kiểm Thiết bị Thật Tuyệt đối:**
+     * Đã xây dựng mã nguồn harness đo kiểm cô lập C++ độc lập: `scratch/task043/hce_isolated_ab_bench.cpp` (27,815 bytes) tích hợp nguyên bản Giải thuật A (Baseline CONVERT2) và Giải thuật B (Candidate V1 Hair V2).
+     * Biên dịch chéo trực tiếp bằng Android NDK r26b Clang 17.0.2 sang nhị phân ARM64 ELF độc lập: `scratch/task043/hce_isolated_ab_bench_arm64` (1,266,448 bytes, SHA-256: `FE89E23077CAE6C1FB6D606415D232B4C961E7DFFD96B57661FE9474DA12F723`).
+     * Đẩy nhị phân và chạy trực tiếp trên cả 2 điện thoại thật qua ADB (`/data/local/tmp/hce_isolated_ab_bench_arm64`). Toàn bộ 24 ảnh kết quả (Baseline A, Candidate B, Diff AB) được trích xuất trực tiếp từ thiết bị thật.
+     * **Tính xác định đa thiết bị (Cross-Device Determinism):** Kết quả pixel giữa Galaxy A07 và Galaxy A50s đạt **100% bit-exact tuyệt đối** trên toàn bộ 8 bộ ảnh chân dung ($\Delta = 0$).
+     * **Kiểm chứng âm tính (Negative Control):** Trường hợp nhà sư đầu trọc (`portrait_monk_bald_neg`) đạt **100% bit-exact pass-through** (chênh lệch pixel = 0, vùng mặt và nền da được cô lập hoàn hảo 100%).
+  2. **Khắc phục Khiếm khuyết 3 — Làm rõ Bản chất Vật lý của Suy giảm Texture trên Tóc Xoăn Ngắn & Tóc Mảnh:**
+     * **Hiện tượng suy giảm:** Trên chân dung nam tóc gợn sóng ngắn (`portrait_1_male_wavy`), độ giữ chi tiết bề mặt bị suy giảm **-17.82%** (Baseline A: 77.29%, Candidate B: 59.47%). Trên chân dung tóc vàng mảnh (`portrait_model1_blonde`), độ giữ chi tiết bề mặt suy giảm nghiêm trọng **-73.81%** (Baseline A: 85.52%, Candidate B: 11.71%).
+     * **Cơ chế vật lý gây lỗi:** Hàm lọc hướng dòng chảy `directionalFilter1D` tích phân dọc theo tiếp tuyến thẳng với bán kính $r=4$ (chiều dài 9 pixel). Khi áp dụng lên tóc lọn xoăn nhỏ có bán kính cong $R_{curve} < 5$ pixel, đoạn thẳng 9 pixel cắt ngang qua các đỉnh và thung lũng sóng kế cận, gây nhòe mờ cấu trúc vi mô. Đối với sợi tóc mảnh mờ (1-2 pixel), việc lấy mẫu song tuyến tính (bilinear interpolation) dọc theo hướng không liên tục hoạt động như một bộ lọc thông thấp (low-pass filter) phá hủy các sợi tóc tơ.
+     * **Chi phí tài nguyên CPU:** Tốc độ thực thi CPU của Candidate B chậm hơn **15x đến 19x** so với Baseline A (A07: 340-586ms vs 18-39ms; A50s: 776-1341ms vs 42-86ms). Bộ nhớ RSS đỉnh tăng gấp đôi (54 MB $\to$ 105 MB).
+     * **Kết luận thuật toán:** Bác bỏ áp dụng vô điều kiện bộ lọc `directionalFilter1D`. Nếu tích hợp trong tương lai, bắt buộc phải có điều kiện kích hoạt theo ngữ cảnh ($\text{coherence} > 0.65$, lọn tóc dài $R > 15\text{px}$) và phải được chuyển đổi thành Vulkan Compute Shader trên GPU.
+     * **Thành công vượt trội của `softChromaCompress`:** Hàm nén hyperbolic tangent triệt tiêu **25.5%** điểm ảnh cháy sáng trên tóc xoăn mà không gây lệch tông màu ($\Delta E_{00} < 0.25$), chi phí tính toán $O(1)$. Được đề xuất ưu tiên số 1 tích hợp vào shader GPU.
+  3. **Khắc phục Khiếm khuyết 4 — Đồng bộ & Đối chiếu Mốc Thời gian Vòng đời:**
+     * Khắc phục độ chênh lệch thời gian trong báo cáo TASK_042: Git commit `625f8b1d` thực hiện lúc `12:30:23 +0700` và command bus kết thúc lúc `12:29:42 +0700`. Các mốc 12:35 và 12:38 trong báo cáo cũ là dự phóng tương lai đã được đính chính hoàn toàn trong `08_WORKFLOW_TIMESTAMP_RECONCILIATION.md`.
+  4. **Khắc phục Khiếm khuyết 5 — Báo cáo & Phản hồi Google Drive:**
+     * Cổng tải lên Google Drive phản hồi HTTP 401 Unauthorized do runner thiếu quyền OAuth bên ngoài. Đã được ghi nhận trung thực và minh bạch theo quy chuẩn `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD`.
+     * Toàn bộ deliverables được đóng gói nguyên vẹn trong tệp cục bộ có kiểm tra mã băm SHA-256.
+  5. **Quy tắc Phòng hộ Sản phẩm (Production Firewall):**
+     * Giữ nguyên 100% mã nguồn sản xuất `HairPipelineV2` và `lib-core-graphics`. Không tiến hành porting mã vào production trong TASK_043.
+     * Bảo vệ ranh giới P0 đóng băng tuyệt đối (`tau_aspect = 1.80` bất biến).
+  6. **Hồ sơ Bàn giao & Gói Deliverables Hoàn chỉnh:**
+     * Thư mục báo cáo: `.ai/reports/TASK_043_TASK042_BENCHMARK_PROVENANCE_AND_TRUE_DEVICE_AB_CORRECTION/` gồm 11 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `10_REPORT_DRIVE_MIRROR.md`), thư mục dữ liệu thô `raw/` (chứa nhị phân C++, log ADB thiết bị, 24 ảnh đầu ra thiết bị thật), và thư mục `gallery/` (8 ảnh ghép so sánh 4 ô contact sheet).
+     * Gói nén deliverables: `CONVERT2_TASK043_REPORT_PACKAGE.zip` (21,520,935 bytes, SHA-256: `000A9C1211BFFC2232B5663C4A729336877ED92F810578FACF3A897B178052D3`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
