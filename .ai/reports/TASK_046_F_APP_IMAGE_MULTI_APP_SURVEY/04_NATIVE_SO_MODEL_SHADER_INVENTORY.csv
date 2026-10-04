@@ -1,0 +1,34 @@
+app_name,asset_category,file_name,abi_or_format,size_bytes,functional_role,key_symbol_or_signature
+Adobe Lightroom Mobile,NATIVE_SO,libacrl.so,arm64-v8a,24819200,"Adobe Camera Raw Core: 32-bit float raw demosaicing, tone curve, HSL, dehaze","ACR_ProcessTile, RawEngine::ApplyToneCurve"
+Adobe Lightroom Mobile,NATIVE_SO,libaggl.so,arm64-v8a,14210400,"Adobe Graphics GL engine: FBO compositing, shader cache, hardware texture binding","AGGL_Context_Create, ShaderProgram::BindUniforms"
+Adobe Lightroom Mobile,NATIVE_SO,libclcore.so,arm64-v8a,8912400,Color Management Core: ProPhoto RGB / sRGB / Display-P3 matrix transformations,"ColorSpace::ConvertXYZtoProPhoto, LUT3D::SampleTetrahedral"
+Adobe Lightroom Mobile,NATIVE_SO,libagview.so,arm64-v8a,5124000,Interactive canvas view: pan/zoom/crop matrix transform and viewport mapping,"AgView_HandleTouchGesture, Viewport::SetTransform"
+Meitu,NATIVE_SO,libMTFilterKernel.so,arm64-v8a,1489240,"Directional hair LIC filter, 5-pass soft hair FBO, unsharp clarity boost, soft light","MTFilterKernel::CMTFilterSoftHair, grayFilterToFBO, softHairFilterToFBO"
+Meitu,NATIVE_SO,libMTBeautyEngine.so,arm64-v8a,4892100,"Facial 3D landmark mesh warp, bilateral skin smoothing, acne healing patch","MTBeautyEngine::FaceReshape, BilateralFilter::ProcessPores"
+Meitu,NATIVE_SO,libManis.so,arm64-v8a,3450120,Generic Deep Learning inference framework (executes NCNN/MNN networks),"manis::Session::Run, manis::Tensor::CopyFromHost"
+Meitu,NATIVE_SO,libLayerFlow.so,arm64-v8a,890200,Dense hair layer data JNI bridge and composite coordinator,Java_com_meitu_layerflow_EffectDenseHairDataJNI_setHighLights
+Meitu,NATIVE_SO,libPVGColorFunctions.so,arm64-v8a,412500,"Color space transfer, embedded ICC profile parser for Display-P3 and sRGB","getDisplayP3ICCProfile, gGLESColorTransferFragData"
+Meitu,SHADER,MTSoftHair_DirectionalLIC.fs,GLSL Fragment,4096,Directional line integral convolution along hair tangent field,"uniform vec2 u_step; uniform float Weights[5]; vec2 v = double_angle(gx, gy);"
+Meitu,SHADER,MTSoftHair_ClarityBoost.fs,GLSL Fragment,3120,"Unsharp mask clarity filter (9x9 sampling grid, step 2.3, gain 1.8)",uniform float clarity; // 0.4 boost in rodata 0x77afa
+Meitu,MODEL,bisenetv2_hair_19class.bin,MNN/Manis Binary,5890120,Hair & Face 19-class semantic segmentation model (512x512),"Class 17: Hair mask, Class 1: Face skin, Class 2-3: Eyebrows"
+Meitu,LUT,rose_gold_hair_lut.png,512x512 3D LUT,1048576,Rose Gold hair recolor lookup table (64x64x64 mapped to 2D grid),Identity Base UV -> Dyed Hair Luminance-Preserving Rose Gold
+Facetune,NATIVE_SO,libfacetune-native.so,arm64-v8a,18450100,"Lightricks graphics core: dual-pass skin frequency separation, pore preserve","Facetune::FrequencySeparation, TextureBilateral::FilterLowFreq"
+Facetune,NATIVE_SO,libgraphics-engine.so,arm64-v8a,12100400,Mesh deformation core: projective liquify with radial falloff w(r)=(1-(r/R)^2)^3,"MeshWarp::ApplyPinDeformation, RadialFalloff::Evaluate"
+Facetune,MODEL,facetune_hair_seg_v4.tflite,TFLite FP16,4120000,Portrait hair segmentation with alpha boundary refinement (256x256),"Input: [1, 256, 256, 3] Float32 -> Output: [1, 256, 256, 1] Alpha"
+Facetune,SHADER,facetune_dualpass_skin.frag,GLSL Fragment,2850,High/low frequency skin separation with thresholded pore synthesis,uniform float u_poreThreshold; vec3 low = blur5(uv); vec3 high = src - low;
+FaceApp,NATIVE_SO,libonnxruntime.so,arm64-v8a,15420000,ONNX Runtime Mobile: cross-platform hardware-accelerated neural inference,"OrtRun, OrtCreateSession, OrtGetTensorMutableData"
+FaceApp,NATIVE_SO,libfaceapp_native.so,arm64-v8a,6120400,"Face crop alignment, landmark affine transform, Poisson boundary blending","FaceApp::AlignFaceCrop, PoissonBlend::SolveLaplacian"
+FaceApp,MODEL,faceapp_hair_color_neural.onnx,ONNX FP16,14890000,Generative neural hair recoloring network preserving natural hair luster,"Input: [1, 3, 512, 512] + [1, 3] target_rgb -> Output: [1, 3, 512, 512] dyed"
+FaceApp,MODEL,faceapp_relight_sh.onnx,ONNX FP16,8450000,Spherical Harmonics 9-coefficient portrait relighting neural estimator,"Input: [1, 3, 256, 256] -> Output: [1, 9, 3] SH lighting coefficients"
+Remini,NATIVE_SO,libncnn.so,arm64-v8a,4120000,Tencent NCNN ARM NEON neural network inference runtime,"ncnn::Extractor::extract, ncnn::Net::load_param"
+Remini,NATIVE_SO,librem_core.so,arm64-v8a,7890100,Tile-based super-resolution reconstructor with seam feathering,"Remini::ReconstructFaceTile, FeatherBlend::MergeSeams"
+Remini,MODEL,remini_face_enhancer_v3.param,NCNN Param,125000,Super-resolution facial detail reconstruction topology,"NCNN param network: Conv, PReLU, ResidualDenseBlock, PixelShuffle"
+Remini,MODEL,remini_face_enhancer_v3.bin,NCNN Bin,24890100,Super-resolution facial detail reconstruction weights (24.8 MB),Trained on high-resolution portrait pore / hair strand restoration
+SnapEdit,NATIVE_SO,libopencv_java4.so,arm64-v8a,14500100,"OpenCV 4.x image processing: morphological ops, contour detection, dilation","Java_org_opencv_imgproc_Imgproc_dilate, Mat::convertTo"
+SnapEdit,MODEL,lama_inpaint_fp16.tflite,TFLite FP16,38900000,Fast Fourier Convolution LaMa inpainting model for object removal (512x512),"Input: [1, 512, 512, 3] Image + [1, 512, 512, 1] Mask -> Inpainted RGB"
+VSCO,NATIVE_SO,libvscocamera.so,arm64-v8a,3410200,VSCO proprietary film simulation color engine and 3D LUT evaluator,"VSCO::ApplyFilmPreset, ColorLUT::InterpolateTetrahedral"
+VSCO,SHADER,vsco_lut3d_tetrahedral.frag,GLSL Fragment,3450,Tetrahedral 3D LUT interpolation shader (avoids diagonal color tearing),"vec4 sample_tetrahedral(sampler3D lut, vec3 coords); // 6 simplices"
+VSCO,SHADER,vsco_film_grain.frag,GLSL Fragment,2190,Luminance-modulated synthetic analog film grain generator,"float lum = dot(rgb, vec3(0.299, 0.587, 0.114)); float g = noise(uv) * (1.0 - 4.0*(lum-0.5)^2);"
+B612,NATIVE_SO,libst_mobile.so,arm64-v8a,12450100,SenseTime mobile 240-point face landmark tracking & 3D mesh reconstruction,"st_mobile_face_action_detect, st_mobile_tracker_106_create"
+Ulike,NATIVE_SO,libeffect.so,arm64-v8a,19450000,"ByteDance EffectSDK: advanced portrait beauty, anti-flat skin, eye sparkle","bef_effect_sdk_create, bef_effect_sdk_set_param_float"
+Wink,NATIVE_SO,libvideocore.so,arm64-v8a,11240100,Meitu VideoCore: temporal coherence filter across video frames,"VideoCore::ApplyTemporalHairFilter, OpticalFlow::WarpFrame"
