@@ -95,4 +95,21 @@
   2. Sao chép và tổ chức lại toàn bộ 73 tệp hiện vật bằng chứng thô thực tế vào `raw_evidence/` và lập `RAW_EVIDENCE_MANIFEST.json` với mã băm bitwise SHA-256 độc lập.
 - **Quy tắc phòng ngừa:** Mọi báo cáo tái cấu trúc nhị phân bắt buộc phải có bước tiền kiểm tra băm tự động đối chiếu trực tiếp với tệp `.so` trong `jniLibs/arm64-v8a` trước khi xuất xưởng bảng phân loại hàm.
 
+---
+
+### [ERR-010] Sai lệch định danh và giả định tên nhân tạo (Synthetic Names) trong khảo sát đa ứng dụng (TASK_046 / TASK_052B)
+- **Thời điểm phát hiện:** 2026-10-04 trong quá trình thực thi kiểm toán nhị phân sâu `TASK_052B`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong khảo sát sơ bộ `TASK_046`, nhiều nhận định được suy diễn từ lý thuyết hoặc tên gọi desktop thay vì kiểm tra trực tiếp hiện vật nhị phân thực tế trên đĩa:
+     * Gán thư viện Adobe Camera Raw (`libacrl.so`, `libaggl.so`, `libclcore.so`, `libagview.so`) cho gói `com.adobe.lrmobile`, trong khi tệp APK thực tế trên đĩa là bộ cài Uptodown App Store (`com.uptodown` v7.39) chứa `libuptodown-native.so`.
+     * Gán mô hình cục bộ (`faceapp_hair_color_neural.onnx`) và thư viện C++ (`libfaceapp_native.so`) cho FaceApp, trong khi gói APK của FaceApp chứa 0 tệp `.so` và xử lý hoàn toàn qua Cloud GPU API.
+     * Gán Tencent NCNN (`libncnn.so`) và `librem_core.so` cho Remini, trong khi phân tích ELF thực tế chứng minh Remini sử dụng Microsoft ONNX Runtime (`libonnxruntime.so` 19.3MB) và Javet V8 (`libjavet-v8-android.v.4.1.4.so` 69.0MB).
+     * Gộp các module độc lập của Facetune (`libfacetune.so`, `librender.so`, `libtech_transfer_color_transfer.so`, `libvideo_engine.so`, `libxeno_native.so`) thành tên giả định `libfacetune-native.so` và `libgraphics-engine.so`.
+     * Nhầm lẫn thư viện FullStory analytics (`libfs-native.so`) thành bộ lọc tần số da (Frequency Separation).
+- **Giải pháp triệt để:**
+  1. Triển khai công cụ trích xuất nhị phân tự động dựa trên `pyelftools` phân tích trực tiếp từng byte ELF: tính toán mã băm SHA-256 độc lập, trích xuất GNU Build-ID (`.note.gnu.build-id`), liệt kê bảng ký hiệu xuất khẩu dynamic `.dynsym`, và chuỗi hằng số `.rodata`.
+  2. Lập báo cáo tái kiểm toán `02_TASK046_REAUDIT_AND_GROUND_TRUTH_RECONCILIATION.md`, đánh dấu rõ ràng `FABRICATED_SYNTHETIC` đối với 14 nhận định sai lệch, hạ cấp `UNVERIFIED_DOWNGRADED` đối với 3 nhận định suy diễn, và xác thực `OBSERVED_ON_DISK` đối với 6 nhận định có chứng cứ vật lý thực tế.
+  3. Xây dựng cây tri thức 14 ứng dụng và 447 thư viện `.so` dựa trên 100% bằng chứng thô xác thực trên đĩa.
+- **Quy tắc phòng ngừa:** TUYỆT ĐỐI CẤM sử dụng tên file, tên mô hình, hoặc tên hàm mang tính giả định/phỏng đoán (Synthetic Names). Mọi nhận định kỹ thuật phải liên kết tới mã băm SHA-256, GNU Build-ID, và đường dẫn tệp nhị phân vật lý trên đĩa.
+
 

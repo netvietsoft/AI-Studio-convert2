@@ -92,3 +92,15 @@
   4. Lấy mẫu tích phân đường cong có hướng (Line-Integral Convolution) dọc theo vector tiếp tuyến của sợi tóc.
   5. Hòa trộn màu nhuộm bằng công thức toán học **Pegtop SoftLight**: $f(a,b) = (1.0 - 2.0b)a^2 + 2.0ba$ kết hợp Unsharp Mask factor $0.4 \times 1.8$, bảo lưu $100\%$ độ sâu vi sợi tóc và không bao giờ gây bệt màu.
 
+---
+
+### [ACQ-008] Khung Phân Tích So Sánh Kiến Trúc Đồ Họa C++ Đa Ứng Dụng (Multi-App Native SO Architecture & Reverse Engineering Knowledge Base)
+- **Bối cảnh:** Dự án CONVERT2 cần thấu suốt các kỹ thuật đỉnh cao của 14 ứng dụng hàng đầu trong thư mục `F:\App\Image` (Meitu, Facetune, Ulike, Remini, Picsart, VSCO, B612...) để chắt lọc tinh hoa cho lõi C++ Native Engine V4 mà vẫn tuyệt đối tuân thủ Clean-Room Reimplementation.
+- **Tri thức & Bài học thu nhận:**
+  1. **Hệ sinh thái Bytedance / Ulike:** Sử dụng `libeffect.so` (26.89MB) và runtime `libbytenn.so` (2.3MB). Áp dụng kỹ thuật Anti-Flat Skin tái tạo độ tán xạ dưới da (Subsurface Scattering approximation) ngăn chặn hiện tượng da bệt như tượng sáp.
+  2. **Hệ sinh thái SenseTime / B612:** Sử dụng `libst_mobile.so` (14.58MB) theo dõi 240 điểm mốc khuôn mặt theo thời gian thực kết hợp ma trận 3D mesh warp.
+  3. **Hệ sinh thái Lightricks / Facetune:** Phân rã kiến trúc thành `libfacetune.so` (1.39MB) phục vụ tái dựng mô hình khuôn mặt 3DMM (`Face3DMM`) và `librender.so` (735KB). Các mô hình nơ-ron phân đoạn ảnh selfie (`selfiesegmentation_mlkit-256x256-2021_01_19-v1215.f16.tflite` 249KB) kết hợp bộ lọc chuyển màu đa không gian (`libtech_transfer_color_transfer.so`).
+  4. **Hệ sinh thái Remini (Bending Spoons):** Kết hợp Microsoft ONNX Runtime (`libonnxruntime.so` 19.3MB) với máy ảo V8 (`libjavet-v8-android.v.4.1.4.so` 69.0MB) để thực thi mạng phục chế siêu phân giải dạng khối chồng lấn (overlapping tile reconstruction).
+  5. **Hệ sinh thái VSCO:** Tách biệt lõi xử lý màu `libvscocore.so` (6.9MB) và tầng giao tiếp Rust UniFFI (`libuniffi_cel.so` 2.1MB), áp dụng phép nội suy 3D LUT tứ diện (Tetrahedral Interpolation - 6 simplices) triệt tiêu hoàn toàn hiện tượng rách màu đường chéo.
+  6. **Hệ sinh thái PicsArt:** Triển khai lõi `libpilibs.so` (30.48MB) với các thuật toán đồ họa xử lý điểm ảnh chuyên biệt: Bucket Flood Fill (`libbucketfill.so`) và Smudge Brush Tool (`libsmudgetool.so`).
+
