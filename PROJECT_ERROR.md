@@ -110,3 +110,17 @@
      - Remini: Sử dụng `libonnxruntime.so` và mô hình cục bộ `assets/ad_abandonment_android_enhance_xgb.onnx`, tính năng siêu phân giải phục hồi chân dung chạy qua cụm máy chủ.
      - Hệ sinh thái Meitu (Meitu, BeautyPlus, Wink): Chia sẻ dùng chung lõi C++ Native (`libMTFilterKernel.so`, `libVERenderer.so`, `libManis.so`, `libarkernel3.so`, `libPVGColorFunctions.so`).
 - **Quy tắc phòng ngừa:** TUYỆT ĐỐI CẤM đặt tên mô hình hoặc thư viện theo giả định lý thuyết. Mọi tệp tài nguyên đưa vào Knowledge Base bắt buộc phải có đường dẫn thực nghiệm, kích thước byte chính xác và mã băm SHA-256 bitwise.
+
+---
+
+### [ERR-011] Stale Dispatch Provenance and Unintegrated Command Bus State (TASK_054 -> TASK_055)
+- **Thời điểm phát hiện:** 2026-10-05 trong chu kỳ kiểm toán tự trị `TASK_055`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong chu kỳ `TASK_054`, dispatcher GitHub Actions (`convert2-dispatcher[bot]`) tạo lệnh với run ID `37242297847` và phân rã các làn con `TASK_054B..G` vào `.ai/commands/pending/`. Tuy nhiên do cơ chế ACK timeout 90s, dispatcher đánh dấu `dispatch_error: "Worker ACK timeout"` và hoàn trả trạng thái về `PENDING`.
+  2. Worker cục bộ khi thực thi TASK_054 đã lưu trữ run ID cũ `37237229130` và commit SHA cũ `284cd0c5...` vào `.ai/state.json`, đồng thời bỏ sót bước tích hợp và chuyển giao 10 lệnh phân làn từ `.ai/commands/pending/` sang `completed/`.
+- **Giải pháp triệt để:**
+  1. Kích hoạt vai trò Dispatch Integrator trong `TASK_055`: Rà soát toàn bộ hàng đợi `.ai/commands/pending/`, gắn kèm hợp đồng lease, execution identity và chuyển giao toàn bộ 10 lệnh phân làn con sang `.ai/commands/completed/`.
+  2. Cập nhật `.ai/commands/index.json` chuẩn hóa số đếm (pending = 1, completed = 59) và cập nhật đồng bộ các tệp trạng thái tại `.ai/state/tasks/`.
+  3. Reconcile chính xác `github_run_id: "37242297847"` và các mã băm đầy đủ 40 ký tự hex vào `.ai/state.json`.
+- **Quy tắc phòng ngừa:** Mỗi tác vụ điều phối song song bắt buộc phải có bước Dispatch Integration Pass cuối chu kỳ để xác nhận 100% lệnh trong command bus được dọn dẹp và nghiệm thu hoàn tất trước khi báo cáo kết thúc nhiệm vụ.
+
