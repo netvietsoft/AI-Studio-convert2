@@ -1,0 +1,40 @@
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json; charset=UTF-8
+X-GUploader-UploadID: AP6rU81zRBmkU6LhxcWd2eMFAFYxmi2MU_oiPk7M1Wo73l3NJGVNkuiUP1NN4TNWV0Yz4JetzBoI7PM
+Date: Sun, 04 Oct 2026 12:09:49 GMT
+Server: ESF
+WWW-Authenticate: Bearer realm="https://accounts.google.com/"
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+Content-Length: 825
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+{
+  "error": {
+    "code": 401,
+    "message": "Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.",
+    "errors": [
+      {
+        "message": "Login Required.",
+        "domain": "global",
+        "reason": "required",
+        "location": "Authorization",
+        "locationType": "header"
+      }
+    ],
+    "status": "UNAUTHENTICATED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "CREDENTIALS_MISSING",
+        "domain": "googleapis.com",
+        "metadata": {
+          "method": "google.apps.drive.v3.DriveFiles.Create",
+          "service": "drive.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+

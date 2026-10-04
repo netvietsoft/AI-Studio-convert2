@@ -1840,3 +1840,51 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+---
+
+## [2026-10-04 17:50:00] BÁO CÁO THỰC THI: TASK_049 — TOÀN DIỆN VISUAL QA VÀ KIỂM ĐỊNH THỰC NGHIỆM PHÂN HỆ BODY BEAUTY TRÊN THIẾT BỊ VẬT LÝ
+- **Mã nhiệm vụ:** `TASK_049_BODY_VISUAL_QA_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Thiết bị thử nghiệm:** Samsung Galaxy A07 (`SM-A075F`) và Samsung Galaxy A50s (`SM-A507FN`)
+- **Bản dựng APK:** `app-debug.apk` (SHA256: `1D8B81ECEEE9400850A6A69B073D72D01C5C007062E408F9CE986934ABE4D0D1`)
+- **Nội dung:** Đo kiểm 22 kịch bản làm đẹp cơ thể, kiểm soát độ biến dạng nền và bảo vệ trang phục, phụ kiện.
+- **Mã nguồn can thiệp:** Commit `a42be430d6d4dce14988b236d27a4ca006ca1655` (đấu nối 7 công cụ body vào UI PhotoEditorActivity và giới hạn tọa độ neck ROI trong `neck_clavicle_engine.cpp`).
+
+---
+
+## [2026-10-04 19:20:00] BÁO CÁO THỰC THI & KHÉP KÍN BẰNG CHỨNG THỊ GIÁC: TASK_050 — TASK049 BODY VISUAL EVIDENCE & PROVENANCE CLOSURE
+- **Mã nhiệm vụ:** `TASK_050_TASK049_BODY_VISUAL_EVIDENCE_PROVENANCE_CLOSURE_ACTIVE`
+- **Mã lệnh:** `TASK_050A_TASK049_BODY_EVIDENCE_EXECUTION_20261004T191000+0700`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Làn thực thi (Lane):** `body-visual-evidence-provenance-closure`
+- **Thiết bị vật lý thật:**
+  1. Samsung Galaxy A07 (`SM-A075F`, Android 15 API 35, Helio G99 / MT6789, Mali-G57 MC2)
+  2. Samsung Galaxy A50s (`SM-A507FN`, Android 11 API 30, Exynos 9611, Mali-G72 MP3)
+- **Chuỗi nguồn gốc Git chuẩn mực (Canonical Provenance):**
+  - Baseline Commit: `5ed3b587aabd26ecb4fadc49e785999088f62cbb`
+  - Implementation Fix Commit: `a42be430d6d4dce14988b236d27a4ca006ca1655` (wring body tools & clamp neck coordinates)
+  - QA Report Commit: `26f6846ded1814c90d9e91c24157fc4fd02f321d`
+  - Canonical Target Commit: `7b085fb8a539d463a00f8d53e8aa4a15b3ab7880`
+  - Khắc phục triệt để mã băm commit 9 ký tự bị cắt ngắn `1d8971d67`.
+- **Đính chính trung thực báo cáo TASK_049:**
+  - Thu hồi và thay thế nhận định sai lệch "No code modifications required" trong `10_DEFECTS_FIXES.md` bằng tài liệu đối soát chi tiết diff của commit `a42be430d`.
+  - Khẳng định nguyên tắc tối cao: Số liệu tự động chỉ là bằng chứng hỗ trợ, quyết định nghiệm thu cuối cùng thuộc về cổng thẩm định thị giác của Chủ tịch Tony và ChatGPT.
+- **Bằng chứng phần cứng cho kịch bản nhiều người (MULTI_PERSON):**
+  - Sử dụng ảnh chân dung thực tế 2 người `photo_17_2026-09-25_21-30-16.jpg` (1280x576).
+  - Chạy thực tế trên cả 2 thiết bị vật lý `SM-A075F` và `SM-A507FN`.
+  - Trên `SM-A507FN`: Tách biệt hoàn hảo đối tượng chính, làm thon gọn cơ thể chính xác tại vùng y [959, 1255], người bên cạnh và nền hoàn toàn nguyên vẹn 0 pixel biến đổi.
+  - Trên `SM-A075F`: Cơ chế an toàn MoveNet kích hoạt NO-OP (0 pixel biến đổi), ngăn chặn tuyệt đối rủi ro làm méo người xung quanh.
+  - Tạo bảng tiếp xúc 5 khung hình chân thực (`12_MULTI_PERSON.png`, 3.18 MB) thay thế bảng chẩn đoán văn bản trước đó.
+- **Báo cáo trạng thái Report Drive:**
+  - Thực hiện kiểm tra live tới Google Drive API folder `13xDIqiI-vyP10pkypLI_6palmeJS-QRg`.
+  - Ghi nhận trung thực phản hồi `HTTP 401 Unauthorized` do môi trường tự động không có token OAuth.
+  - Thiết lập trạng thái `BLOCKED_DRIVE_UPLOAD` theo đúng quy định tại Điều XI của Master Standard.
+  - Lưu giữ toàn vẹn gói đóng gói cục bộ `CONVERT2_TASK_049_BODY_VISUAL_GALLERY.zip` và `CONVERT2_TASK_050_CLOSURE_PACKAGE.zip` (SHA256: `8F303C3F59E5B2F54D19C64ECB7729ADD1BD8EF6D9AA9E1AF264040E299F034B`).
+- **Hồ sơ báo cáo bàn giao hoàn chỉnh:**
+  - Trọn bộ 11 tài liệu và dữ liệu thô tại `.ai/reports/TASK_050_TASK049_BODY_VISUAL_EVIDENCE_PROVENANCE_CLOSURE/`.
+  - Bằng chứng thị giác thô tại `.ai/evidence/visual/TASK_050/`.
+- **Kết luận thẩm định:**
+  $$\mathbf{VERDICT:\ OWNER\_VISUAL\_REVIEW\_REQUIRED}$$
+  (Dừng tại cổng bàn giao thẩm định thị giác, không tự tuyên bố PASS).

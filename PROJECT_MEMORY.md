@@ -752,3 +752,28 @@ etBin == 0.
      - Phân hệ Hair Module chính thức chuyển sang trạng thái: **COMPLETED_FROZEN**. (feat(hair): TASK_022 hair full e2e physical device visual acceptance and closure)
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+---
+
+## 16. KHÉP KÍN BẰNG CHỨNG NGUỒN GỐC VÀ THỊ GIÁC PHÂN HỆ BODY BEAUTY (TASK_050) (2026-10-04)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_050 — TASK049 BODY VISUAL EVIDENCE & PROVENANCE CLOSURE — ACTIVE` (Doc ID: `1wSWxcUrUqDwLoz1pguy1SbgH002WppiswfSaIJ7qllo`).
+- **Làn thực thi:** `body-visual-evidence-provenance-closure`.
+- **Nội dung thực thi & giải quyết dứt điểm:**
+  1. *Khóa chuỗi nguồn gốc Git chuẩn mực:*
+     - Baseline Commit: `5ed3b587aabd26ecb4fadc49e785999088f62cbb`.
+     - Implementation Fix Commit: `a42be430d6d4dce14988b236d27a4ca006ca1655` (đấu nối 7 body tools vào UI `PhotoEditorActivity.kt` và kẹp biên an toàn trong `neck_clavicle_engine.cpp`).
+     - QA Report Commit: `26f6846ded1814c90d9e91c24157fc4fd02f321d`.
+     - Canonical Target Commit: `7b085fb8a539d463a00f8d53e8aa4a15b3ab7880`.
+     - Xử lý dứt điểm chuỗi SHA 9 ký tự bị cắt ngắn `1d8971d67`.
+  2. *Sửa đổi trung thực báo cáo TASK_049:*
+     - Thay thế tuyên bố sai "No code modifications required" bằng bản đối soát diff mã nguồn chính xác.
+     - Khẳng định mọi điểm số tự động chỉ là tài liệu tham chiếu; cổng thị giác của Chủ tịch Tony và ChatGPT là cổng quyết định.
+  3. *Bổ sung đầy đủ bằng chứng thực nghiệm nhiều người (Multi-person):*
+     - Triển khai ảnh thực tế `photo_17_2026-09-25_21-30-16.jpg` trên Samsung Galaxy A07 (`SM-A075F`) và Samsung Galaxy A50s (`SM-A507FN`).
+     - Xác nhận cách ly người đứng cạnh và nền với 0 pixel biến đổi (SM-A507FN: 22,534 px biến đổi chỉ ở người chính; SM-A075F: kích hoạt MoveNet boundary safety guard, 0 px biến đổi).
+     - Thay thế ảnh chẩn đoán giả định bằng bảng tiếp xúc 5 khung hình thực tế (`12_MULTI_PERSON.png`, 3.18 MB).
+  4. *Ghi nhận trung thực cổng Report Drive:*
+     - Trạng thái `BLOCKED_DRIVE_UPLOAD` được ghi nhận trung thực kèm log HTTP 401 Unauthorized do thiếu OAuth token.
+     - Lưu trữ gói giải pháp `CONVERT2_TASK_050_CLOSURE_PACKAGE.zip` (SHA256: `8F303C3F59E5B2F54D19C64ECB7729ADD1BD8EF6D9AA9E1AF264040E299F034B`).
+  5. *Bàn giao cổng thẩm định:*
+     - Trạng thái hệ thống: `OWNER_VISUAL_REVIEW_REQUIRED`. Tuyệt đối không tự ý chuyển thành PASS.
