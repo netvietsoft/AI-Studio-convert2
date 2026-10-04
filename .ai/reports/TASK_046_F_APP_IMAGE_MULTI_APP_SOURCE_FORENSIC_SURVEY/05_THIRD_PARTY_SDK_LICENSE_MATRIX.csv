@@ -1,0 +1,15 @@
+sdk_name,category,vendor_origin,license_type,apps_present,binary_signature,cleanroom_reimplement_risk,convert2_relevance
+Meitu ARKernel / MTFilterKernel,Graphics Engine,Meitu Inc.,Proprietary Commercial,"Meitu, BeautyPlus, Wink","libARKernelInterface.so, libMTFilterKernel.so",HIGH_IF_COPIED / ZERO_IF_CLEANROOM,CRITICAL_REFERENCE (P1-P6 Architecture Benchmark)
+ByteDance EffectSDK / AGFX,Graphics & AI Engine,ByteDance Ltd.,Proprietary Commercial,"Ulike, SnapEdit","libAGFX.so, libxeno_native.so",HIGH_IF_COPIED / ZERO_IF_CLEANROOM,HIGH (Real-Time Camera Preview & Clothes Seg)
+Lightricks Xeno Render Graph,Render Graph Engine,Lightricks Ltd.,Proprietary Commercial,Facetune,"libxeno_native.so, libface_detector_v2_jni.so",HIGH_IF_COPIED / ZERO_IF_CLEANROOM,CRITICAL_REFERENCE (3DMM Mesh & Render Graph)
+SenseTime SenseME SDK,Face AR & 3D Mesh,SenseTime Group Ltd.,Proprietary Commercial,B612,"libst_mobile.so, M_SenseME_*.model",HIGH_IF_COPIED / ZERO_IF_CLEANROOM,"HIGH (Dense 2,396-point Mesh Topologies)"
+Microsoft ONNX Runtime,AI Inference Engine,Microsoft Corp.,Open Source (MIT),Remini,"libonnxruntime.so, libonnxruntime4j_jni.so",SAFE (Permissive MIT License),HIGH (Edge ONNX Inference on Android)
+TensorFlow Lite (LiteRT),AI Inference Engine,Google LLC,Open Source (Apache 2.0),"Facetune, VSCO, FaceApp, SnapEdit","libtensorflowlite_jni.so, *.tflite",SAFE (Permissive Apache 2.0),MEDIUM (Mobile NPU/GPU Inference Standard)
+Google MediaPipe,Vision Pipeline,Google LLC,Open Source (Apache 2.0),"FaceApp, SnapEdit, Facetune",selfiesegmentation_mlkit-*.tflite,SAFE (Permissive Apache 2.0),HIGH (Hair / Portrait Segmentation Baseline)
+FFmpeg / FFmpegKit,Media Framework,FFmpeg Project / Taner Sener,Open Source (LGPL 3.0 / GPL 3.0),"SnapEdit, Meitu, Wink","libffmpegkit.so, libavcodec.so",MEDIUM (LGPL Linking Rules Apply),HIGH (Video Export & Frame Extraction)
+Javet V8 JavaScript Bridge,Scripting Engine,Cao Cao / Google,Open Source (Apache 2.0),Remini,libjavet-v8-android.*.so,SAFE (Permissive Apache 2.0),LOW (Dynamic Remote Workflows)
+Mozilla UniFFI / Rust Core,Language FFI Bridge,Mozilla / VSCO,Open Source (MPL 2.0 / Apache 2.0),VSCO,libuniffi_cel.so,SAFE (Clean Architecture Pattern),HIGH (Cross-Platform Deterministic Math)
+Adjust SDK,Attribution & Analytics,Adjust GmbH,Proprietary Commercial,"B612, BeautyPlus, Wink, Future, FaceApp",com.adjust.sdk.*,COMMODITY (No Image Value),NONE (Exclude from Core Engine)
+AppsFlyer SDK,Attribution & Analytics,AppsFlyer Ltd.,Proprietary Commercial,"Future, VSCO, Remini",com.appsflyer.*,COMMODITY (No Image Value),NONE (Exclude from Core Engine)
+Google Play Billing Library,Monetization IAP,Google LLC,Proprietary Android SDK,All 14 Apps,com.android.billingclient.*,COMMODITY (Platform Required),LOW (App Shell Only)
+PairIP / Play Integrity,Anti-Tamper & Security,Google LLC,Proprietary Android SDK,"SnapEdit, FaceApp, Remini",com.pairip.licensecheck.*,COMMODITY (Platform Security),LOW (Security Shell Only)

@@ -1,0 +1,33 @@
+{
+  "task_id": "TASK_046_F_APP_IMAGE_MULTI_APP_SOURCE_FORENSIC_SURVEY_ACTIVE",
+  "root_surveyed": "F:\\App\\Image",
+  "survey_mode": "READ-ONLY",
+  "apps_surveyed": [
+    "B612",
+    "Beauty Plus",
+    "com.adobe.lrmobile",
+    "com.lightricks.facetune.free",
+    "com.mt.mtxx.mtxx",
+    "Future",
+    "io.faceapp",
+    "PicArt",
+    "Remini",
+    "snapedit.app.remove",
+    "Time Warp Scan",
+    "Ulike",
+    "VSCO",
+    "Wink"
+  ],
+  "environment": {
+    "os": "Microsoft Windows",
+    "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "runner": "GITHUB_ACTIONS_37182953678 / CONVERT2-WINDOWS-02"
+  },
+  "commands_executed": [
+    "Get-ChildItem -Path 'F:\\App\\Image'",
+    "python -c 'inspect_apks_and_dex'",
+    "python -c 'scan_models_and_shaders'",
+    "python scratch/generate_task046_evidence.py",
+    "python scratch/generate_task046_markdowns.py"
+  ]
+}
