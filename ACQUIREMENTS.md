@@ -101,5 +101,18 @@
   2. **Toán học nắn bóp Liquify của Lightricks (Facetune):** Hàm suy giảm bán kính bậc 3 (cubic radial falloff) $\vec{d}(p) = \vec{v} \cdot (1 - \frac{|p - c|^2}{R^2})^3$ đảm bảo độ mượt vi sai $C^1$ tại biên bán kính $R$, triệt tiêu hoàn toàn hiện tượng xé hình/rách pixel thường gặp ở các thuật toán Affine lưới thô.
   3. **Khoa học màu sắc & Nội suy khối đa diện 3D LUT (VSCO):** VSCO chia mỗi voxel lập phương của khối 3D LUT thành 6 tứ diện (simplices), giúp phép nội suy màu luôn bảo toàn tính đơn điệu của không gian màu, loại bỏ hiện tượng răng cưa màu (color banding) trên vùng da chuyển sắc.
   4. **Chuẩn hóa mô hình AI thị giác di động:** Facetune và SnapEdit đều tin dùng mô hình Google MediaPipe SelfieSegmentation FP16 (256x256, 1215 ops), chứng minh hiệu năng và độ ổn định vượt trội so với các mô hình tự huấn luyện cồng kềnh trên Android.
+---
 
-
+### [ACQ-009] Kiến Trúc Lõi Đồ Họa Ảnh Tĩnh Đa Phân Hệ (6 Core Static Image Effect Pipelines)
+- **Bối cảnh:** Nhiệm vụ `TASK_052A` yêu cầu giải mã toàn diện các thuật toán xử lý ảnh tĩnh trong 45 thư viện nhị phân nhà cung cấp (`libMTFilterKernel.so`, `libLayerFlow.so`, `libPVGColorFunctions.so`, `libarkernel3.so`).
+- **Quy luật kiến trúc đúc kết:**
+  1. **Nhuộm Tóc Tự Nhiên (Anisotropic LIC + Pegtop SoftLight):**
+     - Thực thi qua 5 FBO passes: Chuyển đổi Luminance BT.601 $\to$ Trường ten-xơ hướng góc kép Sobel $\to$ 2 pass làm mờ Gaussian khả tách 5-tap $\to$ Tích phân đường cong có hướng (LIC) kết hợp công thức Pegtop SoftLight $f(a,b) = (1 - 2b)a^2 + 2ba$ và hệ số sắc nét vi mô 0.4.
+  2. **Mịn Da Bảo Toàn Vi Lỗ Chân Lông (Bilateral + High-Pass Pore Retention):**
+     - Sử dụng bộ lọc song phương $\sigma_s = 3.5, \sigma_r = 0.12$. Sau đó trích xuất thành phần tần số cao (High-Pass) và bù lại vào ảnh mịn với hệ số $\ge 75\%$, bảo vệ 100% cấu trúc ngũ quan bằng mặt nạ đa giác landmark.
+  3. **Nắn Dáng Thể Hình Không Xé Hình (Cubic Radial Falloff):**
+     - Áp dụng biểu thức $\vec{d}(p) = \vec{v} \cdot (1 - \frac{|p-c|^2}{R^2})^3$, triệt tiêu đạo hàm bậc 1 tại biên $R$ giúp bảo toàn tuyệt đối vùng phông nền và nội suy subpixel bicubic mượt mà.
+  4. **Phối Màu Điện Ảnh 3D LUT (Tetrahedral Simplex & NEON HSL):**
+     - Bọc ma trận LUT $64^3$ vào ảnh vuông 512x512, nội suy 4 đỉnh tứ diện đơn điệu tránh răng cưa màu, tăng tốc vector ARM64 NEON cho cân bằng sắc thái màu HSL.
+  5. **Xóa Phông Portrait Bokeh Quang Học:**
+     - Tính toán vòng tròn Circle of Confusion (CoC) theo cự ly lấy nét, lấy mẫu Poisson Disc có trọng số lũy thừa $L^{2.5}$ để tạo đĩa sáng bokeh lấp lánh như ống kính máy ảnh DSLR.
