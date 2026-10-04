@@ -1736,3 +1736,47 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+### TASK_047 — IMAGE EFFECT GRAPH DEEP MAPPING (PERSISTENT KNOWLEDGE BASE & HAIR GATE)
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Protocol:** `CONVERT2_COMMAND_V2`
+- **Standard:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Phạm vi hoàn thành:** Xây dựng Đồ thị Hiệu ứng Hình ảnh (Image Effect Graph) chuyên sâu khép kín, hợp nhất toàn bộ kết quả phân tích kỹ thuật từ TASK_036/038/039/040/041/042/044/045/046 thành một Cơ sở Tri thức Kỹ thuật Đảo ngược Sạch bền vững tại `.ai/reverse_engineering/` và `REVERSE_ENGINEERING_KNOWLEDGE_INDEX.md`.
+- **Luồng thực thi (Execution Lane):** `image-effect-graph-deep-mapping`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-02` (Physical Windows Host)
+- **Cổng Nghiệm Thu Tóc (Hair Completion Gate):** **`PASS — 8/8 GIAI ĐOẠN KHÉP KÍN ĐẠT CHUẨN PROVEN`**
+- **Lệnh Cấm Triển Khai V4:** **`TUÂN THỦ TUYỆT ĐỐI — ĐÓNG BĂNG MÃ NGUỒN, KHÔNG TRIỂN KHAI V4`**
+- **Kết luận thẩm định (Final Gate Verdict):** **`PASS`**
+
+#### 1. Các Kết Quả Đạt Được:
+1. **Khép Kín 8 Giai Đoạn Của Đồ Thị Tóc P0 (Hair Completion Gate PASS):**
+   - Giai đoạn 1: `mask/segmentation` -> BiSeNetV2 Class 17 (`bisenetv2_hair_19class.bin` / MNN) -> **PROVEN**.
+   - Giai đoạn 2: `alpha/matting/hairline` -> Guided Filter Sub-pixel Matting (`hairMaskFilterToFBO` RVA `0x000f4400`) -> **PROVEN**.
+   - Giai đoạn 3: `luminance/feature extraction` -> Độ chói BT.601 (`GrayFilterToFBO` RVA `0x000f42fc`, GLSL `0x804fc`) -> **PROVEN**.
+   - Giai đoạn 4: `orientation/structure field` -> Ten-xơ góc đôi và lọc Gauss tách rời 5 điểm (`Weights[5]` tại `0x8edd8`) -> **PROVEN**.
+   - Giai đoạn 5: `directional texture processing` -> Tích phân đường định hướng 21-tap LIC dọc sợi tóc (`SoftHairFilterToFBO` RVA `0x134d90`, `kernel[10]` tại `0x8fd64`) -> **PROVEN**.
+   - Giai đoạn 6: `recolor/blend` -> Hòa trộn Pegtop Soft Light không rẽ nhánh GPU (`blendSoftLight` tại `0x82369`) -> **PROVEN**.
+   - Giai đoạn 7: `shine/clarity` -> 9x9 Unsharp Mask và tăng cường độ trong trẻo 0.4 (`MTSoftHairFilter.cpp` tại `0x77afa`) -> **PROVEN**.
+   - Giai đoạn 8: `compositing/output` -> Alpha Composite khóa 100% vùng không can thiệp (Zero Leakage) -> **PROVEN**.
+2. **Mở Rộng Đồ Thị Toàn Diện Cho 5 Phân Hệ Bổ Trợ:**
+   - Da mặt: Lọc song phương phân tách tần số kép bảo vệ lỗ chân lông $\ge 75\%$.
+   - Vóc dáng: Nắn bóp Liquify có điều chế mặt nạ người bảo vệ nền không méo 100%.
+   - Màu sắc: Nội suy 3D LUT khối tứ diện liên tục $C^0$ và đường cong Spline bậc 3.
+   - Trang điểm: Lưới biến dạng tam giác theo 106 điểm mốc khuôn mặt và nhũ bóng 3D.
+   - Xóa vật thể: Tích chập Fourier LaMa trong miền tần số và hòa trộn biên Poisson.
+3. **Danh Mục Minh Bạch Các Điểm Chưa Giải Mã (Unknowns) & Kế Hoạch Nghiên Cứu:**
+   - Liệt kê cụ thể 5 khoảng trống kỹ thuật (48 bảng màu LUT Meitu, thích ứng ngưỡng tóc bạc, tóc xoăn xù nhỏ Afro) cần thẩm tra thực nghiệm tiếp theo.
+4. **Bàn Giao Đầy Đủ Hồ Sơ Knowledge Base & Deliverables:**
+   - Cổng tổng hành dinh: `REVERSE_ENGINEERING_KNOWLEDGE_INDEX.md`
+   - Master Inventory: `.ai/reverse_engineering/00_MASTER_INVENTORY.md`
+   - Image Effect Graph: `.ai/reverse_engineering/01_IMAGE_EFFECT_GRAPH.md`
+   - Feature-to-Processing Map: `.ai/reverse_engineering/02_FEATURE_TO_PROCESSING_MAP.md`
+   - Unknowns & Agenda: `.ai/reverse_engineering/03_UNKNOWN_NEXT_RESEARCH.md`
+   - Machine Index: `.ai/reverse_engineering/index.json`
+   - 6 Hồ sơ chuyên sâu: `.ai/reverse_engineering/effects/01_HAIR_EFFECT_DOSSIER.md` đến `06_RESTORATION_INPAINT_DOSSIER.md`
+   - Báo cáo kiểm định: `.ai/reports/TASK_047_IMAGE_EFFECT_GRAPH_DEEP_MAPPING/`
+   - Gói Deliverables nén: `CONVERT2_TASK047_REPORT_PACKAGE.zip`
+   - Mã băm SHA-256: `75888E73D329646DC7860AB31BFC56BAF5DC0773EFC669A0B2322415BAC3B2D6`.
+
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$

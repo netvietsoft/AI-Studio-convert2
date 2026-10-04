@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""
+TASK_047 — Generator for .ai/reverse_engineering/index.json
+Machine-readable structured index of the entire reverse engineering knowledge base.
+"""
+
+import json
+from pathlib import Path
+
+REPO_ROOT = Path(r"F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2")
+OUTPUT_FILE = REPO_ROOT / ".ai" / "reverse_engineering" / "index.json"
+
+def generate():
+    data = {
+        "schema_version": "1.0.0",
+        "task_id": "TASK_047_IMAGE_EFFECT_GRAPH_DEEP_MAPPING_ACTIVE",
+        "authority": "Tony",
+        "standard": "07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD & Development Workspace Standard V2.1",
+        "created_at": "2026-10-04T15:35:00+07:00",
+        "knowledge_base_root": ".ai/reverse_engineering",
+        "taxonomy": {
+            "PROVEN": "Directly supported by retained evidence (binary offset, disassembled ARM64, extracted GLSL, physical device log)",
+            "STRONG_INFERENCE": "Multiple independent evidence chains (DEX JNI + export symbol + uniform strings + graphics literature)",
+            "HYPOTHESIS": "Plausible technical hypothesis based on UI and standards, not yet binary verified"
+        },
+        "inventory_summary": {
+            "vendor_meitu_sos": 45,
+            "surveyed_donor_apps": 14,
+            "analyzed_neural_models": 8,
+            "extracted_gpu_shaders": 12,
+            "documented_jni_ingress_points": 7
+        },
+        "hair_completion_gate": {
+            "status": "RESEARCH_COMPLETE",
+            "verification_verdict": "PASS",
+            "required_stages": [
+                {
+                    "stage_num": 1,
+                    "stage_id": "mask/segmentation",
+                    "status": "PROVEN",
+                    "evidence_binary": "libaidetectionplugin.so / bisenetv2_hair_19class.bin",
+                    "inputs": "[1, 3, 512, 512] RGB",
+                    "outputs": "512x512 Single-Channel Hair Mask (Class 17)"
+                },
+                {
+                    "stage_num": 2,
+                    "stage_id": "alpha/matting/hairline",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (hairMaskFilterToFBO 0x000f4400)",
+                    "inputs": "Coarse Mask + Full-Res RGB Guide Image",
+                    "outputs": "Sub-pixel Antialiased Alpha Matte WxH"
+                },
+                {
+                    "stage_num": 3,
+                    "stage_id": "luminance/feature extraction",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (GrayFilterToFBO 0x000f42fc, GLSL 0x804fc)",
+                    "inputs": "Full-Res RGB Image",
+                    "outputs": "BT.601 Grayscale Luminance FBO (Y channel)"
+                },
+                {
+                    "stage_num": 4,
+                    "stage_id": "orientation/structure field",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (HairMaskFilterToFBO 0x134970, BlurH/V 0x134a90/0x134c10)",
+                    "inputs": "Luminance FBO + shiftingSize (1/W, 1/H)",
+                    "outputs": "Regularized Double-Angle Structure Tensor Field FBO (RG)"
+                },
+                {
+                    "stage_num": 5,
+                    "stage_id": "directional texture processing",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (SoftHairFilterToFBO 0x134d90, GLSL 0x86106)",
+                    "inputs": "RGB Image + Tensor Field + Hair Alpha Matte",
+                    "outputs": "21-tap Line-Integral Convolution Filtered Strand Texture"
+                },
+                {
+                    "stage_num": 6,
+                    "stage_id": "recolor/blend",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (blendSoftLight 0x82369, libLayerFlow.so Opcode 2305)",
+                    "inputs": "LIC Filtered Strands + Target Dye Color / 3D LUT",
+                    "outputs": "Branchless Pegtop Soft Light Dyed Hair Texture"
+                },
+                {
+                    "stage_num": 7,
+                    "stage_id": "shine/clarity",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (MTSoftHairFilter.cpp 0x77afa)",
+                    "inputs": "Dyed Hair Texture + Blurred Mask + Original RGB",
+                    "outputs": "9x9 Unsharp Mask + Clarity Boost (0.4) Specular Highlight Hair"
+                },
+                {
+                    "stage_num": 8,
+                    "stage_id": "compositing/output",
+                    "status": "PROVEN",
+                    "evidence_binary": "libMTFilterKernel.so (0x134e90 / nativeRenderToFBO 0x118f40)",
+                    "inputs": "Dyed Shiny Hair + Original Frame + Alpha Matte",
+                    "outputs": "Final Screen Framebuffer with Zero Leakage into Skin/Background"
+                }
+            ]
+        },
+        "effect_graph_domains": [
+            {
+                "domain": "P0_HAIR",
+                "nodes_count": 9,
+                "confidence_summary": "100% PROVEN",
+                "dossier_path": ".ai/reverse_engineering/effects/01_HAIR_EFFECT_DOSSIER.md"
+            },
+            {
+                "domain": "FACE_AND_SKIN_BEAUTY",
+                "nodes_count": 2,
+                "confidence_summary": "100% PROVEN",
+                "dossier_path": ".ai/reverse_engineering/effects/02_FACE_SKIN_BEAUTY_DOSSIER.md"
+            },
+            {
+                "domain": "BODY_RESHAPE_AND_PROTECTION",
+                "nodes_count": 1,
+                "confidence_summary": "100% PROVEN",
+                "dossier_path": ".ai/reverse_engineering/effects/03_BODY_WARP_PROTECTION_DOSSIER.md"
+            },
+            {
+                "domain": "COLOR_3DLUT_AND_TONE",
+                "nodes_count": 2,
+                "confidence_summary": "100% PROVEN",
+                "dossier_path": ".ai/reverse_engineering/effects/04_COLOR_LUT_TONE_DOSSIER.md"
+            },
+            {
+                "domain": "MAKEUP_SYNTHESIS",
+                "nodes_count": 1,
+                "confidence_summary": "STRONG_INFERENCE",
+                "dossier_path": ".ai/reverse_engineering/effects/05_MAKEUP_SYNTHESIS_DOSSIER.md"
+            },
+            {
+                "domain": "RESTORATION_AND_INPAINT",
+                "nodes_count": 2,
+                "confidence_summary": "PROVEN / STRONG_INFERENCE",
+                "dossier_path": ".ai/reverse_engineering/effects/06_RESTORATION_INPAINT_DOSSIER.md"
+            }
+        ],
+        "unresolved_gaps_count": 5,
+        "v4_implementation_authorized": False,
+        "v4_status": "FORBIDDEN_UNTIL_AUDIT_REPORT"
+    }
+
+    OUTPUT_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[OK] Generated {OUTPUT_FILE} ({OUTPUT_FILE.stat().st_size:,} bytes)")
+
+if __name__ == "__main__":
+    generate()
