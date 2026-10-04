@@ -376,7 +376,7 @@ class CommandBusOrchestrator:
         """
         with FileLock(self.lock_file):
             valid_statuses = {
-                "pending": {"PENDING", "QUEUED", "WAITING_DEPENDENCY"},
+                "pending": {"PENDING", "QUEUED", "WAITING_DEPENDENCY", "WAITING_OWNER_VISUAL_APPROVAL", "WAITING_GATE"},
                 "reserved": {"RESERVED"},
                 "claimed": {"CLAIMED"},
                 "running": {"RUNNING"},
@@ -563,7 +563,9 @@ class CommandBusOrchestrator:
                        execution_lane: str = "default",
                        allowed_paths: Optional[List[str]] = None,
                        locked_modules: Optional[List[str]] = None,
-                       command_id: Optional[str] = None) -> Tuple[bool, str, Dict[str, Any]]:
+                        command_id: Optional[str] = None,
+                        requires_owner_visual_approval: bool = False,
+                        gate_requirements: Optional[List[str]] = None) -> Tuple[bool, str, Dict[str, Any]]:
         """
         Creates an immutable pending command.
         Enforces anti-duplicate gating based on (task_id, task_revision).
@@ -576,6 +578,7 @@ class CommandBusOrchestrator:
             dependencies = dependencies or []
             allowed_paths = allowed_paths or []
             locked_modules = locked_modules or []
+            gate_requirements = gate_requirements or []
 
             anti_dup_key = f"{task_id}:{task_revision}"
 
@@ -605,6 +608,8 @@ class CommandBusOrchestrator:
                 "execution_lane": execution_lane,
                 "allowed_paths": allowed_paths,
                 "locked_modules": locked_modules,
+                "requires_owner_visual_approval": bool(requires_owner_visual_approval),
+                "gate_requirements": gate_requirements,
                 "anti_duplicate_key": anti_dup_key,
                 "created_at": get_iso_now(),
                 "status": "PENDING",
@@ -663,7 +668,7 @@ class CommandBusOrchestrator:
             # Pending commands
             pending_cmds = [
                 c for c in all_cmds.values()
-                if c.get("status") in ["PENDING", "QUEUED", "WAITING_DEPENDENCY"]
+                if c.get("status") in ["PENDING", "QUEUED", "WAITING_DEPENDENCY", "WAITING_OWNER_VISUAL_APPROVAL", "WAITING_GATE"]
             ]
 
             # Filter by lane if specified
@@ -698,6 +703,27 @@ class CommandBusOrchestrator:
                     candidate["blocked_by_dependencies"] = unmet_deps
                     self._write_json(self.pending_dir / f"{cid}.json", candidate)
                     continue
+
+                # 1.5 Scoped Gate Check
+                # Owner visual review is a scoped gate for Hair V2 final sign-off, NOT a global stop.
+                gate_reqs = candidate.get("gate_requirements", [])
+                requires_owner_visual = (
+                    candidate.get("requires_owner_visual_approval", False)
+                    or "OWNER_VISUAL_APPROVED" in gate_reqs
+                    or "HAIR_V2_FINAL_APPROVAL" in gate_reqs
+                    or candidate.get("task_id", "").startswith("TASK_HAIR_V2_FINAL_SIGN_OFF")
+                )
+
+                if requires_owner_visual:
+                    global_state = self._load_json(self.global_state_file) or {}
+                    owner_status = global_state.get("owner_visual_acceptance_status", "PENDING_OWNER_EVALUATION")
+                    if owner_status != "APPROVED":
+                        candidate["status"] = "WAITING_OWNER_VISUAL_APPROVAL"
+                        candidate["queue_reason"] = (
+                            f"Scoped Hair V2 Gate: Awaiting Chairman Tony visual evaluation (status: {owner_status})"
+                        )
+                        self._write_json(self.pending_dir / f"{cid}.json", candidate)
+                        continue
 
                 # 2. Lock Conflict Check
                 conflict_reason = None
@@ -1572,6 +1598,7 @@ class CommandBusOrchestrator:
         resolved_verdict = verdict or completed_cmd.get("verdict")
         confirmation_status = state.get("confirmation_gate", {}).get("status")
         mirror_verdict = state.get("report_drive_mirror_verdict")
+        owner_visual_status = state.get("owner_visual_acceptance_status")
 
         if not resolved_verdict:
             if confirmation_status in ["CONFIRMATION_REQUIRED", "BLOCKED_EXTERNAL_AUTH"]:
@@ -1580,14 +1607,20 @@ class CommandBusOrchestrator:
                 resolved_verdict = mirror_verdict
             elif exec_id.get("conclusion") not in [None, "SUCCESS"]:
                 resolved_verdict = "NEEDS_FIX"
+            elif owner_visual_status == "PENDING_OWNER_EVALUATION":
+                resolved_verdict = "TECHNICAL_PASS_AWAITING_OWNER_VISUAL"
             else:
                 resolved_verdict = "PASS"
 
         # Invariant: PASS is strictly forbidden when mandatory external gates are unresolved
         if (confirmation_status and confirmation_status not in ["PASS", "COMPLETED"]) or \
-           (mirror_verdict and mirror_verdict not in ["PASS", "COMPLETED"]):
-            if resolved_verdict == "PASS":
-                resolved_verdict = confirmation_status or mirror_verdict or "BLOCKED_EXTERNAL_AUTH"
+           (mirror_verdict and mirror_verdict not in ["PASS", "COMPLETED"]) or \
+           (owner_visual_status and owner_visual_status != "APPROVED"):
+            if resolved_verdict in ["PASS", "FINAL_PASS"]:
+                if owner_visual_status and owner_visual_status != "APPROVED":
+                    resolved_verdict = "TECHNICAL_PASS_AWAITING_OWNER_VISUAL"
+                else:
+                    resolved_verdict = confirmation_status or mirror_verdict or "BLOCKED_EXTERNAL_AUTH"
 
         state["verdict"] = resolved_verdict
 
