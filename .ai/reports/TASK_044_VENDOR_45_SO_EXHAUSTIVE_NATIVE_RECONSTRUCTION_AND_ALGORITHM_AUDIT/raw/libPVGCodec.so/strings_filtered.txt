@@ -1,0 +1,109 @@
+=== MEANINGFUL ALGORITHM & ENGINE STRINGS ===
+_ZN8PVGCOLOR17PVGColorFunctions9transcodeEPKPKhPKiPKPhS6_
+_ZN8PVGCOLOR17PVGColorFunctions7cleanupEv
+_ZN8PVGCOLOR17PVGColorFunctions6createEiiNS_14PVGPixelFormatEiiS1_
+_ZN8PVGCOLOR17PVGColorFunctions12setHWContextERKNS_12PVGHWContextE
+_ZN8PVGCOLOR17PVGColorFunctions20setColorspaceDetailsENS_17PVGColorPrimariesENS_16PVGColorTransferENS_14PVGColorMatrixENS_13PVGColorRangeES1_S2_S3_S4_
+_ZN8PVGCOLOR17PVGColorFunctions11setMetaDataEPKcS2_
+_ZN8PVGCOLOR17PVGColorFunctions9setHWSyncEb
+_ZN3PVG9PVGGlobal26getPVGColorFunctionVersionEv
+_ZN8PVGCOLOR17PVGColorFunctions13setICCProfileEPKhiS2_i
+_ZN8PVGCOLOR17PVGColorFunctions7setTypeENS_14PVGProfileTypeE
+_ZN8PVGIMAGE8PVGFrame13setColorRangeENS_13PVGColorRangeE
+_ZN8PVGIMAGE8PVGFrame17setColorPrimariesENS_17PVGColorPrimariesE
+_ZN8PVGIMAGE8PVGFrame16setColorTransferENS_16PVGColorTransferE
+_ZN8PVGIMAGE8PVGFrame14setColorMatrixENS_14PVGColorMatrixE
+libPVGColorFunctions.so
+F[%s, L(%d)], T(%p):> C[PVGVideoCutFrame(%p)], PVGColorFunctions create error
+F[%s, L(%d)], T(%p):> Failed to create PVGColorFunctions for pixel format: %d
+F[%s, L(%d)], T(%p):> PVGColorFunctions error %d, %s
+%s/%s: F[%s, L(%d)], T(%p):> PVGColorFunctions ==> %s
+convertAVColorSpaceToPVGColorMatrix
+convertAVColorPrimariesToPVGColorPrimaries
+getPVGColorFunctionVersion
+%s/%s: F[%s, L(%d)], T(%p):> PVGColorFunctions error %d, %s
+convertAVColorTrcToPVGColorTransfer
+convertAVColorRangeToPVGColorRange
+%s/%s: F[%s, L(%d)], T(%p):> C[PVGVideoCutFrame(%p)], PVGColorFunctions create error
+%s/%s: F[%s, L(%d)], T(%p):> Failed to create PVGColorFunctions for pixel format: %d
+F[%s, L(%d)], T(%p):> PVGColorFunctions ==> %s
+
+=== SHADER REFERENCES ===
+attribute vec3 position; attribute vec2 texcoord; varying vec2 texcoordOut; uniform mat4 mvpMatrix; void main() { texcoordOut = texcoord; gl_Position = mvpMatrix * vec4(position, 1.0); }
+attribute vec4 aPosition;
+attribute vec4 aTextureCoord;
+varying vec2 vTextureCoord;
+varying vec2 vTextureCoord;
+gl_FragColor = texture2D(sTexture, vTextureCoord);
+precision mediump float; varying vec2 texcoordOut; uniform sampler2D texture; void main() { gl_FragColor = texture2D(texture, texcoordOut); }
+
+=== MODEL & AI REFERENCES ===
+
+
+=== COMPILER / TOOLCHAIN FINGERPRINTS ===
+Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+Android (12470979, +pgo, -bolt, +lto, -mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+
+=== OPEN SOURCE LICENSES / BANNERS ===
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc encoder frame buffer failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: read encoder frame during flush failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create output format context failed, output=%s
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: open encoder failed, codec=%s
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: open output file failed, output=%s
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: seek failed, startMs=%.3f seekTs=%lld ret=%d(%s)
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write fifo failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write encoded packet during flush failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: no audio stream found in input
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc decoder context failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc converted frame buffer failed
+transcodeAudioByFFmpeg
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write output header failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc converted frame buffer failed
+[FFmpeg] %s
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: copy decoder parameters failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc packet/frame failed, pkt=%p decFrame=%p encFrame=%p
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode: seek to segment start, startMs=%.3f
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create output stream failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc converted frame failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: encoder flush failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: open output file failed, output=%s
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: unsupported output format, output=%s extCodec=%s
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: decoder not found, codec_id=%d
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: open decoder failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc encoder context failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: resample convert failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: read encoder frame during flush failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode finished: ret=%d output=%s codec=%s
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc packet/frame failed, pkt=%p decFrame=%p encFrame=%p
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode: skip packet without valid pts/dts
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: resample convert failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode: seek to segment start, startMs=%.3f
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc converted frame failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write output header failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: seek failed, startMs=%.3f seekTs=%lld ret=%d(%s)
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write encoded packet failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: encoder not found, codec_id=%d
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create output format context failed, output=%s
+getFFmpegPCMFormat
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write encoded packet during flush failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create output stream failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write encoder parameters to output stream failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create audio fifo failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write fifo failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc decoder context failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: alloc encoder context failed
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: create audio fifo failed
+%s/%s: F[%s, L(%d)], T(%p):> FFmpeg audio transcode: skip packet without valid pts/dts
+F[%s, L(%d)], T(%p):> FFmpeg audio transcode failed: write encoded packet failed
+
+=== JNI METHOD SIGNATURES IN RODATA ===
+(Ljava/nio/Buffer;)V
+(Ljava/lang/String;)Ljava/util/Map;
+(Ljava/lang/String;Ljava/lang/String;)I
+(Landroid/net/Uri;Ljava/lang/String;)Landroid/os/ParcelFileDescriptor;
+(Landroid/content/Context;)V
+(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
+(Ljava/lang/Object;)Ljava/lang/Object;
+(Lcom/meitu/media/PVGCodec/IProcessor$LogCallback;)V
+(Ljava/lang/String;)Landroid/net/Uri;
+(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;

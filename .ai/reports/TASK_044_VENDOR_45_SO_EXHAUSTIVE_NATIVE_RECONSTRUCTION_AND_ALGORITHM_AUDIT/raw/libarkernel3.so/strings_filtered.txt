@@ -1,0 +1,195 @@
+=== MEANINGFUL ALGORITHM & ENGINE STRINGS ===
+_ZNK8mtlabar311DataRequire15requireHairMaskEv
+_ZNK8mtlabar311DataRequire26requireHairMaskAdditionCPUEv
+_ZNK8mtlabar311DataRequire26requireHairMaskAdditionGPUEv
+setMergeFaceHairMask
+Shaders/HairSoft/MTFilter_PsSoftLightr.fs
+UseHairSoft
+const char *utils::getClassUniqueString() [T = std::vector<mtlabar3::MakeupHairPart::HairDict>]
+const char *utils::getClassUniqueString() [T = mtlabar3::MakeupHairPart]
+Shaders/HairSoft/MTFilter_Mix.fs
+DataRequireKey::HairMask
+Shaders/HairSoft/MTFilter_HairSoftMix.vs
+HairSoft
+KiraBlurH
+const char *utils::getClassUniqueString() [T = mtlabar3::MakeupHairSoftPart]
+UseHairMask
+Shaders/HairSoft/MTFilter_gradient.fs
+Shaders/HairSoft/MTFilter_PsSoftLightr.vs
+Shaders/HairSoft/MTFilter_gradient.vs
+Shaders/HairSoft/MTFilter_HairSoftMix.fs
+GaussianBlurV
+AdvanceMakeupHairMaskMidPoint
+DataRequireKey::HairMaskAdditionGPU
+const char *utils::getClassUniqueString() [T = mtlabar3::MakeupHairPart::HairDict]
+KiraBlurV
+GaussianBlurH
+Shaders/HairSoft/MTFilter_Mix.vs
+DataRequireKey::HairMaskAdditionCPU
+J>N8mtlabar328FilterHairSoftCollectionBaseE
+N8mtlabar324FilterPsSoftLightOverlayE
+N8mtlabar314MakeupHairPartE
+?N8mtlabar315EDetailCategoryINS_14MakeupHairPart8HairDictEEE
+N8mtlabar315EDetailCategoryINS_14MakeupHairPartEEE
+?N8mtlabar318MakeupHairSoftPart19MultiFilterGaussianE
+N8mtlabar318MakeupHairSoftPartE
+N8mtlabar315EDetailCategoryINS_18MakeupHairSoftPartEEE
+
+=== SHADER REFERENCES ===
+precision highp float;
+gl_FragColor = endcolor;
+precision highp float;
+varying vec2 userUV; varying vec2 stdUV; varying vec2 screenPos;
+varying vec2 texcoordsPos;
+gl_FragColor = texture2D(screenTexture, mask * offset + userUV);
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texcoord;
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+attribute vec2 a_secondTexCoord;
+varying vec2 v_texCoord;
+varying vec2 v_secondTexCoord;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texcoord;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+attribute vec4  gl_Color;attribute vec4  gl_SecondaryColor;attribute vec3  gl_Normal;attribute vec4  gl_Vertex;attribute vec4  gl_MultiTexCoord0;attribute vec4  gl_MultiTexCoord1;attribute vec4  gl_MultiTexCoord2;attribute vec4  gl_MultiTexCoord3;attribute vec4  gl_MultiTexCoord4;attribute vec4  gl_MultiTexCoord5;attribute vec4  gl_MultiTexCoord6;attribute vec4  gl_MultiTexCoord7;attribute float gl_FogCoord;
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(maskTex.rgb, u_brushAlpha);
+precision highp float;
+varying vec2 v_texCoord;
+varying vec2 v_secondTexCoord;
+gl_FragColor = texture2D(u_texture, v_texCoord);
+if(gl_FragColor.a < 0.01)
+gl_FragColor.rgb *= gl_FragColor.a;
+gl_FragColor *= texture2D(u_eraserTexture, vec2(v_secondTexCoord.x, 1.0 - v_secondTexCoord.y)).a;
+#version: geometry shaders require es profile with version 310 or non-es profile with version 150 or above
+Cannot use both gl_FragColor and gl_FragData
+attribute vec4 a_position;
+attribute vec4 a_color;
+precision highp float;
+varying vec2 v_srcUV;
+precision highp float;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+gl_FragColor = mix(src, res, (1.0 - faceMask.r)*u_alpha);
+precision highp float;
+varying vec2 v_texCoord;
+gl_FragColor = mix(src, dst, dst.a * u_alpha);
+Cannot use gl_FragColor or gl_FragData when using user-defined outputs
+#version 300 es
+#version: tessellation shaders require es profile with version 310 or non-es profile with version 150 or above
+gl_FragColor = vec4(ansColor, srcColor.a);
+attribute vec4 userTextureCoordinate;    // 442
+attribute vec2 offsetTextureCoordinate;  //
+attribute vec2 maskTextureCoordinate;    // pushmask
+varying vec2 userCoord; varying vec2 offsetCoord; varying vec2 maskCoord;
+attribute vec2 userFaceScaleRadius;
+varying vec2 FaceScaleRadiusOut;  //
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+precision highp float;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+gl_FragColor = mix(src, vec4(res.rgb, 1.0), res.a*u_alpha*maskValue);
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(maskTex.rgb * u_brushAlpha, 1.0);
+precision highp float;
+varying vec2 v_texCoord;
+gl_FragColor = vec4(u_color, rgba.a);
+#version: ray tracing shaders require non-es profile with version 460 or above
+"precision mediump int; precision highp float;"
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+varying vec2 v_srcCoord;
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(blendedColor / blendedAlpha, blendedAlpha);
+gl_FragColor = vec4(blendedColor / blendedAlpha, blendedAlpha);
+//         gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(vec3(1.0), texture2D(s_texture,v_texcoord).a);
+precision highp float;
+varying vec2 v_texCoord;
+varying vec2 v_srcCoord;
+gl_FragColor = vec4(brushColor.rgb, brushColor.a * (1.0 - eraserColor.a));
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(blendedColor / blendedAlpha, blendedAlpha);
+gl_FragColor = dstColor;
+gl_FragColor = vec4(dstColor.rgb, max(dstColor.a - texture2D(s_maskTexture,v_texcoord).r, 0.0));
+//     gl_FragColor = vec4(blendedColor / blendedAlpha, blendedAlpha);
+// gl_FragColor = dstColor;
+
+=== MODEL & AI REFERENCES ===
+_ZN5manis8Executor14CreateExecutorEPNS_3NetEPNS_13ExtendOptionsE
+_ZN5manis6Tensor6AddDimEj
+_ZN5manis6Tensor11MutableDataEv
+Manis.framework/Manis
+_ZNK5manis6Tensor4DataEv
+_ZN5manis8Executor15ReleaseExecutorEPS0_
+_ZN5manis13ExtendOptionsD1Ev
+libManis.dll
+_ZN5manis6TensorD1Ev
+_ZN5manis13ExtendOptionsC1Ev
+_ZN5manis13ExtendOptions3AddENS_14ExtendOptionIDEi
+_ZN5manis3Net10ReleaseNetEPS0_
+_ZN5manis6TensorC1ERKNS_10DeviceTypeERKNS_10LayoutTypeERKNS_8DataTypeE
+_ZNK5manis6Tensor6GetDimEj
+libManis.so
+_ZN5manis3Net9CreateNetEPNS_13ExtendOptionsE
+_ZNK5manis6Tensor9GetDimNumEv
+
+=== COMPILER / TOOLCHAIN FINGERPRINTS ===
+
+
+=== OPEN SOURCE LICENSES / BANNERS ===
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/random_utils.h
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/yuv.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/rescaler.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/io_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/vp8l_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/filters.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/color_cache_utils.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/webp_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/lossless.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/upsampling.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/frame_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/utils.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/bit_reader_utils.h
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/alpha_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/filters_neon.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/thread_utils.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dec/vp8_dec.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/bit_reader_utils.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/rescaler_utils.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/rescaler_neon.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/bit_reader_inl_utils.h
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/color_cache_utils.h
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/alpha_processing.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/dsp/upsampling_neon.c
+/Users/zhichenzhang/meitu/Project/PVGThirdParty/libwebp/src/utils/huffman_utils.c
+N8mtlabar318VideoDecoderFFmpegE
+
+=== JNI METHOD SIGNATURES IN RODATA ===
+(Ljava/lang/String;)Ljava/lang/Class;
+([F)V
+([BLjava/lang/String;IIIIIIIIZZZIIIIFIIIIFZ)Z
+(Landroid/graphics/SurfaceTexture;)V

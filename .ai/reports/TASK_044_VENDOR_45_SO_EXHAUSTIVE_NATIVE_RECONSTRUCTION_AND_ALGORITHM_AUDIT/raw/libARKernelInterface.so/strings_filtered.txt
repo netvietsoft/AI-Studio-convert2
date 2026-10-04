@@ -1,0 +1,220 @@
+=== MEANINGFUL ALGORITHM & ENGINE STRINGS ===
+Not CPT_MakeupHairDaub Type
+CPT_MakeupHairDaub:
+nativeSaveHairMask
+Shaders/HairSoft/MTFilter_PsSoftLightr.fs
+setMergeFaceHairMask
+Shaders/HairSoft/MTFilter_PsFilterColor.fs
+nativeLoadHairMask
+HairSoftAlpha
+getFaceHairMask
+Shaders/MTFilter_HairMaskMix.vs
+UseHairSoft
+pHairMaskTexture == nullptr:
+nullptr == jHairHairMaskData:%d
+Shaders/HairSoft/MTFilter_PsFilterColor.vs
+Shaders/HairSoft/MTFilter_Mix.fs
+error SetFaceHairMask
+Shaders/HairSoft/MTFilter_HairSoftMix.vs
+SaveHairMask:%s
+HairSoft
+UseHairMask
+Shaders/HairSoft/MTFilter_gradient.fs
+HairSoftAlphaSecond
+Shaders/HairSoft/MTFilter_PsSoftLightr.vs
+lua_GPGlobalState_getFaceHairMask - Failed to match the given parameters to a valid function signature.
+MakeupHairDaub
+Shaders/HairSoft/MTFilter_gradient.vs
+CPT_HairSoft:
+Shaders/HairSoft/MTFilter_HairSoftMix.fs
+AdvanceMakeupHairMaskMidPoint
+LoadHairMask:%s
+BlurVSPath
+Shaders/MTFilter_HairMaskMix.fs
+EnableDenserHairMask
+nativeSetFaceHairMask
+Shaders/HairSoft/MTFilter_Mix.vs
+N8arkernel23CoreHairSoftPartControlE
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_0NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_0
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_1NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_1
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_2NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_2
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_3NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_3
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_4NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_4
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_5NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_5
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_6NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_6
+NSt6__ndk110__function6__funcIZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_7NS_9allocatorIS4_EEFvvEEE
+ZN8arkernel23CoreHairSoftPartControl17PrepareToolsParamEvE3$_7
+N8arkernel16CoreHairSoftPartE
+J>N8arkernel28FilterHairSoftCollectionBaseE
+N8arkernel24FilterPsSoftLightOverlayE
+
+=== SHADER REFERENCES ===
+precision highp float;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+gl_FragColor = mix(src, vec4(res.rgb, 1.0), res.a*u_alpha*maskValue);
+precision highp float;
+gl_FragColor = endcolor;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+attribute vec2 a_secondTexCoord;
+varying vec2 v_texCoord;
+varying vec2 v_secondTexCoord;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+attribute vec3 a_position;
+attribute vec2 a_texcoord;
+varying vec2 v_texcoord;
+attribute vec3 a_position;
+attribute vec3 a_normal;
+attribute vec4 a_blendWeights;
+attribute vec4 a_blendIndices;
+attribute vec2 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(maskTex.rgb, u_brushAlpha);
+precision highp float;
+varying vec2 v_texCoord;
+varying vec2 v_secondTexCoord;
+gl_FragColor = texture2D(u_texture, v_texCoord);
+if(gl_FragColor.a < 0.01)
+gl_FragColor.rgb *= gl_FragColor.a;
+gl_FragColor *= texture2D(u_eraserTexture, vec2(v_secondTexCoord.x, 1.0 - v_secondTexCoord.y)).a;
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+precision highp float;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+gl_FragColor = mix(src, res, (1.0 - faceMask.r)*u_alpha);
+precision highp float;
+varying vec2 v_materialUV;
+gl_FragColor = texture2D(s_materialMap, v_materialUV);
+attribute vec4 a_position;
+attribute vec4 a_color;
+precision highp float;
+varying vec2 v_texCoord;
+gl_FragColor = vec4(sum.rgb/sumWeight, 1.0);
+//  gl_FragColor = texture2D(u_texture, v_texCoord);
+precision highp float;
+void main(){ gl_FragColor=vec4(0.0,0.0,0.0,1.0);}
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_srcCoord;
+varying vec2 v_texCoord;
+precision highp float;
+varying vec2 v_srcUV;
+gl_FragColor = vec4(ansColor, srcColor.a);
+attribute vec3 a_position;
+attribute vec2 a_texcoord;
+varying vec2 v_texcoord;
+precision highp float;
+varying vec2 v_texcoord;
+gl_FragColor = vec4(maskTex.rgb * u_brushAlpha, 1.0);
+precision highp float;
+attribute vec2 inputTextureCoordinate;
+attribute vec4 userTextureCoordinate;    // 442
+attribute vec2 offsetTextureCoordinate;  //
+attribute vec2 maskTextureCoordinate;    // pushmask
+varying vec2 userCoord; varying vec2 offsetCoord; varying vec2 maskCoord;
+attribute vec2 userFaceScaleRadius;
+varying vec2 FaceScaleRadiusOut;  //
+precision highp float;
+varying vec2 v_texCoord;
+gl_FragColor = vec4(u_color, rgba.a);
+precision highp float;
+varying vec2 v_texCoord;
+varying vec2 v_param;
+gl_FragColor = vec4(rgba.rgb * color * alpha, rgba.a * alpha);
+gl_FragColor.rgb = lum_new1 + (color - sharpenLumOrig) * saerf + 0.5;
+gl_FragColor.a = 1.0;
+precision highp float;
+varying vec2 v_srcUV;
+gl_FragColor = vec4(srcColor.rgb, 1.0)*srcColor.a;
+gl_FragColor = srcColor;
+attribute vec3 a_Position;
+#version 100
+#version 300 es
+precision highp float;
+varying vec2 userCoord;    //
+varying vec2 offsetCoord;  //
+varying vec2 maskCoord;    //
+varying vec2 FaceScaleRadiusOut;
+gl_FragColor = texture2D(inputImageTexture, res_uv);
+attribute vec3 a_position;
+attribute vec2 a_texCoord;
+varying vec2 v_texCoord;
+varying vec2 v_srcCoord;
+
+=== MODEL & AI REFERENCES ===
+_ZN5manis12ManisVersionEv
+_ZN5manis13ExtendOptionsC1Ev
+_ZN5manis9IsSupportENS_10DeviceTypeE
+_ZN5manis13ExtendOptions3AddENS_14ExtendOptionIDEi
+_ZN5manis3Net9CreateNetEPNS_13ExtendOptionsE
+_ZN5manis8Executor14CreateExecutorEPNS_3NetEPNS_13ExtendOptionsE
+_ZN5manis3Net10ReleaseNetEPS0_
+_ZN5manis13ExtendOptionsD1Ev
+_ZN5manis6TensorC1ERKNS_10DeviceTypeERKNS_10LayoutTypeERKNS_8DataTypeE
+_ZN5manis12FromTexturesEiiPf
+_ZN5manis12FromTexturesEiiifPf
+_ZN5manis6TensoraSERKS0_
+_ZN5manis6TensorD1Ev
+_ZN5manis4nchw16FromPixelsResizeENS_13PixelConvTypeEPKhjjjjNS_8DataTypeE
+_ZN5manis6Tensor11MutableDataEv
+_ZNK5manis6Tensor9GetDimNumEv
+_ZNK5manis6Tensor6GetDimEj
+_ZN5manis4nchw22SubstractMeanNormalizeERNS_6TensorEPKfS4_
+_ZN5manis8Executor15ReleaseExecutorEPS0_
+_ZNK5manis6Tensor4DataEv
+_ZN5manis6Tensor6AddDimEj
+libManis.so
+ARMakeupadaptMLPModel::RunInference: Failed to get SVR1 input tensor mutable data for token %d
+ARFastViTModel::RunInferenceFromPixels: Failed to extract patch features from tensor
+ARDinoModel::LoadModel: Loading manisq (QNN) from %s
+fastvit_cls_mlp.no_identity.manis
+fastvit_back_linearsvr.sim.manis
+ARDinoModel::LoadModel: Current device does not support QNN, cannot load manisq: %s
+Logic::OnDrawFrame: manis version is: %s
+fastvit_dark_linearsvr.sim.manis
+ARMakeupadaptMLPModel::RunInference: Failed to get MLP input tensor mutable data for token %d
+fastvit_t8_patch7.manis
+ARFastViTModel::LoadModel: Loading manisq (QNN) from %s
+ARMakeupadaptMLPModel::RunInference: Failed to get SVR2 input tensor mutable data for token %d
+ARFastViTModel::LoadModel: Current device does not support QNN, cannot load manisq: %s
+
+=== COMPILER / TOOLCHAIN FINGERPRINTS ===
+Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+Android (12470979, +pgo, -bolt, +lto, -mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+
+=== OPEN SOURCE LICENSES / BANNERS ===
+
+
+=== JNI METHOD SIGNATURES IN RODATA ===
+(Ljava/lang/String;Lcom/meitu/mtlab/arkernelinterface/interaction/ARKernelTextConfig;)Z
+(Ljava/lang/String;)Ljava/lang/Class;
+(Ljava/lang/Object;)Z
+(Lcom/meitu/mtlab/arkernelinterface/callback/ARKernelLogCallback;)V
+(Ljava/lang/String;Lcom/meitu/mtlab/arkernelinterface/interaction/ARKernelAnimationConfig;)Z
+([BLjava/lang/String;IIIIIIIIZZZIIIIFIIIIFZ)Z
+(Ljava/lang/String;I)V
+(Landroid/content/Context;)V
+(Lcom/meitu/mtlab/arkernelinterface/interaction/ARKernelEditDrawingInfo;)V
+([B)Landroid/graphics/Bitmap;
+(Ljava/lang/String;Lcom/meitu/mtlab/arkernelinterface/interaction/ARKernelWarpConfig;)Z
+(Ljava/lang/String;)[I
+([B)[I
+(Ljava/lang/String;Ljava/lang/String;)V
+([I)Ljava/lang/String;
+(Lcom/meitu/mtlab/arkernelinterface/interaction/ARKernelLayerAdsorbInfo;)V

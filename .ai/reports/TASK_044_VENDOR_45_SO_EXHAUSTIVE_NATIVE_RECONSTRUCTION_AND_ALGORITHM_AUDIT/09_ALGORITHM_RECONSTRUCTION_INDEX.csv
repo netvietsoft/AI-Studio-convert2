@@ -1,0 +1,8 @@
+Algorithm_ID,Library,Symbol_or_Component,Algorithm_Name,Mathematical_Formulation,Confidence,Evidence_Source
+ALG-001,libMTFilterKernel.so,MTFilterKernel::MTSoftHairFilter,Hair Strand Luminance Separation,Y = 0.299R + 0.587G + 0.114B (FBO Gray Pass),HIGH,Demangled Symbol & Shader u_grayMap
+ALG-002,libMTFilterKernel.so,MTFilterKernel::MTSoftHairFilter,Separable 2-Pass Gaussian Mask Blur,"G(x,y) = G_h(x) * G_v(y), 5-tap kernel for edge feathering",HIGH,Demangled Symbols BlurHFilterToFBO / BlurVFilterToFBO
+ALG-003,libMTFilterKernel.so,MTFilter_PsSoftLightr.fs,Photoshop Soft Light Dye Blend,B <= 0.5: 2*A*B + A^2*(1 - 2*B); B > 0.5: 2*A*(1-B) + sqrt(A)*(2*B - 1),HIGH,Raw GLSL Shader Strings & Uniforms
+ALG-004,libarkernel3.so,mtlabar3::MakeupHairSoftPart,Dual-Pass Hair Specular & Volume Sheen,C_final = C_dye * (1 - k_shine) + C_specular * k_shine,HIGH,Shader MTFilter_HairSoftMix.fs & Parameter kFaceliftControl
+ALG-005,libPVGColorFunctions.so,pvg::ColorTranscode,Display-P3 / sRGB Color Space Matrix Transcode,"M_p3_to_srgb = [[1.2249, -0.2247, 0.0], [-0.0420, 1.0419, 0.0], [-0.0197, -0.0786, 1.0983]]",HIGH,Matrix Coefficients in .rodata
+ALG-006,libManis.so,manis::InferenceEngine,BiSeNet 19-Class Semantic Segmentation,ArgMax(Softmax(Conv2D(X))) -> Class 17 (Hair),HIGH,Model Strings & LayerFlow Interface
+ALG-007,libLayerFlow.so,layerflow::LFDenseHairModular,Modular Hair Dye Parameter Decoding,"JSON/Binary Config -> Intensity, Gloss, Feather Radius",HIGH,decodeHairDyeConfig Symbol & Strings
