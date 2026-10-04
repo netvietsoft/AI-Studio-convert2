@@ -1,0 +1,4448 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libCtaApiLib.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000013690 <JNI_OnLoad>:
+   13690:      	sub	sp, sp, #0x30
+   13694:      	str	x19, [sp, #0x10]
+   13698:      	stp	x29, x30, [sp, #0x20]
+   1369c:      	add	x29, sp, #0x20
+   136a0:      	mrs	x8, TPIDR_EL0
+   136a4:      	ldr	x8, [x8, #0x28]
+   136a8:      	mov	w2, #0x10000            // =65536
+   136ac:      	mov	x1, sp
+   136b0:      	movk	w2, #0x6
+   136b4:      	str	x8, [sp, #0x8]
+   136b8:      	str	xzr, [sp]
+   136bc:      	ldr	x8, [x0]
+   136c0:      	ldr	x8, [x8, #0x30]
+   136c4:      	blr	x8
+   136c8:      	cbnz	w0, 0x13758 <JNI_OnLoad+0xc8>
+   136cc:      	ldr	x0, [sp]
+   136d0:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   136d4:      	add	x1, x1, #0x8d7
+   136d8:      	ldr	x8, [x0]
+   136dc:      	ldr	x8, [x8, #0x30]
+   136e0:      	blr	x8
+   136e4:      	mov	x19, x0
+   136e8:      	cbnz	x19, 0x1370c <JNI_OnLoad+0x7c>
+   136ec:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   136f0:      	adrp	x2, 0x62000 <__sfp_handle_exceptions+0x2c>
+   136f4:      	adrp	x3, 0x62000 <__sfp_handle_exceptions+0x2c>
+   136f8:      	add	x1, x1, #0x760
+   136fc:      	add	x2, x2, #0x764
+   13700:      	add	x3, x3, #0x8d7
+   13704:      	orr	w0, wzr, #0x4
+   13708:      	bl	0xc2f0 <__android_log_print@plt>
+   1370c:      	ldr	x0, [sp]
+   13710:      	adrp	x2, 0x88000
+   13714:      	add	x2, x2, #0x10
+   13718:      	mov	w3, #0xb                // =11
+   1371c:      	ldr	x8, [x0]
+   13720:      	mov	x1, x19
+   13724:      	ldr	x8, [x8, #0x6b8]
+   13728:      	blr	x8
+   1372c:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13730:      	add	x1, x1, #0x760
+   13734:      	tbnz	w0, #0x1f, 0x13748 <JNI_OnLoad+0xb8>
+   13738:      	adrp	x2, 0x62000 <__sfp_handle_exceptions+0x2c>
+   1373c:      	add	x2, x2, #0x7b5
+   13740:      	orr	w0, wzr, #0x4
+   13744:      	b	0x13754 <JNI_OnLoad+0xc4>
+   13748:      	adrp	x2, 0x62000 <__sfp_handle_exceptions+0x2c>
+   1374c:      	add	x2, x2, #0x792
+   13750:      	orr	w0, wzr, #0x6
+   13754:      	bl	0xc2f0 <__android_log_print@plt>
+   13758:      	mrs	x8, TPIDR_EL0
+   1375c:      	ldr	x8, [x8, #0x28]
+   13760:      	ldr	x9, [sp, #0x8]
+   13764:      	cmp	x8, x9
+   13768:      	b.ne	0x13784 <JNI_OnLoad+0xf4>
+   1376c:      	ldp	x29, x30, [sp, #0x20]
+   13770:      	ldr	x19, [sp, #0x10]
+   13774:      	mov	w0, #0x10000            // =65536
+   13778:      	movk	w0, #0x6
+   1377c:      	add	sp, sp, #0x30
+   13780:      	ret
+   13784:      	bl	0xc630 <__stack_chk_fail@plt>
+   13788:      	sub	sp, sp, #0x40
+   1378c:      	stp	x20, x19, [sp, #0x20]
+   13790:      	stp	x29, x30, [sp, #0x30]
+   13794:      	add	x29, sp, #0x30
+   13798:      	mrs	x8, TPIDR_EL0
+   1379c:      	ldr	x8, [x8, #0x28]
+   137a0:      	mov	w20, w2
+   137a4:      	mov	x19, x0
+   137a8:      	str	x8, [sp, #0x18]
+   137ac:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   137b0:      	add	x1, x1, #0x864
+   137b4:      	add	x0, sp, #0x8
+   137b8:      	mov	x2, sp
+   137bc:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   137c0:      	and	w8, w20, #0xff
+   137c4:      	cbz	w8, 0x13824 <JNI_OnLoad+0x194>
+   137c8:      	adrp	x0, 0x62000 <__sfp_handle_exceptions+0x2c>
+   137cc:      	add	x0, x0, #0xb06
+   137d0:      	mov	x8, sp
+   137d4:      	mov	w1, #0x1d               // =29
+   137d8:      	bl	0x27588 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0xce48>
+   137dc:      	add	x0, sp, #0x8
+   137e0:      	mov	x1, sp
+   137e4:      	bl	0x2bc70 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2fc8>
+   137e8:      	ldr	x8, [sp]
+   137ec:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   137f0:      	ldr	x9, [x9, #0xf98]
+   137f4:      	sub	x0, x8, #0x18
+   137f8:      	cmp	x0, x9
+   137fc:      	b.eq	0x1385c <JNI_OnLoad+0x1cc>
+   13800:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   13804:      	ldr	x9, [x9, #0xe60]
+   13808:      	sub	x8, x8, #0x8
+   1380c:      	cbz	x9, 0x1391c <JNI_OnLoad+0x28c>
+   13810:      	ldaxr	w9, [x8]
+   13814:      	sub	w10, w9, #0x1
+   13818:      	stlxr	w11, w10, [x8]
+   1381c:      	cbnz	w11, 0x13810 <JNI_OnLoad+0x180>
+   13820:      	b	0x13928 <JNI_OnLoad+0x298>
+   13824:      	adrp	x0, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13828:      	add	x0, x0, #0xb23
+   1382c:      	mov	x8, sp
+   13830:      	orr	w1, wzr, #0x20
+   13834:      	bl	0x27588 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0xce48>
+   13838:      	add	x0, sp, #0x8
+   1383c:      	mov	x1, sp
+   13840:      	bl	0x2bc70 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2fc8>
+   13844:      	ldr	x8, [sp]
+   13848:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1384c:      	ldr	x9, [x9, #0xf98]
+   13850:      	sub	x0, x8, #0x18
+   13854:      	cmp	x0, x9
+   13858:      	b.ne	0x138f8 <JNI_OnLoad+0x268>
+   1385c:      	ldr	x8, [x19]
+   13860:      	ldr	x1, [sp, #0x8]
+   13864:      	ldr	x8, [x8, #0x538]
+   13868:      	mov	x0, x19
+   1386c:      	blr	x8
+   13870:      	mov	x19, x0
+   13874:      	ldr	x8, [sp, #0x8]
+   13878:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1387c:      	ldr	x9, [x9, #0xf98]
+   13880:      	sub	x0, x8, #0x18
+   13884:      	cmp	x0, x9
+   13888:      	b.ne	0x138b4 <JNI_OnLoad+0x224>
+   1388c:      	mrs	x8, TPIDR_EL0
+   13890:      	ldr	x8, [x8, #0x28]
+   13894:      	ldr	x9, [sp, #0x18]
+   13898:      	cmp	x8, x9
+   1389c:      	b.ne	0x1393c <JNI_OnLoad+0x2ac>
+   138a0:      	mov	x0, x19
+   138a4:      	ldp	x29, x30, [sp, #0x30]
+   138a8:      	ldp	x20, x19, [sp, #0x20]
+   138ac:      	add	sp, sp, #0x40
+   138b0:      	ret
+   138b4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   138b8:      	ldr	x9, [x9, #0xe60]
+   138bc:      	sub	x8, x8, #0x8
+   138c0:      	cbz	x9, 0x138d8 <JNI_OnLoad+0x248>
+   138c4:      	ldaxr	w9, [x8]
+   138c8:      	sub	w10, w9, #0x1
+   138cc:      	stlxr	w11, w10, [x8]
+   138d0:      	cbnz	w11, 0x138c4 <JNI_OnLoad+0x234>
+   138d4:      	b	0x138e4 <JNI_OnLoad+0x254>
+   138d8:      	ldr	w9, [x8]
+   138dc:      	sub	w10, w9, #0x1
+   138e0:      	str	w10, [x8]
+   138e4:      	cmp	w9, #0x0
+   138e8:      	b.gt	0x1388c <JNI_OnLoad+0x1fc>
+   138ec:      	mov	x1, sp
+   138f0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   138f4:      	b	0x1388c <JNI_OnLoad+0x1fc>
+   138f8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   138fc:      	ldr	x9, [x9, #0xe60]
+   13900:      	sub	x8, x8, #0x8
+   13904:      	cbz	x9, 0x1391c <JNI_OnLoad+0x28c>
+   13908:      	ldaxr	w9, [x8]
+   1390c:      	sub	w10, w9, #0x1
+   13910:      	stlxr	w11, w10, [x8]
+   13914:      	cbnz	w11, 0x13908 <JNI_OnLoad+0x278>
+   13918:      	b	0x13928 <JNI_OnLoad+0x298>
+   1391c:      	ldr	w9, [x8]
+   13920:      	sub	w10, w9, #0x1
+   13924:      	str	w10, [x8]
+   13928:      	cmp	w9, #0x0
+   1392c:      	b.gt	0x1385c <JNI_OnLoad+0x1cc>
+   13930:      	add	x1, sp, #0x10
+   13934:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   13938:      	b	0x1385c <JNI_OnLoad+0x1cc>
+   1393c:      	bl	0xc630 <__stack_chk_fail@plt>
+   13940:      	ldr	x8, [sp]
+   13944:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   13948:      	ldr	x9, [x9, #0xf98]
+   1394c:      	mov	x19, x0
+   13950:      	sub	x0, x8, #0x18
+   13954:      	cmp	x0, x9
+   13958:      	b.eq	0x139ec <JNI_OnLoad+0x35c>
+   1395c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   13960:      	ldr	x9, [x9, #0xe60]
+   13964:      	sub	x8, x8, #0x8
+   13968:      	cbz	x9, 0x139c4 <JNI_OnLoad+0x334>
+   1396c:      	ldaxr	w9, [x8]
+   13970:      	sub	w10, w9, #0x1
+   13974:      	stlxr	w11, w10, [x8]
+   13978:      	cbnz	w11, 0x1396c <JNI_OnLoad+0x2dc>
+   1397c:      	b	0x139d0 <JNI_OnLoad+0x340>
+   13980:      	b	0x139e8 <JNI_OnLoad+0x358>
+   13984:      	ldr	x8, [sp]
+   13988:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1398c:      	ldr	x9, [x9, #0xf98]
+   13990:      	mov	x19, x0
+   13994:      	sub	x0, x8, #0x18
+   13998:      	cmp	x0, x9
+   1399c:      	b.eq	0x139ec <JNI_OnLoad+0x35c>
+   139a0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   139a4:      	ldr	x9, [x9, #0xe60]
+   139a8:      	sub	x8, x8, #0x8
+   139ac:      	cbz	x9, 0x139c4 <JNI_OnLoad+0x334>
+   139b0:      	ldaxr	w9, [x8]
+   139b4:      	sub	w10, w9, #0x1
+   139b8:      	stlxr	w11, w10, [x8]
+   139bc:      	cbnz	w11, 0x139b0 <JNI_OnLoad+0x320>
+   139c0:      	b	0x139d0 <JNI_OnLoad+0x340>
+   139c4:      	ldr	w9, [x8]
+   139c8:      	sub	w10, w9, #0x1
+   139cc:      	str	w10, [x8]
+   139d0:      	cmp	w9, #0x0
+   139d4:      	b.gt	0x139ec <JNI_OnLoad+0x35c>
+   139d8:      	add	x1, sp, #0x10
+   139dc:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   139e0:      	b	0x139ec <JNI_OnLoad+0x35c>
+   139e4:      	b	0x139e8 <JNI_OnLoad+0x358>
+   139e8:      	mov	x19, x0
+   139ec:      	ldr	x8, [sp, #0x8]
+   139f0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   139f4:      	ldr	x9, [x9, #0xf98]
+   139f8:      	sub	x0, x8, #0x18
+   139fc:      	cmp	x0, x9
+   13a00:      	b.eq	0x13a34 <JNI_OnLoad+0x3a4>
+   13a04:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   13a08:      	ldr	x9, [x9, #0xe60]
+   13a0c:      	sub	x8, x8, #0x8
+   13a10:      	cbz	x9, 0x13a3c <JNI_OnLoad+0x3ac>
+   13a14:      	ldaxr	w9, [x8]
+   13a18:      	sub	w10, w9, #0x1
+   13a1c:      	stlxr	w11, w10, [x8]
+   13a20:      	cbnz	w11, 0x13a14 <JNI_OnLoad+0x384>
+   13a24:      	cmp	w9, #0x0
+   13a28:      	b.gt	0x13a34 <JNI_OnLoad+0x3a4>
+   13a2c:      	mov	x1, sp
+   13a30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   13a34:      	mov	x0, x19
+   13a38:      	bl	0xc4e0 <_Unwind_Resume@plt>
+   13a3c:      	ldr	w9, [x8]
+   13a40:      	sub	w10, w9, #0x1
+   13a44:      	str	w10, [x8]
+   13a48:      	b	0x13a24 <JNI_OnLoad+0x394>
+   13a4c:      	bl	0xc4e0 <_Unwind_Resume@plt>
+   13a50:      	stp	x28, x27, [sp, #-0x60]!
+   13a54:      	stp	x26, x25, [sp, #0x10]
+   13a58:      	stp	x24, x23, [sp, #0x20]
+   13a5c:      	stp	x22, x21, [sp, #0x30]
+   13a60:      	stp	x20, x19, [sp, #0x40]
+   13a64:      	stp	x29, x30, [sp, #0x50]
+   13a68:      	add	x29, sp, #0x50
+   13a6c:      	sub	sp, sp, #0x390
+   13a70:      	mrs	x8, TPIDR_EL0
+   13a74:      	ldr	x8, [x8, #0x28]
+   13a78:      	mov	w28, w7
+   13a7c:      	mov	x24, x6
+   13a80:      	mov	x20, x5
+   13a84:      	mov	x21, x4
+   13a88:      	mov	x22, x3
+   13a8c:      	mov	x23, x2
+   13a90:      	mov	x19, x0
+   13a94:      	stur	x8, [x29, #-0x58]
+   13a98:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13a9c:      	add	x1, x1, #0x864
+   13aa0:      	add	x0, sp, #0x208
+   13aa4:      	add	x2, sp, #0x218
+   13aa8:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13aac:      	cbz	x23, 0x14310 <JNI_OnLoad+0xc80>
+   13ab0:      	cbz	x22, 0x14310 <JNI_OnLoad+0xc80>
+   13ab4:      	cbz	x21, 0x14310 <JNI_OnLoad+0xc80>
+   13ab8:      	cbz	x20, 0x14310 <JNI_OnLoad+0xc80>
+   13abc:      	ldr	x8, [x19]
+   13ac0:      	ldr	x8, [x8, #0x548]
+   13ac4:      	mov	x0, x19
+   13ac8:      	mov	x1, x22
+   13acc:      	mov	x2, xzr
+   13ad0:      	blr	x8
+   13ad4:      	mov	x26, x0
+   13ad8:      	ldr	x8, [x19]
+   13adc:      	ldr	x8, [x8, #0x548]
+   13ae0:      	mov	x0, x19
+   13ae4:      	mov	x1, x21
+   13ae8:      	mov	x2, xzr
+   13aec:      	blr	x8
+   13af0:      	mov	x27, x0
+   13af4:      	ldr	x8, [x19]
+   13af8:      	ldr	x8, [x8, #0x548]
+   13afc:      	mov	x0, x19
+   13b00:      	mov	x1, x20
+   13b04:      	mov	x2, xzr
+   13b08:      	blr	x8
+   13b0c:      	str	x0, [sp, #0x90]
+   13b10:      	ldr	x8, [x19]
+   13b14:      	ldr	x25, [x29, #0x18]
+   13b18:      	ldr	x8, [x8, #0x548]
+   13b1c:      	mov	x0, x19
+   13b20:      	mov	x1, x25
+   13b24:      	mov	x2, xzr
+   13b28:      	blr	x8
+   13b2c:      	str	x0, [sp, #0x88]
+   13b30:      	add	x0, sp, #0x200
+   13b34:      	add	x2, sp, #0x218
+   13b38:      	mov	x1, x26
+   13b3c:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13b40:      	adrp	x0, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13b44:      	add	x0, x0, #0xb43
+   13b48:      	add	x8, sp, #0x1f8
+   13b4c:      	mov	w1, #0x5                // =5
+   13b50:      	bl	0x27588 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0xce48>
+   13b54:      	add	x0, sp, #0x1f0
+   13b58:      	add	x2, sp, #0x218
+   13b5c:      	mov	x1, x27
+   13b60:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13b64:      	ldr	x1, [sp, #0x90]
+   13b68:      	add	x0, sp, #0x1e8
+   13b6c:      	add	x2, sp, #0x218
+   13b70:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13b74:      	add	x8, sp, #0x1e0
+   13b78:      	mov	x0, x19
+   13b7c:      	bl	0x104d4 <.text+0x3d54>
+   13b80:      	add	x8, sp, #0x1d8
+   13b84:      	mov	x0, x19
+   13b88:      	bl	0x10764 <.text+0x3fe4>
+   13b8c:      	add	x0, sp, #0x1c8
+   13b90:      	add	x1, sp, #0x1d8
+   13b94:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13b98:      	add	x8, sp, #0x1d0
+   13b9c:      	add	x0, sp, #0x1c8
+   13ba0:      	stp	x25, x26, [sp, #0x70]
+   13ba4:      	bl	0x1d060 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0x2920>
+   13ba8:      	ldr	x8, [sp, #0x1c8]
+   13bac:      	adrp	x26, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   13bb0:      	ldr	x26, [x26, #0xf98]
+   13bb4:      	sub	x0, x8, #0x18
+   13bb8:      	cmp	x0, x26
+   13bbc:      	b.ne	0x1439c <JNI_OnLoad+0xd0c>
+   13bc0:      	add	x0, sp, #0x1b8
+   13bc4:      	add	x1, sp, #0x1d0
+   13bc8:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13bcc:      	add	x8, sp, #0x1b0
+   13bd0:      	bl	0x1d204 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0x2ac4>
+   13bd4:      	add	x8, sp, #0x1c0
+   13bd8:      	add	x1, sp, #0x1b8
+   13bdc:      	add	x2, sp, #0x1b0
+   13be0:      	mov	x0, x19
+   13be4:      	bl	0x10bd4 <.text+0x4454>
+   13be8:      	ldr	x8, [sp, #0x1b0]
+   13bec:      	sub	x0, x8, #0x18
+   13bf0:      	cmp	x0, x26
+   13bf4:      	b.ne	0x143c0 <JNI_OnLoad+0xd30>
+   13bf8:      	ldr	x8, [sp, #0x1b8]
+   13bfc:      	sub	x0, x8, #0x18
+   13c00:      	cmp	x0, x26
+   13c04:      	b.ne	0x143e4 <JNI_OnLoad+0xd54>
+   13c08:      	add	x8, sp, #0x1a8
+   13c0c:      	mov	x0, x19
+   13c10:      	bl	0xcb30 <.text+0x3b0>
+   13c14:      	add	x8, sp, #0x1a0
+   13c18:      	mov	x0, x19
+   13c1c:      	bl	0xe198 <.text+0x1a18>
+   13c20:      	add	x8, sp, #0x198
+   13c24:      	mov	x0, x19
+   13c28:      	bl	0x10064 <.text+0x38e4>
+   13c2c:      	add	x8, sp, #0x190
+   13c30:      	mov	x0, x19
+   13c34:      	bl	0xe608 <.text+0x1e88>
+   13c38:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13c3c:      	add	x1, x1, #0x212
+   13c40:      	add	x0, sp, #0x188
+   13c44:      	add	x2, sp, #0x218
+   13c48:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13c4c:      	add	x8, sp, #0x180
+   13c50:      	mov	x0, x19
+   13c54:      	mov	x1, x23
+   13c58:      	bl	0xf2fc <.text+0x2b7c>
+   13c5c:      	add	x8, sp, #0x178
+   13c60:      	mov	x0, x19
+   13c64:      	mov	x1, x23
+   13c68:      	bl	0xf774 <.text+0x2ff4>
+   13c6c:      	add	x8, sp, #0x170
+   13c70:      	mov	x0, x19
+   13c74:      	mov	x1, x23
+   13c78:      	bl	0xfbec <.text+0x346c>
+   13c7c:      	mov	x0, x19
+   13c80:      	str	x27, [sp, #0x80]
+   13c84:      	bl	0xeee8 <.text+0x2768>
+   13c88:      	mov	x25, x0
+   13c8c:      	add	x0, sp, #0x218
+   13c90:      	orr	w1, wzr, #0x18
+   13c94:      	add	x27, sp, #0x218
+   13c98:      	bl	0x2a440 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x1798>
+   13c9c:      	add	x0, x27, #0x10
+   13ca0:      	add	x1, x25, x24
+   13ca4:      	bl	0x295bc <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x914>
+   13ca8:      	add	x8, sp, #0x218
+   13cac:      	add	x0, x8, #0x18
+   13cb0:      	add	x8, sp, #0x168
+   13cb4:      	bl	0x29f5c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x12b4>
+   13cb8:      	add	x8, sp, #0x160
+   13cbc:      	mov	x0, x19
+   13cc0:      	bl	0xea78 <.text+0x22f8>
+   13cc4:      	ldp	x24, x25, [sp, #0x80]
+   13cc8:      	add	x8, sp, #0x158
+   13ccc:      	mov	x0, x19
+   13cd0:      	mov	x1, x23
+   13cd4:      	bl	0x11f78 <.text+0x57f8>
+   13cd8:      	add	x8, sp, #0x150
+   13cdc:      	mov	x0, x19
+   13ce0:      	mov	x1, x23
+   13ce4:      	bl	0x1290c <.text+0x618c>
+   13ce8:      	add	x0, sp, #0x148
+   13cec:      	add	x2, sp, #0x140
+   13cf0:      	mov	x1, x25
+   13cf4:      	bl	0x2b41c <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2774>
+   13cf8:      	add	x0, sp, #0x138
+   13cfc:      	add	x1, sp, #0x200
+   13d00:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d04:      	add	x0, sp, #0x130
+   13d08:      	add	x1, sp, #0x1f8
+   13d0c:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d10:      	add	x0, sp, #0x128
+   13d14:      	add	x1, sp, #0x1d0
+   13d18:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d1c:      	add	x0, sp, #0x120
+   13d20:      	add	x1, sp, #0x1c0
+   13d24:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d28:      	add	x0, sp, #0x118
+   13d2c:      	add	x1, sp, #0x1f0
+   13d30:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d34:      	add	x0, sp, #0x110
+   13d38:      	add	x1, sp, #0x1a8
+   13d3c:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d40:      	add	x0, sp, #0x108
+   13d44:      	add	x1, sp, #0x1a0
+   13d48:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d4c:      	add	x0, sp, #0x100
+   13d50:      	add	x1, sp, #0x198
+   13d54:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d58:      	add	x0, sp, #0xf8
+   13d5c:      	add	x1, sp, #0x190
+   13d60:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d64:      	add	x0, sp, #0xf0
+   13d68:      	add	x1, sp, #0x188
+   13d6c:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d70:      	add	x0, sp, #0xe8
+   13d74:      	add	x1, sp, #0x180
+   13d78:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d7c:      	add	x0, sp, #0xe0
+   13d80:      	add	x1, sp, #0x178
+   13d84:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d88:      	add	x0, sp, #0xd8
+   13d8c:      	add	x1, sp, #0x170
+   13d90:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13d94:      	add	x0, sp, #0xd0
+   13d98:      	add	x1, sp, #0x1e8
+   13d9c:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13da0:      	add	x0, sp, #0xc8
+   13da4:      	add	x1, sp, #0x168
+   13da8:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13dac:      	add	x0, sp, #0xc0
+   13db0:      	add	x1, sp, #0x160
+   13db4:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13db8:      	add	x0, sp, #0xb8
+   13dbc:      	add	x1, sp, #0x158
+   13dc0:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13dc4:      	add	x0, sp, #0xb0
+   13dc8:      	add	x1, sp, #0x150
+   13dcc:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13dd0:      	add	x0, sp, #0xa8
+   13dd4:      	add	x1, sp, #0x148
+   13dd8:      	add	x23, sp, #0xa8
+   13ddc:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   13de0:      	tst	w28, #0xff
+   13de4:      	cset	w8, ne
+   13de8:      	strb	w8, [sp, #0x50]
+   13dec:      	add	x9, sp, #0xb0
+   13df0:      	add	x10, sp, #0xb8
+   13df4:      	add	x11, sp, #0xc0
+   13df8:      	add	x12, sp, #0xc8
+   13dfc:      	add	x13, sp, #0xd0
+   13e00:      	add	x14, sp, #0xd8
+   13e04:      	add	x15, sp, #0xe0
+   13e08:      	add	x16, sp, #0xe8
+   13e0c:      	add	x17, sp, #0xf0
+   13e10:      	add	x18, sp, #0xf8
+   13e14:      	add	x8, sp, #0x140
+   13e18:      	add	x0, sp, #0x138
+   13e1c:      	add	x1, sp, #0x130
+   13e20:      	add	x2, sp, #0x128
+   13e24:      	add	x3, sp, #0x120
+   13e28:      	add	x4, sp, #0x118
+   13e2c:      	add	x5, sp, #0x110
+   13e30:      	add	x6, sp, #0x108
+   13e34:      	add	x7, sp, #0x100
+   13e38:      	str	x23, [sp, #0x58]
+   13e3c:      	stp	x10, x9, [sp, #0x40]
+   13e40:      	stp	x12, x11, [sp, #0x30]
+   13e44:      	stp	x14, x13, [sp, #0x20]
+   13e48:      	stp	x16, x15, [sp, #0x10]
+   13e4c:      	stp	x18, x17, [sp]
+   13e50:      	bl	0x1a85c <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0x11c>
+   13e54:      	add	x0, sp, #0x208
+   13e58:      	add	x1, sp, #0x140
+   13e5c:      	bl	0x2bc70 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2fc8>
+   13e60:      	ldr	x8, [sp, #0x140]
+   13e64:      	sub	x0, x8, #0x18
+   13e68:      	cmp	x0, x26
+   13e6c:      	b.ne	0x14428 <JNI_OnLoad+0xd98>
+   13e70:      	ldr	x8, [sp, #0xa8]
+   13e74:      	sub	x0, x8, #0x18
+   13e78:      	cmp	x0, x26
+   13e7c:      	b.ne	0x1444c <JNI_OnLoad+0xdbc>
+   13e80:      	ldr	x8, [sp, #0xb0]
+   13e84:      	sub	x0, x8, #0x18
+   13e88:      	cmp	x0, x26
+   13e8c:      	b.ne	0x14470 <JNI_OnLoad+0xde0>
+   13e90:      	ldr	x8, [sp, #0xb8]
+   13e94:      	sub	x0, x8, #0x18
+   13e98:      	cmp	x0, x26
+   13e9c:      	b.ne	0x14494 <JNI_OnLoad+0xe04>
+   13ea0:      	ldr	x8, [sp, #0xc0]
+   13ea4:      	sub	x0, x8, #0x18
+   13ea8:      	cmp	x0, x26
+   13eac:      	b.ne	0x144b8 <JNI_OnLoad+0xe28>
+   13eb0:      	ldr	x8, [sp, #0xc8]
+   13eb4:      	sub	x0, x8, #0x18
+   13eb8:      	cmp	x0, x26
+   13ebc:      	b.ne	0x144dc <JNI_OnLoad+0xe4c>
+   13ec0:      	ldr	x8, [sp, #0xd0]
+   13ec4:      	sub	x0, x8, #0x18
+   13ec8:      	cmp	x0, x26
+   13ecc:      	b.ne	0x14500 <JNI_OnLoad+0xe70>
+   13ed0:      	ldr	x8, [sp, #0xd8]
+   13ed4:      	sub	x0, x8, #0x18
+   13ed8:      	cmp	x0, x26
+   13edc:      	b.ne	0x14524 <JNI_OnLoad+0xe94>
+   13ee0:      	ldr	x8, [sp, #0xe0]
+   13ee4:      	sub	x0, x8, #0x18
+   13ee8:      	cmp	x0, x26
+   13eec:      	b.ne	0x14548 <JNI_OnLoad+0xeb8>
+   13ef0:      	ldr	x8, [sp, #0xe8]
+   13ef4:      	sub	x0, x8, #0x18
+   13ef8:      	cmp	x0, x26
+   13efc:      	b.ne	0x1456c <JNI_OnLoad+0xedc>
+   13f00:      	ldr	x8, [sp, #0xf0]
+   13f04:      	sub	x0, x8, #0x18
+   13f08:      	cmp	x0, x26
+   13f0c:      	b.ne	0x14590 <JNI_OnLoad+0xf00>
+   13f10:      	ldr	x8, [sp, #0xf8]
+   13f14:      	sub	x0, x8, #0x18
+   13f18:      	cmp	x0, x26
+   13f1c:      	b.ne	0x145b4 <JNI_OnLoad+0xf24>
+   13f20:      	ldr	x8, [sp, #0x100]
+   13f24:      	sub	x0, x8, #0x18
+   13f28:      	cmp	x0, x26
+   13f2c:      	b.ne	0x145d8 <JNI_OnLoad+0xf48>
+   13f30:      	ldr	x8, [sp, #0x108]
+   13f34:      	sub	x0, x8, #0x18
+   13f38:      	cmp	x0, x26
+   13f3c:      	b.ne	0x145fc <JNI_OnLoad+0xf6c>
+   13f40:      	ldr	x8, [sp, #0x110]
+   13f44:      	sub	x0, x8, #0x18
+   13f48:      	cmp	x0, x26
+   13f4c:      	b.ne	0x14620 <JNI_OnLoad+0xf90>
+   13f50:      	ldr	x8, [sp, #0x118]
+   13f54:      	sub	x0, x8, #0x18
+   13f58:      	cmp	x0, x26
+   13f5c:      	b.ne	0x14644 <JNI_OnLoad+0xfb4>
+   13f60:      	ldr	x8, [sp, #0x120]
+   13f64:      	sub	x0, x8, #0x18
+   13f68:      	cmp	x0, x26
+   13f6c:      	b.ne	0x14668 <JNI_OnLoad+0xfd8>
+   13f70:      	ldr	x8, [sp, #0x128]
+   13f74:      	sub	x0, x8, #0x18
+   13f78:      	cmp	x0, x26
+   13f7c:      	b.ne	0x1468c <JNI_OnLoad+0xffc>
+   13f80:      	ldr	x8, [sp, #0x130]
+   13f84:      	sub	x0, x8, #0x18
+   13f88:      	cmp	x0, x26
+   13f8c:      	b.ne	0x146b0 <JNI_OnLoad+0x1020>
+   13f90:      	ldr	x8, [sp, #0x138]
+   13f94:      	ldrb	w23, [x29, #0x10]
+   13f98:      	sub	x0, x8, #0x18
+   13f9c:      	cmp	x0, x26
+   13fa0:      	b.ne	0x146d4 <JNI_OnLoad+0x1044>
+   13fa4:      	and	w8, w23, #0xff
+   13fa8:      	cbnz	w8, 0x14058 <JNI_OnLoad+0x9c8>
+   13fac:      	add	x8, sp, #0x140
+   13fb0:      	mov	x0, x19
+   13fb4:      	bl	0x13218 <.text+0x6a98>
+   13fb8:      	adrp	x0, 0x62000 <__sfp_handle_exceptions+0x2c>
+   13fbc:      	add	x0, x0, #0xb48
+   13fc0:      	add	x8, sp, #0x98
+   13fc4:      	mov	w1, #0x5                // =5
+   13fc8:      	bl	0x27588 <_ZNSt8_Rb_treeISsSt4pairIKSsSsESt10_Select1stIS2_ESt4lessISsESaIS2_EE24_M_get_insert_unique_posERS1_+0xce48>
+   13fcc:      	add	x0, sp, #0x98
+   13fd0:      	add	x1, sp, #0x140
+   13fd4:      	bl	0x2ba38 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2d90>
+   13fd8:      	ldr	x8, [x0]
+   13fdc:      	add	x9, x26, #0x18
+   13fe0:      	str	x8, [sp, #0xa0]
+   13fe4:      	str	x9, [x0]
+   13fe8:      	add	x0, sp, #0x140
+   13fec:      	add	x1, sp, #0xa0
+   13ff0:      	bl	0x2bc70 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2fc8>
+   13ff4:      	ldr	x8, [sp, #0xa0]
+   13ff8:      	sub	x0, x8, #0x18
+   13ffc:      	cmp	x0, x26
+   14000:      	b.ne	0x15058 <JNI_OnLoad+0x19c8>
+   14004:      	ldr	x8, [sp, #0x98]
+   14008:      	sub	x0, x8, #0x18
+   1400c:      	cmp	x0, x26
+   14010:      	b.ne	0x1507c <JNI_OnLoad+0x19ec>
+   14014:      	add	x0, sp, #0xa0
+   14018:      	add	x1, sp, #0x208
+   1401c:      	bl	0x2c390 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x36e8>
+   14020:      	add	x0, sp, #0xa0
+   14024:      	add	x1, sp, #0x140
+   14028:      	bl	0x2ba38 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2d90>
+   1402c:      	add	x0, sp, #0x208
+   14030:      	add	x1, sp, #0xa0
+   14034:      	bl	0x2bc70 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2fc8>
+   14038:      	ldr	x8, [sp, #0xa0]
+   1403c:      	sub	x0, x8, #0x18
+   14040:      	cmp	x0, x26
+   14044:      	b.ne	0x150a0 <JNI_OnLoad+0x1a10>
+   14048:      	ldr	x8, [sp, #0x140]
+   1404c:      	sub	x0, x8, #0x18
+   14050:      	cmp	x0, x26
+   14054:      	b.ne	0x150c4 <JNI_OnLoad+0x1a34>
+   14058:      	adrp	x0, 0x88000
+   1405c:      	add	x0, x0, #0x2f8
+   14060:      	add	x1, sp, #0x1e0
+   14064:      	bl	0xc020 <_ZNSt3mapISsSsSt4lessISsESaISt4pairIKSsSsEEEixERS3_@plt>
+   14068:      	add	x1, sp, #0x1d0
+   1406c:      	bl	0x2c420 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x3778>
+   14070:      	adrp	x0, 0x62000 <__sfp_handle_exceptions+0x2c>
+   14074:      	add	x0, x0, #0x7d3
+   14078:      	add	x8, sp, #0x98
+   1407c:      	add	x1, sp, #0x208
+   14080:      	bl	0x16630 <_ZNSt3mapISsSsSt4lessISsESaISt4pairIKSsSsEEEixERS3_+0x164>
+   14084:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   14088:      	add	x1, x1, #0x7db
+   1408c:      	add	x0, sp, #0x98
+   14090:      	orr	w2, wzr, #0x7
+   14094:      	bl	0x2baf8 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2e50>
+   14098:      	ldr	x8, [x0]
+   1409c:      	add	x23, x26, #0x18
+   140a0:      	str	x8, [sp, #0xa0]
+   140a4:      	str	x23, [x0]
+   140a8:      	add	x0, sp, #0xa0
+   140ac:      	add	x1, sp, #0x1e0
+   140b0:      	bl	0x2ba38 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2d90>
+   140b4:      	ldr	x8, [x0]
+   140b8:      	str	x8, [sp, #0x140]
+   140bc:      	str	x23, [x0]
+   140c0:      	adrp	x1, 0x62000 <__sfp_handle_exceptions+0x2c>
+   140c4:      	add	x1, x1, #0x815
+   140c8:      	add	x0, sp, #0x140
+   140cc:      	orr	w2, wzr, #0x2
+   140d0:      	bl	0x2baf8 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x2e50>
+   140d4:      	add	x8, x26, #0x18
+   140d8:      	ldr	x23, [x0]
+   140dc:      	str	x8, [x0]
+   140e0:      	ldr	x8, [sp, #0x140]
+   140e4:      	sub	x0, x8, #0x18
+   140e8:      	cmp	x0, x26
+   140ec:      	b.ne	0x146f8 <JNI_OnLoad+0x1068>
+   140f0:      	ldr	x8, [sp, #0xa0]
+   140f4:      	sub	x0, x8, #0x18
+   140f8:      	cmp	x0, x26
+   140fc:      	b.ne	0x1471c <JNI_OnLoad+0x108c>
+   14100:      	ldr	x8, [sp, #0x98]
+   14104:      	sub	x0, x8, #0x18
+   14108:      	cmp	x0, x26
+   1410c:      	b.ne	0x14740 <JNI_OnLoad+0x10b0>
+   14110:      	ldr	x8, [x19]
+   14114:      	ldr	x8, [x8, #0x550]
+   14118:      	ldr	x2, [sp, #0x78]
+   1411c:      	mov	x0, x19
+   14120:      	mov	x1, x22
+   14124:      	blr	x8
+   14128:      	ldr	x8, [x19]
+   1412c:      	ldr	x8, [x8, #0x550]
+   14130:      	mov	x0, x19
+   14134:      	mov	x1, x21
+   14138:      	mov	x2, x24
+   1413c:      	blr	x8
+   14140:      	ldr	x8, [x19]
+   14144:      	ldr	x8, [x8, #0x550]
+   14148:      	ldr	x2, [sp, #0x90]
+   1414c:      	mov	x0, x19
+   14150:      	mov	x1, x20
+   14154:      	blr	x8
+   14158:      	ldr	x8, [x19]
+   1415c:      	ldr	x8, [x8, #0x550]
+   14160:      	ldr	x1, [sp, #0x70]
+   14164:      	mov	x0, x19
+   14168:      	mov	x2, x25
+   1416c:      	blr	x8
+   14170:      	ldr	x8, [x19]
+   14174:      	ldr	x8, [x8, #0x538]
+   14178:      	mov	x0, x19
+   1417c:      	mov	x1, x23
+   14180:      	blr	x8
+   14184:      	mov	x19, x0
+   14188:      	sub	x0, x23, #0x18
+   1418c:      	cmp	x0, x26
+   14190:      	b.ne	0x14764 <JNI_OnLoad+0x10d4>
+   14194:      	ldr	x8, [sp, #0x148]
+   14198:      	sub	x0, x8, #0x18
+   1419c:      	cmp	x0, x26
+   141a0:      	b.ne	0x14788 <JNI_OnLoad+0x10f8>
+   141a4:      	ldr	x8, [sp, #0x150]
+   141a8:      	sub	x0, x8, #0x18
+   141ac:      	cmp	x0, x26
+   141b0:      	b.ne	0x147ac <JNI_OnLoad+0x111c>
+   141b4:      	ldr	x8, [sp, #0x158]
+   141b8:      	sub	x0, x8, #0x18
+   141bc:      	cmp	x0, x26
+   141c0:      	b.ne	0x147d0 <JNI_OnLoad+0x1140>
+   141c4:      	ldr	x8, [sp, #0x160]
+   141c8:      	sub	x0, x8, #0x18
+   141cc:      	cmp	x0, x26
+   141d0:      	b.ne	0x147f4 <JNI_OnLoad+0x1164>
+   141d4:      	ldr	x8, [sp, #0x168]
+   141d8:      	sub	x0, x8, #0x18
+   141dc:      	cmp	x0, x26
+   141e0:      	b.ne	0x14818 <JNI_OnLoad+0x1188>
+   141e4:      	add	x0, sp, #0x218
+   141e8:      	bl	0x29d74 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x10cc>
+   141ec:      	ldr	x8, [sp, #0x170]
+   141f0:      	sub	x0, x8, #0x18
+   141f4:      	cmp	x0, x26
+   141f8:      	b.ne	0x1483c <JNI_OnLoad+0x11ac>
+   141fc:      	ldr	x8, [sp, #0x178]
+   14200:      	sub	x0, x8, #0x18
+   14204:      	cmp	x0, x26
+   14208:      	b.ne	0x14860 <JNI_OnLoad+0x11d0>
+   1420c:      	ldr	x8, [sp, #0x180]
+   14210:      	sub	x0, x8, #0x18
+   14214:      	cmp	x0, x26
+   14218:      	b.ne	0x14884 <JNI_OnLoad+0x11f4>
+   1421c:      	ldr	x8, [sp, #0x188]
+   14220:      	sub	x0, x8, #0x18
+   14224:      	cmp	x0, x26
+   14228:      	b.ne	0x148a8 <JNI_OnLoad+0x1218>
+   1422c:      	ldr	x8, [sp, #0x190]
+   14230:      	sub	x0, x8, #0x18
+   14234:      	cmp	x0, x26
+   14238:      	b.ne	0x148cc <JNI_OnLoad+0x123c>
+   1423c:      	ldr	x8, [sp, #0x198]
+   14240:      	sub	x0, x8, #0x18
+   14244:      	cmp	x0, x26
+   14248:      	b.ne	0x148f0 <JNI_OnLoad+0x1260>
+   1424c:      	ldr	x8, [sp, #0x1a0]
+   14250:      	sub	x0, x8, #0x18
+   14254:      	cmp	x0, x26
+   14258:      	b.ne	0x14914 <JNI_OnLoad+0x1284>
+   1425c:      	ldr	x8, [sp, #0x1a8]
+   14260:      	sub	x0, x8, #0x18
+   14264:      	cmp	x0, x26
+   14268:      	b.ne	0x14938 <JNI_OnLoad+0x12a8>
+   1426c:      	ldr	x8, [sp, #0x1c0]
+   14270:      	sub	x0, x8, #0x18
+   14274:      	cmp	x0, x26
+   14278:      	b.ne	0x1495c <JNI_OnLoad+0x12cc>
+   1427c:      	ldr	x8, [sp, #0x1d0]
+   14280:      	sub	x0, x8, #0x18
+   14284:      	cmp	x0, x26
+   14288:      	b.ne	0x14980 <JNI_OnLoad+0x12f0>
+   1428c:      	ldr	x8, [sp, #0x1d8]
+   14290:      	sub	x0, x8, #0x18
+   14294:      	cmp	x0, x26
+   14298:      	b.ne	0x149a4 <JNI_OnLoad+0x1314>
+   1429c:      	ldr	x8, [sp, #0x1e0]
+   142a0:      	sub	x0, x8, #0x18
+   142a4:      	cmp	x0, x26
+   142a8:      	b.ne	0x149c8 <JNI_OnLoad+0x1338>
+   142ac:      	ldr	x8, [sp, #0x1e8]
+   142b0:      	sub	x0, x8, #0x18
+   142b4:      	cmp	x0, x26
+   142b8:      	b.ne	0x149ec <JNI_OnLoad+0x135c>
+   142bc:      	ldr	x8, [sp, #0x1f0]
+   142c0:      	sub	x0, x8, #0x18
+   142c4:      	cmp	x0, x26
+   142c8:      	b.ne	0x14a10 <JNI_OnLoad+0x1380>
+   142cc:      	ldr	x8, [sp, #0x1f8]
+   142d0:      	sub	x0, x8, #0x18
+   142d4:      	cmp	x0, x26
+   142d8:      	b.ne	0x14a34 <JNI_OnLoad+0x13a4>
+   142dc:      	ldr	x8, [sp, #0x200]
+   142e0:      	sub	x0, x8, #0x18
+   142e4:      	cmp	x0, x26
+   142e8:      	b.eq	0x14328 <JNI_OnLoad+0xc98>
+   142ec:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   142f0:      	ldr	x9, [x9, #0xe60]
+   142f4:      	sub	x8, x8, #0x8
+   142f8:      	cbz	x9, 0x14d98 <JNI_OnLoad+0x1708>
+   142fc:      	ldaxr	w9, [x8]
+   14300:      	sub	w10, w9, #0x1
+   14304:      	stlxr	w11, w10, [x8]
+   14308:      	cbnz	w11, 0x142fc <JNI_OnLoad+0xc6c>
+   1430c:      	b	0x14da4 <JNI_OnLoad+0x1714>
+   14310:      	ldr	x8, [x19]
+   14314:      	ldr	x1, [sp, #0x208]
+   14318:      	ldr	x8, [x8, #0x538]
+   1431c:      	mov	x0, x19
+   14320:      	blr	x8
+   14324:      	mov	x19, x0
+   14328:      	ldr	x8, [sp, #0x208]
+   1432c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14330:      	ldr	x9, [x9, #0xf98]
+   14334:      	sub	x0, x8, #0x18
+   14338:      	cmp	x0, x9
+   1433c:      	b.ne	0x14378 <JNI_OnLoad+0xce8>
+   14340:      	mrs	x8, TPIDR_EL0
+   14344:      	ldr	x8, [x8, #0x28]
+   14348:      	ldur	x9, [x29, #-0x58]
+   1434c:      	cmp	x8, x9
+   14350:      	b.ne	0x15178 <JNI_OnLoad+0x1ae8>
+   14354:      	mov	x0, x19
+   14358:      	add	sp, sp, #0x390
+   1435c:      	ldp	x29, x30, [sp, #0x50]
+   14360:      	ldp	x20, x19, [sp, #0x40]
+   14364:      	ldp	x22, x21, [sp, #0x30]
+   14368:      	ldp	x24, x23, [sp, #0x20]
+   1436c:      	ldp	x26, x25, [sp, #0x10]
+   14370:      	ldp	x28, x27, [sp], #0x60
+   14374:      	ret
+   14378:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1437c:      	ldr	x9, [x9, #0xe60]
+   14380:      	sub	x8, x8, #0x8
+   14384:      	cbz	x9, 0x14408 <JNI_OnLoad+0xd78>
+   14388:      	ldaxr	w9, [x8]
+   1438c:      	sub	w10, w9, #0x1
+   14390:      	stlxr	w11, w10, [x8]
+   14394:      	cbnz	w11, 0x14388 <JNI_OnLoad+0xcf8>
+   14398:      	b	0x14414 <JNI_OnLoad+0xd84>
+   1439c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   143a0:      	ldr	x9, [x9, #0xe60]
+   143a4:      	sub	x8, x8, #0x8
+   143a8:      	cbz	x9, 0x14a58 <JNI_OnLoad+0x13c8>
+   143ac:      	ldaxr	w9, [x8]
+   143b0:      	sub	w10, w9, #0x1
+   143b4:      	stlxr	w11, w10, [x8]
+   143b8:      	cbnz	w11, 0x143ac <JNI_OnLoad+0xd1c>
+   143bc:      	b	0x14a64 <JNI_OnLoad+0x13d4>
+   143c0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   143c4:      	ldr	x9, [x9, #0xe60]
+   143c8:      	sub	x8, x8, #0x8
+   143cc:      	cbz	x9, 0x14a78 <JNI_OnLoad+0x13e8>
+   143d0:      	ldaxr	w9, [x8]
+   143d4:      	sub	w10, w9, #0x1
+   143d8:      	stlxr	w11, w10, [x8]
+   143dc:      	cbnz	w11, 0x143d0 <JNI_OnLoad+0xd40>
+   143e0:      	b	0x14a84 <JNI_OnLoad+0x13f4>
+   143e4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   143e8:      	ldr	x9, [x9, #0xe60]
+   143ec:      	sub	x8, x8, #0x8
+   143f0:      	cbz	x9, 0x14a98 <JNI_OnLoad+0x1408>
+   143f4:      	ldaxr	w9, [x8]
+   143f8:      	sub	w10, w9, #0x1
+   143fc:      	stlxr	w11, w10, [x8]
+   14400:      	cbnz	w11, 0x143f4 <JNI_OnLoad+0xd64>
+   14404:      	b	0x14aa4 <JNI_OnLoad+0x1414>
+   14408:      	ldr	w9, [x8]
+   1440c:      	sub	w10, w9, #0x1
+   14410:      	str	w10, [x8]
+   14414:      	cmp	w9, #0x0
+   14418:      	b.gt	0x14340 <JNI_OnLoad+0xcb0>
+   1441c:      	add	x1, sp, #0x218
+   14420:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14424:      	b	0x14340 <JNI_OnLoad+0xcb0>
+   14428:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1442c:      	ldr	x9, [x9, #0xe60]
+   14430:      	sub	x8, x8, #0x8
+   14434:      	cbz	x9, 0x14ab8 <JNI_OnLoad+0x1428>
+   14438:      	ldaxr	w9, [x8]
+   1443c:      	sub	w10, w9, #0x1
+   14440:      	stlxr	w11, w10, [x8]
+   14444:      	cbnz	w11, 0x14438 <JNI_OnLoad+0xda8>
+   14448:      	b	0x14ac4 <JNI_OnLoad+0x1434>
+   1444c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14450:      	ldr	x9, [x9, #0xe60]
+   14454:      	sub	x8, x8, #0x8
+   14458:      	cbz	x9, 0x14ad8 <JNI_OnLoad+0x1448>
+   1445c:      	ldaxr	w9, [x8]
+   14460:      	sub	w10, w9, #0x1
+   14464:      	stlxr	w11, w10, [x8]
+   14468:      	cbnz	w11, 0x1445c <JNI_OnLoad+0xdcc>
+   1446c:      	b	0x14ae4 <JNI_OnLoad+0x1454>
+   14470:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14474:      	ldr	x9, [x9, #0xe60]
+   14478:      	sub	x8, x8, #0x8
+   1447c:      	cbz	x9, 0x14af8 <JNI_OnLoad+0x1468>
+   14480:      	ldaxr	w9, [x8]
+   14484:      	sub	w10, w9, #0x1
+   14488:      	stlxr	w11, w10, [x8]
+   1448c:      	cbnz	w11, 0x14480 <JNI_OnLoad+0xdf0>
+   14490:      	b	0x14b04 <JNI_OnLoad+0x1474>
+   14494:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14498:      	ldr	x9, [x9, #0xe60]
+   1449c:      	sub	x8, x8, #0x8
+   144a0:      	cbz	x9, 0x14b18 <JNI_OnLoad+0x1488>
+   144a4:      	ldaxr	w9, [x8]
+   144a8:      	sub	w10, w9, #0x1
+   144ac:      	stlxr	w11, w10, [x8]
+   144b0:      	cbnz	w11, 0x144a4 <JNI_OnLoad+0xe14>
+   144b4:      	b	0x14b24 <JNI_OnLoad+0x1494>
+   144b8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   144bc:      	ldr	x9, [x9, #0xe60]
+   144c0:      	sub	x8, x8, #0x8
+   144c4:      	cbz	x9, 0x14b38 <JNI_OnLoad+0x14a8>
+   144c8:      	ldaxr	w9, [x8]
+   144cc:      	sub	w10, w9, #0x1
+   144d0:      	stlxr	w11, w10, [x8]
+   144d4:      	cbnz	w11, 0x144c8 <JNI_OnLoad+0xe38>
+   144d8:      	b	0x14b44 <JNI_OnLoad+0x14b4>
+   144dc:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   144e0:      	ldr	x9, [x9, #0xe60]
+   144e4:      	sub	x8, x8, #0x8
+   144e8:      	cbz	x9, 0x14b58 <JNI_OnLoad+0x14c8>
+   144ec:      	ldaxr	w9, [x8]
+   144f0:      	sub	w10, w9, #0x1
+   144f4:      	stlxr	w11, w10, [x8]
+   144f8:      	cbnz	w11, 0x144ec <JNI_OnLoad+0xe5c>
+   144fc:      	b	0x14b64 <JNI_OnLoad+0x14d4>
+   14500:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14504:      	ldr	x9, [x9, #0xe60]
+   14508:      	sub	x8, x8, #0x8
+   1450c:      	cbz	x9, 0x14b78 <JNI_OnLoad+0x14e8>
+   14510:      	ldaxr	w9, [x8]
+   14514:      	sub	w10, w9, #0x1
+   14518:      	stlxr	w11, w10, [x8]
+   1451c:      	cbnz	w11, 0x14510 <JNI_OnLoad+0xe80>
+   14520:      	b	0x14b84 <JNI_OnLoad+0x14f4>
+   14524:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14528:      	ldr	x9, [x9, #0xe60]
+   1452c:      	sub	x8, x8, #0x8
+   14530:      	cbz	x9, 0x14b98 <JNI_OnLoad+0x1508>
+   14534:      	ldaxr	w9, [x8]
+   14538:      	sub	w10, w9, #0x1
+   1453c:      	stlxr	w11, w10, [x8]
+   14540:      	cbnz	w11, 0x14534 <JNI_OnLoad+0xea4>
+   14544:      	b	0x14ba4 <JNI_OnLoad+0x1514>
+   14548:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1454c:      	ldr	x9, [x9, #0xe60]
+   14550:      	sub	x8, x8, #0x8
+   14554:      	cbz	x9, 0x14bb8 <JNI_OnLoad+0x1528>
+   14558:      	ldaxr	w9, [x8]
+   1455c:      	sub	w10, w9, #0x1
+   14560:      	stlxr	w11, w10, [x8]
+   14564:      	cbnz	w11, 0x14558 <JNI_OnLoad+0xec8>
+   14568:      	b	0x14bc4 <JNI_OnLoad+0x1534>
+   1456c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14570:      	ldr	x9, [x9, #0xe60]
+   14574:      	sub	x8, x8, #0x8
+   14578:      	cbz	x9, 0x14bd8 <JNI_OnLoad+0x1548>
+   1457c:      	ldaxr	w9, [x8]
+   14580:      	sub	w10, w9, #0x1
+   14584:      	stlxr	w11, w10, [x8]
+   14588:      	cbnz	w11, 0x1457c <JNI_OnLoad+0xeec>
+   1458c:      	b	0x14be4 <JNI_OnLoad+0x1554>
+   14590:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14594:      	ldr	x9, [x9, #0xe60]
+   14598:      	sub	x8, x8, #0x8
+   1459c:      	cbz	x9, 0x14bf8 <JNI_OnLoad+0x1568>
+   145a0:      	ldaxr	w9, [x8]
+   145a4:      	sub	w10, w9, #0x1
+   145a8:      	stlxr	w11, w10, [x8]
+   145ac:      	cbnz	w11, 0x145a0 <JNI_OnLoad+0xf10>
+   145b0:      	b	0x14c04 <JNI_OnLoad+0x1574>
+   145b4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   145b8:      	ldr	x9, [x9, #0xe60]
+   145bc:      	sub	x8, x8, #0x8
+   145c0:      	cbz	x9, 0x14c18 <JNI_OnLoad+0x1588>
+   145c4:      	ldaxr	w9, [x8]
+   145c8:      	sub	w10, w9, #0x1
+   145cc:      	stlxr	w11, w10, [x8]
+   145d0:      	cbnz	w11, 0x145c4 <JNI_OnLoad+0xf34>
+   145d4:      	b	0x14c24 <JNI_OnLoad+0x1594>
+   145d8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   145dc:      	ldr	x9, [x9, #0xe60]
+   145e0:      	sub	x8, x8, #0x8
+   145e4:      	cbz	x9, 0x14c38 <JNI_OnLoad+0x15a8>
+   145e8:      	ldaxr	w9, [x8]
+   145ec:      	sub	w10, w9, #0x1
+   145f0:      	stlxr	w11, w10, [x8]
+   145f4:      	cbnz	w11, 0x145e8 <JNI_OnLoad+0xf58>
+   145f8:      	b	0x14c44 <JNI_OnLoad+0x15b4>
+   145fc:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14600:      	ldr	x9, [x9, #0xe60]
+   14604:      	sub	x8, x8, #0x8
+   14608:      	cbz	x9, 0x14c58 <JNI_OnLoad+0x15c8>
+   1460c:      	ldaxr	w9, [x8]
+   14610:      	sub	w10, w9, #0x1
+   14614:      	stlxr	w11, w10, [x8]
+   14618:      	cbnz	w11, 0x1460c <JNI_OnLoad+0xf7c>
+   1461c:      	b	0x14c64 <JNI_OnLoad+0x15d4>
+   14620:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14624:      	ldr	x9, [x9, #0xe60]
+   14628:      	sub	x8, x8, #0x8
+   1462c:      	cbz	x9, 0x14c78 <JNI_OnLoad+0x15e8>
+   14630:      	ldaxr	w9, [x8]
+   14634:      	sub	w10, w9, #0x1
+   14638:      	stlxr	w11, w10, [x8]
+   1463c:      	cbnz	w11, 0x14630 <JNI_OnLoad+0xfa0>
+   14640:      	b	0x14c84 <JNI_OnLoad+0x15f4>
+   14644:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14648:      	ldr	x9, [x9, #0xe60]
+   1464c:      	sub	x8, x8, #0x8
+   14650:      	cbz	x9, 0x14c98 <JNI_OnLoad+0x1608>
+   14654:      	ldaxr	w9, [x8]
+   14658:      	sub	w10, w9, #0x1
+   1465c:      	stlxr	w11, w10, [x8]
+   14660:      	cbnz	w11, 0x14654 <JNI_OnLoad+0xfc4>
+   14664:      	b	0x14ca4 <JNI_OnLoad+0x1614>
+   14668:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1466c:      	ldr	x9, [x9, #0xe60]
+   14670:      	sub	x8, x8, #0x8
+   14674:      	cbz	x9, 0x14cb8 <JNI_OnLoad+0x1628>
+   14678:      	ldaxr	w9, [x8]
+   1467c:      	sub	w10, w9, #0x1
+   14680:      	stlxr	w11, w10, [x8]
+   14684:      	cbnz	w11, 0x14678 <JNI_OnLoad+0xfe8>
+   14688:      	b	0x14cc4 <JNI_OnLoad+0x1634>
+   1468c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14690:      	ldr	x9, [x9, #0xe60]
+   14694:      	sub	x8, x8, #0x8
+   14698:      	cbz	x9, 0x14cd8 <JNI_OnLoad+0x1648>
+   1469c:      	ldaxr	w9, [x8]
+   146a0:      	sub	w10, w9, #0x1
+   146a4:      	stlxr	w11, w10, [x8]
+   146a8:      	cbnz	w11, 0x1469c <JNI_OnLoad+0x100c>
+   146ac:      	b	0x14ce4 <JNI_OnLoad+0x1654>
+   146b0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   146b4:      	ldr	x9, [x9, #0xe60]
+   146b8:      	sub	x8, x8, #0x8
+   146bc:      	cbz	x9, 0x14cf8 <JNI_OnLoad+0x1668>
+   146c0:      	ldaxr	w9, [x8]
+   146c4:      	sub	w10, w9, #0x1
+   146c8:      	stlxr	w11, w10, [x8]
+   146cc:      	cbnz	w11, 0x146c0 <JNI_OnLoad+0x1030>
+   146d0:      	b	0x14d04 <JNI_OnLoad+0x1674>
+   146d4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   146d8:      	ldr	x9, [x9, #0xe60]
+   146dc:      	sub	x8, x8, #0x8
+   146e0:      	cbz	x9, 0x14d18 <JNI_OnLoad+0x1688>
+   146e4:      	ldaxr	w9, [x8]
+   146e8:      	sub	w10, w9, #0x1
+   146ec:      	stlxr	w11, w10, [x8]
+   146f0:      	cbnz	w11, 0x146e4 <JNI_OnLoad+0x1054>
+   146f4:      	b	0x14d24 <JNI_OnLoad+0x1694>
+   146f8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   146fc:      	ldr	x9, [x9, #0xe60]
+   14700:      	sub	x8, x8, #0x8
+   14704:      	cbz	x9, 0x14d38 <JNI_OnLoad+0x16a8>
+   14708:      	ldaxr	w9, [x8]
+   1470c:      	sub	w10, w9, #0x1
+   14710:      	stlxr	w11, w10, [x8]
+   14714:      	cbnz	w11, 0x14708 <JNI_OnLoad+0x1078>
+   14718:      	b	0x14d44 <JNI_OnLoad+0x16b4>
+   1471c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14720:      	ldr	x9, [x9, #0xe60]
+   14724:      	sub	x8, x8, #0x8
+   14728:      	cbz	x9, 0x14d58 <JNI_OnLoad+0x16c8>
+   1472c:      	ldaxr	w9, [x8]
+   14730:      	sub	w10, w9, #0x1
+   14734:      	stlxr	w11, w10, [x8]
+   14738:      	cbnz	w11, 0x1472c <JNI_OnLoad+0x109c>
+   1473c:      	b	0x14d64 <JNI_OnLoad+0x16d4>
+   14740:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14744:      	ldr	x9, [x9, #0xe60]
+   14748:      	sub	x8, x8, #0x8
+   1474c:      	cbz	x9, 0x14d78 <JNI_OnLoad+0x16e8>
+   14750:      	ldaxr	w9, [x8]
+   14754:      	sub	w10, w9, #0x1
+   14758:      	stlxr	w11, w10, [x8]
+   1475c:      	cbnz	w11, 0x14750 <JNI_OnLoad+0x10c0>
+   14760:      	b	0x14d84 <JNI_OnLoad+0x16f4>
+   14764:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14768:      	ldr	x9, [x9, #0xe60]
+   1476c:      	sub	x8, x23, #0x8
+   14770:      	cbz	x9, 0x14db8 <JNI_OnLoad+0x1728>
+   14774:      	ldaxr	w9, [x8]
+   14778:      	sub	w10, w9, #0x1
+   1477c:      	stlxr	w11, w10, [x8]
+   14780:      	cbnz	w11, 0x14774 <JNI_OnLoad+0x10e4>
+   14784:      	b	0x14dc4 <JNI_OnLoad+0x1734>
+   14788:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1478c:      	ldr	x9, [x9, #0xe60]
+   14790:      	sub	x8, x8, #0x8
+   14794:      	cbz	x9, 0x14dd8 <JNI_OnLoad+0x1748>
+   14798:      	ldaxr	w9, [x8]
+   1479c:      	sub	w10, w9, #0x1
+   147a0:      	stlxr	w11, w10, [x8]
+   147a4:      	cbnz	w11, 0x14798 <JNI_OnLoad+0x1108>
+   147a8:      	b	0x14de4 <JNI_OnLoad+0x1754>
+   147ac:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   147b0:      	ldr	x9, [x9, #0xe60]
+   147b4:      	sub	x8, x8, #0x8
+   147b8:      	cbz	x9, 0x14df8 <JNI_OnLoad+0x1768>
+   147bc:      	ldaxr	w9, [x8]
+   147c0:      	sub	w10, w9, #0x1
+   147c4:      	stlxr	w11, w10, [x8]
+   147c8:      	cbnz	w11, 0x147bc <JNI_OnLoad+0x112c>
+   147cc:      	b	0x14e04 <JNI_OnLoad+0x1774>
+   147d0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   147d4:      	ldr	x9, [x9, #0xe60]
+   147d8:      	sub	x8, x8, #0x8
+   147dc:      	cbz	x9, 0x14e18 <JNI_OnLoad+0x1788>
+   147e0:      	ldaxr	w9, [x8]
+   147e4:      	sub	w10, w9, #0x1
+   147e8:      	stlxr	w11, w10, [x8]
+   147ec:      	cbnz	w11, 0x147e0 <JNI_OnLoad+0x1150>
+   147f0:      	b	0x14e24 <JNI_OnLoad+0x1794>
+   147f4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   147f8:      	ldr	x9, [x9, #0xe60]
+   147fc:      	sub	x8, x8, #0x8
+   14800:      	cbz	x9, 0x14e38 <JNI_OnLoad+0x17a8>
+   14804:      	ldaxr	w9, [x8]
+   14808:      	sub	w10, w9, #0x1
+   1480c:      	stlxr	w11, w10, [x8]
+   14810:      	cbnz	w11, 0x14804 <JNI_OnLoad+0x1174>
+   14814:      	b	0x14e44 <JNI_OnLoad+0x17b4>
+   14818:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1481c:      	ldr	x9, [x9, #0xe60]
+   14820:      	sub	x8, x8, #0x8
+   14824:      	cbz	x9, 0x14e58 <JNI_OnLoad+0x17c8>
+   14828:      	ldaxr	w9, [x8]
+   1482c:      	sub	w10, w9, #0x1
+   14830:      	stlxr	w11, w10, [x8]
+   14834:      	cbnz	w11, 0x14828 <JNI_OnLoad+0x1198>
+   14838:      	b	0x14e64 <JNI_OnLoad+0x17d4>
+   1483c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14840:      	ldr	x9, [x9, #0xe60]
+   14844:      	sub	x8, x8, #0x8
+   14848:      	cbz	x9, 0x14e78 <JNI_OnLoad+0x17e8>
+   1484c:      	ldaxr	w9, [x8]
+   14850:      	sub	w10, w9, #0x1
+   14854:      	stlxr	w11, w10, [x8]
+   14858:      	cbnz	w11, 0x1484c <JNI_OnLoad+0x11bc>
+   1485c:      	b	0x14e84 <JNI_OnLoad+0x17f4>
+   14860:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14864:      	ldr	x9, [x9, #0xe60]
+   14868:      	sub	x8, x8, #0x8
+   1486c:      	cbz	x9, 0x14e98 <JNI_OnLoad+0x1808>
+   14870:      	ldaxr	w9, [x8]
+   14874:      	sub	w10, w9, #0x1
+   14878:      	stlxr	w11, w10, [x8]
+   1487c:      	cbnz	w11, 0x14870 <JNI_OnLoad+0x11e0>
+   14880:      	b	0x14ea4 <JNI_OnLoad+0x1814>
+   14884:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14888:      	ldr	x9, [x9, #0xe60]
+   1488c:      	sub	x8, x8, #0x8
+   14890:      	cbz	x9, 0x14eb8 <JNI_OnLoad+0x1828>
+   14894:      	ldaxr	w9, [x8]
+   14898:      	sub	w10, w9, #0x1
+   1489c:      	stlxr	w11, w10, [x8]
+   148a0:      	cbnz	w11, 0x14894 <JNI_OnLoad+0x1204>
+   148a4:      	b	0x14ec4 <JNI_OnLoad+0x1834>
+   148a8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   148ac:      	ldr	x9, [x9, #0xe60]
+   148b0:      	sub	x8, x8, #0x8
+   148b4:      	cbz	x9, 0x14ed8 <JNI_OnLoad+0x1848>
+   148b8:      	ldaxr	w9, [x8]
+   148bc:      	sub	w10, w9, #0x1
+   148c0:      	stlxr	w11, w10, [x8]
+   148c4:      	cbnz	w11, 0x148b8 <JNI_OnLoad+0x1228>
+   148c8:      	b	0x14ee4 <JNI_OnLoad+0x1854>
+   148cc:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   148d0:      	ldr	x9, [x9, #0xe60]
+   148d4:      	sub	x8, x8, #0x8
+   148d8:      	cbz	x9, 0x14ef8 <JNI_OnLoad+0x1868>
+   148dc:      	ldaxr	w9, [x8]
+   148e0:      	sub	w10, w9, #0x1
+   148e4:      	stlxr	w11, w10, [x8]
+   148e8:      	cbnz	w11, 0x148dc <JNI_OnLoad+0x124c>
+   148ec:      	b	0x14f04 <JNI_OnLoad+0x1874>
+   148f0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   148f4:      	ldr	x9, [x9, #0xe60]
+   148f8:      	sub	x8, x8, #0x8
+   148fc:      	cbz	x9, 0x14f18 <JNI_OnLoad+0x1888>
+   14900:      	ldaxr	w9, [x8]
+   14904:      	sub	w10, w9, #0x1
+   14908:      	stlxr	w11, w10, [x8]
+   1490c:      	cbnz	w11, 0x14900 <JNI_OnLoad+0x1270>
+   14910:      	b	0x14f24 <JNI_OnLoad+0x1894>
+   14914:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14918:      	ldr	x9, [x9, #0xe60]
+   1491c:      	sub	x8, x8, #0x8
+   14920:      	cbz	x9, 0x14f38 <JNI_OnLoad+0x18a8>
+   14924:      	ldaxr	w9, [x8]
+   14928:      	sub	w10, w9, #0x1
+   1492c:      	stlxr	w11, w10, [x8]
+   14930:      	cbnz	w11, 0x14924 <JNI_OnLoad+0x1294>
+   14934:      	b	0x14f44 <JNI_OnLoad+0x18b4>
+   14938:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1493c:      	ldr	x9, [x9, #0xe60]
+   14940:      	sub	x8, x8, #0x8
+   14944:      	cbz	x9, 0x14f58 <JNI_OnLoad+0x18c8>
+   14948:      	ldaxr	w9, [x8]
+   1494c:      	sub	w10, w9, #0x1
+   14950:      	stlxr	w11, w10, [x8]
+   14954:      	cbnz	w11, 0x14948 <JNI_OnLoad+0x12b8>
+   14958:      	b	0x14f64 <JNI_OnLoad+0x18d4>
+   1495c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14960:      	ldr	x9, [x9, #0xe60]
+   14964:      	sub	x8, x8, #0x8
+   14968:      	cbz	x9, 0x14f78 <JNI_OnLoad+0x18e8>
+   1496c:      	ldaxr	w9, [x8]
+   14970:      	sub	w10, w9, #0x1
+   14974:      	stlxr	w11, w10, [x8]
+   14978:      	cbnz	w11, 0x1496c <JNI_OnLoad+0x12dc>
+   1497c:      	b	0x14f84 <JNI_OnLoad+0x18f4>
+   14980:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14984:      	ldr	x9, [x9, #0xe60]
+   14988:      	sub	x8, x8, #0x8
+   1498c:      	cbz	x9, 0x14f98 <JNI_OnLoad+0x1908>
+   14990:      	ldaxr	w9, [x8]
+   14994:      	sub	w10, w9, #0x1
+   14998:      	stlxr	w11, w10, [x8]
+   1499c:      	cbnz	w11, 0x14990 <JNI_OnLoad+0x1300>
+   149a0:      	b	0x14fa4 <JNI_OnLoad+0x1914>
+   149a4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   149a8:      	ldr	x9, [x9, #0xe60]
+   149ac:      	sub	x8, x8, #0x8
+   149b0:      	cbz	x9, 0x14fb8 <JNI_OnLoad+0x1928>
+   149b4:      	ldaxr	w9, [x8]
+   149b8:      	sub	w10, w9, #0x1
+   149bc:      	stlxr	w11, w10, [x8]
+   149c0:      	cbnz	w11, 0x149b4 <JNI_OnLoad+0x1324>
+   149c4:      	b	0x14fc4 <JNI_OnLoad+0x1934>
+   149c8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   149cc:      	ldr	x9, [x9, #0xe60]
+   149d0:      	sub	x8, x8, #0x8
+   149d4:      	cbz	x9, 0x14fd8 <JNI_OnLoad+0x1948>
+   149d8:      	ldaxr	w9, [x8]
+   149dc:      	sub	w10, w9, #0x1
+   149e0:      	stlxr	w11, w10, [x8]
+   149e4:      	cbnz	w11, 0x149d8 <JNI_OnLoad+0x1348>
+   149e8:      	b	0x14fe4 <JNI_OnLoad+0x1954>
+   149ec:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   149f0:      	ldr	x9, [x9, #0xe60]
+   149f4:      	sub	x8, x8, #0x8
+   149f8:      	cbz	x9, 0x14ff8 <JNI_OnLoad+0x1968>
+   149fc:      	ldaxr	w9, [x8]
+   14a00:      	sub	w10, w9, #0x1
+   14a04:      	stlxr	w11, w10, [x8]
+   14a08:      	cbnz	w11, 0x149fc <JNI_OnLoad+0x136c>
+   14a0c:      	b	0x15004 <JNI_OnLoad+0x1974>
+   14a10:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14a14:      	ldr	x9, [x9, #0xe60]
+   14a18:      	sub	x8, x8, #0x8
+   14a1c:      	cbz	x9, 0x15018 <JNI_OnLoad+0x1988>
+   14a20:      	ldaxr	w9, [x8]
+   14a24:      	sub	w10, w9, #0x1
+   14a28:      	stlxr	w11, w10, [x8]
+   14a2c:      	cbnz	w11, 0x14a20 <JNI_OnLoad+0x1390>
+   14a30:      	b	0x15024 <JNI_OnLoad+0x1994>
+   14a34:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   14a38:      	ldr	x9, [x9, #0xe60]
+   14a3c:      	sub	x8, x8, #0x8
+   14a40:      	cbz	x9, 0x15038 <JNI_OnLoad+0x19a8>
+   14a44:      	ldaxr	w9, [x8]
+   14a48:      	sub	w10, w9, #0x1
+   14a4c:      	stlxr	w11, w10, [x8]
+   14a50:      	cbnz	w11, 0x14a44 <JNI_OnLoad+0x13b4>
+   14a54:      	b	0x15044 <JNI_OnLoad+0x19b4>
+   14a58:      	ldr	w9, [x8]
+   14a5c:      	sub	w10, w9, #0x1
+   14a60:      	str	w10, [x8]
+   14a64:      	cmp	w9, #0x0
+   14a68:      	b.gt	0x13bc0 <JNI_OnLoad+0x530>
+   14a6c:      	add	x1, sp, #0x218
+   14a70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14a74:      	b	0x13bc0 <JNI_OnLoad+0x530>
+   14a78:      	ldr	w9, [x8]
+   14a7c:      	sub	w10, w9, #0x1
+   14a80:      	str	w10, [x8]
+   14a84:      	cmp	w9, #0x0
+   14a88:      	b.gt	0x13bf8 <JNI_OnLoad+0x568>
+   14a8c:      	add	x1, sp, #0x218
+   14a90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14a94:      	b	0x13bf8 <JNI_OnLoad+0x568>
+   14a98:      	ldr	w9, [x8]
+   14a9c:      	sub	w10, w9, #0x1
+   14aa0:      	str	w10, [x8]
+   14aa4:      	cmp	w9, #0x0
+   14aa8:      	b.gt	0x13c08 <JNI_OnLoad+0x578>
+   14aac:      	add	x1, sp, #0x218
+   14ab0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14ab4:      	b	0x13c08 <JNI_OnLoad+0x578>
+   14ab8:      	ldr	w9, [x8]
+   14abc:      	sub	w10, w9, #0x1
+   14ac0:      	str	w10, [x8]
+   14ac4:      	cmp	w9, #0x0
+   14ac8:      	b.gt	0x13e70 <JNI_OnLoad+0x7e0>
+   14acc:      	add	x1, sp, #0xa0
+   14ad0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14ad4:      	b	0x13e70 <JNI_OnLoad+0x7e0>
+   14ad8:      	ldr	w9, [x8]
+   14adc:      	sub	w10, w9, #0x1
+   14ae0:      	str	w10, [x8]
+   14ae4:      	cmp	w9, #0x0
+   14ae8:      	b.gt	0x13e80 <JNI_OnLoad+0x7f0>
+   14aec:      	add	x1, sp, #0xa0
+   14af0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14af4:      	b	0x13e80 <JNI_OnLoad+0x7f0>
+   14af8:      	ldr	w9, [x8]
+   14afc:      	sub	w10, w9, #0x1
+   14b00:      	str	w10, [x8]
+   14b04:      	cmp	w9, #0x0
+   14b08:      	b.gt	0x13e90 <JNI_OnLoad+0x800>
+   14b0c:      	add	x1, sp, #0xa0
+   14b10:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14b14:      	b	0x13e90 <JNI_OnLoad+0x800>
+   14b18:      	ldr	w9, [x8]
+   14b1c:      	sub	w10, w9, #0x1
+   14b20:      	str	w10, [x8]
+   14b24:      	cmp	w9, #0x0
+   14b28:      	b.gt	0x13ea0 <JNI_OnLoad+0x810>
+   14b2c:      	add	x1, sp, #0xa0
+   14b30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14b34:      	b	0x13ea0 <JNI_OnLoad+0x810>
+   14b38:      	ldr	w9, [x8]
+   14b3c:      	sub	w10, w9, #0x1
+   14b40:      	str	w10, [x8]
+   14b44:      	cmp	w9, #0x0
+   14b48:      	b.gt	0x13eb0 <JNI_OnLoad+0x820>
+   14b4c:      	add	x1, sp, #0xa0
+   14b50:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14b54:      	b	0x13eb0 <JNI_OnLoad+0x820>
+   14b58:      	ldr	w9, [x8]
+   14b5c:      	sub	w10, w9, #0x1
+   14b60:      	str	w10, [x8]
+   14b64:      	cmp	w9, #0x0
+   14b68:      	b.gt	0x13ec0 <JNI_OnLoad+0x830>
+   14b6c:      	add	x1, sp, #0xa0
+   14b70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14b74:      	b	0x13ec0 <JNI_OnLoad+0x830>
+   14b78:      	ldr	w9, [x8]
+   14b7c:      	sub	w10, w9, #0x1
+   14b80:      	str	w10, [x8]
+   14b84:      	cmp	w9, #0x0
+   14b88:      	b.gt	0x13ed0 <JNI_OnLoad+0x840>
+   14b8c:      	add	x1, sp, #0xa0
+   14b90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14b94:      	b	0x13ed0 <JNI_OnLoad+0x840>
+   14b98:      	ldr	w9, [x8]
+   14b9c:      	sub	w10, w9, #0x1
+   14ba0:      	str	w10, [x8]
+   14ba4:      	cmp	w9, #0x0
+   14ba8:      	b.gt	0x13ee0 <JNI_OnLoad+0x850>
+   14bac:      	add	x1, sp, #0xa0
+   14bb0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14bb4:      	b	0x13ee0 <JNI_OnLoad+0x850>
+   14bb8:      	ldr	w9, [x8]
+   14bbc:      	sub	w10, w9, #0x1
+   14bc0:      	str	w10, [x8]
+   14bc4:      	cmp	w9, #0x0
+   14bc8:      	b.gt	0x13ef0 <JNI_OnLoad+0x860>
+   14bcc:      	add	x1, sp, #0xa0
+   14bd0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14bd4:      	b	0x13ef0 <JNI_OnLoad+0x860>
+   14bd8:      	ldr	w9, [x8]
+   14bdc:      	sub	w10, w9, #0x1
+   14be0:      	str	w10, [x8]
+   14be4:      	cmp	w9, #0x0
+   14be8:      	b.gt	0x13f00 <JNI_OnLoad+0x870>
+   14bec:      	add	x1, sp, #0xa0
+   14bf0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14bf4:      	b	0x13f00 <JNI_OnLoad+0x870>
+   14bf8:      	ldr	w9, [x8]
+   14bfc:      	sub	w10, w9, #0x1
+   14c00:      	str	w10, [x8]
+   14c04:      	cmp	w9, #0x0
+   14c08:      	b.gt	0x13f10 <JNI_OnLoad+0x880>
+   14c0c:      	add	x1, sp, #0xa0
+   14c10:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14c14:      	b	0x13f10 <JNI_OnLoad+0x880>
+   14c18:      	ldr	w9, [x8]
+   14c1c:      	sub	w10, w9, #0x1
+   14c20:      	str	w10, [x8]
+   14c24:      	cmp	w9, #0x0
+   14c28:      	b.gt	0x13f20 <JNI_OnLoad+0x890>
+   14c2c:      	add	x1, sp, #0xa0
+   14c30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14c34:      	b	0x13f20 <JNI_OnLoad+0x890>
+   14c38:      	ldr	w9, [x8]
+   14c3c:      	sub	w10, w9, #0x1
+   14c40:      	str	w10, [x8]
+   14c44:      	cmp	w9, #0x0
+   14c48:      	b.gt	0x13f30 <JNI_OnLoad+0x8a0>
+   14c4c:      	add	x1, sp, #0xa0
+   14c50:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14c54:      	b	0x13f30 <JNI_OnLoad+0x8a0>
+   14c58:      	ldr	w9, [x8]
+   14c5c:      	sub	w10, w9, #0x1
+   14c60:      	str	w10, [x8]
+   14c64:      	cmp	w9, #0x0
+   14c68:      	b.gt	0x13f40 <JNI_OnLoad+0x8b0>
+   14c6c:      	add	x1, sp, #0xa0
+   14c70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14c74:      	b	0x13f40 <JNI_OnLoad+0x8b0>
+   14c78:      	ldr	w9, [x8]
+   14c7c:      	sub	w10, w9, #0x1
+   14c80:      	str	w10, [x8]
+   14c84:      	cmp	w9, #0x0
+   14c88:      	b.gt	0x13f50 <JNI_OnLoad+0x8c0>
+   14c8c:      	add	x1, sp, #0xa0
+   14c90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14c94:      	b	0x13f50 <JNI_OnLoad+0x8c0>
+   14c98:      	ldr	w9, [x8]
+   14c9c:      	sub	w10, w9, #0x1
+   14ca0:      	str	w10, [x8]
+   14ca4:      	cmp	w9, #0x0
+   14ca8:      	b.gt	0x13f60 <JNI_OnLoad+0x8d0>
+   14cac:      	add	x1, sp, #0xa0
+   14cb0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14cb4:      	b	0x13f60 <JNI_OnLoad+0x8d0>
+   14cb8:      	ldr	w9, [x8]
+   14cbc:      	sub	w10, w9, #0x1
+   14cc0:      	str	w10, [x8]
+   14cc4:      	cmp	w9, #0x0
+   14cc8:      	b.gt	0x13f70 <JNI_OnLoad+0x8e0>
+   14ccc:      	add	x1, sp, #0xa0
+   14cd0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14cd4:      	b	0x13f70 <JNI_OnLoad+0x8e0>
+   14cd8:      	ldr	w9, [x8]
+   14cdc:      	sub	w10, w9, #0x1
+   14ce0:      	str	w10, [x8]
+   14ce4:      	cmp	w9, #0x0
+   14ce8:      	b.gt	0x13f80 <JNI_OnLoad+0x8f0>
+   14cec:      	add	x1, sp, #0xa0
+   14cf0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14cf4:      	b	0x13f80 <JNI_OnLoad+0x8f0>
+   14cf8:      	ldr	w9, [x8]
+   14cfc:      	sub	w10, w9, #0x1
+   14d00:      	str	w10, [x8]
+   14d04:      	cmp	w9, #0x0
+   14d08:      	b.gt	0x13f90 <JNI_OnLoad+0x900>
+   14d0c:      	add	x1, sp, #0xa0
+   14d10:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14d14:      	b	0x13f90 <JNI_OnLoad+0x900>
+   14d18:      	ldr	w9, [x8]
+   14d1c:      	sub	w10, w9, #0x1
+   14d20:      	str	w10, [x8]
+   14d24:      	cmp	w9, #0x0
+   14d28:      	b.gt	0x13fa4 <JNI_OnLoad+0x914>
+   14d2c:      	add	x1, sp, #0xa0
+   14d30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14d34:      	b	0x13fa4 <JNI_OnLoad+0x914>
+   14d38:      	ldr	w9, [x8]
+   14d3c:      	sub	w10, w9, #0x1
+   14d40:      	str	w10, [x8]
+   14d44:      	cmp	w9, #0x0
+   14d48:      	b.gt	0x140f0 <JNI_OnLoad+0xa60>
+   14d4c:      	add	x1, sp, #0x210
+   14d50:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14d54:      	b	0x140f0 <JNI_OnLoad+0xa60>
+   14d58:      	ldr	w9, [x8]
+   14d5c:      	sub	w10, w9, #0x1
+   14d60:      	str	w10, [x8]
+   14d64:      	cmp	w9, #0x0
+   14d68:      	b.gt	0x14100 <JNI_OnLoad+0xa70>
+   14d6c:      	add	x1, sp, #0x210
+   14d70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14d74:      	b	0x14100 <JNI_OnLoad+0xa70>
+   14d78:      	ldr	w9, [x8]
+   14d7c:      	sub	w10, w9, #0x1
+   14d80:      	str	w10, [x8]
+   14d84:      	cmp	w9, #0x0
+   14d88:      	b.gt	0x14110 <JNI_OnLoad+0xa80>
+   14d8c:      	add	x1, sp, #0x210
+   14d90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14d94:      	b	0x14110 <JNI_OnLoad+0xa80>
+   14d98:      	ldr	w9, [x8]
+   14d9c:      	sub	w10, w9, #0x1
+   14da0:      	str	w10, [x8]
+   14da4:      	cmp	w9, #0x0
+   14da8:      	b.gt	0x14328 <JNI_OnLoad+0xc98>
+   14dac:      	add	x1, sp, #0x218
+   14db0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14db4:      	b	0x14328 <JNI_OnLoad+0xc98>
+   14db8:      	ldr	w9, [x8]
+   14dbc:      	sub	w10, w9, #0x1
+   14dc0:      	str	w10, [x8]
+   14dc4:      	cmp	w9, #0x0
+   14dc8:      	b.gt	0x14194 <JNI_OnLoad+0xb04>
+   14dcc:      	add	x1, sp, #0x140
+   14dd0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14dd4:      	b	0x14194 <JNI_OnLoad+0xb04>
+   14dd8:      	ldr	w9, [x8]
+   14ddc:      	sub	w10, w9, #0x1
+   14de0:      	str	w10, [x8]
+   14de4:      	cmp	w9, #0x0
+   14de8:      	b.gt	0x141a4 <JNI_OnLoad+0xb14>
+   14dec:      	add	x1, sp, #0x140
+   14df0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14df4:      	b	0x141a4 <JNI_OnLoad+0xb14>
+   14df8:      	ldr	w9, [x8]
+   14dfc:      	sub	w10, w9, #0x1
+   14e00:      	str	w10, [x8]
+   14e04:      	cmp	w9, #0x0
+   14e08:      	b.gt	0x141b4 <JNI_OnLoad+0xb24>
+   14e0c:      	add	x1, sp, #0x148
+   14e10:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14e14:      	b	0x141b4 <JNI_OnLoad+0xb24>
+   14e18:      	ldr	w9, [x8]
+   14e1c:      	sub	w10, w9, #0x1
+   14e20:      	str	w10, [x8]
+   14e24:      	cmp	w9, #0x0
+   14e28:      	b.gt	0x141c4 <JNI_OnLoad+0xb34>
+   14e2c:      	add	x1, sp, #0x150
+   14e30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14e34:      	b	0x141c4 <JNI_OnLoad+0xb34>
+   14e38:      	ldr	w9, [x8]
+   14e3c:      	sub	w10, w9, #0x1
+   14e40:      	str	w10, [x8]
+   14e44:      	cmp	w9, #0x0
+   14e48:      	b.gt	0x141d4 <JNI_OnLoad+0xb44>
+   14e4c:      	add	x1, sp, #0x158
+   14e50:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14e54:      	b	0x141d4 <JNI_OnLoad+0xb44>
+   14e58:      	ldr	w9, [x8]
+   14e5c:      	sub	w10, w9, #0x1
+   14e60:      	str	w10, [x8]
+   14e64:      	cmp	w9, #0x0
+   14e68:      	b.gt	0x141e4 <JNI_OnLoad+0xb54>
+   14e6c:      	add	x1, sp, #0x160
+   14e70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14e74:      	b	0x141e4 <JNI_OnLoad+0xb54>
+   14e78:      	ldr	w9, [x8]
+   14e7c:      	sub	w10, w9, #0x1
+   14e80:      	str	w10, [x8]
+   14e84:      	cmp	w9, #0x0
+   14e88:      	b.gt	0x141fc <JNI_OnLoad+0xb6c>
+   14e8c:      	add	x1, sp, #0x218
+   14e90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14e94:      	b	0x141fc <JNI_OnLoad+0xb6c>
+   14e98:      	ldr	w9, [x8]
+   14e9c:      	sub	w10, w9, #0x1
+   14ea0:      	str	w10, [x8]
+   14ea4:      	cmp	w9, #0x0
+   14ea8:      	b.gt	0x1420c <JNI_OnLoad+0xb7c>
+   14eac:      	add	x1, sp, #0x218
+   14eb0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14eb4:      	b	0x1420c <JNI_OnLoad+0xb7c>
+   14eb8:      	ldr	w9, [x8]
+   14ebc:      	sub	w10, w9, #0x1
+   14ec0:      	str	w10, [x8]
+   14ec4:      	cmp	w9, #0x0
+   14ec8:      	b.gt	0x1421c <JNI_OnLoad+0xb8c>
+   14ecc:      	add	x1, sp, #0x218
+   14ed0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14ed4:      	b	0x1421c <JNI_OnLoad+0xb8c>
+   14ed8:      	ldr	w9, [x8]
+   14edc:      	sub	w10, w9, #0x1
+   14ee0:      	str	w10, [x8]
+   14ee4:      	cmp	w9, #0x0
+   14ee8:      	b.gt	0x1422c <JNI_OnLoad+0xb9c>
+   14eec:      	add	x1, sp, #0x218
+   14ef0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14ef4:      	b	0x1422c <JNI_OnLoad+0xb9c>
+   14ef8:      	ldr	w9, [x8]
+   14efc:      	sub	w10, w9, #0x1
+   14f00:      	str	w10, [x8]
+   14f04:      	cmp	w9, #0x0
+   14f08:      	b.gt	0x1423c <JNI_OnLoad+0xbac>
+   14f0c:      	add	x1, sp, #0x218
+   14f10:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14f14:      	b	0x1423c <JNI_OnLoad+0xbac>
+   14f18:      	ldr	w9, [x8]
+   14f1c:      	sub	w10, w9, #0x1
+   14f20:      	str	w10, [x8]
+   14f24:      	cmp	w9, #0x0
+   14f28:      	b.gt	0x1424c <JNI_OnLoad+0xbbc>
+   14f2c:      	add	x1, sp, #0x218
+   14f30:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14f34:      	b	0x1424c <JNI_OnLoad+0xbbc>
+   14f38:      	ldr	w9, [x8]
+   14f3c:      	sub	w10, w9, #0x1
+   14f40:      	str	w10, [x8]
+   14f44:      	cmp	w9, #0x0
+   14f48:      	b.gt	0x1425c <JNI_OnLoad+0xbcc>
+   14f4c:      	add	x1, sp, #0x218
+   14f50:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14f54:      	b	0x1425c <JNI_OnLoad+0xbcc>
+   14f58:      	ldr	w9, [x8]
+   14f5c:      	sub	w10, w9, #0x1
+   14f60:      	str	w10, [x8]
+   14f64:      	cmp	w9, #0x0
+   14f68:      	b.gt	0x1426c <JNI_OnLoad+0xbdc>
+   14f6c:      	add	x1, sp, #0x218
+   14f70:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14f74:      	b	0x1426c <JNI_OnLoad+0xbdc>
+   14f78:      	ldr	w9, [x8]
+   14f7c:      	sub	w10, w9, #0x1
+   14f80:      	str	w10, [x8]
+   14f84:      	cmp	w9, #0x0
+   14f88:      	b.gt	0x1427c <JNI_OnLoad+0xbec>
+   14f8c:      	add	x1, sp, #0x218
+   14f90:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14f94:      	b	0x1427c <JNI_OnLoad+0xbec>
+   14f98:      	ldr	w9, [x8]
+   14f9c:      	sub	w10, w9, #0x1
+   14fa0:      	str	w10, [x8]
+   14fa4:      	cmp	w9, #0x0
+   14fa8:      	b.gt	0x1428c <JNI_OnLoad+0xbfc>
+   14fac:      	add	x1, sp, #0x218
+   14fb0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14fb4:      	b	0x1428c <JNI_OnLoad+0xbfc>
+   14fb8:      	ldr	w9, [x8]
+   14fbc:      	sub	w10, w9, #0x1
+   14fc0:      	str	w10, [x8]
+   14fc4:      	cmp	w9, #0x0
+   14fc8:      	b.gt	0x1429c <JNI_OnLoad+0xc0c>
+   14fcc:      	add	x1, sp, #0x218
+   14fd0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14fd4:      	b	0x1429c <JNI_OnLoad+0xc0c>
+   14fd8:      	ldr	w9, [x8]
+   14fdc:      	sub	w10, w9, #0x1
+   14fe0:      	str	w10, [x8]
+   14fe4:      	cmp	w9, #0x0
+   14fe8:      	b.gt	0x142ac <JNI_OnLoad+0xc1c>
+   14fec:      	add	x1, sp, #0x218
+   14ff0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   14ff4:      	b	0x142ac <JNI_OnLoad+0xc1c>
+   14ff8:      	ldr	w9, [x8]
+   14ffc:      	sub	w10, w9, #0x1
+   15000:      	str	w10, [x8]
+   15004:      	cmp	w9, #0x0
+   15008:      	b.gt	0x142bc <JNI_OnLoad+0xc2c>
+   1500c:      	add	x1, sp, #0x218
+   15010:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15014:      	b	0x142bc <JNI_OnLoad+0xc2c>
+   15018:      	ldr	w9, [x8]
+   1501c:      	sub	w10, w9, #0x1
+   15020:      	str	w10, [x8]
+   15024:      	cmp	w9, #0x0
+   15028:      	b.gt	0x142cc <JNI_OnLoad+0xc3c>
+   1502c:      	add	x1, sp, #0x218
+   15030:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15034:      	b	0x142cc <JNI_OnLoad+0xc3c>
+   15038:      	ldr	w9, [x8]
+   1503c:      	sub	w10, w9, #0x1
+   15040:      	str	w10, [x8]
+   15044:      	cmp	w9, #0x0
+   15048:      	b.gt	0x142dc <JNI_OnLoad+0xc4c>
+   1504c:      	add	x1, sp, #0x218
+   15050:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15054:      	b	0x142dc <JNI_OnLoad+0xc4c>
+   15058:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1505c:      	ldr	x9, [x9, #0xe60]
+   15060:      	sub	x8, x8, #0x8
+   15064:      	cbz	x9, 0x150e8 <JNI_OnLoad+0x1a58>
+   15068:      	ldaxr	w9, [x8]
+   1506c:      	sub	w10, w9, #0x1
+   15070:      	stlxr	w11, w10, [x8]
+   15074:      	cbnz	w11, 0x15068 <JNI_OnLoad+0x19d8>
+   15078:      	b	0x150f4 <JNI_OnLoad+0x1a64>
+   1507c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15080:      	ldr	x9, [x9, #0xe60]
+   15084:      	sub	x8, x8, #0x8
+   15088:      	cbz	x9, 0x1510c <JNI_OnLoad+0x1a7c>
+   1508c:      	ldaxr	w9, [x8]
+   15090:      	sub	w10, w9, #0x1
+   15094:      	stlxr	w11, w10, [x8]
+   15098:      	cbnz	w11, 0x1508c <JNI_OnLoad+0x19fc>
+   1509c:      	b	0x15118 <JNI_OnLoad+0x1a88>
+   150a0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   150a4:      	ldr	x9, [x9, #0xe60]
+   150a8:      	sub	x8, x8, #0x8
+   150ac:      	cbz	x9, 0x15130 <JNI_OnLoad+0x1aa0>
+   150b0:      	ldaxr	w9, [x8]
+   150b4:      	sub	w10, w9, #0x1
+   150b8:      	stlxr	w11, w10, [x8]
+   150bc:      	cbnz	w11, 0x150b0 <JNI_OnLoad+0x1a20>
+   150c0:      	b	0x1513c <JNI_OnLoad+0x1aac>
+   150c4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   150c8:      	ldr	x9, [x9, #0xe60]
+   150cc:      	sub	x8, x8, #0x8
+   150d0:      	cbz	x9, 0x15154 <JNI_OnLoad+0x1ac4>
+   150d4:      	ldaxr	w9, [x8]
+   150d8:      	sub	w10, w9, #0x1
+   150dc:      	stlxr	w11, w10, [x8]
+   150e0:      	cbnz	w11, 0x150d4 <JNI_OnLoad+0x1a44>
+   150e4:      	b	0x15160 <JNI_OnLoad+0x1ad0>
+   150e8:      	ldr	w9, [x8]
+   150ec:      	sub	w10, w9, #0x1
+   150f0:      	str	w10, [x8]
+   150f4:      	ldp	x24, x25, [sp, #0x80]
+   150f8:      	cmp	w9, #0x0
+   150fc:      	b.gt	0x14004 <JNI_OnLoad+0x974>
+   15100:      	add	x1, sp, #0x210
+   15104:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15108:      	b	0x14004 <JNI_OnLoad+0x974>
+   1510c:      	ldr	w9, [x8]
+   15110:      	sub	w10, w9, #0x1
+   15114:      	str	w10, [x8]
+   15118:      	ldp	x24, x25, [sp, #0x80]
+   1511c:      	cmp	w9, #0x0
+   15120:      	b.gt	0x14014 <JNI_OnLoad+0x984>
+   15124:      	add	x1, sp, #0x210
+   15128:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   1512c:      	b	0x14014 <JNI_OnLoad+0x984>
+   15130:      	ldr	w9, [x8]
+   15134:      	sub	w10, w9, #0x1
+   15138:      	str	w10, [x8]
+   1513c:      	ldp	x24, x25, [sp, #0x80]
+   15140:      	cmp	w9, #0x0
+   15144:      	b.gt	0x14048 <JNI_OnLoad+0x9b8>
+   15148:      	add	x1, sp, #0x98
+   1514c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15150:      	b	0x14048 <JNI_OnLoad+0x9b8>
+   15154:      	ldr	w9, [x8]
+   15158:      	sub	w10, w9, #0x1
+   1515c:      	str	w10, [x8]
+   15160:      	ldp	x24, x25, [sp, #0x80]
+   15164:      	cmp	w9, #0x0
+   15168:      	b.gt	0x14058 <JNI_OnLoad+0x9c8>
+   1516c:      	add	x1, sp, #0xa0
+   15170:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15174:      	b	0x14058 <JNI_OnLoad+0x9c8>
+   15178:      	bl	0xc630 <__stack_chk_fail@plt>
+   1517c:      	ldr	x8, [sp, #0xa0]
+   15180:      	mov	x19, x0
+   15184:      	sub	x0, x8, #0x18
+   15188:      	cmp	x0, x26
+   1518c:      	b.eq	0x152c0 <JNI_OnLoad+0x1c30>
+   15190:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15194:      	ldr	x9, [x9, #0xe60]
+   15198:      	sub	x8, x8, #0x8
+   1519c:      	cbz	x9, 0x151ec <JNI_OnLoad+0x1b5c>
+   151a0:      	ldaxr	w9, [x8]
+   151a4:      	sub	w10, w9, #0x1
+   151a8:      	stlxr	w11, w10, [x8]
+   151ac:      	cbnz	w11, 0x151a0 <JNI_OnLoad+0x1b10>
+   151b0:      	b	0x151f8 <JNI_OnLoad+0x1b68>
+   151b4:      	ldr	x8, [sp, #0xa0]
+   151b8:      	mov	x19, x0
+   151bc:      	sub	x0, x8, #0x18
+   151c0:      	cmp	x0, x26
+   151c4:      	b.eq	0x152c0 <JNI_OnLoad+0x1c30>
+   151c8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   151cc:      	ldr	x9, [x9, #0xe60]
+   151d0:      	sub	x8, x8, #0x8
+   151d4:      	cbz	x9, 0x151ec <JNI_OnLoad+0x1b5c>
+   151d8:      	ldaxr	w9, [x8]
+   151dc:      	sub	w10, w9, #0x1
+   151e0:      	stlxr	w11, w10, [x8]
+   151e4:      	cbnz	w11, 0x151d8 <JNI_OnLoad+0x1b48>
+   151e8:      	b	0x151f8 <JNI_OnLoad+0x1b68>
+   151ec:      	ldr	w9, [x8]
+   151f0:      	sub	w10, w9, #0x1
+   151f4:      	str	w10, [x8]
+   151f8:      	cmp	w9, #0x0
+   151fc:      	b.gt	0x152c0 <JNI_OnLoad+0x1c30>
+   15200:      	add	x1, sp, #0x98
+   15204:      	b	0x152b4 <JNI_OnLoad+0x1c24>
+   15208:      	b	0x152bc <JNI_OnLoad+0x1c2c>
+   1520c:      	ldr	x8, [sp, #0xa0]
+   15210:      	mov	x19, x0
+   15214:      	sub	x0, x8, #0x18
+   15218:      	cmp	x0, x26
+   1521c:      	b.eq	0x15268 <JNI_OnLoad+0x1bd8>
+   15220:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15224:      	ldr	x9, [x9, #0xe60]
+   15228:      	sub	x8, x8, #0x8
+   1522c:      	cbz	x9, 0x15244 <JNI_OnLoad+0x1bb4>
+   15230:      	ldaxr	w9, [x8]
+   15234:      	sub	w10, w9, #0x1
+   15238:      	stlxr	w11, w10, [x8]
+   1523c:      	cbnz	w11, 0x15230 <JNI_OnLoad+0x1ba0>
+   15240:      	b	0x15250 <JNI_OnLoad+0x1bc0>
+   15244:      	ldr	w9, [x8]
+   15248:      	sub	w10, w9, #0x1
+   1524c:      	str	w10, [x8]
+   15250:      	cmp	w9, #0x0
+   15254:      	b.gt	0x15268 <JNI_OnLoad+0x1bd8>
+   15258:      	add	x1, sp, #0x210
+   1525c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15260:      	b	0x15268 <JNI_OnLoad+0x1bd8>
+   15264:      	mov	x19, x0
+   15268:      	ldr	x8, [sp, #0x98]
+   1526c:      	sub	x0, x8, #0x18
+   15270:      	cmp	x0, x26
+   15274:      	b.eq	0x152c0 <JNI_OnLoad+0x1c30>
+   15278:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1527c:      	ldr	x9, [x9, #0xe60]
+   15280:      	sub	x8, x8, #0x8
+   15284:      	cbz	x9, 0x1529c <JNI_OnLoad+0x1c0c>
+   15288:      	ldaxr	w9, [x8]
+   1528c:      	sub	w10, w9, #0x1
+   15290:      	stlxr	w11, w10, [x8]
+   15294:      	cbnz	w11, 0x15288 <JNI_OnLoad+0x1bf8>
+   15298:      	b	0x152a8 <JNI_OnLoad+0x1c18>
+   1529c:      	ldr	w9, [x8]
+   152a0:      	sub	w10, w9, #0x1
+   152a4:      	str	w10, [x8]
+   152a8:      	cmp	w9, #0x0
+   152ac:      	b.gt	0x152c0 <JNI_OnLoad+0x1c30>
+   152b0:      	add	x1, sp, #0x210
+   152b4:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   152b8:      	b	0x152c0 <JNI_OnLoad+0x1c30>
+   152bc:      	mov	x19, x0
+   152c0:      	ldr	x8, [sp, #0x140]
+   152c4:      	sub	x0, x8, #0x18
+   152c8:      	cmp	x0, x26
+   152cc:      	b.eq	0x15664 <JNI_OnLoad+0x1fd4>
+   152d0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   152d4:      	ldr	x9, [x9, #0xe60]
+   152d8:      	sub	x8, x8, #0x8
+   152dc:      	cbz	x9, 0x15f14 <JNI_OnLoad+0x2884>
+   152e0:      	ldaxr	w9, [x8]
+   152e4:      	sub	w10, w9, #0x1
+   152e8:      	stlxr	w11, w10, [x8]
+   152ec:      	cbnz	w11, 0x152e0 <JNI_OnLoad+0x1c50>
+   152f0:      	b	0x15f20 <JNI_OnLoad+0x2890>
+   152f4:      	ldr	x8, [sp, #0x140]
+   152f8:      	mov	x19, x0
+   152fc:      	sub	x0, x8, #0x18
+   15300:      	cmp	x0, x26
+   15304:      	b.eq	0x15350 <JNI_OnLoad+0x1cc0>
+   15308:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1530c:      	ldr	x9, [x9, #0xe60]
+   15310:      	sub	x8, x8, #0x8
+   15314:      	cbz	x9, 0x1532c <JNI_OnLoad+0x1c9c>
+   15318:      	ldaxr	w9, [x8]
+   1531c:      	sub	w10, w9, #0x1
+   15320:      	stlxr	w11, w10, [x8]
+   15324:      	cbnz	w11, 0x15318 <JNI_OnLoad+0x1c88>
+   15328:      	b	0x15338 <JNI_OnLoad+0x1ca8>
+   1532c:      	ldr	w9, [x8]
+   15330:      	sub	w10, w9, #0x1
+   15334:      	str	w10, [x8]
+   15338:      	cmp	w9, #0x0
+   1533c:      	b.gt	0x15350 <JNI_OnLoad+0x1cc0>
+   15340:      	add	x1, sp, #0x210
+   15344:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15348:      	b	0x15350 <JNI_OnLoad+0x1cc0>
+   1534c:      	mov	x19, x0
+   15350:      	ldr	x8, [sp, #0xa0]
+   15354:      	sub	x0, x8, #0x18
+   15358:      	cmp	x0, x26
+   1535c:      	b.eq	0x153a8 <JNI_OnLoad+0x1d18>
+   15360:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15364:      	ldr	x9, [x9, #0xe60]
+   15368:      	sub	x8, x8, #0x8
+   1536c:      	cbz	x9, 0x15384 <JNI_OnLoad+0x1cf4>
+   15370:      	ldaxr	w9, [x8]
+   15374:      	sub	w10, w9, #0x1
+   15378:      	stlxr	w11, w10, [x8]
+   1537c:      	cbnz	w11, 0x15370 <JNI_OnLoad+0x1ce0>
+   15380:      	b	0x15390 <JNI_OnLoad+0x1d00>
+   15384:      	ldr	w9, [x8]
+   15388:      	sub	w10, w9, #0x1
+   1538c:      	str	w10, [x8]
+   15390:      	cmp	w9, #0x0
+   15394:      	b.gt	0x153a8 <JNI_OnLoad+0x1d18>
+   15398:      	add	x1, sp, #0x210
+   1539c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   153a0:      	b	0x153a8 <JNI_OnLoad+0x1d18>
+   153a4:      	mov	x19, x0
+   153a8:      	ldr	x8, [sp, #0x98]
+   153ac:      	sub	x0, x8, #0x18
+   153b0:      	cmp	x0, x26
+   153b4:      	b.eq	0x15664 <JNI_OnLoad+0x1fd4>
+   153b8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   153bc:      	ldr	x9, [x9, #0xe60]
+   153c0:      	sub	x8, x8, #0x8
+   153c4:      	cbz	x9, 0x153dc <JNI_OnLoad+0x1d4c>
+   153c8:      	ldaxr	w9, [x8]
+   153cc:      	sub	w10, w9, #0x1
+   153d0:      	stlxr	w11, w10, [x8]
+   153d4:      	cbnz	w11, 0x153c8 <JNI_OnLoad+0x1d38>
+   153d8:      	b	0x153e8 <JNI_OnLoad+0x1d58>
+   153dc:      	ldr	w9, [x8]
+   153e0:      	sub	w10, w9, #0x1
+   153e4:      	str	w10, [x8]
+   153e8:      	cmp	w9, #0x0
+   153ec:      	b.gt	0x15664 <JNI_OnLoad+0x1fd4>
+   153f0:      	add	x1, sp, #0x210
+   153f4:      	b	0x15f2c <JNI_OnLoad+0x289c>
+   153f8:      	mov	x19, x0
+   153fc:      	b	0x15664 <JNI_OnLoad+0x1fd4>
+   15400:      	ldr	x8, [sp, #0x140]
+   15404:      	mov	x19, x0
+   15408:      	sub	x0, x8, #0x18
+   1540c:      	cmp	x0, x26
+   15410:      	b.eq	0x1545c <JNI_OnLoad+0x1dcc>
+   15414:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15418:      	ldr	x9, [x9, #0xe60]
+   1541c:      	sub	x8, x8, #0x8
+   15420:      	cbz	x9, 0x15438 <JNI_OnLoad+0x1da8>
+   15424:      	ldaxr	w9, [x8]
+   15428:      	sub	w10, w9, #0x1
+   1542c:      	stlxr	w11, w10, [x8]
+   15430:      	cbnz	w11, 0x15424 <JNI_OnLoad+0x1d94>
+   15434:      	b	0x15444 <JNI_OnLoad+0x1db4>
+   15438:      	ldr	w9, [x8]
+   1543c:      	sub	w10, w9, #0x1
+   15440:      	str	w10, [x8]
+   15444:      	cmp	w9, #0x0
+   15448:      	b.gt	0x1545c <JNI_OnLoad+0x1dcc>
+   1544c:      	add	x1, sp, #0xa0
+   15450:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15454:      	b	0x1545c <JNI_OnLoad+0x1dcc>
+   15458:      	mov	x19, x0
+   1545c:      	ldr	x8, [sp, #0xa8]
+   15460:      	sub	x0, x8, #0x18
+   15464:      	cmp	x0, x26
+   15468:      	b.eq	0x154b4 <JNI_OnLoad+0x1e24>
+   1546c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15470:      	ldr	x9, [x9, #0xe60]
+   15474:      	sub	x8, x8, #0x8
+   15478:      	cbz	x9, 0x15490 <JNI_OnLoad+0x1e00>
+   1547c:      	ldaxr	w9, [x8]
+   15480:      	sub	w10, w9, #0x1
+   15484:      	stlxr	w11, w10, [x8]
+   15488:      	cbnz	w11, 0x1547c <JNI_OnLoad+0x1dec>
+   1548c:      	b	0x1549c <JNI_OnLoad+0x1e0c>
+   15490:      	ldr	w9, [x8]
+   15494:      	sub	w10, w9, #0x1
+   15498:      	str	w10, [x8]
+   1549c:      	cmp	w9, #0x0
+   154a0:      	b.gt	0x154b4 <JNI_OnLoad+0x1e24>
+   154a4:      	add	x1, sp, #0xa0
+   154a8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   154ac:      	b	0x154b4 <JNI_OnLoad+0x1e24>
+   154b0:      	mov	x19, x0
+   154b4:      	ldr	x8, [sp, #0xb0]
+   154b8:      	sub	x0, x8, #0x18
+   154bc:      	cmp	x0, x26
+   154c0:      	b.eq	0x1550c <JNI_OnLoad+0x1e7c>
+   154c4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   154c8:      	ldr	x9, [x9, #0xe60]
+   154cc:      	sub	x8, x8, #0x8
+   154d0:      	cbz	x9, 0x154e8 <JNI_OnLoad+0x1e58>
+   154d4:      	ldaxr	w9, [x8]
+   154d8:      	sub	w10, w9, #0x1
+   154dc:      	stlxr	w11, w10, [x8]
+   154e0:      	cbnz	w11, 0x154d4 <JNI_OnLoad+0x1e44>
+   154e4:      	b	0x154f4 <JNI_OnLoad+0x1e64>
+   154e8:      	ldr	w9, [x8]
+   154ec:      	sub	w10, w9, #0x1
+   154f0:      	str	w10, [x8]
+   154f4:      	cmp	w9, #0x0
+   154f8:      	b.gt	0x1550c <JNI_OnLoad+0x1e7c>
+   154fc:      	add	x1, sp, #0xa0
+   15500:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15504:      	b	0x1550c <JNI_OnLoad+0x1e7c>
+   15508:      	mov	x19, x0
+   1550c:      	ldr	x8, [sp, #0xb8]
+   15510:      	sub	x0, x8, #0x18
+   15514:      	cmp	x0, x26
+   15518:      	b.eq	0x15564 <JNI_OnLoad+0x1ed4>
+   1551c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15520:      	ldr	x9, [x9, #0xe60]
+   15524:      	sub	x8, x8, #0x8
+   15528:      	cbz	x9, 0x15540 <JNI_OnLoad+0x1eb0>
+   1552c:      	ldaxr	w9, [x8]
+   15530:      	sub	w10, w9, #0x1
+   15534:      	stlxr	w11, w10, [x8]
+   15538:      	cbnz	w11, 0x1552c <JNI_OnLoad+0x1e9c>
+   1553c:      	b	0x1554c <JNI_OnLoad+0x1ebc>
+   15540:      	ldr	w9, [x8]
+   15544:      	sub	w10, w9, #0x1
+   15548:      	str	w10, [x8]
+   1554c:      	cmp	w9, #0x0
+   15550:      	b.gt	0x15564 <JNI_OnLoad+0x1ed4>
+   15554:      	add	x1, sp, #0xa0
+   15558:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   1555c:      	b	0x15564 <JNI_OnLoad+0x1ed4>
+   15560:      	mov	x19, x0
+   15564:      	ldr	x8, [sp, #0xc0]
+   15568:      	sub	x0, x8, #0x18
+   1556c:      	cmp	x0, x26
+   15570:      	b.ne	0x1612c <JNI_OnLoad+0x2a9c>
+   15574:      	ldr	x8, [sp, #0xc8]
+   15578:      	sub	x0, x8, #0x18
+   1557c:      	cmp	x0, x26
+   15580:      	b.ne	0x160c8 <JNI_OnLoad+0x2a38>
+   15584:      	ldr	x8, [sp, #0xd0]
+   15588:      	sub	x0, x8, #0x18
+   1558c:      	cmp	x0, x26
+   15590:      	b.ne	0x16064 <JNI_OnLoad+0x29d4>
+   15594:      	ldr	x8, [sp, #0xd8]
+   15598:      	sub	x0, x8, #0x18
+   1559c:      	cmp	x0, x26
+   155a0:      	b.ne	0x16000 <JNI_OnLoad+0x2970>
+   155a4:      	ldr	x8, [sp, #0xe0]
+   155a8:      	sub	x0, x8, #0x18
+   155ac:      	cmp	x0, x26
+   155b0:      	b.ne	0x15f9c <JNI_OnLoad+0x290c>
+   155b4:      	ldr	x8, [sp, #0xe8]
+   155b8:      	sub	x0, x8, #0x18
+   155bc:      	cmp	x0, x26
+   155c0:      	b.ne	0x15f58 <JNI_OnLoad+0x28c8>
+   155c4:      	ldr	x8, [sp, #0xf0]
+   155c8:      	sub	x0, x8, #0x18
+   155cc:      	cmp	x0, x26
+   155d0:      	b.ne	0x15f34 <JNI_OnLoad+0x28a4>
+   155d4:      	ldr	x8, [sp, #0xf8]
+   155d8:      	sub	x0, x8, #0x18
+   155dc:      	cmp	x0, x26
+   155e0:      	b.ne	0x15ef0 <JNI_OnLoad+0x2860>
+   155e4:      	ldr	x8, [sp, #0x100]
+   155e8:      	sub	x0, x8, #0x18
+   155ec:      	cmp	x0, x26
+   155f0:      	b.ne	0x15ecc <JNI_OnLoad+0x283c>
+   155f4:      	ldr	x8, [sp, #0x108]
+   155f8:      	sub	x0, x8, #0x18
+   155fc:      	cmp	x0, x26
+   15600:      	b.ne	0x15ea8 <JNI_OnLoad+0x2818>
+   15604:      	ldr	x8, [sp, #0x110]
+   15608:      	sub	x0, x8, #0x18
+   1560c:      	cmp	x0, x26
+   15610:      	b.ne	0x15e84 <JNI_OnLoad+0x27f4>
+   15614:      	ldr	x8, [sp, #0x118]
+   15618:      	sub	x0, x8, #0x18
+   1561c:      	cmp	x0, x26
+   15620:      	b.ne	0x15e60 <JNI_OnLoad+0x27d0>
+   15624:      	ldr	x8, [sp, #0x120]
+   15628:      	sub	x0, x8, #0x18
+   1562c:      	cmp	x0, x26
+   15630:      	b.ne	0x15e3c <JNI_OnLoad+0x27ac>
+   15634:      	ldr	x8, [sp, #0x128]
+   15638:      	sub	x0, x8, #0x18
+   1563c:      	cmp	x0, x26
+   15640:      	b.ne	0x15dd8 <JNI_OnLoad+0x2748>
+   15644:      	ldr	x8, [sp, #0x130]
+   15648:      	sub	x0, x8, #0x18
+   1564c:      	cmp	x0, x26
+   15650:      	b.ne	0x15d74 <JNI_OnLoad+0x26e4>
+   15654:      	ldr	x8, [sp, #0x138]
+   15658:      	sub	x0, x8, #0x18
+   1565c:      	cmp	x0, x26
+   15660:      	b.ne	0x15d30 <JNI_OnLoad+0x26a0>
+   15664:      	ldr	x8, [sp, #0x148]
+   15668:      	sub	x0, x8, #0x18
+   1566c:      	cmp	x0, x26
+   15670:      	b.ne	0x15b0c <JNI_OnLoad+0x247c>
+   15674:      	ldr	x8, [sp, #0x150]
+   15678:      	sub	x0, x8, #0x18
+   1567c:      	cmp	x0, x26
+   15680:      	b.ne	0x15ae8 <JNI_OnLoad+0x2458>
+   15684:      	ldr	x8, [sp, #0x158]
+   15688:      	sub	x0, x8, #0x18
+   1568c:      	cmp	x0, x26
+   15690:      	b.ne	0x15ac4 <JNI_OnLoad+0x2434>
+   15694:      	ldr	x8, [sp, #0x160]
+   15698:      	sub	x0, x8, #0x18
+   1569c:      	cmp	x0, x26
+   156a0:      	b.ne	0x15aa0 <JNI_OnLoad+0x2410>
+   156a4:      	ldr	x8, [sp, #0x168]
+   156a8:      	sub	x0, x8, #0x18
+   156ac:      	cmp	x0, x26
+   156b0:      	b.ne	0x15a7c <JNI_OnLoad+0x23ec>
+   156b4:      	add	x0, sp, #0x218
+   156b8:      	bl	0x29d74 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x10cc>
+   156bc:      	ldr	x8, [sp, #0x170]
+   156c0:      	sub	x0, x8, #0x18
+   156c4:      	cmp	x0, x26
+   156c8:      	b.ne	0x15a58 <JNI_OnLoad+0x23c8>
+   156cc:      	ldr	x8, [sp, #0x178]
+   156d0:      	sub	x0, x8, #0x18
+   156d4:      	cmp	x0, x26
+   156d8:      	b.ne	0x15a34 <JNI_OnLoad+0x23a4>
+   156dc:      	ldr	x8, [sp, #0x180]
+   156e0:      	sub	x0, x8, #0x18
+   156e4:      	cmp	x0, x26
+   156e8:      	b.ne	0x15a10 <JNI_OnLoad+0x2380>
+   156ec:      	ldr	x8, [sp, #0x188]
+   156f0:      	sub	x0, x8, #0x18
+   156f4:      	cmp	x0, x26
+   156f8:      	b.ne	0x159ec <JNI_OnLoad+0x235c>
+   156fc:      	ldr	x8, [sp, #0x190]
+   15700:      	sub	x0, x8, #0x18
+   15704:      	cmp	x0, x26
+   15708:      	b.ne	0x159c8 <JNI_OnLoad+0x2338>
+   1570c:      	ldr	x8, [sp, #0x198]
+   15710:      	sub	x0, x8, #0x18
+   15714:      	cmp	x0, x26
+   15718:      	b.ne	0x159a4 <JNI_OnLoad+0x2314>
+   1571c:      	ldr	x8, [sp, #0x1a0]
+   15720:      	sub	x0, x8, #0x18
+   15724:      	cmp	x0, x26
+   15728:      	b.ne	0x15980 <JNI_OnLoad+0x22f0>
+   1572c:      	ldr	x8, [sp, #0x1a8]
+   15730:      	sub	x0, x8, #0x18
+   15734:      	cmp	x0, x26
+   15738:      	b.ne	0x1595c <JNI_OnLoad+0x22cc>
+   1573c:      	ldr	x8, [sp, #0x1c0]
+   15740:      	sub	x0, x8, #0x18
+   15744:      	cmp	x0, x26
+   15748:      	b.ne	0x15938 <JNI_OnLoad+0x22a8>
+   1574c:      	ldr	x8, [sp, #0x1d0]
+   15750:      	sub	x0, x8, #0x18
+   15754:      	cmp	x0, x26
+   15758:      	b.ne	0x15914 <JNI_OnLoad+0x2284>
+   1575c:      	ldr	x8, [sp, #0x1d8]
+   15760:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15764:      	ldr	x9, [x9, #0xf98]
+   15768:      	sub	x0, x8, #0x18
+   1576c:      	cmp	x0, x9
+   15770:      	b.ne	0x158f0 <JNI_OnLoad+0x2260>
+   15774:      	ldr	x8, [sp, #0x1e0]
+   15778:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1577c:      	ldr	x9, [x9, #0xf98]
+   15780:      	sub	x0, x8, #0x18
+   15784:      	cmp	x0, x9
+   15788:      	b.ne	0x158cc <JNI_OnLoad+0x223c>
+   1578c:      	ldr	x8, [sp, #0x1e8]
+   15790:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15794:      	ldr	x9, [x9, #0xf98]
+   15798:      	sub	x0, x8, #0x18
+   1579c:      	cmp	x0, x9
+   157a0:      	b.ne	0x158a8 <JNI_OnLoad+0x2218>
+   157a4:      	ldr	x8, [sp, #0x1f0]
+   157a8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   157ac:      	ldr	x9, [x9, #0xf98]
+   157b0:      	sub	x0, x8, #0x18
+   157b4:      	cmp	x0, x9
+   157b8:      	b.ne	0x15884 <JNI_OnLoad+0x21f4>
+   157bc:      	ldr	x8, [sp, #0x1f8]
+   157c0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   157c4:      	ldr	x9, [x9, #0xf98]
+   157c8:      	sub	x0, x8, #0x18
+   157cc:      	cmp	x0, x9
+   157d0:      	b.ne	0x15860 <JNI_OnLoad+0x21d0>
+   157d4:      	ldr	x8, [sp, #0x200]
+   157d8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   157dc:      	ldr	x9, [x9, #0xf98]
+   157e0:      	sub	x0, x8, #0x18
+   157e4:      	cmp	x0, x9
+   157e8:      	b.ne	0x1583c <JNI_OnLoad+0x21ac>
+   157ec:      	ldr	x8, [sp, #0x208]
+   157f0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   157f4:      	ldr	x9, [x9, #0xf98]
+   157f8:      	sub	x0, x8, #0x18
+   157fc:      	cmp	x0, x9
+   15800:      	b.eq	0x15834 <JNI_OnLoad+0x21a4>
+   15804:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15808:      	ldr	x9, [x9, #0xe60]
+   1580c:      	sub	x8, x8, #0x8
+   15810:      	cbz	x9, 0x16210 <JNI_OnLoad+0x2b80>
+   15814:      	ldaxr	w9, [x8]
+   15818:      	sub	w10, w9, #0x1
+   1581c:      	stlxr	w11, w10, [x8]
+   15820:      	cbnz	w11, 0x15814 <JNI_OnLoad+0x2184>
+   15824:      	cmp	w9, #0x0
+   15828:      	b.gt	0x15834 <JNI_OnLoad+0x21a4>
+   1582c:      	add	x1, sp, #0xa0
+   15830:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15834:      	mov	x0, x19
+   15838:      	bl	0xc4e0 <_Unwind_Resume@plt>
+   1583c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15840:      	ldr	x9, [x9, #0xe60]
+   15844:      	sub	x8, x8, #0x8
+   15848:      	cbz	x9, 0x15b30 <JNI_OnLoad+0x24a0>
+   1584c:      	ldaxr	w9, [x8]
+   15850:      	sub	w10, w9, #0x1
+   15854:      	stlxr	w11, w10, [x8]
+   15858:      	cbnz	w11, 0x1584c <JNI_OnLoad+0x21bc>
+   1585c:      	b	0x15b3c <JNI_OnLoad+0x24ac>
+   15860:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15864:      	ldr	x9, [x9, #0xe60]
+   15868:      	sub	x8, x8, #0x8
+   1586c:      	cbz	x9, 0x15b50 <JNI_OnLoad+0x24c0>
+   15870:      	ldaxr	w9, [x8]
+   15874:      	sub	w10, w9, #0x1
+   15878:      	stlxr	w11, w10, [x8]
+   1587c:      	cbnz	w11, 0x15870 <JNI_OnLoad+0x21e0>
+   15880:      	b	0x15b5c <JNI_OnLoad+0x24cc>
+   15884:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15888:      	ldr	x9, [x9, #0xe60]
+   1588c:      	sub	x8, x8, #0x8
+   15890:      	cbz	x9, 0x15b70 <JNI_OnLoad+0x24e0>
+   15894:      	ldaxr	w9, [x8]
+   15898:      	sub	w10, w9, #0x1
+   1589c:      	stlxr	w11, w10, [x8]
+   158a0:      	cbnz	w11, 0x15894 <JNI_OnLoad+0x2204>
+   158a4:      	b	0x15b7c <JNI_OnLoad+0x24ec>
+   158a8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   158ac:      	ldr	x9, [x9, #0xe60]
+   158b0:      	sub	x8, x8, #0x8
+   158b4:      	cbz	x9, 0x15b90 <JNI_OnLoad+0x2500>
+   158b8:      	ldaxr	w9, [x8]
+   158bc:      	sub	w10, w9, #0x1
+   158c0:      	stlxr	w11, w10, [x8]
+   158c4:      	cbnz	w11, 0x158b8 <JNI_OnLoad+0x2228>
+   158c8:      	b	0x15b9c <JNI_OnLoad+0x250c>
+   158cc:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   158d0:      	ldr	x9, [x9, #0xe60]
+   158d4:      	sub	x8, x8, #0x8
+   158d8:      	cbz	x9, 0x15bb0 <JNI_OnLoad+0x2520>
+   158dc:      	ldaxr	w9, [x8]
+   158e0:      	sub	w10, w9, #0x1
+   158e4:      	stlxr	w11, w10, [x8]
+   158e8:      	cbnz	w11, 0x158dc <JNI_OnLoad+0x224c>
+   158ec:      	b	0x15bbc <JNI_OnLoad+0x252c>
+   158f0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   158f4:      	ldr	x9, [x9, #0xe60]
+   158f8:      	sub	x8, x8, #0x8
+   158fc:      	cbz	x9, 0x15bd0 <JNI_OnLoad+0x2540>
+   15900:      	ldaxr	w9, [x8]
+   15904:      	sub	w10, w9, #0x1
+   15908:      	stlxr	w11, w10, [x8]
+   1590c:      	cbnz	w11, 0x15900 <JNI_OnLoad+0x2270>
+   15910:      	b	0x15bdc <JNI_OnLoad+0x254c>
+   15914:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15918:      	ldr	x9, [x9, #0xe60]
+   1591c:      	sub	x8, x8, #0x8
+   15920:      	cbz	x9, 0x15bf0 <JNI_OnLoad+0x2560>
+   15924:      	ldaxr	w9, [x8]
+   15928:      	sub	w10, w9, #0x1
+   1592c:      	stlxr	w11, w10, [x8]
+   15930:      	cbnz	w11, 0x15924 <JNI_OnLoad+0x2294>
+   15934:      	b	0x15bfc <JNI_OnLoad+0x256c>
+   15938:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   1593c:      	ldr	x9, [x9, #0xe60]
+   15940:      	sub	x8, x8, #0x8
+   15944:      	cbz	x9, 0x15c10 <JNI_OnLoad+0x2580>
+   15948:      	ldaxr	w9, [x8]
+   1594c:      	sub	w10, w9, #0x1
+   15950:      	stlxr	w11, w10, [x8]
+   15954:      	cbnz	w11, 0x15948 <JNI_OnLoad+0x22b8>
+   15958:      	b	0x15c1c <JNI_OnLoad+0x258c>
+   1595c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15960:      	ldr	x9, [x9, #0xe60]
+   15964:      	sub	x8, x8, #0x8
+   15968:      	cbz	x9, 0x15c30 <JNI_OnLoad+0x25a0>
+   1596c:      	ldaxr	w9, [x8]
+   15970:      	sub	w10, w9, #0x1
+   15974:      	stlxr	w11, w10, [x8]
+   15978:      	cbnz	w11, 0x1596c <JNI_OnLoad+0x22dc>
+   1597c:      	b	0x15c3c <JNI_OnLoad+0x25ac>
+   15980:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15984:      	ldr	x9, [x9, #0xe60]
+   15988:      	sub	x8, x8, #0x8
+   1598c:      	cbz	x9, 0x15c50 <JNI_OnLoad+0x25c0>
+   15990:      	ldaxr	w9, [x8]
+   15994:      	sub	w10, w9, #0x1
+   15998:      	stlxr	w11, w10, [x8]
+   1599c:      	cbnz	w11, 0x15990 <JNI_OnLoad+0x2300>
+   159a0:      	b	0x15c5c <JNI_OnLoad+0x25cc>
+   159a4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   159a8:      	ldr	x9, [x9, #0xe60]
+   159ac:      	sub	x8, x8, #0x8
+   159b0:      	cbz	x9, 0x15c70 <JNI_OnLoad+0x25e0>
+   159b4:      	ldaxr	w9, [x8]
+   159b8:      	sub	w10, w9, #0x1
+   159bc:      	stlxr	w11, w10, [x8]
+   159c0:      	cbnz	w11, 0x159b4 <JNI_OnLoad+0x2324>
+   159c4:      	b	0x15c7c <JNI_OnLoad+0x25ec>
+   159c8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   159cc:      	ldr	x9, [x9, #0xe60]
+   159d0:      	sub	x8, x8, #0x8
+   159d4:      	cbz	x9, 0x15c90 <JNI_OnLoad+0x2600>
+   159d8:      	ldaxr	w9, [x8]
+   159dc:      	sub	w10, w9, #0x1
+   159e0:      	stlxr	w11, w10, [x8]
+   159e4:      	cbnz	w11, 0x159d8 <JNI_OnLoad+0x2348>
+   159e8:      	b	0x15c9c <JNI_OnLoad+0x260c>
+   159ec:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   159f0:      	ldr	x9, [x9, #0xe60]
+   159f4:      	sub	x8, x8, #0x8
+   159f8:      	cbz	x9, 0x15cb0 <JNI_OnLoad+0x2620>
+   159fc:      	ldaxr	w9, [x8]
+   15a00:      	sub	w10, w9, #0x1
+   15a04:      	stlxr	w11, w10, [x8]
+   15a08:      	cbnz	w11, 0x159fc <JNI_OnLoad+0x236c>
+   15a0c:      	b	0x15cbc <JNI_OnLoad+0x262c>
+   15a10:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15a14:      	ldr	x9, [x9, #0xe60]
+   15a18:      	sub	x8, x8, #0x8
+   15a1c:      	cbz	x9, 0x15cd0 <JNI_OnLoad+0x2640>
+   15a20:      	ldaxr	w9, [x8]
+   15a24:      	sub	w10, w9, #0x1
+   15a28:      	stlxr	w11, w10, [x8]
+   15a2c:      	cbnz	w11, 0x15a20 <JNI_OnLoad+0x2390>
+   15a30:      	b	0x15cdc <JNI_OnLoad+0x264c>
+   15a34:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15a38:      	ldr	x9, [x9, #0xe60]
+   15a3c:      	sub	x8, x8, #0x8
+   15a40:      	cbz	x9, 0x15cf0 <JNI_OnLoad+0x2660>
+   15a44:      	ldaxr	w9, [x8]
+   15a48:      	sub	w10, w9, #0x1
+   15a4c:      	stlxr	w11, w10, [x8]
+   15a50:      	cbnz	w11, 0x15a44 <JNI_OnLoad+0x23b4>
+   15a54:      	b	0x15cfc <JNI_OnLoad+0x266c>
+   15a58:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15a5c:      	ldr	x9, [x9, #0xe60]
+   15a60:      	sub	x8, x8, #0x8
+   15a64:      	cbz	x9, 0x15d10 <JNI_OnLoad+0x2680>
+   15a68:      	ldaxr	w9, [x8]
+   15a6c:      	sub	w10, w9, #0x1
+   15a70:      	stlxr	w11, w10, [x8]
+   15a74:      	cbnz	w11, 0x15a68 <JNI_OnLoad+0x23d8>
+   15a78:      	b	0x15d1c <JNI_OnLoad+0x268c>
+   15a7c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15a80:      	ldr	x9, [x9, #0xe60]
+   15a84:      	sub	x8, x8, #0x8
+   15a88:      	cbz	x9, 0x15d54 <JNI_OnLoad+0x26c4>
+   15a8c:      	ldaxr	w9, [x8]
+   15a90:      	sub	w10, w9, #0x1
+   15a94:      	stlxr	w11, w10, [x8]
+   15a98:      	cbnz	w11, 0x15a8c <JNI_OnLoad+0x23fc>
+   15a9c:      	b	0x15d60 <JNI_OnLoad+0x26d0>
+   15aa0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15aa4:      	ldr	x9, [x9, #0xe60]
+   15aa8:      	sub	x8, x8, #0x8
+   15aac:      	cbz	x9, 0x15d98 <JNI_OnLoad+0x2708>
+   15ab0:      	ldaxr	w9, [x8]
+   15ab4:      	sub	w10, w9, #0x1
+   15ab8:      	stlxr	w11, w10, [x8]
+   15abc:      	cbnz	w11, 0x15ab0 <JNI_OnLoad+0x2420>
+   15ac0:      	b	0x15da4 <JNI_OnLoad+0x2714>
+   15ac4:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15ac8:      	ldr	x9, [x9, #0xe60]
+   15acc:      	sub	x8, x8, #0x8
+   15ad0:      	cbz	x9, 0x15db8 <JNI_OnLoad+0x2728>
+   15ad4:      	ldaxr	w9, [x8]
+   15ad8:      	sub	w10, w9, #0x1
+   15adc:      	stlxr	w11, w10, [x8]
+   15ae0:      	cbnz	w11, 0x15ad4 <JNI_OnLoad+0x2444>
+   15ae4:      	b	0x15dc4 <JNI_OnLoad+0x2734>
+   15ae8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15aec:      	ldr	x9, [x9, #0xe60]
+   15af0:      	sub	x8, x8, #0x8
+   15af4:      	cbz	x9, 0x15dfc <JNI_OnLoad+0x276c>
+   15af8:      	ldaxr	w9, [x8]
+   15afc:      	sub	w10, w9, #0x1
+   15b00:      	stlxr	w11, w10, [x8]
+   15b04:      	cbnz	w11, 0x15af8 <JNI_OnLoad+0x2468>
+   15b08:      	b	0x15e08 <JNI_OnLoad+0x2778>
+   15b0c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15b10:      	ldr	x9, [x9, #0xe60]
+   15b14:      	sub	x8, x8, #0x8
+   15b18:      	cbz	x9, 0x15e1c <JNI_OnLoad+0x278c>
+   15b1c:      	ldaxr	w9, [x8]
+   15b20:      	sub	w10, w9, #0x1
+   15b24:      	stlxr	w11, w10, [x8]
+   15b28:      	cbnz	w11, 0x15b1c <JNI_OnLoad+0x248c>
+   15b2c:      	b	0x15e28 <JNI_OnLoad+0x2798>
+   15b30:      	ldr	w9, [x8]
+   15b34:      	sub	w10, w9, #0x1
+   15b38:      	str	w10, [x8]
+   15b3c:      	cmp	w9, #0x0
+   15b40:      	b.gt	0x157ec <JNI_OnLoad+0x215c>
+   15b44:      	add	x1, sp, #0xa0
+   15b48:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15b4c:      	b	0x157ec <JNI_OnLoad+0x215c>
+   15b50:      	ldr	w9, [x8]
+   15b54:      	sub	w10, w9, #0x1
+   15b58:      	str	w10, [x8]
+   15b5c:      	cmp	w9, #0x0
+   15b60:      	b.gt	0x157d4 <JNI_OnLoad+0x2144>
+   15b64:      	add	x1, sp, #0xa0
+   15b68:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15b6c:      	b	0x157d4 <JNI_OnLoad+0x2144>
+   15b70:      	ldr	w9, [x8]
+   15b74:      	sub	w10, w9, #0x1
+   15b78:      	str	w10, [x8]
+   15b7c:      	cmp	w9, #0x0
+   15b80:      	b.gt	0x157bc <JNI_OnLoad+0x212c>
+   15b84:      	add	x1, sp, #0xa0
+   15b88:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15b8c:      	b	0x157bc <JNI_OnLoad+0x212c>
+   15b90:      	ldr	w9, [x8]
+   15b94:      	sub	w10, w9, #0x1
+   15b98:      	str	w10, [x8]
+   15b9c:      	cmp	w9, #0x0
+   15ba0:      	b.gt	0x157a4 <JNI_OnLoad+0x2114>
+   15ba4:      	add	x1, sp, #0xa0
+   15ba8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15bac:      	b	0x157a4 <JNI_OnLoad+0x2114>
+   15bb0:      	ldr	w9, [x8]
+   15bb4:      	sub	w10, w9, #0x1
+   15bb8:      	str	w10, [x8]
+   15bbc:      	cmp	w9, #0x0
+   15bc0:      	b.gt	0x1578c <JNI_OnLoad+0x20fc>
+   15bc4:      	add	x1, sp, #0xa0
+   15bc8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15bcc:      	b	0x1578c <JNI_OnLoad+0x20fc>
+   15bd0:      	ldr	w9, [x8]
+   15bd4:      	sub	w10, w9, #0x1
+   15bd8:      	str	w10, [x8]
+   15bdc:      	cmp	w9, #0x0
+   15be0:      	b.gt	0x15774 <JNI_OnLoad+0x20e4>
+   15be4:      	add	x1, sp, #0xa0
+   15be8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15bec:      	b	0x15774 <JNI_OnLoad+0x20e4>
+   15bf0:      	ldr	w9, [x8]
+   15bf4:      	sub	w10, w9, #0x1
+   15bf8:      	str	w10, [x8]
+   15bfc:      	cmp	w9, #0x0
+   15c00:      	b.gt	0x1575c <JNI_OnLoad+0x20cc>
+   15c04:      	add	x1, sp, #0xa0
+   15c08:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15c0c:      	b	0x1575c <JNI_OnLoad+0x20cc>
+   15c10:      	ldr	w9, [x8]
+   15c14:      	sub	w10, w9, #0x1
+   15c18:      	str	w10, [x8]
+   15c1c:      	cmp	w9, #0x0
+   15c20:      	b.gt	0x1574c <JNI_OnLoad+0x20bc>
+   15c24:      	add	x1, sp, #0xa0
+   15c28:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15c2c:      	b	0x1574c <JNI_OnLoad+0x20bc>
+   15c30:      	ldr	w9, [x8]
+   15c34:      	sub	w10, w9, #0x1
+   15c38:      	str	w10, [x8]
+   15c3c:      	cmp	w9, #0x0
+   15c40:      	b.gt	0x1573c <JNI_OnLoad+0x20ac>
+   15c44:      	add	x1, sp, #0xa0
+   15c48:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15c4c:      	b	0x1573c <JNI_OnLoad+0x20ac>
+   15c50:      	ldr	w9, [x8]
+   15c54:      	sub	w10, w9, #0x1
+   15c58:      	str	w10, [x8]
+   15c5c:      	cmp	w9, #0x0
+   15c60:      	b.gt	0x1572c <JNI_OnLoad+0x209c>
+   15c64:      	add	x1, sp, #0xa0
+   15c68:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15c6c:      	b	0x1572c <JNI_OnLoad+0x209c>
+   15c70:      	ldr	w9, [x8]
+   15c74:      	sub	w10, w9, #0x1
+   15c78:      	str	w10, [x8]
+   15c7c:      	cmp	w9, #0x0
+   15c80:      	b.gt	0x1571c <JNI_OnLoad+0x208c>
+   15c84:      	add	x1, sp, #0xa0
+   15c88:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15c8c:      	b	0x1571c <JNI_OnLoad+0x208c>
+   15c90:      	ldr	w9, [x8]
+   15c94:      	sub	w10, w9, #0x1
+   15c98:      	str	w10, [x8]
+   15c9c:      	cmp	w9, #0x0
+   15ca0:      	b.gt	0x1570c <JNI_OnLoad+0x207c>
+   15ca4:      	add	x1, sp, #0xa0
+   15ca8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15cac:      	b	0x1570c <JNI_OnLoad+0x207c>
+   15cb0:      	ldr	w9, [x8]
+   15cb4:      	sub	w10, w9, #0x1
+   15cb8:      	str	w10, [x8]
+   15cbc:      	cmp	w9, #0x0
+   15cc0:      	b.gt	0x156fc <JNI_OnLoad+0x206c>
+   15cc4:      	add	x1, sp, #0xa0
+   15cc8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15ccc:      	b	0x156fc <JNI_OnLoad+0x206c>
+   15cd0:      	ldr	w9, [x8]
+   15cd4:      	sub	w10, w9, #0x1
+   15cd8:      	str	w10, [x8]
+   15cdc:      	cmp	w9, #0x0
+   15ce0:      	b.gt	0x156ec <JNI_OnLoad+0x205c>
+   15ce4:      	add	x1, sp, #0xa0
+   15ce8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15cec:      	b	0x156ec <JNI_OnLoad+0x205c>
+   15cf0:      	ldr	w9, [x8]
+   15cf4:      	sub	w10, w9, #0x1
+   15cf8:      	str	w10, [x8]
+   15cfc:      	cmp	w9, #0x0
+   15d00:      	b.gt	0x156dc <JNI_OnLoad+0x204c>
+   15d04:      	add	x1, sp, #0xa0
+   15d08:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15d0c:      	b	0x156dc <JNI_OnLoad+0x204c>
+   15d10:      	ldr	w9, [x8]
+   15d14:      	sub	w10, w9, #0x1
+   15d18:      	str	w10, [x8]
+   15d1c:      	cmp	w9, #0x0
+   15d20:      	b.gt	0x156cc <JNI_OnLoad+0x203c>
+   15d24:      	add	x1, sp, #0xa0
+   15d28:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15d2c:      	b	0x156cc <JNI_OnLoad+0x203c>
+   15d30:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15d34:      	ldr	x9, [x9, #0xe60]
+   15d38:      	sub	x8, x8, #0x8
+   15d3c:      	cbz	x9, 0x15f14 <JNI_OnLoad+0x2884>
+   15d40:      	ldaxr	w9, [x8]
+   15d44:      	sub	w10, w9, #0x1
+   15d48:      	stlxr	w11, w10, [x8]
+   15d4c:      	cbnz	w11, 0x15d40 <JNI_OnLoad+0x26b0>
+   15d50:      	b	0x15f20 <JNI_OnLoad+0x2890>
+   15d54:      	ldr	w9, [x8]
+   15d58:      	sub	w10, w9, #0x1
+   15d5c:      	str	w10, [x8]
+   15d60:      	cmp	w9, #0x0
+   15d64:      	b.gt	0x156b4 <JNI_OnLoad+0x2024>
+   15d68:      	add	x1, sp, #0xa0
+   15d6c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15d70:      	b	0x156b4 <JNI_OnLoad+0x2024>
+   15d74:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15d78:      	ldr	x9, [x9, #0xe60]
+   15d7c:      	sub	x8, x8, #0x8
+   15d80:      	cbz	x9, 0x15f7c <JNI_OnLoad+0x28ec>
+   15d84:      	ldaxr	w9, [x8]
+   15d88:      	sub	w10, w9, #0x1
+   15d8c:      	stlxr	w11, w10, [x8]
+   15d90:      	cbnz	w11, 0x15d84 <JNI_OnLoad+0x26f4>
+   15d94:      	b	0x15f88 <JNI_OnLoad+0x28f8>
+   15d98:      	ldr	w9, [x8]
+   15d9c:      	sub	w10, w9, #0x1
+   15da0:      	str	w10, [x8]
+   15da4:      	cmp	w9, #0x0
+   15da8:      	b.gt	0x156a4 <JNI_OnLoad+0x2014>
+   15dac:      	add	x1, sp, #0xa0
+   15db0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15db4:      	b	0x156a4 <JNI_OnLoad+0x2014>
+   15db8:      	ldr	w9, [x8]
+   15dbc:      	sub	w10, w9, #0x1
+   15dc0:      	str	w10, [x8]
+   15dc4:      	cmp	w9, #0x0
+   15dc8:      	b.gt	0x15694 <JNI_OnLoad+0x2004>
+   15dcc:      	add	x1, sp, #0xa0
+   15dd0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15dd4:      	b	0x15694 <JNI_OnLoad+0x2004>
+   15dd8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15ddc:      	ldr	x9, [x9, #0xe60]
+   15de0:      	sub	x8, x8, #0x8
+   15de4:      	cbz	x9, 0x15fc0 <JNI_OnLoad+0x2930>
+   15de8:      	ldaxr	w9, [x8]
+   15dec:      	sub	w10, w9, #0x1
+   15df0:      	stlxr	w11, w10, [x8]
+   15df4:      	cbnz	w11, 0x15de8 <JNI_OnLoad+0x2758>
+   15df8:      	b	0x15fcc <JNI_OnLoad+0x293c>
+   15dfc:      	ldr	w9, [x8]
+   15e00:      	sub	w10, w9, #0x1
+   15e04:      	str	w10, [x8]
+   15e08:      	cmp	w9, #0x0
+   15e0c:      	b.gt	0x15684 <JNI_OnLoad+0x1ff4>
+   15e10:      	add	x1, sp, #0xa0
+   15e14:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15e18:      	b	0x15684 <JNI_OnLoad+0x1ff4>
+   15e1c:      	ldr	w9, [x8]
+   15e20:      	sub	w10, w9, #0x1
+   15e24:      	str	w10, [x8]
+   15e28:      	cmp	w9, #0x0
+   15e2c:      	b.gt	0x15674 <JNI_OnLoad+0x1fe4>
+   15e30:      	add	x1, sp, #0xa0
+   15e34:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15e38:      	b	0x15674 <JNI_OnLoad+0x1fe4>
+   15e3c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15e40:      	ldr	x9, [x9, #0xe60]
+   15e44:      	sub	x8, x8, #0x8
+   15e48:      	cbz	x9, 0x15fe0 <JNI_OnLoad+0x2950>
+   15e4c:      	ldaxr	w9, [x8]
+   15e50:      	sub	w10, w9, #0x1
+   15e54:      	stlxr	w11, w10, [x8]
+   15e58:      	cbnz	w11, 0x15e4c <JNI_OnLoad+0x27bc>
+   15e5c:      	b	0x15fec <JNI_OnLoad+0x295c>
+   15e60:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15e64:      	ldr	x9, [x9, #0xe60]
+   15e68:      	sub	x8, x8, #0x8
+   15e6c:      	cbz	x9, 0x16024 <JNI_OnLoad+0x2994>
+   15e70:      	ldaxr	w9, [x8]
+   15e74:      	sub	w10, w9, #0x1
+   15e78:      	stlxr	w11, w10, [x8]
+   15e7c:      	cbnz	w11, 0x15e70 <JNI_OnLoad+0x27e0>
+   15e80:      	b	0x16030 <JNI_OnLoad+0x29a0>
+   15e84:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15e88:      	ldr	x9, [x9, #0xe60]
+   15e8c:      	sub	x8, x8, #0x8
+   15e90:      	cbz	x9, 0x16044 <JNI_OnLoad+0x29b4>
+   15e94:      	ldaxr	w9, [x8]
+   15e98:      	sub	w10, w9, #0x1
+   15e9c:      	stlxr	w11, w10, [x8]
+   15ea0:      	cbnz	w11, 0x15e94 <JNI_OnLoad+0x2804>
+   15ea4:      	b	0x16050 <JNI_OnLoad+0x29c0>
+   15ea8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15eac:      	ldr	x9, [x9, #0xe60]
+   15eb0:      	sub	x8, x8, #0x8
+   15eb4:      	cbz	x9, 0x16088 <JNI_OnLoad+0x29f8>
+   15eb8:      	ldaxr	w9, [x8]
+   15ebc:      	sub	w10, w9, #0x1
+   15ec0:      	stlxr	w11, w10, [x8]
+   15ec4:      	cbnz	w11, 0x15eb8 <JNI_OnLoad+0x2828>
+   15ec8:      	b	0x16094 <JNI_OnLoad+0x2a04>
+   15ecc:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15ed0:      	ldr	x9, [x9, #0xe60]
+   15ed4:      	sub	x8, x8, #0x8
+   15ed8:      	cbz	x9, 0x160a8 <JNI_OnLoad+0x2a18>
+   15edc:      	ldaxr	w9, [x8]
+   15ee0:      	sub	w10, w9, #0x1
+   15ee4:      	stlxr	w11, w10, [x8]
+   15ee8:      	cbnz	w11, 0x15edc <JNI_OnLoad+0x284c>
+   15eec:      	b	0x160b4 <JNI_OnLoad+0x2a24>
+   15ef0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15ef4:      	ldr	x9, [x9, #0xe60]
+   15ef8:      	sub	x8, x8, #0x8
+   15efc:      	cbz	x9, 0x160ec <JNI_OnLoad+0x2a5c>
+   15f00:      	ldaxr	w9, [x8]
+   15f04:      	sub	w10, w9, #0x1
+   15f08:      	stlxr	w11, w10, [x8]
+   15f0c:      	cbnz	w11, 0x15f00 <JNI_OnLoad+0x2870>
+   15f10:      	b	0x160f8 <JNI_OnLoad+0x2a68>
+   15f14:      	ldr	w9, [x8]
+   15f18:      	sub	w10, w9, #0x1
+   15f1c:      	str	w10, [x8]
+   15f20:      	cmp	w9, #0x0
+   15f24:      	b.gt	0x15664 <JNI_OnLoad+0x1fd4>
+   15f28:      	add	x1, sp, #0xa0
+   15f2c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15f30:      	b	0x15664 <JNI_OnLoad+0x1fd4>
+   15f34:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15f38:      	ldr	x9, [x9, #0xe60]
+   15f3c:      	sub	x8, x8, #0x8
+   15f40:      	cbz	x9, 0x1610c <JNI_OnLoad+0x2a7c>
+   15f44:      	ldaxr	w9, [x8]
+   15f48:      	sub	w10, w9, #0x1
+   15f4c:      	stlxr	w11, w10, [x8]
+   15f50:      	cbnz	w11, 0x15f44 <JNI_OnLoad+0x28b4>
+   15f54:      	b	0x16118 <JNI_OnLoad+0x2a88>
+   15f58:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15f5c:      	ldr	x9, [x9, #0xe60]
+   15f60:      	sub	x8, x8, #0x8
+   15f64:      	cbz	x9, 0x16150 <JNI_OnLoad+0x2ac0>
+   15f68:      	ldaxr	w9, [x8]
+   15f6c:      	sub	w10, w9, #0x1
+   15f70:      	stlxr	w11, w10, [x8]
+   15f74:      	cbnz	w11, 0x15f68 <JNI_OnLoad+0x28d8>
+   15f78:      	b	0x1615c <JNI_OnLoad+0x2acc>
+   15f7c:      	ldr	w9, [x8]
+   15f80:      	sub	w10, w9, #0x1
+   15f84:      	str	w10, [x8]
+   15f88:      	cmp	w9, #0x0
+   15f8c:      	b.gt	0x15654 <JNI_OnLoad+0x1fc4>
+   15f90:      	add	x1, sp, #0xa0
+   15f94:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15f98:      	b	0x15654 <JNI_OnLoad+0x1fc4>
+   15f9c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   15fa0:      	ldr	x9, [x9, #0xe60]
+   15fa4:      	sub	x8, x8, #0x8
+   15fa8:      	cbz	x9, 0x16170 <JNI_OnLoad+0x2ae0>
+   15fac:      	ldaxr	w9, [x8]
+   15fb0:      	sub	w10, w9, #0x1
+   15fb4:      	stlxr	w11, w10, [x8]
+   15fb8:      	cbnz	w11, 0x15fac <JNI_OnLoad+0x291c>
+   15fbc:      	b	0x1617c <JNI_OnLoad+0x2aec>
+   15fc0:      	ldr	w9, [x8]
+   15fc4:      	sub	w10, w9, #0x1
+   15fc8:      	str	w10, [x8]
+   15fcc:      	cmp	w9, #0x0
+   15fd0:      	b.gt	0x15644 <JNI_OnLoad+0x1fb4>
+   15fd4:      	add	x1, sp, #0xa0
+   15fd8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15fdc:      	b	0x15644 <JNI_OnLoad+0x1fb4>
+   15fe0:      	ldr	w9, [x8]
+   15fe4:      	sub	w10, w9, #0x1
+   15fe8:      	str	w10, [x8]
+   15fec:      	cmp	w9, #0x0
+   15ff0:      	b.gt	0x15634 <JNI_OnLoad+0x1fa4>
+   15ff4:      	add	x1, sp, #0xa0
+   15ff8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   15ffc:      	b	0x15634 <JNI_OnLoad+0x1fa4>
+   16000:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16004:      	ldr	x9, [x9, #0xe60]
+   16008:      	sub	x8, x8, #0x8
+   1600c:      	cbz	x9, 0x16190 <JNI_OnLoad+0x2b00>
+   16010:      	ldaxr	w9, [x8]
+   16014:      	sub	w10, w9, #0x1
+   16018:      	stlxr	w11, w10, [x8]
+   1601c:      	cbnz	w11, 0x16010 <JNI_OnLoad+0x2980>
+   16020:      	b	0x1619c <JNI_OnLoad+0x2b0c>
+   16024:      	ldr	w9, [x8]
+   16028:      	sub	w10, w9, #0x1
+   1602c:      	str	w10, [x8]
+   16030:      	cmp	w9, #0x0
+   16034:      	b.gt	0x15624 <JNI_OnLoad+0x1f94>
+   16038:      	add	x1, sp, #0xa0
+   1603c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   16040:      	b	0x15624 <JNI_OnLoad+0x1f94>
+   16044:      	ldr	w9, [x8]
+   16048:      	sub	w10, w9, #0x1
+   1604c:      	str	w10, [x8]
+   16050:      	cmp	w9, #0x0
+   16054:      	b.gt	0x15614 <JNI_OnLoad+0x1f84>
+   16058:      	add	x1, sp, #0xa0
+   1605c:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   16060:      	b	0x15614 <JNI_OnLoad+0x1f84>
+   16064:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16068:      	ldr	x9, [x9, #0xe60]
+   1606c:      	sub	x8, x8, #0x8
+   16070:      	cbz	x9, 0x161b0 <JNI_OnLoad+0x2b20>
+   16074:      	ldaxr	w9, [x8]
+   16078:      	sub	w10, w9, #0x1
+   1607c:      	stlxr	w11, w10, [x8]
+   16080:      	cbnz	w11, 0x16074 <JNI_OnLoad+0x29e4>
+   16084:      	b	0x161bc <JNI_OnLoad+0x2b2c>
+   16088:      	ldr	w9, [x8]
+   1608c:      	sub	w10, w9, #0x1
+   16090:      	str	w10, [x8]
+   16094:      	cmp	w9, #0x0
+   16098:      	b.gt	0x15604 <JNI_OnLoad+0x1f74>
+   1609c:      	add	x1, sp, #0xa0
+   160a0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   160a4:      	b	0x15604 <JNI_OnLoad+0x1f74>
+   160a8:      	ldr	w9, [x8]
+   160ac:      	sub	w10, w9, #0x1
+   160b0:      	str	w10, [x8]
+   160b4:      	cmp	w9, #0x0
+   160b8:      	b.gt	0x155f4 <JNI_OnLoad+0x1f64>
+   160bc:      	add	x1, sp, #0xa0
+   160c0:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   160c4:      	b	0x155f4 <JNI_OnLoad+0x1f64>
+   160c8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   160cc:      	ldr	x9, [x9, #0xe60]
+   160d0:      	sub	x8, x8, #0x8
+   160d4:      	cbz	x9, 0x161d0 <JNI_OnLoad+0x2b40>
+   160d8:      	ldaxr	w9, [x8]
+   160dc:      	sub	w10, w9, #0x1
+   160e0:      	stlxr	w11, w10, [x8]
+   160e4:      	cbnz	w11, 0x160d8 <JNI_OnLoad+0x2a48>
+   160e8:      	b	0x161dc <JNI_OnLoad+0x2b4c>
+   160ec:      	ldr	w9, [x8]
+   160f0:      	sub	w10, w9, #0x1
+   160f4:      	str	w10, [x8]
+   160f8:      	cmp	w9, #0x0
+   160fc:      	b.gt	0x155e4 <JNI_OnLoad+0x1f54>
+   16100:      	add	x1, sp, #0xa0
+   16104:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   16108:      	b	0x155e4 <JNI_OnLoad+0x1f54>
+   1610c:      	ldr	w9, [x8]
+   16110:      	sub	w10, w9, #0x1
+   16114:      	str	w10, [x8]
+   16118:      	cmp	w9, #0x0
+   1611c:      	b.gt	0x155d4 <JNI_OnLoad+0x1f44>
+   16120:      	add	x1, sp, #0xa0
+   16124:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   16128:      	b	0x155d4 <JNI_OnLoad+0x1f44>
+   1612c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16130:      	ldr	x9, [x9, #0xe60]
+   16134:      	sub	x8, x8, #0x8
+   16138:      	cbz	x9, 0x161f0 <JNI_OnLoad+0x2b60>
+   1613c:      	ldaxr	w9, [x8]
+   16140:      	sub	w10, w9, #0x1
+   16144:      	stlxr	w11, w10, [x8]
+   16148:      	cbnz	w11, 0x1613c <JNI_OnLoad+0x2aac>
+   1614c:      	b	0x161fc <JNI_OnLoad+0x2b6c>
+   16150:      	ldr	w9, [x8]
+   16154:      	sub	w10, w9, #0x1
+   16158:      	str	w10, [x8]
+   1615c:      	cmp	w9, #0x0
+   16160:      	b.gt	0x155c4 <JNI_OnLoad+0x1f34>
+   16164:      	add	x1, sp, #0xa0
+   16168:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   1616c:      	b	0x155c4 <JNI_OnLoad+0x1f34>
+   16170:      	ldr	w9, [x8]
+   16174:      	sub	w10, w9, #0x1
+   16178:      	str	w10, [x8]
+   1617c:      	cmp	w9, #0x0
+   16180:      	b.gt	0x155b4 <JNI_OnLoad+0x1f24>
+   16184:      	add	x1, sp, #0xa0
+   16188:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   1618c:      	b	0x155b4 <JNI_OnLoad+0x1f24>
+   16190:      	ldr	w9, [x8]
+   16194:      	sub	w10, w9, #0x1
+   16198:      	str	w10, [x8]
+   1619c:      	cmp	w9, #0x0
+   161a0:      	b.gt	0x155a4 <JNI_OnLoad+0x1f14>
+   161a4:      	add	x1, sp, #0xa0
+   161a8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   161ac:      	b	0x155a4 <JNI_OnLoad+0x1f14>
+   161b0:      	ldr	w9, [x8]
+   161b4:      	sub	w10, w9, #0x1
+   161b8:      	str	w10, [x8]
+   161bc:      	cmp	w9, #0x0
+   161c0:      	b.gt	0x15594 <JNI_OnLoad+0x1f04>
+   161c4:      	add	x1, sp, #0xa0
+   161c8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   161cc:      	b	0x15594 <JNI_OnLoad+0x1f04>
+   161d0:      	ldr	w9, [x8]
+   161d4:      	sub	w10, w9, #0x1
+   161d8:      	str	w10, [x8]
+   161dc:      	cmp	w9, #0x0
+   161e0:      	b.gt	0x15584 <JNI_OnLoad+0x1ef4>
+   161e4:      	add	x1, sp, #0xa0
+   161e8:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   161ec:      	b	0x15584 <JNI_OnLoad+0x1ef4>
+   161f0:      	ldr	w9, [x8]
+   161f4:      	sub	w10, w9, #0x1
+   161f8:      	str	w10, [x8]
+   161fc:      	cmp	w9, #0x0
+   16200:      	b.gt	0x15574 <JNI_OnLoad+0x1ee4>
+   16204:      	add	x1, sp, #0xa0
+   16208:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   1620c:      	b	0x15574 <JNI_OnLoad+0x1ee4>
+   16210:      	ldr	w9, [x8]
+   16214:      	sub	w10, w9, #0x1
+   16218:      	str	w10, [x8]
+   1621c:      	b	0x15824 <JNI_OnLoad+0x2194>
+   16220:      	mov	x19, x0
+   16224:      	b	0x15574 <JNI_OnLoad+0x1ee4>
+   16228:      	mov	x19, x0
+   1622c:      	b	0x15584 <JNI_OnLoad+0x1ef4>
+   16230:      	mov	x19, x0
+   16234:      	b	0x15594 <JNI_OnLoad+0x1f04>
+   16238:      	mov	x19, x0
+   1623c:      	b	0x155a4 <JNI_OnLoad+0x1f14>
+   16240:      	mov	x19, x0
+   16244:      	b	0x155b4 <JNI_OnLoad+0x1f24>
+   16248:      	mov	x19, x0
+   1624c:      	b	0x155c4 <JNI_OnLoad+0x1f34>
+   16250:      	mov	x19, x0
+   16254:      	b	0x155d4 <JNI_OnLoad+0x1f44>
+   16258:      	mov	x19, x0
+   1625c:      	b	0x155e4 <JNI_OnLoad+0x1f54>
+   16260:      	mov	x19, x0
+   16264:      	b	0x155f4 <JNI_OnLoad+0x1f64>
+   16268:      	mov	x19, x0
+   1626c:      	b	0x15604 <JNI_OnLoad+0x1f74>
+   16270:      	mov	x19, x0
+   16274:      	b	0x15614 <JNI_OnLoad+0x1f84>
+   16278:      	mov	x19, x0
+   1627c:      	b	0x15624 <JNI_OnLoad+0x1f94>
+   16280:      	mov	x19, x0
+   16284:      	b	0x15634 <JNI_OnLoad+0x1fa4>
+   16288:      	mov	x19, x0
+   1628c:      	b	0x15644 <JNI_OnLoad+0x1fb4>
+   16290:      	mov	x19, x0
+   16294:      	b	0x15654 <JNI_OnLoad+0x1fc4>
+   16298:      	mov	x19, x0
+   1629c:      	b	0x15664 <JNI_OnLoad+0x1fd4>
+   162a0:      	mov	x19, x0
+   162a4:      	b	0x15674 <JNI_OnLoad+0x1fe4>
+   162a8:      	mov	x19, x0
+   162ac:      	b	0x15684 <JNI_OnLoad+0x1ff4>
+   162b0:      	mov	x19, x0
+   162b4:      	b	0x15694 <JNI_OnLoad+0x2004>
+   162b8:      	mov	x19, x0
+   162bc:      	b	0x156a4 <JNI_OnLoad+0x2014>
+   162c0:      	mov	x19, x0
+   162c4:      	b	0x156bc <JNI_OnLoad+0x202c>
+   162c8:      	mov	x19, x0
+   162cc:      	b	0x156bc <JNI_OnLoad+0x202c>
+   162d0:      	mov	x19, x0
+   162d4:      	b	0x156cc <JNI_OnLoad+0x203c>
+   162d8:      	mov	x19, x0
+   162dc:      	b	0x156dc <JNI_OnLoad+0x204c>
+   162e0:      	mov	x19, x0
+   162e4:      	b	0x156ec <JNI_OnLoad+0x205c>
+   162e8:      	mov	x19, x0
+   162ec:      	b	0x156fc <JNI_OnLoad+0x206c>
+   162f0:      	mov	x19, x0
+   162f4:      	b	0x1570c <JNI_OnLoad+0x207c>
+   162f8:      	mov	x19, x0
+   162fc:      	b	0x1571c <JNI_OnLoad+0x208c>
+   16300:      	mov	x19, x0
+   16304:      	b	0x1572c <JNI_OnLoad+0x209c>
+   16308:      	mov	x19, x0
+   1630c:      	b	0x1573c <JNI_OnLoad+0x20ac>
+   16310:      	ldr	x8, [sp, #0x1b0]
+   16314:      	mov	x19, x0
+   16318:      	sub	x0, x8, #0x18
+   1631c:      	cmp	x0, x26
+   16320:      	b.eq	0x1636c <JNI_OnLoad+0x2cdc>
+   16324:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16328:      	ldr	x9, [x9, #0xe60]
+   1632c:      	sub	x8, x8, #0x8
+   16330:      	cbz	x9, 0x16348 <JNI_OnLoad+0x2cb8>
+   16334:      	ldaxr	w9, [x8]
+   16338:      	sub	w10, w9, #0x1
+   1633c:      	stlxr	w11, w10, [x8]
+   16340:      	cbnz	w11, 0x16334 <JNI_OnLoad+0x2ca4>
+   16344:      	b	0x16354 <JNI_OnLoad+0x2cc4>
+   16348:      	ldr	w9, [x8]
+   1634c:      	sub	w10, w9, #0x1
+   16350:      	str	w10, [x8]
+   16354:      	cmp	w9, #0x0
+   16358:      	b.gt	0x1636c <JNI_OnLoad+0x2cdc>
+   1635c:      	add	x1, sp, #0x218
+   16360:      	bl	0x2c258 <_ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE+0x35b0>
+   16364:      	b	0x1636c <JNI_OnLoad+0x2cdc>
+   16368:      	mov	x19, x0
+   1636c:      	ldr	x8, [sp, #0x1b8]
+   16370:      	sub	x0, x8, #0x18
+   16374:      	cmp	x0, x26
+   16378:      	b.eq	0x1574c <JNI_OnLoad+0x20bc>
+   1637c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16380:      	ldr	x9, [x9, #0xe60]
+   16384:      	sub	x8, x8, #0x8
+   16388:      	cbz	x9, 0x163a0 <JNI_OnLoad+0x2d10>
+   1638c:      	ldaxr	w9, [x8]
+   16390:      	sub	w10, w9, #0x1
+   16394:      	stlxr	w11, w10, [x8]
+   16398:      	cbnz	w11, 0x1638c <JNI_OnLoad+0x2cfc>
+   1639c:      	b	0x163ac <JNI_OnLoad+0x2d1c>
+   163a0:      	ldr	w9, [x8]
+   163a4:      	sub	w10, w9, #0x1
+   163a8:      	str	w10, [x8]
+   163ac:      	cmp	w9, #0x0
+   163b0:      	b.gt	0x1574c <JNI_OnLoad+0x20bc>
+   163b4:      	add	x1, sp, #0x218
+   163b8:      	b	0x15c28 <JNI_OnLoad+0x2598>
+   163bc:      	mov	x19, x0
+   163c0:      	b	0x1574c <JNI_OnLoad+0x20bc>
+   163c4:      	ldr	x8, [sp, #0x1c8]
+   163c8:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   163cc:      	ldr	x9, [x9, #0xf98]
+   163d0:      	mov	x19, x0
+   163d4:      	sub	x0, x8, #0x18
+   163d8:      	cmp	x0, x9
+   163dc:      	b.eq	0x1575c <JNI_OnLoad+0x20cc>
+   163e0:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   163e4:      	ldr	x9, [x9, #0xe60]
+   163e8:      	sub	x8, x8, #0x8
+   163ec:      	cbz	x9, 0x16404 <JNI_OnLoad+0x2d74>
+   163f0:      	ldaxr	w9, [x8]
+   163f4:      	sub	w10, w9, #0x1
+   163f8:      	stlxr	w11, w10, [x8]
+   163fc:      	cbnz	w11, 0x163f0 <JNI_OnLoad+0x2d60>
+   16400:      	b	0x16410 <JNI_OnLoad+0x2d80>
+   16404:      	ldr	w9, [x8]
+   16408:      	sub	w10, w9, #0x1
+   1640c:      	str	w10, [x8]
+   16410:      	cmp	w9, #0x0
+   16414:      	b.gt	0x1575c <JNI_OnLoad+0x20cc>
+   16418:      	add	x1, sp, #0x218
+   1641c:      	b	0x15c08 <JNI_OnLoad+0x2578>
+   16420:      	mov	x19, x0
+   16424:      	b	0x1575c <JNI_OnLoad+0x20cc>
+   16428:      	mov	x19, x0
+   1642c:      	b	0x15774 <JNI_OnLoad+0x20e4>
+   16430:      	mov	x19, x0
+   16434:      	b	0x1578c <JNI_OnLoad+0x20fc>
+   16438:      	mov	x19, x0
+   1643c:      	b	0x157a4 <JNI_OnLoad+0x2114>
+   16440:      	mov	x19, x0
+   16444:      	b	0x157bc <JNI_OnLoad+0x212c>
+   16448:      	mov	x19, x0
+   1644c:      	b	0x157d4 <JNI_OnLoad+0x2144>
+   16450:      	b	0x16468 <JNI_OnLoad+0x2dd8>
+   16454:      	b	0x16468 <JNI_OnLoad+0x2dd8>
+   16458:      	b	0x16468 <JNI_OnLoad+0x2dd8>
+   1645c:      	b	0x16468 <JNI_OnLoad+0x2dd8>
+   16460:      	mov	x19, x0
+   16464:      	b	0x156b4 <JNI_OnLoad+0x2024>
+   16468:      	mov	x19, x0
+   1646c:      	b	0x157ec <JNI_OnLoad+0x215c>
+   16470:      	bl	0xc4e0 <_Unwind_Resume@plt>
+   16474:      	mov	x19, x0
+   16478:      	b	0x15664 <JNI_OnLoad+0x1fd4>
+   1647c:      	mov	x19, x0
+   16480:      	sub	x0, x23, #0x18
+   16484:      	cmp	x0, x26
+   16488:      	b.eq	0x15664 <JNI_OnLoad+0x1fd4>
+   1648c:      	adrp	x9, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   16490:      	ldr	x9, [x9, #0xe60]
+   16494:      	sub	x8, x23, #0x8
+   16498:      	cbz	x9, 0x164b0 <JNI_OnLoad+0x2e20>
+   1649c:      	ldaxr	w9, [x8]
+   164a0:      	sub	w10, w9, #0x1
+   164a4:      	stlxr	w11, w10, [x8]
+   164a8:      	cbnz	w11, 0x1649c <JNI_OnLoad+0x2e0c>
+   164ac:      	b	0x164bc <JNI_OnLoad+0x2e2c>
+   164b0:      	ldr	w9, [x8]
+   164b4:      	sub	w10, w9, #0x1
+   164b8:      	str	w10, [x8]
+   164bc:      	cmp	w9, #0x0
+   164c0:      	b.gt	0x15664 <JNI_OnLoad+0x1fd4>
+   164c4:      	add	x1, sp, #0x140
+   164c8:      	b	0x15f2c <JNI_OnLoad+0x289c>
+
+--- FUNCTION: _Unwind_Backtrace ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libCtaApiLib.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000606a0 <_Unwind_Backtrace>:
+   606a0:      	sub	sp, sp, #0xa40
+   606a4:      	mov	x2, x30
+   606a8:      	stp	x29, x30, [sp, #-0xa0]!
+   606ac:      	mov	x29, sp
+   606b0:      	stp	x19, x20, [sp, #0x10]
+   606b4:      	stp	d8, d9, [sp, #0x60]
+   606b8:      	add	x20, x29, #0xa0
+   606bc:      	stp	d10, d11, [sp, #0x70]
+   606c0:      	stp	x21, x22, [sp, #0x20]
+   606c4:      	stp	d12, d13, [sp, #0x80]
+   606c8:      	stp	x23, x24, [sp, #0x30]
+   606cc:      	stp	d14, d15, [sp, #0x90]
+   606d0:      	mov	x22, x0
+   606d4:      	mov	x23, x1
+   606d8:      	mov	x0, x20
+   606dc:      	add	x1, x29, #0xae0
+   606e0:      	add	x21, x29, #0x460
+   606e4:      	stp	x25, x26, [sp, #0x40]
+   606e8:      	stp	x27, x28, [sp, #0x50]
+   606ec:      	bl	0x5fe50 <_Unwind_GetTextRelBase+0x115c>
+   606f0:      	mov	x0, x20
+   606f4:      	mov	x1, x21
+   606f8:      	bl	0x5f26c <_Unwind_GetTextRelBase+0x578>
+   606fc:      	cmp	w0, #0x5
+   60700:      	mov	w19, w0
+   60704:      	b.eq	0x6070c <_Unwind_Backtrace+0x6c>
+   60708:      	cbnz	w0, 0x60734 <_Unwind_Backtrace+0x94>
+   6070c:      	mov	x0, x20
+   60710:      	mov	x1, x23
+   60714:      	blr	x22
+   60718:      	cbnz	w0, 0x60734 <_Unwind_Backtrace+0x94>
+   6071c:      	cmp	w19, #0x5
+   60720:      	b.eq	0x6073c <_Unwind_Backtrace+0x9c>
+   60724:      	mov	x0, x20
+   60728:      	mov	x1, x21
+   6072c:      	bl	0x5ff2c <_Unwind_GetTextRelBase+0x1238>
+   60730:      	b	0x606f0 <_Unwind_Backtrace+0x50>
+   60734:      	mov	w0, #0x3                // =3
+   60738:      	b	0x60740 <_Unwind_Backtrace+0xa0>
+   6073c:      	mov	w0, w19
+   60740:      	ldp	x19, x20, [sp, #0x10]
+   60744:      	ldp	d8, d9, [sp, #0x60]
+   60748:      	ldp	x21, x22, [sp, #0x20]
+   6074c:      	ldp	d10, d11, [sp, #0x70]
+   60750:      	ldp	x23, x24, [sp, #0x30]
+   60754:      	ldp	d12, d13, [sp, #0x80]
+   60758:      	ldp	x25, x26, [sp, #0x40]
+   6075c:      	ldp	d14, d15, [sp, #0x90]
+   60760:      	ldp	x27, x28, [sp, #0x50]
+   60764:      	ldp	x29, x30, [sp], #0xa0
+   60768:      	add	sp, sp, #0xa40
+   6076c:      	ret
+   60770:      	mov	x2, #0x0                // =0
+   60774:      	mov	w3, #0x0                // =0
+   60778:      	ldrb	w5, [x0], #0x1
+   6077c:      	and	x4, x5, #0x7f
+   60780:      	lsl	x4, x4, x3
+   60784:      	add	w3, w3, #0x7
+   60788:      	orr	x2, x2, x4
+   6078c:      	tbnz	w5, #0x7, 0x60778 <_Unwind_Backtrace+0xd8>
+   60790:      	str	x2, [x1]
+   60794:      	ret
+   60798:      	mov	x2, #0x0                // =0
+   6079c:      	mov	w3, #0x0                // =0
+   607a0:      	ldrb	w4, [x0], #0x1
+   607a4:      	and	x5, x4, #0x7f
+   607a8:      	lsl	x5, x5, x3
+   607ac:      	add	w3, w3, #0x7
+   607b0:      	orr	x2, x2, x5
+   607b4:      	tbnz	w4, #0x7, 0x607a0 <_Unwind_Backtrace+0x100>
+   607b8:      	cmp	w3, #0x3f
+   607bc:      	b.hi	0x607d0 <_Unwind_Backtrace+0x130>
+   607c0:      	tbz	w4, #0x6, 0x607d0 <_Unwind_Backtrace+0x130>
+   607c4:      	mov	x4, #-0x1               // =-1
+   607c8:      	lsl	x3, x4, x3
+   607cc:      	orr	x2, x3, x2
+   607d0:      	str	x2, [x1]
+   607d4:      	ret
+   607d8:      	ldr	x3, [x1, #0x8]
+   607dc:      	ldr	x1, [x2, #0x8]
+   607e0:      	cmp	x3, x1
+   607e4:      	csetm	w0, lo
+   607e8:      	cmp	x3, x1
+   607ec:      	csinc	w0, w0, wzr, ls
+   607f0:      	ret
+   607f4:      	stp	x29, x30, [sp, #-0x60]!
+   607f8:      	mov	x29, sp
+   607fc:      	stp	x19, x20, [sp, #0x10]
+   60800:      	lsl	w19, w3, #1
+   60804:      	str	x25, [sp, #0x40]
+   60808:      	stp	x23, x24, [sp, #0x30]
+   6080c:      	stp	x21, x22, [sp, #0x20]
+   60810:      	mov	x24, x0
+   60814:      	mov	x25, x1
+   60818:      	mov	x20, x2
+   6081c:      	mov	w23, w4
+   60820:      	add	w19, w19, #0x1
+   60824:      	cmp	w19, w23
+   60828:      	b.ge	0x6089c <_Unwind_Backtrace+0x1fc>
+   6082c:      	add	w21, w19, #0x1
+   60830:      	cmp	w21, w23
+   60834:      	b.ge	0x60860 <_Unwind_Backtrace+0x1c0>
+   60838:      	sbfiz	x1, x19, #3, #32
+   6083c:      	mov	x0, x24
+   60840:      	add	x2, x20, x1
+   60844:      	str	x3, [x29, #0x58]
+   60848:      	ldr	x1, [x20, x1]
+   6084c:      	ldr	x2, [x2, #0x8]
+   60850:      	blr	x25
+   60854:      	cmp	w0, wzr
+   60858:      	ldr	x3, [x29, #0x58]
+   6085c:      	csel	w19, w19, w21, ge
+   60860:      	sbfiz	x21, x3, #3, #32
+   60864:      	sbfiz	x22, x19, #3, #32
+   60868:      	mov	x0, x24
+   6086c:      	ldr	x1, [x20, x21]
+   60870:      	ldr	x2, [x20, x22]
+   60874:      	blr	x25
+   60878:      	tbz	w0, #0x1f, 0x6089c <_Unwind_Backtrace+0x1fc>
+   6087c:      	ldr	x1, [x20, x22]
+   60880:      	mov	w3, w19
+   60884:      	ldr	x0, [x20, x21]
+   60888:      	str	x1, [x20, x21]
+   6088c:      	str	x0, [x20, x22]
+   60890:      	lsl	w0, w19, #1
+   60894:      	add	w19, w0, #0x1
+   60898:      	b	0x60824 <_Unwind_Backtrace+0x184>
+   6089c:      	ldp	x19, x20, [sp, #0x10]
+   608a0:      	ldp	x21, x22, [sp, #0x20]
+   608a4:      	ldp	x23, x24, [sp, #0x30]
+   608a8:      	ldr	x25, [sp, #0x40]
+   608ac:      	ldp	x29, x30, [sp], #0x60
+   608b0:      	ret
+   608b4:      	stp	x29, x30, [sp, #-0x50]!
+   608b8:      	mov	x29, sp
+   608bc:      	stp	x19, x20, [sp, #0x10]
+   608c0:      	ldr	x19, [x2, #0x8]
+   608c4:      	stp	x21, x22, [sp, #0x20]
+   608c8:      	stp	x23, x24, [sp, #0x30]
+   608cc:      	str	x25, [sp, #0x40]
+   608d0:      	mov	x24, x0
+   608d4:      	mov	x25, x1
+   608d8:      	mov	x21, x2
+   608dc:      	add	x22, x2, #0x10
+   608e0:      	lsr	x20, x19, #1
+   608e4:      	sub	w20, w20, #0x1
+   608e8:      	tbnz	w20, #0x1f, 0x60908 <_Unwind_Backtrace+0x268>
+   608ec:      	mov	x0, x24
+   608f0:      	mov	x1, x25
+   608f4:      	mov	x2, x22
+   608f8:      	mov	w3, w20
+   608fc:      	mov	w4, w19
+   60900:      	bl	0x607f4 <_Unwind_Backtrace+0x154>
+   60904:      	b	0x608e4 <_Unwind_Backtrace+0x244>
+   60908:      	mov	x20, #0x0               // =0
+   6090c:      	sub	w19, w19, #0x1
+   60910:      	add	x23, x22, w19, sxtw #3
+   60914:      	cmp	w19, wzr
+   60918:      	b.le	0x60950 <_Unwind_Backtrace+0x2b0>
+   6091c:      	ldr	x1, [x23, x20]
+   60920:      	mov	w4, w19
+   60924:      	ldr	x0, [x21, #0x10]
+   60928:      	mov	x2, x22
+   6092c:      	str	x1, [x21, #0x10]
+   60930:      	mov	w3, #0x0                // =0
+   60934:      	str	x0, [x23, x20]
+   60938:      	mov	x1, x25
+   6093c:      	mov	x0, x24
+   60940:      	sub	w19, w19, #0x1
+   60944:      	sub	x20, x20, #0x8
+   60948:      	bl	0x607f4 <_Unwind_Backtrace+0x154>
+   6094c:      	b	0x60914 <_Unwind_Backtrace+0x274>
+   60950:      	ldp	x19, x20, [sp, #0x10]
+   60954:      	ldp	x21, x22, [sp, #0x20]
+   60958:      	ldp	x23, x24, [sp, #0x30]
+   6095c:      	ldr	x25, [sp, #0x40]
+   60960:      	ldp	x29, x30, [sp], #0x50
+   60964:      	ret
+   60968:      	stp	x29, x30, [sp, #-0x10]!
+   6096c:      	uxtb	w0, w0
+   60970:      	cmp	w0, #0xff
+   60974:      	mov	x29, sp
+   60978:      	b.eq	0x609b4 <_Unwind_Backtrace+0x314>
+   6097c:      	and	w0, w0, #0x7
+   60980:      	cmp	w0, #0x4
+   60984:      	b.hi	0x609b0 <_Unwind_Backtrace+0x310>
+   60988:      	adrp	x1, 0x65000 <_ZTSN10__cxxabiv121__vmi_class_type_infoE+0x1290>
+   6098c:      	add	x1, x1, #0xf90
+   60990:      	ldrb	w0, [x1, w0, uxtw]
+   60994:      	adr	x1, 0x609a0 <_Unwind_Backtrace+0x300>
+   60998:      	add	x0, x1, w0, sxtb #2
+   6099c:      	br	x0
+   609a0:      	mov	w0, #0x2                // =2
+   609a4:      	b	0x609c0 <_Unwind_Backtrace+0x320>
+   609a8:      	mov	w0, #0x4                // =4
+   609ac:      	b	0x609c0 <_Unwind_Backtrace+0x320>
+   609b0:      	bl	0xc470 <abort@plt>
+   609b4:      	mov	w0, #0x0                // =0
+   609b8:      	b	0x609c0 <_Unwind_Backtrace+0x320>
+   609bc:      	mov	w0, #0x8                // =8
+   609c0:      	ldp	x29, x30, [sp], #0x10
+   609c4:      	ret
+   609c8:      	stp	x29, x30, [sp, #-0x10]!
+   609cc:      	uxtb	w0, w0
+   609d0:      	cmp	w0, #0xff
+   609d4:      	mov	x29, sp
+   609d8:      	b.eq	0x60a1c <_Unwind_Backtrace+0x37c>
+   609dc:      	and	w0, w0, #0x70
+   609e0:      	cmp	w0, #0x20
+   609e4:      	b.eq	0x60a0c <_Unwind_Backtrace+0x36c>
+   609e8:      	b.hi	0x609f8 <_Unwind_Backtrace+0x358>
+   609ec:      	cmp	w0, #0x10
+   609f0:      	cbnz	w0, 0x60a04 <_Unwind_Backtrace+0x364>
+   609f4:      	b	0x60a1c <_Unwind_Backtrace+0x37c>
+   609f8:      	cmp	w0, #0x30
+   609fc:      	b.eq	0x60a14 <_Unwind_Backtrace+0x374>
+   60a00:      	cmp	w0, #0x50
+   60a04:      	b.eq	0x60a1c <_Unwind_Backtrace+0x37c>
+   60a08:      	bl	0xc470 <abort@plt>
+   60a0c:      	ldr	x0, [x1, #0x8]
+   60a10:      	b	0x60a20 <_Unwind_Backtrace+0x380>
+   60a14:      	ldr	x0, [x1, #0x10]
+   60a18:      	b	0x60a20 <_Unwind_Backtrace+0x380>
+   60a1c:      	mov	x0, #0x0                // =0
+   60a20:      	ldp	x29, x30, [sp], #0x10
+   60a24:      	ret
+   60a28:      	stp	x29, x30, [sp, #-0x10]!
+   60a2c:      	uxtb	w0, w0
+   60a30:      	cmp	w0, #0xff
+   60a34:      	mov	x29, sp
+   60a38:      	b.eq	0x60a7c <_Unwind_Backtrace+0x3dc>
+   60a3c:      	and	w0, w0, #0x70
+   60a40:      	cmp	w0, #0x20
+   60a44:      	b.eq	0x60a6c <_Unwind_Backtrace+0x3cc>
+   60a48:      	b.hi	0x60a58 <_Unwind_Backtrace+0x3b8>
+   60a4c:      	cmp	w0, #0x10
+   60a50:      	cbnz	w0, 0x60a64 <_Unwind_Backtrace+0x3c4>
+   60a54:      	b	0x60a7c <_Unwind_Backtrace+0x3dc>
+   60a58:      	cmp	w0, #0x30
+   60a5c:      	b.eq	0x60a74 <_Unwind_Backtrace+0x3d4>
+   60a60:      	cmp	w0, #0x50
+   60a64:      	b.eq	0x60a7c <_Unwind_Backtrace+0x3dc>
+   60a68:      	bl	0xc470 <abort@plt>
+   60a6c:      	ldr	x0, [x1, #0x8]
+   60a70:      	b	0x60a80 <_Unwind_Backtrace+0x3e0>
+   60a74:      	ldr	x0, [x1, #0x10]
+   60a78:      	b	0x60a80 <_Unwind_Backtrace+0x3e0>
+   60a7c:      	mov	x0, #0x0                // =0
+   60a80:      	ldp	x29, x30, [sp], #0x10
+   60a84:      	ret
+   60a88:      	stp	x29, x30, [sp, #-0x40]!
+   60a8c:      	mov	x29, sp
+   60a90:      	stp	x19, x20, [sp, #0x10]
+   60a94:      	uxtb	w20, w0
+   60a98:      	mov	x19, x2
+   60a9c:      	stp	x21, x22, [sp, #0x20]
+   60aa0:      	cmp	w20, #0x50
+   60aa4:      	mov	x22, x1
+   60aa8:      	mov	x21, x3
+   60aac:      	b.ne	0x60ac0 <_Unwind_Backtrace+0x420>
+   60ab0:      	add	x19, x2, #0x7
+   60ab4:      	and	x0, x19, #0xfffffffffffffff8
+   60ab8:      	ldr	x1, [x0], #0x8
+   60abc:      	b	0x60b64 <_Unwind_Backtrace+0x4c4>
+   60ac0:      	and	w1, w20, #0xf
+   60ac4:      	cmp	w1, #0xc
+   60ac8:      	b.hi	0x60b44 <_Unwind_Backtrace+0x4a4>
+   60acc:      	adrp	x0, 0x65000 <_ZTSN10__cxxabiv121__vmi_class_type_infoE+0x1290>
+   60ad0:      	add	x0, x0, #0xf98
+   60ad4:      	ldrb	w0, [x0, w1, uxtw]
+   60ad8:      	adr	x1, 0x60ae4 <_Unwind_Backtrace+0x444>
+   60adc:      	add	x0, x1, w0, sxtb #2
+   60ae0:      	br	x0
+   60ae4:      	mov	x0, x2
+   60ae8:      	add	x1, x29, #0x38
+   60aec:      	bl	0x60770 <_Unwind_Backtrace+0xd0>
+   60af0:      	b	0x60b00 <_Unwind_Backtrace+0x460>
+   60af4:      	mov	x0, x2
+   60af8:      	add	x1, x29, #0x38
+   60afc:      	bl	0x60798 <_Unwind_Backtrace+0xf8>
+   60b00:      	ldr	x1, [x29, #0x38]
+   60b04:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b08:      	mov	x0, x2
+   60b0c:      	ldrh	w1, [x0], #0x2
+   60b10:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b14:      	mov	x0, x2
+   60b18:      	ldr	w1, [x0], #0x4
+   60b1c:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b20:      	mov	x0, x2
+   60b24:      	ldrsh	x1, [x0], #0x2
+   60b28:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b2c:      	mov	x0, x2
+   60b30:      	ldrsw	x1, [x0], #0x4
+   60b34:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b38:      	mov	x0, x2
+   60b3c:      	ldr	x1, [x0], #0x8
+   60b40:      	b	0x60b48 <_Unwind_Backtrace+0x4a8>
+   60b44:      	bl	0xc470 <abort@plt>
+   60b48:      	cbz	x1, 0x60b64 <_Unwind_Backtrace+0x4c4>
+   60b4c:      	and	w2, w20, #0x70
+   60b50:      	cmp	w2, #0x10
+   60b54:      	csel	x19, x19, x22, eq
+   60b58:      	add	x1, x1, x19
+   60b5c:      	tbz	w20, #0x7, 0x60b64 <_Unwind_Backtrace+0x4c4>
+   60b60:      	ldr	x1, [x1]
+   60b64:      	str	x1, [x21]
+   60b68:      	ldp	x19, x20, [sp, #0x10]
+   60b6c:      	ldp	x21, x22, [sp, #0x20]
+   60b70:      	ldp	x29, x30, [sp], #0x40
+   60b74:      	ret
+   60b78:      	stp	x29, x30, [sp, #-0x50]!
+   60b7c:      	mov	x29, sp
+   60b80:      	stp	x19, x20, [sp, #0x10]
+   60b84:      	ldrh	w19, [x0, #0x20]
+   60b88:      	mov	x20, x0
+   60b8c:      	str	x23, [sp, #0x30]
+   60b90:      	mov	x23, x1
+   60b94:      	ubfx	x19, x19, #3, #8
+   60b98:      	mov	x1, x20
+   60b9c:      	mov	w0, w19
+   60ba0:      	stp	x21, x22, [sp, #0x20]
+   60ba4:      	mov	x22, x2
+   60ba8:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   60bac:      	mov	x21, x0
+   60bb0:      	add	x2, x23, #0x8
+   60bb4:      	mov	x1, x21
+   60bb8:      	add	x3, x29, #0x40
+   60bbc:      	mov	w0, w19
+   60bc0:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   60bc4:      	ldrh	w0, [x20, #0x20]
+   60bc8:      	mov	x1, x21
+   60bcc:      	add	x2, x22, #0x8
+   60bd0:      	add	x3, x29, #0x48
+   60bd4:      	lsr	x0, x0, #3
+   60bd8:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   60bdc:      	ldr	x23, [sp, #0x30]
+   60be0:      	ldr	x2, [x29, #0x40]
+   60be4:      	ldr	x1, [x29, #0x48]
+   60be8:      	ldp	x19, x20, [sp, #0x10]
+   60bec:      	cmp	x2, x1
+   60bf0:      	csetm	w0, lo
+   60bf4:      	cmp	x2, x1
+   60bf8:      	ldp	x21, x22, [sp, #0x20]
+   60bfc:      	csinc	w0, w0, wzr, ls
+   60c00:      	ldp	x29, x30, [sp], #0x50
+   60c04:      	ret
+   60c08:      	stp	x29, x30, [sp, #-0x40]!
+   60c0c:      	mov	x29, sp
+   60c10:      	stp	x19, x20, [sp, #0x10]
+   60c14:      	add	x20, x0, #0x9
+   60c18:      	mov	x19, x0
+   60c1c:      	mov	x0, x20
+   60c20:      	bl	0xc170 <strlen@plt>
+   60c24:      	add	x0, x0, #0x1
+   60c28:      	ldrb	w2, [x19, #0x8]
+   60c2c:      	add	x1, x20, x0
+   60c30:      	cmp	w2, #0x3
+   60c34:      	b.ls	0x60c54 <_Unwind_Backtrace+0x5b4>
+   60c38:      	ldrb	w2, [x20, x0]
+   60c3c:      	mov	w0, #0xff               // =255
+   60c40:      	cmp	w2, #0x8
+   60c44:      	b.ne	0x60cf8 <_Unwind_Backtrace+0x658>
+   60c48:      	ldrb	w2, [x1, #0x1]
+   60c4c:      	cbnz	w2, 0x60cf8 <_Unwind_Backtrace+0x658>
+   60c50:      	add	x1, x1, #0x2
+   60c54:      	ldrb	w0, [x19, #0x9]
+   60c58:      	cmp	w0, #0x7a
+   60c5c:      	b.eq	0x60c68 <_Unwind_Backtrace+0x5c8>
+   60c60:      	mov	w0, #0x0                // =0
+   60c64:      	b	0x60cf8 <_Unwind_Backtrace+0x658>
+   60c68:      	add	x20, x29, #0x30
+   60c6c:      	mov	x0, x1
+   60c70:      	mov	x1, x20
+   60c74:      	bl	0x60770 <_Unwind_Backtrace+0xd0>
+   60c78:      	add	x1, x29, #0x38
+   60c7c:      	bl	0x60798 <_Unwind_Backtrace+0xf8>
+   60c80:      	ldrb	w2, [x19, #0x8]
+   60c84:      	cmp	w2, #0x1
+   60c88:      	b.ne	0x60c94 <_Unwind_Backtrace+0x5f4>
+   60c8c:      	add	x0, x0, #0x1
+   60c90:      	b	0x60c9c <_Unwind_Backtrace+0x5fc>
+   60c94:      	mov	x1, x20
+   60c98:      	bl	0x60770 <_Unwind_Backtrace+0xd0>
+   60c9c:      	mov	x1, x20
+   60ca0:      	add	x19, x19, #0xa
+   60ca4:      	add	x20, x29, #0x28
+   60ca8:      	bl	0x60770 <_Unwind_Backtrace+0xd0>
+   60cac:      	ldrb	w1, [x19]
+   60cb0:      	cmp	w1, #0x52
+   60cb4:      	b.ne	0x60cc0 <_Unwind_Backtrace+0x620>
+   60cb8:      	ldrb	w0, [x0]
+   60cbc:      	b	0x60cf8 <_Unwind_Backtrace+0x658>
+   60cc0:      	cmp	w1, #0x50
+   60cc4:      	b.ne	0x60ce4 <_Unwind_Backtrace+0x644>
+   60cc8:      	mov	x2, x0
+   60ccc:      	mov	x1, #0x0                // =0
+   60cd0:      	mov	x3, x20
+   60cd4:      	ldrb	w0, [x2], #0x1
+   60cd8:      	and	w0, w0, #0x7f
+   60cdc:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   60ce0:      	b	0x60cf0 <_Unwind_Backtrace+0x650>
+   60ce4:      	cmp	w1, #0x4c
+   60ce8:      	b.ne	0x60c60 <_Unwind_Backtrace+0x5c0>
+   60cec:      	add	x0, x0, #0x1
+   60cf0:      	add	x19, x19, #0x1
+   60cf4:      	b	0x60cac <_Unwind_Backtrace+0x60c>
+   60cf8:      	ldp	x19, x20, [sp, #0x10]
+   60cfc:      	ldp	x29, x30, [sp], #0x40
+   60d00:      	ret
+   60d04:      	stp	x29, x30, [sp, #-0x70]!
+   60d08:      	mov	x29, sp
+   60d0c:      	stp	x21, x22, [sp, #0x20]
+   60d10:      	mov	x22, x0
+   60d14:      	ldrh	w0, [x0, #0x20]
+   60d18:      	stp	x19, x20, [sp, #0x10]
+   60d1c:      	ubfx	x0, x0, #3, #8
+   60d20:      	mov	x19, x1
+   60d24:      	mov	x1, x22
+   60d28:      	stp	x23, x24, [sp, #0x30]
+   60d2c:      	stp	x25, x26, [sp, #0x40]
+   60d30:      	stp	x27, x28, [sp, #0x50]
+   60d34:      	mov	x23, x2
+   60d38:      	uxtb	w21, w0
+   60d3c:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   60d40:      	add	x24, x29, #0x60
+   60d44:      	mov	x27, x0
+   60d48:      	add	x25, x29, #0x68
+   60d4c:      	mov	x0, #0x0                // =0
+   60d50:      	mov	x26, #0x1               // =1
+   60d54:      	ldr	w1, [x19]
+   60d58:      	cbz	w1, 0x60e44 <_Unwind_Backtrace+0x7a4>
+   60d5c:      	ldr	w1, [x19, #0x4]
+   60d60:      	cbz	w1, 0x60e2c <_Unwind_Backtrace+0x78c>
+   60d64:      	ldrb	w2, [x22, #0x20]
+   60d68:      	mov	x20, x0
+   60d6c:      	tbz	w2, #0x2, 0x60d98 <_Unwind_Backtrace+0x6f8>
+   60d70:      	add	x20, x19, #0x4
+   60d74:      	sub	x20, x20, w1, sxtw
+   60d78:      	cmp	x20, x0
+   60d7c:      	b.eq	0x60d98 <_Unwind_Backtrace+0x6f8>
+   60d80:      	mov	x0, x20
+   60d84:      	bl	0x60c08 <_Unwind_Backtrace+0x568>
+   60d88:      	mov	w21, w0
+   60d8c:      	mov	x1, x22
+   60d90:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   60d94:      	mov	x27, x0
+   60d98:      	cbnz	w21, 0x60dcc <_Unwind_Backtrace+0x72c>
+   60d9c:      	ldr	x0, [x19, #0x8]
+   60da0:      	ldr	x1, [x19, #0x10]
+   60da4:      	str	x0, [x29, #0x60]
+   60da8:      	str	x1, [x29, #0x68]
+   60dac:      	cbz	x0, 0x60e30 <_Unwind_Backtrace+0x790>
+   60db0:      	ldr	x0, [x29, #0x60]
+   60db4:      	ldr	x1, [x29, #0x68]
+   60db8:      	sub	x0, x23, x0
+   60dbc:      	cmp	x0, x1
+   60dc0:      	b.hs	0x60e30 <_Unwind_Backtrace+0x790>
+   60dc4:      	mov	x0, x19
+   60dc8:      	b	0x60e48 <_Unwind_Backtrace+0x7a8>
+   60dcc:      	uxtb	w28, w21
+   60dd0:      	mov	x1, x27
+   60dd4:      	add	x2, x19, #0x8
+   60dd8:      	mov	x3, x24
+   60ddc:      	mov	w0, w28
+   60de0:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   60de4:      	mov	x2, x0
+   60de8:      	mov	x1, #0x0                // =0
+   60dec:      	mov	x3, x25
+   60df0:      	and	w0, w21, #0xf
+   60df4:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   60df8:      	mov	w0, w28
+   60dfc:      	bl	0x60968 <_Unwind_Backtrace+0x2c8>
+   60e00:      	mov	w0, w0
+   60e04:      	cmp	x0, #0x7
+   60e08:      	mov	x1, #-0x1               // =-1
+   60e0c:      	b.hi	0x60e1c <_Unwind_Backtrace+0x77c>
+   60e10:      	lsl	x1, x0, #3
+   60e14:      	lsl	x1, x26, x1
+   60e18:      	sub	x1, x1, #0x1
+   60e1c:      	ldr	x0, [x29, #0x60]
+   60e20:      	tst	x1, x0
+   60e24:      	b.eq	0x60e30 <_Unwind_Backtrace+0x790>
+   60e28:      	b	0x60db0 <_Unwind_Backtrace+0x710>
+   60e2c:      	mov	x20, x0
+   60e30:      	ldr	w0, [x19]
+   60e34:      	add	x0, x0, #0x4
+   60e38:      	add	x19, x19, x0
+   60e3c:      	mov	x0, x20
+   60e40:      	b	0x60d54 <_Unwind_Backtrace+0x6b4>
+   60e44:      	mov	x0, #0x0                // =0
+   60e48:      	ldp	x19, x20, [sp, #0x10]
+   60e4c:      	ldp	x21, x22, [sp, #0x20]
+   60e50:      	ldp	x23, x24, [sp, #0x30]
+   60e54:      	ldp	x25, x26, [sp, #0x40]
+   60e58:      	ldp	x27, x28, [sp, #0x50]
+   60e5c:      	ldp	x29, x30, [sp], #0x70
+   60e60:      	ret
+   60e64:      	add	x1, x0, #0x4
+   60e68:      	ldrsw	x0, [x0, #0x4]
+   60e6c:      	sub	x0, x1, x0
+   60e70:      	b	0x60c08 <_Unwind_Backtrace+0x568>
+   60e74:      	stp	x29, x30, [sp, #-0x90]!
+   60e78:      	cmp	x1, #0x2f
+   60e7c:      	mov	x29, sp
+   60e80:      	stp	x19, x20, [sp, #0x10]
+   60e84:      	stp	x21, x22, [sp, #0x20]
+   60e88:      	stp	x23, x24, [sp, #0x30]
+   60e8c:      	cset	w13, hi
+   60e90:      	ldr	x5, [x0, #0x10]
+   60e94:      	ldr	x7, [x0]
+   60e98:      	cbz	w13, 0x60f8c <_Unwind_Backtrace+0x8ec>
+   60e9c:      	ldr	w3, [x2, #0x28]
+   60ea0:      	cbz	w3, 0x60f8c <_Unwind_Backtrace+0x8ec>
+   60ea4:      	adrp	x1, 0x88000
+   60ea8:      	ldr	x4, [x0, #0x20]
+   60eac:      	ldr	x6, [x0, #0x28]
+   60eb0:      	ldr	x3, [x1, #0x2b0]
+   60eb4:      	cmp	x4, x3
+   60eb8:      	adrp	x3, 0x9b000
+   60ebc:      	b.ne	0x60f48 <_Unwind_Backtrace+0x8a8>
+   60ec0:      	ldr	x9, [x3, #0x5f0]
+   60ec4:      	add	x8, x3, #0x5f0
+   60ec8:      	cmp	x6, x9
+   60ecc:      	b.ne	0x60f48 <_Unwind_Backtrace+0x8a8>
+   60ed0:      	ldr	x8, [x8, #0x8]
+   60ed4:      	mov	x4, #0x0                // =0
+   60ed8:      	mov	x6, #0x0                // =0
+   60edc:      	mov	x1, x8
+   60ee0:      	cbz	x1, 0x60f9c <_Unwind_Backtrace+0x8fc>
+   60ee4:      	ldr	x10, [x2]
+   60ee8:      	ldr	x9, [x1]
+   60eec:      	ldr	x4, [x1, #0x8]
+   60ef0:      	cmp	x10, x9
+   60ef4:      	b.lo	0x60f28 <_Unwind_Backtrace+0x888>
+   60ef8:      	cmp	x10, x4
+   60efc:      	b.hs	0x60f28 <_Unwind_Backtrace+0x888>
+   60f00:      	cmp	x1, x8
+   60f04:      	ldr	x7, [x1, #0x10]
+   60f08:      	ldr	x5, [x1, #0x18]
+   60f0c:      	b.eq	0x61080 <_Unwind_Backtrace+0x9e0>
+   60f10:      	add	x3, x3, #0x5f0
+   60f14:      	ldr	x0, [x1, #0x28]
+   60f18:      	str	x0, [x6, #0x28]
+   60f1c:      	str	x8, [x1, #0x28]
+   60f20:      	str	x1, [x3, #0x8]
+   60f24:      	b	0x61080 <_Unwind_Backtrace+0x9e0>
+   60f28:      	orr	x4, x9, x4
+   60f2c:      	cbz	x4, 0x61274 <_Unwind_Backtrace+0xbd4>
+   60f30:      	ldr	x9, [x1, #0x28]
+   60f34:      	mov	x4, x1
+   60f38:      	cmp	x9, xzr
+   60f3c:      	csel	x6, x6, x1, eq
+   60f40:      	mov	x1, x9
+   60f44:      	b	0x60ee0 <_Unwind_Backtrace+0x840>
+   60f48:      	str	x4, [x1, #0x2b0]
+   60f4c:      	add	x4, x3, #0x5f0
+   60f50:      	add	x1, x4, #0x40
+   60f54:      	str	x6, [x3, #0x5f0]
+   60f58:      	add	x4, x4, #0x1c0
+   60f5c:      	stur	xzr, [x1, #-0x30]
+   60f60:      	stur	xzr, [x1, #-0x28]
+   60f64:      	stur	x1, [x1, #-0x8]
+   60f68:      	add	x1, x1, #0x30
+   60f6c:      	cmp	x1, x4
+   60f70:      	b.ne	0x60f5c <_Unwind_Backtrace+0x8bc>
+   60f74:      	add	x3, x3, #0x5f0
+   60f78:      	add	x1, x3, #0x10
+   60f7c:      	str	xzr, [x3, #0x188]
+   60f80:      	str	x1, [x3, #0x8]
+   60f84:      	str	wzr, [x2, #0x28]
+   60f88:      	b	0x60f94 <_Unwind_Backtrace+0x8f4>
+   60f8c:      	cmp	x1, #0x19
+   60f90:      	b.ls	0x6126c <_Unwind_Backtrace+0xbcc>
+   60f94:      	mov	x4, #0x0                // =0
+   60f98:      	mov	x6, #0x0                // =0
+   60f9c:      	ldrh	w14, [x0, #0x18]
+   60fa0:      	mov	x8, #0x0                // =0
+   60fa4:      	mov	x9, #0x0                // =0
+   60fa8:      	mov	x12, #0x0               // =0
+   60fac:      	mov	x10, #0x0               // =0
+   60fb0:      	mov	x11, #0x0               // =0
+   60fb4:      	sub	x14, x14, #0x1
+   60fb8:      	cmn	x14, #0x1
+   60fbc:      	b.eq	0x6102c <_Unwind_Backtrace+0x98c>
+   60fc0:      	ldr	w0, [x5]
+   60fc4:      	cmp	w0, #0x1
+   60fc8:      	b.ne	0x61004 <_Unwind_Backtrace+0x964>
+   60fcc:      	ldr	x1, [x5, #0x10]
+   60fd0:      	ldr	x3, [x2]
+   60fd4:      	add	x1, x7, x1
+   60fd8:      	cmp	x3, x1
+   60fdc:      	b.lo	0x61024 <_Unwind_Backtrace+0x984>
+   60fe0:      	ldr	x0, [x5, #0x28]
+   60fe4:      	add	x0, x1, x0
+   60fe8:      	cmp	x3, x0
+   60fec:      	csel	x8, x8, x0, hs
+   60ff0:      	cmp	x3, x0
+   60ff4:      	csel	x9, x9, x1, hs
+   60ff8:      	cmp	x3, x0
+   60ffc:      	csinc	x12, x12, xzr, hs
+   61000:      	b	0x61024 <_Unwind_Backtrace+0x984>
+   61004:      	mov	w1, #0xe550             // =58704
+   61008:      	movk	w1, #0x6474, lsl #16
+   6100c:      	cmp	w0, w1
+   61010:      	b.eq	0x61020 <_Unwind_Backtrace+0x980>
+   61014:      	cmp	w0, #0x2
+   61018:      	csel	x10, x10, x5, ne
+   6101c:      	b	0x61024 <_Unwind_Backtrace+0x984>
+   61020:      	mov	x11, x5
+   61024:      	add	x5, x5, #0x38
+   61028:      	b	0x60fb4 <_Unwind_Backtrace+0x914>
+   6102c:      	mov	x5, x11
+   61030:      	cbnz	x12, 0x6103c <_Unwind_Backtrace+0x99c>
+   61034:      	mov	w0, #0x0                // =0
+   61038:      	b	0x61280 <_Unwind_Backtrace+0xbe0>
+   6103c:      	cbz	w13, 0x61080 <_Unwind_Backtrace+0x9e0>
+   61040:      	adrp	x0, 0x9b000
+   61044:      	cbz	x6, 0x61064 <_Unwind_Backtrace+0x9c4>
+   61048:      	cbz	x4, 0x61064 <_Unwind_Backtrace+0x9c4>
+   6104c:      	ldr	x1, [x4, #0x28]
+   61050:      	str	x1, [x6, #0x28]
+   61054:      	add	x1, x0, #0x5f0
+   61058:      	ldr	x3, [x1, #0x8]
+   6105c:      	str	x3, [x4, #0x28]
+   61060:      	str	x4, [x1, #0x8]
+   61064:      	add	x0, x0, #0x5f0
+   61068:      	ldr	x0, [x0, #0x8]
+   6106c:      	str	x7, [x0, #0x10]
+   61070:      	str	x11, [x0, #0x18]
+   61074:      	str	x10, [x0, #0x20]
+   61078:      	str	x9, [x0]
+   6107c:      	str	x8, [x0, #0x8]
+   61080:      	cbz	x5, 0x61034 <_Unwind_Backtrace+0x994>
+   61084:      	ldr	x0, [x5, #0x10]
+   61088:      	add	x21, x7, x0
+   6108c:      	ldrb	w0, [x7, x0]
+   61090:      	cmp	w0, #0x1
+   61094:      	b.ne	0x61264 <_Unwind_Backtrace+0xbc4>
+   61098:      	ldrb	w20, [x21, #0x1]
+   6109c:      	mov	x1, x2
+   610a0:      	mov	x19, x2
+   610a4:      	mov	w0, w20
+   610a8:      	bl	0x60a28 <_Unwind_Backtrace+0x388>
+   610ac:      	mov	x1, x0
+   610b0:      	add	x2, x21, #0x4
+   610b4:      	mov	w0, w20
+   610b8:      	add	x3, x29, #0x50
+   610bc:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   610c0:      	ldrb	w20, [x21, #0x2]
+   610c4:      	mov	x2, x0
+   610c8:      	cmp	w20, #0xff
+   610cc:      	b.eq	0x611f4 <_Unwind_Backtrace+0xb54>
+   610d0:      	ldrb	w0, [x21, #0x3]
+   610d4:      	cmp	w0, #0x3b
+   610d8:      	b.ne	0x611f4 <_Unwind_Backtrace+0xb54>
+   610dc:      	mov	x1, x19
+   610e0:      	mov	w0, w20
+   610e4:      	str	x2, [x29, #0x48]
+   610e8:      	bl	0x60a28 <_Unwind_Backtrace+0x388>
+   610ec:      	mov	x1, x0
+   610f0:      	ldr	x2, [x29, #0x48]
+   610f4:      	mov	w0, w20
+   610f8:      	add	x3, x29, #0x58
+   610fc:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61100:      	mov	x22, x0
+   61104:      	ldr	x0, [x29, #0x58]
+   61108:      	cbz	x0, 0x61264 <_Unwind_Backtrace+0xbc4>
+   6110c:      	and	x1, x22, #0x3
+   61110:      	cbnz	x1, 0x611f4 <_Unwind_Backtrace+0xb54>
+   61114:      	ldrsw	x2, [x22]
+   61118:      	ldr	x1, [x19]
+   6111c:      	add	x2, x21, x2
+   61120:      	cmp	x1, x2
+   61124:      	b.lo	0x61264 <_Unwind_Backtrace+0xbc4>
+   61128:      	sub	x0, x0, #0x1
+   6112c:      	lsl	x2, x0, #3
+   61130:      	ldrsw	x2, [x22, x2]
+   61134:      	add	x2, x21, x2
+   61138:      	cmp	x1, x2
+   6113c:      	b.hs	0x61190 <_Unwind_Backtrace+0xaf0>
+   61140:      	mov	x3, x0
+   61144:      	mov	x4, #0x0                // =0
+   61148:      	cmp	x4, x3
+   6114c:      	b.hs	0x6127c <_Unwind_Backtrace+0xbdc>
+   61150:      	add	x0, x3, x4
+   61154:      	lsr	x0, x0, #1
+   61158:      	lsl	x2, x0, #3
+   6115c:      	ldrsw	x5, [x22, x2]
+   61160:      	add	x5, x21, x5
+   61164:      	cmp	x1, x5
+   61168:      	b.lo	0x61188 <_Unwind_Backtrace+0xae8>
+   6116c:      	add	x2, x22, x2
+   61170:      	add	x4, x0, #0x1
+   61174:      	ldrsw	x2, [x2, #0x8]
+   61178:      	add	x2, x21, x2
+   6117c:      	cmp	x1, x2
+   61180:      	b.hs	0x61148 <_Unwind_Backtrace+0xaa8>
+   61184:      	b	0x61190 <_Unwind_Backtrace+0xaf0>
+   61188:      	mov	x3, x0
+   6118c:      	b	0x61148 <_Unwind_Backtrace+0xaa8>
+   61190:      	lsl	x20, x0, #3
+   61194:      	add	x0, x22, x20
+   61198:      	ldrsw	x23, [x0, #0x4]
+   6119c:      	add	x23, x21, x23
+   611a0:      	mov	x0, x23
+   611a4:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   611a8:      	uxtb	w24, w0
+   611ac:      	mov	w0, w24
+   611b0:      	bl	0x60968 <_Unwind_Backtrace+0x2c8>
+   611b4:      	add	x2, x23, w0, uxtw
+   611b8:      	mov	x1, #0x0                // =0
+   611bc:      	and	w0, w24, #0xf
+   611c0:      	add	x2, x2, #0x8
+   611c4:      	add	x3, x29, #0x60
+   611c8:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   611cc:      	ldrsw	x0, [x22, x20]
+   611d0:      	ldr	x1, [x19]
+   611d4:      	add	x21, x21, x0
+   611d8:      	ldr	x0, [x29, #0x60]
+   611dc:      	add	x0, x21, x0
+   611e0:      	cmp	x1, x0
+   611e4:      	b.hs	0x611ec <_Unwind_Backtrace+0xb4c>
+   611e8:      	str	x23, [x19, #0x20]
+   611ec:      	str	x21, [x19, #0x18]
+   611f0:      	b	0x61264 <_Unwind_Backtrace+0xbc4>
+   611f4:      	ldr	x0, [x19, #0x8]
+   611f8:      	str	x0, [x29, #0x68]
+   611fc:      	ldr	x0, [x19, #0x10]
+   61200:      	str	x0, [x29, #0x70]
+   61204:      	mov	w0, #0x4                // =4
+   61208:      	ldr	x1, [x29, #0x50]
+   6120c:      	str	xzr, [x29, #0x80]
+   61210:      	ldr	x2, [x19]
+   61214:      	strb	w0, [x29, #0x80]
+   61218:      	add	x0, x29, #0x60
+   6121c:      	str	xzr, [x29, #0x60]
+   61220:      	str	x1, [x29, #0x78]
+   61224:      	bl	0x60d04 <_Unwind_Backtrace+0x664>
+   61228:      	str	x0, [x19, #0x20]
+   6122c:      	cbz	x0, 0x61264 <_Unwind_Backtrace+0xbc4>
+   61230:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   61234:      	uxtb	w20, w0
+   61238:      	mov	x1, x19
+   6123c:      	mov	w0, w20
+   61240:      	bl	0x60a28 <_Unwind_Backtrace+0x388>
+   61244:      	mov	x1, x0
+   61248:      	ldr	x2, [x19, #0x20]
+   6124c:      	mov	w0, w20
+   61250:      	add	x3, x29, #0x58
+   61254:      	add	x2, x2, #0x8
+   61258:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   6125c:      	ldr	x0, [x29, #0x58]
+   61260:      	str	x0, [x19, #0x18]
+   61264:      	mov	w0, #0x1                // =1
+   61268:      	b	0x61280 <_Unwind_Backtrace+0xbe0>
+   6126c:      	mov	w0, #-0x1               // =-1
+   61270:      	b	0x61280 <_Unwind_Backtrace+0xbe0>
+   61274:      	mov	x4, x1
+   61278:      	b	0x60f9c <_Unwind_Backtrace+0x8fc>
+   6127c:      	bl	0xc470 <abort@plt>
+   61280:      	ldp	x19, x20, [sp, #0x10]
+   61284:      	ldp	x21, x22, [sp, #0x20]
+   61288:      	ldp	x23, x24, [sp, #0x30]
+   6128c:      	ldp	x29, x30, [sp], #0x90
+   61290:      	ret
+   61294:      	stp	x29, x30, [sp, #-0x40]!
+   61298:      	mov	x29, sp
+   6129c:      	stp	x21, x22, [sp, #0x20]
+   612a0:      	mov	x21, x0
+   612a4:      	mov	x0, x1
+   612a8:      	stp	x19, x20, [sp, #0x10]
+   612ac:      	mov	x19, x2
+   612b0:      	mov	x20, x1
+   612b4:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   612b8:      	uxtb	w22, w0
+   612bc:      	mov	x1, x21
+   612c0:      	mov	w0, w22
+   612c4:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   612c8:      	mov	x1, x0
+   612cc:      	add	x2, x20, #0x8
+   612d0:      	add	x3, x29, #0x30
+   612d4:      	mov	w0, w22
+   612d8:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   612dc:      	mov	x0, x19
+   612e0:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   612e4:      	uxtb	w20, w0
+   612e8:      	mov	x1, x21
+   612ec:      	mov	w0, w20
+   612f0:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   612f4:      	mov	x1, x0
+   612f8:      	add	x2, x19, #0x8
+   612fc:      	add	x3, x29, #0x38
+   61300:      	mov	w0, w20
+   61304:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61308:      	ldr	x2, [x29, #0x30]
+   6130c:      	ldr	x1, [x29, #0x38]
+   61310:      	ldp	x19, x20, [sp, #0x10]
+   61314:      	cmp	x2, x1
+   61318:      	csetm	w0, lo
+   6131c:      	cmp	x2, x1
+   61320:      	ldp	x21, x22, [sp, #0x20]
+   61324:      	csinc	w0, w0, wzr, ls
+   61328:      	ldp	x29, x30, [sp], #0x40
+   6132c:      	ret
+   61330:      	stp	x29, x30, [sp, #-0x70]!
+   61334:      	mov	x29, sp
+   61338:      	stp	x19, x20, [sp, #0x10]
+   6133c:      	stp	x23, x24, [sp, #0x30]
+   61340:      	stp	x25, x26, [sp, #0x40]
+   61344:      	stp	x21, x22, [sp, #0x20]
+   61348:      	mov	x20, x0
+   6134c:      	str	x27, [sp, #0x50]
+   61350:      	mov	x19, x1
+   61354:      	mov	x26, #0x0               // =0
+   61358:      	mov	w25, #0x0               // =0
+   6135c:      	mov	x22, #0x0               // =0
+   61360:      	mov	x0, #0x0                // =0
+   61364:      	add	x23, x29, #0x68
+   61368:      	mov	x24, #0x1               // =1
+   6136c:      	ldr	w1, [x19]
+   61370:      	cbz	w1, 0x61470 <_Unwind_Backtrace+0xdd0>
+   61374:      	ldr	w21, [x19, #0x4]
+   61378:      	cbz	w21, 0x61458 <_Unwind_Backtrace+0xdb8>
+   6137c:      	add	x1, x19, #0x4
+   61380:      	sub	x21, x1, w21, sxtw
+   61384:      	cmp	x21, x0
+   61388:      	b.eq	0x613f4 <_Unwind_Backtrace+0xd54>
+   6138c:      	mov	x0, x21
+   61390:      	bl	0x60c08 <_Unwind_Backtrace+0x568>
+   61394:      	cmp	w0, #0xff
+   61398:      	mov	w25, w0
+   6139c:      	b.ne	0x613a8 <_Unwind_Backtrace+0xd08>
+   613a0:      	mov	x0, #-0x1               // =-1
+   613a4:      	b	0x61474 <_Unwind_Backtrace+0xdd4>
+   613a8:      	uxtb	w27, w0
+   613ac:      	mov	x1, x20
+   613b0:      	mov	w0, w27
+   613b4:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   613b8:      	mov	x26, x0
+   613bc:      	ldrh	w1, [x20, #0x20]
+   613c0:      	and	w0, w1, #0x7f8
+   613c4:      	cmp	w0, #0x7f8
+   613c8:      	b.ne	0x613d8 <_Unwind_Backtrace+0xd38>
+   613cc:      	bfi	w1, w27, #3, #8
+   613d0:      	strh	w1, [x20, #0x20]
+   613d4:      	b	0x613f8 <_Unwind_Backtrace+0xd58>
+   613d8:      	ubfx	x1, x1, #3, #8
+   613dc:      	cmp	w1, w25
+   613e0:      	b.eq	0x613f8 <_Unwind_Backtrace+0xd58>
+   613e4:      	ldrb	w0, [x20, #0x20]
+   613e8:      	orr	w0, w0, #0x4
+   613ec:      	strb	w0, [x20, #0x20]
+   613f0:      	b	0x613f8 <_Unwind_Backtrace+0xd58>
+   613f4:      	mov	x21, x0
+   613f8:      	uxtb	w27, w25
+   613fc:      	mov	x1, x26
+   61400:      	add	x2, x19, #0x8
+   61404:      	mov	x3, x23
+   61408:      	mov	w0, w27
+   6140c:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61410:      	mov	w0, w27
+   61414:      	bl	0x60968 <_Unwind_Backtrace+0x2c8>
+   61418:      	mov	w0, w0
+   6141c:      	cmp	x0, #0x7
+   61420:      	mov	x1, #-0x1               // =-1
+   61424:      	b.hi	0x61434 <_Unwind_Backtrace+0xd94>
+   61428:      	lsl	x1, x0, #3
+   6142c:      	lsl	x1, x24, x1
+   61430:      	sub	x1, x1, #0x1
+   61434:      	ldr	x0, [x29, #0x68]
+   61438:      	tst	x1, x0
+   6143c:      	b.eq	0x6145c <_Unwind_Backtrace+0xdbc>
+   61440:      	ldr	x1, [x20]
+   61444:      	add	x22, x22, #0x1
+   61448:      	cmp	x0, x1
+   6144c:      	b.hs	0x6145c <_Unwind_Backtrace+0xdbc>
+   61450:      	str	x0, [x20]
+   61454:      	b	0x6145c <_Unwind_Backtrace+0xdbc>
+   61458:      	mov	x21, x0
+   6145c:      	ldr	w0, [x19]
+   61460:      	add	x0, x0, #0x4
+   61464:      	add	x19, x19, x0
+   61468:      	mov	x0, x21
+   6146c:      	b	0x6136c <_Unwind_Backtrace+0xccc>
+   61470:      	mov	x0, x22
+   61474:      	ldp	x19, x20, [sp, #0x10]
+   61478:      	ldp	x21, x22, [sp, #0x20]
+   6147c:      	ldp	x23, x24, [sp, #0x30]
+   61480:      	ldp	x25, x26, [sp, #0x40]
+   61484:      	ldr	x27, [sp, #0x50]
+   61488:      	ldp	x29, x30, [sp], #0x70
+   6148c:      	ret
+   61490:      	stp	x29, x30, [sp, #-0x70]!
+   61494:      	mov	x29, sp
+   61498:      	stp	x21, x22, [sp, #0x20]
+   6149c:      	mov	x22, x0
+   614a0:      	ldrh	w0, [x0, #0x20]
+   614a4:      	stp	x23, x24, [sp, #0x30]
+   614a8:      	ubfx	x0, x0, #3, #8
+   614ac:      	mov	x23, x1
+   614b0:      	mov	x1, x22
+   614b4:      	str	x27, [sp, #0x50]
+   614b8:      	stp	x25, x26, [sp, #0x40]
+   614bc:      	stp	x19, x20, [sp, #0x10]
+   614c0:      	uxtb	w21, w0
+   614c4:      	mov	x19, x2
+   614c8:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   614cc:      	add	x24, x29, #0x68
+   614d0:      	mov	x26, x0
+   614d4:      	mov	x25, #0x1               // =1
+   614d8:      	mov	x0, #0x0                // =0
+   614dc:      	ldr	w1, [x19]
+   614e0:      	cbz	w1, 0x615a8 <_Unwind_Backtrace+0xf08>
+   614e4:      	ldr	w1, [x19, #0x4]
+   614e8:      	mov	x20, x0
+   614ec:      	cbz	w1, 0x61594 <_Unwind_Backtrace+0xef4>
+   614f0:      	ldrb	w2, [x22, #0x20]
+   614f4:      	tbz	w2, #0x2, 0x61520 <_Unwind_Backtrace+0xe80>
+   614f8:      	add	x20, x19, #0x4
+   614fc:      	sub	x20, x20, w1, sxtw
+   61500:      	cmp	x20, x0
+   61504:      	b.eq	0x61520 <_Unwind_Backtrace+0xe80>
+   61508:      	mov	x0, x20
+   6150c:      	bl	0x60c08 <_Unwind_Backtrace+0x568>
+   61510:      	mov	w21, w0
+   61514:      	mov	x1, x22
+   61518:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   6151c:      	mov	x26, x0
+   61520:      	cbnz	w21, 0x61530 <_Unwind_Backtrace+0xe90>
+   61524:      	ldr	x0, [x19, #0x8]
+   61528:      	cbz	x0, 0x61594 <_Unwind_Backtrace+0xef4>
+   6152c:      	b	0x61578 <_Unwind_Backtrace+0xed8>
+   61530:      	uxtb	w27, w21
+   61534:      	mov	x1, x26
+   61538:      	add	x2, x19, #0x8
+   6153c:      	mov	x3, x24
+   61540:      	mov	w0, w27
+   61544:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61548:      	mov	w0, w27
+   6154c:      	bl	0x60968 <_Unwind_Backtrace+0x2c8>
+   61550:      	mov	w0, w0
+   61554:      	cmp	x0, #0x7
+   61558:      	mov	x1, #-0x1               // =-1
+   6155c:      	b.hi	0x6156c <_Unwind_Backtrace+0xecc>
+   61560:      	lsl	x1, x0, #3
+   61564:      	lsl	x1, x25, x1
+   61568:      	sub	x1, x1, #0x1
+   6156c:      	ldr	x0, [x29, #0x68]
+   61570:      	tst	x1, x0
+   61574:      	b.eq	0x61594 <_Unwind_Backtrace+0xef4>
+   61578:      	ldr	x0, [x23]
+   6157c:      	cbz	x0, 0x61594 <_Unwind_Backtrace+0xef4>
+   61580:      	ldr	x1, [x0, #0x8]
+   61584:      	add	x2, x1, #0x1
+   61588:      	add	x1, x1, #0x2
+   6158c:      	str	x2, [x0, #0x8]
+   61590:      	str	x19, [x0, x1, lsl #3]
+   61594:      	ldr	w0, [x19]
+   61598:      	add	x0, x0, #0x4
+   6159c:      	add	x19, x19, x0
+   615a0:      	mov	x0, x20
+   615a4:      	b	0x614dc <_Unwind_Backtrace+0xe3c>
+   615a8:      	ldp	x19, x20, [sp, #0x10]
+   615ac:      	ldp	x21, x22, [sp, #0x20]
+   615b0:      	ldp	x23, x24, [sp, #0x30]
+   615b4:      	ldp	x25, x26, [sp, #0x40]
+   615b8:      	ldr	x27, [sp, #0x50]
+   615bc:      	ldp	x29, x30, [sp], #0x70
+   615c0:      	ret
+   615c4:      	stp	x29, x30, [sp, #-0x90]!
+   615c8:      	mov	x29, sp
+   615cc:      	stp	x21, x22, [sp, #0x20]
+   615d0:      	mov	x22, x1
+   615d4:      	ldrb	w1, [x0, #0x20]
+   615d8:      	stp	x19, x20, [sp, #0x10]
+   615dc:      	stp	x23, x24, [sp, #0x30]
+   615e0:      	stp	x25, x26, [sp, #0x40]
+   615e4:      	stp	x27, x28, [sp, #0x50]
+   615e8:      	mov	x19, x0
+   615ec:      	tbz	w1, #0x0, 0x615fc <_Unwind_Backtrace+0xf5c>
+   615f0:      	ldrb	w0, [x19, #0x20]
+   615f4:      	tbnz	w0, #0x0, 0x617a8 <_Unwind_Backtrace+0x1108>
+   615f8:      	b	0x6195c <_Unwind_Backtrace+0x12bc>
+   615fc:      	ldr	w20, [x0, #0x20]
+   61600:      	ubfx	x20, x20, #11, #21
+   61604:      	cbnz	x20, 0x61690 <_Unwind_Backtrace+0xff0>
+   61608:      	tbz	w1, #0x1, 0x61654 <_Unwind_Backtrace+0xfb4>
+   6160c:      	ldr	x21, [x0, #0x18]
+   61610:      	ldr	x1, [x21]
+   61614:      	cbz	x1, 0x61668 <_Unwind_Backtrace+0xfc8>
+   61618:      	mov	x0, x19
+   6161c:      	bl	0x61330 <_Unwind_Backtrace+0xc90>
+   61620:      	cmn	x0, #0x1
+   61624:      	b.ne	0x61648 <_Unwind_Backtrace+0xfa8>
+   61628:      	mov	w0, #0x7f8              // =2040
+   6162c:      	str	xzr, [x19, #0x20]
+   61630:      	strh	w0, [x19, #0x20]
+   61634:      	adrp	x0, 0x9b000
+   61638:      	add	x0, x0, #0x5f0
+   6163c:      	add	x0, x0, #0x198
+   61640:      	str	x0, [x19, #0x18]
+   61644:      	b	0x61794 <_Unwind_Backtrace+0x10f4>
+   61648:      	add	x20, x20, x0
+   6164c:      	add	x21, x21, #0x8
+   61650:      	b	0x61610 <_Unwind_Backtrace+0xf70>
+   61654:      	ldr	x1, [x0, #0x18]
+   61658:      	bl	0x61330 <_Unwind_Backtrace+0xc90>
+   6165c:      	cmn	x0, #0x1
+   61660:      	mov	x20, x0
+   61664:      	b.eq	0x61628 <_Unwind_Backtrace+0xf88>
+   61668:      	and	w0, w20, #0x1fffff
+   6166c:      	cmp	x0, x20
+   61670:      	mov	x1, x0
+   61674:      	ldr	w0, [x19, #0x20]
+   61678:      	b.ne	0x61684 <_Unwind_Backtrace+0xfe4>
+   6167c:      	bfi	w0, w1, #11, #21
+   61680:      	b	0x61688 <_Unwind_Backtrace+0xfe8>
+   61684:      	and	w0, w0, #0x7ff
+   61688:      	str	w0, [x19, #0x20]
+   6168c:      	cbz	x20, 0x61794 <_Unwind_Backtrace+0x10f4>
+   61690:      	add	x21, x20, #0x2
+   61694:      	lsl	x21, x21, #3
+   61698:      	mov	x0, x21
+   6169c:      	bl	0xc010 <malloc@plt>
+   616a0:      	str	x0, [x29, #0x80]
+   616a4:      	cbz	x0, 0x61794 <_Unwind_Backtrace+0x10f4>
+   616a8:      	str	xzr, [x0, #0x8]
+   616ac:      	mov	x0, x21
+   616b0:      	bl	0xc010 <malloc@plt>
+   616b4:      	str	x0, [x29, #0x88]
+   616b8:      	cbz	x0, 0x61998 <_Unwind_Backtrace+0x12f8>
+   616bc:      	str	xzr, [x0, #0x8]
+   616c0:      	b	0x61998 <_Unwind_Backtrace+0x12f8>
+   616c4:      	add	x4, x25, x2, lsl #3
+   616c8:      	ldr	x5, [x26]
+   616cc:      	ldr	x4, [x4, #0x10]
+   616d0:      	cbz	x4, 0x61ab8 <_Unwind_Backtrace+0x1418>
+   616d4:      	add	x4, x1, #0x2
+   616d8:      	add	x1, x1, #0x1
+   616dc:      	str	x5, [x24, x4, lsl #3]
+   616e0:      	add	x2, x2, #0x1
+   616e4:      	add	x26, x26, #0x8
+   616e8:      	cmp	x2, x3
+   616ec:      	b.ne	0x616c4 <_Unwind_Backtrace+0x1024>
+   616f0:      	str	x1, [x24, #0x8]
+   616f4:      	str	x0, [x25, #0x8]
+   616f8:      	ldr	x2, [x29, #0x88]
+   616fc:      	ldr	x0, [x29, #0x80]
+   61700:      	ldr	x1, [x2, #0x8]
+   61704:      	ldr	x0, [x0, #0x8]
+   61708:      	add	x0, x1, x0
+   6170c:      	cmp	x0, x20
+   61710:      	b.ne	0x619e8 <_Unwind_Backtrace+0x1348>
+   61714:      	mov	x0, x19
+   61718:      	mov	x1, x23
+   6171c:      	bl	0x608b4 <_Unwind_Backtrace+0x214>
+   61720:      	ldr	x27, [x29, #0x88]
+   61724:      	ldr	x21, [x29, #0x80]
+   61728:      	ldr	x20, [x27, #0x8]
+   6172c:      	cbz	x20, 0x61770 <_Unwind_Backtrace+0x10d0>
+   61730:      	ldr	x24, [x21, #0x8]
+   61734:      	lsl	x26, x20, #3
+   61738:      	add	x0, x27, x26
+   6173c:      	sub	x20, x20, #0x1
+   61740:      	add	x25, x21, x24, lsl #3
+   61744:      	ldr	x28, [x0, #0x8]
+   61748:      	cbnz	x24, 0x61ac8 <_Unwind_Backtrace+0x1428>
+   6174c:      	add	x0, x24, x20
+   61750:      	sub	x26, x26, #0x8
+   61754:      	add	x0, x0, #0x2
+   61758:      	str	x28, [x21, x0, lsl #3]
+   6175c:      	cbnz	x20, 0x61738 <_Unwind_Backtrace+0x1098>
+   61760:      	ldr	x1, [x21, #0x8]
+   61764:      	ldr	x0, [x27, #0x8]
+   61768:      	add	x0, x1, x0
+   6176c:      	str	x0, [x21, #0x8]
+   61770:      	ldr	x0, [x29, #0x88]
+   61774:      	bl	0xbfd0 <free@plt>
+   61778:      	ldr	x0, [x29, #0x80]
+   6177c:      	ldr	x1, [x19, #0x18]
+   61780:      	str	x1, [x0]
+   61784:      	str	x0, [x19, #0x18]
+   61788:      	ldrb	w0, [x19, #0x20]
+   6178c:      	orr	w0, w0, #0x1
+   61790:      	strb	w0, [x19, #0x20]
+   61794:      	ldr	x0, [x19]
+   61798:      	cmp	x22, x0
+   6179c:      	b.hs	0x615f0 <_Unwind_Backtrace+0xf50>
+   617a0:      	mov	x0, #0x0                // =0
+   617a4:      	b	0x61b18 <_Unwind_Backtrace+0x1478>
+   617a8:      	tbz	w0, #0x2, 0x61850 <_Unwind_Backtrace+0x11b0>
+   617ac:      	ldr	x27, [x19, #0x18]
+   617b0:      	mov	x24, #0x0               // =0
+   617b4:      	add	x25, x29, #0x78
+   617b8:      	add	x26, x29, #0x80
+   617bc:      	ldr	x23, [x27, #0x8]
+   617c0:      	cmp	x24, x23
+   617c4:      	b.hs	0x617a0 <_Unwind_Backtrace+0x1100>
+   617c8:      	add	x21, x23, x24
+   617cc:      	lsr	x21, x21, #1
+   617d0:      	add	x0, x21, #0x2
+   617d4:      	ldr	x20, [x27, x0, lsl #3]
+   617d8:      	mov	x0, x20
+   617dc:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   617e0:      	uxtb	w2, w0
+   617e4:      	mov	w28, w0
+   617e8:      	mov	x1, x19
+   617ec:      	mov	w0, w2
+   617f0:      	str	x2, [x29, #0x68]
+   617f4:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   617f8:      	mov	x1, x0
+   617fc:      	ldr	x2, [x29, #0x68]
+   61800:      	mov	x3, x25
+   61804:      	mov	w0, w2
+   61808:      	add	x2, x20, #0x8
+   6180c:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61810:      	mov	x2, x0
+   61814:      	mov	x1, #0x0                // =0
+   61818:      	and	w0, w28, #0xf
+   6181c:      	mov	x3, x26
+   61820:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61824:      	ldr	x1, [x29, #0x78]
+   61828:      	cmp	x22, x1
+   6182c:      	b.lo	0x61848 <_Unwind_Backtrace+0x11a8>
+   61830:      	ldr	x0, [x29, #0x80]
+   61834:      	add	x0, x1, x0
+   61838:      	cmp	x22, x0
+   6183c:      	b.lo	0x618dc <_Unwind_Backtrace+0x123c>
+   61840:      	add	x24, x21, #0x1
+   61844:      	mov	x21, x23
+   61848:      	mov	x23, x21
+   6184c:      	b	0x617c0 <_Unwind_Backtrace+0x1120>
+   61850:      	ldrh	w0, [x19, #0x20]
+   61854:      	tst	w0, #0x7f8
+   61858:      	b.ne	0x618ac <_Unwind_Backtrace+0x120c>
+   6185c:      	ldr	x5, [x19, #0x18]
+   61860:      	mov	x3, #0x0                // =0
+   61864:      	ldr	x2, [x5, #0x8]
+   61868:      	cmp	x3, x2
+   6186c:      	b.hs	0x617a0 <_Unwind_Backtrace+0x1100>
+   61870:      	add	x1, x2, x3
+   61874:      	lsr	x1, x1, #1
+   61878:      	add	x0, x1, #0x2
+   6187c:      	ldr	x0, [x5, x0, lsl #3]
+   61880:      	ldr	x6, [x0, #0x8]
+   61884:      	ldr	x4, [x0, #0x10]
+   61888:      	cmp	x22, x6
+   6188c:      	b.lo	0x618a4 <_Unwind_Backtrace+0x1204>
+   61890:      	add	x3, x6, x4
+   61894:      	cmp	x22, x3
+   61898:      	b.lo	0x61b18 <_Unwind_Backtrace+0x1478>
+   6189c:      	add	x3, x1, #0x1
+   618a0:      	b	0x61868 <_Unwind_Backtrace+0x11c8>
+   618a4:      	mov	x2, x1
+   618a8:      	b	0x61868 <_Unwind_Backtrace+0x11c8>
+   618ac:      	ubfx	x0, x0, #3, #8
+   618b0:      	ldr	x24, [x19, #0x18]
+   618b4:      	mov	x1, x19
+   618b8:      	mov	x23, #0x0               // =0
+   618bc:      	uxtb	w25, w0
+   618c0:      	add	x27, x29, #0x80
+   618c4:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   618c8:      	and	w26, w25, #0xf
+   618cc:      	mov	x28, x0
+   618d0:      	ldr	x21, [x24, #0x8]
+   618d4:      	add	x4, x29, #0x78
+   618d8:      	b	0x61934 <_Unwind_Backtrace+0x1294>
+   618dc:      	mov	x0, x20
+   618e0:      	b	0x61b18 <_Unwind_Backtrace+0x1478>
+   618e4:      	add	x19, x21, x23
+   618e8:      	mov	x3, x4
+   618ec:      	lsr	x19, x19, #1
+   618f0:      	mov	x1, x28
+   618f4:      	add	x0, x19, #0x2
+   618f8:      	str	x4, [x29, #0x68]
+   618fc:      	ldr	x20, [x24, x0, lsl #3]
+   61900:      	mov	w0, w25
+   61904:      	add	x2, x20, #0x8
+   61908:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   6190c:      	mov	x2, x0
+   61910:      	mov	x1, #0x0                // =0
+   61914:      	mov	w0, w26
+   61918:      	mov	x3, x27
+   6191c:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61920:      	ldr	x1, [x29, #0x78]
+   61924:      	ldr	x4, [x29, #0x68]
+   61928:      	cmp	x22, x1
+   6192c:      	b.hs	0x61940 <_Unwind_Backtrace+0x12a0>
+   61930:      	mov	x21, x19
+   61934:      	cmp	x23, x21
+   61938:      	b.lo	0x618e4 <_Unwind_Backtrace+0x1244>
+   6193c:      	b	0x617a0 <_Unwind_Backtrace+0x1100>
+   61940:      	ldr	x0, [x29, #0x80]
+   61944:      	add	x0, x1, x0
+   61948:      	cmp	x22, x0
+   6194c:      	b.lo	0x618dc <_Unwind_Backtrace+0x123c>
+   61950:      	add	x23, x19, #0x1
+   61954:      	mov	x19, x21
+   61958:      	b	0x61930 <_Unwind_Backtrace+0x1290>
+   6195c:      	tbz	w0, #0x1, 0x61984 <_Unwind_Backtrace+0x12e4>
+   61960:      	ldr	x20, [x19, #0x18]
+   61964:      	ldr	x1, [x20]
+   61968:      	cbz	x1, 0x617a0 <_Unwind_Backtrace+0x1100>
+   6196c:      	mov	x0, x19
+   61970:      	mov	x2, x22
+   61974:      	bl	0x60d04 <_Unwind_Backtrace+0x664>
+   61978:      	cbnz	x0, 0x61b18 <_Unwind_Backtrace+0x1478>
+   6197c:      	add	x20, x20, #0x8
+   61980:      	b	0x61964 <_Unwind_Backtrace+0x12c4>
+   61984:      	ldr	x1, [x19, #0x18]
+   61988:      	mov	x0, x19
+   6198c:      	mov	x2, x22
+   61990:      	bl	0x60d04 <_Unwind_Backtrace+0x664>
+   61994:      	b	0x61b18 <_Unwind_Backtrace+0x1478>
+   61998:      	ldrb	w0, [x19, #0x20]
+   6199c:      	tbz	w0, #0x1, 0x619c4 <_Unwind_Backtrace+0x1324>
+   619a0:      	ldr	x21, [x19, #0x18]
+   619a4:      	add	x23, x29, #0x80
+   619a8:      	ldr	x2, [x21]
+   619ac:      	cbz	x2, 0x619d4 <_Unwind_Backtrace+0x1334>
+   619b0:      	mov	x0, x19
+   619b4:      	mov	x1, x23
+   619b8:      	add	x21, x21, #0x8
+   619bc:      	bl	0x61490 <_Unwind_Backtrace+0xdf0>
+   619c0:      	b	0x619a8 <_Unwind_Backtrace+0x1308>
+   619c4:      	ldr	x2, [x19, #0x18]
+   619c8:      	mov	x0, x19
+   619cc:      	add	x1, x29, #0x80
+   619d0:      	bl	0x61490 <_Unwind_Backtrace+0xdf0>
+   619d4:      	ldr	x24, [x29, #0x80]
+   619d8:      	cbz	x24, 0x619ec <_Unwind_Backtrace+0x134c>
+   619dc:      	ldr	x0, [x24, #0x8]
+   619e0:      	cmp	x0, x20
+   619e4:      	b.eq	0x619ec <_Unwind_Backtrace+0x134c>
+   619e8:      	bl	0xc470 <abort@plt>
+   619ec:      	ldrb	w0, [x19, #0x20]
+   619f0:      	tbnz	w0, #0x2, 0x61a0c <_Unwind_Backtrace+0x136c>
+   619f4:      	ldrh	w0, [x19, #0x20]
+   619f8:      	tst	w0, #0x7f8
+   619fc:      	b.eq	0x61a18 <_Unwind_Backtrace+0x1378>
+   61a00:      	adrp	x23, 0x60000 <_Unwind_GetTextRelBase+0x130c>
+   61a04:      	add	x23, x23, #0xb78
+   61a08:      	b	0x61a20 <_Unwind_Backtrace+0x1380>
+   61a0c:      	adrp	x23, 0x61000 <_Unwind_Backtrace+0x960>
+   61a10:      	add	x23, x23, #0x294
+   61a14:      	b	0x61a20 <_Unwind_Backtrace+0x1380>
+   61a18:      	adrp	x23, 0x60000 <_Unwind_GetTextRelBase+0x130c>
+   61a1c:      	add	x23, x23, #0x7d8
+   61a20:      	ldr	x25, [x29, #0x88]
+   61a24:      	cbz	x25, 0x61b04 <_Unwind_Backtrace+0x1464>
+   61a28:      	adrp	x21, 0x9b000
+   61a2c:      	add	x26, x24, #0x10
+   61a30:      	add	x21, x21, #0x5f0
+   61a34:      	ldr	x3, [x24, #0x8]
+   61a38:      	add	x21, x21, #0x190
+   61a3c:      	mov	x28, x26
+   61a40:      	mov	x27, #0x0               // =0
+   61a44:      	mov	x4, x21
+   61a48:      	cmp	x27, x3
+   61a4c:      	b.eq	0x61aa8 <_Unwind_Backtrace+0x1408>
+   61a50:      	cmp	x21, x4
+   61a54:      	b.eq	0x61a90 <_Unwind_Backtrace+0x13f0>
+   61a58:      	ldr	x1, [x28]
+   61a5c:      	mov	x0, x19
+   61a60:      	ldr	x2, [x21]
+   61a64:      	str	x4, [x29, #0x60]
+   61a68:      	str	x3, [x29, #0x68]
+   61a6c:      	blr	x23
+   61a70:      	ldr	x3, [x29, #0x68]
+   61a74:      	ldr	x4, [x29, #0x60]
+   61a78:      	tbz	w0, #0x1f, 0x61a90 <_Unwind_Backtrace+0x13f0>
+   61a7c:      	sub	x0, x21, x26
+   61a80:      	add	x0, x25, x0
+   61a84:      	ldr	x21, [x0, #0x10]
+   61a88:      	str	xzr, [x0, #0x10]
+   61a8c:      	b	0x61a50 <_Unwind_Backtrace+0x13b0>
+   61a90:      	add	x0, x25, x27, lsl #3
+   61a94:      	add	x27, x27, #0x1
+   61a98:      	str	x21, [x0, #0x10]
+   61a9c:      	mov	x21, x28
+   61aa0:      	add	x28, x28, #0x8
+   61aa4:      	b	0x61a48 <_Unwind_Backtrace+0x13a8>
+   61aa8:      	mov	x0, #0x0                // =0
+   61aac:      	mov	x1, #0x0                // =0
+   61ab0:      	mov	x2, #0x0                // =0
+   61ab4:      	b	0x616e8 <_Unwind_Backtrace+0x1048>
+   61ab8:      	add	x4, x0, #0x2
+   61abc:      	add	x0, x0, #0x1
+   61ac0:      	str	x5, [x25, x4, lsl #3]
+   61ac4:      	b	0x616e0 <_Unwind_Backtrace+0x1040>
+   61ac8:      	ldr	x1, [x25, #0x8]
+   61acc:      	sub	x3, x24, #0x1
+   61ad0:      	mov	x0, x19
+   61ad4:      	str	x3, [x29, #0x68]
+   61ad8:      	mov	x2, x28
+   61adc:      	sub	x25, x25, #0x8
+   61ae0:      	blr	x23
+   61ae4:      	cmp	w0, wzr
+   61ae8:      	ldr	x3, [x29, #0x68]
+   61aec:      	b.le	0x6174c <_Unwind_Backtrace+0x10ac>
+   61af0:      	add	x0, x25, x26
+   61af4:      	ldr	x1, [x25, #0x10]
+   61af8:      	mov	x24, x3
+   61afc:      	str	x1, [x0, #0x10]
+   61b00:      	b	0x61748 <_Unwind_Backtrace+0x10a8>
+   61b04:      	mov	x0, x19
+   61b08:      	mov	x1, x23
+   61b0c:      	mov	x2, x24
+   61b10:      	bl	0x608b4 <_Unwind_Backtrace+0x214>
+   61b14:      	b	0x61778 <_Unwind_Backtrace+0x10d8>
+   61b18:      	ldp	x19, x20, [sp, #0x10]
+   61b1c:      	ldp	x21, x22, [sp, #0x20]
+   61b20:      	ldp	x23, x24, [sp, #0x30]
+   61b24:      	ldp	x25, x26, [sp, #0x40]
+   61b28:      	ldp	x27, x28, [sp, #0x50]
+   61b2c:      	ldp	x29, x30, [sp], #0x90
+   61b30:      	ret
+
+--- FUNCTION: _Unwind_DeleteException ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libCtaApiLib.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000006067c <_Unwind_DeleteException>:
+   6067c:      	stp	x29, x30, [sp, #-0x10]!
+   60680:      	mov	x29, sp
+   60684:      	ldr	x2, [x0, #0x8]
+   60688:      	cbz	x2, 0x60698 <_Unwind_DeleteException+0x1c>
+   6068c:      	mov	x1, x0
+   60690:      	mov	w0, #0x1                // =1
+   60694:      	blr	x2
+   60698:      	ldp	x29, x30, [sp], #0x10
+   6069c:      	ret
+
+--- FUNCTION: _Unwind_FindEnclosingFunction ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libCtaApiLib.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005ecc4 <_Unwind_FindEnclosingFunction>:
+   5ecc4:      	stp	x29, x30, [sp, #-0x30]!
+   5ecc8:      	sub	x0, x0, #0x1
+   5eccc:      	mov	x29, sp
+   5ecd0:      	add	x1, x29, #0x18
+   5ecd4:      	bl	0xc380 <_Unwind_Find_FDE@plt>
+   5ecd8:      	cmp	x0, xzr
+   5ecdc:      	ldr	x0, [x29, #0x28]
+   5ece0:      	ldp	x29, x30, [sp], #0x30
+   5ece4:      	csel	x0, x0, xzr, ne
+   5ece8:      	ret
+
+--- FUNCTION: _Unwind_Find_FDE ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libCtaApiLib.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000061e10 <_Unwind_Find_FDE>:
+   61e10:      	stp	x29, x30, [sp, #-0x80]!
+   61e14:      	mov	x29, sp
+   61e18:      	stp	x21, x22, [sp, #0x20]
+   61e1c:      	adrp	x21, 0x87000 <_ZTVN10__cxxabiv121__vmi_class_type_infoE+0x7d0>
+   61e20:      	str	x25, [sp, #0x40]
+   61e24:      	stp	x23, x24, [sp, #0x30]
+   61e28:      	mov	x24, x0
+   61e2c:      	mov	x22, x1
+   61e30:      	ldr	x0, [x21, #0xe60]
+   61e34:      	adrp	x23, 0x9b000
+   61e38:      	stp	x19, x20, [sp, #0x10]
+   61e3c:      	cbz	x0, 0x61e4c <_Unwind_Find_FDE+0x3c>
+   61e40:      	add	x0, x23, #0x5f0
+   61e44:      	add	x0, x0, #0x1a0
+   61e48:      	bl	0xc580 <pthread_mutex_lock@plt>
+   61e4c:      	add	x0, x23, #0x5f0
+   61e50:      	ldr	x19, [x0, #0x1d0]
+   61e54:      	cbz	x19, 0x61e84 <_Unwind_Find_FDE+0x74>
+   61e58:      	ldr	x0, [x19]
+   61e5c:      	cmp	x24, x0
+   61e60:      	b.lo	0x61e7c <_Unwind_Find_FDE+0x6c>
+   61e64:      	mov	x0, x19
+   61e68:      	mov	x1, x24
+   61e6c:      	bl	0x615c4 <_Unwind_Backtrace+0xf24>
+   61e70:      	mov	x20, x0
+   61e74:      	cbnz	x0, 0x61fac <_Unwind_Find_FDE+0x19c>
+   61e78:      	b	0x61e84 <_Unwind_Find_FDE+0x74>
+   61e7c:      	ldr	x19, [x19, #0x28]
+   61e80:      	b	0x61e54 <_Unwind_Find_FDE+0x44>
+   61e84:      	add	x25, x23, #0x5f0
+   61e88:      	ldr	x19, [x25, #0x1c8]
+   61e8c:      	cbz	x19, 0x61ee0 <_Unwind_Find_FDE+0xd0>
+   61e90:      	ldr	x0, [x19, #0x28]
+   61e94:      	mov	x1, x24
+   61e98:      	str	x0, [x25, #0x1c8]
+   61e9c:      	mov	x0, x19
+   61ea0:      	bl	0x615c4 <_Unwind_Backtrace+0xf24>
+   61ea4:      	mov	x20, x0
+   61ea8:      	ldr	x1, [x25, #0x1d0]
+   61eac:      	add	x0, x25, #0x1d0
+   61eb0:      	cbz	x1, 0x61ed0 <_Unwind_Find_FDE+0xc0>
+   61eb4:      	ldr	x3, [x1]
+   61eb8:      	ldr	x2, [x19]
+   61ebc:      	cmp	x3, x2
+   61ec0:      	b.lo	0x61ed0 <_Unwind_Find_FDE+0xc0>
+   61ec4:      	add	x0, x1, #0x28
+   61ec8:      	ldr	x1, [x1, #0x28]
+   61ecc:      	b	0x61eb0 <_Unwind_Find_FDE+0xa0>
+   61ed0:      	str	x1, [x19, #0x28]
+   61ed4:      	str	x19, [x0]
+   61ed8:      	cbz	x20, 0x61e88 <_Unwind_Find_FDE+0x78>
+   61edc:      	b	0x61fac <_Unwind_Find_FDE+0x19c>
+   61ee0:      	ldr	x21, [x21, #0xe60]
+   61ee4:      	mov	x20, #0x0               // =0
+   61ee8:      	cbz	x21, 0x61f50 <_Unwind_Find_FDE+0x140>
+   61eec:      	add	x0, x23, #0x5f0
+   61ef0:      	add	x0, x0, #0x1a0
+   61ef4:      	bl	0xc310 <pthread_mutex_unlock@plt>
+   61ef8:      	cbz	x20, 0x61f50 <_Unwind_Find_FDE+0x140>
+   61efc:      	ldr	x0, [x19, #0x8]
+   61f00:      	str	x0, [x22]
+   61f04:      	ldrb	w1, [x19, #0x20]
+   61f08:      	ldr	x0, [x19, #0x10]
+   61f0c:      	str	x0, [x22, #0x8]
+   61f10:      	ldrh	w0, [x19, #0x20]
+   61f14:      	ubfx	x0, x0, #3, #8
+   61f18:      	tbz	w1, #0x2, 0x61f24 <_Unwind_Find_FDE+0x114>
+   61f1c:      	mov	x0, x20
+   61f20:      	bl	0x60e64 <_Unwind_Backtrace+0x7c4>
+   61f24:      	uxtb	w21, w0
+   61f28:      	mov	x1, x19
+   61f2c:      	mov	w0, w21
+   61f30:      	bl	0x609c8 <_Unwind_Backtrace+0x328>
+   61f34:      	mov	x1, x0
+   61f38:      	add	x2, x20, #0x8
+   61f3c:      	mov	w0, w21
+   61f40:      	add	x3, x29, #0x50
+   61f44:      	bl	0x60a88 <_Unwind_Backtrace+0x3e8>
+   61f48:      	ldr	x0, [x29, #0x50]
+   61f4c:      	b	0x61fa4 <_Unwind_Find_FDE+0x194>
+   61f50:      	mov	w0, #0x1                // =1
+   61f54:      	add	x19, x29, #0x50
+   61f58:      	str	w0, [x29, #0x78]
+   61f5c:      	adrp	x0, 0x60000 <_Unwind_GetTextRelBase+0x130c>
+   61f60:      	add	x0, x0, #0xe74
+   61f64:      	mov	x1, x19
+   61f68:      	str	x24, [x29, #0x50]
+   61f6c:      	mov	x20, #0x0               // =0
+   61f70:      	str	xzr, [x29, #0x58]
+   61f74:      	str	xzr, [x29, #0x60]
+   61f78:      	str	xzr, [x29, #0x68]
+   61f7c:      	str	xzr, [x29, #0x70]
+   61f80:      	bl	0xc6e0 <dl_iterate_phdr@plt>
+   61f84:      	tbnz	w0, #0x1f, 0x61fb8 <_Unwind_Find_FDE+0x1a8>
+   61f88:      	ldr	x20, [x29, #0x70]
+   61f8c:      	cbz	x20, 0x61fb8 <_Unwind_Find_FDE+0x1a8>
+   61f90:      	ldr	x0, [x19, #0x8]
+   61f94:      	str	x0, [x22]
+   61f98:      	ldr	x0, [x19, #0x10]
+   61f9c:      	str	x0, [x22, #0x8]
+   61fa0:      	ldr	x0, [x19, #0x18]
+   61fa4:      	str	x0, [x22, #0x10]
+   61fa8:      	b	0x61fb8 <_Unwind_Find_FDE+0x1a8>
+   61fac:      	ldr	x21, [x21, #0xe60]
+   61fb0:      	cbnz	x21, 0x61eec <_Unwind_Find_FDE+0xdc>
+   61fb4:      	b	0x61efc <_Unwind_Find_FDE+0xec>
+   61fb8:      	mov	x0, x20
+   61fbc:      	ldr	x25, [sp, #0x40]
+   61fc0:      	ldp	x19, x20, [sp, #0x10]
+   61fc4:      	ldp	x21, x22, [sp, #0x20]
+   61fc8:      	ldp	x23, x24, [sp, #0x30]
+   61fcc:      	ldp	x29, x30, [sp], #0x80
+   61fd0:      	ret

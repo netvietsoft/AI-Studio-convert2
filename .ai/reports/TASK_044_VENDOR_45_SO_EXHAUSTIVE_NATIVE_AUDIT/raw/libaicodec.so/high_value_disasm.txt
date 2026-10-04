@@ -1,0 +1,325 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000118454 <JNI_OnLoad>:
+  118454:      	stp	x29, x30, [sp, #-0x20]!
+  118458:      	str	x19, [sp, #0x10]
+  11845c:      	mov	x29, sp
+  118460:      	bl	0x1f6400 <_Z15aicodec_set_jvmP7_JavaVM@plt>
+  118464:      	tbnz	w0, #0x1f, 0x118498 <JNI_OnLoad+0x44>
+  118468:      	bl	0x1f5b80 <_ZN9JniHelper6getEnvEv@plt>
+  11846c:      	cbz	x0, 0x118524 <JNI_OnLoad+0xd0>
+  118470:      	mov	x19, x0
+  118474:      	bl	0x1f6a80 <_ZN7MMCodec10JniUtility4initEP7_JNIEnv@plt>
+  118478:      	mov	x0, x19
+  11847c:      	bl	0x1f6410 <_Z31register_aicodec_native_methodsP7_JNIEnv@plt>
+  118480:      	tbnz	w0, #0x1f, 0x1185b8 <JNI_OnLoad+0x164>
+  118484:      	mov	w0, #0x6                // =6
+  118488:      	movk	w0, #0x1, lsl #16
+  11848c:      	ldr	x19, [sp, #0x10]
+  118490:      	ldp	x29, x30, [sp], #0x20
+  118494:      	ret
+  118498:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  11849c:      	ldr	x8, [x8, #0x868]
+  1184a0:      	ldr	w8, [x8]
+  1184a4:      	cmp	w8, #0x5
+  1184a8:      	b.gt	0x1184d8 <JNI_OnLoad+0x84>
+  1184ac:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1184b0:      	nop
+  1184b4:      	adr	x1, 0x7d752
+  1184b8:      	ldr	x8, [x8, #0x870]
+  1184bc:      	adrp	x2, 0x8b000
+  1184c0:      	add	x2, x2, #0x58d
+  1184c4:      	adrp	x3, 0x85000
+  1184c8:      	add	x3, x3, #0xe6b
+  1184cc:      	mov	w4, #0xb                // =11
+  1184d0:      	ldr	w0, [x8, #0x14]
+  1184d4:      	bl	0x1f45f0 <__android_log_print@plt>
+  1184d8:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1184dc:      	ldr	x8, [x8, #0x878]
+  1184e0:      	ldr	w8, [x8]
+  1184e4:      	cmp	w8, #0x5
+  1184e8:      	b.gt	0x1185a8 <JNI_OnLoad+0x154>
+  1184ec:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1184f0:      	adrp	x1, 0x75000
+  1184f4:      	add	x1, x1, #0x90
+  1184f8:      	ldr	x8, [x8, #0x880]
+  1184fc:      	adrp	x3, 0x85000
+  118500:      	add	x3, x3, #0xe6b
+  118504:      	mov	w0, #0x5                // =5
+  118508:      	mov	w4, #0xb                // =11
+  11850c:      	ldr	x2, [x8, #0x28]
+  118510:      	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+  118514:      	mov	w0, #-0x1               // =-1
+  118518:      	ldr	x19, [sp, #0x10]
+  11851c:      	ldp	x29, x30, [sp], #0x20
+  118520:      	ret
+  118524:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  118528:      	ldr	x8, [x8, #0x868]
+  11852c:      	ldr	w8, [x8]
+  118530:      	cmp	w8, #0x5
+  118534:      	b.gt	0x118568 <JNI_OnLoad+0x114>
+  118538:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  11853c:      	adrp	x3, 0x85000
+  118540:      	add	x3, x3, #0xe6b
+  118544:      	ldr	x8, [x8, #0x870]
+  118548:      	nop
+  11854c:      	adr	x1, 0x7d752
+  118550:      	adrp	x2, 0x8a000
+  118554:      	add	x2, x2, #0x18f
+  118558:      	mov	w4, #0x10               // =16
+  11855c:      	ldr	w0, [x8, #0x14]
+  118560:      	mov	x5, x3
+  118564:      	bl	0x1f45f0 <__android_log_print@plt>
+  118568:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  11856c:      	ldr	x8, [x8, #0x878]
+  118570:      	ldr	w8, [x8]
+  118574:      	cmp	w8, #0x5
+  118578:      	b.gt	0x1185a8 <JNI_OnLoad+0x154>
+  11857c:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  118580:      	adrp	x3, 0x85000
+  118584:      	add	x3, x3, #0xe6b
+  118588:      	ldr	x8, [x8, #0x880]
+  11858c:      	adrp	x1, 0x6a000
+  118590:      	add	x1, x1, #0xb57
+  118594:      	mov	w0, #0x5                // =5
+  118598:      	mov	w4, #0x10               // =16
+  11859c:      	mov	x5, x3
+  1185a0:      	ldr	x2, [x8, #0x28]
+  1185a4:      	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+  1185a8:      	mov	w0, #-0x1               // =-1
+  1185ac:      	ldr	x19, [sp, #0x10]
+  1185b0:      	ldp	x29, x30, [sp], #0x20
+  1185b4:      	ret
+  1185b8:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1185bc:      	ldr	x8, [x8, #0x868]
+  1185c0:      	ldr	w8, [x8]
+  1185c4:      	cmp	w8, #0x5
+  1185c8:      	b.gt	0x1185f8 <JNI_OnLoad+0x1a4>
+  1185cc:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1185d0:      	nop
+  1185d4:      	adr	x1, 0x7d752
+  1185d8:      	ldr	x8, [x8, #0x870]
+  1185dc:      	adrp	x2, 0x76000
+  1185e0:      	add	x2, x2, #0x55c
+  1185e4:      	adrp	x3, 0x85000
+  1185e8:      	add	x3, x3, #0xe6b
+  1185ec:      	mov	w4, #0x1a               // =26
+  1185f0:      	ldr	w0, [x8, #0x14]
+  1185f4:      	bl	0x1f45f0 <__android_log_print@plt>
+  1185f8:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1185fc:      	ldr	x8, [x8, #0x878]
+  118600:      	ldr	w8, [x8]
+  118604:      	cmp	w8, #0x5
+  118608:      	b.gt	0x1185a8 <JNI_OnLoad+0x154>
+  11860c:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  118610:      	adrp	x1, 0x84000
+  118614:      	add	x1, x1, #0x5ae
+  118618:      	ldr	x8, [x8, #0x880]
+  11861c:      	adrp	x3, 0x85000
+  118620:      	add	x3, x3, #0xe6b
+  118624:      	mov	w0, #0x5                // =5
+  118628:      	mov	w4, #0x1a               // =26
+  11862c:      	ldr	x2, [x8, #0x28]
+  118630:      	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+  118634:      	mov	w0, #-0x1               // =-1
+  118638:      	ldr	x19, [sp, #0x10]
+  11863c:      	ldp	x29, x30, [sp], #0x20
+  118640:      	ret
+
+--- FUNCTION: JNI_OnUnload ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000118644 <JNI_OnUnload>:
+  118644:      	ret
+  118648:      	stp	x29, x30, [sp, #-0x20]!
+  11864c:      	stp	x20, x19, [sp, #0x10]
+  118650:      	mov	x29, sp
+  118654:      	mov	x19, x0
+  118658:      	ldr	x0, [x0, #0x10]
+  11865c:      	cbz	x0, 0x118670 <JNI_OnUnload+0x2c>
+  118660:      	ldr	x20, [x0]
+  118664:      	bl	0x1f4650 <_ZdlPv@plt>
+  118668:      	mov	x0, x20
+  11866c:      	cbnz	x20, 0x118660 <JNI_OnUnload+0x1c>
+  118670:      	ldr	x0, [x19]
+  118674:      	str	xzr, [x19]
+  118678:      	cbz	x0, 0x118688 <JNI_OnUnload+0x44>
+  11867c:      	ldp	x20, x19, [sp, #0x10]
+  118680:      	ldp	x29, x30, [sp], #0x20
+  118684:      	b	0x1f4650 <_ZdlPv@plt>
+  118688:      	ldp	x20, x19, [sp, #0x10]
+  11868c:      	ldp	x29, x30, [sp], #0x20
+  118690:      	ret
+
+--- FUNCTION: MM_AV_RB32 ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000172b70 <MM_AV_RB32>:
+  172b70:      	ldr	w8, [x0]
+  172b74:      	rev	w0, w8
+  172b78:      	ret
+
+--- FUNCTION: _Z11_getClassIDPKc ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000001048d4 <_Z11_getClassIDPKc>:
+  1048d4:      	stp	x29, x30, [sp, #-0x30]!
+  1048d8:      	stp	x22, x21, [sp, #0x10]
+  1048dc:      	stp	x20, x19, [sp, #0x20]
+  1048e0:      	mov	x29, sp
+  1048e4:      	cbz	x0, 0x104a14 <_Z11_getClassIDPKc+0x140>
+  1048e8:      	adrp	x8, 0x20a000 <_ZN7MMCodec15_nvencPresetMapE>
+  1048ec:      	mov	x19, x0
+  1048f0:      	ldr	w0, [x8, #0x5a8]
+  1048f4:      	bl	0x1f63a0 <pthread_getspecific@plt>
+  1048f8:      	mov	x20, x0
+  1048fc:      	cbnz	x0, 0x104914 <_Z11_getClassIDPKc+0x40>
+  104900:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  104904:      	ldr	x8, [x8, #0xe20]
+  104908:      	ldr	x0, [x8]
+  10490c:      	bl	0x1f63b0 <_ZN9JniHelper8cacheEnvEP7_JavaVM@plt>
+  104910:      	mov	x20, x0
+  104914:      	ldr	x8, [x20]
+  104918:      	mov	x0, x20
+  10491c:      	mov	x1, x19
+  104920:      	ldr	x8, [x8, #0x538]
+  104924:      	blr	x8
+  104928:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  10492c:      	adrp	x9, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  104930:      	mov	x21, x0
+  104934:      	ldr	x8, [x8, #0xe28]
+  104938:      	ldr	x9, [x9, #0xe30]
+  10493c:      	mov	x0, x20
+  104940:      	mov	x3, x21
+  104944:      	ldr	x1, [x8]
+  104948:      	ldr	x2, [x9]
+  10494c:      	bl	0x1f5c40 <_ZN7_JNIEnv16CallObjectMethodEP8_jobjectP10_jmethodIDz@plt>
+  104950:      	mov	x22, x0
+  104954:      	cbnz	x0, 0x1049ec <_Z11_getClassIDPKc+0x118>
+  104958:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  10495c:      	ldr	x8, [x8, #0x868]
+  104960:      	ldr	w8, [x8]
+  104964:      	cmp	w8, #0x5
+  104968:      	b.gt	0x10499c <_Z11_getClassIDPKc+0xc8>
+  10496c:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  104970:      	nop
+  104974:      	adr	x1, 0x7d752
+  104978:      	ldr	x8, [x8, #0x870]
+  10497c:      	adrp	x2, 0x71000
+  104980:      	add	x2, x2, #0x6a5
+  104984:      	adrp	x3, 0x77000
+  104988:      	add	x3, x3, #0xd59
+  10498c:      	mov	w4, #0x1b               // =27
+  104990:      	ldr	w0, [x8, #0x14]
+  104994:      	mov	x5, x19
+  104998:      	bl	0x1f45f0 <__android_log_print@plt>
+  10499c:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1049a0:      	ldr	x8, [x8, #0x878]
+  1049a4:      	ldr	w8, [x8]
+  1049a8:      	cmp	w8, #0x5
+  1049ac:      	b.gt	0x1049dc <_Z11_getClassIDPKc+0x108>
+  1049b0:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1049b4:      	adrp	x1, 0x6f000
+  1049b8:      	add	x1, x1, #0x707
+  1049bc:      	ldr	x8, [x8, #0x880]
+  1049c0:      	adrp	x3, 0x77000
+  1049c4:      	add	x3, x3, #0xd59
+  1049c8:      	mov	w0, #0x5                // =5
+  1049cc:      	mov	w4, #0x1b               // =27
+  1049d0:      	mov	x5, x19
+  1049d4:      	ldr	x2, [x8, #0x28]
+  1049d8:      	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+  1049dc:      	ldr	x8, [x20]
+  1049e0:      	mov	x0, x20
+  1049e4:      	ldr	x8, [x8, #0x88]
+  1049e8:      	blr	x8
+  1049ec:      	ldr	x8, [x20]
+  1049f0:      	mov	x0, x20
+  1049f4:      	mov	x1, x21
+  1049f8:      	ldr	x8, [x8, #0xb8]
+  1049fc:      	blr	x8
+  104a00:      	mov	x0, x22
+  104a04:      	ldp	x20, x19, [sp, #0x20]
+  104a08:      	ldp	x22, x21, [sp, #0x10]
+  104a0c:      	ldp	x29, x30, [sp], #0x30
+  104a10:      	ret
+  104a14:      	mov	x22, xzr
+  104a18:      	mov	x0, x22
+  104a1c:      	ldp	x20, x19, [sp, #0x20]
+  104a20:      	ldp	x22, x21, [sp, #0x10]
+  104a24:      	ldp	x29, x30, [sp], #0x30
+  104a28:      	ret
+
+--- FUNCTION: _Z15aicodec_set_jvmP7_JavaVM ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000010591c <_Z15aicodec_set_jvmP7_JavaVM>:
+  10591c:      	stp	x29, x30, [sp, #-0x10]!
+  105920:      	mov	x29, sp
+  105924:      	bl	0x1f63d0 <_ZN9JniHelper9setJavaVMEP7_JavaVM@plt>
+  105928:      	bl	0x1f5b80 <_ZN9JniHelper6getEnvEv@plt>
+  10592c:      	cbz	x0, 0x10593c <_Z15aicodec_set_jvmP7_JavaVM+0x20>
+  105930:      	mov	w0, wzr
+  105934:      	ldp	x29, x30, [sp], #0x10
+  105938:      	ret
+  10593c:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  105940:      	ldr	x8, [x8, #0x868]
+  105944:      	ldr	w8, [x8]
+  105948:      	cmp	w8, #0x5
+  10594c:      	b.le	0x105970 <_Z15aicodec_set_jvmP7_JavaVM+0x54>
+  105950:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  105954:      	ldr	x8, [x8, #0x878]
+  105958:      	ldr	w8, [x8]
+  10595c:      	cmp	w8, #0x5
+  105960:      	b.le	0x1059b4 <_Z15aicodec_set_jvmP7_JavaVM+0x98>
+  105964:      	mov	w0, #-0x1               // =-1
+  105968:      	ldp	x29, x30, [sp], #0x10
+  10596c:      	ret
+  105970:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  105974:      	adrp	x3, 0x7a000
+  105978:      	add	x3, x3, #0x544
+  10597c:      	ldr	x8, [x8, #0x870]
+  105980:      	nop
+  105984:      	adr	x1, 0x7d752
+  105988:      	adrp	x2, 0x8a000
+  10598c:      	add	x2, x2, #0x18f
+  105990:      	mov	w4, #0xc                // =12
+  105994:      	ldr	w0, [x8, #0x14]
+  105998:      	mov	x5, x3
+  10599c:      	bl	0x1f45f0 <__android_log_print@plt>
+  1059a0:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1059a4:      	ldr	x8, [x8, #0x878]
+  1059a8:      	ldr	w8, [x8]
+  1059ac:      	cmp	w8, #0x5
+  1059b0:      	b.gt	0x105964 <_Z15aicodec_set_jvmP7_JavaVM+0x48>
+  1059b4:      	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+  1059b8:      	adrp	x3, 0x7a000
+  1059bc:      	add	x3, x3, #0x544
+  1059c0:      	ldr	x8, [x8, #0x880]
+  1059c4:      	adrp	x1, 0x6a000
+  1059c8:      	add	x1, x1, #0xb57
+  1059cc:      	mov	w0, #0x5                // =5
+  1059d0:      	mov	w4, #0xc                // =12
+  1059d4:      	mov	x5, x3
+  1059d8:      	ldr	x2, [x8, #0x28]
+  1059dc:      	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+  1059e0:      	mov	w0, #-0x1               // =-1
+  1059e4:      	ldp	x29, x30, [sp], #0x10
+  1059e8:      	ret

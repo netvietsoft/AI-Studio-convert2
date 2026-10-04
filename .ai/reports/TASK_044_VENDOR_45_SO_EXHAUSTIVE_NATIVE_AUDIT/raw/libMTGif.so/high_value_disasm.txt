@@ -1,0 +1,229 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000e204 <JNI_OnLoad>:
+    e204:      	sub	sp, sp, #0x40
+    e208:      	stp	x29, x30, [sp, #0x10]
+    e20c:      	str	x21, [sp, #0x20]
+    e210:      	stp	x20, x19, [sp, #0x30]
+    e214:      	add	x29, sp, #0x10
+    e218:      	mrs	x21, TPIDR_EL0
+    e21c:      	mov	w2, #0x6                // =6
+    e220:      	mov	w19, #0x6               // =6
+    e224:      	ldr	x8, [x21, #0x28]
+    e228:      	mov	x1, sp
+    e22c:      	movk	w2, #0x1, lsl #16
+    e230:      	movk	w19, #0x1, lsl #16
+    e234:      	str	x8, [sp, #0x8]
+    e238:      	ldr	x8, [x0]
+    e23c:      	str	xzr, [sp]
+    e240:      	ldr	x8, [x8, #0x30]
+    e244:      	blr	x8
+    e248:      	cbz	w0, 0xe278 <JNI_OnLoad+0x74>
+    e24c:      	mov	w19, #-0x1              // =-1
+    e250:      	ldr	x8, [x21, #0x28]
+    e254:      	ldr	x9, [sp, #0x8]
+    e258:      	cmp	x8, x9
+    e25c:      	b.ne	0xe2c4 <JNI_OnLoad+0xc0>
+    e260:      	mov	w0, w19
+    e264:      	ldp	x20, x19, [sp, #0x30]
+    e268:      	ldr	x21, [sp, #0x20]
+    e26c:      	ldp	x29, x30, [sp, #0x10]
+    e270:      	add	sp, sp, #0x40
+    e274:      	ret
+    e278:      	ldr	x20, [sp]
+    e27c:      	cbz	x20, 0xe24c <JNI_OnLoad+0x48>
+    e280:      	ldr	x8, [x20]
+    e284:      	nop
+    e288:      	adr	x1, 0x606b
+    e28c:      	mov	x0, x20
+    e290:      	ldr	x8, [x8, #0x30]
+    e294:      	blr	x8
+    e298:      	cbz	x0, 0xe24c <JNI_OnLoad+0x48>
+    e29c:      	ldr	x8, [x20]
+    e2a0:      	mov	x1, x0
+    e2a4:      	nop
+    e2a8:      	adr	x2, 0x1bce8 <_ZN13FormatConvert18VideoFormatTranser18MaxFrameBufferSizeE+0xc>
+    e2ac:      	mov	x0, x20
+    e2b0:      	mov	w3, #0x1                // =1
+    e2b4:      	ldr	x8, [x8, #0x6b8]
+    e2b8:      	blr	x8
+    e2bc:      	tbz	w0, #0x1f, 0xe250 <JNI_OnLoad+0x4c>
+    e2c0:      	b	0xe24c <JNI_OnLoad+0x48>
+    e2c4:      	bl	0x12bc0 <__stack_chk_fail@plt>
+
+--- FUNCTION: JNI_OnUnload ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000e330 <JNI_OnUnload>:
+    e330:      	sub	sp, sp, #0x30
+    e334:      	stp	x29, x30, [sp, #0x10]
+    e338:      	str	x19, [sp, #0x20]
+    e33c:      	add	x29, sp, #0x10
+    e340:      	mrs	x19, TPIDR_EL0
+    e344:      	mov	w2, #0x6                // =6
+    e348:      	mov	x1, sp
+    e34c:      	ldr	x8, [x19, #0x28]
+    e350:      	movk	w2, #0x1, lsl #16
+    e354:      	str	x8, [sp, #0x8]
+    e358:      	ldr	x8, [x0]
+    e35c:      	str	xzr, [sp]
+    e360:      	ldr	x8, [x8, #0x30]
+    e364:      	blr	x8
+    e368:      	ldr	x8, [x19, #0x28]
+    e36c:      	ldr	x9, [sp, #0x8]
+    e370:      	cmp	x8, x9
+    e374:      	b.ne	0xe388 <JNI_OnUnload+0x58>
+    e378:      	ldp	x29, x30, [sp, #0x10]
+    e37c:      	ldr	x19, [sp, #0x20]
+    e380:      	add	sp, sp, #0x30
+    e384:      	ret
+    e388:      	bl	0x12bc0 <__stack_chk_fail@plt>
+
+--- FUNCTION: _Z18registerJNIMethodsP7_JNIEnvPv ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000e2c8 <_Z18registerJNIMethodsP7_JNIEnvPv>:
+    e2c8:      	stp	x29, x30, [sp, #-0x20]!
+    e2cc:      	str	x19, [sp, #0x10]
+    e2d0:      	mov	x29, sp
+    e2d4:      	ldr	x8, [x0]
+    e2d8:      	nop
+    e2dc:      	adr	x1, 0x606b
+    e2e0:      	mov	x19, x0
+    e2e4:      	ldr	x8, [x8, #0x30]
+    e2e8:      	blr	x8
+    e2ec:      	cbz	x0, 0xe320 <_Z18registerJNIMethodsP7_JNIEnvPv+0x58>
+    e2f0:      	ldr	x8, [x19]
+    e2f4:      	mov	x1, x0
+    e2f8:      	nop
+    e2fc:      	adr	x2, 0x1bce8 <_ZN13FormatConvert18VideoFormatTranser18MaxFrameBufferSizeE+0xc>
+    e300:      	mov	x0, x19
+    e304:      	mov	w3, #0x1                // =1
+    e308:      	ldr	x8, [x8, #0x6b8]
+    e30c:      	blr	x8
+    e310:      	asr	w0, w0, #31
+    e314:      	ldr	x19, [sp, #0x10]
+    e318:      	ldp	x29, x30, [sp], #0x20
+    e31c:      	ret
+    e320:      	mov	w0, #-0x1               // =-1
+    e324:      	ldr	x19, [sp, #0x10]
+    e328:      	ldp	x29, x30, [sp], #0x20
+    e32c:      	ret
+
+--- FUNCTION: _ZN10CQuantizer10CreateNodeEjjPjPP5_NODE ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000c698 <_ZN10CQuantizer10CreateNodeEjjPjPP5_NODE>:
+    c698:      	stp	x29, x30, [sp, #-0x30]!
+    c69c:      	stp	x22, x21, [sp, #0x10]
+    c6a0:      	stp	x20, x19, [sp, #0x20]
+    c6a4:      	mov	x29, sp
+    c6a8:      	mov	w21, w1
+    c6ac:      	mov	w0, #0x1                // =1
+    c6b0:      	mov	w1, #0x60               // =96
+    c6b4:      	mov	x19, x4
+    c6b8:      	mov	x20, x3
+    c6bc:      	mov	w22, w2
+    c6c0:      	bl	0x13240 <calloc@plt>
+    c6c4:      	cbz	x0, 0xc6e4 <_ZN10CQuantizer10CreateNodeEjjPjPP5_NODE+0x4c>
+    c6c8:      	cmp	w21, w22
+    c6cc:      	cset	w8, eq
+    c6d0:      	strb	w8, [x0]
+    c6d4:      	b.ne	0xc6f4 <_ZN10CQuantizer10CreateNodeEjjPjPP5_NODE+0x5c>
+    c6d8:      	ldr	w8, [x20]
+    c6dc:      	add	w8, w8, #0x1
+    c6e0:      	str	w8, [x20]
+    c6e4:      	ldp	x20, x19, [sp, #0x20]
+    c6e8:      	ldp	x22, x21, [sp, #0x10]
+    c6ec:      	ldp	x29, x30, [sp], #0x30
+    c6f0:      	ret
+    c6f4:      	ubfiz	x8, x21, #3, #32
+    c6f8:      	ldr	x9, [x19, x8]
+    c6fc:      	str	x0, [x19, x8]
+    c700:      	str	x9, [x0, #0x58]
+    c704:      	ldp	x20, x19, [sp, #0x20]
+    c708:      	ldp	x22, x21, [sp, #0x10]
+    c70c:      	ldp	x29, x30, [sp], #0x30
+    c710:      	ret
+
+--- FUNCTION: _ZN10CQuantizer10DeleteTreeEPP5_NODE ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000bfa4 <_ZN10CQuantizer10DeleteTreeEPP5_NODE>:
+    bfa4:      	stp	x29, x30, [sp, #-0x20]!
+    bfa8:      	stp	x20, x19, [sp, #0x10]
+    bfac:      	mov	x29, sp
+    bfb0:      	ldr	x8, [x1]
+    bfb4:      	mov	x19, x1
+    bfb8:      	mov	x20, x0
+    bfbc:      	mov	x1, x8
+    bfc0:      	ldr	x9, [x1, #0x18]!
+    bfc4:      	cbz	x9, 0xbfd4 <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0x30>
+    bfc8:      	mov	x0, x20
+    bfcc:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    bfd0:      	ldr	x8, [x19]
+    bfd4:      	mov	x1, x8
+    bfd8:      	ldr	x9, [x1, #0x20]!
+    bfdc:      	cbz	x9, 0xbfec <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0x48>
+    bfe0:      	mov	x0, x20
+    bfe4:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    bfe8:      	ldr	x8, [x19]
+    bfec:      	mov	x1, x8
+    bff0:      	ldr	x9, [x1, #0x28]!
+    bff4:      	cbz	x9, 0xc004 <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0x60>
+    bff8:      	mov	x0, x20
+    bffc:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c000:      	ldr	x8, [x19]
+    c004:      	mov	x1, x8
+    c008:      	ldr	x9, [x1, #0x30]!
+    c00c:      	cbz	x9, 0xc01c <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0x78>
+    c010:      	mov	x0, x20
+    c014:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c018:      	ldr	x8, [x19]
+    c01c:      	mov	x1, x8
+    c020:      	ldr	x9, [x1, #0x38]!
+    c024:      	cbz	x9, 0xc034 <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0x90>
+    c028:      	mov	x0, x20
+    c02c:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c030:      	ldr	x8, [x19]
+    c034:      	mov	x1, x8
+    c038:      	ldr	x9, [x1, #0x40]!
+    c03c:      	cbz	x9, 0xc04c <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0xa8>
+    c040:      	mov	x0, x20
+    c044:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c048:      	ldr	x8, [x19]
+    c04c:      	mov	x1, x8
+    c050:      	ldr	x9, [x1, #0x48]!
+    c054:      	cbz	x9, 0xc064 <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0xc0>
+    c058:      	mov	x0, x20
+    c05c:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c060:      	ldr	x8, [x19]
+    c064:      	mov	x1, x8
+    c068:      	ldr	x9, [x1, #0x50]!
+    c06c:      	cbz	x9, 0xc07c <_ZN10CQuantizer10DeleteTreeEPP5_NODE+0xd8>
+    c070:      	mov	x0, x20
+    c074:      	bl	0x13220 <_ZN10CQuantizer10DeleteTreeEPP5_NODE@plt>
+    c078:      	ldr	x8, [x19]
+    c07c:      	mov	x0, x8
+    c080:      	bl	0x12f40 <free@plt>
+    c084:      	str	xzr, [x19]
+    c088:      	ldp	x20, x19, [sp, #0x10]
+    c08c:      	ldp	x29, x30, [sp], #0x20
+    c090:      	ret

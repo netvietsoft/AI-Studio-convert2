@@ -1,0 +1,1625 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000014708 <JNI_OnLoad>:
+   14708:      	sub	sp, sp, #0x40
+   1470c:      	stp	x22, x21, [sp, #0x10]
+   14710:      	stp	x20, x19, [sp, #0x20]
+   14714:      	stp	x29, x30, [sp, #0x30]
+   14718:      	add	x29, sp, #0x30
+   1471c:      	mrs	x20, TPIDR_EL0
+   14720:      	ldr	x8, [x20, #0x28]
+   14724:      	mov	w2, #0x4                // =4
+   14728:      	mov	w21, #0x4               // =4
+   1472c:      	mov	x1, sp
+   14730:      	str	x8, [sp, #0x8]
+   14734:      	ldr	x8, [x0]
+   14738:      	movk	w2, #0x1, lsl #16
+   1473c:      	movk	w21, #0x1, lsl #16
+   14740:      	ldr	x8, [x8, #0x30]
+   14744:      	blr	x8
+   14748:      	cbnz	w0, 0x14758 <JNI_OnLoad+0x50>
+   1474c:      	ldr	x0, [sp]
+   14750:      	bl	0x145c8 <.text+0x1d38>
+   14754:      	cbz	w0, 0x14780 <JNI_OnLoad+0x78>
+   14758:      	mov	w0, #-0x1               // =-1
+   1475c:      	ldr	x8, [x20, #0x28]
+   14760:      	ldr	x9, [sp, #0x8]
+   14764:      	cmp	x8, x9
+   14768:      	b.ne	0x1482c <JNI_OnLoad+0x124>
+   1476c:      	ldp	x29, x30, [sp, #0x30]
+   14770:      	ldp	x20, x19, [sp, #0x20]
+   14774:      	ldp	x22, x21, [sp, #0x10]
+   14778:      	add	sp, sp, #0x40
+   1477c:      	ret
+   14780:      	ldr	x19, [sp]
+   14784:      	adrp	x1, 0x52000 <__cxa_demangle+0x1456c>
+   14788:      	add	x1, x1, #0x3e5
+   1478c:      	mov	x0, x19
+   14790:      	bl	0x12a84 <.text+0x1f4>
+   14794:      	adrp	x22, 0x68000
+   14798:      	str	x0, [x22, #0x1d0]
+   1479c:      	cbz	x0, 0x14758 <JNI_OnLoad+0x50>
+   147a0:      	ldr	x8, [x19]
+   147a4:      	adrp	x2, 0x52000 <__cxa_demangle+0x1456c>
+   147a8:      	adrp	x3, 0x52000 <__cxa_demangle+0x1456c>
+   147ac:      	mov	x1, x0
+   147b0:      	ldr	x8, [x8, #0x388]
+   147b4:      	add	x2, x2, #0x41b
+   147b8:      	add	x3, x3, #0x428
+   147bc:      	mov	x0, x19
+   147c0:      	blr	x8
+   147c4:      	adrp	x8, 0x68000
+   147c8:      	str	x0, [x8, #0x1d8]
+   147cc:      	cbz	x0, 0x14758 <JNI_OnLoad+0x50>
+   147d0:      	ldr	x8, [x19]
+   147d4:      	ldr	x1, [x22, #0x1d0]
+   147d8:      	adrp	x2, 0x52000 <__cxa_demangle+0x1456c>
+   147dc:      	adrp	x3, 0x52000 <__cxa_demangle+0x1456c>
+   147e0:      	ldr	x8, [x8, #0x388]
+   147e4:      	add	x2, x2, #0x46e
+   147e8:      	add	x3, x3, #0x47f
+   147ec:      	mov	x0, x19
+   147f0:      	blr	x8
+   147f4:      	adrp	x8, 0x68000
+   147f8:      	str	x0, [x8, #0x1e0]
+   147fc:      	cbz	x0, 0x14758 <JNI_OnLoad+0x50>
+   14800:      	ldr	x8, [x19]
+   14804:      	ldr	x1, [x22, #0x1d0]
+   14808:      	adrp	x2, 0x68000
+   1480c:      	add	x2, x2, #0xc0
+   14810:      	ldr	x8, [x8, #0x6b8]
+   14814:      	mov	w3, #0x2                // =2
+   14818:      	mov	x0, x19
+   1481c:      	blr	x8
+   14820:      	cmp	w0, #0x0
+   14824:      	csinv	w0, w21, wzr, eq
+   14828:      	b	0x1475c <JNI_OnLoad+0x54>
+   1482c:      	bl	0x12310 <__stack_chk_fail@plt>
+   14830:      	str	x19, [sp, #-0x20]!
+   14834:      	stp	x29, x30, [sp, #0x10]
+   14838:      	add	x29, sp, #0x10
+   1483c:      	mov	x19, x0
+   14840:      	ldr	x0, [x0, #0x18]
+   14844:      	adrp	x8, 0x64000
+   14848:      	add	x8, x8, #0x8e8
+   1484c:      	str	x8, [x19]
+   14850:      	cbz	x0, 0x1485c <JNI_OnLoad+0x154>
+   14854:      	str	x0, [x19, #0x20]
+   14858:      	bl	0x14e48 <JNI_OnLoad+0x740>
+   1485c:      	ldr	x0, [x19, #0x8]
+   14860:      	str	xzr, [x19, #0x8]
+   14864:      	cbz	x0, 0x14878 <JNI_OnLoad+0x170>
+   14868:      	ldr	x1, [x19, #0x10]
+   1486c:      	ldp	x29, x30, [sp, #0x10]
+   14870:      	ldr	x19, [sp], #0x20
+   14874:      	br	x1
+   14878:      	ldp	x29, x30, [sp, #0x10]
+   1487c:      	ldr	x19, [sp], #0x20
+   14880:      	ret
+   14884:      	str	x19, [sp, #-0x20]!
+   14888:      	stp	x29, x30, [sp, #0x10]
+   1488c:      	add	x29, sp, #0x10
+   14890:      	mov	x19, x0
+   14894:      	ldr	x0, [x0, #0x18]
+   14898:      	adrp	x8, 0x64000
+   1489c:      	add	x8, x8, #0x8e8
+   148a0:      	str	x8, [x19]
+   148a4:      	cbz	x0, 0x148b0 <JNI_OnLoad+0x1a8>
+   148a8:      	str	x0, [x19, #0x20]
+   148ac:      	bl	0x14e48 <JNI_OnLoad+0x740>
+   148b0:      	ldr	x0, [x19, #0x8]
+   148b4:      	str	xzr, [x19, #0x8]
+   148b8:      	cbz	x0, 0x148c4 <JNI_OnLoad+0x1bc>
+   148bc:      	ldr	x8, [x19, #0x10]
+   148c0:      	blr	x8
+   148c4:      	ldp	x29, x30, [sp, #0x10]
+   148c8:      	mov	x0, x19
+   148cc:      	ldr	x19, [sp], #0x20
+   148d0:      	b	0x14e48 <JNI_OnLoad+0x740>
+   148d4:      	sub	sp, sp, #0x120
+   148d8:      	stp	x28, x19, [sp, #0x100]
+   148dc:      	stp	x29, x30, [sp, #0x110]
+   148e0:      	add	x29, sp, #0x110
+   148e4:      	stp	x3, x4, [sp, #0x88]
+   148e8:      	stp	x5, x6, [sp, #0x98]
+   148ec:      	str	x7, [sp, #0xa8]
+   148f0:      	stp	q0, q1, [sp]
+   148f4:      	stp	q2, q3, [sp, #0x20]
+   148f8:      	stp	q4, q5, [sp, #0x40]
+   148fc:      	stp	q6, q7, [sp, #0x60]
+   14900:      	mrs	x19, TPIDR_EL0
+   14904:      	ldr	x11, [x19, #0x28]
+   14908:      	mov	x8, #-0x28              // =-40
+   1490c:      	mov	x9, sp
+   14910:      	add	x10, sp, #0x88
+   14914:      	movk	x8, #0xff80, lsl #32
+   14918:      	add	x12, x29, #0x10
+   1491c:      	add	x9, x9, #0x80
+   14920:      	add	x10, x10, #0x28
+   14924:      	stur	x11, [x29, #-0x18]
+   14928:      	stp	x9, x8, [x29, #-0x28]
+   1492c:      	stp	x12, x10, [x29, #-0x38]
+   14930:      	ldr	x8, [x0]
+   14934:      	sub	x9, x29, #0x38
+   14938:      	ldp	q1, q0, [x9]
+   1493c:      	sub	x3, x29, #0x60
+   14940:      	ldr	x8, [x8, #0x3b0]
+   14944:      	stp	q1, q0, [x29, #-0x60]
+   14948:      	blr	x8
+   1494c:      	ldr	x8, [x19, #0x28]
+   14950:      	ldur	x9, [x29, #-0x18]
+   14954:      	cmp	x8, x9
+   14958:      	b.ne	0x1496c <JNI_OnLoad+0x264>
+   1495c:      	ldp	x29, x30, [sp, #0x110]
+   14960:      	ldp	x28, x19, [sp, #0x100]
+   14964:      	add	sp, sp, #0x120
+   14968:      	ret
+   1496c:      	bl	0x12310 <__stack_chk_fail@plt>
+   14970:      	sub	sp, sp, #0x120
+   14974:      	stp	x28, x19, [sp, #0x100]
+   14978:      	stp	x29, x30, [sp, #0x110]
+   1497c:      	add	x29, sp, #0x110
+   14980:      	stp	x3, x4, [sp, #0x88]
+   14984:      	stp	x5, x6, [sp, #0x98]
+   14988:      	str	x7, [sp, #0xa8]
+   1498c:      	stp	q0, q1, [sp]
+   14990:      	stp	q2, q3, [sp, #0x20]
+   14994:      	stp	q4, q5, [sp, #0x40]
+   14998:      	stp	q6, q7, [sp, #0x60]
+   1499c:      	mrs	x19, TPIDR_EL0
+   149a0:      	ldr	x11, [x19, #0x28]
+   149a4:      	mov	x8, #-0x28              // =-40
+   149a8:      	mov	x9, sp
+   149ac:      	add	x10, sp, #0x88
+   149b0:      	movk	x8, #0xff80, lsl #32
+   149b4:      	add	x12, x29, #0x10
+   149b8:      	add	x9, x9, #0x80
+   149bc:      	add	x10, x10, #0x28
+   149c0:      	stur	x11, [x29, #-0x18]
+   149c4:      	stp	x9, x8, [x29, #-0x28]
+   149c8:      	stp	x12, x10, [x29, #-0x38]
+   149cc:      	ldr	x8, [x0]
+   149d0:      	sub	x9, x29, #0x38
+   149d4:      	ldp	q1, q0, [x9]
+   149d8:      	sub	x3, x29, #0x60
+   149dc:      	ldr	x8, [x8, #0x398]
+   149e0:      	stp	q1, q0, [x29, #-0x60]
+   149e4:      	blr	x8
+   149e8:      	ldr	x8, [x19, #0x28]
+   149ec:      	ldur	x9, [x29, #-0x18]
+   149f0:      	cmp	x8, x9
+   149f4:      	b.ne	0x14a08 <JNI_OnLoad+0x300>
+   149f8:      	ldp	x29, x30, [sp, #0x110]
+   149fc:      	ldp	x28, x19, [sp, #0x100]
+   14a00:      	add	sp, sp, #0x120
+   14a04:      	ret
+   14a08:      	bl	0x12310 <__stack_chk_fail@plt>
+   14a0c:      	sub	sp, sp, #0x50
+   14a10:      	str	d8, [sp, #0x20]
+   14a14:      	str	x21, [sp, #0x28]
+   14a18:      	stp	x20, x19, [sp, #0x30]
+   14a1c:      	stp	x29, x30, [sp, #0x40]
+   14a20:      	add	x29, sp, #0x40
+   14a24:      	mov	x1, x2
+   14a28:      	add	x8, sp, #0x8
+   14a2c:      	mov	x2, x4
+   14a30:      	mov	v8.16b, v0.16b
+   14a34:      	mov	x20, x3
+   14a38:      	mov	x21, x0
+   14a3c:      	bl	0x13d74 <.text+0x14e4>
+   14a40:      	ldp	x19, x8, [sp, #0x8]
+   14a44:      	cmp	x19, x8
+   14a48:      	b.eq	0x14a94 <JNI_OnLoad+0x38c>
+   14a4c:      	sub	w2, w8, w19
+   14a50:      	mov	x0, x21
+   14a54:      	mov	x1, x19
+   14a58:      	mov	x3, x20
+   14a5c:      	mov	v0.16b, v8.16b
+   14a60:      	bl	0x14360 <.text+0x1ad0>
+   14a64:      	mov	x20, x0
+   14a68:      	cbz	x19, 0x14a78 <JNI_OnLoad+0x370>
+   14a6c:      	mov	x0, x19
+   14a70:      	str	x19, [sp, #0x10]
+   14a74:      	bl	0x14e48 <JNI_OnLoad+0x740>
+   14a78:      	mov	x0, x20
+   14a7c:      	ldp	x29, x30, [sp, #0x40]
+   14a80:      	ldp	x20, x19, [sp, #0x30]
+   14a84:      	ldr	x21, [sp, #0x28]
+   14a88:      	ldr	d8, [sp, #0x20]
+   14a8c:      	add	sp, sp, #0x50
+   14a90:      	ret
+   14a94:      	mov	x20, xzr
+   14a98:      	cbnz	x19, 0x14a6c <JNI_OnLoad+0x364>
+   14a9c:      	b	0x14a78 <JNI_OnLoad+0x370>
+   14aa0:      	str	d8, [sp, #-0x50]!
+   14aa4:      	str	x25, [sp, #0x8]
+   14aa8:      	stp	x24, x23, [sp, #0x10]
+   14aac:      	stp	x22, x21, [sp, #0x20]
+   14ab0:      	stp	x20, x19, [sp, #0x30]
+   14ab4:      	stp	x29, x30, [sp, #0x40]
+   14ab8:      	add	x29, sp, #0x40
+   14abc:      	ldr	x8, [x0]
+   14ac0:      	mov	x20, x2
+   14ac4:      	mov	x1, x2
+   14ac8:      	mov	x2, xzr
+   14acc:      	ldr	x8, [x8, #0x5c0]
+   14ad0:      	mov	x25, x6
+   14ad4:      	mov	v8.16b, v0.16b
+   14ad8:      	mov	x21, x5
+   14adc:      	mov	w22, w4
+   14ae0:      	mov	w24, w3
+   14ae4:      	mov	x19, x0
+   14ae8:      	blr	x8
+   14aec:      	ldr	x8, [x19]
+   14af0:      	mov	x23, x0
+   14af4:      	mov	x0, x19
+   14af8:      	ldr	x8, [x8, #0x720]
+   14afc:      	blr	x8
+   14b00:      	and	w8, w0, #0xff
+   14b04:      	cmp	w8, #0x1
+   14b08:      	b.ne	0x14b3c <JNI_OnLoad+0x434>
+   14b0c:      	ldr	x8, [x19]
+   14b10:      	mov	w3, #0x2                // =2
+   14b14:      	mov	x0, x19
+   14b18:      	mov	x1, x25
+   14b1c:      	ldr	x8, [x8, #0x600]
+   14b20:      	mov	x2, x23
+   14b24:      	blr	x8
+   14b28:      	ldr	x8, [x19]
+   14b2c:      	mov	x0, x19
+   14b30:      	ldr	x8, [x8, #0x78]
+   14b34:      	blr	x8
+   14b38:      	cbnz	x0, 0x14b90 <JNI_OnLoad+0x488>
+   14b3c:      	cbz	x23, 0x14b60 <JNI_OnLoad+0x458>
+   14b40:      	ldr	x8, [x19]
+   14b44:      	mov	x0, x19
+   14b48:      	mov	x1, x20
+   14b4c:      	add	w25, w22, w24
+   14b50:      	ldr	x8, [x8, #0x558]
+   14b54:      	blr	x8
+   14b58:      	cmp	w25, w0
+   14b5c:      	b.le	0x14b98 <JNI_OnLoad+0x490>
+   14b60:      	ldr	x8, [x19]
+   14b64:      	mov	w3, #0x2                // =2
+   14b68:      	mov	x0, x19
+   14b6c:      	mov	x1, x20
+   14b70:      	ldr	x8, [x8, #0x600]
+   14b74:      	mov	x2, x23
+   14b78:      	blr	x8
+   14b7c:      	ldr	x8, [x19]
+   14b80:      	mov	x0, x19
+   14b84:      	ldr	x8, [x8, #0x78]
+   14b88:      	blr	x8
+   14b8c:      	cbz	x0, 0x14b98 <JNI_OnLoad+0x490>
+   14b90:      	mov	x0, xzr
+   14b94:      	b	0x14be8 <JNI_OnLoad+0x4e0>
+   14b98:      	add	x1, x23, w24, sxtw
+   14b9c:      	mov	x0, x19
+   14ba0:      	mov	w2, w22
+   14ba4:      	mov	x3, x21
+   14ba8:      	mov	v0.16b, v8.16b
+   14bac:      	bl	0x14360 <.text+0x1ad0>
+   14bb0:      	ldr	x8, [x19]
+   14bb4:      	mov	x21, x0
+   14bb8:      	mov	w3, #0x2                // =2
+   14bbc:      	mov	x0, x19
+   14bc0:      	ldr	x8, [x8, #0x600]
+   14bc4:      	mov	x1, x20
+   14bc8:      	mov	x2, x23
+   14bcc:      	blr	x8
+   14bd0:      	ldr	x8, [x19]
+   14bd4:      	mov	x0, x19
+   14bd8:      	ldr	x8, [x8, #0x78]
+   14bdc:      	blr	x8
+   14be0:      	cmp	x0, #0x0
+   14be4:      	csel	x0, x21, xzr, eq
+   14be8:      	ldp	x29, x30, [sp, #0x40]
+   14bec:      	ldp	x20, x19, [sp, #0x30]
+   14bf0:      	ldp	x22, x21, [sp, #0x20]
+   14bf4:      	ldp	x24, x23, [sp, #0x10]
+   14bf8:      	ldr	x25, [sp, #0x8]
+   14bfc:      	ldr	d8, [sp], #0x50
+   14c00:      	ret
+   14c04:      	stp	x26, x25, [sp, #-0x50]!
+   14c08:      	stp	x24, x23, [sp, #0x10]
+   14c0c:      	stp	x22, x21, [sp, #0x20]
+   14c10:      	stp	x20, x19, [sp, #0x30]
+   14c14:      	stp	x29, x30, [sp, #0x40]
+   14c18:      	add	x29, sp, #0x40
+   14c1c:      	ldr	x8, [x0, #0x10]
+   14c20:      	ldr	x23, [x0]
+   14c24:      	sub	x21, x2, x1
+   14c28:      	asr	x25, x21, #2
+   14c2c:      	mov	x20, x1
+   14c30:      	sub	x9, x8, x23
+   14c34:      	mov	x19, x0
+   14c38:      	cmp	x25, x9, asr #2
+   14c3c:      	b.ls	0x14c8c <JNI_OnLoad+0x584>
+   14c40:      	cbz	x23, 0x14c5c <JNI_OnLoad+0x554>
+   14c44:      	mov	x0, x23
+   14c48:      	str	x23, [x19, #0x8]
+   14c4c:      	bl	0x14e48 <JNI_OnLoad+0x740>
+   14c50:      	mov	x8, xzr
+   14c54:      	stp	xzr, xzr, [x19]
+   14c58:      	str	xzr, [x19, #0x10]
+   14c5c:      	lsr	x9, x25, #62
+   14c60:      	cbnz	x9, 0x14c88 <JNI_OnLoad+0x580>
+   14c64:      	mov	x9, #0x1ffffffffffffffe // =2305843009213693950
+   14c68:      	cmp	x9, x8, asr #2
+   14c6c:      	b.lo	0x14d04 <JNI_OnLoad+0x5fc>
+   14c70:      	asr	x8, x8, #1
+   14c74:      	cmp	x8, x25
+   14c78:      	b.lo	0x14d08 <JNI_OnLoad+0x600>
+   14c7c:      	lsr	x9, x8, #62
+   14c80:      	mov	x25, x8
+   14c84:      	cbz	x9, 0x14d08 <JNI_OnLoad+0x600>
+   14c88:      	bl	0x120e0 <abort@plt>
+   14c8c:      	ldr	x8, [x19, #0x8]
+   14c90:      	mov	x22, x2
+   14c94:      	sub	x8, x8, x23
+   14c98:      	asr	x26, x8, #2
+   14c9c:      	add	x8, x20, x8
+   14ca0:      	cmp	x25, x26
+   14ca4:      	csel	x21, x8, x2, hi
+   14ca8:      	subs	x24, x21, x20
+   14cac:      	b.eq	0x14cc0 <JNI_OnLoad+0x5b8>
+   14cb0:      	mov	x0, x23
+   14cb4:      	mov	x1, x20
+   14cb8:      	mov	x2, x24
+   14cbc:      	bl	0x125d0 <memmove@plt>
+   14cc0:      	cmp	x25, x26
+   14cc4:      	b.ls	0x14cf4 <JNI_OnLoad+0x5ec>
+   14cc8:      	ldr	x20, [x19, #0x8]
+   14ccc:      	sub	x22, x22, x21
+   14cd0:      	cmp	x22, #0x1
+   14cd4:      	b.lt	0x14cec <JNI_OnLoad+0x5e4>
+   14cd8:      	mov	x0, x20
+   14cdc:      	mov	x1, x21
+   14ce0:      	mov	x2, x22
+   14ce4:      	bl	0x12760 <memcpy@plt>
+   14ce8:      	add	x20, x20, x22
+   14cec:      	str	x20, [x19, #0x8]
+   14cf0:      	b	0x14d44 <JNI_OnLoad+0x63c>
+   14cf4:      	asr	x8, x24, #2
+   14cf8:      	add	x8, x23, x8, lsl #2
+   14cfc:      	str	x8, [x19, #0x8]
+   14d00:      	b	0x14d44 <JNI_OnLoad+0x63c>
+   14d04:      	mov	x25, #0x3fffffffffffffff // =4611686018427387903
+   14d08:      	lsl	x23, x25, #2
+   14d0c:      	mov	x0, x23
+   14d10:      	bl	0x14de4 <JNI_OnLoad+0x6dc>
+   14d14:      	mov	x22, x0
+   14d18:      	add	x8, x0, x23
+   14d1c:      	cmp	x21, #0x1
+   14d20:      	stp	x0, x0, [x19]
+   14d24:      	str	x8, [x19, #0x10]
+   14d28:      	b.lt	0x14d40 <JNI_OnLoad+0x638>
+   14d2c:      	mov	x0, x22
+   14d30:      	mov	x1, x20
+   14d34:      	mov	x2, x21
+   14d38:      	bl	0x12760 <memcpy@plt>
+   14d3c:      	add	x22, x22, x21
+   14d40:      	str	x22, [x19, #0x8]
+   14d44:      	ldp	x29, x30, [sp, #0x40]
+   14d48:      	ldp	x20, x19, [sp, #0x30]
+   14d4c:      	ldp	x22, x21, [sp, #0x20]
+   14d50:      	ldp	x24, x23, [sp, #0x10]
+   14d54:      	ldp	x26, x25, [sp], #0x50
+   14d58:      	ret
+   14d5c:      	str	x19, [sp, #-0x20]!
+   14d60:      	stp	x29, x30, [sp, #0x10]
+   14d64:      	add	x29, sp, #0x10
+   14d68:      	mov	x19, x0
+   14d6c:      	bl	0x14d9c <JNI_OnLoad+0x694>
+   14d70:      	ldp	x29, x30, [sp, #0x10]
+   14d74:      	mov	x0, x19
+   14d78:      	ldr	x19, [sp], #0x20
+   14d7c:      	b	0x14e48 <JNI_OnLoad+0x740>
+   14d80:      	ldr	x0, [x0, #0x18]
+   14d84:      	cbz	x0, 0x14d94 <JNI_OnLoad+0x68c>
+   14d88:      	ldr	x8, [x0]
+   14d8c:      	ldr	x1, [x8, #0x8]
+   14d90:      	br	x1
+   14d94:      	ret
+   14d98:      	b	0x14e48 <JNI_OnLoad+0x740>
+   14d9c:      	ret
+   14da0:      	add	x8, x0, #0x10
+   14da4:      	ldar	x9, [x8]
+   14da8:      	cbz	x9, 0x14dc4 <JNI_OnLoad+0x6bc>
+   14dac:      	ldaxr	x9, [x8]
+   14db0:      	sub	x10, x9, #0x1
+   14db4:      	stlxr	w11, x10, [x8]
+   14db8:      	cbnz	w11, 0x14dac <JNI_OnLoad+0x6a4>
+   14dbc:      	cbz	x9, 0x14dc4 <JNI_OnLoad+0x6bc>
+   14dc0:      	ret
+   14dc4:      	ldr	x8, [x0]
+   14dc8:      	ldr	x1, [x8, #0x20]
+   14dcc:      	br	x1
+   14dd0:      	str	x30, [sp, #-0x10]!
+   14dd4:      	bl	0x12630 <__cxa_begin_catch@plt>
+   14dd8:      	bl	0x125e0 <_ZSt9terminatev@plt>
+   14ddc:      	mov	x0, xzr
+   14de0:      	ret
+   14de4:      	str	x19, [sp, #-0x20]!
+   14de8:      	stp	x29, x30, [sp, #0x10]
+   14dec:      	add	x29, sp, #0x10
+   14df0:      	cmp	x0, #0x0
+   14df4:      	csinc	x19, x0, xzr, ne
+   14df8:      	mov	x0, x19
+   14dfc:      	bl	0x12730 <malloc@plt>
+   14e00:      	cbnz	x0, 0x14e14 <JNI_OnLoad+0x70c>
+   14e04:      	bl	0x122e0 <_ZSt15get_new_handlerv@plt>
+   14e08:      	cbz	x0, 0x14e20 <JNI_OnLoad+0x718>
+   14e0c:      	blr	x0
+   14e10:      	b	0x14df8 <JNI_OnLoad+0x6f0>
+   14e14:      	ldp	x29, x30, [sp, #0x10]
+   14e18:      	ldr	x19, [sp], #0x20
+   14e1c:      	ret
+   14e20:      	mov	w0, #0x8                // =8
+   14e24:      	bl	0x12570 <__cxa_allocate_exception@plt>
+   14e28:      	mov	x19, x0
+   14e2c:      	bl	0x12640 <_ZNSt9bad_allocC1Ev@plt>
+   14e30:      	adrp	x1, 0x67000 <_ZTISt10bad_typeid+0x1918>
+   14e34:      	adrp	x2, 0x67000 <_ZTISt10bad_typeid+0x1918>
+   14e38:      	ldr	x1, [x1, #0xe50]
+   14e3c:      	ldr	x2, [x2, #0xd60]
+   14e40:      	mov	x0, x19
+   14e44:      	bl	0x11e60 <__cxa_throw@plt>
+   14e48:      	b	0x12810 <free@plt>
+
+--- FUNCTION: VP8BitReaderSetBuffer ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000003724c <VP8BitReaderSetBuffer>:
+   3724c:      	add	x8, x1, x2
+   37250:      	stp	x1, x8, [x0, #0x10]
+   37254:      	sub	x8, x8, #0x7
+   37258:      	cmp	x2, #0x7
+   3725c:      	csel	x8, x8, x1, hi
+   37260:      	str	x8, [x0, #0x20]
+   37264:      	ret
+
+--- FUNCTION: VP8CheckSignature ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001b3ac <VP8CheckSignature>:
+   1b3ac:      	cmp	x1, #0x3
+   1b3b0:      	b.lo	0x1b3dc <VP8CheckSignature+0x30>
+   1b3b4:      	ldrb	w8, [x0]
+   1b3b8:      	cmp	w8, #0x9d
+   1b3bc:      	b.ne	0x1b3dc <VP8CheckSignature+0x30>
+   1b3c0:      	ldrb	w8, [x0, #0x1]
+   1b3c4:      	cmp	w8, #0x1
+   1b3c8:      	b.ne	0x1b3dc <VP8CheckSignature+0x30>
+   1b3cc:      	ldrb	w8, [x0, #0x2]
+   1b3d0:      	cmp	w8, #0x2a
+   1b3d4:      	cset	w0, eq
+   1b3d8:      	ret
+   1b3dc:      	mov	w0, wzr
+   1b3e0:      	ret
+
+--- FUNCTION: VP8Clear ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001b334 <VP8Clear>:
+   1b334:      	cbz	x0, 0x1b388 <VP8Clear+0x54>
+   1b338:      	stp	x20, x19, [sp, #-0x20]!
+   1b33c:      	stp	x29, x30, [sp, #0x10]
+   1b340:      	add	x29, sp, #0x10
+   1b344:      	mov	x19, x0
+   1b348:      	bl	0x12820 <WebPGetWorkerInterface@plt>
+   1b34c:      	ldr	x8, [x0, #0x28]
+   1b350:      	add	x0, x19, #0x98
+   1b354:      	blr	x8
+   1b358:      	mov	x0, x19
+   1b35c:      	bl	0x122a0 <WebPDeallocateAlphaMemory@plt>
+   1b360:      	ldr	x0, [x19, #0xb48]
+   1b364:      	add	x20, x19, #0xb48
+   1b368:      	bl	0x11f80 <WebPSafeFree@plt>
+   1b36c:      	movi	v0.2d, #0000000000000000
+   1b370:      	str	q0, [x20]
+   1b374:      	stp	q0, q0, [x19, #0x10]
+   1b378:      	str	q0, [x19, #0x30]
+   1b37c:      	str	wzr, [x19, #0x4]
+   1b380:      	ldp	x29, x30, [sp, #0x10]
+   1b384:      	ldp	x20, x19, [sp], #0x20
+   1b388:      	ret
+
+--- FUNCTION: VP8Decode ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001c2c4 <VP8Decode>:
+   1c2c4:      	str	x25, [sp, #-0x50]!
+   1c2c8:      	stp	x24, x23, [sp, #0x10]
+   1c2cc:      	stp	x22, x21, [sp, #0x20]
+   1c2d0:      	stp	x20, x19, [sp, #0x30]
+   1c2d4:      	stp	x29, x30, [sp, #0x40]
+   1c2d8:      	add	x29, sp, #0x40
+   1c2dc:      	cbz	x0, 0x1c494 <VP8Decode+0x1d0>
+   1c2e0:      	mov	x20, x1
+   1c2e4:      	mov	x19, x0
+   1c2e8:      	cbz	x1, 0x1c350 <VP8Decode+0x8c>
+   1c2ec:      	ldr	w8, [x19, #0x4]
+   1c2f0:      	cbnz	w8, 0x1c304 <VP8Decode+0x40>
+   1c2f4:      	mov	x0, x19
+   1c2f8:      	mov	x1, x20
+   1c2fc:      	bl	0x11e00 <VP8GetHeaders@plt>
+   1c300:      	cbz	w0, 0x1c494 <VP8Decode+0x1d0>
+   1c304:      	mov	x0, x19
+   1c308:      	mov	x1, x20
+   1c30c:      	bl	0x11eb0 <VP8EnterCritical@plt>
+   1c310:      	cbz	w0, 0x1c360 <VP8Decode+0x9c>
+   1c314:      	bl	0x12820 <WebPGetWorkerInterface@plt>
+   1c318:      	ldr	x8, [x0, #0x28]
+   1c31c:      	add	x0, x19, #0x98
+   1c320:      	blr	x8
+   1c324:      	mov	x0, x19
+   1c328:      	bl	0x122a0 <WebPDeallocateAlphaMemory@plt>
+   1c32c:      	ldr	x0, [x19, #0xb48]
+   1c330:      	add	x20, x19, #0xb48
+   1c334:      	bl	0x11f80 <WebPSafeFree@plt>
+   1c338:      	movi	v0.2d, #0000000000000000
+   1c33c:      	mov	w0, wzr
+   1c340:      	str	q0, [x20]
+   1c344:      	stp	q0, q0, [x19, #0x10]
+   1c348:      	str	q0, [x19, #0x30]
+   1c34c:      	b	0x1c490 <VP8Decode+0x1cc>
+   1c350:      	ldr	w8, [x19]
+   1c354:      	cbz	w8, 0x1c44c <VP8Decode+0x188>
+   1c358:      	mov	w0, wzr
+   1c35c:      	b	0x1c494 <VP8Decode+0x1d0>
+   1c360:      	mov	x0, x19
+   1c364:      	mov	x1, x20
+   1c368:      	bl	0x11f60 <VP8InitFrame@plt>
+   1c36c:      	cbz	w0, 0x1c474 <VP8Decode+0x1b0>
+   1c370:      	ldr	w8, [x19, #0x1ac]
+   1c374:      	str	wzr, [x19, #0xb5c]
+   1c378:      	cmp	w8, #0x1
+   1c37c:      	b.lt	0x1c424 <VP8Decode+0x160>
+   1c380:      	mov	w22, wzr
+   1c384:      	add	x21, x19, #0x10
+   1c388:      	add	x23, x19, #0xb00
+   1c38c:      	mov	w24, #0x30              // =48
+   1c390:      	ldr	w25, [x19, #0x1b0]
+   1c394:      	mov	x0, x21
+   1c398:      	mov	x1, x19
+   1c39c:      	bl	0x12320 <VP8ParseIntraModeRow@plt>
+   1c3a0:      	cbz	w0, 0x1c4cc <VP8Decode+0x208>
+   1c3a4:      	ldr	w8, [x19, #0xb58]
+   1c3a8:      	ldr	w9, [x19, #0x198]
+   1c3ac:      	cmp	w8, w9
+   1c3b0:      	b.ge	0x1c3ec <VP8Decode+0x128>
+   1c3b4:      	mov	w8, w22
+   1c3b8:      	and	x8, x25, x8
+   1c3bc:      	madd	x8, x8, x24, x19
+   1c3c0:      	add	x22, x8, #0x1b8
+   1c3c4:      	mov	x0, x19
+   1c3c8:      	mov	x1, x22
+   1c3cc:      	bl	0x11e40 <VP8DecodeMB@plt>
+   1c3d0:      	cbz	w0, 0x1c46c <VP8Decode+0x1a8>
+   1c3d4:      	ldr	w8, [x19, #0xb58]
+   1c3d8:      	ldr	w9, [x19, #0x198]
+   1c3dc:      	add	w8, w8, #0x1
+   1c3e0:      	cmp	w8, w9
+   1c3e4:      	str	w8, [x19, #0xb58]
+   1c3e8:      	b.lt	0x1c3c4 <VP8Decode+0x100>
+   1c3ec:      	ldr	x8, [x19, #0xb10]
+   1c3f0:      	mov	x0, x19
+   1c3f4:      	mov	x1, x20
+   1c3f8:      	sturh	wzr, [x8, #-0x2]
+   1c3fc:      	str	wzr, [x23]
+   1c400:      	str	wzr, [x19, #0xb58]
+   1c404:      	bl	0x12170 <VP8ProcessRow@plt>
+   1c408:      	cbz	w0, 0x1c4ec <VP8Decode+0x228>
+   1c40c:      	ldr	w8, [x19, #0xb5c]
+   1c410:      	ldr	w9, [x19, #0x1ac]
+   1c414:      	add	w22, w8, #0x1
+   1c418:      	cmp	w22, w9
+   1c41c:      	str	w22, [x19, #0xb5c]
+   1c420:      	b.lt	0x1c390 <VP8Decode+0xcc>
+   1c424:      	ldr	w8, [x19, #0xc8]
+   1c428:      	cmp	w8, #0x1
+   1c42c:      	b.lt	0x1c444 <VP8Decode+0x180>
+   1c430:      	bl	0x12820 <WebPGetWorkerInterface@plt>
+   1c434:      	ldr	x8, [x0, #0x10]
+   1c438:      	add	x0, x19, #0x98
+   1c43c:      	blr	x8
+   1c440:      	cbz	w0, 0x1c474 <VP8Decode+0x1b0>
+   1c444:      	mov	w21, #0x1               // =1
+   1c448:      	b	0x1c478 <VP8Decode+0x1b4>
+   1c44c:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c450:      	ldr	d0, [x8, #0x798]
+   1c454:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c458:      	add	x8, x8, #0x8c1
+   1c45c:      	mov	w0, wzr
+   1c460:      	str	x8, [x19, #0x8]
+   1c464:      	str	d0, [x19]
+   1c468:      	b	0x1c494 <VP8Decode+0x1d0>
+   1c46c:      	ldr	w8, [x19]
+   1c470:      	cbz	w8, 0x1c4ac <VP8Decode+0x1e8>
+   1c474:      	mov	w21, wzr
+   1c478:      	mov	x0, x19
+   1c47c:      	mov	x1, x20
+   1c480:      	bl	0x11fe0 <VP8ExitCritical@plt>
+   1c484:      	tst	w0, w21
+   1c488:      	b.eq	0x1c314 <VP8Decode+0x50>
+   1c48c:      	mov	w0, #0x1                // =1
+   1c490:      	str	wzr, [x19, #0x4]
+   1c494:      	ldp	x29, x30, [sp, #0x40]
+   1c498:      	ldp	x20, x19, [sp, #0x30]
+   1c49c:      	ldp	x22, x21, [sp, #0x20]
+   1c4a0:      	ldp	x24, x23, [sp, #0x10]
+   1c4a4:      	ldr	x25, [sp], #0x50
+   1c4a8:      	ret
+   1c4ac:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c4b0:      	ldr	d0, [x8, #0x788]
+   1c4b4:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c4b8:      	mov	w21, wzr
+   1c4bc:      	add	x8, x8, #0x90f
+   1c4c0:      	str	x8, [x19, #0x8]
+   1c4c4:      	str	d0, [x19]
+   1c4c8:      	b	0x1c478 <VP8Decode+0x1b4>
+   1c4cc:      	ldr	w8, [x19]
+   1c4d0:      	cbnz	w8, 0x1c474 <VP8Decode+0x1b0>
+   1c4d4:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c4d8:      	ldr	d0, [x8, #0x788]
+   1c4dc:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c4e0:      	mov	w21, wzr
+   1c4e4:      	add	x8, x8, #0x8e6
+   1c4e8:      	b	0x1c4c0 <VP8Decode+0x1fc>
+   1c4ec:      	ldr	w8, [x19]
+   1c4f0:      	cbnz	w8, 0x1c474 <VP8Decode+0x1b0>
+   1c4f4:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c4f8:      	ldr	d0, [x8, #0x7a0]
+   1c4fc:      	adrp	x8, 0x52000 <__cxa_demangle+0x1456c>
+   1c500:      	mov	w21, wzr
+   1c504:      	add	x8, x8, #0x932
+   1c508:      	b	0x1c4c0 <VP8Decode+0x1fc>
+   1c50c:      	sub	sp, sp, #0x80
+   1c510:      	stp	x28, x27, [sp, #0x20]
+   1c514:      	stp	x26, x25, [sp, #0x30]
+   1c518:      	stp	x24, x23, [sp, #0x40]
+   1c51c:      	stp	x22, x21, [sp, #0x50]
+   1c520:      	stp	x20, x19, [sp, #0x60]
+   1c524:      	stp	x29, x30, [sp, #0x70]
+   1c528:      	add	x29, sp, #0x70
+   1c52c:      	cmp	w4, #0xf
+   1c530:      	b.gt	0x1c8a8 <VP8Decode+0x5e4>
+   1c534:      	str	x3, [sp, #0x8]
+   1c538:      	add	x11, x1, #0x8
+   1c53c:      	ldr	x9, [x1, w4, sxtw #3]
+   1c540:      	ldp	w23, w8, [x0, #0x8]
+   1c544:      	str	x11, [sp, #0x18]
+   1c548:      	adrp	x26, 0x67000 <_ZTISt10bad_typeid+0x1918>
+   1c54c:      	adrp	x27, 0x67000 <_ZTISt10bad_typeid+0x1918>
+   1c550:      	ldr	x26, [x26, #0xf50]
+   1c554:      	ldr	x27, [x27, #0xdd0]
+   1c558:      	mov	w10, #0xb               // =11
+   1c55c:      	mov	w22, w4
+   1c560:      	mov	x21, x0
+   1c564:      	mov	x28, #0x100000000       // =4294967296
+   1c568:      	smaddl	x20, w2, w10, x9
+   1c56c:      	mov	x25, x5
+   1c570:      	str	x5, [sp, #0x10]
+   1c574:      	ldrb	w19, [x20]
+   1c578:      	tbz	w8, #0x1f, 0x1c5bc <VP8Decode+0x2f8>
+   1c57c:      	ldr	x9, [x21, #0x10]
+   1c580:      	ldr	x10, [x21, #0x20]
+   1c584:      	cmp	x9, x10
+   1c588:      	b.hs	0x1c5b0 <VP8Decode+0x2ec>
+   1c58c:      	ldr	x10, [x9], #0x7
+   1c590:      	ldr	x11, [x21]
+   1c594:      	add	w8, w8, #0x38
+   1c598:      	str	w8, [x21, #0xc]
+   1c59c:      	str	x9, [x21, #0x10]
+   1c5a0:      	rev	x9, x10
+   1c5a4:      	extr	x9, x11, x9, #0x8
+   1c5a8:      	str	x9, [x21]
+   1c5ac:      	b	0x1c5bc <VP8Decode+0x2f8>
+   1c5b0:      	mov	x0, x21
+   1c5b4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1c5b8:      	ldr	w8, [x21, #0xc]
+   1c5bc:      	ldr	x9, [x21]
+   1c5c0:      	mul	w10, w23, w19
+   1c5c4:      	lsr	w24, w10, #8
+   1c5c8:      	lsr	x10, x9, x8
+   1c5cc:      	cmp	w24, w10
+   1c5d0:      	b.hs	0x1c5fc <VP8Decode+0x338>
+   1c5d4:      	mov	w10, w8
+   1c5d8:      	add	w11, w24, #0x1
+   1c5dc:      	lsl	x10, x11, x10
+   1c5e0:      	sub	w24, w23, w11
+   1c5e4:      	sub	x9, x9, x10
+   1c5e8:      	mov	w10, #0x1               // =1
+   1c5ec:      	str	x9, [x21]
+   1c5f0:      	cmp	w24, #0x7e
+   1c5f4:      	b.ls	0x1c608 <VP8Decode+0x344>
+   1c5f8:      	b	0x1c61c <VP8Decode+0x358>
+   1c5fc:      	mov	w10, wzr
+   1c600:      	cmp	w24, #0x7e
+   1c604:      	b.hi	0x1c61c <VP8Decode+0x358>
+   1c608:      	mov	w11, w24
+   1c60c:      	ldrb	w12, [x26, x11]
+   1c610:      	ldrb	w24, [x27, x11]
+   1c614:      	sub	w8, w8, w12
+   1c618:      	str	w8, [x21, #0xc]
+   1c61c:      	str	w24, [x21, #0x8]
+   1c620:      	cbz	w10, 0x1c8cc <VP8Decode+0x608>
+   1c624:      	ldr	x10, [sp, #0x18]
+   1c628:      	sbfiz	x25, x22, #32, #32
+   1c62c:      	add	x19, x10, w22, sxtw #3
+   1c630:      	ldrb	w23, [x20, #0x1]
+   1c634:      	tbz	w8, #0x1f, 0x1c678 <VP8Decode+0x3b4>
+   1c638:      	ldr	x10, [x21, #0x10]
+   1c63c:      	ldr	x11, [x21, #0x20]
+   1c640:      	cmp	x10, x11
+   1c644:      	b.hs	0x1c668 <VP8Decode+0x3a4>
+   1c648:      	ldr	x11, [x10], #0x7
+   1c64c:      	add	w8, w8, #0x38
+   1c650:      	str	w8, [x21, #0xc]
+   1c654:      	str	x10, [x21, #0x10]
+   1c658:      	rev	x10, x11
+   1c65c:      	extr	x9, x9, x10, #0x8
+   1c660:      	str	x9, [x21]
+   1c664:      	b	0x1c678 <VP8Decode+0x3b4>
+   1c668:      	mov	x0, x21
+   1c66c:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1c670:      	ldr	w8, [x21, #0xc]
+   1c674:      	ldr	x9, [x21]
+   1c678:      	mul	w10, w24, w23
+   1c67c:      	lsr	w11, w10, #8
+   1c680:      	lsr	x10, x9, x8
+   1c684:      	cmp	w11, w10
+   1c688:      	b.hs	0x1c6b4 <VP8Decode+0x3f0>
+   1c68c:      	mov	w10, w8
+   1c690:      	add	w11, w11, #0x1
+   1c694:      	lsl	x10, x11, x10
+   1c698:      	sub	w24, w24, w11
+   1c69c:      	sub	x9, x9, x10
+   1c6a0:      	mov	w10, #0x1               // =1
+   1c6a4:      	str	x9, [x21]
+   1c6a8:      	cmp	w24, #0x7e
+   1c6ac:      	b.ls	0x1c6c4 <VP8Decode+0x400>
+   1c6b0:      	b	0x1c6d8 <VP8Decode+0x414>
+   1c6b4:      	mov	w10, wzr
+   1c6b8:      	mov	w24, w11
+   1c6bc:      	cmp	w24, #0x7e
+   1c6c0:      	b.hi	0x1c6d8 <VP8Decode+0x414>
+   1c6c4:      	mov	w11, w24
+   1c6c8:      	ldrb	w12, [x26, x11]
+   1c6cc:      	ldrb	w24, [x27, x11]
+   1c6d0:      	sub	w8, w8, w12
+   1c6d4:      	str	w8, [x21, #0xc]
+   1c6d8:      	str	w24, [x21, #0x8]
+   1c6dc:      	ldr	x23, [x19]
+   1c6e0:      	cbnz	w10, 0x1c700 <VP8Decode+0x43c>
+   1c6e4:      	add	w22, w22, #0x1
+   1c6e8:      	add	x25, x25, x28
+   1c6ec:      	cmp	w22, #0x10
+   1c6f0:      	add	x19, x19, #0x8
+   1c6f4:      	mov	x20, x23
+   1c6f8:      	b.ne	0x1c630 <VP8Decode+0x36c>
+   1c6fc:      	b	0x1c8a8 <VP8Decode+0x5e4>
+   1c700:      	ldr	w10, [x21, #0xc]
+   1c704:      	ldrb	w19, [x20, #0x2]
+   1c708:      	tbz	w10, #0x1f, 0x1c74c <VP8Decode+0x488>
+   1c70c:      	ldr	x8, [x21, #0x10]
+   1c710:      	ldr	x11, [x21, #0x20]
+   1c714:      	cmp	x8, x11
+   1c718:      	b.hs	0x1c73c <VP8Decode+0x478>
+   1c71c:      	ldr	x11, [x8], #0x7
+   1c720:      	add	w10, w10, #0x38
+   1c724:      	str	w10, [x21, #0xc]
+   1c728:      	str	x8, [x21, #0x10]
+   1c72c:      	rev	x8, x11
+   1c730:      	extr	x9, x9, x8, #0x8
+   1c734:      	str	x9, [x21]
+   1c738:      	b	0x1c74c <VP8Decode+0x488>
+   1c73c:      	mov	x0, x21
+   1c740:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1c744:      	ldr	w10, [x21, #0xc]
+   1c748:      	ldr	x9, [x21]
+   1c74c:      	mul	w8, w24, w19
+   1c750:      	lsr	w8, w8, #8
+   1c754:      	lsr	x11, x9, x10
+   1c758:      	cmp	w8, w11
+   1c75c:      	b.hs	0x1c788 <VP8Decode+0x4c4>
+   1c760:      	mov	w11, w10
+   1c764:      	add	w12, w8, #0x1
+   1c768:      	lsl	x11, x12, x11
+   1c76c:      	sub	x9, x9, x11
+   1c770:      	sub	w8, w24, w12
+   1c774:      	str	x9, [x21]
+   1c778:      	mov	w9, #0x1                // =1
+   1c77c:      	cmp	w8, #0x7e
+   1c780:      	b.ls	0x1c794 <VP8Decode+0x4d0>
+   1c784:      	b	0x1c7a8 <VP8Decode+0x4e4>
+   1c788:      	mov	w9, wzr
+   1c78c:      	cmp	w8, #0x7e
+   1c790:      	b.hi	0x1c7a8 <VP8Decode+0x4e4>
+   1c794:      	mov	w8, w8
+   1c798:      	ldrb	w11, [x26, x8]
+   1c79c:      	ldrb	w8, [x27, x8]
+   1c7a0:      	sub	w10, w10, w11
+   1c7a4:      	str	w10, [x21, #0xc]
+   1c7a8:      	str	w8, [x21, #0x8]
+   1c7ac:      	cbz	w9, 0x1c7d4 <VP8Decode+0x510>
+   1c7b0:      	mov	x0, x21
+   1c7b4:      	mov	x1, x20
+   1c7b8:      	bl	0x1cc54 <VP8Decode+0x990>
+   1c7bc:      	ldr	w10, [x21, #0xc]
+   1c7c0:      	mov	w24, w0
+   1c7c4:      	add	x20, x23, #0x16
+   1c7c8:      	add	w19, w22, #0x1
+   1c7cc:      	tbz	w10, #0x1f, 0x1c824 <VP8Decode+0x560>
+   1c7d0:      	b	0x1c7e4 <VP8Decode+0x520>
+   1c7d4:      	add	x20, x23, #0xb
+   1c7d8:      	mov	w24, #0x1               // =1
+   1c7dc:      	add	w19, w22, #0x1
+   1c7e0:      	tbz	w10, #0x1f, 0x1c824 <VP8Decode+0x560>
+   1c7e4:      	ldr	x8, [x21, #0x10]
+   1c7e8:      	ldr	x9, [x21, #0x20]
+   1c7ec:      	cmp	x8, x9
+   1c7f0:      	b.hs	0x1c818 <VP8Decode+0x554>
+   1c7f4:      	ldr	x9, [x8], #0x7
+   1c7f8:      	ldr	x11, [x21]
+   1c7fc:      	add	w10, w10, #0x38
+   1c800:      	str	w10, [x21, #0xc]
+   1c804:      	str	x8, [x21, #0x10]
+   1c808:      	rev	x8, x9
+   1c80c:      	extr	x8, x11, x8, #0x8
+   1c810:      	str	x8, [x21]
+   1c814:      	b	0x1c824 <VP8Decode+0x560>
+   1c818:      	mov	x0, x21
+   1c81c:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1c820:      	ldr	w10, [x21, #0xc]
+   1c824:      	ldr	w9, [x21, #0x8]
+   1c828:      	ldr	x11, [x21]
+   1c82c:      	sub	w8, w10, #0x1
+   1c830:      	adrp	x14, 0x52000 <__cxa_demangle+0x1456c>
+   1c834:      	asr	x12, x25, #32
+   1c838:      	str	w8, [x21, #0xc]
+   1c83c:      	add	x14, x14, #0x942
+   1c840:      	ldrb	w12, [x14, x12]
+   1c844:      	lsr	x14, x9, #1
+   1c848:      	lsr	x15, x11, x10
+   1c84c:      	sub	w15, w14, w15
+   1c850:      	add	x14, x14, #0x1
+   1c854:      	asr	w15, w15, #31
+   1c858:      	add	w9, w15, w9
+   1c85c:      	and	x14, x15, x14
+   1c860:      	orr	w23, w9, #0x1
+   1c864:      	lsl	x9, x14, x10
+   1c868:      	sub	x9, x11, x9
+   1c86c:      	str	w23, [x21, #0x8]
+   1c870:      	str	x9, [x21]
+   1c874:      	ldp	x9, x25, [sp, #0x8]
+   1c878:      	cmp	w22, #0x0
+   1c87c:      	cset	w13, gt
+   1c880:      	eor	w10, w15, w24
+   1c884:      	ldr	w9, [x9, w13, uxtw #2]
+   1c888:      	sub	w10, w10, w15
+   1c88c:      	cmp	w19, #0x10
+   1c890:      	mov	w0, #0x10               // =16
+   1c894:      	mul	w9, w10, w9
+   1c898:      	mov	w22, w19
+   1c89c:      	strh	w9, [x25, x12, lsl #1]
+   1c8a0:      	b.lt	0x1c574 <VP8Decode+0x2b0>
+   1c8a4:      	b	0x1c8ac <VP8Decode+0x5e8>
+   1c8a8:      	mov	w0, #0x10               // =16
+   1c8ac:      	ldp	x29, x30, [sp, #0x70]
+   1c8b0:      	ldp	x20, x19, [sp, #0x60]
+   1c8b4:      	ldp	x22, x21, [sp, #0x50]
+   1c8b8:      	ldp	x24, x23, [sp, #0x40]
+   1c8bc:      	ldp	x26, x25, [sp, #0x30]
+   1c8c0:      	ldp	x28, x27, [sp, #0x20]
+   1c8c4:      	add	sp, sp, #0x80
+   1c8c8:      	ret
+   1c8cc:      	mov	w0, w22
+   1c8d0:      	b	0x1c8ac <VP8Decode+0x5e8>
+   1c8d4:      	sub	sp, sp, #0x70
+   1c8d8:      	stp	x28, x27, [sp, #0x10]
+   1c8dc:      	stp	x26, x25, [sp, #0x20]
+   1c8e0:      	stp	x24, x23, [sp, #0x30]
+   1c8e4:      	stp	x22, x21, [sp, #0x40]
+   1c8e8:      	stp	x20, x19, [sp, #0x50]
+   1c8ec:      	stp	x29, x30, [sp, #0x60]
+   1c8f0:      	add	x29, sp, #0x60
+   1c8f4:      	cmp	w4, #0xf
+   1c8f8:      	b.gt	0x1cc28 <VP8Decode+0x964>
+   1c8fc:      	ldr	x8, [x1, w4, sxtw #3]
+   1c900:      	ldp	w26, w9, [x0, #0x8]
+   1c904:      	mov	w10, #0xb               // =11
+   1c908:      	mov	x25, x5
+   1c90c:      	mov	w22, w4
+   1c910:      	mov	x20, x3
+   1c914:      	mov	x21, x0
+   1c918:      	add	x11, x1, #0x8
+   1c91c:      	smaddl	x19, w2, w10, x8
+   1c920:      	mov	x27, #0x100000000       // =4294967296
+   1c924:      	str	x11, [sp, #0x8]
+   1c928:      	ldrb	w23, [x19]
+   1c92c:      	tbz	w9, #0x1f, 0x1c970 <VP8Decode+0x6ac>
+   1c930:      	ldr	x8, [x21, #0x10]
+   1c934:      	ldr	x10, [x21, #0x20]
+   1c938:      	cmp	x8, x10
+   1c93c:      	b.hs	0x1c964 <VP8Decode+0x6a0>
+   1c940:      	ldr	x10, [x8], #0x7
+   1c944:      	ldr	x11, [x21]
+   1c948:      	add	w9, w9, #0x38
+   1c94c:      	str	w9, [x21, #0xc]
+   1c950:      	str	x8, [x21, #0x10]
+   1c954:      	rev	x8, x10
+   1c958:      	extr	x8, x11, x8, #0x8
+   1c95c:      	str	x8, [x21]
+   1c960:      	b	0x1c970 <VP8Decode+0x6ac>
+   1c964:      	mov	x0, x21
+   1c968:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1c96c:      	ldr	w9, [x21, #0xc]
+   1c970:      	ldr	x8, [x21]
+   1c974:      	mul	w10, w26, w23
+   1c978:      	lsr	w10, w10, #8
+   1c97c:      	lsr	x11, x8, x9
+   1c980:      	cmp	w10, w11
+   1c984:      	mov	w9, w9
+   1c988:      	b.hs	0x1c9a4 <VP8Decode+0x6e0>
+   1c98c:      	add	w13, w10, #0x1
+   1c990:      	lsl	x13, x13, x9
+   1c994:      	sub	x8, x8, x13
+   1c998:      	sub	w12, w26, w10
+   1c99c:      	str	x8, [x21]
+   1c9a0:      	b	0x1c9a8 <VP8Decode+0x6e4>
+   1c9a4:      	add	w12, w10, #0x1
+   1c9a8:      	clz	w13, w12
+   1c9ac:      	cmp	w10, w11
+   1c9b0:      	eor	w10, w13, #0x18
+   1c9b4:      	lsl	w11, w12, w10
+   1c9b8:      	sub	w9, w9, w10
+   1c9bc:      	sub	w24, w11, #0x1
+   1c9c0:      	stp	w24, w9, [x21, #0x8]
+   1c9c4:      	b.hs	0x1cc4c <VP8Decode+0x988>
+   1c9c8:      	ldr	x10, [sp, #0x8]
+   1c9cc:      	sbfiz	x28, x22, #32, #32
+   1c9d0:      	add	x26, x10, w22, sxtw #3
+   1c9d4:      	ldrb	w23, [x19, #0x1]
+   1c9d8:      	tbz	w9, #0x1f, 0x1ca40 <VP8Decode+0x77c>
+   1c9dc:      	b	0x1ca00 <VP8Decode+0x73c>
+   1c9e0:      	cmp	w22, #0xf
+   1c9e4:      	b.eq	0x1cc28 <VP8Decode+0x964>
+   1c9e8:      	add	x28, x28, x27
+   1c9ec:      	add	w22, w22, #0x1
+   1c9f0:      	add	x26, x26, #0x8
+   1c9f4:      	mov	x19, x23
+   1c9f8:      	ldrb	w23, [x19, #0x1]
+   1c9fc:      	tbz	w9, #0x1f, 0x1ca40 <VP8Decode+0x77c>
+   1ca00:      	ldr	x10, [x21, #0x10]
+   1ca04:      	ldr	x11, [x21, #0x20]
+   1ca08:      	cmp	x10, x11
+   1ca0c:      	b.hs	0x1ca30 <VP8Decode+0x76c>
+   1ca10:      	ldr	x11, [x10], #0x7
+   1ca14:      	add	w9, w9, #0x38
+   1ca18:      	str	w9, [x21, #0xc]
+   1ca1c:      	str	x10, [x21, #0x10]
+   1ca20:      	rev	x10, x11
+   1ca24:      	extr	x8, x8, x10, #0x8
+   1ca28:      	str	x8, [x21]
+   1ca2c:      	b	0x1ca40 <VP8Decode+0x77c>
+   1ca30:      	mov	x0, x21
+   1ca34:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1ca38:      	ldr	w9, [x21, #0xc]
+   1ca3c:      	ldr	x8, [x21]
+   1ca40:      	mul	w10, w24, w23
+   1ca44:      	lsr	w10, w10, #8
+   1ca48:      	lsr	x11, x8, x9
+   1ca4c:      	cmp	w10, w11
+   1ca50:      	mov	w9, w9
+   1ca54:      	b.hs	0x1ca70 <VP8Decode+0x7ac>
+   1ca58:      	add	w13, w10, #0x1
+   1ca5c:      	lsl	x13, x13, x9
+   1ca60:      	sub	x8, x8, x13
+   1ca64:      	sub	w12, w24, w10
+   1ca68:      	str	x8, [x21]
+   1ca6c:      	b	0x1ca74 <VP8Decode+0x7b0>
+   1ca70:      	add	w12, w10, #0x1
+   1ca74:      	clz	w13, w12
+   1ca78:      	eor	w13, w13, #0x18
+   1ca7c:      	lsl	w12, w12, w13
+   1ca80:      	sub	w9, w9, w13
+   1ca84:      	sub	w24, w12, #0x1
+   1ca88:      	stp	w24, w9, [x21, #0x8]
+   1ca8c:      	ldr	x23, [x26]
+   1ca90:      	cmp	w10, w11
+   1ca94:      	b.hs	0x1c9e0 <VP8Decode+0x71c>
+   1ca98:      	ldrb	w26, [x19, #0x2]
+   1ca9c:      	tbz	w9, #0x1f, 0x1cae0 <VP8Decode+0x81c>
+   1caa0:      	ldr	x10, [x21, #0x10]
+   1caa4:      	ldr	x11, [x21, #0x20]
+   1caa8:      	cmp	x10, x11
+   1caac:      	b.hs	0x1cad0 <VP8Decode+0x80c>
+   1cab0:      	ldr	x11, [x10], #0x7
+   1cab4:      	add	w9, w9, #0x38
+   1cab8:      	str	w9, [x21, #0xc]
+   1cabc:      	str	x10, [x21, #0x10]
+   1cac0:      	rev	x10, x11
+   1cac4:      	extr	x8, x8, x10, #0x8
+   1cac8:      	str	x8, [x21]
+   1cacc:      	b	0x1cae0 <VP8Decode+0x81c>
+   1cad0:      	mov	x0, x21
+   1cad4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1cad8:      	ldr	w9, [x21, #0xc]
+   1cadc:      	ldr	x8, [x21]
+   1cae0:      	mul	w10, w24, w26
+   1cae4:      	lsr	w10, w10, #8
+   1cae8:      	lsr	x11, x8, x9
+   1caec:      	cmp	w10, w11
+   1caf0:      	mov	w9, w9
+   1caf4:      	b.hs	0x1cb10 <VP8Decode+0x84c>
+   1caf8:      	add	w13, w10, #0x1
+   1cafc:      	lsl	x13, x13, x9
+   1cb00:      	sub	x8, x8, x13
+   1cb04:      	sub	w12, w24, w10
+   1cb08:      	str	x8, [x21]
+   1cb0c:      	b	0x1cb14 <VP8Decode+0x850>
+   1cb10:      	add	w12, w10, #0x1
+   1cb14:      	clz	w8, w12
+   1cb18:      	eor	w8, w8, #0x18
+   1cb1c:      	cmp	w10, w11
+   1cb20:      	lsl	w10, w12, w8
+   1cb24:      	sub	w8, w9, w8
+   1cb28:      	sub	w9, w10, #0x1
+   1cb2c:      	stp	w9, w8, [x21, #0x8]
+   1cb30:      	b.hs	0x1cb58 <VP8Decode+0x894>
+   1cb34:      	mov	x0, x21
+   1cb38:      	mov	x1, x19
+   1cb3c:      	bl	0x1cc54 <VP8Decode+0x990>
+   1cb40:      	ldr	w8, [x21, #0xc]
+   1cb44:      	mov	w24, w0
+   1cb48:      	add	x19, x23, #0x16
+   1cb4c:      	add	w23, w22, #0x1
+   1cb50:      	tbz	w8, #0x1f, 0x1cba8 <VP8Decode+0x8e4>
+   1cb54:      	b	0x1cb68 <VP8Decode+0x8a4>
+   1cb58:      	add	x19, x23, #0xb
+   1cb5c:      	mov	w24, #0x1               // =1
+   1cb60:      	add	w23, w22, #0x1
+   1cb64:      	tbz	w8, #0x1f, 0x1cba8 <VP8Decode+0x8e4>
+   1cb68:      	ldr	x9, [x21, #0x10]
+   1cb6c:      	ldr	x10, [x21, #0x20]
+   1cb70:      	cmp	x9, x10
+   1cb74:      	b.hs	0x1cb9c <VP8Decode+0x8d8>
+   1cb78:      	ldr	x10, [x9], #0x7
+   1cb7c:      	ldr	x11, [x21]
+   1cb80:      	add	w8, w8, #0x38
+   1cb84:      	str	w8, [x21, #0xc]
+   1cb88:      	str	x9, [x21, #0x10]
+   1cb8c:      	rev	x9, x10
+   1cb90:      	extr	x9, x11, x9, #0x8
+   1cb94:      	str	x9, [x21]
+   1cb98:      	b	0x1cba8 <VP8Decode+0x8e4>
+   1cb9c:      	mov	x0, x21
+   1cba0:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1cba4:      	ldr	w8, [x21, #0xc]
+   1cba8:      	ldr	w10, [x21, #0x8]
+   1cbac:      	ldr	x11, [x21]
+   1cbb0:      	sub	w9, w8, #0x1
+   1cbb4:      	adrp	x14, 0x52000 <__cxa_demangle+0x1456c>
+   1cbb8:      	asr	x12, x28, #32
+   1cbbc:      	str	w9, [x21, #0xc]
+   1cbc0:      	add	x14, x14, #0x942
+   1cbc4:      	ldrb	w12, [x14, x12]
+   1cbc8:      	lsr	x14, x10, #1
+   1cbcc:      	lsr	x15, x11, x8
+   1cbd0:      	sub	w15, w14, w15
+   1cbd4:      	add	x14, x14, #0x1
+   1cbd8:      	asr	w15, w15, #31
+   1cbdc:      	and	x14, x15, x14
+   1cbe0:      	add	w10, w15, w10
+   1cbe4:      	lsl	x8, x14, x8
+   1cbe8:      	cmp	w22, #0x0
+   1cbec:      	orr	w26, w10, #0x1
+   1cbf0:      	sub	x8, x11, x8
+   1cbf4:      	cset	w13, gt
+   1cbf8:      	str	w26, [x21, #0x8]
+   1cbfc:      	str	x8, [x21]
+   1cc00:      	ldr	w8, [x20, w13, uxtw #2]
+   1cc04:      	eor	w10, w15, w24
+   1cc08:      	sub	w10, w10, w15
+   1cc0c:      	cmp	w23, #0x10
+   1cc10:      	mul	w8, w10, w8
+   1cc14:      	mov	w0, #0x10               // =16
+   1cc18:      	mov	w22, w23
+   1cc1c:      	strh	w8, [x25, x12, lsl #1]
+   1cc20:      	b.lt	0x1c928 <VP8Decode+0x664>
+   1cc24:      	b	0x1cc2c <VP8Decode+0x968>
+   1cc28:      	mov	w0, #0x10               // =16
+   1cc2c:      	ldp	x29, x30, [sp, #0x60]
+   1cc30:      	ldp	x20, x19, [sp, #0x50]
+   1cc34:      	ldp	x22, x21, [sp, #0x40]
+   1cc38:      	ldp	x24, x23, [sp, #0x30]
+   1cc3c:      	ldp	x26, x25, [sp, #0x20]
+   1cc40:      	ldp	x28, x27, [sp, #0x10]
+   1cc44:      	add	sp, sp, #0x70
+   1cc48:      	ret
+   1cc4c:      	mov	w0, w22
+   1cc50:      	b	0x1cc2c <VP8Decode+0x968>
+   1cc54:      	stp	x24, x23, [sp, #-0x40]!
+   1cc58:      	stp	x22, x21, [sp, #0x10]
+   1cc5c:      	stp	x20, x19, [sp, #0x20]
+   1cc60:      	stp	x29, x30, [sp, #0x30]
+   1cc64:      	add	x29, sp, #0x30
+   1cc68:      	ldp	w21, w10, [x0, #0x8]
+   1cc6c:      	ldrb	w22, [x1, #0x3]
+   1cc70:      	mov	x20, x1
+   1cc74:      	mov	x19, x0
+   1cc78:      	tbz	w10, #0x1f, 0x1ccbc <VP8Decode+0x9f8>
+   1cc7c:      	ldr	x8, [x19, #0x10]
+   1cc80:      	ldr	x9, [x19, #0x20]
+   1cc84:      	cmp	x8, x9
+   1cc88:      	b.hs	0x1ccb0 <VP8Decode+0x9ec>
+   1cc8c:      	ldr	x9, [x8], #0x7
+   1cc90:      	ldr	x11, [x19]
+   1cc94:      	add	w10, w10, #0x38
+   1cc98:      	str	w10, [x19, #0xc]
+   1cc9c:      	str	x8, [x19, #0x10]
+   1cca0:      	rev	x8, x9
+   1cca4:      	extr	x8, x11, x8, #0x8
+   1cca8:      	str	x8, [x19]
+   1ccac:      	b	0x1ccbc <VP8Decode+0x9f8>
+   1ccb0:      	mov	x0, x19
+   1ccb4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1ccb8:      	ldr	w10, [x19, #0xc]
+   1ccbc:      	ldr	x8, [x19]
+   1ccc0:      	mul	w9, w21, w22
+   1ccc4:      	lsr	w9, w9, #8
+   1ccc8:      	lsr	x11, x8, x10
+   1cccc:      	cmp	w9, w11
+   1ccd0:      	mov	w10, w10
+   1ccd4:      	b.hs	0x1ccf0 <VP8Decode+0xa2c>
+   1ccd8:      	add	w13, w9, #0x1
+   1ccdc:      	lsl	x13, x13, x10
+   1cce0:      	sub	x8, x8, x13
+   1cce4:      	sub	w12, w21, w9
+   1cce8:      	str	x8, [x19]
+   1ccec:      	b	0x1ccf4 <VP8Decode+0xa30>
+   1ccf0:      	add	w12, w9, #0x1
+   1ccf4:      	clz	w13, w12
+   1ccf8:      	cmp	w9, w11
+   1ccfc:      	eor	w9, w13, #0x18
+   1cd00:      	lsl	w11, w12, w9
+   1cd04:      	sub	w9, w10, w9
+   1cd08:      	sub	w21, w11, #0x1
+   1cd0c:      	stp	w21, w9, [x19, #0x8]
+   1cd10:      	b.hs	0x1cd4c <VP8Decode+0xa88>
+   1cd14:      	ldrb	w22, [x20, #0x6]
+   1cd18:      	tbz	w9, #0x1f, 0x1cd94 <VP8Decode+0xad0>
+   1cd1c:      	ldr	x10, [x19, #0x10]
+   1cd20:      	ldr	x11, [x19, #0x20]
+   1cd24:      	cmp	x10, x11
+   1cd28:      	b.hs	0x1cd84 <VP8Decode+0xac0>
+   1cd2c:      	ldr	x11, [x10], #0x7
+   1cd30:      	add	w9, w9, #0x38
+   1cd34:      	str	w9, [x19, #0xc]
+   1cd38:      	str	x10, [x19, #0x10]
+   1cd3c:      	rev	x10, x11
+   1cd40:      	extr	x8, x8, x10, #0x8
+   1cd44:      	str	x8, [x19]
+   1cd48:      	b	0x1cd94 <VP8Decode+0xad0>
+   1cd4c:      	ldrb	w22, [x20, #0x4]
+   1cd50:      	tbz	w9, #0x1f, 0x1ce68 <VP8Decode+0xba4>
+   1cd54:      	ldr	x10, [x19, #0x10]
+   1cd58:      	ldr	x11, [x19, #0x20]
+   1cd5c:      	cmp	x10, x11
+   1cd60:      	b.hs	0x1ce58 <VP8Decode+0xb94>
+   1cd64:      	ldr	x11, [x10], #0x7
+   1cd68:      	add	w9, w9, #0x38
+   1cd6c:      	str	w9, [x19, #0xc]
+   1cd70:      	str	x10, [x19, #0x10]
+   1cd74:      	rev	x10, x11
+   1cd78:      	extr	x8, x8, x10, #0x8
+   1cd7c:      	str	x8, [x19]
+   1cd80:      	b	0x1ce68 <VP8Decode+0xba4>
+   1cd84:      	mov	x0, x19
+   1cd88:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1cd8c:      	ldr	w9, [x19, #0xc]
+   1cd90:      	ldr	x8, [x19]
+   1cd94:      	mul	w10, w21, w22
+   1cd98:      	lsr	w10, w10, #8
+   1cd9c:      	lsr	x11, x8, x9
+   1cda0:      	cmp	w10, w11
+   1cda4:      	mov	w9, w9
+   1cda8:      	b.hs	0x1cdc4 <VP8Decode+0xb00>
+   1cdac:      	add	w13, w10, #0x1
+   1cdb0:      	lsl	x13, x13, x9
+   1cdb4:      	sub	x8, x8, x13
+   1cdb8:      	sub	w12, w21, w10
+   1cdbc:      	str	x8, [x19]
+   1cdc0:      	b	0x1cdc8 <VP8Decode+0xb04>
+   1cdc4:      	add	w12, w10, #0x1
+   1cdc8:      	clz	w13, w12
+   1cdcc:      	cmp	w10, w11
+   1cdd0:      	eor	w10, w13, #0x18
+   1cdd4:      	lsl	w11, w12, w10
+   1cdd8:      	sub	w9, w9, w10
+   1cddc:      	sub	w22, w11, #0x1
+   1cde0:      	stp	w22, w9, [x19, #0x8]
+   1cde4:      	b.hs	0x1ce20 <VP8Decode+0xb5c>
+   1cde8:      	ldrb	w21, [x20, #0x8]
+   1cdec:      	tbz	w9, #0x1f, 0x1cf0c <VP8Decode+0xc48>
+   1cdf0:      	ldr	x10, [x19, #0x10]
+   1cdf4:      	ldr	x11, [x19, #0x20]
+   1cdf8:      	cmp	x10, x11
+   1cdfc:      	b.hs	0x1cefc <VP8Decode+0xc38>
+   1ce00:      	ldr	x11, [x10], #0x7
+   1ce04:      	add	w9, w9, #0x38
+   1ce08:      	str	w9, [x19, #0xc]
+   1ce0c:      	str	x10, [x19, #0x10]
+   1ce10:      	rev	x10, x11
+   1ce14:      	extr	x8, x8, x10, #0x8
+   1ce18:      	str	x8, [x19]
+   1ce1c:      	b	0x1cf0c <VP8Decode+0xc48>
+   1ce20:      	ldrb	w20, [x20, #0x7]
+   1ce24:      	tbz	w9, #0x1f, 0x1cfb0 <VP8Decode+0xcec>
+   1ce28:      	ldr	x10, [x19, #0x10]
+   1ce2c:      	ldr	x11, [x19, #0x20]
+   1ce30:      	cmp	x10, x11
+   1ce34:      	b.hs	0x1cfa0 <VP8Decode+0xcdc>
+   1ce38:      	ldr	x11, [x10], #0x7
+   1ce3c:      	add	w9, w9, #0x38
+   1ce40:      	str	w9, [x19, #0xc]
+   1ce44:      	str	x10, [x19, #0x10]
+   1ce48:      	rev	x10, x11
+   1ce4c:      	extr	x8, x8, x10, #0x8
+   1ce50:      	str	x8, [x19]
+   1ce54:      	b	0x1cfb0 <VP8Decode+0xcec>
+   1ce58:      	mov	x0, x19
+   1ce5c:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1ce60:      	ldr	w9, [x19, #0xc]
+   1ce64:      	ldr	x8, [x19]
+   1ce68:      	mul	w10, w21, w22
+   1ce6c:      	lsr	w10, w10, #8
+   1ce70:      	lsr	x11, x8, x9
+   1ce74:      	cmp	w10, w11
+   1ce78:      	mov	w9, w9
+   1ce7c:      	b.hs	0x1ce98 <VP8Decode+0xbd4>
+   1ce80:      	add	w13, w10, #0x1
+   1ce84:      	lsl	x13, x13, x9
+   1ce88:      	sub	x8, x8, x13
+   1ce8c:      	sub	w12, w21, w10
+   1ce90:      	str	x8, [x19]
+   1ce94:      	b	0x1ce9c <VP8Decode+0xbd8>
+   1ce98:      	add	w12, w10, #0x1
+   1ce9c:      	clz	w13, w12
+   1cea0:      	cmp	w10, w11
+   1cea4:      	eor	w10, w13, #0x18
+   1cea8:      	lsl	w11, w12, w10
+   1ceac:      	sub	w9, w9, w10
+   1ceb0:      	sub	w21, w11, #0x1
+   1ceb4:      	stp	w21, w9, [x19, #0x8]
+   1ceb8:      	b.hs	0x1cef4 <VP8Decode+0xc30>
+   1cebc:      	ldrb	w20, [x20, #0x5]
+   1cec0:      	tbz	w9, #0x1f, 0x1d07c <VP8Decode+0xdb8>
+   1cec4:      	ldr	x10, [x19, #0x10]
+   1cec8:      	ldr	x11, [x19, #0x20]
+   1cecc:      	cmp	x10, x11
+   1ced0:      	b.hs	0x1d06c <VP8Decode+0xda8>
+   1ced4:      	ldr	x11, [x10], #0x7
+   1ced8:      	add	w9, w9, #0x38
+   1cedc:      	str	w9, [x19, #0xc]
+   1cee0:      	str	x10, [x19, #0x10]
+   1cee4:      	rev	x10, x11
+   1cee8:      	extr	x8, x8, x10, #0x8
+   1ceec:      	str	x8, [x19]
+   1cef0:      	b	0x1d07c <VP8Decode+0xdb8>
+   1cef4:      	mov	w0, #0x2                // =2
+   1cef8:      	b	0x1d384 <VP8Decode+0x10c0>
+   1cefc:      	mov	x0, x19
+   1cf00:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1cf04:      	ldr	w9, [x19, #0xc]
+   1cf08:      	ldr	x8, [x19]
+   1cf0c:      	mul	w11, w22, w21
+   1cf10:      	mov	w10, w9
+   1cf14:      	lsr	w11, w11, #8
+   1cf18:      	lsr	x9, x8, x9
+   1cf1c:      	cmp	w11, w9
+   1cf20:      	cset	w21, lo
+   1cf24:      	b.hs	0x1cf40 <VP8Decode+0xc7c>
+   1cf28:      	add	w13, w11, #0x1
+   1cf2c:      	lsl	x13, x13, x10
+   1cf30:      	sub	x8, x8, x13
+   1cf34:      	sub	w12, w22, w11
+   1cf38:      	str	x8, [x19]
+   1cf3c:      	b	0x1cf44 <VP8Decode+0xc80>
+   1cf40:      	add	w12, w11, #0x1
+   1cf44:      	clz	w13, w12
+   1cf48:      	cmp	w11, w9
+   1cf4c:      	eor	w9, w13, #0x18
+   1cf50:      	lsl	w12, w12, w9
+   1cf54:      	mov	w11, #0x9               // =9
+   1cf58:      	sub	w9, w10, w9
+   1cf5c:      	sub	w22, w12, #0x1
+   1cf60:      	stp	w22, w9, [x19, #0x8]
+   1cf64:      	cinc	x10, x11, lo
+   1cf68:      	ldrb	w20, [x20, x10]
+   1cf6c:      	tbz	w9, #0x1f, 0x1d0d0 <VP8Decode+0xe0c>
+   1cf70:      	ldr	x10, [x19, #0x10]
+   1cf74:      	ldr	x11, [x19, #0x20]
+   1cf78:      	cmp	x10, x11
+   1cf7c:      	b.hs	0x1d0c0 <VP8Decode+0xdfc>
+   1cf80:      	ldr	x11, [x10], #0x7
+   1cf84:      	add	w9, w9, #0x38
+   1cf88:      	str	w9, [x19, #0xc]
+   1cf8c:      	str	x10, [x19, #0x10]
+   1cf90:      	rev	x10, x11
+   1cf94:      	extr	x8, x8, x10, #0x8
+   1cf98:      	str	x8, [x19]
+   1cf9c:      	b	0x1d0d0 <VP8Decode+0xe0c>
+   1cfa0:      	mov	x0, x19
+   1cfa4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1cfa8:      	ldr	w9, [x19, #0xc]
+   1cfac:      	ldr	x8, [x19]
+   1cfb0:      	mul	w10, w22, w20
+   1cfb4:      	lsr	w10, w10, #8
+   1cfb8:      	lsr	x11, x8, x9
+   1cfbc:      	cmp	w10, w11
+   1cfc0:      	mov	w9, w9
+   1cfc4:      	b.hs	0x1cfe0 <VP8Decode+0xd1c>
+   1cfc8:      	add	w13, w10, #0x1
+   1cfcc:      	lsl	x13, x13, x9
+   1cfd0:      	sub	x8, x8, x13
+   1cfd4:      	sub	w12, w22, w10
+   1cfd8:      	str	x8, [x19]
+   1cfdc:      	b	0x1cfe4 <VP8Decode+0xd20>
+   1cfe0:      	add	w12, w10, #0x1
+   1cfe4:      	clz	w13, w12
+   1cfe8:      	cmp	w10, w11
+   1cfec:      	eor	w10, w13, #0x18
+   1cff0:      	lsl	w11, w12, w10
+   1cff4:      	sub	w9, w9, w10
+   1cff8:      	sub	w20, w11, #0x1
+   1cffc:      	stp	w20, w9, [x19, #0x8]
+   1d000:      	b.hs	0x1d038 <VP8Decode+0xd74>
+   1d004:      	tbz	w9, #0x1f, 0x1d21c <VP8Decode+0xf58>
+   1d008:      	ldr	x10, [x19, #0x10]
+   1d00c:      	ldr	x11, [x19, #0x20]
+   1d010:      	cmp	x10, x11
+   1d014:      	b.hs	0x1d20c <VP8Decode+0xf48>
+   1d018:      	ldr	x11, [x10], #0x7
+   1d01c:      	add	w9, w9, #0x38
+   1d020:      	str	w9, [x19, #0xc]
+   1d024:      	str	x10, [x19, #0x10]
+   1d028:      	rev	x10, x11
+   1d02c:      	extr	x8, x8, x10, #0x8
+   1d030:      	str	x8, [x19]
+   1d034:      	b	0x1d21c <VP8Decode+0xf58>
+   1d038:      	tbz	w9, #0x1f, 0x1d2b8 <VP8Decode+0xff4>
+   1d03c:      	ldr	x10, [x19, #0x10]
+   1d040:      	ldr	x11, [x19, #0x20]
+   1d044:      	cmp	x10, x11
+   1d048:      	b.hs	0x1d2a8 <VP8Decode+0xfe4>
+   1d04c:      	ldr	x11, [x10], #0x7
+   1d050:      	add	w9, w9, #0x38
+   1d054:      	str	w9, [x19, #0xc]
+   1d058:      	str	x10, [x19, #0x10]
+   1d05c:      	rev	x10, x11
+   1d060:      	extr	x8, x8, x10, #0x8
+   1d064:      	str	x8, [x19]
+   1d068:      	b	0x1d2b8 <VP8Decode+0xff4>
+   1d06c:      	mov	x0, x19
+   1d070:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d074:      	ldr	w9, [x19, #0xc]
+   1d078:      	ldr	x8, [x19]
+   1d07c:      	mul	w10, w21, w20
+   1d080:      	lsr	w10, w10, #8
+   1d084:      	lsr	x11, x8, x9
+   1d088:      	cmp	w10, w11
+   1d08c:      	mov	w9, w9
+   1d090:      	b.hs	0x1d0ac <VP8Decode+0xde8>
+   1d094:      	add	w13, w10, #0x1
+   1d098:      	lsl	x13, x13, x9
+   1d09c:      	sub	x8, x8, x13
+   1d0a0:      	sub	w12, w21, w10
+   1d0a4:      	str	x8, [x19]
+   1d0a8:      	b	0x1d0b0 <VP8Decode+0xdec>
+   1d0ac:      	add	w12, w10, #0x1
+   1d0b0:      	clz	w8, w12
+   1d0b4:      	cmp	w10, w11
+   1d0b8:      	mov	w10, #0x3               // =3
+   1d0bc:      	b	0x1d2fc <VP8Decode+0x1038>
+   1d0c0:      	mov	x0, x19
+   1d0c4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d0c8:      	ldr	w9, [x19, #0xc]
+   1d0cc:      	ldr	x8, [x19]
+   1d0d0:      	mul	w11, w22, w20
+   1d0d4:      	mov	w10, w9
+   1d0d8:      	lsr	w11, w11, #8
+   1d0dc:      	lsr	x9, x8, x9
+   1d0e0:      	cmp	w11, w9
+   1d0e4:      	cset	w20, lo
+   1d0e8:      	b.hs	0x1d104 <VP8Decode+0xe40>
+   1d0ec:      	sub	w9, w22, w11
+   1d0f0:      	add	w11, w11, #0x1
+   1d0f4:      	lsl	x11, x11, x10
+   1d0f8:      	sub	x8, x8, x11
+   1d0fc:      	str	x8, [x19]
+   1d100:      	b	0x1d108 <VP8Decode+0xe44>
+   1d104:      	add	w9, w11, #0x1
+   1d108:      	adrp	x12, 0x64000
+   1d10c:      	clz	w11, w9
+   1d110:      	bfi	w20, w21, #1, #1
+   1d114:      	add	x12, x12, #0x990
+   1d118:      	eor	w11, w11, #0x18
+   1d11c:      	ldr	x12, [x12, w20, uxtw #3]
+   1d120:      	lsl	w13, w9, w11
+   1d124:      	sub	w9, w10, w11
+   1d128:      	sub	w23, w13, #0x1
+   1d12c:      	stp	w23, w9, [x19, #0x8]
+   1d130:      	ldrb	w11, [x12]
+   1d134:      	cbz	w11, 0x1d1f4 <VP8Decode+0xf30>
+   1d138:      	mov	w22, wzr
+   1d13c:      	add	x21, x12, #0x1
+   1d140:      	and	w24, w11, #0xff
+   1d144:      	tbz	w9, #0x1f, 0x1d1c0 <VP8Decode+0xefc>
+   1d148:      	b	0x1d180 <VP8Decode+0xebc>
+   1d14c:      	add	w9, w12, #0x1
+   1d150:      	clz	w12, w9
+   1d154:      	eor	w12, w12, #0x18
+   1d158:      	lsl	w13, w9, w12
+   1d15c:      	sub	w9, w11, w12
+   1d160:      	sub	w23, w13, #0x1
+   1d164:      	stp	w23, w9, [x19, #0x8]
+   1d168:      	ldrb	w11, [x21], #0x1
+   1d16c:      	bfi	w10, w22, #1, #31
+   1d170:      	mov	w22, w10
+   1d174:      	cbz	w11, 0x1d1f8 <VP8Decode+0xf34>
+   1d178:      	and	w24, w11, #0xff
+   1d17c:      	tbz	w9, #0x1f, 0x1d1c0 <VP8Decode+0xefc>
+   1d180:      	ldr	x10, [x19, #0x10]
+   1d184:      	ldr	x11, [x19, #0x20]
+   1d188:      	cmp	x10, x11
+   1d18c:      	b.hs	0x1d1b0 <VP8Decode+0xeec>
+   1d190:      	ldr	x11, [x10], #0x7
+   1d194:      	add	w9, w9, #0x38
+   1d198:      	str	w9, [x19, #0xc]
+   1d19c:      	str	x10, [x19, #0x10]
+   1d1a0:      	rev	x10, x11
+   1d1a4:      	extr	x8, x8, x10, #0x8
+   1d1a8:      	str	x8, [x19]
+   1d1ac:      	b	0x1d1c0 <VP8Decode+0xefc>
+   1d1b0:      	mov	x0, x19
+   1d1b4:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d1b8:      	ldr	w9, [x19, #0xc]
+   1d1bc:      	ldr	x8, [x19]
+   1d1c0:      	mul	w10, w23, w24
+   1d1c4:      	mov	w11, w9
+   1d1c8:      	lsr	w12, w10, #8
+   1d1cc:      	lsr	x9, x8, x9
+   1d1d0:      	cmp	w12, w9
+   1d1d4:      	cset	w10, lo
+   1d1d8:      	b.hs	0x1d14c <VP8Decode+0xe88>
+   1d1dc:      	sub	w9, w23, w12
+   1d1e0:      	add	w12, w12, #0x1
+   1d1e4:      	lsl	x12, x12, x11
+   1d1e8:      	sub	x8, x8, x12
+   1d1ec:      	str	x8, [x19]
+   1d1f0:      	b	0x1d150 <VP8Decode+0xe8c>
+   1d1f4:      	mov	w10, wzr
+   1d1f8:      	mov	w8, #0x8                // =8
+   1d1fc:      	lsl	w8, w8, w20
+   1d200:      	orr	w8, w8, #0x3
+   1d204:      	add	w0, w10, w8
+   1d208:      	b	0x1d384 <VP8Decode+0x10c0>
+   1d20c:      	mov	x0, x19
+   1d210:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d214:      	ldr	w9, [x19, #0xc]
+   1d218:      	ldr	x8, [x19]
+   1d21c:      	mov	w11, #0xa5              // =165
+   1d220:      	mul	w11, w20, w11
+   1d224:      	mov	w10, w9
+   1d228:      	lsr	w12, w11, #8
+   1d22c:      	lsr	x9, x8, x9
+   1d230:      	cmp	w12, w9
+   1d234:      	cset	w11, lo
+   1d238:      	b.hs	0x1d254 <VP8Decode+0xf90>
+   1d23c:      	sub	w9, w20, w12
+   1d240:      	add	w12, w12, #0x1
+   1d244:      	lsl	x12, x12, x10
+   1d248:      	sub	x8, x8, x12
+   1d24c:      	str	x8, [x19]
+   1d250:      	b	0x1d258 <VP8Decode+0xf94>
+   1d254:      	add	w9, w12, #0x1
+   1d258:      	clz	w12, w9
+   1d25c:      	eor	w12, w12, #0x18
+   1d260:      	lsl	w13, w9, w12
+   1d264:      	sub	w9, w10, w12
+   1d268:      	sub	w20, w13, #0x1
+   1d26c:      	lsl	w21, w11, #1
+   1d270:      	stp	w20, w9, [x19, #0x8]
+   1d274:      	tbz	w9, #0x1f, 0x1d328 <VP8Decode+0x1064>
+   1d278:      	ldr	x10, [x19, #0x10]
+   1d27c:      	ldr	x11, [x19, #0x20]
+   1d280:      	cmp	x10, x11
+   1d284:      	b.hs	0x1d318 <VP8Decode+0x1054>
+   1d288:      	ldr	x11, [x10], #0x7
+   1d28c:      	add	w9, w9, #0x38
+   1d290:      	str	w9, [x19, #0xc]
+   1d294:      	str	x10, [x19, #0x10]
+   1d298:      	rev	x10, x11
+   1d29c:      	extr	x8, x8, x10, #0x8
+   1d2a0:      	str	x8, [x19]
+   1d2a4:      	b	0x1d328 <VP8Decode+0x1064>
+   1d2a8:      	mov	x0, x19
+   1d2ac:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d2b0:      	ldr	w9, [x19, #0xc]
+   1d2b4:      	ldr	x8, [x19]
+   1d2b8:      	mov	w10, #0x9f              // =159
+   1d2bc:      	mul	w10, w20, w10
+   1d2c0:      	lsr	w10, w10, #8
+   1d2c4:      	lsr	x11, x8, x9
+   1d2c8:      	cmp	w10, w11
+   1d2cc:      	mov	w9, w9
+   1d2d0:      	b.hs	0x1d2ec <VP8Decode+0x1028>
+   1d2d4:      	add	w13, w10, #0x1
+   1d2d8:      	lsl	x13, x13, x9
+   1d2dc:      	sub	x8, x8, x13
+   1d2e0:      	sub	w12, w20, w10
+   1d2e4:      	str	x8, [x19]
+   1d2e8:      	b	0x1d2f0 <VP8Decode+0x102c>
+   1d2ec:      	add	w12, w10, #0x1
+   1d2f0:      	clz	w8, w12
+   1d2f4:      	cmp	w10, w11
+   1d2f8:      	mov	w10, #0x5               // =5
+   1d2fc:      	eor	w8, w8, #0x18
+   1d300:      	lsl	w11, w12, w8
+   1d304:      	sub	w8, w9, w8
+   1d308:      	sub	w9, w11, #0x1
+   1d30c:      	stp	w9, w8, [x19, #0x8]
+   1d310:      	cinc	w0, w10, lo
+   1d314:      	b	0x1d384 <VP8Decode+0x10c0>
+   1d318:      	mov	x0, x19
+   1d31c:      	bl	0x12390 <VP8LoadFinalBytes@plt>
+   1d320:      	ldr	w9, [x19, #0xc]
+   1d324:      	ldr	x8, [x19]
+   1d328:      	mov	w12, #0x91              // =145
+   1d32c:      	mul	w12, w20, w12
+   1d330:      	mov	w11, w9
+   1d334:      	lsr	w13, w12, #8
+   1d338:      	lsr	x9, x8, x9
+   1d33c:      	cmp	w13, w9
+   1d340:      	add	w10, w21, #0x7
+   1d344:      	cset	w9, lo
+   1d348:      	b.hs	0x1d364 <VP8Decode+0x10a0>
+   1d34c:      	sub	w12, w20, w13
+   1d350:      	add	w13, w13, #0x1
+   1d354:      	lsl	x13, x13, x11
+   1d358:      	sub	x8, x8, x13
+   1d35c:      	str	x8, [x19]
+   1d360:      	b	0x1d368 <VP8Decode+0x10a4>
+   1d364:      	add	w12, w13, #0x1
+   1d368:      	clz	w8, w12
+   1d36c:      	eor	w8, w8, #0x18
+   1d370:      	lsl	w12, w12, w8
+   1d374:      	sub	w8, w11, w8
+   1d378:      	sub	w11, w12, #0x1
+   1d37c:      	stp	w11, w8, [x19, #0x8]
+   1d380:      	add	w0, w10, w9
+   1d384:      	ldp	x29, x30, [sp, #0x30]
+   1d388:      	ldp	x20, x19, [sp, #0x20]
+   1d38c:      	ldp	x22, x21, [sp, #0x10]
+   1d390:      	ldp	x24, x23, [sp], #0x40
+   1d394:      	ret

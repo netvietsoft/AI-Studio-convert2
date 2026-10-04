@@ -1,0 +1,161 @@
+
+--- FUNCTION: SWIG_exit ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libarkernel3_c.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005d2e4 <SWIG_exit>:
+   5d2e4:      	stp	x29, x30, [sp, #-0x20]!
+   5d2e8:      	str	x19, [sp, #0x10]
+   5d2ec:      	mov	x29, sp
+   5d2f0:      	mov	w19, w0
+   5d2f4:      	bl	0x5d300 <SWIG_exit+0x1c>
+   5d2f8:      	mov	w0, w19
+   5d2fc:      	bl	0x71560 <exit@plt>
+   5d300:      	stp	x29, x30, [sp, #-0x30]!
+   5d304:      	str	x21, [sp, #0x10]
+   5d308:      	stp	x20, x19, [sp, #0x20]
+   5d30c:      	mov	x29, sp
+   5d310:      	adrp	x8, 0x82000
+   5d314:      	ldr	x0, [x8, #0x250]
+   5d318:      	cbz	x0, 0x5d320 <SWIG_exit+0x3c>
+   5d31c:      	bl	0x71500 <free@plt>
+   5d320:      	adrp	x19, 0x7b000
+   5d324:      	ldr	x19, [x19, #0x1b0]
+   5d328:      	ldr	x0, [x19, #0x8]
+   5d32c:      	cbz	x0, 0x5d334 <SWIG_exit+0x50>
+   5d330:      	bl	0x71500 <free@plt>
+   5d334:      	ldr	x0, [x19, #0x10]
+   5d338:      	cbz	x0, 0x5d354 <SWIG_exit+0x70>
+   5d33c:      	ldr	x8, [x0, #0x8]
+   5d340:      	cbz	x8, 0x5d350 <SWIG_exit+0x6c>
+   5d344:      	mov	x0, x8
+   5d348:      	bl	0x71500 <free@plt>
+   5d34c:      	ldr	x0, [x19, #0x10]
+   5d350:      	bl	0x71500 <free@plt>
+   5d354:      	adrp	x19, 0x82000
+   5d358:      	ldr	x0, [x19, #0x240]
+   5d35c:      	cbz	x0, 0x5d39c <SWIG_exit+0xb8>
+   5d360:      	adrp	x20, 0x81000
+   5d364:      	ldr	w9, [x20, #0xfe8]
+   5d368:      	cmp	w9, #0x1
+   5d36c:      	b.lt	0x5d39c <SWIG_exit+0xb8>
+   5d370:      	mov	x21, xzr
+   5d374:      	ldr	x8, [x0, x21, lsl #3]
+   5d378:      	cbz	x8, 0x5d390 <SWIG_exit+0xac>
+   5d37c:      	mov	x0, x8
+   5d380:      	bl	0x6bbf4 <_wrap_Graphics_createWithDefaultBackend+0x30>
+   5d384:      	ldr	x0, [x19, #0x240]
+   5d388:      	ldr	w9, [x20, #0xfe8]
+   5d38c:      	str	xzr, [x0, x21, lsl #3]
+   5d390:      	add	x21, x21, #0x1
+   5d394:      	cmp	x21, w9, sxtw
+   5d398:      	b.lt	0x5d374 <SWIG_exit+0x90>
+   5d39c:      	bl	0x71500 <free@plt>
+   5d3a0:      	str	xzr, [x19, #0x240]
+   5d3a4:      	ldp	x20, x19, [sp, #0x20]
+   5d3a8:      	ldr	x21, [sp, #0x10]
+   5d3ac:      	ldp	x29, x30, [sp], #0x30
+   5d3b0:      	ret
+
+--- FUNCTION: SWIG_rt_catch ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libarkernel3_c.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005d0ec <SWIG_rt_catch>:
+   5d0ec:      	stp	x29, x30, [sp, #-0x30]!
+   5d0f0:      	str	x21, [sp, #0x10]
+   5d0f4:      	stp	x20, x19, [sp, #0x20]
+   5d0f8:      	mov	x29, sp
+   5d0fc:      	adrp	x20, 0x7b000
+   5d100:      	ldr	x20, [x20, #0x1b0]
+   5d104:      	cbz	x0, 0x5d144 <SWIG_rt_catch+0x58>
+   5d108:      	mov	x19, x0
+   5d10c:      	nop
+   5d110:      	adr	x0, 0x49e59
+   5d114:      	mov	x1, x19
+   5d118:      	bl	0x714f0 <strcmp@plt>
+   5d11c:      	cbz	w0, 0x5d144 <SWIG_rt_catch+0x58>
+   5d120:      	ldr	x8, [x20, #0x10]
+   5d124:      	cbz	x8, 0x5d18c <SWIG_rt_catch+0xa0>
+   5d128:      	ldr	x21, [x8, #0x8]
+   5d12c:      	ldr	x0, [x21]
+   5d130:      	cbz	x0, 0x5d17c <SWIG_rt_catch+0x90>
+   5d134:      	mov	x1, x19
+   5d138:      	bl	0x714f0 <strcmp@plt>
+   5d13c:      	add	x21, x21, #0x8
+   5d140:      	cbnz	w0, 0x5d12c <SWIG_rt_catch+0x40>
+   5d144:      	adrp	x8, 0x82000
+   5d148:      	adrp	x10, 0x82000
+   5d14c:      	ldr	x9, [x8, #0x248]
+   5d150:      	ldr	x10, [x10, #0x250]
+   5d154:      	cmp	x9, x10
+   5d158:      	b.eq	0x5d174 <SWIG_rt_catch+0x88>
+   5d15c:      	sub	x1, x9, #0x100
+   5d160:      	adrp	x0, 0x7b000
+   5d164:      	mov	w2, #0x100              // =256
+   5d168:      	str	x1, [x8, #0x248]
+   5d16c:      	ldr	x0, [x0, #0x1a8]
+   5d170:      	bl	0x714e0 <memcpy@plt>
+   5d174:      	mov	w0, #0x1                // =1
+   5d178:      	str	w0, [x20, #0x18]
+   5d17c:      	ldp	x20, x19, [sp, #0x20]
+   5d180:      	ldr	x21, [sp, #0x10]
+   5d184:      	ldp	x29, x30, [sp], #0x30
+   5d188:      	ret
+   5d18c:      	mov	w0, wzr
+   5d190:      	b	0x5d17c <SWIG_rt_catch+0x90>
+   5d194:      	adrp	x8, 0x82000
+   5d198:      	adrp	x10, 0x82000
+   5d19c:      	ldr	x9, [x8, #0x248]
+   5d1a0:      	ldr	x10, [x10, #0x250]
+   5d1a4:      	cmp	x9, x10
+   5d1a8:      	b.eq	0x5d1c4 <SWIG_rt_catch+0xd8>
+   5d1ac:      	adrp	x0, 0x7b000
+   5d1b0:      	sub	x1, x9, #0x100
+   5d1b4:      	mov	w2, #0x100              // =256
+   5d1b8:      	ldr	x0, [x0, #0x1a8]
+   5d1bc:      	str	x1, [x8, #0x248]
+   5d1c0:      	b	0x714e0 <memcpy@plt>
+   5d1c4:      	ret
+
+--- FUNCTION: SWIG_rt_endtry ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libarkernel3_c.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005d26c <SWIG_rt_endtry>:
+   5d26c:      	stp	x29, x30, [sp, #-0x10]!
+   5d270:      	mov	x29, sp
+   5d274:      	adrp	x8, 0x7b000
+   5d278:      	ldr	x8, [x8, #0x1b0]
+   5d27c:      	ldr	w8, [x8, #0x18]
+   5d280:      	cbz	w8, 0x5d2a8 <SWIG_rt_endtry+0x3c>
+   5d284:      	adrp	x0, 0x7b000
+   5d288:      	ldr	x0, [x0, #0x1a8]
+   5d28c:      	bl	0x71550 <setjmp@plt>
+   5d290:      	cbnz	w0, 0x5d2dc <SWIG_rt_endtry+0x70>
+   5d294:      	bl	0x5d0b0 <SWIG_rt_try+0x3c>
+   5d298:      	nop
+   5d29c:      	adr	x0, 0x82138 <SWIG_rt_init+0x8>
+   5d2a0:      	mov	w1, #0x1                // =1
+   5d2a4:      	bl	0x71540 <longjmp@plt>
+   5d2a8:      	adrp	x8, 0x82000
+   5d2ac:      	adrp	x10, 0x82000
+   5d2b0:      	ldr	x9, [x8, #0x248]
+   5d2b4:      	ldr	x10, [x10, #0x250]
+   5d2b8:      	cmp	x9, x10
+   5d2bc:      	b.eq	0x5d2dc <SWIG_rt_endtry+0x70>
+   5d2c0:      	sub	x1, x9, #0x100
+   5d2c4:      	adrp	x0, 0x7b000
+   5d2c8:      	str	x1, [x8, #0x248]
+   5d2cc:      	mov	w8, #0x100              // =256
+   5d2d0:      	ldr	x0, [x0, #0x1a8]
+   5d2d4:      	mov	w2, w8
+   5d2d8:      	bl	0x714e0 <memcpy@plt>
+   5d2dc:      	ldp	x29, x30, [sp], #0x10
+   5d2e0:      	ret

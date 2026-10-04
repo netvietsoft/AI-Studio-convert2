@@ -1,0 +1,201 @@
+
+--- FUNCTION: Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_apuIsSupport ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001c234 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_apuIsSupport>:
+   1c234:      	stp	x29, x30, [sp, #-0x10]!
+   1c238:      	mov	x29, sp
+   1c23c:      	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c240:      	adrp	x8, 0x4b000
+   1c244:      	ldrb	w8, [x8, #0xee0]
+   1c248:      	cbz	w8, 0x1c25c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_apuIsSupport+0x28>
+   1c24c:      	adrp	x8, 0x4c000
+   1c250:      	ldrb	w0, [x8, #0x3e2]
+   1c254:      	ldp	x29, x30, [sp], #0x10
+   1c258:      	ret
+   1c25c:      	adrp	x1, 0x10000
+   1c260:      	add	x1, x1, #0x466
+   1c264:      	adrp	x2, 0x10000
+   1c268:      	add	x2, x2, #0x20b
+   1c26c:      	mov	w0, #0x6                // =6
+   1c270:      	bl	0x3fa90 <__android_log_print@plt>
+   1c274:      	mov	w0, wzr
+   1c278:      	ldp	x29, x30, [sp], #0x10
+   1c27c:      	ret
+
+--- FUNCTION: Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001bdfc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel>:
+   1bdfc:      	stp	x29, x30, [sp, #-0x50]!
+   1be00:      	stp	x26, x25, [sp, #0x10]
+   1be04:      	stp	x24, x23, [sp, #0x20]
+   1be08:      	stp	x22, x21, [sp, #0x30]
+   1be0c:      	stp	x20, x19, [sp, #0x40]
+   1be10:      	mov	x29, sp
+   1be14:      	mov	w21, w5
+   1be18:      	mov	w22, w4
+   1be1c:      	mov	w23, w3
+   1be20:      	mov	x19, x2
+   1be24:      	mov	x20, x0
+   1be28:      	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1be2c:      	cbz	x0, 0x1bef8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xfc>
+   1be30:      	adrp	x1, 0x11000
+   1be34:      	add	x1, x1, #0x749
+   1be38:      	bl	0x3fb30 <dlsym@plt>
+   1be3c:      	cbz	x0, 0x1beb8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xbc>
+   1be40:      	ldr	x8, [x20]
+   1be44:      	mov	x24, x0
+   1be48:      	mov	x0, x20
+   1be4c:      	mov	x1, x19
+   1be50:      	ldr	x8, [x8, #0x558]
+   1be54:      	blr	x8
+   1be58:      	ldr	x8, [x20]
+   1be5c:      	mov	w25, w0
+   1be60:      	mov	x0, x20
+   1be64:      	mov	x1, x19
+   1be68:      	mov	x2, xzr
+   1be6c:      	ldr	x8, [x8, #0x5c0]
+   1be70:      	blr	x8
+   1be74:      	cbz	x0, 0x1bedc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xe0>
+   1be78:      	mov	w1, w25
+   1be7c:      	mov	w2, w23
+   1be80:      	mov	w3, w22
+   1be84:      	mov	w4, w21
+   1be88:      	mov	x26, x0
+   1be8c:      	blr	x24
+   1be90:      	ldr	x8, [x20]
+   1be94:      	mov	w21, w0
+   1be98:      	mov	x0, x20
+   1be9c:      	mov	x1, x19
+   1bea0:      	mov	x2, x26
+   1bea4:      	mov	w3, #0x2                // =2
+   1bea8:      	ldr	x8, [x8, #0x600]
+   1beac:      	blr	x8
+   1beb0:      	and	w0, w21, #0x1
+   1beb4:      	b	0x1bef8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xfc>
+   1beb8:      	bl	0x3fa80 <dlerror@plt>
+   1bebc:      	mov	x3, x0
+   1bec0:      	adrp	x1, 0x10000
+   1bec4:      	add	x1, x1, #0x466
+   1bec8:      	adrp	x2, 0x10000
+   1becc:      	add	x2, x2, #0x772
+   1bed0:      	mov	w0, #0x6                // =6
+   1bed4:      	bl	0x3fa90 <__android_log_print@plt>
+   1bed8:      	b	0x1bef4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xf8>
+   1bedc:      	adrp	x1, 0x10000
+   1bee0:      	add	x1, x1, #0x466
+   1bee4:      	adrp	x2, 0x11000
+   1bee8:      	add	x2, x2, #0x76
+   1beec:      	mov	w0, #0x6                // =6
+   1bef0:      	bl	0x3fa90 <__android_log_print@plt>
+   1bef4:      	mov	w0, wzr
+   1bef8:      	ldp	x20, x19, [sp, #0x40]
+   1befc:      	ldp	x22, x21, [sp, #0x30]
+   1bf00:      	ldp	x24, x23, [sp, #0x20]
+   1bf04:      	ldp	x26, x25, [sp, #0x10]
+   1bf08:      	ldp	x29, x30, [sp], #0x50
+   1bf0c:      	ret
+
+--- FUNCTION: Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001c0bc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion>:
+   1c0bc:      	stp	x29, x30, [sp, #-0x20]!
+   1c0c0:      	str	x19, [sp, #0x10]
+   1c0c4:      	mov	x29, sp
+   1c0c8:      	mov	x19, x0
+   1c0cc:      	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c0d0:      	nop
+   1c0d4:      	adr	x8, 0x4bee0
+   1c0d8:      	ldrb	w9, [x8]
+   1c0dc:      	cbz	w9, 0x1c0e8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion+0x2c>
+   1c0e0:      	add	x1, x8, #0x201
+   1c0e4:      	b	0x1c108 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion+0x4c>
+   1c0e8:      	adrp	x1, 0x10000
+   1c0ec:      	add	x1, x1, #0x466
+   1c0f0:      	adrp	x2, 0xf000
+   1c0f4:      	add	x2, x2, #0xd25
+   1c0f8:      	mov	w0, #0x6                // =6
+   1c0fc:      	bl	0x3fa90 <__android_log_print@plt>
+   1c100:      	adrp	x1, 0x10000
+   1c104:      	add	x1, x1, #0x20a
+   1c108:      	ldr	x8, [x19]
+   1c10c:      	ldr	x2, [x8, #0x538]
+   1c110:      	mov	x0, x19
+   1c114:      	ldr	x19, [sp, #0x10]
+   1c118:      	ldp	x29, x30, [sp], #0x20
+   1c11c:      	br	x2
+
+--- FUNCTION: Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDeviceVersion ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001bfb0 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDeviceVersion>:
+   1bfb0:      	stp	x29, x30, [sp, #-0x20]!
+   1bfb4:      	str	x19, [sp, #0x10]
+   1bfb8:      	mov	x29, sp
+   1bfbc:      	mov	x19, x0
+   1bfc0:      	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1bfc4:      	nop
+   1bfc8:      	adr	x1, 0x4bee0
+   1bfcc:      	ldrb	w8, [x1], #0x1
+   1bfd0:      	cbnz	w8, 0x1bff4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDeviceVersion+0x44>
+   1bfd4:      	adrp	x1, 0x10000
+   1bfd8:      	add	x1, x1, #0x466
+   1bfdc:      	adrp	x2, 0x11000
+   1bfe0:      	add	x2, x2, #0x5f6
+   1bfe4:      	mov	w0, #0x6                // =6
+   1bfe8:      	bl	0x3fa90 <__android_log_print@plt>
+   1bfec:      	adrp	x1, 0x10000
+   1bff0:      	add	x1, x1, #0x20a
+   1bff4:      	ldr	x8, [x19]
+   1bff8:      	ldr	x2, [x8, #0x538]
+   1bffc:      	mov	x0, x19
+   1c000:      	ldr	x19, [sp, #0x10]
+   1c004:      	ldp	x29, x30, [sp], #0x20
+   1c008:      	br	x2
+
+--- FUNCTION: Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001c00c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion>:
+   1c00c:      	stp	x29, x30, [sp, #-0x20]!
+   1c010:      	str	x19, [sp, #0x10]
+   1c014:      	mov	x29, sp
+   1c018:      	mov	x19, x0
+   1c01c:      	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c020:      	nop
+   1c024:      	adr	x8, 0x4bee0
+   1c028:      	ldrb	w9, [x8]
+   1c02c:      	cbz	w9, 0x1c038 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion+0x2c>
+   1c030:      	add	x1, x8, #0x101
+   1c034:      	b	0x1c058 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion+0x4c>
+   1c038:      	adrp	x1, 0x10000
+   1c03c:      	add	x1, x1, #0x466
+   1c040:      	adrp	x2, 0x10000
+   1c044:      	add	x2, x2, #0xefd
+   1c048:      	mov	w0, #0x6                // =6
+   1c04c:      	bl	0x3fa90 <__android_log_print@plt>
+   1c050:      	adrp	x1, 0x10000
+   1c054:      	add	x1, x1, #0x20a
+   1c058:      	ldr	x8, [x19]
+   1c05c:      	ldr	x2, [x8, #0x538]
+   1c060:      	mov	x0, x19
+   1c064:      	ldr	x19, [sp, #0x10]
+   1c068:      	ldp	x29, x30, [sp], #0x20
+   1c06c:      	br	x2

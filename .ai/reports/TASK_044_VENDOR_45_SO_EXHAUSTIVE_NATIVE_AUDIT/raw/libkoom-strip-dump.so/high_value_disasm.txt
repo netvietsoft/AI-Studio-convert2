@@ -1,0 +1,114 @@
+
+--- FUNCTION: Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_exitProcess ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000038bdc <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_exitProcess>:
+   38bdc:      	stp	x29, x30, [sp, #-0x10]!
+   38be0:      	mov	x29, sp
+   38be4:      	bl	0x85470 <getpid@plt>
+   38be8:      	mov	w3, w0
+   38bec:      	nop
+   38bf0:      	adr	x1, 0x22a31
+   38bf4:      	adrp	x2, 0x21000
+   38bf8:      	add	x2, x2, #0x9cb
+   38bfc:      	mov	w0, #0x4                // =4
+   38c00:      	bl	0x85340 <__android_log_print@plt>
+   38c04:      	mov	w0, wzr
+   38c08:      	bl	0x85480 <_exit@plt>
+
+--- FUNCTION: Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_nativeInit ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000038bb4 <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_nativeInit>:
+   38bb4:      	stp	x29, x30, [sp, #-0x10]!
+   38bb8:      	mov	x29, sp
+   38bbc:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38bc0:      	ldp	x29, x30, [sp], #0x10
+   38bc4:      	b	0x85270 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv@plt>
+
+--- FUNCTION: Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_resumeAndWait ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000038c0c <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_resumeAndWait>:
+   38c0c:      	stp	x29, x30, [sp, #-0x20]!
+   38c10:      	str	x19, [sp, #0x10]
+   38c14:      	mov	x29, sp
+   38c18:      	mov	w19, w2
+   38c1c:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38c20:      	mov	w1, w19
+   38c24:      	bl	0x85320 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi@plt>
+   38c28:      	ldr	x19, [sp, #0x10]
+   38c2c:      	and	w0, w0, #0x1
+   38c30:      	ldp	x29, x30, [sp], #0x20
+   38c34:      	ret
+
+--- FUNCTION: Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_suspendAndFork ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000038bc8 <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_suspendAndFork>:
+   38bc8:      	stp	x29, x30, [sp, #-0x10]!
+   38bcc:      	mov	x29, sp
+   38bd0:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38bd4:      	ldp	x29, x30, [sp], #0x10
+   38bd8:      	b	0x852e0 <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv@plt>
+
+--- FUNCTION: Java_com_kwai_koom_javaoom_hprof_ForkStripHeapDumper_hprofName ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000038c3c <Java_com_kwai_koom_javaoom_hprof_ForkStripHeapDumper_hprofName>:
+   38c3c:      	stp	x29, x30, [sp, #-0x30]!
+   38c40:      	str	x21, [sp, #0x10]
+   38c44:      	stp	x20, x19, [sp, #0x20]
+   38c48:      	mov	x29, sp
+   38c4c:      	ldr	x8, [x0]
+   38c50:      	mov	x20, x2
+   38c54:      	mov	x1, x2
+   38c58:      	mov	x2, xzr
+   38c5c:      	mov	x19, x0
+   38c60:      	ldr	x8, [x8, #0x548]
+   38c64:      	blr	x8
+   38c68:      	mov	x21, x0
+   38c6c:      	bl	0x85420 <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv@plt>
+   38c70:      	mov	x0, x21
+   38c74:      	bl	0x85440 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc@plt>
+   38c78:      	ldr	x8, [x19]
+   38c7c:      	mov	x0, x19
+   38c80:      	mov	x1, x20
+   38c84:      	ldp	x20, x19, [sp, #0x20]
+   38c88:      	mov	x2, x21
+   38c8c:      	ldr	x3, [x8, #0x550]
+   38c90:      	ldr	x21, [sp, #0x10]
+   38c94:      	ldp	x29, x30, [sp], #0x30
+   38c98:      	br	x3
+   38c9c:      	stp	x29, x30, [sp, #-0x20]!
+   38ca0:      	str	x19, [sp, #0x10]
+   38ca4:      	mov	x29, sp
+   38ca8:      	adrp	x19, 0x194000
+   38cac:      	add	x19, x19, #0x328
+   38cb0:      	nop
+   38cb4:      	adr	x1, 0x21cf3
+   38cb8:      	mov	x0, x19
+   38cbc:      	bl	0x85380 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc@plt>
+   38cc0:      	adrp	x0, 0x8e000 <_ZTISt10bad_typeid+0x1e48>
+   38cc4:      	mov	x1, x19
+   38cc8:      	nop
+   38ccc:      	adr	x2, 0x8afd0
+   38cd0:      	ldr	x0, [x0, #0xed0]
+   38cd4:      	ldr	x19, [sp, #0x10]
+   38cd8:      	ldp	x29, x30, [sp], #0x20
+   38cdc:      	b	0x851d0 <__cxa_atexit@plt>

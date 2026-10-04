@@ -1,0 +1,217 @@
+
+--- FUNCTION: Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMtlabSign.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000021d4 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign>:
+    21d4:      	stp	x29, x30, [sp, #-0x60]!
+    21d8:      	stp	x28, x27, [sp, #0x10]
+    21dc:      	stp	x26, x25, [sp, #0x20]
+    21e0:      	stp	x24, x23, [sp, #0x30]
+    21e4:      	stp	x22, x21, [sp, #0x40]
+    21e8:      	stp	x20, x19, [sp, #0x50]
+    21ec:      	mov	x29, sp
+    21f0:      	sub	sp, sp, #0x210
+    21f4:      	mrs	x25, TPIDR_EL0
+    21f8:      	mov	x19, sp
+    21fc:      	mov	x1, x3
+    2200:      	ldr	x8, [x25, #0x28]
+    2204:      	mov	x3, x2
+    2208:      	add	x9, x19, #0x58
+    220c:      	mov	x2, x5
+    2210:      	mov	x21, x4
+    2214:      	mov	x20, x0
+    2218:      	stur	x8, [x29, #-0x8]
+    221c:      	add	x8, x19, #0x70
+    2220:      	orr	x24, x9, #0x1
+    2224:      	orr	x22, x8, #0x1
+    2228:      	add	x8, x19, #0x40
+    222c:      	strh	wzr, [x19, #0x70]
+    2230:      	strh	wzr, [x19, #0x58]
+    2234:      	add	x23, x19, #0x40
+    2238:      	bl	0x48f0 <_Z10getSignKeyP7_JNIEnvP8_jstringS2_S2_@plt>
+    223c:      	adrp	x1, 0x1000
+    2240:      	add	x1, x1, #0x570
+    2244:      	add	x0, x19, #0x58
+    2248:      	bl	0x4900 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    224c:      	ldrb	w8, [x19, #0x40]
+    2250:      	ldp	x10, x9, [x19, #0x48]
+    2254:      	orr	x23, x23, #0x1
+    2258:      	add	x0, x19, #0x58
+    225c:      	lsr	x11, x8, #1
+    2260:      	tst	w8, #0x1
+    2264:      	csel	x1, x23, x9, eq
+    2268:      	csel	x2, x11, x10, eq
+    226c:      	bl	0x4910 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm@plt>
+    2270:      	add	x8, x19, #0x28
+    2274:      	mov	x0, x20
+    2278:      	mov	x1, x21
+    227c:      	add	x21, x19, #0x28
+    2280:      	bl	0x4870 <_Z11jstring2strP7_JNIEnvP8_jstring@plt>
+    2284:      	ldrb	w8, [x19, #0x28]
+    2288:      	ldp	x10, x9, [x19, #0x30]
+    228c:      	orr	x12, x21, #0x1
+    2290:      	add	x0, x19, #0x70
+    2294:      	lsr	x11, x8, #1
+    2298:      	tst	w8, #0x1
+    229c:      	csel	x1, x12, x9, eq
+    22a0:      	csel	x2, x11, x10, eq
+    22a4:      	bl	0x4910 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm@plt>
+    22a8:      	ldrb	w8, [x19, #0x40]
+    22ac:      	ldr	x9, [x19, #0x50]
+    22b0:      	add	x0, x19, #0x88
+    22b4:      	ldrb	w10, [x19, #0x70]
+    22b8:      	tst	w8, #0x1
+    22bc:      	ldr	x8, [x19, #0x80]
+    22c0:      	csel	x21, x23, x9, eq
+    22c4:      	tst	w10, #0x1
+    22c8:      	csel	x22, x22, x8, eq
+    22cc:      	bl	0x49b0 <_ZN5CSHA1C2Ev@plt>
+    22d0:      	mov	w0, #0x1000             // =4096
+    22d4:      	bl	0x49c0 <_Znam@plt>
+    22d8:      	str	x0, [x19, #0x1d0]
+    22dc:      	mov	w0, #0x1000             // =4096
+    22e0:      	bl	0x49c0 <_Znam@plt>
+    22e4:      	str	x0, [x19, #0x1d8]
+    22e8:      	mov	w0, #0x1000             // =4096
+    22ec:      	bl	0x49c0 <_Znam@plt>
+    22f0:      	str	x0, [x19, #0x1e0]
+    22f4:      	mov	w0, #0x1000             // =4096
+    22f8:      	bl	0x49c0 <_Znam@plt>
+    22fc:      	str	x0, [x19, #0x1e8]
+    2300:      	mov	x0, x21
+    2304:      	bl	0x48b0 <strlen@plt>
+    2308:      	mov	x23, x0
+    230c:      	mov	x0, x22
+    2310:      	bl	0x48b0 <strlen@plt>
+    2314:      	mov	x4, x0
+    2318:      	add	x0, x19, #0x88
+    231c:      	sub	x5, x29, #0x1c
+    2320:      	mov	x1, x21
+    2324:      	mov	w2, w23
+    2328:      	mov	x3, x22
+    232c:      	bl	0x49d0 <_ZN10CHMAC_SHA19HMAC_SHA1EPhiS0_iS0_@plt>
+    2330:      	ldrb	w8, [x19, #0x58]
+    2334:      	ldr	x9, [x19, #0x60]
+    2338:      	mov	x26, sp
+    233c:      	lsr	x10, x8, #1
+    2340:      	tst	w8, #0x1
+    2344:      	csel	x27, x10, x9, eq
+    2348:      	mov	x9, sp
+    234c:      	and	x21, x27, #0xffffffff
+    2350:      	add	x8, x21, #0xf
+    2354:      	and	x8, x8, #0x1fffffff0
+    2358:      	sub	x22, x9, x8
+    235c:      	mov	sp, x22
+    2360:      	ldrb	w8, [x19, #0x58]
+    2364:      	ldp	x10, x9, [x19, #0x60]
+    2368:      	mov	x0, x22
+    236c:      	lsr	x11, x8, #1
+    2370:      	tst	w8, #0x1
+    2374:      	csel	x1, x24, x9, eq
+    2378:      	csel	x2, x11, x10, eq
+    237c:      	bl	0x48a0 <memcpy@plt>
+    2380:      	add	w23, w27, #0x14
+    2384:      	mov	x9, sp
+    2388:      	add	x8, x23, #0xf
+    238c:      	and	x8, x8, #0x1fffffff0
+    2390:      	sub	x24, x9, x8
+    2394:      	mov	sp, x24
+    2398:      	ldur	q0, [x29, #-0x1c]
+    239c:      	ldur	w8, [x29, #-0xc]
+    23a0:      	cmp	w27, #0x1
+    23a4:      	str	q0, [x24]
+    23a8:      	str	w8, [x24, #0x10]
+    23ac:      	b.lt	0x23c0 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x1ec>
+    23b0:      	add	x0, x24, #0x14
+    23b4:      	mov	x1, x22
+    23b8:      	mov	x2, x21
+    23bc:      	bl	0x48a0 <memcpy@plt>
+    23c0:      	add	x8, x19, #0x8
+    23c4:      	add	x0, x19, #0x27
+    23c8:      	mov	x1, x24
+    23cc:      	mov	w2, w23
+    23d0:      	add	x21, x19, #0x8
+    23d4:      	bl	0x49e0 <_ZN7ZBase646EncodeEPKhi@plt>
+    23d8:      	ldrb	w8, [x19, #0x8]
+    23dc:      	ldr	x9, [x20]
+    23e0:      	orr	x11, x21, #0x1
+    23e4:      	ldr	x10, [x19, #0x18]
+    23e8:      	mov	x0, x20
+    23ec:      	tst	w8, #0x1
+    23f0:      	ldr	x8, [x9, #0x538]
+    23f4:      	csel	x1, x11, x10, eq
+    23f8:      	blr	x8
+    23fc:      	ldrb	w8, [x19, #0x8]
+    2400:      	mov	x20, x0
+    2404:      	tbz	w8, #0x0, 0x2410 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x23c>
+    2408:      	ldr	x0, [x19, #0x18]
+    240c:      	bl	0x4920 <_ZdlPv@plt>
+    2410:      	mov	sp, x26
+    2414:      	ldr	x0, [x19, #0x1d0]
+    2418:      	cbz	x0, 0x2420 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x24c>
+    241c:      	bl	0x49f0 <_ZdaPv@plt>
+    2420:      	ldr	x0, [x19, #0x1e0]
+    2424:      	cbz	x0, 0x242c <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x258>
+    2428:      	bl	0x49f0 <_ZdaPv@plt>
+    242c:      	ldr	x0, [x19, #0x1e8]
+    2430:      	cbz	x0, 0x2438 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x264>
+    2434:      	bl	0x49f0 <_ZdaPv@plt>
+    2438:      	ldr	x0, [x19, #0x1d8]
+    243c:      	cbz	x0, 0x2444 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x270>
+    2440:      	bl	0x49f0 <_ZdaPv@plt>
+    2444:      	add	x0, x19, #0x88
+    2448:      	bl	0x4a00 <_ZN5CSHA1D2Ev@plt>
+    244c:      	ldrb	w8, [x19, #0x28]
+    2450:      	tbnz	w8, #0x0, 0x24a0 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x2cc>
+    2454:      	ldrb	w8, [x19, #0x40]
+    2458:      	tbnz	w8, #0x0, 0x24b0 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x2dc>
+    245c:      	ldrb	w8, [x19, #0x58]
+    2460:      	tbnz	w8, #0x0, 0x24c0 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x2ec>
+    2464:      	ldrb	w8, [x19, #0x70]
+    2468:      	tbnz	w8, #0x0, 0x24d0 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x2fc>
+    246c:      	ldr	x8, [x25, #0x28]
+    2470:      	ldur	x9, [x29, #-0x8]
+    2474:      	cmp	x8, x9
+    2478:      	b.ne	0x24e8 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x314>
+    247c:      	mov	x0, x20
+    2480:      	mov	sp, x29
+    2484:      	ldp	x20, x19, [sp, #0x50]
+    2488:      	ldp	x22, x21, [sp, #0x40]
+    248c:      	ldp	x24, x23, [sp, #0x30]
+    2490:      	ldp	x26, x25, [sp, #0x20]
+    2494:      	ldp	x28, x27, [sp, #0x10]
+    2498:      	ldp	x29, x30, [sp], #0x60
+    249c:      	ret
+    24a0:      	ldr	x0, [x19, #0x38]
+    24a4:      	bl	0x4920 <_ZdlPv@plt>
+    24a8:      	ldrb	w8, [x19, #0x40]
+    24ac:      	tbz	w8, #0x0, 0x245c <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x288>
+    24b0:      	ldr	x0, [x19, #0x50]
+    24b4:      	bl	0x4920 <_ZdlPv@plt>
+    24b8:      	ldrb	w8, [x19, #0x58]
+    24bc:      	tbz	w8, #0x0, 0x2464 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x290>
+    24c0:      	ldr	x0, [x19, #0x68]
+    24c4:      	bl	0x4920 <_ZdlPv@plt>
+    24c8:      	ldrb	w8, [x19, #0x70]
+    24cc:      	tbz	w8, #0x0, 0x246c <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x298>
+    24d0:      	ldr	x0, [x19, #0x80]
+    24d4:      	bl	0x4920 <_ZdlPv@plt>
+    24d8:      	ldr	x8, [x25, #0x28]
+    24dc:      	ldur	x9, [x29, #-0x8]
+    24e0:      	cmp	x8, x9
+    24e4:      	b.eq	0x247c <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x2a8>
+    24e8:      	bl	0x48e0 <__stack_chk_fail@plt>
+    24ec:      	stp	x29, x30, [sp, #-0x10]!
+    24f0:      	mov	x29, sp
+    24f4:      	adrp	x0, 0x1000
+    24f8:      	add	x0, x0, #0x659
+    24fc:      	bl	0x2500 <Java_com_meitu_mtlab_hmacsha_HmacSHA1Sign_getSign+0x32c>
+    2500:      	stp	x29, x30, [sp, #-0x10]!
+    2504:      	mov	x29, sp
+    2508:      	mov	x1, x0
+    250c:      	adrp	x0, 0x1000
+    2510:      	add	x0, x0, #0x58b
+    2514:      	bl	0x4a10 <_ZNSt6__ndk122__libcpp_verbose_abortEPKcz@plt>

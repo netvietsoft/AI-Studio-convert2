@@ -1,0 +1,3014 @@
+
+--- FUNCTION: av_ac3_parse_header ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000036b6b8 <av_ac3_parse_header>:
+  36b6b8:      	sub	sp, sp, #0x80
+  36b6bc:      	stp	x30, x21, [sp, #0x60]
+  36b6c0:      	stp	x20, x19, [sp, #0x70]
+  36b6c4:      	mov	x21, x2
+  36b6c8:      	mov	x2, x1
+  36b6cc:      	mov	x1, x0
+  36b6d0:      	mov	w19, #0xb1b7            // =45495
+  36b6d4:      	add	x0, sp, #0x40
+  36b6d8:      	mov	x20, x3
+  36b6dc:      	movk	w19, #0xbebb, lsl #16
+  36b6e0:      	bl	0x36b6a0 <avpriv_ac3_parse_header+0x88>
+  36b6e4:      	tbnz	w0, #0x1f, 0x36b70c <av_ac3_parse_header+0x54>
+  36b6e8:      	add	x0, sp, #0x40
+  36b6ec:      	mov	x1, sp
+  36b6f0:      	bl	0x6db440 <ff_ac3_parse_header@plt>
+  36b6f4:      	tbnz	w0, #0x1f, 0x36b70c <av_ac3_parse_header+0x54>
+  36b6f8:      	ldrb	w8, [sp, #0x5]
+  36b6fc:      	ldrh	w9, [sp, #0x2e]
+  36b700:      	mov	w19, wzr
+  36b704:      	strb	w8, [x21]
+  36b708:      	strh	w9, [x20]
+  36b70c:      	mov	w0, w19
+  36b710:      	ldp	x20, x19, [sp, #0x70]
+  36b714:      	ldp	x30, x21, [sp, #0x60]
+  36b718:      	add	sp, sp, #0x80
+  36b71c:      	ret
+  36b720:      	stp	x30, x19, [sp, #-0x10]!
+  36b724:      	ldr	x19, [x0]
+  36b728:      	mov	w8, #0x7                // =7
+  36b72c:      	mov	w0, #0x1                // =1
+  36b730:      	str	w8, [x19, #0x30]
+  36b734:      	bl	0x6d7c00 <av_crc_get_table@plt>
+  36b738:      	mov	x8, x0
+  36b73c:      	nop
+  36b740:      	adr	x9, 0x36b7ac <av_ac3_parse_header+0xf4>
+  36b744:      	mov	w0, wzr
+  36b748:      	stp	x9, x8, [x19, #0x38]
+  36b74c:      	ldp	x30, x19, [sp], #0x10
+  36b750:      	ret
+  36b754:      	mov	w9, #0xfdff             // =65023
+  36b758:      	mov	x8, x0
+  36b75c:      	movk	w9, #0x7fff, lsl #16
+  36b760:      	cmp	w2, w9
+  36b764:      	cset	w9, lo
+  36b768:      	cmp	x1, #0x0
+  36b76c:      	cset	w10, ne
+  36b770:      	tst	w10, w9
+  36b774:      	csel	w9, w2, wzr, ne
+  36b778:      	csel	x12, x1, xzr, ne
+  36b77c:      	add	w10, w9, #0x7
+  36b780:      	add	w11, w9, #0x8
+  36b784:      	str	x12, [x0]
+  36b788:      	lsr	w10, w10, #3
+  36b78c:      	str	w11, [x0, #0x18]
+  36b790:      	mov	w11, #0xb1b7            // =45495
+  36b794:      	movk	w11, #0xbebb, lsl #16
+  36b798:      	stp	wzr, w9, [x8, #0x10]
+  36b79c:      	add	x10, x12, x10
+  36b7a0:      	csel	w0, wzr, w11, ne
+  36b7a4:      	str	x10, [x8, #0x8]
+  36b7a8:      	ret
+  36b7ac:      	sub	sp, sp, #0xd0
+  36b7b0:      	str	x30, [sp, #0xb0]
+  36b7b4:      	stp	x20, x19, [sp, #0xc0]
+  36b7b8:      	movi	v0.2d, #0000000000000000
+  36b7bc:      	rev	x10, x0
+  36b7c0:      	add	x8, sp, #0x68
+  36b7c4:      	and	x9, x10, #0xffff00
+  36b7c8:      	mov	x20, x2
+  36b7cc:      	mov	x19, x1
+  36b7d0:      	sub	x9, x9, #0xb7, lsl #12  // =0xb7000
+  36b7d4:      	str	x10, [sp, #0x68]
+  36b7d8:      	cmp	x9, #0x700
+  36b7dc:      	orr	x9, x8, #0x1
+  36b7e0:      	stur	q0, [x8, #0x38]
+  36b7e4:      	stur	q0, [x8, #0x28]
+  36b7e8:      	stp	q0, q0, [sp, #0x70]
+  36b7ec:      	b.ne	0x36b818 <av_ac3_parse_header+0x160>
+  36b7f0:      	mov	w12, #0x770b            // =30475
+  36b7f4:      	lsr	x11, x10, #24
+  36b7f8:      	lsr	x13, x10, #32
+  36b7fc:      	sturh	w12, [sp, #0x69]
+  36b800:      	lsr	x12, x10, #40
+  36b804:      	lsr	x10, x10, #48
+  36b808:      	strb	w11, [sp, #0x6c]
+  36b80c:      	strb	w13, [sp, #0x6b]
+  36b810:      	strb	w12, [sp, #0x6e]
+  36b814:      	strb	w10, [sp, #0x6d]
+  36b818:      	adrp	x11, 0xe6000
+  36b81c:      	mov	w10, #0x3e              // =62
+  36b820:      	add	x8, x8, #0x8
+  36b824:      	ldr	d0, [x11, #0x818]
+  36b828:      	add	x0, sp, #0x8
+  36b82c:      	add	x1, sp, #0x28
+  36b830:      	str	w10, [sp, #0x20]
+  36b834:      	stp	x9, x8, [sp, #0x8]
+  36b838:      	str	d0, [sp, #0x18]
+  36b83c:      	bl	0x6db440 <ff_ac3_parse_header@plt>
+  36b840:      	tbnz	w0, #0x1f, 0x36b864 <av_ac3_parse_header+0x1ac>
+  36b844:      	ldrb	w8, [sp, #0x31]
+  36b848:      	ldrh	w0, [sp, #0x56]
+  36b84c:      	mov	w9, #0x1                // =1
+  36b850:      	cmp	w8, #0x1
+  36b854:      	cset	w8, ne
+  36b858:      	str	w8, [x20]
+  36b85c:      	str	w9, [x19]
+  36b860:      	b	0x36b868 <av_ac3_parse_header+0x1b0>
+  36b864:      	mov	w0, wzr
+  36b868:      	ldp	x20, x19, [sp, #0xc0]
+  36b86c:      	ldr	x30, [sp, #0xb0]
+  36b870:      	add	sp, sp, #0xd0
+  36b874:      	ret
+  36b878:      	mov	x0, x20
+  36b87c:      	mov	w1, #0x2                // =2
+  36b880:      	b	0x36b5a4 <ff_ac3_parse_header+0x358>
+  36b884:      	mov	x0, x20
+  36b888:      	mov	w1, #0x3                // =3
+  36b88c:      	b	0x36b5a4 <ff_ac3_parse_header+0x358>
+  36b890:      	str	x30, [sp, #-0x10]!
+  36b894:      	mov	w8, #0x1                // =1
+  36b898:      	nop
+  36b89c:      	adr	x1, 0x36bc28 <av_ac3_parse_header+0x570>
+  36b8a0:      	str	w8, [x0, #0x15c]
+  36b8a4:      	adrp	x0, 0x87c000 <ff_mpeg2_rl_vlc+0xc3b8>
+  36b8a8:      	add	x0, x0, #0x718
+  36b8ac:      	bl	0x6d7a80 <pthread_once@plt>
+  36b8b0:      	mov	w0, wzr
+  36b8b4:      	ldr	x30, [sp], #0x10
+  36b8b8:      	ret
+  36b8bc:      	sub	sp, sp, #0x70
+  36b8c0:      	stp	x29, x30, [sp, #0x10]
+  36b8c4:      	stp	x28, x27, [sp, #0x20]
+  36b8c8:      	stp	x26, x25, [sp, #0x30]
+  36b8cc:      	stp	x24, x23, [sp, #0x40]
+  36b8d0:      	stp	x22, x21, [sp, #0x50]
+  36b8d4:      	stp	x20, x19, [sp, #0x60]
+  36b8d8:      	ldr	w8, [x3, #0x20]
+  36b8dc:      	mov	x23, x0
+  36b8e0:      	mov	w0, #0xb1b7             // =45495
+  36b8e4:      	movk	w0, #0xbebb, lsl #16
+  36b8e8:      	cmp	w8, #0xd
+  36b8ec:      	b.lt	0x36bc08 <av_ac3_parse_header+0x550>
+  36b8f0:      	lsr	w9, w8, #28
+  36b8f4:      	lsl	w10, w8, #3
+  36b8f8:      	ldr	x29, [x3, #0x18]
+  36b8fc:      	mov	x19, x3
+  36b900:      	cmp	w9, #0x0
+  36b904:      	mov	w9, #-0x8               // =-8
+  36b908:      	csel	w9, w9, w10, ne
+  36b90c:      	mov	w10, #0xfdff            // =65023
+  36b910:      	movk	w10, #0x7fff, lsl #16
+  36b914:      	add	w28, w9, #0x8
+  36b918:      	cmp	w9, w10
+  36b91c:      	cset	w10, lo
+  36b920:      	cmp	x29, #0x0
+  36b924:      	cset	w11, ne
+  36b928:      	ands	w9, w10, w11
+  36b92c:      	mov	w10, #0x8               // =8
+  36b930:      	csel	x24, x29, xzr, ne
+  36b934:      	csel	w25, w28, w10, ne
+  36b938:      	cbz	w9, 0x36bc08 <av_ac3_parse_header+0x550>
+  36b93c:      	ldr	x9, [x29]
+  36b940:      	cmp	w28, #0x20
+  36b944:      	mov	w10, #0x20              // =32
+  36b948:      	mov	x22, x1
+  36b94c:      	rev	x9, x9
+  36b950:      	lsr	x26, x9, #32
+  36b954:      	csel	w9, w28, w10, lo
+  36b958:      	cmn	w26, #0x1
+  36b95c:      	b.ne	0x36b994 <av_ac3_parse_header+0x2dc>
+  36b960:      	sub	w11, w28, w9
+  36b964:      	cmp	w11, #0x20
+  36b968:      	csel	w10, w11, w10, lt
+  36b96c:      	add	w9, w10, w9
+  36b970:      	and	w10, w10, #0x7
+  36b974:      	lsr	x11, x9, #3
+  36b978:      	add	w9, w9, #0x20
+  36b97c:      	cmp	w28, w9
+  36b980:      	ldr	x11, [x29, x11]
+  36b984:      	csel	w9, w28, w9, lo
+  36b988:      	rev	x11, x11
+  36b98c:      	lsl	x10, x11, x10
+  36b990:      	lsr	x26, x10, #32
+  36b994:      	cmp	w26, w8, lsl #1
+  36b998:      	b.hi	0x36bc08 <av_ac3_parse_header+0x550>
+  36b99c:      	mov	w8, w9
+  36b9a0:      	and	w10, w9, #0x7
+  36b9a4:      	add	w9, w9, #0x8
+  36b9a8:      	lsr	x8, x8, #3
+  36b9ac:      	cmp	w28, w9
+  36b9b0:      	mov	w11, #0x80              // =128
+  36b9b4:      	csel	w27, w28, w9, lo
+  36b9b8:      	mov	w9, #0x1                // =1
+  36b9bc:      	add	x0, x23, #0x160
+  36b9c0:      	ldr	w8, [x29, x8]
+  36b9c4:      	str	x2, [sp]
+  36b9c8:      	rev	w8, w8
+  36b9cc:      	lsl	w8, w8, w10
+  36b9d0:      	mov	w10, #0x7f              // =127
+  36b9d4:      	asr	w20, w8, #24
+  36b9d8:      	bic	w10, w10, w8, asr #24
+  36b9dc:      	tst	w11, w8, asr #24
+  36b9e0:      	cinc	w21, w9, ne
+  36b9e4:      	csel	w8, w20, w10, eq
+  36b9e8:      	strb	w8, [sp, #0x8]
+  36b9ec:      	bl	0x6d8030 <av_channel_layout_uninit@plt>
+  36b9f0:      	add	x0, x23, #0x160
+  36b9f4:      	mov	w1, w21
+  36b9f8:      	bl	0x6d9030 <av_channel_layout_default@plt>
+  36b9fc:      	lsr	x8, x27, #3
+  36ba00:      	and	w9, w27, #0x7
+  36ba04:      	ldr	w8, [x29, x8]
+  36ba08:      	rev	w8, w8
+  36ba0c:      	lsl	w8, w8, w9
+  36ba10:      	add	w9, w27, #0x10
+  36ba14:      	cmp	w28, w9
+  36ba18:      	lsr	w10, w8, #16
+  36ba1c:      	csel	w8, w28, w9, lo
+  36ba20:      	mov	w27, w8
+  36ba24:      	strh	w10, [sp, #0xc]
+  36ba28:      	tbz	w20, #0x7, 0x36ba7c <av_ac3_parse_header+0x3c4>
+  36ba2c:      	add	w9, w8, #0x8
+  36ba30:      	lsr	x10, x8, #3
+  36ba34:      	and	w8, w8, #0x7
+  36ba38:      	cmp	w28, w9
+  36ba3c:      	csel	w9, w28, w9, lo
+  36ba40:      	ldr	w10, [x29, x10]
+  36ba44:      	lsr	x11, x9, #3
+  36ba48:      	rev	w10, w10
+  36ba4c:      	ldr	w11, [x29, x11]
+  36ba50:      	lsl	w8, w10, w8
+  36ba54:      	rev	w10, w11
+  36ba58:      	and	w11, w9, #0x7
+  36ba5c:      	add	w9, w9, #0x10
+  36ba60:      	lsl	w10, w10, w11
+  36ba64:      	lsr	w8, w8, #24
+  36ba68:      	cmp	w28, w9
+  36ba6c:      	csel	w27, w28, w9, lo
+  36ba70:      	lsr	w10, w10, #16
+  36ba74:      	strb	w8, [sp, #0x9]
+  36ba78:      	strh	w10, [sp, #0xe]
+  36ba7c:      	mov	x0, x23
+  36ba80:      	mov	x1, x22
+  36ba84:      	mov	w2, wzr
+  36ba88:      	str	w26, [x22, #0x70]
+  36ba8c:      	bl	0x6d8670 <ff_get_buffer@plt>
+  36ba90:      	tbnz	w0, #0x1f, 0x36bc08 <av_ac3_parse_header+0x550>
+  36ba94:      	adrp	x1, 0x731000 <ff_sws_context_class+0x31f0>
+  36ba98:      	ldr	x9, [x22]
+  36ba9c:      	ubfiz	x10, x21, #1, #32
+  36baa0:      	ldr	x1, [x1, #0xda0]
+  36baa4:      	mov	x8, xzr
+  36baa8:      	adrp	x13, 0x125000 <ff_dovi_color_default+0xf8>
+  36baac:      	add	x13, x13, #0x888
+  36bab0:      	mov	w14, #0x58              // =88
+  36bab4:      	adrp	x15, 0x125000 <ff_dovi_color_default+0xf8>
+  36bab8:      	add	x15, x15, #0x8e4
+  36babc:      	mov	w16, #0x1               // =1
+  36bac0:      	adrp	x17, 0x87c000 <ff_mpeg2_rl_vlc+0xc3b8>
+  36bac4:      	add	x17, x17, #0x71c
+  36bac8:      	mov	w0, #0x7                // =7
+  36bacc:      	mov	w2, #0x1699             // =5785
+  36bad0:      	mov	w3, #-0x8000            // =-32768
+  36bad4:      	mov	w4, #0x7fff             // =32767
+  36bad8:      	cmp	x8, x21
+  36badc:      	b.eq	0x36bbf8 <av_ac3_parse_header+0x540>
+  36bae0:      	add	x11, sp, #0x8
+  36bae4:      	mov	w5, w26
+  36bae8:      	mov	x6, x9
+  36baec:      	ldrsb	w22, [x11, x8]
+  36baf0:      	add	x11, sp, #0xc
+  36baf4:      	ldrsh	w7, [x11, x8, lsl #1]
+  36baf8:      	cbz	w5, 0x36bbec <av_ac3_parse_header+0x534>
+  36bafc:      	cmp	w22, #0x58
+  36bb00:      	mov	w20, w27
+  36bb04:      	and	w28, w27, #0x7
+  36bb08:      	csel	w22, w22, w14, lt
+  36bb0c:      	lsr	x20, x20, #3
+  36bb10:      	bic	w22, w22, w22, asr #31
+  36bb14:      	ldr	w20, [x24, x20]
+  36bb18:      	ldrb	w23, [x13, w22, uxtw]
+  36bb1c:      	rev	w20, w20
+  36bb20:      	lsl	w29, w20, w28
+  36bb24:      	add	w20, w27, w23
+  36bb28:      	sub	w30, w23, #0x1
+  36bb2c:      	neg	w27, w23
+  36bb30:      	cmp	w25, w20
+  36bb34:      	lsl	w28, w16, w30
+  36bb38:      	lsr	w11, w29, w27
+  36bb3c:      	csel	w27, w25, w20, lo
+  36bb40:      	cmp	w29, #0x0
+  36bb44:      	csel	w20, wzr, w28, ge
+  36bb48:      	sub	w12, w28, #0x1
+  36bb4c:      	eor	w28, w20, w11
+  36bb50:      	cmp	w28, w12
+  36bb54:      	b.ne	0x36bb80 <av_ac3_parse_header+0x4c8>
+  36bb58:      	lsr	x11, x27, #3
+  36bb5c:      	and	w12, w27, #0x7
+  36bb60:      	ldr	w11, [x24, x11]
+  36bb64:      	rev	w11, w11
+  36bb68:      	lsl	w11, w11, w12
+  36bb6c:      	add	w12, w27, #0x10
+  36bb70:      	cmp	w25, w12
+  36bb74:      	asr	w7, w11, #16
+  36bb78:      	csel	w27, w25, w12, lo
+  36bb7c:      	b	0x36bbc8 <av_ac3_parse_header+0x510>
+  36bb80:      	sub	w11, w0, w23
+  36bb84:      	lsl	w11, w28, w11
+  36bb88:      	orr	w11, w11, w22, lsl #6
+  36bb8c:      	cmp	w11, w2
+  36bb90:      	csel	w11, w11, w2, lt
+  36bb94:      	bic	w11, w11, w11, asr #31
+  36bb98:      	ldrh	w20, [x17, w11, uxtw #1]
+  36bb9c:      	cbz	w28, 0x36bbac <av_ac3_parse_header+0x4f4>
+  36bba0:      	ldrsh	w11, [x1, x22, lsl #1]
+  36bba4:      	asr	w11, w11, w30
+  36bba8:      	add	w20, w11, w20
+  36bbac:      	cmp	w29, #0x0
+  36bbb0:      	cneg	w11, w20, lt
+  36bbb4:      	add	w11, w11, w7
+  36bbb8:      	cmn	w11, #0x8, lsl #12      // =0x8000
+  36bbbc:      	csel	w11, w11, w3, gt
+  36bbc0:      	cmp	w11, w4
+  36bbc4:      	csel	w7, w11, w4, lt
+  36bbc8:      	add	x11, x15, x23, lsl #2
+  36bbcc:      	strh	w7, [x6]
+  36bbd0:      	add	x6, x6, x10
+  36bbd4:      	sub	w5, w5, #0x1
+  36bbd8:      	ldursw	x11, [x11, #-0x8]
+  36bbdc:      	add	x11, x15, x11
+  36bbe0:      	ldrsb	w11, [x11, w28, sxtw]
+  36bbe4:      	add	w22, w22, w11
+  36bbe8:      	cbnz	w5, 0x36bafc <av_ac3_parse_header+0x444>
+  36bbec:      	add	x8, x8, #0x1
+  36bbf0:      	add	x9, x9, #0x2
+  36bbf4:      	b	0x36bad8 <av_ac3_parse_header+0x420>
+  36bbf8:      	ldr	x9, [sp]
+  36bbfc:      	mov	w8, #0x1                // =1
+  36bc00:      	str	w8, [x9]
+  36bc04:      	ldr	w0, [x19, #0x20]
+  36bc08:      	ldp	x20, x19, [sp, #0x60]
+  36bc0c:      	ldp	x22, x21, [sp, #0x50]
+  36bc10:      	ldp	x24, x23, [sp, #0x40]
+  36bc14:      	ldp	x26, x25, [sp, #0x30]
+  36bc18:      	ldp	x28, x27, [sp, #0x20]
+  36bc1c:      	ldp	x29, x30, [sp, #0x10]
+  36bc20:      	add	sp, sp, #0x70
+  36bc24:      	ret
+  36bc28:      	adrp	x9, 0x731000 <ff_sws_context_class+0x31f0>
+  36bc2c:      	mov	x8, xzr
+  36bc30:      	adrp	x10, 0x87c000 <ff_mpeg2_rl_vlc+0xc3b8>
+  36bc34:      	add	x10, x10, #0x71c
+  36bc38:      	ldr	x9, [x9, #0xda0]
+  36bc3c:      	cmp	x8, #0x40
+  36bc40:      	b.eq	0x36bc94 <av_ac3_parse_header+0x5dc>
+  36bc44:      	mov	x11, xzr
+  36bc48:      	mov	x12, x8
+  36bc4c:      	cmp	x11, #0x59
+  36bc50:      	b.eq	0x36bc8c <av_ac3_parse_header+0x5d4>
+  36bc54:      	ldrsh	w14, [x9, x11, lsl #1]
+  36bc58:      	mov	w13, wzr
+  36bc5c:      	mov	w15, #0x20              // =32
+  36bc60:      	cbz	w15, 0x36bc7c <av_ac3_parse_header+0x5c4>
+  36bc64:      	tst	w15, w8
+  36bc68:      	lsr	w15, w15, #1
+  36bc6c:      	csel	w16, wzr, w14, eq
+  36bc70:      	asr	w14, w14, #1
+  36bc74:      	add	w13, w16, w13
+  36bc78:      	cbnz	w15, 0x36bc64 <av_ac3_parse_header+0x5ac>
+  36bc7c:      	strh	w13, [x10, x12, lsl #1]
+  36bc80:      	add	x11, x11, #0x1
+  36bc84:      	add	x12, x12, #0x40
+  36bc88:      	b	0x36bc4c <av_ac3_parse_header+0x594>
+  36bc8c:      	add	x8, x8, #0x1
+  36bc90:      	b	0x36bc3c <av_ac3_parse_header+0x584>
+  36bc94:      	ret
+  36bc98:      	str	x30, [sp, #-0x40]!
+  36bc9c:      	stp	x24, x23, [sp, #0x10]
+  36bca0:      	stp	x22, x21, [sp, #0x20]
+  36bca4:      	stp	x20, x19, [sp, #0x30]
+  36bca8:      	ldp	x0, x8, [x1]
+  36bcac:      	mov	x19, x1
+  36bcb0:      	mov	w22, #-0x1              // =-1
+  36bcb4:      	add	x2, sp, #0xc
+  36bcb8:      	str	w22, [sp, #0xc]
+  36bcbc:      	add	x1, x0, x8
+  36bcc0:      	bl	0x6d8430 <avpriv_find_start_code@plt>
+  36bcc4:      	ldr	w24, [sp, #0xc]
+  36bcc8:      	and	w8, w24, #0xffffff00
+  36bccc:      	cmp	w8, #0x100
+  36bcd0:      	b.ne	0x36bd44 <av_ac3_parse_header+0x68c>
+  36bcd4:      	mov	x20, x0
+  36bcd8:      	mov	x23, #-0x4              // =-4
+  36bcdc:      	ldp	x8, x9, [x19]
+  36bce0:      	add	x2, sp, #0xc
+  36bce4:      	mov	x0, x20
+  36bce8:      	sub	x21, x20, #0x1
+  36bcec:      	str	w22, [sp, #0xc]
+  36bcf0:      	add	x1, x8, x9
+  36bcf4:      	bl	0x6d8430 <avpriv_find_start_code@plt>
+  36bcf8:      	ldr	w8, [sp, #0xc]
+  36bcfc:      	ldr	x4, [x19, #0x18]
+  36bd00:      	mov	x20, x0
+  36bd04:      	and	w1, w24, #0xff
+  36bd08:      	mov	x2, x21
+  36bd0c:      	and	w8, w8, #0xffffff00
+  36bd10:      	cmp	w8, #0x100
+  36bd14:      	csel	x8, x23, xzr, eq
+  36bd18:      	add	x8, x0, x8
+  36bd1c:      	mov	x0, x19
+  36bd20:      	sub	x3, x8, x21
+  36bd24:      	bl	0x6d8920 <ff_cbs_append_unit_data@plt>
+  36bd28:      	tbnz	w0, #0x1f, 0x36bd4c <av_ac3_parse_header+0x694>
+  36bd2c:      	ldr	w24, [sp, #0xc]
+  36bd30:      	and	w8, w24, #0xffffff00
+  36bd34:      	cmp	w8, #0x100
+  36bd38:      	b.eq	0x36bcdc <av_ac3_parse_header+0x624>
+  36bd3c:      	mov	w0, wzr
+  36bd40:      	b	0x36bd4c <av_ac3_parse_header+0x694>
+  36bd44:      	mov	w0, #0xb1b7             // =45495
+  36bd48:      	movk	w0, #0xbebb, lsl #16
+  36bd4c:      	ldp	x20, x19, [sp, #0x30]
+  36bd50:      	ldp	x22, x21, [sp, #0x20]
+  36bd54:      	ldp	x24, x23, [sp, #0x10]
+  36bd58:      	ldr	x30, [sp], #0x40
+  36bd5c:      	ret
+  36bd60:      	sub	sp, sp, #0xa0
+  36bd64:      	str	x30, [sp, #0x40]
+  36bd68:      	stp	x28, x27, [sp, #0x50]
+  36bd6c:      	stp	x26, x25, [sp, #0x60]
+  36bd70:      	stp	x24, x23, [sp, #0x70]
+  36bd74:      	stp	x22, x21, [sp, #0x80]
+  36bd78:      	stp	x20, x19, [sp, #0x90]
+  36bd7c:      	ldr	w9, [x1, #0x10]
+  36bd80:      	mov	w8, #0xfdff             // =65023
+  36bd84:      	ldr	x10, [x1, #0x8]
+  36bd88:      	movk	w8, #0x7fff, lsl #16
+  36bd8c:      	mov	w20, #0xb1b7            // =45495
+  36bd90:      	str	wzr, [sp, #0x10]
+  36bd94:      	lsl	w9, w9, #3
+  36bd98:      	movk	w20, #0xbebb, lsl #16
+  36bd9c:      	cmp	w9, w8
+  36bda0:      	cset	w8, lo
+  36bda4:      	cmp	x10, #0x0
+  36bda8:      	cset	w11, ne
+  36bdac:      	ands	w8, w11, w8
+  36bdb0:      	csel	w9, w9, wzr, ne
+  36bdb4:      	csel	x10, x10, xzr, ne
+  36bdb8:      	lsr	w11, w9, #3
+  36bdbc:      	add	w12, w9, #0x8
+  36bdc0:      	stp	w9, w12, [sp, #0x14]
+  36bdc4:      	add	x11, x10, x11
+  36bdc8:      	stp	x10, x11, [sp]
+  36bdcc:      	cbz	w8, 0x36ccd8 <av_ac3_parse_header+0x1620>
+  36bdd0:      	mov	x21, x1
+  36bdd4:      	mov	x19, x0
+  36bdd8:      	bl	0x6d8930 <ff_cbs_alloc_unit_content@plt>
+  36bddc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36bde0:      	ldr	w8, [x21]
+  36bde4:      	sub	w9, w8, #0x1
+  36bde8:      	cmp	w9, #0xae
+  36bdec:      	b.hi	0x36bf28 <av_ac3_parse_header+0x870>
+  36bdf0:      	ldr	x22, [x21, #0x28]
+  36bdf4:      	ldr	x23, [x19, #0x10]
+  36bdf8:      	adrp	x1, 0xb1000
+  36bdfc:      	add	x1, x1, #0xbcf
+  36be00:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36be04:      	adrp	x3, 0x9a000
+  36be08:      	add	x3, x3, #0xbfb
+  36be0c:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36be10:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36be14:      	ldr	w8, [sp, #0x48]
+  36be18:      	strb	w8, [x22]
+  36be1c:      	ldrh	w8, [x23, #0x2]
+  36be20:      	cmp	w8, #0xaf1
+  36be24:      	b.lo	0x36be40 <av_ac3_parse_header+0x788>
+  36be28:      	adrp	x3, 0xb9000
+  36be2c:      	add	x3, x3, #0xb57
+  36be30:      	bl	0x36e1e0 <av_ac3_parse_header+0x2b28>
+  36be34:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36be38:      	ldr	w8, [sp, #0x48]
+  36be3c:      	strb	w8, [x22, #0x1]
+  36be40:      	ldrb	w8, [x23, #0x4]
+  36be44:      	cbz	w8, 0x36be6c <av_ac3_parse_header+0x7b4>
+  36be48:      	ldrb	w8, [x23, #0x5]
+  36be4c:      	cbnz	w8, 0x36be6c <av_ac3_parse_header+0x7b4>
+  36be50:      	adrp	x3, 0xa2000
+  36be54:      	add	x3, x3, #0x3d0
+  36be58:      	bl	0x36e308 <av_ac3_parse_header+0x2c50>
+  36be5c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36be60:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36be64:      	ldr	w8, [sp, #0x48]
+  36be68:      	strb	w8, [x22, #0x2]
+  36be6c:      	adrp	x3, 0xc1000
+  36be70:      	add	x3, x3, #0x856
+  36be74:      	mov	x1, sp
+  36be78:      	add	x5, sp, #0x48
+  36be7c:      	mov	x0, x19
+  36be80:      	bl	0x36e298 <av_ac3_parse_header+0x2be0>
+  36be84:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36be88:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36be8c:      	ldr	w8, [sp, #0x48]
+  36be90:      	strb	w8, [x22, #0x3]
+  36be94:      	ldp	w8, w9, [sp, #0x10]
+  36be98:      	cmp	w9, w8
+  36be9c:      	b.le	0x36bec4 <av_ac3_parse_header+0x80c>
+  36bea0:      	ldr	x9, [sp]
+  36bea4:      	lsr	x10, x8, #3
+  36bea8:      	and	w8, w8, #0x7
+  36beac:      	ldr	w9, [x9, x10]
+  36beb0:      	rev	w9, w9
+  36beb4:      	lsl	w8, w9, w8
+  36beb8:      	lsr	w9, w8, #31
+  36bebc:      	strb	w9, [x22, #0x4]
+  36bec0:      	tbnz	w8, #0x1f, 0x36c580 <av_ac3_parse_header+0xec8>
+  36bec4:      	bl	0x36e354 <av_ac3_parse_header+0x2c9c>
+  36bec8:      	mov	x1, sp
+  36becc:      	add	x2, x22, #0x8
+  36bed0:      	mov	x0, x19
+  36bed4:      	bl	0x36dd14 <av_ac3_parse_header+0x265c>
+  36bed8:      	tbnz	w0, #0x1f, 0x36c158 <av_ac3_parse_header+0xaa0>
+  36bedc:      	ldp	w19, w8, [sp, #0x10]
+  36bee0:      	cmp	w8, w19
+  36bee4:      	b.eq	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36bee8:      	mov	w8, #0x8                // =8
+  36beec:      	sdiv	w20, w19, w8
+  36bef0:      	ldr	w8, [x21, #0x10]
+  36bef4:      	sub	w8, w8, w20
+  36bef8:      	sxtw	x8, w8
+  36befc:      	str	x8, [x22, #0x30]
+  36bf00:      	ldr	x0, [x21, #0x20]
+  36bf04:      	bl	0x6d8940 <av_buffer_ref@plt>
+  36bf08:      	str	x0, [x22, #0x28]
+  36bf0c:      	cbz	x0, 0x36c5fc <av_ac3_parse_header+0xf44>
+  36bf10:      	ldr	x8, [x21, #0x8]
+  36bf14:      	sub	w9, w19, w20, lsl #3
+  36bf18:      	add	x8, x8, w20, sxtw
+  36bf1c:      	str	w9, [x22, #0x38]
+  36bf20:      	str	x8, [x22, #0x20]
+  36bf24:      	b	0x36c578 <av_ac3_parse_header+0xec0>
+  36bf28:      	sub	w9, w8, #0xb2
+  36bf2c:      	mov	w20, #-0x26             // =-38
+  36bf30:      	cmp	w9, #0x6
+  36bf34:      	b.hi	0x36c018 <av_ac3_parse_header+0x960>
+  36bf38:      	adrp	x8, 0x125000 <ff_dovi_color_default+0xf8>
+  36bf3c:      	add	x8, x8, #0x9f8
+  36bf40:      	adr	x10, 0x36bf50 <av_ac3_parse_header+0x898>
+  36bf44:      	ldrh	w11, [x8, x9, lsl #1]
+  36bf48:      	add	x10, x10, x11, lsl #2
+  36bf4c:      	br	x10
+  36bf50:      	ldr	x22, [x21, #0x28]
+  36bf54:      	adrp	x1, 0x9a000
+  36bf58:      	add	x1, x1, #0xc26
+  36bf5c:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36bf60:      	adrp	x3, 0xcd000
+  36bf64:      	add	x3, x3, #0x122
+  36bf68:      	mov	x1, sp
+  36bf6c:      	add	x4, sp, #0x38
+  36bf70:      	bl	0x36dff4 <av_ac3_parse_header+0x293c>
+  36bf74:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36bf78:      	ldr	w8, [sp, #0x38]
+  36bf7c:      	strb	w8, [x22]
+  36bf80:      	ldp	w9, w8, [sp, #0x10]
+  36bf84:      	sub	w10, w8, w9
+  36bf88:      	sxtw	x10, w10
+  36bf8c:      	tst	x10, #0x7
+  36bf90:      	b.ne	0x36ccfc <av_ac3_parse_header+0x1644>
+  36bf94:      	lsr	x10, x10, #3
+  36bf98:      	cmp	w8, w9
+  36bf9c:      	str	x10, [x22, #0x18]
+  36bfa0:      	b.eq	0x36bfbc <av_ac3_parse_header+0x904>
+  36bfa4:      	add	x0, x10, #0x40
+  36bfa8:      	bl	0x6db680 <av_buffer_allocz@plt>
+  36bfac:      	str	x0, [x22, #0x10]
+  36bfb0:      	cbz	x0, 0x36c5fc <av_ac3_parse_header+0xf44>
+  36bfb4:      	ldr	x8, [x0, #0x8]
+  36bfb8:      	str	x8, [x22, #0x8]
+  36bfbc:      	mov	x23, xzr
+  36bfc0:      	mov	w24, #0x1               // =1
+  36bfc4:      	adrp	x21, 0xac000
+  36bfc8:      	add	x21, x21, #0x37d
+  36bfcc:      	ldr	x8, [x22, #0x18]
+  36bfd0:      	cmp	x23, x8
+  36bfd4:      	b.hs	0x36c578 <av_ac3_parse_header+0xec0>
+  36bfd8:      	mov	x1, sp
+  36bfdc:      	add	x4, sp, #0x48
+  36bfe0:      	add	x5, sp, #0x38
+  36bfe4:      	mov	x0, x19
+  36bfe8:      	mov	w2, #0x8                // =8
+  36bfec:      	mov	x3, x21
+  36bff0:      	mov	w6, wzr
+  36bff4:      	mov	w7, #0xff               // =255
+  36bff8:      	stp	w24, w23, [sp, #0x48]
+  36bffc:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c000:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c004:      	ldr	x8, [x22, #0x8]
+  36c008:      	ldr	w9, [sp, #0x38]
+  36c00c:      	strb	w9, [x8, x23]
+  36c010:      	add	x23, x23, #0x1
+  36c014:      	b	0x36bfcc <av_ac3_parse_header+0x914>
+  36c018:      	cbnz	w8, 0x36ccd8 <av_ac3_parse_header+0x1620>
+  36c01c:      	ldr	x21, [x21, #0x28]
+  36c020:      	adrp	x1, 0xc4000
+  36c024:      	add	x1, x1, #0x32c
+  36c028:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c02c:      	adrp	x3, 0xda000
+  36c030:      	add	x3, x3, #0x1bc
+  36c034:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c038:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c03c:      	ldr	w8, [sp, #0x48]
+  36c040:      	adrp	x3, 0x9a000
+  36c044:      	add	x3, x3, #0xc13
+  36c048:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c04c:      	mov	w2, #0xa                // =10
+  36c050:      	strb	w8, [x21]
+  36c054:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c058:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c05c:      	ldr	w8, [sp, #0x48]
+  36c060:      	adrp	x3, 0xb1000
+  36c064:      	add	x3, x3, #0xbed
+  36c068:      	mov	x1, sp
+  36c06c:      	add	x5, sp, #0x48
+  36c070:      	mov	x0, x19
+  36c074:      	bl	0x36e2d4 <av_ac3_parse_header+0x2c1c>
+  36c078:      	strh	w8, [x21, #0x2]
+  36c07c:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c080:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c084:      	ldr	w8, [sp, #0x48]
+  36c088:      	adrp	x3, 0xc4000
+  36c08c:      	add	x3, x3, #0x33b
+  36c090:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c094:      	mov	w2, #0x10               // =16
+  36c098:      	strb	w8, [x21, #0x4]
+  36c09c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c0a0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c0a4:      	ldrb	w8, [x21, #0x4]
+  36c0a8:      	ldr	w9, [sp, #0x48]
+  36c0ac:      	and	w8, w8, #0xfe
+  36c0b0:      	strh	w9, [x21, #0x6]
+  36c0b4:      	cmp	w8, #0x2
+  36c0b8:      	b.ne	0x36c140 <av_ac3_parse_header+0xa88>
+  36c0bc:      	adrp	x3, 0xe4000
+  36c0c0:      	add	x3, x3, #0x66a
+  36c0c4:      	mov	x1, sp
+  36c0c8:      	add	x4, sp, #0x48
+  36c0cc:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36c0d0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c0d4:      	ldr	w8, [sp, #0x48]
+  36c0d8:      	adrp	x3, 0xa9000
+  36c0dc:      	add	x3, x3, #0xa12
+  36c0e0:      	bl	0x36e198 <av_ac3_parse_header+0x2ae0>
+  36c0e4:      	strb	w8, [x21, #0x8]
+  36c0e8:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c0ec:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c0f0:      	ldrb	w8, [x21, #0x4]
+  36c0f4:      	ldr	w9, [sp, #0x48]
+  36c0f8:      	cmp	w8, #0x3
+  36c0fc:      	strb	w9, [x21, #0x9]
+  36c100:      	b.ne	0x36c140 <av_ac3_parse_header+0xa88>
+  36c104:      	adrp	x3, 0xb1000
+  36c108:      	add	x3, x3, #0xc01
+  36c10c:      	mov	x1, sp
+  36c110:      	add	x4, sp, #0x48
+  36c114:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36c118:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c11c:      	ldr	w8, [sp, #0x48]
+  36c120:      	adrp	x3, 0xdf000
+  36c124:      	add	x3, x3, #0x340
+  36c128:      	bl	0x36e198 <av_ac3_parse_header+0x2ae0>
+  36c12c:      	strb	w8, [x21, #0xa]
+  36c130:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c134:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c138:      	ldr	w8, [sp, #0x48]
+  36c13c:      	strb	w8, [x21, #0xb]
+  36c140:      	bl	0x36e2b4 <av_ac3_parse_header+0x2bfc>
+  36c144:      	mov	x1, sp
+  36c148:      	add	x2, x21, #0x10
+  36c14c:      	mov	x0, x19
+  36c150:      	bl	0x36dd14 <av_ac3_parse_header+0x265c>
+  36c154:      	tbz	w0, #0x1f, 0x36c578 <av_ac3_parse_header+0xec0>
+  36c158:      	and	w20, w0, w0, asr #31
+  36c15c:      	b	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36c160:      	ldr	x21, [x21, #0x28]
+  36c164:      	adrp	x1, 0xb1000
+  36c168:      	add	x1, x1, #0xc6e
+  36c16c:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c170:      	adrp	x3, 0xb4000
+  36c174:      	add	x3, x3, #0x6d6
+  36c178:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c17c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c180:      	ldr	w8, [sp, #0x48]
+  36c184:      	adrp	x3, 0xb7000
+  36c188:      	add	x3, x3, #0x5d
+  36c18c:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c190:      	mov	w2, #0x19               // =25
+  36c194:      	strb	w8, [x21]
+  36c198:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c19c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c1a0:      	ldr	w8, [sp, #0x48]
+  36c1a4:      	adrp	x3, 0xa2000
+  36c1a8:      	add	x3, x3, #0x447
+  36c1ac:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c1b0:      	str	w8, [x21, #0x4]
+  36c1b4:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c1b8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c1bc:      	ldr	w8, [sp, #0x48]
+  36c1c0:      	adrp	x3, 0xa2000
+  36c1c4:      	add	x3, x3, #0x452
+  36c1c8:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c1cc:      	strb	w8, [x21, #0x8]
+  36c1d0:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c1d4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c1d8:      	ldr	w8, [sp, #0x48]
+  36c1dc:      	strb	w8, [x21, #0x9]
+  36c1e0:      	b	0x36c578 <av_ac3_parse_header+0xec0>
+  36c1e4:      	ldr	x24, [x21, #0x28]
+  36c1e8:      	adrp	x1, 0xa2000
+  36c1ec:      	add	x1, x1, #0x3e4
+  36c1f0:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c1f4:      	adrp	x3, 0xb1000
+  36c1f8:      	add	x3, x3, #0xc1a
+  36c1fc:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c200:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c204:      	ldr	w8, [sp, #0x48]
+  36c208:      	adrp	x3, 0xd4000
+  36c20c:      	add	x3, x3, #0xf27
+  36c210:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c214:      	mov	w2, #0x4                // =4
+  36c218:      	strb	w8, [x24]
+  36c21c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c220:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c224:      	ldr	w9, [sp, #0x48]
+  36c228:      	and	w3, w9, #0xff
+  36c22c:      	strb	w9, [x24, #0x1]
+  36c230:      	sub	w8, w3, #0x1
+  36c234:      	cmp	w8, #0x7
+  36c238:      	b.hi	0x36c604 <av_ac3_parse_header+0xf4c>
+  36c23c:      	adrp	x9, 0x125000 <ff_dovi_color_default+0xf8>
+  36c240:      	add	x9, x9, #0xa06
+  36c244:      	adr	x10, 0x36c254 <av_ac3_parse_header+0xb9c>
+  36c248:      	ldrh	w11, [x9, x8, lsl #1]
+  36c24c:      	add	x10, x10, x11, lsl #2
+  36c250:      	br	x10
+  36c254:      	ldr	x21, [x19, #0x10]
+  36c258:      	adrp	x1, 0xb9000
+  36c25c:      	add	x1, x1, #0xb89
+  36c260:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c264:      	adrp	x3, 0xac000
+  36c268:      	add	x3, x3, #0x38a
+  36c26c:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c270:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c274:      	ldr	w8, [sp, #0x48]
+  36c278:      	adrp	x3, 0xc6000
+  36c27c:      	add	x3, x3, #0xdd8
+  36c280:      	bl	0x36e180 <av_ac3_parse_header+0x2ac8>
+  36c284:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c288:      	ldr	w8, [sp, #0x48]
+  36c28c:      	adrp	x3, 0xb4000
+  36c290:      	add	x3, x3, #0x6af
+  36c294:      	bl	0x36e0e4 <av_ac3_parse_header+0x2a2c>
+  36c298:      	strb	w8, [x24, #0x3]
+  36c29c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c2a0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c2a4:      	ldr	w8, [sp, #0x48]
+  36c2a8:      	adrp	x3, 0xda000
+  36c2ac:      	add	x3, x3, #0x1cf
+  36c2b0:      	bl	0x36e0e4 <av_ac3_parse_header+0x2a2c>
+  36c2b4:      	strb	w8, [x24, #0x4]
+  36c2b8:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c2bc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c2c0:      	ldr	w8, [sp, #0x48]
+  36c2c4:      	adrp	x3, 0xdf000
+  36c2c8:      	add	x3, x3, #0x35f
+  36c2cc:      	bl	0x36e150 <av_ac3_parse_header+0x2a98>
+  36c2d0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c2d4:      	ldr	w8, [sp, #0x48]
+  36c2d8:      	ldrb	w9, [x24, #0x5]
+  36c2dc:      	adrp	x3, 0x9d000
+  36c2e0:      	add	x3, x3, #0x3d3
+  36c2e4:      	mov	x1, sp
+  36c2e8:      	add	x4, sp, #0x48
+  36c2ec:      	strb	w8, [x24, #0x6]
+  36c2f0:      	mov	x0, x19
+  36c2f4:      	mov	w2, #0xc                // =12
+  36c2f8:      	ldrh	w10, [x21]
+  36c2fc:      	ldrh	w11, [x21, #0x2]
+  36c300:      	bfi	w10, w9, #12, #20
+  36c304:      	bfi	w11, w8, #12, #20
+  36c308:      	strh	w10, [x21]
+  36c30c:      	strh	w11, [x21, #0x2]
+  36c310:      	ldrb	w8, [x24, #0x3]
+  36c314:      	strb	w8, [x21, #0x6]
+  36c318:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c31c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c320:      	bl	0x36e084 <av_ac3_parse_header+0x29cc>
+  36c324:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c328:      	adrp	x3, 0xa2000
+  36c32c:      	add	x3, x3, #0x3f3
+  36c330:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c334:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c338:      	ldr	w8, [sp, #0x48]
+  36c33c:      	adrp	x3, 0xc9000
+  36c340:      	add	x3, x3, #0x211
+  36c344:      	bl	0x36e168 <av_ac3_parse_header+0x2ab0>
+  36c348:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c34c:      	ldr	w8, [sp, #0x48]
+  36c350:      	adrp	x3, 0xd2000
+  36c354:      	add	x3, x3, #0x529
+  36c358:      	bl	0x36e0e4 <av_ac3_parse_header+0x2a2c>
+  36c35c:      	strb	w8, [x24, #0xb]
+  36c360:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c364:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c368:      	ldr	w8, [sp, #0x48]
+  36c36c:      	adrp	x3, 0xb1000
+  36c370:      	add	x3, x3, #0xc2f
+  36c374:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c378:      	mov	w2, #0x5                // =5
+  36c37c:      	strb	w8, [x24, #0xc]
+  36c380:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c384:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c388:      	ldr	w8, [sp, #0x48]
+  36c38c:      	mov	w20, wzr
+  36c390:      	strb	w8, [x24, #0xd]
+  36c394:      	b	0x36cbdc <av_ac3_parse_header+0x1524>
+  36c398:      	ldr	x22, [x21, #0x28]
+  36c39c:      	ldr	x21, [x19, #0x10]
+  36c3a0:      	adrp	x1, 0xb6000
+  36c3a4:      	add	x1, x1, #0xb28
+  36c3a8:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c3ac:      	adrp	x3, 0xdc000
+  36c3b0:      	add	x3, x3, #0xad3
+  36c3b4:      	mov	x1, sp
+  36c3b8:      	add	x4, sp, #0x30
+  36c3bc:      	bl	0x36dff4 <av_ac3_parse_header+0x293c>
+  36c3c0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c3c4:      	ldr	w8, [sp, #0x30]
+  36c3c8:      	adrp	x3, 0xd7000
+  36c3cc:      	add	x3, x3, #0x55d
+  36c3d0:      	bl	0x36e1ac <av_ac3_parse_header+0x2af4>
+  36c3d4:      	strb	w8, [x22]
+  36c3d8:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c3dc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c3e0:      	ldr	w8, [sp, #0x30]
+  36c3e4:      	adrp	x3, 0xa9000
+  36c3e8:      	add	x3, x3, #0xa21
+  36c3ec:      	bl	0x36e1ac <av_ac3_parse_header+0x2af4>
+  36c3f0:      	strh	w8, [x22, #0x2]
+  36c3f4:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c3f8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c3fc:      	ldrh	w8, [sp, #0x30]
+  36c400:      	ldrh	w9, [x22, #0x2]
+  36c404:      	adrp	x3, 0x95000
+  36c408:      	add	x3, x3, #0xa9d
+  36c40c:      	mov	x1, sp
+  36c410:      	add	x5, sp, #0x30
+  36c414:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c418:      	strh	w8, [x22, #0x4]
+  36c41c:      	strh	w9, [x21]
+  36c420:      	strh	w8, [x21, #0x2]
+  36c424:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c428:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c42c:      	ldr	w8, [sp, #0x30]
+  36c430:      	adrp	x3, 0xb9000
+  36c434:      	add	x3, x3, #0xb79
+  36c438:      	mov	x1, sp
+  36c43c:      	add	x5, sp, #0x30
+  36c440:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c444:      	strb	w8, [x22, #0x6]
+  36c448:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c44c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c450:      	ldr	w8, [sp, #0x30]
+  36c454:      	adrp	x3, 0xdf000
+  36c458:      	add	x3, x3, #0x350
+  36c45c:      	mov	x1, sp
+  36c460:      	add	x4, sp, #0x30
+  36c464:      	mov	x0, x19
+  36c468:      	mov	w2, #0x12               // =18
+  36c46c:      	strb	w8, [x22, #0x7]
+  36c470:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c474:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c478:      	ldr	w8, [sp, #0x30]
+  36c47c:      	adrp	x3, 0x9d000
+  36c480:      	add	x3, x3, #0x3c8
+  36c484:      	mov	x1, sp
+  36c488:      	add	x5, sp, #0x30
+  36c48c:      	mov	x0, x19
+  36c490:      	mov	w2, #0x1                // =1
+  36c494:      	mov	x4, xzr
+  36c498:      	mov	w6, #0x1                // =1
+  36c49c:      	mov	w7, #0x1                // =1
+  36c4a0:      	str	w8, [x22, #0x8]
+  36c4a4:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c4a8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c4ac:      	adrp	x3, 0xe4000
+  36c4b0:      	add	x3, x3, #0x682
+  36c4b4:      	mov	x1, sp
+  36c4b8:      	add	x4, sp, #0x30
+  36c4bc:      	mov	x0, x19
+  36c4c0:      	mov	w2, #0xa                // =10
+  36c4c4:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c4c8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c4cc:      	ldr	w8, [sp, #0x30]
+  36c4d0:      	adrp	x3, 0xb4000
+  36c4d4:      	add	x3, x3, #0x693
+  36c4d8:      	bl	0x36e31c <av_ac3_parse_header+0x2c64>
+  36c4dc:      	strh	w8, [x22, #0xc]
+  36c4e0:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c4e4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c4e8:      	ldr	w8, [sp, #0x30]
+  36c4ec:      	adrp	x3, 0xe1000
+  36c4f0:      	add	x3, x3, #0xcd0
+  36c4f4:      	bl	0x36e31c <av_ac3_parse_header+0x2c64>
+  36c4f8:      	strb	w8, [x22, #0xe]
+  36c4fc:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c500:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c504:      	ldrb	w8, [sp, #0x30]
+  36c508:      	strb	w8, [x22, #0xf]
+  36c50c:      	cbz	w8, 0x36cb04 <av_ac3_parse_header+0x144c>
+  36c510:      	mov	x23, xzr
+  36c514:      	add	x24, x22, #0x10
+  36c518:      	bl	0x36e200 <av_ac3_parse_header+0x2b48>
+  36c51c:      	cmp	x23, #0x40
+  36c520:      	b.eq	0x36cb04 <av_ac3_parse_header+0x144c>
+  36c524:      	mov	x1, sp
+  36c528:      	add	x4, sp, #0x48
+  36c52c:      	add	x5, sp, #0x30
+  36c530:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36c534:      	stp	w25, w23, [sp, #0x48]
+  36c538:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c53c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c540:      	ldr	w8, [sp, #0x30]
+  36c544:      	strb	w8, [x24, x23]
+  36c548:      	add	x23, x23, #0x1
+  36c54c:      	b	0x36c51c <av_ac3_parse_header+0xe64>
+  36c550:      	ldr	x21, [x21, #0x28]
+  36c554:      	adrp	x1, 0xb4000
+  36c558:      	add	x1, x1, #0x6e7
+  36c55c:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c560:      	adrp	x3, 0x98000
+  36c564:      	add	x3, x3, #0xee
+  36c568:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c56c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c570:      	ldr	w8, [sp, #0x48]
+  36c574:      	strb	w8, [x21]
+  36c578:      	mov	w20, wzr
+  36c57c:      	b	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36c580:      	adrp	x3, 0x98000
+  36c584:      	add	x3, x3, #0xcd
+  36c588:      	mov	x1, sp
+  36c58c:      	add	x4, sp, #0x48
+  36c590:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36c594:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c598:      	ldr	w8, [sp, #0x48]
+  36c59c:      	adrp	x3, 0x98000
+  36c5a0:      	add	x3, x3, #0xe2
+  36c5a4:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c5a8:      	strb	w8, [x22, #0x4]
+  36c5ac:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c5b0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c5b4:      	ldr	w8, [sp, #0x48]
+  36c5b8:      	adrp	x3, 0xbc000
+  36c5bc:      	add	x3, x3, #0x4b9
+  36c5c0:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c5c4:      	strb	w8, [x22, #0x5]
+  36c5c8:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c5cc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c5d0:      	ldr	w8, [sp, #0x48]
+  36c5d4:      	adrp	x3, 0xb1000
+  36c5d8:      	add	x3, x3, #0xbdc
+  36c5dc:      	bl	0x36e0d4 <av_ac3_parse_header+0x2a1c>
+  36c5e0:      	mov	w2, #0x6                // =6
+  36c5e4:      	strb	w8, [x22, #0x6]
+  36c5e8:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c5ec:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c5f0:      	ldr	w8, [sp, #0x48]
+  36c5f4:      	strb	w8, [x22, #0x7]
+  36c5f8:      	b	0x36bec4 <av_ac3_parse_header+0x80c>
+  36c5fc:      	mov	w20, #-0xc              // =-12
+  36c600:      	b	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36c604:      	ldr	x0, [x19]
+  36c608:      	adrp	x2, 0xe1000
+  36c60c:      	add	x2, x2, #0xcec
+  36c610:      	mov	w1, #0x10               // =16
+  36c614:      	bl	0x6d7ae0 <av_log@plt>
+  36c618:      	mov	w20, #0xbeb0            // =48816
+  36c61c:      	movk	w20, #0xbaa8, lsl #16
+  36c620:      	b	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36c624:      	adrp	x1, 0xb1000
+  36c628:      	add	x1, x1, #0xc57
+  36c62c:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c630:      	adrp	x3, 0xe1000
+  36c634:      	add	x3, x3, #0xcd0
+  36c638:      	mov	x1, sp
+  36c63c:      	add	x4, sp, #0x48
+  36c640:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36c644:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c648:      	ldrb	w8, [sp, #0x48]
+  36c64c:      	strb	w8, [x24, #0x2]
+  36c650:      	cbz	w8, 0x36c9f4 <av_ac3_parse_header+0x133c>
+  36c654:      	mov	x22, xzr
+  36c658:      	add	x23, x24, #0x3
+  36c65c:      	bl	0x36e200 <av_ac3_parse_header+0x2b48>
+  36c660:      	cmp	x22, #0x40
+  36c664:      	b.eq	0x36c9f4 <av_ac3_parse_header+0x133c>
+  36c668:      	mov	x1, sp
+  36c66c:      	add	x4, sp, #0x48
+  36c670:      	add	x5, sp, #0x38
+  36c674:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36c678:      	stp	w25, w22, [sp, #0x48]
+  36c67c:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c680:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c684:      	ldr	w8, [sp, #0x38]
+  36c688:      	bl	0x36e2e8 <av_ac3_parse_header+0x2c30>
+  36c68c:      	b	0x36c660 <av_ac3_parse_header+0xfa8>
+  36c690:      	adrp	x1, 0xbc000
+  36c694:      	add	x1, x1, #0x4d1
+  36c698:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c69c:      	adrp	x3, 0xdc000
+  36c6a0:      	add	x3, x3, #0x757
+  36c6a4:      	bl	0x36e1e0 <av_ac3_parse_header+0x2b28>
+  36c6a8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c6ac:      	ldr	w8, [sp, #0x48]
+  36c6b0:      	adrp	x3, 0xa2000
+  36c6b4:      	add	x3, x3, #0x40d
+  36c6b8:      	bl	0x36e180 <av_ac3_parse_header+0x2ac8>
+  36c6bc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c6c0:      	ldrb	w8, [sp, #0x48]
+  36c6c4:      	strb	w8, [x24, #0x3]
+  36c6c8:      	cbz	w8, 0x36cabc <av_ac3_parse_header+0x1404>
+  36c6cc:      	bl	0x36e2c8 <av_ac3_parse_header+0x2c10>
+  36c6d0:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c6d4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c6d8:      	ldrb	w8, [sp, #0x48]
+  36c6dc:      	strb	w8, [x24, #0x4]
+  36c6e0:      	cbnz	w8, 0x36c6f4 <av_ac3_parse_header+0x103c>
+  36c6e4:      	bl	0x36e228 <av_ac3_parse_header+0x2b70>
+  36c6e8:      	strb	w8, [x24, #0x4]
+  36c6ec:      	bl	0x36e2c8 <av_ac3_parse_header+0x2c10>
+  36c6f0:      	bl	0x36e1f4 <av_ac3_parse_header+0x2b3c>
+  36c6f4:      	bl	0x36e28c <av_ac3_parse_header+0x2bd4>
+  36c6f8:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c6fc:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c700:      	ldrb	w8, [sp, #0x48]
+  36c704:      	strb	w8, [x24, #0x5]
+  36c708:      	cbnz	w8, 0x36c71c <av_ac3_parse_header+0x1064>
+  36c70c:      	bl	0x36e228 <av_ac3_parse_header+0x2b70>
+  36c710:      	strb	w8, [x24, #0x5]
+  36c714:      	bl	0x36e28c <av_ac3_parse_header+0x2bd4>
+  36c718:      	bl	0x36e1f4 <av_ac3_parse_header+0x2b3c>
+  36c71c:      	bl	0x36e280 <av_ac3_parse_header+0x2bc8>
+  36c720:      	bl	0x36df9c <av_ac3_parse_header+0x28e4>
+  36c724:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c728:      	ldrb	w8, [sp, #0x48]
+  36c72c:      	strb	w8, [x24, #0x6]
+  36c730:      	cbnz	w8, 0x36cacc <av_ac3_parse_header+0x1414>
+  36c734:      	bl	0x36e228 <av_ac3_parse_header+0x2b70>
+  36c738:      	strb	w8, [x24, #0x6]
+  36c73c:      	bl	0x36e280 <av_ac3_parse_header+0x2bc8>
+  36c740:      	bl	0x36e1f4 <av_ac3_parse_header+0x2b3c>
+  36c744:      	b	0x36cacc <av_ac3_parse_header+0x1414>
+  36c748:      	ldr	x25, [x19, #0x10]
+  36c74c:      	adrp	x1, 0xa9000
+  36c750:      	add	x1, x1, #0xa35
+  36c754:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c758:      	mov	x26, xzr
+  36c75c:      	adrp	x21, 0xb9000
+  36c760:      	add	x21, x21, #0xc04
+  36c764:      	adrp	x22, 0x9d000
+  36c768:      	add	x22, x22, #0x3c8
+  36c76c:      	mov	w27, #0x1               // =1
+  36c770:      	adrp	x23, 0xdf000
+  36c774:      	add	x23, x23, #0x377
+  36c778:      	ldrb	w8, [x25, #0x7]
+  36c77c:      	cmp	x26, x8
+  36c780:      	b.hs	0x36cbe4 <av_ac3_parse_header+0x152c>
+  36c784:      	mov	x1, sp
+  36c788:      	add	x4, sp, #0x48
+  36c78c:      	add	x5, sp, #0x30
+  36c790:      	mov	x0, x19
+  36c794:      	mov	w2, #0x10               // =16
+  36c798:      	mov	x3, x21
+  36c79c:      	mov	w6, #-0x8000            // =-32768
+  36c7a0:      	mov	w7, #0x7fff             // =32767
+  36c7a4:      	stp	w27, w26, [sp, #0x48]
+  36c7a8:      	bl	0x6da800 <ff_cbs_read_signed@plt>
+  36c7ac:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c7b0:      	ldr	w8, [sp, #0x30]
+  36c7b4:      	add	x28, x24, x26, lsl #1
+  36c7b8:      	bl	0x36e0f8 <av_ac3_parse_header+0x2a40>
+  36c7bc:      	strh	w8, [x28, #0x2]
+  36c7c0:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c7c4:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c7c8:      	mov	x1, sp
+  36c7cc:      	add	x4, sp, #0x38
+  36c7d0:      	add	x5, sp, #0x30
+  36c7d4:      	mov	x0, x19
+  36c7d8:      	mov	w2, #0x10               // =16
+  36c7dc:      	mov	x3, x23
+  36c7e0:      	mov	w6, #-0x8000            // =-32768
+  36c7e4:      	mov	w7, #0x7fff             // =32767
+  36c7e8:      	stp	w27, w26, [sp, #0x38]
+  36c7ec:      	bl	0x6da800 <ff_cbs_read_signed@plt>
+  36c7f0:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c7f4:      	ldr	w8, [sp, #0x30]
+  36c7f8:      	bl	0x36e0f8 <av_ac3_parse_header+0x2a40>
+  36c7fc:      	strh	w8, [x28, #0x8]
+  36c800:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c804:      	add	x26, x26, #0x1
+  36c808:      	tbz	w0, #0x1f, 0x36c778 <av_ac3_parse_header+0x10c0>
+  36c80c:      	b	0x36cbd8 <av_ac3_parse_header+0x1520>
+  36c810:      	ldr	x21, [x19, #0x10]
+  36c814:      	adrp	x1, 0xa7000
+  36c818:      	add	x1, x1, #0x3cc
+  36c81c:      	bl	0x36e07c <av_ac3_parse_header+0x29c4>
+  36c820:      	adrp	x3, 0xd2000
+  36c824:      	add	x3, x3, #0x540
+  36c828:      	mov	x1, sp
+  36c82c:      	add	x5, sp, #0x48
+  36c830:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c834:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c838:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c83c:      	ldr	w8, [sp, #0x48]
+  36c840:      	adrp	x3, 0xd7000
+  36c844:      	add	x3, x3, #0x573
+  36c848:      	mov	x1, sp
+  36c84c:      	add	x5, sp, #0x48
+  36c850:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c854:      	strb	w8, [x24, #0x2]
+  36c858:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c85c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c860:      	ldr	w8, [sp, #0x48]
+  36c864:      	adrp	x3, 0xb4000
+  36c868:      	add	x3, x3, #0x6bd
+  36c86c:      	mov	x1, sp
+  36c870:      	add	x5, sp, #0x48
+  36c874:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c878:      	strb	w8, [x24, #0x3]
+  36c87c:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c880:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c884:      	ldr	w8, [sp, #0x48]
+  36c888:      	adrp	x3, 0x95000
+  36c88c:      	add	x3, x3, #0xab6
+  36c890:      	mov	x1, sp
+  36c894:      	add	x5, sp, #0x48
+  36c898:      	bl	0x36e02c <av_ac3_parse_header+0x2974>
+  36c89c:      	strb	w8, [x24, #0x4]
+  36c8a0:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36c8a4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c8a8:      	ldr	w8, [sp, #0x48]
+  36c8ac:      	adrp	x3, 0x9c000
+  36c8b0:      	add	x3, x3, #0xf69
+  36c8b4:      	bl	0x36e150 <av_ac3_parse_header+0x2a98>
+  36c8b8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c8bc:      	ldr	w8, [sp, #0x48]
+  36c8c0:      	adrp	x3, 0x95000
+  36c8c4:      	add	x3, x3, #0xac3
+  36c8c8:      	bl	0x36e0e4 <av_ac3_parse_header+0x2a2c>
+  36c8cc:      	strb	w8, [x24, #0x6]
+  36c8d0:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c8d4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c8d8:      	ldr	w8, [sp, #0x48]
+  36c8dc:      	adrp	x3, 0xb7000
+  36c8e0:      	add	x3, x3, #0x40
+  36c8e4:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c8e8:      	strb	w8, [x24, #0x7]
+  36c8ec:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c8f0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c8f4:      	ldr	w8, [sp, #0x48]
+  36c8f8:      	adrp	x3, 0xd7000
+  36c8fc:      	add	x3, x3, #0x580
+  36c900:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c904:      	strb	w8, [x24, #0x8]
+  36c908:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c90c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c910:      	ldr	w8, [sp, #0x48]
+  36c914:      	adrp	x3, 0xcf000
+  36c918:      	add	x3, x3, #0xc25
+  36c91c:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c920:      	strb	w8, [x24, #0x9]
+  36c924:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c928:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c92c:      	ldr	w8, [sp, #0x48]
+  36c930:      	adrp	x3, 0xb7000
+  36c934:      	add	x3, x3, #0x50
+  36c938:      	bl	0x36e168 <av_ac3_parse_header+0x2ab0>
+  36c93c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c940:      	ldr	w8, [sp, #0x48]
+  36c944:      	adrp	x3, 0xd2000
+  36c948:      	add	x3, x3, #0x54d
+  36c94c:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c950:      	strb	w8, [x24, #0xb]
+  36c954:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c958:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c95c:      	ldr	w8, [sp, #0x48]
+  36c960:      	adrp	x3, 0xb1000
+  36c964:      	add	x3, x3, #0x3b0
+  36c968:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c96c:      	strb	w8, [x24, #0xc]
+  36c970:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c974:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c978:      	ldr	w8, [sp, #0x48]
+  36c97c:      	adrp	x3, 0xc6000
+  36c980:      	add	x3, x3, #0xded
+  36c984:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c988:      	strb	w8, [x24, #0xd]
+  36c98c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c990:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c994:      	ldr	w8, [sp, #0x48]
+  36c998:      	adrp	x3, 0xd2000
+  36c99c:      	add	x3, x3, #0x55e
+  36c9a0:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c9a4:      	strb	w8, [x24, #0xe]
+  36c9a8:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c9ac:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c9b0:      	ldr	w8, [sp, #0x48]
+  36c9b4:      	adrp	x3, 0xc9000
+  36c9b8:      	add	x3, x3, #0x6c2
+  36c9bc:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36c9c0:      	strb	w8, [x24, #0xf]
+  36c9c4:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36c9c8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36c9cc:      	ldr	w8, [sp, #0x48]
+  36c9d0:      	strb	w8, [x24, #0x10]
+  36c9d4:      	ldrb	w8, [x21, #0x6]
+  36c9d8:      	cbz	w8, 0x36cbec <av_ac3_parse_header+0x1534>
+  36c9dc:      	ldrb	w8, [x24, #0xe]
+  36c9e0:      	cbz	w8, 0x36cbfc <av_ac3_parse_header+0x1544>
+  36c9e4:      	ldrb	w8, [x24, #0x8]
+  36c9e8:      	cbz	w8, 0x36cc0c <av_ac3_parse_header+0x1554>
+  36c9ec:      	mov	w8, #0x3                // =3
+  36c9f0:      	b	0x36cc10 <av_ac3_parse_header+0x1558>
+  36c9f4:      	adrp	x3, 0x93000
+  36c9f8:      	add	x3, x3, #0x243
+  36c9fc:      	mov	x1, sp
+  36ca00:      	add	x4, sp, #0x38
+  36ca04:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36ca08:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36ca0c:      	ldrb	w8, [sp, #0x38]
+  36ca10:      	strb	w8, [x24, #0x43]
+  36ca14:      	cbz	w8, 0x36ca5c <av_ac3_parse_header+0x13a4>
+  36ca18:      	mov	x22, xzr
+  36ca1c:      	add	x23, x24, #0x44
+  36ca20:      	mov	w25, #0x1               // =1
+  36ca24:      	adrp	x21, 0xcd000
+  36ca28:      	add	x21, x21, #0x137
+  36ca2c:      	cmp	x22, #0x40
+  36ca30:      	b.eq	0x36ca5c <av_ac3_parse_header+0x13a4>
+  36ca34:      	mov	x1, sp
+  36ca38:      	add	x4, sp, #0x38
+  36ca3c:      	add	x5, sp, #0x30
+  36ca40:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36ca44:      	stp	w25, w22, [sp, #0x38]
+  36ca48:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36ca4c:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36ca50:      	ldr	w8, [sp, #0x30]
+  36ca54:      	bl	0x36e2e8 <av_ac3_parse_header+0x2c30>
+  36ca58:      	b	0x36ca2c <av_ac3_parse_header+0x1374>
+  36ca5c:      	adrp	x3, 0xc9000
+  36ca60:      	add	x3, x3, #0x69f
+  36ca64:      	mov	x1, sp
+  36ca68:      	add	x4, sp, #0x30
+  36ca6c:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36ca70:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36ca74:      	ldrb	w8, [sp, #0x30]
+  36ca78:      	strb	w8, [x24, #0x84]
+  36ca7c:      	cbz	w8, 0x36cb70 <av_ac3_parse_header+0x14b8>
+  36ca80:      	mov	x22, xzr
+  36ca84:      	add	x23, x24, #0x3
+  36ca88:      	bl	0x36e200 <av_ac3_parse_header+0x2b48>
+  36ca8c:      	cmp	x22, #0x40
+  36ca90:      	b.eq	0x36cb70 <av_ac3_parse_header+0x14b8>
+  36ca94:      	mov	x1, sp
+  36ca98:      	add	x4, sp, #0x30
+  36ca9c:      	add	x5, sp, #0x24
+  36caa0:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36caa4:      	stp	w25, w22, [sp, #0x30]
+  36caa8:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36caac:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36cab0:      	ldr	w8, [sp, #0x24]
+  36cab4:      	bl	0x36e2e8 <av_ac3_parse_header+0x2c30>
+  36cab8:      	b	0x36ca8c <av_ac3_parse_header+0x13d4>
+  36cabc:      	mov	w8, #0x202              // =514
+  36cac0:      	mov	w9, #0x2                // =2
+  36cac4:      	strh	w8, [x24, #0x4]
+  36cac8:      	strb	w9, [x24, #0x6]
+  36cacc:      	adrp	x3, 0xe1000
+  36cad0:      	add	x3, x3, #0xd0c
+  36cad4:      	bl	0x36e1cc <av_ac3_parse_header+0x2b14>
+  36cad8:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cadc:      	bl	0x36e084 <av_ac3_parse_header+0x29cc>
+  36cae0:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cae4:      	adrp	x3, 0xe1000
+  36cae8:      	add	x3, x3, #0xd24
+  36caec:      	bl	0x36e1cc <av_ac3_parse_header+0x2b14>
+  36caf0:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36caf4:      	ldr	w8, [sp, #0x48]
+  36caf8:      	mov	w20, wzr
+  36cafc:      	strh	w8, [x24, #0xa]
+  36cb00:      	b	0x36cbdc <av_ac3_parse_header+0x1524>
+  36cb04:      	adrp	x3, 0x93000
+  36cb08:      	add	x3, x3, #0x243
+  36cb0c:      	mov	x1, sp
+  36cb10:      	add	x4, sp, #0x30
+  36cb14:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36cb18:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cb1c:      	ldrb	w8, [sp, #0x30]
+  36cb20:      	strb	w8, [x22, #0x50]
+  36cb24:      	cbz	w8, 0x36c578 <av_ac3_parse_header+0xec0>
+  36cb28:      	mov	x23, xzr
+  36cb2c:      	add	x22, x22, #0x51
+  36cb30:      	mov	w24, #0x1               // =1
+  36cb34:      	adrp	x21, 0xcd000
+  36cb38:      	add	x21, x21, #0x137
+  36cb3c:      	cmp	x23, #0x40
+  36cb40:      	b.eq	0x36c578 <av_ac3_parse_header+0xec0>
+  36cb44:      	mov	x1, sp
+  36cb48:      	add	x4, sp, #0x38
+  36cb4c:      	add	x5, sp, #0x30
+  36cb50:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36cb54:      	stp	w24, w23, [sp, #0x38]
+  36cb58:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36cb5c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cb60:      	ldr	w8, [sp, #0x30]
+  36cb64:      	strb	w8, [x22, x23]
+  36cb68:      	add	x23, x23, #0x1
+  36cb6c:      	b	0x36cb3c <av_ac3_parse_header+0x1484>
+  36cb70:      	adrp	x3, 0xa2000
+  36cb74:      	add	x3, x3, #0x420
+  36cb78:      	mov	x1, sp
+  36cb7c:      	add	x4, sp, #0x24
+  36cb80:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36cb84:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36cb88:      	ldrb	w8, [sp, #0x24]
+  36cb8c:      	strb	w8, [x24, #0xc5]
+  36cb90:      	cbz	w8, 0x36cbe4 <av_ac3_parse_header+0x152c>
+  36cb94:      	mov	x22, xzr
+  36cb98:      	add	x23, x24, #0xc6
+  36cb9c:      	mov	w24, #0x1               // =1
+  36cba0:      	adrp	x21, 0x9a000
+  36cba4:      	add	x21, x21, #0xc57
+  36cba8:      	cmp	x22, #0x40
+  36cbac:      	b.eq	0x36cbe4 <av_ac3_parse_header+0x152c>
+  36cbb0:      	mov	x1, sp
+  36cbb4:      	add	x4, sp, #0x24
+  36cbb8:      	add	x5, sp, #0x2c
+  36cbbc:      	bl	0x36e014 <av_ac3_parse_header+0x295c>
+  36cbc0:      	stp	w24, w22, [sp, #0x24]
+  36cbc4:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36cbc8:      	tbnz	w0, #0x1f, 0x36cbd8 <av_ac3_parse_header+0x1520>
+  36cbcc:      	ldr	w8, [sp, #0x2c]
+  36cbd0:      	bl	0x36e2e8 <av_ac3_parse_header+0x2c30>
+  36cbd4:      	b	0x36cba8 <av_ac3_parse_header+0x14f0>
+  36cbd8:      	mov	w20, w0
+  36cbdc:      	tbz	w20, #0x1f, 0x36c578 <av_ac3_parse_header+0xec0>
+  36cbe0:      	b	0x36ccd8 <av_ac3_parse_header+0x1620>
+  36cbe4:      	mov	w20, wzr
+  36cbe8:      	b	0x36cbdc <av_ac3_parse_header+0x1524>
+  36cbec:      	ldrb	w8, [x24, #0x7]
+  36cbf0:      	sub	w8, w8, #0x1
+  36cbf4:      	cmp	w8, #0x1
+  36cbf8:      	b.hi	0x36cc04 <av_ac3_parse_header+0x154c>
+  36cbfc:      	mov	w8, #0x1                // =1
+  36cc00:      	b	0x36cc10 <av_ac3_parse_header+0x1558>
+  36cc04:      	ldrb	w8, [x24, #0xe]
+  36cc08:      	cbnz	w8, 0x36c9ec <av_ac3_parse_header+0x1334>
+  36cc0c:      	mov	w8, #0x2                // =2
+  36cc10:      	adrp	x3, 0xe1000
+  36cc14:      	add	x3, x3, #0xd3a
+  36cc18:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36cc1c:      	strb	w8, [x21, #0x7]
+  36cc20:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36cc24:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cc28:      	ldrb	w8, [sp, #0x48]
+  36cc2c:      	strb	w8, [x24, #0x11]
+  36cc30:      	cbz	w8, 0x36c578 <av_ac3_parse_header+0xec0>
+  36cc34:      	adrp	x3, 0x9a000
+  36cc38:      	add	x3, x3, #0xc7c
+  36cc3c:      	mov	x1, sp
+  36cc40:      	add	x4, sp, #0x48
+  36cc44:      	bl	0x36e050 <av_ac3_parse_header+0x2998>
+  36cc48:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cc4c:      	ldr	w8, [sp, #0x48]
+  36cc50:      	adrp	x3, 0x9d000
+  36cc54:      	add	x3, x3, #0x3e6
+  36cc58:      	bl	0x36e198 <av_ac3_parse_header+0x2ae0>
+  36cc5c:      	strb	w8, [x24, #0x12]
+  36cc60:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36cc64:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cc68:      	ldr	w8, [sp, #0x48]
+  36cc6c:      	adrp	x3, 0xb4000
+  36cc70:      	add	x3, x3, #0x6ca
+  36cc74:      	bl	0x36df88 <av_ac3_parse_header+0x28d0>
+  36cc78:      	strb	w8, [x24, #0x13]
+  36cc7c:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36cc80:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cc84:      	ldr	w8, [sp, #0x48]
+  36cc88:      	adrp	x3, 0xe1000
+  36cc8c:      	add	x3, x3, #0xd51
+  36cc90:      	bl	0x36e308 <av_ac3_parse_header+0x2c50>
+  36cc94:      	strb	w8, [x24, #0x14]
+  36cc98:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36cc9c:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36cca0:      	ldr	w8, [sp, #0x48]
+  36cca4:      	adrp	x3, 0x95000
+  36cca8:      	add	x3, x3, #0xad5
+  36ccac:      	mov	x1, sp
+  36ccb0:      	add	x4, sp, #0x48
+  36ccb4:      	mov	x0, x19
+  36ccb8:      	mov	w2, #0x8                // =8
+  36ccbc:      	strb	w8, [x24, #0x15]
+  36ccc0:      	bl	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36ccc4:      	tbnz	w0, #0x1f, 0x36ccd4 <av_ac3_parse_header+0x161c>
+  36ccc8:      	ldr	w8, [sp, #0x48]
+  36cccc:      	strb	w8, [x24, #0x16]
+  36ccd0:      	b	0x36c578 <av_ac3_parse_header+0xec0>
+  36ccd4:      	mov	w20, w0
+  36ccd8:      	mov	w0, w20
+  36ccdc:      	ldp	x20, x19, [sp, #0x90]
+  36cce0:      	ldp	x22, x21, [sp, #0x80]
+  36cce4:      	ldr	x30, [sp, #0x40]
+  36cce8:      	ldp	x24, x23, [sp, #0x70]
+  36ccec:      	ldp	x26, x25, [sp, #0x60]
+  36ccf0:      	ldp	x28, x27, [sp, #0x50]
+  36ccf4:      	add	sp, sp, #0xa0
+  36ccf8:      	ret
+  36ccfc:      	bl	0x36e274 <av_ac3_parse_header+0x2bbc>
+  36cd00:      	adrp	x3, 0xa7000
+  36cd04:      	add	x3, x3, #0x3c1
+  36cd08:      	adrp	x4, 0x9a000
+  36cd0c:      	add	x4, x4, #0xc30
+  36cd10:      	bl	0x36e248 <av_ac3_parse_header+0x2b90>
+  36cd14:      	mov	w5, #0x47               // =71
+  36cd18:      	bl	0x6d7ae0 <av_log@plt>
+  36cd1c:      	bl	0x6d7b50 <abort@plt>
+  36cd20:      	sub	sp, sp, #0x80
+  36cd24:      	stp	x29, x30, [sp, #0x20]
+  36cd28:      	stp	x28, x27, [sp, #0x30]
+  36cd2c:      	stp	x26, x25, [sp, #0x40]
+  36cd30:      	stp	x24, x23, [sp, #0x50]
+  36cd34:      	stp	x22, x21, [sp, #0x60]
+  36cd38:      	stp	x20, x19, [sp, #0x70]
+  36cd3c:      	ldr	w3, [x1]
+  36cd40:      	mov	x19, x2
+  36cd44:      	mov	x20, x0
+  36cd48:      	sub	w8, w3, #0x1
+  36cd4c:      	cmp	w8, #0xae
+  36cd50:      	b.hi	0x36cea4 <av_ac3_parse_header+0x17ec>
+  36cd54:      	ldr	x22, [x1, #0x28]
+  36cd58:      	ldr	x23, [x20, #0x10]
+  36cd5c:      	adrp	x1, 0xb1000
+  36cd60:      	add	x1, x1, #0xbcf
+  36cd64:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36cd68:      	ldrb	w4, [x22]
+  36cd6c:      	adrp	x3, 0x9a000
+  36cd70:      	add	x3, x3, #0xbfb
+  36cd74:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36cd78:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cd7c:      	ldrh	w8, [x23, #0x2]
+  36cd80:      	cmp	w8, #0xaf1
+  36cd84:      	b.lo	0x36cd9c <av_ac3_parse_header+0x16e4>
+  36cd88:      	ldrb	w4, [x22, #0x1]
+  36cd8c:      	adrp	x3, 0xb9000
+  36cd90:      	add	x3, x3, #0xb57
+  36cd94:      	bl	0x36e06c <av_ac3_parse_header+0x29b4>
+  36cd98:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cd9c:      	ldrb	w8, [x23, #0x4]
+  36cda0:      	cbz	w8, 0x36cdc0 <av_ac3_parse_header+0x1708>
+  36cda4:      	ldrb	w8, [x23, #0x5]
+  36cda8:      	cbnz	w8, 0x36cdc0 <av_ac3_parse_header+0x1708>
+  36cdac:      	ldrb	w4, [x22, #0x2]
+  36cdb0:      	adrp	x3, 0xa2000
+  36cdb4:      	add	x3, x3, #0x3d0
+  36cdb8:      	bl	0x36e264 <av_ac3_parse_header+0x2bac>
+  36cdbc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cdc0:      	ldrb	w5, [x22, #0x3]
+  36cdc4:      	adrp	x3, 0xc1000
+  36cdc8:      	add	x3, x3, #0x856
+  36cdcc:      	mov	x0, x20
+  36cdd0:      	mov	x1, x19
+  36cdd4:      	bl	0x36e298 <av_ac3_parse_header+0x2be0>
+  36cdd8:      	bl	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36cddc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cde0:      	ldrb	w4, [x22, #0x4]
+  36cde4:      	cbz	w4, 0x36ce3c <av_ac3_parse_header+0x1784>
+  36cde8:      	adrp	x3, 0x98000
+  36cdec:      	add	x3, x3, #0xcd
+  36cdf0:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36cdf4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cdf8:      	ldrb	w4, [x22, #0x5]
+  36cdfc:      	adrp	x3, 0x98000
+  36ce00:      	add	x3, x3, #0xe2
+  36ce04:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36ce08:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36ce0c:      	ldrb	w4, [x22, #0x6]
+  36ce10:      	adrp	x3, 0xbc000
+  36ce14:      	add	x3, x3, #0x4b9
+  36ce18:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36ce1c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36ce20:      	ldrb	w4, [x22, #0x7]
+  36ce24:      	adrp	x3, 0xb1000
+  36ce28:      	add	x3, x3, #0xbdc
+  36ce2c:      	bl	0x36e330 <av_ac3_parse_header+0x2c78>
+  36ce30:      	mov	w2, #0x6                // =6
+  36ce34:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36ce38:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36ce3c:      	bl	0x36e354 <av_ac3_parse_header+0x2c9c>
+  36ce40:      	add	x2, x22, #0x8
+  36ce44:      	bl	0x36e33c <av_ac3_parse_header+0x2c84>
+  36ce48:      	tbnz	w0, #0x1f, 0x36d3d4 <av_ac3_parse_header+0x1d1c>
+  36ce4c:      	ldr	x8, [x22, #0x20]
+  36ce50:      	cbz	x8, 0x36d4fc <av_ac3_parse_header+0x1e44>
+  36ce54:      	ldr	w9, [x22, #0x38]
+  36ce58:      	tbnz	w9, #0x1f, 0x36dbac <av_ac3_parse_header+0x24f4>
+  36ce5c:      	mov	w11, #0x8               // =8
+  36ce60:      	ldr	x12, [x22, #0x30]
+  36ce64:      	sdiv	w10, w9, w11
+  36ce68:      	sxtw	x13, w10
+  36ce6c:      	cmp	x12, x13
+  36ce70:      	b.ls	0x36dbac <av_ac3_parse_header+0x24f4>
+  36ce74:      	ldr	w13, [x19, #0x18]
+  36ce78:      	ldr	w14, [x19, #0x10]
+  36ce7c:      	ldr	w23, [x19, #0x4]
+  36ce80:      	sub	w13, w13, w14
+  36ce84:      	lsl	x14, x12, #3
+  36ce88:      	add	w13, w23, w13, lsl #3
+  36ce8c:      	add	x14, x14, #0x8
+  36ce90:      	sub	w13, w13, #0x20
+  36ce94:      	cmp	x14, w13, sxtw
+  36ce98:      	b.ls	0x36d3dc <av_ac3_parse_header+0x1d24>
+  36ce9c:      	mov	w21, #-0x1c             // =-28
+  36cea0:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36cea4:      	sub	w8, w3, #0xb2
+  36cea8:      	cmp	w8, #0x6
+  36ceac:      	b.hi	0x36cf2c <av_ac3_parse_header+0x1874>
+  36ceb0:      	adrp	x9, 0x125000 <ff_dovi_color_default+0xf8>
+  36ceb4:      	add	x9, x9, #0xa16
+  36ceb8:      	adr	x10, 0x36cec8 <av_ac3_parse_header+0x1810>
+  36cebc:      	ldrh	w11, [x9, x8, lsl #1]
+  36cec0:      	add	x10, x10, x11, lsl #2
+  36cec4:      	br	x10
+  36cec8:      	ldr	x23, [x1, #0x28]
+  36cecc:      	adrp	x1, 0x9a000
+  36ced0:      	add	x1, x1, #0xc26
+  36ced4:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36ced8:      	ldrb	w4, [x23]
+  36cedc:      	adrp	x3, 0xcd000
+  36cee0:      	add	x3, x3, #0x122
+  36cee4:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36cee8:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36ceec:      	mov	x24, xzr
+  36cef0:      	mov	w25, #0x1               // =1
+  36cef4:      	adrp	x22, 0xac000
+  36cef8:      	add	x22, x22, #0x37d
+  36cefc:      	ldr	x8, [x23, #0x18]
+  36cf00:      	cmp	x24, x8
+  36cf04:      	b.hs	0x36d4fc <av_ac3_parse_header+0x1e44>
+  36cf08:      	ldr	x8, [x23, #0x8]
+  36cf0c:      	stp	w25, w24, [sp, #0x18]
+  36cf10:      	add	x4, sp, #0x18
+  36cf14:      	mov	x0, x20
+  36cf18:      	mov	x1, x19
+  36cf1c:      	bl	0x36e138 <av_ac3_parse_header+0x2a80>
+  36cf20:      	add	x24, x24, #0x1
+  36cf24:      	tbz	w0, #0x1f, 0x36cefc <av_ac3_parse_header+0x1844>
+  36cf28:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36cf2c:      	cbnz	w3, 0x36d024 <av_ac3_parse_header+0x196c>
+  36cf30:      	ldr	x22, [x1, #0x28]
+  36cf34:      	adrp	x1, 0xc4000
+  36cf38:      	add	x1, x1, #0x32c
+  36cf3c:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36cf40:      	ldrb	w4, [x22]
+  36cf44:      	adrp	x3, 0xda000
+  36cf48:      	add	x3, x3, #0x1bc
+  36cf4c:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36cf50:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cf54:      	ldrh	w4, [x22, #0x2]
+  36cf58:      	adrp	x3, 0x9a000
+  36cf5c:      	add	x3, x3, #0xc13
+  36cf60:      	bl	0x36e254 <av_ac3_parse_header+0x2b9c>
+  36cf64:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cf68:      	ldrb	w5, [x22, #0x4]
+  36cf6c:      	adrp	x3, 0xb1000
+  36cf70:      	add	x3, x3, #0xbed
+  36cf74:      	mov	x0, x20
+  36cf78:      	mov	x1, x19
+  36cf7c:      	bl	0x36e2d4 <av_ac3_parse_header+0x2c1c>
+  36cf80:      	bl	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36cf84:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cf88:      	ldrh	w4, [x22, #0x6]
+  36cf8c:      	adrp	x3, 0xc4000
+  36cf90:      	add	x3, x3, #0x33b
+  36cf94:      	mov	x0, x20
+  36cf98:      	mov	x1, x19
+  36cf9c:      	mov	w2, #0x10               // =16
+  36cfa0:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36cfa4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cfa8:      	ldrb	w8, [x22, #0x4]
+  36cfac:      	and	w8, w8, #0xfe
+  36cfb0:      	cmp	w8, #0x2
+  36cfb4:      	b.ne	0x36d014 <av_ac3_parse_header+0x195c>
+  36cfb8:      	ldrb	w4, [x22, #0x8]
+  36cfbc:      	adrp	x3, 0xe4000
+  36cfc0:      	add	x3, x3, #0x66a
+  36cfc4:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36cfc8:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cfcc:      	ldrb	w4, [x22, #0x9]
+  36cfd0:      	adrp	x3, 0xa9000
+  36cfd4:      	add	x3, x3, #0xa12
+  36cfd8:      	bl	0x36e06c <av_ac3_parse_header+0x29b4>
+  36cfdc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36cfe0:      	ldrb	w8, [x22, #0x4]
+  36cfe4:      	cmp	w8, #0x3
+  36cfe8:      	b.ne	0x36d014 <av_ac3_parse_header+0x195c>
+  36cfec:      	ldrb	w4, [x22, #0xa]
+  36cff0:      	adrp	x3, 0xb1000
+  36cff4:      	add	x3, x3, #0xc01
+  36cff8:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36cffc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d000:      	ldrb	w4, [x22, #0xb]
+  36d004:      	adrp	x3, 0xdf000
+  36d008:      	add	x3, x3, #0x340
+  36d00c:      	bl	0x36e06c <av_ac3_parse_header+0x29b4>
+  36d010:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d014:      	bl	0x36e2b4 <av_ac3_parse_header+0x2bfc>
+  36d018:      	add	x2, x22, #0x10
+  36d01c:      	bl	0x36e33c <av_ac3_parse_header+0x2c84>
+  36d020:      	b	0x36d3cc <av_ac3_parse_header+0x1d14>
+  36d024:      	ldr	x0, [x20]
+  36d028:      	mov	w21, #0xbeb0            // =48816
+  36d02c:      	adrp	x2, 0xa7000
+  36d030:      	add	x2, x2, #0x3e5
+  36d034:      	movk	w21, #0xbaa8, lsl #16
+  36d038:      	mov	w1, #0x10               // =16
+  36d03c:      	bl	0x6d7ae0 <av_log@plt>
+  36d040:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36d044:      	ldr	x22, [x1, #0x28]
+  36d048:      	adrp	x1, 0xb1000
+  36d04c:      	add	x1, x1, #0xc6e
+  36d050:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d054:      	ldrb	w4, [x22]
+  36d058:      	adrp	x3, 0xb4000
+  36d05c:      	add	x3, x3, #0x6d6
+  36d060:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36d064:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d068:      	ldr	w4, [x22, #0x4]
+  36d06c:      	adrp	x3, 0xb7000
+  36d070:      	add	x3, x3, #0x5d
+  36d074:      	bl	0x36e330 <av_ac3_parse_header+0x2c78>
+  36d078:      	mov	w2, #0x19               // =25
+  36d07c:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d080:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d084:      	ldrb	w4, [x22, #0x8]
+  36d088:      	adrp	x3, 0xa2000
+  36d08c:      	add	x3, x3, #0x447
+  36d090:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d094:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d098:      	ldrb	w4, [x22, #0x9]
+  36d09c:      	adrp	x3, 0xa2000
+  36d0a0:      	add	x3, x3, #0x452
+  36d0a4:      	mov	x0, x20
+  36d0a8:      	mov	x1, x19
+  36d0ac:      	mov	w2, #0x1                // =1
+  36d0b0:      	b	0x36d3c8 <av_ac3_parse_header+0x1d10>
+  36d0b4:      	ldr	x25, [x1, #0x28]
+  36d0b8:      	adrp	x1, 0xa2000
+  36d0bc:      	add	x1, x1, #0x3e4
+  36d0c0:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d0c4:      	ldrb	w4, [x25]
+  36d0c8:      	adrp	x3, 0xb1000
+  36d0cc:      	add	x3, x3, #0xc1a
+  36d0d0:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36d0d4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d0d8:      	ldrb	w4, [x25, #0x1]
+  36d0dc:      	adrp	x3, 0xd4000
+  36d0e0:      	add	x3, x3, #0xf27
+  36d0e4:      	mov	x0, x20
+  36d0e8:      	mov	x1, x19
+  36d0ec:      	mov	w2, #0x4                // =4
+  36d0f0:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d0f4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d0f8:      	ldrb	w3, [x25, #0x1]
+  36d0fc:      	sub	w8, w3, #0x1
+  36d100:      	cmp	w8, #0x7
+  36d104:      	b.hi	0x36d590 <av_ac3_parse_header+0x1ed8>
+  36d108:      	adrp	x9, 0x125000 <ff_dovi_color_default+0xf8>
+  36d10c:      	add	x9, x9, #0xa24
+  36d110:      	adr	x10, 0x36d120 <av_ac3_parse_header+0x1a68>
+  36d114:      	ldrh	w11, [x9, x8, lsl #1]
+  36d118:      	add	x10, x10, x11, lsl #2
+  36d11c:      	br	x10
+  36d120:      	ldr	x22, [x20, #0x10]
+  36d124:      	adrp	x1, 0xb9000
+  36d128:      	add	x1, x1, #0xb89
+  36d12c:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d130:      	ldrb	w4, [x25, #0x2]
+  36d134:      	adrp	x3, 0xac000
+  36d138:      	add	x3, x3, #0x38a
+  36d13c:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36d140:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d144:      	ldrb	w4, [x25, #0x3]
+  36d148:      	adrp	x3, 0xc6000
+  36d14c:      	add	x3, x3, #0xdd8
+  36d150:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d154:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d158:      	ldrb	w4, [x25, #0x4]
+  36d15c:      	adrp	x3, 0xb4000
+  36d160:      	add	x3, x3, #0x6af
+  36d164:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d168:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d16c:      	ldrb	w4, [x25, #0x5]
+  36d170:      	adrp	x3, 0xda000
+  36d174:      	add	x3, x3, #0x1cf
+  36d178:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d17c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d180:      	ldrb	w4, [x25, #0x6]
+  36d184:      	adrp	x3, 0xdf000
+  36d188:      	add	x3, x3, #0x35f
+  36d18c:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d190:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d194:      	ldrh	w8, [x22]
+  36d198:      	ldrb	w9, [x25, #0x5]
+  36d19c:      	adrp	x3, 0x9d000
+  36d1a0:      	add	x3, x3, #0x3d3
+  36d1a4:      	bl	0x36e330 <av_ac3_parse_header+0x2c78>
+  36d1a8:      	bfi	w8, w9, #12, #20
+  36d1ac:      	mov	w2, #0xc                // =12
+  36d1b0:      	strh	w8, [x22]
+  36d1b4:      	ldrh	w8, [x22, #0x2]
+  36d1b8:      	ldrb	w9, [x25, #0x6]
+  36d1bc:      	bfi	w8, w9, #12, #20
+  36d1c0:      	strh	w8, [x22, #0x2]
+  36d1c4:      	ldrb	w8, [x25, #0x3]
+  36d1c8:      	strb	w8, [x22, #0x6]
+  36d1cc:      	ldrh	w4, [x25, #0x8]
+  36d1d0:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d1d4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d1d8:      	adrp	x3, 0x9d000
+  36d1dc:      	add	x3, x3, #0x3c8
+  36d1e0:      	mov	x0, x20
+  36d1e4:      	mov	x1, x19
+  36d1e8:      	mov	w2, #0x1                // =1
+  36d1ec:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36d1f0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d1f4:      	ldrb	w4, [x25, #0xa]
+  36d1f8:      	adrp	x3, 0xa2000
+  36d1fc:      	add	x3, x3, #0x3f3
+  36d200:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36d204:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d208:      	ldrb	w4, [x25, #0xb]
+  36d20c:      	adrp	x3, 0xc9000
+  36d210:      	add	x3, x3, #0x211
+  36d214:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d218:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d21c:      	ldrb	w4, [x25, #0xc]
+  36d220:      	adrp	x3, 0xd2000
+  36d224:      	add	x3, x3, #0x529
+  36d228:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d22c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d230:      	ldrb	w4, [x25, #0xd]
+  36d234:      	adrp	x3, 0xb1000
+  36d238:      	add	x3, x3, #0xc2f
+  36d23c:      	mov	x0, x20
+  36d240:      	mov	x1, x19
+  36d244:      	mov	w2, #0x5                // =5
+  36d248:      	b	0x36d3c8 <av_ac3_parse_header+0x1d10>
+  36d24c:      	ldr	x23, [x1, #0x28]
+  36d250:      	ldr	x22, [x20, #0x10]
+  36d254:      	adrp	x1, 0xb6000
+  36d258:      	add	x1, x1, #0xb28
+  36d25c:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d260:      	ldrb	w4, [x23]
+  36d264:      	adrp	x3, 0xdc000
+  36d268:      	add	x3, x3, #0xad3
+  36d26c:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36d270:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d274:      	ldrh	w5, [x23, #0x2]
+  36d278:      	adrp	x3, 0xd7000
+  36d27c:      	add	x3, x3, #0x55d
+  36d280:      	bl	0x36e11c <av_ac3_parse_header+0x2a64>
+  36d284:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d288:      	ldrh	w5, [x23, #0x4]
+  36d28c:      	adrp	x3, 0xa9000
+  36d290:      	add	x3, x3, #0xa21
+  36d294:      	bl	0x36e11c <av_ac3_parse_header+0x2a64>
+  36d298:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d29c:      	ldur	w8, [x23, #0x2]
+  36d2a0:      	adrp	x3, 0x95000
+  36d2a4:      	add	x3, x3, #0xa9d
+  36d2a8:      	mov	x0, x20
+  36d2ac:      	mov	x1, x19
+  36d2b0:      	mov	w2, #0x4                // =4
+  36d2b4:      	str	w8, [x22]
+  36d2b8:      	mov	x4, xzr
+  36d2bc:      	mov	w6, #0x1                // =1
+  36d2c0:      	ldrb	w5, [x23, #0x6]
+  36d2c4:      	mov	w7, #0xf                // =15
+  36d2c8:      	bl	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36d2cc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d2d0:      	ldrb	w5, [x23, #0x7]
+  36d2d4:      	adrp	x3, 0xb9000
+  36d2d8:      	add	x3, x3, #0xb79
+  36d2dc:      	bl	0x36dfd8 <av_ac3_parse_header+0x2920>
+  36d2e0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d2e4:      	ldr	w4, [x23, #0x8]
+  36d2e8:      	adrp	x3, 0xdf000
+  36d2ec:      	add	x3, x3, #0x350
+  36d2f0:      	bl	0x36e330 <av_ac3_parse_header+0x2c78>
+  36d2f4:      	mov	w2, #0x12               // =18
+  36d2f8:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d2fc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d300:      	adrp	x3, 0x9d000
+  36d304:      	add	x3, x3, #0x3c8
+  36d308:      	mov	x0, x20
+  36d30c:      	mov	x1, x19
+  36d310:      	mov	w2, #0x1                // =1
+  36d314:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36d318:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d31c:      	ldrh	w4, [x23, #0xc]
+  36d320:      	adrp	x3, 0xe4000
+  36d324:      	add	x3, x3, #0x682
+  36d328:      	bl	0x36e254 <av_ac3_parse_header+0x2b9c>
+  36d32c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d330:      	ldrb	w4, [x23, #0xe]
+  36d334:      	adrp	x3, 0xb4000
+  36d338:      	add	x3, x3, #0x693
+  36d33c:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d340:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d344:      	ldrb	w4, [x23, #0xf]
+  36d348:      	adrp	x3, 0xe1000
+  36d34c:      	add	x3, x3, #0xcd0
+  36d350:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d354:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d358:      	ldrb	w8, [x23, #0xf]
+  36d35c:      	cbz	w8, 0x36da00 <av_ac3_parse_header+0x2348>
+  36d360:      	mov	x24, xzr
+  36d364:      	add	x25, x23, #0x10
+  36d368:      	mov	w26, #0x1               // =1
+  36d36c:      	adrp	x22, 0xcf000
+  36d370:      	add	x22, x22, #0xc0b
+  36d374:      	cmp	x24, #0x40
+  36d378:      	b.eq	0x36da00 <av_ac3_parse_header+0x2348>
+  36d37c:      	stp	w26, w24, [sp, #0x18]
+  36d380:      	add	x4, sp, #0x18
+  36d384:      	mov	x0, x20
+  36d388:      	ldrb	w5, [x25, x24]
+  36d38c:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36d390:      	mov	w21, w0
+  36d394:      	add	x24, x24, #0x1
+  36d398:      	tbz	w0, #0x1f, 0x36d374 <av_ac3_parse_header+0x1cbc>
+  36d39c:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36d3a0:      	ldr	x21, [x1, #0x28]
+  36d3a4:      	adrp	x1, 0xb4000
+  36d3a8:      	add	x1, x1, #0x6e7
+  36d3ac:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d3b0:      	ldrb	w4, [x21]
+  36d3b4:      	adrp	x3, 0x98000
+  36d3b8:      	add	x3, x3, #0xee
+  36d3bc:      	mov	x0, x20
+  36d3c0:      	mov	x1, x19
+  36d3c4:      	mov	w2, #0x8                // =8
+  36d3c8:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d3cc:      	and	w0, w0, w0, asr #31
+  36d3d0:      	b	0x36db68 <av_ac3_parse_header+0x24b0>
+  36d3d4:      	and	w21, w0, w0, asr #31
+  36d3d8:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36d3dc:      	add	w13, w9, #0x7
+  36d3e0:      	add	x21, x8, w10, sxtw
+  36d3e4:      	ands	w8, w9, #0x7
+  36d3e8:      	sdiv	w11, w13, w11
+  36d3ec:      	sub	x20, x12, w11, sxtw
+  36d3f0:      	b.eq	0x36d418 <av_ac3_parse_header+0x1d60>
+  36d3f4:      	mov	w9, #0x8                // =8
+  36d3f8:      	mov	x0, x19
+  36d3fc:      	sub	w1, w9, w8
+  36d400:      	mov	w8, #-0x1               // =-1
+  36d404:      	ldrb	w9, [x21], #0x1
+  36d408:      	lsl	w8, w8, w1
+  36d40c:      	bic	w2, w9, w8
+  36d410:      	bl	0x36de54 <av_ac3_parse_header+0x279c>
+  36d414:      	ldr	w23, [x19, #0x4]
+  36d418:      	neg	w8, w23
+  36d41c:      	tst	w8, #0x7
+  36d420:      	b.eq	0x36d504 <av_ac3_parse_header+0x1e4c>
+  36d424:      	mov	w8, #0x20               // =32
+  36d428:      	mov	w24, w23
+  36d42c:      	adrp	x22, 0xb6000
+  36d430:      	add	x22, x22, #0x5b8
+  36d434:      	sub	w25, w8, w23
+  36d438:      	cmp	x20, #0x3
+  36d43c:      	b.ls	0x36d4a0 <av_ac3_parse_header+0x1de8>
+  36d440:      	ldp	x8, x9, [x19, #0x10]
+  36d444:      	ldr	w10, [x21]
+  36d448:      	rev	w26, w10
+  36d44c:      	sub	x9, x9, x8
+  36d450:      	cmp	x9, #0x4
+  36d454:      	b.lo	0x36d480 <av_ac3_parse_header+0x1dc8>
+  36d458:      	ldr	w9, [x19]
+  36d45c:      	lsr	w10, w26, w25
+  36d460:      	lsl	x9, x9, x24
+  36d464:      	orr	w9, w10, w9
+  36d468:      	rev	w9, w9
+  36d46c:      	str	w9, [x8]
+  36d470:      	ldr	x8, [x19, #0x10]
+  36d474:      	add	x8, x8, #0x4
+  36d478:      	str	x8, [x19, #0x10]
+  36d47c:      	b	0x36d490 <av_ac3_parse_header+0x1dd8>
+  36d480:      	mov	x0, xzr
+  36d484:      	mov	w1, #0x10               // =16
+  36d488:      	mov	x2, x22
+  36d48c:      	bl	0x6d7ae0 <av_log@plt>
+  36d490:      	stp	w26, w23, [x19]
+  36d494:      	sub	x20, x20, #0x4
+  36d498:      	add	x21, x21, #0x4
+  36d49c:      	b	0x36d438 <av_ac3_parse_header+0x1d80>
+  36d4a0:      	mov	x22, xzr
+  36d4a4:      	cmp	x20, x22
+  36d4a8:      	b.eq	0x36d4c4 <av_ac3_parse_header+0x1e0c>
+  36d4ac:      	ldrb	w2, [x21, x22]
+  36d4b0:      	mov	x0, x19
+  36d4b4:      	mov	w1, #0x8                // =8
+  36d4b8:      	bl	0x36de54 <av_ac3_parse_header+0x279c>
+  36d4bc:      	add	x22, x22, #0x1
+  36d4c0:      	b	0x36d4a4 <av_ac3_parse_header+0x1dec>
+  36d4c4:      	ldp	w10, w9, [x19, #0x4]
+  36d4c8:      	ldr	w8, [x19, #0x10]
+  36d4cc:      	mov	x0, x19
+  36d4d0:      	mov	w2, wzr
+  36d4d4:      	sub	w8, w8, w9
+  36d4d8:      	mov	w9, #0x8                // =8
+  36d4dc:      	lsl	w8, w8, #3
+  36d4e0:      	sub	w8, w8, w10
+  36d4e4:      	add	w8, w8, #0x20
+  36d4e8:      	sdiv	w9, w8, w9
+  36d4ec:      	lsl	w9, w9, #3
+  36d4f0:      	sub	w8, w9, w8
+  36d4f4:      	add	w1, w8, #0x8
+  36d4f8:      	bl	0x36de54 <av_ac3_parse_header+0x279c>
+  36d4fc:      	mov	w21, wzr
+  36d500:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36d504:      	cmp	w23, #0x1f
+  36d508:      	b.gt	0x36d548 <av_ac3_parse_header+0x1e90>
+  36d50c:      	ldr	w8, [x19]
+  36d510:      	lsl	w8, w8, w23
+  36d514:      	str	w8, [x19]
+  36d518:      	b	0x36d548 <av_ac3_parse_header+0x1e90>
+  36d51c:      	ldp	x8, x9, [x19, #0x10]
+  36d520:      	cmp	x8, x9
+  36d524:      	b.hs	0x36db88 <av_ac3_parse_header+0x24d0>
+  36d528:      	ldrb	w9, [x19, #0x3]
+  36d52c:      	add	x10, x8, #0x1
+  36d530:      	str	x10, [x19, #0x10]
+  36d534:      	strb	w9, [x8]
+  36d538:      	ldp	w8, w9, [x19]
+  36d53c:      	lsl	w8, w8, #8
+  36d540:      	add	w23, w9, #0x8
+  36d544:      	stp	w8, w23, [x19]
+  36d548:      	cmp	w23, #0x1f
+  36d54c:      	b.le	0x36d51c <av_ac3_parse_header+0x1e64>
+  36d550:      	adrp	x8, 0xe7000
+  36d554:      	ldr	x0, [x19, #0x10]
+  36d558:      	mov	x1, x21
+  36d55c:      	ldr	d0, [x8, #0x920]
+  36d560:      	mov	x2, x20
+  36d564:      	str	d0, [x19]
+  36d568:      	bl	0x6d7bf0 <memcpy@plt>
+  36d56c:      	ldp	x8, x9, [x19, #0x10]
+  36d570:      	sub	x9, x9, x8
+  36d574:      	cmp	x9, w20, sxtw
+  36d578:      	b.lt	0x36dbd0 <av_ac3_parse_header+0x2518>
+  36d57c:      	sxtw	x9, w20
+  36d580:      	mov	w21, wzr
+  36d584:      	add	x8, x8, x9
+  36d588:      	str	x8, [x19, #0x10]
+  36d58c:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36d590:      	ldr	x0, [x20]
+  36d594:      	mov	w21, #0xbeb0            // =48816
+  36d598:      	adrp	x2, 0xe1000
+  36d59c:      	add	x2, x2, #0xcec
+  36d5a0:      	b	0x36d034 <av_ac3_parse_header+0x197c>
+  36d5a4:      	adrp	x1, 0xb1000
+  36d5a8:      	add	x1, x1, #0xc57
+  36d5ac:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d5b0:      	ldrb	w4, [x25, #0x2]
+  36d5b4:      	adrp	x3, 0xe1000
+  36d5b8:      	add	x3, x3, #0xcd0
+  36d5bc:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d5c0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d5c4:      	ldrb	w8, [x25, #0x2]
+  36d5c8:      	cbz	w8, 0x36d8b4 <av_ac3_parse_header+0x21fc>
+  36d5cc:      	bl	0x36e210 <av_ac3_parse_header+0x2b58>
+  36d5d0:      	cmp	x23, #0x40
+  36d5d4:      	b.eq	0x36d8b4 <av_ac3_parse_header+0x21fc>
+  36d5d8:      	stp	w26, w23, [sp, #0x18]
+  36d5dc:      	add	x4, sp, #0x18
+  36d5e0:      	mov	x0, x20
+  36d5e4:      	ldrb	w5, [x24, x23]
+  36d5e8:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36d5ec:      	add	x23, x23, #0x1
+  36d5f0:      	tbz	w0, #0x1f, 0x36d5d0 <av_ac3_parse_header+0x1f18>
+  36d5f4:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36d5f8:      	adrp	x1, 0xbc000
+  36d5fc:      	add	x1, x1, #0x4d1
+  36d600:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d604:      	ldrb	w4, [x25, #0x2]
+  36d608:      	adrp	x3, 0xdc000
+  36d60c:      	add	x3, x3, #0x757
+  36d610:      	bl	0x36e06c <av_ac3_parse_header+0x29b4>
+  36d614:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d618:      	ldrb	w4, [x25, #0x3]
+  36d61c:      	adrp	x3, 0xa2000
+  36d620:      	add	x3, x3, #0x40d
+  36d624:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d628:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d62c:      	ldrb	w8, [x25, #0x3]
+  36d630:      	ldrb	w5, [x25, #0x4]
+  36d634:      	cbz	w8, 0x36d954 <av_ac3_parse_header+0x229c>
+  36d638:      	bl	0x36e2c8 <av_ac3_parse_header+0x2c10>
+  36d63c:      	mov	x0, x20
+  36d640:      	mov	x1, x19
+  36d644:      	mov	w2, #0x8                // =8
+  36d648:      	mov	x4, xzr
+  36d64c:      	bl	0x36e044 <av_ac3_parse_header+0x298c>
+  36d650:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d654:      	ldrb	w5, [x25, #0x5]
+  36d658:      	bl	0x36e28c <av_ac3_parse_header+0x2bd4>
+  36d65c:      	mov	x0, x20
+  36d660:      	mov	x1, x19
+  36d664:      	mov	w2, #0x8                // =8
+  36d668:      	mov	x4, xzr
+  36d66c:      	bl	0x36e044 <av_ac3_parse_header+0x298c>
+  36d670:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d674:      	ldrb	w5, [x25, #0x6]
+  36d678:      	bl	0x36e280 <av_ac3_parse_header+0x2bc8>
+  36d67c:      	mov	x0, x20
+  36d680:      	mov	x1, x19
+  36d684:      	mov	w2, #0x8                // =8
+  36d688:      	mov	x4, xzr
+  36d68c:      	bl	0x36e044 <av_ac3_parse_header+0x298c>
+  36d690:      	tbz	w0, #0x1f, 0x36d9a8 <av_ac3_parse_header+0x22f0>
+  36d694:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36d698:      	ldr	x26, [x20, #0x10]
+  36d69c:      	adrp	x1, 0xa9000
+  36d6a0:      	add	x1, x1, #0xa35
+  36d6a4:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d6a8:      	mov	x27, xzr
+  36d6ac:      	adrp	x22, 0xb9000
+  36d6b0:      	add	x22, x22, #0xc04
+  36d6b4:      	adrp	x23, 0x9d000
+  36d6b8:      	add	x23, x23, #0x3c8
+  36d6bc:      	mov	w28, #0x1               // =1
+  36d6c0:      	adrp	x24, 0xdf000
+  36d6c4:      	add	x24, x24, #0x377
+  36d6c8:      	ldrb	w8, [x26, #0x7]
+  36d6cc:      	cmp	x27, x8
+  36d6d0:      	b.hs	0x36d4fc <av_ac3_parse_header+0x1e44>
+  36d6d4:      	add	x29, x25, x27, lsl #1
+  36d6d8:      	stp	w28, w27, [sp, #0x18]
+  36d6dc:      	add	x4, sp, #0x18
+  36d6e0:      	mov	x0, x20
+  36d6e4:      	mov	x1, x19
+  36d6e8:      	mov	w2, #0x10               // =16
+  36d6ec:      	ldrsh	w5, [x29, #0x2]
+  36d6f0:      	mov	x3, x22
+  36d6f4:      	bl	0x36e348 <av_ac3_parse_header+0x2c90>
+  36d6f8:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d6fc:      	mov	x0, x20
+  36d700:      	mov	x1, x19
+  36d704:      	mov	w2, #0x1                // =1
+  36d708:      	mov	x3, x23
+  36d70c:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36d710:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d714:      	stp	w28, w27, [sp, #0x10]
+  36d718:      	add	x4, sp, #0x10
+  36d71c:      	mov	x0, x20
+  36d720:      	ldrsh	w5, [x29, #0x8]
+  36d724:      	mov	x1, x19
+  36d728:      	mov	w2, #0x10               // =16
+  36d72c:      	mov	x3, x24
+  36d730:      	bl	0x36e348 <av_ac3_parse_header+0x2c90>
+  36d734:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d738:      	mov	x0, x20
+  36d73c:      	mov	x1, x19
+  36d740:      	mov	w2, #0x1                // =1
+  36d744:      	mov	x3, x23
+  36d748:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36d74c:      	add	x27, x27, #0x1
+  36d750:      	tbz	w0, #0x1f, 0x36d6c8 <av_ac3_parse_header+0x2010>
+  36d754:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36d758:      	ldr	x22, [x20, #0x10]
+  36d75c:      	adrp	x1, 0xa7000
+  36d760:      	add	x1, x1, #0x3cc
+  36d764:      	bl	0x36e0b4 <av_ac3_parse_header+0x29fc>
+  36d768:      	ldrb	w5, [x25, #0x2]
+  36d76c:      	adrp	x3, 0xd2000
+  36d770:      	add	x3, x3, #0x540
+  36d774:      	bl	0x36dfd8 <av_ac3_parse_header+0x2920>
+  36d778:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d77c:      	ldrb	w5, [x25, #0x3]
+  36d780:      	adrp	x3, 0xd7000
+  36d784:      	add	x3, x3, #0x573
+  36d788:      	bl	0x36dfd8 <av_ac3_parse_header+0x2920>
+  36d78c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d790:      	ldrb	w5, [x25, #0x4]
+  36d794:      	adrp	x3, 0xb4000
+  36d798:      	add	x3, x3, #0x6bd
+  36d79c:      	bl	0x36dfd8 <av_ac3_parse_header+0x2920>
+  36d7a0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d7a4:      	ldrb	w5, [x25, #0x5]
+  36d7a8:      	adrp	x3, 0x95000
+  36d7ac:      	add	x3, x3, #0xab6
+  36d7b0:      	bl	0x36dfd8 <av_ac3_parse_header+0x2920>
+  36d7b4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d7b8:      	ldrb	w4, [x25, #0x6]
+  36d7bc:      	adrp	x3, 0x9c000
+  36d7c0:      	add	x3, x3, #0xf69
+  36d7c4:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d7c8:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d7cc:      	ldrb	w4, [x25, #0x7]
+  36d7d0:      	adrp	x3, 0x95000
+  36d7d4:      	add	x3, x3, #0xac3
+  36d7d8:      	bl	0x36e05c <av_ac3_parse_header+0x29a4>
+  36d7dc:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d7e0:      	ldrb	w4, [x25, #0x8]
+  36d7e4:      	adrp	x3, 0xb7000
+  36d7e8:      	add	x3, x3, #0x40
+  36d7ec:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d7f0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d7f4:      	ldrb	w4, [x25, #0x9]
+  36d7f8:      	adrp	x3, 0xd7000
+  36d7fc:      	add	x3, x3, #0x580
+  36d800:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d804:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d808:      	ldrb	w4, [x25, #0xa]
+  36d80c:      	adrp	x3, 0xcf000
+  36d810:      	add	x3, x3, #0xc25
+  36d814:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d818:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d81c:      	ldrb	w4, [x25, #0xb]
+  36d820:      	adrp	x3, 0xb7000
+  36d824:      	add	x3, x3, #0x50
+  36d828:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d82c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d830:      	ldrb	w4, [x25, #0xc]
+  36d834:      	adrp	x3, 0xd2000
+  36d838:      	add	x3, x3, #0x54d
+  36d83c:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d840:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d844:      	ldrb	w4, [x25, #0xd]
+  36d848:      	adrp	x3, 0xb1000
+  36d84c:      	add	x3, x3, #0x3b0
+  36d850:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d854:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d858:      	ldrb	w4, [x25, #0xe]
+  36d85c:      	adrp	x3, 0xc6000
+  36d860:      	add	x3, x3, #0xded
+  36d864:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d868:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d86c:      	ldrb	w4, [x25, #0xf]
+  36d870:      	adrp	x3, 0xd2000
+  36d874:      	add	x3, x3, #0x55e
+  36d878:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d87c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d880:      	ldrb	w4, [x25, #0x10]
+  36d884:      	adrp	x3, 0xc9000
+  36d888:      	add	x3, x3, #0x6c2
+  36d88c:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d890:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d894:      	ldrb	w8, [x22, #0x6]
+  36d898:      	cbz	w8, 0x36dab8 <av_ac3_parse_header+0x2400>
+  36d89c:      	ldrb	w8, [x25, #0xe]
+  36d8a0:      	cbz	w8, 0x36dac8 <av_ac3_parse_header+0x2410>
+  36d8a4:      	ldrb	w8, [x25, #0x8]
+  36d8a8:      	cbz	w8, 0x36dad8 <av_ac3_parse_header+0x2420>
+  36d8ac:      	mov	w8, #0x3                // =3
+  36d8b0:      	b	0x36dadc <av_ac3_parse_header+0x2424>
+  36d8b4:      	ldrb	w4, [x25, #0x43]
+  36d8b8:      	adrp	x3, 0x93000
+  36d8bc:      	add	x3, x3, #0x243
+  36d8c0:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d8c4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d8c8:      	ldrb	w8, [x25, #0x43]
+  36d8cc:      	cbz	w8, 0x36d90c <av_ac3_parse_header+0x2254>
+  36d8d0:      	mov	x23, xzr
+  36d8d4:      	add	x24, x25, #0x44
+  36d8d8:      	mov	w26, #0x1               // =1
+  36d8dc:      	adrp	x22, 0xcd000
+  36d8e0:      	add	x22, x22, #0x137
+  36d8e4:      	cmp	x23, #0x40
+  36d8e8:      	b.eq	0x36d90c <av_ac3_parse_header+0x2254>
+  36d8ec:      	stp	w26, w23, [sp, #0x10]
+  36d8f0:      	add	x4, sp, #0x10
+  36d8f4:      	mov	x0, x20
+  36d8f8:      	ldrb	w5, [x24, x23]
+  36d8fc:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36d900:      	add	x23, x23, #0x1
+  36d904:      	tbz	w0, #0x1f, 0x36d8e4 <av_ac3_parse_header+0x222c>
+  36d908:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36d90c:      	ldrb	w4, [x25, #0x84]
+  36d910:      	adrp	x3, 0xc9000
+  36d914:      	add	x3, x3, #0x69f
+  36d918:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36d91c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d920:      	ldrb	w8, [x25, #0x84]
+  36d924:      	cbz	w8, 0x36da5c <av_ac3_parse_header+0x23a4>
+  36d928:      	bl	0x36e210 <av_ac3_parse_header+0x2b58>
+  36d92c:      	cmp	x23, #0x40
+  36d930:      	b.eq	0x36da5c <av_ac3_parse_header+0x23a4>
+  36d934:      	stp	w26, w23, [sp, #0x8]
+  36d938:      	add	x4, sp, #0x8
+  36d93c:      	mov	x0, x20
+  36d940:      	ldrb	w5, [x24, x23]
+  36d944:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36d948:      	add	x23, x23, #0x1
+  36d94c:      	tbz	w0, #0x1f, 0x36d92c <av_ac3_parse_header+0x2274>
+  36d950:      	b	0x36db60 <av_ac3_parse_header+0x24a8>
+  36d954:      	cmp	w5, #0x2
+  36d958:      	b.eq	0x36d970 <av_ac3_parse_header+0x22b8>
+  36d95c:      	bl	0x36e238 <av_ac3_parse_header+0x2b80>
+  36d960:      	bl	0x36e2c8 <av_ac3_parse_header+0x2c10>
+  36d964:      	mov	w1, #0x18               // =24
+  36d968:      	mov	x4, x5
+  36d96c:      	bl	0x36e2ac <av_ac3_parse_header+0x2bf4>
+  36d970:      	ldrb	w4, [x25, #0x5]
+  36d974:      	cmp	x4, #0x2
+  36d978:      	b.eq	0x36d98c <av_ac3_parse_header+0x22d4>
+  36d97c:      	bl	0x36e238 <av_ac3_parse_header+0x2b80>
+  36d980:      	bl	0x36e28c <av_ac3_parse_header+0x2bd4>
+  36d984:      	mov	w1, #0x18               // =24
+  36d988:      	bl	0x36e2ac <av_ac3_parse_header+0x2bf4>
+  36d98c:      	ldrb	w4, [x25, #0x6]
+  36d990:      	cmp	x4, #0x2
+  36d994:      	b.eq	0x36d9a8 <av_ac3_parse_header+0x22f0>
+  36d998:      	bl	0x36e238 <av_ac3_parse_header+0x2b80>
+  36d99c:      	bl	0x36e280 <av_ac3_parse_header+0x2bc8>
+  36d9a0:      	mov	w1, #0x18               // =24
+  36d9a4:      	bl	0x36e2ac <av_ac3_parse_header+0x2bf4>
+  36d9a8:      	ldrh	w4, [x25, #0x8]
+  36d9ac:      	adrp	x3, 0xe1000
+  36d9b0:      	add	x3, x3, #0xd0c
+  36d9b4:      	mov	x0, x20
+  36d9b8:      	mov	x1, x19
+  36d9bc:      	mov	w2, #0xe                // =14
+  36d9c0:      	bl	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36d9c4:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d9c8:      	adrp	x3, 0x9d000
+  36d9cc:      	add	x3, x3, #0x3c8
+  36d9d0:      	mov	x0, x20
+  36d9d4:      	mov	x1, x19
+  36d9d8:      	mov	w2, #0x1                // =1
+  36d9dc:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36d9e0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36d9e4:      	ldrh	w4, [x25, #0xa]
+  36d9e8:      	adrp	x3, 0xe1000
+  36d9ec:      	add	x3, x3, #0xd24
+  36d9f0:      	mov	x0, x20
+  36d9f4:      	mov	x1, x19
+  36d9f8:      	mov	w2, #0xe                // =14
+  36d9fc:      	b	0x36d3c8 <av_ac3_parse_header+0x1d10>
+  36da00:      	ldrb	w4, [x23, #0x50]
+  36da04:      	adrp	x3, 0x93000
+  36da08:      	add	x3, x3, #0x243
+  36da0c:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36da10:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36da14:      	ldrb	w8, [x23, #0x50]
+  36da18:      	cbz	w8, 0x36d4fc <av_ac3_parse_header+0x1e44>
+  36da1c:      	mov	x24, xzr
+  36da20:      	add	x23, x23, #0x51
+  36da24:      	mov	w25, #0x1               // =1
+  36da28:      	adrp	x22, 0xcd000
+  36da2c:      	add	x22, x22, #0x137
+  36da30:      	cmp	x24, #0x40
+  36da34:      	b.eq	0x36d4fc <av_ac3_parse_header+0x1e44>
+  36da38:      	stp	w25, w24, [sp, #0x10]
+  36da3c:      	add	x4, sp, #0x10
+  36da40:      	mov	x0, x20
+  36da44:      	ldrb	w5, [x23, x24]
+  36da48:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36da4c:      	mov	w21, w0
+  36da50:      	add	x24, x24, #0x1
+  36da54:      	tbz	w0, #0x1f, 0x36da30 <av_ac3_parse_header+0x2378>
+  36da58:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36da5c:      	ldrb	w4, [x25, #0xc5]
+  36da60:      	adrp	x3, 0xa2000
+  36da64:      	add	x3, x3, #0x420
+  36da68:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36da6c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36da70:      	ldrb	w8, [x25, #0xc5]
+  36da74:      	cbz	w8, 0x36d4fc <av_ac3_parse_header+0x1e44>
+  36da78:      	mov	x23, xzr
+  36da7c:      	add	x24, x25, #0xc6
+  36da80:      	mov	w25, #0x1               // =1
+  36da84:      	adrp	x22, 0x9a000
+  36da88:      	add	x22, x22, #0xc57
+  36da8c:      	cmp	x23, #0x40
+  36da90:      	b.eq	0x36d4fc <av_ac3_parse_header+0x1e44>
+  36da94:      	stp	w25, w23, [sp]
+  36da98:      	mov	x4, sp
+  36da9c:      	mov	x0, x20
+  36daa0:      	ldrb	w5, [x24, x23]
+  36daa4:      	bl	0x36dfb0 <av_ac3_parse_header+0x28f8>
+  36daa8:      	mov	w21, w0
+  36daac:      	add	x23, x23, #0x1
+  36dab0:      	tbz	w0, #0x1f, 0x36da8c <av_ac3_parse_header+0x23d4>
+  36dab4:      	b	0x36db64 <av_ac3_parse_header+0x24ac>
+  36dab8:      	ldrb	w8, [x25, #0x7]
+  36dabc:      	sub	w8, w8, #0x1
+  36dac0:      	cmp	w8, #0x1
+  36dac4:      	b.hi	0x36dad0 <av_ac3_parse_header+0x2418>
+  36dac8:      	mov	w8, #0x1                // =1
+  36dacc:      	b	0x36dadc <av_ac3_parse_header+0x2424>
+  36dad0:      	ldrb	w8, [x25, #0xe]
+  36dad4:      	cbnz	w8, 0x36d8ac <av_ac3_parse_header+0x21f4>
+  36dad8:      	mov	w8, #0x2                // =2
+  36dadc:      	strb	w8, [x22, #0x7]
+  36dae0:      	adrp	x3, 0xe1000
+  36dae4:      	add	x3, x3, #0xd3a
+  36dae8:      	ldrb	w4, [x25, #0x11]
+  36daec:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36daf0:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36daf4:      	ldrb	w8, [x25, #0x11]
+  36daf8:      	cbz	w8, 0x36d4fc <av_ac3_parse_header+0x1e44>
+  36dafc:      	ldrb	w4, [x25, #0x12]
+  36db00:      	adrp	x3, 0x9a000
+  36db04:      	add	x3, x3, #0xc7c
+  36db08:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36db0c:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36db10:      	ldrb	w4, [x25, #0x13]
+  36db14:      	adrp	x3, 0x9d000
+  36db18:      	add	x3, x3, #0x3e6
+  36db1c:      	bl	0x36e06c <av_ac3_parse_header+0x29b4>
+  36db20:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36db24:      	ldrb	w4, [x25, #0x14]
+  36db28:      	adrp	x3, 0xb4000
+  36db2c:      	add	x3, x3, #0x6ca
+  36db30:      	bl	0x36df78 <av_ac3_parse_header+0x28c0>
+  36db34:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36db38:      	ldrb	w4, [x25, #0x15]
+  36db3c:      	adrp	x3, 0xe1000
+  36db40:      	add	x3, x3, #0xd51
+  36db44:      	bl	0x36e264 <av_ac3_parse_header+0x2bac>
+  36db48:      	tbnz	w0, #0x1f, 0x36db60 <av_ac3_parse_header+0x24a8>
+  36db4c:      	ldrb	w4, [x25, #0x16]
+  36db50:      	adrp	x3, 0x95000
+  36db54:      	add	x3, x3, #0xad5
+  36db58:      	bl	0x36dfc8 <av_ac3_parse_header+0x2910>
+  36db5c:      	tbz	w0, #0x1f, 0x36d4fc <av_ac3_parse_header+0x1e44>
+  36db60:      	mov	w21, w0
+  36db64:      	mov	w0, w21
+  36db68:      	ldp	x20, x19, [sp, #0x70]
+  36db6c:      	ldp	x22, x21, [sp, #0x60]
+  36db70:      	ldp	x24, x23, [sp, #0x50]
+  36db74:      	ldp	x26, x25, [sp, #0x40]
+  36db78:      	ldp	x28, x27, [sp, #0x30]
+  36db7c:      	ldp	x29, x30, [sp, #0x20]
+  36db80:      	add	sp, sp, #0x80
+  36db84:      	ret
+  36db88:      	bl	0x36e274 <av_ac3_parse_header+0x2bbc>
+  36db8c:      	adrp	x3, 0xd1000
+  36db90:      	add	x3, x3, #0x94e
+  36db94:      	adrp	x4, 0xd6000
+  36db98:      	add	x4, x4, #0xa3e
+  36db9c:      	bl	0x36e248 <av_ac3_parse_header+0x2b90>
+  36dba0:      	mov	w5, #0x96               // =150
+  36dba4:      	bl	0x6d7ae0 <av_log@plt>
+  36dba8:      	bl	0x6d7b50 <abort@plt>
+  36dbac:      	bl	0x36e274 <av_ac3_parse_header+0x2bbc>
+  36dbb0:      	adrp	x3, 0xc6000
+  36dbb4:      	add	x3, x3, #0xe00
+  36dbb8:      	adrp	x4, 0xb1000
+  36dbbc:      	add	x4, x4, #0xc87
+  36dbc0:      	bl	0x36e248 <av_ac3_parse_header+0x2b90>
+  36dbc4:      	mov	w5, #0x140              // =320
+  36dbc8:      	bl	0x6d7ae0 <av_log@plt>
+  36dbcc:      	bl	0x6d7b50 <abort@plt>
+  36dbd0:      	bl	0x36e274 <av_ac3_parse_header+0x2bbc>
+  36dbd4:      	adrp	x3, 0x9c000
+  36dbd8:      	add	x3, x3, #0x920
+  36dbdc:      	adrp	x4, 0xd6000
+  36dbe0:      	add	x4, x4, #0xa3e
+  36dbe4:      	bl	0x36e248 <av_ac3_parse_header+0x2b90>
+  36dbe8:      	mov	w5, #0x186              // =390
+  36dbec:      	bl	0x6d7ae0 <av_log@plt>
+  36dbf0:      	bl	0x6d7b50 <abort@plt>
+  36dbf4:      	str	x30, [sp, #-0x50]!
+  36dbf8:      	stp	x26, x25, [sp, #0x10]
+  36dbfc:      	stp	x24, x23, [sp, #0x20]
+  36dc00:      	stp	x22, x21, [sp, #0x30]
+  36dc04:      	stp	x20, x19, [sp, #0x40]
+  36dc08:      	ldr	w9, [x1, #0x20]
+  36dc0c:      	mov	w10, #0x38              // =56
+  36dc10:      	mov	x19, x1
+  36dc14:      	mov	x8, xzr
+  36dc18:      	mov	x20, xzr
+  36dc1c:      	bic	w9, w9, w9, asr #31
+  36dc20:      	umull	x9, w9, w10
+  36dc24:      	cmp	x9, x8
+  36dc28:      	b.eq	0x36dc48 <av_ac3_parse_header+0x2590>
+  36dc2c:      	ldr	x10, [x19, #0x28]
+  36dc30:      	add	x10, x10, x8
+  36dc34:      	add	x8, x8, #0x38
+  36dc38:      	ldr	x10, [x10, #0x10]
+  36dc3c:      	add	x10, x20, x10
+  36dc40:      	add	x20, x10, #0x3
+  36dc44:      	b	0x36dc24 <av_ac3_parse_header+0x256c>
+  36dc48:      	add	x0, x20, #0x40
+  36dc4c:      	bl	0x6d8980 <av_buffer_alloc@plt>
+  36dc50:      	str	x0, [x19, #0x18]
+  36dc54:      	cbz	x0, 0x36dcd4 <av_ac3_parse_header+0x261c>
+  36dc58:      	ldr	x21, [x0, #0x8]
+  36dc5c:      	mov	x22, xzr
+  36dc60:      	mov	x23, xzr
+  36dc64:      	mov	x8, xzr
+  36dc68:      	mov	w24, #0x1               // =1
+  36dc6c:      	ldrsw	x9, [x19, #0x20]
+  36dc70:      	cmp	x23, x9
+  36dc74:      	b.ge	0x36dcb0 <av_ac3_parse_header+0x25f8>
+  36dc78:      	ldr	x9, [x19, #0x28]
+  36dc7c:      	add	x10, x21, x8
+  36dc80:      	add	x26, x8, #0x3
+  36dc84:      	strh	wzr, [x10]
+  36dc88:      	add	x0, x21, x26
+  36dc8c:      	strb	w24, [x10, #0x2]
+  36dc90:      	add	x25, x9, x22
+  36dc94:      	ldp	x1, x2, [x25, #0x8]
+  36dc98:      	bl	0x6d7bf0 <memcpy@plt>
+  36dc9c:      	ldr	x8, [x25, #0x10]
+  36dca0:      	add	x23, x23, #0x1
+  36dca4:      	add	x22, x22, #0x38
+  36dca8:      	add	x8, x8, x26
+  36dcac:      	b	0x36dc6c <av_ac3_parse_header+0x25b4>
+  36dcb0:      	cmp	x8, x20
+  36dcb4:      	b.ne	0x36dcf0 <av_ac3_parse_header+0x2638>
+  36dcb8:      	movi	v0.2d, #0000000000000000
+  36dcbc:      	mov	w0, wzr
+  36dcc0:      	add	x8, x21, x20
+  36dcc4:      	stp	q0, q0, [x8]
+  36dcc8:      	stp	q0, q0, [x8, #0x20]
+  36dccc:      	stp	x21, x20, [x19]
+  36dcd0:      	b	0x36dcd8 <av_ac3_parse_header+0x2620>
+  36dcd4:      	mov	w0, #-0xc               // =-12
+  36dcd8:      	ldp	x20, x19, [sp, #0x40]
+  36dcdc:      	ldp	x22, x21, [sp, #0x30]
+  36dce0:      	ldp	x24, x23, [sp, #0x20]
+  36dce4:      	ldp	x26, x25, [sp, #0x10]
+  36dce8:      	ldr	x30, [sp], #0x50
+  36dcec:      	ret
+  36dcf0:      	bl	0x36e274 <av_ac3_parse_header+0x2bbc>
+  36dcf4:      	adrp	x3, 0xd2000
+  36dcf8:      	add	x3, x3, #0x56e
+  36dcfc:      	adrp	x4, 0xb1000
+  36dd00:      	add	x4, x4, #0xc87
+  36dd04:      	bl	0x36e248 <av_ac3_parse_header+0x2b90>
+  36dd08:      	mov	w5, #0x187              // =391
+  36dd0c:      	bl	0x6d7ae0 <av_log@plt>
+  36dd10:      	bl	0x6d7b50 <abort@plt>
+  36dd14:      	sub	sp, sp, #0x70
+  36dd18:      	stp	x30, x25, [sp, #0x30]
+  36dd1c:      	stp	x24, x23, [sp, #0x40]
+  36dd20:      	stp	x22, x21, [sp, #0x50]
+  36dd24:      	stp	x20, x19, [sp, #0x60]
+  36dd28:      	ldp	q0, q1, [x1]
+  36dd2c:      	mov	x19, x4
+  36dd30:      	ldp	w10, w9, [x1, #0x10]
+  36dd34:      	bl	0x36e2f4 <av_ac3_parse_header+0x2c3c>
+  36dd38:      	mov	x8, xzr
+  36dd3c:      	stp	q0, q1, [sp, #0x10]
+  36dd40:      	cmp	w9, w10
+  36dd44:      	b.le	0x36dd84 <av_ac3_parse_header+0x26cc>
+  36dd48:      	mov	w11, w10
+  36dd4c:      	ldr	x12, [x20]
+  36dd50:      	lsr	x11, x11, #3
+  36dd54:      	ldr	w11, [x12, x11]
+  36dd58:      	and	w12, w10, #0x7
+  36dd5c:      	rev	w11, w11
+  36dd60:      	lsl	w11, w11, w12
+  36dd64:      	tbz	w11, #0x1f, 0x36dd84 <av_ac3_parse_header+0x26cc>
+  36dd68:      	ldr	w11, [x20, #0x18]
+  36dd6c:      	add	w10, w10, #0x9
+  36dd70:      	sub	x8, x8, #0x1
+  36dd74:      	cmp	w11, w10
+  36dd78:      	csel	w10, w11, w10, lo
+  36dd7c:      	str	w10, [x20, #0x10]
+  36dd80:      	b	0x36dd40 <av_ac3_parse_header+0x2688>
+  36dd84:      	neg	x9, x8
+  36dd88:      	str	x9, [x23, #0x10]
+  36dd8c:      	cbz	x8, 0x36ddb4 <av_ac3_parse_header+0x26fc>
+  36dd90:      	ldp	q0, q1, [sp, #0x10]
+  36dd94:      	mov	w9, #0x40               // =64
+  36dd98:      	sub	x0, x9, x8
+  36dd9c:      	stp	q0, q1, [x20]
+  36dda0:      	bl	0x6db680 <av_buffer_allocz@plt>
+  36dda4:      	str	x0, [x23, #0x8]
+  36dda8:      	cbz	x0, 0x36de38 <av_ac3_parse_header+0x2780>
+  36ddac:      	ldr	x8, [x0, #0x8]
+  36ddb0:      	str	x8, [x23]
+  36ddb4:      	mov	x24, xzr
+  36ddb8:      	mov	w25, #0x1               // =1
+  36ddbc:      	ldr	x8, [x23, #0x10]
+  36ddc0:      	add	x5, sp, #0xc
+  36ddc4:      	cmp	x24, x8
+  36ddc8:      	b.hs	0x36de20 <av_ac3_parse_header+0x2768>
+  36ddcc:      	bl	0x36e0bc <av_ac3_parse_header+0x2a04>
+  36ddd0:      	mov	w6, #0x1                // =1
+  36ddd4:      	mov	w7, #0x1                // =1
+  36ddd8:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36dddc:      	tbnz	w0, #0x1f, 0x36de3c <av_ac3_parse_header+0x2784>
+  36dde0:      	add	x4, sp, #0x4
+  36dde4:      	add	x5, sp, #0xc
+  36dde8:      	mov	x0, x21
+  36ddec:      	mov	x1, x20
+  36ddf0:      	mov	w2, #0x8                // =8
+  36ddf4:      	mov	x3, x22
+  36ddf8:      	mov	w6, wzr
+  36ddfc:      	mov	w7, #0xff               // =255
+  36de00:      	stp	w25, w24, [sp, #0x4]
+  36de04:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36de08:      	tbnz	w0, #0x1f, 0x36de3c <av_ac3_parse_header+0x2784>
+  36de0c:      	ldr	x8, [x23]
+  36de10:      	ldr	w9, [sp, #0xc]
+  36de14:      	strb	w9, [x8, x24]
+  36de18:      	add	x24, x24, #0x1
+  36de1c:      	b	0x36ddbc <av_ac3_parse_header+0x2704>
+  36de20:      	bl	0x36e0bc <av_ac3_parse_header+0x2a04>
+  36de24:      	mov	w6, wzr
+  36de28:      	mov	w7, wzr
+  36de2c:      	bl	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36de30:      	and	w0, w0, w0, asr #31
+  36de34:      	b	0x36de3c <av_ac3_parse_header+0x2784>
+  36de38:      	mov	w0, #-0xc               // =-12
+  36de3c:      	ldp	x20, x19, [sp, #0x60]
+  36de40:      	ldp	x22, x21, [sp, #0x50]
+  36de44:      	ldp	x24, x23, [sp, #0x40]
+  36de48:      	ldp	x30, x25, [sp, #0x30]
+  36de4c:      	add	sp, sp, #0x70
+  36de50:      	ret
+  36de54:      	stp	x30, x21, [sp, #-0x20]!
+  36de58:      	stp	x20, x19, [sp, #0x10]
+  36de5c:      	ldp	w8, w9, [x0]
+  36de60:      	mov	x19, x0
+  36de64:      	mov	w20, w2
+  36de68:      	subs	w21, w9, w1
+  36de6c:      	b.le	0x36de7c <av_ac3_parse_header+0x27c4>
+  36de70:      	lsl	w8, w8, w1
+  36de74:      	orr	w20, w8, w20
+  36de78:      	b	0x36decc <av_ac3_parse_header+0x2814>
+  36de7c:      	ldp	x10, x11, [x19, #0x10]
+  36de80:      	sub	x11, x11, x10
+  36de84:      	cmp	x11, #0x4
+  36de88:      	b.lo	0x36deb4 <av_ac3_parse_header+0x27fc>
+  36de8c:      	sub	w11, w1, w9
+  36de90:      	lsl	w8, w8, w9
+  36de94:      	lsr	w9, w20, w11
+  36de98:      	orr	w8, w9, w8
+  36de9c:      	rev	w8, w8
+  36dea0:      	str	w8, [x10]
+  36dea4:      	ldr	x8, [x19, #0x10]
+  36dea8:      	add	x8, x8, #0x4
+  36deac:      	str	x8, [x19, #0x10]
+  36deb0:      	b	0x36dec8 <av_ac3_parse_header+0x2810>
+  36deb4:      	adrp	x2, 0xb6000
+  36deb8:      	add	x2, x2, #0x5b8
+  36debc:      	mov	x0, xzr
+  36dec0:      	mov	w1, #0x10               // =16
+  36dec4:      	bl	0x6d7ae0 <av_log@plt>
+  36dec8:      	add	w21, w21, #0x20
+  36decc:      	stp	w20, w21, [x19]
+  36ded0:      	ldp	x20, x19, [sp, #0x10]
+  36ded4:      	ldp	x30, x21, [sp], #0x20
+  36ded8:      	ret
+  36dedc:      	sub	sp, sp, #0x50
+  36dee0:      	stp	x30, x25, [sp, #0x10]
+  36dee4:      	stp	x24, x23, [sp, #0x20]
+  36dee8:      	stp	x22, x21, [sp, #0x30]
+  36deec:      	stp	x20, x19, [sp, #0x40]
+  36def0:      	mov	x19, x4
+  36def4:      	bl	0x36e2f4 <av_ac3_parse_header+0x2c3c>
+  36def8:      	mov	x24, xzr
+  36defc:      	mov	w25, #0x1               // =1
+  36df00:      	ldr	x8, [x23, #0x10]
+  36df04:      	cmp	x24, x8
+  36df08:      	b.hs	0x36df48 <av_ac3_parse_header+0x2890>
+  36df0c:      	mov	x0, x21
+  36df10:      	mov	x1, x20
+  36df14:      	mov	w2, #0x1                // =1
+  36df18:      	mov	x3, x19
+  36df1c:      	bl	0x36e000 <av_ac3_parse_header+0x2948>
+  36df20:      	tbnz	w0, #0x1f, 0x36df60 <av_ac3_parse_header+0x28a8>
+  36df24:      	ldr	x8, [x23]
+  36df28:      	stp	w25, w24, [sp, #0x8]
+  36df2c:      	add	x4, sp, #0x8
+  36df30:      	mov	x0, x21
+  36df34:      	mov	x1, x20
+  36df38:      	bl	0x36e138 <av_ac3_parse_header+0x2a80>
+  36df3c:      	add	x24, x24, #0x1
+  36df40:      	tbz	w0, #0x1f, 0x36df00 <av_ac3_parse_header+0x2848>
+  36df44:      	b	0x36df60 <av_ac3_parse_header+0x28a8>
+  36df48:      	bl	0x36e0bc <av_ac3_parse_header+0x2a04>
+  36df4c:      	mov	w5, wzr
+  36df50:      	mov	w6, wzr
+  36df54:      	mov	w7, wzr
+  36df58:      	bl	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36df5c:      	and	w0, w0, w0, asr #31
+  36df60:      	ldp	x20, x19, [sp, #0x40]
+  36df64:      	ldp	x22, x21, [sp, #0x30]
+  36df68:      	ldp	x24, x23, [sp, #0x20]
+  36df6c:      	ldp	x30, x25, [sp, #0x10]
+  36df70:      	add	sp, sp, #0x50
+  36df74:      	ret
+  36df78:      	mov	x0, x20
+  36df7c:      	mov	x1, x19
+  36df80:      	mov	w2, #0x1                // =1
+  36df84:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36df88:      	mov	x1, sp
+  36df8c:      	add	x4, sp, #0x48
+  36df90:      	mov	x0, x19
+  36df94:      	mov	w2, #0x1                // =1
+  36df98:      	ret
+  36df9c:      	mov	x1, sp
+  36dfa0:      	add	x4, sp, #0x48
+  36dfa4:      	mov	x0, x19
+  36dfa8:      	mov	w2, #0x8                // =8
+  36dfac:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36dfb0:      	mov	x1, x19
+  36dfb4:      	mov	w2, #0x8                // =8
+  36dfb8:      	mov	x3, x22
+  36dfbc:      	mov	w6, #0x1                // =1
+  36dfc0:      	mov	w7, #0xff               // =255
+  36dfc4:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36dfc8:      	mov	x0, x20
+  36dfcc:      	mov	x1, x19
+  36dfd0:      	mov	w2, #0x8                // =8
+  36dfd4:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36dfd8:      	mov	x0, x20
+  36dfdc:      	mov	x1, x19
+  36dfe0:      	mov	w2, #0x4                // =4
+  36dfe4:      	mov	x4, xzr
+  36dfe8:      	mov	w6, #0x1                // =1
+  36dfec:      	mov	w7, #0xf                // =15
+  36dff0:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36dff4:      	mov	x0, x19
+  36dff8:      	mov	w2, #0x8                // =8
+  36dffc:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e000:      	mov	x4, xzr
+  36e004:      	mov	w5, #0x1                // =1
+  36e008:      	mov	w6, #0x1                // =1
+  36e00c:      	mov	w7, #0x1                // =1
+  36e010:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36e014:      	mov	x0, x19
+  36e018:      	mov	w2, #0x8                // =8
+  36e01c:      	mov	x3, x21
+  36e020:      	mov	w6, #0x1                // =1
+  36e024:      	mov	w7, #0xff               // =255
+  36e028:      	ret
+  36e02c:      	mov	x0, x19
+  36e030:      	mov	w2, #0x4                // =4
+  36e034:      	mov	x4, xzr
+  36e038:      	mov	w6, #0x1                // =1
+  36e03c:      	mov	w7, #0xf                // =15
+  36e040:      	ret
+  36e044:      	mov	w6, #0x1                // =1
+  36e048:      	mov	w7, #0xff               // =255
+  36e04c:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36e050:      	mov	x0, x19
+  36e054:      	mov	w2, #0x1                // =1
+  36e058:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e05c:      	mov	x0, x20
+  36e060:      	mov	x1, x19
+  36e064:      	mov	w2, #0x2                // =2
+  36e068:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36e06c:      	mov	x0, x20
+  36e070:      	mov	x1, x19
+  36e074:      	mov	w2, #0x3                // =3
+  36e078:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36e07c:      	mov	x0, x19
+  36e080:      	b	0x6d8900 <ff_cbs_trace_header@plt>
+  36e084:      	ldr	w8, [sp, #0x48]
+  36e088:      	adrp	x3, 0x9d000
+  36e08c:      	add	x3, x3, #0x3c8
+  36e090:      	mov	x1, sp
+  36e094:      	add	x5, sp, #0x48
+  36e098:      	mov	x0, x19
+  36e09c:      	mov	w2, #0x1                // =1
+  36e0a0:      	mov	x4, xzr
+  36e0a4:      	mov	w6, #0x1                // =1
+  36e0a8:      	mov	w7, #0x1                // =1
+  36e0ac:      	strh	w8, [x24, #0x8]
+  36e0b0:      	b	0x6d8950 <ff_cbs_read_unsigned@plt>
+  36e0b4:      	mov	x0, x20
+  36e0b8:      	b	0x6d8900 <ff_cbs_trace_header@plt>
+  36e0bc:      	mov	x0, x21
+  36e0c0:      	mov	x1, x20
+  36e0c4:      	mov	w2, #0x1                // =1
+  36e0c8:      	mov	x3, x19
+  36e0cc:      	mov	x4, xzr
+  36e0d0:      	ret
+  36e0d4:      	mov	x1, sp
+  36e0d8:      	add	x4, sp, #0x48
+  36e0dc:      	mov	x0, x19
+  36e0e0:      	ret
+  36e0e4:      	mov	x1, sp
+  36e0e8:      	add	x4, sp, #0x48
+  36e0ec:      	mov	x0, x19
+  36e0f0:      	mov	w2, #0x2                // =2
+  36e0f4:      	ret
+  36e0f8:      	mov	x1, sp
+  36e0fc:      	add	x5, sp, #0x30
+  36e100:      	mov	x0, x19
+  36e104:      	mov	w2, #0x1                // =1
+  36e108:      	mov	x3, x22
+  36e10c:      	mov	x4, xzr
+  36e110:      	mov	w6, #0x1                // =1
+  36e114:      	mov	w7, #0x1                // =1
+  36e118:      	ret
+  36e11c:      	mov	x0, x20
+  36e120:      	mov	x1, x19
+  36e124:      	mov	w2, #0xc                // =12
+  36e128:      	mov	x4, xzr
+  36e12c:      	mov	w6, #0x1                // =1
+  36e130:      	mov	w7, #0xfff              // =4095
+  36e134:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36e138:      	mov	w2, #0x8                // =8
+  36e13c:      	ldrb	w5, [x8, x24]
+  36e140:      	mov	x3, x22
+  36e144:      	mov	w6, wzr
+  36e148:      	mov	w7, #0xff               // =255
+  36e14c:      	b	0x6d8960 <ff_cbs_write_unsigned@plt>
+  36e150:      	mov	x1, sp
+  36e154:      	add	x4, sp, #0x48
+  36e158:      	mov	x0, x19
+  36e15c:      	mov	w2, #0x2                // =2
+  36e160:      	strb	w8, [x24, #0x5]
+  36e164:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e168:      	mov	x1, sp
+  36e16c:      	add	x4, sp, #0x48
+  36e170:      	mov	x0, x19
+  36e174:      	mov	w2, #0x1                // =1
+  36e178:      	strb	w8, [x24, #0xa]
+  36e17c:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e180:      	mov	x1, sp
+  36e184:      	add	x4, sp, #0x48
+  36e188:      	mov	x0, x19
+  36e18c:      	mov	w2, #0x1                // =1
+  36e190:      	strb	w8, [x24, #0x2]
+  36e194:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e198:      	mov	x1, sp
+  36e19c:      	add	x4, sp, #0x48
+  36e1a0:      	mov	x0, x19
+  36e1a4:      	mov	w2, #0x3                // =3
+  36e1a8:      	ret
+  36e1ac:      	mov	x1, sp
+  36e1b0:      	add	x5, sp, #0x30
+  36e1b4:      	mov	x0, x19
+  36e1b8:      	mov	w2, #0xc                // =12
+  36e1bc:      	mov	x4, xzr
+  36e1c0:      	mov	w6, #0x1                // =1
+  36e1c4:      	mov	w7, #0xfff              // =4095
+  36e1c8:      	ret
+  36e1cc:      	mov	x1, sp
+  36e1d0:      	add	x4, sp, #0x48
+  36e1d4:      	mov	x0, x19
+  36e1d8:      	mov	w2, #0xe                // =14
+  36e1dc:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e1e0:      	mov	x1, sp
+  36e1e4:      	add	x4, sp, #0x48
+  36e1e8:      	mov	x0, x19
+  36e1ec:      	mov	w2, #0x3                // =3
+  36e1f0:      	b	0x6d8910 <ff_cbs_read_simple_unsigned@plt>
+  36e1f4:      	ldr	x0, [x19]
+  36e1f8:      	mov	w1, #0x18               // =24
+  36e1fc:      	b	0x6d7ae0 <av_log@plt>
+  36e200:      	mov	w25, #0x1               // =1
+  36e204:      	adrp	x21, 0xcf000
+  36e208:      	add	x21, x21, #0xc0b
+  36e20c:      	ret
+  36e210:      	mov	x23, xzr
+  36e214:      	add	x24, x25, #0x3
+  36e218:      	mov	w26, #0x1               // =1
+  36e21c:      	adrp	x22, 0xcf000
+  36e220:      	add	x22, x22, #0xc0b
+  36e224:      	ret
+  36e228:      	mov	w8, #0x2                // =2
+  36e22c:      	adrp	x2, 0xb9000
+  36e230:      	add	x2, x2, #0xb9c
+  36e234:      	ret
+  36e238:      	ldr	x0, [x20]
+  36e23c:      	adrp	x2, 0xbb000
+  36e240:      	add	x2, x2, #0x9ad
+  36e244:      	ret
+  36e248:      	mov	x0, xzr
+  36e24c:      	mov	w1, wzr
+  36e250:      	ret
+  36e254:      	mov	x0, x20
+  36e258:      	mov	x1, x19
+  36e25c:      	mov	w2, #0xa                // =10
+  36e260:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36e264:      	mov	x0, x20
+  36e268:      	mov	x1, x19
+  36e26c:      	mov	w2, #0x7                // =7
+  36e270:      	b	0x6d8970 <ff_cbs_write_simple_unsigned@plt>
+  36e274:      	adrp	x2, 0x92000
+  36e278:      	add	x2, x2, #0x580
+  36e27c:      	ret
+  36e280:      	adrp	x3, 0x9a000
+  36e284:      	add	x3, x3, #0x67c
+  36e288:      	ret
+  36e28c:      	adrp	x3, 0xb6000
+  36e290:      	add	x3, x3, #0xb56
+  36e294:      	ret
+  36e298:      	mov	w2, #0x5                // =5
+  36e29c:      	mov	x4, xzr
+  36e2a0:      	mov	w6, #0x1                // =1
+  36e2a4:      	mov	w7, #0x1f               // =31
+  36e2a8:      	ret
+  36e2ac:      	mov	w5, #0x2                // =2
+  36e2b0:      	b	0x6d7ae0 <av_log@plt>
+  36e2b4:      	adrp	x3, 0xcf000
+  36e2b8:      	add	x3, x3, #0xbee
+  36e2bc:      	adrp	x4, 0xe1000
+  36e2c0:      	add	x4, x4, #0xcbe
+  36e2c4:      	ret
+  36e2c8:      	adrp	x3, 0xb1000
+  36e2cc:      	add	x3, x3, #0xc46
+  36e2d0:      	ret
+  36e2d4:      	mov	w2, #0x3                // =3
+  36e2d8:      	mov	x4, xzr
+  36e2dc:      	mov	w6, #0x1                // =1
+  36e2e0:      	mov	w7, #0x7                // =7
+  36e2e4:      	ret
+  36e2e8:      	strb	w8, [x23, x22]
+  36e2ec:      	add	x22, x22, #0x1
+  36e2f0:      	ret
+  36e2f4:      	mov	x22, x3
+  36e2f8:      	mov	x23, x2
+  36e2fc:      	mov	x20, x1
+  36e300:      	mov	x21, x0
+  36e304:      	ret
+  36e308:      	mov	x1, sp
+  36e30c:      	add	x4, sp, #0x48
+  36e310:      	mov	x0, x19
+  36e314:      	mov	w2, #0x7                // =7
+  36e318:      	ret
+  36e31c:      	mov	x1, sp
+  36e320:      	add	x4, sp, #0x30
+  36e324:      	mov	x0, x19
+  36e328:      	mov	w2, #0x1                // =1
+  36e32c:      	ret
+  36e330:      	mov	x0, x20
+  36e334:      	mov	x1, x19
+  36e338:      	ret
+  36e33c:      	mov	x0, x20
+  36e340:      	mov	x1, x19
+  36e344:      	b	0x36dedc <av_ac3_parse_header+0x2824>
+  36e348:      	mov	w6, #-0x8000            // =-32768
+  36e34c:      	mov	w7, #0x7fff             // =32767
+  36e350:      	b	0x6da810 <ff_cbs_write_signed@plt>
+  36e354:      	adrp	x3, 0xd7000
+  36e358:      	add	x3, x3, #0x542
+  36e35c:      	adrp	x4, 0xcd000
+  36e360:      	add	x4, x4, #0x112
+  36e364:      	ret
+
+--- FUNCTION: av_add_i ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000004cf754 <av_add_i>:
+  4cf754:      	sub	sp, sp, #0x20
+  4cf758:      	mov	x8, xzr
+  4cf75c:      	mov	w9, wzr
+  4cf760:      	add	x10, sp, #0x10
+  4cf764:      	mov	x11, sp
+  4cf768:      	stp	x0, x1, [sp, #0x10]
+  4cf76c:      	stp	x2, x3, [sp]
+  4cf770:      	cmp	x8, #0x10
+  4cf774:      	b.eq	0x4cf794 <av_add_i+0x40>
+  4cf778:      	ldrh	w12, [x10, x8]
+  4cf77c:      	add	w9, w12, w9, lsr #16
+  4cf780:      	ldrh	w12, [x11, x8]
+  4cf784:      	add	w9, w9, w12
+  4cf788:      	strh	w9, [x10, x8]
+  4cf78c:      	add	x8, x8, #0x2
+  4cf790:      	b	0x4cf770 <av_add_i+0x1c>
+  4cf794:      	b	0x4cfbfc <av_i2int+0x30>
+
+--- FUNCTION: av_add_index_entry ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000417dd0 <av_add_index_entry>:
+  417dd0:      	stp	x30, x23, [sp, #-0x30]!
+  417dd4:      	stp	x22, x21, [sp, #0x10]
+  417dd8:      	stp	x20, x19, [sp, #0x20]
+  417ddc:      	mov	x22, x1
+  417de0:      	mov	x1, x2
+  417de4:      	mov	w19, w5
+  417de8:      	mov	w20, w4
+  417dec:      	mov	w21, w3
+  417df0:      	mov	x23, x0
+  417df4:      	bl	0x6dc3e0 <ff_wrap_timestamp@plt>
+  417df8:      	mov	x3, x22
+  417dfc:      	mov	w5, w21
+  417e00:      	mov	w6, w20
+  417e04:      	mov	w7, w19
+  417e08:      	ldp	x20, x19, [sp, #0x20]
+  417e0c:      	ldp	x22, x21, [sp, #0x10]
+  417e10:      	mov	x4, x0
+  417e14:      	add	x0, x23, #0x150
+  417e18:      	add	x1, x23, #0x158
+  417e1c:      	add	x2, x23, #0x15c
+  417e20:      	ldp	x30, x23, [sp], #0x30
+  417e24:      	b	0x6dc3b0 <ff_add_index_entry@plt>
+
+--- FUNCTION: av_add_q ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000004a6c78 <av_add_q>:
+  4a6c78:      	str	x30, [sp, #-0x10]!
+  4a6c7c:      	sxtw	x9, w0
+  4a6c80:      	asr	x10, x1, #32
+  4a6c84:      	sxtw	x11, w1
+  4a6c88:      	asr	x12, x0, #32
+  4a6c8c:      	add	x8, sp, #0x8
+  4a6c90:      	str	x0, [sp, #0x8]
+  4a6c94:      	smull	x9, w10, w9
+  4a6c98:      	add	x0, sp, #0x8
+  4a6c9c:      	orr	x1, x8, #0x4
+  4a6ca0:      	smaddl	x2, w11, w12, x9
+  4a6ca4:      	mov	w4, #0x7fffffff         // =2147483647
+  4a6ca8:      	smull	x3, w10, w12
+  4a6cac:      	bl	0x6d8220 <av_reduce@plt>
+  4a6cb0:      	ldr	x0, [sp, #0x8]
+  4a6cb4:      	ldr	x30, [sp], #0x10
+  4a6cb8:      	ret
+
+--- FUNCTION: av_add_stable ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000004d0118 <av_add_stable>:
+  4d0118:      	stp	x30, x23, [sp, #-0x30]!
+  4d011c:      	stp	x22, x21, [sp, #0x10]
+  4d0120:      	stp	x20, x19, [sp, #0x20]
+  4d0124:      	mov	x21, x2
+  4d0128:      	mov	x19, x1
+  4d012c:      	cmp	x3, #0x1
+  4d0130:      	mov	x20, x0
+  4d0134:      	b.eq	0x4d014c <av_add_stable+0x34>
+  4d0138:      	mov	x1, #0x100000000        // =4294967296
+  4d013c:      	mov	x0, x21
+  4d0140:      	bfxil	x1, x3, #0, #32
+  4d0144:      	bl	0x6d7c50 <av_mul_q@plt>
+  4d0148:      	mov	x21, x0
+  4d014c:      	sxtw	x8, w21
+  4d0150:      	asr	x9, x20, #32
+  4d0154:      	asr	x10, x21, #32
+  4d0158:      	sxtw	x11, w20
+  4d015c:      	smull	x8, w8, w9
+  4d0160:      	smull	x9, w10, w11
+  4d0164:      	sdiv	x10, x8, x9
+  4d0168:      	msub	x11, x10, x9, x8
+  4d016c:      	eor	x12, x10, #0x7fffffffffffffff
+  4d0170:      	cmp	x11, #0x0
+  4d0174:      	ccmp	x12, x19, #0x8, eq
+  4d0178:      	b.ge	0x4d01e8 <av_add_stable+0xd0>
+  4d017c:      	cmp	x8, x9
+  4d0180:      	b.lt	0x4d01ec <av_add_stable+0xd4>
+  4d0184:      	mov	x0, x19
+  4d0188:      	mov	x1, x20
+  4d018c:      	mov	x2, x21
+  4d0190:      	bl	0x6d9f60 <av_rescale_q@plt>
+  4d0194:      	mov	x1, x21
+  4d0198:      	mov	x2, x20
+  4d019c:      	mov	x22, x0
+  4d01a0:      	bl	0x6d9f60 <av_rescale_q@plt>
+  4d01a4:      	mov	x8, #-0x7fffffffffffffff // =-9223372036854775807
+  4d01a8:      	add	x8, x22, x8
+  4d01ac:      	cmp	x8, #0x2
+  4d01b0:      	mov	x8, #-0x8000000000000000 // =-9223372036854775808
+  4d01b4:      	ccmp	x0, x8, #0x4, hs
+  4d01b8:      	b.eq	0x4d01ec <av_add_stable+0xd4>
+  4d01bc:      	mov	x23, x0
+  4d01c0:      	add	x0, x22, #0x1
+  4d01c4:      	mov	x1, x21
+  4d01c8:      	mov	x2, x20
+  4d01cc:      	bl	0x6d9f60 <av_rescale_q@plt>
+  4d01d0:      	sub	x8, x19, x23
+  4d01d4:      	adds	x8, x0, x8
+  4d01d8:      	asr	x9, x8, #63
+  4d01dc:      	eor	x9, x9, #0x8000000000000000
+  4d01e0:      	csel	x19, x9, x8, vs
+  4d01e4:      	b	0x4d01ec <av_add_stable+0xd4>
+  4d01e8:      	add	x19, x10, x19
+  4d01ec:      	mov	x0, x19
+  4d01f0:      	ldp	x20, x19, [sp, #0x20]
+  4d01f4:      	ldp	x22, x21, [sp, #0x10]
+  4d01f8:      	ldp	x30, x23, [sp], #0x30
+  4d01fc:      	ret

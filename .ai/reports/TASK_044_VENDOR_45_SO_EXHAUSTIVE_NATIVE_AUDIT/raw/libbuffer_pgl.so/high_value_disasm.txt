@@ -1,0 +1,202 @@
+
+--- FUNCTION: Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000001028 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate>:
+    1028:      	stp	x29, x30, [sp, #-0x40]!
+    102c:      	str	x23, [sp, #0x10]
+    1030:      	stp	x22, x21, [sp, #0x20]
+    1034:      	stp	x20, x19, [sp, #0x30]
+    1038:      	mov	x29, sp
+    103c:      	ldr	x8, [x0]
+    1040:      	mov	x23, x2
+    1044:      	mov	x1, x2
+    1048:      	mov	x2, xzr
+    104c:      	ldr	x8, [x8, #0x548]
+    1050:      	mov	x21, x3
+    1054:      	mov	x19, x0
+    1058:      	blr	x8
+    105c:      	mov	w1, #0x42               // =66
+    1060:      	movk	w1, #0x8, lsl #16
+    1064:      	mov	w2, #0x1b6              // =438
+    1068:      	mov	x20, x0
+    106c:      	bl	0x1860 <open@plt>
+    1070:      	ldr	x8, [x19]
+    1074:      	mov	w22, w0
+    1078:      	mov	x0, x19
+    107c:      	mov	x1, x23
+    1080:      	ldr	x8, [x8, #0x550]
+    1084:      	mov	x2, x20
+    1088:      	blr	x8
+    108c:      	tbnz	w22, #0x1f, 0x110c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xe4>
+    1090:      	mov	w2, #0x2                // =2
+    1094:      	mov	w0, w22
+    1098:      	mov	x1, xzr
+    109c:      	bl	0x1870 <lseek@plt>
+    10a0:      	cmn	x0, #0x1
+    10a4:      	b.eq	0x1104 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xdc>
+    10a8:      	cmp	x0, #0x1
+    10ac:      	b.lt	0x10f4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xcc>
+    10b0:      	cmp	x0, x21
+    10b4:      	b.eq	0x10f4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xcc>
+    10b8:      	mov	w0, w22
+    10bc:      	bl	0x1880 <close@plt>
+    10c0:      	ldr	x8, [x19]
+    10c4:      	adrp	x1, 0x0
+    10c8:      	add	x1, x1, #0xd6d
+    10cc:      	mov	x0, x19
+    10d0:      	ldr	x8, [x8, #0x30]
+    10d4:      	blr	x8
+    10d8:      	ldr	x8, [x19]
+    10dc:      	adrp	x2, 0x0
+    10e0:      	mov	x1, x0
+    10e4:      	add	x2, x2, #0xd54
+    10e8:      	ldr	x8, [x8, #0x70]
+    10ec:      	mov	x0, x19
+    10f0:      	b	0x1148 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x120>
+    10f4:      	mov	w0, w22
+    10f8:      	mov	x1, x21
+    10fc:      	bl	0x1890 <ftruncate@plt>
+    1100:      	cbz	w0, 0x1168 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x140>
+    1104:      	mov	w0, w22
+    1108:      	bl	0x1880 <close@plt>
+    110c:      	ldr	x8, [x19]
+    1110:      	adrp	x1, 0x0
+    1114:      	add	x1, x1, #0xd6d
+    1118:      	mov	x0, x19
+    111c:      	ldr	x8, [x8, #0x30]
+    1120:      	blr	x8
+    1124:      	mov	x20, x0
+    1128:      	bl	0x18a0 <__errno@plt>
+    112c:      	ldr	w0, [x0]
+    1130:      	bl	0x18b0 <strerror@plt>
+    1134:      	ldr	x8, [x19]
+    1138:      	mov	x2, x0
+    113c:      	mov	x0, x19
+    1140:      	mov	x1, x20
+    1144:      	ldr	x8, [x8, #0x70]
+    1148:      	blr	x8
+    114c:      	mov	x21, xzr
+    1150:      	mov	x0, x21
+    1154:      	ldp	x20, x19, [sp, #0x30]
+    1158:      	ldp	x22, x21, [sp, #0x20]
+    115c:      	ldr	x23, [sp, #0x10]
+    1160:      	ldp	x29, x30, [sp], #0x40
+    1164:      	ret
+    1168:      	mov	w2, #0x3                // =3
+    116c:      	mov	w3, #0x1                // =1
+    1170:      	mov	x0, xzr
+    1174:      	mov	x1, x21
+    1178:      	mov	w4, w22
+    117c:      	mov	x5, xzr
+    1180:      	bl	0x18c0 <mmap@plt>
+    1184:      	mov	x21, x0
+    1188:      	mov	w0, w22
+    118c:      	bl	0x1880 <close@plt>
+    1190:      	cmn	x21, #0x1
+    1194:      	b.ne	0x1150 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x128>
+    1198:      	adrp	x1, 0x0
+    119c:      	adrp	x2, 0x0
+    11a0:      	add	x1, x1, #0xd81
+    11a4:      	add	x2, x2, #0xd2f
+    11a8:      	mov	w0, #0x3                // =3
+    11ac:      	mov	x3, x20
+    11b0:      	bl	0x18d0 <__android_log_print@plt>
+    11b4:      	ldr	x8, [x19]
+    11b8:      	adrp	x1, 0x0
+    11bc:      	add	x1, x1, #0xd6d
+    11c0:      	mov	x0, x19
+    11c4:      	ldr	x8, [x8, #0x30]
+    11c8:      	blr	x8
+    11cc:      	ldr	x8, [x19]
+    11d0:      	adrp	x2, 0x0
+    11d4:      	mov	x1, x0
+    11d8:      	add	x2, x2, #0xd18
+    11dc:      	b	0x10e8 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xc0>
+
+--- FUNCTION: Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nFlush ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000122c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nFlush>:
+    122c:      	stp	x29, x30, [sp, #-0x30]!
+    1230:      	str	x21, [sp, #0x10]
+    1234:      	stp	x20, x19, [sp, #0x20]
+    1238:      	mov	x29, sp
+    123c:      	mov	x8, x2
+    1240:      	mov	x1, x3
+    1244:      	mov	x19, x0
+    1248:      	mov	w2, #0x4                // =4
+    124c:      	mov	x0, x8
+    1250:      	bl	0x18f0 <msync@plt>
+    1254:      	mov	w20, w0
+    1258:      	cbz	w0, 0x129c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nFlush+0x70>
+    125c:      	ldr	x8, [x19]
+    1260:      	adrp	x1, 0x0
+    1264:      	add	x1, x1, #0xd6d
+    1268:      	mov	x0, x19
+    126c:      	ldr	x8, [x8, #0x30]
+    1270:      	blr	x8
+    1274:      	mov	x21, x0
+    1278:      	bl	0x18a0 <__errno@plt>
+    127c:      	ldr	w0, [x0]
+    1280:      	bl	0x18b0 <strerror@plt>
+    1284:      	ldr	x8, [x19]
+    1288:      	mov	x2, x0
+    128c:      	mov	x0, x19
+    1290:      	mov	x1, x21
+    1294:      	ldr	x8, [x8, #0x70]
+    1298:      	blr	x8
+    129c:      	mov	w0, w20
+    12a0:      	ldp	x20, x19, [sp, #0x20]
+    12a4:      	ldr	x21, [sp, #0x10]
+    12a8:      	ldp	x29, x30, [sp], #0x30
+    12ac:      	ret
+
+--- FUNCTION: Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRead ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000120c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRead>:
+    120c:      	ldr	x8, [x0]
+    1210:      	mov	x1, x4
+    1214:      	ldr	x7, [x8, #0x680]
+    1218:      	add	x8, x2, x3
+    121c:      	mov	w2, w5
+    1220:      	mov	w3, w6
+    1224:      	mov	x4, x8
+    1228:      	br	x7
+
+--- FUNCTION: Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRelease ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000001200 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRelease>:
+    1200:      	mov	x1, x3
+    1204:      	mov	x0, x2
+    1208:      	b	0x18e0 <munmap@plt>
+
+--- FUNCTION: Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nWrite ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000011e0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nWrite>:
+    11e0:      	ldr	x8, [x0]
+    11e4:      	mov	x1, x4
+    11e8:      	ldr	x7, [x8, #0x640]
+    11ec:      	add	x8, x2, x3
+    11f0:      	mov	w2, w5
+    11f4:      	mov	w3, w6
+    11f8:      	mov	x4, x8
+    11fc:      	br	x7

@@ -1,0 +1,4703 @@
+
+--- FUNCTION: XXH32 ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005f3cc <XXH32>:
+   5f3cc:      	sxtw	x11, w1
+   5f3d0:      	mov	w9, #0x79b1             // =31153
+   5f3d4:      	mov	w8, #0xca77             // =51831
+   5f3d8:      	mov	w10, #0x67b1            // =26545
+   5f3dc:      	movk	w9, #0x9e37, lsl #16
+   5f3e0:      	cmp	w1, #0x10
+   5f3e4:      	movk	w8, #0x85eb, lsl #16
+   5f3e8:      	movk	w10, #0x1656, lsl #16
+   5f3ec:      	add	x13, x0, x11
+   5f3f0:      	b.lt	0x5f49c <XXH32+0xd0>
+   5f3f4:      	mov	w12, #0x4428            // =17448
+   5f3f8:      	mov	w15, #0x864f            // =34383
+   5f3fc:      	sub	x14, x13, #0x10
+   5f400:      	movk	w12, #0x2423, lsl #16
+   5f404:      	movk	w15, #0x61c8, lsl #16
+   5f408:      	add	w16, w2, w8
+   5f40c:      	add	w17, w2, w12
+   5f410:      	add	w15, w2, w15
+   5f414:      	mov	x12, x0
+   5f418:      	ldp	w3, w4, [x12]
+   5f41c:      	madd	w17, w3, w8, w17
+   5f420:      	ldp	w3, w5, [x12, #0x8]
+   5f424:      	madd	w16, w4, w8, w16
+   5f428:      	add	x12, x12, #0x10
+   5f42c:      	ror	w6, w17, #0x13
+   5f430:      	cmp	x12, x14
+   5f434:      	madd	w2, w3, w8, w2
+   5f438:      	madd	w15, w5, w8, w15
+   5f43c:      	ror	w5, w16, #0x13
+   5f440:      	mul	w17, w6, w9
+   5f444:      	ror	w4, w2, #0x13
+   5f448:      	mul	w16, w5, w9
+   5f44c:      	ror	w3, w15, #0x13
+   5f450:      	mul	w2, w4, w9
+   5f454:      	mul	w15, w3, w9
+   5f458:      	b.ls	0x5f418 <XXH32+0x4c>
+   5f45c:      	mov	w14, #0xf362            // =62306
+   5f460:      	movk	w14, #0x3c6e, lsl #16
+   5f464:      	mul	w14, w6, w14
+   5f468:      	mov	w6, #0xd880             // =55424
+   5f46c:      	movk	w6, #0x1bbc, lsl #16
+   5f470:      	bfxil	w14, w17, #31, #1
+   5f474:      	mov	w17, #0x1000            // =4096
+   5f478:      	madd	w14, w5, w6, w14
+   5f47c:      	movk	w17, #0x779b, lsl #16
+   5f480:      	add	w14, w14, w16, lsr #25
+   5f484:      	mov	w16, #-0x193c0000       // =-423362560
+   5f488:      	madd	w14, w4, w17, w14
+   5f48c:      	add	w14, w14, w2, lsr #20
+   5f490:      	madd	w14, w3, w16, w14
+   5f494:      	add	w15, w14, w15, lsr #14
+   5f498:      	b	0x5f4a4 <XXH32+0xd8>
+   5f49c:      	add	w15, w2, w10
+   5f4a0:      	mov	x12, x0
+   5f4a4:      	sub	x16, x13, #0x4
+   5f4a8:      	mov	w14, #0xae3d            // =44605
+   5f4ac:      	add	w15, w15, w1
+   5f4b0:      	cmp	x12, x16
+   5f4b4:      	movk	w14, #0xc2b2, lsl #16
+   5f4b8:      	b.hi	0x5f4dc <XXH32+0x110>
+   5f4bc:      	mov	w17, #0xeb2f            // =60207
+   5f4c0:      	movk	w17, #0x27d4, lsl #16
+   5f4c4:      	ldr	w1, [x12], #0x4
+   5f4c8:      	cmp	x12, x16
+   5f4cc:      	madd	w15, w1, w14, w15
+   5f4d0:      	ror	w15, w15, #0xf
+   5f4d4:      	mul	w15, w15, w17
+   5f4d8:      	b.ls	0x5f4c4 <XXH32+0xf8>
+   5f4dc:      	cmp	x12, x13
+   5f4e0:      	b.hs	0x5f504 <XXH32+0x138>
+   5f4e4:      	add	x11, x0, x11
+   5f4e8:      	sub	x11, x11, x12
+   5f4ec:      	ldrb	w13, [x12], #0x1
+   5f4f0:      	subs	x11, x11, #0x1
+   5f4f4:      	madd	w13, w13, w10, w15
+   5f4f8:      	ror	w13, w13, #0x15
+   5f4fc:      	mul	w15, w13, w9
+   5f500:      	b.ne	0x5f4ec <XXH32+0x120>
+   5f504:      	eor	w9, w15, w15, lsr #15
+   5f508:      	mul	w8, w9, w8
+   5f50c:      	eor	w8, w8, w8, lsr #13
+   5f510:      	mul	w8, w8, w14
+   5f514:      	eor	w0, w8, w8, lsr #16
+   5f518:      	ret
+
+--- FUNCTION: XXH32_digest ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005f7c8 <XXH32_digest>:
+   5f7c8:      	ldr	x12, [x0]
+   5f7cc:      	ldrsw	x10, [x0, #0x1c]
+   5f7d0:      	mov	w8, #0x67b1             // =26545
+   5f7d4:      	movk	w8, #0x1656, lsl #16
+   5f7d8:      	add	x9, x0, #0x20
+   5f7dc:      	cmp	x12, #0x10
+   5f7e0:      	add	x13, x0, x10
+   5f7e4:      	b.lo	0x5f814 <XXH32_digest+0x4c>
+   5f7e8:      	adrp	x11, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   5f7ec:      	adrp	x14, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   5f7f0:      	ldur	q0, [x0, #0xc]
+   5f7f4:      	ldr	q1, [x11, #0xb60]
+   5f7f8:      	ldr	q2, [x14, #0xa90]
+   5f7fc:      	ushl	v1.4s, v0.4s, v1.4s
+   5f800:      	ushl	v0.4s, v0.4s, v2.4s
+   5f804:      	orr	v0.16b, v0.16b, v1.16b
+   5f808:      	addv	s0, v0.4s
+   5f80c:      	fmov	w15, s0
+   5f810:      	b	0x5f81c <XXH32_digest+0x54>
+   5f814:      	ldr	w11, [x0, #0x8]
+   5f818:      	add	w15, w11, w8
+   5f81c:      	stp	x29, x30, [sp, #-0x20]!
+   5f820:      	str	x19, [sp, #0x10]
+   5f824:      	mov	x29, sp
+   5f828:      	mov	w11, #0xae3d            // =44605
+   5f82c:      	cmp	w10, #0x4
+   5f830:      	add	x14, x13, #0x20
+   5f834:      	movk	w11, #0xc2b2, lsl #16
+   5f838:      	add	w12, w15, w12
+   5f83c:      	b.lt	0x5f864 <XXH32_digest+0x9c>
+   5f840:      	mov	w15, #0xeb2f            // =60207
+   5f844:      	add	x13, x13, #0x1c
+   5f848:      	movk	w15, #0x27d4, lsl #16
+   5f84c:      	ldr	w16, [x9], #0x4
+   5f850:      	cmp	x9, x13
+   5f854:      	madd	w12, w16, w11, w12
+   5f858:      	ror	w12, w12, #0xf
+   5f85c:      	mul	w12, w12, w15
+   5f860:      	b.ls	0x5f84c <XXH32_digest+0x84>
+   5f864:      	cmp	x9, x14
+   5f868:      	b.hs	0x5f898 <XXH32_digest+0xd0>
+   5f86c:      	add	x10, x0, x10
+   5f870:      	mov	w13, #0x79b1            // =31153
+   5f874:      	sub	x10, x10, x9
+   5f878:      	movk	w13, #0x9e37, lsl #16
+   5f87c:      	add	x10, x10, #0x20
+   5f880:      	ldrb	w14, [x9], #0x1
+   5f884:      	subs	x10, x10, #0x1
+   5f888:      	madd	w12, w14, w8, w12
+   5f88c:      	ror	w12, w12, #0x15
+   5f890:      	mul	w12, w12, w13
+   5f894:      	b.ne	0x5f880 <XXH32_digest+0xb8>
+   5f898:      	eor	w8, w12, w12, lsr #15
+   5f89c:      	mov	w9, #0xca77             // =51831
+   5f8a0:      	movk	w9, #0x85eb, lsl #16
+   5f8a4:      	mul	w8, w8, w9
+   5f8a8:      	eor	w8, w8, w8, lsr #13
+   5f8ac:      	mul	w8, w8, w11
+   5f8b0:      	eor	w19, w8, w8, lsr #16
+   5f8b4:      	bl	0x65380 <free@plt>
+   5f8b8:      	mov	w0, w19
+   5f8bc:      	ldr	x19, [sp, #0x10]
+   5f8c0:      	ldp	x29, x30, [sp], #0x20
+   5f8c4:      	ret
+		...
+   5f8d0:      	bti	c
+   5f8d4:      	adrp	x16, 0x70000
+   5f8d8:      	ldrb	w16, [x16, #0x9c8]
+   5f8dc:      	cbz	w16, 0x5f8e8 <XXH32_digest+0x120>
+   5f8e0:      	ldadd	x0, x0, [x1]
+   5f8e4:      	ret
+   5f8e8:      	mov	x16, x0
+   5f8ec:      	ldxr	x0, [x1]
+   5f8f0:      	add	x17, x0, x16
+   5f8f4:      	stxr	w15, x17, [x1]
+   5f8f8:      	cbnz	w15, 0x5f8ec <XXH32_digest+0x124>
+   5f8fc:      	ret
+   5f900:      	paciasp
+   5f904:      	sub	sp, sp, #0x70
+   5f908:      	str	x30, [sp, #0x60]
+   5f90c:      	mov	w0, #0x10               // =16
+   5f910:      	bl	0x65b90 <getauxval@plt>
+   5f914:      	tbnz	w0, #0x8, 0x5f930 <XXH32_digest+0x168>
+   5f918:      	adrp	x9, 0x70000
+   5f91c:      	ldr	x30, [sp, #0x60]
+   5f920:      	strb	wzr, [x9, #0x9c8]
+   5f924:      	add	sp, sp, #0x70
+   5f928:      	autiasp
+   5f92c:      	ret
+   5f930:      	nop
+   5f934:      	adr	x0, 0x28145 <_ZTSN10verenderer3RefE+0x855>
+   5f938:      	add	x1, sp, #0x4
+   5f93c:      	bl	0x65ba0 <__system_property_get@plt>
+   5f940:      	cmp	w0, #0x0
+   5f944:      	b.le	0x5f97c <XXH32_digest+0x1b4>
+   5f948:      	adrp	x1, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   5f94c:      	add	x1, x1, #0x3bc
+   5f950:      	add	x0, sp, #0x4
+   5f954:      	mov	w2, #0xa                // =10
+   5f958:      	bl	0x65bb0 <strncmp@plt>
+   5f95c:      	cmp	w0, #0x0
+   5f960:      	cset	w8, ne
+   5f964:      	adrp	x9, 0x70000
+   5f968:      	ldr	x30, [sp, #0x60]
+   5f96c:      	strb	w8, [x9, #0x9c8]
+   5f970:      	add	sp, sp, #0x70
+   5f974:      	autiasp
+   5f978:      	ret
+   5f97c:      	mov	w8, #0x1                // =1
+   5f980:      	adrp	x9, 0x70000
+   5f984:      	ldr	x30, [sp, #0x60]
+   5f988:      	strb	w8, [x9, #0x9c8]
+   5f98c:      	add	sp, sp, #0x70
+   5f990:      	autiasp
+   5f994:      	ret
+   5f998:      	bti	c
+   5f99c:      	tbnz	x0, #0x3e, 0x5f9b0 <XXH32_digest+0x1e8>
+   5f9a0:      	mov	x9, xzr
+   5f9a4:      	adrp	x8, 0x70000
+   5f9a8:      	tbnz	w0, #0x7, 0x5f9bc <XXH32_digest+0x1f4>
+   5f9ac:      	b	0x5f9c8 <XXH32_digest+0x200>
+   5f9b0:      	ldr	x9, [x1, #0x10]
+   5f9b4:      	adrp	x8, 0x70000
+   5f9b8:      	tbz	w0, #0x7, 0x5f9c8 <XXH32_digest+0x200>
+   5f9bc:      	ldr	x10, [x8, #0x9d0]
+   5f9c0:      	orr	x10, x10, #0x400
+   5f9c4:      	str	x10, [x8, #0x9d0]
+   5f9c8:      	tbnz	w0, #0x4, 0x5fb0c <XXH32_digest+0x344>
+   5f9cc:      	tbnz	w0, #0x1b, 0x5fb1c <XXH32_digest+0x354>
+   5f9d0:      	tbnz	w9, #0x7, 0x5fb2c <XXH32_digest+0x364>
+   5f9d4:      	mvn	w10, w0
+   5f9d8:      	tst	x10, #0xc0000
+   5f9dc:      	b.eq	0x5fb44 <XXH32_digest+0x37c>
+   5f9e0:      	tbnz	w0, #0x14, 0x5fb54 <XXH32_digest+0x38c>
+   5f9e4:      	tbnz	w0, #0x17, 0x5fb64 <XXH32_digest+0x39c>
+   5f9e8:      	tbnz	w0, #0x9, 0x5fb74 <XXH32_digest+0x3ac>
+   5f9ec:      	tbnz	w0, #0x18, 0x5fb8c <XXH32_digest+0x3c4>
+   5f9f0:      	tbnz	w0, #0xc, 0x5fb9c <XXH32_digest+0x3d4>
+   5f9f4:      	tbnz	w0, #0x1a, 0x5fbac <XXH32_digest+0x3e4>
+   5f9f8:      	tbnz	w0, #0x3, 0x5fbbc <XXH32_digest+0x3f4>
+   5f9fc:      	tbnz	w0, #0x5, 0x5fbcc <XXH32_digest+0x404>
+   5fa00:      	tbnz	w0, #0x6, 0x5fbdc <XXH32_digest+0x414>
+   5fa04:      	tbnz	w0, #0xd, 0x5fbec <XXH32_digest+0x424>
+   5fa08:      	tbnz	w0, #0xe, 0x5fbfc <XXH32_digest+0x434>
+   5fa0c:      	tbnz	w0, #0x1d, 0x5fc0c <XXH32_digest+0x444>
+   5fa10:      	tbnz	w0, #0x1c, 0x5fc1c <XXH32_digest+0x454>
+   5fa14:      	tbnz	w9, #0x12, 0x5fc2c <XXH32_digest+0x464>
+   5fa18:      	tbnz	w9, #0x16, 0x5fc3c <XXH32_digest+0x474>
+   5fa1c:      	tbnz	w9, #0x2, 0x5fc4c <XXH32_digest+0x484>
+   5fa20:      	tbnz	w9, #0x3, 0x5fc5c <XXH32_digest+0x494>
+   5fa24:      	tbnz	w9, #0x4, 0x5fc6c <XXH32_digest+0x4a4>
+   5fa28:      	tbnz	w9, #0x5, 0x5fc7c <XXH32_digest+0x4b4>
+   5fa2c:      	tbnz	w9, #0x6, 0x5fc8c <XXH32_digest+0x4c4>
+   5fa30:      	tbnz	w9, #0x0, 0x5fc9c <XXH32_digest+0x4d4>
+   5fa34:      	tbnz	w0, #0x8, 0x5fcac <XXH32_digest+0x4e4>
+   5fa38:      	tbnz	w9, #0x10, 0x5fcbc <XXH32_digest+0x4f4>
+   5fa3c:      	tbnz	w9, #0xd, 0x5fccc <XXH32_digest+0x504>
+   5fa40:      	tbnz	x9, #0x20, 0x5fcdc <XXH32_digest+0x514>
+   5fa44:      	tbnz	x9, #0x21, 0x5fcec <XXH32_digest+0x524>
+   5fa48:      	tbnz	w9, #0xf, 0x5fcfc <XXH32_digest+0x534>
+   5fa4c:      	tbnz	w9, #0x8, 0x5fd0c <XXH32_digest+0x544>
+   5fa50:      	tbnz	w9, #0x9, 0x5fd1c <XXH32_digest+0x554>
+   5fa54:      	tbnz	w9, #0xa, 0x5fd2c <XXH32_digest+0x564>
+   5fa58:      	tbnz	w9, #0xb, 0x5fd3c <XXH32_digest+0x574>
+   5fa5c:      	tbnz	w9, #0x11, 0x5fd4c <XXH32_digest+0x584>
+   5fa60:      	tbnz	w9, #0x15, 0x5fd5c <XXH32_digest+0x594>
+   5fa64:      	tbnz	w9, #0x1f, 0x5fd6c <XXH32_digest+0x5a4>
+   5fa68:      	tbnz	w9, #0x17, 0x5fd7c <XXH32_digest+0x5b4>
+   5fa6c:      	tbnz	w9, #0x18, 0x5fd8c <XXH32_digest+0x5c4>
+   5fa70:      	tbnz	w9, #0x19, 0x5fd9c <XXH32_digest+0x5d4>
+   5fa74:      	tbnz	x9, #0x2b, 0x5fdac <XXH32_digest+0x5e4>
+   5fa78:      	tbnz	w0, #0xb, 0x5fdbc <XXH32_digest+0x5f4>
+   5fa7c:      	ldr	x10, [x8, #0x9d0]
+   5fa80:      	mov	w12, #0x201             // =513
+   5fa84:      	and	x11, x9, #0x1
+   5fa88:      	tst	x0, x12
+   5fa8c:      	and	x12, x0, #0x10000
+   5fa90:      	orr	x13, x10, #0x300
+   5fa94:      	orr	x11, x11, x12
+   5fa98:      	csel	x10, x10, x13, eq
+   5fa9c:      	cmp	x11, #0x0
+   5faa0:      	mov	w11, #0x8000            // =32768
+   5faa4:      	orr	x12, x10, #0x40000
+   5faa8:      	movk	w11, #0x400, lsl #16
+   5faac:      	csel	x10, x10, x12, eq
+   5fab0:      	tst	x0, x11
+   5fab4:      	b.eq	0x5fac0 <XXH32_digest+0x2f8>
+   5fab8:      	orr	x10, x10, #0x400000
+   5fabc:      	str	x10, [x8, #0x9d0]
+   5fac0:      	mov	x11, #0x4000            // =16384
+   5fac4:      	lsl	w12, w9, #19
+   5fac8:      	orr	x13, x10, #0x8000000
+   5facc:      	movk	x11, #0x1, lsl #32
+   5fad0:      	tst	x9, x11
+   5fad4:      	and	x11, x12, #0x80000000
+   5fad8:      	csel	x10, x10, x13, eq
+   5fadc:      	tst	x9, #0x2
+   5fae0:      	and	x9, x0, #0x400000
+   5fae4:      	orr	x10, x10, x11
+   5fae8:      	lsr	x11, x0, #4
+   5faec:      	ccmp	x9, #0x0, #0x4, ne
+   5faf0:      	orr	x9, x10, #0x1000000000
+   5faf4:      	csel	x9, x10, x9, eq
+   5faf8:      	and	x10, x11, #0x2000
+   5fafc:      	orr	x10, x9, x10
+   5fb00:      	orr	x9, x10, #0x8000000000000000
+   5fb04:      	str	x9, [x8, #0x9d0]
+   5fb08:      	ret
+   5fb0c:      	ldr	x10, [x8, #0x9d0]
+   5fb10:      	orr	x10, x10, #0x8000
+   5fb14:      	str	x10, [x8, #0x9d0]
+   5fb18:      	tbz	w0, #0x1b, 0x5f9d0 <XXH32_digest+0x208>
+   5fb1c:      	ldr	x10, [x8, #0x9d0]
+   5fb20:      	orr	x10, x10, #0x2
+   5fb24:      	str	x10, [x8, #0x9d0]
+   5fb28:      	tbz	w9, #0x7, 0x5f9d4 <XXH32_digest+0x20c>
+   5fb2c:      	ldr	x10, [x8, #0x9d0]
+   5fb30:      	orr	x10, x10, #0x6
+   5fb34:      	str	x10, [x8, #0x9d0]
+   5fb38:      	mvn	w10, w0
+   5fb3c:      	tst	x10, #0xc0000
+   5fb40:      	b.ne	0x5f9e0 <XXH32_digest+0x218>
+   5fb44:      	ldr	x10, [x8, #0x9d0]
+   5fb48:      	orr	x10, x10, #0x20
+   5fb4c:      	str	x10, [x8, #0x9d0]
+   5fb50:      	tbz	w0, #0x14, 0x5f9e4 <XXH32_digest+0x21c>
+   5fb54:      	ldr	x10, [x8, #0x9d0]
+   5fb58:      	orr	x10, x10, #0x10
+   5fb5c:      	str	x10, [x8, #0x9d0]
+   5fb60:      	tbz	w0, #0x17, 0x5f9e8 <XXH32_digest+0x220>
+   5fb64:      	ldr	x10, [x8, #0x9d0]
+   5fb68:      	orr	x10, x10, #0x8
+   5fb6c:      	str	x10, [x8, #0x9d0]
+   5fb70:      	tbz	w0, #0x9, 0x5f9ec <XXH32_digest+0x224>
+   5fb74:      	ldr	x10, [x8, #0x9d0]
+   5fb78:      	mov	w11, #0x100             // =256
+   5fb7c:      	movk	w11, #0x1, lsl #16
+   5fb80:      	orr	x10, x10, x11
+   5fb84:      	str	x10, [x8, #0x9d0]
+   5fb88:      	tbz	w0, #0x18, 0x5f9f0 <XXH32_digest+0x228>
+   5fb8c:      	ldr	x10, [x8, #0x9d0]
+   5fb90:      	orr	x10, x10, #0x20000
+   5fb94:      	str	x10, [x8, #0x9d0]
+   5fb98:      	tbz	w0, #0xc, 0x5f9f4 <XXH32_digest+0x22c>
+   5fb9c:      	ldr	x10, [x8, #0x9d0]
+   5fba0:      	orr	x10, x10, #0x40
+   5fba4:      	str	x10, [x8, #0x9d0]
+   5fba8:      	tbz	w0, #0x1a, 0x5f9f8 <XXH32_digest+0x230>
+   5fbac:      	ldr	x10, [x8, #0x9d0]
+   5fbb0:      	orr	x10, x10, #0x800000
+   5fbb4:      	str	x10, [x8, #0x9d0]
+   5fbb8:      	tbz	w0, #0x3, 0x5f9fc <XXH32_digest+0x234>
+   5fbbc:      	ldr	x10, [x8, #0x9d0]
+   5fbc0:      	orr	x10, x10, #0x4000
+   5fbc4:      	str	x10, [x8, #0x9d0]
+   5fbc8:      	tbz	w0, #0x5, 0x5fa00 <XXH32_digest+0x238>
+   5fbcc:      	ldr	x10, [x8, #0x9d0]
+   5fbd0:      	orr	x10, x10, #0x800
+   5fbd4:      	str	x10, [x8, #0x9d0]
+   5fbd8:      	tbz	w0, #0x6, 0x5fa04 <XXH32_digest+0x23c>
+   5fbdc:      	ldr	x10, [x8, #0x9d0]
+   5fbe0:      	orr	x10, x10, #0x1000
+   5fbe4:      	str	x10, [x8, #0x9d0]
+   5fbe8:      	tbz	w0, #0xd, 0x5fa08 <XXH32_digest+0x240>
+   5fbec:      	ldr	x10, [x8, #0x9d0]
+   5fbf0:      	orr	x10, x10, #0x100000
+   5fbf4:      	str	x10, [x8, #0x9d0]
+   5fbf8:      	tbz	w0, #0xe, 0x5fa0c <XXH32_digest+0x244>
+   5fbfc:      	ldr	x10, [x8, #0x9d0]
+   5fc00:      	orr	x10, x10, #0x200000
+   5fc04:      	str	x10, [x8, #0x9d0]
+   5fc08:      	tbz	w0, #0x1d, 0x5fa10 <XXH32_digest+0x248>
+   5fc0c:      	ldr	x10, [x8, #0x9d0]
+   5fc10:      	orr	x10, x10, #0x400000000000
+   5fc14:      	str	x10, [x8, #0x9d0]
+   5fc18:      	tbz	w0, #0x1c, 0x5fa14 <XXH32_digest+0x24c>
+   5fc1c:      	ldr	x10, [x8, #0x9d0]
+   5fc20:      	orr	x10, x10, #0x2000000000000
+   5fc24:      	str	x10, [x8, #0x9d0]
+   5fc28:      	tbz	w9, #0x12, 0x5fa18 <XXH32_digest+0x250>
+   5fc2c:      	ldr	x10, [x8, #0x9d0]
+   5fc30:      	orr	x10, x10, #0x180000000000
+   5fc34:      	str	x10, [x8, #0x9d0]
+   5fc38:      	tbz	w9, #0x16, 0x5fa1c <XXH32_digest+0x254>
+   5fc3c:      	ldr	x10, [x8, #0x9d0]
+   5fc40:      	orr	x10, x10, #0x380000000000
+   5fc44:      	str	x10, [x8, #0x9d0]
+   5fc48:      	tbz	w9, #0x2, 0x5fa20 <XXH32_digest+0x258>
+   5fc4c:      	ldr	x10, [x8, #0x9d0]
+   5fc50:      	orr	x10, x10, #0x2000000000
+   5fc54:      	str	x10, [x8, #0x9d0]
+   5fc58:      	tbz	w9, #0x3, 0x5fa24 <XXH32_digest+0x25c>
+   5fc5c:      	ldr	x10, [x8, #0x9d0]
+   5fc60:      	orr	x10, x10, #0x6000000000
+   5fc64:      	str	x10, [x8, #0x9d0]
+   5fc68:      	tbz	w9, #0x4, 0x5fa28 <XXH32_digest+0x260>
+   5fc6c:      	ldr	x10, [x8, #0x9d0]
+   5fc70:      	orr	x10, x10, #0x8000000000
+   5fc74:      	str	x10, [x8, #0x9d0]
+   5fc78:      	tbz	w9, #0x5, 0x5fa2c <XXH32_digest+0x264>
+   5fc7c:      	ldr	x10, [x8, #0x9d0]
+   5fc80:      	orr	x10, x10, #0x10000000000
+   5fc84:      	str	x10, [x8, #0x9d0]
+   5fc88:      	tbz	w9, #0x6, 0x5fa30 <XXH32_digest+0x268>
+   5fc8c:      	ldr	x10, [x8, #0x9d0]
+   5fc90:      	orr	x10, x10, #0x20000000000
+   5fc94:      	str	x10, [x8, #0x9d0]
+   5fc98:      	tbz	w9, #0x0, 0x5fa34 <XXH32_digest+0x26c>
+   5fc9c:      	ldr	x10, [x8, #0x9d0]
+   5fca0:      	orr	x10, x10, #0x80000
+   5fca4:      	str	x10, [x8, #0x9d0]
+   5fca8:      	tbz	w0, #0x8, 0x5fa38 <XXH32_digest+0x270>
+   5fcac:      	ldr	x10, [x8, #0x9d0]
+   5fcb0:      	orr	x10, x10, #0x80
+   5fcb4:      	str	x10, [x8, #0x9d0]
+   5fcb8:      	tbz	w9, #0x10, 0x5fa3c <XXH32_digest+0x274>
+   5fcbc:      	ldr	x10, [x8, #0x9d0]
+   5fcc0:      	orr	x10, x10, #0x1
+   5fcc4:      	str	x10, [x8, #0x9d0]
+   5fcc8:      	tbz	w9, #0xd, 0x5fa40 <XXH32_digest+0x278>
+   5fccc:      	ldr	x10, [x8, #0x9d0]
+   5fcd0:      	orr	x10, x10, #0x4000000
+   5fcd4:      	str	x10, [x8, #0x9d0]
+   5fcd8:      	tbz	x9, #0x20, 0x5fa44 <XXH32_digest+0x27c>
+   5fcdc:      	ldr	x10, [x8, #0x9d0]
+   5fce0:      	orr	x10, x10, #0x10000000
+   5fce4:      	str	x10, [x8, #0x9d0]
+   5fce8:      	tbz	x9, #0x21, 0x5fa48 <XXH32_digest+0x280>
+   5fcec:      	ldr	x10, [x8, #0x9d0]
+   5fcf0:      	orr	x10, x10, #0x100000000
+   5fcf4:      	str	x10, [x8, #0x9d0]
+   5fcf8:      	tbz	w9, #0xf, 0x5fa4c <XXH32_digest+0x284>
+   5fcfc:      	ldr	x10, [x8, #0x9d0]
+   5fd00:      	orr	x10, x10, #0x2000000
+   5fd04:      	str	x10, [x8, #0x9d0]
+   5fd08:      	tbz	w9, #0x8, 0x5fa50 <XXH32_digest+0x288>
+   5fd0c:      	ldr	x10, [x8, #0x9d0]
+   5fd10:      	orr	x10, x10, #0x1000000
+   5fd14:      	str	x10, [x8, #0x9d0]
+   5fd18:      	tbz	w9, #0x9, 0x5fa54 <XXH32_digest+0x28c>
+   5fd1c:      	ldr	x10, [x8, #0x9d0]
+   5fd20:      	orr	x10, x10, #0x200000000
+   5fd24:      	str	x10, [x8, #0x9d0]
+   5fd28:      	tbz	w9, #0xa, 0x5fa58 <XXH32_digest+0x290>
+   5fd2c:      	ldr	x10, [x8, #0x9d0]
+   5fd30:      	orr	x10, x10, #0x400000000
+   5fd34:      	str	x10, [x8, #0x9d0]
+   5fd38:      	tbz	w9, #0xb, 0x5fa5c <XXH32_digest+0x294>
+   5fd3c:      	ldr	x10, [x8, #0x9d0]
+   5fd40:      	orr	x10, x10, #0x800000000
+   5fd44:      	str	x10, [x8, #0x9d0]
+   5fd48:      	tbz	w9, #0x11, 0x5fa60 <XXH32_digest+0x298>
+   5fd4c:      	ldr	x10, [x8, #0x9d0]
+   5fd50:      	orr	x10, x10, #0x4000000000000
+   5fd54:      	str	x10, [x8, #0x9d0]
+   5fd58:      	tbz	w9, #0x15, 0x5fa64 <XXH32_digest+0x29c>
+   5fd5c:      	ldr	x10, [x8, #0x9d0]
+   5fd60:      	orr	x10, x10, #0x20000000
+   5fd64:      	str	x10, [x8, #0x9d0]
+   5fd68:      	tbz	w9, #0x1f, 0x5fa68 <XXH32_digest+0x2a0>
+   5fd6c:      	ldr	x10, [x8, #0x9d0]
+   5fd70:      	orr	x10, x10, #0x40000000000000
+   5fd74:      	str	x10, [x8, #0x9d0]
+   5fd78:      	tbz	w9, #0x17, 0x5fa6c <XXH32_digest+0x2a4>
+   5fd7c:      	ldr	x10, [x8, #0x9d0]
+   5fd80:      	orr	x10, x10, #0x40000000000
+   5fd84:      	str	x10, [x8, #0x9d0]
+   5fd88:      	tbz	w9, #0x18, 0x5fa70 <XXH32_digest+0x2a8>
+   5fd8c:      	ldr	x10, [x8, #0x9d0]
+   5fd90:      	orr	x10, x10, #0x100000000000000
+   5fd94:      	str	x10, [x8, #0x9d0]
+   5fd98:      	tbz	w9, #0x19, 0x5fa74 <XXH32_digest+0x2ac>
+   5fd9c:      	ldr	x10, [x8, #0x9d0]
+   5fda0:      	orr	x10, x10, #0x80000000000000
+   5fda4:      	str	x10, [x8, #0x9d0]
+   5fda8:      	tbz	x9, #0x2b, 0x5fa78 <XXH32_digest+0x2b0>
+   5fdac:      	ldr	x10, [x8, #0x9d0]
+   5fdb0:      	orr	x10, x10, #0x800000000000000
+   5fdb4:      	str	x10, [x8, #0x9d0]
+   5fdb8:      	tbz	w0, #0xb, 0x5fa7c <XXH32_digest+0x2b4>
+   5fdbc:      	mrs	x9, ID_AA64PFR1_EL1
+   5fdc0:      	tst	x9, #0xf00
+   5fdc4:      	b.eq	0x5fdd4 <XXH32_digest+0x60c>
+   5fdc8:      	ldr	x10, [x8, #0x9d0]
+   5fdcc:      	orr	x10, x10, #0x80000000000
+   5fdd0:      	str	x10, [x8, #0x9d0]
+   5fdd4:      	and	x10, x9, #0xf0
+   5fdd8:      	cmp	x10, #0x10
+   5fddc:      	b.eq	0x5fe28 <XXH32_digest+0x660>
+   5fde0:      	and	x9, x9, #0xf000000
+   5fde4:      	mov	w10, #0x2000000         // =33554432
+   5fde8:      	cmp	x9, x10
+   5fdec:      	b.eq	0x5fe44 <XXH32_digest+0x67c>
+   5fdf0:      	mrs	x9, ID_AA64PFR0_EL1
+   5fdf4:      	mvn	w10, w9
+   5fdf8:      	tst	x10, #0xf0000
+   5fdfc:      	b.ne	0x5fe60 <XXH32_digest+0x698>
+   5fe00:      	tst	x9, #0xf00000000
+   5fe04:      	b.eq	0x5fe74 <XXH32_digest+0x6ac>
+   5fe08:      	mrs	x9, ID_AA64ZFR0_EL1
+   5fe0c:      	and	x11, x9, #0xf
+   5fe10:      	ldr	x10, [x8, #0x9d0]
+   5fe14:      	cmp	x11, #0x1
+   5fe18:      	b.eq	0x5fe7c <XXH32_digest+0x6b4>
+   5fe1c:      	cbnz	x11, 0x5fe80 <XXH32_digest+0x6b8>
+   5fe20:      	orr	x10, x10, #0x40000000
+   5fe24:      	b	0x5fe80 <XXH32_digest+0x6b8>
+   5fe28:      	ldr	x10, [x8, #0x9d0]
+   5fe2c:      	orr	x10, x10, #0x1000000000000
+   5fe30:      	str	x10, [x8, #0x9d0]
+   5fe34:      	and	x9, x9, #0xf000000
+   5fe38:      	mov	w10, #0x2000000         // =33554432
+   5fe3c:      	cmp	x9, x10
+   5fe40:      	b.ne	0x5fdf0 <XXH32_digest+0x628>
+   5fe44:      	ldr	x9, [x8, #0x9d0]
+   5fe48:      	orr	x9, x9, #0x200000000000000
+   5fe4c:      	str	x9, [x8, #0x9d0]
+   5fe50:      	mrs	x9, ID_AA64PFR0_EL1
+   5fe54:      	mvn	w10, w9
+   5fe58:      	tst	x10, #0xf0000
+   5fe5c:      	b.eq	0x5fe00 <XXH32_digest+0x638>
+   5fe60:      	ldr	x10, [x8, #0x9d0]
+   5fe64:      	orr	x10, x10, #0x300
+   5fe68:      	str	x10, [x8, #0x9d0]
+   5fe6c:      	tst	x9, #0xf00000000
+   5fe70:      	b.ne	0x5fe08 <XXH32_digest+0x640>
+   5fe74:      	ldr	x10, [x8, #0x9d0]
+   5fe78:      	b	0x5fe8c <XXH32_digest+0x6c4>
+   5fe7c:      	orr	x10, x10, #0x1000000000
+   5fe80:      	orr	x11, x10, #0x80000000
+   5fe84:      	tst	x9, #0xf00000
+   5fe88:      	csel	x10, x10, x11, eq
+   5fe8c:      	mrs	x9, ID_AA64ISAR0_EL1
+   5fe90:      	orr	x11, x10, #0x2000
+   5fe94:      	tst	x9, #0xf00000000
+   5fe98:      	csel	x10, x10, x11, eq
+   5fe9c:      	mrs	x9, ID_AA64ISAR1_EL1
+   5fea0:      	ubfx	x11, x9, #20, #4
+   5fea4:      	orr	x12, x10, #0x40000
+   5fea8:      	tst	x9, #0xf
+   5feac:      	csel	x10, x10, x12, eq
+   5feb0:      	cbz	x11, 0x5fed4 <XXH32_digest+0x70c>
+   5feb4:      	cmp	x11, #0x3
+   5feb8:      	b.ne	0x5fed0 <XXH32_digest+0x708>
+   5febc:      	mov	x11, #0x400000          // =4194304
+   5fec0:      	movk	x11, #0x400, lsl #48
+   5fec4:      	orr	x10, x10, x11
+   5fec8:      	str	x10, [x8, #0x9d0]
+   5fecc:      	b	0x5fed4 <XXH32_digest+0x70c>
+   5fed0:      	orr	x10, x10, #0x400000
+   5fed4:      	and	x11, x9, #0xf0000000000
+   5fed8:      	mov	x12, #0x20000000000     // =2199023255552
+   5fedc:      	orr	x13, x10, #0x800000000000
+   5fee0:      	cmp	x11, x12
+   5fee4:      	lsr	x11, x9, #60
+   5fee8:      	csel	x10, x13, x10, eq
+   5feec:      	tst	x9, #0xf00000000000
+   5fef0:      	orr	x12, x10, #0x8000000
+   5fef4:      	csel	x10, x10, x12, eq
+   5fef8:      	cbz	x11, 0x5fb00 <XXH32_digest+0x338>
+   5fefc:      	lsr	x9, x9, #61
+   5ff00:      	cbz	x9, 0x5ff24 <XXH32_digest+0x75c>
+   5ff04:      	cmp	x11, #0x2
+   5ff08:      	mov	x9, #0x18000000000000   // =6755399441055744
+   5ff0c:      	mov	x11, #0x38000000000000  // =15762598695796736
+   5ff10:      	csel	x9, x11, x9, hi
+   5ff14:      	orr	x10, x10, x9
+   5ff18:      	orr	x9, x10, #0x8000000000000000
+   5ff1c:      	str	x9, [x8, #0x9d0]
+   5ff20:      	ret
+   5ff24:      	orr	x10, x10, #0x8000000000000
+   5ff28:      	orr	x9, x10, #0x8000000000000000
+   5ff2c:      	str	x9, [x8, #0x9d0]
+   5ff30:      	ret
+   5ff34:      	bti	c
+   5ff38:      	adrp	x8, 0x70000
+   5ff3c:      	ldr	x8, [x8, #0x9d0]
+   5ff40:      	cbz	x8, 0x5ff48 <XXH32_digest+0x780>
+   5ff44:      	ret
+   5ff48:      	paciasp
+   5ff4c:      	sub	sp, sp, #0x70
+   5ff50:      	stp	x30, x19, [sp, #0x60]
+   5ff54:      	nop
+   5ff58:      	adr	x0, 0x28145 <_ZTSN10verenderer3RefE+0x855>
+   5ff5c:      	mov	x1, sp
+   5ff60:      	bl	0x65ba0 <__system_property_get@plt>
+   5ff64:      	cmp	w0, #0x0
+   5ff68:      	b.le	0x5ff84 <XXH32_digest+0x7bc>
+   5ff6c:      	adrp	x1, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   5ff70:      	add	x1, x1, #0x3bc
+   5ff74:      	mov	x0, sp
+   5ff78:      	mov	w2, #0xa                // =10
+   5ff7c:      	bl	0x65bb0 <strncmp@plt>
+   5ff80:      	cbz	w0, 0x5ffb0 <XXH32_digest+0x7e8>
+   5ff84:      	mov	w0, #0x10               // =16
+   5ff88:      	bl	0x65b90 <getauxval@plt>
+   5ff8c:      	mov	x19, x0
+   5ff90:      	mov	w0, #0x1a               // =26
+   5ff94:      	bl	0x65b90 <getauxval@plt>
+   5ff98:      	mov	w8, #0x18               // =24
+   5ff9c:      	str	x0, [sp, #0x10]
+   5ffa0:      	orr	x0, x19, #0x4000000000000000
+   5ffa4:      	mov	x1, sp
+   5ffa8:      	stp	x8, x19, [sp]
+   5ffac:      	bl	0x5f998 <XXH32_digest+0x1d0>
+   5ffb0:      	ldp	x30, x19, [sp, #0x60]
+   5ffb4:      	add	sp, sp, #0x70
+   5ffb8:      	autiasp
+   5ffbc:      	ret
+   5ffc0:      	bti	c
+   5ffc4:      	adrp	x16, 0x70000
+   5ffc8:      	ldrb	w16, [x16, #0x9c8]
+   5ffcc:      	cbz	w16, 0x5ffd8 <XXH32_digest+0x810>
+   5ffd0:      	ldaddal	x0, x0, [x1]
+   5ffd4:      	ret
+   5ffd8:      	mov	x16, x0
+   5ffdc:      	ldaxr	x0, [x1]
+   5ffe0:      	add	x17, x0, x16
+   5ffe4:      	stlxr	w15, x17, [x1]
+   5ffe8:      	cbnz	w15, 0x5ffdc <XXH32_digest+0x814>
+   5ffec:      	ret
+   5fff0:      	paciasp
+   5fff4:      	sub	sp, sp, #0x80
+   5fff8:      	stp	x29, x30, [sp, #0x50]
+   5fffc:      	stp	x22, x21, [sp, #0x60]
+   60000:      	stp	x20, x19, [sp, #0x70]
+   60004:      	add	x29, sp, #0x50
+   60008:      	mov	x19, x1
+   6000c:      	mov	x1, x0
+   60010:      	mov	x20, x2
+   60014:      	mov	x0, x19
+   60018:      	bl	0x6029c <XXH32_digest+0xad4>
+   6001c:      	mov	x0, x19
+   60020:      	bl	0x603c0 <XXH32_digest+0xbf8>
+   60024:      	cbz	w0, 0x600dc <XXH32_digest+0x914>
+   60028:      	mov	w21, #0x2               // =2
+   6002c:      	mov	w22, #0x6               // =6
+   60030:      	b	0x60040 <XXH32_digest+0x878>
+   60034:      	mov	x0, x19
+   60038:      	bl	0x603c0 <XXH32_digest+0xbf8>
+   6003c:      	cbz	w0, 0x600dc <XXH32_digest+0x914>
+   60040:      	tbnz	w0, #0x1f, 0x60108 <XXH32_digest+0x940>
+   60044:      	sub	x2, x29, #0x8
+   60048:      	mov	x0, x19
+   6004c:      	mov	w1, #-0x2               // =-2
+   60050:      	bl	0x60344 <XXH32_digest+0xb7c>
+   60054:      	mov	x1, sp
+   60058:      	mov	x0, x19
+   6005c:      	bl	0x603d4 <XXH32_digest+0xc0c>
+   60060:      	cbnz	w0, 0x60108 <XXH32_digest+0x940>
+   60064:      	ldr	x8, [sp, #0x18]
+   60068:      	cbz	x8, 0x60034 <XXH32_digest+0x86c>
+   6006c:      	ldur	x9, [x29, #-0x8]
+   60070:      	ldr	x10, [x20, #0x18]
+   60074:      	mov	w0, #0x1                // =1
+   60078:      	ldr	x2, [x20]
+   6007c:      	mov	x3, x20
+   60080:      	mov	x4, x19
+   60084:      	cmp	x9, x10
+   60088:      	csel	w1, w22, w21, eq
+   6008c:      	blr	x8
+   60090:      	cmp	w0, #0x8
+   60094:      	b.ne	0x600f8 <XXH32_digest+0x930>
+   60098:      	ldur	x8, [x29, #-0x8]
+   6009c:      	ldr	x9, [x20, #0x18]
+   600a0:      	cmp	x8, x9
+   600a4:      	b.ne	0x60034 <XXH32_digest+0x86c>
+   600a8:      	adrp	x19, 0x6b000
+   600ac:      	nop
+   600b0:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   600b4:      	ldr	x19, [x19, #0x3f8]
+   600b8:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   600bc:      	add	x2, x2, #0x67e
+   600c0:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   600c4:      	add	x3, x3, #0xed2
+   600c8:      	add	x0, x19, #0x130
+   600cc:      	bl	0x65bc0 <fprintf@plt>
+   600d0:      	add	x0, x19, #0x130
+   600d4:      	bl	0x65bd0 <fflush@plt>
+   600d8:      	bl	0x65be0 <abort@plt>
+   600dc:      	mov	w0, #0x5                // =5
+   600e0:      	ldp	x20, x19, [sp, #0x70]
+   600e4:      	ldp	x22, x21, [sp, #0x60]
+   600e8:      	ldp	x29, x30, [sp, #0x50]
+   600ec:      	add	sp, sp, #0x80
+   600f0:      	autiasp
+   600f4:      	ret
+   600f8:      	cmp	w0, #0x7
+   600fc:      	b.ne	0x60108 <XXH32_digest+0x940>
+   60100:      	mov	x0, x19
+   60104:      	bl	0x60414 <XXH32_digest+0xc4c>
+   60108:      	mov	w0, #0x2                // =2
+   6010c:      	ldp	x20, x19, [sp, #0x70]
+   60110:      	ldp	x22, x21, [sp, #0x60]
+   60114:      	ldp	x29, x30, [sp, #0x50]
+   60118:      	add	sp, sp, #0x80
+   6011c:      	autiasp
+   60120:      	ret
+   60124:      	paciasp
+   60128:      	stp	x29, x30, [sp, #-0x20]!
+   6012c:      	stp	x28, x19, [sp, #0x10]
+   60130:      	mov	x29, sp
+   60134:      	sub	sp, sp, #0x480
+   60138:      	mov	x19, x0
+   6013c:      	add	x0, sp, #0x270
+   60140:      	bl	0x63d48 <XXH32_digest+0x4580>
+   60144:      	ldr	x3, [x19, #0x10]
+   60148:      	cbnz	x3, 0x60160 <XXH32_digest+0x998>
+   6014c:      	add	x0, sp, #0x270
+   60150:      	mov	x1, sp
+   60154:      	mov	x2, x19
+   60158:      	bl	0x5fff0 <XXH32_digest+0x828>
+   6015c:      	b	0x60174 <XXH32_digest+0x9ac>
+   60160:      	ldr	x4, [x19, #0x18]
+   60164:      	add	x0, sp, #0x270
+   60168:      	mov	x1, sp
+   6016c:      	mov	x2, x19
+   60170:      	bl	0x601a8 <XXH32_digest+0x9e0>
+   60174:      	adrp	x19, 0x6b000
+   60178:      	nop
+   6017c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   60180:      	ldr	x19, [x19, #0x3f8]
+   60184:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   60188:      	add	x2, x2, #0x7c0
+   6018c:      	adrp	x3, 0x27000
+   60190:      	add	x3, x3, #0xfbc
+   60194:      	add	x0, x19, #0x130
+   60198:      	bl	0x65bc0 <fprintf@plt>
+   6019c:      	add	x0, x19, #0x130
+   601a0:      	bl	0x65bd0 <fflush@plt>
+   601a4:      	bl	0x65be0 <abort@plt>
+   601a8:      	paciasp
+   601ac:      	sub	sp, sp, #0x80
+   601b0:      	stp	x29, x30, [sp, #0x50]
+   601b4:      	stp	x22, x21, [sp, #0x60]
+   601b8:      	stp	x20, x19, [sp, #0x70]
+   601bc:      	add	x29, sp, #0x50
+   601c0:      	mov	x21, x1
+   601c4:      	mov	x1, x0
+   601c8:      	mov	x20, x4
+   601cc:      	mov	x0, x21
+   601d0:      	mov	x19, x3
+   601d4:      	mov	x22, x2
+   601d8:      	bl	0x6029c <XXH32_digest+0xad4>
+   601dc:      	mov	x0, x21
+   601e0:      	bl	0x603c0 <XXH32_digest+0xbf8>
+   601e4:      	cmp	w0, #0x1
+   601e8:      	b.ge	0x60230 <XXH32_digest+0xa68>
+   601ec:      	ldr	x2, [x22]
+   601f0:      	mov	w0, #0x1                // =1
+   601f4:      	mov	w1, #0x1a               // =26
+   601f8:      	mov	x3, x22
+   601fc:      	mov	x4, x21
+   60200:      	mov	x5, x20
+   60204:      	blr	x19
+   60208:      	ldp	x20, x19, [sp, #0x70]
+   6020c:      	ldp	x22, x21, [sp, #0x60]
+   60210:      	ldp	x29, x30, [sp, #0x50]
+   60214:      	add	sp, sp, #0x80
+   60218:      	autiasp
+   6021c:      	ret
+   60220:      	mov	x0, x21
+   60224:      	bl	0x603c0 <XXH32_digest+0xbf8>
+   60228:      	cmp	w0, #0x0
+   6022c:      	b.le	0x601ec <XXH32_digest+0xa24>
+   60230:      	add	x1, sp, #0x8
+   60234:      	mov	x0, x21
+   60238:      	bl	0x603d4 <XXH32_digest+0xc0c>
+   6023c:      	cbnz	w0, 0x60208 <XXH32_digest+0xa40>
+   60240:      	ldr	x2, [x22]
+   60244:      	mov	w0, #0x1                // =1
+   60248:      	mov	w1, #0xa                // =10
+   6024c:      	mov	x3, x22
+   60250:      	mov	x4, x21
+   60254:      	mov	x5, x20
+   60258:      	blr	x19
+   6025c:      	cbnz	w0, 0x60208 <XXH32_digest+0xa40>
+   60260:      	ldr	x8, [sp, #0x20]
+   60264:      	cbz	x8, 0x60220 <XXH32_digest+0xa58>
+   60268:      	ldr	x2, [x22]
+   6026c:      	mov	w0, #0x1                // =1
+   60270:      	mov	w1, #0xa                // =10
+   60274:      	mov	x3, x22
+   60278:      	mov	x4, x21
+   6027c:      	blr	x8
+   60280:      	cmp	w0, #0x8
+   60284:      	b.eq	0x60220 <XXH32_digest+0xa58>
+   60288:      	cmp	w0, #0x7
+   6028c:      	b.ne	0x60208 <XXH32_digest+0xa40>
+   60290:      	mov	x0, x21
+   60294:      	bl	0x60414 <XXH32_digest+0xc4c>
+   60298:      	b	0x60220 <XXH32_digest+0xa58>
+   6029c:      	paciasp
+   602a0:      	stp	x29, x30, [sp, #-0x20]!
+   602a4:      	stp	x20, x19, [sp, #0x10]
+   602a8:      	mov	x29, sp
+   602ac:      	adrp	x8, 0x6a000 <_ZTVN7backend16Texture2DBackendE+0x8>
+   602b0:      	add	x8, x8, #0xd70
+   602b4:      	nop
+   602b8:      	adr	x9, 0x709d8 <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x80>
+   602bc:      	mov	w2, #0x110              // =272
+   602c0:      	mov	x20, x1
+   602c4:      	mov	x19, x0
+   602c8:      	stp	x8, x9, [x0], #0x10
+   602cc:      	bl	0x64630 <memcpy@plt>
+   602d0:      	ldp	q1, q0, [x20, #0x130]
+   602d4:      	add	x8, x19, #0x220
+   602d8:      	ldp	q3, q2, [x20, #0x110]
+   602dc:      	mov	x0, x19
+   602e0:      	mov	w1, wzr
+   602e4:      	stp	q1, q0, [x19, #0x140]
+   602e8:      	stp	q3, q2, [x19, #0x120]
+   602ec:      	ldp	q1, q0, [x20, #0x170]
+   602f0:      	ldp	q3, q2, [x20, #0x150]
+   602f4:      	stp	q1, q0, [x19, #0x180]
+   602f8:      	stp	q3, q2, [x19, #0x160]
+   602fc:      	ldp	q1, q0, [x20, #0x1b0]
+   60300:      	ldp	q3, q2, [x20, #0x190]
+   60304:      	stp	q1, q0, [x19, #0x1c0]
+   60308:      	stp	q3, q2, [x19, #0x1a0]
+   6030c:      	movi	v2.2d, #0000000000000000
+   60310:      	ldp	q1, q0, [x20, #0x1f0]
+   60314:      	ldp	q4, q3, [x20, #0x1d0]
+   60318:      	stp	q1, q0, [x19, #0x200]
+   6031c:      	stp	q4, q3, [x19, #0x1e0]
+   60320:      	stur	q2, [x8, #0x3b]
+   60324:      	stp	q2, q2, [x19, #0x220]
+   60328:      	stp	q2, q2, [x19, #0x240]
+   6032c:      	bl	0x60c64 <XXH32_digest+0x149c>
+   60330:      	mov	w0, wzr
+   60334:      	ldp	x20, x19, [sp, #0x10]
+   60338:      	ldp	x29, x30, [sp], #0x20
+   6033c:      	autiasp
+   60340:      	ret
+   60344:      	paciasp
+   60348:      	stp	x29, x30, [sp, #-0x30]!
+   6034c:      	str	x21, [sp, #0x10]
+   60350:      	stp	x20, x19, [sp, #0x20]
+   60354:      	mov	x29, sp
+   60358:      	ldr	x8, [x0]
+   6035c:      	mov	x19, x2
+   60360:      	mov	x20, x0
+   60364:      	mov	w21, w1
+   60368:      	ldr	x8, [x8, #0x10]
+   6036c:      	blr	x8
+   60370:      	tbz	w0, #0x0, 0x603a8 <XXH32_digest+0xbe0>
+   60374:      	ldr	x8, [x20]
+   60378:      	mov	x0, x20
+   6037c:      	mov	w1, w21
+   60380:      	ldr	x8, [x8, #0x18]
+   60384:      	blr	x8
+   60388:      	mov	x8, x0
+   6038c:      	mov	w0, wzr
+   60390:      	str	x8, [x19]
+   60394:      	ldp	x20, x19, [sp, #0x20]
+   60398:      	ldr	x21, [sp, #0x10]
+   6039c:      	ldp	x29, x30, [sp], #0x30
+   603a0:      	autiasp
+   603a4:      	ret
+   603a8:      	mov	w0, #-0x198e            // =-6542
+   603ac:      	ldp	x20, x19, [sp, #0x20]
+   603b0:      	ldr	x21, [sp, #0x10]
+   603b4:      	ldp	x29, x30, [sp], #0x30
+   603b8:      	autiasp
+   603bc:      	ret
+   603c0:      	bti	c
+   603c4:      	ldr	x8, [x0]
+   603c8:      	mov	w1, #0x1                // =1
+   603cc:      	ldr	x16, [x8, #0x40]
+   603d0:      	br	x16
+   603d4:      	paciasp
+   603d8:      	stp	x29, x30, [sp, #-0x20]!
+   603dc:      	str	x19, [sp, #0x10]
+   603e0:      	mov	x29, sp
+   603e4:      	ldr	x8, [x0]
+   603e8:      	mov	x19, x1
+   603ec:      	ldr	x8, [x8, #0x48]
+   603f0:      	blr	x8
+   603f4:      	ldr	x8, [x19, #0x8]
+   603f8:      	cmp	x8, #0x0
+   603fc:      	mov	w8, #-0x1995            // =-6549
+   60400:      	csel	w0, w8, wzr, eq
+   60404:      	ldr	x19, [sp, #0x10]
+   60408:      	ldp	x29, x30, [sp], #0x20
+   6040c:      	autiasp
+   60410:      	ret
+   60414:      	paciasp
+   60418:      	stp	x29, x30, [sp, #-0x10]!
+   6041c:      	mov	x29, sp
+   60420:      	ldr	x8, [x0]
+   60424:      	ldr	x8, [x8, #0x50]
+   60428:      	blr	x8
+   6042c:      	mov	w0, #-0x198c            // =-6540
+   60430:      	ldp	x29, x30, [sp], #0x10
+   60434:      	autiasp
+   60438:      	ret
+   6043c:      	paciasp
+   60440:      	stp	x29, x30, [sp, #-0x60]!
+   60444:      	str	x27, [sp, #0x10]
+   60448:      	stp	x26, x25, [sp, #0x20]
+   6044c:      	stp	x24, x23, [sp, #0x30]
+   60450:      	stp	x22, x21, [sp, #0x40]
+   60454:      	stp	x20, x19, [sp, #0x50]
+   60458:      	mov	x29, sp
+   6045c:      	mov	x23, x1
+   60460:      	mov	x20, x3
+   60464:      	mov	x19, x2
+   60468:      	ldr	w22, [x23], #0x4
+   6046c:      	mov	x21, x0
+   60470:      	cmn	w22, #0x1
+   60474:      	b.eq	0x604a8 <XXH32_digest+0xce0>
+   60478:      	cbz	x22, 0x604b4 <XXH32_digest+0xcec>
+   6047c:      	ldr	w8, [x23]
+   60480:      	cbz	w8, 0x604c0 <XXH32_digest+0xcf8>
+   60484:      	mov	x25, x1
+   60488:      	sub	x1, x23, x8
+   6048c:      	tbz	w4, #0x0, 0x604cc <XXH32_digest+0xd04>
+   60490:      	ldr	x8, [x20]
+   60494:      	cmp	x8, x1
+   60498:      	b.eq	0x604dc <XXH32_digest+0xd14>
+   6049c:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   604a0:      	add	x0, x0, #0x8c5
+   604a4:      	b	0x605ac <XXH32_digest+0xde4>
+   604a8:      	ldur	x22, [x1, #0x4]
+   604ac:      	add	x23, x1, #0xc
+   604b0:      	cbnz	x22, 0x6047c <XXH32_digest+0xcb4>
+   604b4:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   604b8:      	add	x0, x0, #0x26b
+   604bc:      	b	0x605ac <XXH32_digest+0xde4>
+   604c0:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   604c4:      	add	x0, x0, #0x89c
+   604c8:      	b	0x605ac <XXH32_digest+0xde4>
+   604cc:      	mov	x0, x21
+   604d0:      	mov	x2, x20
+   604d4:      	bl	0x605cc <XXH32_digest+0xe04>
+   604d8:      	cbnz	x0, 0x605ac <XXH32_digest+0xde4>
+   604dc:      	ldrb	w3, [x20, #0x18]
+   604e0:      	add	x22, x23, x22
+   604e4:      	add	x8, x23, #0x4
+   604e8:      	add	x1, x29, #0x18
+   604ec:      	mov	x0, x21
+   604f0:      	mov	x2, x22
+   604f4:      	mov	x4, xzr
+   604f8:      	str	x8, [x29, #0x18]
+   604fc:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   60500:      	ldrb	w8, [x20, #0x18]
+   60504:      	mov	x23, x0
+   60508:      	add	x1, x29, #0x18
+   6050c:      	mov	x0, x21
+   60510:      	mov	x2, x22
+   60514:      	mov	x4, xzr
+   60518:      	and	w3, w8, #0xf
+   6051c:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   60520:      	ldrb	w8, [x20, #0x31]
+   60524:      	mov	x24, x0
+   60528:      	str	xzr, [x19, #0x28]
+   6052c:      	cbz	w8, 0x60590 <XXH32_digest+0xdc8>
+   60530:      	add	x0, x29, #0x18
+   60534:      	mov	x1, x22
+   60538:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6053c:      	ldrb	w8, [x20, #0x19]
+   60540:      	ldr	x27, [x29, #0x18]
+   60544:      	cmp	w8, #0xff
+   60548:      	add	x26, x27, x0
+   6054c:      	b.eq	0x60594 <XXH32_digest+0xdcc>
+   60550:      	add	x1, x29, #0x18
+   60554:      	and	w3, w8, #0xf
+   60558:      	mov	x0, x21
+   6055c:      	mov	x2, x22
+   60560:      	mov	x4, xzr
+   60564:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   60568:      	cbz	x0, 0x60594 <XXH32_digest+0xdcc>
+   6056c:      	ldrb	w3, [x20, #0x19]
+   60570:      	add	x1, x29, #0x18
+   60574:      	mov	x0, x21
+   60578:      	mov	x2, x22
+   6057c:      	mov	x4, xzr
+   60580:      	str	x27, [x29, #0x18]
+   60584:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   60588:      	str	x0, [x19, #0x28]
+   6058c:      	b	0x60594 <XXH32_digest+0xdcc>
+   60590:      	ldr	x26, [x29, #0x18]
+   60594:      	sub	x8, x22, x25
+   60598:      	mov	x0, xzr
+   6059c:      	stp	x26, x23, [x19, #0x10]
+   605a0:      	stp	x25, x8, [x19]
+   605a4:      	add	x8, x24, x23
+   605a8:      	str	x8, [x19, #0x20]
+   605ac:      	ldp	x20, x19, [sp, #0x50]
+   605b0:      	ldr	x27, [sp, #0x10]
+   605b4:      	ldp	x22, x21, [sp, #0x40]
+   605b8:      	ldp	x24, x23, [sp, #0x30]
+   605bc:      	ldp	x26, x25, [sp, #0x20]
+   605c0:      	ldp	x29, x30, [sp], #0x60
+   605c4:      	autiasp
+   605c8:      	ret
+   605cc:      	paciasp
+   605d0:      	sub	sp, sp, #0x50
+   605d4:      	stp	x29, x30, [sp, #0x10]
+   605d8:      	stp	x24, x23, [sp, #0x20]
+   605dc:      	stp	x22, x21, [sp, #0x30]
+   605e0:      	stp	x20, x19, [sp, #0x40]
+   605e4:      	add	x29, sp, #0x10
+   605e8:      	movi	d0, #0x00ff000000ff00
+   605ec:      	sturh	wzr, [x2, #0x33]
+   605f0:      	mov	x8, x1
+   605f4:      	stp	xzr, xzr, [x2, #0x20]
+   605f8:      	mov	x19, x2
+   605fc:      	mov	x20, x1
+   60600:      	strh	wzr, [x2, #0x30]
+   60604:      	mov	x21, x0
+   60608:      	str	x1, [x2]
+   6060c:      	str	s0, [x2, #0x18]
+   60610:      	ldr	w9, [x8], #0x4
+   60614:      	cmn	w9, #0x1
+   60618:      	b.eq	0x60638 <XXH32_digest+0xe70>
+   6061c:      	add	x22, x8, x9
+   60620:      	cbz	x9, 0x60648 <XXH32_digest+0xe80>
+   60624:      	ldr	w9, [x8]
+   60628:      	cbz	w9, 0x60650 <XXH32_digest+0xe88>
+   6062c:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   60630:      	add	x0, x0, #0x813
+   60634:      	b	0x60844 <XXH32_digest+0x107c>
+   60638:      	ldur	x9, [x20, #0x4]
+   6063c:      	add	x8, x20, #0xc
+   60640:      	add	x22, x9, x8
+   60644:      	cbnz	x9, 0x60624 <XXH32_digest+0xe5c>
+   60648:      	mov	x0, xzr
+   6064c:      	b	0x60844 <XXH32_digest+0x107c>
+   60650:      	ldrb	w24, [x8, #0x4]
+   60654:      	and	w9, w24, #0xfffffffd
+   60658:      	cmp	w9, #0x1
+   6065c:      	b.ne	0x60708 <XXH32_digest+0xf40>
+   60660:      	add	x23, x8, #0x5
+   60664:      	mov	x8, x23
+   60668:      	ldrb	w9, [x8], #0x1
+   6066c:      	cbnz	w9, 0x60668 <XXH32_digest+0xea0>
+   60670:      	add	x0, sp, #0x8
+   60674:      	mov	x1, x22
+   60678:      	str	x8, [sp, #0x8]
+   6067c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   60680:      	ldr	x8, [sp, #0x8]
+   60684:      	mov	x11, xzr
+   60688:      	mov	x9, xzr
+   6068c:      	str	w0, [x19, #0x28]
+   60690:      	mov	x10, x8
+   60694:      	cmp	x10, x22
+   60698:      	b.eq	0x60860 <XXH32_digest+0x1098>
+   6069c:      	ldrb	w12, [x10], #0x1
+   606a0:      	add	x8, x8, #0x1
+   606a4:      	and	x13, x12, #0x7f
+   606a8:      	lsl	x13, x13, x11
+   606ac:      	add	x11, x11, #0x7
+   606b0:      	orr	x9, x13, x9
+   606b4:      	tbnz	w12, #0x7, 0x60694 <XXH32_digest+0xecc>
+   606b8:      	sub	w13, w11, #0x7
+   606bc:      	mov	x14, #-0x1              // =-1
+   606c0:      	str	x8, [sp, #0x8]
+   606c4:      	cmp	w13, #0x39
+   606c8:      	mov	w13, #0x3f              // =63
+   606cc:      	lsl	x11, x14, x11
+   606d0:      	ccmp	w12, w13, #0x0, lo
+   606d4:      	csel	w11, w11, wzr, hi
+   606d8:      	cmp	w24, #0x1
+   606dc:      	orr	w9, w9, w11
+   606e0:      	str	w9, [x19, #0x2c]
+   606e4:      	b.ne	0x60714 <XXH32_digest+0xf4c>
+   606e8:      	add	x8, x8, #0x1
+   606ec:      	str	x8, [sp, #0x8]
+   606f0:      	ldrb	w0, [x10]
+   606f4:      	strb	w0, [x19, #0x32]
+   606f8:      	ldrb	w8, [x23]
+   606fc:      	cmp	w8, #0x7a
+   60700:      	b.eq	0x60730 <XXH32_digest+0xf68>
+   60704:      	b	0x60830 <XXH32_digest+0x1068>
+   60708:      	adrp	x0, 0x27000
+   6070c:      	add	x0, x0, #0xf01
+   60710:      	b	0x60844 <XXH32_digest+0x107c>
+   60714:      	add	x0, sp, #0x8
+   60718:      	mov	x1, x22
+   6071c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   60720:      	strb	w0, [x19, #0x32]
+   60724:      	ldrb	w8, [x23]
+   60728:      	cmp	w8, #0x7a
+   6072c:      	b.ne	0x60830 <XXH32_digest+0x1068>
+   60730:      	add	x0, sp, #0x8
+   60734:      	mov	x1, x22
+   60738:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6073c:      	mov	w24, #0x1               // =1
+   60740:      	b	0x6074c <XXH32_digest+0xf84>
+   60744:      	strb	w24, [x19, #0x30]
+   60748:      	add	x23, x23, #0x1
+   6074c:      	ldrb	w8, [x23]
+   60750:      	cmp	w8, #0x4f
+   60754:      	b.le	0x60788 <XXH32_digest+0xfc0>
+   60758:      	cmp	w8, #0x52
+   6075c:      	b.gt	0x607b8 <XXH32_digest+0xff0>
+   60760:      	cmp	w8, #0x50
+   60764:      	b.eq	0x607f4 <XXH32_digest+0x102c>
+   60768:      	cmp	w8, #0x52
+   6076c:      	b.ne	0x607ec <XXH32_digest+0x1024>
+   60770:      	ldr	x8, [sp, #0x8]
+   60774:      	add	x23, x23, #0x1
+   60778:      	ldrb	w9, [x8], #0x1
+   6077c:      	str	x8, [sp, #0x8]
+   60780:      	strb	w9, [x19, #0x18]
+   60784:      	b	0x6074c <XXH32_digest+0xf84>
+   60788:      	cmp	w8, #0x46
+   6078c:      	b.le	0x607d4 <XXH32_digest+0x100c>
+   60790:      	cmp	w8, #0x47
+   60794:      	b.eq	0x607e8 <XXH32_digest+0x1020>
+   60798:      	cmp	w8, #0x4c
+   6079c:      	b.ne	0x607ec <XXH32_digest+0x1024>
+   607a0:      	ldr	x8, [sp, #0x8]
+   607a4:      	add	x23, x23, #0x1
+   607a8:      	ldrb	w9, [x8], #0x1
+   607ac:      	str	x8, [sp, #0x8]
+   607b0:      	strb	w9, [x19, #0x19]
+   607b4:      	b	0x6074c <XXH32_digest+0xf84>
+   607b8:      	cmp	w8, #0x53
+   607bc:      	b.eq	0x60744 <XXH32_digest+0xf7c>
+   607c0:      	cmp	w8, #0x7a
+   607c4:      	b.ne	0x607ec <XXH32_digest+0x1024>
+   607c8:      	strb	w24, [x19, #0x31]
+   607cc:      	add	x23, x23, #0x1
+   607d0:      	b	0x6074c <XXH32_digest+0xf84>
+   607d4:      	cmp	w8, #0x42
+   607d8:      	b.ne	0x6082c <XXH32_digest+0x1064>
+   607dc:      	strb	w24, [x19, #0x33]
+   607e0:      	add	x23, x23, #0x1
+   607e4:      	b	0x6074c <XXH32_digest+0xf84>
+   607e8:      	strb	w24, [x19, #0x34]
+   607ec:      	add	x23, x23, #0x1
+   607f0:      	b	0x6074c <XXH32_digest+0xf84>
+   607f4:      	ldr	x8, [sp, #0x8]
+   607f8:      	add	x1, sp, #0x8
+   607fc:      	mov	x0, x21
+   60800:      	mov	x2, x22
+   60804:      	mov	x4, xzr
+   60808:      	ldrb	w3, [x8], #0x1
+   6080c:      	str	x8, [sp, #0x8]
+   60810:      	sub	w8, w8, w20
+   60814:      	strb	w3, [x19, #0x1a]
+   60818:      	strb	w8, [x19, #0x1b]
+   6081c:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   60820:      	str	x0, [x19, #0x20]
+   60824:      	add	x23, x23, #0x1
+   60828:      	b	0x6074c <XXH32_digest+0xf84>
+   6082c:      	cbnz	w8, 0x607ec <XXH32_digest+0x1024>
+   60830:      	ldr	x8, [x19]
+   60834:      	ldr	x9, [sp, #0x8]
+   60838:      	mov	x0, xzr
+   6083c:      	sub	x8, x22, x8
+   60840:      	stp	x8, x9, [x19, #0x8]
+   60844:      	ldp	x20, x19, [sp, #0x40]
+   60848:      	ldp	x22, x21, [sp, #0x30]
+   6084c:      	ldp	x24, x23, [sp, #0x20]
+   60850:      	ldp	x29, x30, [sp, #0x10]
+   60854:      	add	sp, sp, #0x50
+   60858:      	autiasp
+   6085c:      	ret
+   60860:      	adrp	x19, 0x6b000
+   60864:      	nop
+   60868:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6086c:      	ldr	x19, [x19, #0x3f8]
+   60870:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   60874:      	add	x2, x2, #0xd0b
+   60878:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6087c:      	add	x3, x3, #0x497
+   60880:      	add	x0, x19, #0x130
+   60884:      	bl	0x65bc0 <fprintf@plt>
+   60888:      	add	x0, x19, #0x130
+   6088c:      	bl	0x65bd0 <fflush@plt>
+   60890:      	bl	0x65be0 <abort@plt>
+   60894:      	bti	c
+   60898:      	ret
+   6089c:      	bti	c
+   608a0:      	ret
+   608a4:      	bti	c
+   608a8:      	cmn	w1, #0x3
+   608ac:      	b.ls	0x608b8 <XXH32_digest+0x10f0>
+   608b0:      	mov	w0, #0x1                // =1
+   608b4:      	ret
+   608b8:      	cmp	w1, #0x5f
+   608bc:      	b.ls	0x608c8 <XXH32_digest+0x1100>
+   608c0:      	mov	w0, wzr
+   608c4:      	ret
+   608c8:      	cmp	w1, #0x22
+   608cc:      	b.ne	0x608d8 <XXH32_digest+0x1110>
+   608d0:      	mov	w0, #0x1                // =1
+   608d4:      	ret
+   608d8:      	sub	w8, w1, #0x40
+   608dc:      	cmn	w8, #0x1f
+   608e0:      	cset	w0, lo
+   608e4:      	ret
+   608e8:      	bti	c
+   608ec:      	cmp	w1, #0x1d
+   608f0:      	b.le	0x60910 <XXH32_digest+0x1148>
+   608f4:      	cmp	w1, #0x1f
+   608f8:      	b.gt	0x60934 <XXH32_digest+0x116c>
+   608fc:      	cmp	w1, #0x1e
+   60900:      	b.eq	0x60974 <XXH32_digest+0x11ac>
+   60904:      	cmp	w1, #0x1f
+   60908:      	b.eq	0x60950 <XXH32_digest+0x1188>
+   6090c:      	b	0x6095c <XXH32_digest+0x1194>
+   60910:      	cmn	w1, #0x2
+   60914:      	b.eq	0x60950 <XXH32_digest+0x1188>
+   60918:      	cmn	w1, #0x1
+   6091c:      	b.eq	0x60944 <XXH32_digest+0x117c>
+   60920:      	cmp	w1, #0x1d
+   60924:      	b.ne	0x6095c <XXH32_digest+0x1194>
+   60928:      	add	x8, x0, #0xf8
+   6092c:      	ldr	x0, [x8]
+   60930:      	ret
+   60934:      	cmp	w1, #0x22
+   60938:      	b.eq	0x60980 <XXH32_digest+0x11b8>
+   6093c:      	cmp	w1, #0x20
+   60940:      	b.ne	0x6095c <XXH32_digest+0x1194>
+   60944:      	add	x8, x0, #0x110
+   60948:      	ldr	x0, [x8]
+   6094c:      	ret
+   60950:      	add	x8, x0, #0x108
+   60954:      	ldr	x0, [x8]
+   60958:      	ret
+   6095c:      	cmp	w1, #0x1c
+   60960:      	b.hi	0x6098c <XXH32_digest+0x11c4>
+   60964:      	add	x8, x0, #0x10
+   60968:      	add	x8, x8, w1, uxtw #3
+   6096c:      	ldr	x0, [x8]
+   60970:      	ret
+   60974:      	add	x8, x0, #0x100
+   60978:      	ldr	x0, [x8]
+   6097c:      	ret
+   60980:      	add	x8, x0, #0x118
+   60984:      	ldr	x0, [x8]
+   60988:      	ret
+   6098c:      	paciasp
+   60990:      	stp	x29, x30, [sp, #-0x20]!
+   60994:      	str	x19, [sp, #0x10]
+   60998:      	mov	x29, sp
+   6099c:      	adrp	x19, 0x6b000
+   609a0:      	nop
+   609a4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   609a8:      	ldr	x19, [x19, #0x3f8]
+   609ac:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   609b0:      	add	x2, x2, #0x888
+   609b4:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   609b8:      	add	x3, x3, #0x3c7
+   609bc:      	add	x0, x19, #0x130
+   609c0:      	bl	0x65bc0 <fprintf@plt>
+   609c4:      	add	x0, x19, #0x130
+   609c8:      	bl	0x65bd0 <fflush@plt>
+   609cc:      	bl	0x65be0 <abort@plt>
+   609d0:      	bti	c
+   609d4:      	cmp	w1, #0x1d
+   609d8:      	b.le	0x609f8 <XXH32_digest+0x1230>
+   609dc:      	cmp	w1, #0x1f
+   609e0:      	b.gt	0x60a1c <XXH32_digest+0x1254>
+   609e4:      	cmp	w1, #0x1e
+   609e8:      	b.eq	0x60a5c <XXH32_digest+0x1294>
+   609ec:      	cmp	w1, #0x1f
+   609f0:      	b.eq	0x60a38 <XXH32_digest+0x1270>
+   609f4:      	b	0x60a44 <XXH32_digest+0x127c>
+   609f8:      	cmn	w1, #0x2
+   609fc:      	b.eq	0x60a38 <XXH32_digest+0x1270>
+   60a00:      	cmn	w1, #0x1
+   60a04:      	b.eq	0x60a2c <XXH32_digest+0x1264>
+   60a08:      	cmp	w1, #0x1d
+   60a0c:      	b.ne	0x60a44 <XXH32_digest+0x127c>
+   60a10:      	add	x8, x0, #0xf8
+   60a14:      	str	x2, [x8]
+   60a18:      	ret
+   60a1c:      	cmp	w1, #0x22
+   60a20:      	b.eq	0x60a68 <XXH32_digest+0x12a0>
+   60a24:      	cmp	w1, #0x20
+   60a28:      	b.ne	0x60a44 <XXH32_digest+0x127c>
+   60a2c:      	add	x8, x0, #0x110
+   60a30:      	str	x2, [x8]
+   60a34:      	ret
+   60a38:      	add	x8, x0, #0x108
+   60a3c:      	str	x2, [x8]
+   60a40:      	ret
+   60a44:      	cmp	w1, #0x1c
+   60a48:      	b.hi	0x60a74 <XXH32_digest+0x12ac>
+   60a4c:      	add	x8, x0, #0x10
+   60a50:      	add	x8, x8, w1, uxtw #3
+   60a54:      	str	x2, [x8]
+   60a58:      	ret
+   60a5c:      	add	x8, x0, #0x100
+   60a60:      	str	x2, [x8]
+   60a64:      	ret
+   60a68:      	add	x8, x0, #0x118
+   60a6c:      	str	x2, [x8]
+   60a70:      	ret
+   60a74:      	paciasp
+   60a78:      	stp	x29, x30, [sp, #-0x20]!
+   60a7c:      	str	x19, [sp, #0x10]
+   60a80:      	mov	x29, sp
+   60a84:      	adrp	x19, 0x6b000
+   60a88:      	nop
+   60a8c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   60a90:      	ldr	x19, [x19, #0x3f8]
+   60a94:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   60a98:      	add	x2, x2, #0xfae
+   60a9c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   60aa0:      	add	x3, x3, #0x3c7
+   60aa4:      	add	x0, x19, #0x130
+   60aa8:      	bl	0x65bc0 <fprintf@plt>
+   60aac:      	add	x0, x19, #0x130
+   60ab0:      	bl	0x65bd0 <fflush@plt>
+   60ab4:      	bl	0x65be0 <abort@plt>
+   60ab8:      	bti	c
+   60abc:      	and	w8, w1, #0xffffffe0
+   60ac0:      	cmp	w8, #0x40
+   60ac4:      	cset	w0, eq
+   60ac8:      	ret
+   60acc:      	bti	c
+   60ad0:      	add	x8, x0, w1, sxtw #3
+   60ad4:      	ldur	d0, [x8, #-0xe0]
+   60ad8:      	ret
+   60adc:      	bti	c
+   60ae0:      	add	x8, x0, w1, sxtw #3
+   60ae4:      	stur	d0, [x8, #-0xe0]
+   60ae8:      	ret
+   60aec:      	bti	c
+   60af0:      	ldrb	w8, [x0, #0x268]
+   60af4:      	cbz	w8, 0x60b00 <XXH32_digest+0x1338>
+   60af8:      	mov	w0, wzr
+   60afc:      	ret
+   60b00:      	paciasp
+   60b04:      	stp	x29, x30, [sp, #-0x30]!
+   60b08:      	stp	x28, x21, [sp, #0x10]
+   60b0c:      	stp	x20, x19, [sp, #0x20]
+   60b10:      	mov	x29, sp
+   60b14:      	sub	sp, sp, #0x210
+   60b18:      	ldrb	w8, [x0, #0x26a]
+   60b1c:      	mov	x19, x0
+   60b20:      	cbz	w8, 0x60b60 <XXH32_digest+0x1398>
+   60b24:      	mov	x0, sp
+   60b28:      	mov	w1, wzr
+   60b2c:      	mov	w2, #0x210              // =528
+   60b30:      	bl	0x64680 <memset@plt>
+   60b34:      	mov	x1, sp
+   60b38:      	mov	x0, x19
+   60b3c:      	bl	0x60ef0 <XXH32_digest+0x1728>
+   60b40:      	cmp	w0, #0x1
+   60b44:      	b.eq	0x60b9c <XXH32_digest+0x13d4>
+   60b48:      	add	sp, sp, #0x210
+   60b4c:      	ldp	x20, x19, [sp, #0x20]
+   60b50:      	ldp	x28, x21, [sp, #0x10]
+   60b54:      	ldp	x29, x30, [sp], #0x30
+   60b58:      	autiasp
+   60b5c:      	ret
+   60b60:      	ldp	x8, x20, [x19]
+   60b64:      	mov	x0, x19
+   60b68:      	mov	w21, w1
+   60b6c:      	mov	w1, #-0x1               // =-1
+   60b70:      	ldr	x8, [x8, #0x18]
+   60b74:      	blr	x8
+   60b78:      	ldr	x2, [x19, #0x258]
+   60b7c:      	mov	x1, x0
+   60b80:      	add	x3, x19, #0x10
+   60b84:      	add	x4, x19, #0x269
+   60b88:      	and	w5, w21, #0x1
+   60b8c:      	mov	x0, x20
+   60b90:      	bl	0x61010 <XXH32_digest+0x1848>
+   60b94:      	cmp	w0, #0x1
+   60b98:      	b.ne	0x60b48 <XXH32_digest+0x1380>
+   60b9c:      	ldr	x8, [x19]
+   60ba0:      	mov	w20, w0
+   60ba4:      	mov	x0, x19
+   60ba8:      	mov	w1, #0x1                // =1
+   60bac:      	ldr	x8, [x8, #0x68]
+   60bb0:      	blr	x8
+   60bb4:      	ldrb	w8, [x19, #0x268]
+   60bb8:      	mov	w0, w20
+   60bbc:      	cbz	w8, 0x60b48 <XXH32_digest+0x1380>
+   60bc0:      	mov	w0, wzr
+   60bc4:      	add	sp, sp, #0x210
+   60bc8:      	ldp	x20, x19, [sp, #0x20]
+   60bcc:      	ldp	x28, x21, [sp, #0x10]
+   60bd0:      	ldp	x29, x30, [sp], #0x30
+   60bd4:      	autiasp
+   60bd8:      	ret
+   60bdc:      	bti	c
+   60be0:      	ldrb	w8, [x0, #0x268]
+   60be4:      	cbz	w8, 0x60bfc <XXH32_digest+0x1434>
+   60be8:      	movi	v0.2d, #0000000000000000
+   60bec:      	str	xzr, [x1, #0x40]
+   60bf0:      	stp	q0, q0, [x1]
+   60bf4:      	stp	q0, q0, [x1, #0x20]
+   60bf8:      	ret
+   60bfc:      	ldr	q0, [x0, #0x220]
+   60c00:      	str	q0, [x1]
+   60c04:      	ldp	q2, q0, [x0, #0x240]
+   60c08:      	ldr	x8, [x0, #0x260]
+   60c0c:      	ldr	q1, [x0, #0x230]
+   60c10:      	str	x8, [x1, #0x40]
+   60c14:      	stp	q2, q0, [x1, #0x20]
+   60c18:      	str	q1, [x1, #0x10]
+   60c1c:      	ret
+   60c20:      	bti	c
+   60c24:      	add	x0, x0, #0x10
+   60c28:      	b	0x63cb8 <XXH32_digest+0x44f0>
+   60c2c:      	bti	c
+   60c30:      	ldrb	w0, [x0, #0x269]
+   60c34:      	ret
+   60c38:      	paciasp
+   60c3c:      	stp	x29, x30, [sp, #-0x10]!
+   60c40:      	mov	x29, sp
+   60c44:      	ldr	x8, [x0]
+   60c48:      	mov	w1, #-0x1               // =-1
+   60c4c:      	ldr	x8, [x8, #0x18]
+   60c50:      	blr	x8
+   60c54:      	mov	w0, wzr
+   60c58:      	ldp	x29, x30, [sp], #0x10
+   60c5c:      	autiasp
+   60c60:      	ret
+   60c64:      	paciasp
+   60c68:      	stp	x29, x30, [sp, #-0x30]!
+   60c6c:      	stp	x28, x21, [sp, #0x10]
+   60c70:      	stp	x20, x19, [sp, #0x20]
+   60c74:      	mov	x29, sp
+   60c78:      	sub	sp, sp, #0x6b0
+   60c7c:      	ldr	x8, [x0]
+   60c80:      	strb	wzr, [x0, #0x26a]
+   60c84:      	mov	w20, w1
+   60c88:      	mov	w1, #-0x1               // =-1
+   60c8c:      	mov	x19, x0
+   60c90:      	ldr	x8, [x8, #0x18]
+   60c94:      	blr	x8
+   60c98:      	cbz	x0, 0x60ea8 <XXH32_digest+0x16e0>
+   60c9c:      	ldr	x8, [x19, #0x8]
+   60ca0:      	and	x9, x20, #0x1
+   60ca4:      	add	x10, sp, #0x68
+   60ca8:      	sub	x20, x0, x9
+   60cac:      	nop
+   60cb0:      	adr	x0, 0x63608 <XXH32_digest+0x3e40>
+   60cb4:      	add	x1, sp, #0x98
+   60cb8:      	stp	x8, x10, [sp, #0x98]
+   60cbc:      	str	x20, [sp, #0xa8]
+   60cc0:      	bl	0x65c10 <dl_iterate_phdr@plt>
+   60cc4:      	cbz	w0, 0x60ce8 <XXH32_digest+0x1520>
+   60cc8:      	ldr	x8, [sp, #0x78]
+   60ccc:      	cbz	x8, 0x60ce8 <XXH32_digest+0x1520>
+   60cd0:      	add	x2, sp, #0x68
+   60cd4:      	mov	x0, x19
+   60cd8:      	mov	x1, x20
+   60cdc:      	mov	w3, wzr
+   60ce0:      	bl	0x63334 <XXH32_digest+0x3b6c>
+   60ce4:      	tbnz	w0, #0x0, 0x60e90 <XXH32_digest+0x16c8>
+   60ce8:      	nop
+   60cec:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   60cf0:      	bl	0x65c20 <pthread_rwlock_rdlock@plt>
+   60cf4:      	adrp	x8, 0x70000
+   60cf8:      	adrp	x9, 0x70000
+   60cfc:      	ldr	x8, [x8, #0x4f0]
+   60d00:      	ldr	x9, [x9, #0x4f8]
+   60d04:      	b	0x60d0c <XXH32_digest+0x1544>
+   60d08:      	add	x8, x8, #0x20
+   60d0c:      	cmp	x8, x9
+   60d10:      	b.hs	0x60de0 <XXH32_digest+0x1618>
+   60d14:      	ldr	x10, [x8, #0x8]
+   60d18:      	cmp	x10, x20
+   60d1c:      	b.hi	0x60d08 <XXH32_digest+0x1540>
+   60d20:      	ldr	x10, [x8, #0x10]
+   60d24:      	cmp	x10, x20
+   60d28:      	b.ls	0x60d08 <XXH32_digest+0x1540>
+   60d2c:      	ldr	x21, [x8, #0x18]
+   60d30:      	nop
+   60d34:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   60d38:      	bl	0x65c00 <pthread_rwlock_unlock@plt>
+   60d3c:      	cbz	x21, 0x60dec <XXH32_digest+0x1624>
+   60d40:      	ldr	x0, [x19, #0x8]
+   60d44:      	add	x2, sp, #0x38
+   60d48:      	mov	x3, sp
+   60d4c:      	mov	x1, x21
+   60d50:      	mov	w4, wzr
+   60d54:      	bl	0x6043c <XXH32_digest+0xc74>
+   60d58:      	cbnz	x0, 0x60dec <XXH32_digest+0x1624>
+   60d5c:      	add	x0, sp, #0x98
+   60d60:      	mov	w1, wzr
+   60d64:      	mov	w2, #0x618              // =1560
+   60d68:      	bl	0x64680 <memset@plt>
+   60d6c:      	ldr	x0, [x19, #0x8]
+   60d70:      	add	x1, sp, #0x38
+   60d74:      	mov	x2, sp
+   60d78:      	add	x5, sp, #0x98
+   60d7c:      	mov	x3, x20
+   60d80:      	mov	w4, #0x4                // =4
+   60d84:      	bl	0x61498 <XXH32_digest+0x1cd0>
+   60d88:      	tbz	w0, #0x0, 0x60dec <XXH32_digest+0x1624>
+   60d8c:      	ldr	x8, [sp, #0x60]
+   60d90:      	ldr	x9, [sp, #0x20]
+   60d94:      	ldur	q0, [sp, #0x50]
+   60d98:      	str	xzr, [x19, #0x248]
+   60d9c:      	str	x8, [x19, #0x230]
+   60da0:      	ldr	w8, [sp, #0xa8]
+   60da4:      	str	x9, [x19, #0x238]
+   60da8:      	mov	w9, #0x3000000          // =50331648
+   60dac:      	str	x8, [x19, #0x240]
+   60db0:      	str	w9, [x19, #0x250]
+   60db4:      	ldp	x8, x9, [sp, #0x38]
+   60db8:      	str	q0, [x19, #0x220]
+   60dbc:      	str	xzr, [x19, #0x260]
+   60dc0:      	str	x8, [x19, #0x258]
+   60dc4:      	str	w9, [x19, #0x254]
+   60dc8:      	add	sp, sp, #0x6b0
+   60dcc:      	ldp	x20, x19, [sp, #0x20]
+   60dd0:      	ldp	x28, x21, [sp, #0x10]
+   60dd4:      	ldp	x29, x30, [sp], #0x30
+   60dd8:      	autiasp
+   60ddc:      	ret
+   60de0:      	nop
+   60de4:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   60de8:      	bl	0x65c00 <pthread_rwlock_unlock@plt>
+   60dec:      	ldr	x8, [x19]
+   60df0:      	mov	x0, x19
+   60df4:      	mov	w1, #-0x1               // =-1
+   60df8:      	ldr	x8, [x8, #0x18]
+   60dfc:      	blr	x8
+   60e00:      	add	x8, sp, #0x38
+   60e04:      	mov	w9, #0x8                // =8
+   60e08:      	mov	x20, x0
+   60e0c:      	stp	x8, x9, [sp, #0x98]
+   60e10:      	stp	x0, x9, [sp]
+   60e14:      	bl	0x65c30 <getpid@plt>
+   60e18:      	mov	w1, w0
+   60e1c:      	add	x2, sp, #0x98
+   60e20:      	mov	x4, sp
+   60e24:      	mov	w0, #0x10e              // =270
+   60e28:      	mov	w3, #0x1                // =1
+   60e2c:      	mov	w5, #0x1                // =1
+   60e30:      	mov	w6, wzr
+   60e34:      	mov	w21, #0x1               // =1
+   60e38:      	bl	0x65c40 <syscall@plt>
+   60e3c:      	cmp	x0, #0x8
+   60e40:      	b.ne	0x60ec8 <XXH32_digest+0x1700>
+   60e44:      	ldr	w8, [sp, #0x38]
+   60e48:      	mov	w9, #0x1168             // =4456
+   60e4c:      	movk	w9, #0xd280, lsl #16
+   60e50:      	cmp	w8, w9
+   60e54:      	b.ne	0x60ec8 <XXH32_digest+0x1700>
+   60e58:      	ldr	w8, [sp, #0x3c]
+   60e5c:      	mov	w9, #0x1                // =1
+   60e60:      	movk	w9, #0xd400, lsl #16
+   60e64:      	cmp	w8, w9
+   60e68:      	b.ne	0x60ec8 <XXH32_digest+0x1700>
+   60e6c:      	movi	v0.2d, #0000000000000000
+   60e70:      	add	x8, x20, #0x4
+   60e74:      	str	xzr, [x19, #0x260]
+   60e78:      	str	x8, [x19, #0x228]
+   60e7c:      	mov	w8, #0x1                // =1
+   60e80:      	str	x20, [x19, #0x220]
+   60e84:      	strb	w8, [x19, #0x26a]
+   60e88:      	stp	q0, q0, [x19, #0x240]
+   60e8c:      	str	q0, [x19, #0x230]
+   60e90:      	add	sp, sp, #0x6b0
+   60e94:      	ldp	x20, x19, [sp, #0x20]
+   60e98:      	ldp	x28, x21, [sp, #0x10]
+   60e9c:      	ldp	x29, x30, [sp], #0x30
+   60ea0:      	autiasp
+   60ea4:      	ret
+   60ea8:      	mov	w8, #0x1                // =1
+   60eac:      	strb	w8, [x19, #0x268]
+   60eb0:      	add	sp, sp, #0x6b0
+   60eb4:      	ldp	x20, x19, [sp, #0x20]
+   60eb8:      	ldp	x28, x21, [sp, #0x10]
+   60ebc:      	ldp	x29, x30, [sp], #0x30
+   60ec0:      	autiasp
+   60ec4:      	ret
+   60ec8:      	strb	w21, [x19, #0x268]
+   60ecc:      	add	sp, sp, #0x6b0
+   60ed0:      	ldp	x20, x19, [sp, #0x20]
+   60ed4:      	ldp	x28, x21, [sp, #0x10]
+   60ed8:      	ldp	x29, x30, [sp], #0x30
+   60edc:      	autiasp
+   60ee0:      	ret
+   60ee4:      	bti	c
+   60ee8:      	mov	w0, w1
+   60eec:      	b	0x63c88 <XXH32_digest+0x44c0>
+   60ef0:      	bti	c
+   60ef4:      	ldr	x10, [x0, #0x108]
+   60ef8:      	mov	w9, #0x1                // =1
+   60efc:      	ldr	x11, [x10, #0x138]
+   60f00:      	str	x11, [x0, #0x10]
+   60f04:      	ldr	x11, [x10, #0x140]
+   60f08:      	str	x11, [x0, #0x18]
+   60f0c:      	ldr	x11, [x10, #0x148]
+   60f10:      	str	x11, [x0, #0x20]
+   60f14:      	ldr	x11, [x10, #0x150]
+   60f18:      	str	x11, [x0, #0x28]
+   60f1c:      	ldr	x11, [x10, #0x158]
+   60f20:      	str	x11, [x0, #0x30]
+   60f24:      	ldr	x11, [x10, #0x160]
+   60f28:      	str	x11, [x0, #0x38]
+   60f2c:      	ldr	x11, [x10, #0x168]
+   60f30:      	str	x11, [x0, #0x40]
+   60f34:      	ldr	x11, [x10, #0x170]
+   60f38:      	str	x11, [x0, #0x48]
+   60f3c:      	ldr	x11, [x10, #0x178]
+   60f40:      	str	x11, [x0, #0x50]
+   60f44:      	ldr	x11, [x10, #0x180]
+   60f48:      	str	x11, [x0, #0x58]
+   60f4c:      	ldr	x11, [x10, #0x188]
+   60f50:      	str	x11, [x0, #0x60]
+   60f54:      	ldr	x11, [x10, #0x190]
+   60f58:      	str	x11, [x0, #0x68]
+   60f5c:      	ldr	x11, [x10, #0x198]
+   60f60:      	str	x11, [x0, #0x70]
+   60f64:      	ldr	x11, [x10, #0x1a0]
+   60f68:      	str	x11, [x0, #0x78]
+   60f6c:      	ldr	x11, [x10, #0x1a8]
+   60f70:      	str	x11, [x0, #0x80]
+   60f74:      	ldr	x11, [x10, #0x1b0]
+   60f78:      	str	x11, [x0, #0x88]
+   60f7c:      	ldr	x11, [x10, #0x1b8]
+   60f80:      	str	x11, [x0, #0x90]
+   60f84:      	ldr	x11, [x10, #0x1c0]
+   60f88:      	str	x11, [x0, #0x98]
+   60f8c:      	ldr	x11, [x10, #0x1c8]
+   60f90:      	str	x11, [x0, #0xa0]
+   60f94:      	ldr	x11, [x10, #0x1d0]
+   60f98:      	str	x11, [x0, #0xa8]
+   60f9c:      	ldr	x11, [x10, #0x1d8]
+   60fa0:      	str	x11, [x0, #0xb0]
+   60fa4:      	ldr	x11, [x10, #0x1e0]
+   60fa8:      	str	x11, [x0, #0xb8]
+   60fac:      	ldr	x11, [x10, #0x1e8]
+   60fb0:      	str	x11, [x0, #0xc0]
+   60fb4:      	ldr	x11, [x10, #0x1f0]
+   60fb8:      	str	x11, [x0, #0xc8]
+   60fbc:      	ldr	x11, [x10, #0x1f8]
+   60fc0:      	str	x11, [x0, #0xd0]
+   60fc4:      	ldr	x11, [x10, #0x200]
+   60fc8:      	str	x11, [x0, #0xd8]
+   60fcc:      	ldr	x11, [x10, #0x208]
+   60fd0:      	str	x11, [x0, #0xe0]
+   60fd4:      	ldr	x11, [x10, #0x210]
+   60fd8:      	str	x11, [x0, #0xe8]
+   60fdc:      	ldr	x11, [x10, #0x218]
+   60fe0:      	str	x11, [x0, #0xf0]
+   60fe4:      	ldr	x11, [x10, #0x220]
+   60fe8:      	str	x11, [x0, #0xf8]
+   60fec:      	ldr	x11, [x10, #0x228]
+   60ff0:      	str	x11, [x0, #0x100]
+   60ff4:      	ldr	x11, [x10, #0x230]
+   60ff8:      	str	x11, [x0, #0x108]
+   60ffc:      	ldr	x10, [x10, #0x238]
+   61000:      	strb	w9, [x0, #0x269]
+   61004:      	str	x10, [x0, #0x110]
+   61008:      	mov	w0, #0x1                // =1
+   6100c:      	ret
+   61010:      	paciasp
+   61014:      	stp	x29, x30, [sp, #-0x60]!
+   61018:      	stp	x28, x27, [sp, #0x10]
+   6101c:      	stp	x26, x25, [sp, #0x20]
+   61020:      	stp	x24, x23, [sp, #0x30]
+   61024:      	stp	x22, x21, [sp, #0x40]
+   61028:      	stp	x20, x19, [sp, #0x50]
+   6102c:      	mov	x29, sp
+   61030:      	sub	sp, sp, #0xb10
+   61034:      	mov	x8, x2
+   61038:      	mov	x21, x4
+   6103c:      	mov	x19, x3
+   61040:      	mov	x22, x1
+   61044:      	sub	x2, x29, #0x50
+   61048:      	sub	x3, x29, #0x88
+   6104c:      	mov	x1, x8
+   61050:      	mov	w4, wzr
+   61054:      	mov	w23, w5
+   61058:      	mov	x20, x0
+   6105c:      	bl	0x6043c <XXH32_digest+0xc74>
+   61060:      	cbnz	x0, 0x61140 <XXH32_digest+0x1978>
+   61064:      	add	x0, sp, #0x470
+   61068:      	mov	w1, wzr
+   6106c:      	mov	w2, #0x618              // =1560
+   61070:      	bl	0x64680 <memset@plt>
+   61074:      	sub	x1, x29, #0x50
+   61078:      	sub	x2, x29, #0x88
+   6107c:      	add	x5, sp, #0x470
+   61080:      	mov	x0, x20
+   61084:      	mov	x3, x22
+   61088:      	mov	w4, #0x4                // =4
+   6108c:      	bl	0x61498 <XXH32_digest+0x1cd0>
+   61090:      	tbz	w0, #0x0, 0x61140 <XXH32_digest+0x1978>
+   61094:      	add	x1, sp, #0x470
+   61098:      	mov	x0, x20
+   6109c:      	mov	x2, x19
+   610a0:      	add	x24, sp, #0x470
+   610a4:      	bl	0x620e0 <XXH32_digest+0x2918>
+   610a8:      	mov	x22, x0
+   610ac:      	tbz	w23, #0x0, 0x610d8 <XXH32_digest+0x1910>
+   610b0:      	ldurb	w8, [x29, #-0x54]
+   610b4:      	cbz	w8, 0x610d8 <XXH32_digest+0x1910>
+   610b8:      	ldr	x8, [x19, #0xf8]
+   610bc:      	and	x8, x8, #0xfffffffffffffff0
+   610c0:      	cmp	x8, x22
+   610c4:      	b.hs	0x610d8 <XXH32_digest+0x1910>
+   610c8:      	stg	x8, [x8]
+   610cc:      	add	x8, x8, #0x10
+   610d0:      	cmp	x8, x22
+   610d4:      	b.lo	0x610c8 <XXH32_digest+0x1900>
+   610d8:      	add	x0, sp, #0x260
+   610dc:      	mov	x1, x19
+   610e0:      	mov	w2, #0x210              // =528
+   610e4:      	add	x25, sp, #0x260
+   610e8:      	bl	0x64630 <memcpy@plt>
+   610ec:      	add	x9, x25, #0xf8
+   610f0:      	add	x8, x25, #0xe8
+   610f4:      	add	x10, x19, #0xf8
+   610f8:      	stp	x8, x9, [sp, #0x18]
+   610fc:      	add	x9, x25, #0x100
+   61100:      	add	x8, x25, #0xf0
+   61104:      	stp	x8, x9, [sp, #0x8]
+   61108:      	add	x9, x25, #0x108
+   6110c:      	add	x8, x19, #0xe8
+   61110:      	stp	x8, x9, [sp, #0x40]
+   61114:      	add	x8, x19, #0x100
+   61118:      	mov	x26, xzr
+   6111c:      	mov	x23, xzr
+   61120:      	add	x28, x19, #0x108
+   61124:      	stp	x10, x8, [sp, #0x30]
+   61128:      	add	x8, x19, #0xf0
+   6112c:      	add	x24, x24, #0x18
+   61130:      	add	x27, sp, #0x260
+   61134:      	str	x22, [sp, #0x358]
+   61138:      	str	x8, [sp, #0x28]
+   6113c:      	b	0x61198 <XXH32_digest+0x19d0>
+   61140:      	mov	w0, #-0x1992            // =-6546
+   61144:      	add	sp, sp, #0xb10
+   61148:      	ldp	x20, x19, [sp, #0x50]
+   6114c:      	ldp	x22, x21, [sp, #0x40]
+   61150:      	ldp	x24, x23, [sp, #0x30]
+   61154:      	ldp	x26, x25, [sp, #0x20]
+   61158:      	ldp	x28, x27, [sp, #0x10]
+   6115c:      	ldp	x29, x30, [sp], #0x60
+   61160:      	autiasp
+   61164:      	ret
+   61168:      	ldr	x8, [x24, #0x8]
+   6116c:      	mov	x9, #-0x4000000000      // =-274877906944
+   61170:      	add	x8, x9, x8, lsl #32
+   61174:      	add	x8, x19, x8, asr #29
+   61178:      	ldr	d0, [x8, #0x110]
+   6117c:      	add	x8, x25, x26, lsl #3
+   61180:      	stur	d0, [x8, #-0xf0]
+   61184:      	add	x26, x26, #0x1
+   61188:      	add	x24, x24, #0x10
+   6118c:      	add	x27, x27, #0x8
+   61190:      	cmp	x26, #0x60
+   61194:      	b.eq	0x61358 <XXH32_digest+0x1b90>
+   61198:      	ldr	w8, [x24]
+   6119c:      	cbz	w8, 0x611d4 <XXH32_digest+0x1a0c>
+   611a0:      	and	w9, w26, #0x60
+   611a4:      	cmp	w9, #0x40
+   611a8:      	b.ne	0x61210 <XXH32_digest+0x1a48>
+   611ac:      	cmp	w8, #0x4
+   611b0:      	b.gt	0x61238 <XXH32_digest+0x1a70>
+   611b4:      	movi	d0, #0000000000000000
+   611b8:      	cmp	w8, #0x1
+   611bc:      	b.eq	0x6117c <XXH32_digest+0x19b4>
+   611c0:      	cmp	w8, #0x2
+   611c4:      	b.ne	0x613fc <XXH32_digest+0x1c34>
+   611c8:      	ldr	x8, [x24, #0x8]
+   611cc:      	ldr	d0, [x8, x22]
+   611d0:      	b	0x6117c <XXH32_digest+0x19b4>
+   611d4:      	ldurb	w8, [x29, #-0x56]
+   611d8:      	cmp	x26, x8
+   611dc:      	b.ne	0x61184 <XXH32_digest+0x19bc>
+   611e0:      	cmp	w8, #0x1e
+   611e4:      	b.le	0x612d8 <XXH32_digest+0x1b10>
+   611e8:      	cmp	w8, #0x22
+   611ec:      	mov	x9, x28
+   611f0:      	b.eq	0x612fc <XXH32_digest+0x1b34>
+   611f4:      	ldr	x9, [sp, #0x38]
+   611f8:      	cmp	w8, #0x20
+   611fc:      	b.eq	0x612fc <XXH32_digest+0x1b34>
+   61200:      	ldr	x9, [sp, #0x30]
+   61204:      	cmp	w8, #0x1f
+   61208:      	b.eq	0x612fc <XXH32_digest+0x1b34>
+   6120c:      	b	0x612f0 <XXH32_digest+0x1b28>
+   61210:      	ldurb	w8, [x29, #-0x56]
+   61214:      	cmp	x26, x8
+   61218:      	b.ne	0x61264 <XXH32_digest+0x1a9c>
+   6121c:      	mov	x0, x20
+   61220:      	mov	x1, x19
+   61224:      	mov	x2, x22
+   61228:      	mov	x3, x24
+   6122c:      	bl	0x62214 <XXH32_digest+0x2a4c>
+   61230:      	mov	x23, x0
+   61234:      	b	0x61184 <XXH32_digest+0x19bc>
+   61238:      	cmp	w8, #0x5
+   6123c:      	b.eq	0x61168 <XXH32_digest+0x19a0>
+   61240:      	cmp	w8, #0x6
+   61244:      	b.ne	0x613fc <XXH32_digest+0x1c34>
+   61248:      	ldr	x0, [x24, #0x8]
+   6124c:      	mov	x1, x20
+   61250:      	mov	x2, x19
+   61254:      	mov	x3, x22
+   61258:      	bl	0x62978 <XXH32_digest+0x31b0>
+   6125c:      	ldr	d0, [x0]
+   61260:      	b	0x6117c <XXH32_digest+0x19b4>
+   61264:      	cmp	x26, #0x22
+   61268:      	b.ne	0x6128c <XXH32_digest+0x1ac4>
+   6126c:      	mov	x0, x20
+   61270:      	mov	x1, x19
+   61274:      	mov	x2, x22
+   61278:      	mov	x3, x24
+   6127c:      	bl	0x62214 <XXH32_digest+0x2a4c>
+   61280:      	ldr	x8, [sp, #0x48]
+   61284:      	str	x0, [x8]
+   61288:      	b	0x61184 <XXH32_digest+0x19bc>
+   6128c:      	sub	w8, w26, #0x40
+   61290:      	cmn	w8, #0x20
+   61294:      	b.hi	0x613f4 <XXH32_digest+0x1c2c>
+   61298:      	mov	x0, x20
+   6129c:      	mov	x1, x19
+   612a0:      	mov	x2, x22
+   612a4:      	mov	x3, x24
+   612a8:      	bl	0x62214 <XXH32_digest+0x2a4c>
+   612ac:      	cmp	w26, #0x1e
+   612b0:      	b.le	0x61304 <XXH32_digest+0x1b3c>
+   612b4:      	cmp	w26, #0x1f
+   612b8:      	b.eq	0x61320 <XXH32_digest+0x1b58>
+   612bc:      	cmp	w26, #0x22
+   612c0:      	b.eq	0x6132c <XXH32_digest+0x1b64>
+   612c4:      	cmp	w26, #0x20
+   612c8:      	b.ne	0x61344 <XXH32_digest+0x1b7c>
+   612cc:      	ldr	x8, [sp, #0x10]
+   612d0:      	str	x0, [x8]
+   612d4:      	b	0x61184 <XXH32_digest+0x19bc>
+   612d8:      	ldr	x9, [sp, #0x40]
+   612dc:      	cmp	w8, #0x1d
+   612e0:      	b.eq	0x612fc <XXH32_digest+0x1b34>
+   612e4:      	ldr	x9, [sp, #0x28]
+   612e8:      	cmp	w8, #0x1e
+   612ec:      	b.eq	0x612fc <XXH32_digest+0x1b34>
+   612f0:      	cmp	w8, #0x1c
+   612f4:      	b.hi	0x61430 <XXH32_digest+0x1c68>
+   612f8:      	add	x9, x19, x8, lsl #3
+   612fc:      	ldr	x23, [x9]
+   61300:      	b	0x61184 <XXH32_digest+0x19bc>
+   61304:      	cmp	w26, #0x1d
+   61308:      	b.eq	0x61338 <XXH32_digest+0x1b70>
+   6130c:      	cmp	w26, #0x1e
+   61310:      	b.ne	0x61344 <XXH32_digest+0x1b7c>
+   61314:      	ldr	x8, [sp, #0x8]
+   61318:      	str	x0, [x8]
+   6131c:      	b	0x61184 <XXH32_digest+0x19bc>
+   61320:      	ldr	x8, [sp, #0x20]
+   61324:      	str	x0, [x8]
+   61328:      	b	0x61184 <XXH32_digest+0x19bc>
+   6132c:      	ldr	x8, [sp, #0x48]
+   61330:      	str	x0, [x8]
+   61334:      	b	0x61184 <XXH32_digest+0x19bc>
+   61338:      	ldr	x8, [sp, #0x18]
+   6133c:      	str	x0, [x8]
+   61340:      	b	0x61184 <XXH32_digest+0x19bc>
+   61344:      	cmp	x26, #0x1d
+   61348:      	mov	x8, x27
+   6134c:      	b.hs	0x61464 <XXH32_digest+0x1c9c>
+   61350:      	str	x0, [x8]
+   61354:      	b	0x61184 <XXH32_digest+0x19bc>
+   61358:      	ldurb	w8, [x29, #-0x58]
+   6135c:      	add	x0, sp, #0x50
+   61360:      	mov	x1, x19
+   61364:      	mov	w2, #0x210              // =528
+   61368:      	strb	w8, [x21]
+   6136c:      	bl	0x64630 <memcpy@plt>
+   61370:      	add	x8, sp, #0x470
+   61374:      	add	x8, x8, #0x238
+   61378:      	ldr	q0, [x8]
+   6137c:      	stur	q0, [x29, #-0x20]
+   61380:      	ldur	w8, [x29, #-0x20]
+   61384:      	cbz	w8, 0x613a4 <XXH32_digest+0x1bdc>
+   61388:      	add	x1, sp, #0x50
+   6138c:      	sub	x3, x29, #0x20
+   61390:      	mov	x0, x20
+   61394:      	mov	x2, x22
+   61398:      	bl	0x62214 <XXH32_digest+0x2a4c>
+   6139c:      	tbnz	w0, #0x0, 0x613ac <XXH32_digest+0x1be4>
+   613a0:      	b	0x613d8 <XXH32_digest+0x1c10>
+   613a4:      	ldur	x0, [x29, #-0x18]
+   613a8:      	tbz	w0, #0x0, 0x613d8 <XXH32_digest+0x1c10>
+   613ac:      	cbz	x23, 0x613d8 <XXH32_digest+0x1c10>
+   613b0:      	ldurb	w8, [x29, #-0x55]
+   613b4:      	cbz	w8, 0x613c8 <XXH32_digest+0x1c00>
+   613b8:      	mov	x17, x23
+   613bc:      	mov	x16, x22
+   613c0:      	autib1716
+   613c4:      	b	0x613d4 <XXH32_digest+0x1c0c>
+   613c8:      	mov	x17, x23
+   613cc:      	mov	x16, x22
+   613d0:      	autia1716
+   613d4:      	mov	x23, x17
+   613d8:      	add	x1, sp, #0x260
+   613dc:      	mov	x0, x19
+   613e0:      	mov	w2, #0x210              // =528
+   613e4:      	str	x23, [sp, #0x360]
+   613e8:      	bl	0x64630 <memcpy@plt>
+   613ec:      	mov	w0, #0x1                // =1
+   613f0:      	b	0x61144 <XXH32_digest+0x197c>
+   613f4:      	mov	w0, #-0x198e            // =-6542
+   613f8:      	b	0x61144 <XXH32_digest+0x197c>
+   613fc:      	adrp	x19, 0x6b000
+   61400:      	nop
+   61404:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   61408:      	ldr	x19, [x19, #0x3f8]
+   6140c:      	adrp	x2, 0x27000
+   61410:      	add	x2, x2, #0xc18
+   61414:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61418:      	add	x3, x3, #0x6a9
+   6141c:      	add	x0, x19, #0x130
+   61420:      	bl	0x65bc0 <fprintf@plt>
+   61424:      	add	x0, x19, #0x130
+   61428:      	bl	0x65bd0 <fflush@plt>
+   6142c:      	bl	0x65be0 <abort@plt>
+   61430:      	adrp	x19, 0x6b000
+   61434:      	nop
+   61438:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6143c:      	ldr	x19, [x19, #0x3f8]
+   61440:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61444:      	add	x2, x2, #0x888
+   61448:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6144c:      	add	x3, x3, #0x3c7
+   61450:      	add	x0, x19, #0x130
+   61454:      	bl	0x65bc0 <fprintf@plt>
+   61458:      	add	x0, x19, #0x130
+   6145c:      	bl	0x65bd0 <fflush@plt>
+   61460:      	bl	0x65be0 <abort@plt>
+   61464:      	adrp	x19, 0x6b000
+   61468:      	nop
+   6146c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   61470:      	ldr	x19, [x19, #0x3f8]
+   61474:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61478:      	add	x2, x2, #0xfae
+   6147c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61480:      	add	x3, x3, #0x3c7
+   61484:      	add	x0, x19, #0x130
+   61488:      	bl	0x65bc0 <fprintf@plt>
+   6148c:      	add	x0, x19, #0x130
+   61490:      	bl	0x65bd0 <fflush@plt>
+   61494:      	bl	0x65be0 <abort@plt>
+   61498:      	paciasp
+   6149c:      	stp	x29, x30, [sp, #-0x60]!
+   614a0:      	stp	x28, x27, [sp, #0x10]
+   614a4:      	stp	x26, x25, [sp, #0x20]
+   614a8:      	stp	x24, x23, [sp, #0x30]
+   614ac:      	stp	x22, x21, [sp, #0x40]
+   614b0:      	stp	x20, x19, [sp, #0x50]
+   614b4:      	mov	x29, sp
+   614b8:      	sub	sp, sp, #0x680
+   614bc:      	ldp	x10, x8, [x2, #0x8]
+   614c0:      	mov	x19, sp
+   614c4:      	ldr	x9, [x2]
+   614c8:      	ldp	x11, x12, [x1, #0x10]
+   614cc:      	mov	x20, x5
+   614d0:      	mov	w28, w4
+   614d4:      	mov	x22, x2
+   614d8:      	add	x9, x10, x9
+   614dc:      	mov	x27, xzr
+   614e0:      	nop
+   614e4:      	adr	x23, 0x2a770 <_ZTSN10verenderer18MTTexture3DBackendE+0x90>
+   614e8:      	stp	x8, x9, [x29, #-0x38]
+   614ec:      	mov	x8, #-0x1               // =-1
+   614f0:      	ldp	x9, x10, [x1]
+   614f4:      	stp	x8, x11, [x29, #-0x28]
+   614f8:      	stp	x0, xzr, [x19, #0x18]
+   614fc:      	add	x8, x10, x9
+   61500:      	sub	x9, x3, x12
+   61504:      	stp	x8, x9, [x29, #-0x18]
+   61508:      	add	x8, x19, #0x28
+   6150c:      	add	x9, x5, #0x238
+   61510:      	add	x8, x8, #0x238
+   61514:      	stp	x8, x9, [x19, #0x8]
+   61518:      	b	0x61528 <XXH32_digest+0x1d60>
+   6151c:      	add	x27, x27, #0x18
+   61520:      	cmp	x27, #0x30
+   61524:      	b.eq	0x61e54 <XXH32_digest+0x268c>
+   61528:      	sub	x8, x29, #0x38
+   6152c:      	add	x8, x8, x27
+   61530:      	ldp	x9, x24, [x8]
+   61534:      	ldr	x21, [x8, #0x10]
+   61538:      	cmp	x9, x24
+   6153c:      	stur	x9, [x29, #-0x40]
+   61540:      	ccmp	x21, #0x0, #0x4, lo
+   61544:      	b.eq	0x6151c <XXH32_digest+0x1d54>
+   61548:      	mov	x25, xzr
+   6154c:      	mov	x8, x9
+   61550:      	ldrb	w10, [x8], #0x1
+   61554:      	stur	x8, [x29, #-0x40]
+   61558:      	cmp	w10, #0x2f
+   6155c:      	b.hi	0x61b4c <XXH32_digest+0x2384>
+   61560:      	adr	x11, 0x61570 <XXH32_digest+0x1da8>
+   61564:      	ldrh	w12, [x23, x10, lsl #1]
+   61568:      	add	x11, x11, x12, lsl #2
+   6156c:      	br	x11
+   61570:      	bti	j
+   61574:      	ldrb	w3, [x22, #0x18]
+   61578:      	ldr	x0, [x19, #0x18]
+   6157c:      	sub	x1, x29, #0x40
+   61580:      	mov	x2, x24
+   61584:      	mov	x4, xzr
+   61588:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   6158c:      	mov	x25, x0
+   61590:      	ldur	x9, [x29, #-0x40]
+   61594:      	cmp	x9, x24
+   61598:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   6159c:      	b	0x6151c <XXH32_digest+0x1d54>
+   615a0:      	bti	j
+   615a4:      	sub	x0, x29, #0x40
+   615a8:      	mov	x1, x24
+   615ac:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   615b0:      	ldur	x10, [x29, #-0x40]
+   615b4:      	mov	x9, xzr
+   615b8:      	mov	x8, xzr
+   615bc:      	mov	x12, x10
+   615c0:      	cmp	x12, x24
+   615c4:      	b.eq	0x62044 <XXH32_digest+0x287c>
+   615c8:      	ldrb	w11, [x12], #0x1
+   615cc:      	add	x10, x10, #0x1
+   615d0:      	and	x13, x11, #0x7f
+   615d4:      	lsl	x13, x13, x9
+   615d8:      	add	x9, x9, #0x7
+   615dc:      	orr	x8, x13, x8
+   615e0:      	tbnz	w11, #0x7, 0x615c0 <XXH32_digest+0x1df8>
+   615e4:      	cmp	x0, #0x60
+   615e8:      	stur	x10, [x29, #-0x40]
+   615ec:      	b.hs	0x61f9c <XXH32_digest+0x27d4>
+   615f0:      	sub	w10, w9, #0x7
+   615f4:      	mov	x12, #-0x1              // =-1
+   615f8:      	cmp	w10, #0x39
+   615fc:      	mov	w10, #0x3f              // =63
+   61600:      	lsl	x9, x12, x9
+   61604:      	ccmp	w11, w10, #0x0, lo
+   61608:      	ldr	w10, [x22, #0x2c]
+   6160c:      	csel	w9, w9, wzr, hi
+   61610:      	orr	w8, w8, w9
+   61614:      	mul	w8, w10, w8
+   61618:      	stp	w0, w8, [x20]
+   6161c:      	ldur	x9, [x29, #-0x40]
+   61620:      	cmp	x9, x24
+   61624:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61628:      	b	0x6151c <XXH32_digest+0x1d54>
+   6162c:      	bti	j
+   61630:      	sub	x0, x29, #0x40
+   61634:      	mov	x1, x24
+   61638:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6163c:      	cmp	x0, #0x60
+   61640:      	b.hs	0x61e88 <XXH32_digest+0x26c0>
+   61644:      	ldur	x9, [x29, #-0x40]
+   61648:      	mov	x10, xzr
+   6164c:      	mov	x8, xzr
+   61650:      	mov	x12, x9
+   61654:      	cmp	x12, x24
+   61658:      	b.eq	0x620ac <XXH32_digest+0x28e4>
+   6165c:      	ldrb	w11, [x12], #0x1
+   61660:      	add	x9, x9, #0x1
+   61664:      	and	x13, x11, #0x7f
+   61668:      	lsl	x13, x13, x10
+   6166c:      	add	x10, x10, #0x7
+   61670:      	orr	x8, x13, x8
+   61674:      	tbnz	w11, #0x7, 0x61654 <XXH32_digest+0x1e8c>
+   61678:      	add	x12, x20, x0, lsl #4
+   6167c:      	sub	w13, w10, #0x7
+   61680:      	mov	x15, #-0x1              // =-1
+   61684:      	cmp	w13, #0x39
+   61688:      	mov	w14, #0x3f              // =63
+   6168c:      	lsl	x15, x15, x10
+   61690:      	mov	x13, x12
+   61694:      	ccmp	w11, w14, #0x0, lo
+   61698:      	ldrsw	x10, [x22, #0x2c]
+   6169c:      	ldrb	w16, [x13, #0x1c]!
+   616a0:      	csel	x11, x15, xzr, hi
+   616a4:      	stur	x9, [x29, #-0x40]
+   616a8:      	cbnz	w16, 0x616cc <XXH32_digest+0x1f04>
+   616ac:      	lsl	x9, x0, #4
+   616b0:      	add	x15, x19, #0x28
+   616b4:      	add	x14, x20, x9
+   616b8:      	add	x9, x15, x9
+   616bc:      	ldur	q0, [x14, #0x18]
+   616c0:      	mov	w14, #0x1               // =1
+   616c4:      	strb	w14, [x13]
+   616c8:      	stur	q0, [x9, #0x18]
+   616cc:      	orr	x8, x8, x11
+   616d0:      	mov	w9, #0x4                // =4
+   616d4:      	b	0x61ce0 <XXH32_digest+0x2518>
+   616d8:      	bti	j
+   616dc:      	sub	x0, x29, #0x40
+   616e0:      	mov	x1, x24
+   616e4:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   616e8:      	cmp	x0, #0x60
+   616ec:      	b.hs	0x61e5c <XXH32_digest+0x2694>
+   616f0:      	str	w0, [x20]
+   616f4:      	ldur	x9, [x29, #-0x40]
+   616f8:      	cmp	x9, x24
+   616fc:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61700:      	b	0x6151c <XXH32_digest+0x1d54>
+   61704:      	bti	j
+   61708:      	sub	x0, x29, #0x40
+   6170c:      	mov	x1, x24
+   61710:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61714:      	cmp	x0, #0x60
+   61718:      	b.hs	0x61eec <XXH32_digest+0x2724>
+   6171c:      	mov	x26, x0
+   61720:      	sub	x0, x29, #0x40
+   61724:      	mov	x1, x24
+   61728:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6172c:      	add	x8, x20, x26, lsl #4
+   61730:      	ldrsw	x9, [x22, #0x2c]
+   61734:      	mov	x10, x8
+   61738:      	ldrb	w11, [x10, #0x1c]!
+   6173c:      	cbnz	w11, 0x61760 <XXH32_digest+0x1f98>
+   61740:      	lsl	x11, x26, #4
+   61744:      	add	x13, x19, #0x28
+   61748:      	add	x12, x20, x11
+   6174c:      	add	x11, x13, x11
+   61750:      	ldur	q0, [x12, #0x18]
+   61754:      	mov	w12, #0x1               // =1
+   61758:      	strb	w12, [x10]
+   6175c:      	stur	q0, [x11, #0x18]
+   61760:      	mneg	x9, x0, x9
+   61764:      	b	0x61970 <XXH32_digest+0x21a8>
+   61768:      	bti	j
+   6176c:      	cmp	w28, #0x4
+   61770:      	b.ne	0x61e1c <XXH32_digest+0x2654>
+   61774:      	ldrb	w8, [x20, #0x23c]
+   61778:      	cbnz	w8, 0x61790 <XXH32_digest+0x1fc8>
+   6177c:      	ldp	x9, x8, [x19, #0x8]
+   61780:      	ldr	q0, [x8]
+   61784:      	mov	w8, #0x1                // =1
+   61788:      	strb	w8, [x20, #0x23c]
+   6178c:      	str	q0, [x9]
+   61790:      	ldr	x8, [x20, #0x240]
+   61794:      	eor	x8, x8, #0x1
+   61798:      	str	x8, [x20, #0x240]
+   6179c:      	ldur	x9, [x29, #-0x40]
+   617a0:      	cmp	x9, x24
+   617a4:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   617a8:      	b	0x6151c <XXH32_digest+0x1d54>
+   617ac:      	bti	j
+   617b0:      	sub	x26, sp, #0x620
+   617b4:      	mov	sp, x26
+   617b8:      	ldr	x8, [x19, #0x20]
+   617bc:      	mov	x0, x26
+   617c0:      	mov	x1, x20
+   617c4:      	mov	w2, #0x618              // =1560
+   617c8:      	str	x8, [x0], #0x8
+   617cc:      	bl	0x64630 <memcpy@plt>
+   617d0:      	str	x26, [x19, #0x20]
+   617d4:      	ldur	x9, [x29, #-0x40]
+   617d8:      	cmp	x9, x24
+   617dc:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   617e0:      	b	0x6151c <XXH32_digest+0x1d54>
+   617e4:      	bti	j
+   617e8:      	ldrb	w8, [x9, #0x1]
+   617ec:      	ldr	w10, [x22, #0x28]
+   617f0:      	add	x9, x9, #0x2
+   617f4:      	b	0x619d4 <XXH32_digest+0x220c>
+   617f8:      	bti	j
+   617fc:      	ldur	w8, [x9, #0x1]
+   61800:      	ldr	w10, [x22, #0x28]
+   61804:      	add	x9, x9, #0x5
+   61808:      	b	0x619d4 <XXH32_digest+0x220c>
+   6180c:      	bti	j
+   61810:      	sub	x0, x29, #0x40
+   61814:      	mov	x1, x24
+   61818:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6181c:      	cmp	x0, #0x60
+   61820:      	b.hs	0x61e6c <XXH32_digest+0x26a4>
+   61824:      	add	x8, x20, x0, lsl #4
+   61828:      	mov	x9, x8
+   6182c:      	ldrb	w10, [x9, #0x1c]!
+   61830:      	cbnz	w10, 0x61854 <XXH32_digest+0x208c>
+   61834:      	lsl	x10, x0, #4
+   61838:      	add	x12, x19, #0x28
+   6183c:      	add	x11, x20, x10
+   61840:      	add	x10, x12, x10
+   61844:      	ldur	q0, [x11, #0x18]
+   61848:      	mov	w11, #0x1               // =1
+   6184c:      	strb	w11, [x9]
+   61850:      	stur	q0, [x10, #0x18]
+   61854:      	ldur	x9, [x29, #-0x40]
+   61858:      	mov	w10, #0x7               // =7
+   6185c:      	b	0x61d4c <XXH32_digest+0x2584>
+   61860:      	bti	j
+   61864:      	sub	x0, x29, #0x40
+   61868:      	mov	x1, x24
+   6186c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61870:      	mov	x26, x0
+   61874:      	sub	x0, x29, #0x40
+   61878:      	mov	x1, x24
+   6187c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61880:      	cmp	x26, #0x60
+   61884:      	b.hs	0x61f08 <XXH32_digest+0x2740>
+   61888:      	stp	w26, w0, [x20]
+   6188c:      	ldur	x9, [x29, #-0x40]
+   61890:      	cmp	x9, x24
+   61894:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61898:      	b	0x6151c <XXH32_digest+0x1d54>
+   6189c:      	bti	j
+   618a0:      	mov	x10, xzr
+   618a4:      	mov	x9, xzr
+   618a8:      	mov	x11, x8
+   618ac:      	cmp	x11, x24
+   618b0:      	b.eq	0x62010 <XXH32_digest+0x2848>
+   618b4:      	ldrb	w12, [x11], #0x1
+   618b8:      	add	x8, x8, #0x1
+   618bc:      	and	x13, x12, #0x7f
+   618c0:      	lsl	x13, x13, x10
+   618c4:      	add	x10, x10, #0x7
+   618c8:      	orr	x9, x13, x9
+   618cc:      	tbnz	w12, #0x7, 0x618ac <XXH32_digest+0x20e4>
+   618d0:      	sub	w11, w10, #0x7
+   618d4:      	mov	x13, #-0x1              // =-1
+   618d8:      	stur	x8, [x29, #-0x40]
+   618dc:      	cmp	w11, #0x39
+   618e0:      	mov	w11, #0x3f              // =63
+   618e4:      	lsl	x10, x13, x10
+   618e8:      	ccmp	w12, w11, #0x0, lo
+   618ec:      	ldr	w11, [x22, #0x2c]
+   618f0:      	csel	w10, w10, wzr, hi
+   618f4:      	orr	w9, w9, w10
+   618f8:      	mul	w9, w11, w9
+   618fc:      	str	w9, [x20, #0x4]
+   61900:      	mov	x9, x8
+   61904:      	cmp	x8, x24
+   61908:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   6190c:      	b	0x6151c <XXH32_digest+0x1d54>
+   61910:      	bti	j
+   61914:      	sub	x0, x29, #0x40
+   61918:      	mov	x1, x24
+   6191c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61920:      	mov	x26, x0
+   61924:      	sub	x0, x29, #0x40
+   61928:      	mov	x1, x24
+   6192c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61930:      	cmp	x26, #0x60
+   61934:      	b.hs	0x61ed0 <XXH32_digest+0x2708>
+   61938:      	add	x8, x20, x26, lsl #4
+   6193c:      	ldrsw	x9, [x22, #0x2c]
+   61940:      	mov	x10, x8
+   61944:      	ldrb	w11, [x10, #0x1c]!
+   61948:      	cbnz	w11, 0x6196c <XXH32_digest+0x21a4>
+   6194c:      	lsl	x11, x26, #4
+   61950:      	add	x13, x19, #0x28
+   61954:      	add	x12, x20, x11
+   61958:      	add	x11, x13, x11
+   6195c:      	ldur	q0, [x12, #0x18]
+   61960:      	mov	w12, #0x1               // =1
+   61964:      	strb	w12, [x10]
+   61968:      	stur	q0, [x11, #0x18]
+   6196c:      	mul	x9, x0, x9
+   61970:      	mov	w10, #0x2               // =2
+   61974:      	str	w10, [x8, #0x18]
+   61978:      	str	x9, [x8, #0x20]
+   6197c:      	ldur	x9, [x29, #-0x40]
+   61980:      	cmp	x9, x24
+   61984:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61988:      	b	0x6151c <XXH32_digest+0x1d54>
+   6198c:      	bti	j
+   61990:      	ldr	x8, [x19, #0x20]
+   61994:      	cbz	x8, 0x61fe8 <XXH32_digest+0x2820>
+   61998:      	add	x1, x8, #0x8
+   6199c:      	mov	x0, x20
+   619a0:      	mov	w2, #0x618              // =1560
+   619a4:      	mov	x26, x8
+   619a8:      	bl	0x64630 <memcpy@plt>
+   619ac:      	ldr	x26, [x26]
+   619b0:      	str	x26, [x19, #0x20]
+   619b4:      	ldur	x9, [x29, #-0x40]
+   619b8:      	cmp	x9, x24
+   619bc:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   619c0:      	b	0x6151c <XXH32_digest+0x1d54>
+   619c4:      	bti	j
+   619c8:      	ldurh	w8, [x9, #0x1]
+   619cc:      	ldr	w10, [x22, #0x28]
+   619d0:      	add	x9, x9, #0x3
+   619d4:      	mul	w8, w10, w8
+   619d8:      	add	x25, x25, x8
+   619dc:      	stur	x9, [x29, #-0x40]
+   619e0:      	cmp	x9, x24
+   619e4:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   619e8:      	b	0x6151c <XXH32_digest+0x1d54>
+   619ec:      	bti	j
+   619f0:      	sub	x0, x29, #0x40
+   619f4:      	mov	x1, x24
+   619f8:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   619fc:      	str	w0, [x20, #0x10]
+   61a00:      	ldur	x9, [x29, #-0x40]
+   61a04:      	cmp	x9, x24
+   61a08:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61a0c:      	b	0x6151c <XXH32_digest+0x1d54>
+   61a10:      	bti	j
+   61a14:      	sub	x0, x29, #0x40
+   61a18:      	mov	x1, x24
+   61a1c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61a20:      	cmp	x0, #0x60
+   61a24:      	b.hs	0x61eb4 <XXH32_digest+0x26ec>
+   61a28:      	add	x8, x20, x0, lsl #4
+   61a2c:      	ldrb	w8, [x8, #0x1c]
+   61a30:      	cbz	w8, 0x61e1c <XXH32_digest+0x2654>
+   61a34:      	lsl	x8, x0, #4
+   61a38:      	b	0x61e08 <XXH32_digest+0x2640>
+   61a3c:      	bti	j
+   61a40:      	sub	x0, x29, #0x40
+   61a44:      	mov	x1, x24
+   61a48:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61a4c:      	cmp	x0, #0x60
+   61a50:      	b.hs	0x61f24 <XXH32_digest+0x275c>
+   61a54:      	add	x8, x20, x0, lsl #4
+   61a58:      	mov	x9, x8
+   61a5c:      	ldrb	w10, [x9, #0x1c]!
+   61a60:      	cbnz	w10, 0x61a84 <XXH32_digest+0x22bc>
+   61a64:      	lsl	x10, x0, #4
+   61a68:      	add	x12, x19, #0x28
+   61a6c:      	add	x11, x20, x10
+   61a70:      	add	x10, x12, x10
+   61a74:      	ldur	q0, [x11, #0x18]
+   61a78:      	mov	w11, #0x1               // =1
+   61a7c:      	strb	w11, [x9]
+   61a80:      	stur	q0, [x10, #0x18]
+   61a84:      	mov	w9, #0x1                // =1
+   61a88:      	str	w9, [x8, #0x18]
+   61a8c:      	ldur	x9, [x29, #-0x40]
+   61a90:      	cmp	x9, x24
+   61a94:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61a98:      	b	0x6151c <XXH32_digest+0x1d54>
+   61a9c:      	bti	j
+   61aa0:      	sub	x0, x29, #0x40
+   61aa4:      	mov	x1, x24
+   61aa8:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61aac:      	str	w0, [x20, #0x4]
+   61ab0:      	ldur	x9, [x29, #-0x40]
+   61ab4:      	cmp	x9, x24
+   61ab8:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61abc:      	b	0x6151c <XXH32_digest+0x1d54>
+   61ac0:      	bti	j
+   61ac4:      	str	wzr, [x20]
+   61ac8:      	str	x8, [x20, #0x8]
+   61acc:      	b	0x61d54 <XXH32_digest+0x258c>
+   61ad0:      	bti	j
+   61ad4:      	sub	x0, x29, #0x40
+   61ad8:      	mov	x1, x24
+   61adc:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61ae0:      	mov	x26, x0
+   61ae4:      	sub	x0, x29, #0x40
+   61ae8:      	mov	x1, x24
+   61aec:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61af0:      	cmp	x26, #0x60
+   61af4:      	b.hs	0x61f70 <XXH32_digest+0x27a8>
+   61af8:      	cmp	x0, #0x60
+   61afc:      	b.hs	0x61fb8 <XXH32_digest+0x27f0>
+   61b00:      	add	x8, x20, x26, lsl #4
+   61b04:      	mov	x9, x8
+   61b08:      	ldrb	w10, [x9, #0x1c]!
+   61b0c:      	cbnz	w10, 0x61b30 <XXH32_digest+0x2368>
+   61b10:      	lsl	x10, x26, #4
+   61b14:      	add	x12, x19, #0x28
+   61b18:      	add	x11, x20, x10
+   61b1c:      	add	x10, x12, x10
+   61b20:      	ldur	q0, [x11, #0x18]
+   61b24:      	mov	w11, #0x1               // =1
+   61b28:      	strb	w11, [x9]
+   61b2c:      	stur	q0, [x10, #0x18]
+   61b30:      	mov	w9, #0x5                // =5
+   61b34:      	str	x0, [x8, #0x20]
+   61b38:      	str	w9, [x8, #0x18]
+   61b3c:      	ldur	x9, [x29, #-0x40]
+   61b40:      	cmp	x9, x24
+   61b44:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61b48:      	b	0x6151c <XXH32_digest+0x1d54>
+   61b4c:      	bti	j
+   61b50:      	and	w8, w10, #0xc0
+   61b54:      	and	x26, x10, #0x3f
+   61b58:      	cmp	w8, #0x40
+   61b5c:      	b.eq	0x61e38 <XXH32_digest+0x2670>
+   61b60:      	cmp	w8, #0xc0
+   61b64:      	b.eq	0x61df8 <XXH32_digest+0x2630>
+   61b68:      	cmp	w8, #0x80
+   61b6c:      	b.ne	0x61fe8 <XXH32_digest+0x2820>
+   61b70:      	sub	x0, x29, #0x40
+   61b74:      	mov	x1, x24
+   61b78:      	str	w28, [x19, #0x4]
+   61b7c:      	mov	w28, w26
+   61b80:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61b84:      	add	x8, x20, w26, uxtw #4
+   61b88:      	ldrsw	x9, [x22, #0x2c]
+   61b8c:      	ldrb	w10, [x8, #0x1c]!
+   61b90:      	cbnz	w10, 0x61bb4 <XXH32_digest+0x23ec>
+   61b94:      	lsl	x10, x28, #4
+   61b98:      	add	x11, x20, x10
+   61b9c:      	ldur	q0, [x11, #0x18]
+   61ba0:      	add	x11, x19, #0x28
+   61ba4:      	add	x10, x11, x10
+   61ba8:      	stur	q0, [x10, #0x18]
+   61bac:      	mov	w10, #0x1               // =1
+   61bb0:      	strb	w10, [x8]
+   61bb4:      	mul	x8, x0, x9
+   61bb8:      	add	x9, x20, x28, lsl #4
+   61bbc:      	mov	w10, #0x2               // =2
+   61bc0:      	ldr	w28, [x19, #0x4]
+   61bc4:      	str	w10, [x9, #0x18]
+   61bc8:      	str	x8, [x9, #0x20]
+   61bcc:      	ldur	x9, [x29, #-0x40]
+   61bd0:      	cmp	x9, x24
+   61bd4:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61bd8:      	b	0x6151c <XXH32_digest+0x1d54>
+   61bdc:      	bti	j
+   61be0:      	sub	x0, x29, #0x40
+   61be4:      	mov	x1, x24
+   61be8:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61bec:      	cmp	x0, #0x60
+   61bf0:      	b.hs	0x61ea4 <XXH32_digest+0x26dc>
+   61bf4:      	add	x8, x20, x0, lsl #4
+   61bf8:      	mov	x9, x8
+   61bfc:      	ldrb	w10, [x9, #0x1c]!
+   61c00:      	cbnz	w10, 0x61c24 <XXH32_digest+0x245c>
+   61c04:      	lsl	x10, x0, #4
+   61c08:      	add	x12, x19, #0x28
+   61c0c:      	add	x11, x20, x10
+   61c10:      	add	x10, x12, x10
+   61c14:      	ldur	q0, [x11, #0x18]
+   61c18:      	mov	w11, #0x1               // =1
+   61c1c:      	strb	w11, [x9]
+   61c20:      	stur	q0, [x10, #0x18]
+   61c24:      	str	wzr, [x8, #0x18]
+   61c28:      	ldur	x9, [x29, #-0x40]
+   61c2c:      	cmp	x9, x24
+   61c30:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61c34:      	b	0x6151c <XXH32_digest+0x1d54>
+   61c38:      	bti	j
+   61c3c:      	sub	x0, x29, #0x40
+   61c40:      	mov	x1, x24
+   61c44:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61c48:      	cmp	x0, #0x60
+   61c4c:      	b.hs	0x61f54 <XXH32_digest+0x278c>
+   61c50:      	ldur	x9, [x29, #-0x40]
+   61c54:      	mov	x10, xzr
+   61c58:      	mov	x8, xzr
+   61c5c:      	mov	x12, x9
+   61c60:      	cmp	x12, x24
+   61c64:      	b.eq	0x62078 <XXH32_digest+0x28b0>
+   61c68:      	ldrb	w11, [x12], #0x1
+   61c6c:      	add	x9, x9, #0x1
+   61c70:      	and	x13, x11, #0x7f
+   61c74:      	lsl	x13, x13, x10
+   61c78:      	add	x10, x10, #0x7
+   61c7c:      	orr	x8, x13, x8
+   61c80:      	tbnz	w11, #0x7, 0x61c60 <XXH32_digest+0x2498>
+   61c84:      	add	x12, x20, x0, lsl #4
+   61c88:      	sub	w13, w10, #0x7
+   61c8c:      	mov	x15, #-0x1              // =-1
+   61c90:      	cmp	w13, #0x39
+   61c94:      	mov	w14, #0x3f              // =63
+   61c98:      	lsl	x15, x15, x10
+   61c9c:      	mov	x13, x12
+   61ca0:      	ccmp	w11, w14, #0x0, lo
+   61ca4:      	ldrsw	x10, [x22, #0x2c]
+   61ca8:      	ldrb	w16, [x13, #0x1c]!
+   61cac:      	csel	x11, x15, xzr, hi
+   61cb0:      	stur	x9, [x29, #-0x40]
+   61cb4:      	cbnz	w16, 0x61cd8 <XXH32_digest+0x2510>
+   61cb8:      	lsl	x9, x0, #4
+   61cbc:      	add	x15, x19, #0x28
+   61cc0:      	add	x14, x20, x9
+   61cc4:      	add	x9, x15, x9
+   61cc8:      	ldur	q0, [x14, #0x18]
+   61ccc:      	mov	w14, #0x1               // =1
+   61cd0:      	strb	w14, [x13]
+   61cd4:      	stur	q0, [x9, #0x18]
+   61cd8:      	orr	x8, x8, x11
+   61cdc:      	mov	w9, #0x2                // =2
+   61ce0:      	mul	x8, x8, x10
+   61ce4:      	str	w9, [x12, #0x18]
+   61ce8:      	str	x8, [x12, #0x20]
+   61cec:      	ldur	x9, [x29, #-0x40]
+   61cf0:      	cmp	x9, x24
+   61cf4:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61cf8:      	b	0x6151c <XXH32_digest+0x1d54>
+   61cfc:      	bti	j
+   61d00:      	sub	x0, x29, #0x40
+   61d04:      	mov	x1, x24
+   61d08:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61d0c:      	cmp	x0, #0x60
+   61d10:      	b.hs	0x61f8c <XXH32_digest+0x27c4>
+   61d14:      	add	x8, x20, x0, lsl #4
+   61d18:      	mov	x9, x8
+   61d1c:      	ldrb	w10, [x9, #0x1c]!
+   61d20:      	cbnz	w10, 0x61d44 <XXH32_digest+0x257c>
+   61d24:      	lsl	x10, x0, #4
+   61d28:      	add	x12, x19, #0x28
+   61d2c:      	add	x11, x20, x10
+   61d30:      	add	x10, x12, x10
+   61d34:      	ldur	q0, [x11, #0x18]
+   61d38:      	mov	w11, #0x1               // =1
+   61d3c:      	strb	w11, [x9]
+   61d40:      	stur	q0, [x10, #0x18]
+   61d44:      	ldur	x9, [x29, #-0x40]
+   61d48:      	mov	w10, #0x6               // =6
+   61d4c:      	str	w10, [x8, #0x18]
+   61d50:      	str	x9, [x8, #0x20]
+   61d54:      	sub	x0, x29, #0x40
+   61d58:      	mov	x1, x24
+   61d5c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61d60:      	ldur	x8, [x29, #-0x40]
+   61d64:      	add	x8, x8, x0
+   61d68:      	stur	x8, [x29, #-0x40]
+   61d6c:      	mov	x9, x8
+   61d70:      	cmp	x8, x24
+   61d74:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61d78:      	b	0x6151c <XXH32_digest+0x1d54>
+   61d7c:      	bti	j
+   61d80:      	sub	x0, x29, #0x40
+   61d84:      	mov	x1, x24
+   61d88:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61d8c:      	mov	x26, x0
+   61d90:      	cmp	x0, #0x60
+   61d94:      	b.hs	0x61f34 <XXH32_digest+0x276c>
+   61d98:      	sub	x0, x29, #0x40
+   61d9c:      	mov	x1, x24
+   61da0:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   61da4:      	add	x8, x20, x26, lsl #4
+   61da8:      	ldrsw	x9, [x22, #0x2c]
+   61dac:      	mov	x10, x8
+   61db0:      	ldrb	w11, [x10, #0x1c]!
+   61db4:      	cbnz	w11, 0x61dd8 <XXH32_digest+0x2610>
+   61db8:      	lsl	x11, x26, #4
+   61dbc:      	add	x13, x19, #0x28
+   61dc0:      	add	x12, x20, x11
+   61dc4:      	add	x11, x13, x11
+   61dc8:      	ldur	q0, [x12, #0x18]
+   61dcc:      	mov	w12, #0x1               // =1
+   61dd0:      	strb	w12, [x10]
+   61dd4:      	stur	q0, [x11, #0x18]
+   61dd8:      	mul	x9, x0, x9
+   61ddc:      	mov	w10, #0x4               // =4
+   61de0:      	str	w10, [x8, #0x18]
+   61de4:      	str	x9, [x8, #0x20]
+   61de8:      	ldur	x9, [x29, #-0x40]
+   61dec:      	cmp	x9, x24
+   61df0:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61df4:      	b	0x6151c <XXH32_digest+0x1d54>
+   61df8:      	add	x8, x20, x26, lsl #4
+   61dfc:      	ldrb	w8, [x8, #0x1c]
+   61e00:      	cbz	w8, 0x61e1c <XXH32_digest+0x2654>
+   61e04:      	lsl	x8, x26, #4
+   61e08:      	add	x9, x19, #0x28
+   61e0c:      	add	x9, x9, x8
+   61e10:      	add	x8, x20, x8
+   61e14:      	ldur	q0, [x9, #0x18]
+   61e18:      	stur	q0, [x8, #0x18]
+   61e1c:      	bti	j
+   61e20:      	ldur	x9, [x29, #-0x40]
+   61e24:      	cmp	x9, x24
+   61e28:      	b.hs	0x6151c <XXH32_digest+0x1d54>
+   61e2c:      	cmp	x25, x21
+   61e30:      	b.lo	0x6154c <XXH32_digest+0x1d84>
+   61e34:      	b	0x6151c <XXH32_digest+0x1d54>
+   61e38:      	ldr	w8, [x22, #0x28]
+   61e3c:      	mul	w8, w8, w26
+   61e40:      	add	x25, x25, x8
+   61e44:      	ldur	x9, [x29, #-0x40]
+   61e48:      	cmp	x9, x24
+   61e4c:      	b.lo	0x61e2c <XXH32_digest+0x2664>
+   61e50:      	b	0x6151c <XXH32_digest+0x1d54>
+   61e54:      	mov	w0, #0x1                // =1
+   61e58:      	b	0x61fec <XXH32_digest+0x2824>
+   61e5c:      	adrp	x8, 0x6b000
+   61e60:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61e64:      	add	x0, x0, #0x714
+   61e68:      	b	0x61ec0 <XXH32_digest+0x26f8>
+   61e6c:      	adrp	x8, 0x6b000
+   61e70:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61e74:      	add	x0, x0, #0x16d
+   61e78:      	ldr	x8, [x8, #0x3f8]
+   61e7c:      	mov	w1, #0x45               // =69
+   61e80:      	add	x3, x8, #0x130
+   61e84:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61e88:      	adrp	x8, 0x6b000
+   61e8c:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61e90:      	add	x0, x0, #0x934
+   61e94:      	ldr	x8, [x8, #0x3f8]
+   61e98:      	mov	w1, #0x44               // =68
+   61e9c:      	add	x3, x8, #0x130
+   61ea0:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61ea4:      	adrp	x8, 0x6b000
+   61ea8:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61eac:      	add	x0, x0, #0x9ea
+   61eb0:      	b	0x61fa8 <XXH32_digest+0x27e0>
+   61eb4:      	adrp	x8, 0x6b000
+   61eb8:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61ebc:      	add	x0, x0, #0x24
+   61ec0:      	ldr	x8, [x8, #0x3f8]
+   61ec4:      	add	x3, x8, #0x130
+   61ec8:      	mov	w1, #0x47               // =71
+   61ecc:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61ed0:      	adrp	x8, 0x6b000
+   61ed4:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61ed8:      	add	x0, x0, #0x221
+   61edc:      	ldr	x8, [x8, #0x3f8]
+   61ee0:      	mov	w1, #0x46               // =70
+   61ee4:      	add	x3, x8, #0x130
+   61ee8:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61eec:      	adrp	x8, 0x6b000
+   61ef0:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61ef4:      	add	x0, x0, #0x614
+   61ef8:      	ldr	x8, [x8, #0x3f8]
+   61efc:      	mov	w1, #0x53               // =83
+   61f00:      	add	x3, x8, #0x130
+   61f04:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61f08:      	adrp	x8, 0x6b000
+   61f0c:      	adrp	x0, 0x27000
+   61f10:      	add	x0, x0, #0xd6c
+   61f14:      	ldr	x8, [x8, #0x3f8]
+   61f18:      	mov	w1, #0x3e               // =62
+   61f1c:      	add	x3, x8, #0x130
+   61f20:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61f24:      	adrp	x8, 0x6b000
+   61f28:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61f2c:      	add	x0, x0, #0x7cf
+   61f30:      	b	0x61fc4 <XXH32_digest+0x27fc>
+   61f34:      	adrp	x8, 0x6b000
+   61f38:      	adrp	x1, 0x27000
+   61f3c:      	add	x1, x1, #0xe9b
+   61f40:      	ldr	x8, [x8, #0x3f8]
+   61f44:      	mov	x2, x26
+   61f48:      	add	x0, x8, #0x130
+   61f4c:      	bl	0x65bc0 <fprintf@plt>
+   61f50:      	b	0x61fd8 <XXH32_digest+0x2810>
+   61f54:      	adrp	x8, 0x6b000
+   61f58:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61f5c:      	add	x0, x0, #0xb11
+   61f60:      	ldr	x8, [x8, #0x3f8]
+   61f64:      	mov	w1, #0x49               // =73
+   61f68:      	add	x3, x8, #0x130
+   61f6c:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61f70:      	adrp	x8, 0x6b000
+   61f74:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   61f78:      	add	x0, x0, #0x6d4
+   61f7c:      	ldr	x8, [x8, #0x3f8]
+   61f80:      	mov	w1, #0x3f               // =63
+   61f84:      	add	x3, x8, #0x130
+   61f88:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61f8c:      	adrp	x8, 0x6b000
+   61f90:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61f94:      	add	x0, x0, #0x9ac
+   61f98:      	b	0x61fa8 <XXH32_digest+0x27e0>
+   61f9c:      	adrp	x8, 0x6b000
+   61fa0:      	adrp	x0, 0x27000
+   61fa4:      	add	x0, x0, #0xfda
+   61fa8:      	ldr	x8, [x8, #0x3f8]
+   61fac:      	add	x3, x8, #0x130
+   61fb0:      	mov	w1, #0x41               // =65
+   61fb4:      	b	0x61fd0 <XXH32_digest+0x2808>
+   61fb8:      	adrp	x8, 0x6b000
+   61fbc:      	adrp	x0, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   61fc0:      	add	x0, x0, #0x759
+   61fc4:      	ldr	x8, [x8, #0x3f8]
+   61fc8:      	add	x3, x8, #0x130
+   61fcc:      	mov	w1, #0x40               // =64
+   61fd0:      	mov	w2, #0x1                // =1
+   61fd4:      	bl	0x65c50 <fwrite@plt>
+   61fd8:      	adrp	x8, 0x6b000
+   61fdc:      	ldr	x8, [x8, #0x3f8]
+   61fe0:      	add	x0, x8, #0x130
+   61fe4:      	bl	0x65bd0 <fflush@plt>
+   61fe8:      	mov	w0, wzr
+   61fec:      	mov	sp, x29
+   61ff0:      	ldp	x20, x19, [sp, #0x50]
+   61ff4:      	ldp	x22, x21, [sp, #0x40]
+   61ff8:      	ldp	x24, x23, [sp, #0x30]
+   61ffc:      	ldp	x26, x25, [sp, #0x20]
+   62000:      	ldp	x28, x27, [sp, #0x10]
+   62004:      	ldp	x29, x30, [sp], #0x60
+   62008:      	autiasp
+   6200c:      	ret
+   62010:      	adrp	x20, 0x6b000
+   62014:      	nop
+   62018:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6201c:      	ldr	x20, [x20, #0x3f8]
+   62020:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62024:      	add	x2, x2, #0xd0b
+   62028:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6202c:      	add	x3, x3, #0x497
+   62030:      	add	x0, x20, #0x130
+   62034:      	bl	0x65bc0 <fprintf@plt>
+   62038:      	add	x0, x20, #0x130
+   6203c:      	bl	0x65bd0 <fflush@plt>
+   62040:      	bl	0x65be0 <abort@plt>
+   62044:      	adrp	x20, 0x6b000
+   62048:      	nop
+   6204c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62050:      	ldr	x20, [x20, #0x3f8]
+   62054:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62058:      	add	x2, x2, #0xd0b
+   6205c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62060:      	add	x3, x3, #0x497
+   62064:      	add	x0, x20, #0x130
+   62068:      	bl	0x65bc0 <fprintf@plt>
+   6206c:      	add	x0, x20, #0x130
+   62070:      	bl	0x65bd0 <fflush@plt>
+   62074:      	bl	0x65be0 <abort@plt>
+   62078:      	adrp	x20, 0x6b000
+   6207c:      	nop
+   62080:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62084:      	ldr	x20, [x20, #0x3f8]
+   62088:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6208c:      	add	x2, x2, #0xd0b
+   62090:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62094:      	add	x3, x3, #0x497
+   62098:      	add	x0, x20, #0x130
+   6209c:      	bl	0x65bc0 <fprintf@plt>
+   620a0:      	add	x0, x20, #0x130
+   620a4:      	bl	0x65bd0 <fflush@plt>
+   620a8:      	bl	0x65be0 <abort@plt>
+   620ac:      	adrp	x20, 0x6b000
+   620b0:      	nop
+   620b4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   620b8:      	ldr	x20, [x20, #0x3f8]
+   620bc:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   620c0:      	add	x2, x2, #0xd0b
+   620c4:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   620c8:      	add	x3, x3, #0x497
+   620cc:      	add	x0, x20, #0x130
+   620d0:      	bl	0x65bc0 <fprintf@plt>
+   620d4:      	add	x0, x20, #0x130
+   620d8:      	bl	0x65bd0 <fflush@plt>
+   620dc:      	bl	0x65be0 <abort@plt>
+   620e0:      	bti	c
+   620e4:      	ldr	w8, [x1]
+   620e8:      	cmp	w8, #0x1d
+   620ec:      	b.gt	0x62108 <XXH32_digest+0x2940>
+   620f0:      	tbz	w8, #0x1f, 0x62134 <XXH32_digest+0x296c>
+   620f4:      	cmn	w8, #0x2
+   620f8:      	b.eq	0x62120 <XXH32_digest+0x2958>
+   620fc:      	cmn	w8, #0x1
+   62100:      	b.eq	0x62164 <XXH32_digest+0x299c>
+   62104:      	b	0x621b4 <XXH32_digest+0x29ec>
+   62108:      	cmp	w8, #0x1f
+   6210c:      	b.gt	0x62154 <XXH32_digest+0x298c>
+   62110:      	cmp	w8, #0x1e
+   62114:      	b.eq	0x62178 <XXH32_digest+0x29b0>
+   62118:      	cmp	w8, #0x1f
+   6211c:      	b.ne	0x621b4 <XXH32_digest+0x29ec>
+   62120:      	add	x8, x2, #0xf8
+   62124:      	ldr	x8, [x8]
+   62128:      	ldrsw	x9, [x1, #0x4]
+   6212c:      	add	x0, x8, x9
+   62130:      	ret
+   62134:      	cbz	w8, 0x6218c <XXH32_digest+0x29c4>
+   62138:      	cmp	w8, #0x1d
+   6213c:      	b.ne	0x621b4 <XXH32_digest+0x29ec>
+   62140:      	add	x8, x2, #0xe8
+   62144:      	ldr	x8, [x8]
+   62148:      	ldrsw	x9, [x1, #0x4]
+   6214c:      	add	x0, x8, x9
+   62150:      	ret
+   62154:      	cmp	w8, #0x22
+   62158:      	b.eq	0x621a0 <XXH32_digest+0x29d8>
+   6215c:      	cmp	w8, #0x20
+   62160:      	b.ne	0x621b4 <XXH32_digest+0x29ec>
+   62164:      	add	x8, x2, #0x100
+   62168:      	ldr	x8, [x8]
+   6216c:      	ldrsw	x9, [x1, #0x4]
+   62170:      	add	x0, x8, x9
+   62174:      	ret
+   62178:      	add	x8, x2, #0xf0
+   6217c:      	ldr	x8, [x8]
+   62180:      	ldrsw	x9, [x1, #0x4]
+   62184:      	add	x0, x8, x9
+   62188:      	ret
+   6218c:      	ldr	x8, [x1, #0x8]
+   62190:      	mov	x1, x0
+   62194:      	mov	x3, xzr
+   62198:      	mov	x0, x8
+   6219c:      	b	0x62978 <XXH32_digest+0x31b0>
+   621a0:      	add	x8, x2, #0x108
+   621a4:      	ldr	x8, [x8]
+   621a8:      	ldrsw	x9, [x1, #0x4]
+   621ac:      	add	x0, x8, x9
+   621b0:      	ret
+   621b4:      	cmp	w8, #0x1c
+   621b8:      	b.hi	0x621d0 <XXH32_digest+0x2a08>
+   621bc:      	add	x8, x2, x8, lsl #3
+   621c0:      	ldr	x8, [x8]
+   621c4:      	ldrsw	x9, [x1, #0x4]
+   621c8:      	add	x0, x8, x9
+   621cc:      	ret
+   621d0:      	paciasp
+   621d4:      	stp	x29, x30, [sp, #-0x20]!
+   621d8:      	str	x19, [sp, #0x10]
+   621dc:      	mov	x29, sp
+   621e0:      	adrp	x19, 0x6b000
+   621e4:      	nop
+   621e8:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   621ec:      	ldr	x19, [x19, #0x3f8]
+   621f0:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   621f4:      	add	x2, x2, #0x888
+   621f8:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   621fc:      	add	x3, x3, #0x3c7
+   62200:      	add	x0, x19, #0x130
+   62204:      	bl	0x65bc0 <fprintf@plt>
+   62208:      	add	x0, x19, #0x130
+   6220c:      	bl	0x65bd0 <fflush@plt>
+   62210:      	bl	0x65be0 <abort@plt>
+   62214:      	paciasp
+   62218:      	stp	x29, x30, [sp, #-0x20]!
+   6221c:      	str	x19, [sp, #0x10]
+   62220:      	mov	x29, sp
+   62224:      	ldr	w9, [x3]
+   62228:      	mov	x8, x2
+   6222c:      	cmp	w9, #0x4
+   62230:      	b.gt	0x62264 <XXH32_digest+0x2a9c>
+   62234:      	cmp	w9, #0x1
+   62238:      	b.eq	0x622bc <XXH32_digest+0x2af4>
+   6223c:      	cmp	w9, #0x2
+   62240:      	b.eq	0x6224c <XXH32_digest+0x2a84>
+   62244:      	cmp	w9, #0x3
+   62248:      	b.ne	0x623bc <XXH32_digest+0x2bf4>
+   6224c:      	ldr	x9, [x3, #0x8]
+   62250:      	ldr	x0, [x9, x8]
+   62254:      	ldr	x19, [sp, #0x10]
+   62258:      	ldp	x29, x30, [sp], #0x20
+   6225c:      	autiasp
+   62260:      	ret
+   62264:      	mov	x2, x1
+   62268:      	cmp	w9, #0x5
+   6226c:      	b.eq	0x622d0 <XXH32_digest+0x2b08>
+   62270:      	mov	x1, x0
+   62274:      	cmp	w9, #0x6
+   62278:      	b.eq	0x6229c <XXH32_digest+0x2ad4>
+   6227c:      	cmp	w9, #0x7
+   62280:      	b.ne	0x623bc <XXH32_digest+0x2bf4>
+   62284:      	ldr	x0, [x3, #0x8]
+   62288:      	mov	x3, x8
+   6228c:      	ldr	x19, [sp, #0x10]
+   62290:      	ldp	x29, x30, [sp], #0x20
+   62294:      	autiasp
+   62298:      	b	0x62978 <XXH32_digest+0x31b0>
+   6229c:      	ldr	x0, [x3, #0x8]
+   622a0:      	mov	x3, x8
+   622a4:      	bl	0x62978 <XXH32_digest+0x31b0>
+   622a8:      	ldr	x0, [x0]
+   622ac:      	ldr	x19, [sp, #0x10]
+   622b0:      	ldp	x29, x30, [sp], #0x20
+   622b4:      	autiasp
+   622b8:      	ret
+   622bc:      	mov	x0, xzr
+   622c0:      	ldr	x19, [sp, #0x10]
+   622c4:      	ldp	x29, x30, [sp], #0x20
+   622c8:      	autiasp
+   622cc:      	ret
+   622d0:      	ldr	x8, [x3, #0x8]
+   622d4:      	cmp	w8, #0x1d
+   622d8:      	b.le	0x622f8 <XXH32_digest+0x2b30>
+   622dc:      	cmp	w8, #0x1f
+   622e0:      	b.gt	0x62328 <XXH32_digest+0x2b60>
+   622e4:      	cmp	w8, #0x1e
+   622e8:      	b.eq	0x6238c <XXH32_digest+0x2bc4>
+   622ec:      	cmp	w8, #0x1f
+   622f0:      	b.eq	0x62350 <XXH32_digest+0x2b88>
+   622f4:      	b	0x62368 <XXH32_digest+0x2ba0>
+   622f8:      	cmn	w8, #0x2
+   622fc:      	b.eq	0x62350 <XXH32_digest+0x2b88>
+   62300:      	cmn	w8, #0x1
+   62304:      	b.eq	0x62338 <XXH32_digest+0x2b70>
+   62308:      	cmp	w8, #0x1d
+   6230c:      	b.ne	0x62368 <XXH32_digest+0x2ba0>
+   62310:      	add	x8, x2, #0xe8
+   62314:      	ldr	x0, [x8]
+   62318:      	ldr	x19, [sp, #0x10]
+   6231c:      	ldp	x29, x30, [sp], #0x20
+   62320:      	autiasp
+   62324:      	ret
+   62328:      	cmp	w8, #0x22
+   6232c:      	b.eq	0x623a4 <XXH32_digest+0x2bdc>
+   62330:      	cmp	w8, #0x20
+   62334:      	b.ne	0x62368 <XXH32_digest+0x2ba0>
+   62338:      	add	x8, x2, #0x100
+   6233c:      	ldr	x0, [x8]
+   62340:      	ldr	x19, [sp, #0x10]
+   62344:      	ldp	x29, x30, [sp], #0x20
+   62348:      	autiasp
+   6234c:      	ret
+   62350:      	add	x8, x2, #0xf8
+   62354:      	ldr	x0, [x8]
+   62358:      	ldr	x19, [sp, #0x10]
+   6235c:      	ldp	x29, x30, [sp], #0x20
+   62360:      	autiasp
+   62364:      	ret
+   62368:      	cmp	w8, #0x1c
+   6236c:      	b.hi	0x623f0 <XXH32_digest+0x2c28>
+   62370:      	and	x8, x8, #0xffffffff
+   62374:      	add	x8, x2, x8, lsl #3
+   62378:      	ldr	x0, [x8]
+   6237c:      	ldr	x19, [sp, #0x10]
+   62380:      	ldp	x29, x30, [sp], #0x20
+   62384:      	autiasp
+   62388:      	ret
+   6238c:      	add	x8, x2, #0xf0
+   62390:      	ldr	x0, [x8]
+   62394:      	ldr	x19, [sp, #0x10]
+   62398:      	ldp	x29, x30, [sp], #0x20
+   6239c:      	autiasp
+   623a0:      	ret
+   623a4:      	add	x8, x2, #0x108
+   623a8:      	ldr	x0, [x8]
+   623ac:      	ldr	x19, [sp, #0x10]
+   623b0:      	ldp	x29, x30, [sp], #0x20
+   623b4:      	autiasp
+   623b8:      	ret
+   623bc:      	adrp	x19, 0x6b000
+   623c0:      	nop
+   623c4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   623c8:      	ldr	x19, [x19, #0x3f8]
+   623cc:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   623d0:      	add	x2, x2, #0x7ca
+   623d4:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   623d8:      	add	x3, x3, #0x3e2
+   623dc:      	add	x0, x19, #0x130
+   623e0:      	bl	0x65bc0 <fprintf@plt>
+   623e4:      	add	x0, x19, #0x130
+   623e8:      	bl	0x65bd0 <fflush@plt>
+   623ec:      	bl	0x65be0 <abort@plt>
+   623f0:      	adrp	x19, 0x6b000
+   623f4:      	nop
+   623f8:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   623fc:      	ldr	x19, [x19, #0x3f8]
+   62400:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62404:      	add	x2, x2, #0x888
+   62408:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6240c:      	add	x3, x3, #0x3c7
+   62410:      	add	x0, x19, #0x130
+   62414:      	bl	0x65bc0 <fprintf@plt>
+   62418:      	add	x0, x19, #0x130
+   6241c:      	bl	0x65bd0 <fflush@plt>
+   62420:      	bl	0x65be0 <abort@plt>
+   62424:      	paciasp
+   62428:      	stp	x29, x30, [sp, #-0x30]!
+   6242c:      	str	x21, [sp, #0x10]
+   62430:      	stp	x20, x19, [sp, #0x20]
+   62434:      	mov	x29, sp
+   62438:      	and	w8, w3, #0xf
+   6243c:      	ldr	x19, [x1]
+   62440:      	cmp	w8, #0x3
+   62444:      	b.le	0x6246c <XXH32_digest+0x2ca4>
+   62448:      	cmp	w8, #0x9
+   6244c:      	b.le	0x624e0 <XXH32_digest+0x2d18>
+   62450:      	cmp	w8, #0xa
+   62454:      	b.eq	0x625b0 <XXH32_digest+0x2de8>
+   62458:      	cmp	w8, #0xb
+   6245c:      	b.eq	0x625d0 <XXH32_digest+0x2e08>
+   62460:      	cmp	w8, #0xc
+   62464:      	b.eq	0x62570 <XXH32_digest+0x2da8>
+   62468:      	b	0x6277c <XXH32_digest+0x2fb4>
+   6246c:      	cmp	w8, #0x1
+   62470:      	b.gt	0x624b0 <XXH32_digest+0x2ce8>
+   62474:      	cbz	w8, 0x62570 <XXH32_digest+0x2da8>
+   62478:      	cmp	w8, #0x1
+   6247c:      	b.ne	0x6277c <XXH32_digest+0x2fb4>
+   62480:      	mov	x0, x1
+   62484:      	mov	x1, x2
+   62488:      	mov	w20, w3
+   6248c:      	mov	x21, x4
+   62490:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   62494:      	mov	x4, x21
+   62498:      	mov	w3, w20
+   6249c:      	and	w8, w20, #0xff
+   624a0:      	ubfx	w8, w8, #4, #3
+   624a4:      	cmp	w8, #0x1
+   624a8:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   624ac:      	b	0x62558 <XXH32_digest+0x2d90>
+   624b0:      	cmp	w8, #0x2
+   624b4:      	b.eq	0x62590 <XXH32_digest+0x2dc8>
+   624b8:      	cmp	w8, #0x3
+   624bc:      	b.ne	0x6277c <XXH32_digest+0x2fb4>
+   624c0:      	mov	x8, x19
+   624c4:      	ldr	w0, [x8], #0x4
+   624c8:      	str	x8, [x1]
+   624cc:      	and	w8, w3, #0xff
+   624d0:      	ubfx	w8, w8, #4, #3
+   624d4:      	cmp	w8, #0x1
+   624d8:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   624dc:      	b	0x62558 <XXH32_digest+0x2d90>
+   624e0:      	cmp	w8, #0x4
+   624e4:      	b.eq	0x62570 <XXH32_digest+0x2da8>
+   624e8:      	cmp	w8, #0x9
+   624ec:      	b.ne	0x6277c <XXH32_digest+0x2fb4>
+   624f0:      	mov	x10, xzr
+   624f4:      	mov	x8, xzr
+   624f8:      	mov	x9, x19
+   624fc:      	mov	x11, x19
+   62500:      	cmp	x11, x2
+   62504:      	b.eq	0x6262c <XXH32_digest+0x2e64>
+   62508:      	ldrb	w12, [x11], #0x1
+   6250c:      	add	x9, x9, #0x1
+   62510:      	and	x13, x12, #0x7f
+   62514:      	lsl	x13, x13, x10
+   62518:      	add	x10, x10, #0x7
+   6251c:      	orr	x8, x13, x8
+   62520:      	tbnz	w12, #0x7, 0x62500 <XXH32_digest+0x2d38>
+   62524:      	sub	w11, w10, #0x7
+   62528:      	mov	x13, #-0x1              // =-1
+   6252c:      	str	x9, [x1]
+   62530:      	cmp	w11, #0x39
+   62534:      	mov	w11, #0x3f              // =63
+   62538:      	lsl	x10, x13, x10
+   6253c:      	ccmp	w12, w11, #0x0, lo
+   62540:      	csel	x10, x10, xzr, hi
+   62544:      	orr	x0, x8, x10
+   62548:      	and	w8, w3, #0xff
+   6254c:      	ubfx	w8, w8, #4, #3
+   62550:      	cmp	w8, #0x1
+   62554:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   62558:      	cmp	w8, #0x3
+   6255c:      	b.gt	0x62660 <XXH32_digest+0x2e98>
+   62560:      	b.ne	0x626a4 <XXH32_digest+0x2edc>
+   62564:      	cbz	x4, 0x62714 <XXH32_digest+0x2f4c>
+   62568:      	add	x0, x0, x4
+   6256c:      	b	0x625fc <XXH32_digest+0x2e34>
+   62570:      	mov	x8, x19
+   62574:      	ldr	x0, [x8], #0x8
+   62578:      	str	x8, [x1]
+   6257c:      	and	w8, w3, #0xff
+   62580:      	ubfx	w8, w8, #4, #3
+   62584:      	cmp	w8, #0x1
+   62588:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   6258c:      	b	0x62558 <XXH32_digest+0x2d90>
+   62590:      	mov	x8, x19
+   62594:      	ldrh	w0, [x8], #0x2
+   62598:      	str	x8, [x1]
+   6259c:      	and	w8, w3, #0xff
+   625a0:      	ubfx	w8, w8, #4, #3
+   625a4:      	cmp	w8, #0x1
+   625a8:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   625ac:      	b	0x62558 <XXH32_digest+0x2d90>
+   625b0:      	mov	x8, x19
+   625b4:      	ldrsh	x0, [x8], #0x2
+   625b8:      	str	x8, [x1]
+   625bc:      	and	w8, w3, #0xff
+   625c0:      	ubfx	w8, w8, #4, #3
+   625c4:      	cmp	w8, #0x1
+   625c8:      	b.le	0x625ec <XXH32_digest+0x2e24>
+   625cc:      	b	0x62558 <XXH32_digest+0x2d90>
+   625d0:      	mov	x8, x19
+   625d4:      	ldrsw	x0, [x8], #0x4
+   625d8:      	str	x8, [x1]
+   625dc:      	and	w8, w3, #0xff
+   625e0:      	ubfx	w8, w8, #4, #3
+   625e4:      	cmp	w8, #0x1
+   625e8:      	b.gt	0x62558 <XXH32_digest+0x2d90>
+   625ec:      	cbz	w8, 0x625fc <XXH32_digest+0x2e34>
+   625f0:      	cmp	w8, #0x1
+   625f4:      	b.ne	0x62748 <XXH32_digest+0x2f80>
+   625f8:      	add	x0, x0, x19
+   625fc:      	tbnz	w3, #0x7, 0x62614 <XXH32_digest+0x2e4c>
+   62600:      	ldp	x20, x19, [sp, #0x20]
+   62604:      	ldr	x21, [sp, #0x10]
+   62608:      	ldp	x29, x30, [sp], #0x30
+   6260c:      	autiasp
+   62610:      	ret
+   62614:      	ldr	x0, [x0]
+   62618:      	ldp	x20, x19, [sp, #0x20]
+   6261c:      	ldr	x21, [sp, #0x10]
+   62620:      	ldp	x29, x30, [sp], #0x30
+   62624:      	autiasp
+   62628:      	ret
+   6262c:      	adrp	x19, 0x6b000
+   62630:      	nop
+   62634:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62638:      	ldr	x19, [x19, #0x3f8]
+   6263c:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62640:      	add	x2, x2, #0xd0b
+   62644:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62648:      	add	x3, x3, #0x497
+   6264c:      	add	x0, x19, #0x130
+   62650:      	bl	0x65bc0 <fprintf@plt>
+   62654:      	add	x0, x19, #0x130
+   62658:      	bl	0x65bd0 <fflush@plt>
+   6265c:      	bl	0x65be0 <abort@plt>
+   62660:      	cmp	w8, #0x4
+   62664:      	b.eq	0x626e0 <XXH32_digest+0x2f18>
+   62668:      	cmp	w8, #0x5
+   6266c:      	b.ne	0x62748 <XXH32_digest+0x2f80>
+   62670:      	adrp	x19, 0x6b000
+   62674:      	nop
+   62678:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6267c:      	ldr	x19, [x19, #0x3f8]
+   62680:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   62684:      	add	x2, x2, #0x979
+   62688:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6268c:      	add	x3, x3, #0x79a
+   62690:      	add	x0, x19, #0x130
+   62694:      	bl	0x65bc0 <fprintf@plt>
+   62698:      	add	x0, x19, #0x130
+   6269c:      	bl	0x65bd0 <fflush@plt>
+   626a0:      	bl	0x65be0 <abort@plt>
+   626a4:      	cmp	w8, #0x2
+   626a8:      	b.ne	0x62748 <XXH32_digest+0x2f80>
+   626ac:      	adrp	x19, 0x6b000
+   626b0:      	nop
+   626b4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   626b8:      	ldr	x19, [x19, #0x3f8]
+   626bc:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   626c0:      	add	x2, x2, #0x979
+   626c4:      	adrp	x3, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   626c8:      	add	x3, x3, #0x6c
+   626cc:      	add	x0, x19, #0x130
+   626d0:      	bl	0x65bc0 <fprintf@plt>
+   626d4:      	add	x0, x19, #0x130
+   626d8:      	bl	0x65bd0 <fflush@plt>
+   626dc:      	bl	0x65be0 <abort@plt>
+   626e0:      	adrp	x19, 0x6b000
+   626e4:      	nop
+   626e8:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   626ec:      	ldr	x19, [x19, #0x3f8]
+   626f0:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   626f4:      	add	x2, x2, #0x979
+   626f8:      	adrp	x3, 0x27000
+   626fc:      	add	x3, x3, #0xb60
+   62700:      	add	x0, x19, #0x130
+   62704:      	bl	0x65bc0 <fprintf@plt>
+   62708:      	add	x0, x19, #0x130
+   6270c:      	bl	0x65bd0 <fflush@plt>
+   62710:      	bl	0x65be0 <abort@plt>
+   62714:      	adrp	x19, 0x6b000
+   62718:      	nop
+   6271c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62720:      	ldr	x19, [x19, #0x3f8]
+   62724:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   62728:      	add	x2, x2, #0x979
+   6272c:      	adrp	x3, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   62730:      	add	x3, x3, #0x3bf
+   62734:      	add	x0, x19, #0x130
+   62738:      	bl	0x65bc0 <fprintf@plt>
+   6273c:      	add	x0, x19, #0x130
+   62740:      	bl	0x65bd0 <fflush@plt>
+   62744:      	bl	0x65be0 <abort@plt>
+   62748:      	adrp	x19, 0x6b000
+   6274c:      	nop
+   62750:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62754:      	ldr	x19, [x19, #0x3f8]
+   62758:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   6275c:      	add	x2, x2, #0x979
+   62760:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62764:      	add	x3, x3, #0xcf2
+   62768:      	add	x0, x19, #0x130
+   6276c:      	bl	0x65bc0 <fprintf@plt>
+   62770:      	add	x0, x19, #0x130
+   62774:      	bl	0x65bd0 <fflush@plt>
+   62778:      	bl	0x65be0 <abort@plt>
+   6277c:      	adrp	x19, 0x6b000
+   62780:      	nop
+   62784:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62788:      	ldr	x19, [x19, #0x3f8]
+   6278c:      	adrp	x2, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   62790:      	add	x2, x2, #0x979
+   62794:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62798:      	add	x3, x3, #0xcf2
+   6279c:      	add	x0, x19, #0x130
+   627a0:      	bl	0x65bc0 <fprintf@plt>
+   627a4:      	add	x0, x19, #0x130
+   627a8:      	bl	0x65bd0 <fflush@plt>
+   627ac:      	bl	0x65be0 <abort@plt>
+   627b0:      	paciasp
+   627b4:      	stp	x29, x30, [sp, #-0x20]!
+   627b8:      	str	x19, [sp, #0x10]
+   627bc:      	mov	x29, sp
+   627c0:      	ldr	x9, [x0]
+   627c4:      	cmp	x9, x1
+   627c8:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   627cc:      	mov	x10, x9
+   627d0:      	mov	x8, x0
+   627d4:      	ldrb	w11, [x10], #0x1
+   627d8:      	and	x0, x11, #0x7f
+   627dc:      	tbnz	w11, #0x7, 0x627f4 <XXH32_digest+0x302c>
+   627e0:      	str	x10, [x8]
+   627e4:      	ldr	x19, [sp, #0x10]
+   627e8:      	ldp	x29, x30, [sp], #0x20
+   627ec:      	autiasp
+   627f0:      	ret
+   627f4:      	cmp	x10, x1
+   627f8:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   627fc:      	ldrsb	w11, [x9, #0x1]
+   62800:      	and	w10, w11, #0x7f
+   62804:      	orr	x0, x0, x10, lsl #7
+   62808:      	add	x10, x9, #0x2
+   6280c:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   62810:      	cmp	x10, x1
+   62814:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   62818:      	ldrsb	w11, [x9, #0x2]
+   6281c:      	and	w10, w11, #0x7f
+   62820:      	orr	x0, x0, x10, lsl #14
+   62824:      	add	x10, x9, #0x3
+   62828:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   6282c:      	cmp	x10, x1
+   62830:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   62834:      	ldrsb	w11, [x9, #0x3]
+   62838:      	and	w10, w11, #0x7f
+   6283c:      	orr	x0, x0, x10, lsl #21
+   62840:      	add	x10, x9, #0x4
+   62844:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   62848:      	cmp	x10, x1
+   6284c:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   62850:      	ldrsb	w11, [x9, #0x4]
+   62854:      	and	w10, w11, #0x7f
+   62858:      	orr	x0, x0, x10, lsl #28
+   6285c:      	add	x10, x9, #0x5
+   62860:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   62864:      	cmp	x10, x1
+   62868:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   6286c:      	ldrsb	w11, [x9, #0x5]
+   62870:      	and	w10, w11, #0x7f
+   62874:      	orr	x0, x0, x10, lsl #35
+   62878:      	add	x10, x9, #0x6
+   6287c:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   62880:      	cmp	x10, x1
+   62884:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   62888:      	ldrsb	w11, [x9, #0x6]
+   6288c:      	and	w10, w11, #0x7f
+   62890:      	orr	x0, x0, x10, lsl #42
+   62894:      	add	x10, x9, #0x7
+   62898:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   6289c:      	cmp	x10, x1
+   628a0:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   628a4:      	ldrsb	w11, [x9, #0x7]
+   628a8:      	and	w10, w11, #0x7f
+   628ac:      	orr	x0, x0, x10, lsl #49
+   628b0:      	add	x10, x9, #0x8
+   628b4:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   628b8:      	cmp	x10, x1
+   628bc:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   628c0:      	ldrsb	w11, [x9, #0x8]
+   628c4:      	and	w10, w11, #0x7f
+   628c8:      	orr	x0, x0, x10, lsl #56
+   628cc:      	add	x10, x9, #0x9
+   628d0:      	tbz	w11, #0x1f, 0x627e0 <XXH32_digest+0x3018>
+   628d4:      	cmp	x10, x1
+   628d8:      	b.eq	0x62910 <XXH32_digest+0x3148>
+   628dc:      	ldrb	w11, [x10]
+   628e0:      	tst	w11, #0x7e
+   628e4:      	b.ne	0x62944 <XXH32_digest+0x317c>
+   628e8:      	add	x10, x9, #0xa
+   628ec:      	tbnz	w11, #0x7, 0x62908 <XXH32_digest+0x3140>
+   628f0:      	orr	x0, x0, x11, lsl #63
+   628f4:      	str	x10, [x8]
+   628f8:      	ldr	x19, [sp, #0x10]
+   628fc:      	ldp	x29, x30, [sp], #0x20
+   62900:      	autiasp
+   62904:      	ret
+   62908:      	cmp	x10, x1
+   6290c:      	b.ne	0x62944 <XXH32_digest+0x317c>
+   62910:      	adrp	x19, 0x6b000
+   62914:      	nop
+   62918:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6291c:      	ldr	x19, [x19, #0x3f8]
+   62920:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62924:      	add	x2, x2, #0x14d
+   62928:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6292c:      	add	x3, x3, #0x2b4
+   62930:      	add	x0, x19, #0x130
+   62934:      	bl	0x65bc0 <fprintf@plt>
+   62938:      	add	x0, x19, #0x130
+   6293c:      	bl	0x65bd0 <fflush@plt>
+   62940:      	bl	0x65be0 <abort@plt>
+   62944:      	adrp	x19, 0x6b000
+   62948:      	nop
+   6294c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   62950:      	ldr	x19, [x19, #0x3f8]
+   62954:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62958:      	add	x2, x2, #0x14d
+   6295c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   62960:      	add	x3, x3, #0x68c
+   62964:      	add	x0, x19, #0x130
+   62968:      	bl	0x65bc0 <fprintf@plt>
+   6296c:      	add	x0, x19, #0x130
+   62970:      	bl	0x65bd0 <fflush@plt>
+   62974:      	bl	0x65be0 <abort@plt>
+   62978:      	paciasp
+   6297c:      	stp	x29, x30, [sp, #-0x60]!
+   62980:      	stp	x28, x27, [sp, #0x10]
+   62984:      	stp	x26, x25, [sp, #0x20]
+   62988:      	stp	x24, x23, [sp, #0x30]
+   6298c:      	stp	x22, x21, [sp, #0x40]
+   62990:      	stp	x20, x19, [sp, #0x50]
+   62994:      	mov	x29, sp
+   62998:      	sub	sp, sp, #0x330
+   6299c:      	mov	x8, x0
+   629a0:      	stur	x0, [x29, #-0x8]
+   629a4:      	sub	x0, x29, #0x8
+   629a8:      	add	x1, x8, #0x14
+   629ac:      	mov	x21, x3
+   629b0:      	mov	x19, x2
+   629b4:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   629b8:      	ldur	x10, [x29, #-0x8]
+   629bc:      	str	x21, [sp, #0x10]
+   629c0:      	add	x20, x10, x0
+   629c4:      	cmp	x10, x20
+   629c8:      	b.hs	0x630f8 <XXH32_digest+0x3930>
+   629cc:      	add	x8, sp, #0x8
+   629d0:      	add	x21, x19, #0xf0
+   629d4:      	add	x22, x19, #0xe8
+   629d8:      	add	x23, x19, #0x108
+   629dc:      	add	x24, x19, #0xf8
+   629e0:      	add	x27, x8, #0x8
+   629e4:      	add	x25, x19, #0x100
+   629e8:      	nop
+   629ec:      	adr	x26, 0x2a7d0 <_ZTSN10verenderer18MTTexture3DBackendE+0xf0>
+   629f0:      	b	0x62a08 <XXH32_digest+0x3240>
+   629f4:      	ldr	x8, [x8]
+   629f8:      	str	x8, [x27, #0x8]!
+   629fc:      	ldur	x10, [x29, #-0x8]
+   62a00:      	cmp	x10, x20
+   62a04:      	b.hs	0x630f4 <XXH32_digest+0x392c>
+   62a08:      	add	x8, x10, #0x1
+   62a0c:      	stur	x8, [x29, #-0x8]
+   62a10:      	ldrb	w9, [x10]
+   62a14:      	sub	w11, w9, #0x3
+   62a18:      	cmp	w11, #0x91
+   62a1c:      	b.hi	0x631f0 <XXH32_digest+0x3a28>
+   62a20:      	adr	x12, 0x62a30 <XXH32_digest+0x3268>
+   62a24:      	ldrh	w13, [x26, x11, lsl #1]
+   62a28:      	add	x12, x12, x13, lsl #2
+   62a2c:      	br	x12
+   62a30:      	bti	j
+   62a34:      	sub	w8, w9, #0x30
+   62a38:      	b	0x629f8 <XXH32_digest+0x3230>
+   62a3c:      	bti	j
+   62a40:      	mov	x12, xzr
+   62a44:      	mov	x10, xzr
+   62a48:      	sub	w11, w9, #0x70
+   62a4c:      	mov	x13, x8
+   62a50:      	cmp	x13, x20
+   62a54:      	b.eq	0x63120 <XXH32_digest+0x3958>
+   62a58:      	ldrb	w14, [x13], #0x1
+   62a5c:      	add	x8, x8, #0x1
+   62a60:      	and	x15, x14, #0x7f
+   62a64:      	lsl	x15, x15, x12
+   62a68:      	add	x12, x12, #0x7
+   62a6c:      	orr	x10, x15, x10
+   62a70:      	tbnz	w14, #0x7, 0x62a50 <XXH32_digest+0x3288>
+   62a74:      	sub	w13, w12, #0x7
+   62a78:      	mov	x15, #-0x1              // =-1
+   62a7c:      	stur	x8, [x29, #-0x8]
+   62a80:      	cmp	w13, #0x39
+   62a84:      	mov	w13, #0x3f              // =63
+   62a88:      	lsl	x12, x15, x12
+   62a8c:      	ccmp	w14, w13, #0x0, lo
+   62a90:      	csel	x12, x12, xzr, hi
+   62a94:      	cmp	w9, #0x8d
+   62a98:      	b.le	0x62af4 <XXH32_digest+0x332c>
+   62a9c:      	cmp	w9, #0x8f
+   62aa0:      	b.gt	0x62b1c <XXH32_digest+0x3354>
+   62aa4:      	cmp	w9, #0x8e
+   62aa8:      	mov	x8, x21
+   62aac:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62ab0:      	cmp	w9, #0x8f
+   62ab4:      	mov	x8, x24
+   62ab8:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62abc:      	b	0x62b34 <XXH32_digest+0x336c>
+   62ac0:      	bti	j
+   62ac4:      	cmp	w9, #0x6f
+   62ac8:      	mov	x8, x24
+   62acc:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   62ad0:      	cmp	w9, #0x6e
+   62ad4:      	mov	x8, x21
+   62ad8:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   62adc:      	cmp	w9, #0x6d
+   62ae0:      	mov	x8, x22
+   62ae4:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   62ae8:      	sub	w8, w9, #0x50
+   62aec:      	add	x8, x19, w8, uxtw #3
+   62af0:      	b	0x629f4 <XXH32_digest+0x322c>
+   62af4:      	cmp	w9, #0x6e
+   62af8:      	mov	x8, x24
+   62afc:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62b00:      	cmp	w9, #0x6f
+   62b04:      	mov	x8, x25
+   62b08:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62b0c:      	cmp	w9, #0x8d
+   62b10:      	mov	x8, x22
+   62b14:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62b18:      	b	0x62b34 <XXH32_digest+0x336c>
+   62b1c:      	cmp	w9, #0x90
+   62b20:      	mov	x8, x25
+   62b24:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62b28:      	cmp	w9, #0x92
+   62b2c:      	mov	x8, x23
+   62b30:      	b.eq	0x62b40 <XXH32_digest+0x3378>
+   62b34:      	cmp	w11, #0x1c
+   62b38:      	b.hi	0x631bc <XXH32_digest+0x39f4>
+   62b3c:      	add	x8, x19, w11, uxtw #3
+   62b40:      	ldr	x8, [x8]
+   62b44:      	orr	x9, x10, x12
+   62b48:      	add	x8, x8, x9
+   62b4c:      	b	0x629f8 <XXH32_digest+0x3230>
+   62b50:      	bti	j
+   62b54:      	ldur	x8, [x10, #0x1]
+   62b58:      	add	x9, x10, #0x9
+   62b5c:      	b	0x62e60 <XXH32_digest+0x3698>
+   62b60:      	bti	j
+   62b64:      	sub	x0, x29, #0x8
+   62b68:      	mov	x1, x20
+   62b6c:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   62b70:      	ldur	x10, [x29, #-0x8]
+   62b74:      	mov	x9, xzr
+   62b78:      	mov	x8, xzr
+   62b7c:      	mov	x11, x10
+   62b80:      	cmp	x11, x20
+   62b84:      	b.eq	0x63154 <XXH32_digest+0x398c>
+   62b88:      	ldrb	w12, [x11], #0x1
+   62b8c:      	add	x10, x10, #0x1
+   62b90:      	and	x13, x12, #0x7f
+   62b94:      	lsl	x13, x13, x9
+   62b98:      	add	x9, x9, #0x7
+   62b9c:      	orr	x8, x13, x8
+   62ba0:      	tbnz	w12, #0x7, 0x62b80 <XXH32_digest+0x33b8>
+   62ba4:      	sub	w11, w9, #0x7
+   62ba8:      	mov	x13, #-0x1              // =-1
+   62bac:      	stur	x10, [x29, #-0x8]
+   62bb0:      	cmp	w11, #0x39
+   62bb4:      	mov	w11, #0x3f              // =63
+   62bb8:      	lsl	x9, x13, x9
+   62bbc:      	ccmp	w12, w11, #0x0, lo
+   62bc0:      	csel	x9, x9, xzr, hi
+   62bc4:      	cmp	w0, #0x1d
+   62bc8:      	b.le	0x63058 <XXH32_digest+0x3890>
+   62bcc:      	cmp	w0, #0x1f
+   62bd0:      	b.gt	0x630a8 <XXH32_digest+0x38e0>
+   62bd4:      	cmp	w0, #0x1e
+   62bd8:      	mov	x10, x21
+   62bdc:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   62be0:      	cmp	w0, #0x1f
+   62be4:      	mov	x10, x24
+   62be8:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   62bec:      	b	0x630c0 <XXH32_digest+0x38f8>
+   62bf0:      	bti	j
+   62bf4:      	mov	x8, x27
+   62bf8:      	ldr	x9, [x27]
+   62bfc:      	ldr	x10, [x8, #-0x8]!
+   62c00:      	cmp	x10, x9
+   62c04:      	cset	w9, lo
+   62c08:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62c0c:      	bti	j
+   62c10:      	mov	x8, x27
+   62c14:      	ldr	x9, [x27]
+   62c18:      	ldr	x10, [x8, #-0x8]!
+   62c1c:      	cmp	x10, x9
+   62c20:      	cset	w9, ls
+   62c24:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62c28:      	bti	j
+   62c2c:      	mov	x8, x27
+   62c30:      	ldr	x9, [x27]
+   62c34:      	ldr	x10, [x8, #-0x8]!
+   62c38:      	sdiv	x11, x10, x9
+   62c3c:      	msub	x9, x11, x9, x10
+   62c40:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62c44:      	bti	j
+   62c48:      	mov	x8, x27
+   62c4c:      	ldr	x9, [x27]
+   62c50:      	ldr	x10, [x8, #-0x8]!
+   62c54:      	cmp	x10, x9
+   62c58:      	cset	w9, eq
+   62c5c:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62c60:      	bti	j
+   62c64:      	ldursh	x8, [x10, #0x1]
+   62c68:      	add	x9, x10, #0x3
+   62c6c:      	b	0x62e60 <XXH32_digest+0x3698>
+   62c70:      	bti	j
+   62c74:      	ldr	x11, [x27], #-0x8
+   62c78:      	ldursh	x8, [x10, #0x1]
+   62c7c:      	add	x9, x10, #0x3
+   62c80:      	stur	x9, [x29, #-0x8]
+   62c84:      	cbz	x11, 0x629fc <XXH32_digest+0x3234>
+   62c88:      	add	x8, x9, x8
+   62c8c:      	stur	x8, [x29, #-0x8]
+   62c90:      	b	0x629fc <XXH32_digest+0x3234>
+   62c94:      	bti	j
+   62c98:      	mov	x8, x27
+   62c9c:      	ldr	x9, [x27]
+   62ca0:      	ldr	x10, [x8, #-0x8]!
+   62ca4:      	cmp	x10, x9
+   62ca8:      	cset	w9, hs
+   62cac:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62cb0:      	bti	j
+   62cb4:      	mov	x10, xzr
+   62cb8:      	mov	x9, xzr
+   62cbc:      	mov	x11, x8
+   62cc0:      	cmp	x11, x20
+   62cc4:      	b.eq	0x63188 <XXH32_digest+0x39c0>
+   62cc8:      	ldrb	w12, [x11], #0x1
+   62ccc:      	add	x8, x8, #0x1
+   62cd0:      	and	x13, x12, #0x7f
+   62cd4:      	lsl	x13, x13, x10
+   62cd8:      	add	x10, x10, #0x7
+   62cdc:      	orr	x9, x13, x9
+   62ce0:      	tbnz	w12, #0x7, 0x62cc0 <XXH32_digest+0x34f8>
+   62ce4:      	sub	w11, w10, #0x7
+   62ce8:      	mov	x13, #-0x1              // =-1
+   62cec:      	stur	x8, [x29, #-0x8]
+   62cf0:      	cmp	w11, #0x39
+   62cf4:      	mov	w11, #0x3f              // =63
+   62cf8:      	lsl	x10, x13, x10
+   62cfc:      	ccmp	w12, w11, #0x0, lo
+   62d00:      	csel	x10, x10, xzr, hi
+   62d04:      	orr	x9, x9, x10
+   62d08:      	str	x9, [x27, #0x8]!
+   62d0c:      	b	0x629fc <XXH32_digest+0x3234>
+   62d10:      	bti	j
+   62d14:      	mov	x8, x27
+   62d18:      	ldr	x9, [x27]
+   62d1c:      	ldr	x10, [x8, #-0x8]!
+   62d20:      	and	x9, x10, x9
+   62d24:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62d28:      	bti	j
+   62d2c:      	mov	x8, x27
+   62d30:      	ldr	x9, [x27]
+   62d34:      	ldr	x10, [x8, #-0x8]!
+   62d38:      	cmp	x10, x9
+   62d3c:      	cset	w9, hi
+   62d40:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62d44:      	bti	j
+   62d48:      	ldursw	x8, [x10, #0x1]
+   62d4c:      	add	x9, x10, #0x5
+   62d50:      	b	0x62e60 <XXH32_digest+0x3698>
+   62d54:      	bti	j
+   62d58:      	mov	x8, x27
+   62d5c:      	ldr	x9, [x27]
+   62d60:      	ldr	x10, [x8, #-0x8]!
+   62d64:      	eor	x9, x10, x9
+   62d68:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62d6c:      	bti	j
+   62d70:      	ldr	x8, [x27]
+   62d74:      	tbz	x8, #0x3f, 0x629fc <XXH32_digest+0x3234>
+   62d78:      	b	0x62f98 <XXH32_digest+0x37d0>
+   62d7c:      	bti	j
+   62d80:      	ldrsb	x8, [x10, #0x1]
+   62d84:      	b	0x62dc4 <XXH32_digest+0x35fc>
+   62d88:      	bti	j
+   62d8c:      	ldr	x8, [x27]
+   62d90:      	b	0x629f8 <XXH32_digest+0x3230>
+   62d94:      	bti	j
+   62d98:      	sub	x0, x29, #0x8
+   62d9c:      	mov	x1, x20
+   62da0:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   62da4:      	str	x0, [x27, #0x8]!
+   62da8:      	b	0x629fc <XXH32_digest+0x3234>
+   62dac:      	bti	j
+   62db0:      	ldur	w8, [x10, #0x1]
+   62db4:      	add	x9, x10, #0x5
+   62db8:      	b	0x62e60 <XXH32_digest+0x3698>
+   62dbc:      	bti	j
+   62dc0:      	ldrb	w8, [x10, #0x1]
+   62dc4:      	add	x9, x10, #0x2
+   62dc8:      	b	0x62e60 <XXH32_digest+0x3698>
+   62dcc:      	bti	j
+   62dd0:      	sub	x27, x27, #0x8
+   62dd4:      	b	0x629fc <XXH32_digest+0x3234>
+   62dd8:      	bti	j
+   62ddc:      	ldurh	w8, [x10, #0x1]
+   62de0:      	add	x9, x10, #0x3
+   62de4:      	b	0x62e60 <XXH32_digest+0x3698>
+   62de8:      	bti	j
+   62dec:      	ldr	x8, [x27]
+   62df0:      	ldr	x8, [x8]
+   62df4:      	str	x8, [x27]
+   62df8:      	b	0x629fc <XXH32_digest+0x3234>
+   62dfc:      	bti	j
+   62e00:      	ldur	q0, [x27, #-0x10]
+   62e04:      	ldr	x8, [x27]
+   62e08:      	stur	q0, [x27, #-0x8]
+   62e0c:      	stur	x8, [x27, #-0x10]
+   62e10:      	b	0x629fc <XXH32_digest+0x3234>
+   62e14:      	bti	j
+   62e18:      	mov	x8, x27
+   62e1c:      	ldr	x9, [x27]
+   62e20:      	ldr	x10, [x8, #-0x8]!
+   62e24:      	sdiv	x9, x10, x9
+   62e28:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62e2c:      	bti	j
+   62e30:      	ldur	x8, [x27, #-0x8]
+   62e34:      	b	0x629f8 <XXH32_digest+0x3230>
+   62e38:      	bti	j
+   62e3c:      	ldur	q0, [x27, #-0x8]
+   62e40:      	ext	v0.16b, v0.16b, v0.16b, #0x8
+   62e44:      	stur	q0, [x27, #-0x8]
+   62e48:      	b	0x629fc <XXH32_digest+0x3234>
+   62e4c:      	bti	j
+   62e50:      	ldrb	w8, [x10, #0x1]
+   62e54:      	add	x9, x10, #0x2
+   62e58:      	sub	x8, x27, x8, lsl #3
+   62e5c:      	ldr	x8, [x8]
+   62e60:      	stur	x9, [x29, #-0x8]
+   62e64:      	b	0x629f8 <XXH32_digest+0x3230>
+   62e68:      	bti	j
+   62e6c:      	ldr	x8, [x27]
+   62e70:      	mvn	x8, x8
+   62e74:      	str	x8, [x27]
+   62e78:      	b	0x629fc <XXH32_digest+0x3234>
+   62e7c:      	bti	j
+   62e80:      	mov	x8, x27
+   62e84:      	ldr	x9, [x27]
+   62e88:      	ldr	x10, [x8, #-0x8]!
+   62e8c:      	lsl	x9, x10, x9
+   62e90:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62e94:      	bti	j
+   62e98:      	mov	x8, x27
+   62e9c:      	ldr	x9, [x27]
+   62ea0:      	ldr	x10, [x8, #-0x8]!
+   62ea4:      	lsr	x9, x10, x9
+   62ea8:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62eac:      	bti	j
+   62eb0:      	mov	x8, x27
+   62eb4:      	ldr	x9, [x27]
+   62eb8:      	ldr	x10, [x8, #-0x8]!
+   62ebc:      	add	x9, x10, x9
+   62ec0:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62ec4:      	bti	j
+   62ec8:      	add	x8, x10, #0x2
+   62ecc:      	stur	x8, [x29, #-0x8]
+   62ed0:      	ldr	x8, [x27]
+   62ed4:      	ldrb	w9, [x10, #0x1]
+   62ed8:      	cmp	w9, #0x3
+   62edc:      	b.gt	0x6301c <XXH32_digest+0x3854>
+   62ee0:      	cmp	w9, #0x1
+   62ee4:      	b.eq	0x630dc <XXH32_digest+0x3914>
+   62ee8:      	cmp	w9, #0x2
+   62eec:      	b.ne	0x63298 <XXH32_digest+0x3ad0>
+   62ef0:      	ldrh	w8, [x8]
+   62ef4:      	str	x8, [x27]
+   62ef8:      	b	0x629fc <XXH32_digest+0x3234>
+   62efc:      	bti	j
+   62f00:      	sub	x0, x29, #0x8
+   62f04:      	mov	x1, x20
+   62f08:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   62f0c:      	ldr	x8, [x27]
+   62f10:      	add	x8, x8, x0
+   62f14:      	str	x8, [x27]
+   62f18:      	b	0x629fc <XXH32_digest+0x3234>
+   62f1c:      	bti	j
+   62f20:      	mov	x8, x27
+   62f24:      	ldr	x9, [x27]
+   62f28:      	ldr	x10, [x8, #-0x8]!
+   62f2c:      	asr	x9, x10, x9
+   62f30:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62f34:      	bti	j
+   62f38:      	ldr	x8, [x27]
+   62f3c:      	ldr	x8, [x8]
+   62f40:      	str	x8, [x27, #-0x8]!
+   62f44:      	b	0x629fc <XXH32_digest+0x3234>
+   62f48:      	bti	j
+   62f4c:      	mov	x8, x27
+   62f50:      	ldr	x9, [x27]
+   62f54:      	ldr	x10, [x8, #-0x8]!
+   62f58:      	mul	x9, x10, x9
+   62f5c:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62f60:      	bti	j
+   62f64:      	mov	x8, x27
+   62f68:      	ldr	x9, [x27]
+   62f6c:      	ldr	x10, [x8, #-0x8]!
+   62f70:      	sub	x9, x10, x9
+   62f74:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62f78:      	bti	j
+   62f7c:      	mov	x8, x27
+   62f80:      	ldr	x9, [x27]
+   62f84:      	ldr	x10, [x8, #-0x8]!
+   62f88:      	orr	x9, x10, x9
+   62f8c:      	b	0x62fbc <XXH32_digest+0x37f4>
+   62f90:      	bti	j
+   62f94:      	ldr	x8, [x27]
+   62f98:      	neg	x8, x8
+   62f9c:      	str	x8, [x27]
+   62fa0:      	b	0x629fc <XXH32_digest+0x3234>
+   62fa4:      	bti	j
+   62fa8:      	mov	x8, x27
+   62fac:      	ldr	x9, [x27]
+   62fb0:      	ldr	x10, [x8, #-0x8]!
+   62fb4:      	cmp	x10, x9
+   62fb8:      	cset	w9, ne
+   62fbc:      	str	x9, [x8]
+   62fc0:      	mov	x27, x8
+   62fc4:      	b	0x629fc <XXH32_digest+0x3234>
+   62fc8:      	bti	j
+   62fcc:      	ldursh	x8, [x10, #0x1]
+   62fd0:      	add	x8, x10, x8
+   62fd4:      	add	x8, x8, #0x3
+   62fd8:      	stur	x8, [x29, #-0x8]
+   62fdc:      	b	0x629fc <XXH32_digest+0x3234>
+   62fe0:      	bti	j
+   62fe4:      	sub	x0, x29, #0x8
+   62fe8:      	mov	x1, x20
+   62fec:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   62ff0:      	cmp	w0, #0x1d
+   62ff4:      	b.le	0x63030 <XXH32_digest+0x3868>
+   62ff8:      	cmp	w0, #0x1f
+   62ffc:      	b.gt	0x63080 <XXH32_digest+0x38b8>
+   63000:      	cmp	w0, #0x1e
+   63004:      	mov	x8, x21
+   63008:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   6300c:      	cmp	w0, #0x1f
+   63010:      	mov	x8, x24
+   63014:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   63018:      	b	0x63098 <XXH32_digest+0x38d0>
+   6301c:      	cmp	w9, #0x4
+   63020:      	b.eq	0x630e8 <XXH32_digest+0x3920>
+   63024:      	cmp	w9, #0x8
+   63028:      	b.eq	0x62df0 <XXH32_digest+0x3628>
+   6302c:      	b	0x63298 <XXH32_digest+0x3ad0>
+   63030:      	cmn	w0, #0x2
+   63034:      	mov	x8, x24
+   63038:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   6303c:      	cmn	w0, #0x1
+   63040:      	mov	x8, x25
+   63044:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   63048:      	cmp	w0, #0x1d
+   6304c:      	mov	x8, x22
+   63050:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   63054:      	b	0x63098 <XXH32_digest+0x38d0>
+   63058:      	cmn	w0, #0x2
+   6305c:      	mov	x10, x24
+   63060:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   63064:      	cmn	w0, #0x1
+   63068:      	mov	x10, x25
+   6306c:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   63070:      	cmp	w0, #0x1d
+   63074:      	mov	x10, x22
+   63078:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   6307c:      	b	0x630c0 <XXH32_digest+0x38f8>
+   63080:      	cmp	w0, #0x20
+   63084:      	mov	x8, x25
+   63088:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   6308c:      	cmp	w0, #0x22
+   63090:      	mov	x8, x23
+   63094:      	b.eq	0x629f4 <XXH32_digest+0x322c>
+   63098:      	cmp	w0, #0x1c
+   6309c:      	b.hi	0x63300 <XXH32_digest+0x3b38>
+   630a0:      	add	x8, x19, w0, uxtw #3
+   630a4:      	b	0x629f4 <XXH32_digest+0x322c>
+   630a8:      	cmp	w0, #0x20
+   630ac:      	mov	x10, x25
+   630b0:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   630b4:      	cmp	w0, #0x22
+   630b8:      	mov	x10, x23
+   630bc:      	b.eq	0x630cc <XXH32_digest+0x3904>
+   630c0:      	cmp	w0, #0x1c
+   630c4:      	b.hi	0x632cc <XXH32_digest+0x3b04>
+   630c8:      	add	x10, x19, w0, uxtw #3
+   630cc:      	ldr	x10, [x10]
+   630d0:      	orr	x8, x8, x9
+   630d4:      	add	x8, x10, x8
+   630d8:      	b	0x629f8 <XXH32_digest+0x3230>
+   630dc:      	ldrb	w8, [x8]
+   630e0:      	str	x8, [x27]
+   630e4:      	b	0x629fc <XXH32_digest+0x3234>
+   630e8:      	ldr	w8, [x8]
+   630ec:      	str	x8, [x27]
+   630f0:      	b	0x629fc <XXH32_digest+0x3234>
+   630f4:      	ldr	x21, [x27]
+   630f8:      	mov	x0, x21
+   630fc:      	add	sp, sp, #0x330
+   63100:      	ldp	x20, x19, [sp, #0x50]
+   63104:      	ldp	x22, x21, [sp, #0x40]
+   63108:      	ldp	x24, x23, [sp, #0x30]
+   6310c:      	ldp	x26, x25, [sp, #0x20]
+   63110:      	ldp	x28, x27, [sp, #0x10]
+   63114:      	ldp	x29, x30, [sp], #0x60
+   63118:      	autiasp
+   6311c:      	ret
+   63120:      	adrp	x19, 0x6b000
+   63124:      	nop
+   63128:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6312c:      	ldr	x19, [x19, #0x3f8]
+   63130:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63134:      	add	x2, x2, #0xd0b
+   63138:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6313c:      	add	x3, x3, #0x497
+   63140:      	add	x0, x19, #0x130
+   63144:      	bl	0x65bc0 <fprintf@plt>
+   63148:      	add	x0, x19, #0x130
+   6314c:      	bl	0x65bd0 <fflush@plt>
+   63150:      	bl	0x65be0 <abort@plt>
+   63154:      	adrp	x19, 0x6b000
+   63158:      	nop
+   6315c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63160:      	ldr	x19, [x19, #0x3f8]
+   63164:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63168:      	add	x2, x2, #0xd0b
+   6316c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63170:      	add	x3, x3, #0x497
+   63174:      	add	x0, x19, #0x130
+   63178:      	bl	0x65bc0 <fprintf@plt>
+   6317c:      	add	x0, x19, #0x130
+   63180:      	bl	0x65bd0 <fflush@plt>
+   63184:      	bl	0x65be0 <abort@plt>
+   63188:      	adrp	x19, 0x6b000
+   6318c:      	nop
+   63190:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63194:      	ldr	x19, [x19, #0x3f8]
+   63198:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6319c:      	add	x2, x2, #0xd0b
+   631a0:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   631a4:      	add	x3, x3, #0x497
+   631a8:      	add	x0, x19, #0x130
+   631ac:      	bl	0x65bc0 <fprintf@plt>
+   631b0:      	add	x0, x19, #0x130
+   631b4:      	bl	0x65bd0 <fflush@plt>
+   631b8:      	bl	0x65be0 <abort@plt>
+   631bc:      	adrp	x19, 0x6b000
+   631c0:      	nop
+   631c4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   631c8:      	ldr	x19, [x19, #0x3f8]
+   631cc:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   631d0:      	add	x2, x2, #0x888
+   631d4:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   631d8:      	add	x3, x3, #0x3c7
+   631dc:      	add	x0, x19, #0x130
+   631e0:      	bl	0x65bc0 <fprintf@plt>
+   631e4:      	add	x0, x19, #0x130
+   631e8:      	bl	0x65bd0 <fflush@plt>
+   631ec:      	bl	0x65be0 <abort@plt>
+   631f0:      	bti	j
+   631f4:      	adrp	x19, 0x6b000
+   631f8:      	nop
+   631fc:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63200:      	ldr	x19, [x19, #0x3f8]
+   63204:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63208:      	add	x2, x2, #0x53f
+   6320c:      	adrp	x3, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   63210:      	add	x3, x3, #0x9c
+   63214:      	add	x0, x19, #0x130
+   63218:      	bl	0x65bc0 <fprintf@plt>
+   6321c:      	add	x0, x19, #0x130
+   63220:      	bl	0x65bd0 <fflush@plt>
+   63224:      	bl	0x65be0 <abort@plt>
+   63228:      	bti	j
+   6322c:      	adrp	x19, 0x6b000
+   63230:      	nop
+   63234:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63238:      	ldr	x19, [x19, #0x3f8]
+   6323c:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63240:      	add	x2, x2, #0x53f
+   63244:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63248:      	add	x3, x3, #0x4b4
+   6324c:      	add	x0, x19, #0x130
+   63250:      	bl	0x65bc0 <fprintf@plt>
+   63254:      	add	x0, x19, #0x130
+   63258:      	bl	0x65bd0 <fflush@plt>
+   6325c:      	bl	0x65be0 <abort@plt>
+   63260:      	bti	j
+   63264:      	adrp	x19, 0x6b000
+   63268:      	nop
+   6326c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63270:      	ldr	x19, [x19, #0x3f8]
+   63274:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63278:      	add	x2, x2, #0x53f
+   6327c:      	adrp	x3, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   63280:      	add	x3, x3, #0x985
+   63284:      	add	x0, x19, #0x130
+   63288:      	bl	0x65bc0 <fprintf@plt>
+   6328c:      	add	x0, x19, #0x130
+   63290:      	bl	0x65bd0 <fflush@plt>
+   63294:      	bl	0x65be0 <abort@plt>
+   63298:      	adrp	x19, 0x6b000
+   6329c:      	nop
+   632a0:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   632a4:      	ldr	x19, [x19, #0x3f8]
+   632a8:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   632ac:      	add	x2, x2, #0x53f
+   632b0:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   632b4:      	add	x3, x3, #0xd16
+   632b8:      	add	x0, x19, #0x130
+   632bc:      	bl	0x65bc0 <fprintf@plt>
+   632c0:      	add	x0, x19, #0x130
+   632c4:      	bl	0x65bd0 <fflush@plt>
+   632c8:      	bl	0x65be0 <abort@plt>
+   632cc:      	adrp	x19, 0x6b000
+   632d0:      	nop
+   632d4:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   632d8:      	ldr	x19, [x19, #0x3f8]
+   632dc:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   632e0:      	add	x2, x2, #0x888
+   632e4:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   632e8:      	add	x3, x3, #0x3c7
+   632ec:      	add	x0, x19, #0x130
+   632f0:      	bl	0x65bc0 <fprintf@plt>
+   632f4:      	add	x0, x19, #0x130
+   632f8:      	bl	0x65bd0 <fflush@plt>
+   632fc:      	bl	0x65be0 <abort@plt>
+   63300:      	adrp	x19, 0x6b000
+   63304:      	nop
+   63308:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   6330c:      	ldr	x19, [x19, #0x3f8]
+   63310:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63314:      	add	x2, x2, #0x888
+   63318:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   6331c:      	add	x3, x3, #0x3c7
+   63320:      	add	x0, x19, #0x130
+   63324:      	bl	0x65bc0 <fprintf@plt>
+   63328:      	add	x0, x19, #0x130
+   6332c:      	bl	0x65bd0 <fflush@plt>
+   63330:      	bl	0x65be0 <abort@plt>
+   63334:      	paciasp
+   63338:      	stp	x29, x30, [sp, #-0x60]!
+   6333c:      	stp	x28, x27, [sp, #0x10]
+   63340:      	stp	x26, x25, [sp, #0x20]
+   63344:      	stp	x24, x23, [sp, #0x30]
+   63348:      	stp	x22, x21, [sp, #0x40]
+   6334c:      	stp	x20, x19, [sp, #0x50]
+   63350:      	mov	x29, sp
+   63354:      	sub	sp, sp, #0x6a0
+   63358:      	mov	w21, w3
+   6335c:      	mov	x19, x2
+   63360:      	mov	x22, x1
+   63364:      	mov	x20, x0
+   63368:      	cbz	w3, 0x6338c <XXH32_digest+0x3bc4>
+   6336c:      	ldp	x2, x3, [x19, #0x10]
+   63370:      	add	x5, sp, #0x50
+   63374:      	ldr	x0, [x20, #0x8]
+   63378:      	add	x6, sp, #0x18
+   6337c:      	mov	x1, x22
+   63380:      	add	x4, x2, w21, uxtw
+   63384:      	bl	0x6385c <XXH32_digest+0x4094>
+   63388:      	tbnz	w0, #0x0, 0x634a4 <XXH32_digest+0x3cdc>
+   6338c:      	ldr	x2, [x19, #0x20]
+   63390:      	cbz	x2, 0x633b0 <XXH32_digest+0x3be8>
+   63394:      	ldr	x0, [x20, #0x8]
+   63398:      	ldr	w3, [x19, #0x28]
+   6339c:      	add	x4, sp, #0x50
+   633a0:      	add	x5, sp, #0x18
+   633a4:      	mov	x1, x22
+   633a8:      	bl	0x63a24 <XXH32_digest+0x425c>
+   633ac:      	tbnz	w0, #0x0, 0x634a4 <XXH32_digest+0x3cdc>
+   633b0:      	ldr	x23, [x19]
+   633b4:      	nop
+   633b8:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   633bc:      	bl	0x65c20 <pthread_rwlock_rdlock@plt>
+   633c0:      	adrp	x8, 0x70000
+   633c4:      	adrp	x9, 0x70000
+   633c8:      	ldr	x8, [x8, #0x4f0]
+   633cc:      	ldr	x9, [x9, #0x4f8]
+   633d0:      	cmp	x8, x9
+   633d4:      	b.hs	0x63478 <XXH32_digest+0x3cb0>
+   633d8:      	cmn	x23, #0x1
+   633dc:      	b.ne	0x633f0 <XXH32_digest+0x3c28>
+   633e0:      	b	0x63424 <XXH32_digest+0x3c5c>
+   633e4:      	add	x8, x8, #0x20
+   633e8:      	cmp	x8, x9
+   633ec:      	b.hs	0x63478 <XXH32_digest+0x3cb0>
+   633f0:      	ldr	x10, [x8]
+   633f4:      	cmp	x10, x23
+   633f8:      	b.ne	0x633e4 <XXH32_digest+0x3c1c>
+   633fc:      	ldr	x10, [x8, #0x8]
+   63400:      	cmp	x10, x22
+   63404:      	b.hi	0x633e4 <XXH32_digest+0x3c1c>
+   63408:      	ldr	x10, [x8, #0x10]
+   6340c:      	cmp	x10, x22
+   63410:      	b.ls	0x633e4 <XXH32_digest+0x3c1c>
+   63414:      	b	0x6343c <XXH32_digest+0x3c74>
+   63418:      	add	x8, x8, #0x20
+   6341c:      	cmp	x8, x9
+   63420:      	b.hs	0x63478 <XXH32_digest+0x3cb0>
+   63424:      	ldr	x10, [x8, #0x8]
+   63428:      	cmp	x10, x22
+   6342c:      	b.hi	0x63418 <XXH32_digest+0x3c50>
+   63430:      	ldr	x10, [x8, #0x10]
+   63434:      	cmp	x10, x22
+   63438:      	b.ls	0x63418 <XXH32_digest+0x3c50>
+   6343c:      	ldr	x23, [x8, #0x18]
+   63440:      	nop
+   63444:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   63448:      	bl	0x65c00 <pthread_rwlock_unlock@plt>
+   6344c:      	cbz	x23, 0x63484 <XXH32_digest+0x3cbc>
+   63450:      	ldp	x2, x3, [x19, #0x10]
+   63454:      	add	x5, sp, #0x50
+   63458:      	ldr	x0, [x20, #0x8]
+   6345c:      	add	x6, sp, #0x18
+   63460:      	mov	x1, x22
+   63464:      	mov	x4, x23
+   63468:      	bl	0x6385c <XXH32_digest+0x4094>
+   6346c:      	tbz	w0, #0x0, 0x63484 <XXH32_digest+0x3cbc>
+   63470:      	mov	w24, wzr
+   63474:      	b	0x634a8 <XXH32_digest+0x3ce0>
+   63478:      	nop
+   6347c:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   63480:      	bl	0x65c00 <pthread_rwlock_unlock@plt>
+   63484:      	ldp	x2, x3, [x19, #0x10]
+   63488:      	add	x5, sp, #0x50
+   6348c:      	ldr	x0, [x20, #0x8]
+   63490:      	add	x6, sp, #0x18
+   63494:      	mov	x1, x22
+   63498:      	mov	x4, xzr
+   6349c:      	bl	0x6385c <XXH32_digest+0x4094>
+   634a0:      	tbz	w0, #0x0, 0x635e0 <XXH32_digest+0x3e18>
+   634a4:      	mov	w24, #0x1               // =1
+   634a8:      	ldr	x25, [x19]
+   634ac:      	add	x0, sp, #0x80
+   634b0:      	mov	w1, wzr
+   634b4:      	mov	w2, #0x618              // =1560
+   634b8:      	bl	0x64680 <memset@plt>
+   634bc:      	ldr	x0, [x20, #0x8]
+   634c0:      	add	x1, sp, #0x50
+   634c4:      	add	x2, sp, #0x18
+   634c8:      	add	x5, sp, #0x80
+   634cc:      	mov	x3, x22
+   634d0:      	mov	w4, #0x4                // =4
+   634d4:      	bl	0x61498 <XXH32_digest+0x1cd0>
+   634d8:      	tbz	w0, #0x0, 0x635e0 <XXH32_digest+0x3e18>
+   634dc:      	ldr	q0, [sp, #0x70]
+   634e0:      	add	x8, x20, #0x220
+   634e4:      	ldr	x9, [sp, #0x38]
+   634e8:      	ldr	x22, [sp, #0x68]
+   634ec:      	cmp	w21, #0x0
+   634f0:      	mov	w0, #0x1                // =1
+   634f4:      	stur	q0, [x8, #0x8]
+   634f8:      	ldr	w8, [sp, #0x90]
+   634fc:      	str	x9, [x20, #0x238]
+   63500:      	eor	w9, w24, #0x1
+   63504:      	str	x8, [x20, #0x240]
+   63508:      	mov	w8, #0x3000000          // =50331648
+   6350c:      	str	w8, [x20, #0x250]
+   63510:      	ldp	x23, x8, [sp, #0x50]
+   63514:      	str	x22, [x20, #0x220]
+   63518:      	str	xzr, [x20, #0x248]
+   6351c:      	str	w8, [x20, #0x254]
+   63520:      	csinc	w8, w9, wzr, eq
+   63524:      	str	x23, [x20, #0x258]
+   63528:      	str	x25, [x20, #0x260]
+   6352c:      	tbnz	w8, #0x0, 0x635e4 <XXH32_digest+0x3e1c>
+   63530:      	ldr	x8, [x19, #0x20]
+   63534:      	cbnz	x8, 0x635e4 <XXH32_digest+0x3e1c>
+   63538:      	ldr	x24, [x19]
+   6353c:      	nop
+   63540:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   63544:      	str	q0, [sp]
+   63548:      	bl	0x65bf0 <pthread_rwlock_wrlock@plt>
+   6354c:      	adrp	x25, 0x70000
+   63550:      	adrp	x26, 0x70000
+   63554:      	ldr	x8, [x25, #0x4f8]
+   63558:      	ldr	x9, [x26, #0x500]
+   6355c:      	cmp	x8, x9
+   63560:      	b.lo	0x635b4 <XXH32_digest+0x3dec>
+   63564:      	adrp	x27, 0x70000
+   63568:      	ldr	x21, [x27, #0x4f0]
+   6356c:      	sub	x19, x9, x21
+   63570:      	lsl	x0, x19, #2
+   63574:      	asr	x28, x19, #3
+   63578:      	bl	0x65330 <malloc@plt>
+   6357c:      	mov	x1, x21
+   63580:      	mov	x2, x19
+   63584:      	mov	x20, x0
+   63588:      	bl	0x64630 <memcpy@plt>
+   6358c:      	nop
+   63590:      	adr	x8, 0x70a18 <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0xc0>
+   63594:      	cmp	x21, x8
+   63598:      	b.eq	0x635a4 <XXH32_digest+0x3ddc>
+   6359c:      	mov	x0, x21
+   635a0:      	bl	0x65380 <free@plt>
+   635a4:      	add	x9, x20, x28, lsl #5
+   635a8:      	add	x8, x20, x19
+   635ac:      	str	x20, [x27, #0x4f0]
+   635b0:      	str	x9, [x26, #0x500]
+   635b4:      	ldr	q0, [sp]
+   635b8:      	stp	x24, x22, [x8]
+   635bc:      	nop
+   635c0:      	adr	x0, 0x709dc <_ZN10verenderer22MTRenderCommandEncoder22ATTRIB_SAMPLE_PositionE+0x84>
+   635c4:      	str	x23, [x8, #0x18]
+   635c8:      	str	d0, [x8, #0x10]
+   635cc:      	add	x8, x8, #0x20
+   635d0:      	str	x8, [x25, #0x4f8]
+   635d4:      	bl	0x65c00 <pthread_rwlock_unlock@plt>
+   635d8:      	mov	w0, #0x1                // =1
+   635dc:      	b	0x635e4 <XXH32_digest+0x3e1c>
+   635e0:      	mov	w0, wzr
+   635e4:      	add	sp, sp, #0x6a0
+   635e8:      	ldp	x20, x19, [sp, #0x50]
+   635ec:      	ldp	x22, x21, [sp, #0x40]
+   635f0:      	ldp	x24, x23, [sp, #0x30]
+   635f4:      	ldp	x26, x25, [sp, #0x20]
+   635f8:      	ldp	x28, x27, [sp, #0x10]
+   635fc:      	ldp	x29, x30, [sp], #0x60
+   63600:      	autiasp
+   63604:      	ret
+   63608:      	paciasp
+   6360c:      	sub	sp, sp, #0x70
+   63610:      	stp	x29, x30, [sp, #0x20]
+   63614:      	str	x25, [sp, #0x30]
+   63618:      	stp	x24, x23, [sp, #0x40]
+   6361c:      	stp	x22, x21, [sp, #0x50]
+   63620:      	stp	x20, x19, [sp, #0x60]
+   63624:      	add	x29, sp, #0x20
+   63628:      	ldrh	w21, [x0, #0x18]
+   6362c:      	cbz	x21, 0x63648 <XXH32_digest+0x3e80>
+   63630:      	ldr	x8, [x2, #0x10]
+   63634:      	ldr	x22, [x0]
+   63638:      	mov	x20, x0
+   6363c:      	mov	x19, x2
+   63640:      	cmp	x8, x22
+   63644:      	b.hs	0x6366c <XXH32_digest+0x3ea4>
+   63648:      	mov	w0, wzr
+   6364c:      	ldp	x20, x19, [sp, #0x60]
+   63650:      	ldr	x25, [sp, #0x30]
+   63654:      	ldp	x22, x21, [sp, #0x50]
+   63658:      	ldp	x24, x23, [sp, #0x40]
+   6365c:      	ldp	x29, x30, [sp, #0x20]
+   63660:      	add	sp, sp, #0x70
+   63664:      	autiasp
+   63668:      	ret
+   6366c:      	ldr	x11, [x20, #0x10]
+   63670:      	mov	x9, x21
+   63674:      	mov	x10, x11
+   63678:      	b	0x63688 <XXH32_digest+0x3ec0>
+   6367c:      	subs	x9, x9, #0x1
+   63680:      	mov	x11, x10
+   63684:      	b.eq	0x63648 <XXH32_digest+0x3e80>
+   63688:      	ldr	w12, [x10], #0x38
+   6368c:      	cmp	w12, #0x1
+   63690:      	b.ne	0x6367c <XXH32_digest+0x3eb4>
+   63694:      	ldr	x12, [x11, #0x10]
+   63698:      	add	x12, x12, x22
+   6369c:      	cmp	x8, x12
+   636a0:      	b.lo	0x6367c <XXH32_digest+0x3eb4>
+   636a4:      	ldr	x11, [x11, #0x28]
+   636a8:      	add	x13, x11, x12
+   636ac:      	cmp	x8, x13
+   636b0:      	b.hs	0x6367c <XXH32_digest+0x3eb4>
+   636b4:      	ldr	x8, [x19, #0x8]
+   636b8:      	mov	w9, #-0x1               // =-1
+   636bc:      	mov	w25, #0xe550            // =58704
+   636c0:      	add	x23, x21, x9
+   636c4:      	mov	w24, #0x38              // =56
+   636c8:      	movk	w25, #0x6474, lsl #16
+   636cc:      	stp	x12, x11, [x8]
+   636d0:      	b	0x636e4 <XXH32_digest+0x3f1c>
+   636d4:      	sub	w21, w21, #0x1
+   636d8:      	sub	x23, x23, #0x1
+   636dc:      	and	w8, w21, #0xffff
+   636e0:      	cbz	w8, 0x63648 <XXH32_digest+0x3e80>
+   636e4:      	and	x8, x23, #0xffffffff
+   636e8:      	ldr	x9, [x20, #0x10]
+   636ec:      	umull	x10, w8, w24
+   636f0:      	ldr	w10, [x9, x10]
+   636f4:      	cmp	w10, w25
+   636f8:      	b.ne	0x636d4 <XXH32_digest+0x3f0c>
+   636fc:      	umaddl	x8, w8, w24, x9
+   63700:      	ldp	x0, x10, [x19]
+   63704:      	mov	x3, sp
+   63708:      	ldr	x9, [x8, #0x10]
+   6370c:      	ldr	x8, [x8, #0x28]
+   63710:      	add	x1, x9, x22
+   63714:      	add	x2, x8, x1
+   63718:      	stp	x1, x8, [x10, #0x20]
+   6371c:      	bl	0x6373c <XXH32_digest+0x3f74>
+   63720:      	tbz	w0, #0x0, 0x636d4 <XXH32_digest+0x3f0c>
+   63724:      	ldr	x8, [sp]
+   63728:      	ldr	x9, [x19, #0x8]
+   6372c:      	mov	x10, #-0x1              // =-1
+   63730:      	mov	w0, #0x1                // =1
+   63734:      	stp	x8, x10, [x9, #0x10]
+   63738:      	b	0x6364c <XXH32_digest+0x3e84>
+   6373c:      	paciasp
+   63740:      	stp	x29, x30, [sp, #-0x40]!
+   63744:      	str	x23, [sp, #0x10]
+   63748:      	stp	x22, x21, [sp, #0x20]
+   6374c:      	stp	x20, x19, [sp, #0x30]
+   63750:      	mov	x29, sp
+   63754:      	mov	x20, x3
+   63758:      	sub	x3, x2, x1
+   6375c:      	mov	x19, x1
+   63760:      	cmp	x3, #0x3
+   63764:      	b.hi	0x63790 <XXH32_digest+0x3fc8>
+   63768:      	cmp	x2, x19
+   6376c:      	b.eq	0x63818 <XXH32_digest+0x4050>
+   63770:      	adrp	x20, 0x6b000
+   63774:      	adrp	x1, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63778:      	add	x1, x1, #0xf35
+   6377c:      	ldr	x20, [x20, #0x3f8]
+   63780:      	mov	x2, x19
+   63784:      	add	x0, x20, #0x130
+   63788:      	bl	0x65bc0 <fprintf@plt>
+   6378c:      	b	0x63810 <XXH32_digest+0x4048>
+   63790:      	ldrb	w8, [x19]
+   63794:      	cmp	w8, #0x1
+   63798:      	b.ne	0x637f0 <XXH32_digest+0x4028>
+   6379c:      	add	x8, x19, #0x4
+   637a0:      	ldrb	w21, [x19, #0x2]
+   637a4:      	ldrb	w3, [x19, #0x1]
+   637a8:      	str	x8, [x29, #0x18]
+   637ac:      	add	x1, x29, #0x18
+   637b0:      	mov	x4, x19
+   637b4:      	ldrb	w8, [x19, #0x3]
+   637b8:      	mov	x23, x0
+   637bc:      	mov	x22, x2
+   637c0:      	strb	w8, [x20, #0x18]
+   637c4:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   637c8:      	cmp	w21, #0xff
+   637cc:      	str	x0, [x20]
+   637d0:      	b.eq	0x63834 <XXH32_digest+0x406c>
+   637d4:      	add	x1, x29, #0x18
+   637d8:      	mov	x0, x23
+   637dc:      	mov	x2, x22
+   637e0:      	mov	w3, w21
+   637e4:      	mov	x4, x19
+   637e8:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   637ec:      	b	0x63838 <XXH32_digest+0x4070>
+   637f0:      	adrp	x20, 0x6b000
+   637f4:      	adrp	x1, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   637f8:      	add	x1, x1, #0x2d1
+   637fc:      	ldr	x20, [x20, #0x3f8]
+   63800:      	mov	w2, w8
+   63804:      	mov	x3, x19
+   63808:      	add	x0, x20, #0x130
+   6380c:      	bl	0x65bc0 <fprintf@plt>
+   63810:      	add	x0, x20, #0x130
+   63814:      	bl	0x65bd0 <fflush@plt>
+   63818:      	mov	w0, wzr
+   6381c:      	ldp	x20, x19, [sp, #0x30]
+   63820:      	ldr	x23, [sp, #0x10]
+   63824:      	ldp	x22, x21, [sp, #0x20]
+   63828:      	ldp	x29, x30, [sp], #0x40
+   6382c:      	autiasp
+   63830:      	ret
+   63834:      	mov	x0, xzr
+   63838:      	ldr	x8, [x29, #0x18]
+   6383c:      	stp	x0, x8, [x20, #0x8]
+   63840:      	mov	w0, #0x1                // =1
+   63844:      	ldp	x20, x19, [sp, #0x30]
+   63848:      	ldr	x23, [sp, #0x10]
+   6384c:      	ldp	x22, x21, [sp, #0x20]
+   63850:      	ldp	x29, x30, [sp], #0x40
+   63854:      	autiasp
+   63858:      	ret
+   6385c:      	paciasp
+   63860:      	sub	sp, sp, #0x70
+   63864:      	stp	x29, x30, [sp, #0x10]
+   63868:      	stp	x28, x27, [sp, #0x20]
+   6386c:      	stp	x26, x25, [sp, #0x30]
+   63870:      	stp	x24, x23, [sp, #0x40]
+   63874:      	stp	x22, x21, [sp, #0x50]
+   63878:      	stp	x20, x19, [sp, #0x60]
+   6387c:      	add	x29, sp, #0x10
+   63880:      	cmp	x4, #0x0
+   63884:      	add	x8, x3, x2
+   63888:      	csel	x22, x2, x4, eq
+   6388c:      	cmn	x3, #0x1
+   63890:      	csinv	x27, x8, xzr, ne
+   63894:      	str	x22, [sp, #0x8]
+   63898:      	cmp	x22, x27
+   6389c:      	b.hs	0x639e0 <XXH32_digest+0x4218>
+   638a0:      	mov	x21, x6
+   638a4:      	mov	x19, x5
+   638a8:      	mov	x23, x2
+   638ac:      	mov	x24, x1
+   638b0:      	mov	x20, x0
+   638b4:      	b	0x638c4 <XXH32_digest+0x40fc>
+   638b8:      	cmp	x22, x27
+   638bc:      	str	x22, [sp, #0x8]
+   638c0:      	b.hs	0x639e0 <XXH32_digest+0x4218>
+   638c4:      	mov	x8, x22
+   638c8:      	mov	x26, x22
+   638cc:      	ldr	w9, [x8], #0x4
+   638d0:      	str	x8, [sp, #0x8]
+   638d4:      	cmn	w9, #0x1
+   638d8:      	b.ne	0x638e8 <XXH32_digest+0x4120>
+   638dc:      	ldur	x9, [x26, #0x4]
+   638e0:      	add	x8, x26, #0xc
+   638e4:      	str	x8, [sp, #0x8]
+   638e8:      	cbz	x9, 0x639e0 <XXH32_digest+0x4218>
+   638ec:      	ldr	w10, [x8]
+   638f0:      	add	x22, x8, x9
+   638f4:      	cbz	w10, 0x638b8 <XXH32_digest+0x40f0>
+   638f8:      	sub	x1, x8, x10
+   638fc:      	cmp	x1, x23
+   63900:      	b.lo	0x638b8 <XXH32_digest+0x40f0>
+   63904:      	cmp	x1, x27
+   63908:      	b.hs	0x638b8 <XXH32_digest+0x40f0>
+   6390c:      	mov	x0, x20
+   63910:      	mov	x2, x21
+   63914:      	bl	0x605cc <XXH32_digest+0xe04>
+   63918:      	cbnz	x0, 0x638b8 <XXH32_digest+0x40f0>
+   6391c:      	ldr	x8, [sp, #0x8]
+   63920:      	ldrb	w3, [x21, #0x18]
+   63924:      	add	x1, sp, #0x8
+   63928:      	mov	x0, x20
+   6392c:      	mov	x2, x22
+   63930:      	mov	x4, xzr
+   63934:      	add	x8, x8, #0x4
+   63938:      	str	x8, [sp, #0x8]
+   6393c:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   63940:      	ldrb	w8, [x21, #0x18]
+   63944:      	mov	x25, x0
+   63948:      	add	x1, sp, #0x8
+   6394c:      	mov	x0, x20
+   63950:      	mov	x2, x22
+   63954:      	mov	x4, xzr
+   63958:      	and	w3, w8, #0xf
+   6395c:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   63960:      	cmp	x25, x24
+   63964:      	b.hs	0x638b8 <XXH32_digest+0x40f0>
+   63968:      	add	x28, x0, x25
+   6396c:      	cmp	x28, x24
+   63970:      	b.lo	0x638b8 <XXH32_digest+0x40f0>
+   63974:      	ldrb	w8, [x21, #0x31]
+   63978:      	str	xzr, [x19, #0x28]
+   6397c:      	cbz	w8, 0x63a08 <XXH32_digest+0x4240>
+   63980:      	add	x0, sp, #0x8
+   63984:      	mov	x1, x22
+   63988:      	bl	0x627b0 <XXH32_digest+0x2fe8>
+   6398c:      	ldrb	w8, [x21, #0x19]
+   63990:      	ldr	x24, [sp, #0x8]
+   63994:      	cmp	w8, #0xff
+   63998:      	add	x23, x24, x0
+   6399c:      	b.eq	0x63a0c <XXH32_digest+0x4244>
+   639a0:      	add	x1, sp, #0x8
+   639a4:      	and	w3, w8, #0xf
+   639a8:      	mov	x0, x20
+   639ac:      	mov	x2, x22
+   639b0:      	mov	x4, xzr
+   639b4:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   639b8:      	cbz	x0, 0x63a0c <XXH32_digest+0x4244>
+   639bc:      	ldrb	w3, [x21, #0x19]
+   639c0:      	add	x1, sp, #0x8
+   639c4:      	mov	x0, x20
+   639c8:      	mov	x2, x22
+   639cc:      	mov	x4, xzr
+   639d0:      	str	x24, [sp, #0x8]
+   639d4:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   639d8:      	str	x0, [x19, #0x28]
+   639dc:      	b	0x63a0c <XXH32_digest+0x4244>
+   639e0:      	mov	w0, wzr
+   639e4:      	ldp	x20, x19, [sp, #0x60]
+   639e8:      	ldp	x22, x21, [sp, #0x50]
+   639ec:      	ldp	x24, x23, [sp, #0x40]
+   639f0:      	ldp	x26, x25, [sp, #0x30]
+   639f4:      	ldp	x28, x27, [sp, #0x20]
+   639f8:      	ldp	x29, x30, [sp, #0x10]
+   639fc:      	add	sp, sp, #0x70
+   63a00:      	autiasp
+   63a04:      	ret
+   63a08:      	ldr	x23, [sp, #0x8]
+   63a0c:      	sub	x8, x22, x26
+   63a10:      	stp	x23, x25, [x19, #0x10]
+   63a14:      	mov	w0, #0x1                // =1
+   63a18:      	stp	x26, x8, [x19]
+   63a1c:      	str	x28, [x19, #0x20]
+   63a20:      	b	0x639e4 <XXH32_digest+0x421c>
+   63a24:      	paciasp
+   63a28:      	sub	sp, sp, #0xa0
+   63a2c:      	stp	x29, x30, [sp, #0x40]
+   63a30:      	stp	x28, x27, [sp, #0x50]
+   63a34:      	stp	x26, x25, [sp, #0x60]
+   63a38:      	stp	x24, x23, [sp, #0x70]
+   63a3c:      	stp	x22, x21, [sp, #0x80]
+   63a40:      	stp	x20, x19, [sp, #0x90]
+   63a44:      	add	x29, sp, #0x40
+   63a48:      	add	x24, x2, w3, uxtw
+   63a4c:      	mov	x23, x2
+   63a50:      	mov	x20, x1
+   63a54:      	add	x3, sp, #0x20
+   63a58:      	mov	x1, x2
+   63a5c:      	mov	x21, x5
+   63a60:      	mov	x2, x24
+   63a64:      	mov	x19, x4
+   63a68:      	mov	x22, x0
+   63a6c:      	bl	0x6373c <XXH32_digest+0x3f74>
+   63a70:      	tbz	w0, #0x0, 0x63b64 <XXH32_digest+0x439c>
+   63a74:      	ldr	x8, [sp, #0x28]
+   63a78:      	cbz	x8, 0x63b64 <XXH32_digest+0x439c>
+   63a7c:      	ldrb	w0, [sp, #0x38]
+   63a80:      	stp	x21, x19, [sp, #0x8]
+   63a84:      	bl	0x63b8c <XXH32_digest+0x43c4>
+   63a88:      	ldr	x27, [sp, #0x28]
+   63a8c:      	mov	x25, x0
+   63a90:      	mov	x26, xzr
+   63a94:      	cmp	x27, #0x1
+   63a98:      	b.ls	0x63ae4 <XXH32_digest+0x431c>
+   63a9c:      	lsr	x21, x27, #1
+   63aa0:      	ldr	x8, [sp, #0x30]
+   63aa4:      	ldrb	w3, [sp, #0x38]
+   63aa8:      	add	x1, sp, #0x18
+   63aac:      	mov	x0, x22
+   63ab0:      	mov	x2, x24
+   63ab4:      	add	x19, x21, x26
+   63ab8:      	mov	x4, x23
+   63abc:      	mul	x28, x19, x25
+   63ac0:      	add	x8, x8, x28
+   63ac4:      	str	x8, [sp, #0x18]
+   63ac8:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   63acc:      	sub	x8, x27, x21
+   63ad0:      	cmp	x0, x20
+   63ad4:      	csel	x26, x26, x19, hs
+   63ad8:      	csel	x27, x21, x8, hs
+   63adc:      	b.ne	0x63a94 <XXH32_digest+0x42cc>
+   63ae0:      	b	0x63ae8 <XXH32_digest+0x4320>
+   63ae4:      	mul	x28, x26, x25
+   63ae8:      	ldr	x8, [sp, #0x30]
+   63aec:      	ldrb	w25, [sp, #0x38]
+   63af0:      	add	x1, sp, #0x18
+   63af4:      	mov	x0, x22
+   63af8:      	mov	x2, x24
+   63afc:      	mov	x4, x23
+   63b00:      	add	x8, x8, x28
+   63b04:      	mov	w3, w25
+   63b08:      	str	x8, [sp, #0x18]
+   63b0c:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   63b10:      	add	x1, sp, #0x18
+   63b14:      	mov	x0, x22
+   63b18:      	mov	x2, x24
+   63b1c:      	mov	w3, w25
+   63b20:      	mov	x4, x23
+   63b24:      	bl	0x62424 <XXH32_digest+0x2c5c>
+   63b28:      	ldp	x3, x19, [sp, #0x8]
+   63b2c:      	mov	x1, x0
+   63b30:      	mov	x0, x22
+   63b34:      	mov	w4, wzr
+   63b38:      	mov	x2, x19
+   63b3c:      	bl	0x6043c <XXH32_digest+0xc74>
+   63b40:      	cbnz	x0, 0x63b64 <XXH32_digest+0x439c>
+   63b44:      	ldr	x8, [x19, #0x18]
+   63b48:      	cmp	x8, x20
+   63b4c:      	b.hi	0x63b64 <XXH32_digest+0x439c>
+   63b50:      	ldr	x8, [x19, #0x20]
+   63b54:      	cmp	x8, x20
+   63b58:      	b.ls	0x63b64 <XXH32_digest+0x439c>
+   63b5c:      	mov	w0, #0x1                // =1
+   63b60:      	b	0x63b68 <XXH32_digest+0x43a0>
+   63b64:      	mov	w0, wzr
+   63b68:      	ldp	x20, x19, [sp, #0x90]
+   63b6c:      	ldp	x22, x21, [sp, #0x80]
+   63b70:      	ldp	x24, x23, [sp, #0x70]
+   63b74:      	ldp	x26, x25, [sp, #0x60]
+   63b78:      	ldp	x28, x27, [sp, #0x50]
+   63b7c:      	ldp	x29, x30, [sp, #0x40]
+   63b80:      	add	sp, sp, #0xa0
+   63b84:      	autiasp
+   63b88:      	ret
+   63b8c:      	paciasp
+   63b90:      	stp	x29, x30, [sp, #-0x20]!
+   63b94:      	str	x19, [sp, #0x10]
+   63b98:      	mov	x29, sp
+   63b9c:      	and	w8, w0, #0xf
+   63ba0:      	mov	w0, #0x4                // =4
+   63ba4:      	cmp	w8, #0x8
+   63ba8:      	b.gt	0x63bc8 <XXH32_digest+0x4400>
+   63bac:      	cmp	w8, #0x2
+   63bb0:      	b.le	0x63c08 <XXH32_digest+0x4440>
+   63bb4:      	cmp	w8, #0x3
+   63bb8:      	b.eq	0x63be0 <XXH32_digest+0x4418>
+   63bbc:      	cmp	w8, #0x4
+   63bc0:      	b.eq	0x63bf4 <XXH32_digest+0x442c>
+   63bc4:      	b	0x63c14 <XXH32_digest+0x444c>
+   63bc8:      	cmp	w8, #0xa
+   63bcc:      	b.le	0x63c48 <XXH32_digest+0x4480>
+   63bd0:      	cmp	w8, #0xc
+   63bd4:      	b.eq	0x63bf4 <XXH32_digest+0x442c>
+   63bd8:      	cmp	w8, #0xb
+   63bdc:      	b.ne	0x63c14 <XXH32_digest+0x444c>
+   63be0:      	mov	w0, #0x8                // =8
+   63be4:      	ldr	x19, [sp, #0x10]
+   63be8:      	ldp	x29, x30, [sp], #0x20
+   63bec:      	autiasp
+   63bf0:      	ret
+   63bf4:      	mov	w0, #0x10               // =16
+   63bf8:      	ldr	x19, [sp, #0x10]
+   63bfc:      	ldp	x29, x30, [sp], #0x20
+   63c00:      	autiasp
+   63c04:      	ret
+   63c08:      	b.eq	0x63be4 <XXH32_digest+0x441c>
+   63c0c:      	cmp	w8, #0x1
+   63c10:      	b.eq	0x63c54 <XXH32_digest+0x448c>
+   63c14:      	adrp	x19, 0x6b000
+   63c18:      	nop
+   63c1c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63c20:      	ldr	x19, [x19, #0x3f8]
+   63c24:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63c28:      	add	x2, x2, #0x40c
+   63c2c:      	adrp	x3, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   63c30:      	add	x3, x3, #0x3f3
+   63c34:      	add	x0, x19, #0x130
+   63c38:      	bl	0x65bc0 <fprintf@plt>
+   63c3c:      	add	x0, x19, #0x130
+   63c40:      	bl	0x65bd0 <fflush@plt>
+   63c44:      	bl	0x65be0 <abort@plt>
+   63c48:      	b.eq	0x63be4 <XXH32_digest+0x441c>
+   63c4c:      	cmp	w8, #0x9
+   63c50:      	b.ne	0x63c14 <XXH32_digest+0x444c>
+   63c54:      	adrp	x19, 0x6b000
+   63c58:      	nop
+   63c5c:      	adr	x1, 0x27b4c <_ZTSN10verenderer3RefE+0x25c>
+   63c60:      	ldr	x19, [x19, #0x3f8]
+   63c64:      	adrp	x2, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63c68:      	add	x2, x2, #0x40c
+   63c6c:      	adrp	x3, 0x28000 <_ZTSN10verenderer3RefE+0x710>
+   63c70:      	add	x3, x3, #0x1c
+   63c74:      	add	x0, x19, #0x130
+   63c78:      	bl	0x65bc0 <fprintf@plt>
+   63c7c:      	add	x0, x19, #0x130
+   63c80:      	bl	0x65bd0 <fflush@plt>
+   63c84:      	bl	0x65be0 <abort@plt>
+   63c88:      	bti	c
+   63c8c:      	add	w8, w0, #0x2
+   63c90:      	cmp	w8, #0x61
+   63c94:      	b.hi	0x63cac <XXH32_digest+0x44e4>
+   63c98:      	nop
+   63c9c:      	adr	x9, 0x2a8f4 <_ZTSN10verenderer18MTTexture3DBackendE+0x214>
+   63ca0:      	ldrsw	x8, [x9, w8, uxtw #2]
+   63ca4:      	add	x0, x9, x8
+   63ca8:      	ret
+   63cac:      	adrp	x0, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   63cb0:      	add	x0, x0, #0x200
+   63cb4:      	ret
+   63cb8:      	bti	c
+   63cbc:      	ldp	x2, x3, [x0, #0x10]
+   63cc0:      	ldp	x4, x5, [x0, #0x20]
+   63cc4:      	ldp	x6, x7, [x0, #0x30]
+   63cc8:      	ldp	x8, x9, [x0, #0x40]
+   63ccc:      	ldp	x10, x11, [x0, #0x50]
+   63cd0:      	ldp	x12, x13, [x0, #0x60]
+   63cd4:      	ldp	x14, x15, [x0, #0x70]
+   63cd8:      	ldp	x18, x19, [x0, #0x90]
+   63cdc:      	ldp	x20, x21, [x0, #0xa0]
+   63ce0:      	ldp	x22, x23, [x0, #0xb0]
+   63ce4:      	ldp	x24, x25, [x0, #0xc0]
+   63ce8:      	ldp	x26, x27, [x0, #0xd0]
+   63cec:      	ldp	x28, x29, [x0, #0xe0]
+   63cf0:      	ldr	x30, [x0, #0x100]
+   63cf4:      	ldp	d0, d1, [x0, #0x110]
+   63cf8:      	ldp	d2, d3, [x0, #0x120]
+   63cfc:      	ldp	d4, d5, [x0, #0x130]
+   63d00:      	ldp	d6, d7, [x0, #0x140]
+   63d04:      	ldp	d8, d9, [x0, #0x150]
+   63d08:      	ldp	d10, d11, [x0, #0x160]
+   63d0c:      	ldp	d12, d13, [x0, #0x170]
+   63d10:      	ldp	d14, d15, [x0, #0x180]
+   63d14:      	ldp	d16, d17, [x0, #0x190]
+   63d18:      	ldp	d18, d19, [x0, #0x1a0]
+   63d1c:      	ldp	d20, d21, [x0, #0x1b0]
+   63d20:      	ldp	d22, d23, [x0, #0x1c0]
+   63d24:      	ldp	d24, d25, [x0, #0x1d0]
+   63d28:      	ldp	d26, d27, [x0, #0x1e0]
+   63d2c:      	ldp	d28, d29, [x0, #0x1f0]
+   63d30:      	ldr	d30, [x0, #0x200]
+   63d34:      	ldr	d31, [x0, #0x208]
+   63d38:      	ldr	x16, [x0, #0xf8]
+   63d3c:      	ldp	x0, x1, [x0]
+   63d40:      	mov	sp, x16
+   63d44:      	ret
+   63d48:      	bti	c
+   63d4c:      	stp	x0, x1, [x0]
+   63d50:      	stp	x2, x3, [x0, #0x10]
+   63d54:      	stp	x4, x5, [x0, #0x20]
+   63d58:      	stp	x6, x7, [x0, #0x30]
+   63d5c:      	stp	x8, x9, [x0, #0x40]
+   63d60:      	stp	x10, x11, [x0, #0x50]
+   63d64:      	stp	x12, x13, [x0, #0x60]
+   63d68:      	stp	x14, x15, [x0, #0x70]
+   63d6c:      	stp	x16, x17, [x0, #0x80]
+   63d70:      	stp	x18, x19, [x0, #0x90]
+   63d74:      	stp	x20, x21, [x0, #0xa0]
+   63d78:      	stp	x22, x23, [x0, #0xb0]
+   63d7c:      	stp	x24, x25, [x0, #0xc0]
+   63d80:      	stp	x26, x27, [x0, #0xd0]
+   63d84:      	stp	x28, x29, [x0, #0xe0]
+   63d88:      	str	x30, [x0, #0xf0]
+   63d8c:      	mov	x1, sp
+   63d90:      	str	x1, [x0, #0xf8]
+   63d94:      	str	x30, [x0, #0x100]
+   63d98:      	stp	d0, d1, [x0, #0x110]
+   63d9c:      	stp	d2, d3, [x0, #0x120]
+   63da0:      	stp	d4, d5, [x0, #0x130]
+   63da4:      	stp	d6, d7, [x0, #0x140]
+   63da8:      	stp	d8, d9, [x0, #0x150]
+   63dac:      	stp	d10, d11, [x0, #0x160]
+   63db0:      	stp	d12, d13, [x0, #0x170]
+   63db4:      	stp	d14, d15, [x0, #0x180]
+   63db8:      	stp	d16, d17, [x0, #0x190]
+   63dbc:      	stp	d18, d19, [x0, #0x1a0]
+   63dc0:      	stp	d20, d21, [x0, #0x1b0]
+   63dc4:      	stp	d22, d23, [x0, #0x1c0]
+   63dc8:      	stp	d24, d25, [x0, #0x1d0]
+   63dcc:      	stp	d26, d27, [x0, #0x1e0]
+   63dd0:      	stp	d28, d29, [x0, #0x1f0]
+   63dd4:      	str	d30, [x0, #0x200]
+   63dd8:      	str	d31, [x0, #0x208]
+   63ddc:      	mov	x0, #0x0                // =0
+   63de0:      	ret
+
+--- FUNCTION: XXH32_init ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005f560 <XXH32_init>:
+   5f560:      	stp	x29, x30, [sp, #-0x20]!
+   5f564:      	str	x19, [sp, #0x10]
+   5f568:      	mov	x29, sp
+   5f56c:      	mov	w19, w0
+   5f570:      	mov	w0, #0x30               // =48
+   5f574:      	bl	0x65330 <malloc@plt>
+   5f578:      	dup	v0.2s, w19
+   5f57c:      	adrp	x8, 0x27000
+   5f580:      	str	w19, [x0, #0x8]
+   5f584:      	ldr	d1, [x8, #0x928]
+   5f588:      	mov	w8, #0x864f             // =34383
+   5f58c:      	str	xzr, [x0]
+   5f590:      	movk	w8, #0x61c8, lsl #16
+   5f594:      	add	w8, w19, w8
+   5f598:      	add	v0.2s, v0.2s, v1.2s
+   5f59c:      	stp	w19, w8, [x0, #0x14]
+   5f5a0:      	stur	d0, [x0, #0xc]
+   5f5a4:      	str	wzr, [x0, #0x1c]
+   5f5a8:      	ldr	x19, [sp, #0x10]
+   5f5ac:      	ldp	x29, x30, [sp], #0x20
+   5f5b0:      	ret
+
+--- FUNCTION: XXH32_intermediateDigest ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005f6e4 <XXH32_intermediateDigest>:
+   5f6e4:      	ldr	x12, [x0]
+   5f6e8:      	ldrsw	x10, [x0, #0x1c]
+   5f6ec:      	mov	w8, #0x67b1             // =26545
+   5f6f0:      	movk	w8, #0x1656, lsl #16
+   5f6f4:      	add	x9, x0, #0x20
+   5f6f8:      	cmp	x12, #0x10
+   5f6fc:      	add	x13, x0, x10
+   5f700:      	b.lo	0x5f730 <XXH32_intermediateDigest+0x4c>
+   5f704:      	adrp	x11, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   5f708:      	adrp	x14, 0x29000 <_ZTSN10verenderer3RefE+0x1710>
+   5f70c:      	ldur	q0, [x0, #0xc]
+   5f710:      	ldr	q1, [x11, #0xb60]
+   5f714:      	ldr	q2, [x14, #0xa90]
+   5f718:      	ushl	v1.4s, v0.4s, v1.4s
+   5f71c:      	ushl	v0.4s, v0.4s, v2.4s
+   5f720:      	orr	v0.16b, v0.16b, v1.16b
+   5f724:      	addv	s0, v0.4s
+   5f728:      	fmov	w15, s0
+   5f72c:      	b	0x5f738 <XXH32_intermediateDigest+0x54>
+   5f730:      	ldr	w11, [x0, #0x8]
+   5f734:      	add	w15, w11, w8
+   5f738:      	mov	w11, #0xae3d            // =44605
+   5f73c:      	cmp	w10, #0x4
+   5f740:      	add	x14, x13, #0x20
+   5f744:      	movk	w11, #0xc2b2, lsl #16
+   5f748:      	add	w12, w15, w12
+   5f74c:      	b.lt	0x5f774 <XXH32_intermediateDigest+0x90>
+   5f750:      	mov	w15, #0xeb2f            // =60207
+   5f754:      	add	x13, x13, #0x1c
+   5f758:      	movk	w15, #0x27d4, lsl #16
+   5f75c:      	ldr	w16, [x9], #0x4
+   5f760:      	cmp	x9, x13
+   5f764:      	madd	w12, w16, w11, w12
+   5f768:      	ror	w12, w12, #0xf
+   5f76c:      	mul	w12, w12, w15
+   5f770:      	b.ls	0x5f75c <XXH32_intermediateDigest+0x78>
+   5f774:      	cmp	x9, x14
+   5f778:      	b.hs	0x5f7a8 <XXH32_intermediateDigest+0xc4>
+   5f77c:      	add	x10, x0, x10
+   5f780:      	mov	w13, #0x79b1            // =31153
+   5f784:      	sub	x10, x10, x9
+   5f788:      	movk	w13, #0x9e37, lsl #16
+   5f78c:      	add	x10, x10, #0x20
+   5f790:      	ldrb	w14, [x9], #0x1
+   5f794:      	subs	x10, x10, #0x1
+   5f798:      	madd	w12, w14, w8, w12
+   5f79c:      	ror	w12, w12, #0x15
+   5f7a0:      	mul	w12, w12, w13
+   5f7a4:      	b.ne	0x5f790 <XXH32_intermediateDigest+0xac>
+   5f7a8:      	eor	w8, w12, w12, lsr #15
+   5f7ac:      	mov	w9, #0xca77             // =51831
+   5f7b0:      	movk	w9, #0x85eb, lsl #16
+   5f7b4:      	mul	w8, w8, w9
+   5f7b8:      	eor	w8, w8, w8, lsr #13
+   5f7bc:      	mul	w8, w8, w11
+   5f7c0:      	eor	w0, w8, w8, lsr #16
+   5f7c4:      	ret
+
+--- FUNCTION: XXH32_resetState ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005f524 <XXH32_resetState>:
+   5f524:      	dup	v0.2s, w1
+   5f528:      	adrp	x9, 0x27000
+   5f52c:      	mov	x8, x0
+   5f530:      	ldr	d1, [x9, #0x928]
+   5f534:      	mov	w9, #0x864f             // =34383
+   5f538:      	mov	w0, wzr
+   5f53c:      	movk	w9, #0x61c8, lsl #16
+   5f540:      	str	w1, [x8, #0x8]
+   5f544:      	add	w9, w1, w9
+   5f548:      	str	xzr, [x8]
+   5f54c:      	add	v0.2s, v0.2s, v1.2s
+   5f550:      	stp	w1, w9, [x8, #0x14]
+   5f554:      	str	wzr, [x8, #0x1c]
+   5f558:      	stur	d0, [x8, #0xc]
+   5f55c:      	ret

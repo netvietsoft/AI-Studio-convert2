@@ -1,0 +1,43 @@
+
+--- FUNCTION: Java_com_meitu_core_MTFilterKernelConfigJNI_nInit ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTFilterKernel.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000c3cd4 <Java_com_meitu_core_MTFilterKernelConfigJNI_nInit>:
+   c3cd4:      	cbz	x3, 0xc3d30 <Java_com_meitu_core_MTFilterKernelConfigJNI_nInit+0x5c>
+   c3cd8:      	stp	x29, x30, [sp, #-0x20]!
+   c3cdc:      	str	x19, [sp, #0x10]
+   c3ce0:      	mov	x29, sp
+   c3ce4:      	mov	x1, x3
+   c3ce8:      	bl	0x1b43f0 <AAssetManager_fromJava@plt>
+   c3cec:      	cbnz	x0, 0xc3d24 <Java_com_meitu_core_MTFilterKernelConfigJNI_nInit+0x50>
+   c3cf0:      	mov	x19, x0
+   c3cf4:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   c3cf8:      	mov	w8, w0
+   c3cfc:      	mov	x0, x19
+   c3d00:      	cmp	w8, #0x5
+   c3d04:      	b.gt	0xc3d24 <Java_com_meitu_core_MTFilterKernelConfigJNI_nInit+0x50>
+   c3d08:      	nop
+   c3d0c:      	adr	x1, 0x7c24e
+   c3d10:      	adrp	x2, 0x8b000
+   c3d14:      	add	x2, x2, #0xc40
+   c3d18:      	mov	w0, #0x6                // =6
+   c3d1c:      	bl	0x1b4270 <__android_log_print@plt>
+   c3d20:      	mov	x0, x19
+   c3d24:      	bl	0xc3194 <_ZN14MTFilterKernel16setAssetsManagerEP13AAssetManager>
+   c3d28:      	ldr	x19, [sp, #0x10]
+   c3d2c:      	ldp	x29, x30, [sp], #0x20
+   c3d30:      	mov	w0, #0x1                // =1
+   c3d34:      	ret
+
+--- FUNCTION: Java_com_meitu_core_MTFilterKernelConfigJNI_nSetLogLevel ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTFilterKernel.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000c3d38 <Java_com_meitu_core_MTFilterKernelConfigJNI_nSetLogLevel>:
+   c3d38:      	mov	w0, w2
+   c3d3c:      	b	0xc5cfc <MTRTFILTERKERNEL_SetLogLevel>

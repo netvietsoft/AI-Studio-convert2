@@ -1,0 +1,931 @@
+
+--- FUNCTION: Clp_AddStringListType ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGImageCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000286744 <Clp_AddStringListType>:
+  286744:      	sub	sp, sp, #0x130
+  286748:      	stp	x29, x30, [sp, #0xd0]
+  28674c:      	stp	x28, x27, [sp, #0xe0]
+  286750:      	stp	x26, x25, [sp, #0xf0]
+  286754:      	stp	x24, x23, [sp, #0x100]
+  286758:      	stp	x22, x21, [sp, #0x110]
+  28675c:      	stp	x20, x19, [sp, #0x120]
+  286760:      	add	x29, sp, #0xd0
+  286764:      	mov	x21, x0
+  286768:      	mov	w0, #0x78               // =120
+  28676c:      	mov	w19, w2
+  286770:      	mov	w20, w1
+  286774:      	stp	x3, x4, [x29, #-0x50]
+  286778:      	stp	x5, x6, [x29, #-0x40]
+  28677c:      	stur	x7, [x29, #-0x30]
+  286780:      	stp	q0, q1, [sp]
+  286784:      	stp	q2, q3, [sp, #0x20]
+  286788:      	stp	q4, q5, [sp, #0x40]
+  28678c:      	stp	q6, q7, [sp, #0x60]
+  286790:      	bl	0x4c2d60 <malloc@plt>
+  286794:      	mov	x8, #-0x28              // =-40
+  286798:      	mov	x9, sp
+  28679c:      	sub	x10, x29, #0x50
+  2867a0:      	movk	x8, #0xff80, lsl #32
+  2867a4:      	add	x9, x9, #0x80
+  2867a8:      	stp	x9, x8, [x29, #-0x18]
+  2867ac:      	add	x8, x10, #0x28
+  2867b0:      	add	x9, x29, #0x60
+  2867b4:      	stp	x9, x8, [x29, #-0x28]
+  2867b8:      	cbz	x0, 0x286988 <Clp_AddStringListType+0x244>
+  2867bc:      	mov	x22, x0
+  2867c0:      	mov	x25, xzr
+  2867c4:      	mov	w23, wzr
+  2867c8:      	mov	w24, #0x5               // =5
+  2867cc:      	mov	w26, #0x18              // =24
+  2867d0:      	tbz	w19, #0x1, 0x2867f0 <Clp_AddStringListType+0xac>
+  2867d4:      	b	0x2868b0 <Clp_AddStringListType+0x16c>
+  2867d8:      	add	x8, x22, x25
+  2867dc:      	add	w23, w23, #0x1
+  2867e0:      	add	x25, x25, #0x18
+  2867e4:      	str	x27, [x8]
+  2867e8:      	str	w28, [x8, #0xc]
+  2867ec:      	str	wzr, [x8, #0x14]
+  2867f0:      	ldur	w9, [x29, #-0x10]
+  2867f4:      	mov	w8, w9
+  2867f8:      	tbz	w9, #0x1f, 0x286824 <Clp_AddStringListType+0xe0>
+  2867fc:      	add	w8, w9, #0x8
+  286800:      	cmn	w9, #0x8
+  286804:      	stur	w8, [x29, #-0x10]
+  286808:      	b.hi	0x286824 <Clp_AddStringListType+0xe0>
+  28680c:      	sxtw	x9, w9
+  286810:      	ldur	x10, [x29, #-0x20]
+  286814:      	add	x9, x10, x9
+  286818:      	ldr	x27, [x9]
+  28681c:      	cbnz	x27, 0x286838 <Clp_AddStringListType+0xf4>
+  286820:      	b	0x286954 <Clp_AddStringListType+0x210>
+  286824:      	ldur	x9, [x29, #-0x28]
+  286828:      	add	x10, x9, #0x8
+  28682c:      	stur	x10, [x29, #-0x28]
+  286830:      	ldr	x27, [x9]
+  286834:      	cbz	x27, 0x286954 <Clp_AddStringListType+0x210>
+  286838:      	tbz	w8, #0x1f, 0x286864 <Clp_AddStringListType+0x120>
+  28683c:      	add	w9, w8, #0x8
+  286840:      	cmn	w8, #0x8
+  286844:      	stur	w9, [x29, #-0x10]
+  286848:      	b.hi	0x286864 <Clp_AddStringListType+0x120>
+  28684c:      	ldur	x9, [x29, #-0x20]
+  286850:      	add	x8, x9, w8, sxtw
+  286854:      	ldr	w28, [x8]
+  286858:      	cmp	w23, w24
+  28685c:      	b.lt	0x2867d8 <Clp_AddStringListType+0x94>
+  286860:      	b	0x28687c <Clp_AddStringListType+0x138>
+  286864:      	ldur	x8, [x29, #-0x28]
+  286868:      	add	x9, x8, #0x8
+  28686c:      	stur	x9, [x29, #-0x28]
+  286870:      	ldr	w28, [x8]
+  286874:      	cmp	w23, w24
+  286878:      	b.lt	0x2867d8 <Clp_AddStringListType+0x94>
+  28687c:      	lsl	w24, w24, #1
+  286880:      	mov	x0, x22
+  286884:      	smull	x1, w24, w26
+  286888:      	bl	0x4c2d80 <realloc@plt>
+  28688c:      	cbz	x0, 0x28697c <Clp_AddStringListType+0x238>
+  286890:      	mov	x22, x0
+  286894:      	b	0x2867d8 <Clp_AddStringListType+0x94>
+  286898:      	add	x8, x22, x25
+  28689c:      	add	w23, w23, #0x1
+  2868a0:      	add	x25, x25, #0x18
+  2868a4:      	str	x27, [x8]
+  2868a8:      	str	w28, [x8, #0xc]
+  2868ac:      	str	wzr, [x8, #0x14]
+  2868b0:      	ldur	w9, [x29, #-0x10]
+  2868b4:      	mov	w8, w9
+  2868b8:      	tbz	w9, #0x1f, 0x2868e4 <Clp_AddStringListType+0x1a0>
+  2868bc:      	add	w8, w9, #0x8
+  2868c0:      	cmn	w9, #0x8
+  2868c4:      	stur	w8, [x29, #-0x10]
+  2868c8:      	b.hi	0x2868e4 <Clp_AddStringListType+0x1a0>
+  2868cc:      	sxtw	x9, w9
+  2868d0:      	ldur	x10, [x29, #-0x20]
+  2868d4:      	add	x9, x10, x9
+  2868d8:      	ldr	x27, [x9]
+  2868dc:      	cbnz	x27, 0x2868f8 <Clp_AddStringListType+0x1b4>
+  2868e0:      	b	0x286954 <Clp_AddStringListType+0x210>
+  2868e4:      	ldur	x9, [x29, #-0x28]
+  2868e8:      	add	x10, x9, #0x8
+  2868ec:      	stur	x10, [x29, #-0x28]
+  2868f0:      	ldr	x27, [x9]
+  2868f4:      	cbz	x27, 0x286954 <Clp_AddStringListType+0x210>
+  2868f8:      	tbz	w8, #0x1f, 0x286918 <Clp_AddStringListType+0x1d4>
+  2868fc:      	add	w9, w8, #0x8
+  286900:      	cmn	w8, #0x8
+  286904:      	stur	w9, [x29, #-0x10]
+  286908:      	b.hi	0x286918 <Clp_AddStringListType+0x1d4>
+  28690c:      	ldur	x9, [x29, #-0x20]
+  286910:      	add	x8, x9, w8, sxtw
+  286914:      	b	0x286924 <Clp_AddStringListType+0x1e0>
+  286918:      	ldur	x8, [x29, #-0x28]
+  28691c:      	add	x9, x8, #0x8
+  286920:      	stur	x9, [x29, #-0x28]
+  286924:      	ldr	x28, [x8]
+  286928:      	cmp	x28, w28, sxtw
+  28692c:      	b.ne	0x2869ac <Clp_AddStringListType+0x268>
+  286930:      	cmp	w23, w24
+  286934:      	b.lt	0x286898 <Clp_AddStringListType+0x154>
+  286938:      	lsl	w24, w24, #1
+  28693c:      	mov	x0, x22
+  286940:      	smull	x1, w24, w26
+  286944:      	bl	0x4c2d80 <realloc@plt>
+  286948:      	cbz	x0, 0x28697c <Clp_AddStringListType+0x238>
+  28694c:      	mov	x22, x0
+  286950:      	b	0x286898 <Clp_AddStringListType+0x154>
+  286954:      	mov	x0, x21
+  286958:      	mov	w1, w20
+  28695c:      	mov	w2, w19
+  286960:      	mov	x3, x22
+  286964:      	mov	w4, w23
+  286968:      	mov	w5, w24
+  28696c:      	bl	0x2869cc <Clp_AddStringListType+0x288>
+  286970:      	tbnz	w0, #0x1f, 0x286980 <Clp_AddStringListType+0x23c>
+  286974:      	mov	w0, wzr
+  286978:      	b	0x28698c <Clp_AddStringListType+0x248>
+  28697c:      	cbz	x22, 0x286988 <Clp_AddStringListType+0x244>
+  286980:      	mov	x0, x22
+  286984:      	bl	0x4c2de0 <free@plt>
+  286988:      	mov	w0, #-0x1               // =-1
+  28698c:      	ldp	x20, x19, [sp, #0x120]
+  286990:      	ldp	x22, x21, [sp, #0x110]
+  286994:      	ldp	x24, x23, [sp, #0x100]
+  286998:      	ldp	x26, x25, [sp, #0xf0]
+  28699c:      	ldp	x28, x27, [sp, #0xe0]
+  2869a0:      	ldp	x29, x30, [sp, #0xd0]
+  2869a4:      	add	sp, sp, #0x130
+  2869a8:      	ret
+  2869ac:      	adrp	x0, 0xb0000
+  2869b0:      	add	x0, x0, #0x9b2
+  2869b4:      	adrp	x2, 0xbb000
+  2869b8:      	add	x2, x2, #0xb3
+  2869bc:      	adrp	x3, 0xb5000
+  2869c0:      	add	x3, x3, #0xee3
+  2869c4:      	mov	w1, #0x520              // =1312
+  2869c8:      	bl	0x4c4d30 <__assert2@plt>
+  2869cc:      	stp	x29, x30, [sp, #-0x60]!
+  2869d0:      	str	x27, [sp, #0x10]
+  2869d4:      	stp	x26, x25, [sp, #0x20]
+  2869d8:      	stp	x24, x23, [sp, #0x30]
+  2869dc:      	stp	x22, x21, [sp, #0x40]
+  2869e0:      	stp	x20, x19, [sp, #0x50]
+  2869e4:      	mov	x29, sp
+  2869e8:      	mov	x22, x0
+  2869ec:      	mov	w0, #0x20               // =32
+  2869f0:      	mov	w25, w5
+  2869f4:      	mov	w23, w4
+  2869f8:      	mov	x24, x3
+  2869fc:      	mov	w26, w2
+  286a00:      	mov	w21, w1
+  286a04:      	bl	0x4c2d60 <malloc@plt>
+  286a08:      	sxtw	x27, w23
+  286a0c:      	mov	x20, x0
+  286a10:      	add	x8, x27, w23, sxtw #1
+  286a14:      	lsl	x8, x8, #2
+  286a18:      	mov	x0, x8
+  286a1c:      	bl	0x4c2d60 <malloc@plt>
+  286a20:      	mov	x19, x0
+  286a24:      	cbz	x20, 0x286b04 <Clp_AddStringListType+0x3c0>
+  286a28:      	cbz	x19, 0x286b04 <Clp_AddStringListType+0x3c0>
+  286a2c:      	ubfx	w9, w26, #1, #1
+  286a30:      	and	w8, w26, #0x1
+  286a34:      	cmp	w23, #0x3
+  286a38:      	stp	x24, x19, [x20]
+  286a3c:      	str	w23, [x20, #0x10]
+  286a40:      	strb	w8, [x20, #0x14]
+  286a44:      	strb	w9, [x20, #0x15]
+  286a48:      	b.gt	0x286a78 <Clp_AddStringListType+0x334>
+  286a4c:      	cmp	w23, w25
+  286a50:      	b.ge	0x286a78 <Clp_AddStringListType+0x334>
+  286a54:      	mov	w9, w23
+  286a58:      	cbz	w8, 0x286a90 <Clp_AddStringListType+0x34c>
+  286a5c:      	mov	w8, #0x18               // =24
+  286a60:      	adrp	x9, 0xc5000
+  286a64:      	add	x9, x9, #0xea2
+  286a68:      	smull	x8, w27, w8
+  286a6c:      	str	x9, [x24, x8]
+  286a70:      	add	w9, w23, #0x1
+  286a74:      	b	0x286a90 <Clp_AddStringListType+0x34c>
+  286a78:      	cmp	w23, #0x6
+  286a7c:      	mov	w9, w23
+  286a80:      	b.lt	0x286a90 <Clp_AddStringListType+0x34c>
+  286a84:      	mov	w8, #0x5                // =5
+  286a88:      	str	w8, [x20, #0x18]
+  286a8c:      	b	0x286a9c <Clp_AddStringListType+0x358>
+  286a90:      	cmp	w23, #0x1
+  286a94:      	str	w9, [x20, #0x18]
+  286a98:      	b.lt	0x286ac8 <Clp_AddStringListType+0x384>
+  286a9c:      	mov	w8, w23
+  286aa0:      	mov	w9, #0xff8c             // =65420
+  286aa4:      	mov	w10, #0x11              // =17
+  286aa8:      	mov	x11, x19
+  286aac:      	ldrh	w12, [x11]
+  286ab0:      	subs	x8, x8, #0x1
+  286ab4:      	strb	wzr, [x11, #0x2]
+  286ab8:      	and	w12, w12, w9
+  286abc:      	orr	w12, w12, w10
+  286ac0:      	strh	w12, [x11], #0xc
+  286ac4:      	b.ne	0x286aac <Clp_AddStringListType+0x368>
+  286ac8:      	mov	x0, x22
+  286acc:      	mov	x1, x24
+  286ad0:      	mov	x2, x19
+  286ad4:      	mov	w3, w23
+  286ad8:      	bl	0x285d7c <Clp_SetUTF8+0x38>
+  286adc:      	nop
+  286ae0:      	adr	x3, 0x285b70 <Clp_DeleteParser+0xbc>
+  286ae4:      	mov	x0, x22
+  286ae8:      	mov	w1, w21
+  286aec:      	mov	w2, wzr
+  286af0:      	mov	x4, x20
+  286af4:      	bl	0x4c4600 <Clp_AddType@plt>
+  286af8:      	mov	w8, w0
+  286afc:      	mov	w0, wzr
+  286b00:      	tbz	w8, #0x1f, 0x286b20 <Clp_AddStringListType+0x3dc>
+  286b04:      	cbz	x20, 0x286b10 <Clp_AddStringListType+0x3cc>
+  286b08:      	mov	x0, x20
+  286b0c:      	bl	0x4c2de0 <free@plt>
+  286b10:      	cbz	x19, 0x286b1c <Clp_AddStringListType+0x3d8>
+  286b14:      	mov	x0, x19
+  286b18:      	bl	0x4c2de0 <free@plt>
+  286b1c:      	mov	w0, #-0x1               // =-1
+  286b20:      	ldp	x20, x19, [sp, #0x50]
+  286b24:      	ldr	x27, [sp, #0x10]
+  286b28:      	ldp	x22, x21, [sp, #0x40]
+  286b2c:      	ldp	x24, x23, [sp, #0x30]
+  286b30:      	ldp	x26, x25, [sp, #0x20]
+  286b34:      	ldp	x29, x30, [sp], #0x60
+  286b38:      	ret
+
+--- FUNCTION: Clp_AddStringListTypeVec ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGImageCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000286b3c <Clp_AddStringListTypeVec>:
+  286b3c:      	stp	x29, x30, [sp, #-0x50]!
+  286b40:      	stp	x26, x25, [sp, #0x10]
+  286b44:      	stp	x24, x23, [sp, #0x20]
+  286b48:      	stp	x22, x21, [sp, #0x30]
+  286b4c:      	stp	x20, x19, [sp, #0x40]
+  286b50:      	mov	x29, sp
+  286b54:      	cmp	w3, #0x5
+  286b58:      	mov	w8, #0x5                // =5
+  286b5c:      	mov	x26, x0
+  286b60:      	csel	w23, w3, w8, gt
+  286b64:      	mov	w8, #0x18               // =24
+  286b68:      	mov	x21, x5
+  286b6c:      	umull	x8, w23, w8
+  286b70:      	mov	x24, x4
+  286b74:      	mov	w19, w3
+  286b78:      	mov	w20, w2
+  286b7c:      	mov	w22, w1
+  286b80:      	mov	x0, x8
+  286b84:      	bl	0x4c2d60 <malloc@plt>
+  286b88:      	cbz	x0, 0x286c00 <Clp_AddStringListTypeVec+0xc4>
+  286b8c:      	mov	x25, x0
+  286b90:      	cmp	w19, #0x1
+  286b94:      	b.lt	0x286bbc <Clp_AddStringListTypeVec+0x80>
+  286b98:      	mov	w8, w19
+  286b9c:      	add	x9, x25, #0x14
+  286ba0:      	ldr	x10, [x24], #0x8
+  286ba4:      	subs	x8, x8, #0x1
+  286ba8:      	ldr	w11, [x21], #0x4
+  286bac:      	stur	x10, [x9, #-0x14]
+  286bb0:      	stur	w11, [x9, #-0x8]
+  286bb4:      	str	wzr, [x9], #0x18
+  286bb8:      	b.ne	0x286ba0 <Clp_AddStringListTypeVec+0x64>
+  286bbc:      	mov	x0, x26
+  286bc0:      	mov	w1, w22
+  286bc4:      	mov	w2, w20
+  286bc8:      	mov	x3, x25
+  286bcc:      	mov	w4, w19
+  286bd0:      	mov	w5, w23
+  286bd4:      	bl	0x2869cc <Clp_AddStringListType+0x288>
+  286bd8:      	tbnz	w0, #0x1f, 0x286bf8 <Clp_AddStringListTypeVec+0xbc>
+  286bdc:      	mov	w0, wzr
+  286be0:      	ldp	x20, x19, [sp, #0x40]
+  286be4:      	ldp	x22, x21, [sp, #0x30]
+  286be8:      	ldp	x24, x23, [sp, #0x20]
+  286bec:      	ldp	x26, x25, [sp, #0x10]
+  286bf0:      	ldp	x29, x30, [sp], #0x50
+  286bf4:      	ret
+  286bf8:      	mov	x0, x25
+  286bfc:      	bl	0x4c2de0 <free@plt>
+  286c00:      	mov	w0, #-0x1               // =-1
+  286c04:      	ldp	x20, x19, [sp, #0x40]
+  286c08:      	ldp	x22, x21, [sp, #0x30]
+  286c0c:      	ldp	x24, x23, [sp, #0x20]
+  286c10:      	ldp	x26, x25, [sp, #0x10]
+  286c14:      	ldp	x29, x30, [sp], #0x50
+  286c18:      	ret
+
+--- FUNCTION: Clp_AddType ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGImageCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000285230 <Clp_AddType>:
+  285230:      	cmp	w1, #0x1
+  285234:      	mov	w8, #-0x1               // =-1
+  285238:      	b.lt	0x285384 <Clp_AddType+0x154>
+  28523c:      	stp	x29, x30, [sp, #-0x50]!
+  285240:      	stp	x26, x25, [sp, #0x10]
+  285244:      	stp	x24, x23, [sp, #0x20]
+  285248:      	stp	x22, x21, [sp, #0x30]
+  28524c:      	stp	x20, x19, [sp, #0x40]
+  285250:      	mov	x29, sp
+  285254:      	mov	x21, x3
+  285258:      	cbz	x3, 0x285370 <Clp_AddType+0x140>
+  28525c:      	ldr	x24, [x0, #0x48]
+  285260:      	mov	x19, x4
+  285264:      	mov	w20, w2
+  285268:      	mov	w22, w1
+  28526c:      	mov	w23, wzr
+  285270:      	ldr	w8, [x24, #0x20]
+  285274:      	ldr	x0, [x24, #0x18]
+  285278:      	mov	w9, w8
+  28527c:      	subs	w10, w9, w23
+  285280:      	b.ls	0x2852a4 <Clp_AddType+0x74>
+  285284:      	add	w10, w23, w10, lsr #1
+  285288:      	ubfiz	x11, x10, #5, #32
+  28528c:      	ldr	w11, [x0, x11]
+  285290:      	cmp	w11, w22
+  285294:      	csinc	w23, w23, w10, ge
+  285298:      	csel	w9, w10, w9, ge
+  28529c:      	b.ne	0x28527c <Clp_AddType+0x4c>
+  2852a0:      	mov	w23, w10
+  2852a4:      	cmp	w23, w8
+  2852a8:      	b.eq	0x2852fc <Clp_AddType+0xcc>
+  2852ac:      	sbfiz	x9, x23, #5, #32
+  2852b0:      	ldr	w9, [x0, x9]
+  2852b4:      	cmp	w9, w22
+  2852b8:      	b.ne	0x2852fc <Clp_AddType+0xcc>
+  2852bc:      	sxtw	x25, w23
+  2852c0:      	nop
+  2852c4:      	adr	x10, 0x285b70 <Clp_DeleteParser+0xbc>
+  2852c8:      	add	x8, x0, x25, lsl #5
+  2852cc:      	ldr	x9, [x8, #0x8]
+  2852d0:      	cmp	x9, x10
+  2852d4:      	b.ne	0x285358 <Clp_AddType+0x128>
+  2852d8:      	ldr	x23, [x8, #0x18]
+  2852dc:      	ldr	x0, [x23]
+  2852e0:      	bl	0x4c2de0 <free@plt>
+  2852e4:      	ldr	x0, [x23, #0x8]
+  2852e8:      	bl	0x4c2de0 <free@plt>
+  2852ec:      	mov	x0, x23
+  2852f0:      	bl	0x4c2de0 <free@plt>
+  2852f4:      	ldr	x0, [x24, #0x18]
+  2852f8:      	b	0x285358 <Clp_AddType+0x128>
+  2852fc:      	cbz	w8, 0x285320 <Clp_AddType+0xf0>
+  285300:      	and	w9, w8, #0x7
+  285304:      	cbnz	w9, 0x285320 <Clp_AddType+0xf0>
+  285308:      	sbfiz	x8, x8, #5, #32
+  28530c:      	add	x1, x8, #0x100
+  285310:      	bl	0x4c2d80 <realloc@plt>
+  285314:      	cbz	x0, 0x28538c <Clp_AddType+0x15c>
+  285318:      	ldr	w8, [x24, #0x20]
+  28531c:      	str	x0, [x24, #0x18]
+  285320:      	mov	w9, w23
+  285324:      	sub	w8, w8, w23
+  285328:      	sbfiz	x26, x9, #5, #32
+  28532c:      	sbfiz	x2, x8, #5, #32
+  285330:      	sxtw	x25, w9
+  285334:      	add	x1, x0, x26
+  285338:      	add	x0, x1, #0x20
+  28533c:      	bl	0x4c2e30 <memmove@plt>
+  285340:      	ldr	w8, [x24, #0x20]
+  285344:      	ldr	x0, [x24, #0x18]
+  285348:      	add	w8, w8, #0x1
+  28534c:      	add	x9, x0, x26
+  285350:      	str	w8, [x24, #0x20]
+  285354:      	str	xzr, [x9, #0x8]
+  285358:      	add	x9, x0, x25, lsl #5
+  28535c:      	mov	w8, wzr
+  285360:      	str	w22, [x9]
+  285364:      	str	x21, [x9, #0x8]
+  285368:      	str	w20, [x9, #0x10]
+  28536c:      	str	x19, [x9, #0x18]
+  285370:      	ldp	x20, x19, [sp, #0x40]
+  285374:      	ldp	x22, x21, [sp, #0x30]
+  285378:      	ldp	x24, x23, [sp, #0x20]
+  28537c:      	ldp	x26, x25, [sp, #0x10]
+  285380:      	ldp	x29, x30, [sp], #0x50
+  285384:      	mov	w0, w8
+  285388:      	ret
+  28538c:      	mov	w8, #-0x1               // =-1
+  285390:      	b	0x285370 <Clp_AddType+0x140>
+  285394:      	mov	x8, x0
+  285398:      	mov	w0, #0x1                // =1
+  28539c:      	str	x1, [x8, #0x18]
+  2853a0:      	ret
+  2853a4:      	sub	sp, sp, #0x40
+  2853a8:      	stp	x29, x30, [sp, #0x10]
+  2853ac:      	stp	x22, x21, [sp, #0x20]
+  2853b0:      	stp	x20, x19, [sp, #0x30]
+  2853b4:      	add	x29, sp, #0x10
+  2853b8:      	ldrb	w8, [x1]
+  2853bc:      	mov	x19, x1
+  2853c0:      	cbz	w8, 0x285404 <Clp_AddType+0x1d4>
+  2853c4:      	cmp	w8, #0x20
+  2853c8:      	b.eq	0x285404 <Clp_AddType+0x1d4>
+  2853cc:      	sub	w9, w8, #0xe
+  2853d0:      	cmn	w9, #0x6
+  2853d4:      	b.hi	0x285404 <Clp_AddType+0x1d4>
+  2853d8:      	tbnz	w3, #0x0, 0x2853fc <Clp_AddType+0x1cc>
+  2853dc:      	add	x1, sp, #0x8
+  2853e0:      	mov	x20, x0
+  2853e4:      	mov	x0, x19
+  2853e8:      	mov	w21, w2
+  2853ec:      	mov	w2, wzr
+  2853f0:      	mov	x22, x3
+  2853f4:      	bl	0x4c33c0 <strtol@plt>
+  2853f8:      	b	0x28549c <Clp_AddType+0x26c>
+  2853fc:      	cmp	w8, #0x2d
+  285400:      	b.ne	0x285480 <Clp_AddType+0x250>
+  285404:      	str	x19, [sp, #0x8]
+  285408:      	cmp	x3, #0x1
+  28540c:      	b.hi	0x285418 <Clp_AddType+0x1e8>
+  285410:      	ldr	x8, [x0, #0x18]
+  285414:      	str	w8, [x0, #0x18]
+  285418:      	ldrb	w8, [x19]
+  28541c:      	cbz	w8, 0x28542c <Clp_AddType+0x1fc>
+  285420:      	ldr	x8, [sp, #0x8]
+  285424:      	ldrb	w8, [x8]
+  285428:      	cbz	w8, 0x285468 <Clp_AddType+0x238>
+  28542c:      	cbz	w2, 0x285450 <Clp_AddType+0x220>
+  285430:      	adrp	x8, 0xc2000
+  285434:      	add	x8, x8, #0x2a1
+  285438:      	tst	x3, #0x1
+  28543c:      	adrp	x9, 0xbf000
+  285440:      	add	x9, x9, #0x702
+  285444:      	mov	x2, x19
+  285448:      	csel	x1, x9, x8, eq
+  28544c:      	bl	0x4c4620 <Clp_OptionError@plt>
+  285450:      	mov	w0, wzr
+  285454:      	ldp	x20, x19, [sp, #0x30]
+  285458:      	ldp	x22, x21, [sp, #0x20]
+  28545c:      	ldp	x29, x30, [sp, #0x10]
+  285460:      	add	sp, sp, #0x40
+  285464:      	ret
+  285468:      	mov	w0, #0x1                // =1
+  28546c:      	ldp	x20, x19, [sp, #0x30]
+  285470:      	ldp	x22, x21, [sp, #0x20]
+  285474:      	ldp	x29, x30, [sp, #0x10]
+  285478:      	add	sp, sp, #0x40
+  28547c:      	ret
+  285480:      	add	x1, sp, #0x8
+  285484:      	mov	x20, x0
+  285488:      	mov	x0, x19
+  28548c:      	mov	w21, w2
+  285490:      	mov	w2, wzr
+  285494:      	mov	x22, x3
+  285498:      	bl	0x4c4d80 <strtoul@plt>
+  28549c:      	mov	w2, w21
+  2854a0:      	mov	x3, x22
+  2854a4:      	mov	x8, x0
+  2854a8:      	mov	x0, x20
+  2854ac:      	str	x8, [x20, #0x18]
+  2854b0:      	cmp	x22, #0x1
+  2854b4:      	b.ls	0x285410 <Clp_AddType+0x1e0>
+  2854b8:      	b	0x285418 <Clp_AddType+0x1e8>
+  2854bc:      	stp	x29, x30, [sp, #-0x30]!
+  2854c0:      	str	x21, [sp, #0x10]
+  2854c4:      	stp	x20, x19, [sp, #0x20]
+  2854c8:      	mov	x29, sp
+  2854cc:      	mov	x19, x0
+  2854d0:      	mov	x0, x1
+  2854d4:      	mov	w21, w2
+  2854d8:      	mov	x20, x1
+  2854dc:      	bl	0x4c2e10 <strlen@plt>
+  2854e0:      	cmp	x0, #0x5
+  2854e4:      	b.hi	0x2854f8 <Clp_AddType+0x2c8>
+  2854e8:      	mov	x0, x20
+  2854ec:      	mov	w1, #0x3d               // =61
+  2854f0:      	bl	0x4c4ca0 <strchr@plt>
+  2854f4:      	cbz	x0, 0x285524 <Clp_AddType+0x2f4>
+  2854f8:      	cbz	w21, 0x285510 <Clp_AddType+0x2e0>
+  2854fc:      	adrp	x1, 0xad000
+  285500:      	add	x1, x1, #0xf8a
+  285504:      	mov	x0, x19
+  285508:      	mov	x2, x20
+  28550c:      	bl	0x4c4620 <Clp_OptionError@plt>
+  285510:      	mov	w0, wzr
+  285514:      	ldp	x20, x19, [sp, #0x20]
+  285518:      	ldr	x21, [sp, #0x10]
+  28551c:      	ldp	x29, x30, [sp], #0x30
+  285520:      	ret
+  285524:      	ldrb	w8, [x20]
+  285528:      	cbz	w8, 0x285564 <Clp_AddType+0x334>
+  28552c:      	mov	x10, xzr
+  285530:      	add	x9, x20, #0x1
+  285534:      	add	x11, x29, #0x18
+  285538:      	and	w12, w8, #0xff
+  28553c:      	orr	w13, w8, #0x20
+  285540:      	sub	w12, w12, #0x41
+  285544:      	cmp	w12, #0x1a
+  285548:      	add	x12, x10, #0x1
+  28554c:      	csel	w13, w13, w8, lo
+  285550:      	ldrb	w8, [x9, x10]
+  285554:      	strb	w13, [x11, x10]
+  285558:      	mov	x10, x12
+  28555c:      	cbnz	w8, 0x285538 <Clp_AddType+0x308>
+  285560:      	b	0x285568 <Clp_AddType+0x338>
+  285564:      	mov	x12, xzr
+  285568:      	add	x9, x29, #0x18
+  28556c:      	adrp	x10, 0xb3000
+  285570:      	add	x10, x10, #0x4da
+  285574:      	strb	wzr, [x9, x12]
+  285578:      	ldrb	w8, [x29, #0x18]
+  28557c:      	cmp	w8, #0x79
+  285580:      	b.ne	0x2855b8 <Clp_AddType+0x388>
+  285584:      	ldrb	w11, [x29, #0x19]
+  285588:      	cmp	w11, #0x65
+  28558c:      	b.ne	0x2855cc <Clp_AddType+0x39c>
+  285590:      	ldrb	w11, [x29, #0x1a]
+  285594:      	cmp	w11, #0x73
+  285598:      	b.ne	0x2855e4 <Clp_AddType+0x3b4>
+  28559c:      	ldrb	w11, [x29, #0x1b]
+  2855a0:      	orr	x9, x9, #0x3
+  2855a4:      	adrp	x12, 0xb3000
+  2855a8:      	add	x12, x12, #0x4dd
+  2855ac:      	cmp	w11, #0x3d
+  2855b0:      	b.ne	0x2855f8 <Clp_AddType+0x3c8>
+  2855b4:      	b	0x2855fc <Clp_AddType+0x3cc>
+  2855b8:      	mov	w11, w8
+  2855bc:      	mov	x12, x10
+  2855c0:      	cmp	w8, #0x3d
+  2855c4:      	b.ne	0x2855f8 <Clp_AddType+0x3c8>
+  2855c8:      	b	0x2855fc <Clp_AddType+0x3cc>
+  2855cc:      	orr	x9, x9, #0x1
+  2855d0:      	adrp	x12, 0xb3000
+  2855d4:      	add	x12, x12, #0x4db
+  2855d8:      	cmp	w11, #0x3d
+  2855dc:      	b.ne	0x2855f8 <Clp_AddType+0x3c8>
+  2855e0:      	b	0x2855fc <Clp_AddType+0x3cc>
+  2855e4:      	orr	x9, x9, #0x2
+  2855e8:      	adrp	x12, 0xb3000
+  2855ec:      	add	x12, x12, #0x4dc
+  2855f0:      	cmp	w11, #0x3d
+  2855f4:      	b.eq	0x2855fc <Clp_AddType+0x3cc>
+  2855f8:      	cbnz	w11, 0x285618 <Clp_AddType+0x3e8>
+  2855fc:      	sub	x10, x12, x10
+  285600:      	cmp	x10, #0x1
+  285604:      	b.lt	0x285618 <Clp_AddType+0x3e8>
+  285608:      	add	x10, x29, #0x18
+  28560c:      	sub	w9, w9, w10
+  285610:      	cmp	w9, #0x0
+  285614:      	b.gt	0x285704 <Clp_AddType+0x4d4>
+  285618:      	cmp	w8, #0x74
+  28561c:      	add	x9, x29, #0x18
+  285620:      	adrp	x10, 0xb5000
+  285624:      	add	x10, x10, #0xf39
+  285628:      	b.ne	0x285668 <Clp_AddType+0x438>
+  28562c:      	ldrb	w11, [x29, #0x19]
+  285630:      	cmp	w11, #0x72
+  285634:      	b.ne	0x285674 <Clp_AddType+0x444>
+  285638:      	ldrb	w11, [x29, #0x1a]
+  28563c:      	add	x12, x29, #0x18
+  285640:      	cmp	w11, #0x75
+  285644:      	b.ne	0x285684 <Clp_AddType+0x454>
+  285648:      	ldrb	w11, [x29, #0x1b]
+  28564c:      	cmp	w11, #0x65
+  285650:      	b.ne	0x285694 <Clp_AddType+0x464>
+  285654:      	ldrb	w11, [x29, #0x1c]
+  285658:      	add	x9, x9, #0x4
+  28565c:      	adrp	x12, 0xb5000
+  285660:      	add	x12, x12, #0xf3d
+  285664:      	b	0x2856a0 <Clp_AddType+0x470>
+  285668:      	mov	w11, w8
+  28566c:      	mov	x12, x10
+  285670:      	b	0x2856a0 <Clp_AddType+0x470>
+  285674:      	orr	x9, x9, #0x1
+  285678:      	adrp	x12, 0xb5000
+  28567c:      	add	x12, x12, #0xf3a
+  285680:      	b	0x2856a0 <Clp_AddType+0x470>
+  285684:      	orr	x9, x12, #0x2
+  285688:      	adrp	x12, 0xb5000
+  28568c:      	add	x12, x12, #0xf3b
+  285690:      	b	0x2856a0 <Clp_AddType+0x470>
+  285694:      	orr	x9, x12, #0x3
+  285698:      	adrp	x12, 0xb5000
+  28569c:      	add	x12, x12, #0xf3c
+  2856a0:      	cmp	w11, #0x3d
+  2856a4:      	b.eq	0x2856ac <Clp_AddType+0x47c>
+  2856a8:      	cbnz	w11, 0x2856c8 <Clp_AddType+0x498>
+  2856ac:      	sub	x10, x12, x10
+  2856b0:      	cmp	x10, #0x1
+  2856b4:      	b.lt	0x2856c8 <Clp_AddType+0x498>
+  2856b8:      	add	x10, x29, #0x18
+  2856bc:      	sub	w9, w9, w10
+  2856c0:      	cmp	w9, #0x0
+  2856c4:      	b.gt	0x285704 <Clp_AddType+0x4d4>
+  2856c8:      	ldrb	w9, [x29, #0x19]
+  2856cc:      	cmp	w8, #0x31
+  2856d0:      	csel	w9, w9, w8, eq
+  2856d4:      	cmp	w9, #0x3d
+  2856d8:      	b.eq	0x2856e0 <Clp_AddType+0x4b0>
+  2856dc:      	cbnz	w9, 0x28571c <Clp_AddType+0x4ec>
+  2856e0:      	add	x9, x29, #0x18
+  2856e4:      	cmp	w8, #0x31
+  2856e8:      	orr	x10, x9, #0x1
+  2856ec:      	csel	w10, w10, w9, eq
+  2856f0:      	cmp	w8, #0x31
+  2856f4:      	b.ne	0x28571c <Clp_AddType+0x4ec>
+  2856f8:      	sub	w8, w10, w9
+  2856fc:      	cmp	w8, #0x1
+  285700:      	b.lt	0x28571c <Clp_AddType+0x4ec>
+  285704:      	mov	w0, #0x1                // =1
+  285708:      	str	w0, [x19, #0x18]
+  28570c:      	ldp	x20, x19, [sp, #0x20]
+  285710:      	ldr	x21, [sp, #0x10]
+  285714:      	ldp	x29, x30, [sp], #0x30
+  285718:      	ret
+  28571c:      	adrp	x0, 0xbd000
+  285720:      	add	x0, x0, #0xcfa
+  285724:      	add	x1, x29, #0x18
+  285728:      	mov	w2, #0x1                // =1
+  28572c:      	mov	w3, wzr
+  285730:      	bl	0x289fc4 <Clp_IsShort+0x1a0>
+  285734:      	cmp	w0, #0x0
+  285738:      	b.gt	0x28577c <Clp_AddType+0x54c>
+  28573c:      	adrp	x0, 0xa9000
+  285740:      	add	x0, x0, #0x2d3
+  285744:      	add	x1, x29, #0x18
+  285748:      	mov	w2, #0x1                // =1
+  28574c:      	mov	w3, wzr
+  285750:      	bl	0x289fc4 <Clp_IsShort+0x1a0>
+  285754:      	cmp	w0, #0x0
+  285758:      	b.gt	0x28577c <Clp_AddType+0x54c>
+  28575c:      	adrp	x0, 0xb9000
+  285760:      	add	x0, x0, #0x40
+  285764:      	add	x1, x29, #0x18
+  285768:      	mov	w2, #0x1                // =1
+  28576c:      	mov	w3, wzr
+  285770:      	bl	0x289fc4 <Clp_IsShort+0x1a0>
+  285774:      	cmp	w0, #0x1
+  285778:      	b.lt	0x2854f8 <Clp_AddType+0x2c8>
+  28577c:      	str	wzr, [x19, #0x18]
+  285780:      	mov	w0, #0x1                // =1
+  285784:      	ldp	x20, x19, [sp, #0x20]
+  285788:      	ldr	x21, [sp, #0x10]
+  28578c:      	ldp	x29, x30, [sp], #0x30
+  285790:      	ret
+  285794:      	stp	x29, x30, [sp, #-0x30]!
+  285798:      	str	x21, [sp, #0x10]
+  28579c:      	stp	x20, x19, [sp, #0x20]
+  2857a0:      	mov	x29, sp
+  2857a4:      	ldrb	w8, [x1]
+  2857a8:      	mov	x19, x1
+  2857ac:      	cbz	w8, 0x2857f0 <Clp_AddType+0x5c0>
+  2857b0:      	cmp	w8, #0x20
+  2857b4:      	b.eq	0x2857f0 <Clp_AddType+0x5c0>
+  2857b8:      	sub	w9, w8, #0xe
+  2857bc:      	cmn	w9, #0x5
+  2857c0:      	b.hs	0x2857f0 <Clp_AddType+0x5c0>
+  2857c4:      	add	x1, x29, #0x18
+  2857c8:      	mov	x20, x0
+  2857cc:      	mov	x0, x19
+  2857d0:      	mov	w21, w2
+  2857d4:      	bl	0x4c4c30 <strtod@plt>
+  2857d8:      	str	d0, [x20, #0x18]
+  2857dc:      	mov	w2, w21
+  2857e0:      	mov	x0, x20
+  2857e4:      	ldrb	w8, [x19]
+  2857e8:      	cbnz	w8, 0x2857f8 <Clp_AddType+0x5c8>
+  2857ec:      	b	0x285804 <Clp_AddType+0x5d4>
+  2857f0:      	str	x19, [x29, #0x18]
+  2857f4:      	cbz	w8, 0x285804 <Clp_AddType+0x5d4>
+  2857f8:      	ldr	x8, [x29, #0x18]
+  2857fc:      	ldrb	w8, [x8]
+  285800:      	cbz	w8, 0x28582c <Clp_AddType+0x5fc>
+  285804:      	cbz	w2, 0x285818 <Clp_AddType+0x5e8>
+  285808:      	adrp	x1, 0xbc000
+  28580c:      	add	x1, x1, #0xdba
+  285810:      	mov	x2, x19
+  285814:      	bl	0x4c4620 <Clp_OptionError@plt>
+  285818:      	mov	w0, wzr
+  28581c:      	ldp	x20, x19, [sp, #0x20]
+  285820:      	ldr	x21, [sp, #0x10]
+  285824:      	ldp	x29, x30, [sp], #0x30
+  285828:      	ret
+  28582c:      	mov	w0, #0x1                // =1
+  285830:      	ldp	x20, x19, [sp, #0x20]
+  285834:      	ldr	x21, [sp, #0x10]
+  285838:      	ldp	x29, x30, [sp], #0x30
+  28583c:      	ret
+
+--- FUNCTION: Clp_CurOptionName ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGImageCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000289db4 <Clp_CurOptionName>:
+  289db4:      	stp	x29, x30, [sp, #-0x20]!
+  289db8:      	str	x19, [sp, #0x10]
+  289dbc:      	mov	x29, sp
+  289dc0:      	adrp	x19, 0x4ee000 <_ZN8PVGIMAGE10ColorSpace10ColorSpace6ACEScgE+0x130>
+  289dc4:      	add	x19, x19, #0x25c
+  289dc8:      	mov	w2, #0x100              // =256
+  289dcc:      	mov	x1, x19
+  289dd0:      	bl	0x4c46b0 <Clp_CurOptionNameBuf@plt>
+  289dd4:      	mov	x0, x19
+  289dd8:      	ldr	x19, [sp, #0x10]
+  289ddc:      	ldp	x29, x30, [sp], #0x20
+  289de0:      	ret
+
+--- FUNCTION: Clp_CurOptionNameBuf ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGImageCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000289ae0 <Clp_CurOptionNameBuf>:
+  289ae0:      	stp	x29, x30, [sp, #-0x50]!
+  289ae4:      	stp	x26, x25, [sp, #0x10]
+  289ae8:      	stp	x24, x23, [sp, #0x20]
+  289aec:      	stp	x22, x21, [sp, #0x30]
+  289af0:      	stp	x20, x19, [sp, #0x40]
+  289af4:      	mov	x29, sp
+  289af8:      	ldr	x25, [x0, #0x48]
+  289afc:      	mov	w20, w2
+  289b00:      	mov	x19, x1
+  289b04:      	ldr	w24, [x25, #0xbc]
+  289b08:      	tbnz	w24, #0x1f, 0x289ba4 <Clp_CurOptionNameBuf+0xc4>
+  289b0c:      	ldrb	w8, [x25, #0xc3]
+  289b10:      	cbz	w8, 0x289bd4 <Clp_CurOptionNameBuf+0xf4>
+  289b14:      	add	x0, x25, #0x94
+  289b18:      	bl	0x4c2e10 <strlen@plt>
+  289b1c:      	mov	x23, x0
+  289b20:      	sub	w26, w20, #0x1
+  289b24:      	add	x1, x25, #0x94
+  289b28:      	cmp	w26, w23
+  289b2c:      	mov	x0, x19
+  289b30:      	csel	w21, w26, w23, lt
+  289b34:      	sxtw	x22, w21
+  289b38:      	mov	x2, x22
+  289b3c:      	bl	0x4c3250 <memcpy@plt>
+  289b40:      	ldr	w8, [x25, #0x90]
+  289b44:      	cbz	w8, 0x289c84 <Clp_CurOptionNameBuf+0x1a4>
+  289b48:      	mov	w8, #0x18               // =24
+  289b4c:      	ldr	x9, [x25]
+  289b50:      	mov	w11, #0xd800            // =55296
+  289b54:      	umaddl	x8, w24, w8, x9
+  289b58:      	mvn	w12, w21
+  289b5c:      	ldr	w8, [x8, #0x8]
+  289b60:      	lsr	w9, w8, #16
+  289b64:      	and	w10, w8, #0x1ff800
+  289b68:      	cmp	w10, w11
+  289b6c:      	add	w10, w12, w20
+  289b70:      	ccmp	w9, #0x10, #0x2, ne
+  289b74:      	mov	w9, #0xfffd             // =65533
+  289b78:      	csel	w9, w9, w8, hi
+  289b7c:      	cmp	w10, #0x1
+  289b80:      	add	x8, x19, x22
+  289b84:      	b.lt	0x289cb0 <Clp_CurOptionNameBuf+0x1d0>
+  289b88:      	cmp	w9, #0x7f
+  289b8c:      	b.hi	0x289cb0 <Clp_CurOptionNameBuf+0x1d0>
+  289b90:      	strb	w9, [x8], #0x1
+  289b94:      	sub	w21, w8, w19
+  289b98:      	cmp	w21, w20
+  289b9c:      	b.lt	0x289d1c <Clp_CurOptionNameBuf+0x23c>
+  289ba0:      	b	0x289d20 <Clp_CurOptionNameBuf+0x240>
+  289ba4:      	sub	w8, w20, #0x1
+  289ba8:      	mov	w9, #0x14               // =20
+  289bac:      	adrp	x1, 0xb3000
+  289bb0:      	add	x1, x1, #0x4c5
+  289bb4:      	cmp	w8, #0x14
+  289bb8:      	mov	x0, x19
+  289bbc:      	csel	w21, w8, w9, lt
+  289bc0:      	sxtw	x2, w21
+  289bc4:      	bl	0x4c3250 <memcpy@plt>
+  289bc8:      	cmp	w21, w20
+  289bcc:      	b.lt	0x289d1c <Clp_CurOptionNameBuf+0x23c>
+  289bd0:      	b	0x289d20 <Clp_CurOptionNameBuf+0x240>
+  289bd4:      	ldrb	w22, [x25, #0xc4]
+  289bd8:      	add	x0, x25, #0x94
+  289bdc:      	bl	0x4c2e10 <strlen@plt>
+  289be0:      	sub	w8, w20, #0x1
+  289be4:      	add	x1, x25, #0x94
+  289be8:      	cmp	w8, w0
+  289bec:      	csel	w8, w8, w0, lt
+  289bf0:      	mov	x0, x19
+  289bf4:      	sxtw	x21, w8
+  289bf8:      	mov	x2, x21
+  289bfc:      	bl	0x4c3250 <memcpy@plt>
+  289c00:      	cbz	w22, 0x289ccc <Clp_CurOptionNameBuf+0x1ec>
+  289c04:      	mvn	w8, w21
+  289c08:      	mov	w9, #0x3                // =3
+  289c0c:      	adrp	x1, 0xc3000
+  289c10:      	add	x1, x1, #0x2cc
+  289c14:      	add	w8, w8, w20
+  289c18:      	add	x0, x19, x21
+  289c1c:      	cmp	w8, #0x3
+  289c20:      	csel	w22, w8, w9, lt
+  289c24:      	sxtw	x2, w22
+  289c28:      	bl	0x4c3250 <memcpy@plt>
+  289c2c:      	mov	w8, #0x18               // =24
+  289c30:      	mov	w9, #0xc                // =12
+  289c34:      	add	w21, w22, w21
+  289c38:      	ldp	x10, x11, [x25]
+  289c3c:      	umull	x8, w24, w8
+  289c40:      	umaddl	x9, w24, w9, x11
+  289c44:      	ldr	x23, [x10, x8]
+  289c48:      	ldrb	w24, [x9, #0x2]
+  289c4c:      	add	x0, x23, x24
+  289c50:      	bl	0x4c2e10 <strlen@plt>
+  289c54:      	mvn	w8, w21
+  289c58:      	add	x1, x23, x24
+  289c5c:      	add	w8, w8, w20
+  289c60:      	cmp	w8, w0
+  289c64:      	csel	w22, w8, w0, lt
+  289c68:      	add	x0, x19, w21, sxtw
+  289c6c:      	sxtw	x2, w22
+  289c70:      	bl	0x4c3250 <memcpy@plt>
+  289c74:      	add	w21, w22, w21
+  289c78:      	cmp	w21, w20
+  289c7c:      	b.lt	0x289d1c <Clp_CurOptionNameBuf+0x23c>
+  289c80:      	b	0x289d20 <Clp_CurOptionNameBuf+0x240>
+  289c84:      	cmp	w26, w23
+  289c88:      	b.le	0x289d14 <Clp_CurOptionNameBuf+0x234>
+  289c8c:      	mov	w8, #0x18               // =24
+  289c90:      	ldr	x9, [x25]
+  289c94:      	add	w21, w21, #0x1
+  289c98:      	umaddl	x8, w24, w8, x9
+  289c9c:      	ldr	w8, [x8, #0x8]
+  289ca0:      	strb	w8, [x19, x22]
+  289ca4:      	cmp	w21, w20
+  289ca8:      	b.lt	0x289d1c <Clp_CurOptionNameBuf+0x23c>
+  289cac:      	b	0x289d20 <Clp_CurOptionNameBuf+0x240>
+  289cb0:      	cmp	w10, #0x1
+  289cb4:      	b.le	0x289d3c <Clp_CurOptionNameBuf+0x25c>
+  289cb8:      	cmp	w9, #0x7ff
+  289cbc:      	b.hi	0x289d3c <Clp_CurOptionNameBuf+0x25c>
+  289cc0:      	lsr	w10, w9, #6
+  289cc4:      	orr	w10, w10, #0xc0
+  289cc8:      	b	0x289d8c <Clp_CurOptionNameBuf+0x2ac>
+  289ccc:      	mov	w8, #0x18               // =24
+  289cd0:      	mov	w9, #0xc                // =12
+  289cd4:      	ldp	x10, x11, [x25]
+  289cd8:      	umull	x8, w24, w8
+  289cdc:      	umaddl	x9, w24, w9, x11
+  289ce0:      	ldr	x22, [x10, x8]
+  289ce4:      	ldrb	w23, [x9, #0x2]
+  289ce8:      	add	x0, x22, x23
+  289cec:      	bl	0x4c2e10 <strlen@plt>
+  289cf0:      	mvn	w8, w21
+  289cf4:      	add	x1, x22, x23
+  289cf8:      	add	w8, w8, w20
+  289cfc:      	cmp	w8, w0
+  289d00:      	csel	w24, w8, w0, lt
+  289d04:      	add	x0, x19, x21
+  289d08:      	sxtw	x2, w24
+  289d0c:      	bl	0x4c3250 <memcpy@plt>
+  289d10:      	add	w21, w24, w21
+  289d14:      	cmp	w21, w20
+  289d18:      	b.ge	0x289d20 <Clp_CurOptionNameBuf+0x240>
+  289d1c:      	strb	wzr, [x19, w21, sxtw]
+  289d20:      	mov	w0, w21
+  289d24:      	ldp	x20, x19, [sp, #0x40]
+  289d28:      	ldp	x22, x21, [sp, #0x30]
+  289d2c:      	ldp	x24, x23, [sp, #0x20]
+  289d30:      	ldp	x26, x25, [sp, #0x10]
+  289d34:      	ldp	x29, x30, [sp], #0x50
+  289d38:      	ret
+  289d3c:      	cmp	w10, #0x3
+  289d40:      	b.lt	0x289d5c <Clp_CurOptionNameBuf+0x27c>
+  289d44:      	lsr	w11, w9, #16
+  289d48:      	cbnz	w11, 0x289d5c <Clp_CurOptionNameBuf+0x27c>
+  289d4c:      	lsr	w10, w9, #12
+  289d50:      	orr	w10, w10, #0xe0
+  289d54:      	strb	w10, [x8], #0x1
+  289d58:      	b	0x289d84 <Clp_CurOptionNameBuf+0x2a4>
+  289d5c:      	cmp	w10, #0x3
+  289d60:      	b.le	0x289da4 <Clp_CurOptionNameBuf+0x2c4>
+  289d64:      	lsr	w10, w9, #18
+  289d68:      	mov	w11, #0x80              // =128
+  289d6c:      	bfxil	w11, w9, #12, #6
+  289d70:      	orr	w10, w10, #0xf0
+  289d74:      	strb	w10, [x8]
+  289d78:      	add	x10, x8, #0x2
+  289d7c:      	strb	w11, [x8, #0x1]
+  289d80:      	mov	x8, x10
+  289d84:      	mov	w10, #0x80              // =128
+  289d88:      	bfxil	w10, w9, #6, #6
+  289d8c:      	strb	w10, [x8]
+  289d90:      	mov	w10, #0x80              // =128
+  289d94:      	bfxil	w10, w9, #0, #6
+  289d98:      	add	x9, x8, #0x2
+  289d9c:      	strb	w10, [x8, #0x1]
+  289da0:      	mov	x8, x9
+  289da4:      	sub	w21, w8, w19
+  289da8:      	cmp	w21, w20
+  289dac:      	b.lt	0x289d1c <Clp_CurOptionNameBuf+0x23c>
+  289db0:      	b	0x289d20 <Clp_CurOptionNameBuf+0x240>

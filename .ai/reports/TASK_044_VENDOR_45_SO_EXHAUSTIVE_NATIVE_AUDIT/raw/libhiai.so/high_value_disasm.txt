@@ -1,0 +1,350 @@
+
+--- FUNCTION: AI_Log_Print ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000055c8c <AI_Log_Print>:
+   55c8c:      	sub	sp, sp, #0x120
+   55c90:      	str	x29, [sp, #0x100]
+   55c94:      	stp	x30, x19, [sp, #0x110]
+   55c98:      	stp	x3, x4, [sp, #0x88]
+   55c9c:      	stp	x5, x6, [sp, #0x98]
+   55ca0:      	str	x7, [sp, #0xa8]
+   55ca4:      	stp	q0, q1, [sp]
+   55ca8:      	stp	q2, q3, [sp, #0x20]
+   55cac:      	stp	q4, q5, [sp, #0x40]
+   55cb0:      	stp	q6, q7, [sp, #0x60]
+   55cb4:      	mrs	x19, TPIDR_EL0
+   55cb8:      	ldr	x8, [x19, #0x28]
+   55cbc:      	cmp	w0, #0x3
+   55cc0:      	str	x8, [sp, #0xf8]
+   55cc4:      	b.hi	0x55d0c <AI_Log_Print+0x80>
+   55cc8:      	add	x9, sp, #0x88
+   55ccc:      	add	x8, sp, #0x120
+   55cd0:      	mov	x10, sp
+   55cd4:      	add	x9, x9, #0x28
+   55cd8:      	add	x10, x10, #0x80
+   55cdc:      	add	x3, sp, #0xb0
+   55ce0:      	stp	x8, x9, [sp, #0xd8]
+   55ce4:      	mov	x8, #-0x28              // =-40
+   55ce8:      	add	x9, sp, #0xd8
+   55cec:      	movk	x8, #0xff80, lsl #32
+   55cf0:      	stp	x10, x8, [sp, #0xe8]
+   55cf4:      	nop
+   55cf8:      	adr	x8, 0x1fe10
+   55cfc:      	ldp	q0, q1, [x9]
+   55d00:      	ldr	w0, [x8, w0, uxtw #2]
+   55d04:      	stp	q0, q1, [sp, #0xb0]
+   55d08:      	bl	0x6cdf0 <__android_log_vprint@plt>
+   55d0c:      	ldr	x8, [x19, #0x28]
+   55d10:      	ldr	x9, [sp, #0xf8]
+   55d14:      	cmp	x8, x9
+   55d18:      	b.ne	0x55d2c <AI_Log_Print+0xa0>
+   55d1c:      	ldp	x30, x19, [sp, #0x110]
+   55d20:      	ldr	x29, [sp, #0x100]
+   55d24:      	add	sp, sp, #0x120
+   55d28:      	ret
+   55d2c:      	bl	0x6be40 <__stack_chk_fail@plt>
+
+--- FUNCTION: HIAI_Foundation_Deinit ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000063994 <HIAI_Foundation_Deinit>:
+   63994:      	ret
+
+--- FUNCTION: HIAI_Foundation_GetSymbol ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000063998 <HIAI_Foundation_GetSymbol>:
+   63998:      	str	x30, [sp, #-0x10]!
+   6399c:      	cbz	x0, 0x639b8 <HIAI_Foundation_GetSymbol+0x20>
+   639a0:      	adrp	x8, 0x78000
+   639a4:      	mov	x1, x0
+   639a8:      	ldr	x0, [x8, #0xc68]
+   639ac:      	cbz	x0, 0x639f4 <HIAI_Foundation_GetSymbol+0x5c>
+   639b0:      	ldr	x30, [sp], #0x10
+   639b4:      	b	0x6c2b0 <dlsym@plt>
+   639b8:      	adrp	x0, 0x14000
+   639bc:      	add	x0, x0, #0x222
+   639c0:      	mov	w1, #0x2f               // =47
+   639c4:      	mov	w2, #0x6d               // =109
+   639c8:      	bl	0x6be80 <__strrchr_chk@plt>
+   639cc:      	adrp	x1, 0x19000
+   639d0:      	add	x1, x1, #0x3cf
+   639d4:      	adrp	x2, 0x1e000
+   639d8:      	add	x2, x2, #0xa8d
+   639dc:      	adrp	x4, 0x16000
+   639e0:      	add	x4, x4, #0x29d
+   639e4:      	add	x3, x0, #0x1
+   639e8:      	mov	w0, #0x3                // =3
+   639ec:      	mov	w5, #0x53               // =83
+   639f0:      	b	0x63a2c <HIAI_Foundation_GetSymbol+0x94>
+   639f4:      	adrp	x0, 0x14000
+   639f8:      	add	x0, x0, #0x222
+   639fc:      	mov	w1, #0x2f               // =47
+   63a00:      	mov	w2, #0x6d               // =109
+   63a04:      	bl	0x6be80 <__strrchr_chk@plt>
+   63a08:      	adrp	x1, 0x19000
+   63a0c:      	add	x1, x1, #0x3cf
+   63a10:      	adrp	x2, 0x1f000
+   63a14:      	add	x2, x2, #0xc03
+   63a18:      	adrp	x4, 0x16000
+   63a1c:      	add	x4, x4, #0x29d
+   63a20:      	add	x3, x0, #0x1
+   63a24:      	mov	w0, #0x3                // =3
+   63a28:      	mov	w5, #0x57               // =87
+   63a2c:      	bl	0x6be90 <AI_Log_Print@plt>
+   63a30:      	mov	x0, xzr
+   63a34:      	ldr	x30, [sp], #0x10
+   63a38:      	ret
+
+--- FUNCTION: HIAI_Foundation_Init ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000638d0 <HIAI_Foundation_Init>:
+   638d0:      	stp	x30, x19, [sp, #-0x10]!
+   638d4:      	adrp	x19, 0x78000
+   638d8:      	ldr	x8, [x19, #0xc68]
+   638dc:      	cbz	x8, 0x638e8 <HIAI_Foundation_Init+0x18>
+   638e0:      	ldp	x30, x19, [sp], #0x10
+   638e4:      	ret
+   638e8:      	adrp	x0, 0x18000
+   638ec:      	add	x0, x0, #0x51b
+   638f0:      	mov	w1, #0x2                // =2
+   638f4:      	bl	0x6c2a0 <dlopen@plt>
+   638f8:      	str	x0, [x19, #0xc68]
+   638fc:      	cbnz	x0, 0x63918 <HIAI_Foundation_Init+0x48>
+   63900:      	adrp	x0, 0x1c000
+   63904:      	add	x0, x0, #0xff1
+   63908:      	mov	w1, #0x2                // =2
+   6390c:      	bl	0x6c2a0 <dlopen@plt>
+   63910:      	str	x0, [x19, #0xc68]
+   63914:      	cbz	x0, 0x63958 <HIAI_Foundation_Init+0x88>
+   63918:      	adrp	x0, 0x14000
+   6391c:      	add	x0, x0, #0x222
+   63920:      	mov	w1, #0x2f               // =47
+   63924:      	mov	w2, #0x6d               // =109
+   63928:      	bl	0x6be80 <__strrchr_chk@plt>
+   6392c:      	adrp	x1, 0x19000
+   63930:      	add	x1, x1, #0x3cf
+   63934:      	adrp	x2, 0x16000
+   63938:      	add	x2, x2, #0x272
+   6393c:      	adrp	x4, 0x1e000
+   63940:      	add	x4, x4, #0xa78
+   63944:      	add	x3, x0, #0x1
+   63948:      	mov	w0, #0x1                // =1
+   6394c:      	mov	w5, #0x46               // =70
+   63950:      	ldp	x30, x19, [sp], #0x10
+   63954:      	b	0x6be90 <AI_Log_Print@plt>
+   63958:      	adrp	x0, 0x14000
+   6395c:      	add	x0, x0, #0x222
+   63960:      	mov	w1, #0x2f               // =47
+   63964:      	mov	w2, #0x6d               // =109
+   63968:      	bl	0x6be80 <__strrchr_chk@plt>
+   6396c:      	adrp	x1, 0x19000
+   63970:      	add	x1, x1, #0x3cf
+   63974:      	nop
+   63978:      	adr	x2, 0x1788f
+   6397c:      	adrp	x4, 0x1e000
+   63980:      	add	x4, x4, #0xa78
+   63984:      	add	x3, x0, #0x1
+   63988:      	mov	w0, #0x2                // =2
+   6398c:      	mov	w5, #0x42               // =66
+   63990:      	b	0x63950 <HIAI_Foundation_Init+0x80>
+
+--- FUNCTION: HIAI_Foundation_IsNpuSupport ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000063a3c <HIAI_Foundation_IsNpuSupport>:
+   63a3c:      	stp	x30, x23, [sp, #-0x30]!
+   63a40:      	stp	x22, x21, [sp, #0x10]
+   63a44:      	stp	x20, x19, [sp, #0x20]
+   63a48:      	adrp	x22, 0x77000
+   63a4c:      	ldr	w19, [x22, #0xfd0]
+   63a50:      	cmp	w19, #0x2
+   63a54:      	b.ne	0x63c34 <HIAI_Foundation_IsNpuSupport+0x1f8>
+   63a58:      	adrp	x8, 0x78000
+   63a5c:      	ldr	x8, [x8, #0xc68]
+   63a60:      	cbz	x8, 0x63b70 <HIAI_Foundation_IsNpuSupport+0x134>
+   63a64:      	adrp	x0, 0x1e000
+   63a68:      	add	x0, x0, #0x291
+   63a6c:      	bl	0x6bf90 <HIAI_Foundation_GetSymbol@plt>
+   63a70:      	cbz	x0, 0x63a7c <HIAI_Foundation_IsNpuSupport+0x40>
+   63a74:      	blr	x0
+   63a78:      	cbz	w0, 0x63bf0 <HIAI_Foundation_IsNpuSupport+0x1b4>
+   63a7c:      	bl	0x6c270 <HIAI_MR_GetVersion@plt>
+   63a80:      	mov	x19, x0
+   63a84:      	cbz	x0, 0x63bb4 <HIAI_Foundation_IsNpuSupport+0x178>
+   63a88:      	nop
+   63a8c:      	adr	x1, 0x2208c <_ZTSN4hiai9IAIPPParaE+0x19e>
+   63a90:      	mov	x0, x19
+   63a94:      	mov	w2, #0x8                // =8
+   63a98:      	bl	0x6c180 <strncmp@plt>
+   63a9c:      	cbz	w0, 0x63b34 <HIAI_Foundation_IsNpuSupport+0xf8>
+   63aa0:      	mov	x21, #-0x1              // =-1
+   63aa4:      	adrp	x20, 0x22000 <_ZTSN4hiai9IAIPPParaE+0x112>
+   63aa8:      	add	x20, x20, #0x9c
+   63aac:      	cmp	x21, #0x1
+   63ab0:      	b.eq	0x63ad8 <HIAI_Foundation_IsNpuSupport+0x9c>
+   63ab4:      	mov	x0, x19
+   63ab8:      	mov	x1, x20
+   63abc:      	mov	w2, #0x8                // =8
+   63ac0:      	bl	0x6c180 <strncmp@plt>
+   63ac4:      	add	x21, x21, #0x1
+   63ac8:      	add	x20, x20, #0x10
+   63acc:      	cbnz	w0, 0x63aac <HIAI_Foundation_IsNpuSupport+0x70>
+   63ad0:      	cmp	x21, #0x2
+   63ad4:      	b.lo	0x63b34 <HIAI_Foundation_IsNpuSupport+0xf8>
+   63ad8:      	mov	x0, x19
+   63adc:      	bl	0x6bea0 <strlen@plt>
+   63ae0:      	mov	x20, x0
+   63ae4:      	nop
+   63ae8:      	adr	x1, 0x220bc <_ZTSN4hiai9IAIPPParaE+0x1ce>
+   63aec:      	mov	x0, x19
+   63af0:      	mov	x2, x20
+   63af4:      	bl	0x6c180 <strncmp@plt>
+   63af8:      	cbz	w0, 0x63b34 <HIAI_Foundation_IsNpuSupport+0xf8>
+   63afc:      	mov	x23, #-0x1              // =-1
+   63b00:      	adrp	x21, 0x22000 <_ZTSN4hiai9IAIPPParaE+0x112>
+   63b04:      	add	x21, x21, #0xcc
+   63b08:      	cmp	x23, #0x1
+   63b0c:      	b.eq	0x63c48 <HIAI_Foundation_IsNpuSupport+0x20c>
+   63b10:      	mov	x0, x19
+   63b14:      	mov	x1, x21
+   63b18:      	mov	x2, x20
+   63b1c:      	bl	0x6c180 <strncmp@plt>
+   63b20:      	add	x23, x23, #0x1
+   63b24:      	add	x21, x21, #0x10
+   63b28:      	cbnz	w0, 0x63b08 <HIAI_Foundation_IsNpuSupport+0xcc>
+   63b2c:      	cmp	x23, #0x1
+   63b30:      	b.hi	0x63c48 <HIAI_Foundation_IsNpuSupport+0x20c>
+   63b34:      	adrp	x0, 0x14000
+   63b38:      	add	x0, x0, #0x222
+   63b3c:      	mov	w1, #0x2f               // =47
+   63b40:      	mov	w2, #0x6d               // =109
+   63b44:      	bl	0x6be80 <__strrchr_chk@plt>
+   63b48:      	adrp	x1, 0x19000
+   63b4c:      	add	x1, x1, #0x3cf
+   63b50:      	adrp	x2, 0x14000
+   63b54:      	add	x2, x2, #0x8c1
+   63b58:      	adrp	x4, 0x15000
+   63b5c:      	add	x4, x4, #0xceb
+   63b60:      	add	x3, x0, #0x1
+   63b64:      	mov	w0, #0x1                // =1
+   63b68:      	mov	w5, #0x77               // =119
+   63b6c:      	b	0x63c28 <HIAI_Foundation_IsNpuSupport+0x1ec>
+   63b70:      	adrp	x0, 0x14000
+   63b74:      	add	x0, x0, #0x222
+   63b78:      	mov	w1, #0x2f               // =47
+   63b7c:      	mov	w2, #0x6d               // =109
+   63b80:      	bl	0x6be80 <__strrchr_chk@plt>
+   63b84:      	adrp	x1, 0x19000
+   63b88:      	add	x1, x1, #0x3cf
+   63b8c:      	adrp	x2, 0x1c000
+   63b90:      	add	x2, x2, #0xbdf
+   63b94:      	adrp	x4, 0x15000
+   63b98:      	add	x4, x4, #0xceb
+   63b9c:      	add	x3, x0, #0x1
+   63ba0:      	mov	w0, #0x1                // =1
+   63ba4:      	mov	w5, #0x63               // =99
+   63ba8:      	bl	0x6be90 <AI_Log_Print@plt>
+   63bac:      	mov	w19, wzr
+   63bb0:      	b	0x63c30 <HIAI_Foundation_IsNpuSupport+0x1f4>
+   63bb4:      	adrp	x0, 0x14000
+   63bb8:      	add	x0, x0, #0x222
+   63bbc:      	mov	w1, #0x2f               // =47
+   63bc0:      	mov	w2, #0x6d               // =109
+   63bc4:      	bl	0x6be80 <__strrchr_chk@plt>
+   63bc8:      	adrp	x1, 0x19000
+   63bcc:      	add	x1, x1, #0x3cf
+   63bd0:      	adrp	x2, 0x1c000
+   63bd4:      	add	x2, x2, #0xbdf
+   63bd8:      	adrp	x4, 0x15000
+   63bdc:      	add	x4, x4, #0xceb
+   63be0:      	add	x3, x0, #0x1
+   63be4:      	mov	w0, #0x1                // =1
+   63be8:      	mov	w5, #0x71               // =113
+   63bec:      	b	0x63c2c <HIAI_Foundation_IsNpuSupport+0x1f0>
+   63bf0:      	adrp	x0, 0x14000
+   63bf4:      	add	x0, x0, #0x222
+   63bf8:      	mov	w1, #0x2f               // =47
+   63bfc:      	mov	w2, #0x6d               // =109
+   63c00:      	bl	0x6be80 <__strrchr_chk@plt>
+   63c04:      	adrp	x1, 0x19000
+   63c08:      	add	x1, x1, #0x3cf
+   63c0c:      	adrp	x2, 0x14000
+   63c10:      	add	x2, x2, #0x8c1
+   63c14:      	adrp	x4, 0x15000
+   63c18:      	add	x4, x4, #0xceb
+   63c1c:      	add	x3, x0, #0x1
+   63c20:      	mov	w0, #0x1                // =1
+   63c24:      	mov	w5, #0x6a               // =106
+   63c28:      	mov	w19, #0x1               // =1
+   63c2c:      	bl	0x6be90 <AI_Log_Print@plt>
+   63c30:      	str	w19, [x22, #0xfd0]
+   63c34:      	mov	w0, w19
+   63c38:      	ldp	x20, x19, [sp, #0x20]
+   63c3c:      	ldp	x22, x21, [sp, #0x10]
+   63c40:      	ldp	x30, x23, [sp], #0x30
+   63c44:      	ret
+   63c48:      	mov	x0, x19
+   63c4c:      	bl	0x6bea0 <strlen@plt>
+   63c50:      	mov	x2, x0
+   63c54:      	adrp	x1, 0x1d000
+   63c58:      	add	x1, x1, #0x224
+   63c5c:      	mov	x0, x19
+   63c60:      	bl	0x6c180 <strncmp@plt>
+   63c64:      	cmp	w0, #0x1
+   63c68:      	b.lt	0x63cc8 <HIAI_Foundation_IsNpuSupport+0x28c>
+   63c6c:      	mov	x0, x19
+   63c70:      	bl	0x6bea0 <strlen@plt>
+   63c74:      	mov	x2, x0
+   63c78:      	adrp	x1, 0x16000
+   63c7c:      	add	x1, x1, #0x2b7
+   63c80:      	mov	x0, x19
+   63c84:      	bl	0x6c180 <strncmp@plt>
+   63c88:      	cbz	w0, 0x63cc8 <HIAI_Foundation_IsNpuSupport+0x28c>
+   63c8c:      	adrp	x0, 0x14000
+   63c90:      	add	x0, x0, #0x222
+   63c94:      	mov	w1, #0x2f               // =47
+   63c98:      	mov	w2, #0x6d               // =109
+   63c9c:      	bl	0x6be80 <__strrchr_chk@plt>
+   63ca0:      	adrp	x1, 0x19000
+   63ca4:      	add	x1, x1, #0x3cf
+   63ca8:      	adrp	x2, 0x14000
+   63cac:      	add	x2, x2, #0x8c1
+   63cb0:      	adrp	x4, 0x15000
+   63cb4:      	add	x4, x4, #0xceb
+   63cb8:      	add	x3, x0, #0x1
+   63cbc:      	mov	w0, #0x1                // =1
+   63cc0:      	mov	w5, #0x7e               // =126
+   63cc4:      	b	0x63c28 <HIAI_Foundation_IsNpuSupport+0x1ec>
+   63cc8:      	adrp	x0, 0x14000
+   63ccc:      	add	x0, x0, #0x222
+   63cd0:      	mov	w1, #0x2f               // =47
+   63cd4:      	mov	w2, #0x6d               // =109
+   63cd8:      	bl	0x6be80 <__strrchr_chk@plt>
+   63cdc:      	adrp	x1, 0x19000
+   63ce0:      	add	x1, x1, #0x3cf
+   63ce4:      	adrp	x2, 0x1c000
+   63ce8:      	add	x2, x2, #0xbdf
+   63cec:      	adrp	x4, 0x15000
+   63cf0:      	add	x4, x4, #0xceb
+   63cf4:      	add	x3, x0, #0x1
+   63cf8:      	mov	w0, #0x1                // =1
+   63cfc:      	mov	w5, #0x82               // =130
+   63d00:      	b	0x63ba8 <HIAI_Foundation_IsNpuSupport+0x16c>

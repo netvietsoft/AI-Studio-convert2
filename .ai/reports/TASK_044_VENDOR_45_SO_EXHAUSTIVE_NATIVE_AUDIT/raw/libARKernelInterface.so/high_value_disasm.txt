@@ -1,0 +1,517 @@
+
+--- FUNCTION: FT_Activate_Size ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARKernelInterface.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000eba898 <FT_Activate_Size>:
+  eba898:      	cbz	x0, 0xeba8c4 <FT_Activate_Size+0x2c>
+  eba89c:      	ldr	x9, [x0]
+  eba8a0:      	mov	x8, x0
+  eba8a4:      	cbz	x9, 0xeba8bc <FT_Activate_Size+0x24>
+  eba8a8:      	ldr	x10, [x9, #0xb0]
+  eba8ac:      	cbz	x10, 0xeba8bc <FT_Activate_Size+0x24>
+  eba8b0:      	mov	w0, wzr
+  eba8b4:      	str	x8, [x9, #0xa0]
+  eba8b8:      	ret
+  eba8bc:      	mov	w0, #0x23               // =35
+  eba8c0:      	ret
+  eba8c4:      	mov	w0, #0x24               // =36
+  eba8c8:      	ret
+  eba8cc:      	cbz	x0, 0xeba908 <FT_Activate_Size+0x70>
+  eba8d0:      	ldr	x8, [x0, #0x118]
+  eba8d4:      	cbz	x2, 0xeba900 <FT_Activate_Size+0x68>
+  eba8d8:      	ldr	x9, [x2]
+  eba8dc:      	cbz	x9, 0xeba8e4 <FT_Activate_Size+0x4c>
+  eba8e0:      	ldr	x8, [x9, #0x8]
+  eba8e4:      	str	xzr, [x2]
+  eba8e8:      	b	0xeba900 <FT_Activate_Size+0x68>
+  eba8ec:      	ldr	x0, [x8, #0x10]
+  eba8f0:      	ldr	w9, [x0, #0x20]
+  eba8f4:      	cmp	w9, w1
+  eba8f8:      	b.eq	0xeba90c <FT_Activate_Size+0x74>
+  eba8fc:      	ldr	x8, [x8, #0x8]
+  eba900:      	cbnz	x8, 0xeba8ec <FT_Activate_Size+0x54>
+  eba904:      	mov	x0, xzr
+  eba908:      	ret
+  eba90c:      	cbz	x2, 0xeba908 <FT_Activate_Size+0x70>
+  eba910:      	str	x8, [x2]
+  eba914:      	ret
+
+--- FUNCTION: FT_Add_Default_Modules ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARKernelInterface.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000ec1338 <FT_Add_Default_Modules>:
+  ec1338:      	stp	x29, x30, [sp, #-0x20]!
+  ec133c:      	stp	x20, x19, [sp, #0x10]
+  ec1340:      	mov	x29, sp
+  ec1344:      	adrp	x1, 0x10c6000
+  ec1348:      	mov	x19, x0
+  ec134c:      	adrp	x20, 0x10bb000 <_ZTINSt6__ndk120__shared_ptr_pointerIPNS_6vectorIfNS_9allocatorIfEEEENS_10shared_ptrIS4_E27__shared_ptr_default_deleteIS4_S4_EENS2_IS4_EEEE+0x12410>
+  ec1350:      	add	x20, x20, #0x628
+  ec1354:      	ldr	x1, [x1, #0x868]
+  ec1358:      	mov	x0, x19
+  ec135c:      	bl	0x1049190 <FT_Add_Module@plt>
+  ec1360:      	ldr	x1, [x20], #0x8
+  ec1364:      	cbnz	x1, 0xec1358 <FT_Add_Default_Modules+0x20>
+  ec1368:      	ldp	x20, x19, [sp, #0x10]
+  ec136c:      	ldp	x29, x30, [sp], #0x20
+  ec1370:      	ret
+
+--- FUNCTION: FT_Add_Module ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARKernelInterface.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000ebab8c <FT_Add_Module>:
+  ebab8c:      	sub	sp, sp, #0x70
+  ebab90:      	stp	x29, x30, [sp, #0x10]
+  ebab94:      	str	x27, [sp, #0x20]
+  ebab98:      	stp	x26, x25, [sp, #0x30]
+  ebab9c:      	stp	x24, x23, [sp, #0x40]
+  ebaba0:      	stp	x22, x21, [sp, #0x50]
+  ebaba4:      	stp	x20, x19, [sp, #0x60]
+  ebaba8:      	add	x29, sp, #0x10
+  ebabac:      	mrs	x24, TPIDR_EL0
+  ebabb0:      	ldr	x8, [x24, #0x28]
+  ebabb4:      	str	x8, [sp, #0x8]
+  ebabb8:      	cbz	x0, 0xebabe0 <FT_Add_Module+0x54>
+  ebabbc:      	mov	x20, x1
+  ebabc0:      	cbz	x1, 0xebabe8 <FT_Add_Module+0x5c>
+  ebabc4:      	ldr	x8, [x20, #0x20]
+  ebabc8:      	mov	w9, #0x9                // =9
+  ebabcc:      	movk	w9, #0x2, lsl #16
+  ebabd0:      	cmp	x8, x9
+  ebabd4:      	b.le	0xebabf0 <FT_Add_Module+0x64>
+  ebabd8:      	mov	w23, #0x4               // =4
+  ebabdc:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebabe0:      	mov	w23, #0x21              // =33
+  ebabe4:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebabe8:      	mov	w23, #0x6               // =6
+  ebabec:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebabf0:      	ldr	w23, [x0, #0x14]
+  ebabf4:      	mov	x19, x0
+  ebabf8:      	cbz	w23, 0xebac34 <FT_Add_Module+0xa8>
+  ebabfc:      	ldr	x21, [x20, #0x10]
+  ebac00:      	lsl	x25, x23, #3
+  ebac04:      	mov	x26, xzr
+  ebac08:      	add	x8, x19, x26
+  ebac0c:      	mov	x1, x21
+  ebac10:      	ldr	x22, [x8, #0x18]
+  ebac14:      	ldr	x27, [x22]
+  ebac18:      	ldr	x0, [x27, #0x10]
+  ebac1c:      	bl	0x10482c0 <strcmp@plt>
+  ebac20:      	cbz	w0, 0xebac40 <FT_Add_Module+0xb4>
+  ebac24:      	add	x26, x26, #0x8
+  ebac28:      	cmp	x25, x26
+  ebac2c:      	b.ne	0xebac08 <FT_Add_Module+0x7c>
+  ebac30:      	b	0xebac60 <FT_Add_Module+0xd4>
+  ebac34:      	ldr	x21, [x19]
+  ebac38:      	str	wzr, [sp, #0x4]
+  ebac3c:      	b	0xebac78 <FT_Add_Module+0xec>
+  ebac40:      	ldr	x8, [x20, #0x18]
+  ebac44:      	ldr	x9, [x27, #0x18]
+  ebac48:      	cmp	x8, x9
+  ebac4c:      	b.le	0xebad38 <FT_Add_Module+0x1ac>
+  ebac50:      	mov	x0, x19
+  ebac54:      	mov	x1, x22
+  ebac58:      	bl	0x10491a0 <FT_Remove_Module@plt>
+  ebac5c:      	ldr	w23, [x19, #0x14]
+  ebac60:      	ldr	x21, [x19]
+  ebac64:      	cmp	w23, #0x1f
+  ebac68:      	str	wzr, [sp, #0x4]
+  ebac6c:      	b.ls	0xebac78 <FT_Add_Module+0xec>
+  ebac70:      	mov	w23, #0x30              // =48
+  ebac74:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebac78:      	ldr	x1, [x20, #0x8]
+  ebac7c:      	add	x2, sp, #0x4
+  ebac80:      	mov	x0, x21
+  ebac84:      	bl	0xeb6e54 <FT_Get_X11_Font_Format+0x84>
+  ebac88:      	ldr	w23, [sp, #0x4]
+  ebac8c:      	cbnz	w23, 0xebad58 <FT_Add_Module+0x1cc>
+  ebac90:      	ldr	x8, [x20]
+  ebac94:      	mov	x22, x0
+  ebac98:      	mov	x9, x20
+  ebac9c:      	str	x21, [x0, #0x10]
+  ebaca0:      	stp	x20, x19, [x0]
+  ebaca4:      	tbz	w8, #0x1, 0xebacc0 <FT_Add_Module+0x134>
+  ebaca8:      	mov	x0, x22
+  ebacac:      	bl	0xebaf88 <FT_Remove_Module+0x1f8>
+  ebacb0:      	mov	w23, w0
+  ebacb4:      	cbnz	w0, 0xebace8 <FT_Add_Module+0x15c>
+  ebacb8:      	ldr	x9, [x22]
+  ebacbc:      	ldr	x8, [x9]
+  ebacc0:      	tbz	w8, #0x2, 0xebacc8 <FT_Add_Module+0x13c>
+  ebacc4:      	str	x22, [x19, #0x130]
+  ebacc8:      	tbz	w8, #0x0, 0xebacd0 <FT_Add_Module+0x144>
+  ebaccc:      	str	x9, [x22, #0x18]
+  ebacd0:      	ldr	x8, [x20, #0x30]
+  ebacd4:      	cbz	x8, 0xebad40 <FT_Add_Module+0x1b4>
+  ebacd8:      	mov	x0, x22
+  ebacdc:      	blr	x8
+  ebace0:      	mov	w23, w0
+  ebace4:      	cbz	w0, 0xebad40 <FT_Add_Module+0x1b4>
+  ebace8:      	ldr	x8, [x22]
+  ebacec:      	ldrb	w8, [x8]
+  ebacf0:      	tbz	w8, #0x1, 0xebad24 <FT_Add_Module+0x198>
+  ebacf4:      	ldr	x8, [x22, #0x18]
+  ebacf8:      	cbz	x8, 0xebad24 <FT_Add_Module+0x198>
+  ebacfc:      	ldr	w9, [x8, #0x48]
+  ebad00:      	mov	w10, #0x746c            // =29804
+  ebad04:      	movk	w10, #0x6f75, lsl #16
+  ebad08:      	cmp	w9, w10
+  ebad0c:      	b.ne	0xebad24 <FT_Add_Module+0x198>
+  ebad10:      	ldr	x0, [x22, #0x68]
+  ebad14:      	cbz	x0, 0xebad24 <FT_Add_Module+0x198>
+  ebad18:      	ldr	x8, [x8, #0x70]
+  ebad1c:      	ldr	x8, [x8, #0x28]
+  ebad20:      	blr	x8
+  ebad24:      	ldr	x8, [x21, #0x10]
+  ebad28:      	mov	x0, x21
+  ebad2c:      	mov	x1, x22
+  ebad30:      	blr	x8
+  ebad34:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebad38:      	mov	w23, #0x5               // =5
+  ebad3c:      	b	0xebad58 <FT_Add_Module+0x1cc>
+  ebad40:      	ldr	w8, [x19, #0x14]
+  ebad44:      	mov	w23, wzr
+  ebad48:      	add	w9, w8, #0x1
+  ebad4c:      	add	x8, x19, x8, lsl #3
+  ebad50:      	str	w9, [x19, #0x14]
+  ebad54:      	str	x22, [x8, #0x18]
+  ebad58:      	ldr	x8, [x24, #0x28]
+  ebad5c:      	ldr	x9, [sp, #0x8]
+  ebad60:      	cmp	x8, x9
+  ebad64:      	b.ne	0xebad8c <FT_Add_Module+0x200>
+  ebad68:      	mov	w0, w23
+  ebad6c:      	ldp	x20, x19, [sp, #0x60]
+  ebad70:      	ldr	x27, [sp, #0x20]
+  ebad74:      	ldp	x22, x21, [sp, #0x50]
+  ebad78:      	ldp	x24, x23, [sp, #0x40]
+  ebad7c:      	ldp	x26, x25, [sp, #0x30]
+  ebad80:      	ldp	x29, x30, [sp, #0x10]
+  ebad84:      	add	sp, sp, #0x70
+  ebad88:      	ret
+  ebad8c:      	bl	0x1046950 <__stack_chk_fail@plt>
+
+--- FUNCTION: FT_Angle_Diff ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARKernelInterface.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000ebe3c4 <FT_Angle_Diff>:
+  ebe3c4:      	mov	x8, #-0xffff            // =-65535
+  ebe3c8:      	sub	x9, x1, x0
+  ebe3cc:      	mov	x10, #0x2d83            // =11651
+  ebe3d0:      	movk	x8, #0xff4c, lsl #16
+  ebe3d4:      	movk	x10, #0x82d8, lsl #16
+  ebe3d8:      	mov	w12, #0xb40000          // =11796480
+  ebe3dc:      	cmp	x9, x8
+  ebe3e0:      	movk	x10, #0xd82d, lsl #32
+  ebe3e4:      	csel	x8, x9, x8, gt
+  ebe3e8:      	movk	x10, #0x2d82, lsl #48
+  ebe3ec:      	add	x8, x8, x0
+  ebe3f0:      	cmp	x8, x1
+  ebe3f4:      	cinc	x9, x1, ne
+  ebe3f8:      	cmp	x8, x1
+  ebe3fc:      	sub	x9, x8, x9
+  ebe400:      	umulh	x9, x9, x10
+  ebe404:      	lsr	x9, x9, #22
+  ebe408:      	cinc	x8, x9, ne
+  ebe40c:      	mov	w9, #0x1680000          // =23592960
+  ebe410:      	madd	x8, x8, x9, x1
+  ebe414:      	sub	x11, x8, x0
+  ebe418:      	sub	x8, x8, x0
+  ebe41c:      	cmp	x11, #0xb40, lsl #12    // =0xb40000
+  ebe420:      	csel	x12, x11, x12, lt
+  ebe424:      	sub	x8, x8, x12
+  ebe428:      	mov	w12, #0x167ffff         // =23592959
+  ebe42c:      	add	x8, x8, x12
+  ebe430:      	umulh	x10, x8, x10
+  ebe434:      	lsr	x10, x10, #22
+  ebe438:      	msub	x9, x10, x9, x8
+  ebe43c:      	sub	x8, x9, x8
+  ebe440:      	add	x0, x8, x11
+  ebe444:      	ret
+  ebe448:      	stp	x29, x30, [sp, #-0x20]!
+  ebe44c:      	stp	x20, x19, [sp, #0x10]
+  ebe450:      	mov	x29, sp
+  ebe454:      	orr	x8, x2, x1
+  ebe458:      	mov	x19, x5
+  ebe45c:      	mov	x20, x4
+  ebe460:      	orr	x8, x8, x3
+  ebe464:      	tbnz	x8, #0x3f, 0xebe488 <FT_Angle_Diff+0xc4>
+  ebe468:      	cbz	x1, 0xebe490 <FT_Angle_Diff+0xcc>
+  ebe46c:      	cbz	x3, 0xebe490 <FT_Angle_Diff+0xcc>
+  ebe470:      	mov	w8, #0x7fffffff         // =2147483647
+  ebe474:      	udiv	x8, x8, x1
+  ebe478:      	cmp	x8, x3
+  ebe47c:      	b.ge	0xebe4ac <FT_Angle_Diff+0xe8>
+  ebe480:      	mov	w8, #0xa                // =10
+  ebe484:      	b	0xebe4fc <FT_Angle_Diff+0x138>
+  ebe488:      	mov	w8, #0x6                // =6
+  ebe48c:      	b	0xebe4fc <FT_Angle_Diff+0x138>
+  ebe490:      	cbz	x20, 0xebe4d8 <FT_Angle_Diff+0x114>
+  ebe494:      	ldr	x8, [x0, #0x10]
+  ebe498:      	mov	x1, x20
+  ebe49c:      	blr	x8
+  ebe4a0:      	mov	w8, wzr
+  ebe4a4:      	mov	x20, xzr
+  ebe4a8:      	b	0xebe4fc <FT_Angle_Diff+0x138>
+  ebe4ac:      	cbz	x2, 0xebe4e0 <FT_Angle_Diff+0x11c>
+  ebe4b0:      	mul	x8, x2, x1
+  ebe4b4:      	ldr	x9, [x0, #0x18]
+  ebe4b8:      	mul	x2, x3, x1
+  ebe4bc:      	mov	x3, x20
+  ebe4c0:      	mov	x1, x8
+  ebe4c4:      	blr	x9
+  ebe4c8:      	cmp	x0, #0x0
+  ebe4cc:      	cset	w8, eq
+  ebe4d0:      	csel	x20, x20, x0, eq
+  ebe4d4:      	b	0xebe4f8 <FT_Angle_Diff+0x134>
+  ebe4d8:      	mov	w8, wzr
+  ebe4dc:      	b	0xebe4fc <FT_Angle_Diff+0x138>
+  ebe4e0:      	mul	x1, x3, x1
+  ebe4e4:      	ldr	x8, [x0, #0x8]
+  ebe4e8:      	blr	x8
+  ebe4ec:      	cmp	x0, #0x0
+  ebe4f0:      	mov	x20, x0
+  ebe4f4:      	cset	w8, eq
+  ebe4f8:      	lsl	w8, w8, #6
+  ebe4fc:      	mov	x0, x20
+  ebe500:      	str	w8, [x19]
+  ebe504:      	ldp	x20, x19, [sp, #0x10]
+  ebe508:      	ldp	x29, x30, [sp], #0x20
+  ebe50c:      	ret
+  ebe510:      	stp	x29, x30, [sp, #-0x40]!
+  ebe514:      	str	x23, [sp, #0x10]
+  ebe518:      	stp	x22, x21, [sp, #0x20]
+  ebe51c:      	stp	x20, x19, [sp, #0x30]
+  ebe520:      	mov	x29, sp
+  ebe524:      	mov	x19, x3
+  ebe528:      	mov	x20, x2
+  ebe52c:      	mov	x21, x1
+  ebe530:      	cmp	x2, #0x1
+  ebe534:      	b.lt	0xebe55c <FT_Angle_Diff+0x198>
+  ebe538:      	ldr	x8, [x0, #0x8]
+  ebe53c:      	mov	x1, x20
+  ebe540:      	blr	x8
+  ebe544:      	cmp	x0, #0x0
+  ebe548:      	mov	x22, x0
+  ebe54c:      	cset	w8, eq
+  ebe550:      	lsl	w23, w8, #6
+  ebe554:      	cbnz	x21, 0xebe570 <FT_Angle_Diff+0x1ac>
+  ebe558:      	b	0xebe584 <FT_Angle_Diff+0x1c0>
+  ebe55c:      	cmp	x20, #0x0
+  ebe560:      	mov	w8, #0x6                // =6
+  ebe564:      	mov	x22, xzr
+  ebe568:      	csel	w23, wzr, w8, eq
+  ebe56c:      	cbz	x21, 0xebe584 <FT_Angle_Diff+0x1c0>
+  ebe570:      	cbnz	w23, 0xebe584 <FT_Angle_Diff+0x1c0>
+  ebe574:      	mov	x0, x22
+  ebe578:      	mov	x1, x21
+  ebe57c:      	mov	x2, x20
+  ebe580:      	bl	0x1046a10 <memcpy@plt>
+  ebe584:      	mov	x0, x22
+  ebe588:      	str	w23, [x19]
+  ebe58c:      	ldp	x20, x19, [sp, #0x30]
+  ebe590:      	ldr	x23, [sp, #0x10]
+  ebe594:      	ldp	x22, x21, [sp, #0x20]
+  ebe598:      	ldp	x29, x30, [sp], #0x40
+  ebe59c:      	ret
+  ebe5a0:      	stp	x29, x30, [sp, #-0x30]!
+  ebe5a4:      	str	x21, [sp, #0x10]
+  ebe5a8:      	stp	x20, x19, [sp, #0x20]
+  ebe5ac:      	mov	x29, sp
+  ebe5b0:      	mov	x19, x2
+  ebe5b4:      	mov	x20, x1
+  ebe5b8:      	mov	x21, x0
+  ebe5bc:      	cbz	x1, 0xebe5d0 <FT_Angle_Diff+0x20c>
+  ebe5c0:      	mov	x0, x20
+  ebe5c4:      	bl	0x1046920 <strlen@plt>
+  ebe5c8:      	add	x2, x0, #0x1
+  ebe5cc:      	b	0xebe5d4 <FT_Angle_Diff+0x210>
+  ebe5d0:      	mov	x2, xzr
+  ebe5d4:      	mov	x0, x21
+  ebe5d8:      	mov	x1, x20
+  ebe5dc:      	mov	x3, x19
+  ebe5e0:      	ldp	x20, x19, [sp, #0x20]
+  ebe5e4:      	ldr	x21, [sp, #0x10]
+  ebe5e8:      	ldp	x29, x30, [sp], #0x30
+  ebe5ec:      	b	0xebe510 <FT_Angle_Diff+0x14c>
+  ebe5f0:      	cmp	x2, #0x2
+  ebe5f4:      	b.lo	0xebe614 <FT_Angle_Diff+0x250>
+  ebe5f8:      	ldrb	w8, [x1]
+  ebe5fc:      	cbz	w8, 0xebe614 <FT_Angle_Diff+0x250>
+  ebe600:      	sub	x2, x2, #0x1
+  ebe604:      	add	x1, x1, #0x1
+  ebe608:      	cmp	x2, #0x1
+  ebe60c:      	strb	w8, [x0], #0x1
+  ebe610:      	b.hi	0xebe5f8 <FT_Angle_Diff+0x234>
+  ebe614:      	strb	wzr, [x0]
+  ebe618:      	ldrb	w8, [x1]
+  ebe61c:      	cmp	w8, #0x0
+  ebe620:      	cset	w0, ne
+  ebe624:      	ret
+
+--- FUNCTION: FT_Atan2 ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARKernelInterface.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000ebdf14 <FT_Atan2>:
+  ebdf14:      	sub	sp, sp, #0x40
+  ebdf18:      	stp	x29, x30, [sp, #0x20]
+  ebdf1c:      	str	x19, [sp, #0x30]
+  ebdf20:      	add	x29, sp, #0x20
+  ebdf24:      	mrs	x19, TPIDR_EL0
+  ebdf28:      	orr	x9, x1, x0
+  ebdf2c:      	ldr	x8, [x19, #0x28]
+  ebdf30:      	stur	x8, [x29, #-0x8]
+  ebdf34:      	cbz	x9, 0xebdf90 <FT_Atan2+0x7c>
+  ebdf38:      	cmp	x0, #0x0
+  ebdf3c:      	cneg	x8, x0, mi
+  ebdf40:      	cmp	x1, #0x0
+  ebdf44:      	cneg	x9, x1, mi
+  ebdf48:      	orr	w8, w9, w8
+  ebdf4c:      	mov	w9, #0x2                // =2
+  ebdf50:      	clz	w10, w8
+  ebdf54:      	lsr	w8, w8, #30
+  ebdf58:      	sub	w9, w9, w10
+  ebdf5c:      	sub	w10, w10, #0x2
+  ebdf60:      	asr	x11, x0, x9
+  ebdf64:      	lsl	x12, x0, x10
+  ebdf68:      	asr	x9, x1, x9
+  ebdf6c:      	lsl	x10, x1, x10
+  ebdf70:      	cmp	w8, #0x0
+  ebdf74:      	add	x0, sp, #0x8
+  ebdf78:      	csel	x8, x11, x12, ne
+  ebdf7c:      	csel	x9, x9, x10, ne
+  ebdf80:      	stp	x8, x9, [sp, #0x8]
+  ebdf84:      	bl	0xebdfb8 <FT_Atan2+0xa4>
+  ebdf88:      	ldr	x0, [sp, #0x10]
+  ebdf8c:      	b	0xebdf94 <FT_Atan2+0x80>
+  ebdf90:      	mov	x0, xzr
+  ebdf94:      	ldr	x8, [x19, #0x28]
+  ebdf98:      	ldur	x9, [x29, #-0x8]
+  ebdf9c:      	cmp	x8, x9
+  ebdfa0:      	b.ne	0xebdfb4 <FT_Atan2+0xa0>
+  ebdfa4:      	ldp	x29, x30, [sp, #0x20]
+  ebdfa8:      	ldr	x19, [sp, #0x30]
+  ebdfac:      	add	sp, sp, #0x40
+  ebdfb0:      	ret
+  ebdfb4:      	bl	0x1046950 <__stack_chk_fail@plt>
+  ebdfb8:      	ldp	x10, x11, [x0]
+  ebdfbc:      	mov	x9, #-0x10000           // =-65536
+  ebdfc0:      	movk	x9, #0xff4c, lsl #16
+  ebdfc4:      	mov	w13, #0xb40000          // =11796480
+  ebdfc8:      	mov	x8, xzr
+  ebdfcc:      	add	x9, x9, #0x5a0, lsl #12 // =0x5a0000
+  ebdfd0:      	neg	x12, x10
+  ebdfd4:      	cmp	x11, x12
+  ebdfd8:      	csel	x14, x11, x10, ge
+  ebdfdc:      	csneg	x15, x10, x11, ge
+  ebdfe0:      	csel	x16, xzr, x9, ge
+  ebdfe4:      	cmp	x11, #0x0
+  ebdfe8:      	neg	x9, x11
+  ebdfec:      	cneg	x13, x13, le
+  ebdff0:      	cmp	x11, x12
+  ebdff4:      	mov	w12, #0x5a0000          // =5898240
+  ebdff8:      	csneg	x9, x9, x10, le
+  ebdffc:      	csel	x12, x12, x13, gt
+  ebe000:      	csneg	x13, x11, x10, gt
+  ebe004:      	cmp	x11, x10
+  ebe008:      	csel	x11, x14, x9, le
+  ebe00c:      	csel	x9, x15, x13, le
+  ebe010:      	csel	x10, x16, x12, le
+  ebe014:      	mov	w12, #0x1               // =1
+  ebe018:      	adrp	x13, 0x2f4000 <_ZTSNSt6__ndk110shared_ptrINS_6vectorIfNS_9allocatorIfEEEEE27__shared_ptr_default_deleteIS4_S4_EE+0x2ede>
+  ebe01c:      	add	x13, x13, #0xb48
+  ebe020:      	ldr	x14, [x13, x8, lsl #3]
+  ebe024:      	add	x8, x8, #0x1
+  ebe028:      	add	x15, x12, x11
+  ebe02c:      	add	x16, x12, x9
+  ebe030:      	asr	x15, x15, x8
+  ebe034:      	cmp	x11, #0x1
+  ebe038:      	asr	x16, x16, x8
+  ebe03c:      	sub	x17, x10, x14
+  ebe040:      	add	x10, x14, x10
+  ebe044:      	sub	x14, x9, x15
+  ebe048:      	add	x9, x15, x9
+  ebe04c:      	lsl	x12, x12, #1
+  ebe050:      	add	x1, x16, x11
+  ebe054:      	sub	x11, x11, x16
+  ebe058:      	csel	x10, x17, x10, lt
+  ebe05c:      	csel	x9, x14, x9, lt
+  ebe060:      	csel	x11, x1, x11, lt
+  ebe064:      	cmp	x8, #0x16
+  ebe068:      	b.ne	0xebe020 <FT_Atan2+0x10c>
+  ebe06c:      	mov	w8, #0x8                // =8
+  ebe070:      	add	x11, x10, #0x8
+  ebe074:      	tst	x10, #0x8000000000000000
+  ebe078:      	sub	x8, x8, x10
+  ebe07c:      	and	x11, x11, #0x7ffffffffffffff0
+  ebe080:      	and	x8, x8, #0xfffffffffffffff0
+  ebe084:      	csneg	x8, x11, x8, eq
+  ebe088:      	stp	x9, x8, [x0]
+  ebe08c:      	ret
+  ebe090:      	mov	x10, #-0x10000          // =-65536
+  ebe094:      	ldp	x11, x8, [x0]
+  ebe098:      	movk	x10, #0xffa6, lsl #16
+  ebe09c:      	add	x9, x10, #0x2d0, lsl #12 // =0x2d0000
+  ebe0a0:      	cmp	x1, x9
+  ebe0a4:      	b.ge	0xebe0cc <FT_Atan2+0x1b8>
+  ebe0a8:      	sub	x12, x10, #0x2d0, lsl #12 // =0x2d0000
+  ebe0ac:      	add	x1, x1, #0x5a0, lsl #12 // =0x5a0000
+  ebe0b0:      	mov	x9, x8
+  ebe0b4:      	neg	x8, x11
+  ebe0b8:      	add	x13, x1, x10
+  ebe0bc:      	mov	x11, x9
+  ebe0c0:      	cmp	x13, x12
+  ebe0c4:      	b.lo	0xebe0ac <FT_Atan2+0x198>
+  ebe0c8:      	b	0xebe100 <FT_Atan2+0x1ec>
+  ebe0cc:      	cmp	x1, #0x2d0, lsl #12     // =0x2d0000
+  ebe0d0:      	b.le	0xebe0fc <FT_Atan2+0x1e8>
+  ebe0d4:      	mov	x12, x8
+  ebe0d8:      	mov	x9, x11
+  ebe0dc:      	add	x1, x1, x10
+  ebe0e0:      	mov	x8, x9
+  ebe0e4:      	neg	x9, x12
+  ebe0e8:      	add	x11, x1, #0x5a0, lsl #12 // =0x5a0000
+  ebe0ec:      	mov	x12, x8
+  ebe0f0:      	cmp	x11, #0x870, lsl #12    // =0x870000
+  ebe0f4:      	b.hi	0xebe0dc <FT_Atan2+0x1c8>
+  ebe0f8:      	b	0xebe100 <FT_Atan2+0x1ec>
+  ebe0fc:      	mov	x9, x11
+  ebe100:      	mov	x12, xzr
+  ebe104:      	mov	w10, #0x1               // =1
+  ebe108:      	adrp	x11, 0x2f4000 <_ZTSNSt6__ndk110shared_ptrINS_6vectorIfNS_9allocatorIfEEEEE27__shared_ptr_default_deleteIS4_S4_EE+0x2ede>
+  ebe10c:      	add	x11, x11, #0xb48
+  ebe110:      	ldr	x13, [x11, x12, lsl #3]
+  ebe114:      	add	x12, x12, #0x1
+  ebe118:      	add	x14, x10, x8
+  ebe11c:      	add	x15, x10, x9
+  ebe120:      	asr	x14, x14, x12
+  ebe124:      	tst	x1, #0x8000000000000000
+  ebe128:      	asr	x15, x15, x12
+  ebe12c:      	sub	x16, x1, x13
+  ebe130:      	add	x13, x13, x1
+  ebe134:      	sub	x17, x9, x14
+  ebe138:      	add	x9, x14, x9
+  ebe13c:      	lsl	x10, x10, #1
+  ebe140:      	add	x2, x15, x8
+  ebe144:      	sub	x8, x8, x15
+  ebe148:      	csel	x1, x16, x13, eq
+  ebe14c:      	csel	x9, x17, x9, eq
+  ebe150:      	csel	x8, x2, x8, eq
+  ebe154:      	cmp	x12, #0x16
+  ebe158:      	b.ne	0xebe110 <FT_Atan2+0x1fc>
+  ebe15c:      	stp	x9, x8, [x0]
+  ebe160:      	ret

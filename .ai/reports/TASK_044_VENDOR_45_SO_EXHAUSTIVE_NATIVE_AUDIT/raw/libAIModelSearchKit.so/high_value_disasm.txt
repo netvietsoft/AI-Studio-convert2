@@ -1,0 +1,405 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelSearchKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000727cc <JNI_OnLoad>:
+   727cc:      	sub	sp, sp, #0x30
+   727d0:      	stp	x29, x30, [sp, #0x10]
+   727d4:      	stp	x20, x19, [sp, #0x20]
+   727d8:      	add	x29, sp, #0x10
+   727dc:      	mrs	x19, TPIDR_EL0
+   727e0:      	adrp	x9, 0xfc000 <_ZTVN10__cxxabiv129__pointer_to_member_type_infoE+0x1dc0>
+   727e4:      	mov	w2, #0x6                // =6
+   727e8:      	ldr	x8, [x19, #0x28]
+   727ec:      	ldr	x9, [x9, #0xfa8]
+   727f0:      	mov	w20, #0x6               // =6
+   727f4:      	mov	x1, sp
+   727f8:      	movk	w2, #0x1, lsl #16
+   727fc:      	movk	w20, #0x1, lsl #16
+   72800:      	str	x8, [sp, #0x8]
+   72804:      	str	x0, [x9]
+   72808:      	ldr	x8, [x0]
+   7280c:      	ldr	x8, [x8, #0x30]
+   72810:      	blr	x8
+   72814:      	cbz	w0, 0x7283c <JNI_OnLoad+0x70>
+   72818:      	mov	w0, #-0x1               // =-1
+   7281c:      	ldr	x8, [x19, #0x28]
+   72820:      	ldr	x9, [sp, #0x8]
+   72824:      	cmp	x8, x9
+   72828:      	b.ne	0x7285c <JNI_OnLoad+0x90>
+   7282c:      	ldp	x20, x19, [sp, #0x20]
+   72830:      	ldp	x29, x30, [sp, #0x10]
+   72834:      	add	sp, sp, #0x30
+   72838:      	ret
+   7283c:      	ldr	x0, [sp]
+   72840:      	bl	0xefda0 <_ZN13aimodelsearch21initializeClassLoaderEP7_JNIEnv@plt>
+   72844:      	tst	w0, #0x1
+   72848:      	csinv	w0, w20, wzr, ne
+   7284c:      	ldr	x8, [x19, #0x28]
+   72850:      	ldr	x9, [sp, #0x8]
+   72854:      	cmp	x8, x9
+   72858:      	b.eq	0x7282c <JNI_OnLoad+0x60>
+   7285c:      	bl	0xefdd0 <__stack_chk_fail@plt>
+
+--- FUNCTION: _ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelSearchKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000766ac <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci>:
+   766ac:      	sub	sp, sp, #0x100
+   766b0:      	stp	x29, x30, [sp, #0xc0]
+   766b4:      	stp	x24, x23, [sp, #0xd0]
+   766b8:      	stp	x22, x21, [sp, #0xe0]
+   766bc:      	stp	x20, x19, [sp, #0xf0]
+   766c0:      	add	x29, sp, #0xc0
+   766c4:      	mrs	x24, TPIDR_EL0
+   766c8:      	mov	x19, x8
+   766cc:      	ldr	x8, [x24, #0x28]
+   766d0:      	stur	x8, [x29, #-0x8]
+   766d4:      	cbz	x0, 0x76784 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0xd8>
+   766d8:      	cmp	w1, #0x0
+   766dc:      	b.le	0x76784 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0xd8>
+   766e0:      	add	x8, sp, #0x28
+   766e4:      	mov	w1, w1
+   766e8:      	strh	wzr, [sp, #0x28]
+   766ec:      	add	x8, x8, #0x78
+   766f0:      	strh	wzr, [sp, #0x40]
+   766f4:      	strh	wzr, [sp, #0x58]
+   766f8:      	stp	xzr, xzr, [sp, #0x80]
+   766fc:      	stp	xzr, xzr, [sp, #0xa0]
+   76700:      	stp	xzr, x8, [sp, #0x90]
+   76704:      	add	x2, sp, #0x28
+   76708:      	bl	0xf0120 <_ZN5merak8datatool6RevertEPKcmRNS0_9DtuHeaderE@plt>
+   7670c:      	tbz	w0, #0x0, 0x767bc <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x110>
+   76710:      	mov	w8, #0x8                // =8
+   76714:      	str	xzr, [sp, #0x20]
+   76718:      	strb	w8, [sp]
+   7671c:      	mov	w8, #0x736a             // =29546
+   76720:      	movk	w8, #0x6e6f, lsl #16
+   76724:      	str	wzr, [sp, #0x1c]
+   76728:      	stur	w8, [sp, #0x1]
+   7672c:      	strb	wzr, [sp, #0x5]
+   76730:      	add	x0, sp, #0x28
+   76734:      	mov	x1, sp
+   76738:      	add	x3, sp, #0x20
+   7673c:      	add	x4, sp, #0x1c
+   76740:      	mov	w2, wzr
+   76744:      	bl	0xf0130 <_ZN5merak8datatool8MetaUtil7GetMetaERNS0_9DtuHeaderENSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEiRPhRi@plt>
+   76748:      	ldrb	w8, [sp]
+   7674c:      	tbz	w8, #0x0, 0x76758 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0xac>
+   76750:      	ldr	x0, [sp, #0x10]
+   76754:      	bl	0xefe30 <_ZdlPv@plt>
+   76758:      	ldr	x21, [sp, #0x20]
+   7675c:      	cbz	x21, 0x767ec <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x140>
+   76760:      	ldr	w20, [sp, #0x1c]
+   76764:      	cmp	w20, #0x0
+   76768:      	b.le	0x767ec <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x140>
+   7676c:      	cmp	w20, #0x17
+   76770:      	b.hs	0x76824 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x178>
+   76774:      	lsl	w8, w20, #1
+   76778:      	strb	w8, [x19], #0x1
+   7677c:      	mov	x22, x19
+   76780:      	b	0x76844 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x198>
+   76784:      	adrp	x0, 0xfd000
+   76788:      	adrp	x1, 0x49000
+   7678c:      	add	x1, x1, #0x149
+   76790:      	ldr	x0, [x0, #0x38]
+   76794:      	mov	w2, #0x33               // =51
+   76798:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   7679c:      	mov	w8, #0xa                // =10
+   767a0:      	add	x1, sp, #0x28
+   767a4:      	mov	w2, #0x1                // =1
+   767a8:      	strb	w8, [sp, #0x28]
+   767ac:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   767b0:      	stp	xzr, xzr, [x19]
+   767b4:      	str	xzr, [x19, #0x10]
+   767b8:      	b	0x76860 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x1b4>
+   767bc:      	adrp	x0, 0xfd000
+   767c0:      	adrp	x1, 0x49000
+   767c4:      	add	x1, x1, #0x2ca
+   767c8:      	ldr	x0, [x0, #0x38]
+   767cc:      	mov	w2, #0x2c               // =44
+   767d0:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   767d4:      	mov	w8, #0xa                // =10
+   767d8:      	strb	w8, [sp, #0x20]
+   767dc:      	add	x1, sp, #0x20
+   767e0:      	mov	w2, #0x1                // =1
+   767e4:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   767e8:      	b	0x76818 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x16c>
+   767ec:      	adrp	x0, 0xfd000
+   767f0:      	adrp	x1, 0x49000
+   767f4:      	add	x1, x1, #0x6b5
+   767f8:      	ldr	x0, [x0, #0x38]
+   767fc:      	mov	w2, #0x41               // =65
+   76800:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   76804:      	mov	w8, #0xa                // =10
+   76808:      	sturb	w8, [x29, #-0xc]
+   7680c:      	sub	x1, x29, #0xc
+   76810:      	mov	w2, #0x1                // =1
+   76814:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   76818:      	stp	xzr, xzr, [x19]
+   7681c:      	str	xzr, [x19, #0x10]
+   76820:      	b	0x76858 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x1ac>
+   76824:      	orr	x8, x20, #0xf
+   76828:      	add	x23, x8, #0x1
+   7682c:      	mov	x0, x23
+   76830:      	bl	0xefea0 <_Znwm@plt>
+   76834:      	orr	x8, x23, #0x1
+   76838:      	mov	x22, x0
+   7683c:      	stp	x20, x0, [x19, #0x8]
+   76840:      	str	x8, [x19]
+   76844:      	mov	x0, x22
+   76848:      	mov	x1, x21
+   7684c:      	mov	x2, x20
+   76850:      	bl	0xefeb0 <memmove@plt>
+   76854:      	strb	wzr, [x22, x20]
+   76858:      	add	x0, sp, #0x28
+   7685c:      	bl	0xf0140 <_ZN5merak8datatool9DtuHeaderD2Ev@plt>
+   76860:      	ldr	x8, [x24, #0x28]
+   76864:      	ldur	x9, [x29, #-0x8]
+   76868:      	cmp	x8, x9
+   7686c:      	b.ne	0x768c8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x21c>
+   76870:      	ldp	x20, x19, [sp, #0xf0]
+   76874:      	ldp	x22, x21, [sp, #0xe0]
+   76878:      	ldp	x24, x23, [sp, #0xd0]
+   7687c:      	ldp	x29, x30, [sp, #0xc0]
+   76880:      	add	sp, sp, #0x100
+   76884:      	ret
+   76888:      	ldrb	w8, [sp]
+   7688c:      	mov	x19, x0
+   76890:      	tbz	w8, #0x0, 0x768a8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x1fc>
+   76894:      	ldr	x0, [sp, #0x10]
+   76898:      	bl	0xefe30 <_ZdlPv@plt>
+   7689c:      	b	0x768a8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x1fc>
+   768a0:      	b	0x768a4 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x1f8>
+   768a4:      	mov	x19, x0
+   768a8:      	add	x0, sp, #0x28
+   768ac:      	bl	0xf0140 <_ZN5merak8datatool9DtuHeaderD2Ev@plt>
+   768b0:      	ldr	x8, [x24, #0x28]
+   768b4:      	ldur	x9, [x29, #-0x8]
+   768b8:      	cmp	x8, x9
+   768bc:      	b.ne	0x768c8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci+0x21c>
+   768c0:      	mov	x0, x19
+   768c4:      	bl	0xebecc <__emutls_get_address+0xce0>
+   768c8:      	bl	0xefdd0 <__stack_chk_fail@plt>
+
+--- FUNCTION: _ZN13aimodelsearch10MerakUtils15convert2JsonStrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelSearchKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000007653c <_ZN13aimodelsearch10MerakUtils15convert2JsonStrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE>:
+   7653c:      	sub	sp, sp, #0x50
+   76540:      	stp	x29, x30, [sp, #0x10]
+   76544:      	str	x23, [sp, #0x20]
+   76548:      	stp	x22, x21, [sp, #0x30]
+   7654c:      	stp	x20, x19, [sp, #0x40]
+   76550:      	add	x29, sp, #0x10
+   76554:      	mrs	x23, TPIDR_EL0
+   76558:      	mov	x19, x8
+   7655c:      	mov	x20, x0
+   76560:      	ldr	x8, [x23, #0x28]
+   76564:      	nop
+   76568:      	adr	x1, 0x4a161
+   7656c:      	str	x8, [sp, #0x8]
+   76570:      	ldrb	w8, [x0]
+   76574:      	ldr	x9, [x0, #0x10]
+   76578:      	tst	w8, #0x1
+   7657c:      	csinc	x0, x9, x0, ne
+   76580:      	bl	0xf00a0 <fopen@plt>
+   76584:      	cbz	x0, 0x7661c <_ZN13aimodelsearch10MerakUtils15convert2JsonStrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0xe0>
+   76588:      	mov	x1, xzr
+   7658c:      	mov	w2, #0x2                // =2
+   76590:      	mov	x21, x0
+   76594:      	bl	0xf00b0 <fseek@plt>
+   76598:      	mov	x0, x21
+   7659c:      	bl	0xf00c0 <ftell@plt>
+   765a0:      	mov	x22, x0
+   765a4:      	add	x0, x0, #0x1
+   765a8:      	bl	0xf00d0 <_Znam@plt>
+   765ac:      	mov	x20, x0
+   765b0:      	mov	x0, x21
+   765b4:      	mov	x1, xzr
+   765b8:      	mov	w2, wzr
+   765bc:      	bl	0xf00b0 <fseek@plt>
+   765c0:      	mov	x0, x20
+   765c4:      	mov	x1, x22
+   765c8:      	mov	w2, #0x1                // =1
+   765cc:      	mov	x3, x21
+   765d0:      	bl	0xf00e0 <fread@plt>
+   765d4:      	mov	x0, x21
+   765d8:      	bl	0xf00f0 <fclose@plt>
+   765dc:      	mov	x8, x19
+   765e0:      	mov	x0, x20
+   765e4:      	mov	w1, w22
+   765e8:      	strb	wzr, [x20, x22]
+   765ec:      	bl	0xf0100 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrEPKci@plt>
+   765f0:      	ldr	x8, [x23, #0x28]
+   765f4:      	ldr	x9, [sp, #0x8]
+   765f8:      	cmp	x8, x9
+   765fc:      	b.ne	0x766a8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0x16c>
+   76600:      	mov	x0, x20
+   76604:      	ldp	x20, x19, [sp, #0x40]
+   76608:      	ldr	x23, [sp, #0x20]
+   7660c:      	ldp	x22, x21, [sp, #0x30]
+   76610:      	ldp	x29, x30, [sp, #0x10]
+   76614:      	add	sp, sp, #0x50
+   76618:      	b	0xf0110 <_ZdaPv@plt>
+   7661c:      	adrp	x0, 0xfd000
+   76620:      	adrp	x1, 0x4a000
+   76624:      	add	x1, x1, #0xda0
+   76628:      	ldr	x0, [x0, #0x48]
+   7662c:      	mov	w2, #0x3d               // =61
+   76630:      	add	x22, x20, #0x1
+   76634:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   76638:      	ldrb	w8, [x20]
+   7663c:      	ldr	x9, [x20, #0x10]
+   76640:      	mov	x21, x0
+   76644:      	tst	w8, #0x1
+   76648:      	csel	x20, x22, x9, eq
+   7664c:      	mov	x0, x20
+   76650:      	bl	0xefe90 <strlen@plt>
+   76654:      	mov	x2, x0
+   76658:      	mov	x0, x21
+   7665c:      	mov	x1, x20
+   76660:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   76664:      	mov	w8, #0xa                // =10
+   76668:      	add	x1, sp, #0x4
+   7666c:      	mov	w2, #0x1                // =1
+   76670:      	strb	w8, [sp, #0x4]
+   76674:      	bl	0x761bc <_ZN13aimodelsearch22AIModelDynamicSearcher7destroyEv+0x18>
+   76678:      	stp	xzr, xzr, [x19]
+   7667c:      	str	xzr, [x19, #0x10]
+   76680:      	ldr	x8, [x23, #0x28]
+   76684:      	ldr	x9, [sp, #0x8]
+   76688:      	cmp	x8, x9
+   7668c:      	b.ne	0x766a8 <_ZN13aimodelsearch10MerakUtils15convert2JsonStrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0x16c>
+   76690:      	ldp	x20, x19, [sp, #0x40]
+   76694:      	ldr	x23, [sp, #0x20]
+   76698:      	ldp	x22, x21, [sp, #0x30]
+   7669c:      	ldp	x29, x30, [sp, #0x10]
+   766a0:      	add	sp, sp, #0x50
+   766a4:      	ret
+   766a8:      	bl	0xefdd0 <__stack_chk_fail@plt>
+
+--- FUNCTION: _ZN13aimodelsearch12StringUTFRefD2Ev ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelSearchKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000073398 <_ZN13aimodelsearch12StringUTFRefD2Ev>:
+   73398:      	stp	x29, x30, [sp, #-0x10]!
+   7339c:      	mov	x29, sp
+   733a0:      	mov	x8, x0
+   733a4:      	ldr	x0, [x0]
+   733a8:      	cbz	x0, 0x733c8 <_ZN13aimodelsearch12StringUTFRefD2Ev+0x30>
+   733ac:      	ldr	x1, [x8, #0x8]
+   733b0:      	cbz	x1, 0x733c8 <_ZN13aimodelsearch12StringUTFRefD2Ev+0x30>
+   733b4:      	ldr	x2, [x8, #0x10]
+   733b8:      	cbz	x2, 0x733c8 <_ZN13aimodelsearch12StringUTFRefD2Ev+0x30>
+   733bc:      	ldr	x8, [x0]
+   733c0:      	ldr	x8, [x8, #0x550]
+   733c4:      	blr	x8
+   733c8:      	ldp	x29, x30, [sp], #0x10
+   733cc:      	ret
+   733d0:      	bl	0x754cc <_ZN13aimodelsearch34GetAiDispatchStrategyJsonStrForKeyERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x130>
+
+--- FUNCTION: _ZN13aimodelsearch12logLevel2StrENS_8LogLevelE ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelSearchKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000076b74 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE>:
+   76b74:      	cmp	w0, #0x7
+   76b78:      	b.gt	0x76bb4 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0x40>
+   76b7c:      	cmp	w0, #0x1
+   76b80:      	b.eq	0x76bf4 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0x80>
+   76b84:      	cmp	w0, #0x2
+   76b88:      	b.eq	0x76c78 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0x104>
+   76b8c:      	cmp	w0, #0x4
+   76b90:      	b.ne	0x76c4c <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0xd8>
+   76b94:      	mov	w9, #0x8                // =8
+   76b98:      	mov	w10, #0x6e49            // =28233
+   76b9c:      	movk	w10, #0x6f66, lsl #16
+   76ba0:      	strb	w9, [x8]
+   76ba4:      	add	x9, x8, #0x5
+   76ba8:      	stur	w10, [x8, #0x1]
+   76bac:      	strb	wzr, [x9]
+   76bb0:      	ret
+   76bb4:      	cmp	w0, #0x8
+   76bb8:      	b.eq	0x76c20 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0xac>
+   76bbc:      	cmp	w0, #0x10
+   76bc0:      	b.eq	0x76ca0 <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0x12c>
+   76bc4:      	cmp	w0, #0x20
+   76bc8:      	b.ne	0x76c4c <_ZN13aimodelsearch12logLevel2StrENS_8LogLevelE+0xd8>
+   76bcc:      	mov	w10, #0xa               // =10
+   76bd0:      	mov	x9, x8
+   76bd4:      	mov	w11, #0x6146            // =24902
+   76bd8:      	movk	w11, #0x6174, lsl #16
+   76bdc:      	strb	w10, [x9], #0x6
+   76be0:      	mov	w10, #0x6c              // =108
+   76be4:      	stur	w11, [x8, #0x1]
+   76be8:      	sturb	w10, [x8, #0x5]
+   76bec:      	strb	wzr, [x9]
+   76bf0:      	ret
+   76bf4:      	mov	w10, #0xe               // =14
+   76bf8:      	mov	x9, x8
+   76bfc:      	mov	w11, #0x6556            // =25942
+   76c00:      	movk	w11, #0x6272, lsl #16
+   76c04:      	strb	w10, [x9], #0x8
+   76c08:      	mov	w10, #0x6f62            // =28514
+   76c0c:      	stur	w11, [x8, #0x1]
+   76c10:      	movk	w10, #0x6573, lsl #16
+   76c14:      	stur	w10, [x8, #0x4]
+   76c18:      	strb	wzr, [x9]
+   76c1c:      	ret
+   76c20:      	mov	w10, #0xe               // =14
+   76c24:      	mov	x9, x8
+   76c28:      	mov	w11, #0x6157            // =24919
+   76c2c:      	movk	w11, #0x6e72, lsl #16
+   76c30:      	strb	w10, [x9], #0x8
+   76c34:      	mov	w10, #0x696e            // =26990
+   76c38:      	stur	w11, [x8, #0x1]
+   76c3c:      	movk	w10, #0x676e, lsl #16
+   76c40:      	stur	w10, [x8, #0x4]
+   76c44:      	strb	wzr, [x9]
+   76c48:      	ret
+   76c4c:      	mov	w10, #0xe               // =14
+   76c50:      	mov	x9, x8
+   76c54:      	mov	w11, #0x6e55            // =28245
+   76c58:      	strb	w10, [x9], #0x8
+   76c5c:      	mov	w10, #0x6f6e            // =28526
+   76c60:      	movk	w11, #0x6e6b, lsl #16
+   76c64:      	movk	w10, #0x6e77, lsl #16
+   76c68:      	stur	w11, [x8, #0x1]
+   76c6c:      	stur	w10, [x8, #0x4]
+   76c70:      	strb	wzr, [x9]
+   76c74:      	ret
+   76c78:      	mov	w10, #0xa               // =10
+   76c7c:      	mov	x9, x8
+   76c80:      	mov	w11, #0x6544            // =25924
+   76c84:      	movk	w11, #0x7562, lsl #16
+   76c88:      	strb	w10, [x9], #0x6
+   76c8c:      	mov	w10, #0x67              // =103
+   76c90:      	stur	w11, [x8, #0x1]
+   76c94:      	sturb	w10, [x8, #0x5]
+   76c98:      	strb	wzr, [x9]
+   76c9c:      	ret
+   76ca0:      	mov	w10, #0xa               // =10
+   76ca4:      	mov	x9, x8
+   76ca8:      	mov	w11, #0x7245            // =29253
+   76cac:      	movk	w11, #0x6f72, lsl #16
+   76cb0:      	strb	w10, [x9], #0x6
+   76cb4:      	mov	w10, #0x72              // =114
+   76cb8:      	stur	w11, [x8, #0x1]
+   76cbc:      	sturb	w10, [x8, #0x5]
+   76cc0:      	strb	wzr, [x9]
+   76cc4:      	ret

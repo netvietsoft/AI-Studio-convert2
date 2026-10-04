@@ -1,0 +1,667 @@
+
+--- FUNCTION: JNI_OnLoad ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000440294 <JNI_OnLoad>:
+  440294:      	sub	sp, sp, #0x30
+  440298:      	stp	x29, x30, [sp, #0x10]
+  44029c:      	stp	x20, x19, [sp, #0x20]
+  4402a0:      	add	x29, sp, #0x10
+  4402a4:      	mrs	x20, TPIDR_EL0
+  4402a8:      	mov	w2, #0x6                // =6
+  4402ac:      	mov	w19, #0x6               // =6
+  4402b0:      	ldr	x8, [x20, #0x28]
+  4402b4:      	mov	x1, sp
+  4402b8:      	movk	w2, #0x1, lsl #16
+  4402bc:      	movk	w19, #0x1, lsl #16
+  4402c0:      	str	x8, [sp, #0x8]
+  4402c4:      	ldr	x8, [x0]
+  4402c8:      	str	xzr, [sp]
+  4402cc:      	ldr	x8, [x8, #0x30]
+  4402d0:      	blr	x8
+  4402d4:      	cbz	w0, 0x4402ec <JNI_OnLoad+0x58>
+  4402d8:      	adrp	x1, 0x1e9000
+  4402dc:      	add	x1, x1, #0x177
+  4402e0:      	adrp	x2, 0x1ed000
+  4402e4:      	add	x2, x2, #0x3dc
+  4402e8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4402ec:      	ldr	x0, [sp]
+  4402f0:      	bl	0x302470 <_ZN11LayerFlowNS16LFFormulaShopJNI18registerJniMethodsEP7_JNIEnv>
+  4402f4:      	cbnz	w0, 0x440304 <JNI_OnLoad+0x70>
+  4402f8:      	ldr	x0, [sp]
+  4402fc:      	bl	0x31d1c4 <_ZN11LayerFlowNS15LFBaseLayer_JNI18registerJniMethodsEP7_JNIEnv>
+  440300:      	cbz	w0, 0x440344 <JNI_OnLoad+0xb0>
+  440304:      	adrp	x1, 0x1e9000
+  440308:      	add	x1, x1, #0x177
+  44030c:      	adrp	x2, 0x1df000
+  440310:      	add	x2, x2, #0xd1a
+  440314:      	mov	w0, #0x6                // =6
+  440318:      	bl	0x52a250 <__android_log_print@plt>
+  44031c:      	mov	w19, #-0x1              // =-1
+  440320:      	ldr	x8, [x20, #0x28]
+  440324:      	ldr	x9, [sp, #0x8]
+  440328:      	cmp	x8, x9
+  44032c:      	b.ne	0x440b54 <JNI_OnLoad+0x8c0>
+  440330:      	mov	w0, w19
+  440334:      	ldp	x20, x19, [sp, #0x20]
+  440338:      	ldp	x29, x30, [sp, #0x10]
+  44033c:      	add	sp, sp, #0x30
+  440340:      	ret
+  440344:      	ldr	x0, [sp]
+  440348:      	bl	0x4485ac <_ZN11LayerFlowNS15LFJsonPluginJNI18registerJniMethodsEP7_JNIEnv>
+  44034c:      	cbnz	w0, 0x440368 <JNI_OnLoad+0xd4>
+  440350:      	ldr	x0, [sp]
+  440354:      	bl	0x3d23e8 <_ZN11LayerFlowNS18LFGenericPluginJNI18registerJniMethodsEP7_JNIEnv>
+  440358:      	cbnz	w0, 0x440368 <JNI_OnLoad+0xd4>
+  44035c:      	ldr	x0, [sp]
+  440360:      	bl	0x43fba4 <_ZN11LayerFlowNS25LFPrepareManagerPluginJNI18registerJniMethodsEP7_JNIEnv>
+  440364:      	cbz	w0, 0x44037c <JNI_OnLoad+0xe8>
+  440368:      	adrp	x1, 0x1e9000
+  44036c:      	add	x1, x1, #0x177
+  440370:      	adrp	x2, 0x1d8000
+  440374:      	add	x2, x2, #0x36b
+  440378:      	b	0x440314 <JNI_OnLoad+0x80>
+  44037c:      	ldr	x0, [sp]
+  440380:      	bl	0x44e778 <_ZN11LayerFlowNS22LFOutputImagePluginJNI18registerJniMethodsEP7_JNIEnv>
+  440384:      	cbz	w0, 0x44039c <JNI_OnLoad+0x108>
+  440388:      	adrp	x1, 0x1e9000
+  44038c:      	add	x1, x1, #0x177
+  440390:      	adrp	x2, 0x1cf000
+  440394:      	add	x2, x2, #0xf52
+  440398:      	b	0x440314 <JNI_OnLoad+0x80>
+  44039c:      	ldr	x0, [sp]
+  4403a0:      	bl	0x448928 <_ZN11LayerFlowNS27LFMaterialDownloadPluginJNI18registerJniMethodsEP7_JNIEnv>
+  4403a4:      	cbz	w0, 0x4403bc <JNI_OnLoad+0x128>
+  4403a8:      	adrp	x1, 0x1e9000
+  4403ac:      	add	x1, x1, #0x177
+  4403b0:      	adrp	x2, 0x1ce000
+  4403b4:      	add	x2, x2, #0xf5c
+  4403b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4403bc:      	ldr	x0, [sp]
+  4403c0:      	bl	0x44f034 <_ZN11LayerFlowNS29LFResourceDownloaderPluginJNI18registerJniMethodsEP7_JNIEnv>
+  4403c4:      	cbz	w0, 0x4403dc <JNI_OnLoad+0x148>
+  4403c8:      	adrp	x1, 0x1e9000
+  4403cc:      	add	x1, x1, #0x177
+  4403d0:      	adrp	x2, 0x1d3000
+  4403d4:      	add	x2, x2, #0x59c
+  4403d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4403dc:      	ldr	x0, [sp]
+  4403e0:      	bl	0x450698 <_ZN11LayerFlowNS19LFSetLayerPluginJNI18registerJniMethodsEP7_JNIEnv>
+  4403e4:      	cbz	w0, 0x4403fc <JNI_OnLoad+0x168>
+  4403e8:      	adrp	x1, 0x1e9000
+  4403ec:      	add	x1, x1, #0x177
+  4403f0:      	adrp	x2, 0x1dd000
+  4403f4:      	add	x2, x2, #0x93b
+  4403f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4403fc:      	ldr	x0, [sp]
+  440400:      	bl	0x450bcc <_ZN11LayerFlowNS23LFSmartActionsPluginJNI18registerJniMethodsEP7_JNIEnv>
+  440404:      	cbz	w0, 0x44041c <JNI_OnLoad+0x188>
+  440408:      	adrp	x1, 0x1e9000
+  44040c:      	add	x1, x1, #0x177
+  440410:      	adrp	x2, 0x1dc000
+  440414:      	add	x2, x2, #0x96e
+  440418:      	b	0x440314 <JNI_OnLoad+0x80>
+  44041c:      	ldr	x0, [sp]
+  440420:      	bl	0x2ed0ac <_ZN11LayerFlowNS13LFMaterialJNI18registerJniMethodsEP7_JNIEnv>
+  440424:      	cbz	w0, 0x44043c <JNI_OnLoad+0x1a8>
+  440428:      	adrp	x1, 0x1e9000
+  44042c:      	add	x1, x1, #0x177
+  440430:      	adrp	x2, 0x1e8000
+  440434:      	add	x2, x2, #0xa4b
+  440438:      	b	0x440314 <JNI_OnLoad+0x80>
+  44043c:      	ldr	x0, [sp]
+  440440:      	bl	0x2b8aac <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440444:      	cbz	w0, 0x44045c <JNI_OnLoad+0x1c8>
+  440448:      	adrp	x1, 0x1e9000
+  44044c:      	add	x1, x1, #0x177
+  440450:      	adrp	x2, 0x1d2000
+  440454:      	add	x2, x2, #0x436
+  440458:      	b	0x440314 <JNI_OnLoad+0x80>
+  44045c:      	ldr	x0, [sp]
+  440460:      	bl	0x2e2f60 <_ZN11LayerFlowNS13LFFontInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440464:      	cbz	w0, 0x44047c <JNI_OnLoad+0x1e8>
+  440468:      	adrp	x1, 0x1e9000
+  44046c:      	add	x1, x1, #0x177
+  440470:      	adrp	x2, 0x1d2000
+  440474:      	add	x2, x2, #0x463
+  440478:      	b	0x440314 <JNI_OnLoad+0x80>
+  44047c:      	ldr	x0, [sp]
+  440480:      	bl	0x2e26f8 <_ZN11LayerFlowNS13LFFileInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440484:      	cbz	w0, 0x44049c <JNI_OnLoad+0x208>
+  440488:      	adrp	x1, 0x1e9000
+  44048c:      	add	x1, x1, #0x177
+  440490:      	adrp	x2, 0x1ee000
+  440494:      	add	x2, x2, #0x5b2
+  440498:      	b	0x440314 <JNI_OnLoad+0x80>
+  44049c:      	ldr	x0, [sp]
+  4404a0:      	bl	0x300ff8 <_ZN11LayerFlowNS17LFBlockingWaitJNI18registerJniMethodsEP7_JNIEnv>
+  4404a4:      	cbz	w0, 0x4404bc <JNI_OnLoad+0x228>
+  4404a8:      	adrp	x1, 0x1e9000
+  4404ac:      	add	x1, x1, #0x177
+  4404b0:      	adrp	x2, 0x1eb000
+  4404b4:      	add	x2, x2, #0x15f
+  4404b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4404bc:      	ldr	x0, [sp]
+  4404c0:      	bl	0x470b50 <_ZN11LayerFlowNS24LFVisionDetectServiceJNI18registerJniMethodsEP7_JNIEnv>
+  4404c4:      	cbz	w0, 0x4404dc <JNI_OnLoad+0x248>
+  4404c8:      	adrp	x1, 0x1e9000
+  4404cc:      	add	x1, x1, #0x177
+  4404d0:      	adrp	x2, 0x1dc000
+  4404d4:      	add	x2, x2, #0x9a2
+  4404d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4404dc:      	ldr	x0, [sp]
+  4404e0:      	bl	0x3bba00 <_ZN11LayerFlowNS29LFAutoMagicPenResourceDataJNI18registerJniMethodsEP7_JNIEnv>
+  4404e4:      	cbz	w0, 0x4404fc <JNI_OnLoad+0x268>
+  4404e8:      	adrp	x1, 0x1e9000
+  4404ec:      	add	x1, x1, #0x177
+  4404f0:      	adrp	x2, 0x1e5000
+  4404f4:      	add	x2, x2, #0x769
+  4404f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4404fc:      	ldr	x0, [sp]
+  440500:      	bl	0x3bd868 <_ZN11LayerFlowNS28LFBgBeautifyAutoColorInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440504:      	cbz	w0, 0x44051c <JNI_OnLoad+0x288>
+  440508:      	adrp	x1, 0x1e9000
+  44050c:      	add	x1, x1, #0x177
+  440510:      	adrp	x2, 0x1df000
+  440514:      	add	x2, x2, #0xd44
+  440518:      	b	0x440314 <JNI_OnLoad+0x80>
+  44051c:      	ldr	x0, [sp]
+  440520:      	bl	0x3bdb6c <_ZN11LayerFlowNS21LFBlurResourceDataJNI18registerJniMethodsEP7_JNIEnv>
+  440524:      	cbz	w0, 0x44053c <JNI_OnLoad+0x2a8>
+  440528:      	adrp	x1, 0x1e9000
+  44052c:      	add	x1, x1, #0x177
+  440530:      	adrp	x2, 0x1d7000
+  440534:      	add	x2, x2, #0x42c
+  440538:      	b	0x440314 <JNI_OnLoad+0x80>
+  44053c:      	ldr	x0, [sp]
+  440540:      	bl	0x3bfbd0 <_ZN11LayerFlowNS24LFCreativeStickerInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440544:      	cbz	w0, 0x44055c <JNI_OnLoad+0x2c8>
+  440548:      	adrp	x1, 0x1e9000
+  44054c:      	add	x1, x1, #0x177
+  440550:      	adrp	x2, 0x1cc000
+  440554:      	add	x2, x2, #0xd3f
+  440558:      	b	0x440314 <JNI_OnLoad+0x80>
+  44055c:      	ldr	x0, [sp]
+  440560:      	bl	0x3be3f4 <_ZN11LayerFlowNS23LFCreativeAigcResultJNI18registerJniMethodsEP7_JNIEnv>
+  440564:      	cbz	w0, 0x44057c <JNI_OnLoad+0x2e8>
+  440568:      	adrp	x1, 0x1e9000
+  44056c:      	add	x1, x1, #0x177
+  440570:      	adrp	x2, 0x1ce000
+  440574:      	add	x2, x2, #0xf91
+  440578:      	b	0x440314 <JNI_OnLoad+0x80>
+  44057c:      	ldr	x0, [sp]
+  440580:      	bl	0x3d2a74 <_ZN11LayerFlowNS15CLFNetHeaderJNI18registerJniMethodsEP7_JNIEnv>
+  440584:      	cbz	w0, 0x44059c <JNI_OnLoad+0x308>
+  440588:      	adrp	x1, 0x1e9000
+  44058c:      	add	x1, x1, #0x177
+  440590:      	adrp	x2, 0x1e4000
+  440594:      	add	x2, x2, #0x311
+  440598:      	b	0x440314 <JNI_OnLoad+0x80>
+  44059c:      	ldr	x0, [sp]
+  4405a0:      	bl	0x3d4534 <_ZN11LayerFlowNS24LFStickerLocateStatusJNI18registerJniMethodsEP7_JNIEnv>
+  4405a4:      	cbz	w0, 0x4405bc <JNI_OnLoad+0x328>
+  4405a8:      	adrp	x1, 0x1e9000
+  4405ac:      	add	x1, x1, #0x177
+  4405b0:      	adrp	x2, 0x1da000
+  4405b4:      	add	x2, x2, #0x3dd
+  4405b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4405bc:      	ldr	x0, [sp]
+  4405c0:      	bl	0x3c00b8 <_ZN11LayerFlowNS24LFFormulaRenderPluginJNI18registerJniMethodsEP7_JNIEnv>
+  4405c4:      	cbz	w0, 0x4405dc <JNI_OnLoad+0x348>
+  4405c8:      	adrp	x1, 0x1e9000
+  4405cc:      	add	x1, x1, #0x177
+  4405d0:      	adrp	x2, 0x1e2000
+  4405d4:      	add	x2, x2, #0x2e4
+  4405d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4405dc:      	ldr	x0, [sp]
+  4405e0:      	bl	0x2e296c <_ZN11LayerFlowNS18LFFilterModularJNI18registerJniMethodsEP7_JNIEnv>
+  4405e4:      	cbz	w0, 0x4405fc <JNI_OnLoad+0x368>
+  4405e8:      	adrp	x1, 0x1e9000
+  4405ec:      	add	x1, x1, #0x177
+  4405f0:      	adrp	x2, 0x1e6000
+  4405f4:      	add	x2, x2, #0x5b3
+  4405f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4405fc:      	ldr	x0, [sp]
+  440600:      	bl	0x2c3214 <_ZN11LayerFlowNS16LFBlurModularJNI18registerJniMethodsEP7_JNIEnv>
+  440604:      	cbz	w0, 0x44061c <JNI_OnLoad+0x388>
+  440608:      	adrp	x1, 0x1e9000
+  44060c:      	add	x1, x1, #0x177
+  440610:      	adrp	x2, 0x1ed000
+  440614:      	add	x2, x2, #0x3ff
+  440618:      	b	0x440314 <JNI_OnLoad+0x80>
+  44061c:      	ldr	x0, [sp]
+  440620:      	bl	0x2c6ce0 <_ZN11LayerFlowNS20LFCreativeModularJNI18registerJniMethodsEP7_JNIEnv>
+  440624:      	cbz	w0, 0x44063c <JNI_OnLoad+0x3a8>
+  440628:      	adrp	x1, 0x1e9000
+  44062c:      	add	x1, x1, #0x177
+  440630:      	adrp	x2, 0x1e2000
+  440634:      	add	x2, x2, #0x319
+  440638:      	b	0x440314 <JNI_OnLoad+0x80>
+  44063c:      	ldr	x0, [sp]
+  440640:      	bl	0x2efbe4 <_ZN11LayerFlowNS25LFSpecialEffectModularJNI18registerJniMethodsEP7_JNIEnv>
+  440644:      	cbz	w0, 0x44065c <JNI_OnLoad+0x3c8>
+  440648:      	adrp	x1, 0x1e9000
+  44064c:      	add	x1, x1, #0x177
+  440650:      	adrp	x2, 0x1e6000
+  440654:      	add	x2, x2, #0x5e2
+  440658:      	b	0x440314 <JNI_OnLoad+0x80>
+  44065c:      	ldr	x0, [sp]
+  440660:      	bl	0x2c7850 <_ZN11LayerFlowNS13LFEditDataJNI18registerJniMethodsEP7_JNIEnv>
+  440664:      	cbz	w0, 0x44067c <JNI_OnLoad+0x3e8>
+  440668:      	adrp	x1, 0x1e9000
+  44066c:      	add	x1, x1, #0x177
+  440670:      	adrp	x2, 0x1e2000
+  440674:      	add	x2, x2, #0x34a
+  440678:      	b	0x440314 <JNI_OnLoad+0x80>
+  44067c:      	ldr	x0, [sp]
+  440680:      	bl	0x2d622c <_ZN11LayerFlowNS16LFEnhanceDataJNI18registerJniMethodsEP7_JNIEnv>
+  440684:      	cbz	w0, 0x44069c <JNI_OnLoad+0x408>
+  440688:      	adrp	x1, 0x1e9000
+  44068c:      	add	x1, x1, #0x177
+  440690:      	adrp	x2, 0x1d2000
+  440694:      	add	x2, x2, #0x48d
+  440698:      	b	0x440314 <JNI_OnLoad+0x80>
+  44069c:      	ldr	x0, [sp]
+  4406a0:      	bl	0x2c2d44 <_ZN11LayerFlowNS22LFBgBeautifyModularJNI18registerJniMethodsEP7_JNIEnv>
+  4406a4:      	cbz	w0, 0x4406bc <JNI_OnLoad+0x428>
+  4406a8:      	adrp	x1, 0x1e9000
+  4406ac:      	add	x1, x1, #0x177
+  4406b0:      	adrp	x2, 0x1e2000
+  4406b4:      	add	x2, x2, #0x374
+  4406b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4406bc:      	ldr	x0, [sp]
+  4406c0:      	bl	0x2ecd48 <_ZN11LayerFlowNS16LFMarkModularJNI18registerJniMethodsEP7_JNIEnv>
+  4406c4:      	cbz	w0, 0x4406dc <JNI_OnLoad+0x448>
+  4406c8:      	adrp	x1, 0x1e9000
+  4406cc:      	add	x1, x1, #0x177
+  4406d0:      	adrp	x2, 0x1d6000
+  4406d4:      	add	x2, x2, #0xdb
+  4406d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4406dc:      	ldr	x0, [sp]
+  4406e0:      	bl	0x2f0470 <_ZN11LayerFlowNS19LFStickerModularJNI18registerJniMethodsEP7_JNIEnv>
+  4406e4:      	cbz	w0, 0x4406fc <JNI_OnLoad+0x468>
+  4406e8:      	adrp	x1, 0x1e9000
+  4406ec:      	add	x1, x1, #0x177
+  4406f0:      	adrp	x2, 0x1e4000
+  4406f4:      	add	x2, x2, #0x33c
+  4406f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4406fc:      	ldr	x0, [sp]
+  440700:      	bl	0x2e6710 <_ZN11LayerFlowNS23LFLiveStickerModularJNI18registerJniMethodsEP7_JNIEnv>
+  440704:      	cbz	w0, 0x44071c <JNI_OnLoad+0x488>
+  440708:      	adrp	x1, 0x1e9000
+  44070c:      	add	x1, x1, #0x177
+  440710:      	adrp	x2, 0x1d2000
+  440714:      	add	x2, x2, #0x4ba
+  440718:      	b	0x440314 <JNI_OnLoad+0x80>
+  44071c:      	ldr	x0, [sp]
+  440720:      	bl	0x2f2288 <_ZN11LayerFlowNS16LFTextModularJNI18registerJniMethodsEP7_JNIEnv>
+  440724:      	cbz	w0, 0x44073c <JNI_OnLoad+0x4a8>
+  440728:      	adrp	x1, 0x1e9000
+  44072c:      	add	x1, x1, #0x177
+  440730:      	adrp	x2, 0x1d6000
+  440734:      	add	x2, x2, #0x108
+  440738:      	b	0x440314 <JNI_OnLoad+0x80>
+  44073c:      	ldr	x0, [sp]
+  440740:      	bl	0x2beba8 <_ZN11LayerFlowNS18LFAutoBrushDataJNI18registerJniMethodsEP7_JNIEnv>
+  440744:      	cbz	w0, 0x44075c <JNI_OnLoad+0x4c8>
+  440748:      	adrp	x1, 0x1e9000
+  44074c:      	add	x1, x1, #0x177
+  440750:      	adrp	x2, 0x1d9000
+  440754:      	add	x2, x2, #0x45d
+  440758:      	b	0x440314 <JNI_OnLoad+0x80>
+  44075c:      	ldr	x0, [sp]
+  440760:      	bl	0x2bde2c <_ZN11LayerFlowNS19LFAutoBeautyDataJNI18registerJniMethodsEP7_JNIEnv>
+  440764:      	cbz	w0, 0x44077c <JNI_OnLoad+0x4e8>
+  440768:      	adrp	x1, 0x1e9000
+  44076c:      	add	x1, x1, #0x177
+  440770:      	adrp	x2, 0x1e7000
+  440774:      	add	x2, x2, #0x8d1
+  440778:      	b	0x440314 <JNI_OnLoad+0x80>
+  44077c:      	ldr	x0, [sp]
+  440780:      	bl	0x2e3bfc <_ZN11LayerFlowNS17LFFrameModularJNI18registerJniMethodsEP7_JNIEnv>
+  440784:      	cbz	w0, 0x44079c <JNI_OnLoad+0x508>
+  440788:      	adrp	x1, 0x1e9000
+  44078c:      	add	x1, x1, #0x177
+  440790:      	adrp	x2, 0x1da000
+  440794:      	add	x2, x2, #0x412
+  440798:      	b	0x440314 <JNI_OnLoad+0x80>
+  44079c:      	ldr	x0, [sp]
+  4407a0:      	bl	0x2e6f7c <_ZN11LayerFlowNS18LFMakeUpModularJNI18registerJniMethodsEP7_JNIEnv>
+  4407a4:      	cbz	w0, 0x4407bc <JNI_OnLoad+0x528>
+  4407a8:      	adrp	x1, 0x1e9000
+  4407ac:      	add	x1, x1, #0x177
+  4407b0:      	adrp	x2, 0x1e9000
+  4407b4:      	add	x2, x2, #0xd63
+  4407b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4407bc:      	ldr	x0, [sp]
+  4407c0:      	bl	0x2ec410 <_ZN22LFMakeupRuntimeDataJNI18registerJniMethodsEP7_JNIEnv>
+  4407c4:      	cbz	w0, 0x4407dc <JNI_OnLoad+0x548>
+  4407c8:      	adrp	x1, 0x1e9000
+  4407cc:      	add	x1, x1, #0x177
+  4407d0:      	adrp	x2, 0x1cf000
+  4407d4:      	add	x2, x2, #0xf82
+  4407d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4407dc:      	ldr	x0, [sp]
+  4407e0:      	bl	0x2ec29c <_ZN11LayerFlowNS21LFMakeupBagModularJNI18registerJniMethodsEP7_JNIEnv>
+  4407e4:      	cbz	w0, 0x4407fc <JNI_OnLoad+0x568>
+  4407e8:      	adrp	x1, 0x1e9000
+  4407ec:      	add	x1, x1, #0x177
+  4407f0:      	adrp	x2, 0x1df000
+  4407f4:      	add	x2, x2, #0xd7d
+  4407f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4407fc:      	ldr	x0, [sp]
+  440800:      	bl	0x2ef4b8 <_ZN11LayerFlowNS19LFSkinWhitenDataJNI18registerJniMethodsEP7_JNIEnv>
+  440804:      	cbz	w0, 0x44081c <JNI_OnLoad+0x588>
+  440808:      	adrp	x1, 0x1e9000
+  44080c:      	add	x1, x1, #0x177
+  440810:      	adrp	x2, 0x1d1000
+  440814:      	add	x2, x2, #0x363
+  440818:      	b	0x440314 <JNI_OnLoad+0x80>
+  44081c:      	ldr	x0, [sp]
+  440820:      	bl	0x2de01c <_ZN11LayerFlowNS17LFFaceFullDataJNI18registerJniMethodsEP7_JNIEnv>
+  440824:      	cbz	w0, 0x44083c <JNI_OnLoad+0x5a8>
+  440828:      	adrp	x1, 0x1e9000
+  44082c:      	add	x1, x1, #0x177
+  440830:      	adrp	x2, 0x1f0000
+  440834:      	add	x2, x2, #0x534
+  440838:      	b	0x440314 <JNI_OnLoad+0x80>
+  44083c:      	ldr	x0, [sp]
+  440840:      	bl	0x2e07d8 <_ZN11LayerFlowNS19LFFaceRemoldDataJNI18registerJniMethodsEP7_JNIEnv>
+  440844:      	cbz	w0, 0x44085c <JNI_OnLoad+0x5c8>
+  440848:      	adrp	x1, 0x1e9000
+  44084c:      	add	x1, x1, #0x177
+  440850:      	adrp	x2, 0x1ed000
+  440854:      	add	x2, x2, #0x42c
+  440858:      	b	0x440314 <JNI_OnLoad+0x80>
+  44085c:      	ldr	x0, [sp]
+  440860:      	bl	0x2bbd1c <_ZN11LayerFlowNS18LFAigcCacheDataJNI18registerJniMethodsEP7_JNIEnv>
+  440864:      	cbz	w0, 0x44087c <JNI_OnLoad+0x5e8>
+  440868:      	adrp	x1, 0x1e9000
+  44086c:      	add	x1, x1, #0x177
+  440870:      	adrp	x2, 0x1e6000
+  440874:      	add	x2, x2, #0x618
+  440878:      	b	0x440314 <JNI_OnLoad+0x80>
+  44087c:      	ldr	x0, [sp]
+  440880:      	bl	0x2e6678 <_ZN11LayerFlowNS18LFImageWithPathJNI18registerJniMethodsEP7_JNIEnv>
+  440884:      	cbz	w0, 0x44089c <JNI_OnLoad+0x608>
+  440888:      	adrp	x1, 0x1e9000
+  44088c:      	add	x1, x1, #0x177
+  440890:      	adrp	x2, 0x1e8000
+  440894:      	add	x2, x2, #0xa75
+  440898:      	b	0x440314 <JNI_OnLoad+0x80>
+  44089c:      	ldr	x0, [sp]
+  4408a0:      	bl	0x2f20a8 <_ZN11LayerFlowNS34LFStraightLegsAIGCRequestResultJNI18registerJniMethodsEP7_JNIEnv>
+  4408a4:      	cbz	w0, 0x4408bc <JNI_OnLoad+0x628>
+  4408a8:      	adrp	x1, 0x1e9000
+  4408ac:      	add	x1, x1, #0x177
+  4408b0:      	adrp	x2, 0x1cf000
+  4408b4:      	add	x2, x2, #0xfb5
+  4408b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4408bc:      	ldr	x0, [sp]
+  4408c0:      	bl	0x2c536c <_ZN11LayerFlowNS30LFBody3DEffectRequestResultJNI18registerJniMethodsEP7_JNIEnv>
+  4408c4:      	cbz	w0, 0x4408dc <JNI_OnLoad+0x648>
+  4408c8:      	adrp	x1, 0x1e9000
+  4408cc:      	add	x1, x1, #0x177
+  4408d0:      	adrp	x2, 0x1e3000
+  4408d4:      	add	x2, x2, #0x1d0
+  4408d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4408dc:      	ldr	x0, [sp]
+  4408e0:      	bl	0x2c9328 <_ZN11LayerFlowNS19LFEffectAkneDataJNI18registerJniMethodsEP7_JNIEnv>
+  4408e4:      	cbz	w0, 0x4408fc <JNI_OnLoad+0x668>
+  4408e8:      	adrp	x1, 0x1e9000
+  4408ec:      	add	x1, x1, #0x177
+  4408f0:      	adrp	x2, 0x1de000
+  4408f4:      	add	x2, x2, #0xbfe
+  4408f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4408fc:      	ldr	x0, [sp]
+  440900:      	bl	0x2c9bdc <_ZN11LayerFlowNS25LFEffectAutoMosaicDataJNI18registerJniMethodsEP7_JNIEnv>
+  440904:      	cbz	w0, 0x44091c <JNI_OnLoad+0x688>
+  440908:      	adrp	x1, 0x1e9000
+  44090c:      	add	x1, x1, #0x177
+  440910:      	adrp	x2, 0x1d2000
+  440914:      	add	x2, x2, #0x4ee
+  440918:      	b	0x440314 <JNI_OnLoad+0x80>
+  44091c:      	ldr	x0, [sp]
+  440920:      	bl	0x2cacc0 <_ZN11LayerFlowNS24LFEffectBodyShapeDataJNI18registerJniMethodsEP7_JNIEnv>
+  440924:      	cbz	w0, 0x44093c <JNI_OnLoad+0x6a8>
+  440928:      	adrp	x1, 0x1e9000
+  44092c:      	add	x1, x1, #0x177
+  440930:      	adrp	x2, 0x1f0000
+  440934:      	add	x2, x2, #0x562
+  440938:      	b	0x440314 <JNI_OnLoad+0x80>
+  44093c:      	ldr	x0, [sp]
+  440940:      	bl	0x2cb978 <_ZN11LayerFlowNS24LFEffectDenseHairDataJNI18registerJniMethodsEP7_JNIEnv>
+  440944:      	cbz	w0, 0x44095c <JNI_OnLoad+0x6c8>
+  440948:      	adrp	x1, 0x1e9000
+  44094c:      	add	x1, x1, #0x177
+  440950:      	adrp	x2, 0x1d2000
+  440954:      	add	x2, x2, #0x524
+  440958:      	b	0x440314 <JNI_OnLoad+0x80>
+  44095c:      	ldr	x0, [sp]
+  440960:      	bl	0x2cde20 <_ZN11LayerFlowNS18LFEffectEyeDataJNI18registerJniMethodsEP7_JNIEnv>
+  440964:      	cbz	w0, 0x44097c <JNI_OnLoad+0x6e8>
+  440968:      	adrp	x1, 0x1e9000
+  44096c:      	add	x1, x1, #0x177
+  440970:      	adrp	x2, 0x1ef000
+  440974:      	add	x2, x2, #0x5c6
+  440978:      	b	0x440314 <JNI_OnLoad+0x80>
+  44097c:      	ldr	x0, [sp]
+  440980:      	bl	0x2cfb38 <_ZN11LayerFlowNS23LFEffectFixTeethDataJNI18registerJniMethodsEP7_JNIEnv>
+  440984:      	cbz	w0, 0x44099c <JNI_OnLoad+0x708>
+  440988:      	adrp	x1, 0x1e9000
+  44098c:      	add	x1, x1, #0x177
+  440990:      	adrp	x2, 0x1d2000
+  440994:      	add	x2, x2, #0x559
+  440998:      	b	0x440314 <JNI_OnLoad+0x80>
+  44099c:      	ldr	x0, [sp]
+  4409a0:      	bl	0x2d0be8 <_ZN11LayerFlowNS24LFEffectHeadScaleDataJNI18registerJniMethodsEP7_JNIEnv>
+  4409a4:      	cbz	w0, 0x4409bc <JNI_OnLoad+0x728>
+  4409a8:      	adrp	x1, 0x1e9000
+  4409ac:      	add	x1, x1, #0x177
+  4409b0:      	adrp	x2, 0x1eb000
+  4409b4:      	add	x2, x2, #0x18d
+  4409b8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4409bc:      	ldr	x0, [sp]
+  4409c0:      	bl	0x2d4ce8 <_ZN11LayerFlowNS23LFEffectWakeSkinDataJNI18registerJniMethodsEP7_JNIEnv>
+  4409c4:      	cbz	w0, 0x4409dc <JNI_OnLoad+0x748>
+  4409c8:      	adrp	x1, 0x1e9000
+  4409cc:      	add	x1, x1, #0x177
+  4409d0:      	adrp	x2, 0x1e0000
+  4409d4:      	add	x2, x2, #0xdc1
+  4409d8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4409dc:      	ldr	x0, [sp]
+  4409e0:      	bl	0x2d5314 <_ZN11LayerFlowNS27LFEffectWrinkleCleanDataJNI18registerJniMethodsEP7_JNIEnv>
+  4409e4:      	cbz	w0, 0x4409fc <JNI_OnLoad+0x768>
+  4409e8:      	adrp	x1, 0x1e9000
+  4409ec:      	add	x1, x1, #0x177
+  4409f0:      	adrp	x2, 0x1d6000
+  4409f4:      	add	x2, x2, #0x135
+  4409f8:      	b	0x440314 <JNI_OnLoad+0x80>
+  4409fc:      	ldr	x0, [sp]
+  440a00:      	bl	0x2d392c <_ZN11LayerFlowNS23LFEffectSlimmingDataJNI18registerJniMethodsEP7_JNIEnv>
+  440a04:      	cbz	w0, 0x440a1c <JNI_OnLoad+0x788>
+  440a08:      	adrp	x1, 0x1e9000
+  440a0c:      	add	x1, x1, #0x177
+  440a10:      	adrp	x2, 0x1e7000
+  440a14:      	add	x2, x2, #0x904
+  440a18:      	b	0x440314 <JNI_OnLoad+0x80>
+  440a1c:      	ldr	x0, [sp]
+  440a20:      	bl	0x2d16cc <_ZN11LayerFlowNS20LFEffectMatteDataJNI18registerJniMethodsEP7_JNIEnv>
+  440a24:      	cbz	w0, 0x440a3c <JNI_OnLoad+0x7a8>
+  440a28:      	adrp	x1, 0x1e9000
+  440a2c:      	add	x1, x1, #0x177
+  440a30:      	adrp	x2, 0x1d9000
+  440a34:      	add	x2, x2, #0x48c
+  440a38:      	b	0x440314 <JNI_OnLoad+0x80>
+  440a3c:      	ldr	x0, [sp]
+  440a40:      	bl	0x2cbfe4 <_ZN11LayerFlowNS27LFEffectDermabrasionDataJNI18registerJniMethodsEP7_JNIEnv>
+  440a44:      	cbz	w0, 0x440a5c <JNI_OnLoad+0x7c8>
+  440a48:      	adrp	x1, 0x1e9000
+  440a4c:      	add	x1, x1, #0x177
+  440a50:      	adrp	x2, 0x1d7000
+  440a54:      	add	x2, x2, #0x45e
+  440a58:      	b	0x440314 <JNI_OnLoad+0x80>
+  440a5c:      	ldr	x0, [sp]
+  440a60:      	bl	0x2d1838 <_ZN11LayerFlowNS29LFEffectOneClickBeautyDataJNI18registerJniMethodsEP7_JNIEnv>
+  440a64:      	cbz	w0, 0x440a7c <JNI_OnLoad+0x7e8>
+  440a68:      	adrp	x1, 0x1e9000
+  440a6c:      	add	x1, x1, #0x177
+  440a70:      	adrp	x2, 0x1cf000
+  440a74:      	add	x2, x2, #0xff4
+  440a78:      	b	0x440314 <JNI_OnLoad+0x80>
+  440a7c:      	ldr	x0, [sp]
+  440a80:      	bl	0x2dd63c <_ZN11LayerFlowNS13LFExifInfoJNI18registerJniMethodsEP7_JNIEnv>
+  440a84:      	cbz	w0, 0x440a9c <JNI_OnLoad+0x808>
+  440a88:      	adrp	x1, 0x1e9000
+  440a8c:      	add	x1, x1, #0x177
+  440a90:      	adrp	x2, 0x1ec000
+  440a94:      	add	x2, x2, #0x3bc
+  440a98:      	b	0x440314 <JNI_OnLoad+0x80>
+  440a9c:      	ldr	x0, [sp]
+  440aa0:      	bl	0x2c1aec <_ZN11LayerFlowNS25LFAutoColorCorrectDataJNI18registerJniMethodsEP7_JNIEnv>
+  440aa4:      	cbz	w0, 0x440abc <JNI_OnLoad+0x828>
+  440aa8:      	adrp	x1, 0x1e9000
+  440aac:      	add	x1, x1, #0x177
+  440ab0:      	adrp	x2, 0x1d7000
+  440ab4:      	add	x2, x2, #0x496
+  440ab8:      	b	0x440314 <JNI_OnLoad+0x80>
+  440abc:      	ldr	x0, [sp]
+  440ac0:      	bl	0x2c2308 <_ZN11LayerFlowNS17LFAutoSlimDataJNI18registerJniMethodsEP7_JNIEnv>
+  440ac4:      	cbz	w0, 0x440adc <JNI_OnLoad+0x848>
+  440ac8:      	adrp	x1, 0x1e9000
+  440acc:      	add	x1, x1, #0x177
+  440ad0:      	adrp	x2, 0x1d6000
+  440ad4:      	add	x2, x2, #0x16d
+  440ad8:      	b	0x440314 <JNI_OnLoad+0x80>
+  440adc:      	ldr	x0, [sp]
+  440ae0:      	bl	0x2c2c58 <_ZN11LayerFlowNS25LFAutoWrinkleCleanDataJNI18registerJniMethodsEP7_JNIEnv>
+  440ae4:      	cbz	w0, 0x440afc <JNI_OnLoad+0x868>
+  440ae8:      	adrp	x1, 0x1e9000
+  440aec:      	add	x1, x1, #0x177
+  440af0:      	adrp	x2, 0x1e0000
+  440af4:      	add	x2, x2, #0xdf5
+  440af8:      	b	0x440314 <JNI_OnLoad+0x80>
+  440afc:      	ldr	x0, [sp]
+  440b00:      	bl	0x2c1dc8 <_ZN11LayerFlowNS25LFAutoDermabrasionDataJNI18registerJniMethodsEP7_JNIEnv>
+  440b04:      	adrp	x1, 0x1e9000
+  440b08:      	add	x1, x1, #0x177
+  440b0c:      	cbz	w0, 0x440b1c <JNI_OnLoad+0x888>
+  440b10:      	adrp	x2, 0x1db000
+  440b14:      	add	x2, x2, #0x6fb
+  440b18:      	b	0x440314 <JNI_OnLoad+0x80>
+  440b1c:      	adrp	x2, 0x1d7000
+  440b20:      	add	x2, x2, #0x4cc
+  440b24:      	adrp	x3, 0x1e8000
+  440b28:      	add	x3, x3, #0xaa4
+  440b2c:      	adrp	x4, 0x1eb000
+  440b30:      	add	x4, x4, #0x1c2
+  440b34:      	adrp	x5, 0x1d0000
+  440b38:      	add	x5, x5, #0x2e
+  440b3c:      	mov	w0, #0x4                // =4
+  440b40:      	bl	0x52a250 <__android_log_print@plt>
+  440b44:      	ldr	x8, [x20, #0x28]
+  440b48:      	ldr	x9, [sp, #0x8]
+  440b4c:      	cmp	x8, x9
+  440b50:      	b.eq	0x440330 <JNI_OnLoad+0x9c>
+  440b54:      	bl	0x52a260 <__stack_chk_fail@plt>
+
+--- FUNCTION: JNI_OnUnload ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000440b58 <JNI_OnUnload>:
+  440b58:      	adrp	x1, 0x1e9000
+  440b5c:      	add	x1, x1, #0x177
+  440b60:      	adrp	x2, 0x1d2000
+  440b64:      	add	x2, x2, #0x58d
+  440b68:      	mov	w0, #0x6                // =6
+  440b6c:      	b	0x52a250 <__android_log_print@plt>
+
+--- FUNCTION: _Z7to_jsonRN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEERK10ColorParam ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000003088e8 <_Z7to_jsonRN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEERK10ColorParam>:
+  3088e8:      	stp	x29, x30, [sp, #-0x20]!
+  3088ec:      	stp	x20, x19, [sp, #0x10]
+  3088f0:      	mov	x29, sp
+  3088f4:      	mov	x20, x1
+  3088f8:      	adrp	x1, 0x1eb000
+  3088fc:      	add	x1, x1, #0xc0f
+  308900:      	mov	x2, x20
+  308904:      	mov	x19, x0
+  308908:      	bl	0x3049dc <_ZN8nlohmann16extended_to_jsonIdEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  30890c:      	adrp	x1, 0x1ce000
+  308910:      	add	x1, x1, #0x73c
+  308914:      	add	x2, x20, #0x8
+  308918:      	mov	x0, x19
+  30891c:      	bl	0x3049dc <_ZN8nlohmann16extended_to_jsonIdEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  308920:      	adrp	x1, 0x1e3000
+  308924:      	add	x1, x1, #0x9b3
+  308928:      	add	x2, x20, #0x10
+  30892c:      	mov	x0, x19
+  308930:      	bl	0x3049dc <_ZN8nlohmann16extended_to_jsonIdEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  308934:      	adrp	x1, 0x1dd000
+  308938:      	add	x1, x1, #0x370
+  30893c:      	add	x2, x20, #0x18
+  308940:      	mov	x0, x19
+  308944:      	bl	0x304ea8 <_ZN8nlohmann16extended_to_jsonINSt6__ndk16vectorIdNS1_9allocatorIdEEEEEEvRNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS3_IcEEEEblmdS3_NS6_14adl_serializerENS2_IhNS3_IhEEEEvEEPKcRKT_>
+  308948:      	adrp	x1, 0x1ef000
+  30894c:      	add	x1, x1, #0xf31
+  308950:      	add	x2, x20, #0x30
+  308954:      	mov	x0, x19
+  308958:      	bl	0x304ea8 <_ZN8nlohmann16extended_to_jsonINSt6__ndk16vectorIdNS1_9allocatorIdEEEEEEvRNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS3_IcEEEEblmdS3_NS6_14adl_serializerENS2_IhNS3_IhEEEEvEEPKcRKT_>
+  30895c:      	adrp	x1, 0x1e5000
+  308960:      	add	x1, x1, #0xfcc
+  308964:      	add	x2, x20, #0x48
+  308968:      	mov	x0, x19
+  30896c:      	bl	0x304ea8 <_ZN8nlohmann16extended_to_jsonINSt6__ndk16vectorIdNS1_9allocatorIdEEEEEEvRNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS3_IcEEEEblmdS3_NS6_14adl_serializerENS2_IhNS3_IhEEEEvEEPKcRKT_>
+  308970:      	adrp	x1, 0x1dc000
+  308974:      	add	x1, x1, #0xbe
+  308978:      	add	x2, x20, #0x60
+  30897c:      	mov	x0, x19
+  308980:      	bl	0x3049dc <_ZN8nlohmann16extended_to_jsonIdEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  308984:      	adrp	x1, 0x1cc000
+  308988:      	add	x1, x1, #0x3d8
+  30898c:      	add	x2, x20, #0x68
+  308990:      	mov	x0, x19
+  308994:      	bl	0x303dc4 <_ZN8nlohmann16extended_to_jsonIiEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  308998:      	adrp	x1, 0x1e4000
+  30899c:      	add	x1, x1, #0xc60
+  3089a0:      	add	x2, x20, #0x70
+  3089a4:      	mov	x0, x19
+  3089a8:      	bl	0x3049dc <_ZN8nlohmann16extended_to_jsonIdEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  3089ac:      	adrp	x1, 0x1e6000
+  3089b0:      	add	x1, x1, #0xfaf
+  3089b4:      	add	x2, x20, #0x78
+  3089b8:      	mov	x0, x19
+  3089bc:      	bl	0x303dc4 <_ZN8nlohmann16extended_to_jsonIiEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRKT_>
+  3089c0:      	adrp	x1, 0x1d1000
+  3089c4:      	add	x1, x1, #0xc16
+  3089c8:      	add	x2, x20, #0x80
+  3089cc:      	mov	x0, x19
+  3089d0:      	bl	0x308a18 <_ZN8nlohmann16extended_to_jsonINSt6__ndk16vectorI9ColorItemNS1_9allocatorIS3_EEEEEEvRNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS4_IcEEEEblmdS4_NS7_14adl_serializerENS2_IhNS4_IhEEEEvEEPKcRKT_>
+  3089d4:      	adrp	x1, 0x1ee000
+  3089d8:      	add	x1, x1, #0xe11
+  3089dc:      	add	x2, x20, #0x98
+  3089e0:      	mov	x0, x19
+  3089e4:      	bl	0x308a18 <_ZN8nlohmann16extended_to_jsonINSt6__ndk16vectorI9ColorItemNS1_9allocatorIS3_EEEEEEvRNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS4_IcEEEEblmdS4_NS7_14adl_serializerENS2_IhNS4_IhEEEEvEEPKcRKT_>
+  3089e8:      	adrp	x1, 0x1de000
+  3089ec:      	add	x1, x1, #0x1ed
+  3089f0:      	add	x2, x20, #0xb0
+  3089f4:      	mov	x0, x19
+  3089f8:      	bl	0x308c34 <_ZN8nlohmann16extended_to_jsonI15CurveColorParamEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS2_14adl_serializerENS6_IhNSA_IhEEEEvEEPKcRKT_>
+  3089fc:      	adrp	x1, 0x1e4000
+  308a00:      	add	x1, x1, #0xc70
+  308a04:      	add	x2, x20, #0x118
+  308a08:      	mov	x0, x19
+  308a0c:      	ldp	x20, x19, [sp, #0x10]
+  308a10:      	ldp	x29, x30, [sp], #0x20
+  308a14:      	b	0x308e90 <_ZN8nlohmann16extended_to_jsonI15SkinWhitenParamEEvRNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS2_14adl_serializerENS6_IhNSA_IhEEEEvEEPKcRKT_>

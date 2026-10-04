@@ -1,0 +1,109 @@
+
+--- FUNCTION: CreateNpuAdapter ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000e58c8 <CreateNpuAdapter>:
+   e58c8:      	stp	x29, x30, [sp, #-0x20]!
+   e58cc:      	stp	x20, x19, [sp, #0x10]
+   e58d0:      	mov	x29, sp
+   e58d4:      	mov	w0, #0x140              // =320
+   e58d8:      	bl	0xef170 <_Znwm@plt>
+   e58dc:      	movi	v0.2d, #0000000000000000
+   e58e0:      	mov	x19, x0
+   e58e4:      	stp	q0, q0, [x0]
+   e58e8:      	stp	q0, q0, [x0, #0x20]
+   e58ec:      	stp	q0, q0, [x0, #0x40]
+   e58f0:      	stp	q0, q0, [x0, #0x60]
+   e58f4:      	stp	q0, q0, [x0, #0x80]
+   e58f8:      	stp	q0, q0, [x0, #0xa0]
+   e58fc:      	stp	q0, q0, [x0, #0xc0]
+   e5900:      	stp	q0, q0, [x0, #0xe0]
+   e5904:      	stp	q0, q0, [x0, #0x100]
+   e5908:      	stp	q0, q0, [x0, #0x120]
+   e590c:      	bl	0xf1730 <_ZN5mizar14NpuAdapterImplC2Ev@plt>
+   e5910:      	mov	x0, x19
+   e5914:      	ldp	x20, x19, [sp, #0x10]
+   e5918:      	ldp	x29, x30, [sp], #0x20
+   e591c:      	ret
+   e5920:      	mov	x20, x0
+   e5924:      	mov	x0, x19
+   e5928:      	bl	0xef1a0 <_ZdlPv@plt>
+   e592c:      	mov	x0, x20
+   e5930:      	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+
+--- FUNCTION: GetNpuAdapterVersion ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000e5a34 <GetNpuAdapterVersion>:
+   e5a34:      	cbz	x0, 0xe5a74 <GetNpuAdapterVersion+0x40>
+   e5a38:      	stp	x29, x30, [sp, #-0x10]!
+   e5a3c:      	mov	x29, sp
+   e5a40:      	adrp	x1, 0xfb000
+   e5a44:      	adrp	x2, 0xfb000
+   e5a48:      	mov	x3, xzr
+   e5a4c:      	ldr	x1, [x1, #0xbf0]
+   e5a50:      	ldr	x2, [x2, #0xbf8]
+   e5a54:      	bl	0xf1770 <__dynamic_cast@plt>
+   e5a58:      	cbz	x0, 0xe5a70 <GetNpuAdapterVersion+0x3c>
+   e5a5c:      	ldrb	w8, [x0, #0x90]
+   e5a60:      	ldr	x9, [x0, #0xa0]
+   e5a64:      	add	x10, x0, #0x91
+   e5a68:      	tst	w8, #0x1
+   e5a6c:      	csel	x0, x10, x9, eq
+   e5a70:      	ldp	x29, x30, [sp], #0x10
+   e5a74:      	ret
+
+--- FUNCTION: ReleaseNpuAdapter ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000e5a20 <ReleaseNpuAdapter>:
+   e5a20:      	cbz	x0, 0xe5a30 <ReleaseNpuAdapter+0x10>
+   e5a24:      	ldr	x8, [x0]
+   e5a28:      	ldr	x1, [x8, #0x8]
+   e5a2c:      	br	x1
+   e5a30:      	ret
+
+--- FUNCTION: _ZN2ge5GraphD0Ev ---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000d91d0 <_ZN2ge5GraphD0Ev>:
+   d91d0:      	stp	x29, x30, [sp, #-0x20]!
+   d91d4:      	stp	x20, x19, [sp, #0x10]
+   d91d8:      	mov	x29, sp
+   d91dc:      	adrp	x8, 0xfb000
+   d91e0:      	mov	x19, x0
+   d91e4:      	ldr	x8, [x8, #0xb88]
+   d91e8:      	ldr	x20, [x0, #0x10]
+   d91ec:      	add	x8, x8, #0x10
+   d91f0:      	str	x8, [x0]
+   d91f4:      	cbz	x20, 0xd9208 <_ZN2ge5GraphD0Ev+0x38>
+   d91f8:      	add	x1, x20, #0x8
+   d91fc:      	mov	x0, #-0x1               // =-1
+   d9200:      	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   d9204:      	cbz	x0, 0xd9218 <_ZN2ge5GraphD0Ev+0x48>
+   d9208:      	mov	x0, x19
+   d920c:      	ldp	x20, x19, [sp, #0x10]
+   d9210:      	ldp	x29, x30, [sp], #0x20
+   d9214:      	b	0xef1a0 <_ZdlPv@plt>
+   d9218:      	ldr	x8, [x20]
+   d921c:      	mov	x0, x20
+   d9220:      	ldr	x8, [x8, #0x10]
+   d9224:      	blr	x8
+   d9228:      	mov	x0, x20
+   d922c:      	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   d9230:      	mov	x0, x19
+   d9234:      	ldp	x20, x19, [sp, #0x10]
+   d9238:      	ldp	x29, x30, [sp], #0x20
+   d923c:      	b	0xef1a0 <_ZdlPv@plt>
