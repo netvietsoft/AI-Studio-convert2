@@ -1526,7 +1526,7 @@ unning: 0).
     - `case_A_triptych_audit.png` & `case_A_temple_hairline_zoom300.png` (minh chứng sạch trán 100%, bảo toàn lỗ chân lông).
     - `case_B_triptych_audit.png` & `case_B_sheer_sleeve_zoom300.png` (minh chứng sạch áo voan đen 100%, giữ nguyên thớ vải).
     - `case_A_laplacian_texture_proof.png` (minh chứng bảo lưu 91.9% vi sợi tóc xoăn).
-  * **Gói bàn giao lưu trữ:** `CONVERT2_TASK035_REPORT_PACKAGE.zip` (92,174,918 bytes, SHA-256: `5EEF1E476A5E41A9439C52DE79F92076B279420DFBE5C200E14D2D0221610462`).
-  * **Bảng kê mã băm:** `TASK_035_EVIDENCE_MANIFEST.sha256` (SHA-256: `B7C8A98F661BB7450D607EEE909098C543FBF47E50E7D6C6CEB3CE69805A599B`).
+  * **Gói bàn giao lưu trữ:** `CONVERT2_TASK035_REPORT_PACKAGE.zip` (92,175,054 bytes, SHA-256: `52D1234B1679992CD5FBC50F1B79B93C47B1B7696806D1C7CDF8A1694044128E`).
+  * **Bảng kê mã băm:** `TASK_035_EVIDENCE_MANIFEST.sha256` (SHA-256: `6C07592CBEB111C08806E80D20E309D4B1F318B817CAD79236961085ACE47425`).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
