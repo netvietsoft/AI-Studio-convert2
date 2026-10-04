@@ -1,0 +1,648 @@
+#!/usr/bin/env python3
+"""
+TASK_040 Ultra-Fast Discovery & Forensic Scanner
+Authoritative scan root: F:\CONVERT
+Strictly Read-Only on F:\CONVERT
+"""
+
+import os
+import sys
+import json
+import csv
+import hashlib
+import time
+import datetime
+import subprocess
+from pathlib import Path
+from collections import Counter
+import re
+
+ROOT = Path(r"F:\CONVERT")
+REPO_ROOT = Path(r"C:\actions-runner-03\_work\AI-Studio-convert2\AI-Studio-convert2")
+OUTPUT_DIR = REPO_ROOT / ".ai" / "reports" / "TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY"
+RAW_DIR = OUTPUT_DIR / "raw"
+RAW_DIR.mkdir(parents=True, exist_ok=True)
+
+# Candidate paths list
+CANDIDATE_DIRS = [
+    # Top-level direct children
+    ROOT,
+    ROOT / "com.lightricks.facetune.free",
+    ROOT / "com.mt.mtxx.mtxx",
+    ROOT / "Material Image Editor",
+    ROOT / "tools",
+
+    # Facetune Family
+    ROOT / "com.lightricks.facetune.free" / "CONVERT",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "app",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "feature-ai-retouch",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "feature-cloud-ai",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "feature-story-maker",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-billing",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-filters",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-image-editing",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-logging",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-storage-db",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-ui-toolkit",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "lib-video-engine",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "mapping",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "ncnn-sdk",
+    ROOT / "com.lightricks.facetune.free" / "CONVERT" / "reference",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "apktool_out",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "com.lightricks.facetune.free",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "extracted_xapk",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "jadx_out",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "Redesign",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "Report",
+    ROOT / "com.lightricks.facetune.free" / "SOURCE" / "report 2",
+    ROOT / "com.lightricks.facetune.free" / "Report",
+    ROOT / "com.lightricks.facetune.free" / "report 2",
+    ROOT / "com.lightricks.facetune.free" / "ui screen short",
+    ROOT / "com.lightricks.facetune.free" / ".ktcheck",
+    ROOT / "com.lightricks.facetune.free" / ".ktcheck9",
+    ROOT / "com.lightricks.facetune.free" / ".tmpdex",
+    ROOT / "com.lightricks.facetune.free" / ".agents",
+
+    # Meitu CONVERT V1 Monorepo Family
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "app",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "common",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "data",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "designsystem",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "native-bridge",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "network",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "core" / "render",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "aiphoto",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "album",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "beauty",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "camera",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "community",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "drafts",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "editor",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "home",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "idphoto",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "livephoto",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "nextai",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "poster",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "profile",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "puzzle",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "settings",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "templates",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "tools",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "videoedit",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "android" / "feature" / "vip",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "cms",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "desktop",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "ios",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "apps" / "web",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "ANDROID",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "AUTOMATION",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "BACKEND",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "BAOCAO",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "data",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "datasets",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "design",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "Docs",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "infra",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "packages",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "prototype",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "reconstruction-input",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "release",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "Report",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "scripts",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "services",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "tests",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "tools",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "worktrees",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT" / "YEUCAU",
+
+    # Meitu CONVERT2 Workspace
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "app",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "backend",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "Docs",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "FIX",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "gallery",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-ai-engine",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-billing",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-common-ui",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-core-graphics",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-photo-editor",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-roboneo",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "lib-video-engine",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "mapping",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "scripts",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "tests",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "test_assets",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "Tip",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "validation_phase01",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "worktrees",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_022_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_023_FULL_BODY_PHYSICAL_DEVICE_VISUAL_GALLERY",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_025_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_026_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_027_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY",
+    ROOT / "com.mt.mtxx.mtxx" / "CONVERT2" / "TASK_031_HAIR_PHYSICAL_DEVICE_VISUAL_GALLERY",
+
+    # Meitu SOURCE Decompiled Family
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "apktool_manifest",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "apktool_out",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "BAO CAO CHU TICH",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "Demo Data",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "dex_files",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "extracted_assets",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "extracted_native_libs",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "eye_verification_reports",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "full_system_verification_reports",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "jadx_src",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "jadx_src" / "sources",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "jadx_src" / "resources",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "mitu",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "mitu" / "Demo Data",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "mitu" / "Redesign",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "mitu" / "Report",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "mitu" / "UI ScreenShot",
+    ROOT / "com.mt.mtxx.mtxx" / "SOURCE" / "Redesign",
+
+    # Other Meitu Assets & Backups
+    ROOT / "com.mt.mtxx.mtxx" / "_stray_backup_w9",
+    ROOT / "com.mt.mtxx.mtxx" / "_stray_backup_w9" / "apps" / "android" / "feature" / "community",
+    ROOT / "com.mt.mtxx.mtxx" / "Yeucau",
+    ROOT / "com.mt.mtxx.mtxx" / "ẢNH",
+    ROOT / "com.mt.mtxx.mtxx" / "beard_assets_10_png",
+    ROOT / "com.mt.mtxx.mtxx" / ".vscode",
+
+    # Material Image Editor
+    ROOT / "Material Image Editor",
+    ROOT / "Material Image Editor" / "Mitu",
+    ROOT / "Material Image Editor" / "Mitu" / "material",
+
+    # Tools
+    ROOT / "tools",
+    ROOT / "tools" / "docker",
+    ROOT / "tools" / "minio"
+]
+
+def format_bytes(b):
+    if b < 1024:
+        return f"{b} B"
+    elif b < 1024 * 1024:
+        return f"{b / 1024:.2f} KB"
+    elif b < 1024 * 1024 * 1024:
+        return f"{b / (1024 * 1024):.2f} MB"
+    else:
+        return f"{b / (1024 * 1024 * 1024):.2f} GB"
+
+def fast_scan_tree(dir_path: Path):
+    f_cnt = 0
+    d_cnt = 0
+    b_cnt = 0
+    exts = Counter()
+    newest_m = 0.0
+
+    def _walk(p):
+        nonlocal f_cnt, d_cnt, b_cnt, newest_m
+        try:
+            with os.scandir(p) as it:
+                for entry in it:
+                    try:
+                        if entry.is_file(follow_symlinks=False):
+                            f_cnt += 1
+                            ext = Path(entry.name).suffix.lower()
+                            exts[ext] += 1
+                            st = entry.stat(follow_symlinks=False)
+                            b_cnt += st.st_size
+                            if st.st_mtime > newest_m:
+                                newest_m = st.st_mtime
+                        elif entry.is_dir(follow_symlinks=False):
+                            # skip giant gradle cache or git objects
+                            low_name = entry.name.lower()
+                            if low_name in [".gradle", ".git"]:
+                                d_cnt += 1
+                                continue
+                            d_cnt += 1
+                            _walk(entry.path)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
+    _walk(str(dir_path))
+    return f_cnt, d_cnt, b_cnt, exts, newest_m
+
+def get_git_info(p: Path):
+    git_dir = p / ".git"
+    if not git_dir.exists():
+        return False, None, None, None, 0, None, None
+    try:
+        p_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(p), capture_output=True, text=True, timeout=5)
+        head = p_head.stdout.strip() if p_head.returncode == 0 else None
+        p_branch = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=str(p), capture_output=True, text=True, timeout=5)
+        branch = p_branch.stdout.strip() if p_branch.returncode == 0 else None
+        p_remote = subprocess.run(["git", "remote", "-v"], cwd=str(p), capture_output=True, text=True, timeout=5)
+        remote = p_remote.stdout.strip().splitlines()[0] if p_remote.returncode == 0 and p_remote.stdout.strip() else "None (Local repo)"
+        
+        p_status = subprocess.run(["git", "status", "--porcelain"], cwd=str(p), capture_output=True, text=True, timeout=5)
+        uncommitted = len(p_status.stdout.strip().splitlines()) if p_status.returncode == 0 and p_status.stdout.strip() else 0
+        
+        p_log = subprocess.run(["git", "log", "-1", "--format=%cd|%s", "--date=iso"], cwd=str(p), capture_output=True, text=True, timeout=5)
+        last_date, last_sub = None, None
+        if p_log.returncode == 0 and "|" in p_log.stdout:
+            parts = p_log.stdout.strip().split("|", 1)
+            last_date, last_sub = parts[0], parts[1]
+
+        return True, head, branch, remote, uncommitted, last_date, last_sub
+    except Exception as e:
+        return True, f"ERROR: {e}", None, None, 0, None, None
+
+def detect_markers(p: Path):
+    markers = []
+    checks = [
+        "settings.gradle", "settings.gradle.kts",
+        "build.gradle", "build.gradle.kts",
+        "gradlew", "gradlew.bat",
+        "AndroidManifest.xml",
+        "CMakeLists.txt", "Android.mk", "Application.mk",
+        "apktool.yml", ".git", "local.properties"
+    ]
+    for m in checks:
+        if (p / m).exists():
+            markers.append(m)
+    if (p / "src" / "main" / "java").exists():
+        markers.append("src/main/java")
+    if (p / "src" / "main" / "kotlin").exists():
+        markers.append("src/main/kotlin")
+    if (p / "src" / "main" / "cpp").exists():
+        markers.append("src/main/cpp")
+    if (p / "src" / "main" / "jniLibs").exists():
+        markers.append("src/main/jniLibs")
+    if (p / "jniLibs").exists():
+        markers.append("jniLibs")
+    if (p / "smali").exists() or any((p / f"smali_classes{i}").exists() for i in range(2, 10)):
+        markers.append("smali")
+    if (p / "sources").exists():
+        markers.append("sources")
+    if (p / "resources").exists():
+        markers.append("resources")
+    if (p / "assets").exists():
+        markers.append("assets")
+    if (p / "res").exists():
+        markers.append("res")
+    return markers
+
+def detect_build_system(markers, p: Path):
+    bs = []
+    if any(m.startswith("settings.gradle") or m.startswith("build.gradle") or "gradlew" in m for m in markers):
+        bs.append("Gradle")
+    if "CMakeLists.txt" in markers or (p / "CMakeLists.txt").exists():
+        bs.append("CMake")
+    if "Android.mk" in markers or (p / "Android.mk").exists():
+        bs.append("NDK-Build")
+    if any(f.name.endswith(".py") for f in p.glob("*.py")):
+        bs.append("Python")
+    if not bs:
+        return "None"
+    return "/".join(bs)
+
+def detect_package_id(p: Path):
+    manifest_candidates = [
+        p / "AndroidManifest.xml",
+        p / "src" / "main" / "AndroidManifest.xml",
+        p / "app" / "src" / "main" / "AndroidManifest.xml",
+        p / "apps" / "android" / "app" / "src" / "main" / "AndroidManifest.xml",
+        p / "apktool_manifest" / "AndroidManifest.xml"
+    ]
+    for m in manifest_candidates:
+        if m.exists():
+            try:
+                with open(m, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read(4096)
+                    pkg = re.search(r'package="([^"]+)"', content)
+                    if pkg:
+                        return pkg.group(1)
+            except Exception:
+                pass
+    gradle_candidates = [
+        p / "build.gradle.kts",
+        p / "build.gradle",
+        p / "app" / "build.gradle.kts",
+        p / "app" / "build.gradle",
+        p / "apps" / "android" / "app" / "build.gradle.kts",
+        p / "apps" / "android" / "app" / "build.gradle"
+    ]
+    for bg in gradle_candidates:
+        if bg.exists():
+            try:
+                with open(bg, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read(8192)
+                    app_id = re.search(r'applicationId\s*=\s*["\']([^"\']+)["\']', content)
+                    if not app_id:
+                        app_id = re.search(r'applicationId\s+["\']([^"\']+)["\']', content)
+                    if not app_id:
+                        app_id = re.search(r'namespace\s*=\s*["\']([^"\']+)["\']', content)
+                    if app_id:
+                        return app_id.group(1)
+            except Exception:
+                pass
+    if "com.lightricks.facetune.free" in str(p).lower():
+        return "com.lightricks.facetune.free"
+    if "com.mt.mtxx.mtxx" in str(p).lower():
+        return "com.mt.mtxx.mtxx"
+    return "N/A"
+
+def classify(rel_str: str, path: Path, markers: list, ext_counts: Counter):
+    rel_low = rel_str.lower().replace("/", "\\")
+    
+    if rel_low == ".":
+        return "A ORIGINAL_SOURCE_PROJECT"
+
+    if "convert2" in rel_low:
+        if "gallery" in rel_low:
+            return "G ASSET_RESOURCE_EXTRACT"
+        if "validation" in rel_low:
+            return "H BUILD_OUTPUT_OR_CACHE"
+        return "B RECONSTRUCTED_CONVERT2_SOURCE"
+
+    if "facetune" in rel_low and "convert" in rel_low:
+        if "ncnn-sdk" in rel_low:
+            return "E NATIVE_BINARY_EXTRACT"
+        return "B RECONSTRUCTED_CONVERT2_SOURCE"
+
+    if "com.mt.mtxx.mtxx\\convert" in rel_low:
+        if "report" in rel_low or "baocao" in rel_low or "automation\\report" in rel_low:
+            return "F NATIVE_PSEUDOCODE_OR_REVERSE_OUTPUT"
+        if "reconstruction-input" in rel_low or "datasets" in rel_low or "data" in rel_low or "yeucau" in rel_low:
+            return "G ASSET_RESOURCE_EXTRACT"
+        if "release" in rel_low:
+            return "H BUILD_OUTPUT_OR_CACHE"
+        return "B RECONSTRUCTED_CONVERT2_SOURCE"
+
+    if "tools" in rel_low and ("docker" in rel_low or "minio" in rel_low or rel_low.endswith("tools")):
+        return "J TOOL_WORKSPACE"
+
+    if "_stray_backup" in rel_low:
+        return "I DUPLICATE_COPY"
+
+    if "extracted_native_libs" in rel_low or "dex_files" in rel_low:
+        return "E NATIVE_BINARY_EXTRACT"
+
+    if "apktool" in rel_low or "smali" in rel_low:
+        return "D SMALI_DECOMPILE"
+
+    if "jadx" in rel_low:
+        return "C DECOMPILED_JAVA_KOTLIN_SOURCE"
+
+    if "material" in rel_low or "beard_assets" in rel_low or "ảnh" in rel_low or "extracted_assets" in rel_low or "demo data" in rel_low or "yeucau" in rel_low:
+        return "G ASSET_RESOURCE_EXTRACT"
+
+    if "redesign" in rel_low or "report" in rel_low or "verification" in rel_low or "bao cao" in rel_low:
+        return "F NATIVE_PSEUDOCODE_OR_REVERSE_OUTPUT"
+
+    if ".ktcheck" in rel_low or ".tmpdex" in rel_low or "ui screen short" in rel_low:
+        return "H BUILD_OUTPUT_OR_CACHE"
+
+    if "source" in rel_low:
+        return "C DECOMPILED_JAVA_KOTLIN_SOURCE"
+
+    return "L UNKNOWN_NEEDS_REVIEW"
+
+def score_directory(rel_str: str, classification: str, markers: list, ext_counts: Counter, path: Path):
+    rel_low = rel_str.lower().replace("/", "\\")
+    
+    if "native-bridge" in rel_low:
+        return 5, 5, 5, "HIGH"
+    if "lib-core-graphics" in rel_low:
+        return 5, 5, 5, "HIGH"
+    if "feature\\beauty" in rel_low:
+        return 5, 5, 4, "HIGH"
+    if "feature-ai-retouch" in rel_low:
+        return 5, 4, 4, "HIGH"
+    if "lib-photo-editor" in rel_low:
+        return 4, 4, 4, "HIGH"
+    if "core\\render" in rel_low:
+        return 4, 3, 4, "HIGH"
+    if "apps\\android" in rel_low:
+        return 5, 4, 5, "HIGH"
+    if "extracted_native_libs" in rel_low:
+        return 4, 5, 5, "HIGH"
+    if "jadx" in rel_low:
+        return 4, 4, 4, "HIGH"
+    if "material" in rel_low or "beard_assets" in rel_low:
+        return 2, 3, 1, "HIGH"
+    if "_stray_backup" in rel_low:
+        return 3, 1, 1, "HIGH"
+    if "tools" in rel_low:
+        return 1, 0, 0, "HIGH"
+    if "convert2" in rel_low:
+        return 5, 5, 5, "HIGH"
+    if "convert" in rel_low:
+        return 4, 3, 3, "HIGH"
+    if "source" in rel_low:
+        return 3, 3, 3, "HIGH"
+
+    return 2, 1, 1, "MEDIUM"
+
+print("Starting Fast Scan across all Candidate Directories...")
+t0 = time.time()
+
+records = []
+git_records = []
+markers_records = []
+filetype_records = []
+
+for cand in CANDIDATE_DIRS:
+    if not cand.exists():
+        continue
+    
+    rel_path = str(cand.relative_to(ROOT)) if cand != ROOT else "."
+    parts = cand.relative_to(ROOT).parts if cand != ROOT else (".",)
+    top_parent = parts[0] if parts else "."
+
+    f_cnt, d_cnt, b_cnt, ext_counter, newest_m = fast_scan_tree(cand)
+
+    newest_ts_str = datetime.datetime.fromtimestamp(newest_m).isoformat() if newest_m > 0 else "N/A"
+    markers = detect_markers(cand)
+    build_sys = detect_build_system(markers, cand)
+    pkg_id = detect_package_id(cand)
+    is_git, head, branch, remote, uncomm, last_date, last_sub = get_git_info(cand)
+    cls_type = classify(rel_path, cand, markers, ext_counter)
+    src_score, hair_score, jni_score, conf = score_directory(rel_path, cls_type, markers, ext_counter, cand)
+
+    desc = ""
+    prov = ""
+    overlap = "UNKNOWN"
+    if "com.lightricks.facetune.free" in rel_path:
+        prov = "Facetune Android Reverse/Decompile & Reconstruct Workspace"
+        if "CONVERT" in rel_path:
+            desc = "Reconstructed Android Kotlin/C++ Facetune project"
+            overlap = "DIFFERENT_PRODUCT (Facetune vs Meitu)"
+        else:
+            desc = "Original Facetune APK decompile (jadx/apktool/xapk)"
+            overlap = "INDEPENDENT_UPSTREAM_BENCHMARK"
+    elif "com.mt.mtxx.mtxx" in rel_path:
+        if "CONVERT2" in rel_path:
+            prov = "CONVERT2 Hair Color Engine Reconstructed Local Workspace"
+            desc = "Active CONVERT2 development workspace"
+            overlap = "SELF / TARGET_WORKSPACE"
+        elif "CONVERT" in rel_path:
+            prov = "Predecessor Meitu Reborn V1 Monorepo (Android/iOS/Web/Backend)"
+            desc = "Meitu Reborn V1 source tree with Android core native-bridge & features"
+            overlap = "UPSTREAM_ANCESTOR_HIGH_REUSABILITY"
+        elif "SOURCE" in rel_path:
+            prov = "Decompiled Meitu APK 45 SO Binaries & Jadx Java"
+            desc = "Decompiled Meitu APK assets, native libs, smali, and jadx"
+            overlap = "GROUND_TRUTH_UPSTREAM"
+        elif "_stray_backup" in rel_path:
+            prov = "Stray backup folder of feature/community"
+            desc = "Stray backup copy of apps/android/feature/community"
+            overlap = "SUBSET_DUPLICATE"
+        else:
+            prov = "Meitu assets/requirements workspace"
+            desc = "Ground truth photos, requirements, masks, beard assets"
+            overlap = "GROUND_TRUTH_DATA"
+    elif "Material Image Editor" in rel_path:
+        prov = "Meitu Material / LUT / Sticker asset repository"
+        desc = "Material center assets: 2014, 2130, 4001, stickers, mosaics, apple_camera_filter"
+        overlap = "SHARED_EXTERNAL_ASSETS"
+    elif "tools" in rel_path:
+        prov = "Infrastructure tools workspace"
+        desc = "Docker and MinIO configurations and WSL setup"
+        overlap = "INFRASTRUCTURE_ONLY"
+    else:
+        prov = "CONVERT Root Directory"
+        desc = "Root development workspace with constitutional standards & notes"
+        overlap = "ROOT_WORKSPACE"
+
+    rec = {
+        "absolute_path": str(cand),
+        "relative_path": rel_path,
+        "top_level_parent": top_parent,
+        "classification": cls_type,
+        "file_count": f_cnt,
+        "dir_count": d_cnt,
+        "approx_size_bytes": b_cnt,
+        "approx_size_human": format_bytes(b_cnt),
+        "newest_modified_time": newest_ts_str,
+        "build_system": build_sys,
+        "package_id": pkg_id,
+        "git_repo": "YES" if is_git else "NO",
+        "git_branch": branch if is_git else "N/A",
+        "git_head": head[:8] if is_git and head else "N/A",
+        "git_remote": remote if is_git else "N/A",
+        "likely_provenance": prov,
+        "overlap_with_convert2": overlap,
+        "source_usefulness_score": src_score,
+        "hair_relevance_score": hair_score,
+        "jni_relevance_score": jni_score,
+        "confidence": conf,
+        "description": desc
+    }
+    records.append(rec)
+
+    if is_git:
+        git_records.append({
+            "repo_path": str(cand),
+            "relative_path": rel_path,
+            "branch": branch,
+            "head_sha": head,
+            "remote_url": remote,
+            "uncommitted_changes": uncomm,
+            "last_commit_date": last_date,
+            "last_commit_subject": last_sub
+        })
+
+    markers_records.append({
+        "candidate_path": rel_path,
+        "settings_gradle": "YES" if any("settings.gradle" in m for m in markers) else "NO",
+        "build_gradle": "YES" if any("build.gradle" in m for m in markers) else "NO",
+        "gradlew": "YES" if "gradlew" in markers or "gradlew.bat" in markers else "NO",
+        "android_manifest": "YES" if "AndroidManifest.xml" in markers else "NO",
+        "src_main_java": "YES" if "src/main/java" in markers else "NO",
+        "src_main_kotlin": "YES" if "src/main/kotlin" in markers else "NO",
+        "src_main_cpp": "YES" if "src/main/cpp" in markers else "NO",
+        "cmakelists": "YES" if "CMakeLists.txt" in markers else "NO",
+        "android_mk": "YES" if "Android.mk" in markers else "NO",
+        "apktool_yml": "YES" if "apktool.yml" in markers else "NO",
+        "smali_dir": "YES" if "smali" in markers else "NO",
+        "sources_dir": "YES" if "sources" in markers else "NO",
+        "jnilibs_dir": "YES" if "jniLibs" in markers or "src/main/jniLibs" in markers else "NO",
+        "git_dir": "YES" if ".git" in markers else "NO"
+    })
+
+    filetype_records.append({
+        "candidate_path": rel_path,
+        "java_count": ext_counter.get(".java", 0),
+        "kt_count": ext_counter.get(".kt", 0),
+        "c_count": ext_counter.get(".c", 0),
+        "cpp_count": ext_counter.get(".cpp", 0) + ext_counter.get(".cc", 0) + ext_counter.get(".cxx", 0),
+        "h_count": ext_counter.get(".h", 0),
+        "hpp_count": ext_counter.get(".hpp", 0),
+        "smali_count": ext_counter.get(".smali", 0),
+        "xml_count": ext_counter.get(".xml", 0),
+        "gradle_count": ext_counter.get(".gradle", 0) + ext_counter.get(".kts", 0),
+        "py_count": ext_counter.get(".py", 0),
+        "json_count": ext_counter.get(".json", 0),
+        "so_count": ext_counter.get(".so", 0),
+        "png_jpg_count": ext_counter.get(".png", 0) + ext_counter.get(".jpg", 0) + ext_counter.get(".jpeg", 0) + ext_counter.get(".webp", 0),
+        "total_files": f_cnt
+    })
+
+print(f"Fast Scan completed in {time.time()-t0:.2f}s! Scanned {len(records)} candidates.")
+
+# Write files
+with open(RAW_DIR / "candidate_inventory.json", "w", encoding="utf-8") as f:
+    json.dump(records, f, indent=2)
+
+with open(OUTPUT_DIR / "02_ALL_CANDIDATE_DIRECTORIES.csv", "w", encoding="utf-8", newline="") as f:
+    fieldnames = [
+        "absolute_path", "relative_path", "top_level_parent", "classification",
+        "file_count", "dir_count", "approx_size_bytes", "approx_size_human",
+        "newest_modified_time", "build_system", "package_id", "git_repo",
+        "git_branch", "git_head", "git_remote", "source_usefulness_score",
+        "hair_relevance_score", "jni_relevance_score", "confidence", "overlap_with_convert2", "description"
+    ]
+    writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+    writer.writeheader()
+    for r in records:
+        writer.writerow(r)
+
+with open(OUTPUT_DIR / "03_PROJECT_MARKERS.csv", "w", encoding="utf-8", newline="") as f:
+    fieldnames = [
+        "candidate_path", "settings_gradle", "build_gradle", "gradlew",
+        "android_manifest", "src_main_java", "src_main_kotlin", "src_main_cpp",
+        "cmakelists", "android_mk", "apktool_yml", "smali_dir", "sources_dir",
+        "jnilibs_dir", "git_dir"
+    ]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    for r in markers_records:
+        writer.writerow(r)
+
+with open(OUTPUT_DIR / "04_SOURCE_FILETYPE_COUNTS.csv", "w", encoding="utf-8", newline="") as f:
+    fieldnames = [
+        "candidate_path", "java_count", "kt_count", "c_count", "cpp_count",
+        "h_count", "hpp_count", "smali_count", "xml_count", "gradle_count",
+        "py_count", "json_count", "so_count", "png_jpg_count", "total_files"
+    ]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    for r in filetype_records:
+        writer.writerow(r)
+
+with open(OUTPUT_DIR / "05_GIT_REPOSITORY_INVENTORY.csv", "w", encoding="utf-8", newline="") as f:
+    fieldnames = [
+        "repo_path", "relative_path", "branch", "head_sha", "remote_url",
+        "uncommitted_changes", "last_commit_date", "last_commit_subject"
+    ]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    for r in git_records:
+        writer.writerow(r)
+
+print("CSVs 02, 03, 04, 05 and raw JSON saved successfully!")
