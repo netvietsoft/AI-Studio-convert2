@@ -1,0 +1,1378 @@
+{
+  "hair_v2_barrier.cpp": {
+    "size": 3911,
+    "lines": 115,
+    "methods": [
+      [
+        "",
+        "std::memset",
+        "protectMask, 0, geom.totalPixels("
+      ]
+    ],
+    "free_funcs": [
+      [
+        "inline bool",
+        "pointInPolygon",
+        "float px, float py, const std::vector<Point2D>& poly"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0, j = n - 1; i < n; j = i++"
+      ],
+      [
+        "HairV2Status",
+        "buildAnatomicalProtectionMask",
+        "const float* landmarks106,\n    int numLandmarks,\n    float yaw,\n    float pitch,\n    const FrameGeometry& geom,\n    uint8_t* protectMask"
+      ],
+      [
+        "",
+        "if",
+        "!protectMask"
+      ],
+      [
+        "",
+        "if",
+        "landmarks106 && numLandmarks >= 106"
+      ],
+      [
+        "",
+        "for",
+        "int i = 0; i <= 32; ++i"
+      ],
+      [
+        "",
+        "for",
+        "const auto& pt : faceContour"
+      ],
+      [
+        "",
+        "for",
+        "int y = startY; y <= endY; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = startX; x <= endX; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "if",
+        "dx * dx + dy * dy <= 1.0f"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "float",
+        "cx",
+        "W * 0.5f"
+      ],
+      [
+        "float",
+        "cy",
+        "H * 0.48f"
+      ],
+      [
+        "float",
+        "rx",
+        "W * 0.22f"
+      ],
+      [
+        "float",
+        "ry",
+        "H * 0.28f"
+      ]
+    ]
+  },
+  "hair_v2_base_tone.cpp": {
+    "size": 2579,
+    "lines": 90,
+    "methods": [
+      [
+        "",
+        "std::sort",
+        "hairLumas.begin("
+      ]
+    ],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "estimateBaseHairState",
+        "const float* linearRgb,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    BaseHairState& out"
+      ],
+      [
+        "",
+        "if",
+        "!linearRgb"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "out.chroma > 0.15f"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_color.cpp": {
+    "size": 2689,
+    "lines": 82,
+    "methods": [
+      [
+        "return",
+        "std::pow",
+        "(c + 0.055f"
+      ],
+      [
+        "055f *",
+        "std::pow",
+        "c, 1.0f / 2.4f"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "float",
+        "srgbToLinear",
+        "float c"
+      ],
+      [
+        "",
+        "if",
+        "c <= 0.04045f"
+      ],
+      [
+        "float",
+        "linearToSrgb",
+        "float c"
+      ],
+      [
+        "",
+        "if",
+        "c <= 0.0031308f"
+      ],
+      [
+        "void",
+        "batchSrgbToLinear",
+        "const uint32_t* srcArgb, float* dstLinearRgb, size_t numPixels"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < numPixels; ++i"
+      ],
+      [
+        "void",
+        "batchLinearToSrgb",
+        "const float* srcLinearRgb, uint32_t* dstArgb, size_t numPixels"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < numPixels; ++i"
+      ],
+      [
+        "void",
+        "softChromaCompress",
+        "float& r, float& g, float& b, float maxChroma"
+      ],
+      [
+        "",
+        "if",
+        "maxVal > 1.0f && chroma > 1e-4f"
+      ]
+    ],
+    "constants": []
+  },
+  "hair_v2_directional_filter.cpp": {
+    "size": 3080,
+    "lines": 99,
+    "methods": [
+      [
+        "",
+        "std::copy",
+        "src, src + total, dst"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "inline float",
+        "sampleBilinear",
+        "const float* src, int W, int H, float x, float y"
+      ],
+      [
+        "void",
+        "directionalFilter1D",
+        "const float* src,\n    float* dst,\n    const HairFlowField& flow,\n    const FrameGeometry& geom,\n    int radius,\n    bool alongTangent"
+      ],
+      [
+        "",
+        "if",
+        "radius <= 0"
+      ],
+      [
+        "",
+        "for",
+        "int s = -radius; s <= radius; ++s"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "if",
+        "flow.tangentX && flow.tangentY"
+      ],
+      [
+        "",
+        "if",
+        "alongTangent"
+      ],
+      [
+        "",
+        "for",
+        "int s = -radius; s <= radius; ++s"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "float",
+        "sigma",
+        "static_cast<float>(radius) * 0.5f"
+      ],
+      [
+        "int",
+        "idx",
+        "y * W + x"
+      ]
+    ]
+  },
+  "hair_v2_dye.cpp": {
+    "size": 3404,
+    "lines": 92,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "applyHairDye",
+        "const float* linearRgb,\n    const AlphaMatteBuffer& matte,\n    const TextureDecomposition& texture,\n    const DyeResponseBuffer& response,\n    const FrameGeometry& geom,\n    float* outLinearRgb"
+      ],
+      [
+        "",
+        "if",
+        "!linearRgb || !outLinearRgb || !response.liftMap || !response.chromaMap"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "alpha < 0.01f"
+      ],
+      [
+        "",
+        "if",
+        "baseLuma > 0.60f"
+      ]
+    ],
+    "constants": [
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_flow.cpp": {
+    "size": 5389,
+    "lines": 171,
+    "methods": [
+      [
+        "5f *",
+        "std::atan2",
+        "2.0f * jxy, detDiff"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "void",
+        "gaussianBlurSeparable",
+        "const float* src,\n    float* dst,\n    int W,\n    int H,\n    float sigma"
+      ],
+      [
+        "",
+        "for",
+        "int i = -radius; i <= radius; ++i"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int k = -radius; k <= radius; ++k"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int k = -radius; k <= radius; ++k"
+      ],
+      [
+        "HairV2Status",
+        "computeHairFlow",
+        "const float* luminance,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    HairFlowField& out"
+      ],
+      [
+        "",
+        "if",
+        "!luminance || !out.theta || !out.coherence || !out.tangentX || !out.tangentY"
+      ],
+      [
+        "",
+        "for",
+        "int y = 1; y < H - 1; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 1; x < W - 1; ++x"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "int",
+        "idx",
+        "y * W + x"
+      ]
+    ]
+  },
+  "hair_v2_flow_regularizer.cpp": {
+    "size": 7369,
+    "lines": 210,
+    "methods": [
+      [
+        "5f *",
+        "std::atan2",
+        "sv, su"
+      ],
+      [
+        "5f *",
+        "std::atan2",
+        "sumV, sumU"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "regularizeHairFlow",
+        "const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    HairFlowField& flow"
+      ],
+      [
+        "",
+        "if",
+        "!flow.theta || !flow.coherence || !flow.tangentX || !flow.tangentY"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int dy = -radius; dy <= radius; ++dy"
+      ],
+      [
+        "",
+        "for",
+        "int dx = -radius; dx <= radius; ++dx"
+      ],
+      [
+        "",
+        "if",
+        "sumW > 1e-4f"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "mag > 1e-4f"
+      ],
+      [
+        "HairV2Status",
+        "propagateLowConfidenceFlow",
+        "const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    HairFlowField& flow"
+      ],
+      [
+        "",
+        "if",
+        "!flow.theta || !flow.coherence || !flow.tangentX || !flow.tangentY"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "isHair && flow.coherence[i] >= COHERENCE_HIGH"
+      ],
+      [
+        "",
+        "for",
+        "int iter = 0; iter < 4; ++iter"
+      ],
+      [
+        "",
+        "for",
+        "int y = 1; y < H - 1; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 1; x < W - 1; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int n = 0; n < 4; ++n"
+      ],
+      [
+        "",
+        "if",
+        "nc > 0.05f"
+      ],
+      [
+        "",
+        "if",
+        "totalW > 0.1f"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "int",
+        "radius",
+        "2"
+      ],
+      [
+        "int",
+        "idx",
+        "y * W + x"
+      ],
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "float",
+        "COHERENCE_HIGH",
+        "0.35f"
+      ],
+      [
+        "float",
+        "COHERENCE_LOW",
+        "0.20f"
+      ]
+    ]
+  },
+  "hair_v2_lab.cpp": {
+    "size": 4132,
+    "lines": 121,
+    "methods": [
+      [
+        "return",
+        "std::cbrt",
+        "t"
+      ],
+      [
+        "0 *",
+        "std::sqrt",
+        "C1_prime * C2_prime"
+      ],
+      [
+        "*",
+        "std::sin",
+        "(delta_h_prime * M_PI / 180.0"
+      ],
+      [
+        "17 *",
+        "std::cos",
+        "(h_bar_prime - 30.0"
+      ],
+      [
+        "24 *",
+        "std::cos",
+        "(2.0 * h_bar_prime"
+      ],
+      [
+        "32 *",
+        "std::cos",
+        "(3.0 * h_bar_prime + 6.0"
+      ],
+      [
+        "20 *",
+        "std::cos",
+        "(4.0 * h_bar_prime - 63.0"
+      ],
+      [
+        "0 *",
+        "std::exp",
+        "-std::pow((h_bar_prime - 275.0"
+      ],
+      [
+        "0 *",
+        "std::sqrt",
+        "C_bar_prime7 / (C_bar_prime7 + std::pow(25.0, 7.0"
+      ],
+      [
+        "015 *",
+        "std::pow",
+        "L_bar_prime - 50.0, 2.0"
+      ],
+      [
+        "return",
+        "std::sqrt",
+        "std::max(0.0, de2000_sq"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "static inline float",
+        "fCie",
+        "float t"
+      ],
+      [
+        "",
+        "if",
+        "t > delta3"
+      ],
+      [
+        "CIELab",
+        "linearRgbToCIELab",
+        "float r, float g, float b"
+      ],
+      [
+        "double",
+        "deltaE2000",
+        "const CIELab& lab1, const CIELab& lab2"
+      ],
+      [
+        "",
+        "if",
+        "C1_prime * C2_prime != 0.0"
+      ],
+      [
+        "",
+        "if",
+        "C1_prime * C2_prime != 0.0"
+      ]
+    ],
+    "constants": [
+      [
+        "float",
+        "delta",
+        "6.0f / 29.0f"
+      ],
+      [
+        "float",
+        "delta3",
+        "delta * delta * delta"
+      ],
+      [
+        "float",
+        "Xn",
+        "0.95047f"
+      ],
+      [
+        "float",
+        "Yn",
+        "1.00000f"
+      ],
+      [
+        "float",
+        "Zn",
+        "1.08883f"
+      ]
+    ]
+  },
+  "hair_v2_lift_curve.cpp": {
+    "size": 1818,
+    "lines": 59,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "computeDyeResponse",
+        "const BaseHairState& base,\n    const HairPreset& preset,\n    float intensity,\n    const FrameGeometry& geom,\n    DyeResponseBuffer& out"
+      ],
+      [
+        "",
+        "if",
+        "!out.liftMap || !out.chromaMap || !out.shadowProtection || !out.highlightProtection"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "out.confidence"
+      ],
+      [
+        "",
+        "if",
+        "out.targetLinearRgb"
+      ]
+    ],
+    "constants": [
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_matting.cpp": {
+    "size": 6145,
+    "lines": 183,
+    "methods": [],
+    "free_funcs": [
+      [
+        "void",
+        "computeIntegralImage",
+        "const float* src, float* dst, int W, int H"
+      ],
+      [
+        "",
+        "for",
+        "int x = 1; x < W; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int y = 1; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "static inline float",
+        "getBoxSum",
+        "const float* integral, int W, int H, int x1, int y1, int x2, int y2"
+      ],
+      [
+        "HairV2Status",
+        "refineHairAlpha",
+        "const uint32_t* argb,\n    const AlphaMatteBuffer& trimapInput,\n    const FrameGeometry& geom,\n    AlphaMatteBuffer& out"
+      ],
+      [
+        "",
+        "if",
+        "!argb || !trimapInput.trimap || !out.alpha"
+      ],
+      [
+        "",
+        "if",
+        "tri == 255"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "if",
+        "trimapInput.protectMask && trimapInput.protectMask[idx] > 128"
+      ],
+      [
+        "",
+        "if",
+        "trimapInput.trimap[idx] == 255"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "prevRowOffset",
+        "(y - 1) * W"
+      ],
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "int",
+        "r",
+        "6"
+      ],
+      [
+        "float",
+        "eps",
+        "1e-4f"
+      ],
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "idx",
+        "rowOffset + x"
+      ],
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "idx",
+        "rowOffset + x"
+      ]
+    ]
+  },
+  "hair_v2_oklab.cpp": {
+    "size": 1492,
+    "lines": 43,
+    "methods": [
+      [
+        "return",
+        "std::sqrt",
+        "dL * dL + da * da + db * db"
+      ]
+    ],
+    "free_funcs": [
+      [
+        "OKLab",
+        "linearRgbToOKLab",
+        "float r, float g, float b"
+      ],
+      [
+        "void",
+        "okLabToLinearRgb",
+        "const OKLab& lab, float& r, float& g, float& b"
+      ],
+      [
+        "float",
+        "deltaE_OK",
+        "const OKLab& a, const OKLab& b"
+      ]
+    ],
+    "constants": []
+  },
+  "hair_v2_pipeline.cpp": {
+    "size": 9346,
+    "lines": 233,
+    "methods": [
+      [
+        "",
+        "std::memcpy",
+        "dstArgb, srcArgb, total * sizeof(uint32_t"
+      ],
+      [
+        "",
+        "std::memcpy",
+        "workingRgb, srcLinearRgb, total * 3 * sizeof(float"
+      ],
+      [
+        "",
+        "std::memset",
+        "matte.protectMask, 0, total * sizeof(uint8_t"
+      ],
+      [
+        "",
+        "std::memcpy",
+        "finalRgb, reconstructed.data("
+      ]
+    ],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "processHairPipelineV2",
+        "const uint32_t* srcArgb,\n    const float* coarseHairProb,\n    const uint8_t* faceMask,\n    const LandmarkSet* landmarks,\n    const PoseEstimate* pose,\n    const HairPreset& preset,\n    float intensity,\n    const HairV2Config& config,\n    const FrameGeometry& geom,\n    uint32_t* dstArgb"
+      ],
+      [
+        "",
+        "if",
+        "!srcArgb || !dstArgb || !coarseHairProb"
+      ],
+      [
+        "",
+        "if",
+        "!config.enableV2 || config.mode == HairV2Mode::V1"
+      ],
+      [
+        "",
+        "if",
+        "!srcLinearRgb || !workingRgb || !finalRgb"
+      ],
+      [
+        "",
+        "if",
+        "landmarks && pose && landmarks->points && landmarks->count >= 106"
+      ],
+      [
+        "",
+        "if",
+        "config.mode == HairV2Mode::V2_MATTING_ONLY"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "config.mode == HairV2Mode::V2_MATTING_FLOW"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "config.mode == HairV2Mode::V2_FULL_07"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "matte.protectMask && matte.protectMask[i] > 128"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_relighting.cpp": {
+    "size": 1600,
+    "lines": 55,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "applyHairRelighting",
+        "const float* dyedLinearRgb,\n    const float* sheen,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    float* outLinearRgb"
+      ],
+      [
+        "",
+        "if",
+        "!dyedLinearRgb || !sheen || !outLinearRgb"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "s <= 1e-4f"
+      ]
+    ],
+    "constants": [
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_specular.cpp": {
+    "size": 5250,
+    "lines": 161,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "estimateImageSpaceLightDirection",
+        "const float* originalLinearRgb,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    LightEstimate& out"
+      ],
+      [
+        "",
+        "if",
+        "!originalLinearRgb"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; y += 4"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; x += 4"
+      ],
+      [
+        "",
+        "if",
+        "luma > 0.45f"
+      ],
+      [
+        "",
+        "if",
+        "hairWeight > 10.0 && hlWeight > 5.0"
+      ],
+      [
+        "",
+        "if",
+        "len > 5.0f"
+      ],
+      [
+        "HairV2Status",
+        "computeAnisotropicHairSheen",
+        "const HairFlowField& flow,\n    const TextureDecomposition& texture,\n    const LightEstimate& light,\n    const RelightingParams& params,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    float* outSheen"
+      ],
+      [
+        "",
+        "if",
+        "!flow.tangentX || !flow.tangentY || !outSheen"
+      ],
+      [
+        "",
+        "if",
+        "lLen > 1e-4f"
+      ],
+      [
+        "",
+        "if",
+        "hLen > 1e-4f"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "alpha < 0.05f"
+      ],
+      [
+        "",
+        "if",
+        "alpha < 0.60f"
+      ],
+      [
+        "",
+        "if",
+        "texture.low"
+      ],
+      [
+        "",
+        "if",
+        "baseLuma > 0.70f"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_texture.cpp": {
+    "size": 4626,
+    "lines": 130,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "decomposeHairTexture",
+        "const float* linearRgb,\n    const AlphaMatteBuffer& matte,\n    const HairFlowField& flow,\n    const FrameGeometry& geom,\n    TextureDecomposition& out"
+      ],
+      [
+        "",
+        "if",
+        "!linearRgb || !out.low || !out.meso || !out.micro || !out.crease"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ],
+      [
+        "",
+        "if",
+        "out.confidence"
+      ],
+      [
+        "HairV2Status",
+        "reconstructHairTexture",
+        "const TextureDecomposition& tex,\n    const float* recoloredBase,\n    const AlphaMatteBuffer& matte,\n    const FrameGeometry& geom,\n    float* outLinearRgb"
+      ],
+      [
+        "",
+        "if",
+        "!recoloredBase || !outLinearRgb || !tex.low || !tex.meso || !tex.micro"
+      ],
+      [
+        "",
+        "for",
+        "size_t i = 0; i < total; ++i"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ]
+    ]
+  },
+  "hair_v2_trimap.cpp": {
+    "size": 3385,
+    "lines": 92,
+    "methods": [],
+    "free_funcs": [
+      [
+        "HairV2Status",
+        "buildAdaptiveTrimap",
+        "const uint32_t* argb,\n    const float* coarseHairProb,\n    const uint8_t* faceMask,\n    const FrameGeometry& geom,\n    AlphaMatteBuffer& out"
+      ],
+      [
+        "",
+        "if",
+        "!argb || !coarseHairProb || !out.trimap"
+      ],
+      [
+        "",
+        "for",
+        "int y = 0; y < H; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 0; x < W; ++x"
+      ],
+      [
+        "",
+        "if",
+        "faceMask && faceMask[idx] > 128"
+      ],
+      [
+        "",
+        "if",
+        "prob >= 0.78f"
+      ],
+      [
+        "",
+        "for",
+        "int y = 1; y < H - 1; ++y"
+      ],
+      [
+        "",
+        "for",
+        "int x = 1; x < W - 1; ++x"
+      ],
+      [
+        "",
+        "if",
+        "out.trimap[idx] == 0 && coarseHairProb[idx] > 0.02f"
+      ]
+    ],
+    "constants": [
+      [
+        "int",
+        "W",
+        "geom.width"
+      ],
+      [
+        "int",
+        "H",
+        "geom.height"
+      ],
+      [
+        "size_t",
+        "total",
+        "geom.totalPixels()"
+      ],
+      [
+        "int",
+        "rowOffset",
+        "y * W"
+      ],
+      [
+        "int",
+        "idx",
+        "rowOffset + x"
+      ],
+      [
+        "float",
+        "prob",
+        "coarseHairProb[idx]"
+      ],
+      [
+        "int",
+        "idx",
+        "y * W + x"
+      ]
+    ]
+  }
+}

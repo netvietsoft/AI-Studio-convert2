@@ -1596,3 +1596,34 @@ unning: 0).
      * Gói nén deliverables: `CONVERT2_TASK041_REPORT_PACKAGE.zip` (55,096 bytes, SHA-256: `E02D5B11A7191CCAE445B79C888327D45247996AA7B8E204DD7725153D48B0B6`).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+---
+
+### [2026-10-04 12:29:42 +0700] HOÀN TẤT TASK_042 — HAIR V2 MODULAR REFERENCE INTAKE & BENCHMARK
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK_20261004T121700+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `hair-v2-modular-reference-intake-benchmark`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-02`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — MODULAR REFERENCE INTAKE MATRIX & BENCHMARK COMPLETE`**
+- **Nội dung điều tra & Kết quả thẩm định:**
+  1. **Thẩm định Nguồn gốc (Provenance Classification):**
+     * 16 module C++ `hair_v2_*.cpp` (1,939 dòng lệnh, 32 hàm) được bảo vệ phân loại nghiêm ngặt là **`PROJECT_RECONSTRUCTED_SOURCE`** (mã nguồn do dự án CONVERT V1 tái dựng), hoàn toàn tách biệt với nhị phân của nhà cung cấp Meitu APK.
+  2. **Bản đồ Ánh xạ & Đối chiếu Chức năng (Functional Crosswalk):**
+     * Đã xây dựng 2 bảng CSV toàn diện: `01_V1_16_MODULE_FUNCTION_INVENTORY.csv` và `02_V1_TO_CONVERT2_FUNCTION_CROSSWALK.csv`.
+     * Phân loại: 18 DUPLICATE, 3 SUPERSEDED, 9 UNIQUE_USEFUL, 2 NEEDS_BENCHMARK.
+  3. **Kết quả Đo kiểm Benchmark Độc lập (Isolated Benchmark Suite):**
+     * Thực thi đo kiểm trên bộ 8 ảnh chân dung chuẩn mực (`portrait_0_curly`, `portrait_1_male_wavy`, `portrait_model1_blonde`, `portrait_model2_long_straight`, `portrait_model3_wavy_curls`, `portrait_model4_messy_curls`, `portrait_model6_fringe_bangs`, `portrait_monk_bald_neg`).
+     * **Độ sắc nét lọn tóc:** Bộ lọc hướng dòng chảy (Directional Flow Filter) tăng **+13.2% đến +38.9%** độ lưu giữ cấu trúc vi mô lọn tóc so với lọc đẳng hướng (Customer 0: +13.2%, Model 4 curls: +38.9%).
+     * **Nén sắc độ mượt:** Hàm nén hyperbolic tangent `softChromaCompress` triệt tiêu hoàn toàn hiện tượng bệt/cháy sáng trên màn hình OLED với sai lệch màu sắc $\Delta E_{00} < 0.25$ (mắt thường không thể phân biệt).
+     * **Kiểm soát ranh giới:** Chân dung nhà sư đầu trọc (Monk bald) đạt **100% bit-exact pass-through** (chênh lệch pixel = 0).
+  4. **Bộ Đề xuất Tích hợp Có Cổng (Recommended Port Set):**
+     * Đề xuất 6 thành phần ưu tiên: (1) Directional Flow Filter, (2) Soft-Knee Tanh Chroma, (3) Nematic Axial Flow Relaxation & BFS Propagation, (4) Dynamic Highlight Light Vector, (5) Marschner Dual-Lobe Sheen, (6) Secondary Landmark Geometric Barrier.
+     * **Bác bỏ hoàn toàn** việc thay thế bộ điều phối `HairPipelineV2` hiện tại; bảo lưu 100% kiến trúc Vulkan GPU và ranh giới P0 đóng băng (`tau_aspect = 1.80` bất biến).
+  5. **Hồ sơ Deliverables & Gói Báo cáo:**
+     * Thư mục báo cáo: `.ai/reports/TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK/` gồm 11 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `10_REPORT_DRIVE_MIRROR.md`) cùng cây dữ liệu thô `raw/`.
+     * Gói nén deliverables: `CONVERT2_TASK042_REPORT_PACKAGE.zip` (31,967 bytes, SHA-256: `398512A1AEB1FEB731DBA2BF8475CF5059DE46042E2BD17892EAD2DE9463A94A`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
