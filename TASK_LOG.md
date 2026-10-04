@@ -1560,3 +1560,39 @@ unning: 0).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
 
+
+---
+
+### [2026-10-04 12:09:31 +0700] HOÀN TẤT TASK_041 — TASK040 SOURCE TRUTH CORRECTION & V1 NATIVE CPP PROVENANCE AUDIT
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_041_TASK040_SOURCE_TRUTH_V1_CPP_PROVENANCE_20261004T120000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `task040-source-truth-v1-cpp-provenance`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-02`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — SOURCE TRUTH RECONCILED & V1 PROVENANCE VERIFIED`**
+- **Nội dung điều tra & Kết quả khắc phục:**
+  1. **Tái Thẩm định Bộ 45 Thư viện Nhị phân .SO của Nhà cung cấp (Vendor):**
+     * Đối chiếu 100% khớp mã băm SHA-256 từng byte với `TASK_036` (`02_SO_HASH_MATCH.csv`).
+     * **Bác bỏ hoàn toàn** khẳng định sai sót trong báo cáo TASK_040: Thư mục vendor `arm64-v8a` KHÔNG hề chứa `libmeitu_reborn_native.so`, `libbisenet.so`, `libncnn.so`, hay `libface_mesh.so`.
+     * `libmeitu_reborn_native.so` thực chất là tên file đầu ra của CMake dự án CONVERT2 tái cấu trúc; các file còn lại là mô hình open-source ngoài APK.
+     * Đã cập nhật sửa trực tiếp tệp `08_HIGH_VALUE_SOURCE_DIRECTORIES.md` của TASK_040.
+  2. **Kiểm toán Cấp tệp Cây Mã nguồn C++ Tiền nhiệm V1 (`CONVERT`):**
+     * Điều tra toàn diện 303 tệp C++ tại `apps/android/core/native-bridge/src/main/cpp`.
+     * **Xác nhận nguồn gốc (Provenance):** Toàn bộ cây mã nguồn này là **`PROJECT_RECONSTRUCTED_SOURCE`** (do đội ngũ kỹ sư và AI Agent dự án CONVERT tái dựng từ 24/09 đến 02/10/2026, chứa chú thích tiếng Việt và namespace `meitu::reborn::hair_v2`), hoàn toàn KHÔNG PHẢI mã nguồn C++ gốc của hãng Meitu.
+     * **Tình trạng Git:** Toàn bộ thư mục `apps/android/core/native-bridge/` chưa từng được commit (untracked) trong kho Git V1.
+  3. **Kiểm toán Cầu nối JNI (`jni_bridge.cpp`):**
+     * Chứng minh `jni_bridge.cpp` ánh xạ tới lớp `com.meitu.core.nativeengine.MeituNativeEngine` do dự án tự thiết kế.
+     * Khẳng định lớp này hoàn toàn không tồn tại trong mã dịch ngược `SOURCE\jadx_src` của Meitu APK gốc.
+     * Thiết lập quy tắc phòng hộ (Firewall) cho `TASK_038`: CẤM tìm kiếm các hàm JNI của dự án trong 45 file .so vendor.
+  4. **Kiểm toán Chuyên sâu 22 Tệp Ưu tiên Tóc & JNI (Hair Priority):**
+     * 16 tệp module `hair_v2_*.cpp` (pipeline, flow, color, matting, texture, specular, trimap, barrier, dye...) là tài sản thuật toán C++ tái dựng độc nhất tại V1, chưa từng được tích hợp vào CONVERT2.
+     * CONVERT2 đang sở hữu phiên bản cải tiến độc lập của `hair_engine.cpp` (39KB) và `hair_matting_engine.cpp` (39KB) với Vulkan compute shader và ranh giới P0 đóng băng.
+  5. **Ban hành Bản kê Khai thác Hợp lệ cho TASK_038 (Verified Intake Manifest):**
+     * Phân vùng tách biệt tuyệt đối giữa Chứng cứ Nhị phân Vendor (Ground Truth) và Mã nguồn C++ Tái dựng của Dự án (Reference Only).
+  6. **Hồ sơ Bàn giao & Báo cáo Đầy đủ:**
+     * Thư mục báo cáo: `.ai/reports/TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE/` gồm 12 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `11_REPORT_DRIVE_MIRROR.md`) cùng cây dữ liệu thô `raw/`.
+     * Gói nén deliverables: `CONVERT2_TASK041_REPORT_PACKAGE.zip` (55,096 bytes, SHA-256: `E02D5B11A7191CCAE445B79C888327D45247996AA7B8E204DD7725153D48B0B6`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$

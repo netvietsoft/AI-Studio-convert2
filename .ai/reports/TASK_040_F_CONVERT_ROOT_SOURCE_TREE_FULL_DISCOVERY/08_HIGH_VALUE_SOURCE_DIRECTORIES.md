@@ -24,7 +24,7 @@ This document profiles the high-value directories across `F:\CONVERT` that conta
 - **Relative Path**: `com.mt.mtxx.mtxx/SOURCE`
 - **Classification**: **`C (DECOMPILED_JAVA_KOTLIN_SOURCE)` / `E (NATIVE_BINARY_EXTRACT)`**
 - **Key Subcomponents**:
-  - `extracted_native_libs/lib/arm64-v8a`: **45 vendor .so shared libraries** including `libmeitu_reborn_native.so`, `libbisenet.so`, `libncnn.so`, `libface_mesh.so`. This directly feeds `TASK_038`.
+  - `extracted_native_libs/lib/arm64-v8a`: **45 vendor .so shared libraries** verified against original Meitu APK (including `libLayerFlow.so`, `libMTFilterKernel.so`, `libManis.so`, `libarkernel3.so`, etc.). Note: `libmeitu_reborn_native.so` is our reconstructed CMake output target, not a vendor APK binary. This verified 45-SO set directly feeds `TASK_038`.
   - `jadx_src`: Decompiled Java source code across 16 dex files (`com/meitu/...`).
   - `extracted_assets`: Models (`.bin`, `.param`, `.onnx`), shaders (`.spv`), color lookup tables (`.png`, `.cube`).
   - `dex_files`: 16 raw `.dex` files for bytecode reverse verification.
