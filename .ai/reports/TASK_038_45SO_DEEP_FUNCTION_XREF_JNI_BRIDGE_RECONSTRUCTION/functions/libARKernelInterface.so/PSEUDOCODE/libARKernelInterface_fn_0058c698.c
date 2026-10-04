@@ -1,0 +1,15 @@
+// Reconstructed Pseudocode for libARKernelInterface_fn_0058c698 (RN_nSetMakeupColorOpacity)
+// Library: libARKernelInterface.so | RVA: 0x0058c698 | Size: 140 bytes
+// Visibility: JNI_DIRECT_EXPORT | Semantic: DYNAMIC_JNI_UNRESOLVED_DYNAMIC
+// JNI Target: UNRESOLVED_DYNAMIC -> nSetMakeupColorOpacity(JF)V
+// Referenced Strings:
+//   'arkernel'
+//   'makeupcolor setMakeupColorOpacity'
+//   'arkernel'
+//   'makeupcolor setMakeupColorOpacity'
+
+void libARKernelInterface_fn_0058c698(void* env, void* obj, ...) {
+    call_func_0x005a6b20(...);
+    call_func_0x01046910(...);
+    return;
+}

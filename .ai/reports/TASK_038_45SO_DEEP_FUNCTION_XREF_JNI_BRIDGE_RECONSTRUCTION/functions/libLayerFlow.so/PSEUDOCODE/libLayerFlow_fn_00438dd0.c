@@ -1,0 +1,13 @@
+// Reconstructed Pseudocode for libLayerFlow_fn_00438dd0 (_ZNSt6__ndk112__hash_tableINS_17__hash_value_typeINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN11LayerFlowNS11CLFFontInfoEEENS_22__unordered_map_hasherIS7_SA_NS_4hashIS7_EENS_8equal_toIS7_EELb1EEENS_21__unordered_map_equalIS7_SA_SF_SD_Lb1EEENS5_ISA_EEE4findIS7_EENS_15__hash_iteratorIPNS_11__hash_nodeISA_PvEEEERKT_)
+// Library: libLayerFlow.so | RVA: 0x00438dd0 | Size: 596 bytes
+// Visibility: EXPORTED | Semantic: UTILITY_FUNCTION
+// Referenced Strings:
+
+void libLayerFlow_fn_00438dd0(void* env, void* obj, ...) {
+    call_func_0x003488a8(...);
+    call_func_0x0052a400(...);
+    call_func_0x0052a400(...);
+    call_func_0x0052a260(...);
+    call_func_0x002bf8c4(...);
+    return;
+}

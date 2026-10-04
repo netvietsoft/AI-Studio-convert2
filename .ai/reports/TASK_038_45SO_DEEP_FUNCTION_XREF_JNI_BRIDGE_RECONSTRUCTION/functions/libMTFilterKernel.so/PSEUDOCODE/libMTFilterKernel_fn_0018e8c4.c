@@ -1,0 +1,14 @@
+// Reconstructed Pseudocode for libMTFilterKernel_fn_0018e8c4 (_ZN4pugi18xpath_variable_set7_assignERKS0_)
+// Library: libMTFilterKernel.so | RVA: 0x0018e8c4 | Size: 444 bytes
+// Visibility: EXPORTED | Semantic: UTILITY_FUNCTION
+// Referenced Strings:
+
+void libMTFilterKernel_fn_0018e8c4(void* env, void* obj, ...) {
+    call_func_0x0018e520(...);
+    call_func_0x0018f020(...);
+    call_func_0x0018e568(...);
+    call_func_0x0018e568(...);
+    call_func_0x001b0544(...);
+    call_func_0x001b4280(...);
+    return;
+}

@@ -1,0 +1,11 @@
+// Reconstructed Pseudocode for FN_libMTFilterKernel_000BFB18 (native_nativeSetPitchAngle_(JIF)V)
+// Library: libMTFilterKernel.so | RVA: 0xBFB18 | Size: 120B | Visibility: FACT
+
+/* Imported APIs:  */
+/* String XREFs: FilterKernel;ERROR: MTFilterKernel::FilterkernelNativeFace setAge  faceData object is NULL or */
+
+int native_nativeSetPitchAngle_(JIF)V(void* ctx) {
+    // Function prologue: set up stack frame
+    sub_C5D08(ctx);
+    return 0;
+}
