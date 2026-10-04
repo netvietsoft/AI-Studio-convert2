@@ -705,11 +705,19 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_body_slim", "Thon gọn toàn thân (Slim)", "Full Body Slender", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_waist", "Eo thon con kiến (Waist) [VIP]", "Slim Waist Warp", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_shoulder", "Vai vuông móc áo (Shoulder)", "Straight Shoulder", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_arm", "Bắp tay thon gọn (Arm Slim)", "Slender Arms Warp", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_neck", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_neck_length", "Kéo dài cổ (Neck Length)", "Neck Vertical Stretch", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_clavicle_enhance", "Xương quai xanh quyến rũ (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_face_neck_tone", "Đồng bộ da mặt & cổ (Face-Neck Tone)", "Neck LAB Color Sync", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_legs", "Kéo dài chân tỉ lệ vàng", "Golden Ratio Legs", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_leg_slim", "Thon đùi & bắp chân (Leg Slim)", "Limb Slender Warp", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_long_legs", "Chân dài siêu mẫu (Long Legs)", "Long Legs Stretch", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_height", "Tăng chiều cao tự nhiên (Height)", "Body Height Metric Scale", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_chest", "Nâng ngực tự nhiên (Chest)", "Chest Natural Enlarge", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
+            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_smooth", "Làm mịn da body (Body Skin)", "Body Bilateral Smooth", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_whiten", "Dưỡng trắng da body (Body Whiten)", "Body Melanin Curve", false, "libmeitu_reborn_native.so", 0, -100, 100, "%")
         )),
 
         // 11. AI RETOUCH (2.12 Smart Beautify 1-Touch)
@@ -1710,6 +1718,26 @@ class PhotoEditorActivity : Activity() {
                     matchedCat = cat
                     matchedTool = t
                     break
+                }
+            }
+        }
+
+        if (matchedCat == null && targetToolId != null) {
+            val bodyCat = categories.find { it.id == "cat_body" }
+            if (bodyCat != null) {
+                val resolvedId = when (targetToolId) {
+                    "tool_arm_slim" -> "tool_body_arm"
+                    "tool_body_legs_slim" -> "tool_leg_slim"
+                    "tool_leg_length" -> "tool_long_legs"
+                    "tool_height" -> "tool_body_height"
+                    "tool_neck_slim" -> "tool_body_neck"
+                    "tool_swan_neck" -> "tool_neck_length"
+                    "tool_hip_enhance" -> "tool_body_hip"
+                    else -> if (targetToolId.startsWith("tool_body_") || targetToolId.startsWith("tool_leg_") || targetToolId.startsWith("tool_neck_") || targetToolId.startsWith("tool_clavicle_") || targetToolId.startsWith("tool_face_neck_")) targetToolId else null
+                }
+                if (resolvedId != null) {
+                    matchedCat = bodyCat
+                    matchedTool = bodyCat.tools.find { it.id == resolvedId } ?: ToolItem(resolvedId, resolvedId, resolvedId, true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
                 }
             }
         }
@@ -3552,13 +3580,13 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_skin_smooth" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[13] = p // bodySkinSmooth
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_skin_whiten" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[14] = p // bodySkinWhiten
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }

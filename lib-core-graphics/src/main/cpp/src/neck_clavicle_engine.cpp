@@ -351,13 +351,18 @@ bool NeckClavicleEngine::applyFaceNeckToneMatching(uint8_t* rgba, int w, int h, 
         neckY2 = std::min(static_cast<float>(h - 1), neckY1 + 180.0f);
     }
 
+    neckX1 = std::max(0.0f, std::min(static_cast<float>(w - 1), neckX1));
+    neckX2 = std::max(0.0f, std::min(static_cast<float>(w - 1), neckX2));
+    neckY1 = std::max(0.0f, std::min(static_cast<float>(h - 1), neckY1));
+    neckY2 = std::max(0.0f, std::min(static_cast<float>(h - 1), neckY2));
+
     int sampleX = clampF(head.jawChin.chinTip.x, 0, w - 1);
     int sampleY = clampF(head.jawChin.chinTip.y - 15.0f, 0, h - 1);
     const uint8_t* facePix = rgba + sampleY * stride + sampleX * 4;
     float faceR = facePix[0], faceG = facePix[1], faceB = facePix[2];
 
-    int neckSampleX = static_cast<int>((neckX1 + neckX2) * 0.5f);
-    int neckSampleY = static_cast<int>((neckY1 + neckY2) * 0.5f);
+    int neckSampleX = clampF((neckX1 + neckX2) * 0.5f, 0, w - 1);
+    int neckSampleY = clampF((neckY1 + neckY2) * 0.5f, 0, h - 1);
     const uint8_t* neckPix = rgba + neckSampleY * stride + neckSampleX * 4;
     float neckR = neckPix[0], neckG = neckPix[1], neckB = neckPix[2];
 
@@ -365,10 +370,10 @@ bool NeckClavicleEngine::applyFaceNeckToneMatching(uint8_t* rgba, int w, int h, 
     float deltaG = (faceG - neckG) * intensity * 0.65f;
     float deltaB = (faceB - neckB) * intensity * 0.65f;
 
-    int rx1 = static_cast<int>(neckX1);
-    int rx2 = static_cast<int>(neckX2);
-    int ry1 = static_cast<int>(neckY1);
-    int ry2 = static_cast<int>(neckY2);
+    int rx1 = std::max(0, std::min(w - 1, static_cast<int>(neckX1)));
+    int rx2 = std::max(0, std::min(w - 1, static_cast<int>(neckX2)));
+    int ry1 = std::max(0, std::min(h - 1, static_cast<int>(neckY1)));
+    int ry2 = std::max(0, std::min(h - 1, static_cast<int>(neckY2)));
 
     for (int y = ry1; y <= ry2; ++y) {
         float ny = (static_cast<float>(y) - neckY1) / (neckY2 - neckY1 + 1e-4f);
