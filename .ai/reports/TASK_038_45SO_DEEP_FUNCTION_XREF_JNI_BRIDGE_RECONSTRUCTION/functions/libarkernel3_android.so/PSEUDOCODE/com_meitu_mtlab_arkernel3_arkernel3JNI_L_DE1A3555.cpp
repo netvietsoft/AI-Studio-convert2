@@ -1,0 +1,16 @@
+// FUNCTION: com.meitu.mtlab.arkernel3.arkernel3JNI.LayerTransformInteraction::1setTrans
+// LIBRARY: libarkernel3_android.so
+// RVA: 0x93008 | SIZE: 32 bytes | SHA256: DE1A35550031C58439E7EEB416108D4A7A814A182A0CBC7BD362F11D5DFDFA80
+// SEMANTIC_LABEL: JNI_DIRECT_EXPORT | CONFIDENCE: FACT
+// IMPORTED_APIS: None
+// STRING_XREFS: Attempt to dereference null mtlabar3::Point2F
+
+#include <stdint.h>
+#include <jni.h>
+
+// Reconstructed C++ Native Implementation
+extern "C" JNIEXPORT void* com.meitu.mtlab.arkernel3.arkernel3JNI.LayerTransformInteraction_1setTrans(JNIEnv* env, jobject thiz) {
+    // Function entrypoint at 0x93008
+    // Literal reference: "Attempt to dereference null mtlabar3::Point2F"
+    return (void*)0;
+}

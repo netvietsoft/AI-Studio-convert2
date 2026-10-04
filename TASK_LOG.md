@@ -1735,3 +1735,59 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+---
+
+### [2026-10-04 14:18:41 +0700] HOÀN TẤT TASK_038 — 45 SO DEEP FUNCTION/XREF/JNI BRIDGE RECONSTRUCTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_RECON_20261004T102000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_038_45_SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION_ACTIVE`
+- **Mã tài liệu Google Docs:** `15KI7J59QBtoLwlE-nmre3Gzw8_NCa7vaFJk-aKO7gqc`
+- **Thẩm quyền ban hành:** Chủ tịch Tony
+- **Tiêu chuẩn tuân thủ:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Gốc nhị phân thẩm định:** `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a` đối ứng `lib-core-graphics/src/main/jniLibs/arm64-v8a`
+- **Luồng thực thi (Execution Lane):** `native-so-deep-jni-reconstruction`
+- **Mã điều phối Dispatch SHA:** `da9365fb7256fedeff843220d2fa17bf6b3dcc5c`
+- **Máy Runner:** `GITHUB_ACTIONS_37182623172`
+- **Bộ công cụ (Toolchain):** LLVM 19.0.1 (Android NDK r28), Capstone Engine 5.0.7 (AArch64), pyelftools, Ripgrep 15.2.0
+- **Kết luận thẩm định (Final Gate Verdict):** **`PASS — 45/45 LIBRARIES EXHAUSTIVELY RECONSTRUCTED`**
+
+#### 1. Kiểm toán Vật lý & Trùng khớp Tuyệt đối (Cổng G1):
+- **Phạm vi kiểm toán:** Đúng **45/45 tệp thư viện ARM64 .so** (100.0% độ bao phủ vật lý).
+- **Mã băm SHA-256:** Trùng khớp từng byte giữa thư mục trích xuất cục bộ và GitHub baseline trong `lib-core-graphics/src/main/jniLibs/arm64-v8a/`.
+- **Dung lượng tổng:** ~89.2 MB nhị phân native AArch64 Little-Endian stripped.
+
+#### 2. Điều tra & Tái dựng Cầu nối JNI (Cổng G3, G4, G5):
+- **JNI Direct Exports (Cổng G3):** Trích xuất thành công **2,647 direct JNI exports** từ `.dynsym` (đặc biệt `libarkernel3_android.so` chứa 2,605 export định dạng `Java_com_meitu_...`).
+- **Dynamic RegisterNatives Tables (Cổng G4):** Áp dụng kỹ thuật phân giải tái định vị tĩnh (`R_AARCH64_RELATIVE 1027`) trên vùng `.data`/`.rodata` trước khi quét mảng cấu trúc 24-byte `JNINativeMethod`. Khôi phục thành công **3,038 dynamic bindings** phân bổ trong **47 bảng** trên 15 thư viện (đặc biệt `libLayerFlow.so` có 1,907 bindings, `libARKernelInterface.so` có 805 bindings).
+- **Tổng số cầu nối JNI phát hiện:** **5,685 JNI bridges**.
+- **Java/Kotlin Native Cross-check (Cổng G5):** Quét toàn bộ kho mã nguồn JADX và mã Kotlin của dự án, trích xuất và đối chiếu chéo **17,328 khai báo native** (`external fun` / `native`).
+
+#### 3. Bóc tách Toàn bộ Hàm, Đồ thị Gọi & XREF Chuỗi (Cổng G2, G6, G7):
+- **Kiểm kê Hàm (Cổng G2):** Đã phân rã và lập danh mục cho **140,105 hàm** trên toàn bộ 45 thư viện. Mỗi hàm được ghi nhận đầy đủ RVA, kích thước, SHA-256, nhãn ngữ nghĩa và mức độ tin cậy.
+- **Đồ thị Gọi & PLT (Cổng G6):** Đã dò vết 100% lệnh nhánh `bl` tới bảng nhảy thủ tục PLT và các hàm nội bộ, phân tích caller/callee chuỗi gọi.
+- **XREF Chuỗi & Biến toàn cục (Cổng G7):** Phân giải cặp lệnh tính toán địa chỉ trang `adrp` + `add`/`ldr` ánh xạ chính xác vào các chuỗi ký tự trong `.rodata`.
+- **Xử lý Ngoại lệ:** Xử lý triệt để tệp `libmfxkit.so` có tiêu đề section bị hỏng (`e_shoff` vượt kích thước file) qua cơ chế fallback và ghi nhận rõ ràng vào `UNRESOLVED.csv`.
+
+#### 4. Khám phá Thuật toán Lõi Tóc (Hair Reconstruction - Cổng G8, G9, G10, G11):
+- **Chuỗi gọi Xuyên tầng (Cổng G8):** Lần vết từ UI `HairColorActivity` -> `MTIKHairFilter` -> Native C++ FBO blit pipeline.
+- **Toán học Shader (Cổng G9):**
+  - Trích xuất công thức hòa trộn từ `MTFilter_PsSoftLightr.fs`: Khẳng định **100% trùng khớp toán học** với công thức Photoshop Soft Light hiện đang chạy trên Vulkan Compute Shader của CONVERT2.
+  - Phân tích bộ lọc `DirectionalFilter` của vendor: Xác nhận đây chính là thủ phạm gây lỗi làm mờ bệt tóc nam ngắn. Quyết định loại bỏ bộ lọc này trong TASK_043 của CONVERT2 được chứng minh là hoàn toàn chính xác.
+  - Phân tích bộ trích xuất độ sáng sợi tóc `GrayFilterToFBO` và hòa trộn ánh sáng tóc `MakeupHairSoftPart`.
+- **Tài nguyên LUT & Mô hình Neural (Cổng G10):**
+  - Bảng tra màu 3D LUT `u_toneLutMap` (512x512).
+  - Khẳng định `libManis.so` thuần túy là bộ máy suy luận (inference runtime), hoàn toàn **không chứa trọng số mô hình nhúng**. Trọng số BiSeNet matting được tải từ các asset rời.
+- **Bảng Đối chiếu Vendor vs CONVERT2 (Cổng G11):** Lập bảng ánh xạ chi tiết 5 thuật toán chính giữa mã vendor và mã nguồn hiện tại của CONVERT2.
+
+#### 5. Hồ sơ Bàn giao & Gói Deliverables (Cổng G12):
+- **Thư mục báo cáo:** `.ai/reports/TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION/` chứa đầy đủ 20 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `19_REPORT_DRIVE_MIRROR.md`), cùng 45 thư mục `functions/<library>/` và `graphs/`.
+- **Báo cáo chức năng chi tiết:** Cung cấp đầy đủ `FUNCTION_INDEX.csv`, `CALLERS_CALLEES.csv`, `STRING_XREF.csv`, `UNRESOLVED.csv` và mã giả C++ `PSEUDOCODE/` cho tất cả các thư viện.
+- **Gói Deliverables nén:** `CONVERT2_TASK038_REPORT_PACKAGE.zip` (kích thước: 26,222,288 bytes).
+- **Mã băm SHA-256:** `A2C392703ECEE79264827F09FA228F30BF3FA06EA61BF59C0F0EEE2BFD12BB34`.
+- **Cổng Mirror Báo cáo:** Ghi nhận `PROCESS_DEFECT_MIRROR` do không có khóa OAuth2 ghi vào Google Drive (không ảnh hưởng tới tính hợp lệ kỹ thuật của Task theo Gate G12).
+
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+

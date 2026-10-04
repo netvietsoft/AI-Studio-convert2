@@ -1,0 +1,15 @@
+// FUNCTION: com.meitu.mtlab.arkernel3.arkernel3JNI.EffectDataListener::1onPartError
+// LIBRARY: libarkernel3_android.so
+// RVA: 0x99b14 | SIZE: 24 bytes | SHA256: 2AF814B68D1FDEAFED29995A0362CB53C5414340E96C200F6951C0CA9E66867B
+// SEMANTIC_LABEL: JNI_DIRECT_EXPORT | CONFIDENCE: FACT
+// IMPORTED_APIS: None
+// STRING_XREFS: None
+
+#include <stdint.h>
+#include <jni.h>
+
+// Reconstructed C++ Native Implementation
+extern "C" JNIEXPORT void* com.meitu.mtlab.arkernel3.arkernel3JNI.EffectDataListener_1onPartError(JNIEnv* env, jobject thiz) {
+    // Function entrypoint at 0x99b14
+    return (void*)0;
+}

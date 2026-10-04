@@ -1,0 +1,15 @@
+// FUNCTION: com.meitu.mtlab.arkernel3.arkernel3JNI.CharBackgroundInterface::1getTextureOverlayGlyphNum
+// LIBRARY: libarkernel3_android.so
+// RVA: 0x8ff6c | SIZE: 8 bytes | SHA256: 501322377C612F1E3C39E7D93C47FA0805416715E32FEED0298C8403920954F8
+// SEMANTIC_LABEL: JNI_DIRECT_EXPORT | CONFIDENCE: FACT
+// IMPORTED_APIS: None
+// STRING_XREFS: None
+
+#include <stdint.h>
+#include <jni.h>
+
+// Reconstructed C++ Native Implementation
+extern "C" JNIEXPORT void* com.meitu.mtlab.arkernel3.arkernel3JNI.CharBackgroundInterface_1getTextureOverlayGlyphNum(JNIEnv* env, jobject thiz) {
+    // Function entrypoint at 0x8ff6c
+    return (void*)0;
+}

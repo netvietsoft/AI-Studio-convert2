@@ -1,0 +1,81 @@
+import os, sys, struct, re
+from elftools.elf.elffile import ELFFile
+
+so_path = r'F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so'
+
+def read_cstring(mem, addr, max_len=256):
+    for vstart, (vend, b) in mem.items():
+        if vstart <= addr < vend:
+            off = addr - vstart
+            end = b.find(b'\x00', off)
+            if end == -1 or end - off > max_len or end == off:
+                return None
+            try:
+                s = b[off:end].decode('utf-8')
+                if s.isprintable() and len(s) > 0:
+                    return s
+            except Exception:
+                pass
+    return None
+
+with open(so_path, 'rb') as f:
+    elf = ELFFile(f)
+    text_sec = elf.get_section_by_name('.text')
+    text_start = text_sec.header['sh_addr']
+    text_end = text_start + text_sec.header['sh_size']
+    
+    mem = {}
+    for seg in elf.iter_segments():
+        if seg.header['p_type'] == 'PT_LOAD':
+            vaddr = seg.header['p_vaddr']
+            mem[vaddr] = [vaddr + seg.header['p_memsz'], bytearray(seg.data())]
+            if seg.header['p_memsz'] > len(mem[vaddr][1]):
+                mem[vaddr][1].extend(b'\x00' * (seg.header['p_memsz'] - len(mem[vaddr][1])))
+                
+    rela_dyn = elf.get_section_by_name('.rela.dyn')
+    if rela_dyn:
+        for rel in rela_dyn.iter_relocations():
+            if rel['r_info_type'] == 1027:
+                offset = rel['r_offset']
+                addend = rel['r_addend']
+                for vstart, (vend, b) in mem.items():
+                    if vstart <= offset < vend:
+                        off = offset - vstart
+                        b[off:off+8] = struct.pack('<Q', addend)
+
+    # Find contiguous blocks of JNINativeMethod tables
+    tables = {} # table_start -> list of (name, sig, fn_ptr)
+    current_table = []
+    current_start = None
+    
+    for vstart, (vend, b) in mem.items():
+        if vstart == text_start:
+            continue
+        off = 0
+        while off <= len(b) - 24:
+            name_p, sig_p, fn_p = struct.unpack('<QQQ', b[off:off+24])
+            if text_start <= fn_p < text_end:
+                name_s = read_cstring(mem, name_p)
+                sig_s = read_cstring(mem, sig_p)
+                if name_s and sig_s and sig_s.startswith('(') and ')' in sig_s and len(name_s) < 64:
+                    if all(c.isalnum() or c == '_' or c == '$' for c in name_s):
+                        if not current_table:
+                            current_start = vstart + off
+                        current_table.append((name_s, sig_s, hex(fn_p)))
+                        off += 24
+                        continue
+            if current_table:
+                tables[current_start] = current_table
+                current_table = []
+                current_start = None
+            off += 8
+        if current_table:
+            tables[current_start] = current_table
+            current_table = []
+            current_start = None
+
+    print(f'Discovered {len(tables)} distinct JNINativeMethod tables in libLayerFlow.so:')
+    for t_addr, methods in list(tables.items())[:15]:
+        print(f'Table at {hex(t_addr)} with {len(methods)} methods:')
+        for m in methods[:3]:
+            print(f'   {m[0]}{m[1]} -> {m[2]}')

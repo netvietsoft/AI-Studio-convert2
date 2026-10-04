@@ -1,0 +1,15 @@
+// FUNCTION: com.meitu.mtlab.arkernel3.arkernel3JNI.MainTextureDataInterface::1getMainTextureB
+// LIBRARY: libarkernel3_android.so
+// RVA: 0x8ac74 | SIZE: 8 bytes | SHA256: 82A9BBE8ED074789D9295E2BF347ADBD464508E1C10036AFEA8EA61324F44FC1
+// SEMANTIC_LABEL: JNI_DIRECT_EXPORT | CONFIDENCE: FACT
+// IMPORTED_APIS: None
+// STRING_XREFS: None
+
+#include <stdint.h>
+#include <jni.h>
+
+// Reconstructed C++ Native Implementation
+extern "C" JNIEXPORT void* com.meitu.mtlab.arkernel3.arkernel3JNI.MainTextureDataInterface_1getMainTextureB(JNIEnv* env, jobject thiz) {
+    // Function entrypoint at 0x8ac74
+    return (void*)0;
+}

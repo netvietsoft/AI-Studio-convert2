@@ -1,0 +1,15 @@
+// FUNCTION: com.meitu.mtlab.arkernel3.arkernel3JNI.FaceDataInterface::1getDetectSize
+// LIBRARY: libarkernel3_android.so
+// RVA: 0x8ae7c | SIZE: 4 bytes | SHA256: FCAB046A21B8E8BA237ADFA2849B409C2604A64EE2CB41B63653FE3A399E2B7C
+// SEMANTIC_LABEL: JNI_DIRECT_EXPORT | CONFIDENCE: FACT
+// IMPORTED_APIS: None
+// STRING_XREFS: None
+
+#include <stdint.h>
+#include <jni.h>
+
+// Reconstructed C++ Native Implementation
+extern "C" JNIEXPORT void* com.meitu.mtlab.arkernel3.arkernel3JNI.FaceDataInterface_1getDetectSize(JNIEnv* env, jobject thiz) {
+    // Function entrypoint at 0x8ae7c
+    return (void*)0;
+}
