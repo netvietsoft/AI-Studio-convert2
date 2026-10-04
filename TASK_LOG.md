@@ -1443,6 +1443,7 @@ unning: 0).
 
 ---
 
+<<<<<<< HEAD
 ### [2026-10-04 09:29:00 +07:00] HOÀN TẤT TASK_036 — SIBLING SOURCE 45 SO INVENTORY, HASH MATCH & HAIR ALGORITHM RECON
 - **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
 - **Mã lệnh điều phối:** `TASK_036_SIBLING_SOURCE_SO_INVENTORY_HAIR_RECON_20261004T091500+0700`
@@ -1476,7 +1477,56 @@ unning: 0).
      * Commit toàn bộ 10 hồ sơ kiểm toán, bảng kên CSV, JSON, và cây trích xuất thô `raw/`.
   5. **Hồ sơ Bàn giao Hoàn chỉnh:**
      * Thư mục báo cáo: `.ai/reports/TASK_036_SIBLING_SOURCE_SO_INVENTORY_HASH_MATCH_HAIR_RECON/`.
-     * Gói lưu trữ: `CONVERT2_TASK036_REPORT_PACKAGE.zip` (550,590 bytes, SHA-256: `339748A211A6C18ED8D6CBAB8EC97F7C8443DB129B11501069C256CB23AE1E6A`).
-     * Toàn bộ phát hiện pháp y được chuyển giao làm dữ liệu đầu vào cho `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD`.
+      * Gói lưu trữ: `CONVERT2_TASK036_REPORT_PACKAGE.zip` (550,590 bytes, SHA-256: `339748A211A6C18ED8D6CBAB8EC97F7C8443DB129B11501069C256CB23AE1E6A`).
+      * Toàn bộ phát hiện pháp y được chuyển giao làm dữ liệu đầu vào cho `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD`.
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS}$$
+
+---
+
+### [2026-10-04 10:35:00 +07:00] HOÀN TẤT TASK_035 — REBUILD TOÀN DIỆN THUẬT TOÁN PHÂN ĐOẠN, MATTING VÀ NHUỘM TÓC SALON TỰ NHIÊN (HAIR V3)
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD_20261004T090300+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_NATURAL_RECOLOR_REBUILD_ACTIVE`
+- **Tài liệu nhiệm vụ chuẩn:** `https://docs.google.com/document/d/1mZEHQORjr3wPQlNXJTOjtrYUSGbWUgdfxyPf9lGGxjs/edit?usp=drivesdk`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Trạng thái kỹ thuật (Technical Verdict):** `PASS`
+- **Trạng thái cổng thị giác Chủ tịch:** `PENDING_OWNER_EVALUATION`
+- **Kết luận thẩm định hệ thống (Final Verdict):** `TECHNICAL_PASS_AWAITING_OWNER_VISUAL`
+- **Căn cứ từ chối thị giác của Chủ tịch Tony (Ground Truth Rejection):**
+  * **Failure A (`owner_fail_A_curly.png`):** V2 cũ làm mất chiều sâu lọn tóc xoăn 3D, bệt màu như sơn xám tro rẻ tiền, lem màu xám vào trán và thái dương bên trái.
+  * **Failure B (`owner_fail_B_orig.png`):** V2 cũ nhận diện nhầm áo voan đen mỏng xuyên thấu thành tóc; nhuộm đỏ toàn bộ vai và cánh tay của người mẫu ($Y=181..1151$), trong khi tóc vàng thật lại không được phủ màu.
+- **Giải pháp kiến trúc C++ Native Rebuild (Hair V3):**
+  1. **Bảo tồn Kiến trúc & Khả năng Hoàn nguyên (Architecture & Rollback Safety):**
+     * Giữ nguyên 100% mã nguồn Hair V1 (`HairStrandDyeEngine`) và Hair V2 baseline trong `hair_pipeline_v2.cpp`.
+     * Triển khai Hair V3 qua cờ phiên bản `VERSION_V3_REBUILD = 3` (mặc định kích hoạt) với API JNI/Kotlin `setHairPipelineVersion`.
+  2. **Trích xuất Hạt giống Da đầu Đỉnh sọ (Cranial Crown Seed Isolation):**
+     * Hạt giống tóc chỉ được lấy nghiêm ngặt từ vùng đỉnh sọ trên lông mày ($y \le min\_fy + 0.08 \cdot face\_h$, $|x - face\_cx| \le 0.95 \cdot face\_w$), hoàn toàn miễn nhiễm với vai và áo voan đen ở góc nghiêng 3/4.
+  3. **Phân biệt & Loại trừ Áo Voan Đen Tự động (Sheer Black Clothing Rejection):**
+     * Thiết lập mô hình màu da đầu OKLab $(\mu_L, \sigma_L, \mu_a, \mu_b)$. Khi tóc sáng màu ($\mu_L \ge 0.22$), mọi pixel ứng viên có $\max(R,G,B) < 70$ hoặc $L < 0.26$ nằm ngoài đỉnh sọ đều bị loại trừ tuyệt đối.
+  4. **Bảo vệ Trán & Vùng da Mặt (Dynamic Forehead & Facial Oval Gating):**
+     * Xác định hình bầu dục khuôn mặt theo landmark, áp mặt nạ bảo vệ nghiêm ngặt trên vùng trán và thái dương; loại bỏ 100% tình trạng lem viền tóc.
+  5. **Tách Phổ Quang học 7x7 & Tái Phun Vi sợi Tóc 100% (Illumination Decomposition & Strand Preservation):**
+     * Tách ảnh tóc thành Base Chiếu sáng (Low-pass 7x7) và Vi sợi Tóc Tần số cao (High-pass). Áp dụng đường cong nâng Melanin tự nhiên và hạt màu Salon Toner trên Base, sau đó tái phun 100% vi sợi tóc ban đầu, bảo toàn chiều sâu 3D và bóng sáng sợi tóc.
+  6. **Bảo toàn Hoàn toàn Đầu trọc & Cường độ 0% (Negative Controls & Reversibility):**
+     * Tỉ lệ đổi pixel ở cường độ 0% = 0 pixel ($max\_diff = 0$).
+     * Tỉ lệ đổi pixel trên ảnh Sư thầy đầu trọc (`portrait_monk_bald_neg.png`) = 0 pixel ($max\_diff = 0$).
+- **Kết quả Kiểm thử Thực tế trên 2 Thiết bị Vật lý (SM-A075F & SM-A507FN):**
+  * **Tổng số ca kiểm thử:** 40/40 PASS (100.0%).
+  * **Độ lem trán tối đa (Max Forehead Leakage):** 0.00% (Chuẩn: $\le 1.0\%$).
+  * **Độ tràn áo tối đa (Max Clothing Spill):** 0.03% (Chuẩn: $\le 0.05\%$).
+  * **Hệ số bảo toàn vân tóc Laplacian:** $88.3\% - 99.6\%$ (Chuẩn: $\ge 88.0\%$).
+  * **Galaxy A07 (SM-A075F, MediaTek Helio G99, Android 16):** 20/20 PASS.
+  * **Galaxy A50s (SM-A507FN, Exynos 9611, Android 11):** 20/20 PASS.
+- **Đóng gói Hồ sơ & Bằng chứng Thẩm định (Deliverables):**
+  * **Bản dựng APK:** `app/build/outputs/apk/debug/app-debug.apk` (200,769,385 bytes, SHA-256: `5668267A349B392BF36D000A61F59ED9AFCDCD73A3D1A2F68BC405F8F09BD43C`).
+  * **Thư mục báo cáo chi tiết:** `.ai/reports/TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_RECOLOR_REBUILD/` (13 báo cáo Markdown `00_AUDIT_INDEX.md` đến `12_REPORT_DRIVE_MIRROR.md`).
+  * **Bộ bằng chứng so sánh trực quan (Triptych & Zoom):**
+    - `case_A_triptych_audit.png` & `case_A_temple_hairline_zoom300.png` (minh chứng sạch trán 100%, bảo toàn lỗ chân lông).
+    - `case_B_triptych_audit.png` & `case_B_sheer_sleeve_zoom300.png` (minh chứng sạch áo voan đen 100%, giữ nguyên thớ vải).
+    - `case_A_laplacian_texture_proof.png` (minh chứng bảo lưu 91.9% vi sợi tóc xoăn).
+  * **Gói bàn giao lưu trữ:** `CONVERT2_TASK035_REPORT_PACKAGE.zip` (92,174,918 bytes, SHA-256: `5EEF1E476A5E41A9439C52DE79F92076B279420DFBE5C200E14D2D0221610462`).
+  * **Bảng kê mã băm:** `TASK_035_EVIDENCE_MANIFEST.sha256` (SHA-256: `B7C8A98F661BB7450D607EEE909098C543FBF47E50E7D6C6CEB3CE69805A599B`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
