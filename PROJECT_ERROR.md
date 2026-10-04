@@ -95,4 +95,18 @@
   2. Sao chép và tổ chức lại toàn bộ 73 tệp hiện vật bằng chứng thô thực tế vào `raw_evidence/` và lập `RAW_EVIDENCE_MANIFEST.json` với mã băm bitwise SHA-256 độc lập.
 - **Quy tắc phòng ngừa:** Mọi báo cáo tái cấu trúc nhị phân bắt buộc phải có bước tiền kiểm tra băm tự động đối chiếu trực tiếp với tệp `.so` trong `jniLibs/arm64-v8a` trước khi xuất xưởng bảng phân loại hàm.
 
+---
 
+### [ERR-010] Suy diễn suy đoán danh tính mô hình AI và tên thư viện nhị phân ngoại lai (TASK_046 / TASK_052B)
+- **Thời điểm phát hiện:** 2026-10-04 trong chu kỳ kiểm toán tự trị `TASK_052B`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong khảo sát sơ bộ `TASK_046`, một số tên file thư viện và mô hình AI được ghi nhận dựa trên suy đoán công nghệ (như `facetune_hair_seg_v4.tflite`, `faceapp_hair_color_neural.onnx`, `lama_inpaint_fp16.tflite`, `libacrl.so`, `libvideocore.so`) thay vì kiểm chứng sự tồn tại thực tế trên đĩa cứng.
+  2. Bỏ qua cấu trúc nén APKS/XAPK của các ứng dụng, dẫn đến phân loại nhầm giữa mô hình chạy offline trên thiết bị (on-device) và mô hình chạy trên cụm server đám mây (cloud-offloaded microservices).
+- **Giải pháp triệt để:**
+  1. Tiến hành quét thực nghiệm bitwise trực tiếp vào các container APK/APKS/XAPK của toàn bộ 14 ứng dụng trong `F:\App\Image`.
+  2. Thu hồi, bác bỏ hoàn toàn danh tính suy diễn không có thật. Xác lập danh tính thực tế:
+     - Facetune & SnapEdit: Sử dụng mô hình chuẩn `assets/selfiesegmentation_mlkit-256x256-2021_01_19-v1215.f16.tflite` của Google MediaPipe.
+     - FaceApp: Cụm mô hình cục bộ gồm 13 file thực tế (`fssd_25_8bit_v2.tflite`, `fssd_medium_8bit_v5.tflite`, `gender.tflite`), tác vụ đổi màu tóc nặng chạy qua server API.
+     - Remini: Sử dụng `libonnxruntime.so` và mô hình cục bộ `assets/ad_abandonment_android_enhance_xgb.onnx`, tính năng siêu phân giải phục hồi chân dung chạy qua cụm máy chủ.
+     - Hệ sinh thái Meitu (Meitu, BeautyPlus, Wink): Chia sẻ dùng chung lõi C++ Native (`libMTFilterKernel.so`, `libVERenderer.so`, `libManis.so`, `libarkernel3.so`, `libPVGColorFunctions.so`).
+- **Quy tắc phòng ngừa:** TUYỆT ĐỐI CẤM đặt tên mô hình hoặc thư viện theo giả định lý thuyết. Mọi tệp tài nguyên đưa vào Knowledge Base bắt buộc phải có đường dẫn thực nghiệm, kích thước byte chính xác và mã băm SHA-256 bitwise.

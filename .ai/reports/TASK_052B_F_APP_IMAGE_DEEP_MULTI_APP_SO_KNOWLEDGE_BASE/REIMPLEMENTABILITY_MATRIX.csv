@@ -1,0 +1,9 @@
+domain,key_technique,reference_app,reference_library,reimplementability_score,implementation_strategy
+Hair,5-pass Directional LIC + SoftLight,Meitu / BeautyPlus,libMTFilterKernel.so,98%,C++ Native Core + GLES/Vulkan FBO compute passes
+Face,Barycentric 106-Point Mesh Warp,B612 / Meitu,libst_mobile.so / libMTFilterKernel.so,95%,Affine triangle warping with smooth falloff
+Skin,Dual-pass Frequency Separation,Facetune / Meitu,libfacetune.so / libMTFilterKernel.so,92%,Separable bilateral blur + micro-pore preservation layer
+Body,Pose-guided Bounded Elastic Mesh,Meitu / Wink,libMTFilterKernel.so / libarkernel3.so,90%,Zero-background distortion warping with anchor locks
+Color,3D LUT Tetrahedral Interpolation,VSCO / Meitu,libvscocore.so / libPVGColorFunctions.so,96%,6-tetrahedron decomposition of 3D color cube
+Segmentation,Real-time Mobile Semantic Matting,Facetune / SnapEdit / Meitu,selfiesegmentation.tflite / libManis.so,92%,NCNN / TFLite FP16 inference + guided filter refine
+Render,Multi-pass FBO Composite Pipeline,Meitu / Wink / Facetune,libVERenderer.so / librender.so,95%,Ping-pong double-buffered FBO compositor
+Video,Temporal Coherence Frame Filter,Wink / SnapEdit,libmtmvcore.so / libavcodec.so,88%,Optical flow vector smoothing across keyframes

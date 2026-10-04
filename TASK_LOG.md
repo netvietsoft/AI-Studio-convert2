@@ -1915,3 +1915,31 @@ unning: 0).
 - **Cổng Cứng Khóa V4 (V4 Hard Gate):** Xác nhận `V4 IMPLEMENTATION GATE = BLOCKED`. 0 dòng mã nguồn V4 được viết trong phiên này.
 - **Phán Quyết Nghiệm Thu (Final Gate Verdict):** `REVIEW_CANDIDATE` (Sẵn sàng cho kiểm toán độc lập).
 
+### TASK_052B — F:\App\Image DEEP MULTI-APP SO KNOWLEDGE BASE
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_052B_F_APP_IMAGE_DEEP_MULTI_APP_SO_KNOWLEDGE_BASE_ACTIVE` (Google Doc ID: `11V_BXe799868ct7O2OopQS45Wfz8_iH27M-1FTpCsdY`)
+- **Revision:** `2026-10-04T21:12:38.274000+07:00`
+- **Priority:** `CRITICAL / 100` | **Mode:** `RESEARCH / RECONSTRUCTION`
+- **Lane:** `f-app-image-deep-multi-app-so-knowledge-base`
+- **Runner:** `CONVERT2-WINDOWS-02` (Samsung Hardware Integration Rig)
+- **Baseline Git SHA:** `2568b6fc4`
+- **Pre-execution Law Gate:**
+  * Ký duyệt `00_PREEXEC_LAW_ACK_EVIDENCE.md` đối chiếu bitwise SHA-256 của 12 văn bản quy chuẩn tối cao.
+  * Kích hoạt đồ thị nhiệm vụ đa Agent với 7 Sub-lanes (A -> G) do Agent 0 (CEO / Orchestrator) điều phối.
+- **Khắc Phục Toàn Diện Yêu Cầu Cốt Lõi (Core Requirements & Evidence Corrections):**
+  1. **Khảo sát & Chiết xuất Thực Nghiệm 14 Ứng Dụng (`F:\App\Image`):** B612, BeautyPlus, Adobe Lightroom Mobile, Facetune, Meitu, Future Self Aging, FaceApp, PicsArt, Remini, SnapEdit, Time Warp Scan, Ulike, VSCO, Wink.
+  2. **Phân Loại & Đo Lường 447 Thư Viện C++ Native:** Tách biệt rõ ràng giữa Thư viện Nghiệp vụ Đồ họa/Thị giác (Product-Meaningful) và Thư viện Hạ tầng/Runtime/Crashlytics (Runtime Infra).
+  3. **Thu Hồi & Bác Bỏ Danh Tính Mô Hình Giả Lập Từ TASK_046:** Loại bỏ hoàn toàn các tên suy đoán (`facetune_hair_seg_v4.tflite`, `faceapp_hair_color_neural.onnx`, `lama_inpaint_fp16.tflite`, `libacrl.so`, `libvideocore.so`). Xác lập 100% tài nguyên thực tế quan sát được trên đĩa:
+     - Google MediaPipe SelfieSegmentation FP16 (256x256, 1215 ops) dùng chung trong Facetune và SnapEdit.
+     - FaceApp và Remini chạy mô hình nặng trên cụm máy chủ đám mây, client sử dụng FaceSSD và ONNX Runtime cục bộ.
+     - Meitu, BeautyPlus, Wink chia sẻ chung lõi C++ Native (`libMTFilterKernel.so`, `libVERenderer.so`, `libManis.so`, `libarkernel3.so`, `libPVGColorFunctions.so`).
+  4. **Cây Thư Mục Báo Cáo Chuyên Sâu 14 Ứng Dụng (`apps/<app_slug>/`):** Xuất bản đầy đủ 10 tài liệu chuẩn + thư mục `raw_evidence/` cho từng ứng dụng độc lập.
+  5. **14 Tài Liệu Báo Cáo Tổng Hợp Đỉnh Cao (Master Deliverables):**
+     - `00_INDEX.md`, `00_PREEXEC_LAW_ACK_EVIDENCE.md`, `14_V4_HARD_GATE_AUDIT.md`.
+     - `MASTER_14_APP_MATRIX.csv`, `MASTER_447_SO_MATURITY_MATRIX.csv` (126 KB), `MASTER_FUNCTION_REGISTRY.csv` (1.23 MB).
+     - `MASTER_IMAGE_EFFECT_GRAPH.md`, `MASTER_ALGORITHM_BANK.md`, `CROSS_APP_FEATURE_MATRIX.csv`, `REIMPLEMENTABILITY_MATRIX.csv`.
+     - `UNKNOWN_SURFACE.md`, `MULTI_AGENT_PROVENANCE.md`, `REPORT_DRIVE_MIRROR.md`, `MEMORY_HANDOFF.md`.
+  6. **Đóng Gói Bằng Chứng Thô & Báo Cáo:** Đóng gói thành công `CONVERT2_TASK052B_REPORT_PACKAGE.zip` (559,761 bytes, SHA-256: `391aac162ce19b6ae1a99c5bfc0f0625db4b633a9dba2764d487a8b50442ce88`).
+- **Cổng Cứng Khóa V4 (V4 Hard Gate):** Khẳng định `V4 IMPLEMENTATION GATE = BLOCKED`. 0 dòng mã sản xuất V4 được viết.
+- **Phán Quyết Nghiệm Thu (Final Gate Verdict):** `REVIEW_CANDIDATE` (Đầy đủ bằng chứng thực tế, sẵn sàng audit).
+

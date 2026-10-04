@@ -92,3 +92,14 @@
   4. Lấy mẫu tích phân đường cong có hướng (Line-Integral Convolution) dọc theo vector tiếp tuyến của sợi tóc.
   5. Hòa trộn màu nhuộm bằng công thức toán học **Pegtop SoftLight**: $f(a,b) = (1.0 - 2.0b)a^2 + 2.0ba$ kết hợp Unsharp Mask factor $0.4 \times 1.8$, bảo lưu $100\%$ độ sâu vi sợi tóc và không bao giờ gây bệt màu.
 
+---
+
+### [ACQ-008] Kiến Trúc Engine Đồ Họa Đa Ứng Dụng (Multi-App C++ Native Ecosystem & Color Pipeline)
+- **Bối cảnh:** Khảo sát và phân tích sâu 14 ứng dụng chỉnh sửa ảnh hàng đầu thế giới (`F:\App\Image`, 447 thư viện native, hàng chục mô hình neural và shader).
+- **Quy luật kiến trúc đúc kết:**
+  1. **Hệ sinh thái lõi dùng chung (Meitu Ecosystem Lineage):** Meitu, BeautyPlus và Wink sử dụng cùng một bộ khung C++ Graphics Engine (`libMTFilterKernel.so`, `libVERenderer.so`, `libManis.so`, `libarkernel3.so`, `libPVGColorFunctions.so`). Tái cấu trúc thành công lõi này cho phép áp dụng đồng thời cho cả ảnh tĩnh chân dung và video động 4K.
+  2. **Toán học nắn bóp Liquify của Lightricks (Facetune):** Hàm suy giảm bán kính bậc 3 (cubic radial falloff) $\vec{d}(p) = \vec{v} \cdot (1 - \frac{|p - c|^2}{R^2})^3$ đảm bảo độ mượt vi sai $C^1$ tại biên bán kính $R$, triệt tiêu hoàn toàn hiện tượng xé hình/rách pixel thường gặp ở các thuật toán Affine lưới thô.
+  3. **Khoa học màu sắc & Nội suy khối đa diện 3D LUT (VSCO):** VSCO chia mỗi voxel lập phương của khối 3D LUT thành 6 tứ diện (simplices), giúp phép nội suy màu luôn bảo toàn tính đơn điệu của không gian màu, loại bỏ hiện tượng răng cưa màu (color banding) trên vùng da chuyển sắc.
+  4. **Chuẩn hóa mô hình AI thị giác di động:** Facetune và SnapEdit đều tin dùng mô hình Google MediaPipe SelfieSegmentation FP16 (256x256, 1215 ops), chứng minh hiệu năng và độ ổn định vượt trội so với các mô hình tự huấn luyện cồng kềnh trên Android.
+
+
