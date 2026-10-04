@@ -4,12 +4,12 @@
   "agent_state": "IDLE_WAIT_FOR_TASK",
   "task_status": "PASS",
   "current_task_id": null,
-  "last_completed_task_id": "TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY_ACTIVE",
-  "last_completed_task_doc_id": "1KYzdYqNHKAxvxMxRry2VnEfkiF2G8oZ8C0-VMfr07vY",
-  "last_completed_task_modified_time": "2026-10-04T11:15:00+07:00",
-  "last_report_folder": ".ai/reports/TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY",
-  "last_target_commit_sha": "c45d33e977d5a574ef662567d4b2623c2e5c783c",
-  "last_scan_time": "2026-10-04T11:55:00+07:00",
+  "last_completed_task_id": "TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE_ACTIVE",
+  "last_completed_task_doc_id": "1LZ7rQ2aRQdK2Dc7cCoUasnxtLjrvagaOlnOaVevIu4Q",
+  "last_completed_task_modified_time": "2026-10-04T12:00:00+07:00",
+  "last_report_folder": ".ai/reports/TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE",
+  "last_target_commit_sha": "80e104803eb6489c52e1932344cc84aaa4e3522f",
+  "last_scan_time": "2026-10-04T12:12:00+07:00",
   "verdict": "PASS",
   "task_lifecycle": {
     "TASK_CREATED": "2026-10-03T11:10:00+07:00",
@@ -29,7 +29,8 @@
     "TASK_034_COMPLETED": "2026-10-04T07:55:00+07:00",
     "TASK_036_COMPLETED": "2026-10-04T09:29:00+07:00",
     "TASK_035_COMPLETED": "2026-10-04T10:08:00+07:00",
-    "TASK_040_COMPLETED": "2026-10-04T11:55:00+07:00"
+    "TASK_040_COMPLETED": "2026-10-04T11:55:00+07:00",
+    "TASK_041_COMPLETED": "2026-10-04T12:12:00+07:00"
   },
   "provenance": {
     "execution_lane": "f-convert-root-source-discovery",
@@ -396,5 +397,38 @@
     "report_folder": ".ai/reports/TASK_036_SIBLING_SOURCE_SO_INVENTORY_HASH_MATCH_HAIR_RECON",
     "completed_at": "2026-10-04T09:29:00+07:00",
     "technical_verdict": "PASS"
+  },
+  "task_041_summary": {
+    "task_id": "TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE_ACTIVE",
+    "command_id": "TASK_041_TASK040_SOURCE_TRUTH_V1_CPP_PROVENANCE_20261004T120000+0700",
+    "objective": "Correct TASK_040 evidence inconsistencies, prove V1 native C++ provenance, produce exact file-level V1-vs-CONVERT2 crosswalk, and prepare a verified TASK_038 intake manifest separating vendor evidence from reconstructed source.",
+    "vendor_so_directory": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a",
+    "vendor_so_count": 45,
+    "vendor_so_matches_task036_pct": 100.0,
+    "hallucinated_libraries_tested": [
+      "libmeitu_reborn_native.so",
+      "libbisenet.so",
+      "libncnn.so",
+      "libface_mesh.so"
+    ],
+    "hallucinated_libraries_confirmed_absent": true,
+    "task040_erratum_applied": true,
+    "v1_cpp_directory": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT\\apps\\android\\core\\native-bridge\\src\\main\\cpp",
+    "v1_cpp_files_analyzed": 128,
+    "v1_cpp_ncnn_prebuilt_files": 175,
+    "v1_cpp_provenance": "PROJECT_RECONSTRUCTED_SOURCE",
+    "v1_git_history": "103 recorded commits (Sep 19 - Sep 24, 2026); core/native-bridge untracked local source authored under Development_Workspace_Standard_V2.1",
+    "hair_priority_files_audited": 21,
+    "hair_pipeline_evolution": "Procedural V1 (meitu::reborn::hair_v2) -> Modular OOP CONVERT2 (src/hair/) + Vulkan Compute Shaders",
+    "jni_bridge_v1_methods": 165,
+    "jni_bridge_convert2_methods": 192,
+    "jni_bridge_provenance": "PROJECT_RECONSTRUCTED_SOURCE (Binds exclusively to project-created MeituNativeEngine; zero match with vendor .so exports)",
+    "task038_intake_manifest": ".ai/reports/TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE/08_TASK038_VERIFIED_INTAKE_MANIFEST.md",
+    "package_zip": "CONVERT2_TASK041_REPORT_PACKAGE.zip",
+    "package_sha256": "6AAA0EA4BC39DB6C2844BFC22D13A8DDDAD0737D3EBBC8C482ECAFA27733738F",
+    "report_folder": ".ai/reports/TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE",
+    "completed_at": "2026-10-04T12:12:00+07:00",
+    "technical_verdict": "PASS",
+    "final_verdict": "PASS"
   }
 }

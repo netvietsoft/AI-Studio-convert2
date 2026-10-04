@@ -1560,3 +1560,39 @@ unning: 0).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
 
+---
+
+### [2026-10-04 12:12:00 +07:00] HOÀN TẤT TASK_041 — TASK040 SOURCE TRUTH CORRECTION & V1 NATIVE CPP PROVENANCE AUDIT
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_041_TASK040_SOURCE_TRUTH_V1_CPP_PROVENANCE_20261004T120000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `task040-source-truth-v1-cpp-provenance`
+- **Máy Runner vật lý:** `GITHUB_ACTIONS_37178648208`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — SOURCE TRUTH RECONCILED & V1 PROVENANCE VERIFIED`**
+- **Nội dung điều tra & Kết quả giải quyết:**
+  1. **Hiệu chỉnh Triệt để 4 Tên Thư viện Vendor sai sót trong TASK_040 Report 08:**
+     * Bốn thư viện `libmeitu_reborn_native.so`, `libbisenet.so`, `libncnn.so`, `libface_mesh.so` được chứng minh là **KHÔNG TỒN TẠI** trong thư mục nhị phân `SOURCE/extracted_native_libs/lib/arm64-v8a` hay bất kỳ đâu trong `SOURCE`.
+     * Xác nhận 45 tệp `.so` vendor tại `SOURCE/extracted_native_libs/lib/arm64-v8a` khớp 100% từng byte với bảng đối chiếu mã băm SHA-256 của `TASK_036` (`02_SO_HASH_MATCH.csv`).
+     * Đã cập nhật văn bản đính chính chính thức (`ERRATUM / CORRECTION`) vào `.ai/reports/TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY/08_HIGH_VALUE_SOURCE_DIRECTORIES.md`.
+  2. **Thẩm định Pháp lý & Nguồn gốc (Provenance) Cây C++ V1:**
+     * Cây mã nguồn `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT\apps\android\core\native-bridge\src\main\cpp` gồm 128 tệp C/C++ dự án (58 `src`, 57 `include`, 12 `BeautyCore`, `CMakeLists.txt`) cùng 175 tệp thư viện nhị phân bên thứ ba NCNN.
+     * Toàn bộ cây này được phân loại chính xác là **`PROJECT_RECONSTRUCTED_SOURCE`** do đội ngũ Agent xây dựng từ ngày 19/09/2026 đến 02/10/2026 theo tiêu chuẩn `Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`. **KHÔNG PHẢI** là mã nguồn gốc của Meitu Inc.
+  3. **Tiến hóa Kiến trúc Hair Color Engine:**
+     * 16 tệp `hair_v2_*.cpp` tại V1 được xây dựng ngày 02/10/2026 (`TASK-HAIR-COLOR-V2-02-TO-V2-07-MULTI-AGENT-EXECUTION-0001`) theo dạng thủ tục (`namespace meitu::reborn::hair_v2`).
+     * Sang CONVERT2, 16 tệp này đã được tái cấu trúc thành kiến trúc OOP Module chuyên biệt trong `lib-core-graphics/src/main/cpp/src/hair/` (`HairPipelineV2`, `HairOrientationEngine`, `HairTextureEngine`, `HairAppearanceEngine`, `HairDyeMaterialEngine`, `HairAnisotropicSpecularEngine`) và tăng tốc phần cứng bằng các compute shader Vulkan (`hair_gpu_backend.cpp`, `hair_flow_cs`, `hair_composite_cs`, `hair_lighting_cs`).
+  4. **Nguồn gốc Cầu nối JNI (JNI Bridge Provenance):**
+     * V1 `jni_bridge.cpp` chứa 165 hàm JNI; CONVERT2 `jni_bridge.cpp` chứa 192 hàm JNI (128 hàm dùng chung).
+     * 100% các hàm JNI liên kết với lớp Kotlin `com.meitu.core.nativeengine.MeituNativeEngine`. Lớp này hoàn toàn do dự án tự thiết kế, không hề tồn tại trong mã dịch ngược `jadx_src` của Meitu.
+     * Tên hàm JNI trong `jni_bridge.cpp` không được xem là bằng chứng cho tên hàm bên trong thư viện đóng của vendor.
+  5. **Ban hành Bản kê Khai thác An toàn cho TASK_038 (TASK_038 Verified Intake Manifest):**
+     * Tách biệt rạch ròi 3 tầng dữ liệu: Nhị phân gốc (45 .so) / Bytecode dịch ngược (jadx_src) / Mã C++ tái dựng tham chiếu (V1 & CONVERT2).
+     * Thiết lập hàng rào ngăn ngừa suy diễn sai và nhầm lẫn danh tính thư viện.
+  6. **Hồ sơ Báo cáo Hoàn chỉnh:**
+     * Thư mục báo cáo: `.ai/reports/TASK_041_TASK040_SOURCE_TRUTH_CORRECTION_V1_NATIVE_CPP_PROVENANCE/` gồm 12 tài liệu chuẩn và thư mục `raw/`.
+     * Gói deliverables: `CONVERT2_TASK041_REPORT_PACKAGE.zip` (85,251 bytes, SHA-256: `6AAA0EA4BC39DB6C2844BFC22D13A8DDDAD0737D3EBBC8C482ECAFA27733738F`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
