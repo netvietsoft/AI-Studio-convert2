@@ -1735,3 +1735,19 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+## [2026-10-04T14:57:02.608860+07:00] TASK_039 COMPLETE: Workspace Source Tree Discovery & Classification
+- **Command ID**: `TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY_20261004T103500+0700`
+- **Task ID**: `TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY_CLASSIFICATION_ACTIVE`
+- **Task Document**: `1HwBVNyjUeX0zCkrp26HqdfGZN2T3ZDgaRqGZJ0D5FgY`
+- **Authority**: Tony (Chairman)
+- **Status**: `COMPLETED` / `PASS`
+- **Authoritative Root**: `F:\CONVERT` (Entire Storage Volume)
+- **Key Findings**:
+  1. Enumerated all 20 candidate directories and 14 root specifications across `F:\CONVERT`.
+  2. Identified `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT` (specifically `apps/android` with 19 feature modules and `core/native-bridge` with 50 C++ engine files) as the missing ancestral source folder.
+  3. Class B Reconstructed Source confirmed: Kotlin/Java/C++ editable source with Gradle KTS and CMake.
+  4. Cryptographic crosswalk: 15 V1 C++ files are identical in CONVERT2, 14 diverged, 21 missing in CONVERT2 (including 16 modular `hair_v2_*.cpp` files and full-body/cloth/video engines).
+  5. Authenticity proof: V1 native bridge binds to synthetic `MeituNativeEngine` (0 hits for vendor hair symbols); genuine vendor hair ground truth remains exclusively in `SOURCE` (`jadx_src` and 45 vendor `.so` libraries).
+  6. Target for TASK_038: `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE` (`extracted_native_libs` and `jadx_src`).
+- **Deliverables**: `.ai/reports/TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY/` (00 to 09, raw/, and `CONVERT2_TASK039_REPORT_PACKAGE.zip`)
