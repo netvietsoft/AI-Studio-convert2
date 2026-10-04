@@ -1,0 +1,26 @@
+CONTROL FLOW GRAPH & CROSS REFERENCE EVIDENCE: libMTFilterKernel.so
+======================================================================
+
+A. Pipeline 1: MTSoftHairFilter (GPUImageFilter Subclass)
+  Entry Point: 0x0f3f58 (renderToTextureWithVerticesAndTextureCoordinates)
+    ├── 0x0f3fac -> CALL 0x0f42fc (MTSoftHairFilter::grayFilterToFBO)
+    ├── 0x0f3fc0 -> CALL 0x0f4400 (MTSoftHairFilter::hairMaskFilterToFBO)
+    ├── 0x0f3fd4 -> CALL 0x0f4528 (MTSoftHairFilter::blurHFilterToFBO)
+    ├── 0x0f3fe8 -> CALL 0x0f46d0 (MTSoftHairFilter::blurVFilterToFBO)
+    └── 0x0f4024 -> CALL 0x0f4878 (MTSoftHairFilter::softHairFilterToFBO)
+
+B. Pipeline 2: CMTFilterSoftHair (CMTDynamicFilter Subclass)
+  Entry Point: 0x1344e8 (CMTFilterSoftHair::FilterToFBO)
+    ├── 0x1346fc -> CALL 0x13488c (CMTFilterSoftHair::GrayFilterToFBO)
+    ├── 0x134710 -> CALL 0x134970 (CMTFilterSoftHair::HairMaskFilterToFBO)
+    ├── 0x134724 -> CALL 0x134a90 (CMTFilterSoftHair::BlurHFilterToFBO)
+    ├── 0x134738 -> CALL 0x134c10 (CMTFilterSoftHair::BlurVFilterToFBO)
+    └── 0x134758 -> CALL 0x134d90 (CMTFilterSoftHair::SoftHairFilterToFBO)
+
+C. Data References & Constants:
+  • Gaussian Blur Kernel Weights: .rodata 0x8edd8 -> (0.15967600047588348, 0.2633480131626129, 0.12211800366640091, 0.030572999268770218)
+  • Horizontal Blur Offsets:     .rodata 0x8edc4 -> (0.0, 0.0022499999031424522, 0.0052559999749064445, 0.00827100034803152)
+  • Vertical Blur Offsets:       .rodata 0x8edec -> (0.0, 0.002993999980390072, 0.00699299992993474, 0.011005000211298466)
+  • GLSL Kernel Shader String:   .rodata 0x77b00 -> MTSoftHairFilter.cpp
+  • Hair Segment Query JNI:      0x1aa5ec (MTlabFilterKernelRenderInterface::isNeedHairSegment)
+  • Hair Segment Data Feed JNI:  0x1aa60c (MTlabFilterKernelRenderInterface::setHairSegmentData)

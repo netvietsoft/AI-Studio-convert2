@@ -1,0 +1,16 @@
+CONTROL FLOW & DATA XREF: libManis.so
+======================================================================
+
+1. Architecture: General Neural Network Inference Runtime Engine
+   • Core Class: manis::Executor
+   • Supported Layers: Conv2D, GroupNorm, NonZero, Reciprocal, SVMClassifier, Softmax, ScatterND
+   • Hardware Backends: CPU, GPU (OpenGL compute/shaders), NPU (via libmanis_npu_adapter.so)
+
+2. Refutation of TASK_044 ALG-006 Claim:
+   • TASK_044 claimed: 'BiSeNet 19-Class Semantic Segmentation, ArgMax(Softmax(Conv2D(X))) -> Class 17 (Hair)'
+   • String Census Result:
+       - BiSeNet occurrences: 0
+       - Hair occurrences: 0
+       - Segment occurrences: 0
+   • Truth: libManis.so is a pure inference engine runtime. It does NOT bundle BiSeNet or class-17 hair logic.
+   • Any model graph/weights are passed dynamically via external model asset files.

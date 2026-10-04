@@ -1,0 +1,18 @@
+CONTROL FLOW & DATA XREF: libarkernel3.so
+======================================================================
+
+1. DataRequire Bitfield Query Methods:
+   • 0x56b70c: requireHairMask() -> Bit 5 (0x20)
+   • 0x56b718: requireHairMaskAdditionCPU() -> Bit 6 (0x40)
+   • 0x56b724: requireHairMaskAdditionGPU() -> Bit 7 (0x80)
+
+2. External Dynamic Symbols Imported from libARKernelInterface.so:
+   • vldp_get_segment_result_has_hair_segment
+   • vldp_get_segment_result_hair_segment
+   • vldp_get_muti_segment_has_muti_hair_segment
+   • vldp_get_muti_segment_muti_hair_segment
+
+3. Refutation of TASK_044 ALG-004 Claim:
+   • TASK_044 claimed: C_final = C_dye * (1 - k_shine) + C_specular * k_shine via kFaceliftControl
+   • Physical inspection proves kFaceliftControl belongs to FaceliftHeadPart (facial deformation sliders: lower lip, right eye)
+   • Hair shader asset is Shaders/HairSoft/MTFilter_HairSoftMix.fs, and specular formula was synthetic.

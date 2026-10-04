@@ -1,0 +1,19 @@
+CONTROL FLOW & DATA XREF: libPVGColorFunctions.so
+======================================================================
+
+1. Data Reference: Display-P3 ICC Profile
+   • Source Instruction: 0x20f74: adr x0, #0xe11b
+   • Target Data Address: 0xe11b (.rodata)
+   • Target Payload: Apple Display-P3 ICC Profile (Size: 536 bytes)
+   • Function: PVGCOLOR::PVGColorFunctions::getDisplayP3ICCProfile()
+
+2. Data Reference: AdobeRGB ICC Profile
+   • Source Instruction: 0x20f88: adr x0, #0xe333
+   • Target Data Address: 0xe333 (.rodata)
+   • Target Payload: Adobe RGB (1998) ICC Profile (Size: 560 bytes)
+   • Function: PVGCOLOR::PVGColorFunctions::getAdobeRGBICCProfile()
+
+3. Refutation of TASK_044 ALG-005 Claim:
+   • TASK_044 claimed a hardcoded float matrix 'M_p3_to_srgb' in .rodata.
+   • Physical inspection proves NO SUCH FLOAT MATRIX EXISTS in .rodata.
+   • Color transformation is performed via ICC profiles and GLSL shader gGLESColorTransferFragData.

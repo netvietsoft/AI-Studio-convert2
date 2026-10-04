@@ -1,0 +1,24 @@
+Library,Caller_Function,Source_Address,Instruction,Target_Address_or_Symbol,Target_Section,Context
+libMTFilterKernel.so,MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates,0x0f3fac,bl #0xf42fc,0x0f42fc (MTSoftHairFilter::grayFilterToFBO),.text,Pass 1: Extract portrait luminance map
+libMTFilterKernel.so,MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates,0x0f3fc0,bl #0xf4400,0x0f4400 (MTSoftHairFilter::hairMaskFilterToFBO),.text,Pass 2: Isolate hair segmentation mask
+libMTFilterKernel.so,MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates,0x0f3fd4,bl #0xf4528,0x0f4528 (MTSoftHairFilter::blurHFilterToFBO),.text,Pass 3: Horizontal 1D Gaussian edge blur
+libMTFilterKernel.so,MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates,0x0f3fe8,bl #0xf46d0,0x0f46d0 (MTSoftHairFilter::blurVFilterToFBO),.text,Pass 4: Vertical 1D Gaussian edge blur
+libMTFilterKernel.so,MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates,0x0f4024,bl #0xf4878,0x0f4878 (MTSoftHairFilter::softHairFilterToFBO),.text,Pass 5: Final hair detail boost & clarity shader
+libMTFilterKernel.so,MTSoftHairFilter::blurHFilterToFBO,0x0f4570,adr x8 #0x8edd8,0x08edd8 (Gaussian kernel weights),.rodata,Load calibrated 1D Gaussian filter weights
+libMTFilterKernel.so,MTSoftHairFilter::blurHFilterToFBO,0x0f4580,adr x8 #0x8edc4,0x08edc4 (Horizontal step offsets),.rodata,Load horizontal subpixel step coordinates
+libMTFilterKernel.so,MTSoftHairFilter::blurVFilterToFBO,0x0f4718,adr x8 #0x8edd8,0x08edd8 (Gaussian kernel weights),.rodata,Load calibrated 1D Gaussian filter weights
+libMTFilterKernel.so,MTSoftHairFilter::blurVFilterToFBO,0x0f4728,adr x8 #0x8edec,0x08edec (Vertical step offsets),.rodata,Load vertical subpixel step coordinates
+libMTFilterKernel.so,CMTFilterSoftHair::FilterToFBO,0x1346fc,bl #0x13488c,0x13488c (CMTFilterSoftHair::GrayFilterToFBO),.text,Dynamic pipeline Gray Pass
+libMTFilterKernel.so,CMTFilterSoftHair::FilterToFBO,0x134710,bl #0x134970,0x134970 (CMTFilterSoftHair::HairMaskFilterToFBO),.text,Dynamic pipeline Mask Pass
+libMTFilterKernel.so,CMTFilterSoftHair::FilterToFBO,0x134724,bl #0x134a90,0x134a90 (CMTFilterSoftHair::BlurHFilterToFBO),.text,Dynamic pipeline Blur H Pass
+libMTFilterKernel.so,CMTFilterSoftHair::FilterToFBO,0x134738,bl #0x134c10,0x134c10 (CMTFilterSoftHair::BlurVFilterToFBO),.text,Dynamic pipeline Blur V Pass
+libMTFilterKernel.so,CMTFilterSoftHair::FilterToFBO,0x134758,bl #0x134d90,0x134d90 (CMTFilterSoftHair::SoftHairFilterToFBO),.text,Dynamic pipeline Final Soft Hair Shader
+libPVGColorFunctions.so,PVGColorFunctions::getDisplayP3ICCProfile,0x020f74,adr x0 #0xe11b,0x00e11b (Apple Display-P3 ICC Profile),.rodata,Return pointer to embedded 536-byte ICC profile
+libPVGColorFunctions.so,PVGColorFunctions::getAdobeRGBICCProfile,0x020f88,adr x0 #0xe333,0x00e333 (AdobeRGB ICC Profile),.rodata,Return pointer to embedded 560-byte ICC profile
+libLayerFlow.so,CLFDenseHairProcessor::decodeHairDyeConfig,0x3fc088,adrp+add #0x1dc829,0x1dc829 ("decodeHairDyeConfig"),.rodata,Log format string for config decode failure
+libLayerFlow.so,CLFDenseHairProcessor::loadHairDyeConfig,0x3fa328,adrp+add #0x1dea88,0x1dea88 ("loadHairDyeConfig"),.rodata,Log format string for config load failure
+libLayerFlow.so,CLFDenseHairProcessor::loadHairDyeConfig,0x3fa44c,adrp+add #0x1e3fd1,0x1e3fd1 ("%s/config.json"),.rodata,Material package config JSON file path
+libLayerFlow.so,CLFDenseHairProcessor::loadHairDyeConfig,0x3fc11c,adrp+add #0x1dcd58,0x1dcd58 ("lut.png"),.rodata,Material package 3D/2D tone LUT image file path
+libarkernel3.so,mtlabar3::DataRequire::requireHairMask,0x56b70c,ldrb+ubfx,0x000004 (this+4 bit 5),register,Extract bit 5 for hair mask requirement
+libarkernel3.so,mtlabar3::DataRequire::requireHairMaskAdditionCPU,0x56b718,ldrb+ubfx,0x000004 (this+4 bit 6),register,Extract bit 6 for hair mask CPU requirement
+libarkernel3.so,mtlabar3::DataRequire::requireHairMaskAdditionGPU,0x56b724,ldrb+lsr,0x000004 (this+4 bit 7),register,Extract bit 7 for hair mask GPU requirement
