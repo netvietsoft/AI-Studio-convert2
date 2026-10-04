@@ -19,7 +19,7 @@ from .constants import (
     TASK_ID, TASK_DOC_ID, TASK_MODIFIED_TIME, GITHUB_RUN_ID,
     JOB_ID, RUNNER_IDENTITY, DISPATCH_COMMAND_ID, BASELINE_COMMIT_SHA,
     DISPATCH_COMMIT_SHA, ANTI_DUPLICATE_KEY, REPORT_DRIVE_FOLDER_ID,
-    PACKAGE_ZIP_NAME, PACKAGE_SHA_NAME
+    PACKAGE_ZIP_NAME, PACKAGE_SHA_NAME, DISPATCHER_RUN_ID, EXECUTION_LANE
 )
 
 def compute_sha256(path: Path) -> str:
@@ -101,9 +101,14 @@ Tuân thủ Điều 2 của TASK_054:
 | `last_completed_task_doc_id` | `1pyTUdJZDlxhEGWGSq_mjxlBAtlohSHGeerSADm5vT7E` | **`{TASK_DOC_ID}`** |
 | `last_completed_task_modified_time` | `2026-10-04T23:11:32.152000+07:00` | **`{TASK_MODIFIED_TIME}`** |
 | `dispatch_command_id` | `TASK_052A_CONTINUE_STATIC_IMAGE_ALGORITHM_...` | **`{DISPATCH_COMMAND_ID}`** |
-| `dispatch_commit_sha` | `04bd58f27b1c835e3d8e9e5566abee44ed16222b` | **`{DISPATCH_COMMIT_SHA}`** (40 ký tự) |
-| `baseline_commit_sha` | `04bd58f27b1c835e3d8e9e5566abee44ed16222b` | **`{BASELINE_COMMIT_SHA}`** (40 ký tự) |
+| `dispatch_commit_sha` | `04bd58f27b1c835e3d8e9e5566abee44ed16222b` | **`{DISPATCH_COMMIT_SHA}`** (40 ký tự chuẩn mực) |
+| `baseline_commit_sha` | `04bd58f27b1c835e3d8e9e5566abee44ed16222b` | **`{BASELINE_COMMIT_SHA}`** (40 ký tự chuẩn mực) |
 | `github_run_id` | `37210153111` | **`{GITHUB_RUN_ID}`** (GitHub Actions run thực tế) |
+| `actions_run_id` | `37210153111` | **`{GITHUB_RUN_ID}`** (GitHub Actions run thực tế) |
+| `dispatcher_run_id` | `37242297847` | **`{DISPATCHER_RUN_ID}`** (GitHub Actions dispatcher run) |
+| `job_id` | `111461926133` | **`{JOB_ID}`** (GitHub Actions job thực tế) |
+| `runner_identity` | `CONVERT2-WINDOWS-02` | **`{RUNNER_IDENTITY}`** |
+| `execution_lane` | `so45-continuous-static-image-algorithm` | **`{EXECUTION_LANE}`** |
 | `anti_duplicate_key` | `TASK_052A_SO45_CONTINUOUS_STATIC_IMAGE_ALGORITHM_ACTIVE:...` | **`{ANTI_DUPLICATE_KEY}`** |
 | `last_report_folder` | `.ai/reports/TASK_053_TASK052A_WORKFLOW_PROVENANCE_CORRECTION` | **`.ai/reports/TASK_054_TASK053_EXECUTION_IDENTITY_STATE_AND_CONTINUOUS_SO45_CORRECTION`** |
 | `report_package_zip` | `CONVERT2_TASK053_REPORT_PACKAGE.zip` | **`{PACKAGE_ZIP_NAME}`** |
@@ -324,14 +329,14 @@ Nhiệm vụ `TASK_054` được ban hành nhằm mục đích:
     state_data["last_report_folder"] = ".ai/reports/TASK_054_TASK053_EXECUTION_IDENTITY_STATE_AND_CONTINUOUS_SO45_CORRECTION"
     state_data["last_scan_time"] = now_iso
 
-    state_data["task_lifecycle"]["TASK_054_DISPATCHED"] = "2026-10-05T05:58:00+07:00"
-    state_data["task_lifecycle"]["TASK_054_EXECUTING"] = "2026-10-05T05:58:30+07:00"
+    state_data["task_lifecycle"]["TASK_054_DISPATCHED"] = "2026-10-05T06:18:54+07:00"
+    state_data["task_lifecycle"]["TASK_054_EXECUTING"] = "2026-10-05T06:36:47+07:00"
     state_data["task_lifecycle"]["TASK_054_COMPLETED"] = now_iso
     state_data["task_lifecycle"]["TASK_054_STATUS"] = "REVIEW_CANDIDATE"
 
     # Provenance clean-up
     prov = state_data.setdefault("provenance", {})
-    prov["execution_lane"] = "so45-continuous-static-image-algorithm"
+    prov["execution_lane"] = EXECUTION_LANE
     prov["runner_identity"] = RUNNER_IDENTITY
     prov["dispatch_command_id"] = DISPATCH_COMMAND_ID
     prov["dispatch_commit_sha"] = DISPATCH_COMMIT_SHA
@@ -340,7 +345,7 @@ Nhiệm vụ `TASK_054` được ban hành nhằm mục đích:
     prov["anti_duplicate_key"] = ANTI_DUPLICATE_KEY
     prov["github_run_id"] = GITHUB_RUN_ID
     prov["actions_run_id"] = GITHUB_RUN_ID
-    prov["dispatcher_run_id"] = GITHUB_RUN_ID
+    prov["dispatcher_run_id"] = DISPATCHER_RUN_ID
     prov["job_id"] = JOB_ID
     prov["task_054_doc_id"] = TASK_DOC_ID
     prov["task_054_package_zip"] = PACKAGE_ZIP_NAME
@@ -348,4 +353,32 @@ Nhiệm vụ `TASK_054` được ban hành nhằm mục đích:
 
     STATE_FILE.write_text(json.dumps(state_data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Updated {STATE_FILE} successfully.")
+
+    # 7. Update .ai/state/tasks/TASK_054_...json
+    task_state_path = REPO_ROOT / ".ai" / "state" / "tasks" / f"{TASK_ID}.json"
+    task_state_data = {
+        "command_id": DISPATCH_COMMAND_ID,
+        "status": "COMPLETED",
+        "reservation_token": "424c2a79388e404cb334e4dff43a16f8",
+        "dispatcher_run_id": DISPATCHER_RUN_ID,
+        "reserved_at": "2026-10-04T23:18:54.697068+00:00",
+        "updated_at": now_iso,
+        "runner_identity": f"GITHUB_ACTIONS_{GITHUB_RUN_ID}",
+        "leased_at": "2026-10-05T06:36:47.621408+07:00",
+        "lease_expires_at": "2026-10-05T07:06:47.621408+07:00",
+        "dispatch_commit_sha": DISPATCH_COMMIT_SHA,
+        "baseline_commit_sha": BASELINE_COMMIT_SHA,
+        "target_commit_sha": BASELINE_COMMIT_SHA,
+        "github_run_id": GITHUB_RUN_ID,
+        "workflow_url": f"https://github.com/netvietsoft/AI-Studio-convert2/actions/runs/{GITHUB_RUN_ID}",
+        "started_at": "2026-10-05T06:36:47.992077+07:00",
+        "completed_at": now_iso,
+        "report_folder": ".ai/reports/TASK_054_TASK053_EXECUTION_IDENTITY_STATE_AND_CONTINUOUS_SO45_CORRECTION",
+        "package_zip": PACKAGE_ZIP_NAME,
+        "evidence_manifest_sha256": pkg_sha,
+        "verdict": "REVIEW_CANDIDATE"
+    }
+    task_state_path.write_text(json.dumps(task_state_data, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"Updated {task_state_path} successfully.")
+
     return pkg_sha

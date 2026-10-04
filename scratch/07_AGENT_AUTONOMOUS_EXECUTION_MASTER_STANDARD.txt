@@ -1,0 +1,1340 @@
+﻿CONVERT2 — AGENT AUTONOMOUS EXECUTION MASTER STANDARD
+Version: 1.0
+Status: CANONICAL / MANDATORY
+Authority: Chủ tịch Tony
+Scope: All Agents / Orchestrators / Supervisors
+Priority: Supersedes any older supplemental rule about "ask before starting", "stop after report", or manual task activation.
+
+
+CANONICAL LOCATIONS
+
+
+TASK DRIVE:
+https://drive.google.com/drive/u/0/folders/1T9_2fbCGa-q8N6kOZ69WAztLlGmJu60h
+
+
+REPORT DRIVE:
+https://drive.google.com/drive/u/0/folders/13xDIqiI-vyP10pkypLI_6palmeJS-QRg
+
+
+GIT REPOSITORY:
+https://github.com/netvietsoft/AI-Studio-convert2
+
+
+
+
+======================================================================
+I. CORE OPERATING MODEL
+======================================================================
+
+
+Agent hoạt động theo mô hình:
+
+
+TASK SCANNER
+→ ACTIVE TASK
+→ PREFLIGHT
+→ EXECUTE
+→ TEST / VALIDATE
+→ COMMIT + PUSH nếu có code
+→ REPORT
+→ RETURN TO TASK SCANNER
+→ NEXT ACTIVE TASK
+
+
+Không hoạt động theo mô hình:
+
+
+ONE TASK
+→ REPORT
+→ EXIT
+
+
+Quy tắc cốt lõi:
+
+
+TASK COMPLETE != AGENT COMPLETE.
+
+
+STOP CURRENT TASK != STOP AGENT.
+
+
+REPORT SUBMITTED != WORKFLOW FINISHED.
+
+
+
+
+======================================================================
+II. ACTIVE TASK = EXECUTION AUTHORIZATION
+======================================================================
+
+
+Khi một Task có:
+
+
+STATUS: ACTIVE
+
+
+thì Agent phải hiểu rằng Chủ tịch Tony đã cấp quyền triển khai Task đó trong đúng phạm vi được mô tả.
+
+
+STATUS=ACTIVE chính là EXECUTION AUTHORIZATION.
+
+
+Agent KHÔNG được hỏi lại:
+
+
+- "Có cho phép triển khai không?"
+- "Xin xác nhận để bắt đầu."
+- "Tôi đã đọc xong, có thể làm không?"
+- "Có muốn tôi tiếp tục không?"
+- "Tôi có nên thực hiện bước tiếp theo không?"
+- "Cho phép tôi commit/push/build/test không?"
+
+
+Nếu những hành động đó đã nằm trong scope của Task ACTIVE:
+
+
+=> EXECUTE DIRECTLY.
+
+
+
+
+======================================================================
+III. PREFLIGHT KHÔNG PHẢI LÀ XIN PHÉP
+======================================================================
+
+
+Trước khi làm, Agent phải tự kiểm tra:
+
+
+- Task ID
+- STATUS
+- priority
+- assignee
+- scope
+- allowed files
+- forbidden files
+- dependencies
+- acceptance gates
+- evidence requirements
+- allowed final verdicts
+- stop condition
+- repository URL
+- branch/worktree
+- git status
+- base commit
+- locks/lease nếu áp dụng
+- frozen modules
+- governing docs/specs
+
+
+Nếu preflight PASS:
+
+
+=> BẮT ĐẦU THỰC THI NGAY.
+
+
+Không quay lại hỏi Tony để xin phép bắt đầu.
+
+
+
+
+======================================================================
+IV. AUTONOMOUS TASK SCANNER
+======================================================================
+
+
+Agent phải tự quét Task Drive.
+
+
+Không cần Tony nhắn:
+
+
+- "có task mới"
+- "đọc task"
+- "làm tiếp đi"
+- "quét thư mục đi"
+
+
+Mỗi lần scan:
+
+
+1. Liệt kê các file/folder trong Task Drive.
+2. Bỏ qua:
+   - LEGACY_*
+   - SUPERSEDED_*
+   - ARCHIVED_*
+3. Tìm TASK_* và CONFIRM_*.
+4. Đọc STATUS.
+5. Chỉ nhận Task có STATUS=ACTIVE.
+6. Kiểm tra dependency / assignee / priority / modified time.
+7. Chọn Task hợp lệ chưa hoàn thành ở revision hiện tại.
+8. Preflight và thực thi ngay.
+
+
+
+
+======================================================================
+V. PERSISTENT LOOP
+======================================================================
+
+
+Vòng lặp chuẩn:
+
+
+BOOT
+↓
+READ CANONICAL RULES
+↓
+TASK_SCANNER
+↓
+SCAN TASK DRIVE
+↓
+ACTIVE TASK FOUND?
+   ├─ YES
+   │   ↓
+   │ TASK INTAKE
+   │   ↓
+   │ PREFLIGHT
+   │   ↓
+   │ EXECUTE
+   │   ↓
+   │ TEST / VALIDATE
+   │   ↓
+   │ COMMIT + PUSH nếu có code
+   │   ↓
+   │ REPORT
+   │   ↓
+   │ SAVE COMPLETION STATE
+   │   ↓
+   │ RETURN TO TASK_SCANNER
+   │
+   └─ NO
+       ↓
+     IDLE_WAIT_FOR_TASK
+       ↓
+     WAIT
+       ↓
+     SCAN AGAIN
+
+
+
+
+======================================================================
+VI. SCAN FREQUENCY
+======================================================================
+
+
+Khi không có Task mới:
+
+
+STATE = IDLE_WAIT_FOR_TASK
+
+
+Chờ khoảng 60 giây.
+
+
+Sau đó:
+
+
+SCAN TASK DRIVE AGAIN.
+
+
+Tiếp tục:
+
+
+WAIT → SCAN → WAIT → SCAN
+
+
+Không busy-loop liên tục.
+Không spam Tony.
+Không tự tạo việc mới.
+
+
+
+
+======================================================================
+VII. ANTI-DUPLICATE / TASK STATE
+======================================================================
+
+
+Agent phải duy trì local state, ví dụ:
+
+
+.ai/state.json
+
+
+Tối thiểu lưu:
+
+
+{
+  "last_completed_task_id": "...",
+  "last_completed_task_modified_time": "...",
+  "last_report_folder": "...",
+  "last_target_commit_sha": "...",
+  "last_scan_time": "...",
+  "agent_state": "IDLE_WAIT_FOR_TASK"
+}
+
+
+Nếu:
+
+
+TASK_ID giống Task đã hoàn thành
+VÀ
+modified_time/revision không đổi
+
+
+=> SKIP_ALREADY_COMPLETED_TASK.
+
+
+Nếu:
+
+
+TASK_ID giống
+NHƯNG
+modified_time/revision mới hơn completion record
+VÀ
+STATUS vẫn ACTIVE
+
+
+=> UPDATED_TASK_REVISION
+=> đọc lại
+=> thực thi yêu cầu mới.
+
+
+
+
+======================================================================
+VIII. MULTIPLE ACTIVE TASKS
+======================================================================
+
+
+Nếu có nhiều Task ACTIVE:
+
+
+ưu tiên theo thứ tự:
+
+
+1. Task assign trực tiếp cho Agent hiện tại.
+2. PRIORITY=CRITICAL/HIGH trước NORMAL/LOW.
+3. Dependency đã thỏa.
+4. Task sequence thấp hơn nếu cùng priority.
+5. Created time sớm hơn nếu vẫn bằng nhau.
+
+
+Không chạy song song nếu xung đột:
+
+
+- file scope
+- lock
+- branch
+- dependency
+- frozen module
+
+
+Nếu có thể parallel an toàn, Orchestrator có thể phân Agent khác.
+
+
+
+
+======================================================================
+IX. NORMAL WORK = AUTO EXECUTE
+======================================================================
+
+
+Nếu Task ACTIVE cho phép, các hành động sau KHÔNG cần confirm:
+
+
+- đọc Task Drive;
+- đọc Report Drive;
+- đọc Docs;
+- đọc source code;
+- audit code;
+- tạo branch/worktree;
+- sửa file trong allowed scope;
+- tạo file trong allowed scope;
+- build;
+- unit test;
+- integration test;
+- benchmark;
+- chạy app trên thiết bị test;
+- ADB testing;
+- tạo artifact/evidence;
+- commit task branch;
+- push task branch;
+- tạo report;
+- upload report;
+- tạo manifest;
+- tạo SHA-256 freeze;
+- scan Task mới;
+- tiếp tục Task Scanner.
+
+
+Không hỏi Tony lại cho các thao tác này.
+
+
+
+
+======================================================================
+X. CONFIRMATION GATE — CHỈ HỎI KHI THỰC SỰ CẦN
+======================================================================
+
+
+Agent chỉ được yêu cầu confirmation khi hành động chưa được Task cấp quyền rõ và thuộc một trong các nhóm:
+
+
+A. PRODUCTION RELEASE
+- merge protected main/master;
+- production deploy;
+- publish Google Play;
+- release public package;
+- gửi thay đổi trực tiếp tới production users.
+
+
+B. DESTRUCTIVE ACTION
+- xóa database;
+- xóa bucket;
+- xóa production data;
+- force push;
+- rewrite published history;
+- drop/truncate production table;
+- overwrite accepted freeze/evidence.
+
+
+C. SCOPE EXPANSION
+- sửa module ngoài scope;
+- mở phase mới;
+- sửa P0/P1-P5 nếu Task chỉ cho P6;
+- refactor ngoài phạm vi Task.
+
+
+D. FROZEN COMPONENT CHANGE
+- frozen API;
+- frozen model;
+- frozen contract;
+- frozen acceptance gate;
+- frozen architecture.
+
+
+E. CREDENTIAL / ACCOUNT / PERMISSION
+- API key mới;
+- OAuth mới;
+- secret production;
+- quyền Play Console;
+- quyền server/cloud chưa được cấp.
+
+
+F. MONEY / PAID RESOURCE
+- mua API credit;
+- thuê GPU;
+- bật paid cloud;
+- nâng subscription;
+- mua service/domain.
+
+
+G. EXTERNAL COMMUNICATION
+- gửi email/ticket/message ra ngoài;
+- gửi cho khách hàng/đối tác;
+- publish tài liệu ra ngoài tổ chức.
+
+
+Nếu Task đã cấp quyền rõ cho một trong các hành động trên:
+
+
+=> không hỏi lại.
+
+
+
+
+======================================================================
+XI. KHÔNG DÙNG CONFIRM CHO QUYẾT ĐỊNH KỸ THUẬT THÔNG THƯỜNG
+======================================================================
+
+
+Nếu chỉ phân vân giữa nhiều implementation hợp lệ trong scope:
+
+
+Agent tự chọn dựa trên:
+
+
+1. existing architecture;
+2. least invasive change;
+3. backward compatibility;
+4. testability;
+5. performance;
+6. maintainability;
+7. rollback safety.
+
+
+Không hỏi Tony cho các quyết định kỹ thuật vi mô.
+
+
+
+
+======================================================================
+XII. CONFIRMATION PHẢI ĐI QUA TASK WORKFLOW
+======================================================================
+
+
+Không để Tony phải ngồi gõ lại lệnh kỹ thuật dài.
+
+
+Khi Agent gặp việc cần approval:
+
+
+Agent KHÔNG tự sửa Task Drive.
+
+
+Agent phải ghi vào Report:
+
+
+CONFIRMATION_REQUIRED
+
+
+ACTION:
+<hành động cụ thể>
+
+
+WHY:
+<tại sao cần>
+
+
+CURRENT_AUTHORIZATION:
+<scope hiện tại>
+
+
+REQUESTED_EXPANSION:
+<quyền/phạm vi cần thêm>
+
+
+RISK_IF_APPROVED:
+<rủi ro>
+
+
+IMPACT_IF_NOT_APPROVED:
+<ảnh hưởng>
+
+
+RECOMMENDED_OPTION:
+<phương án đề xuất>
+
+
+WAITING_FOR:
+TONY_APPROVAL
+
+
+
+
+======================================================================
+XIII. CONFIRMATION TASK
+======================================================================
+
+
+Sau khi Report có CONFIRMATION_REQUIRED:
+
+
+Tony/System Audit sẽ tạo trong Task Drive:
+
+
+CONFIRM_<TASK_ID>_<SEQ>
+
+
+Ví dụ:
+
+
+CONFIRM_010_01
+
+
+STATUS:
+WAITING_TONY_APPROVAL
+
+
+Tony chỉ cần phản hồi ngắn:
+
+
+OK
+DUYỆT
+KHÔNG
+TỪ CHỐI
+
+
+Sau khi Tony approve, Confirmation Task được cập nhật thành:
+
+
+STATUS: APPROVED / ACTIVE
+AUTHORIZATION_GRANTED: TRUE
+
+
+và ghi rõ:
+
+
+APPROVED_BY: Tony
+ACTION:
+AUTHORIZED_SCOPE:
+TARGET_COMMIT nếu có
+PRODUCTION_DEPLOY:
+MAIN_MERGE:
+DESTRUCTIVE_PERMISSION:
+EXPIRY hoặc CONDITIONS nếu có
+
+
+Agent Task Scanner tự phát hiện authorization này và tiếp tục.
+
+
+Không hỏi lại cùng authorization lần nữa.
+
+
+
+
+======================================================================
+XIV. MỖI BLOCKER CHỈ HỎI MỘT LẦN
+======================================================================
+
+
+Không hỏi Tony từng bước nhỏ.
+
+
+Nếu một blocker cần nhiều quyền liên quan:
+
+
+gom thành một Confirmation Request duy nhất.
+
+
+Sai:
+
+
+Confirm bước 1?
+Confirm bước 2?
+Confirm bước 3?
+
+
+Đúng:
+
+
+Một CONFIRMATION_REQUIRED
+liệt kê đầy đủ phạm vi cần duyệt.
+
+
+
+
+======================================================================
+XV. AUTHORIZATION STATE
+======================================================================
+
+
+Khi Tony đã duyệt:
+
+
+Agent lưu authorization vào state.
+
+
+Ví dụ:
+
+
+{
+  "authorization": {
+    "task_id": "TASK_010",
+    "scope": "P6 Vulkan backend",
+    "allow_commit": true,
+    "allow_push_task_branch": true,
+    "allow_main_merge": false,
+    "allow_production_deploy": false,
+    "allow_destructive": false
+  }
+}
+
+
+Mục tiêu:
+
+
+không hỏi lại quyền đã cấp.
+
+
+
+
+======================================================================
+XVI. STOP SEMANTICS
+======================================================================
+
+
+Từ giờ mọi STOP trong Task mặc định có nghĩa:
+
+
+STOP CURRENT TASK SCOPE.
+
+
+Sau STOP:
+
+
+1. dừng chỉnh sửa Task hiện tại;
+2. commit/push nếu Task yêu cầu và trạng thái cho phép;
+3. nộp report/evidence;
+4. lưu completion state;
+5. quay về Task Scanner.
+
+
+STOP không có nghĩa terminate Agent.
+
+
+Chỉ kết thúc toàn bộ Agent khi Task ghi rõ:
+
+
+END_AGENT_SESSION = TRUE
+
+
+
+
+======================================================================
+XVII. REPORT HANDOFF
+======================================================================
+
+
+Khi hoàn thành Task:
+
+
+IMPLEMENT
+→ BUILD
+→ TEST
+→ VALIDATE
+→ COMMIT
+→ PUSH
+→ REPORT
+→ VERIFY REPORT PACKAGE
+→ SAVE COMPLETION STATE
+→ RETURN TO TASK SCANNER
+
+
+Report không phải điểm kết thúc.
+
+
+
+
+======================================================================
+XVIII. GIT SOURCE OF TRUTH
+======================================================================
+
+
+Nếu Task thay đổi source:
+
+
+Agent phải:
+
+
+- commit;
+- push;
+- ghi branch;
+- base_commit_sha;
+- parent_sha;
+- target_commit_sha;
+- changed_files;
+- build/test status.
+
+
+Không được report:
+
+
+"đã sửa code"
+
+
+nếu code chỉ nằm ở working tree local.
+
+
+Nếu chưa push:
+
+
+CODE_AUDIT_BLOCKED_MISSING_COMMIT
+
+
+
+
+======================================================================
+XIX. SOURCE / EVIDENCE PRIORITY
+======================================================================
+
+
+Khi audit, thứ tự ưu tiên:
+
+
+1. Declared Git commit/source
+2. Raw runtime/test evidence
+3. Raw CSV/benchmark/parity
+4. Manifest/freeze
+5. Tester/Reviewer report
+6. Master/Executive report
+
+
+Nếu prose report mâu thuẫn code/raw evidence:
+
+
+CODE/RAW EVIDENCE WINS.
+
+
+
+
+======================================================================
+XX. WAITING STATE
+======================================================================
+
+
+Nếu không có Task ACTIVE:
+
+
+STATE = IDLE_WAIT_FOR_TASK
+
+
+Agent không được:
+
+
+- tự tạo việc;
+- tự mở phase;
+- tự refactor;
+- tự sửa code;
+- tự bật P7;
+- tự suy đoán Task tiếp theo.
+
+
+Agent chỉ:
+
+
+WAIT
+→ SCAN
+→ WAIT
+→ SCAN
+
+
+
+
+======================================================================
+XXI. ALLOWED AGENT STATES
+======================================================================
+
+
+BOOTING
+SCANNING_TASKS
+TASK_PREFLIGHT
+TASK_EXECUTING
+TESTING
+REPORTING
+RETURNING_TO_SCANNER
+IDLE_WAIT_FOR_TASK
+CONFIRMATION_REQUIRED
+BLOCKED_REQUIRES_TONY_DECISION
+
+
+Không được chuyển sang FINISHED chỉ vì một Task đã hoàn thành.
+
+
+
+
+======================================================================
+XXII. FAILURE STATES
+======================================================================
+
+
+Nếu Agent đọc Task ACTIVE xong nhưng hỏi lại có được triển khai không:
+
+
+UNNECESSARY_RECONFIRMATION
+
+
+Nếu Agent report xong rồi dừng hẳn, không quay lại scanner:
+
+
+WORKFLOW_FAILURE_TASK_SCANNER_NOT_RESUMED
+
+
+Nếu report claim code change nhưng chưa commit/push:
+
+
+CODE_AUDIT_BLOCKED_MISSING_COMMIT
+
+
+Nếu Agent muốn vượt scope:
+
+
+BLOCKED_SCOPE_EXPANSION_REQUIRES_TONY_CONFIRMATION
+
+
+Nếu thiếu quyền/credential:
+
+
+BLOCKED_MISSING_AUTHORIZATION_OR_CREDENTIAL
+
+
+
+
+======================================================================
+XXIII. EXECUTION ALGORITHM
+======================================================================
+
+
+while AGENT_ENABLED:
+
+
+    tasks = scan(TASK_DRIVE)
+
+
+    task = select_active_uncompleted_task(tasks)
+
+
+    if task exists:
+
+
+        read(task)
+
+
+        preflight(task)
+
+
+        if preflight_pass:
+
+
+            execute(task)
+
+
+            test(task)
+
+
+            validate(task)
+
+
+            if source_changed:
+                commit()
+                push()
+
+
+            submit_report()
+
+
+            save_completion_state()
+
+
+            continue
+
+
+    else:
+
+
+        state = IDLE_WAIT_FOR_TASK
+
+
+        wait(60 seconds)
+
+
+        continue
+
+
+
+
+======================================================================
+XXIV. CONFIRMATION ALGORITHM
+======================================================================
+
+
+Before asking Tony:
+
+
+IF action is explicitly authorized by ACTIVE Task:
+    EXECUTE
+
+
+ELSE IF action is normal implementation inside Task scope:
+    EXECUTE
+
+
+ELSE IF action is reversible and low-risk inside Task scope:
+    EXECUTE
+
+
+ELSE IF action expands scope:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE IF action changes frozen component:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE IF action is destructive:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE IF action affects production:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE IF action incurs new cost:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE IF action requires new credential/permission:
+    CREATE CONFIRMATION_REQUIRED IN REPORT
+
+
+ELSE:
+    choose safest reasonable implementation
+    document decision
+    EXECUTE
+
+
+
+
+======================================================================
+XXV. FINAL DIRECTIVE
+======================================================================
+
+
+Agent phải luôn nhớ:
+
+
+ACTIVE TASK = AUTHORIZED WITHIN DECLARED SCOPE.
+
+
+NORMAL WORK = AUTO EXECUTE.
+
+
+HIGH-IMPACT / OUT-OF-SCOPE = CONFIRM THROUGH TASK WORKFLOW.
+
+
+TASK COMPLETE = REPORT + RETURN TO SCANNER.
+
+
+STOP TASK != STOP AGENT.
+
+
+REPORT SUBMITTED != WORKFLOW FINISHED.
+
+
+Vòng vận hành duy nhất:
+
+
+SCAN
+→ EXECUTE
+→ REPORT
+→ SCAN
+→ EXECUTE
+→ REPORT
+→ SCAN...
+
+
+cho tới khi Chủ tịch Tony hoặc hệ thống phát hành:
+
+
+END_AGENT_SESSION = TRUE
+
+
+
+
+======================================================================
+XXVI. LONG-RUN PROJECT MODE — 3-MINUTE TASK SCAN & ESCALATION
+======================================================================
+
+
+Authority: Chủ tịch Tony
+Status: MANDATORY
+
+
+1. LONG-RUN MODE
+Dự án này được coi là LONG-RUN PROJECT.
+Agent/Orchestrator phải duy trì vòng làm việc liên tục trong thời gian dài, không dừng sau một Task.
+
+
+2. TASK SCAN CADENCE
+Khi không có Task ACTIVE mới:
+- STATE = IDLE_WAIT_FOR_TASK
+- chờ 3 phút
+- quét lại Task Drive
+- lặp liên tục
+
+
+Chu kỳ chuẩn:
+WAIT 3 MINUTES -> SCAN TASK DRIVE -> SELECT ACTIVE TASK -> EXECUTE -> REPORT -> RETURN TO SCANNER
+
+
+3. AUTO-DECISION DEFAULT
+Agent phải tự quyết định tất cả việc nằm trong:
+- Task ACTIVE;
+- scope đã cấp;
+- kiến trúc hiện hành;
+- quyền truy cập sẵn có;
+- thao tác reversible/low-risk;
+- implementation detail;
+- build/test/benchmark;
+- commit/push task branch;
+- report/evidence.
+
+
+Không hỏi Tony cho các việc trên.
+
+
+4. ESCALATION TO TONY
+Chỉ hỏi Tony khi Agent/System thực sự không thể tự quyết an toàn, gồm:
+- mâu thuẫn authorization;
+- cần mở rộng scope;
+- sửa frozen component;
+- destructive action;
+- production release/deploy chưa được duyệt;
+- phát sinh chi phí mới;
+- cần credential/account permission mới;
+- external publish/send;
+- nhiều lựa chọn có tác động kinh doanh/sản phẩm mà Task không xác định;
+- blocker không thể giải quyết bằng code/docs/report hiện có.
+
+
+5. ESCALATION FORMAT
+Khi cần Tony quyết:
+CONFIRMATION_REQUIRED
+DECISION_NEEDED:
+OPTIONS:
+RECOMMENDED_OPTION:
+WHY:
+RISK:
+IMPACT:
+WAITING_FOR: TONY_DECISION
+
+
+Tony chỉ cần trả lời ngắn: OK / DUYỆT / KHÔNG / CHỌN A-B-C.
+
+
+6. NO IDLE TERMINATION
+Không có Task mới không có nghĩa kết thúc.
+Agent giữ trạng thái IDLE_WAIT_FOR_TASK và tiếp tục scan 3 phút/lần.
+
+
+7. PROJECT CONTINUITY
+Mỗi vòng phải bảo toàn:
+- task state;
+- report state;
+- target commit SHA;
+- completion record;
+- pending confirmations;
+- next scan time.
+
+
+8. FINAL LONG-RUN LOOP
+SCAN
+-> EXECUTE
+-> REPORT
+-> SCAN
+-> EXECUTE
+-> REPORT
+-> ...
+Chỉ dừng toàn bộ khi có:
+END_AGENT_SESSION = TRU
+
+
+9. PHYSICAL DEVICE VISUAL EVIDENCE & STORAGE HYGIENE
+
+
+9.1. VISUAL EVIDENCE GATE — BẮT BUỘC
+Khi Task có kiểm thử UI, ảnh, video frame, rendering, camera, editor hoặc output trực quan trên thiết bị vật lý:
+- Agent phải test trên thiết bị thật khi Task yêu cầu physical-device evidence.
+- Agent phải chụp screenshot/frame bằng ADB hoặc cơ chế capture thực tế, không dựng ảnh giả để làm bằng chứng.
+- Ảnh tạm được lưu theo cấu trúc:
+  .ai/evidence/visual/<TASK_ID>/<run_id>/
+- Mỗi artifact phải có metadata tối thiểu:
+  task_id, run_id, commit_sha, device, adb_serial, screen_or_feature, test_case, expected_result, captured_at, sha256.
+- Agent phải upload evidence cần audit lên canonical Report Drive. Git chỉ lưu manifest, metadata, hash và các ảnh final/selective khi thật sự cần; KHÔNG commit hàng loạt screenshot/raw frame vào Git vì xóa file sau đó vẫn làm phình Git history.
+- Khi evidence đã upload xong, Agent phải phát:
+  CONVERT2_EVENT_V1
+  type: VISUAL_REVIEW_READY
+  kèm task_id, head_sha, run_id và đường dẫn artifact/manifest.
+- Visual PASS không được tự tuyên bố chỉ dựa trên Agent thực thi. Phải qua Visual AI Auditor/Reviewer độc lập khi Task hoặc gate yêu cầu.
+
+
+9.2. VISUAL REVIEW
+Auditor kiểm tra tối thiểu:
+- đúng màn hình/chức năng/test case;
+- layout, text, icon, clipping, overflow, alignment;
+- thay đổi đúng vùng yêu cầu;
+- không lem sang vùng cấm;
+- preservation của vùng không chỉnh sửa;
+- artifact, biến dạng, texture, naturalness;
+- provenance khớp commit/run/device;
+- ảnh đủ rõ để audit.
+Verdict:
+VISUAL_PASS
+VISUAL_NEEDS_FIX
+VISUAL_BLOCKED_EVIDENCE_MISSING
+
+
+9.3. CLEANUP SAU KHI UPLOAD/REPORT — BẮT BUỘC
+Mục tiêu: không để screenshot/raw frame làm đầy bộ nhớ điện thoại hoặc máy build.
+
+
+Sau khi:
+1. artifact đã upload thành công lên canonical Report Drive;
+2. SHA-256/manifest đã được ghi nhận;
+3. report/checkpoint tương ứng đã được tạo;
+Agent phải xóa bản tạm khỏi:
+- thiết bị Android (/sdcard/... hoặc thư mục capture tạm);
+- workspace local (.ai/evidence/visual/... raw/temp);
+- thư mục temp của runner nếu còn bản sao.
+
+
+Không được xóa trước khi xác minh upload thành công và artifact remote có thể truy cập.
+
+
+Sau cleanup phải ghi log:
+VISUAL_EVIDENCE_CLEANUP
+task_id
+run_id
+remote_artifact_count
+local_deleted_count
+device_deleted_count
+cleanup_status
+
+
+9.4. RETENTION
+- Canonical Report Drive giữ bằng chứng final/selective cần cho audit và traceability.
+- Ảnh trùng lặp, burst frame, intermediate/raw không cần thiết phải được loại bỏ sau khi report đã chốt.
+- Git ưu tiên lưu text evidence, manifest, hash, report; chỉ giữ ảnh có giá trị lâu dài hoặc được Task yêu cầu.
+- Nếu cần giữ nhiều visual evidence, ưu tiên nén/archive theo Task thay vì commit rải rác hàng nghìn file.
+- Không được coi việc xóa local copy là mất evidence nếu remote canonical đã được xác minh và manifest/hash còn đầy đủ.
+
+
+9.5. FAILURE SAFETY
+Nếu upload lỗi, checksum mismatch, Report Drive không truy cập được hoặc manifest chưa hoàn tất:
+STATUS = VISUAL_EVIDENCE_CLEANUP_BLOCKED
+và KHÔNG được xóa bản local/device cuối cùng cho tới khi có ít nhất một bản canonical hợp lệ.
+
+
+
+
+10. DURABLE MEMORY / CRASH-RECOVERY — MANDATORY
+
+
+10.1 EVERY TASK MUST RELOAD PROJECT MEMORY
+Before planning, code, test or report for EVERY Task, Agent MUST read:
+- ./Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt
+- ./AGENTS.md
+- ./Docs/rules.md
+- ./PROJECT_ERROR.md
+- ./ACQUIREMENTS.md
+- ./PROJECT_MEMORY.md if present
+- ./TASK_LOG.md if present
+- ./.ai/state.json
+- 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD
+- current canonical ACTIVE Task.
+
+
+Agent must not rely on conversation/session memory as the only memory source.
+
+
+10.2 DURABLE MEMORY FILES
+.ai/state.json stores: current_task_id, current phase/step, last_successful_step, last verified commit SHA, report/evidence path, pending_steps, blockers, next_safe_action, last_checkpoint_at, pending_push if network is unavailable.
+PROJECT_MEMORY.md stores current operational project context.
+TASK_LOG.md stores chronological task progress.
+PROJECT_ERROR.md stores reusable errors, root cause, failed attempts to avoid, verified resolution, evidence and prevention.
+ACQUIREMENTS.md stores reusable verified knowledge, when to use/not use, evidence, limits and links.
+
+
+10.3 CHECKPOINTS
+Agent MUST persist a checkpoint:
+- after each meaningful milestone;
+- after discovering a new error/root cause;
+- after verifying a fix;
+- before a long build/test/wait;
+- before task/branch/worktree switch;
+- before final report/handoff.
+Checkpoint updates .ai/state.json and TASK_LOG.md first. When Git/network is available and source/evidence/memory changed materially, commit and push. If network is unavailable, record pending_push=true and retry later.
+
+
+10.4 END-OF-TASK MEMORY HANDOFF
+Before COMPLETED/PASS/NEEDS_FIX/BLOCKED, Agent MUST:
+1. review/update PROJECT_ERROR.md or record NOT_APPLICABLE with reason;
+2. review/update ACQUIREMENTS.md or record NOT_APPLICABLE with reason;
+3. update PROJECT_MEMORY.md;
+4. update TASK_LOG.md;
+5. update .ai/state.json with terminal/current state and next_safe_action;
+6. add MEMORY_HANDOFF to the report with task_id, verdict, last verified commit, completed work, remaining work, blockers, ERR-ID/ACQ-ID, evidence locations, next safe action and restart instructions;
+7. commit/push durable-memory changes when Git/network is available;
+8. submit required report/evidence to canonical Report Drive;
+9. only then emit REPORT_READY/CHECKPOINT_READY.
+
+
+10.5 RESTART / POWER OR NETWORK LOSS RECOVERY
+After power loss, network loss, runner/IDE/CLI restart, machine reboot or model/session replacement:
+- do not trust old conversation context;
+- reload the full set in 10.1;
+- inspect .ai/state.json, PROJECT_MEMORY.md, TASK_LOG.md, latest pushed commit and working tree;
+- read PROJECT_ERROR.md before retrying a known failure;
+- read ACQUIREMENTS.md before choosing an implementation approach;
+- resume from the last VERIFIED durable checkpoint;
+- do not repeat a recorded failed attempt unless new evidence justifies it;
+- reconcile local newer state with remote state before overwriting.
+
+
+10.6 HARD MEMORY GATE
+If durable state, pending work, next action, error/knowledge review or recovery instructions are missing:
+STATUS = MEMORY_HANDOFF_INCOMPLETE
+and Agent MUST NOT claim final PASS/DONE.
+E
+
+
+
+
+======================================================================
+XXV. TASK CREATION MUST DISPATCH COMMAND BUS — MANDATORY
+======================================================================
+
+
+A Task document created in canonical Task Drive is NOT considered dispatched merely because STATUS=ACTIVE.
+
+
+Whenever Tony/System Audit/Watchdog creates or materially updates an ACTIVE Task, the same workflow MUST ensure the execution signal reaches the GitHub Agent Command Bus.
+
+
+Required chain:
+TASK CREATED/UPDATED IN TASK DRIVE
+→ WRITE/UPDATE COMMAND BUS INPUT (for example .ai/commands/NEXT_COMMAND or the repository's current canonical command file)
+→ COMMIT + PUSH COMMAND CHANGE
+→ VERIFY A NEW GITHUB ACTIONS / COMMAND BUS RUN WAS TRIGGERED FOR THAT Task ID/revision
+→ RECORD run_id / workflow URL / dispatch commit SHA
+→ only then mark TASK_DISPATCHED.
+
+
+Hard rule:
+TASK_CREATED != TASK_DISPATCHED.
+TASK_ACTIVE != ACTION_TRIGGERED.
+
+
+The Watchdog/Orchestrator MUST NOT report “Agent is running” based only on creation of a Google Drive Task.
+It may say Agent is running only after a matching GitHub Actions/Command Bus run is observed.
+
+
+If Task creation succeeds but command dispatch does not:
+STATUS = TASK_CREATED_DISPATCH_PENDING
+The Watchdog must attempt the canonical dispatch path automatically when authorized and technically available.
+If it cannot write/commit/push the command bus input, record the exact blocker and do not falsely claim execution.
+
+
+ANTI-DUPLICATE:
+Before dispatch, compare Task ID + Task revision/hash + last dispatched command. Do not trigger duplicate runs for the same unchanged Task revision.
+A materially updated ACTIVE Task revision MUST be eligible for a new dispatch.
+
+
+MULTI-AGENT:
+For multiple independent ACTIVE Tasks, dispatch each eligible task to a distinct safe execution lane/runner when supported. Respect file locks, branch/worktree isolation, dependencies, frozen modules, and merge-conflict prevention.
+
+
+AUDIT REQUIREMENT:
+Every scan must reconcile three states separately:
+1. TASK_CREATED — exists in Task Drive.
+2. TASK_DISPATCHED — matching command commit/action run exists.
+3. TASK_EXECUTING/COMPLETED — runtime/report evidence exists.
+A mismatch is a process defect requiring correction.
+
+
+
+
+======================================================================
+XXVI. PHONE-ONLY OPERATION / NO MANUAL SHELL DEPENDENCY — MANDATORY
+======================================================================
+Tony may be operating only from a phone and MUST NOT be required to open PowerShell/CMD/IDE for routine authorized task dispatch.
+When an ACTIVE Task exists and the Watchdog/Orchestrator/Runner path is available, the system MUST perform the dispatch chain automatically: create/update task -> create canonical command -> commit/push -> trigger GitHub Actions -> verify matching run -> execute Agent -> report/handoff.
+The Auditor must not ask Tony to copy/paste shell commands merely to start, retry, or continue a routine authorized Task when the automation path can perform the same action.
+Manual intervention may be requested only for a genuine physical or account-level blocker that automation cannot perform, such as runner machine powered off, runner service stopped with no remote recovery path, device physically disconnected when physical testing is mandatory, new credentials/secret approval, destructive action, payment/cost approval, or external publication/release approval.
+If automatic dispatch fails, the system must first attempt self-heal/retry and record the exact blocker. User intervention is the final fallback, not the normal workflow.
+A Task is not considered running until a matching Command Bus/GitHub Actions execution is observed.
