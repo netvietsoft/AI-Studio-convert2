@@ -1560,3 +1560,45 @@ unning: 0).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
 
+
+
+---
+
+### [2026-10-04 12:25:00 +07:00] HOÀN TẤT TASK_039 — CONVERT WORKSPACE SOURCE TREE DISCOVERY & CLASSIFICATION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY_20261004T103500+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY_CLASSIFICATION_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Gốc quét thẩm quyền (Authoritative Scan Root):** `F:\CONVERT` (Toàn bộ cây thư mục gốc ổ đĩa theo Chỉ thị Hiệu chỉnh Phạm vi của Chủ tịch)
+- **Hiệu chỉnh phạm vi:** Sửa đổi triệt để phạm vi hẹp ban đầu (vốn chỉ quét `F:\CONVERT\com.mt.mtxx.mtxx`) thành toàn bộ `F:\CONVERT`, phân loại chi tiết 24 ứng viên và 11 văn bản pháp quy gốc.
+- **Luồng thực thi (Execution Lane):** `workspace-source-discovery`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-02` / `GITHUB_ACTIONS_37178649576`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — PHYSICAL RUNNER FULL F:\CONVERT ROOT ENUMERATION COMPLETE`**
+- **Nội dung điều tra & Kết quả giải đáp 6 câu hỏi Done Condition:**
+  1. **Số lượng thư mục ứng viên:** Khám phá, kiểm kê và phân loại chính xác **24 thư mục ứng viên** cùng **11 văn bản gốc** trên toàn bộ `F:\CONVERT` (gồm 4 dự án tái dựng Android, 1 dự án mã nguồn C++ gốc, 4 cây mã nguồn Java dịch ngược, 2 cây Smali, 4 trích xuất nhị phân native, 2 output thiết kế lại, 5 kho tài nguyên/ảnh mẫu, 1 bản sao lưu, 2 thư mục công cụ/báo cáo).
+  2. **Thư mục "Mã nguồn khác" Chủ tịch đề cập:**
+     - *Mục tiêu Meitu Reborn:* `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT\apps\android` — Dự án tiền nhiệm 26 module Android (`mtxx-reborn`) chứa **884 file Kotlin**, **274 file C/C++**, **28 file build Gradle KTS** và **50 file C++ engine** trong `core/native-bridge/src/main/cpp` (gồm hệ sinh thái `hair_v2_*.cpp` và file cầu nối `jni_bridge.cpp` đồ sộ **159 KB**).
+     - *Mục tiêu Facetune:* `F:\CONVERT\com.lightricks.facetune.free\SOURCE` (và bản tái dựng `CONVERT`) được Chủ tịch chỉ định rõ trong văn bản gốc `1.txt`.
+  3. **Bản chất mã nguồn:**
+     - `CONVERT\apps\android` và Facetune `CONVERT` là **MÃ NGUỒN TÁI DỰNG CÓ THỂ CHỈNH SỬA ĐƯỢC (EDITABLE SOURCE)** theo Clean Architecture.
+     - `SOURCE\jadx_src` và Facetune `jadx_out` là **MÃ NGUỒN JAVA DỊCH NGƯỢC (DECOMPILED SOURCE)** từ APK gốc.
+     - `SOURCE\apktool_out` là **SMALI DECOMPILE** chứa bytecode và tài nguyên XML.
+     - `SOURCE\extracted_native_libs` là **NHỊ PHÂN NATIVE NGUYÊN BẢN (ELF .SO)** gồm 45 thư viện vendor.
+  4. **Các file độc nhất chưa có trong CONVERT2:**
+     - **741 file Kotlin độc nhất** thuộc 15 module tính năng chưa port trong `CONVERT\apps\android` (`videoedit`, `idphoto`, `poster`, `puzzle`, `livephoto`, `community`, `album`, `drafts`, `aiphoto`, v.v.).
+     - **32 file C++ độc nhất** trong `core/native-bridge/src/main/cpp` (`hair_v2_barrier.cpp`, `HairBeardDyeEngine.cpp`, `pbd_cloth_simulator.cpp`, `virtual_tryon_engine.cpp`, `ndk_video_decoder.cpp`, `video_timeline_compositor.cpp`, `optical_flow_tracker.cpp`, 159 KB `jni_bridge.cpp`).
+     - **1,851 file TypeScript/Node.js** trong `CONVERT\services\api`.
+     - **1,377 file Kotlin độc nhất** trong Facetune `CONVERT`.
+  5. **Bằng chứng Hair/JNI giá trị hơn thư mục SOURCE:**
+     - Đối với định nghĩa JNI và nhị phân gốc vendor: `SOURCE\jadx_src` chứa lớp gốc `MTIKABHairFilter.java` và `SOURCE\extracted_native_libs` chứa 45 file `.so` (`libMTFilterKernel.so`, `libarkernel3.so`).
+     - Đối với kiến trúc tích hợp C++ tái dựng: `CONVERT\apps\android\core\native-bridge` vượt trội với 12 module `hair_v2_*.cpp` và file `jni_bridge.cpp` 159 KB chứa 377 hàm JNI mapping.
+  6. **Lộ trình phân tích tiếp theo cho TASK_038:**
+     - *Ưu tiên 1:* `SOURCE\jadx_src\sources\com\meitu\mtimagekit\filters\specialFilters\abHairFilter\MTIKABHairFilter.java` kết hợp `libMTFilterKernel.so` và `libarkernel3.so`.
+     - *Ưu tiên 2:* `CONVERT\apps\android\core\native-bridge\src\main\cpp\jni_bridge.cpp` để chuẩn hóa bảng JNI cho CONVERT2.
+- **Hồ sơ Báo cáo Hoàn chỉnh:**
+  - Thư mục báo cáo: `.ai/reports/TASK_039_CONVERT_WORKSPACE_SOURCE_TREE_DISCOVERY/` gồm đầy đủ 10 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `09_REPORT_DRIVE_MIRROR.md`) cùng cây trích xuất `raw/`.
+  - Gói deliverables: `CONVERT2_TASK039_REPORT_PACKAGE.zip` (52,078 bytes, SHA-256: `FD0A7833F4510D098AD1B74BEC5C236F46DFBE4898A43B16D0FAF88CC3D1D4D6`).
+  - Bảng băm chữ ký: `TASK_039_EVIDENCE_MANIFEST.sha256` (SHA-256: `2294DEF21D2AF119EF68A5EEDD2CEE6C61F1239EC774251A4FE28E908ED405FF`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
