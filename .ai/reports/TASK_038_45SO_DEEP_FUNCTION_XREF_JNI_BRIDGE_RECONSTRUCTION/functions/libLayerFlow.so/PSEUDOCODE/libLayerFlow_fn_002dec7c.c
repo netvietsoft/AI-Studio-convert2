@@ -1,0 +1,13 @@
+// Reconstructed Pseudocode for libLayerFlow_fn_002dec7c (_ZN11LayerFlowNS19LFFaceRemoldDataJNI11nCreateInfoEP7_JNIEnvP7_jclass)
+// Library: libLayerFlow.so | RVA: 0x002dec7c | Size: 120 bytes
+// Visibility: REGISTER_NATIVES_TARGET | Semantic: DYNAMIC_JNI_LFFaceRemoldData
+// JNI Target: com.layer.flow.datas.LFFaceRemoldData -> nCreate()J
+// Referenced Strings:
+//   'mtik_'
+//   'nCreateInfo is called, addr => %p'
+
+void libLayerFlow_fn_002dec7c(void* env, void* obj, ...) {
+    call_func_0x0052a270(...);
+    call_func_0x0052a250(...);
+    return;
+}

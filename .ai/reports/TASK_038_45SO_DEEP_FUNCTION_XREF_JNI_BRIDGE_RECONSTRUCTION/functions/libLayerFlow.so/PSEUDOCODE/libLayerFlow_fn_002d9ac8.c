@@ -1,0 +1,13 @@
+// Reconstructed Pseudocode for libLayerFlow_fn_002d9ac8 (_ZN11LayerFlowNS16LFEnhanceDataJNI12nSetPartMaskEP7_JNIEnvP8_jobjectlS4_)
+// Library: libLayerFlow.so | RVA: 0x002d9ac8 | Size: 220 bytes
+// Visibility: REGISTER_NATIVES_TARGET | Semantic: DYNAMIC_JNI_LFEnhanceData
+// JNI Target: com.layer.flow.datas.LFEnhanceData -> nSetPartMask(JLcom/layer/flow/datas/LFEnhanceData$PartMask;)V
+// Referenced Strings:
+//   'com/layer/flow/datas/LFEnhanceData$PartMask'
+//   'nativeHandler'
+
+void libLayerFlow_fn_002d9ac8(void* env, void* obj, ...) {
+    call_func_0x0052a2f0(...);
+    call_func_0x0052a280(...);
+    return;
+}

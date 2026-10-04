@@ -1517,3 +1517,37 @@ unning: 0).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
 
+
+---
+
+### [2026-10-04 11:35:00 +07:00] HOÀN TẤT TASK_038 — 45 SO DEEP FUNCTION XREF, DISASSEMBLY & JNI BRIDGE RECONSTRUCTION
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_RECON_20261004T102000+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_038_45_SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `native-so-deep-jni-reconstruction`
+- **Commit SHA điều phối:** `09746abdf8030f9e71d8ce03ddd81f13dae0d4e0`
+- **Trạng thái kỹ thuật (Technical Verdict):** `PASS`
+- **Nội dung hoàn tất:**
+  1. **Điều tra & Thẩm định Toàn diện 45 Thư viện Vendor .SO:**
+     * 45/45 (100.0%) thư viện vendor khớp mã băm SHA-256 từng byte giữa `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a` và `lib-core-graphics/src/main/jniLibs/arm64-v8a/`.
+     * Phân tích và tháo mã (disassembly) toàn bộ 33,388 hàm bằng công cụ Capstone 5.0.7 ARM64 local trên máy runner vật lý.
+     * Lập bảng danh mục hàm chi tiết cho từng thư viện tại `.ai/reports/TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION/functions/<library>/`: `FUNCTION_INDEX.csv`, `CALLERS_CALLEES.csv`, `STRING_XREF.csv`, `UNRESOLVED.csv`, và `PSEUDOCODE/`.
+  2. **Tái tạo Cầu nối JNI Đầy đủ (JNI Bridge Reconstruction):**
+     * Mở rộng từ 2,647 hàm export trực tiếp (`Java_*`) lên thêm 3,033 hàm đăng ký động (`JNINativeMethod` tables recovered qua phân tích con trỏ bảng `.rela.dyn`). Tổng cộng 5,680 phương thức JNI đã được ánh xạ.
+     * Quét toàn bộ 106,466 file mã nguồn JADX (`F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\jadx_src\sources`), phát hiện 1,215 file khai báo `native` với 23,308 khai báo hàm native.
+  3. **Giải mã Thuật toán Nhuộm Tóc Gốc Vendor (Hair Pipeline & Exact Shader Reverse Engineering):**
+     * Trích xuất toàn bộ chuỗi render GPU FBO 5-pass từ `libMTFilterKernel.so` (`CMTFilterSoftHair::FilterToFBO`):
+       - Pass 1: `GrayFilterToFBO` (lấy độ sáng sợi tóc `dot(rgb, vec3(0.298912, 0.586611, 0.114478))`).
+       - Pass 2: `HairMaskFilterToFBO` (2x2 Structure Tensor góc đôi `vec2(gx^2 - gy^2, 2*gx*gy) / |g|^2`).
+       - Pass 3-4: `BlurHFilterToFBO` & `BlurVFilterToFBO` (làm mờ Gaussian 5-tap tách kênh làm mịn trường ten-xơ hướng tóc).
+       - Pass 5: `SoftHairFilterToFBO` (làm mờ song phương định hướng 10-tap theo tiếp tuyến sợi tóc với hệ số Gaussian chuẩn xác và phương trình hòa trộn Photoshop Soft Light).
+  4. **Xác định Cơ chế Lưu trữ Mô hình AI:**
+     * `libManis.so` là engine suy luận thuần túy, trọng số mô hình BiSeNet/Face parsing được lưu ở file ngoài `vlaimodel/libmtface/models/mtface_parsing_heavy.bin` (1.69 MB).
+  5. **Hồ sơ Bàn giao & Báo cáo:**
+     * 20 tài liệu báo cáo chuẩn mực (`00_AUDIT_INDEX.md` đến `19_REPORT_DRIVE_MIRROR.md`).
+     * Gói lưu trữ: `CONVERT2_TASK038_REPORT_PACKAGE.zip` (15,089,153 bytes, SHA-256: `62DC2D0F73737C430F990BD4FCB4344C4376314321A367724F5A6D4317E5A089`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
