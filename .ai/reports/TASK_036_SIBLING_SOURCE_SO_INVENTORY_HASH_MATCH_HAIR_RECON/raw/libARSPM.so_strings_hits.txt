@@ -1,0 +1,234 @@
+=== KEYWORD HIT COUNTS ===
+hair: 6
+matting: 0
+parsing: 0
+segment: 11
+alpha: 71
+mask: 42
+trimap: 0
+guided: 0
+bilateral: 0
+morphology: 3
+color: 225
+hsv: 0
+lab: 4
+oklab: 1
+lut: 5
+blend: 71
+composite: 2
+strand: 0
+texture: 141
+specular: 7
+orientation: 0
+ncnn: 0
+vulkan: 0
+opencv: 0
+manis: 0
+aimodel: 0
+filterkernel: 0
+pvgcolor: 0
+dye: 1
+bisenet: 0
+tensor: 0
+
+=== SAMPLE MATCHED STRINGS ===
+_Z20ARSPMSkPaintSetColorRPviiii
+_Z18ARSPMSkSvgSetColorPviiii
+_Z18ARSPMSkSvgSetColorPvS_iiii
+_Z15ARSPMSkSvgAlphaPvf
+_Z21ARSPMSkSvgStrokeColorPviiii
+_Z21ARSPMSkSvgSegmentPathPvffbf
+glActiveTexture
+glBindTexture
+glBlendColor
+glBlendEquation
+glBlendFunc
+glClearColor
+glColorMask
+glDeleteTextures
+glDepthMask
+glFramebufferTexture2D
+glGenTextures
+glIsTexture
+glStencilMask
+glStencilMaskSeparate
+$writableTexture2D
+ColorMatrix
+color.b = %s(color.b);
+dashAlpha += half(%s(x - currDash.x, d) * %s(currDash.y - x, d));dashAlpha += half(%s(x - nextDash.x, d) * %s(nextDash.y - x, d));dashAlpha += half(%s(x - prevDash.x, d) * %s(prevDash.y - x, d));dashAlpha = min(dashAlpha, 1);edgeAlpha *= dashAlpha;
+dynamicColor
+EXT_texture_filter_anisotropic
+blend_lighten
+unhandled: stop-color or stop-opacity has no value
+%s:%d: fatal error: "Unknown mask format."
+SkColorFilter_Matrix
+layout(builtin=15)in float4 sk_FragCoord;layout(builtin=17)in bool sk_Clockwise;layout(location=0,index=0,builtin=10001)out half4 sk_FragColor;layout(builtin=10008)half4 sk_LastFragColor;layout(builtin=10012)out half4 sk_SecondaryFragColor;
+textureWrite
+half4 color = half4(%s.a, %s.a, %s.a, 1);
+return color * %s.a;
+textureColor = mix(textureColor, %s, min(abs(errY), 1));
+DstTextureSampler
+color_xform
+SingleIntervalColorizer
+edgeAlpha *= saturate(0.5+test*invlen);
+colorType
+if (is_triangular_conic_curve()) {localcoord = (resolveLevel != 0) ? p01.zw: (idxInResolveLevel != 0) ? p23.xy: p01.xy;} else {float2 p0=p01.xy, p1=p01.zw, p2=p23.xy, p3=p23.zw;float w = -1;float maxResolveLevel;if (is_conic_curve()) {w = p3.x;maxResolveLevel = wangs_formula_conic_log2(PRECISION, AFFINE_MATRIX * p0,AFFINE_MATRIX * p1,AFFINE_MATRIX * p2, w);p1 *= w;p3 = p2;} else {maxResolveLevel = wangs_formula_cubic_log2(PRECISION, p0, p1, p2, p3,AFFINE_MATRIX);}if (resolveLevel > maxResolveLevel) {idxInResolveLevel = floor(ldexp_portable(idxInResolveLevel,maxResolveLevel - resolveLevel));resolveLevel = maxResolveLevel;}float fixedVertexID = floor(.5 + ldexp_portable(idxInResolveLevel, MAX_FIXED_RESOLVE_LEVEL - resolveLevel));if (0 < fixedVertexID && fixedVertexID < MAX_FIXED_SEGMENTS) {float T = fixedVertexID * (1 / MAX_FIXED_SEGMENTS);float2 ab = mix(p0, p1, T);float2 bc = mix(p1, p2, T);float2 cd = mix(p2, p3, T);float2 abc = mix(ab, bc, T);float2 bcd = mix(bc, cd, T);float2 abcd = mix(abc, bcd, T);float u = mix(1.0, w, T);float v = w + 1 - u;float uv = mix(u, v, T);localcoord = (w < 0) ?abcd:abc/uv;} else {localcoord = (fixedVertexID == 0) ? p0.xy : p3.xy;}}float2 vertexpos = AFFINE_MATRIX * localcoord + TRANSLATE;
+GL_NV_texture_barrier
+GL_IMG_texture_npot
+SkSL Color Filter
+l_coeff_specular
+SkShader_Blend
+ColorSpaceXformColorFilter
+SkTable_ColorFilter
+ColorXform
+half4 main(half4 halfColor) {float4 color = float4(halfColor);color = floor(color * 255 + 0.5) / 255;color.rgb = color.a <= 0 ? half3(0) : floor(color.rgb / color.a * 255 + 0.5) / 255;return color;}
+half4 main(half4 inColor) {half factor = 1 - inColor.a;factor = exp(-factor * factor * 4) - 0.018;return half4(factor);}
+half topAlpha = half(saturate(sk_FragCoord.y - %s.T));
+color.rgb = (%s * color.rgb);
+AAHairline
+half4 %s = half4(saturate(alpha));
+texColor
+%s = %s * texColor;
+half4 %s = texColor;
+half dcap1 = half(circleEdge.z * (%s - length(circleEdge.xy - roundCapCenters.xy)));half dcap2 = half(circleEdge.z * (%s - length(circleEdge.xy - roundCapCenters.zw)));half capAlpha = (1 - clip) * (max(dcap1, 0) + max(dcap2, 0));edgeAlpha = min(edgeAlpha + capAlpha, 1.0);
+hasColor
+MakeDeferredMaskTextureView
+glBlendColor
+GL_OES_texture_half_float_linear
+feComposite
+currentColor
+SkWorkingFormatColorFilter
+SurfaceColor
+bool GrGpu::writePixels(GrSurface *, SkIRect, GrColorType, GrColorType, const GrMipLevel *, int, bool)
+alpha *= step(0.5, edge);
+half4 color = half4(0);
+half4 textureColor = mix(%s, %s, repeatCoordWeightY);
+Could not allocate backing texture for atlas
+if (angleFromStart - x + dashParams.y >= 6.28318530718) {dashAlpha += half(%s(x - wrapDashes.z, d) * %s(wrapDashes.w - x, d));currDash.y = min(currDash.y, lastIntervalLength);if (nextDash.x >= lastIntervalLength) {nextDash.xy = half2(1000);} else {nextDash.y = min(nextDash.y, lastIntervalLength);}}
+glIsTexture
+GL_IMG_multisampled_render_to_texture
+GL_ARB_clear_texture
+GL_ARB_texture_float
+gl_texture
+specularConstant
+srcMask.fFormat == origGlyph.fMaskFormat
+texture2DRect
+textureRead
+%s:%d: fatal error: "emitOutputsForBlendState not implemented."
+half alpha = topAlpha * half(%s);
+uniform shader colorizer;uniform shader gradLayout;uniform int mirror;uniform int layoutPreservesOpacity;uniform int useFloorAbsWorkaround;half4 main(float2 coord) {half4 t = gradLayout.eval(coord);if (!bool(layoutPreservesOpacity) && t.y < 0) {return half4(0);} else {if (bool(mirror)) {half t_1 = t.x - 1;half tiled_t = t_1 - 2 * floor(t_1 * 0.5) - 1;if (bool(useFloorAbsWorkaround)) {tiled_t = clamp(tiled_t, -1, 1);}t.x = abs(tiled_t);} else {t.x = fract(t.x);}half4 outColor = colorizer.eval(t.x0);return outColor;}}
+textureDomain
+float turn = cross_length_2d(p2 - p0, p3 - p1);float combinedEdgeID = abs(edgeID) - numEdgesInJoin;if (combinedEdgeID < 0) {tan1 = tan0;if (lastControlPoint != p0) {tan0 = robust_normalize_diff(p0, lastControlPoint);}turn = cross_length_2d(tan0, tan1);}float cosTheta = cosine_between_unit_vectors(tan0, tan1);float rotation = acos(cosTheta);if (turn < 0) {rotation = -rotation;}float numRadialSegments;float strokeOutset = sign(edgeID);if (combinedEdgeID < 0) {numRadialSegments = numEdgesInJoin - 2;numParametricSegments = 1;p3 = p2 = p1 = p0;combinedEdgeID += numRadialSegments + 1; float sinEpsilon = 1e-2;bool tangentsNearlyParallel =(abs(turn) * inversesqrt(dot(tan0, tan0) * dot(tan1, tan1))) < sinEpsilon;if (!tangentsNearlyParallel || dot(tan0, tan1) < 0) {if (combinedEdgeID >= 0) {strokeOutset = (turn < 0) ? min(strokeOutset, 0) : max(strokeOutset, 0);}}combinedEdgeID = max(combinedEdgeID, 0);} else {float maxCombinedSegments = NUM_TOTAL_EDGES - numEdgesInJoin - 1;numRadialSegments = max(ceil(abs(rotation) * NUM_RADIAL_SEGMENTS_PER_RADIAN), 1);numRadialSegments = min(numRadialSegments, maxCombinedSegments);numParametricSegments = min(numParametricSegments,maxCombinedSegments - numRadialSegments + 1);}float radsPerSegment = rotation / numRadialSegments;float numCombinedSegments = numParametricSegments + numRadialSegments - 1;bool isFinalEdge = (combinedEdgeID >= numCombinedSegments);if (combinedEdgeID > numCombinedSegments) {strokeOutset = 0;}
+GL_EXT_clear_texture
+GL_ARB_texture_filter_anisotropic
+SkMatrixConvolutionImageFilterImpl
+$pure $genType radians($genType);$pure $genHType radians($genHType);$pure $genType degrees($genType);$pure $genHType degrees($genHType);$pure $genType sin($genType);$pure $genHType sin($genHType);$pure $genType cos($genType);$pure $genHType cos($genHType);$pure $genType tan($genType);$pure $genHType tan($genHType);$pure $genType asin($genType);$pure $genHType asin($genHType);$pure $genType acos($genType);$pure $genHType acos($genHType);$pure $genType atan($genType,$genType);$pure $genHType atan($genHType,$genHType);$pure $genType atan($genType);$pure $genHType atan($genHType);$es3 $pure $genType sinh($genType);$es3 $pure $genHType sinh($genHType);$es3 $pure $genType cosh($genType);$es3 $pure $genHType cosh($genHType);$es3 $pure $genType tanh($genType);$es3 $pure $genHType tanh($genHType);$es3 $pure $genType asinh($genType);$es3 $pure $genHType asinh($genHType);$es3 $pure $genType acosh($genType);$es3 $pure $genHType acosh($genHType);$es3 $pure $genType atanh($genType);$es3 $pure $genHType atanh($genHType);$pure $genType pow($genType,$genType);$pure $genHType pow($genHType,$genHType);$pure $genType exp($genType);$pure $genHType exp($genHType);$pure $genType log($genType);$pure $genHType log($genHType);$pure $genType exp2($genType);$pure $genHType exp2($genHType);$pure $genType log2($genType);$pure $genHType log2($genHType);$pure $genType sqrt($genType);$pure $genHType sqrt($genHType);$pure $genType inversesqrt($genType);$pure $genHType inversesqrt($genHType);$pure $genType abs($genType);$pure $genHType abs($genHType);$pure $genType sign($genType);$pure $genHType sign($genHType);$pure $genType floor($genType);$pure $genHType floor($genHType);$pure $genType ceil($genType);$pure $genHType ceil($genHType);$pure $genType fract($genType);$pure $genHType fract($genHType);$pure $genType mod($genType,float);$pure $genType mod($genType,$genType);$pure $genHType mod($genHType,half);$pure $genHType mod($genHType,$genHType);$pure $genType min($genType,$genType);$pure $genType min($genType,float);$pure $genHType min($genHType,$genHType);$pure $genHType min($genHType,half);$pure $genType max($genType,$genType);$pure $genType max($genType,float);$pure $genHType max($genHType,$genHType);$pure $genHType max($genHType,half);$pure $genType clamp($genType,$genType,$genType);$pure $genType clamp($genType,float,float);$pure $genHType clamp($genHType,$genHType,$genHType);$pure $genHType clamp($genHType,half,half);$pure $genType saturate($genType);$pure $genHType saturate($genHType);$pure $genType mix($genType,$genType,$genType);$pure $genType mix($genType,$genType,float);$pure $genHType mix($genHType,$genHType,$genHType);$pure $genHType mix($genHType,$genHType,half);$pure $genType step($genType,$genType);$pure $genType step(float,$genType);$pure $genHType step($genHType,$genHType);$pure $genHType step(half,$genHType);$pure $genType smoothstep($genType,$genType,$genType);$pure $genType smoothstep(float,float,$genType);$pure $genHType smoothstep($genHType,$genHType,$genHType);$pure $genHType smoothstep(half,half,$genHType);$es3 $pure $genIType abs($genIType);$es3 $pure $genIType sign($genIType);$es3 $pure $genIType floatBitsToInt($genType);$es3 $pure $genUType floatBitsToUint($genType);$es3 $pure $genType intBitsToFloat($genIType);$es3 $pure $genType uintBitsToFloat($genUType);$es3 $pure $genType trunc($genType);$es3 $pure $genHType trunc($genHType);$es3 $pure $genType round($genType);$es3 $pure $genHType round($genHType);$es3 $pure $genType roundEven($genType);$es3 $pure $genHType roundEven($genHType);$es3 $pure $genIType min($genIType,$genIType);$es3 $pure $genIType min($genIType,int);$es3 $pure $genUType min($genUType,$genUType);$es3 $pure $genUType min($genUType,uint);$es3 $pure $genIType max($genIType,$genIType);$es3 $pure $genIType max($genIType,int);$es3 $pure $genUType max($genUType,$genUType);$es3 $pure $genUType max($genUType,uint);$es3 $pure $genIType clamp($genIType,$genIType,$genIType);$es3 $pure $genIType clamp($genIType,int,int);$es3 $pure $genUType clamp($genUType,$genUType,$genUType);$es3 $pure $genUType clamp($genUType,uint,uint);$es3 $pure $genType mix($genType,$genType,$genBType);$es3 $pure $genHType mix($genHType,$genHType,$genBType);$es3 $pure $genBType isnan($genType);$es3 $pure $genBType isnan($genHType);$es3 $pure $genBType isinf($genType);$es3 $pure $genBType isinf($genHType);$es3 $pure $genType modf($genType,out $genType);$es3 $pure $genHType modf($genHType,out $genHType);$es3 $pure uint packUnorm2x16(float2);$es3 $pure float2 unpackUnorm2x16(uint);$pure float length($genType);$pure half length($genHType);$pure float distance($genType,$genType);$pure half distance($genHType,$genHType);$pure float dot($genType,$genType);$pure half dot($genHType,$genHType);$pure float3 cross(float3,float3);$pure half3 cross(half3,half3);$pure $genType normalize($genType);$pure $genHType normalize($genHType);$pure $genType faceforward($genType,$genType,$genType);$pure $genHType faceforward($genHType,$genHType,$genHType);$pure $genType reflect($genType,$genType);$pure $genHType reflect($genHType,$genHType);$pure $genType refract($genType,$genType,float);$pure $genHType refract($genHType,$genHType,half);$pure $squareMat matrixCompMult($squareMat,$squareMat);$pure $squareHMat matrixCompMult($squareHMat,$squareHMat);$es3 $pure $mat matrixCompMult($mat,$mat);$es3 $pure $hmat matrixCompMult($hmat,$hmat);$pure $squareMat inverse($squareMat);$pure $squareHMat inverse($squareHMat);$es3 $pure float determinant($squareMat);$es3 $pure half determinant($squareHMat);$es3 $pure $squareMat transpose($squareMat);$es3 $pure $squareHMat transpose($squareHMat);$es3 $pure float2x3 transpose(float3x2);$es3 $pure half2x3 transpose(half3x2);$es3 $pure float2x4 transpose(float4x2);$es3 $pure half2x4 transpose(half4x2);$es3 $pure float3x2 transpose(float2x3);$es3 $pure half3x2 transpose(half2x3);$es3 $pure float3x4 transpose(float4x3);$es3 $pure half3x4 transpose(half4x3);$es3 $pure float4x2 transpose(float2x4);$es3 $pure half4x2 transpose(half2x4);$es3 $pure float4x3 transpose(float3x4);$es3 $pure half4x3 transpose(half3x4);$es3 $pure $squareMat outerProduct($vec,$vec);$es3 $pure $squareHMat outerProduct($hvec,$hvec);$es3 $pure float2x3 outerProduct(float3,float2);$es3 $pure half2x3 outerProduct(half3,half2);$es3 $pure float3x2 outerProduct(float2,float3);$es3 $pure half3x2 outerProduct(half2,half3);$es3 $pure float2x4 outerProduct(float4,float2);$es3 $pure half2x4 outerProduct(half4,half2);$es3 $pure float4x2 outerProduct(float2,float4);$es3 $pure half4x2 outerProduct(half2,half4);$es3 $pure float3x4 outerProduct(float4,float3);$es3 $pure half3x4 outerProduct(half4,half3);$es3 $pure float4x3 outerProduct(float3,float4);$es3 $pure half4x3 outerProduct(half3,half4);$pure $bvec lessThan($vec,$vec);$pure $bvec lessThan($hvec,$hvec);$pure $bvec lessThan($ivec,$ivec);$pure $bvec lessThan($svec,$svec);$pure $bvec lessThanEqual($vec,$vec);$pure $bvec lessThanEqual($hvec,$hvec);$pure $bvec lessThanEqual($ivec,$ivec);$pure $bvec lessThanEqual($svec,$svec);$pure $bvec greaterThan($vec,$vec);$pure $bvec greaterThan($hvec,$hvec);$pure $bvec greaterThan($ivec,$ivec);$pure $bvec greaterThan($svec,$svec);$pure $bvec greaterThanEqual($vec,$vec);$pure $bvec greaterThanEqual($hvec,$hvec);$pure $bvec greaterThanEqual($ivec,$ivec);$pure $bvec greaterThanEqual($svec,$svec);$pure $bvec equal($vec,$vec);$pure $bvec equal($hvec,$hvec);$pure $bvec equal($ivec,$ivec);$pure $bvec equal($svec,$svec);$pure $bvec equal($bvec,$bvec);$pure $bvec notEqual($vec,$vec);$pure $bvec notEqual($hvec,$hvec);$pure $bvec notEqual($ivec,$ivec);$pure $bvec notEqual($svec,$svec);$pure $bvec notEqual($bvec,$bvec);$es3 $pure $bvec lessThan($usvec,$usvec);$es3 $pure $bvec lessThan($uvec,$uvec);$es3 $pure $bvec lessThanEqual($uvec,$uvec);$es3 $pure $bvec lessThanEqual($usvec,$usvec);$es3 $pure $bvec greaterThan($uvec,$uvec);$es3 $pure $bvec greaterThan($usvec,$usvec);$es3 $pure $bvec greaterThanEqual($uvec,$uvec);$es3 $pure $bvec greaterThanEqual($usvec,$usvec);$es3 $pure $bvec equal($uvec,$uvec);$es3 $pure $bvec equal($usvec,$usvec);$es3 $pure $bvec notEqual($uvec,$uvec);$es3 $pure $bvec notEqual($usvec,$usvec);$pure bool any($bvec);$pure bool all($bvec);$pure $bvec not($bvec);$es3 $pure $genType dFdx($genType);$es3 $pure $genType dFdy($genType);$es3 $pure $genHType dFdx($genHType);$es3 $pure $genHType dFdy($genHType);$es3 $pure $genType fwidth($genType);$es3 $pure $genHType fwidth($genHType);$pure half4 unpremul(half4 a){return half4(a.xyz/max(a.w,.0001),a.w);}$pure float4 unpremul(float4 a){return float4(a.xyz/max(a.w,.0001),a.w);}$pure half4 $unpremul_polar(half4 a){return half4(a.x,a.yz/max(a.w,.0001),a.w);}$pure half4 $rgb_to_hsl(half3 b,half d){half4 e=b.y<b.z?half4(b.zy,-1.,.6666667):half4(b.yz,0.,-.333333343);half4 f=b.x<e.x?half4(e.x,b.x,e.yw):half4(b.x,e.x,e.yz);half h=f.x;half i=h-min(f.y,f.z);half j=h-i*.5;half k=abs(f.w+(f.y-f.z)/(i*6.+.0001));half l=i/((d+.0001)-abs(j*2.-d));half m=j/(d+.0001);return half4(k,l,m,d);}$pure half3 $hsl_to_rgb(half3 a){half b=(1.-abs(2.*a.z-1.))*a.y;half3 c=a.xxx+half3(0.,.6666667,.333333343);half3 d=saturate(abs(fract(c)*6.-3.)-1.);return(d-.5)*b+a.z;}$pure half4 $hsl_to_rgb(half3 b,half c){return saturate(half4($hsl_to_rgb(b)*c,c));}$pure half3 $css_lab_to_xyz(half3 a){half3 d;d.y=(a.x+16.)*.00862069;d.x=a.y*.002+d.y;d.z=d.y-a.z*.005;half3 g=pow(d,half3(3.));half3 h=half3(g.x>.008856452?g.x:(116.*d.x-16.)*.00110705639,a.x>8.000001?g.y:a.x*.00110705639,g.z>.008856452?g.z:(116.*d.z-16.)*.00110705639);return h*half3(.9642956,1.,.825104535);}$pure half3 $a(half3 a){return half3(a.z,a.y*cos(radians(a.x)),a.y*sin(radians(a.x)));}$pure half3 $css_hcl_to_xyz(half3 a){return $css_lab_to_xyz($a(a));}$pure half3 $css_oklab_to_linear_srgb(half3 a){half b=(a.x+.396337777*a.y)+.215803757*a.z;half c=(a.x-.105561346*a.y)-.06385417*a.z;half d=(a.x-.08948418*a.y)-1.29148555*a.z;half e=(b*b)*b;half f=(c*c)*c;half g=(d*d)*d;return half3((4.0767417*e-3.3077116*f)+.230969936*g,(-1.268438*e+2.60975742*f)-.341319382*g,(-.00419608643*e-.7034186*f)+1.70761466*g);}$pure half3 $css_okhcl_to_linear_srgb(half3 a){return $css_oklab_to_linear_srgb($a(a));}$pure half3 $css_hsl_to_srgb(half3 b){b.x=mod(b.x,360.);if(b.x<0.){b.x+=360.;}b.yz*=.01;half3 c=mod(half3(0.,8.,4.)+b.x*.0333333351,12.);half d=b.y*min(b.z,1.-b.z);return b.z-d*clamp(min(c-3.,9.-c),-1.,1.);}$pure half3 $css_hwb_to_srgb(half3 a){a.yz*=.01;if(a.y+a.z>=1.){half b=a.y/(a.y+a.z);return half3(b);}half3 b=$css_hsl_to_srgb(half3(a.x,100.,50.));b*=(1.-a.y)-a.z;b+=a.y;return b;}$pure half4 $interpolated_to_rgb_unpremul(half4 a,int b,int c){if(bool(c)){switch(b){case 2:;case 3:a=unpremul(a);break;case 4:;case 5:;case 7:;case 8:a=$unpremul_polar(a);break;}}switch(b){case 2:{a.xyz=$css_lab_to_xyz(a.xyz);break;}case 3:{a.xyz=$css_oklab_to_linear_srgb(a.xyz);break;}case 4:{a.xyz=$css_hcl_to_xyz(a.xyz);break;}case 5:{a.xyz=$css_okhcl_to_linear_srgb(a.xyz);break;}case 7:{a.xyz=$css_hsl_to_srgb(a.xyz);break;}case 8:{a.xyz=$css_hwb_to_srgb(a.xyz);break;}}return a;}
+texture2D
+'layout(color)' is only permitted in runtime effects
+bool GrGpu::transferPixelsFrom(GrSurface *, SkIRect, GrColorType, GrColorType, sk_sp<GrGpuBuffer>, size_t)
+MakeColorTableEffect
+alpha = 1.0 - alpha;
+MatrixConvolution
+return textureColor;
+fsSecondaryColorOut
+color = unpremul(color);
+colorSpace
+glStencilMaskSeparate
+glFramebufferTexture2DMultisampleIMG
+glFramebufferTexture2DEXT
+void main() {sk_FragColor = sample(u_texture, v_texCoord);}
+blend_src_over
+RGB color space not permitted on grayscale PNG
+Invalid color type in IHDR
+feSpecularLighting
+luminanceToAlpha
+svg image  %d,%d  ,color type %d
+Must provide a valid alpha type if FS returns a color.
+SkRuntimeColorFilter
+SkEmbossMaskFilter
+$pure half3 toLinearSrgb(half3);$pure half3 fromLinearSrgb(half3);half4 $eval(float2,shader);half4 $eval(half4,colorFilter);half4 $eval(half4,half4,blender);
+half4 main(half4 halfColor) {float4 color = float4(halfColor);color = floor(color * 255 + 0.5) / 255;color.rgb = floor(color.rgb * color.a * 255 + 0.5) / 255;return color;}
+color.rgb *= color.a;
+alpha = 1.0 - alpha;
+half4 textureColor = %s;
+half4 %s = half4(alpha);
+IntTextureCoords
+float2 textureCoords;
+dynamicColorAttr
+GL_EXT_texture_buffer
+GL_EXT_multisampled_render_to_texture
+sk_FragColor = (sample(u_texture, v_texCoord0) + sample(u_texture, v_texCoord1) + sample(u_texture, v_texCoord2) + sample(u_texture, v_texCoord3)) * 0.25;
+GL_EXT_texture_border_clamp
+blend_porter_duff
+Unsupported mask mode: '%c'.
+lightgoldenrodyellow
+SourceAlpha
+SkTableColorFilter
+$pure $genIType mix($genIType,$genIType,$genBType);$pure $genBType mix($genBType,$genBType,$genBType);$pure $genType fma($genType,$genType,$genType);$pure $genHType fma($genHType,$genHType,$genHType);$genType frexp($genType,out $genIType);$genHType frexp($genHType,out $genIType);$pure $genType ldexp($genType,$genIType);$pure $genHType ldexp($genHType,$genIType);$pure uint packSnorm2x16(float2);$pure uint packUnorm4x8(float4);$pure uint packSnorm4x8(float4);$pure float2 unpackSnorm2x16(uint);$pure float4 unpackUnorm4x8(uint);$pure float4 unpackSnorm4x8(uint);$pure uint packHalf2x16(float2);$pure float2 unpackHalf2x16(uint);$pure $genIType bitCount($genIType);$pure $genIType bitCount($genUType);$pure $genIType findLSB($genIType);$pure $genIType findLSB($genUType);$pure $genIType findMSB($genIType);$pure $genIType findMSB($genUType);$pure sampler2D makeSampler2D(texture2D,sampler);$pure half4 sample(sampler2D,float2);$pure half4 sample(sampler2D,float3);$pure half4 sample(sampler2D,float3,float);$pure half4 sample(samplerExternalOES,float2);$pure half4 sample(samplerExternalOES,float2,float);$pure half4 sample(sampler2DRect,float2);$pure half4 sample(sampler2DRect,float3);$pure half4 sampleLod(sampler2D,float2,float);$pure half4 sampleLod(sampler2D,float3,float);$pure half4 sampleGrad(sampler2D,float2,float2,float2);$pure half4 subpassLoad(subpassInput);$pure half4 subpassLoad(subpassInputMS,int);$pure uint atomicLoad(atomicUint);void atomicStore(atomicUint,uint);uint atomicAdd(atomicUint,uint);$pure half4 blend_clear(half4 a,half4 b){return half4(0.);}$pure half4 blend_src(half4 a,half4 b){return a;}$pure half4 blend_dst(half4 a,half4 b){return b;}$pure half4 blend_src_over(half4 a,half4 b){return a+(1.-a.w)*b;}$pure half4 blend_dst_over(half4 a,half4 b){return(1.-b.w)*a+b;}$pure half4 blend_src_in(half4 a,half4 b){return a*b.w;}$pure half4 blend_dst_in(half4 a,half4 b){return b*a.w;}$pure half4 blend_src_out(half4 a,half4 b){return(1.-b.w)*a;}$pure half4 blend_dst_out(half4 a,half4 b){return(1.-a.w)*b;}$pure half4 blend_src_atop(half4 a,half4 b){return b.w*a+(1.-a.w)*b;}$pure half4 blend_dst_atop(half4 a,half4 b){return(1.-b.w)*a+a.w*b;}$pure half4 blend_xor(half4 a,half4 b){return(1.-b.w)*a+(1.-a.w)*b;}$pure half4 blend_plus(half4 a,half4 b){return min(a+b,1.);}$pure half4 blend_porter_duff(half4 a,half4 b,half4 c){half2 d=a.xy+a.zw*(half2(c.w,b.w)+min(a.zw,0.));return min(half4(1.),b*d.x+c*d.y);}$pure half4 blend_modulate(half4 a,half4 b){return a*b;}$pure half4 blend_screen(half4 a,half4 b){return a+(1.-a)*b;}$pure half $b(half2 a,half2 b){return 2.*b.x<=b.y?(2.*a.x)*b.x:a.y*b.y-(2.*(b.y-b.x))*(a.y-a.x);}$pure half4 blend_overlay(half4 a,half4 b){half4 c=half4($b(a.xw,b.xw),$b(a.yw,b.yw),$b(a.zw,b.zw),a.w+(1.-a.w)*b.w);c.xyz+=b.xyz*(1.-a.w)+a.xyz*(1.-b.w);return c;}$pure half4 blend_overlay(half c,half4 d,half4 e){return blend_overlay(bool(c)?e:d,bool(c)?d:e);}$pure half4 blend_lighten(half4 a,half4 b){half4 c=blend_src_over(a,b);c.xyz=max(c.xyz,(1.-b.w)*a.xyz+b.xyz);return c;}$pure half4 blend_darken(half c,half4 d,half4 e){half4 f=blend_src_over(d,e);half3 g=(1.-e.w)*d.xyz+e.xyz;f.xyz=c*min(f.xyz*c,g*c);return f;}$pure half4 blend_darken(half4 a,half4 b){return blend_darken(1.,a,b);}const half $kGuardedDivideEpsilon=half(sk_Caps.mustGuardDivisionEvenAfterExplicitZeroCheck?1e-08:0.);$pure inline half $c(half a,half b){return a/(b+$kGuardedDivideEpsilon);}$pure inline half3 $c(half3 a,half b){return a/(b+$kGuardedDivideEpsilon);}$pure half $d(half2 a,half2 b){if(b.x==0.){return a.x*(1.-b.y);}else{half c=a.y-a.x;if(c==0.){return(a.y*b.y+a.x*(1.-b.y))+b.x*(1.-a.y);}else{c=min(b.y,$c(b.x*a.y,c));return(c*a.y+a.x*(1.-b.y))+b.x*(1.-a.y);}}}$pure half4 blend_color_dodge(half4 a,half4 b){return half4($d(a.xw,b.xw),$d(a.yw,b.yw),$d(a.zw,b.zw),a.w+(1.-a.w)*b.w);}$pure half $e(half2 a,half2 b){if(b.y==b.x){return(a.y*b.y+a.x*(1.-b.y))+b.x*(1.-a.y);}else if(a.x==0.){return b.x*(1.-a.y);}else{half c=max(0.,b.y-$c((b.y-b.x)*a.y,a.x));return(c*a.y+a.x*(1.-b.y))+b.x*(1.-a.y);}}$pure half4 blend_color_burn(half4 a,half4 b){return half4($e(a.xw,b.xw),$e(a.yw,b.yw),$e(a.zw,b.zw),a.w+(1.-a.w)*b.w);}$pure half4 blend_hard_light(half4 a,half4 b){return blend_overlay(b,a);}$pure half $f(half2 a,half2 b){if(2.*a.x<=a.y){return($c((b.x*b.x)*(a.y-2.*a.x),b.y)+(1.-b.y)*a.x)+b.x*((-a.y+2.*a.x)+1.);}else if(4.*b.x<=b.y){half c=b.x*b.x;half e=c*b.x;half f=b.y*b.y;half g=f*b.y;return $c(((f*(a.x-b.x*((3.*a.y-6.*a.x)-1.))+((12.*b.y)*c)*(a.y-2.*a.x))-(16.*e)*(a.y-2.*a.x))-g*a.x,f);}else{return((b.x*((a.y-2.*a.x)+1.)+a.x)-sqrt(b.y*b.x)*(a.y-2.*a.x))-b.y*a.x;}}$pure half4 blend_soft_light(half4 a,half4 b){return b.w==0.?a:half4($f(a.xw,b.xw),$f(a.yw,b.yw),$f(a.zw,b.zw),a.w+(1.-a.w)*b.w);}$pure half4 blend_difference(half4 a,half4 b){return half4((a.xyz+b.xyz)-2.*min(a.xyz*b.w,b.xyz*a.w),a.w+(1.-a.w)*b.w);}$pure half4 blend_exclusion(half4 a,half4 b){return half4((b.xyz+a.xyz)-(2.*b.xyz)*a.xyz,a.w+(1.-a.w)*b.w);}$pure half4 blend_multiply(half4 a,half4 b){return half4(((1.-a.w)*b.xyz+(1.-b.w)*a.xyz)+a.xyz*b.xyz,a.w+(1.-a.w)*b.w);}$pure half $g(half3 a){return dot(half3(.3,.59,.11),a);}$pure half3 $h(half3 a,half b,half3 c){half d=$g(c);half3 e=(d-$g(a))+a;half f=min(min(e.x,e.y),e.z);half g=max(max(e.x,e.y),e.z);if(f<0.&&d!=f){e=d+(e-d)*$c(d,d-f);}if(g>b&&g!=d){e=d+$c((e-d)*(b-d),g-d);}return e;}$pure half $i(half3 a){return max(max(a.x,a.y),a.z)-min(min(a.x,a.y),a.z);}$pure half3 $j(half3 a,half3 b){half c=min(min(a.x,a.y),a.z);half d=max(max(a.x,a.y),a.z);return d>c?((a-c)*$i(b))/(d-c):half3(0.);}$pure half4 blend_hslc(half2 a,half4 b,half4 c){half d=c.w*b.w;half3 e=b.xyz*c.w;half3 f=c.xyz*b.w;half3 g=bool(a.x)?f:e;half3 h=bool(a.x)?e:f;if(bool(a.y)){g=$j(g,h);h=f;}return half4(((($h(g,d,h)+c.xyz)-f)+b.xyz)-e,(b.w+c.w)-d);}$pure half4 blend_hue(half4 a,half4 b){return blend_hslc(half2(0.,1.),a,b);}$pure half4 blend_saturation(half4 a,half4 b){return blend_hslc(half2(1.),a,b);}$pure half4 blend_color(half4 a,half4 b){return blend_hslc(half2(0.),a,b);}$pure half4 blend_luminosity(half4 a,half4 b){return blend_hslc(half2(1.,0.),a,b);}$pure float2 proj(float3 a){return a.xy/a.z;}$pure float cross_length_2d(float2 c,float2 d){return determinant(float2x2(c,d));}$pure half cross_length_2d(half2 c,half2 d){return determinant(half2x2(c,d));}$pure float2 perp(float2 a){return float2(-a.y,a.x);}$pure half2 perp(half2 a){return half2(-a.y,a.x);}$pure float coverage_bias(float a){return 1.-.5*a;}
+textureExternalOES
+readWriteTexture2D
+readonlyTexture2D
+blend_support_all_equations
+runtime_color_filter
+GaussianConvolution
+// Read color from copy of the destination
+// Read color from input attachment
+color.r = %s(color.r);
+colorSpaceTranslate
+edgeAlpha = sqrt(edgeAlpha * edgeAlpha / dot(gF, gF));
+%s%s(varyings, color);
+half4 %s = half4(half(edgeAlpha));
+float STROKE_RADIUS = dynamicStrokeAttr.x;float JOIN_TYPE = dynamicStrokeAttr.y;float NUM_RADIAL_SEGMENTS_PER_RADIAN = num_radial_segments_per_radian(%s * STROKE_RADIUS);
+glColorMask
+glFramebufferTexture2D
+glStencilMask
+GL_OES_texture_npot
+EXT_color_buffer_half_float
+OES_texture_half_float_linear
+BackgroundAlpha
+too many components in swizzle mask '
+'layout(color)' is only permitted on 'uniform' variables
+clip_mask
+ApplyPaintAlpha
+half alpha = bottomAlpha * rightAlpha * half(%s);
+DstTextureInput
+%s:%d: fatal error: "Unexpected texture type"
+half alpha = 1.0;
+half alpha = (1.0 + max(xSub, -1.0)) * (1.0 + max(ySub, -1.0));
+half alpha = (1.0 + max(xSub, -1.0));
+float numParametricSegments;if (w < 0) {if (p0 == p1 && p2 == p3) {numParametricSegments = 1;} else {numParametricSegments = wangs_formula_cubic(PRECISION, p0, p1, p2, p3, AFFINE_MATRIX);}} else {numParametricSegments = wangs_formula_conic(PRECISION,AFFINE_MATRIX * p0,AFFINE_MATRIX * p1,AFFINE_MATRIX * p2, w);}
+glTextureBarrier
+glObjectLabel
+GL_EXT_texture_rg
+OES_texture_half_float
+../../../../src/gpu/ganesh/gl/GrGLTexture.cpp
+blend_dst_out
+blend_hard_light
+blend_difference
+cannot parse segment header
+color-interpolation-filters
+void SkCanvas::drawPatch(const SkPoint *, const SkColor *, const SkPoint *, SkBlendMode, const SkPaint &)
+ClipStack_RenderSwMask
+bool GrGpu::regenerateMipMapLevels(GrTexture *)
+half4 s%d = wx.x * rowColors[0] + wx.y * rowColors[1] + wx.z * rowColors[2] + wx.w * rowColors[3];
+for (int i=0; i<%d; ++i) {    color += %s(%s, coord, %s[i]);}
+color.a = saturate(color.a);
+half leftAlpha = half(saturate(sk_FragCoord.x - %s.L));
+TextureEffect
+sk_LastFragColor
+Color
+uniform shader colorizer;uniform shader gradLayout;uniform half4 leftBorderColor;uniform half4 rightBorderColor;uniform int layoutPreservesOpacity;half4 main(float2 coord) {half4 t = gradLayout.eval(coord);half4 outColor;if (!bool(layoutPreservesOpacity) && t.y < 0) {outColor = half4(0);} else if (t.x < 0) {outColor = leftBorderColor;} else if (t.x > 1.0) {outColor = rightBorderColor;} else {outColor = colorizer.eval(t.x0);}return outColor;}
+float4 color;
+float2 tangent, strokeCoord;if (combinedEdgeID != 0 && !isFinalEdge) {float2 A, B, C = p1 - p0;float2 D = p3 - p0;if (w >= 0.0) {C *= w;B = .5*D - C;A = (w - 1.0) * D;p1 *= w;} else {float2 E = p2 - p1;B = E - C;A = fma(float2(-3), E, D);}float2 B_ = B * (numParametricSegments * 2.0);float2 C_ = C * (numParametricSegments * numParametricSegments);float lastParametricEdgeID = 0.0;float maxParametricEdgeID = min(numParametricSegments - 1.0, combinedEdgeID);float negAbsRadsPerSegment = -abs(radsPerSegment);float maxRotation0 = (1.0 + combinedEdgeID) * abs(radsPerSegment);for (int exp = %i - 1; exp >= 0; --exp) {float testParametricID = lastParametricEdgeID + exp2(float(exp));if (testParametricID <= maxParametricEdgeID) {float2 testTan = fma(float2(testParametricID), A, B_);testTan = fma(float2(testParametricID), testTan, C_);float cosRotation = dot(normalize(testTan), tan0);float maxRotation = fma(testParametricID, negAbsRadsPerSegment, maxRotation0);maxRotation = min(maxRotation, PI);if (cosRotation >= cos(maxRotation)) {lastParametricEdgeID = testParametricID;}}}float parametricT = lastParametricEdgeID / numParametricSegments;float lastRadialEdgeID = combinedEdgeID - lastParametricEdgeID;float angle0 = acos(clamp(tan0.x, -1.0, 1.0));angle0 = tan0.y >= 0.0 ? angle0 : -angle0;float radialAngle = fma(lastRadialEdgeID, radsPerSegment, angle0);tangent = float2(cos(radialAngle), sin(radialAngle));float2 norm = float2(-tangent.y, tangent.x);float a=dot(norm,A), b_over_2=dot(norm,B), c=dot(norm,C);float discr_over_4 = max(b_over_2*b_over_2 - a*c, 0.0);float q = sqrt(discr_over_4);if (b_over_2 > 0.0) {q = -q;}q -= b_over_2;float _5qa = -.5*q*a;float2 root = (abs(fma(q,q,_5qa)) < abs(fma(a,c,_5qa))) ? float2(q,a) : float2(c,q);float radialT = (root.t != 0.0) ? root.s / root.t : 0.0;radialT = clamp(radialT, 0.0, 1.0);if (lastRadialEdgeID == 0.0) {radialT = 0.0;}float T = max(parametricT, radialT);float2 ab = unchecked_mix(p0, p1, T);float2 bc = unchecked_mix(p1, p2, T);float2 cd = unchecked_mix(p2, p3, T);float2 abc = unchecked_mix(ab, bc, T);float2 bcd = unchecked_mix(bc, cd, T);float2 abcd = unchecked_mix(abc, bcd, T);float u = unchecked_mix(1.0, w, T);float v = w + 1 - u;float uv = unchecked_mix(u, v, T);if (T != radialT) {tangent = w >= 0.0 ? robust_normalize_diff(bc*u, ab*v): robust_normalize_diff(bcd, abc);}strokeCoord = (w >= 0.0) ? abc/uv : abcd;} else {tangent = (combinedEdgeID == 0) ? tan0 : tan1;strokeCoord = (combinedEdgeID == 0) ? p0 : p3;}
+GL_ANGLE_texture_rectangle
+blend_color
+SDFMaskFilterImpl
+Could not decode alpha data.
+unhandled: flood-color or flood-opacity has no value
+flood-color
+lightColor
+layout(builtin=24)in uint3 sk_NumWorkgroups;layout(builtin=26)in uint3 sk_WorkgroupID;layout(builtin=27)in uint3 sk_LocalInvocationID;layout(builtin=28)in uint3 sk_GlobalInvocationID;layout(builtin=29)in uint sk_LocalInvocationIndex;$pure half4 textureRead($readableTexture2D,uint2);void textureWrite($writableTexture2D,uint2,half4);$pure uint textureWidth($genTexture2D);$pure uint textureHeight($genTexture2D);void workgroupBarrier();void storageBarrier();
+invalid swizzle mask '
+color.rgb = saturate(sum.rgb * %s + %s);
+outputColor
+alpha *= (%s.z - fragPosShifted.x) >= -0.5 ? 1.0 : 0.0;

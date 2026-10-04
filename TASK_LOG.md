@@ -1439,3 +1439,44 @@ unning: 0).
      * Gói lưu trữ: `CONVERT2_TASK034_REPORT_PACKAGE.zip` (56,963 bytes, SHA-256: `1F5B667C00CC02E7A88F7F82AE939912108BB09666A454BA33F5EEE45EE8B688`).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
+
+
+---
+
+### [2026-10-04 09:29:00 +07:00] HOÀN TẤT TASK_036 — SIBLING SOURCE 45 SO INVENTORY, HASH MATCH & HAIR ALGORITHM RECON
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_036_SIBLING_SOURCE_SO_INVENTORY_HAIR_RECON_20261004T091500+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_036_SIBLING_SOURCE_45_SO_INVENTORY_HASH_MATCH_HAIR_ALGORITHM_RECON_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `native-so-forensics`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-02` (GitHub Actions Run `37170599066`)
+- **Trạng thái kỹ thuật (Technical Verdict):** `PASS`
+- **Nội dung hoàn tất:**
+  1. **Khảo sát Thư mục Nguồn Anh em (Sibling Source Discovery):**
+     * Xác định chính xác thư mục người dùng/Chủ tịch gọi là `"soure"`/`"source"` tại đường dẫn song song: `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a` (tương đương `../SOURCE` từ workspace gốc `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2`).
+     * Tuân thủ tuyệt đối chính sách `READ_ONLY`: không thay đổi, ghi đè hoặc xóa bất kỳ tệp tin nào trong thư mục nguồn gốc. Toàn bộ 45 tệp giữ nguyên mốc thời gian `2026-09-06 11:12:00`.
+  2. **Giải mã & Khớp mã băm 45-vs-46 (Cryptographic Hash Match & Count Reconciliation):**
+     * Thư mục anh em chứa đúng **45 tệp .so** (toàn bộ là thư viện vendor gốc trích xuất từ APK Meitu).
+     * Kho lưu trữ GitHub chứa **46 tệp .so** tại `lib-core-graphics/src/main/jniLibs/arm64-v8a/`.
+     * **Đối chiếu mã băm SHA-256:** Đúng **45/45 (100.0%)** tệp vendor đều trùng khớp từng byte (`EXACT_MATCH`) với kho GitHub.
+     * **Số lượng tệp khác mã băm:** `0` (`SAME_NAME_DIFFERENT_HASH = 0`).
+     * **Số lượng tệp chỉ có ở nguồn anh em:** `0` (`SOURCE_ONLY = 0`).
+     * **Số lượng tệp chỉ có trên GitHub:** `1` (`libomp.so`, 1,205,616 bytes, SHA-256 `6D1C680BF28C6E25DC605C915EBEB2BAFC7E835DEE000078DB9CEBC261C7F620`). Thư viện này là LLVM OpenMP runtime được kỹ sư Thuy thêm vào ở Phase P6 (commit `d971feaf8f2fcc208298912e749711a31e180550`) để hỗ trợ tính toán song song CPU đa lõi cho engine tóc, không phải thư viện vendor gốc.
+  3. **Tái dựng Thuật toán Nhuộm & Phân đoạn Tóc (Hair Algorithm Reconstruction):**
+     * Trích xuất toàn bộ bảng ký hiệu động (`llvm-nm -D`), chuỗi nhị phân (`llvm-strings`), và ánh xạ JNI từ mã dịch ngược JADX:
+       - **Lõi nhuộm tóc gốc:** `libMTFilterKernel.so` chứa lớp `MTFilterKernel::MTSoftHairFilter` và `CMTFilterSoftHair` với chuỗi render FBO tuần tự: `GrayFilterToFBO` (tách độ sáng sợi tóc), `HairMaskFilterToFBO` (nạp mặt nạ phân đoạn), `BlurHFilterToFBO`/`BlurVFilterToFBO` (làm mờ tách kênh 2 lượt làm mềm viền tóc), `SoftHairFilterToFBO`/`MTFilter_PsSoftLightr.fs` (shader hòa trộn Photoshop Soft Light kết hợp bảng tra màu LUT `u_toneLutMap`).
+       - **Lõi AR & Hiệu ứng tóc:** `libarkernel3.so` chứa `mtlabar3::MakeupHairSoftPart`, các shader `Shaders/HairSoft/MTFilter_HairSoftMix.fs`, `MTFilter_gradient.fs`, và cờ điều khiển `kFaceliftControl_FluffyHair`, `kFaceliftControl_Hairline`.
+       - **Quản lý đa tầng:** `libLayerFlow.so` điều phối `LFDenseHairModular`, giải mã cấu hình `decodeHairDyeConfig`.
+       - **Quản lý không gian màu:** `libPVGColorFunctions.so` đảm nhiệm chuyển đổi không gian màu và áp dụng ICC profiles (sRGB, Display-P3, AdobeRGB).
+       - **Suy luận nơ-ron:** `libManis.so` thực thi mạng nơ-ron phân đoạn tóc (BiSeNet) tạo mặt nạ class 17.
+       - **Cổng giao tiếp JNI:** Lớp `MTIKABHairFilter` điều khiển tham số gốc qua `nSetTraditionHairDyeIntensityAndShine(handle, intensity, shine)`, khớp chính xác với hai trục điều khiển Intensity và Gloss của CONVERT2.
+  4. **Chính sách Tải lên Git (Git Binary Upload Policy):**
+     * Do toàn bộ 45 thư viện vendor đã có sẵn trên GitHub với mã băm giống hệt, áp dụng chính sách `NO_DUPLICATE_HASH`: **không commit lại bất kỳ tệp nhị phân nào**, bảo vệ dung lượng kho lưu trữ.
+     * Commit toàn bộ 10 hồ sơ kiểm toán, bảng kên CSV, JSON, và cây trích xuất thô `raw/`.
+  5. **Hồ sơ Bàn giao Hoàn chỉnh:**
+     * Thư mục báo cáo: `.ai/reports/TASK_036_SIBLING_SOURCE_SO_INVENTORY_HASH_MATCH_HAIR_RECON/`.
+     * Gói lưu trữ: `CONVERT2_TASK036_REPORT_PACKAGE.zip` (550,590 bytes, SHA-256: `339748A211A6C18ED8D6CBAB8EC97F7C8443DB129B11501069C256CB23AE1E6A`).
+     * Toàn bộ phát hiện pháp y được chuyển giao làm dữ liệu đầu vào cho `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD`.
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS}$$

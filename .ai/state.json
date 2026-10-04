@@ -1,15 +1,15 @@
 {
   "project": "CONVERT2_HAIR_COLOR_ENGINE",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "agent_state": "IDLE_WAIT_FOR_TASK",
   "task_status": "TECHNICAL_PASS_AWAITING_OWNER_VISUAL",
   "current_task_id": null,
-  "last_completed_task_id": "TASK_034_HAIR_V2_OWNER_VISUAL_GALLERY_PUBLISH_AND_NON_BLOCKING_ORCHESTRATION_ACTIVE",
-  "last_completed_task_doc_id": "1q8eS0RZPMBohsHytMnoiAugxqoT1U_9e9_Cdq4rqpd0",
-  "last_completed_task_modified_time": "2026-10-04T00:46:25.828000+00:00",
-  "last_report_folder": ".ai/reports/TASK_034_HAIR_V2_OWNER_VISUAL_GALLERY_PUBLISH_AND_NON_BLOCKING_ORCHESTRATION",
+  "last_completed_task_id": "TASK_036_SIBLING_SOURCE_45_SO_INVENTORY_HASH_MATCH_HAIR_ALGORITHM_RECON_ACTIVE",
+  "last_completed_task_doc_id": "1S3qzamji2O-rmb-wUPNPQqwEzHEsoJk6fJ_lXIsBEUc",
+  "last_completed_task_modified_time": "2026-10-04T09:15:00+07:00",
+  "last_report_folder": ".ai/reports/TASK_036_SIBLING_SOURCE_SO_INVENTORY_HASH_MATCH_HAIR_RECON",
   "last_target_commit_sha": "b41e539ecc1e467303cfc9cdf5ac82356b54cef4",
-  "last_scan_time": "2026-10-04T07:55:00+07:00",
+  "last_scan_time": "2026-10-04T09:29:00+07:00",
   "verdict": "TECHNICAL_PASS_AWAITING_OWNER_VISUAL",
   "task_lifecycle": {
     "TASK_CREATED": "2026-10-03T11:10:00+07:00",
@@ -26,7 +26,8 @@
     "TASK_033_DISPATCHED": "2026-10-04T05:14:52+07:00",
     "TASK_033_EXECUTING": "2026-10-04T05:15:02+07:00",
     "TASK_033_COMPLETED": "2026-10-04T05:25:00+07:00",
-    "TASK_034_COMPLETED": "2026-10-04T07:55:00+07:00"
+    "TASK_034_COMPLETED": "2026-10-04T07:55:00+07:00",
+    "TASK_036_COMPLETED": "2026-10-04T09:29:00+07:00"
   },
   "provenance": {
     "execution_lane": "task032-provenance-closure",
@@ -364,5 +365,36 @@
     "technical_verdict": "PASS",
     "final_verdict": "TECHNICAL_PASS_AWAITING_OWNER_VISUAL",
     "target_commit_sha": "b41e539ecc1e467303cfc9cdf5ac82356b54cef4"
+  },
+  "task_036_summary": {
+    "task_id": "TASK_036_SIBLING_SOURCE_45_SO_INVENTORY_HASH_MATCH_HAIR_ALGORITHM_RECON_ACTIVE",
+    "command_id": "TASK_036_SIBLING_SOURCE_SO_INVENTORY_HAIR_RECON_20261004T091500+0700",
+    "objective": "Forensic audit of sibling source folder, cryptographic hash match against GitHub baseline, reconciliation of 45-vs-46 count, and extraction of Hair recolor algorithmic evidence",
+    "sibling_dir": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a",
+    "github_dir": "lib-core-graphics/src/main/jniLibs/arm64-v8a",
+    "total_libraries_analyzed": 46,
+    "sibling_so_count": 45,
+    "github_so_count": 46,
+    "exact_matches_count": 45,
+    "exact_matches_pct": 100.0,
+    "different_hash_count": 0,
+    "source_only_count": 0,
+    "github_only_count": 1,
+    "github_only_library": "libomp.so (LLVM OpenMP runtime added in P6)",
+    "discrepancy_reconciled": true,
+    "discrepancy_reason": "Original Meitu APK contained 45 vendor libraries. GitHub baseline contains 46 libraries because libomp.so was added in Phase P6 for multi-core parallel CPU compute. All 45 original vendor libraries match 100% byte-for-byte.",
+    "hair_recon_top_libraries": [
+      "libMTFilterKernel.so (Rank 5 - MTSoftHairFilter, GrayFilter, HairMask, BlurH/V, SoftHairFilter/PsSoftLight)",
+      "libarkernel3.so (Rank 5 - MakeupHairSoftPart, Hair shaders, requireHairMask CPU/GPU)",
+      "libManis.so (Rank 5 - Neural network inference engine for hair matting and BiSeNet)",
+      "libLayerFlow.so (Rank 4 - LFDenseHairModular, decodeHairDyeConfig, loadHairDyeConfig)",
+      "libPVGColorFunctions.so (Rank 4 - ICC profiles, Display-P3/sRGB gamut transcode)"
+    ],
+    "git_binary_upload_decision": "NO_BINARIES_UPLOADED (Zero duplicate hashes; all 45 vendor files already present in Git with identical SHA-256)",
+    "package_zip": "CONVERT2_TASK036_REPORT_PACKAGE.zip",
+    "package_sha256": "339748A211A6C18ED8D6CBAB8EC97F7C8443DB129B11501069C256CB23AE1E6A",
+    "report_folder": ".ai/reports/TASK_036_SIBLING_SOURCE_SO_INVENTORY_HASH_MATCH_HAIR_RECON",
+    "completed_at": "2026-10-04T09:29:00+07:00",
+    "technical_verdict": "PASS"
   }
 }
