@@ -1,0 +1,191 @@
+// Library: libMTFilterKernel.so
+// Function ID: libMTFilterKernel::0xdc874
+// Recovered Name: sub_dc874
+// Visibility: LOCAL_RECOVERED | Confidence: HIGH_CONFIDENCE
+// Address: 0xdc874 | Size: 4188 bytes | SHA256: be9bc3caf6da2a2c09b794e96a01a169b48598f3024eea126e4f69d2fa9d7dfa
+// Callers: 0 | Callees: 8 | Imports: 4
+
+// Calls external APIs: __stack_chk_fail, glClear, glClearColor, glDeleteTextures
+// Strings referenced:
+//   "/home/meitu/apollo-ws/src/MLabFilterOnline/MTFilter/FilterCore/Defocus/MTFocusFaculaBlurFilter.cpp"
+//   "BlurResult"
+//   "a_position"
+//   "a_texCoord"
+//   "blurTexture"
+
+void sub_dc874(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 1047 instructions
+    /* 0xdc874 */ str w8, [x20, #0xb4];
+    /* 0xdc878 */ nop ;
+    /* 0xdc87c */ adr x8, #0x8e7fc;
+    /* 0xdc880 */ ldr x9, [x20];
+    /* 0xdc884 */ ldr q0, [x8];
+    /* 0xdc888 */ ldur q1, [x8, #0xc];
+    /* 0xdc88c */ sub x1, x29, #0x60;
+    /* 0xdc890 */ ldr x8, [x9, #0xf8];
+    /* 0xdc894 */ add x9, sp, #0xe0;
+    /* 0xdc898 */ mov x0, x20;
+    /* 0xdc89c */ stp q1, q0, [sp, #0x40];
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageProgram12SetUniform1fEPKcfb();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer19activateFramebufferEv();
+    glClearColor();
+    glClear();
+    _ZN14MTFilterKernel15GPUImageProgram3UseEv();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageProgram12SetTexture2DEPKcj();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageContext9fetchMeshEPKfjjbPKcPvl();
+    _ZN14MTFilterKernel15GPUImageProgram7SetMeshEPKcPNS_4MeshE();
+    _ZN14MTFilterKernel15GPUImageProgram10drawArraysEjii();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    _ZN14MTFilterKernel19GPUImageFramebuffer6unlockEv();
+    glDeleteTextures();
+    return x0;
+    __stack_chk_fail();
+}

@@ -1,0 +1,190 @@
+// Library: libLayerFlow.so
+// Function ID: libLayerFlow::0x32687c
+// Recovered Name: sub_32687c
+// Visibility: LOCAL_RECOVERED | Confidence: HIGH_CONFIDENCE
+// Address: 0x32687c | Size: 4240 bytes | SHA256: e26a3e560a49567c691b1be5aa53104ac4ec10081829d926b8196150bdc731b0
+// Callers: 0 | Callees: 69 | Imports: 3
+
+// Calls external APIs: _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_, _ZdlPv, __stack_chk_fail
+// Strings referenced:
+//   "201"
+//   "203"
+//   "204"
+//   "207"
+//   "211"
+
+void sub_32687c(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 1060 instructions
+    /* 0x32687c */ ldr x8, [x21, #0x28];
+    /* 0x326880 */ ldur x9, [x29, #-8];
+    /* 0x326884 */ cmp x8, x9;
+    /* 0x326888 */ b.ne #0x327908;
+    /* 0x32688c */ mov x0, x19;
+    /* 0x326890 */ add sp, sp, #0x230;
+    /* 0x326894 */ ldp x20, x19, [sp, #0x30];
+    /* 0x326898 */ ldr x28, [sp, #0x10];
+    /* 0x32689c */ ldp x22, x21, [sp, #0x20];
+    /* 0x3268a0 */ ldp x29, x30, [sp], #0x40;
+    return x0;
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI15LFFilterModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN15LFFilterModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI13LFTextModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN13LFTextModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    sub_2fa2e8();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI13LFMarkModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN13LFMarkModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    sub_2fa2e8();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI14LFFrameModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN14LFFrameModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    sub_2fa2e8();
+    sub_2fa2e8();
+    sub_2fa2e8();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI19LFBgBeautifyModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN19LFBgBeautifyModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI13LFBlurModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN13LFBlurModularD2Ev();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI19LFSkinWhitenModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN19LFSkinWhitenModularD2Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI18LFAutoBrushModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN18LFAutoBrushModularD2Ev();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI19LFFaceRemoldModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN19LFFaceRemoldModularD2Ev();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI17LFFaceFullModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN17LFFaceFullModularD2Ev();
+    sub_2d2960();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI21LFDermabrasionModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN21LFDermabrasionModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI14LFMatteModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN14LFMatteModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI13LFAkneModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN13LFAkneModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI17LFFixTeethModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN17LFFixTeethModularD2Ev();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI18LFBodyShapeModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN18LFBodyShapeModularD2Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI21LFWrinkleCleanModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN21LFWrinkleCleanModularD2Ev();
+    sub_2d2960();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI17LFWakeSkinModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN17LFWakeSkinModularD2Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI18LFHeadScaleModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN18LFHeadScaleModularD2Ev();
+    sub_2d2960();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI17LFSlimmingModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN17LFSlimmingModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI12LFEyeModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN12LFEyeModularD2Ev();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI15LFMakeUpModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN15LFMakeUpModularD2Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI18LFDenseHairModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN18LFDenseHairModularD2Ev();
+    sub_2d2960();
+    sub_2d2960();
+    _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI23LFOneClickBeautyModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN23LFOneClickBeautyModularD1Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI18LFMakeupBagModularEEPNS_12CLFBaseLayerERKT_();
+    sub_2d2960();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI19LFAutoMosaicModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN19LFAutoMosaicModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI19LFCommonAigcModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN19LFCommonAigcModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI25LFAutoColorCorrectModularEEPNS_12CLFBaseLayerERKT_();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI17LFAutoSlimModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN17LFAutoSlimModularD2Ev();
+    sub_2d2960();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI25LFAutoWrinkleCleanModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN25LFAutoWrinkleCleanModularD2Ev();
+    sub_2bc260();
+    _ZN11LayerFlowNS12LayerFactory11createLayerI25LFAutoDermabrasionModularEEPNS_12CLFBaseLayerERKT_();
+    _ZN25LFAutoWrinkleCleanModularD2Ev();
+    _ZN17LFAutoSlimModularD2Ev();
+    _ZN19LFCommonAigcModularD2Ev();
+    _ZN19LFAutoMosaicModularD2Ev();
+    _ZN23LFOneClickBeautyModularD1Ev();
+    _ZN18LFDenseHairModularD2Ev();
+    _ZN15LFMakeUpModularD2Ev();
+    _ZN12LFEyeModularD2Ev();
+    _ZN17LFSlimmingModularD2Ev();
+    _ZN18LFHeadScaleModularD2Ev();
+    _ZN17LFWakeSkinModularD2Ev();
+    _ZN21LFWrinkleCleanModularD2Ev();
+    _ZN18LFBodyShapeModularD2Ev();
+    _ZN17LFFixTeethModularD2Ev();
+    _ZN13LFAkneModularD2Ev();
+    _ZN14LFMatteModularD2Ev();
+    _ZN21LFDermabrasionModularD2Ev();
+    _ZN17LFFaceFullModularD2Ev();
+    _ZN19LFFaceRemoldModularD2Ev();
+    _ZN19LFSkinWhitenModularD2Ev();
+    _ZN18LFAutoBrushModularD2Ev();
+    _ZN13LFBlurModularD2Ev();
+    _ZN19LFBgBeautifyModularD2Ev();
+    _ZdlPv();
+    _ZdlPv();
+    _ZN14LFFrameModularD2Ev();
+    _ZN13LFMarkModularD2Ev();
+    _ZN13LFTextModularD2Ev();
+    _ZN15LFFilterModularD2Ev();
+    _ZdlPv();
+    _ZN20LFLiveStickerModularD2Ev();
+    _ZN22LFSpecialEffectModularD2Ev();
+    _ZN19LFAutoBeautyModularD2Ev();
+    _ZN17LFCreativeModularD2Ev();
+    _ZN16LFEnhanceModularD2Ev();
+    _ZN16LFStickerModularD2Ev();
+    _ZN13LFEditModularD2Ev();
+    _ZN10ClipParamsD2Ev();
+    _ZdlPv();
+    sub_526544();
+    __stack_chk_fail();
+}

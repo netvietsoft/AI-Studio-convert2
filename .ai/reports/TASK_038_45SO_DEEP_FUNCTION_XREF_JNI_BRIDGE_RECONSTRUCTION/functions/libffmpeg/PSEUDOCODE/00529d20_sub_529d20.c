@@ -1,0 +1,193 @@
+// Library: libffmpeg.so
+// Function ID: libffmpeg::0x529d20
+// Recovered Name: sub_529d20
+// Visibility: LOCAL_RECOVERED | Confidence: HIGH_CONFIDENCE
+// Address: 0x529d20 | Size: 3736 bytes | SHA256: f6bbeb170b40559f522c184100977dc4e5ca70922325e33c336333e58ec3ed98
+// Callers: 0 | Callees: 2 | Imports: 7
+
+// Calls external APIs: free, strcasecmp, strcmp, strdup, strncmp, strtok_r, strtol
+// Strings referenced:
+//   "8x8dct"
+//   "alternative-transfer"
+//   "analyse"
+//   "annexb"
+//   "aq-mode"
+
+void sub_529d20(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 934 instructions
+    /* 0x529d20 */ ldrb w8, [x23, #2]!;
+    /* 0x529d24 */ add x1, sp, #0x34;
+    /* 0x529d28 */ mov x0, x22;
+    /* 0x529d2c */ cmp w8, #0x2d;
+    /* 0x529d30 */ cinc x23, x23, eq;
+    sub_52c6d8();
+    /* 0x529d38 */ cmp w0, #0;
+    /* 0x529d3c */ adrp x8, #0x93000;
+    /* 0x529d40 */ add x8, x8, #0xdce;
+    /* 0x529d44 */ csel x22, x24, x8, eq;
+    /* 0x529d48 */ adrp x1, #0xe6000;
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strcmp();
+    strncmp();
+    strcasecmp();
+    sub_52c6d8();
+    sub_52d1c8();
+    strcasecmp();
+    strtol();
+    strtol();
+    strdup();
+    strtok_r();
+    strtok_r();
+    strcasecmp();
+    strcasecmp();
+    strtok_r();
+    strcasecmp();
+    strtol();
+    sub_52c6d8();
+    sub_52d1c8();
+    sub_52c6d8();
+    strcasecmp();
+    strtol();
+    strtok_r();
+    free();
+}

@@ -1,0 +1,14 @@
+// Library: libarkernel3_android.so
+// Function ID: libarkernel3_android::0x983d4
+// Recovered Name: Java_com_meitu_mtlab_arkernel3_arkernel3JNI_EffectData_1pauseBGM
+// Visibility: JNI_DIRECT_EXPORT | Confidence: FACT
+// Address: 0x983d4 | Size: 8 bytes | SHA256: d143b81d15f6d0d7aee1bde651e7b2df85ce5f8ef3bb8da157d60306b6c0a76f
+// Callers: 0 | Callees: 0 | Imports: 1
+
+// Calls external APIs: _ZN8mtlabar310EffectData8pauseBGMEv
+
+jlong Java_com_meitu_mtlab_arkernel3_arkernel3JNI_EffectData_1pauseBGM(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 2 instructions
+    /* 0x983d4 */ mov x0, x2;
+    /* 0x983d8 */ b #0xa5600;
+}

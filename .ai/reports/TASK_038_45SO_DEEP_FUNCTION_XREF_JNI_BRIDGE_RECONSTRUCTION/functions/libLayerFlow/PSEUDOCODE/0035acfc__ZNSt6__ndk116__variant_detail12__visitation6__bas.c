@@ -1,0 +1,29 @@
+// Library: libLayerFlow.so
+// Function ID: libLayerFlow::0x35acfc
+// Recovered Name: _ZNSt6__ndk116__variant_detail12__visitation6__base12__dispatcherIJLm27ELm27EEE10__dispatchB8ne180000IOZNS0_6__ctorINS0_8__traitsIJ15LFOriginModular22LFIdentityPhotoModular15LFPuzzleModular20LFPuzzleFrameModular20LFPuzzleImageModular21LFPuzzleLayoutModular21LFPuzzleFusionModular21LFPuzzleSpliceModular19LFAutoBeautyModular17LFCreativeModular22LFSpecialEffectModular13LFEditModular16LFEnhanceModular16LFCompareModular19LFBgBeautifyModular15LFFilterModular16LFStickerModular20LFLiveStickerModular13LFMarkModular14LFFrameModular13LFTextModular13LFBlurModular18LFAutoBrushModular19LFSkinWhitenModular19LFSkinGlowUpModular20LFOneTapPhotoModular19LFFaceRemoldModular17LFFaceFullModular15LFMakeUpModular18LFMakeupBagModular17LFWakeSkinModular21LFDermabrasionModular14LFMatteModular13LFAkneModular17LFFixTeethModular18LFBodyShapeModular18LFHeadScaleModular21LFWrinkleCleanModular17LFSlimmingModular12LFEyeModular18LFDenseHairModular23LFOneClickBeautyModular19LFAutoMosaicModular25LFAutoColorCorrectModular17LFAutoSlimModular25LFAutoWrinkleCleanModular25LFAutoDermabrasionModular19LFAutoRemoveModular19LFCommonAigcModularEEEE19__generic_constructB8ne180000IRKNS0_18__copy_constructorIS1L_LNS0_6_TraitE1EEEEEvRS1M_OT_EUlRS1U_OT0_E_JRNS0_6__baseILS1P_1EJS8_S9_SA_SB_SC_SD_SE_SF_SG_SH_SI_SJ_SK_SL_SM_SN_SO_SP_SQ_SR_SS_ST_SU_SV_SW_SX_SY_SZ_S10_S11_S12_S13_S14_S15_S16_S17_S18_S19_S1A_S1B_S1C_S1D_S1E_S1F_S1G_S1H_S1I_S1J_S1K_EEERKS22_EEEDcS1U_DpT0_
+// Visibility: EXPORTED | Confidence: FACT
+// Address: 0x35acfc | Size: 184 bytes | SHA256: 4337c7beea71d0e6fef3894340e2254075e11539c0eb836d1dec45d14c0b896c
+// Callers: 0 | Callees: 4 | Imports: 1
+
+// Calls external APIs: _ZdlPv
+
+void _ZNSt6__ndk116__variant_detail12__visitation6__base12__dispatcherIJLm27ELm27EEE10__dispatchB8ne180000IOZNS0_6__ctorINS0_8__traitsIJ15LFOriginModular22LFIdentityPhotoModular15LFPuzzleModular20LFPuzzleFrameModular20LFPuzzleImageModular21LFPuzzleLayoutModular21LFPuzzleFusionModular21LFPuzzleSpliceModular19LFAutoBeautyModular17LFCreativeModular22LFSpecialEffectModular13LFEditModular16LFEnhanceModular16LFCompareModular19LFBgBeautifyModular15LFFilterModular16LFStickerModular20LFLiveStickerModular13LFMarkModular14LFFrameModular13LFTextModular13LFBlurModular18LFAutoBrushModular19LFSkinWhitenModular19LFSkinGlowUpModular20LFOneTapPhotoModular19LFFaceRemoldModular17LFFaceFullModular15LFMakeUpModular18LFMakeupBagModular17LFWakeSkinModular21LFDermabrasionModular14LFMatteModular13LFAkneModular17LFFixTeethModular18LFBodyShapeModular18LFHeadScaleModular21LFWrinkleCleanModular17LFSlimmingModular12LFEyeModular18LFDenseHairModular23LFOneClickBeautyModular19LFAutoMosaicModular25LFAutoColorCorrectModular17LFAutoSlimModular25LFAutoWrinkleCleanModular25LFAutoDermabrasionModular19LFAutoRemoveModular19LFCommonAigcModularEEEE19__generic_constructB8ne180000IRKNS0_18__copy_constructorIS1L_LNS0_6_TraitE1EEEEEvRS1M_OT_EUlRS1U_OT0_E_JRNS0_6__baseILS1P_1EJS8_S9_SA_SB_SC_SD_SE_SF_SG_SH_SI_SJ_SK_SL_SM_SN_SO_SP_SQ_SR_SS_ST_SU_SV_SW_SX_SY_SZ_S10_S11_S12_S13_S14_S15_S16_S17_S18_S19_S1A_S1B_S1C_S1D_S1E_S1F_S1G_S1H_S1I_S1J_S1K_EEERKS22_EEEDcS1U_DpT0_(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 46 instructions
+    /* 0x35acfc */ stp x29, x30, [sp, #-0x30]!;
+    /* 0x35ad00 */ stp x22, x21, [sp, #0x10];
+    /* 0x35ad04 */ stp x20, x19, [sp, #0x20];
+    /* 0x35ad08 */ mov x29, sp;
+    /* 0x35ad0c */ adrp x8, #0x54a000;
+    /* 0x35ad10 */ mov x20, x2;
+    /* 0x35ad14 */ mov x19, x1;
+    /* 0x35ad18 */ ldr x8, [x8, #0x958];
+    /* 0x35ad1c */ ldrb w9, [x2, #8];
+    /* 0x35ad20 */ add x8, x8, #0x10;
+    /* 0x35ad24 */ strb w9, [x1, #8];
+    sub_2bc260();
+    _ZNSt6__ndk13mapIi12FaceFullInfoNS_4lessIiEENS_9allocatorINS_4pairIKiS1_EEEEE6insertB8ne180000INS_20__map_const_iteratorINS_21__tree_const_iteratorINS_12__value_typeIiS1_EEPNS_11__tree_nodeISE_PvEElEEEEEEvT_SL_();
+    return x0;
+    sub_2de5dc();
+    _ZdlPv();
+    sub_526544();
+}

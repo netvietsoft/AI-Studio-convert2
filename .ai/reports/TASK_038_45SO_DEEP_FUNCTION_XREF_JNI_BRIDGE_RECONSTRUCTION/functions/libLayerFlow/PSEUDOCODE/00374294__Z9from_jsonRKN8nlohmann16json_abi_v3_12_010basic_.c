@@ -1,0 +1,41 @@
+// Library: libLayerFlow.so
+// Function ID: libLayerFlow::0x374294
+// Recovered Name: _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER13LFBlurModular
+// Visibility: EXPORTED | Confidence: FACT
+// Address: 0x374294 | Size: 324 bytes | SHA256: 2c93f05b57064f2250feb55bb1b4104161861010719558891fb8fc5ed9d0822f
+// Callers: 1 | Callees: 6 | Imports: 0
+
+// Strings referenced:
+//   "albumId"
+//   "angle"
+//   "blurValue"
+//   "center"
+//   "enable"
+
+void _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER13LFBlurModular(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 81 instructions
+    /* 0x374294 */ stp x29, x30, [sp, #-0x20]!;
+    /* 0x374298 */ stp x20, x19, [sp, #0x10];
+    /* 0x37429c */ mov x29, sp;
+    /* 0x3742a0 */ mov x20, x1;
+    /* 0x3742a4 */ adrp x1, #0x1ee000;
+    /* 0x3742a8 */ add x1, x1, #0xdeb;
+    /* 0x3742ac */ mov x2, x20;
+    /* 0x3742b0 */ mov x19, x0;
+    _ZN8nlohmann18extended_from_jsonIbEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    /* 0x3742b8 */ adrp x1, #0x1da000;
+    /* 0x3742bc */ add x1, x1, #0xc54;
+    _ZN8nlohmann18extended_from_jsonINSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEEEvRKNS_16json_abi_v3_12_010basic_jsonINS1_3mapENS1_6vectorES7_blmdS5_NS8_14adl_serializerENSB_IhNS5_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIlEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIlEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIlEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIbEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIdEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonINSt6__ndk16vectorIdNS1_9allocatorIdEEEEEEvRKNS_16json_abi_v3_12_010basic_jsonINS1_3mapES2_NS1_12basic_stringIcNS1_11char_traitsIcEENS3_IcEEEEblmdS3_NS6_14adl_serializerENS2_IhNS3_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIdEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIdEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIdEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIdEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+}

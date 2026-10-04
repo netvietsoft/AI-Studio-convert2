@@ -1,0 +1,44 @@
+// Library: libLayerFlow.so
+// Function ID: libLayerFlow::0x386dd0
+// Recovered Name: _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER12WakeSkinInfo
+// Visibility: EXPORTED | Confidence: FACT
+// Address: 0x386dd0 | Size: 384 bytes | SHA256: ce845c5bddd918f6d7adc2b57979b7de13a86e4ebcb73c445480f1fecbf462c6
+// Callers: 1 | Callees: 3 | Imports: 0
+
+// Strings referenced:
+//   "aigcSkinMaterialId"
+//   "beautyGlow"
+//   "bodyConcealer"
+//   "bodyDodgeBurnAlpha"
+//   "clarity"
+
+void _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER12WakeSkinInfo(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 96 instructions
+    /* 0x386dd0 */ stp x29, x30, [sp, #-0x20]!;
+    /* 0x386dd4 */ stp x20, x19, [sp, #0x10];
+    /* 0x386dd8 */ mov x29, sp;
+    /* 0x386ddc */ mov x20, x1;
+    /* 0x386de0 */ adrp x1, #0x1d9000;
+    /* 0x386de4 */ add x1, x1, #0xd50;
+    /* 0x386de8 */ add x2, x20, #0x1c;
+    /* 0x386dec */ mov x19, x0;
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    /* 0x386df4 */ adrp x1, #0x1d9000;
+    /* 0x386df8 */ add x1, x1, #0xd5a;
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIbEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIbEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIbEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIlEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+}

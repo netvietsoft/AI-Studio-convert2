@@ -1,0 +1,776 @@
+{
+  "so_shaders": {
+    "libARKernelInterface.so": {
+      "token_hits": {
+        "precision highp": 40,
+        "precision mediump": 39,
+        "gl_FragColor": 59,
+        "gl_Position": 40,
+        "texture2D": 140,
+        "uniform sampler2D": 77,
+        "attribute vec": 76,
+        "varying vec": 103,
+        "#version": 2,
+        "SoftLight": 16,
+        "LinearLight": 2
+      },
+      "shader_block_count": 54,
+      "sample_shaders": [
+        "GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n#else\n#define highp\n#define mediump\n#define lowp\n#endif\nvarying vec2 v_srcCoord;\nvarying vec2 v_texCoord;\nuniform sampler2D s_srcTexture;\nuniform sampler2D s_resTexture;\nuniform sampler2D s_standFaceMask;\nuniform float u_alpha;\nvoid main()\n{\n    vec4 src = texture2D(s_srcTexture,v_srcCoord);\n    vec4 res = texture2D(s_resTexture,v_texCoord);\n    float maskValue = texture2D(s_standFaceMask,v_texCoord).a;\n    gl_FragColor = mix(src, vec4(res.rgb, 1.0), res.a*u_alpha*maskValue);\n}",
+        "e lowp\n    #endif\n\n    varying vec4 offsetCoord;\n\n    void main(void) {\n        vec4 endcolor = offsetCoord;\n\n    #if defined FLOATTOBYTE\n        vec2 offset = offsetCoord.xy;\n        offset.xy = offset.xy * 4.0 + 0.498;\n        float x_tmp = floor(offset.x * 255.0);\n        float y_tmp = floor(offset.y * 255.0);\n        endcolor.r = x_tmp / 255.0;\n        endcolor.g = offset.x * 255.0 - x_tmp;\n        endcolor.b = y_tmp / 255.0;\n        endcolor.a = offset.y * 255.0 - y_tmp;\n    #endif\n        gl_FragColor = endcolor;\n    }",
+        "#ifdef GL_ES\nprecision mediump float;\n#endif\n\nvoid main()\n{\n    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n}",
+        "der_framebuffer_fetch : require\n    #endif\n    #ifdef GL_ES//for discriminate GLES & GL\n    #ifdef GL_FRAGMENT_PRECISION_HIGH\n    precision highp float;\n    #else\n    precision mediump float;\n    #endif\n    #else\n    #define highp\n    #define mediump\n    #define lowp\n    #endif\n    varying vec2 v_texcoord;\n    varying vec4 v_tempPosition;\n    uniform sampler2D s_maskTexture;\n    uniform float u_brushAlpha;\n    void main()\n    {\n        vec4 maskTex = texture2D(s_maskTexture,v_texcoord);\n        gl_FragColor = vec4(maskTex.rgb, u_brushAlpha);\n    }",
+        "#ifdef GL_ES//for discriminate GLES & GL\n        #ifdef GL_FRAGMENT_PRECISION_HIGH\n        precision highp float;\n        #else\n        precision mediump float;\n        #endif\n        #else\n        #define highp\n        #define mediump\n        #define lowp\n        #endif\n        varying vec2 v_texCoord;\n        varying vec2 v_secondTexCoord;\n        uniform sampler2D u_texture;\n        uniform sampler2D u_eraserTexture;\n\n        void main(void)\n        {\n            gl_FragColor = texture2D(u_texture, v_texCoord);\n            if(gl_FragColor.a < 0.01)\n                gl_FragColor.rgb *= gl_FragColor.a;\n            gl_FragColor *= texture2D(u_eraserTexture, vec2(v_secondTexCoord.x, 1.0 - v_secondTexCoord.y)).a;\n        }"
+      ]
+    },
+    "libARSPM.so": {
+      "token_hits": {
+        "gl_FragColor": 1,
+        "gl_Position": 1,
+        "texture2D": 18,
+        "#version": 20
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libLayerFlow.so": {
+      "token_hits": {
+        "gl_FragColor": 2,
+        "gl_Position": 1,
+        "texture2D": 3,
+        "uniform sampler2D": 3,
+        "attribute vec": 2,
+        "varying vec": 1,
+        "hairDye": 2
+      },
+      "shader_block_count": 2,
+      "sample_shaders": [
+        "varying highp vec2 textureCoordinate;\n\n    uniform sampler2D inputTexture;\n    uniform sampler2D effectTexture;\n    uniform sampler2D maskTexture;\n    \n    uniform highp float alpha;\n\n    void main() {\n        vec4 inputColor = texture2D(inputTexture, textureCoordinate);\n        vec4 effectColor = texture2D(effectTexture, textureCoordinate);\n        vec4 maskColor = texture2D(maskTexture, textureCoordinate);\n\n        if (maskColor.r > 0.001) {\n            gl_FragColor = mix(inputColor, effectColor, effectColor.a * alpha * maskColor.r);\n        } else {\n            gl_FragColor = inputColor;\n        }\n    }",
+        "re;\n    uniform sampler2D effectTexture;\n    uniform sampler2D maskTexture;\n    \n    uniform highp float alpha;\n\n    void main() {\n        vec4 inputColor = texture2D(inputTexture, textureCoordinate);\n        vec4 effectColor = texture2D(effectTexture, textureCoordinate);\n        vec4 maskColor = texture2D(maskTexture, textureCoordinate);\n\n        if (maskColor.r > 0.001) {\n            gl_FragColor = mix(inputColor, effectColor, effectColor.a * alpha * maskColor.r);\n        } else {\n            gl_FragColor = inputColor;\n        }\n    }"
+      ]
+    },
+    "libMTFilterKernel.so": {
+      "token_hits": {
+        "precision highp": 13,
+        "precision mediump": 3,
+        "gl_FragColor": 64,
+        "gl_Position": 33,
+        "texture2D": 292,
+        "uniform sampler2D": 101,
+        "attribute vec": 69,
+        "varying vec": 105,
+        "SoftLight": 8,
+        "softHair": 37
+      },
+      "shader_block_count": 63,
+      "sample_shaders": [
+        "varying highp vec2 textureCoordinate; uniform sampler2D inputImageTexture; uniform sampler2D gradientTexture; uniform sampler2D bodyMaskTexture; uniform highp vec2 shiftingSize; void main() { highp vec2 uv = textureCoordinate; highp vec4 origColor = texture2D(inputImageTexture, uv); highp vec4 bokehColor = texture2D(gradientTexture, uv); highp vec4 hairMaskColor = texture2D(bodyMaskTexture, uv); highp vec4 mixcolor = mix(origColor,bokehColor,1. - hairMaskColor.r); gl_FragColor =vec4(mixcolor.rgb,1.0); }",
+        "uniform highp sampler2D sourceTexture; uniform bool sourceTextureSingleChannel; varying highp vec2 vTexcoord; void main() { highp vec4 color1 = texture2D(sourceTexture, vTexcoord); gl_FragColor = color1 * color1; }",
+        "uniform sampler2D inputImageTexture; uniform sampler2D inputImageTexture2; uniform lowp float degree; varying highp vec2 textureCoordinate; void main() { highp vec3 color = texture2D(inputImageTexture, textureCoordinate).rgb; highp vec3 noise = texture2D(inputImageTexture2, textureCoordinate).rgb * 0.35 - 0.18; color = max(min((color + noise * degree), vec3(1)), vec3(0)); gl_FragColor = vec4(color, 1.0); }",
+        "void main() { mediump vec3 sum = texture2D(srcImageTex, textureCoord).rgb; sum += texture2D(srcImageTex, texBlurShift1.xy).rgb; sum += texture2D(srcImageTex, texBlurShift1.zw).rgb; sum += texture2D(srcImageTex, texBlurShift2.xy).rgb; sum += texture2D(srcImageTex, texBlurShift2.zw).rgb; sum += texture2D(srcImageTex, texBlurShift3.xy).rgb; sum += texture2D(srcImageTex, texBlurShift3.zw).rgb; sum += texture2D(srcImageTex, texBlurShift4.xy).rgb; sum += texture2D(srcImageTex, texBlurShift4.zw).rgb; gl_FragColor = vec4(sum * 0.1111, 1.0); }",
+        "(color.r, color.g), color.b); float colorDiffWeight = 1.0-clamp((colorMax - colorMin-0.058)/0.132,0.0,1.0); colorWeight = 1.0-colorDiffWeight*clamp(colorMin-0.5, 0.0, 1.0)/0.5; } lowp float mask = texture2D(maskTexture, textureCoordinate).r; vec3 newColor = mix(color, overlayColor, ambianceAlpha*colorWeight); newColor = ApplySaturation(newColor); newColor = mix(newColor, clamp((newColor - vec3(levelBlack)) / (levelWhite-levelBlack), 0.0, 1.0), levelAlpha); newColor = mix(newColor, color, mask); gl_FragColor = vec4(newColor, 1.0); }"
+      ]
+    },
+    "libManis.so": {
+      "token_hits": {
+        "precision highp": 3,
+        "precision mediump": 1,
+        "gl_FragColor": 1,
+        "gl_Position": 1,
+        "texture2D": 6,
+        "uniform sampler2D": 3,
+        "attribute vec": 2,
+        "#version": 1
+      },
+      "shader_block_count": 1,
+      "sample_shaders": [
+        "varying highp vec2 vCoords;\n    uniform sampler2D uInput;\n#ifdef MASK\n    uniform sampler2D uInput1;\n#endif\n    uniform vec4 mean;\n    uniform vec4 norm;\n    uniform vec4 flag;\n\n    void main() {\n        vec4 color = texture2D(uInput, vCoords);\n    #ifdef MASK\n        color.w = texture2D(uInput1, vCoords).y;\n    #endif\n        color = mix(color, color.bgra, flag.x);\n        color = mix(color, vec4(color.r, color.r, color.r, 0), flag.y);\n        color = mix(color, vec4(color.g), flag.z);\n        gl_FragColor    = (color - mean) * norm;\n    }"
+      ]
+    },
+    "libPVGCodec.so": {
+      "token_hits": {
+        "precision mediump": 2,
+        "gl_FragColor": 2,
+        "gl_Position": 2,
+        "texture2D": 21,
+        "uniform sampler2D": 2,
+        "attribute vec": 4,
+        "varying vec": 4
+      },
+      "shader_block_count": 2,
+      "sample_shaders": [
+        "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}",
+        "precision mediump float; varying vec2 texcoordOut; uniform sampler2D texture; void main() { gl_FragColor = texture2D(texture, texcoordOut); }"
+      ]
+    },
+    "libPVGColorFunctions.so": {
+      "token_hits": {
+        "precision highp": 1,
+        "gl_FragColor": 1,
+        "gl_Position": 1,
+        "texture2D": 31,
+        "uniform sampler2D": 1,
+        "attribute vec": 2,
+        "varying vec": 2
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libPVGVideoCodec.so": {
+      "token_hits": {
+        "precision highp": 2,
+        "precision mediump": 3,
+        "gl_FragColor": 2,
+        "gl_Position": 9,
+        "texture2D": 3,
+        "uniform sampler2D": 2,
+        "attribute vec": 6,
+        "varying vec": 4,
+        "#version": 4
+      },
+      "shader_block_count": 2,
+      "sample_shaders": [
+        "#extension GL_OES_EGL_image_external : require          \nprecision mediump float;\nvarying vec2 vTexCoord;                                 \nuniform samplerExternalOES uTexture0;                   \nvoid main(){                                            \n    gl_FragColor = texture2D(uTexture0, vTexCoord);     \n}",
+        "#ifdef GL_ES\nprecision mediump float;\n#else\n#define highp\n#endif\nvarying highp vec2 vTexCoord;                           \nuniform sampler2D uTexture0;                             \nvoid main(){                                            \n    gl_FragColor = texture2D(uTexture0, vTexCoord);      \n}"
+      ]
+    },
+    "libVERenderer.so": {
+      "token_hits": {
+        "precision highp": 2,
+        "precision mediump": 4,
+        "gl_FragColor": 2,
+        "gl_Position": 3,
+        "texture2D": 90,
+        "uniform sampler2D": 1,
+        "attribute vec": 5,
+        "varying vec": 1,
+        "#version": 1
+      },
+      "shader_block_count": 2,
+      "sample_shaders": [
+        "#ifdef GL_ES\nprecision mediump float;\n#else\n#define highp\n#endif\nuniform vec4 uColor;   \nvoid main(){                                            \n    gl_FragColor = uColor;      \n}",
+        "#ifdef GL_ES\nprecision mediump float;\n#else\n#define highp\n#endif\nvarying highp vec2 vTexCoord;                           \nuniform sampler2D uTexture0;                             \nvoid main(){                                            \n    gl_FragColor = texture2D(uTexture0, vTexCoord);      \n}"
+      ]
+    },
+    "libaicodec.so": {
+      "token_hits": {
+        "precision highp": 3,
+        "precision mediump": 18,
+        "gl_FragColor": 23,
+        "gl_Position": 7,
+        "texture2D": 62,
+        "uniform sampler2D": 17,
+        "attribute vec": 8,
+        "varying vec": 9,
+        "#version": 2
+      },
+      "shader_block_count": 23,
+      "sample_shaders": [
+        "#ifdef GL_ES\nprecision mediump float;\n#else\n#define highp\n#endif\nvarying highp vec2 vTexCoord;                           \nuniform sampler2D uTexture0;                             \nvoid main(){                                            \n    vec4 color = texture2D(uTexture0, vTexCoord);      \n    gl_FragColor = color.argb;\n}",
+        ", 0.0421852507, 1.00000012, -0.011934191, -5.96046448E-8, -3.7252903E-9, 1.01193416); \n   vec4 color = texture2D(uTexture0, vTexCoord);      \n   vec3 temp;\n   temp.r = BT709EOTF(color.r);\n   temp.g = BT709EOTF(color.g);\n   temp.b = BT709EOTF(color.b);\n   temp = mTransform * temp; \n   temp.r = BT709OETF(temp.r);\n   temp.g = BT709OETF(temp.g);\n   temp.b = BT709OETF(temp.b);\n   vec4 dst; \n   dst.a = color.a; \n   dst.r = clamper(temp.r); \n   dst.g = clamper(temp.g); \n   dst.b = clamper(temp.b); \n   gl_FragColor = dst;      \n}",
+        "; \n   color.g = clamper(color.g); \n   color.b = clamper(color.b); \n   src.r = color.r; \n   src.g = color.g; \n   src.b = color.b; \n   temp.r = HLGEOTF(color.r, src); temp.g = HLGEOTF(color.g, src); temp.b = HLGEOTF(color.b, src); \n   temp = mTransform * temp; \n   temp.r = BT709OETF(clamper(temp.r)); temp.g = BT709OETF(clamper(temp.g)); temp.b = BT709OETF(clamper(temp.b)); \n   vec4 dst; \n   dst.a = color.a; \n   dst.r = clamper(temp.r); \n   dst.g = clamper(temp.g); \n   dst.b = clamper(temp.b); \n   gl_FragColor = dst;      \n}",
+        "004, -0.044043347, 0.999999881, 0.011793435, -0.000000060, 0.000000007, 0.988206565); \n   vec4 color = texture2D(uTexture0, vTexCoord);      \n   vec3 temp;\n   temp.r = BT709EOTF(color.r);\n   temp.g = BT709EOTF(color.g);\n   temp.b = BT709EOTF(color.b);\n   temp = mTransform * temp; \n   temp.r = BT709OETF(temp.r);\n   temp.g = BT709OETF(temp.g);\n   temp.b = BT709OETF(temp.b);\n   vec4 dst; \n   dst.a = color.a; \n   dst.r = clamper(temp.r); \n   dst.g = clamper(temp.g); \n   dst.b = clamper(temp.b); \n   gl_FragColor = dst;      \n}",
+        "0000, 0.000000022, 1.000000000, -0.000000015, 0.000000030, 0.000000015, 0.999999881); \n   vec4 color = texture2D(uTexture0, vTexCoord);      \n   vec3 temp;\n   temp.r = BT709EOTF(color.r);\n   temp.g = BT709EOTF(color.g);\n   temp.b = BT709EOTF(color.b);\n   temp = mTransform * temp; \n   temp.r = sRGBOETF(color.r);\n   temp.g = sRGBOETF(color.g);\n   temp.b = sRGBOETF(color.b);\n   vec4 dst; \n   dst.a = color.a; \n   dst.r = clamper(temp.r); \n   dst.g = clamper(temp.g); \n   dst.b = clamper(temp.b); \n   gl_FragColor = dst;      \n}"
+      ]
+    },
+    "libaidetectionplugin.so": {
+      "token_hits": {
+        "texture2D": 3
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libarkernel3.so": {
+      "token_hits": {
+        "precision highp": 28,
+        "precision mediump": 29,
+        "gl_FragColor": 47,
+        "gl_Position": 59,
+        "texture2D": 185,
+        "uniform sampler2D": 61,
+        "attribute vec": 58,
+        "varying vec": 83,
+        "#version": 19,
+        "SoftLight": 12,
+        "LinearLight": 2
+      },
+      "shader_block_count": 38,
+      "sample_shaders": [
+        "e lowp\n    #endif\n\n    varying vec4 offsetCoord;\n\n    void main(void) {\n        vec4 endcolor = offsetCoord;\n\n    #if defined FLOATTOBYTE\n        vec2 offset = offsetCoord.xy;\n        offset.xy = offset.xy * 4.0 + 0.498;\n        float x_tmp = floor(offset.x * 255.0);\n        float y_tmp = floor(offset.y * 255.0);\n        endcolor.r = x_tmp / 255.0;\n        endcolor.g = offset.x * 255.0 - x_tmp;\n        endcolor.b = y_tmp / 255.0;\n        endcolor.a = offset.y * 255.0 - y_tmp;\n    #endif\n        gl_FragColor = endcolor;\n    }",
+        "float weight = max(0.0, Lr - Ld);\n            weight = strength * 10.0 * weight / (weight + 10.0 * Lr);\n            offset -= (weight * weight) * move;\n        } else {\n            float weight = min(1.0, Ld / Lr);\n            weight = 1.0 - pow(weight, strength * 0.08);\n            offset -= (style * weight) * (texcoordsPos + offset - moveuser);\n        }\n    }\n    offset.x *= faceScale;\n    offset *= faceSlide;\n    float mask = texture2D(standardMask, stdUV).r * offsetAlpha;\n\n    gl_FragColor = texture2D(screenTexture, mask * offset + userUV);\n}",
+        "der_framebuffer_fetch : require\n    #endif\n    #ifdef GL_ES//for discriminate GLES & GL\n    #ifdef GL_FRAGMENT_PRECISION_HIGH\n    precision highp float;\n    #else\n    precision mediump float;\n    #endif\n    #else\n    #define highp\n    #define mediump\n    #define lowp\n    #endif\n    varying vec2 v_texcoord;\n    varying vec4 v_tempPosition;\n    uniform sampler2D s_maskTexture;\n    uniform float u_brushAlpha;\n    void main()\n    {\n        vec4 maskTex = texture2D(s_maskTexture,v_texcoord);\n        gl_FragColor = vec4(maskTex.rgb, u_brushAlpha);\n    }",
+        "#ifdef GL_ES//for discriminate GLES & GL\n        #ifdef GL_FRAGMENT_PRECISION_HIGH\n        precision highp float;\n        #else\n        precision mediump float;\n        #endif\n        #else\n        #define highp\n        #define mediump\n        #define lowp\n        #endif\n        varying vec2 v_texCoord;\n        varying vec2 v_secondTexCoord;\n        uniform sampler2D u_texture;\n        uniform sampler2D u_eraserTexture;\n\n        void main(void)\n        {\n            gl_FragColor = texture2D(u_texture, v_texCoord);\n            if(gl_FragColor.a < 0.01)\n                gl_FragColor.rgb *= gl_FragColor.a;\n            gl_FragColor *= texture2D(u_eraserTexture, vec2(v_secondTexCoord.x, 1.0 - v_secondTexCoord.y)).a;\n        }",
+        "& GL\n        #ifdef GL_FRAGMENT_PRECISION_HIGH\n        precision highp float;\n        #else\n        precision mediump float;\n        #endif\n        #else\n        #define highp\n        #define mediump\n        #define lowp\n        #endif\n        varying vec2 v_texCoord;\n        varying vec2 v_secondTexCoord;\n        uniform sampler2D u_texture;\n        uniform sampler2D u_eraserTexture;\n\n        void main(void)\n        {\n            gl_FragColor = texture2D(u_texture, v_texCoord);\n            if(gl_FragColor.a < 0.01)\n                gl_FragColor.rgb *= gl_FragColor.a;\n            gl_FragColor *= texture2D(u_eraserTexture, vec2(v_secondTexCoord.x, 1.0 - v_secondTexCoord.y)).a;\n        }"
+      ]
+    },
+    "libarkernel3_android.so": {
+      "token_hits": {
+        "texture2D": 2,
+        "SoftLight": 2,
+        "LinearLight": 1
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libarkernel3_c.so": {
+      "token_hits": {
+        "texture2D": 2
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libfantasy.so": {
+      "token_hits": {
+        "precision highp": 2,
+        "precision mediump": 2,
+        "gl_Position": 10,
+        "texture2D": 1,
+        "#version": 1
+      },
+      "shader_block_count": 0,
+      "sample_shaders": []
+    },
+    "libmfxkit.so": {
+      "token_hits": {
+        "precision highp": 4,
+        "precision mediump": 3,
+        "gl_FragColor": 34,
+        "gl_Position": 3,
+        "texture2D": 98,
+        "uniform sampler2D": 50,
+        "attribute vec": 2,
+        "varying vec": 3
+      },
+      "shader_block_count": 29,
+      "sample_shaders": [
+        "inputImageTexture, textureCoordinate + vec2(-texOffset.x, texOffset.y)).a;          \n   a3 = texture2D(inputImageTexture, textureCoordinate + vec2(0, texOffset.y)).a;                     \n   a4 = texture2D(inputImageTexture, textureCoordinate + vec2(texOffset.x, texOffset.y)).a;           \n   a1 = min(min(a1, a2), min(a3, a4));                                                                \n   c4.a = min(min_a, a1);                                                                             \n   gl_FragColor = c4;                                                                                 \n}",
+        "varying highp vec2 textureCoordinate;                          \nuniform sampler2D inputImageTexture;                           \n                                                               \nvoid main()                                                    \n{                                                              \n                                                               \n   gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);                    \n}",
+        "Coordinate + vec2(texOffset.x, 0));                       \n   c += 0.0625 * texture2D(inputImageTexture, textureCoordinate + vec2(-texOffset.x, texOffset.y));            \n   c += 0.125 * texture2D(inputImageTexture, textureCoordinate + vec2(0, texOffset.y));                       \n   c += 0.0625 * texture2D(inputImageTexture, textureCoordinate + vec2(texOffset.x, texOffset.y));             \n                                                                                                      \n   gl_FragColor = min(c, 1.0);                                                    \n}",
+        "ec2 textureCoordinate;                          \nuniform sampler2D inputImageTexture;                           \n                                                               \nvoid main()                                                    \n{                                                              \n                                                               \n   vec4 c = texture2D(inputImageTexture, textureCoordinate);   \n   vec4 c1 = vec4(c.a, c.a, c.a, c.a);                         \n   gl_FragColor = clamp(c1, 0.0, 1.0);                         \n}",
+        ") * 0.5;                                        \n   vec4 res = vec4(r, g, b, c.a);                              \n   r = dot(vec4(1.0, 0.0, 1.403, 0.0), res) - 0.7015;          \n   g = dot(vec4(1.0, -0.343, -0.714, 0.0), res) + 0.5285;      \n   b = dot(vec4(1.0, 1.770, 0.0, 0.0), res) - 0.885;           \n   res.r = r;                                                  \n   res.g = g;                                                  \n   res.b = b;                                                  \n   gl_FragColor = clamp(res, 0.0, 1.0);                        \n                                                               \n}"
+      ]
+    }
+  },
+  "hair_assets": [
+    [
+      "ARKernel3Builtin\\3XShaders\\3dLut.fs",
+      2679
+    ],
+    [
+      "ARKernel3Builtin\\3XShaders\\3dLut.vs",
+      179
+    ],
+    [
+      "ARKernel3Builtin\\BeautyResource\\LUT64.jpg",
+      30316
+    ],
+    [
+      "ARKernel3Builtin\\BeautyResource\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "ARKernel3Builtin\\Overlay\\TeethWhiteLut.png",
+      4233
+    ],
+    [
+      "ARKernel3Builtin\\Shaders\\MTFilter_HairMaskMix.fs",
+      564
+    ],
+    [
+      "ARKernel3Builtin\\Shaders\\MTFilter_HairMaskMix.vs",
+      209
+    ],
+    [
+      "ARKernel3Builtin\\Shaders\\HairSoft\\MTFilter_HairSoftMix.fs",
+      1988
+    ],
+    [
+      "ARKernel3Builtin\\Shaders\\HairSoft\\MTFilter_HairSoftMix.vs",
+      207
+    ],
+    [
+      "ARKernel3Builtin\\Shaders\\Lipstick\\MTFilter_Lipstick_Matte.fs",
+      7493
+    ],
+    [
+      "ARKernel3Builtin\\spirv\\finial_lut_map.frag.spv",
+      5928
+    ],
+    [
+      "ARKernel3Builtin\\spirv\\finial_lut_map.vert.spv",
+      652
+    ],
+    [
+      "ARKernel3Builtin\\spirv\\lut3d_to_2d.frag.spv",
+      900
+    ],
+    [
+      "ARKernel3Builtin\\spirv\\lut3d_to_2d.vert.spv",
+      652
+    ],
+    [
+      "ARKernelBuiltin\\BeautyResource\\LUT64.jpg",
+      30316
+    ],
+    [
+      "ARKernelBuiltin\\BeautyResource\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "ARKernelBuiltin\\Overlay\\TeethWhiteLut.png",
+      4233
+    ],
+    [
+      "ARKernelBuiltin\\Shaders\\MTFilter_HairMaskMix.fs",
+      559
+    ],
+    [
+      "ARKernelBuiltin\\Shaders\\MTFilter_HairMaskMix.vs",
+      210
+    ],
+    [
+      "ARKernelBuiltin\\Shaders\\HairSoft\\MTFilter_HairSoftMix.fs",
+      1865
+    ],
+    [
+      "ARKernelBuiltin\\Shaders\\HairSoft\\MTFilter_HairSoftMix.vs",
+      200
+    ],
+    [
+      "ARKernelBuiltin\\Shaders\\Lipstick\\MTFilter_Lipstick_Matte.fs",
+      7339
+    ],
+    [
+      "beauty\\hairGrow\\hairSmear\\ar_effect\\ar\\res\\brushTool\\genCurlHair.frag",
+      1470
+    ],
+    [
+      "beauty\\hairGrow\\hairSmear\\ar_effect\\ar\\res\\brushTool\\genCurlHair.vert",
+      174
+    ],
+    [
+      "CustomMaterial\\5003\\lut1.png",
+      2645
+    ],
+    [
+      "CustomMaterial\\5003\\lut2.png",
+      1385
+    ],
+    [
+      "lip_custom_color\\ar\\res\\lip_lut.plist",
+      515
+    ],
+    [
+      "lip_custom_color\\ar\\res\\arp\\lip_lut.png",
+      6090
+    ],
+    [
+      "livephoto\\back\\ar\\res\\template\\modules\\AEMatteLayer\\AEMatteLayer.lua",
+      7338
+    ],
+    [
+      "livephoto\\front\\ar\\res\\template\\modules\\AEMatteLayer\\AEMatteLayer.lua",
+      7338
+    ],
+    [
+      "MaterialCenter\\2130\\21301502\\ar\\res\\filterScript\\clips\\0\\lut.fs",
+      2958
+    ],
+    [
+      "MaterialCenter\\2130\\21301502\\ar\\res\\filterScript\\clips\\0\\lut.vs",
+      347
+    ],
+    [
+      "MaterialCenter\\2130\\21301505\\ar\\res\\filterScript\\clips\\0\\lut.fs",
+      2958
+    ],
+    [
+      "MaterialCenter\\2130\\21301505\\ar\\res\\filterScript\\clips\\0\\lut.vs",
+      347
+    ],
+    [
+      "MaterialCenter\\5001\\50010001\\lut.png",
+      249
+    ],
+    [
+      "MaterialCenter\\5002\\50020002\\lut.png",
+      187
+    ],
+    [
+      "MaterialCenter\\5005\\50050015\\lut.png",
+      2231
+    ],
+    [
+      "MaterialCenter\\camera_tone\\ar\\res\\512x512#Lut.png",
+      2083
+    ],
+    [
+      "MaterialCenter\\FaceLift3D\\res\\BlendShape\\publicAssets\\lut.vert",
+      289
+    ],
+    [
+      "MaterialCenter\\FaceLift3D\\res\\BlendShape\\publicAssets\\lut16.frag",
+      1901
+    ],
+    [
+      "MaterialCenter\\FaceLift3D\\res\\BlendShape\\publicAssets\\lut64.frag",
+      1564
+    ],
+    [
+      "MaterialCenter\\MatteSkin\\configuration_matte.plist",
+      5828
+    ],
+    [
+      "MaterialCenter\\MatteSkin\\configuration_matte_delicate_resourceConfig.plist",
+      1242
+    ],
+    [
+      "MaterialCenter\\MatteSkin\\configuration_matte_mestizo_resourceConfig.plist",
+      1243
+    ],
+    [
+      "MaterialCenter\\MatteSkin\\configuration_matte_natural_resourceConfig.plist",
+      1241
+    ],
+    [
+      "MaterialCenter\\tone\\ar\\res\\512x512#Lut.png",
+      2083
+    ],
+    [
+      "MTAurora.bundle\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut.fs.spirv",
+      2200
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_black.fs.spirv",
+      1824
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_black_with_autocontrast.fs.spirv",
+      3232
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_black_with_autocontrastGamma.fs.spirv",
+      2592
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_videohue_mapy16.fs.spirv",
+      3300
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_videohue_mapy32.fs.spirv",
+      2896
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_videohue_mapy64.fs.spirv",
+      4352
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_with_autocontrast.fs.spirv",
+      3640
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_doubleLut_with_autocontrastGamma.fs.spirv",
+      3000
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_thripleLut.fs.spirv",
+      2196
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_thripleLut_with_autocontrast.fs.spirv",
+      3604
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\facecolor_thripleLut_with_autocontrastGamma.fs.spirv",
+      2964
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmask_blur.fs.spirv",
+      1488
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmask_dialtion.fs.spirv",
+      1724
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmask_erode.fs.spirv",
+      1724
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmask_shiny.fs.spirv",
+      2112
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmask_smooth.fs.spirv",
+      1436
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte.fs.spirv",
+      5180
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte_blur.fs.spirv",
+      3628
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte_blur.vs.spirv",
+      1956
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte_multi.fs.spirv",
+      780
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte_narrow.vs.spirv",
+      856
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\hairmatte_scale.fs.spirv",
+      1016
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte.fs.spirv",
+      5492
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_blur.fs.spirv",
+      3964
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_blur_mask.fs.spirv",
+      4636
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_brush.fs.spirv",
+      1252
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_brush.vs.spirv",
+      1364
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_manual.fs.spirv",
+      4468
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_multi.fs.spirv",
+      780
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_narrow.fs.spirv",
+      1488
+    ],
+    [
+      "MTAurora.bundle\\Shaders\\matte_scale.fs.spirv",
+      844
+    ],
+    [
+      "MTEffectCore.bundle\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "MTImageKit.bundle\\Enhance\\enhanceMix3Lut.png",
+      78483
+    ],
+    [
+      "MTImageKit.bundle\\mtfortuna\\TeethWhiteLut.png",
+      44529
+    ],
+    [
+      "MTImageKit.bundle\\mtfortuna\\TeethWhiteLut2.png",
+      57774
+    ],
+    [
+      "MTImageKit.bundle\\Scan\\brightenAndSharpenLut.png",
+      78928
+    ],
+    [
+      "MTImageKit.bundle\\Scan\\removeShadowsLut.png",
+      2263
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\cold_lut.png",
+      3739
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\warn_lut.png",
+      4623
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\1\\Lut.png",
+      3846
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\2\\Lut.png",
+      5412
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\3\\Lut.png",
+      5241
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\4\\Lut.png",
+      5514
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\5\\Lut.png",
+      4551
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\6\\Lut.png",
+      2729
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\7\\Lut.png",
+      2824
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\7_mtxx\\Lut.png",
+      3901
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\8\\Lut.png",
+      4853
+    ],
+    [
+      "MTImageKit.bundle\\Skin\\SkinLut\\LutPicture\\9\\Lut.png",
+      3779
+    ],
+    [
+      "MTImageKit.bundle\\Teeth\\TeethWhiteLut.png",
+      4245
+    ],
+    [
+      "mtmvcore_raw\\GOOGLE_SM8998_GamutLut.png",
+      4866
+    ],
+    [
+      "mtmvcore_raw\\HONOR_HI3660_GamutLut.png",
+      2211
+    ],
+    [
+      "mtmvcore_raw\\HUAWEI_KIRIN970_GamutLut.png",
+      4811
+    ],
+    [
+      "mtmvcore_raw\\HUAWEI_SM8940_GamutLut.png",
+      2181
+    ],
+    [
+      "mtmvcore_raw\\HUAWEI_VENDORKIRIN970_GamutLut.png",
+      2211
+    ],
+    [
+      "mtmvcore_raw\\LETV_MT6795t_GamutLut.png",
+      2129
+    ],
+    [
+      "mtmvcore_raw\\LGE_SM8998_GamutLut.png",
+      2244
+    ],
+    [
+      "mtmvcore_raw\\MEIZU_SDM845_GamutLut.png",
+      2275
+    ],
+    [
+      "mtmvcore_raw\\MOTO_SM8998_GamutLut.png",
+      2192
+    ],
+    [
+      "mtmvcore_raw\\NUBIA_SM8953_GamutLut.png",
+      2188
+    ],
+    [
+      "mtmvcore_raw\\ONEPLUS_SM8998_GamutLut.png",
+      2194
+    ],
+    [
+      "mtmvcore_raw\\OPPO_SDM660_GamutLut.png",
+      2162
+    ],
+    [
+      "mtmvcore_raw\\OPPO_SM8953_GamutLut.png",
+      2168
+    ],
+    [
+      "mtmvcore_raw\\SAMSUNG_SM8150_GamutLut.png",
+      2239
+    ],
+    [
+      "mtmvcore_raw\\VIVO_MT6765_GamutLut.png",
+      4778
+    ],
+    [
+      "mtmvcore_raw\\VIVO_QCOM_GamutLut.png",
+      2253
+    ],
+    [
+      "mtmvcore_raw\\VIVO_SM8976_GamutLut.png",
+      4851
+    ],
+    [
+      "mtmvcore_raw\\XIAOMI_SM710_GamutLut.png",
+      4894
+    ],
+    [
+      "mtmvcore_raw\\XIAOMI_SM8953_GamutLut.png",
+      2192
+    ],
+    [
+      "mtmvcore_raw\\XIAOMI_SM8956_GamutLut.png",
+      4857
+    ],
+    [
+      "mtmvcore_raw\\XIAOMI_SM8998_GamutLut.png",
+      2218
+    ],
+    [
+      "mtmv_assets.bundle\\mtmvcore_shaders\\MTFilter_AnjiaoLut.fs",
+      1866
+    ],
+    [
+      "mtmv_assets.bundle\\mtmvcore_shaders\\MTFilter_MAP_3D_Lut.fs",
+      729
+    ],
+    [
+      "mtmv_assets.bundle\\mtmvcore_shaders\\MTFilter_MAP_3D_Lut.vs",
+      193
+    ],
+    [
+      "style\\whiteLut",
+      4258
+    ],
+    [
+      "videoCover\\ai_hair_growth_guide.webp",
+      42010
+    ],
+    [
+      "videoCover\\ai_hair_growth_oversea_guide.webp",
+      17574
+    ],
+    [
+      "vlaimodel\\libMerakInnovationHairCurly\\res\\binary\\haircurly_gl.dtu",
+      7172
+    ],
+    [
+      "vlaimodel\\libMerakInnovationHairFluffyStatic\\res\\binary\\hairfluffy_gl.dtu",
+      8172
+    ],
+    [
+      "vlaimodel\\libMerakInnovationHairStraight\\res\\binary\\hairstraight_gl.dtu",
+      7716
+    ],
+    [
+      "vlaimodel\\libmtskinphone\\Models\\NE.manis",
+      107026
+    ]
+  ]
+}

@@ -1,0 +1,60 @@
+// Library: libLayerFlow.so
+// Function ID: libLayerFlow::0x37be44
+// Recovered Name: _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER18OneClickBeautyInfo
+// Visibility: EXPORTED | Confidence: FACT
+// Address: 0x37be44 | Size: 1252 bytes | SHA256: 04068e1527f33d792e969c6ca825a85beaa0d30f90e7b0183473a13d89c602a9
+// Callers: 1 | Callees: 6 | Imports: 1
+
+// Calls external APIs: _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc
+// Strings referenced:
+//   "ai_level"
+//   "beauty"
+//   "defect"
+//   "filter"
+//   "hair"
+
+void _Z9from_jsonRKN8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvEER18OneClickBeautyInfo(uint64_t x0, uint64_t x1, uint64_t x2, uint64_t x3) {
+    // Disassembled 313 instructions
+    /* 0x37be44 */ stp x29, x30, [sp, #-0x50]!;
+    /* 0x37be48 */ str x25, [sp, #0x10];
+    /* 0x37be4c */ stp x24, x23, [sp, #0x20];
+    /* 0x37be50 */ stp x22, x21, [sp, #0x30];
+    /* 0x37be54 */ stp x20, x19, [sp, #0x40];
+    /* 0x37be58 */ mov x29, sp;
+    /* 0x37be5c */ mov x19, x1;
+    /* 0x37be60 */ adrp x1, #0x1d0000;
+    /* 0x37be64 */ add x1, x1, #0x868;
+    /* 0x37be68 */ mov x2, x19;
+    /* 0x37be6c */ mov x20, x0;
+    _ZN8nlohmann18extended_from_jsonI22OneClickBeautyMaterialEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS4_6vectorENS4_12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEblmdSA_NS2_14adl_serializerENS6_IhNSA_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIfEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZN8nlohmann18extended_from_jsonIiEEvRKNS_16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS3_6vectorENS3_12basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEEblmdS9_NS1_14adl_serializerENS5_IhNS9_IhEEEEvEEPKcRT_();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNK8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE8containsIRA5_KcTnNS2_9enable_ifIXsr6detail32is_usable_as_basic_json_key_typeISE_T_EE5valueEiE4typeELi0EEEbOSK_();
+    _ZNK8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE8containsIRA5_KcTnNS2_9enable_ifIXsr6detail32is_usable_as_basic_json_key_typeISE_T_EE5valueEiE4typeELi0EEEbOSK_();
+    _ZNK8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE8containsIRA9_KcTnNS2_9enable_ifIXsr6detail32is_usable_as_basic_json_key_typeISE_T_EE5valueEiE4typeELi0EEEbOSK_();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    _ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE7compareEPKc();
+    return x0;
+    return x0;
+    _ZNK8nlohmann16json_abi_v3_12_010basic_jsonINSt6__ndk13mapENS2_6vectorENS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEblmdS8_NS0_14adl_serializerENS4_IhNS8_IhEEEEvE8containsIRA12_KcTnNS2_9enable_ifIXsr6detail32is_usable_as_basic_json_key_typeISE_T_EE5valueEiE4typeELi0EEEbOSK_();
+}
