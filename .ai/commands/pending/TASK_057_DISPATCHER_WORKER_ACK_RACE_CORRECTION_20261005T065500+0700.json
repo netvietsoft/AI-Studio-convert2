@@ -46,12 +46,12 @@
   "instructions": "Correct the Dispatcher/Worker ACK race observed on Dispatcher run 37244920379 and Worker run 37245007835. Dispatcher reserved TASK_056 and triggered Worker, then timed out after 90s and rolled the command back to PENDING while the Worker continued in_progress. Reproduce from raw logs, fix so a legitimately launched Worker cannot coexist with a false PENDING command, use durable CLAIM/lease/execution_identity with idempotent recovery, and add regression evidence. Do not modify production image/hair modules. After correction, ensure TASK_056 remains eligible to continue its SO45/image-effect work and verify a real worker CLAIM before reporting success. Read and ACK owner law/workspace standard first.",
   "anti_duplicate_key": "TASK_057_DISPATCHER_WORKER_ACK_RACE_AND_CONTINUOUS_EXECUTION_CORRECTION_ACTIVE:2026-10-05T06:55:00+07:00",
   "created_at": "2026-10-05T06:55:00+07:00",
-  "status": "RESERVED",
+  "status": "PENDING",
   "retry_count": 0,
-  "reservation": {
-    "reservation_token": "b0cfe38ac1a6494f88673d9cfeae1ab1",
+  "reservation": null,
+  "dispatch_error": {
     "dispatcher_run_id": "37245346250",
-    "reserved_at": "2026-10-04T23:54:14.521026+00:00",
-    "reservation_sha": null
+    "failed_at": "2026-10-04T23:55:50.289576+00:00",
+    "error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 90s"
   }
 }
