@@ -233,6 +233,7 @@ struct HumanFrameResult {
     std::vector<StructuralLine> structuralLines;
     bool hasLegsVisible{false};
     bool hasFullBodyVisible{false};
+    bool parsingAttempted{false};
     bool parsingValid{false};
     float parsingConfidence{0.0f};
     float poseConfidence{0.0f};

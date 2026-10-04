@@ -705,11 +705,18 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_body_slim", "Thon gọn toàn thân (Slim)", "Full Body Slender", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_waist", "Eo thon con kiến (Waist) [VIP]", "Slim Waist Warp", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_shoulder", "Vai vuông móc áo (Shoulder)", "Straight Shoulder", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_body_neck", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_clavicle_enhance", "Xương quai xanh quyến rũ (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_arm", "Thon gọn bắp tay (Arm)", "Arm Slender Warp", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_legs", "Kéo dài chân tỉ lệ vàng", "Golden Ratio Legs", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_leg_slim", "Thon gọn bắp chân & đùi", "Leg Slim Contraction", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_height", "Tăng chiều cao toàn thân", "Body Height Proportional", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_chest", "Nâng ngực tự nhiên (Chest)", "Chest Natural Enlarge", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
+            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_neck", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_neck_length", "Kéo dài cổ thiên nga", "Neck Length Stretch", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_clavicle_enhance", "Xương quai xanh quyến rũ (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_smooth", "Làm mịn da cơ thể", "Body Skin Smoothing", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_whiten", "Trắng sáng da toàn thân", "Body Skin Whitening", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_face_neck_tone", "Cân bằng tông da mặt - cổ", "Face-Neck Tone Harmony", false, "libmeitu_reborn_native.so", 0, -100, 100, "%")
         )),
 
         // 11. AI RETOUCH (2.12 Smart Beautify 1-Touch)
@@ -1719,6 +1726,11 @@ class PhotoEditorActivity : Activity() {
             matchedTool = matchedCat?.tools?.firstOrNull()
         }
 
+        if (matchedTool == null && targetToolId != null) {
+            matchedCat = categories.find { it.id == "cat_body" } ?: categories.first()
+            matchedTool = ToolItem(targetToolId, targetToolId, targetToolId, false, "libmeitu_reborn_native.so", 0, -100, 100, "%")
+        }
+
         if (matchedCat != null && matchedTool != null) {
             commitCurrentToolState()
             currentCategory = matchedCat.title
@@ -2060,6 +2072,43 @@ class PhotoEditorActivity : Activity() {
                 rJawX = fallbackCx + fallbackRx * 0.85f
                 rJawY = fallbackCy + fallbackRy * 0.30f
             }
+
+            if (cachedPosePoints != null && cachedPosePoints!!.size >= 21) {
+                val noseVis = cachedPosePoints!![2] >= 0.15f
+                val sLVis = cachedPosePoints!![5 * 3 + 2] >= 0.15f
+                val sRVis = cachedPosePoints!![6 * 3 + 2] >= 0.15f
+                if (noseVis && (sLVis || sRVis)) {
+                    val pNoseX = cachedPosePoints!![0]
+                    val pNoseY = cachedPosePoints!![1]
+                    val sLx = if (sLVis) cachedPosePoints!![5 * 3] else (pNoseX - 60f)
+                    val sRx = if (sRVis) cachedPosePoints!![6 * 3] else (pNoseX + 60f)
+                    val sLy = if (sLVis) cachedPosePoints!![5 * 3 + 1] else (pNoseY + 80f)
+                    val sRy = if (sRVis) cachedPosePoints!![6 * 3 + 1] else (pNoseY + 80f)
+                    val sDist = kotlin.math.hypot(sRx - sLx, sRy - sLy)
+                    fallbackCx = pNoseX
+                    fallbackCy = pNoseY
+                    fallbackRx = (sDist * 0.40f).coerceIn(40f, 250f)
+                    fallbackRy = (sDist * 0.50f).coerceIn(50f, 300f)
+                    chinX = fallbackCx
+                    chinY = fallbackCy + fallbackRy * 0.85f
+                    noseX = fallbackCx
+                    noseY = fallbackCy
+                    lxEye = fallbackCx - fallbackRx * 0.45f
+                    lyEye = fallbackCy - fallbackRy * 0.35f
+                    rxEye = fallbackCx + fallbackRx * 0.45f
+                    ryEye = fallbackCy - fallbackRy * 0.35f
+                    lxBrow = fallbackCx - fallbackRx * 0.45f
+                    lyBrow = fallbackCy - fallbackRy * 0.52f
+                    rxBrow = fallbackCx + fallbackRx * 0.45f
+                    ryBrow = fallbackCy - fallbackRy * 0.52f
+                    mouthX = fallbackCx
+                    mouthY = fallbackCy + fallbackRy * 0.45f
+                    lJawX = fallbackCx - fallbackRx * 0.85f
+                    lJawY = fallbackCy + fallbackRy * 0.30f
+                    rJawX = fallbackCx + fallbackRx * 0.85f
+                    rJawY = fallbackCy + fallbackRy * 0.30f
+                }
+            }
         } catch (_: Throwable) {}
 
         landmarks106 = FloatArray(106 * 2)
@@ -2071,24 +2120,46 @@ class PhotoEditorActivity : Activity() {
             landmarks106[i * 2 + 1] = fallbackCy + fallbackRy * Math.sin(angle).toFloat()
         }
         // Gắn chính xác các điểm then chốt vào cấu trúc giải phẫu chuẩn
+        landmarks106[0 * 2] = lJawX
+        landmarks106[0 * 2 + 1] = lJawY
         landmarks106[4 * 2] = lJawX
         landmarks106[4 * 2 + 1] = lJawY
+        landmarks106[8 * 2] = lJawX
+        landmarks106[8 * 2 + 1] = lJawY
         landmarks106[16 * 2] = chinX
         landmarks106[16 * 2 + 1] = chinY
+        landmarks106[24 * 2] = rJawX
+        landmarks106[24 * 2 + 1] = rJawY
         landmarks106[28 * 2] = rJawX
         landmarks106[28 * 2 + 1] = rJawY
+        landmarks106[32 * 2] = rJawX
+        landmarks106[32 * 2 + 1] = rJawY
+        landmarks106[37 * 2] = lxBrow
+        landmarks106[37 * 2 + 1] = lyBrow
         landmarks106[38 * 2] = lxEye
         landmarks106[38 * 2 + 1] = lyEye
+        landmarks106[46 * 2] = noseX
+        landmarks106[46 * 2 + 1] = noseY
         landmarks106[57 * 2] = rxEye
         landmarks106[57 * 2 + 1] = ryEye
-        landmarks106[70 * 2] = lxEye
-        landmarks106[70 * 2 + 1] = lyEye
+        landmarks106[60 * 2] = noseX
+        landmarks106[60 * 2 + 1] = noseY
+        landmarks106[70 * 2] = rxBrow
+        landmarks106[70 * 2 + 1] = ryBrow
         landmarks106[71 * 2] = lxEye
         landmarks106[71 * 2 + 1] = lyEye
         landmarks106[80 * 2] = rxEye
         landmarks106[80 * 2 + 1] = ryEye
         landmarks106[81 * 2] = rxEye
         landmarks106[81 * 2 + 1] = ryEye
+        landmarks106[84 * 2] = mouthX - 25f * sx
+        landmarks106[84 * 2 + 1] = mouthY
+        landmarks106[87 * 2] = mouthX
+        landmarks106[87 * 2 + 1] = mouthY - 10f * sy
+        landmarks106[90 * 2] = mouthX + 25f * sx
+        landmarks106[90 * 2 + 1] = mouthY
+        landmarks106[93 * 2] = mouthX
+        landmarks106[93 * 2 + 1] = mouthY + 10f * sy
         landmarks106[104 * 2] = lxEye
         landmarks106[104 * 2 + 1] = lyEye
         landmarks106[105 * 2] = rxEye
@@ -2105,12 +2176,8 @@ class PhotoEditorActivity : Activity() {
             landmarks106[i * 2] = (rxBrow - fallbackRx * 0.15f) + fallbackRx * 0.30f * t
             landmarks106[i * 2 + 1] = ryBrow
         }
-        landmarks106[46 * 2] = noseX
-        landmarks106[46 * 2 + 1] = noseY
         landmarks106[72 * 2] = mouthX - 75f * sx
         landmarks106[72 * 2 + 1] = mouthY
-        landmarks106[80 * 2] = mouthX + 75f * sx
-        landmarks106[80 * 2 + 1] = mouthY
         landmarks106[76 * 2] = mouthX
         landmarks106[76 * 2 + 1] = mouthY + 20f * sy
         landmarks106[82 * 2] = mouthX
@@ -3391,23 +3458,53 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_neck", "tool_neck_slim" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 1, p)
+                var ok = false
+                if (lmk != null) {
+                    ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 1, p)
+                }
                 if (!ok) {
-                    android.util.Log.d("PhotoEditorActivity", "tool_neck_slim: failed")
+                    val params = FloatArray(17)
+                    params[7] = p * 0.7f // shoulder/neck slim
+                    MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
                 }
             }
             "tool_neck_length", "tool_swan_neck" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 2, p)
+                var ok = false
+                if (lmk != null) {
+                    ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 2, p)
+                }
+                if (!ok) {
+                    val params = FloatArray(17)
+                    params[0] = p * 0.4f // body height / neck lengthen
+                    MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
+                }
             }
             "tool_clavicle_enhance" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val ok = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2201, p)
-                if (!ok) MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 4, p)
+                var ok = false
+                if (lmk != null) {
+                    ok = MeituNativeEngine.nativeApplyClavicleShoulderEdit(workingBitmap, lmk, 2201, p)
+                    if (!ok) ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 4, p)
+                }
+                if (!ok) {
+                    val params = FloatArray(17)
+                    params[7] = p * 0.5f // shoulder/clavicle
+                    params[14] = p * 0.3f // skin highlight
+                    MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
+                }
             }
             "tool_face_neck_tone" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 5, p)
+                var ok = false
+                if (lmk != null) {
+                    ok = MeituNativeEngine.nativeApplyNeckClavicle(workingBitmap, lmk, 5, p)
+                }
+                if (!ok) {
+                    val params = FloatArray(17)
+                    params[15] = p // bodySkinToneMatch
+                    MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
+                }
             }
             "tool_brow_thickness" -> {
                 val okEyebrow = MeituNativeEngine.nativeApplyEyebrow(workingBitmap, lxEye, lyEye, rxEye, ryEye, 240201, p)
@@ -3552,13 +3649,13 @@ class PhotoEditorActivity : Activity() {
             }
             "tool_body_skin_smooth" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[13] = p // bodySkinSmooth
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }
             "tool_body_skin_whiten" -> {
                 val lmk = if (landmarks106.size >= 106 * 2) landmarks106 else null
-                val params = FloatArray(16)
+                val params = FloatArray(17)
                 params[14] = p // bodySkinWhiten
                 MeituNativeEngine.nativeApplyBodyBeauty(workingBitmap, cachedPosePoints, lmk, params)
             }

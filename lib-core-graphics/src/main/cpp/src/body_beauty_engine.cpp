@@ -601,7 +601,7 @@ bool BodyBeautyEngine::applyLongLegs(
     float intensity
 ) {
     if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f ||
-        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
+        !human.isValid || !human.pose.isValid) {
         return false;
     }
 
@@ -612,9 +612,26 @@ bool BodyBeautyEngine::applyLongLegs(
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
     std::vector<uint32_t> original(pixels, pixels + (width * height));
 
-    float hipY = (human.leftLeg.hip.y + human.rightLeg.hip.y) * 0.5f;
-    float kneeY = (human.leftLeg.knee.y + human.rightLeg.knee.y) * 0.5f;
-    float ankleY = (human.leftLeg.ankle.y + human.rightLeg.ankle.y) * 0.5f;
+    float hipY = 0.0f;
+    int hipCount = 0;
+    if (human.leftLeg.hip.y > 1.0f) { hipY += human.leftLeg.hip.y; hipCount++; }
+    if (human.rightLeg.hip.y > 1.0f) { hipY += human.rightLeg.hip.y; hipCount++; }
+    if (hipCount > 0) hipY /= hipCount;
+    else hipY = human.torso.hipCenter.y;
+
+    float kneeY = 0.0f;
+    int kneeCount = 0;
+    if (human.leftLeg.knee.y > 1.0f) { kneeY += human.leftLeg.knee.y; kneeCount++; }
+    if (human.rightLeg.knee.y > 1.0f) { kneeY += human.rightLeg.knee.y; kneeCount++; }
+    if (kneeCount > 0) kneeY /= kneeCount;
+
+    float ankleY = 0.0f;
+    int ankleCount = 0;
+    if (human.leftLeg.ankle.y > 1.0f) { ankleY += human.leftLeg.ankle.y; ankleCount++; }
+    if (human.rightLeg.ankle.y > 1.0f) { ankleY += human.rightLeg.ankle.y; ankleCount++; }
+    if (ankleCount > 0) ankleY /= ankleCount;
+    else if (kneeCount > 0 && kneeY > hipY) ankleY = std::min(static_cast<float>(height - 1), kneeY + (kneeY - hipY) * 0.9f);
+    else ankleY = static_cast<float>(height - 1);
 
     if (ankleY <= hipY + 15.0f) {
         return false;
@@ -652,7 +669,7 @@ bool BodyBeautyEngine::applyLongLegs(
         }
     }
 
-    if (!human.parsingMask.empty()) {
+    if (human.parsingValid && !human.parsingMask.empty()) {
         mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
     }
     if (!human.backgroundProtectionMask.empty()) {
@@ -684,7 +701,7 @@ bool BodyBeautyEngine::applyBodyHeight(
     float intensity
 ) {
     if (!rgbaImage || width <= 0 || height <= 0 || intensity < 0.001f ||
-        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
+        !human.isValid || !human.pose.isValid) {
         return false;
     }
 
@@ -696,10 +713,40 @@ bool BodyBeautyEngine::applyBodyHeight(
     std::vector<uint32_t> original(pixels, pixels + (width * height));
 
     float neckY = human.pose.keypoints[JOINT_NECK].pos.y;
-    float hipY = human.torso.hipCenter.y;
-    float ankleY = (human.leftLeg.ankle.y + human.rightLeg.ankle.y) * 0.5f;
+    if (neckY <= 1.0f) {
+        if (human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible) {
+            neckY = (human.keypoints[JOINT_SHOULDER_LEFT].y + human.keypoints[JOINT_SHOULDER_RIGHT].y) * 0.5f;
+        } else if (human.keypoints[JOINT_NOSE].visible) {
+            neckY = human.keypoints[JOINT_NOSE].y + 40.0f;
+        } else {
+            neckY = height * 0.2f;
+        }
+    }
 
-    if (hipY <= neckY + 15.0f || ankleY <= hipY + 15.0f) {
+    float hipY = human.torso.hipCenter.y;
+    if (hipY <= neckY + 10.0f) {
+        float hL = human.keypoints[JOINT_HIP_LEFT].visible ? human.keypoints[JOINT_HIP_LEFT].y : 0.0f;
+        float hR = human.keypoints[JOINT_HIP_RIGHT].visible ? human.keypoints[JOINT_HIP_RIGHT].y : 0.0f;
+        if (hL > neckY + 10.0f && hR > neckY + 10.0f) hipY = (hL + hR) * 0.5f;
+        else if (hL > neckY + 10.0f) hipY = hL;
+        else if (hR > neckY + 10.0f) hipY = hR;
+        else hipY = (neckY + height) * 0.5f;
+    }
+
+    float aL = human.leftLeg.ankle.y;
+    float aR = human.rightLeg.ankle.y;
+    float ankleY = 0.0f;
+    if (aL > hipY && aR > hipY) ankleY = (aL + aR) * 0.5f;
+    else if (aL > hipY) ankleY = aL;
+    else if (aR > hipY) ankleY = aR;
+    else {
+        float kL = human.leftLeg.knee.y;
+        float kR = human.rightLeg.knee.y;
+        if (kL > hipY && kR > hipY) ankleY = std::min(static_cast<float>(height - 1), (kL + kR) * 0.5f + (kL - hipY));
+        else ankleY = static_cast<float>(height - 1);
+    }
+
+    if (hipY <= neckY + 10.0f || ankleY <= hipY + 10.0f) {
         return false;
     }
 
@@ -747,7 +794,7 @@ bool BodyBeautyEngine::applyBodyHeight(
         }
     }
 
-    if (!human.parsingMask.empty()) {
+    if (human.parsingValid && !human.parsingMask.empty()) {
         mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
     }
     if (!human.backgroundProtectionMask.empty()) {
@@ -782,7 +829,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     float maxInt = std::max(std::abs(slimIntensity), std::max(std::abs(waistIntensity), std::abs(hipIntensity)));
-    if (maxInt < 0.001f || !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
+    if (maxInt < 0.001f || !human.isValid || !human.pose.isValid) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
@@ -813,7 +860,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
     std::vector<float> leftEdges, rightEdges;
     detectSilhouetteBounds(
         pixels, width, height, yStart, yEnd, waist.x, expectedRadius,
-        human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr,
         leftEdges, rightEdges
     );
 
@@ -850,7 +897,7 @@ bool BodyBeautyEngine::applyWaistAndBodySlim(
     std::vector<float> rigidityMap;
     std::vector<RigidElement> rigidElements;
     mClothingEngine.extractClothingConstraints(
-        rgbaImage, width, height, human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        rgbaImage, width, height, (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr,
         rigidityMap, rigidElements
     );
 
@@ -875,7 +922,7 @@ bool BodyBeautyEngine::applyChestReshape(
     float intensity
 ) {
     if (!rgbaImage || width <= 0 || height <= 0 || std::abs(intensity) < 0.001f ||
-        !human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) {
+        !human.isValid || !human.pose.isValid) {
         return false;
     }
 
@@ -949,7 +996,7 @@ bool BodyBeautyEngine::applyChestReshape(
     }
 
     // Protect background and regularize
-    if (!human.parsingMask.empty()) {
+    if (human.parsingValid && !human.parsingMask.empty()) {
         mBgEngine.attenuateBoundaryLeakage(width, height, human.parsingMask.data(), dxField.data(), dyField.data());
     }
     if (!human.backgroundProtectionMask.empty()) {
@@ -985,7 +1032,7 @@ bool BodyBeautyEngine::applyArmAndShoulderSlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     if (std::abs(shoulderIntensity) < 0.001f && std::abs(armIntensity) < 0.001f) return false;
-    if (!human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
+    if (!human.isValid || !human.pose.isValid) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
@@ -993,64 +1040,72 @@ bool BodyBeautyEngine::applyArmAndShoulderSlim(
     std::vector<float> rigidityMap;
     std::vector<RigidElement> rigidElements;
     mClothingEngine.extractClothingConstraints(
-        rgbaImage, width, height, human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        rgbaImage, width, height, (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr,
         rigidityMap, rigidElements
     );
 
-    const uint8_t* pMask = human.parsingMask.empty() ? nullptr : human.parsingMask.data();
+    const uint8_t* pMask = (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr;
 
     // 1. Biến dạng bắp tay & cẳng tay bảo toàn đường biên thực tế từng sub-pixel
     // Hỗ trợ cả 2 chiều: armIntensity > 0 (thon gọn bắp tay); armIntensity < 0 (nở cơ bắp tay)
     // Nền bên cạnh cánh tay (tường, cửa, bàn ghế, người cạnh bên) tuyệt đối không bị kéo cong!
     if (std::abs(armIntensity) > 0.001f) {
-        if (human.leftArm.isVisible) {
-            // Bắp tay trên trái: vai -> khuỷu
-            applyLimbBoundaryPreservingWarp(
-                pixels, width, height,
-                human.leftArm.shoulder, human.leftArm.elbow,
-                human.leftArm.upperArmWidth, armIntensity,
-                pMask, rigidityMap, rigidElements
-            );
-            // Cẳng tay trái: khuỷu -> cổ tay
-            applyLimbBoundaryPreservingWarp(
-                pixels, width, height,
-                human.leftArm.elbow, human.leftArm.wrist,
-                human.leftArm.forearmWidth, armIntensity * 0.85f,
-                pMask, rigidityMap, rigidElements
-            );
+        if (human.leftArm.isVisible || human.keypoints[JOINT_ELBOW_LEFT].visible) {
+            Point2DF s = human.leftArm.shoulder.x > 0.1f ? human.leftArm.shoulder : human.keypoints[JOINT_SHOULDER_LEFT].pos;
+            Point2DF e = human.leftArm.elbow.x > 0.1f ? human.leftArm.elbow : human.keypoints[JOINT_ELBOW_LEFT].pos;
+            Point2DF w = human.leftArm.wrist.x > 0.1f ? human.leftArm.wrist : human.keypoints[JOINT_WRIST_LEFT].pos;
+            float upperW = human.leftArm.upperArmWidth > 5.0f ? human.leftArm.upperArmWidth : 35.0f;
+            float foreW = human.leftArm.forearmWidth > 5.0f ? human.leftArm.forearmWidth : 28.0f;
+            if (e.x > 0.1f) {
+                applyLimbBoundaryPreservingWarp(
+                    pixels, width, height, s, e, upperW, armIntensity, pMask, rigidityMap, rigidElements
+                );
+                if (w.x > 0.1f) {
+                    applyLimbBoundaryPreservingWarp(
+                        pixels, width, height, e, w, foreW, armIntensity * 0.85f, pMask, rigidityMap, rigidElements
+                    );
+                }
+            }
         }
-        if (human.rightArm.isVisible) {
-            // Bắp tay trên phải: vai -> khuỷu
-            applyLimbBoundaryPreservingWarp(
-                pixels, width, height,
-                human.rightArm.shoulder, human.rightArm.elbow,
-                human.rightArm.upperArmWidth, armIntensity,
-                pMask, rigidityMap, rigidElements
-            );
-            // Cẳng tay phải: khuỷu -> cổ tay
-            applyLimbBoundaryPreservingWarp(
-                pixels, width, height,
-                human.rightArm.elbow, human.rightArm.wrist,
-                human.rightArm.forearmWidth, armIntensity * 0.85f,
-                pMask, rigidityMap, rigidElements
-            );
+        if (human.rightArm.isVisible || human.keypoints[JOINT_ELBOW_RIGHT].visible) {
+            Point2DF s = human.rightArm.shoulder.x > 0.1f ? human.rightArm.shoulder : human.keypoints[JOINT_SHOULDER_RIGHT].pos;
+            Point2DF e = human.rightArm.elbow.x > 0.1f ? human.rightArm.elbow : human.keypoints[JOINT_ELBOW_RIGHT].pos;
+            Point2DF w = human.rightArm.wrist.x > 0.1f ? human.rightArm.wrist : human.keypoints[JOINT_WRIST_RIGHT].pos;
+            float upperW = human.rightArm.upperArmWidth > 5.0f ? human.rightArm.upperArmWidth : 35.0f;
+            float foreW = human.rightArm.forearmWidth > 5.0f ? human.rightArm.forearmWidth : 28.0f;
+            if (e.x > 0.1f) {
+                applyLimbBoundaryPreservingWarp(
+                    pixels, width, height, s, e, upperW, armIntensity, pMask, rigidityMap, rigidElements
+                );
+                if (w.x > 0.1f) {
+                    applyLimbBoundaryPreservingWarp(
+                        pixels, width, height, e, w, foreW, armIntensity * 0.85f, pMask, rigidityMap, rigidElements
+                    );
+                }
+            }
         }
     }
 
     // 2. Chỉnh vai (Shoulder Slim / Broaden)
-    if (std::abs(shoulderIntensity) > 0.001f && human.leftArm.isVisible && human.rightArm.isVisible) {
+    bool hasShoulderGeometry = (human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible) ||
+                               (human.leftArm.shoulder.x > 0.1f && human.rightArm.shoulder.x > 0.1f);
+    if (std::abs(shoulderIntensity) > 0.001f && hasShoulderGeometry) {
+        Point2DF sL = human.keypoints[JOINT_SHOULDER_LEFT].visible ? human.keypoints[JOINT_SHOULDER_LEFT].pos : human.leftArm.shoulder;
+        Point2DF sR = human.keypoints[JOINT_SHOULDER_RIGHT].visible ? human.keypoints[JOINT_SHOULDER_RIGHT].pos : human.rightArm.shoulder;
         Point2DF neck = human.pose.keypoints[JOINT_NECK].pos;
-        if (neck.y > 0.1f) {
-            float shoulderSpan = std::hypot(human.rightArm.shoulder.x - human.leftArm.shoulder.x,
-                                           human.rightArm.shoulder.y - human.leftArm.shoulder.y);
+        if (neck.y <= 0.1f) {
+            neck = {(sL.x + sR.x) * 0.5f, (sL.y + sR.y) * 0.5f};
+        }
+        float shoulderSpan = std::hypot(sR.x - sL.x, sR.y - sL.y);
+        if (shoulderSpan > 10.0f) {
             float shoulderScale = 1.0f - shoulderIntensity * 0.12f;
-            int shoulderYStart = std::max(0, static_cast<int>(neck.y - 15.0f));
-            int shoulderYEnd = std::min(height - 1, static_cast<int>(std::max(human.leftArm.shoulder.y, human.rightArm.shoulder.y) + 15.0f));
+            int shoulderYStart = std::max(0, static_cast<int>(neck.y - 25.0f));
+            int shoulderYEnd = std::min(height - 1, static_cast<int>(std::max(sL.y, sR.y) + shoulderSpan * 0.35f));
             int numRows = shoulderYEnd - shoulderYStart + 1;
             if (numRows > 0) {
                 std::vector<float> leftEdges, rightEdges;
                 detectSilhouetteBounds(
-                    pixels, width, height, shoulderYStart, shoulderYEnd, neck.x, shoulderSpan * 0.5f,
+                    pixels, width, height, shoulderYStart, shoulderYEnd, neck.x, shoulderSpan * 0.55f,
                     pMask, leftEdges, rightEdges
                 );
                 std::vector<float> sScales(numRows, shoulderScale);
@@ -1079,7 +1134,7 @@ bool BodyBeautyEngine::applyLegSlim(
 ) {
     if (!rgbaImage || width <= 0 || height <= 0) return false;
     if (std::abs(legSlimIntensity) < 0.001f && std::abs(ankleSlimIntensity) < 0.001f) return false;
-    if (!human.isValid || !human.parsingValid || human.parsingConfidence < 0.40f) return false;
+    if (!human.isValid || !human.pose.isValid) return false;
 
     uint32_t* pixels = reinterpret_cast<uint32_t*>(rgbaImage);
 
@@ -1087,39 +1142,48 @@ bool BodyBeautyEngine::applyLegSlim(
     std::vector<float> rigidityMap;
     std::vector<RigidElement> rigidElements;
     mClothingEngine.extractClothingConstraints(
-        rgbaImage, width, height, human.parsingMask.empty() ? nullptr : human.parsingMask.data(),
+        rgbaImage, width, height, (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr,
         rigidityMap, rigidElements
     );
 
-    const uint8_t* pMask = human.parsingMask.empty() ? nullptr : human.parsingMask.data();
+    const uint8_t* pMask = (human.parsingValid && !human.parsingMask.empty()) ? human.parsingMask.data() : nullptr;
+
+    float leftThighW = human.leftLeg.thighWidth > 5.0f ? human.leftLeg.thighWidth : 45.0f;
+    float leftCalfW = human.leftLeg.calfWidth > 5.0f ? human.leftLeg.calfWidth : 35.0f;
+    float leftAnkleW = human.leftLeg.ankleWidth > 5.0f ? human.leftLeg.ankleWidth : 22.0f;
+    float rightThighW = human.rightLeg.thighWidth > 5.0f ? human.rightLeg.thighWidth : 45.0f;
+    float rightCalfW = human.rightLeg.calfWidth > 5.0f ? human.rightLeg.calfWidth : 35.0f;
+    float rightAnkleW = human.rightLeg.ankleWidth > 5.0f ? human.rightLeg.ankleWidth : 22.0f;
 
     // 1. Biến dạng chân trái: Đùi, Bắp chuối, Cổ chân
-    // Hỗ trợ cả 2 chiều: thon gọn (legSlimIntensity > 0) và làm nở đùi đầy đặn (legSlimIntensity < 0)
-    // Đường chân tường, nền gạch men, thảm trải sàn xung quanh và ở khe giữa 2 chân GIỮ THẲNG 100%!
     if (human.leftLeg.isVisible) {
+        Point2DF hipL = (human.leftLeg.hip.y > 0.1f) ? human.leftLeg.hip : human.torso.hipCenter;
+        Point2DF kneeL = (human.leftLeg.knee.y > 0.1f) ? human.leftLeg.knee : Point2DF{hipL.x, hipL.y + 120.0f};
+        Point2DF ankleL = (human.leftLeg.ankle.y > 0.1f) ? human.leftLeg.ankle : Point2DF{kneeL.x, std::min(static_cast<float>(height - 1), kneeL.y + 120.0f)};
+
         if (std::abs(legSlimIntensity) > 0.001f) {
             // Đùi trái: hông -> đầu gối
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.leftLeg.hip, human.leftLeg.knee,
-                human.leftLeg.thighWidth, legSlimIntensity,
+                hipL, kneeL,
+                leftThighW, legSlimIntensity,
                 pMask, rigidityMap, rigidElements
             );
             // Bắp chuối trái: đầu gối -> cổ chân
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.leftLeg.knee, human.leftLeg.ankle,
-                human.leftLeg.calfWidth, legSlimIntensity * 0.90f,
+                kneeL, ankleL,
+                leftCalfW, legSlimIntensity * 0.90f,
                 pMask, rigidityMap, rigidElements
             );
         }
         if (std::abs(ankleSlimIntensity) > 0.001f) {
             // Cổ chân trái: đoạn sát mắt cá chân
-            Point2DF ankleBase = {human.leftLeg.ankle.x, human.leftLeg.ankle.y + 18.0f};
+            Point2DF ankleBase = {ankleL.x, ankleL.y + 18.0f};
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.leftLeg.ankle, ankleBase,
-                human.leftLeg.ankleWidth, ankleSlimIntensity,
+                ankleL, ankleBase,
+                leftAnkleW, ankleSlimIntensity,
                 pMask, rigidityMap, rigidElements
             );
         }
@@ -1127,29 +1191,33 @@ bool BodyBeautyEngine::applyLegSlim(
 
     // 2. Biến dạng chân phải: Đùi, Bắp chuối, Cổ chân
     if (human.rightLeg.isVisible) {
+        Point2DF hipR = (human.rightLeg.hip.y > 0.1f) ? human.rightLeg.hip : human.torso.hipCenter;
+        Point2DF kneeR = (human.rightLeg.knee.y > 0.1f) ? human.rightLeg.knee : Point2DF{hipR.x, hipR.y + 120.0f};
+        Point2DF ankleR = (human.rightLeg.ankle.y > 0.1f) ? human.rightLeg.ankle : Point2DF{kneeR.x, std::min(static_cast<float>(height - 1), kneeR.y + 120.0f)};
+
         if (std::abs(legSlimIntensity) > 0.001f) {
             // Đùi phải: hông -> đầu gối
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.rightLeg.hip, human.rightLeg.knee,
-                human.rightLeg.thighWidth, legSlimIntensity,
+                hipR, kneeR,
+                rightThighW, legSlimIntensity,
                 pMask, rigidityMap, rigidElements
             );
             // Bắp chuối phải: đầu gối -> cổ chân
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.rightLeg.knee, human.rightLeg.ankle,
-                human.rightLeg.calfWidth, legSlimIntensity * 0.90f,
+                kneeR, ankleR,
+                rightCalfW, legSlimIntensity * 0.90f,
                 pMask, rigidityMap, rigidElements
             );
         }
         if (std::abs(ankleSlimIntensity) > 0.001f) {
             // Cổ chân phải: đoạn sát mắt cá chân
-            Point2DF ankleBase = {human.rightLeg.ankle.x, human.rightLeg.ankle.y + 18.0f};
+            Point2DF ankleBase = {ankleR.x, ankleR.y + 18.0f};
             applyLimbBoundaryPreservingWarp(
                 pixels, width, height,
-                human.rightLeg.ankle, ankleBase,
-                human.rightLeg.ankleWidth, ankleSlimIntensity,
+                ankleR, ankleBase,
+                rightAnkleW, ankleSlimIntensity,
                 pMask, rigidityMap, rigidElements
             );
         }

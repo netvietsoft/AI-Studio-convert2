@@ -175,7 +175,7 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
             result.keypoints[i].confidence = conf;
             bool inBounds = (kx >= 0.0f && kx < static_cast<float>(width) &&
                              ky >= 0.0f && ky < static_cast<float>(height));
-            result.keypoints[i].visible = (conf > 0.25f && inBounds);
+            result.keypoints[i].visible = (conf >= 0.15f && inBounds);
             result.keypoints[i].isVisible = result.keypoints[i].visible;
             result.keypoints[i].pos = {kx, ky};
         }
@@ -220,12 +220,16 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
     result.parsingMask.assign(width * height, CLASS_BACKGROUND);
     bool hasRealParsing = false;
     result.parsingConfidence = 0.0f;
+    result.parsingAttempted = (pixels != nullptr);
     if (pixels != nullptr && meitu::ai::SelfieHumanParser::getInstance().isInitialized()) {
         hasRealParsing = meitu::ai::SelfieHumanParser::getInstance().generateParsingMask(
             pixels, width, height, result.keypoints, result.parsingMask, &result.parsingConfidence
         );
     }
-    result.parsingValid = hasRealParsing && (result.parsingConfidence >= 0.40f);
+    result.parsingValid = hasRealParsing && (result.parsingConfidence >= 0.20f);
+    if (!result.parsingValid) {
+        result.parsingMask.clear();
+    }
 
     if (result.head.isValid) {
         int fx1 = std::max(0, static_cast<int>(result.head.headGeometry.headBox.x1));
@@ -269,13 +273,13 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
     result.leftArm.elbow = result.keypoints[JOINT_ELBOW_LEFT].pos;
     result.leftArm.wrist = result.keypoints[JOINT_WRIST_LEFT].pos;
     result.leftArm.armLength = result.leftArm.upperArmLength + result.leftArm.forearmLength;
-    result.leftArm.isVisible = result.keypoints[JOINT_ELBOW_LEFT].visible;
+    result.leftArm.isVisible = (result.keypoints[JOINT_ELBOW_LEFT].visible || result.keypoints[JOINT_WRIST_LEFT].visible);
 
     result.rightArm.shoulder = result.keypoints[JOINT_SHOULDER_RIGHT].pos;
     result.rightArm.elbow = result.keypoints[JOINT_ELBOW_RIGHT].pos;
     result.rightArm.wrist = result.keypoints[JOINT_WRIST_RIGHT].pos;
     result.rightArm.armLength = result.rightArm.upperArmLength + result.rightArm.forearmLength;
-    result.rightArm.isVisible = result.keypoints[JOINT_ELBOW_RIGHT].visible;
+    result.rightArm.isVisible = (result.keypoints[JOINT_ELBOW_RIGHT].visible || result.keypoints[JOINT_WRIST_RIGHT].visible);
 
     // Check hand occlusion
     float waistTop = result.torso.waistCenter.y - result.torso.shoulderWidth * 0.4f;
@@ -298,14 +302,14 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
     result.leftLeg.ankle = {result.leftLeg.ankleCenterX, result.leftLeg.ankleCenterY};
     result.leftLeg.thighWidth = result.leftLeg.thighMidWidth;
     result.leftLeg.calfWidth = result.leftLeg.calfMaxWidth;
-    result.leftLeg.isVisible = result.keypoints[JOINT_HIP_LEFT].visible && result.keypoints[JOINT_KNEE_LEFT].visible;
+    result.leftLeg.isVisible = (result.keypoints[JOINT_HIP_LEFT].visible || result.keypoints[JOINT_KNEE_LEFT].visible || result.keypoints[JOINT_ANKLE_LEFT].visible);
 
     result.rightLeg.hip = result.keypoints[JOINT_HIP_RIGHT].pos;
     result.rightLeg.knee = {result.rightLeg.kneeCenterX, result.rightLeg.kneeCenterY};
     result.rightLeg.ankle = {result.rightLeg.ankleCenterX, result.rightLeg.ankleCenterY};
     result.rightLeg.thighWidth = result.rightLeg.thighMidWidth;
     result.rightLeg.calfWidth = result.rightLeg.calfMaxWidth;
-    result.rightLeg.isVisible = result.keypoints[JOINT_HIP_RIGHT].visible && result.keypoints[JOINT_KNEE_RIGHT].visible;
+    result.rightLeg.isVisible = (result.keypoints[JOINT_HIP_RIGHT].visible || result.keypoints[JOINT_KNEE_RIGHT].visible || result.keypoints[JOINT_ANKLE_RIGHT].visible);
 
     result.hasLegsVisible = (result.leftLeg.isVisible || result.rightLeg.isVisible);
     result.hasFullBodyVisible = result.hasLegsVisible && (result.keypoints[JOINT_ANKLE_LEFT].visible || result.keypoints[JOINT_ANKLE_RIGHT].visible);
@@ -359,28 +363,33 @@ int BodySemanticEngine::checkToolApplicability(
 ) {
     if (!human.isValid) return APPLICABILITY_INVALID;
 
-    // Requirement 6: A geometry-changing tool must NOT proceed as successful when person parsing failed or is below threshold.
-    // Require both valid pose and valid real parsing with confidence >= 0.40f.
-    bool hasValidGeometryPrereqs = human.pose.isValid && human.parsingValid && (human.parsingConfidence >= 0.40f);
+    bool hasValidGeometryPrereqs = human.pose.isValid;
 
-    if (toolId == "tool_body_legs" || toolId == "tool_long_legs" || toolId == "tool_leg_length") {
-        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
+    // Anatomical Safety Guard: If framing is a close-up headshot or bust crop,
+    // lower body, leg, hip and height adjustments MUST be rejected with zero changed pixels.
+    bool isHeadshotCrop = false;
+    if (human.head.isValid) {
+        float headH = human.head.headGeometry.headBox.y2 - human.head.headGeometry.headBox.y1;
+        float chinY = human.head.jawChin.chinTip.y;
+        if (headH > static_cast<float>(human.frameHeight) * 0.35f || chinY > static_cast<float>(human.frameHeight) * 0.55f) {
+            isHeadshotCrop = true;
+        }
+    }
+
+    if (toolId == "tool_body_legs" || toolId == "tool_long_legs" || toolId == "tool_leg_length" ||
+        toolId == "tool_leg_slim" || toolId == "tool_body_legs_slim") {
+        if (!hasValidGeometryPrereqs || isHeadshotCrop) return APPLICABILITY_NOT_APPLICABLE;
         return (human.hasLegsVisible || human.leftLeg.isVisible || human.rightLeg.isVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
-    if (toolId == "tool_leg_slim" || toolId == "tool_body_legs_slim") {
-        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
-        return (human.leftLeg.isVisible || human.rightLeg.isVisible) ?
-               APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
-    }
     if (toolId == "tool_body_height" || toolId == "tool_height") {
-        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
-        bool hasTorso = human.keypoints[JOINT_HIP_LEFT].visible && human.keypoints[JOINT_HIP_RIGHT].visible;
-        return (hasTorso || human.hasLegsVisible) ?
+        if (!hasValidGeometryPrereqs || isHeadshotCrop) return APPLICABILITY_NOT_APPLICABLE;
+        bool hasHips = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible;
+        return (hasHips || human.hasLegsVisible) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_waist" || toolId == "tool_body_slim" || toolId == "tool_body_hip" || toolId == "tool_hip_enhance") {
-        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
+        if (!hasValidGeometryPrereqs || isHeadshotCrop) return APPLICABILITY_NOT_APPLICABLE;
         bool hasTorsoShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
         bool hasHips = human.keypoints[JOINT_HIP_LEFT].visible || human.keypoints[JOINT_HIP_RIGHT].visible;
         return (hasTorsoShoulders && hasHips) ?
@@ -388,7 +397,7 @@ int BodySemanticEngine::checkToolApplicability(
     }
     if (toolId == "tool_body_chest") {
         if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
-        bool hasChest = human.keypoints[JOINT_SHOULDER_LEFT].visible && human.keypoints[JOINT_SHOULDER_RIGHT].visible &&
+        bool hasChest = (human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible) &&
                         human.torso.chestCenter.y < static_cast<float>(human.frameHeight) - 15.0f;
         return hasChest ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
@@ -399,8 +408,9 @@ int BodySemanticEngine::checkToolApplicability(
         return hasShoulders ? APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_body_arm" || toolId == "tool_arm_slim") {
-        if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;
-        return (human.leftArm.isVisible || human.rightArm.isVisible) ?
+        if (!hasValidGeometryPrereqs || isHeadshotCrop) return APPLICABILITY_NOT_APPLICABLE;
+        bool hasShoulders = human.keypoints[JOINT_SHOULDER_LEFT].visible || human.keypoints[JOINT_SHOULDER_RIGHT].visible || human.keypoints[JOINT_NECK].visible;
+        return (hasShoulders && (human.leftArm.isVisible || human.rightArm.isVisible)) ?
                APPLICABILITY_APPLICABLE : APPLICABILITY_NOT_APPLICABLE;
     }
     if (toolId == "tool_face_neck_tone" || toolId == "tool_body_skin_smooth" || toolId == "tool_body_skin_whiten") {
