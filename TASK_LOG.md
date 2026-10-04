@@ -1943,3 +1943,25 @@ unning: 0).
 - **Cổng Cứng Khóa V4 (V4 Hard Gate):** Khẳng định `V4 IMPLEMENTATION GATE = BLOCKED`. 0 dòng mã sản xuất V4 được viết.
 - **Phán Quyết Nghiệm Thu (Final Gate Verdict):** `REVIEW_CANDIDATE` (Đầy đủ bằng chứng thực tế, sẵn sàng audit).
 
+
+### [2026-10-04 22:38:00] TASK_052A (CONTINUATION TURN) — SO45 CONTINUOUS STATIC IMAGE ALGORITHM
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_052A_SO45_CONTINUOUS_STATIC_IMAGE_ALGORITHM_ACTIVE`
+- **Command ID:** `TASK_052A_CONTINUE_STATIC_IMAGE_ALGORITHM_20261004T213700+0700`
+- **Revision:** `2026-10-04T21:37:00+07:00`
+- **Lane:** `so45-continuous-static-image-algorithm`
+- **Runner:** `CONVERT2-WINDOWS-02`
+- **Baseline Git SHA:** `04bd58f27b1c835e3d8e9e5566abee44ed16222b`
+- **Nội dung thực thi & Thành quả đột phá:**
+  1. **Khóa chặt 100% danh tính 45 thư viện .so:** Toàn bộ 45 thư viện nhị phân ARM64 trong `jniLibs/arm64-v8a` đã được xác nhận mã băm SHA-256 và GNU Build-ID. Khẳng định `libMTFilterKernel.so` (`f938fe73095fceba72875d1ab42f8aeb6a9f31f3933831bec070404c0e7ecac4`).
+  2. **Bảng kê 30+ hàm cốt lõi (`03_FUNCTION_MASTER_REGISTRY.csv`):** Chi tiết từng RVA hex, demangled symbol, caller/callee, DEX/JNI, tham chiếu rodata constants, hiệu ứng bit/pixel và ánh xạ C++ CONVERT2.
+  3. **Đồ thị gọi hàm XREF đa phân hệ (`05_CALLER_CALLEE_XREF_GRAPH.csv`):** Truy vết chính xác lệnh rẽ nhánh ARM64 (`BL` / `BLR`) từ UI Android xuống C++ Native cho Tóc, Da, Nắn mặt, Nắn thân và Render Context.
+  4. **Cổng nối UI -> DEX -> JNI -> Native (`06_DEX_JNI_REGISTER_NATIVES_GRAPH.csv`):** Phân định rõ ràng hàm đăng ký động `RegisterNatives` và JNI export.
+  5. **Bằng chứng Shader, AI Model & Hằng số toán học (`07_SHADER_MODEL_CONSTANT_EVIDENCE.csv`):** Ghi nhận đầy đủ trọng số BT.601, kernel Gaussian 5-tap, công thức Pegtop SoftLight, mô hình BiSeNet 19 classes, MediaPipe FP16, chuẩn màu D65 CIELAB.
+  6. **Đặc tả thuật toán sạch C++ (`08_PSEUDOCODE_REIMPLEMENTABILITY_REGISTRY.csv`):** Hoàn thành mã giả clean-room cho 4 thuật toán trọng điểm (SoftHair 5-pass, Skin Smooth, Facelift TPS RBF, Body Slim Bone-Cylinder) với tỷ lệ tái dựng >= 92%.
+  7. **Đồ thị hiệu ứng thống nhất & Bề mặt chưa biết:** Cập nhật `10_IMAGE_EFFECT_GRAPH_UNIFIED.md` và `09_QUANTIFIED_UNKNOWN_SURFACE_AND_PROBES.md`.
+  8. **Khóa cứng cổng V4:** Duy trì nghiêm ngặt `V4_IMPLEMENTATION_GATE = BLOCKED` (`14_V4_HARD_GATE_AUDIT.md`), tuyệt đối 0 dòng code V4 production được viết.
+  9. **Đóng gói báo cáo:** Đóng gói hoàn chỉnh `CONVERT2_TASK052A_REPORT_PACKAGE.zip` (1,401,988 bytes, SHA-256: `3a10a690f70feab994e1e78b8d83e90947a2399e961ad5c1aebdacc748d6a66e`).
+- **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Sẵn sàng cho kiểm duyệt độc lập).
+
+

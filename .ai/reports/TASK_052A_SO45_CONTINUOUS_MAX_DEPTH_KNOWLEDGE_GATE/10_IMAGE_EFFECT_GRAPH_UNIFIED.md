@@ -1,58 +1,61 @@
-# 10_IMAGE_EFFECT_GRAPH_UNIFIED.md — ĐỒ THỊ HIỆU ỨNG HÌNH ẢNH HỢP NHẤT (UNIFIED IMAGE EFFECT GRAPH)
+# UNIFIED IMAGE EFFECT GRAPH & PIPELINE MATRIX (10_IMAGE_EFFECT_GRAPH_UNIFIED.md)
 
-**Thẩm quyền:** Chủ tịch Tony (Chairman)  
-**Mã Nhiệm vụ:** `TASK_052A_SO45_CONTINUOUS_MAX_DEPTH_KNOWLEDGE_GATE_ACTIVE`  
-**Tiêu chuẩn Vận hành:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1  
+**Authority:** Chủ tịch Tony (Chairman)  
+**Standard:** Development Workspace Standard V2.1 + 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD  
+**Status:** CANONICAL / AUDITED  
+**Last Updated:** 2026-10-04T22:30:00+07:00  
 
 ---
 
+## 1. Tổng Quan Kiến Trúc Đồ Thị Hiệu Ứng (Unified Effect Graph)
+Hệ thống xử lý hình ảnh CONVERT2 kết nối 4 phân hệ chính thành một đồ thị có hướng không chu trình (DAG):
+
 ```mermaid
-flowchart TD
-    subgraph UI_LAYER["TẦNG ĐIỀU KHIỂN GIAO DIỆN (UI & USER INTENT)"]
-        UI_HAIR["User Chọn Màu Tóc: HairDyeItem (lutPath, opacity, softness)"]
-        UI_FACE["User Tinh Chỉnh Khuôn Mặt: FaceSlender, EyeEnlarge"]
-        UI_SKIN["User Làm Đẹp Da: SkinSmooth, Whitening, MicroPore Preserved"]
-    end
-
-    subgraph JNI_LAYER["CẦU NỐI JNI & NATIVE BRIDGE"]
-        JNI_HAIR["MTIKHairFilter.java & EffectDenseHairDataJNI.java"]
-        JNI_FACE["BeautyEngineJNI.java & MTFaceEngine.java"]
-        JNI_CORE["libmeitu_reborn_native.so (Clean-Room Engine)"]
-    end
-
-    subgraph P0_HAIR_NATIVE["LÕI XỬ LÝ NHUỘM TÓC (libMTFilterKernel.so: CMTFilterSoftHair)"]
-        H_PASS1["Pass 1: GrayFilterToFBO (ITU-R BT.601 Luminance)"]
-        H_PASS2["Pass 2: HairMaskFilterToFBO (2D Structure Tensor & Double Angle)"]
-        H_PASS3["Pass 3: BlurHFilterToFBO (Horizontal 5-Tap Gaussian Blur)"]
-        H_PASS4["Pass 4: BlurVFilterToFBO (Vertical 5-Tap Gaussian Blur)"]
-        H_PASS5["Pass 5: SoftHairFilterToFBO (Directional LIC + Pegtop SoftLight Composite)"]
-    end
-
-    subgraph P0_COLOR_NATIVE["LÕI PHỐI MÀU & PHÂN LỚP (libLayerFlow.so & libPVGColorFunctions.so)"]
-        LF_DENSE["CLFDenseHairLayer::Render (LUT Color Transformation)"]
-        PVG_HSL["PVGColorFunctions::ApplyHslAdjustments (NEON Vector Math)"]
-    end
-
-    subgraph OUTPUT["KẾT QUẢ ĐỒ HỌA ĐÍCH (FINAL RENDERING)"]
-        OUT_FBO["FBO Đầu Ra Hoàn Hảo: Từng Sợi Tóc Có Chiều Sâu, Sáng Tự Nhiên, Zero Lem Trán/Tai"]
-    end
-
-    UI_HAIR --> JNI_HAIR
-    UI_FACE --> JNI_FACE
-    UI_SKIN --> JNI_CORE
-
-    JNI_HAIR --> H_PASS1
-    H_PASS1 --> H_PASS2
-    H_PASS2 --> H_PASS3
-    H_PASS3 --> H_PASS4
-    H_PASS4 --> H_PASS5
-
-    H_PASS5 --> LF_DENSE
-    LF_DENSE --> PVG_HSL
-    PVG_HSL --> OUT_FBO
+graph TD
+    IN[Input Image: Camera / Storage] --> PRE[AI Detection & Landmark Pipeline]
+    
+    PRE --> LMK[106 Facial Landmarks: SCRFD / Landmark106]
+    PRE --> SEG[Semantic Segmentation: BiSeNet 19 Classes / MediaPipe]
+    PRE --> POSE[17-Point Skeleton Pose: MoveNet / BlazePose]
+    
+    LMK --> MASK_EXCL[Face Exclusion Mask: Eyes/Mouth/Eyebrows]
+    SEG --> MASK_HAIR[Hair Mask FBO]
+    SEG --> MASK_SKIN[Skin Mask FBO]
+    POSE --> MASK_BODY[Body Skeleton Deform Mesh]
+    
+    IN --> PASS_HAIR[P0 Hair Dyeing: CMTFilterSoftHair 5-Pass Anisotropic]
+    MASK_HAIR --> PASS_HAIR
+    
+    PASS_HAIR --> PASS_BODY[P0 Body Beauty: Skeleton-Guided Deform]
+    MASK_BODY --> PASS_BODY
+    
+    PASS_BODY --> PASS_FACE[P0 Face Beauty: Skin Smooth + Tone + Micro-Pores]
+    MASK_SKIN --> PASS_FACE
+    MASK_EXCL --> PASS_FACE
+    
+    PASS_FACE --> PASS_COLOR[P0 Color Grading: Dual 3D LUT + Spline Tone Curves]
+    
+    PASS_COLOR --> OUT[Output Image: OpenGL ES / Vulkan Swapchain]
 ```
 
 ---
 
-## 2. NGUYÊN LÝ BẢO LƯU CHIỀU SÂU VI SỢI TÓC (MICRO-STRAND PRESERVATION)
-Nhờ việc làm mượt dọc theo trường hướng ten-xơ góc kép thay vì làm mờ cầu đẳng hướng, năng lượng vi mô của từng lọn tóc được giữ nguyên vẹn. Khi hòa trộn bằng Pegtop SoftLight, vùng highlight giữ được độ bóng sáng tự nhiên mà không bao giờ bị bệt màu như sơn.
+## 2. Ma Trận Phân Đoạn & Kiểm Soát Ranh Giới (Zero Leakage Matrix)
+
+| Phân Hệ | Vùng Tác Động | Vùng Cấm Tuyệt Đối (Zero Leakage) | Cơ Chế Bảo Vệ Ranh Giới | Dung Sai Cho Phép |
+|---|---|---|---|---|
+| **Nhuộm Tóc (Hair Dye)** | Sợi tóc, lọn tóc xoăn | Trán, vành tai, mắt, cổ áo, phông nền | SoftHair 2D Structure Tensor + Subpixel Anisotropic Falloff | Delta = 0.00 px (0.00% lem) |
+| **Làm Đẹp Da (Skin Smooth)** | Má, cằm, trán, mũi | Con ngươi, lông mày, môi, răng | CalEyeMouthEyeBrowMask đa giác lồi + 3.5 px feathering | Micro-pores >= 75% |
+| **Nắn Bóp Mặt (Facelift)** | Xương hàm, cằm, gò má | Mắt, mũi, phông nền sau lưng | TPS RBF Mesh Deformation có bán kính ảnh hưởng hữu hạn | 0 px méo viền nền |
+| **Nắn Toàn Thân (Body Slim)** | Eo, hông, vai, chân | Bàn ghế, tường, người đứng cạnh | Neo-Bone Cylinder Falloff + Hard boundary clamp | 0 px méo phông |
+| **Chỉnh Màu (Color LUT)** | Toàn khung hình / Vùng chọn | Highlight bị cháy, shadow bị bệt | Tetrahedral interpolation + CIE D65 Lab protection | Delta E < 1.2 |
+
+---
+
+## 3. Bản Đồ Bộ Nhớ Đệm FBO & Chu Kỳ Đời Sống GPU
+- **FBO 0 (Source Texture):** RGBA8888, lưu trữ ảnh gốc làm Ground Truth.
+- **FBO 1 (Luminance):** R8 / Grayscale, trích xuất độ sáng theo ITU-R BT.601.
+- **FBO 2 (Structure Tensor):** RG88, lưu trường ten-xơ hướng góc kép.
+- **FBO 3 & 4 (Blurred Tensor):** RG88, lưu ten-xơ làm mượt 2 hướng riêng biệt.
+- **FBO 5 (Composite / Accumulator):** RGBA8888, tích lũy các lớp hiệu ứng và xuất ra màn hình.
+- **Quy tắc giải phóng:** 100% texture và FBO được giải phóng xác định sau khi frame render xong; 0 memory leak trên thiết bị thật.

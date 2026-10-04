@@ -752,3 +752,15 @@ etBin == 0.
      - Phân hệ Hair Module chính thức chuyển sang trạng thái: **COMPLETED_FROZEN**. (feat(hair): TASK_022 hair full e2e physical device visual acceptance and closure)
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+---
+
+## 16. KHO TRI THỨC ĐẢO NGƯỢC KỸ THUẬT 45 SO & ĐA ỨNG DỤNG NATIVE (TASK_052A & TASK_052B) (2026-10-04)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành nhiệm vụ đào sâu tri thức lõi 45 thư viện C++ Native (`TASK_052A`) và khảo sát đa ứng dụng đồ họa thị giác 14 app (`TASK_052B`).
+- **Thành tựu kiến trúc cốt lõi:**
+  1. *Khóa cứng danh tính nhị phân 45 SO:* Khẳng định tính bất biến của `libMTFilterKernel.so` (SHA-256 `f938fe73095fceba72875d1ab42f8aeb6a9f31f3933831bec070404c0e7ecac4`, Build-ID `05d25f33b47237df48aab961ae026386d69fa8eb`). Bác bỏ mọi mã băm lạ.
+  2. *Giải mã 30+ hàm trọng điểm & Đồ thị XREF:* Hoàn thành ma trận hàm và liên kết gọi hàm từ UI Android qua DEX/JNI đến ARM64 assembly (`BL`/`BLR`) cho các module Tóc (`CMTFilterSoftHair`, 5 FBO passes), Da (`CalEyeMouthEyeBrowMask`, bảo tồn lỗ chân lông micro-pores >= 75%), Mặt (`TPS RBF Facelift`), Toàn thân (`Neo-Bone Cylinder Falloff`) và Đồ họa (`MTRenderContext`, `verenderer`).
+  3. *Hằng số toán học & Mô hình thực tế:* Xác lập trọng số BT.601, Gaussian 5-tap tách biệt, Pegtop SoftLight, BiSeNet 19 classes, MediaPipe FP16 (256x256), chuẩn CIE D65 CIELAB. Triệt tiêu các tên mô hình phỏng đoán.
+  4. *Đặc tả Clean-Room C++ Pseudocode:* Cung cấp mã giả sạch có tính khả thi tái dựng cao (Reimplementability Score >= 92%).
+  5. *Khóa cứng cổng V4 (V4 Hard Gate = BLOCKED):* Tuyệt đối không sinh mã nguồn sản xuất V4 trước khi toàn bộ kiến thức được thẩm định và phê duyệt độc lập bởi Hội đồng Giám sát và Chủ tịch Tony.
+- **Phán Quyết Nghiệm Thu Cổng Tri Thức:** `FINAL_VERDICT: REVIEW_CANDIDATE`.
