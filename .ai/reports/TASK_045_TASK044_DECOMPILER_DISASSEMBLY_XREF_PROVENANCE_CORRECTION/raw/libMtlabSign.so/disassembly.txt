@@ -1,0 +1,107 @@
+// LAWFUL EXCLUSION NOTICE per Rule 11 / TASK_045 Specification
+// Library: libMtlabSign.so
+// Reason: PROTECTED_REQUEST_SIGNING_HMAC_SECRET
+// Protection: No DRM / Access Control / Signing Secret bypass permitted.
+// Status: BLOCKED/EXCLUDED from reverse engineering.
+// Non-protected exported entry point inspection only:
+
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMtlabSign.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000001c44 <.text>:
+    1c44:      	bti	c
+    1c48:      	nop
+    1c4c:      	adr	x0, 0x8af0
+    1c50:      	b	0x4850 <__cxa_finalize@plt>
+    1c54:      	bti	c
+    1c58:      	ret
+    1c5c:      	bti	c
+    1c60:      	b	0x1c54 <.text+0x10>
+    1c64:      	bti	c
+    1c68:      	cbz	x0, 0x1c74 <.text+0x30>
+    1c6c:      	mov	x16, x0
+    1c70:      	br	x16
+    1c74:      	ret
+    1c78:      	bti	c
+    1c7c:      	mov	x1, x0
+    1c80:      	nop
+    1c84:      	adr	x0, 0x1c64 <.text+0x20>
+    1c88:      	nop
+    1c8c:      	adr	x2, 0x8af0
+    1c90:      	b	0x4860 <__cxa_atexit@plt>
+
+0000000000001c94 <_Z11jstring2strP7_JNIEnvP8_jstring>:
+    1c94:      	stp	x29, x30, [sp, #-0x40]!
+    1c98:      	stp	x24, x23, [sp, #0x10]
+    1c9c:      	stp	x22, x21, [sp, #0x20]
+    1ca0:      	stp	x20, x19, [sp, #0x30]
+    1ca4:      	mov	x29, sp
+    1ca8:      	ldr	x9, [x0]
+    1cac:      	mov	x21, x1
+    1cb0:      	nop
+    1cb4:      	adr	x1, 0x15d0
+    1cb8:      	mov	x20, x0
+    1cbc:      	mov	x19, x8
+    1cc0:      	ldr	x9, [x9, #0x30]
+    1cc4:      	blr	x9
+    1cc8:      	ldr	x8, [x20]
+    1ccc:      	mov	x22, x0
+    1cd0:      	adrp	x1, 0x1000
+    1cd4:      	add	x1, x1, #0x653
+    1cd8:      	mov	x0, x20
+    1cdc:      	ldr	x8, [x8, #0x538]
+    1ce0:      	blr	x8
+    1ce4:      	ldr	x8, [x20]
+    1ce8:      	mov	x23, x0
+    1cec:      	adrp	x2, 0x1000
+    1cf0:      	add	x2, x2, #0x560
+    1cf4:      	adrp	x3, 0x1000
+    1cf8:      	add	x3, x3, #0x572
+    1cfc:      	ldr	x8, [x8, #0x108]
+    1d00:      	mov	x0, x20
+    1d04:      	mov	x1, x22
+    1d08:      	blr	x8
+    1d0c:      	mov	x2, x0
+    1d10:      	mov	x0, x20
+    1d14:      	mov	x1, x21
+    1d18:      	mov	x3, x23
+    1d1c:      	bl	0x4880 <_ZN7_JNIEnv16CallObjectMethodEP8_jobjectP10_jmethodIDz@plt>
+    1d20:      	ldr	x8, [x20]
+    1d24:      	mov	x22, x0
+    1d28:      	mov	x0, x20
+    1d2c:      	mov	x1, x22
+    1d30:      	ldr	x8, [x8, #0x558]
+    1d34:      	blr	x8
+    1d38:      	cmp	w0, #0x1
+    1d3c:      	b.lt	0x1dc8 <_Z11jstring2strP7_JNIEnvP8_jstring+0x134>
+    1d40:      	ldr	x8, [x20]
+    1d44:      	mov	w23, w0
+    1d48:      	mov	x0, x20
+    1d4c:      	mov	x1, x22
+    1d50:      	mov	x2, xzr
+    1d54:      	ldr	x8, [x8, #0x5c0]
+    1d58:      	blr	x8
+    1d5c:      	mov	x24, x0
+    1d60:      	add	w0, w23, #0x1
+    1d64:      	bl	0x4890 <malloc@plt>
+    1d68:      	mov	w23, w23
+    1d6c:      	mov	x1, x24
+    1d70:      	mov	x21, x0
+    1d74:      	mov	x2, x23
+    1d78:      	bl	0x48a0 <memcpy@plt>
+    1d7c:      	ldr	x8, [x20]
+    1d80:      	mov	x0, x20
+    1d84:      	mov	x1, x22
+    1d88:      	mov	x2, x24
+    1d8c:      	mov	w3, wzr
+    1d90:      	strb	wzr, [x21, x23]
+    1d94:      	ldr	x8, [x8, #0x600]
+    1d98:      	blr	x8
+    1d9c:      	mov	x0, x21
+    1da0:      	bl	0x48b0 <strlen@plt>
+    1da4:      	cmn	x0, #0x10
+    1da8:      	b.hs	0x1e28 <_Z11jstring2strP7_JNIEnvP8_jstring+0x194>
+    1dac:      	mov	x20, x0
+    1db0:      	cmp	x0, #0x17

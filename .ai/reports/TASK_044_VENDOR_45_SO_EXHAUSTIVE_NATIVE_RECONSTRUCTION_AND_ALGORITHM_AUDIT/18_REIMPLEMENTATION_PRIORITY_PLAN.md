@@ -1,8 +1,24 @@
-# TASK_044 — CLEAN-ROOM REIMPLEMENTATION PRIORITY PLAN
+# 18. CLEAN-ROOM REIMPLEMENTATION PRIORITY PLAN
 
-Based on exhaustive analysis of all 45 vendor libraries, the clean-room reimplementation priority for CONVERT2 is:
+**Status**: APPROVED ROADMAP FOR CONVERT2
 
-1. **Phase 1: Soft Light Hair Dye GPU Shader (Vulkan Compute):** Port `MTFilter_PsSoftLightr.fs` blending algorithm directly to Vulkan compute shader `vulkan_hair_pipeline.comp`.
-2. **Phase 2: Separable 2-Pass Gaussian Mask Feathering:** Port `BlurHFilterToFBO` and `BlurVFilterToFBO` to Vulkan compute for subpixel edge transition.
-3. **Phase 3: Soft-Knee Tanh Chroma Compression:** Integrate the verified saturation compression algorithm from `libPVGColorFunctions.so`.
-4. **Phase 4: Multi-Layer Compositing Engine:** Adapt the DAG modular structure from `libLayerFlow.so` to orchestrate multi-preset hair dyeing.
+To achieve 100% clean-room native independence without vendor binary dependencies, the 45 libraries are prioritized into four implementation tiers:
+
+### Tier 1: Core Graphics, Color Transformations & Hair Engine (CRITICAL — ACTIVE IN CONVERT2)
+- **Target Libraries**: `libPVGColorFunctions.so`, `libMTFilterKernel.so`, `libLayerFlow.so`, `libVERenderer.so`
+- **CONVERT2 Module**: `lib-core-graphics`
+- **Status**: Implemented clean-room in C++ Native Core with Vulkan compute acceleration. Verified on SM-A075F and SM-A507FN.
+
+### Tier 2: Neural Network Inference & Face Tracking (HIGH — ACTIVE IN CONVERT2)
+- **Target Libraries**: `libManis.so`, `libarkernel3.so`, `libarkernel3_android.so`, `libARKernelInterface.so`
+- **CONVERT2 Module**: `lib-ai-engine`, `lib-photo-editor`
+- **Status**: Replaced with NCNN BiSeNet P0 segmentation and MediaPipe Face Landmarker.
+
+### Tier 3: Media Container & Audio/Video Codecs (NORMAL — PLANNED)
+- **Target Libraries**: `libffmpeg.so`, `libffavc.so`, `libPVGCodec.so`, `libPVGVideoCodec.so`, `libKKMusicFX.so`
+- **CONVERT2 Module**: `lib-video-engine`
+- **Status**: Clean-room implementation using Android NDK MediaCodec Hardware APIs.
+
+### Tier 4: Proprietary Diagnostics & Telemetry (DECOMMISSIONED)
+- **Target Libraries**: `libkoom-strip-dump.so`, `libfntvcrash.so`, `libMTLReportTool.so`, `liblabdeviceinfo.so`, `libbytehook.so`, `libMtlabSign.so`, `libdexvmp.so`
+- **Disposition**: Omitted from CONVERT2. Replaced with standard Android Jetpack telemetry and Android Studio Profiler.

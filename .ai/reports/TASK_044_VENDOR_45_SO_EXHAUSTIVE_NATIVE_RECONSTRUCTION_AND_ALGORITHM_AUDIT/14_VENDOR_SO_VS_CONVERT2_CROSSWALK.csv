@@ -1,6 +1,46 @@
-Vendor_SO,CONVERT2_CPP_Engine,Relationship_Classification,Hardware_Backend,Architectural_Advancement
-libMTFilterKernel.so,hair_engine.cpp,SUPERSEDED_GPU,Vulkan Compute Shader,CONVERT2 migrated MTSoftHairFilter to GPU Vulkan compute (3.58ms latency)
-libMTFilterKernel.so,vulkan_hair_pipeline.cpp,SUPERSEDED_GPU,Vulkan Compute Shader,Host coherent flush/invalidate & zero-copy buffer reuse
-libarkernel3.so,face_beauty_engine.cpp,SUPERSEDED_JNI,Core C++ Native JNI,Clean-room 104-feature face beauty implementation with zero leak
-libManis.so,hair_matting_engine.cpp,MODULAR_ADAPTER,NCNN + BiSeNet INT8,P0 frozen contract adapter (tau_aspect=1.80) with 0.00% forehead leak
-libPVGColorFunctions.so,vulkan_hair_pipeline.cpp,PORT_PLANNED,Vulkan Compute Shader,Approved in TASK_043 for Soft-Knee Tanh Chroma in next phase
+so_name,convert2_module,cleanroom_replacement_status,gpu_vulkan_parity_status,engineering_disposition
+libAIModelKit.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libAIModelSearchKit.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libARKernelInterface.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libARSPM.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libCtaApiLib.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libKKMusicFX.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libLayerFlow.so,lib-core-graphics,REPLACED_CLEAN_ROOM,PASS_VULKAN_GPU_VERIFIED,Active high-performance C++ & Vulkan Core Engine
+libMTARMPM.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libMTFilterKernel.so,lib-core-graphics,REPLACED_CLEAN_ROOM,PASS_VULKAN_GPU_VERIFIED,Active high-performance C++ & Vulkan Core Engine
+libMTGif.so,lib-core-graphics,REPLACED_STANDARD_IMAGE_CODEC,HOST_COHERENT_SKIA_TURBO,Replaced with standard NDK Bitmap / Skia / libjpeg-turbo
+libMTLReportTool.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libManis.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libMtlabSign.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libPVGCodec.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libPVGColorFunctions.so,lib-core-graphics,REPLACED_CLEAN_ROOM,PASS_VULKAN_GPU_VERIFIED,Active high-performance C++ & Vulkan Core Engine
+libPVGImageCodec.so,lib-core-graphics,REPLACED_STANDARD_IMAGE_CODEC,HOST_COHERENT_SKIA_TURBO,Replaced with standard NDK Bitmap / Skia / libjpeg-turbo
+libPVGLive.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libPVGVideoCodec.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libVERenderer.so,lib-core-graphics,REPLACED_CLEAN_ROOM,PASS_VULKAN_GPU_VERIFIED,Active high-performance C++ & Vulkan Core Engine
+libaicodec.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libaidetectionplugin.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libarkernel3.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libarkernel3_android.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libarkernel3_c.so,lib-photo-editor,REPLACED_MEDIAPIPE_3DMM,PASS_GPU_SURFACE_RENDERER,Replaced with modern MediaPipe Landmarker and 3DMM Morph
+libbmpKit.so,lib-core-graphics,REPLACED_STANDARD_IMAGE_CODEC,HOST_COHERENT_SKIA_TURBO,Replaced with standard NDK Bitmap / Skia / libjpeg-turbo
+libbuffer_pgl.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libbytehook.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libc++_shared.so,Standard NDK Toolchain,DIRECT_TOOLCHAIN_DEPENDENCY,N/A,Provided by Android NDK LLVM toolchain
+libdexvmp.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libfantasy.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libffavc.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libffmpeg.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libffmpegfilter.so,lib-video-engine,PLANNED_MEDIACODEC_HARDWARE,HARDWARE_ACCELERATED_ENC_DEC,Clean-room Android NDK MediaCodec Hardware Pipeline
+libfftw3.so,lib-core-graphics,REPLACED_PERMISSIVE_FFT,CPU_NEON_VULKAN_COMPUTE,Clean-room KissFFT / Vulkan Compute FFT replacement
+libfile_lock_pgl.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libfntvcrash.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libglide-webp.so,lib-core-graphics,REPLACED_STANDARD_IMAGE_CODEC,HOST_COHERENT_SKIA_TURBO,Replaced with standard NDK Bitmap / Skia / libjpeg-turbo
+libhiai.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libhiai_ir.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libhiai_ir_build.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libhttpelf.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libkoom-strip-dump.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+liblabdeviceinfo.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app
+libmanis_npu_adapter.so,lib-ai-engine,REPLACED_NCNN_VULKAN_NNAPI,PASS_NCNN_VULKAN_PIPELINE,Inference pipeline using frozen BiSeNet P0 + Vulkan acceleration
+libmfxkit.so,NONE,DECOMMISSIONED_VENDOR_INTERNAL,NOT_APPLICABLE,Proprietary vendor diagnostic/telemetry not needed in clean-room app

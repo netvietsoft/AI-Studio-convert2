@@ -1,0 +1,107 @@
+// LAWFUL EXCLUSION NOTICE per Rule 11 / TASK_045 Specification
+// Library: libfile_lock_pgl.so
+// Reason: PROTECTED_DRM_FILE_ACCESS_CONTROL
+// Protection: No DRM / Access Control / Signing Secret bypass permitted.
+// Status: BLOCKED/EXCLUDED from reverse engineering.
+// Non-protected exported entry point inspection only:
+
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libfile_lock_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000000a0c <.text>:
+     a0c:      	adrp	x0, 0x4000 <close@plt+0x3100>
+     a10:      	add	x0, x0, #0xf10
+     a14:      	b	0xe80 <__cxa_finalize@plt>
+     a18:      	ret
+     a1c:      	b	0xa18 <.text+0xc>
+     a20:      	cbz	x0, 0xa28 <.text+0x1c>
+     a24:      	br	x0
+     a28:      	ret
+     a2c:      	adrp	x8, 0x0
+     a30:      	add	x8, x8, #0xa20
+     a34:      	adrp	x2, 0x4000 <close@plt+0x3100>
+     a38:      	add	x2, x2, #0xf10
+     a3c:      	mov	x1, x0
+     a40:      	mov	x0, x8
+     a44:      	b	0xe90 <__cxa_atexit@plt>
+
+0000000000000a48 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile>:
+     a48:      	sub	sp, sp, #0x60
+     a4c:      	stp	x29, x30, [sp, #0x30]
+     a50:      	str	x21, [sp, #0x40]
+     a54:      	stp	x20, x19, [sp, #0x50]
+     a58:      	add	x29, sp, #0x30
+     a5c:      	mrs	x21, TPIDR_EL0
+     a60:      	ldr	x9, [x21, #0x28]
+     a64:      	mov	w8, w2
+     a68:      	mov	x19, x0
+     a6c:      	mov	w10, #0x1               // =1
+     a70:      	mov	w11, #-0x1              // =-1
+     a74:      	add	x2, sp, #0x8
+     a78:      	mov	w1, #0x7                // =7
+     a7c:      	mov	w0, w8
+     a80:      	stur	x9, [x29, #-0x8]
+     a84:      	stp	xzr, xzr, [sp, #0x10]
+     a88:      	str	w10, [sp, #0x8]
+     a8c:      	str	w11, [sp, #0x20]
+     a90:      	bl	0xea0 <fcntl@plt>
+     a94:      	tbz	w0, #0x1f, 0xaf4 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile+0xac>
+     a98:      	ldrsh	w3, [sp, #0x8]
+     a9c:      	adrp	x1, 0x0
+     aa0:      	adrp	x2, 0x0
+     aa4:      	add	x1, x1, #0x888
+     aa8:      	add	x2, x2, #0x891
+     aac:      	mov	w0, #0x3                // =3
+     ab0:      	bl	0xeb0 <__android_log_print@plt>
+     ab4:      	ldr	x8, [x19]
+     ab8:      	adrp	x1, 0x0
+     abc:      	add	x1, x1, #0x8c2
+     ac0:      	mov	x0, x19
+     ac4:      	ldr	x8, [x8, #0x30]
+     ac8:      	blr	x8
+     acc:      	mov	x20, x0
+     ad0:      	bl	0xec0 <__errno@plt>
+     ad4:      	ldr	w0, [x0]
+     ad8:      	bl	0xed0 <strerror@plt>
+     adc:      	ldr	x8, [x19]
+     ae0:      	mov	x2, x0
+     ae4:      	mov	x0, x19
+     ae8:      	mov	x1, x20
+     aec:      	ldr	x8, [x8, #0x70]
+     af0:      	blr	x8
+     af4:      	ldr	x8, [x21, #0x28]
+     af8:      	ldur	x9, [x29, #-0x8]
+     afc:      	cmp	x8, x9
+     b00:      	b.ne	0xb18 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile+0xd0>
+     b04:      	ldp	x20, x19, [sp, #0x50]
+     b08:      	ldr	x21, [sp, #0x40]
+     b0c:      	ldp	x29, x30, [sp, #0x30]
+     b10:      	add	sp, sp, #0x60
+     b14:      	ret
+     b18:      	bl	0xee0 <__stack_chk_fail@plt>
+
+0000000000000b1c <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nUnlockFile>:
+     b1c:      	sub	sp, sp, #0x60
+     b20:      	stp	x29, x30, [sp, #0x30]
+     b24:      	str	x21, [sp, #0x40]
+     b28:      	stp	x20, x19, [sp, #0x50]
+     b2c:      	add	x29, sp, #0x30
+     b30:      	mrs	x21, TPIDR_EL0
+     b34:      	ldr	x9, [x21, #0x28]
+     b38:      	mov	w8, w2
+     b3c:      	mov	x19, x0
+     b40:      	mov	w10, #0x2               // =2
+     b44:      	mov	w11, #-0x1              // =-1
+     b48:      	add	x2, sp, #0x8
+     b4c:      	mov	w1, #0x6                // =6
+     b50:      	mov	w0, w8
+     b54:      	stur	x9, [x29, #-0x8]
+     b58:      	stp	xzr, xzr, [sp, #0x10]
+     b5c:      	str	w10, [sp, #0x8]
+     b60:      	str	w11, [sp, #0x20]
+     b64:      	bl	0xea0 <fcntl@plt>
+     b68:      	tbz	w0, #0x1f, 0xbc8 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nUnlockFile+0xac>
+     b6c:      	ldrsh	w3, [sp, #0x8]
+     b70:      	adrp	x1, 0x0

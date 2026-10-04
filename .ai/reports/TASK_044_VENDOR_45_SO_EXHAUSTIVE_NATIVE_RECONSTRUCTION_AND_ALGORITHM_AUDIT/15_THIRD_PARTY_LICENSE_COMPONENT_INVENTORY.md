@@ -1,11 +1,17 @@
-# TASK_044 — THIRD-PARTY OPEN SOURCE COMPONENT & LICENSE INVENTORY
+# 15. THIRD-PARTY & OPEN SOURCE LICENSE COMPONENT INVENTORY
 
-| Component | Detected In | Upstream License | Usage in Vendor Binary | CONVERT2 Clean-Room Strategy |
+**Status**: AUDITED
+**Scope**: Legal / License Compliance Audit of 45 Vendor Native Libraries
+
+| Component | Contained in Library | Detected License | Upstream Origin | Clean-Room Strategy in CONVERT2 |
 |---|---|---|---|---|
-| **FFmpeg** | `libffmpeg.so`, `libffavc.so` | LGPL v2.1+ / GPL v2+ | Audio/video demuxing & decoding | Clean-room Android MediaCodec NDK / FFmpeg build |
-| **libwebp** | `libglide-webp.so` | BSD 3-Clause | WebP image decoding | Standard Android BitmapFactory / NDK libwebp |
-| **FFTW3** | `libfftw3.so` | GPL v2+ | Fast Fourier Transform DSP | ARM NEON FFT or OpenCV discrete Fourier |
-| **ByteHook** | `libbytehook.so` | MIT License | ByteDance PLT hook utility | Not required in CONVERT2 production |
-| **Koom** | `libkoom-strip-dump.so` | Apache 2.0 | Kuaishou memory leak dumper | Diagnostic tool only |
-| **LLVM libc++** | `libc++_shared.so` | Apache 2.0 with LLVM Exception | C++ Standard Library runtime | Replaced by NDK libc++_shared.so |
-| **Huawei HiAI** | `libhiai.so`, `libhiai_ir.so` | Proprietary Huawei SDK | NPU hardware acceleration | Fallback to NNAPI / Vulkan Compute |
+| FFmpeg | `libffmpeg.so`, `libffavc.so`, `libffmpegfilter.so` | LGPL v2.1+ / GPL v2+ | FFmpeg project | Replace with Android NDK MediaCodec Hardware API |
+| FFTW3 | `libfftw3.so` | GPL v2+ | FFTW project | Replace with permissive KissFFT (BSD) or Vulkan FFT |
+| LLVM libc++ | `libc++_shared.so` | Apache 2.0 with LLVM Exception | LLVM project | Standard Android NDK r28 toolchain runtime |
+| libwebp | `libglide-webp.so` | BSD 3-Clause | Google WebP | Standard Android platform WebP support |
+| ByteHook | `libbytehook.so` | MIT License | ByteDance open-source | Excluded (Not needed in clean-room engine) |
+| KOOM | `libkoom-strip-dump.so` | Apache 2.0 | Kuaishou open-source | Excluded (Replaced with Android Studio Profiler) |
+| HiAI DDK | `libhiai.so`, `libhiai_ir.so`, `libhiai_ir_build.so` | Proprietary Huawei DDK | Huawei Technologies | Replaced with cross-platform NCNN / NNAPI / Vulkan |
+| Manis | `libManis.so`, `libmanis_npu_adapter.so` | Vendor Proprietary | Meitu / Tencent AI Lab | Replaced with Tencent NCNN open-source (BSD 3-Clause) |
+| Color Transfer / Math | `libPVGColorFunctions.so` | Vendor Proprietary | Meitu / ArcSoft | Reconstructed clean-room in CONVERT2 `lib-core-graphics` |
+| AR Kernel | `libarkernel3.so`, `libARKernelInterface.so` | Vendor Proprietary | Meitu AR Lab | Replaced with Google MediaPipe Face Mesh (Apache 2.0) |

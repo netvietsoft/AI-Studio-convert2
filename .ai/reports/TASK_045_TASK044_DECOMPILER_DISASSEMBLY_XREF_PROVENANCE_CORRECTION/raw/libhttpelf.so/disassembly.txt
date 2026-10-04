@@ -1,0 +1,107 @@
+// LAWFUL EXCLUSION NOTICE per Rule 11 / TASK_045 Specification
+// Library: libhttpelf.so
+// Reason: PROTECTED_NETWORK_PAYLOAD_ENCRYPTION
+// Protection: No DRM / Access Control / Signing Secret bypass permitted.
+// Status: BLOCKED/EXCLUDED from reverse engineering.
+// Non-protected exported entry point inspection only:
+
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhttpelf.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000005468 <.text>:
+    5468:      	bti	c
+    546c:      	nop
+    5470:      	adr	x0, 0xfba0
+    5474:      	b	0xb990 <__cxa_finalize@plt>
+    5478:      	bti	c
+    547c:      	ret
+    5480:      	bti	c
+    5484:      	b	0x5478 <.text+0x10>
+    5488:      	bti	c
+    548c:      	cbz	x0, 0x5498 <.text+0x30>
+    5490:      	mov	x16, x0
+    5494:      	br	x16
+    5498:      	ret
+    549c:      	bti	c
+    54a0:      	mov	x1, x0
+    54a4:      	nop
+    54a8:      	adr	x0, 0x5488 <.text+0x20>
+    54ac:      	nop
+    54b0:      	adr	x2, 0xfba0
+    54b4:      	b	0xb9a0 <__cxa_atexit@plt>
+
+00000000000054b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send>:
+    54b8:      	sub	sp, sp, #0x60
+    54bc:      	stp	x29, x30, [sp, #0x10]
+    54c0:      	stp	x26, x25, [sp, #0x20]
+    54c4:      	stp	x24, x23, [sp, #0x30]
+    54c8:      	stp	x22, x21, [sp, #0x40]
+    54cc:      	stp	x20, x19, [sp, #0x50]
+    54d0:      	add	x29, sp, #0x10
+    54d4:      	mrs	x25, TPIDR_EL0
+    54d8:      	mov	x19, x2
+    54dc:      	mov	x20, x0
+    54e0:      	ldr	x8, [x25, #0x28]
+    54e4:      	mov	x21, xzr
+    54e8:      	cmp	w3, #0x7b
+    54ec:      	str	x8, [sp, #0x8]
+    54f0:      	b.le	0x55fc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x144>
+    54f4:      	cmp	w3, #0x7d
+    54f8:      	b.le	0x5684 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1cc>
+    54fc:      	cmp	w3, #0x7e
+    5500:      	b.eq	0x5770 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x2b8>
+    5504:      	cmp	w3, #0x8a
+    5508:      	b.eq	0x5808 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x350>
+    550c:      	cmp	w3, #0x9a
+    5510:      	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5514:      	mov	x0, x19
+    5518:      	bl	0x5ca8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7f0>
+    551c:      	ldr	x8, [x20]
+    5520:      	mov	x19, x0
+    5524:      	nop
+    5528:      	adr	x1, 0x15cc
+    552c:      	mov	x0, x20
+    5530:      	ldr	x8, [x8, #0x30]
+    5534:      	blr	x8
+    5538:      	ldr	x8, [x20]
+    553c:      	ldr	w1, [x19, #0xf0]
+    5540:      	mov	x22, x0
+    5544:      	mov	x0, x20
+    5548:      	mov	x2, x22
+    554c:      	mov	x3, xzr
+    5550:      	ldr	x8, [x8, #0x560]
+    5554:      	blr	x8
+    5558:      	ldr	w8, [x19, #0xf0]
+    555c:      	mov	x21, x0
+    5560:      	cmp	w8, #0x1
+    5564:      	b.lt	0x55dc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x124>
+    5568:      	mov	x23, xzr
+    556c:      	add	x26, x19, #0x10
+    5570:      	ldurb	w8, [x26, #-0x10]
+    5574:      	ldr	x9, [x20]
+    5578:      	sub	x11, x26, #0xf
+    557c:      	ldr	x10, [x26]
+    5580:      	mov	x0, x20
+    5584:      	tst	w8, #0x1
+    5588:      	ldr	x8, [x9, #0x538]
+    558c:      	csel	x1, x11, x10, eq
+    5590:      	blr	x8
+    5594:      	ldr	x8, [x20]
+    5598:      	mov	x24, x0
+    559c:      	mov	x0, x20
+    55a0:      	mov	x1, x21
+    55a4:      	mov	w2, w23
+    55a8:      	mov	x3, x24
+    55ac:      	ldr	x8, [x8, #0x570]
+    55b0:      	blr	x8
+    55b4:      	ldr	x8, [x20]
+    55b8:      	mov	x0, x20
+    55bc:      	mov	x1, x24
+    55c0:      	ldr	x8, [x8, #0xb8]
+    55c4:      	blr	x8
+    55c8:      	ldrsw	x8, [x19, #0xf0]
+    55cc:      	add	x23, x23, #0x1
+    55d0:      	add	x26, x26, #0x18
+    55d4:      	cmp	x23, x8
