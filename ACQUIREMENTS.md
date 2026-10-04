@@ -80,3 +80,15 @@
   3. **Khóa chống trùng lũy đẳng:** `anti_duplicate_key = task_id + ":" + task_revision`, tự động loại bỏ lệnh phát trùng nhưng cho phép cập nhật phiên bản mới.
   4. **Thu hồi lease xác định (Stale Lease Recovery):** Khóa thuê có hạn dùng (`lease_expires_at`). Khi runner crash hoặc ngắt mạng, Orchestrator tự động thu hồi lệnh về `PENDING`, tăng `retry_count`, tuyệt đối không nhân bản task.
   5. **Bảo toàn nguồn gốc 5 thành phần (Provenance Guards):** Bắt buộc liên kết `dispatch_commit_sha`, `github_run_id`, `runner_lane`, `target_commit_sha`, và `report_folder` trước khi đóng dấu `COMPLETED`.
+
+---
+
+### [ACQ-009] Quy Trình Clean-Room Tái Dựng Tối Đa Độ Sâu Nhị Phân Native C++ (TASK_051)
+- **Bối cảnh:** Nhiệm vụ sống còn của dự án P0 yêu cầu giải mã bản chất các thuật toán hiệu ứng ảnh từ 45 thư viện SO prebuilt mà không được can thiệp vào mã nguồn sản xuất đã đóng băng.
+- **Giải pháp tối ưu:**
+  1. **Tự động hóa chuỗi công cụ LLVM Native:** Sử dụng `llvm-readelf`, `llvm-nm`, và Capstone ARM64 disassembler để bóc tách ELF Build-ID, section headers, con trỏ hàm ảo, bảng ký hiệu, và các chuỗi rodata.
+  2. **Tái dựng Đồ thị Luồng Điều khiển CFG (Control Flow Graph):** Nhận diện các basic blocks thông qua các lệnh rẽ nhánh điều kiện ARM64 (`b.eq`, `b.ne`, `tbz`, `tbnz`, `cbz`, `cbnz`) và lệnh gọi hàm (`bl`, `blr`), tính toán Cyclomatic Complexity để định lượng độ phức tạp logic.
+  3. **Khôi phục Nguyên vẹn Shaders GLSL & Hằng số Quang học:** Trích xuất các shader làm nét Unsharp Mask 9x9 trực tiếp từ phân vùng `.rodata` của `libMTFilterKernel.so`, công thức hòa trộn Pegtop SoftLight, bảng trọng số Gaussian 5-tap rời rạc, và các offset tọa độ kết cấu UV theo kích thước canvas.
+  4. **Ánh xạ Cầu nối Động DEX -> JNI -> C++ (RegisterNatives):** Truy vết các mảng cấu trúc `JNINativeMethod` được đăng ký trong `JNI_OnLoad` để kết nối chính xác lớp Java/Kotlin với con trỏ hàm C++ Native.
+  5. **Mã giả C++ Trung lập Pháp lý (Clean-Room Clean Specification):** Chuyển đổi mã máy ARM64 thành mã giả C++ cấp cao có đầy đủ chú thích cấu trúc dữ liệu và giải thuật toán học, tạo cơ sở cho việc độc lập tái dựng mà không vi phạm bản quyền hay bằng sáng chế hạn chế.
+

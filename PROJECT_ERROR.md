@@ -83,3 +83,15 @@
   3. Cập nhật trạng thái `.ai/state.json` thành `BLOCKED_EXTERNAL_AUTH` một cách minh bạch, nhất quán trên mọi trường dữ liệu.
 - **Quy tắc phòng ngừa:** TUYỆT ĐỐI KHÔNG gán cứng `verdict = PASS` trong bất kỳ orchestrator hoặc script nào. Trạng thái phán quyết tối cao phải là hàm phụ thuộc có kiểm chứng thực nghiệm của 100% các cổng nghiệm thu.
 
+---
+
+### [ERR-009] PROCESS_DEFECT_MIRROR: Remote Google Report Drive Mirror Headless HTTP 401 Unauthenticated (TASK_051)
+- **Thời điểm phát hiện:** 2026-10-04 trong quá trình thực hiện `TASK_051`.
+- **Nguyên nhân gốc rễ:** Hệ thống CI/CD headless chạy runner Windows không có phiên đăng nhập trình duyệt OAuth2 interactive hoặc refresh token hợp lệ cho Google Drive REST API. Mọi yêu cầu HTTP POST/PUT tải tệp lên Google Report Drive Folder (`13xDIqiI-vyP10pkypLI_6palmeJS-QRg`) đều trả về mã lỗi HTTP 401 Unauthorized (`credentials_missing_or_expired`).
+- **Giải pháp triệt để:** 
+  1. Ghi nhận trung thực `PROCESS_DEFECT_MIRROR` theo quy chuẩn `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD`.
+  2. Tuyệt đối không giả mạo thành công (no mock pass).
+  3. Xuất xưởng toàn bộ hồ sơ báo cáo nội bộ tại `.ai/reports/TASK_051_45_SO/` và gói tệp nén `CONVERT2_TASK051_45SO_REPORT_PACKAGE.zip` cùng mã băm SHA256 để Chủ tịch Tony và Integrator có thể kéo về hoặc tải lên Drive thủ công.
+- **Quy tắc phòng ngừa:** Khi cổng ngoài không có thông tin xác thực, luôn ghi nhận trung thực lỗi quy trình, lưu trữ artifact cục bộ có chữ ký hash, và báo cáo trạng thái fail-closed.
+
+

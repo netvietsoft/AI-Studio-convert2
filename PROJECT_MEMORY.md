@@ -752,3 +752,17 @@ etBin == 0.
      - Phân hệ Hair Module chính thức chuyển sang trạng thái: **COMPLETED_FROZEN**. (feat(hair): TASK_022 hair full e2e physical device visual acceptance and closure)
 - **KẾT LUẬN THẨM ĐỊNH:**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+---
+
+## 16. HOÀN THÀNH TÁC VỤ TASK_051 — TÁI DỰNG TỐI ĐA ĐỘ SÂU 45 THƯ VIỆN SO NGUYÊN BẢN (2026-10-04)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_051_P0_45_SO_MAX_DEPTH_CONTINUOUS_RECONSTRUCTION_ACTIVE` (Doc ID: `11ax96LNjD1WQHXUGIawA7MtY4EbgDxlYDWcRnHpeSIc`).
+- **Nguyên tắc bất biến:** Không can thiệp mã nguồn sản xuất (`production-hair-v2`, `production-hair-v3`, `production-hair-v4` LOCKED).
+- **Kết quả điều tra & tái dựng sạch (Clean-Room Forensics):**
+  1. *Khảo sát & phân loại 45 SO (`02_45_SO_MASTER_MATURITY_MATRIX.csv`):* Toàn bộ 45 thư viện SO prebuilt được trích xuất Build-ID, kích thước, hàm băm SHA256, section headers và bảng ký hiệu. Phân cấp thành công: 3 thư viện Level 5 (Reimplementable), 8 thư viện Level 4 (Logic Recovered), 21 thư viện Level 3, 6 thư viện Level 2 (Bảo vệ DRM/Bảo mật), 6 thư viện Level 1.
+  2. *Đồ thị luồng điều khiển CFG & Hàm trọng yếu:* Bóc tách chi tiết pipeline `MTSoftHairFilter::renderToTextureWithVerticesAndTextureCoordinates` tại địa chỉ `0x000f3f58` với 5 pass FBO: `grayFilterToFBO` (`0xf42fc`), `hairMaskFilterToFBO` (`0xf4400`), `blurHFilterToFBO` (`0xf4528`), `blurVFilterToFBO` (`0xf46d0`), và `softHairFilterToFBO` (`0xf4878`).
+  3. *Trích xuất hằng số Rodata & Shader:* Khôi phục shader làm nét Unsharp Mask 9x9 (`MTSoftHairFilter_unsharp.glsl`), công thức hòa trộn phi nhánh Pegtop SoftLight (`softLightPegtop.glsl`), ma trận trọng số Gaussian 5-tap `[0.159676, 0.263348, 0.122118, 0.030573, 0.004122]` tại `0x8edd8` và các offset UV cho canvas 962x1280.
+  4. *Cầu nối JNI RegisterNatives:* Phục hồi đầy đủ bản đồ ánh xạ động từ DEX đến C++ cho `LFDenseHairModular` (`libLayerFlow.so`) và `MTIKABHairFilter` (`libMTFilterKernel.so`).
+  5. *Mã giả C++ Tái dựng Clean-Room:* Đóng góp các bản mã giả độc lập `MTSoftHairFilter_Pipeline.cpp`, `HairDyeManager_Logic.cpp`, `ColorSpace_ConvertLab.cpp`.
+  6. *Đóng gói & Phán quyết:* Đóng gói `CONVERT2_TASK051_45SO_REPORT_PACKAGE.zip` (795,134 bytes, SHA256: `681B311B5C7744FCC2C0B49EA47F9AB07067DB43AD5CA399F1DA6FDAD98A75A4`).
+  7. *Phán quyết Thẩm định:* `REVIEW_CANDIDATE` (Bàn giao cho Chủ tịch Tony và Hội đồng Kiểm toán).
