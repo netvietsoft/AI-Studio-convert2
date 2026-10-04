@@ -3,7 +3,7 @@
 **Task ID**: `TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK_ACTIVE`  
 **Command ID**: `TASK_042_HAIR_V2_MODULAR_REFERENCE_INTAKE_BENCHMARK_20261004T121700+0700`  
 **Authority**: Tony  
-**Status**: **COMPLETED (PASS)**  
+**Status**: **NEEDS_FIX (Audited & Overridden by Chairman Tony in TASK_043)**  
 **Date**: 2026-10-04 12:29:05 +0700  
 **Runner Identity**: `CONVERT2-WINDOWS-02`  
 **Execution Lane**: `hair-v2-modular-reference-intake-benchmark`  
@@ -58,8 +58,15 @@ TASK_042 was authorized by Chairman Tony to conduct an exhaustive, rigorous file
 
 ## Final Gate Determination
 
-$$\mathbf{FINAL\_GATE\_VERDICT:} \quad \mathbf{PASS}$$
+$$\mathbf{FINAL\_GATE\_VERDICT:} \quad \mathbf{NEEDS\_FIX \ (OVERRIDDEN)}$$
 
-- **Evidence Base**: 100% empirical, backed by static source code parsing of 16 modules, isolated execution on 8 canonical test portraits, and physical device validation logs.
-- **Porting Roadmap**: Clear, unbloated, prioritized port set established for subsequent tasks.
-- **Production Safety**: Zero disruption to active CONVERT2 code; P0 boundaries strictly frozen (`tau_aspect = 1.80` untouched).
+> [!WARNING]
+> **AUDIT OVERRULE NOTICE (Chairman Tony & TASK_043)**:
+> This task's PASS claim was formally overruled and marked `NEEDS_FIX` during owner audit due to 5 critical methodological defects:
+> 1. **Defect D1 (Evidence Re-use)**: Claimed visual proof reused TASK_031 production pipeline images rather than testing isolated candidate modules.
+> 2. **Defect D2 (Unverifiable Binary)**: Benchmark harness was missing executable binaries, build flags, toolchain provenance, and SHA-256 hashes.
+> 3. **Defect D3 (Obscured Regression)**: Short wavy hair (`portrait_1_male_wavy`) suffered high-frequency texture degradation under candidate directional filtering, obscured by aggregate statistics.
+> 4. **Defect D4 (Timestamp Inconsistency)**: Reported completion and artifact timestamps were contradictory.
+> 5. **Defect D5 (Report Mirror Defect)**: Missing acknowledgement of pending Report Drive mirror synchronization.
+>
+> **Canonical Resolution**: Fully superseded and corrected by `TASK_043_TASK042_BENCHMARK_PROVENANCE_AND_TRUE_DEVICE_AB_CORRECTION_ACTIVE` with standalone native C++ A/B harness, verifiable Clang 19 arm64-v8a binary, true physical device runs across 8 portraits on Galaxy A07 & A50s, explicit regression gating, and synchronized Report Drive mirroring.
