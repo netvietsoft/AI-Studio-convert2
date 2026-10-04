@@ -15,5 +15,5 @@
 | `09_STRAIGHT_LINE_BACKGROUND.png` | Straight-Line Door & Tile Protection | BEFORE / 30% / 70% / MAX / DIFF | PASS |
 | `10_CLOTHING_ACCESSORIES.png` | Clothing Folds & Belt Preservation | BEFORE / 30% / 70% / MAX / DIFF | PASS |
 | `11_OCCLUSION_PARTIAL_BODY.png` | Partial Body Bust Crop Guard | BEFORE / 30% / 70% / MAX / DIFF | PASS_GUARDED |
-| `12_MULTI_PERSON.png` | Multi-Person Protection Audit | Explanatory Audit Panel | EVIDENCE_MISSING |
+| `12_MULTI_PERSON.png` | Multi-Person Protection Audit | BEFORE / 30% / 70% / MAX / DIFF | PASS (Reconciled with Real Device Output) |
 | `13_OWNER_SHORTLIST.png` | Curated Shortlist (Slim & Reshape) | BEFORE / 30% / 70% / MAX / DIFF | PASS |

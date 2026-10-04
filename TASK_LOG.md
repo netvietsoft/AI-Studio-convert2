@@ -1840,3 +1840,33 @@ unning: 0).
 
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
+
+### TASK_049 — FULL BODY BEAUTY VISUAL EVIDENCE & HARDWARE QA AUDIT
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_049_BODY_VISUAL_QA_ACTIVE` (Doc ID: `1SxCjpZsEzXL_lRTz0fVNW8A72OzBXkXBrzUpevE8_Ao`)
+- **Protocol:** `CONVERT2_COMMAND_V2`
+- **Standard:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Runner:** `CONVERT2-WINDOWS-02` (Samsung Galaxy A07 SM-A075F & Galaxy A50s SM-A507FN)
+- **Phạm vi hoàn thành:** Thực thi kiểm thử trực quan toàn diện 11 công cụ Vóc dáng Cơ thể (Full Body Beauty) trên phần cứng vật lý thật; phát hiện và khắc phục lỗi nối dây công cụ `PhotoEditorActivity.kt` và kẹp tọa độ da cổ C++ `neck_clavicle_engine.cpp` (Commit `a42be430d6d4dce14988b236d27a4ca006ca1655`); xuất xưởng 13 bảng kiểm chứng trực quan 5 khung hình lossless; đóng gói `CONVERT2_TASK_049_BODY_VISUAL_GALLERY.zip`.
+- **Báo cáo Drive:** Ghi nhận `BLOCKED_DRIVE_UPLOAD` do thiếu OAuth token headless; bàn giao toàn quyền kiểm duyệt trực quan cho Chủ tịch Tony.
+- **Kết luận thẩm định (Final Gate Verdict):** `OWNER_BODY_VISUAL_BLOCKED_DRIVE_UPLOAD` / `OWNER_VISUAL_REVIEW_REQUIRED`.
+
+### TASK_050 — TASK049 BODY VISUAL EVIDENCE & PROVENANCE CLOSURE
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_050_TASK049_BODY_VISUAL_EVIDENCE_PROVENANCE_CLOSURE_ACTIVE` (Doc ID: `1wSWxcUrUqDwLoz1pguy1SbgH002WppiswfSaIJ7qllo`)
+- **Command ID:** `TASK_050A_TASK049_BODY_EVIDENCE_EXECUTION_20261004T191000+0700`
+- **Protocol:** `CONVERT2_COMMAND_V2`
+- **Standard:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Runner:** `CONVERT2-WINDOWS-02` (Samsung Galaxy A07 SM-A075F & Galaxy A50s SM-A507FN)
+- **Baseline Git SHA:** `5ed3b587aabd26ecb4fadc49e785999088f62cbb`
+- **Implementation Fix SHA:** `a42be430d6d4dce14988b236d27a4ca006ca1655`
+- **Target Commit SHA:** `c6614e6c6` (Upstream Reconciled)
+- **Phạm vi hoàn thành:**
+  1. **Khóa chuẩn tắc Git Provenance:** Triệt tiêu hàm băm rút gọn không nhất quán `1d8971d67`, xác nhận tương đồng bitwise tuyệt đối giữa nhánh công nhân và `origin/main` commit `a42be430d`.
+  2. **Khôi phục tính trung thực báo cáo TASK_049:** Đính chính minh bạch việc có sửa mã nguồn (wire body tools trong `PhotoEditorActivity.kt` và kẹp tọa độ trong `neck_clavicle_engine.cpp`).
+  3. **Bằng chứng phần cứng vật lý thật:** Bổ sung ca kiểm thử `12_MULTI_PERSON` trên ảnh thật `photo_17_2026-09-25_21-30-16.jpg` (1280x576, 2 đối tượng), thay thế hoàn toàn ảnh giữ chỗ văn bản 147 KB bằng contact sheet 5 khung hình thật 3.18 MB (`12_MULTI_PERSON.png`).
+  4. **Xác nhận an toàn biến dạng đa nhân vật:** Kiểm soát biến dạng cục bộ chính xác trên đối tượng foreground, 0 pixel biến dạng trên người bên cạnh và hậu cảnh.
+  5. **Bàn giao trọn bộ 11 tài liệu nghiệm thu khép kín:** Nằm tại `.ai/reports/TASK_050_TASK049_BODY_VISUAL_EVIDENCE_PROVENANCE_CLOSURE/` và tệp nén bàn giao `CONVERT2_TASK_050_CLOSURE_PACKAGE.zip` (SHA-256: `8F303C3F59E5B2F54D19C64ECB7729ADD1BD8EF6D9AA9E1AF264040E299F034B`).
+  6. **Ghi nhận trung thực trạng thái Remote Mirror:** Google Drive API HTTP 401 unauthenticated fail-closed.
+- **Kết luận thẩm định (Final Gate Verdict):** `OWNER_VISUAL_REVIEW_REQUIRED` (Bàn giao trực quan toàn quyền cho Chủ tịch Tony).
