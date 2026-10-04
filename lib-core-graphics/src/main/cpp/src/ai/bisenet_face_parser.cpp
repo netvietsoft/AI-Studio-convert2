@@ -164,10 +164,14 @@ bool BiSeNetFaceParser::parseFace19Adaptive(
     int height,
     std::vector<uint8_t>& outFullMask,
     std::vector<uint8_t>* outMask512,
-    std::vector<float>* outHairProb512
+    std::vector<float>* outHairProb512,
+    std::vector<float>* outFullHairProb
 ) {
     if (!srcRgba || width <= 0 || height <= 0) return false;
     outFullMask.assign(width * height, 0);
+    if (outFullHairProb) {
+        outFullHairProb->assign(width * height, 0.0f);
+    }
 
     float maxAspect = std::max(static_cast<float>(width) / height, static_cast<float>(height) / width);
     bool useLetterbox = (maxAspect > 1.80f);
@@ -276,6 +280,9 @@ bool BiSeNetFaceParser::parseFace19Adaptive(
                         int sx = pad_x + x * nw / width;
                         sx = std::clamp(sx, pad_x, pad_x + nw - 1);
                         outFullMask[y * width + x] = targetMask512[sy * 512 + sx];
+                        if (outFullHairProb && outHairProb512) {
+                            (*outFullHairProb)[y * width + x] = (*outHairProb512)[sy * 512 + sx];
+                        }
                     }
                 }
             } else {
@@ -287,6 +294,9 @@ bool BiSeNetFaceParser::parseFace19Adaptive(
                         int sx = x * 512 / width;
                         sx = std::clamp(sx, 0, 511);
                         outFullMask[y * width + x] = targetMask512[sy * 512 + sx];
+                        if (outFullHairProb && outHairProb512) {
+                            (*outFullHairProb)[y * width + x] = (*outHairProb512)[sy * 512 + sx];
+                        }
                     }
                 }
             }
@@ -305,6 +315,9 @@ bool BiSeNetFaceParser::parseFace19Adaptive(
                 int sx = x * 512 / width;
                 sx = std::clamp(sx, 0, 511);
                 outFullMask[y * width + x] = targetMask512[sy * 512 + sx];
+                if (outFullHairProb && outHairProb512) {
+                    (*outFullHairProb)[y * width + x] = (*outHairProb512)[sy * 512 + sx];
+                }
             }
         }
     }

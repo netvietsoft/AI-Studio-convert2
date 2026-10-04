@@ -58,7 +58,8 @@ public:
         int height,
         std::vector<uint8_t>& outFullMask,
         std::vector<uint8_t>* outMask512 = nullptr,
-        std::vector<float>* outHairProb512 = nullptr
+        std::vector<float>* outHairProb512 = nullptr,
+        std::vector<float>* outFullHairProb = nullptr
     );
 
     bool extractSingleClassAlpha(

@@ -1,0 +1,77 @@
+{
+  "protocol": "CONVERT2_COMMAND_V2",
+  "command_id": "TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD_20261004T090300+0700",
+  "task_id": "TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_NATURAL_RECOLOR_REBUILD_ACTIVE",
+  "task_revision": "2026-10-04T09:03:00+07:00",
+  "task_url": "https://docs.google.com/document/d/1mZEHQORjr3wPQlNXJTOjtrYUSGbWUgdfxyPf9lGGxjs/edit?usp=drivesdk",
+  "issued_for_sha": "b352ac365ee0efde49ae423d4ff493a478ca6c03",
+  "priority": "CRITICAL",
+  "priority_weight": 100,
+  "dependencies": [],
+  "execution_lane": "hair-v2-owner-fail-rebuild",
+  "runner_label": "CONVERT2-WINDOWS-03",
+  "allowed_paths": [
+    "lib-core-graphics/src/main/cpp/src/hair/**",
+    "lib-core-graphics/src/main/cpp/include/hair/**",
+    "lib-core-graphics/src/main/cpp/src/hair_matting_engine.cpp",
+    "lib-core-graphics/src/main/cpp/include/hair_matting_engine.h",
+    "lib-ai-engine/src/main/kotlin/com/meitu/ai/hair/**",
+    "lib-ai-engine/src/main/kotlin/com/meitu/ai/segment/**",
+    "lib-core-graphics/src/main/kotlin/com/meitu/core/nativeengine/**",
+    "app/src/main/assets/models/**",
+    "app/src/test/**",
+    "scripts/**",
+    ".ai/reports/TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_RECOLOR_REBUILD/**",
+    ".ai/state/tasks/**",
+    ".ai/commands/**",
+    ".ai/state.json",
+    "TASK_LOG.md"
+  ],
+  "locked_modules": [
+    "hair-v2-owner-visual-quality-rebuild"
+  ],
+  "anti_duplicate_key": "TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_NATURAL_RECOLOR_REBUILD_ACTIVE:2026-10-04T09:03:00+07:00",
+  "created_at": "2026-10-04T09:03:00+07:00",
+  "status": "COMPLETED",
+  "acceptance_override": "OWNER_VISUAL_GROUND_TRUTH_FAILS_CURRENT_V2_AND_OVERRIDES_AUTOMATED_PASS",
+  "owner_visual_verdict": "NEEDS_FIX",
+  "owner_visual_evidence_doc_id": "1mZEHQORjr3wPQlNXJTOjtrYUSGbWUgdfxyPf9lGGxjs",
+  "owner_visual_failure_classes": [
+    "PAINTED_FLAT_RECOLOR_TEXTURE_LOSS",
+    "HAIRLINE_FOREHEAD_CONTAMINATION",
+    "SHOULDER_CLOTHING_ARM_MASK_SPILL",
+    "COARSE_EDGE_AND_FLYAWAY_LOSS"
+  ],
+  "architecture_policy": "PRESERVE_V1_AND_CURRENT_V2_AS_ROLLBACK; BUILD_CORRECTED_PATH_BEHIND_FEATURE_FLAG",
+  "report_drive_policy": "PROCESS_DEFECT_MIRROR_DOES_NOT_BLOCK_TECHNICAL_EXECUTION",
+  "final_gate": "TECHNICAL_PASS_AWAITING_OWNER_VISUAL_ONLY; OWNER_PASS_REQUIRES_TONY_EXPLICIT_APPROVAL",
+  "reservation": {
+    "reservation_token": "807a0083ed1f4d9e8855f3f4e9aaad78",
+    "dispatcher_run_id": "37170073202",
+    "reserved_at": "2026-10-04T02:09:00.021519+00:00",
+    "reservation_sha": null
+  },
+  "lease": {
+    "lease_token": "2c8f55364be74808ab5efeb01d54730c",
+    "lease_holder": "GITHUB_ACTIONS_37170164992",
+    "leased_at": "2026-10-04T09:08:17.094685+07:00",
+    "lease_expires_at": "2026-10-04T10:43:20.461055+07:00",
+    "heartbeat_at": "2026-10-04T10:13:20.461055+07:00"
+  },
+  "execution_identity": {
+    "dispatch_commit_sha": "ca73381bcff82a837522414c7e5d6f0e3b26118c",
+    "github_run_id": "37170164992",
+    "workflow_url": "https://github.com/netvietsoft/AI-Studio-convert2/actions/runs/37170164992",
+    "runner_lane": "hair-v2-owner-fail-rebuild",
+    "started_at": "2026-10-04T09:08:17.908909+07:00",
+    "finished_at": "2026-10-04T10:32:00+07:00",
+    "conclusion": "SUCCESS"
+  },
+  "provenance": {
+    "target_commit_sha": "ca73381bcff82a837522414c7e5d6f0e3b26118c",
+    "report_folder": ".ai/reports/TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_RECOLOR_REBUILD",
+    "evidence_manifest_sha256": "B7C8A98F661BB7450D607EEE909098C543FBF47E50E7D6C6CEB3CE69805A599B",
+    "package_sha256": "5EEF1E476A5E41A9439C52DE79F92076B279420DFBE5C200E14D2D0221610462",
+    "completed_at": "2026-10-04T10:32:00+07:00"
+  }
+}

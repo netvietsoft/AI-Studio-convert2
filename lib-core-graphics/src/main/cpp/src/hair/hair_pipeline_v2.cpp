@@ -1,10 +1,13 @@
 #include "hair/hair_pipeline_v2.h"
 #include "ai/bisenet_face_parser.h"
+#include "ai/selfie_human_parser.h"
+#include "hair_strand_dye.h"
 #include <android/log.h>
 #include <cmath>
 #include <algorithm>
 #include <vector>
 #include <cstring>
+#include <queue>
 #include <omp.h>
 
 #define TAG "HCE_HairPipelineV2"
@@ -24,6 +27,7 @@
 namespace meitu_native::hce {
 
 static bool sHairPipelineV2Enabled = true;
+static int sHairPipelineVersion = static_cast<int>(HairPipelineV2::Version::VERSION_V3_REBUILD);
 
 void HairPipelineV2::setEnabled(bool enabled) {
     sHairPipelineV2Enabled = enabled;
@@ -32,6 +36,15 @@ void HairPipelineV2::setEnabled(bool enabled) {
 
 bool HairPipelineV2::isEnabled() {
     return sHairPipelineV2Enabled;
+}
+
+void HairPipelineV2::setExecutionVersion(int version) {
+    sHairPipelineVersion = version;
+    LOGI("HairPipelineV2: Execution version set to %d", version);
+}
+
+int HairPipelineV2::getExecutionVersion() {
+    return sHairPipelineVersion;
 }
 
 HairPipelineV2& HairPipelineV2::getInstance() {
@@ -600,8 +613,8 @@ bool HairPipelineV2::alphaComposite(
     return true;
 }
 
-// Full Pipeline V2 End-to-End
-bool HairPipelineV2::executePipelineV2(
+// Baseline V2 Pipeline (Preserved for rollback and exact A/B comparison)
+bool HairPipelineV2::executePipelineV2_Baseline(
     const uint32_t* srcPixels,
     uint32_t* dstPixels,
     int width, int height,
@@ -717,7 +730,7 @@ bool HairPipelineV2::executePipelineV2(
         }
     }
 
-    LOGI("HairPipelineV2: executePipelineV2 complete. w=%d, h=%d, intensity=%.2f", width, height, materialParams.blendIntensity);
+    LOGI("HairPipelineV2: executePipelineV2_Baseline complete. w=%d, h=%d, intensity=%.2f", width, height, materialParams.blendIntensity);
 
     if (debugStages) {
         debugStages->isBald = false;
@@ -735,6 +748,502 @@ bool HairPipelineV2::executePipelineV2(
     return true;
 }
 
+// Rebuilt V3 Pipeline (TASK_035: Anatomical head-anchor, strict protected gates, false-positive elimination, natural salon OKLab dye)
+bool HairPipelineV2::executePipelineV3_Rebuild(
+    const uint32_t* srcPixels,
+    uint32_t* dstPixels,
+    int width, int height,
+    const MeituReborn::FusedFaceGeometry& fused,
+    const HairDyeMaterialParams& materialParams,
+    const HairSpecularParams& specularParams,
+    HairV2IntermediateStages* debugStages
+) {
+    if (!validateInputs(srcPixels, width, height) || !dstPixels) {
+        LOGE("HairPipelineV3: Input validation failed!");
+        return false;
+    }
+
+    // Fast-path bit-exact pass-through if blendIntensity == 0.0f
+    if (materialParams.blendIntensity <= 0.0001f) {
+        std::memcpy(dstPixels, srcPixels, width * height * sizeof(uint32_t));
+        LOGI("HairPipelineV3: Intensity 0.0 - 100%% bit-exact pass-through");
+        return true;
+    }
+
+    std::vector<uint32_t> origCopy(srcPixels, srcPixels + width * height);
+    const uint32_t* origSrc = origCopy.data();
+
+    // 1. BiSeNet 19-class Adaptive Parsing
+    std::vector<uint8_t> fullLabels(width * height, 0);
+    std::vector<uint8_t> labels512(512 * 512, 0);
+    std::vector<float> hairProb512(512 * 512, 0.0f);
+    std::vector<float> fullHairProb(width * height, 0.0f);
+
+    bool parseOk = meitu::ai::BiSeNetFaceParser::getInstance().parseFace19Adaptive(
+        origSrc, width, height, fullLabels, &labels512, &hairProb512, &fullHairProb
+    );
+    if (!parseOk) {
+        LOGE("HairPipelineV3: Face parsing failed, failing closed (original pass-through)");
+        std::memcpy(dstPixels, origSrc, width * height * sizeof(uint32_t));
+        return false;
+    }
+
+    // 2. Selfie Human Segmentation (if initialized)
+    std::vector<float> personProb(width * height, 1.0f);
+    std::vector<uint8_t> personBinary(width * height, 255);
+    bool hasPersonSeg = false;
+    if (meitu::ai::SelfieHumanParser::getInstance().isInitialized()) {
+        hasPersonSeg = meitu::ai::SelfieHumanParser::getInstance().segmentPerson(
+            origSrc, width, height, personProb, personBinary
+        );
+    }
+
+    // 3. Anatomical Head & Face Feature Detection
+    int min_fx = width, max_fx = 0, min_fy = height, max_fy = 0;
+    int feature_px_count = 0;
+    for (int y = 0; y < height; ++y) {
+        int yOff = y * width;
+        for (int x = 0; x < width; ++x) {
+            uint8_t lbl = fullLabels[yOff + x];
+            // Face skin (1), Brows (2, 3), Eyes (4, 5), Glasses (6), Nose (10), Mouth (11..13)
+            if (lbl == 1 || (lbl >= 2 && lbl <= 6) || lbl == 10 || (lbl >= 11 && lbl <= 13)) {
+                if (x < min_fx) min_fx = x;
+                if (x > max_fx) max_fx = x;
+                if (y < min_fy) min_fy = y;
+                if (y > max_fy) max_fy = y;
+                feature_px_count++;
+            }
+        }
+    }
+
+    float face_cx, face_cy, chin_y, forehead_y, face_w, face_h;
+    if (feature_px_count > 100) {
+        face_cx = (min_fx + max_fx) * 0.5f;
+        face_cy = (min_fy + max_fy) * 0.5f;
+        chin_y = static_cast<float>(max_fy);
+        face_w = static_cast<float>(max_fx - min_fx);
+        face_h = static_cast<float>(max_fy - min_fy);
+        forehead_y = static_cast<float>(min_fy) - 0.25f * face_h;
+    } else {
+        face_cx = width * 0.5f;
+        face_cy = height * 0.42f;
+        chin_y = height * 0.60f;
+        face_w = width * 0.38f;
+        face_h = height * 0.36f;
+        forehead_y = height * 0.24f;
+    }
+
+    // 4. Strict Protected Region Gate
+    // Non-hair classes: 1=Skin, 2..6=Eyes/Brows/Glasses, 7..9=Ears/Earrings,
+    // 10..13=Nose/Mouth/Lips, 14,15=Neck/Necklace, 16=Cloth, 18=Hat
+    std::vector<uint8_t> protectedMask(width * height, 0);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int y = 0; y < height; ++y) {
+        int yOff = y * width;
+        float ny = static_cast<float>(y);
+        for (int x = 0; x < width; ++x) {
+            int idx = yOff + x;
+            uint8_t lbl = fullLabels[idx];
+            uint32_t c = origSrc[idx];
+            int r = RGBA_R(c), g = RGBA_G(c), b = RGBA_B(c);
+            bool isSkin = isHumanSkinPixel(r, g, b);
+
+            // A. Semantic label protection
+            if (lbl == 1 || (lbl >= 2 && lbl <= 15) || lbl == 16 || lbl == 18) {
+                protectedMask[idx] = 1;
+                continue;
+            }
+
+            // B. Outside person protection
+            if (hasPersonSeg && personProb[idx] < 0.20f) {
+                protectedMask[idx] = 1;
+                continue;
+            }
+
+            // Top background corners
+            if (y < 0.16f * height && (x < 0.20f * width || x > 0.80f * width) && lbl != 17) {
+                protectedMask[idx] = 1;
+                continue;
+            }
+
+            // C. Dynamic Face & Forehead Oval Skin Protection (Zero leakage onto forehead!)
+            float dx = (static_cast<float>(x) - face_cx) / (face_w * 0.68f + 1.0f);
+            float dy = (ny - face_cy) / (face_h * 0.72f + 1.0f);
+            bool inFaceOval = (dx * dx + dy * dy <= 1.0f) && (ny >= forehead_y - 0.10f * face_h) && (ny <= chin_y + 0.10f * face_h);
+            if (inFaceOval && isSkin) {
+                protectedMask[idx] = 1;
+                continue;
+            }
+
+            // Forehead hairline region: strictly protect any skin or near-skin
+            if (ny >= forehead_y - 0.05f * face_h && ny <= forehead_y + 0.40f * face_h && std::abs(static_cast<float>(x) - face_cx) <= face_w * 0.60f) {
+                float yVal = 0.299f * r + 0.587f * g + 0.114f * b;
+                float cr = (r - yVal) * 0.713f + 128.0f;
+                if ((cr >= 122.0f && cr <= 180.0f && r > b) || isSkin) {
+                    protectedMask[idx] = 1;
+                    continue;
+                }
+            }
+        }
+    }
+
+    // 5. Scalp Hair Seed & Appearance Model
+    // Scalp cranial crown: top of the head strictly above or near eyebrows (min_fy)
+    // Horizontally centered within cranium skull (abs(x - face_cx) <= face_w * 0.95f)
+    // This strictly excludes shoulders, chest, arms, and clothing from corrupting the hair seed model.
+    float craniumMaxY = static_cast<float>(min_fy) + 0.08f * face_h;
+    std::vector<float> seedL, seedA, seedB;
+    seedL.reserve(width * 64);
+    seedA.reserve(width * 64);
+    seedB.reserve(width * 64);
+
+    for (int y = 0; y < height; ++y) {
+        if (static_cast<float>(y) > craniumMaxY) break;
+        int yOff = y * width;
+        for (int x = 0; x < width; ++x) {
+            if (std::abs(static_cast<float>(x) - face_cx) > face_w * 0.95f) continue;
+            int idx = yOff + x;
+            if (fullLabels[idx] == 17 && !protectedMask[idx] && fullHairProb[idx] > 0.40f) {
+                uint32_t c = origSrc[idx];
+                float L, a, bCoord;
+                sRGBToOKLab(RGBA_R(c) / 255.0f, RGBA_G(c) / 255.0f, RGBA_B(c) / 255.0f, L, a, bCoord);
+                seedL.push_back(L);
+                seedA.push_back(a);
+                seedB.push_back(bCoord);
+            }
+        }
+    }
+
+    // If subject has parted or side hair and crown count is small, relax horizontal bound slightly
+    if (seedL.size() < 120) {
+        for (int y = 0; y < height; ++y) {
+            if (static_cast<float>(y) > chin_y) break;
+            int yOff = y * width;
+            for (int x = 0; x < width; ++x) {
+                if (std::abs(static_cast<float>(x) - face_cx) > face_w * 1.35f) continue;
+                int idx = yOff + x;
+                if (fullLabels[idx] == 17 && !protectedMask[idx] && fullHairProb[idx] > 0.45f) {
+                    uint32_t c = origSrc[idx];
+                    float L, a, bCoord;
+                    sRGBToOKLab(RGBA_R(c) / 255.0f, RGBA_G(c) / 255.0f, RGBA_B(c) / 255.0f, L, a, bCoord);
+                    seedL.push_back(L);
+                    seedA.push_back(a);
+                    seedB.push_back(bCoord);
+                }
+            }
+        }
+    }
+
+    // Bald Safeguard (e.g. Monk negative control): zero alpha output
+    if (seedL.size() < 120) {
+        LOGI("HairPipelineV3: Bald / negative control subject detected (scalp seeds=%zu). Unmodified pass-through.", seedL.size());
+        std::memcpy(dstPixels, origSrc, width * height * sizeof(uint32_t));
+        if (debugStages) {
+            debugStages->isBald = true;
+            debugStages->composited.assign(origSrc, origSrc + width * height);
+        }
+        return true;
+    }
+
+    float mean_hL = 0.0f, mean_ha = 0.0f, mean_hb = 0.0f;
+    for (size_t i = 0; i < seedL.size(); ++i) {
+        mean_hL += seedL[i];
+        mean_ha += seedA[i];
+        mean_hb += seedB[i];
+    }
+    mean_hL /= seedL.size();
+    mean_ha /= seedL.size();
+    mean_hb /= seedL.size();
+
+    float var_hL = 0.0f, var_ha = 0.0f, var_hb = 0.0f;
+    for (size_t i = 0; i < seedL.size(); ++i) {
+        var_hL += (seedL[i] - mean_hL) * (seedL[i] - mean_hL);
+        var_ha += (seedA[i] - mean_ha) * (seedA[i] - mean_ha);
+        var_hb += (seedB[i] - mean_hb) * (seedB[i] - mean_hb);
+    }
+    float std_hL = std::sqrt(var_hL / seedL.size());
+    float std_ha = std::sqrt(var_ha / seedL.size());
+    float std_hb = std::sqrt(var_hb / seedL.size());
+    float sigmaL = std::clamp(std_hL * 2.2f, 0.06f, 0.16f);
+
+    LOGI("HairPipelineV3: Scalp hair appearance OKLab: L=%.3f+-%.3f, a=%.3f, b=%.3f (seeds=%zu)",
+         mean_hL, std_hL, mean_ha, mean_hb, seedL.size());
+
+    // 6. Candidate Hair Validation (Filter out false-positive clothing/arms/shoulders)
+    std::vector<uint8_t> hairCandidate(width * height, 0);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int y = 0; y < height; ++y) {
+        int yOff = y * width;
+        for (int x = 0; x < width; ++x) {
+            int idx = yOff + x;
+            if (fullLabels[idx] != 17 || protectedMask[idx]) continue;
+            if (fullHairProb[idx] < 0.25f) continue;
+
+            bool isCrown = (static_cast<float>(y) <= craniumMaxY) &&
+                           (std::abs(static_cast<float>(x) - face_cx) <= face_w * 0.95f);
+
+            uint32_t c = origSrc[idx];
+            int cr = RGBA_R(c), cg = RGBA_G(c), cb = RGBA_B(c);
+
+            // Outside immediate cranial crown: validate hair appearance & reject clothing/shoulders
+            if (!isCrown) {
+                float L, a, bCoord;
+                sRGBToOKLab(cr / 255.0f, cg / 255.0f, cb / 255.0f, L, a, bCoord);
+
+                // A. Color Distance in OKLab from cranial scalp hair
+                float dL = (L - mean_hL) / sigmaL;
+                float da = (a - mean_ha) / 0.08f;
+                float db = (bCoord - mean_hb) / 0.08f;
+                float d_color = std::sqrt(dL * dL + da * da + db * db);
+
+                // B. Reject sheer/dark clothing when hair is lighter (e.g. Failure Case B blonde vs black sheer)
+                if (mean_hL >= 0.22f) {
+                    if (L < 0.26f || (cr < 70 && cg < 70 && cb < 70)) {
+                        continue;
+                    }
+                    if (std::abs(L - mean_hL) > 0.28f) {
+                        continue;
+                    }
+                }
+
+                // C. Reject any pixel below chin level that deviates from scalp hair palette
+                if (static_cast<float>(y) > chin_y && d_color > 2.20f) {
+                    continue;
+                }
+
+                // D. General hair color deviation threshold outside crown
+                if (d_color > 2.80f) {
+                    continue;
+                }
+            }
+
+            hairCandidate[idx] = 1;
+        }
+    }
+
+    // Topological reachability from cranial crown seeds
+    std::vector<uint8_t> connectedHair(width * height, 0);
+    std::queue<int> q;
+    for (int y = 0; y < height; ++y) {
+        if (static_cast<float>(y) > craniumMaxY) break;
+        int yOff = y * width;
+        for (int x = 0; x < width; ++x) {
+            if (std::abs(static_cast<float>(x) - face_cx) > face_w * 0.95f) continue;
+            int idx = yOff + x;
+            if (hairCandidate[idx] && fullHairProb[idx] > 0.45f) {
+                connectedHair[idx] = 1;
+                q.push(idx);
+            }
+        }
+    }
+
+    // BFS 4-connectivity
+    const int dxs[4] = {1, -1, 0, 0};
+    const int dys[4] = {0, 0, 1, -1};
+    while (!q.empty()) {
+        int cur = q.front();
+        q.pop();
+        int cx = cur % width;
+        int cy = cur / width;
+        for (int d = 0; d < 4; ++d) {
+            int nx = cx + dxs[d];
+            int ny = cy + dys[d];
+            if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                int nidx = ny * width + nx;
+                if (hairCandidate[nidx] && !connectedHair[nidx]) {
+                    connectedHair[nidx] = 1;
+                    q.push(nidx);
+                }
+            }
+        }
+    }
+
+    // 7. Edge-Preserving Matting (Trimap + Guided Filter)
+    std::vector<float> trimap(width * height, 0.0f);
+    std::vector<float> gray(width * height, 0.0f);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        uint32_t c = origSrc[i];
+        gray[i] = (0.299f * RGBA_R(c) + 0.587f * RGBA_G(c) + 0.114f * RGBA_B(c)) / 255.0f;
+        if (protectedMask[i] || !connectedHair[i]) {
+            trimap[i] = 0.0f;
+        } else if (fullHairProb[i] > 0.65f) {
+            trimap[i] = 1.0f;
+        } else {
+            trimap[i] = 0.5f;
+        }
+    }
+
+    // Edge-preserving Guided Filter on full-resolution gray guide (r=4, eps=1e-3)
+    const int r_guide = 4;
+    const float eps = 1e-3f;
+    std::vector<float> mean_I(width * height), mean_p(width * height), mean_Ip(width * height), mean_II(width * height);
+    std::vector<float> Ip(width * height), II(width * height);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        Ip[i] = gray[i] * trimap[i];
+        II[i] = gray[i] * gray[i];
+    }
+
+    boxFilter2D(gray.data(), mean_I.data(), width, height, r_guide);
+    boxFilter2D(trimap.data(), mean_p.data(), width, height, r_guide);
+    boxFilter2D(Ip.data(), mean_Ip.data(), width, height, r_guide);
+    boxFilter2D(II.data(), mean_II.data(), width, height, r_guide);
+
+    std::vector<float> a_coeff(width * height), b_coeff(width * height);
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        float var_I = mean_II[i] - mean_I[i] * mean_I[i];
+        float cov_Ip = mean_Ip[i] - mean_I[i] * mean_p[i];
+        float ak = cov_Ip / (var_I + eps);
+        float bk = mean_p[i] - ak * mean_I[i];
+        a_coeff[i] = ak;
+        b_coeff[i] = bk;
+    }
+
+    std::vector<float> mean_a(width * height), mean_b(width * height);
+    boxFilter2D(a_coeff.data(), mean_a.data(), width, height, r_guide);
+    boxFilter2D(b_coeff.data(), mean_b.data(), width, height, r_guide);
+
+    std::vector<float> finalAlpha(width * height, 0.0f);
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        if (protectedMask[i]) {
+            finalAlpha[i] = 0.0f;
+            continue;
+        }
+        float q = mean_a[i] * gray[i] + mean_b[i];
+        float alpha = std::clamp(q, 0.0f, 1.0f) * std::clamp(fullHairProb[i] * 1.25f, 0.0f, 1.0f);
+        if (alpha < 0.02f) alpha = 0.0f;
+        finalAlpha[i] = alpha;
+    }
+
+    // 8. Natural Salon Color Transform in OKLab
+    float hueRad = materialParams.targetHue * 0.0174532925f; // Deg to Rad
+    float targetC = std::clamp(materialParams.targetChroma / 100.0f * 0.28f, 0.0f, 0.35f);
+    float targetA = targetC * std::cos(hueRad);
+    float targetBCoord = targetC * std::sin(hueRad);
+    float targetL = std::clamp(materialParams.targetLightness / 100.0f, 0.05f, 0.95f);
+
+    std::vector<float> origL(width * height, 0.0f);
+    std::vector<float> origA(width * height, 0.0f);
+    std::vector<float> origB(width * height, 0.0f);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        uint32_t c = origSrc[i];
+        sRGBToOKLab(RGBA_R(c) / 255.0f, RGBA_G(c) / 255.0f, RGBA_B(c) / 255.0f, origL[i], origA[i], origB[i]);
+    }
+
+    // Base illumination map via 2D box filter (r=3, 7x7)
+    std::vector<float> baseL(width * height, 0.0f);
+    boxFilter2D(origL.data(), baseL.data(), width, height, 3);
+
+    float intensity = std::clamp(materialParams.blendIntensity, 0.0f, 1.0f);
+
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        float alpha = finalAlpha[i] * intensity;
+        if (alpha <= 0.001f) {
+            dstPixels[i] = origSrc[i];
+            continue;
+        }
+
+        float oL = origL[i];
+        float bL = baseL[i];
+
+        // Strand ratio & detail preservation (preserves 100% curls and highlights, eliminates chalky paint)
+        float strandRatio = std::clamp((oL + 0.02f) / (bL + 0.02f), 0.70f, 1.45f);
+        float strandDetail = oL - bL;
+
+        // Salon Melanin Lift
+        float liftAmount = targetL - bL;
+        float melaninCurve = (bL > 0.0f) ? (0.40f + 0.60f * std::sqrt(std::clamp(bL, 0.0f, 1.0f))) : 0.40f;
+        float liftedBaseL = bL + liftAmount * materialParams.bleachPower * melaninCurve * intensity;
+
+        // Reconstructed physical strand luminance
+        float finalL = std::clamp(liftedBaseL * strandRatio + strandDetail * 0.35f, 0.02f, 0.98f);
+
+        // Salon Chroma Toner Deposition (bell-curve midtone weighting)
+        float midtone = 4.0f * finalL * (1.0f - finalL);
+        float dyeStrength = std::clamp(0.45f + 0.55f * midtone, 0.0f, 1.0f) * intensity;
+        float finalA = origA[i] * (1.0f - dyeStrength) + targetA * dyeStrength;
+        float finalB = origB[i] * (1.0f - dyeStrength) + targetBCoord * dyeStrength;
+
+        // Neutral Specular Glint preservation
+        float specGlint = std::clamp((oL - 0.50f) / 0.40f, 0.0f, 1.0f) * specularParams.apparentShine * 0.70f;
+        finalA = finalA * (1.0f - 0.5f * specGlint) + origA[i] * (0.5f * specGlint);
+        finalB = finalB * (1.0f - 0.5f * specGlint) + origB[i] * (0.5f * specGlint);
+
+        // Convert back to sRGB
+        float outR, outG, outB;
+        oklabTosRGB(finalL, finalA, finalB, outR, outG, outB);
+
+        int dyeR = clampU8(static_cast<int>(std::round(outR * 255.0f)));
+        int dyeG = clampU8(static_cast<int>(std::round(outG * 255.0f)));
+        int dyeB = clampU8(static_cast<int>(std::round(outB * 255.0f)));
+
+        // Alpha Compositing
+        if (alpha >= 0.999f) {
+            dstPixels[i] = PACK_RGBA(dyeR, dyeG, dyeB, RGBA_A(origSrc[i]));
+        } else {
+            uint32_t oc = origSrc[i];
+            float invA = 1.0f - alpha;
+            int r = static_cast<int>(std::round(RGBA_R(oc) * invA + dyeR * alpha));
+            int g = static_cast<int>(std::round(RGBA_G(oc) * invA + dyeG * alpha));
+            int b = static_cast<int>(std::round(RGBA_B(oc) * invA + dyeB * alpha));
+            dstPixels[i] = PACK_RGBA(clampU8(r), clampU8(g), clampU8(b), RGBA_A(oc));
+        }
+    }
+
+    LOGI("HairPipelineV3: executePipelineV3_Rebuild complete. w=%d, h=%d, intensity=%.2f", width, height, intensity);
+
+    if (debugStages) {
+        debugStages->isBald = false;
+        debugStages->rawHairMask = fullHairProb;
+        debugStages->refinedMatte = finalAlpha;
+        debugStages->confidenceMatte = finalAlpha;
+        debugStages->composited.assign(dstPixels, dstPixels + width * height);
+    }
+
+    return true;
+}
+
+// Full Pipeline Dispatcher
+bool HairPipelineV2::executePipelineV2(
+    const uint32_t* srcPixels,
+    uint32_t* dstPixels,
+    int width, int height,
+    const MeituReborn::FusedFaceGeometry& fused,
+    const HairDyeMaterialParams& materialParams,
+    const HairSpecularParams& specularParams,
+    HairV2IntermediateStages* debugStages
+) {
+    if (!isEnabled() || sHairPipelineVersion == static_cast<int>(Version::VERSION_V1)) {
+        LOGI("HairPipelineV2: Dispatching to Version V1 legacy path");
+        std::vector<uint32_t> temp(srcPixels, srcPixels + width * height);
+        bool ok = meitu_native::HairStrandDyeEngine::applyCustomStrandDye(
+            temp.data(), width, height, fused,
+            200, 100, 100, materialParams.bleachPower, materialParams.blendIntensity, specularParams.apparentShine
+        );
+        std::memcpy(dstPixels, temp.data(), width * height * sizeof(uint32_t));
+        return ok;
+    }
+
+    if (sHairPipelineVersion == static_cast<int>(Version::VERSION_V2_BASELINE)) {
+        LOGI("HairPipelineV2: Dispatching to Version V2 baseline path");
+        return executePipelineV2_Baseline(srcPixels, dstPixels, width, height, fused, materialParams, specularParams, debugStages);
+    }
+
+    // Default V3 Rebuild
+    LOGI("HairPipelineV2: Dispatching to Version V3 rebuild path");
+    return executePipelineV3_Rebuild(srcPixels, dstPixels, width, height, fused, materialParams, specularParams, debugStages);
+}
+
 // Preset-based execution
 bool HairPipelineV2::executePresetDyeV2(
     const uint32_t* srcPixels,
@@ -746,6 +1255,16 @@ bool HairPipelineV2::executePresetDyeV2(
     float gloss,
     HairV2IntermediateStages* debugStages
 ) {
+    if (!isEnabled() || sHairPipelineVersion == static_cast<int>(Version::VERSION_V1)) {
+        LOGI("HairPipelineV2: executePresetDyeV2 dispatching to Version V1 legacy path");
+        std::vector<uint32_t> temp(srcPixels, srcPixels + width * height);
+        bool ok = meitu_native::HairStrandDyeEngine::applyStrandDye(
+            temp.data(), width, height, fused, presetId, intensity, gloss
+        );
+        std::memcpy(dstPixels, temp.data(), width * height * sizeof(uint32_t));
+        return ok;
+    }
+
     HairDyeMaterialParams mat;
     mat.blendIntensity = std::clamp(intensity, 0.0f, 1.0f);
     mat.shadowPreservation = 0.88f;
