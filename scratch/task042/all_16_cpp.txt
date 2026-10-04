@@ -1,0 +1,1968 @@
+
+==================== FILE: hair_v2_barrier.cpp ====================
+#include "hair_v2_barrier.h"
+#include <cmath>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+
+namespace meitu::reborn::hair_v2 {
+
+struct Point2D {
+    float x;
+    float y;
+};
+
+// Kiem tra mot diem nam trong da giac loi/lom (Ray-casting algorithm)
+static inline bool pointInPolygon(float px, float py, const std::vector<Point2D>& poly) {
+    bool inside = false;
+    size_t n = poly.size();
+    for (size_t i = 0, j = n - 1; i < n; j = i++) {
+        if (((poly[i].y > py) != (poly[j].y > py)) &&
+            (px < (poly[j].x - poly[i].x) * (py - poly[i].y) / (poly[j].y - poly[i].y + 1e-6f) + poly[i].x)) {
+            inside = !inside;
+        }
+    }
+    return inside;
+}
+
+HairV2Status buildAnatomicalProtectionMask(
+    const float* landmarks106,
+    int numLandmarks,
+    float yaw,
+    float pitch,
+    const FrameGeometry& geom,
+    uint8_t* protectMask)
+{
+    if (!protectMask) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    std::memset(protectMask, 0, geom.totalPixels());
+
+    if (landmarks106 && numLandmarks >= 106) {
+        // Trích xuất các điểm đường viền xương hàm và trán thích ứng với góc nghiêng Yaw/Pitch
+        std::vector<Point2D> faceContour;
+        faceContour.reserve(40);
+
+        // 33 diem duong vien ham (0 den 32)
+        for (int i = 0; i <= 32; ++i) {
+            float x = landmarks106[i * 2];
+            float y = landmarks106[i * 2 + 1];
+
+            // Dieu chinh toa do theo goc xoay 3D de bao ve tai va goc mat khi quay nghiêng
+            if (std::abs(yaw) > 10.0f) {
+                float shiftX = (yaw > 0.0f) ? (x < W * 0.5f ? -6.0f : 2.0f) : (x > W * 0.5f ? 6.0f : -2.0f);
+                x += shiftX;
+            }
+            faceContour.push_back({x, y});
+        }
+
+        // Ket noi qua vung tran thap (duoi chan toc de bao ve da tran nhung khong an vao toc mai)
+        // Diem 33 (long may trai) va diem 46 (long may phai)
+        float browLeftX = landmarks106[33 * 2];
+        float browLeftY = landmarks106[33 * 2 + 1] - 15.0f;
+        float browRightX = landmarks106[46 * 2];
+        float browRightY = landmarks106[46 * 2 + 1] - 15.0f;
+
+        faceContour.push_back({browRightX, browRightY});
+        faceContour.push_back({browLeftX, browLeftY});
+
+        // Xac dinh Bounding Box cua khuon mat de giam thieu vung quet
+        float minX = W, maxX = 0, minY = H, maxY = 0;
+        for (const auto& pt : faceContour) {
+            minX = std::min(minX, pt.x);
+            maxX = std::max(maxX, pt.x);
+            minY = std::min(minY, pt.y);
+            maxY = std::max(maxY, pt.y);
+        }
+
+        int startX = std::max(0, static_cast<int>(minX) - 5);
+        int endX = std::min(W - 1, static_cast<int>(maxX) + 5);
+        int startY = std::max(0, static_cast<int>(minY) - 5);
+        int endY = std::min(H - 1, static_cast<int>(maxY) + 5);
+
+        #pragma omp parallel for schedule(dynamic, 8)
+        for (int y = startY; y <= endY; ++y) {
+            for (int x = startX; x <= endX; ++x) {
+                if (pointInPolygon(static_cast<float>(x), static_cast<float>(y), faceContour)) {
+                    protectMask[y * W + x] = 255;
+                }
+            }
+        }
+    } else {
+        // Fallback hinh elip giai phau co ban o giua khung hinh
+        const float cx = W * 0.5f;
+        const float cy = H * 0.48f;
+        const float rx = W * 0.22f;
+        const float ry = H * 0.28f;
+
+        #pragma omp parallel for schedule(static)
+        for (int y = 0; y < H; ++y) {
+            for (int x = 0; x < W; ++x) {
+                float dx = (x - cx) / rx;
+                float dy = (y - cy) / ry;
+                if (dx * dx + dy * dy <= 1.0f) {
+                    protectMask[y * W + x] = 255;
+                }
+            }
+        }
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_base_tone.cpp ====================
+#include "hair_v2_dye.h"
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status estimateBaseHairState(
+    const float* linearRgb,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    BaseHairState& out)
+{
+    if (!linearRgb) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    double sumLuma = 0.0;
+    double sumWarmth = 0.0;
+    double sumChroma = 0.0;
+    double totalWeight = 0.0;
+
+    std::vector<float> hairLumas;
+    hairLumas.reserve(total / 4);
+
+    for (size_t i = 0; i < total; ++i) {
+        float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+        if (alpha < 0.20f) continue;
+
+        float r = linearRgb[i * 3 + 0];
+        float g = linearRgb[i * 3 + 1];
+        float b = linearRgb[i * 3 + 2];
+
+        float luma = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+        float warmth = (r - b) / (r + b + 1e-4f);
+        float chroma = std::sqrt(0.5f * ((r - g) * (r - g) + (g - b) * (g - b) + (r - b) * (r - b)));
+
+        sumLuma += luma * alpha;
+        sumWarmth += warmth * alpha;
+        sumChroma += chroma * alpha;
+        totalWeight += alpha;
+
+        // Thu thap mau cho phan vi percentile
+        if ((i % 8) == 0) {
+            hairLumas.push_back(luma);
+        }
+    }
+
+    if (totalWeight < 10.0 || hairLumas.empty()) {
+        // Fallback default
+        out.meanLuma = 0.12f;
+        out.shadowLuma = 0.04f;
+        out.highlightLuma = 0.35f;
+        out.chroma = 0.05f;
+        out.warmth = 0.10f;
+        out.darkness = 0.88f;
+        out.dyedConfidence = 0.0f;
+        return HairV2Status::OK;
+    }
+
+    out.meanLuma = static_cast<float>(sumLuma / totalWeight);
+    out.warmth = static_cast<float>(sumWarmth / totalWeight);
+    out.chroma = static_cast<float>(sumChroma / totalWeight);
+    out.darkness = clampVal(1.0f - out.meanLuma, 0.0f, 1.0f);
+
+    std::sort(hairLumas.begin(), hairLumas.end());
+    size_t p10Idx = hairLumas.size() / 10;
+    size_t p90Idx = (hairLumas.size() * 9) / 10;
+    out.shadowLuma = hairLumas[p10Idx];
+    out.highlightLuma = hairLumas[p90Idx];
+
+    // Neu do bao hoa chroma qua cao tren nen toc sang/trung binh -> xac suat toc da tung nhuom truoc do
+    if (out.chroma > 0.15f) {
+        out.dyedConfidence = clampVal((out.chroma - 0.15f) / 0.20f, 0.0f, 1.0f);
+    } else {
+        out.dyedConfidence = 0.0f;
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_color.cpp ====================
+#include "hair_v2_color.h"
+#include <cmath>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+float srgbToLinear(float c) {
+    c = clampVal(c, 0.0f, 1.0f);
+    if (c <= 0.04045f) {
+        return c / 12.92f;
+    } else {
+        return std::pow((c + 0.055f) / 1.055f, 2.4f);
+    }
+}
+
+float linearToSrgb(float c) {
+    c = clampVal(c, 0.0f, 1.0f);
+    if (c <= 0.0031308f) {
+        return c * 12.92f;
+    } else {
+        return 1.055f * std::pow(c, 1.0f / 2.4f) - 0.055f;
+    }
+}
+
+void batchSrgbToLinear(const uint32_t* srcArgb, float* dstLinearRgb, size_t numPixels) {
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < numPixels; ++i) {
+        uint32_t p = srcArgb[i];
+        float r = ((p >> 16) & 0xFF) / 255.0f;
+        float g = ((p >> 8) & 0xFF) / 255.0f;
+        float b = (p & 0xFF) / 255.0f;
+
+        dstLinearRgb[i * 3 + 0] = srgbToLinear(r);
+        dstLinearRgb[i * 3 + 1] = srgbToLinear(g);
+        dstLinearRgb[i * 3 + 2] = srgbToLinear(b);
+    }
+}
+
+void batchLinearToSrgb(const float* srcLinearRgb, uint32_t* dstArgb, size_t numPixels) {
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < numPixels; ++i) {
+        float r = srcLinearRgb[i * 3 + 0];
+        float g = srcLinearRgb[i * 3 + 1];
+        float b = srcLinearRgb[i * 3 + 2];
+
+        uint32_t ir = static_cast<uint32_t>(clampVal(linearToSrgb(r) * 255.0f + 0.5f, 0.0f, 255.0f));
+        uint32_t ig = static_cast<uint32_t>(clampVal(linearToSrgb(g) * 255.0f + 0.5f, 0.0f, 255.0f));
+        uint32_t ib = static_cast<uint32_t>(clampVal(linearToSrgb(b) * 255.0f + 0.5f, 0.0f, 255.0f));
+
+        dstArgb[i] = (0xFFu << 24) | (ir << 16) | (ig << 8) | ib;
+    }
+}
+
+// Nen sac do mem deo (Soft Chroma Compression)
+// Giam dan sac do khi mau tien sat ranh gioi gam mau truoc khi bi clip cung
+void softChromaCompress(float& r, float& g, float& b, float maxChroma) {
+    float maxVal = std::max({r, g, b});
+    float minVal = std::min({r, g, b});
+    float luma = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+    float chroma = maxVal - minVal;
+
+    if (maxVal > 1.0f && chroma > 1e-4f) {
+        // Tinh he so nen sao cho maxVal khong vuot qua nguong cho phep
+        float allowedChroma = (1.0f - luma);
+        float compressFactor = allowedChroma / (maxVal - luma);
+        compressFactor = clampVal(compressFactor, 0.0f, 1.0f);
+
+        r = luma + (r - luma) * compressFactor;
+        g = luma + (g - luma) * compressFactor;
+        b = luma + (b - luma) * compressFactor;
+    }
+
+    r = clampVal(r, 0.0f, 1.0f);
+    g = clampVal(g, 0.0f, 1.0f);
+    b = clampVal(b, 0.0f, 1.0f);
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_directional_filter.cpp ====================
+#include "hair_v2_texture.h"
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+// Lay mau song tuyen (Bilinear interpolation)
+static inline float sampleBilinear(const float* src, int W, int H, float x, float y) {
+    int x0 = static_cast<int>(std::floor(x));
+    int y0 = static_cast<int>(std::floor(y));
+    int x1 = std::min(W - 1, std::max(0, x0 + 1));
+    int y1 = std::min(H - 1, std::max(0, y0 + 1));
+    x0 = std::min(W - 1, std::max(0, x0));
+    y0 = std::min(H - 1, std::max(0, y0));
+
+    float fx = x - std::floor(x);
+    float fy = y - std::floor(y);
+
+    float p00 = src[y0 * W + x0];
+    float p10 = src[y0 * W + x1];
+    float p01 = src[y1 * W + x0];
+    float p11 = src[y1 * W + x1];
+
+    float top = p00 * (1.0f - fx) + p10 * fx;
+    float bot = p01 * (1.0f - fx) + p11 * fx;
+    return top * (1.0f - fy) + bot * fy;
+}
+
+// Loc dinh huong 1D doc theo huong tiep tuyen (tangent) hoac vuong goc (normal)
+void directionalFilter1D(
+    const float* src,
+    float* dst,
+    const HairFlowField& flow,
+    const FrameGeometry& geom,
+    int radius,
+    bool alongTangent)
+{
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    if (radius <= 0) {
+        std::copy(src, src + total, dst);
+        return;
+    }
+
+    const float sigma = static_cast<float>(radius) * 0.5f;
+    std::vector<float> kernel(2 * radius + 1);
+    float ksum = 0.0f;
+    for (int s = -radius; s <= radius; ++s) {
+        float kw = std::exp(-static_cast<float>(s * s) / (2.0f * sigma * sigma));
+        kernel[s + radius] = kw;
+        ksum += kw;
+    }
+    for (auto& k : kernel) k /= ksum;
+
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        for (int x = 0; x < W; ++x) {
+            const int idx = y * W + x;
+
+            // Xac dinh vector dinh huong
+            float vx = 0.0f, vy = 1.0f;
+            if (flow.tangentX && flow.tangentY) {
+                if (alongTangent) {
+                    vx = flow.tangentX[idx];
+                    vy = flow.tangentY[idx];
+                } else {
+                    vx = flow.normalX ? flow.normalX[idx] : -flow.tangentY[idx];
+                    vy = flow.normalY ? flow.normalY[idx] : flow.tangentX[idx];
+                }
+            }
+
+            float acc = 0.0f;
+            float wacc = 0.0f;
+
+            for (int s = -radius; s <= radius; ++s) {
+                float sx = static_cast<float>(x) + static_cast<float>(s) * vx;
+                float sy = static_cast<float>(y) + static_cast<float>(s) * vy;
+
+                if (sx >= 0.0f && sx < static_cast<float>(W) && sy >= 0.0f && sy < static_cast<float>(H)) {
+                    float val = sampleBilinear(src, W, H, sx, sy);
+                    float w = kernel[s + radius];
+                    acc += val * w;
+                    wacc += w;
+                }
+            }
+
+            dst[idx] = (wacc > 1e-4f) ? (acc / wacc) : src[idx];
+        }
+    }
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_dye.cpp ====================
+#include "hair_v2_dye.h"
+#include <cmath>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status applyHairDye(
+    const float* linearRgb,
+    const AlphaMatteBuffer& matte,
+    const TextureDecomposition& texture,
+    const DyeResponseBuffer& response,
+    const FrameGeometry& geom,
+    float* outLinearRgb)
+{
+    if (!linearRgb || !outLinearRgb || !response.liftMap || !response.chromaMap) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const size_t total = geom.totalPixels();
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float r = linearRgb[i * 3 + 0];
+        float g = linearRgb[i * 3 + 1];
+        float b = linearRgb[i * 3 + 2];
+
+        float baseLuma = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+
+        float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+        if (alpha < 0.01f) {
+            outLinearRgb[i * 3 + 0] = r;
+            outLinearRgb[i * 3 + 1] = g;
+            outLinearRgb[i * 3 + 2] = b;
+            continue;
+        }
+
+        float lift = response.liftMap[i];
+        float chroma = response.chromaMap[i] * alpha;
+        float shadowProt = response.shadowProtection[i];
+        float highlightProt = response.highlightProtection[i];
+
+        // Tinh toan do nang tone thich ung: Bao ve do sau bong toi
+        // Neu baseLuma < 0.08f (bong toi rat sau), giam bot lift de khong bi duc mau (washed out)
+        float shadowFactor = (baseLuma < 0.08f) ? (baseLuma / 0.08f * shadowProt) : 1.0f;
+        float effectiveLift = lift * shadowFactor;
+
+        float liftedLuma = baseLuma + effectiveLift * (1.0f - baseLuma);
+        liftedLuma = clampVal(liftedLuma, 0.0f, 1.0f);
+
+        // Mau nhuom muc tieu
+        float tr = response.targetLinearRgb ? response.targetLinearRgb[i * 3 + 0] : 1.0f;
+        float tg = response.targetLinearRgb ? response.targetLinearRgb[i * 3 + 1] : 0.8f;
+        float tb = response.targetLinearRgb ? response.targetLinearRgb[i * 3 + 2] : 0.8f;
+
+        float targetLuma = 0.2126f * tr + 0.7152f * tg + 0.0722f * tb;
+        if (targetLuma < 1e-4f) targetLuma = 1e-4f;
+
+        // Tint mau voi phoi quang Linear-light compositing
+        float normR = tr / targetLuma;
+        float normG = tg / targetLuma;
+        float normB = tb / targetLuma;
+
+        float tintedR = liftedLuma * normR;
+        float tintedG = liftedLuma * normG;
+        float tintedB = liftedLuma * normB;
+
+        // Hoa tron giua mau toc goc nang tone va mau nhuom
+        float dyedR = (1.0f - chroma) * liftedLuma + chroma * tintedR;
+        float dyedG = (1.0f - chroma) * liftedLuma + chroma * tintedG;
+        float dyedB = (1.0f - chroma) * liftedLuma + chroma * tintedB;
+
+        // Bao ve highlight tu nhien: o vung sang manh (baseLuma > 0.6f), bao luu mau phan xa goc
+        if (baseLuma > 0.60f) {
+            float hlFactor = (baseLuma - 0.60f) / 0.40f * highlightProt;
+            dyedR = (1.0f - hlFactor) * dyedR + hlFactor * r;
+            dyedG = (1.0f - hlFactor) * dyedG + hlFactor * g;
+            dyedB = (1.0f - hlFactor) * dyedB + hlFactor * b;
+        }
+
+        outLinearRgb[i * 3 + 0] = clampVal(dyedR, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 1] = clampVal(dyedG, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 2] = clampVal(dyedB, 0.0f, 1.0f);
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_flow.cpp ====================
+#include "hair_v2_flow.h"
+#include <cmath>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+// Loc Gaussian tach duoc (Separable Gaussian Blur)
+static void gaussianBlurSeparable(
+    const float* src,
+    float* dst,
+    int W,
+    int H,
+    float sigma)
+{
+    int radius = static_cast<int>(std::ceil(2.5f * sigma));
+    radius = std::max(1, std::min(7, radius));
+
+    std::vector<float> kernel(2 * radius + 1);
+    float sum = 0.0f;
+    for (int i = -radius; i <= radius; ++i) {
+        float val = std::exp(-static_cast<float>(i * i) / (2.0f * sigma * sigma));
+        kernel[i + radius] = val;
+        sum += val;
+    }
+    for (auto& k : kernel) k /= sum;
+
+    std::vector<float> temp(W * H);
+
+    // Quet ngang (Horizontal pass)
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        const int rowOffset = y * W;
+        for (int x = 0; x < W; ++x) {
+            float acc = 0.0f;
+            for (int k = -radius; k <= radius; ++k) {
+                int px = std::min(W - 1, std::max(0, x + k));
+                acc += src[rowOffset + px] * kernel[k + radius];
+            }
+            temp[rowOffset + x] = acc;
+        }
+    }
+
+    // Quet doc (Vertical pass)
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        const int rowOffset = y * W;
+        for (int x = 0; x < W; ++x) {
+            float acc = 0.0f;
+            for (int k = -radius; k <= radius; ++k) {
+                int py = std::min(H - 1, std::max(0, y + k));
+                acc += temp[py * W + x] * kernel[k + radius];
+            }
+            dst[rowOffset + x] = acc;
+        }
+    }
+}
+
+HairV2Status computeHairFlow(
+    const float* luminance,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    HairFlowField& out)
+{
+    if (!luminance || !out.theta || !out.coherence || !out.tangentX || !out.tangentY) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 1. Tinh gradient dao ham bac nhat Ix, Iy
+    std::vector<float> Ix(total, 0.0f);
+    std::vector<float> Iy(total, 0.0f);
+
+    #pragma omp parallel for schedule(static)
+    for (int y = 1; y < H - 1; ++y) {
+        for (int x = 1; x < W - 1; ++x) {
+            const int idx = y * W + x;
+            // Neu khong phai vung toc (alpha < 0.02f), bo qua tinh toan de tiet kiem pin
+            if (matte.alpha && matte.alpha[idx] < 0.02f) continue;
+
+            float gx = 0.5f * (luminance[y * W + (x + 1)] - luminance[y * W + (x - 1)]);
+            float gy = 0.5f * (luminance[(y + 1) * W + x] - luminance[(y - 1) * W + x]);
+
+            Ix[idx] = gx;
+            Iy[idx] = gy;
+        }
+    }
+
+    // 2. Tinh cac thanh phan cua Structure Tensor Jxx = Ix^2, Jyy = Iy^2, Jxy = Ix*Iy
+    std::vector<float> Jxx(total);
+    std::vector<float> Jyy(total);
+    std::vector<float> Jxy(total);
+
+    for (size_t i = 0; i < total; ++i) {
+        Jxx[i] = Ix[i] * Ix[i];
+        Jyy[i] = Iy[i] * Iy[i];
+        Jxy[i] = Ix[i] * Iy[i];
+    }
+
+    // 3. Lam min Structure Tensor bang Gaussian Blur da quy mo (Scale sigma = 2.0f)
+    std::vector<float> smoothJxx(total);
+    std::vector<float> smoothJyy(total);
+    std::vector<float> smoothJxy(total);
+
+    gaussianBlurSeparable(Jxx.data(), smoothJxx.data(), W, H, 2.0f);
+    gaussianBlurSeparable(Jyy.data(), smoothJyy.data(), W, H, 2.0f);
+    gaussianBlurSeparable(Jxy.data(), smoothJxy.data(), W, H, 2.0f);
+
+    // 4. Phan tich tri rieng va tinh goc tiep tuyen soi toc theta
+    #pragma omp parallel for schedule(static)
+    for (int i = 0; i < static_cast<int>(total); ++i) {
+        float jxx = smoothJxx[i];
+        float jyy = smoothJyy[i];
+        float jxy = smoothJxy[i];
+
+        // Tinh tri rieng lambda1 va lambda2
+        float trace = jxx + jyy;
+        float detDiff = jxx - jyy;
+        float disc = std::sqrt(detDiff * detDiff + 4.0f * jxy * jxy);
+
+        float lambda1 = 0.5f * (trace + disc);
+        float lambda2 = 0.5f * (trace - disc);
+
+        // Do gan ket Coherence C = (lambda1 - lambda2) / (lambda1 + lambda2 + eps)
+        float coherence = (disc) / (trace + 1e-5f);
+        coherence = clampVal(coherence, 0.0f, 1.0f);
+
+        // Huong phap tuyen gradient phi = 0.5 * atan2(2*Jxy, Jxx - Jyy)
+        float phi = 0.5f * std::atan2(2.0f * jxy, detDiff);
+
+        // Huong tiep tuyen soi toc theta = phi + PI/2 (vuong goc voi gradient)
+        float theta = phi + static_cast<float>(M_PI * 0.5);
+
+        // Chuan hoa modulo PI sao cho theta thuoc [0, PI)
+        while (theta < 0.0f) theta += static_cast<float>(M_PI);
+        while (theta >= static_cast<float>(M_PI)) theta -= static_cast<float>(M_PI);
+
+        float tx = std::cos(theta);
+        float ty = std::sin(theta);
+        float nx = -std::sin(theta);
+        float ny = std::cos(theta);
+
+        out.theta[i] = theta;
+        out.coherence[i] = coherence;
+        out.tangentX[i] = tx;
+        out.tangentY[i] = ty;
+        if (out.normalX) out.normalX[i] = nx;
+        if (out.normalY) out.normalY[i] = ny;
+    }
+
+    out.width = W;
+    out.height = H;
+    out.stride = W;
+    out.geometry = geom;
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_flow_regularizer.cpp ====================
+#include "hair_v2_flow.h"
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <queue>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+// Lam tron vector huong doc truc (Axial Vector Smoothing via u=cos(2*theta), v=sin(2*theta))
+// Khong tinh trung binh goc theta truc tiep vi goc theta tuan hoan theo modulo PI.
+HairV2Status regularizeHairFlow(
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    HairFlowField& flow)
+{
+    if (!flow.theta || !flow.coherence || !flow.tangentX || !flow.tangentY) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 1. Chuyen doi goc theta sang axial vector u = cos(2*theta), v = sin(2*theta)
+    std::vector<float> u(total);
+    std::vector<float> v(total);
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float th = flow.theta[i];
+        float c = flow.coherence[i];
+        // Trong so dua tren do gan ket de uu tien cac vung co huong ro rang
+        u[i] = std::cos(2.0f * th) * c;
+        v[i] = std::sin(2.0f * th) * c;
+    }
+
+    // 2. Lam min u va v bang bo loc khong gian nho (radius = 2 hoac 3)
+    const int radius = 2;
+    std::vector<float> smoothU(total, 0.0f);
+    std::vector<float> smoothV(total, 0.0f);
+    std::vector<float> weightSum(total, 0.0f);
+
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        for (int x = 0; x < W; ++x) {
+            const int idx = y * W + x;
+            if (matte.alpha && matte.alpha[idx] < 0.02f) continue;
+
+            float sumU = 0.0f;
+            float sumV = 0.0f;
+            float sumW = 0.0f;
+
+            for (int dy = -radius; dy <= radius; ++dy) {
+                int py = std::min(H - 1, std::max(0, y + dy));
+                for (int dx = -radius; dx <= radius; ++dx) {
+                    int px = std::min(W - 1, std::max(0, x + dx));
+                    int pidx = py * W + px;
+
+                    float pAlpha = matte.alpha ? matte.alpha[pidx] : 1.0f;
+                    float distSq = static_cast<float>(dx * dx + dy * dy);
+                    float spatialW = std::exp(-distSq / (2.0f * 1.5f * 1.5f));
+                    float w = spatialW * pAlpha;
+
+                    sumU += u[pidx] * w;
+                    sumV += v[pidx] * w;
+                    sumW += w;
+                }
+            }
+
+            if (sumW > 1e-4f) {
+                smoothU[idx] = sumU / sumW;
+                smoothV[idx] = sumV / sumW;
+                weightSum[idx] = sumW;
+            }
+        }
+    }
+
+    // 3. Phuc hoi goc theta = 0.5 * atan2(smoothV, smoothU) va cap nhat vector tiep tuyen / phap tuyen
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        if (matte.alpha && matte.alpha[i] < 0.02f) continue;
+        if (weightSum[i] <= 1e-4f) continue;
+
+        float su = smoothU[i];
+        float sv = smoothV[i];
+        float mag = std::sqrt(su * su + sv * sv);
+
+        if (mag > 1e-4f) {
+            float regTheta = 0.5f * std::atan2(sv, su);
+            while (regTheta < 0.0f) regTheta += static_cast<float>(M_PI);
+            while (regTheta >= static_cast<float>(M_PI)) regTheta -= static_cast<float>(M_PI);
+
+            flow.theta[i] = regTheta;
+            float tx = std::cos(regTheta);
+            float ty = std::sin(regTheta);
+            flow.tangentX[i] = tx;
+            flow.tangentY[i] = ty;
+            if (flow.normalX) flow.normalX[i] = -ty;
+            if (flow.normalY) flow.normalY[i] = tx;
+        }
+    }
+
+    return HairV2Status::OK;
+}
+
+// Lan truyen huong tu vung co do gan ket cao sang cac vung gradient yeu
+// Khong dung gravity mac dinh (fallback downward), dung khuếch tán trọng số khoảng cách
+HairV2Status propagateLowConfidenceFlow(
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    HairFlowField& flow)
+{
+    if (!flow.theta || !flow.coherence || !flow.tangentX || !flow.tangentY) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // Nguong xac dinh vung tu tin cao (coherence >= 0.35) va vung yeu (coherence < 0.20)
+    const float COHERENCE_HIGH = 0.35f;
+    const float COHERENCE_LOW = 0.20f;
+
+    std::vector<uint8_t> isFixed(total, 0);
+    std::vector<float> propTheta(total);
+    std::vector<float> propCoherence(total);
+
+    for (size_t i = 0; i < total; ++i) {
+        propTheta[i] = flow.theta[i];
+        propCoherence[i] = flow.coherence[i];
+
+        bool isHair = !matte.alpha || (matte.alpha[i] >= 0.10f);
+        if (isHair && flow.coherence[i] >= COHERENCE_HIGH) {
+            isFixed[i] = 1;
+        }
+    }
+
+    // 2-pass iterative diffusion (multi-grid / neighborhood expansion)
+    for (int iter = 0; iter < 4; ++iter) {
+        #pragma omp parallel for schedule(static)
+        for (int y = 1; y < H - 1; ++y) {
+            for (int x = 1; x < W - 1; ++x) {
+                int idx = y * W + x;
+                if (matte.alpha && matte.alpha[idx] < 0.10f) continue;
+                if (isFixed[idx]) continue;
+
+                // Neu la diem do gan ket yeu, lay trung binh co trong so tu cac hang xom
+                float sumU = 0.0f;
+                float sumV = 0.0f;
+                float totalW = 0.0f;
+
+                const int neighbors[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+                for (int n = 0; n < 4; ++n) {
+                    int nx = x + neighbors[n][0];
+                    int ny = y + neighbors[n][1];
+                    int nidx = ny * W + nx;
+
+                    if (matte.alpha && matte.alpha[nidx] < 0.05f) continue;
+
+                    float nc = propCoherence[nidx];
+                    if (nc > 0.05f) {
+                        float nth = propTheta[nidx];
+                        sumU += std::cos(2.0f * nth) * nc;
+                        sumV += std::sin(2.0f * nth) * nc;
+                        totalW += nc;
+                    }
+                }
+
+                if (totalW > 0.1f) {
+                    float newTheta = 0.5f * std::atan2(sumV, sumU);
+                    while (newTheta < 0.0f) newTheta += static_cast<float>(M_PI);
+                    while (newTheta >= static_cast<float>(M_PI)) newTheta -= static_cast<float>(M_PI);
+
+                    propTheta[idx] = newTheta;
+                    // Fallback confidence duy tri muc thap theo quy dinh Directive
+                    propCoherence[idx] = std::min(COHERENCE_LOW, totalW / 4.0f);
+                }
+            }
+        }
+    }
+
+    // Cap nhat lai truong flow sau khi lan truyen
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        if (!isFixed[i] && (!matte.alpha || matte.alpha[i] >= 0.10f)) {
+            flow.theta[i] = propTheta[i];
+            flow.coherence[i] = propCoherence[i];
+
+            float tx = std::cos(propTheta[i]);
+            float ty = std::sin(propTheta[i]);
+            flow.tangentX[i] = tx;
+            flow.tangentY[i] = ty;
+            if (flow.normalX) flow.normalX[i] = -ty;
+            if (flow.normalY) flow.normalY[i] = tx;
+        }
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_lab.cpp ====================
+#include "hair_v2_color.h"
+#include <cmath>
+#include <algorithm>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+static inline float fCie(float t) {
+    const float delta = 6.0f / 29.0f;
+    const float delta3 = delta * delta * delta;
+    if (t > delta3) {
+        return std::cbrt(t);
+    } else {
+        return (t / (3.0f * delta * delta)) + (4.0f / 29.0f);
+    }
+}
+
+CIELab linearRgbToCIELab(float r, float g, float b) {
+    // 1. Chuyen doi sang XYZ (D65 reference white)
+    float X = 0.4124564f * r + 0.3575761f * g + 0.1804375f * b;
+    float Y = 0.2126729f * r + 0.7151522f * g + 0.0721750f * b;
+    float Z = 0.0193339f * r + 0.1191920f * g + 0.9503041f * b;
+
+    const float Xn = 0.95047f;
+    const float Yn = 1.00000f;
+    const float Zn = 1.08883f;
+
+    float fx = fCie(X / Xn);
+    float fy = fCie(Y / Yn);
+    float fz = fCie(Z / Zn);
+
+    CIELab lab;
+    lab.L = 116.0f * fy - 16.0f;
+    lab.a = 500.0f * (fx - fy);
+    lab.b = 200.0f * (fy - fz);
+    return lab;
+}
+
+// Chuan muc do sai biet mau quoc te CIEDE2000 (Delta E 00)
+double deltaE2000(const CIELab& lab1, const CIELab& lab2) {
+    double L1 = lab1.L, a1 = lab1.a, b1 = lab1.b;
+    double L2 = lab2.L, a2 = lab2.a, b2 = lab2.b;
+
+    double C1 = std::sqrt(a1 * a1 + b1 * b1);
+    double C2 = std::sqrt(a2 * a2 + b2 * b2);
+    double C_bar = 0.5 * (C1 + C2);
+
+    double C_bar7 = std::pow(C_bar, 7.0);
+    double G = 0.5 * (1.0 - std::sqrt(C_bar7 / (C_bar7 + std::pow(25.0, 7.0))));
+
+    double a1_prime = (1.0 + G) * a1;
+    double a2_prime = (1.0 + G) * a2;
+
+    double C1_prime = std::sqrt(a1_prime * a1_prime + b1 * b1);
+    double C2_prime = std::sqrt(a2_prime * a2_prime + b2 * b2);
+
+    double h1_prime = std::atan2(b1, a1_prime) * 180.0 / M_PI;
+    if (h1_prime < 0.0) h1_prime += 360.0;
+
+    double h2_prime = std::atan2(b2, a2_prime) * 180.0 / M_PI;
+    if (h2_prime < 0.0) h2_prime += 360.0;
+
+    double delta_L_prime = L2 - L1;
+    double delta_C_prime = C2_prime - C1_prime;
+
+    double delta_h_prime = 0.0;
+    if (C1_prime * C2_prime != 0.0) {
+        double diff = h2_prime - h1_prime;
+        if (std::abs(diff) <= 180.0) {
+            delta_h_prime = diff;
+        } else if (diff > 180.0) {
+            delta_h_prime = diff - 360.0;
+        } else {
+            delta_h_prime = diff + 360.0;
+        }
+    }
+
+    double delta_H_prime = 2.0 * std::sqrt(C1_prime * C2_prime) * std::sin((delta_h_prime * M_PI / 180.0) / 2.0);
+
+    double L_bar_prime = 0.5 * (L1 + L2);
+    double C_bar_prime = 0.5 * (C1_prime + C2_prime);
+
+    double h_bar_prime = 0.0;
+    if (C1_prime * C2_prime != 0.0) {
+        double sum_h = h1_prime + h2_prime;
+        if (std::abs(h1_prime - h2_prime) <= 180.0) {
+            h_bar_prime = 0.5 * sum_h;
+        } else if (sum_h < 360.0) {
+            h_bar_prime = 0.5 * (sum_h + 360.0);
+        } else {
+            h_bar_prime = 0.5 * (sum_h - 360.0);
+        }
+    } else {
+        h_bar_prime = h1_prime + h2_prime;
+    }
+
+    double T = 1.0 - 0.17 * std::cos((h_bar_prime - 30.0) * M_PI / 180.0)
+                   + 0.24 * std::cos((2.0 * h_bar_prime) * M_PI / 180.0)
+                   + 0.32 * std::cos((3.0 * h_bar_prime + 6.0) * M_PI / 180.0)
+                   - 0.20 * std::cos((4.0 * h_bar_prime - 63.0) * M_PI / 180.0);
+
+    double delta_theta = 30.0 * std::exp(-std::pow((h_bar_prime - 275.0) / 25.0, 2.0));
+    double C_bar_prime7 = std::pow(C_bar_prime, 7.0);
+    double R_C = 2.0 * std::sqrt(C_bar_prime7 / (C_bar_prime7 + std::pow(25.0, 7.0)));
+    double S_L = 1.0 + (0.015 * std::pow(L_bar_prime - 50.0, 2.0)) / std::sqrt(20.0 + std::pow(L_bar_prime - 50.0, 2.0));
+    double S_C = 1.0 + 0.045 * C_bar_prime;
+    double S_H = 1.0 + 0.015 * C_bar_prime * T;
+    double R_T = -std::sin(2.0 * delta_theta * M_PI / 180.0) * R_C;
+
+    double dL_term = delta_L_prime / S_L;
+    double dC_term = delta_C_prime / S_C;
+    double dH_term = delta_H_prime / S_H;
+
+    double de2000_sq = dL_term * dL_term + dC_term * dC_term + dH_term * dH_term + R_T * dC_term * dH_term;
+    return std::sqrt(std::max(0.0, de2000_sq));
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_lift_curve.cpp ====================
+#include "hair_v2_dye.h"
+#include <cmath>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status computeDyeResponse(
+    const BaseHairState& base,
+    const HairPreset& preset,
+    float intensity,
+    const FrameGeometry& geom,
+    DyeResponseBuffer& out)
+{
+    if (!out.liftMap || !out.chromaMap || !out.shadowProtection || !out.highlightProtection) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const size_t total = geom.totalPixels();
+    intensity = clampVal(intensity, 0.0f, 1.0f);
+
+    // He so nang tone tong the dua tren do toi cua toc va cong luc nang tong cua preset
+    // Toc cang toi can he so lift thich ung cao hon de hien thi mau, nhung van giu nguyen ti le tu nhien
+    float baseLift = preset.bleachPower * (0.4f + 0.6f * base.darkness);
+
+    // He so bao hoa mau thich ung: bu tru neu toc da tung nhuom
+    float effectiveChroma = intensity * (1.0f - 0.25f * base.dyedConfidence);
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        // Tinh toan lift va chroma
+        out.liftMap[i] = baseLift * intensity;
+        out.chromaMap[i] = effectiveChroma;
+
+        // Bao ve vung toi: shadow retention
+        out.shadowProtection[i] = preset.shadowRetention;
+
+        // Bao ve vung sang: highlight retention
+        out.highlightProtection[i] = preset.highlightRetention;
+
+        if (out.confidence) {
+            out.confidence[i] = 1.0f;
+        }
+
+        if (out.targetLinearRgb) {
+            out.targetLinearRgb[i * 3 + 0] = preset.targetR;
+            out.targetLinearRgb[i * 3 + 1] = preset.targetG;
+            out.targetLinearRgb[i * 3 + 2] = preset.targetB;
+        }
+    }
+
+    out.geometry = geom;
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_matting.cpp ====================
+#include "hair_v2_matting.h"
+#include <cmath>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+// Tinh tich phan 2D (Integral Image) cho phep loc box-filter O(1) bat ke ban kinh r
+static void computeIntegralImage(const float* src, float* dst, int W, int H) {
+    dst[0] = src[0];
+    for (int x = 1; x < W; ++x) {
+        dst[x] = dst[x - 1] + src[x];
+    }
+    for (int y = 1; y < H; ++y) {
+        float rowSum = 0.0f;
+        const int rowOffset = y * W;
+        const int prevRowOffset = (y - 1) * W;
+        for (int x = 0; x < W; ++x) {
+            rowSum += src[rowOffset + x];
+            dst[rowOffset + x] = dst[prevRowOffset + x] + rowSum;
+        }
+    }
+}
+
+static inline float getBoxSum(const float* integral, int W, int H, int x1, int y1, int x2, int y2) {
+    x1 = std::max(0, x1);
+    y1 = std::max(0, y1);
+    x2 = std::min(W - 1, x2);
+    y2 = std::min(H - 1, y2);
+
+    float sum = integral[y2 * W + x2];
+    if (x1 > 0) sum -= integral[y2 * W + (x1 - 1)];
+    if (y1 > 0) sum -= integral[(y1 - 1) * W + x2];
+    if (x1 > 0 && y1 > 0) sum += integral[(y1 - 1) * W + (x1 - 1)];
+    return sum;
+}
+
+HairV2Status refineHairAlpha(
+    const uint32_t* argb,
+    const AlphaMatteBuffer& trimapInput,
+    const FrameGeometry& geom,
+    AlphaMatteBuffer& out)
+{
+    if (!argb || !trimapInput.trimap || !out.alpha) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 1. Chuan bi anh xam huong dan I va anh alpha khoi tao p
+    std::vector<float> I(total);
+    std::vector<float> p(total);
+
+    #pragma omp parallel for schedule(static)
+    for (int i = 0; i < static_cast<int>(total); ++i) {
+        uint32_t c = argb[i];
+        float r = ((c >> 16) & 0xFF) / 255.0f;
+        float g = ((c >> 8) & 0xFF) / 255.0f;
+        float b = (c & 0xFF) / 255.0f;
+        I[i] = 0.299f * r + 0.587f * g + 0.114f * b;
+
+        uint8_t tri = trimapInput.trimap[i];
+        if (tri == 255) {
+            p[i] = 1.0f;
+        } else if (tri == 0) {
+            p[i] = 0.0f;
+        } else {
+            // Unknown band: dung gia tri alpha tho hoac 0.5f de toi uu hoi tu
+            p[i] = trimapInput.alpha ? trimapInput.alpha[i] : 0.5f;
+        }
+    }
+
+    // 2. Tinh toan cac anh tich phan can thiet cho Fast Guided Refinement
+    std::vector<float> Ip(total);
+    std::vector<float> II(total);
+    for (size_t i = 0; i < total; ++i) {
+        Ip[i] = I[i] * p[i];
+        II[i] = I[i] * I[i];
+    }
+
+    std::vector<float> intI(total);
+    std::vector<float> intP(total);
+    std::vector<float> intIp(total);
+    std::vector<float> intII(total);
+
+    computeIntegralImage(I.data(), intI.data(), W, H);
+    computeIntegralImage(p.data(), intP.data(), W, H);
+    computeIntegralImage(Ip.data(), intIp.data(), W, H);
+    computeIntegralImage(II.data(), intII.data(), W, H);
+
+    // 3. Tinh he so a_k va b_k voi ban kinh thich ung r = 6, epsilon = 1e-4
+    const int r = 6;
+    const float eps = 1e-4f;
+    std::vector<float> a(total);
+    std::vector<float> b(total);
+
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        const int rowOffset = y * W;
+        for (int x = 0; x < W; ++x) {
+            const int idx = rowOffset + x;
+
+            int x1 = x - r, x2 = x + r;
+            int y1 = y - r, y2 = y + r;
+            float area = static_cast<float>((std::min(W - 1, x2) - std::max(0, x1) + 1) *
+                                            (std::min(H - 1, y2) - std::max(0, y1) + 1));
+
+            float mean_I = getBoxSum(intI.data(), W, H, x1, y1, x2, y2) / area;
+            float mean_p = getBoxSum(intP.data(), W, H, x1, y1, x2, y2) / area;
+            float mean_Ip = getBoxSum(intIp.data(), W, H, x1, y1, x2, y2) / area;
+            float mean_II = getBoxSum(intII.data(), W, H, x1, y1, x2, y2) / area;
+
+            float cov_Ip = mean_Ip - mean_I * mean_p;
+            float var_I = mean_II - mean_I * mean_I;
+
+            // Variance-aware regularization
+            float ak = cov_Ip / (var_I + eps);
+            float bk = mean_p - ak * mean_I;
+
+            a[idx] = ak;
+            b[idx] = bk;
+        }
+    }
+
+    // 4. Loc trung binh cho he so a va b
+    std::vector<float> intA(total);
+    std::vector<float> intB(total);
+    computeIntegralImage(a.data(), intA.data(), W, H);
+    computeIntegralImage(b.data(), intB.data(), W, H);
+
+    // 5. Tai tao q_i = mean_a * I_i + mean_b (Alpha Matte lien tuc)
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        const int rowOffset = y * W;
+        for (int x = 0; x < W; ++x) {
+            const int idx = rowOffset + x;
+
+            // Kiem tra rao chan bao ve da mat (Zero Leakage Shield)
+            if (trimapInput.protectMask && trimapInput.protectMask[idx] > 128) {
+                out.alpha[idx] = 0.0f;
+                continue;
+            }
+
+            int x1 = x - r, x2 = x + r;
+            int y1 = y - r, y2 = y + r;
+            float area = static_cast<float>((std::min(W - 1, x2) - std::max(0, x1) + 1) *
+                                            (std::min(H - 1, y2) - std::max(0, y1) + 1));
+
+            float mean_a = getBoxSum(intA.data(), W, H, x1, y1, x2, y2) / area;
+            float mean_b = getBoxSum(intB.data(), W, H, x1, y1, x2, y2) / area;
+
+            float alphaVal = mean_a * I[idx] + mean_b;
+
+            // Giu alpha lien tuc: khong dung nguong cat cung 0.15f de giu tron ven toc to bay
+            alphaVal = clampVal(alphaVal, 0.0f, 1.0f);
+
+            // Neu o vung definite foreground cua trimap, bao dam khong bi tut alpha
+            if (trimapInput.trimap[idx] == 255) {
+                alphaVal = std::max(alphaVal, 0.85f);
+            } else if (trimapInput.trimap[idx] == 0) {
+                alphaVal = std::min(alphaVal, 0.05f);
+            }
+
+            out.alpha[idx] = alphaVal;
+        }
+    }
+
+    out.width = W;
+    out.height = H;
+    out.stride = W;
+    out.geometry = geom;
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_oklab.cpp ====================
+#include "hair_v2_color.h"
+#include <cmath>
+
+namespace meitu::reborn::hair_v2 {
+
+OKLab linearRgbToOKLab(float r, float g, float b) {
+    float l = 0.4122214708f * r + 0.5363325363f * g + 0.0514459929f * b;
+    float m = 0.2119034982f * r + 0.6806995451f * g + 0.1073969566f * b;
+    float s = 0.0883024619f * r + 0.2817188376f * g + 0.6299787005f * b;
+
+    float l_ = std::cbrt(l);
+    float m_ = std::cbrt(m);
+    float s_ = std::cbrt(s);
+
+    OKLab lab;
+    lab.L = 0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_;
+    lab.a = 1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_;
+    lab.b = 0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_;
+    return lab;
+}
+
+void okLabToLinearRgb(const OKLab& lab, float& r, float& g, float& b) {
+    float l_ = lab.L + 0.3963377774f * lab.a + 0.2158037573f * lab.b;
+    float m_ = lab.L - 0.1055613458f * lab.a - 0.0638541728f * lab.b;
+    float s_ = lab.L - 0.0894841775f * lab.a - 1.2914855480f * lab.b;
+
+    float l = l_ * l_ * l_;
+    float m = m_ * m_ * m_;
+    float s = s_ * s_ * s_;
+
+    r = +4.0767416621f * l - 3.3077115913f * m + 0.2309699292f * s;
+    g = -1.2684380046f * l + 2.6097574011f * m - 0.3413193965f * s;
+    b = -0.0041960863f * l - 0.7034186147f * m + 1.7076147010f * s;
+}
+
+float deltaE_OK(const OKLab& a, const OKLab& b) {
+    float dL = a.L - b.L;
+    float da = a.a - b.a;
+    float db = a.b - b.b;
+    return std::sqrt(dL * dL + da * da + db * db);
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_pipeline.cpp ====================
+#include "hair_v2_pipeline.h"
+#include <vector>
+#include <cstring>
+#include <algorithm>
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status processHairPipelineV2(
+    const uint32_t* srcArgb,
+    const float* coarseHairProb,
+    const uint8_t* faceMask,
+    const LandmarkSet* landmarks,
+    const PoseEstimate* pose,
+    const HairPreset& preset,
+    float intensity,
+    const HairV2Config& config,
+    const FrameGeometry& geom,
+    uint32_t* dstArgb)
+{
+    if (!srcArgb || !dstArgb || !coarseHairProb) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 0. Neu enableV2 = false hoac mode = V1, tra ve de caller xu ly theo baseline V1
+    if (!config.enableV2 || config.mode == HairV2Mode::V1) {
+        std::memcpy(dstArgb, srcArgb, total * sizeof(uint32_t));
+        return HairV2Status::OK;
+    }
+
+    // Cap phat bo dem nho 64-byte aligned cho SIMD
+    float* srcLinearRgb = static_cast<float*>(alignedAlloc64(total * 3 * sizeof(float)));
+    float* workingRgb = static_cast<float*>(alignedAlloc64(total * 3 * sizeof(float)));
+    float* finalRgb = static_cast<float*>(alignedAlloc64(total * 3 * sizeof(float)));
+
+    if (!srcLinearRgb || !workingRgb || !finalRgb) {
+        alignedFree64(srcLinearRgb);
+        alignedFree64(workingRgb);
+        alignedFree64(finalRgb);
+        return HairV2Status::ALLOCATION_FAILED;
+    }
+
+    // 1. Preprocess: Chuyen doi toan bo anh nguon sRGB sang Linear RGB
+    batchSrgbToLinear(srcArgb, srcLinearRgb, total);
+    std::memcpy(workingRgb, srcLinearRgb, total * 3 * sizeof(float));
+
+    // 2. V2-02 Alpha Matting
+    AlphaMatteBuffer matte;
+    matte.width = W;
+    matte.height = H;
+    matte.stride = W;
+    matte.geometry = geom;
+    matte.alpha = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    matte.confidence = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    matte.trimap = static_cast<uint8_t*>(alignedAlloc64(total * sizeof(uint8_t)));
+    matte.protectMask = static_cast<uint8_t*>(alignedAlloc64(total * sizeof(uint8_t)));
+
+    // Xay dung hang rao giai phau khuon mat (Pose-Aware Face Barrier)
+    if (landmarks && pose && landmarks->points && landmarks->count >= 106) {
+        buildAnatomicalProtectionMask(landmarks->points, landmarks->count, pose->yaw, pose->pitch, geom, matte.protectMask);
+    } else {
+        std::memset(matte.protectMask, 0, total * sizeof(uint8_t));
+    }
+
+    // Xay dung trimap thich ung
+    buildAdaptiveTrimap(srcArgb, coarseHairProb, faceMask, geom, matte);
+
+    // Tinh chinh mat na Guided Alpha Refinement (khong lam xoi mon toc to)
+    refineHairAlpha(srcArgb, matte, geom, matte);
+
+    if (config.mode == HairV2Mode::V2_MATTING_ONLY) {
+        // Che do matting don thuan: alpha composite mau goc de kiem chung mat na
+        batchLinearToSrgb(srcLinearRgb, dstArgb, total);
+        alignedFree64(srcLinearRgb);
+        alignedFree64(workingRgb);
+        alignedFree64(finalRgb);
+        alignedFree64(matte.alpha);
+        alignedFree64(matte.confidence);
+        alignedFree64(matte.trimap);
+        alignedFree64(matte.protectMask);
+        return HairV2Status::OK;
+    }
+
+    // 3. V2-03 Hair Flow
+    HairFlowField flow;
+    flow.width = W;
+    flow.height = H;
+    flow.stride = W;
+    flow.geometry = geom;
+    flow.tangentX = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    flow.tangentY = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    flow.normalX = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    flow.normalY = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    flow.theta = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    flow.coherence = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+
+    // Tinh do sang luma de phan tich Structure Tensor
+    std::vector<float> luma(total);
+    for (size_t i = 0; i < total; ++i) {
+        luma[i] = 0.2126f * srcLinearRgb[i * 3 + 0] + 0.7152f * srcLinearRgb[i * 3 + 1] + 0.0722f * srcLinearRgb[i * 3 + 2];
+    }
+
+    computeHairFlow(luma.data(), matte, geom, flow);
+    regularizeHairFlow(matte, geom, flow);
+    propagateLowConfidenceFlow(matte, geom, flow);
+
+    if (config.mode == HairV2Mode::V2_MATTING_FLOW) {
+        batchLinearToSrgb(srcLinearRgb, dstArgb, total);
+        alignedFree64(srcLinearRgb);
+        alignedFree64(workingRgb);
+        alignedFree64(finalRgb);
+        alignedFree64(matte.alpha);
+        alignedFree64(matte.confidence);
+        alignedFree64(matte.trimap);
+        alignedFree64(matte.protectMask);
+        alignedFree64(flow.tangentX);
+        alignedFree64(flow.tangentY);
+        alignedFree64(flow.normalX);
+        alignedFree64(flow.normalY);
+        alignedFree64(flow.theta);
+        alignedFree64(flow.coherence);
+        return HairV2Status::OK;
+    }
+
+    // 4. V2-04 Texture Decomposition
+    TextureDecomposition texture;
+    texture.geometry = geom;
+    texture.low = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    texture.meso = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    texture.micro = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    texture.crease = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    texture.confidence = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+
+    decomposeHairTexture(srcLinearRgb, matte, flow, geom, texture);
+
+    // 5. V2-05 Dye Response
+    BaseHairState baseState;
+    estimateBaseHairState(srcLinearRgb, matte, geom, baseState);
+
+    DyeResponseBuffer dyeResponse;
+    dyeResponse.geometry = geom;
+    dyeResponse.targetLinearRgb = static_cast<float*>(alignedAlloc64(total * 3 * sizeof(float)));
+    dyeResponse.liftMap = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    dyeResponse.chromaMap = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    dyeResponse.shadowProtection = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    dyeResponse.highlightProtection = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+    dyeResponse.confidence = static_cast<float*>(alignedAlloc64(total * sizeof(float)));
+
+    computeDyeResponse(baseState, preset, intensity, geom, dyeResponse);
+
+    // Ap dung nhuom mau thich ung tren nen toc goc
+    std::vector<float> dyedBase(total * 3);
+    applyHairDye(srcLinearRgb, matte, texture, dyeResponse, geom, dyedBase.data());
+
+    // 6. V2-06 Perceptual Color Operations & Soft Chroma Compression
+    for (size_t i = 0; i < total; ++i) {
+        softChromaCompress(dyedBase[i * 3 + 0], dyedBase[i * 3 + 1], dyedBase[i * 3 + 2]);
+    }
+
+    // 7. V2-04 Texture Reconstruction (Tai nap chi tiet soi toc va khe toi)
+    std::vector<float> reconstructed(total * 3);
+    reconstructHairTexture(texture, dyedBase.data(), matte, geom, reconstructed.data());
+
+    // 8. V2-07 Relighting (Anh sang phan xa bat huong Dual-Lobe Anisotropic Specular)
+    if (config.mode == HairV2Mode::V2_FULL_07) {
+        LightEstimate light;
+        estimateImageSpaceLightDirection(srcLinearRgb, matte, geom, light);
+
+        std::vector<float> sheen(total, 0.0f);
+        computeAnisotropicHairSheen(flow, texture, light, config.relightingParams, matte, geom, sheen.data());
+
+        applyHairRelighting(reconstructed.data(), sheen.data(), matte, geom, finalRgb);
+    } else {
+        std::memcpy(finalRgb, reconstructed.data(), total * 3 * sizeof(float));
+    }
+
+    // 9. Alpha Composite trong khong gian Linear-light RGB va xuat sRGB
+    for (size_t i = 0; i < total; ++i) {
+        float a = matte.alpha ? matte.alpha[i] : 1.0f;
+        // Tranh lem mau: neu bi bao ve boi protectMask, ep alpha = 0
+        if (matte.protectMask && matte.protectMask[i] > 128) {
+            a = 0.0f;
+        }
+
+        float origR = srcLinearRgb[i * 3 + 0];
+        float origG = srcLinearRgb[i * 3 + 1];
+        float origB = srcLinearRgb[i * 3 + 2];
+
+        float dyedR = finalRgb[i * 3 + 0];
+        float dyedG = finalRgb[i * 3 + 1];
+        float dyedB = finalRgb[i * 3 + 2];
+
+        // Linear blend
+        workingRgb[i * 3 + 0] = (1.0f - a) * origR + a * dyedR;
+        workingRgb[i * 3 + 1] = (1.0f - a) * origG + a * dyedG;
+        workingRgb[i * 3 + 2] = (1.0f - a) * origB + a * dyedB;
+    }
+
+    batchLinearToSrgb(workingRgb, dstArgb, total);
+
+    // Giai phong toan bo bo dem nho aligned
+    alignedFree64(srcLinearRgb);
+    alignedFree64(workingRgb);
+    alignedFree64(finalRgb);
+    alignedFree64(matte.alpha);
+    alignedFree64(matte.confidence);
+    alignedFree64(matte.trimap);
+    alignedFree64(matte.protectMask);
+    alignedFree64(flow.tangentX);
+    alignedFree64(flow.tangentY);
+    alignedFree64(flow.normalX);
+    alignedFree64(flow.normalY);
+    alignedFree64(flow.theta);
+    alignedFree64(flow.coherence);
+    alignedFree64(texture.low);
+    alignedFree64(texture.meso);
+    alignedFree64(texture.micro);
+    alignedFree64(texture.crease);
+    alignedFree64(texture.confidence);
+    alignedFree64(dyeResponse.targetLinearRgb);
+    alignedFree64(dyeResponse.liftMap);
+    alignedFree64(dyeResponse.chromaMap);
+    alignedFree64(dyeResponse.shadowProtection);
+    alignedFree64(dyeResponse.highlightProtection);
+    alignedFree64(dyeResponse.confidence);
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_relighting.cpp ====================
+#include "hair_v2_relighting.h"
+#include <cmath>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status applyHairRelighting(
+    const float* dyedLinearRgb,
+    const float* sheen,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    float* outLinearRgb)
+{
+    if (!dyedLinearRgb || !sheen || !outLinearRgb) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const size_t total = geom.totalPixels();
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float r = dyedLinearRgb[i * 3 + 0];
+        float g = dyedLinearRgb[i * 3 + 1];
+        float b = dyedLinearRgb[i * 3 + 2];
+
+        float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+        float s = sheen[i] * alpha;
+
+        if (s <= 1e-4f) {
+            outLinearRgb[i * 3 + 0] = r;
+            outLinearRgb[i * 3 + 1] = g;
+            outLinearRgb[i * 3 + 2] = b;
+            continue;
+        }
+
+        // Tinh toan anh sang bong (Specular highlight) voi Linear-light additive blending
+        // Anh huong phan xa doc theo soi toc giu do bong tu nhien (natural gloss)
+        float outR = r + s * (1.0f - r * 0.3f);
+        float outG = g + s * (1.0f - g * 0.3f);
+        float outB = b + s * (1.0f - b * 0.3f);
+
+        // Chong chay sang cuc bo
+        outLinearRgb[i * 3 + 0] = clampVal(outR, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 1] = clampVal(outG, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 2] = clampVal(outB, 0.0f, 1.0f);
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_specular.cpp ====================
+#include "hair_v2_relighting.h"
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status estimateImageSpaceLightDirection(
+    const float* originalLinearRgb,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    LightEstimate& out)
+{
+    if (!originalLinearRgb) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // Tim trong tam vung toc va trong tam cua cac diem sang nhat (top 10% luma)
+    double hairCenterX = 0.0, hairCenterY = 0.0, hairWeight = 0.0;
+    double hlCenterX = 0.0, hlCenterY = 0.0, hlWeight = 0.0;
+
+    for (int y = 0; y < H; y += 4) {
+        for (int x = 0; x < W; x += 4) {
+            int idx = y * W + x;
+            float alpha = matte.alpha ? matte.alpha[idx] : 1.0f;
+            if (alpha < 0.20f) continue;
+
+            float r = originalLinearRgb[idx * 3 + 0];
+            float g = originalLinearRgb[idx * 3 + 1];
+            float b = originalLinearRgb[idx * 3 + 2];
+            float luma = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+
+            hairCenterX += x * alpha;
+            hairCenterY += y * alpha;
+            hairWeight += alpha;
+
+            if (luma > 0.45f) {
+                float w = (luma - 0.45f) * alpha;
+                hlCenterX += x * w;
+                hlCenterY += y * w;
+                hlWeight += w;
+            }
+        }
+    }
+
+    if (hairWeight > 10.0 && hlWeight > 5.0) {
+        float hx = static_cast<float>(hairCenterX / hairWeight);
+        float hy = static_cast<float>(hairCenterY / hairWeight);
+        float lx = static_cast<float>(hlCenterX / hlWeight);
+        float ly = static_cast<float>(hlCenterY / hlWeight);
+
+        float dx = lx - hx;
+        float dy = ly - hy;
+        float len = std::sqrt(dx * dx + dy * dy);
+
+        if (len > 5.0f) {
+            out.dirX = dx / len;
+            out.dirY = dy / len;
+            out.dirZ = 0.6f;
+        } else {
+            out.dirX = 0.0f;
+            out.dirY = -0.8f;
+            out.dirZ = 0.6f;
+        }
+    } else {
+        out.dirX = 0.0f;
+        out.dirY = -0.8f; // Mac dinh nguon sang tu tren xuong
+        out.dirZ = 0.6f;
+    }
+
+    out.intensity = 1.0f;
+    return HairV2Status::OK;
+}
+
+HairV2Status computeAnisotropicHairSheen(
+    const HairFlowField& flow,
+    const TextureDecomposition& texture,
+    const LightEstimate& light,
+    const RelightingParams& params,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    float* outSheen)
+{
+    if (!flow.tangentX || !flow.tangentY || !outSheen) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const size_t total = geom.totalPixels();
+
+    // Chuan hoa vector anh sang L va vector goc nhin V (view vector huong vao mat camera)
+    float lx = light.dirX, ly = light.dirY, lz = light.dirZ;
+    float lLen = std::sqrt(lx * lx + ly * ly + lz * lz);
+    if (lLen > 1e-4f) { lx /= lLen; ly /= lLen; lz /= lLen; }
+
+    float vx = 0.0f, vy = 0.0f, vz = 1.0f;
+
+    // Vector nua nhip H = (L + V) / ||L + V||
+    float hx = lx + vx;
+    float hy = ly + vy;
+    float hz = lz + vz;
+    float hLen = std::sqrt(hx * hx + hy * hy + hz * hz);
+    if (hLen > 1e-4f) { hx /= hLen; hy /= hLen; hz /= hLen; }
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+        if (alpha < 0.05f) {
+            outSheen[i] = 0.0f;
+            continue;
+        }
+
+        float tx = flow.tangentX[i];
+        float ty = flow.tangentY[i];
+        float coherence = flow.coherence ? flow.coherence[i] : 0.5f;
+
+        // Tich vo huong dot(T, H)
+        float dotTH = tx * hx + ty * hy;
+        // Do bat huong phan xa doc theo soi toc: sinTH = sqrt(1 - dotTH^2)
+        float sinTH_sq = std::max(0.0f, 1.0f - dotTH * dotTH);
+        float sinTH = std::sqrt(sinTH_sq);
+
+        // Thuy phan xa thu nhat (Primary Specular Lobe - hep, sac net)
+        float primary = std::pow(sinTH, params.primaryExponent) * params.primaryLobeStrength;
+
+        // Thuy phan xa thu hai (Secondary Specular Lobe - rong hon, mem mai)
+        float secondary = std::pow(sinTH, params.secondaryExponent) * params.secondaryLobeStrength;
+
+        float combinedSheen = (primary + secondary) * params.gloss;
+
+        // 1. Ap dung Low-coherence suppression (triet tieu highlight o vung flow nhieu/khong ro huong)
+        combinedSheen *= clampVal(coherence * 1.5f, 0.0f, 1.0f);
+
+        // 2. Ap dung Matte-edge suppression (khong de lem bong sang ra ria vien toc)
+        if (alpha < 0.60f) {
+            combinedSheen *= (alpha / 0.60f);
+        }
+
+        // 3. Highlight clipping protection (neu texture meso/low da qua sang, tranh chay sang)
+        if (texture.low) {
+            float baseLuma = texture.low[i];
+            if (baseLuma > 0.70f) {
+                float damp = 1.0f - (baseLuma - 0.70f) / 0.30f * params.highlightProtection;
+                combinedSheen *= clampVal(damp, 0.1f, 1.0f);
+            }
+        }
+
+        outSheen[i] = clampVal(combinedSheen, 0.0f, 1.0f);
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_texture.cpp ====================
+#include "hair_v2_texture.h"
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+// Phan ra ket cau da tang (Tri-band Texture Decomposition: Low / Meso / Micro / Crease)
+HairV2Status decomposeHairTexture(
+    const float* linearRgb,
+    const AlphaMatteBuffer& matte,
+    const HairFlowField& flow,
+    const FrameGeometry& geom,
+    TextureDecomposition& out)
+{
+    if (!linearRgb || !out.low || !out.meso || !out.micro || !out.crease) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 1. Tinh do sang tuyen tinh (Linear Luminance)
+    std::vector<float> luma(total);
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float r = linearRgb[i * 3 + 0];
+        float g = linearRgb[i * 3 + 1];
+        float b = linearRgb[i * 3 + 2];
+        luma[i] = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+    }
+
+    // 2. Loc dinh huong doc theo tiep tuyen soi toc (Directional Filter along tangent, radius = 4)
+    std::vector<float> strandFiltered(total);
+    directionalFilter1D(luma.data(), strandFiltered.data(), flow, geom, 4, true);
+
+    // 3. Loc phan tang Low (Volume / Base Lighting, radius = 12)
+    directionalFilter1D(strandFiltered.data(), out.low, flow, geom, 12, true);
+
+    // 4. Trich xuat Meso (Strand groups / Curls) = strandFiltered - Low
+    // Trich xuat Micro (High-frequency details / flyaways) = luma - strandFiltered
+    // Trich xuat Crease (Khe toi sau) = max(0, Low - luma - nguong)
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float L = luma[i];
+        float lowVal = out.low[i];
+        float strandVal = strandFiltered[i];
+
+        // Meso bandpass
+        out.meso[i] = strandVal - lowVal;
+
+        // Micro high-pass
+        out.micro[i] = L - strandVal;
+
+        // Crease (vung toi cuc bo giua cac lop toc)
+        float diff = lowVal - L;
+        out.crease[i] = (diff > 0.05f) ? (diff - 0.05f) : 0.0f;
+
+        if (out.confidence) {
+            float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+            float c = flow.coherence ? flow.coherence[i] : 0.5f;
+            out.confidence[i] = alpha * (0.6f + 0.4f * c);
+        }
+    }
+
+    out.geometry = geom;
+    return HairV2Status::OK;
+}
+
+// Tai tao va tai nap ket cau sau khi nhuom (Flow-Aware Texture Reconstruction & Anti-Halo Clamping)
+HairV2Status reconstructHairTexture(
+    const TextureDecomposition& tex,
+    const float* recoloredBase,
+    const AlphaMatteBuffer& matte,
+    const FrameGeometry& geom,
+    float* outLinearRgb)
+{
+    if (!recoloredBase || !outLinearRgb || !tex.low || !tex.meso || !tex.micro) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    #pragma omp parallel for schedule(static)
+    for (size_t i = 0; i < total; ++i) {
+        float baseR = recoloredBase[i * 3 + 0];
+        float baseG = recoloredBase[i * 3 + 1];
+        float baseB = recoloredBase[i * 3 + 2];
+
+        float baseLuma = 0.2126f * baseR + 0.7152f * baseG + 0.0722f * baseB;
+
+        // Do manh tai nap chi tiet dua tren do phan giai cuc bo va do tin cay
+        float alpha = matte.alpha ? matte.alpha[i] : 1.0f;
+        float conf = tex.confidence ? tex.confidence[i] : 1.0f;
+
+        // Trong so tai nap micro detail khong dung global gain co dinh ma tuy bien theo do tu tin
+        float wMicro = 1.0f * clampVal(alpha * conf, 0.4f, 1.2f);
+        float wMeso = 1.0f;
+        float wCrease = 0.85f;
+
+        float mesoVal = tex.meso[i];
+        float microVal = tex.micro[i];
+        float creaseVal = tex.crease ? tex.crease[i] : 0.0f;
+
+        // Tinh do sang tai tao voi day du chi tiet soi toc
+        float targetLuma = baseLuma + wMeso * mesoVal + wMicro * microVal - wCrease * creaseVal;
+
+        // Chuyen doi nguoc kenh mau voi ti le giu nguyen hue/chroma va ap dung Anti-Halo Clamping
+        targetLuma = clampVal(targetLuma, 0.001f, 1.0f);
+
+        float scale = (baseLuma > 1e-4f) ? (targetLuma / baseLuma) : 1.0f;
+        // Gioi han bien do scale de chong ringing va overshoot
+        scale = clampVal(scale, 0.25f, 2.5f);
+
+        outLinearRgb[i * 3 + 0] = clampVal(baseR * scale, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 1] = clampVal(baseG * scale, 0.0f, 1.0f);
+        outLinearRgb[i * 3 + 2] = clampVal(baseB * scale, 0.0f, 1.0f);
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
+
+==================== FILE: hair_v2_trimap.cpp ====================
+#include "hair_v2_trimap.h"
+#include <cmath>
+#include <cstring>
+#include <vector>
+
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
+namespace meitu::reborn::hair_v2 {
+
+HairV2Status buildAdaptiveTrimap(
+    const uint32_t* argb,
+    const float* coarseHairProb,
+    const uint8_t* faceMask,
+    const FrameGeometry& geom,
+    AlphaMatteBuffer& out)
+{
+    if (!argb || !coarseHairProb || !out.trimap) {
+        return HairV2Status::INVALID_INPUT;
+    }
+
+    const int W = geom.width;
+    const int H = geom.height;
+    const size_t total = geom.totalPixels();
+
+    // 1. Khoi tao co ban dua tren xac suat va ranh gioi khuon mat
+    #pragma omp parallel for schedule(static)
+    for (int y = 0; y < H; ++y) {
+        const int rowOffset = y * W;
+        for (int x = 0; x < W; ++x) {
+            const int idx = rowOffset + x;
+
+            // Uu tien tuyet doi bao ve da mat (Zero Face Leakage)
+            if (faceMask && faceMask[idx] > 128) {
+                out.trimap[idx] = 0; // Chuyen han ve background
+                if (out.confidence) out.confidence[idx] = 1.0f;
+                continue;
+            }
+
+            const float prob = coarseHairProb[idx];
+
+            if (prob >= 0.78f) {
+                out.trimap[idx] = 255; // Definite Foreground
+                if (out.confidence) out.confidence[idx] = prob;
+            } else if (prob <= 0.06f) {
+                out.trimap[idx] = 0;   // Definite Background
+                if (out.confidence) out.confidence[idx] = 1.0f - prob;
+            } else {
+                out.trimap[idx] = 128; // Unknown Transition Band
+                if (out.confidence) out.confidence[idx] = 0.5f;
+            }
+        }
+    }
+
+    // 2. Tinh toan gradient cuong do sang de mo rong vung unknown theo huong toc to (Flyaways)
+    // Tinh Sobel cuc bo tren cac diem bien unknown
+    #pragma omp parallel for schedule(dynamic, 16)
+    for (int y = 1; y < H - 1; ++y) {
+        for (int x = 1; x < W - 1; ++x) {
+            const int idx = y * W + x;
+
+            // Neu diem nay la background nhung sat vach unknown va co gradient manh
+            if (out.trimap[idx] == 0 && coarseHairProb[idx] > 0.02f) {
+                // Tinh do sang Luminance xung quanh
+                auto getLuma = [&](int px, int py) -> float {
+                    uint32_t c = argb[py * W + px];
+                    float r = ((c >> 16) & 0xFF) / 255.0f;
+                    float g = ((c >> 8) & 0xFF) / 255.0f;
+                    float b = (c & 0xFF) / 255.0f;
+                    return 0.299f * r + 0.587f * g + 0.114f * b;
+                };
+
+                float gx = (getLuma(x + 1, y - 1) + 2.0f * getLuma(x + 1, y) + getLuma(x + 1, y + 1)) -
+                           (getLuma(x - 1, y - 1) + 2.0f * getLuma(x - 1, y) + getLuma(x - 1, y + 1));
+                float gy = (getLuma(x - 1, y + 1) + 2.0f * getLuma(x, y + 1) + getLuma(x + 1, y + 1)) -
+                           (getLuma(x - 1, y - 1) + 2.0f * getLuma(x, y - 1) + getLuma(x + 1, y - 1));
+
+                float gradMag = std::sqrt(gx * gx + gy * gy);
+
+                // Neu co gradient dang ke, chuyen vao unknown band de matting xu ly soi toc to
+                if (gradMag > 0.12f && (!faceMask || faceMask[idx] <= 64)) {
+                    out.trimap[idx] = 128;
+                }
+            }
+        }
+    }
+
+    return HairV2Status::OK;
+}
+
+} // namespace meitu::reborn::hair_v2
