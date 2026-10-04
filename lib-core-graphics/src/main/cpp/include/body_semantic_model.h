@@ -234,6 +234,7 @@ struct HumanFrameResult {
     bool hasLegsVisible{false};
     bool hasFullBodyVisible{false};
     bool parsingValid{false};
+    bool parsingAttempted{false};
     float parsingConfidence{0.0f};
     float poseConfidence{0.0f};
     float overallConfidence{0.0f};

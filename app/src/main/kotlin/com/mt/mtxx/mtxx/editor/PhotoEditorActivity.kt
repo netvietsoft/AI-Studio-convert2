@@ -705,11 +705,18 @@ class PhotoEditorActivity : Activity() {
             ToolItem("tool_body_slim", "Thon gọn toàn thân (Slim)", "Full Body Slender", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_waist", "Eo thon con kiến (Waist) [VIP]", "Slim Waist Warp", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_shoulder", "Vai vuông móc áo (Shoulder)", "Straight Shoulder", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_body_neck", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_clavicle_enhance", "Xương quai xanh quyến rũ (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_arm", "Thon bắp tay (Arm Slim)", "Slender Arms", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_neck", "Thon gọn cổ (Neck Slim)", "Slender Neck", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_neck_length", "Cổ thiên nga thon dài (Swan Neck)", "Swan Neck Lengthen", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_clavicle_enhance", "Xương quai xanh 3D (Clavicle)", "Clavicle Highlight", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_face_neck_tone", "Đồng bộ da mặt - cổ (Face Neck Tone)", "Face Neck Tone Match", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_legs", "Kéo dài chân tỉ lệ vàng", "Golden Ratio Legs", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_leg_slim", "Thon gọn bắp chân (Leg Slim)", "Slender Legs", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_height", "Tăng chiều cao toàn thân", "Body Height", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
             ToolItem("tool_body_chest", "Nâng ngực tự nhiên (Chest)", "Chest Natural Enlarge", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
-            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%")
+            ToolItem("tool_body_hip", "Nở nang đường cong hông (Hip)", "Curvy Hip Deform", true, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_smooth", "Mịn da body (Skin Smooth)", "Body Skin Smooth", false, "libmeitu_reborn_native.so", 0, -100, 100, "%"),
+            ToolItem("tool_body_skin_whiten", "Trắng da body (Skin Whiten)", "Body Skin Whiten", false, "libmeitu_reborn_native.so", 0, -100, 100, "%")
         )),
 
         // 11. AI RETOUCH (2.12 Smart Beautify 1-Touch)
@@ -1719,6 +1726,11 @@ class PhotoEditorActivity : Activity() {
             matchedTool = matchedCat?.tools?.firstOrNull()
         }
 
+        if (matchedCat == null && targetToolId != null) {
+            matchedCat = categories.find { it.id == "cat_body" } ?: categories[0]
+            matchedTool = matchedCat.tools.find { it.id == targetToolId } ?: ToolItem(targetToolId, targetToolId, targetToolId, false, "libmeitu_reborn_native.so", 0, -100, 100, "%")
+        }
+
         if (matchedCat != null && matchedTool != null) {
             commitCurrentToolState()
             currentCategory = matchedCat.title
@@ -1752,10 +1764,13 @@ class PhotoEditorActivity : Activity() {
             if (autoSavePath != null) {
                 try {
                     val f = if (autoSavePath.startsWith("/")) {
-                        val baseName = java.io.File(autoSavePath).name
-                        java.io.File(getExternalFilesDir(null) ?: filesDir, baseName)
+                        val targetFile = java.io.File(autoSavePath)
+                        targetFile.parentFile?.mkdirs()
+                        targetFile
                     } else {
-                        java.io.File(getExternalFilesDir(null) ?: filesDir, autoSavePath)
+                        val outDir = java.io.File("/sdcard/Download/qa_outputs")
+                        outDir.mkdirs()
+                        java.io.File(outDir, autoSavePath)
                     }
                     java.io.FileOutputStream(f).use { fos ->
                         currentProcessedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)

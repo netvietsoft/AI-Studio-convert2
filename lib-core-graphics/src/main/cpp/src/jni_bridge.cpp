@@ -3203,7 +3203,7 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyHeadSkull(
     }
 
     meitu_native::HeadFrameResult headResult = meitu_native::HeadSemanticEngine::extractSemanticModel(
-        landmarks, nullptr, info.width, info.height
+        landmarks, static_cast<const uint32_t*>(pixelAddr), info.width, info.height
     );
 
     meitu_native::HeadSkullEngine skullEngine;
@@ -3258,7 +3258,7 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyNeckClavicle(
     }
 
     meitu_native::HeadFrameResult headResult = meitu_native::HeadSemanticEngine::extractSemanticModel(
-        landmarks, nullptr, info.width, info.height
+        landmarks, static_cast<const uint32_t*>(pixelAddr), info.width, info.height
     );
 
     meitu_native::NeckClavicleEngine neckEngine;
@@ -3295,7 +3295,7 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyEyebrowLash(
     }
 
     meitu_native::HeadFrameResult headResult = meitu_native::HeadSemanticEngine::extractSemanticModel(
-        landmarks, nullptr, info.width, info.height
+        landmarks, static_cast<const uint32_t*>(pixelAddr), info.width, info.height
     );
 
     meitu_native::EyebrowLashEngine browLashEngine;
@@ -3331,7 +3331,7 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyScalpReconstructio
     }
 
     meitu_native::HeadFrameResult headResult = meitu_native::HeadSemanticEngine::extractSemanticModel(
-        landmarks, nullptr, info.width, info.height
+        landmarks, static_cast<const uint32_t*>(pixelAddr), info.width, info.height
     );
 
     meitu_native::ScalpReconstructionEngine scalpEngine;

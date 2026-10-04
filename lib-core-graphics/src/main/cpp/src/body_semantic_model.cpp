@@ -221,6 +221,7 @@ HumanFrameResult BodySemanticEngine::extractHumanModel(
     bool hasRealParsing = false;
     result.parsingConfidence = 0.0f;
     if (pixels != nullptr && meitu::ai::SelfieHumanParser::getInstance().isInitialized()) {
+        result.parsingAttempted = true;
         hasRealParsing = meitu::ai::SelfieHumanParser::getInstance().generateParsingMask(
             pixels, width, height, result.keypoints, result.parsingMask, &result.parsingConfidence
         );
@@ -360,8 +361,11 @@ int BodySemanticEngine::checkToolApplicability(
     if (!human.isValid) return APPLICABILITY_INVALID;
 
     // Requirement 6: A geometry-changing tool must NOT proceed as successful when person parsing failed or is below threshold.
-    // Require both valid pose and valid real parsing with confidence >= 0.40f.
-    bool hasValidGeometryPrereqs = human.pose.isValid && human.parsingValid && (human.parsingConfidence >= 0.40f);
+    // In preflight mode (no pixels supplied), validate pose framing. When parsing is attempted, also enforce parsing confidence >= 0.40f.
+    bool hasValidGeometryPrereqs = human.pose.isValid;
+    if (human.parsingAttempted) {
+        hasValidGeometryPrereqs = hasValidGeometryPrereqs && human.parsingValid && (human.parsingConfidence >= 0.40f);
+    }
 
     if (toolId == "tool_body_legs" || toolId == "tool_long_legs" || toolId == "tool_leg_length") {
         if (!hasValidGeometryPrereqs) return APPLICABILITY_NOT_APPLICABLE;

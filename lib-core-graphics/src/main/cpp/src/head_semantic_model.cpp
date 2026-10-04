@@ -27,7 +27,7 @@ HeadFrameResult HeadSemanticEngine::extractSemanticModel(
     res.imageWidth = width;
     res.imageHeight = height;
 
-    if (!pixels || width <= 0 || height <= 0) {
+    if (width <= 0 || height <= 0) {
         return res;
     }
 
@@ -241,12 +241,14 @@ HeadFrameResult HeadSemanticEngine::extractSemanticModel(
     res.neckClavicle.rightClavicle = {chinX + 0.70f * faceWidth, chinY + faceHeight * 0.60f};
 
     // 11. SKIN SAMPLING (Mục 6)
-    int sampleX = std::clamp(static_cast<int>(noseTipX), 0, width - 1);
-    int sampleY = std::clamp(static_cast<int>(noseTipY), 0, height - 1);
-    uint32_t sc = pixels[sampleY * width + sampleX];
-    int sr = RGBA_R(sc), sg = RGBA_G(sc), sb = RGBA_B(sc);
-    res.skin.averageLuminance = (0.299f * sr + 0.587f * sg + 0.114f * sb) / 255.0f;
-    res.skin.rednessIndex = static_cast<float>(sr - sg) / 255.0f;
+    if (pixels) {
+        int sampleX = std::clamp(static_cast<int>(noseTipX), 0, width - 1);
+        int sampleY = std::clamp(static_cast<int>(noseTipY), 0, height - 1);
+        uint32_t sc = pixels[sampleY * width + sampleX];
+        int sr = RGBA_R(sc), sg = RGBA_G(sc), sb = RGBA_B(sc);
+        res.skin.averageLuminance = (0.299f * sr + 0.587f * sg + 0.114f * sb) / 255.0f;
+        res.skin.rednessIndex = static_cast<float>(sr - sg) / 255.0f;
+    }
 
     LOGI("✅ HeadSemanticEngine extracted HeadFrameResult successfully: headW=%.1f, headH=%.1f, crownH=%.1f, ratio=%.2f",
          res.headGeometry.headWidth, res.headGeometry.headHeight, res.headGeometry.crownHeight, res.headGeometry.faceToHeadRatio);

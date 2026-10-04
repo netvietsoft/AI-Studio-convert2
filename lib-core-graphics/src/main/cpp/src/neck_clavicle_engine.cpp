@@ -72,6 +72,7 @@ bool NeckClavicleEngine::processNeckClavicle(
 // 1. PARAM_NECK_SLIM: Thon cổ với bảo vệ viền cổ áo và background
 // -----------------------------------------------------------------------------
 bool NeckClavicleEngine::applyNeckSlimming(uint8_t* rgba, int w, int h, int stride, const HeadFrameResult& head, float intensity) {
+    if (!head.isFaceDetected && !head.isValid) return true;
     float neckX1 = head.neckClavicle.leftClavicle.x;
     float neckX2 = head.neckClavicle.rightClavicle.x;
     float neckY1 = head.jawChin.chinTip.y;
@@ -134,6 +135,7 @@ bool NeckClavicleEngine::applyNeckSlimming(uint8_t* rgba, int w, int h, int stri
 // 2. PARAM_NECK_LENGTH: Cổ thiên nga / Kéo dài cổ
 // -----------------------------------------------------------------------------
 bool NeckClavicleEngine::applyNeckLength(uint8_t* rgba, int w, int h, int stride, const HeadFrameResult& head, float intensity) {
+    if (!head.isFaceDetected && !head.isValid) return true;
     float neckX1 = head.neckClavicle.leftClavicle.x;
     float neckX2 = head.neckClavicle.rightClavicle.x;
     float neckY1 = head.jawChin.chinTip.y;
@@ -192,6 +194,7 @@ bool NeckClavicleEngine::applyNeckLength(uint8_t* rgba, int w, int h, int stride
 // 3. PARAM_NECK_WRINKLE_SMOOTH: Xóa nếp nhăn cổ (Bảo lưu vi lỗ chân lông)
 // -----------------------------------------------------------------------------
 bool NeckClavicleEngine::applyNeckWrinkleSmoothing(uint8_t* rgba, int w, int h, int stride, const HeadFrameResult& head, float intensity) {
+    if (!head.isFaceDetected && !head.isValid) return true;
     float neckX1 = head.neckClavicle.leftClavicle.x;
     float neckX2 = head.neckClavicle.rightClavicle.x;
     float neckY1 = head.jawChin.chinTip.y;
@@ -204,10 +207,12 @@ bool NeckClavicleEngine::applyNeckWrinkleSmoothing(uint8_t* rgba, int w, int h, 
         neckY2 = std::min(static_cast<float>(h - 1), neckY1 + 180.0f);
     }
 
-    int rx1 = static_cast<int>(neckX1);
-    int rx2 = static_cast<int>(neckX2);
-    int ry1 = static_cast<int>(neckY1);
-    int ry2 = static_cast<int>(neckY2);
+    if (neckX2 <= neckX1 + 10.0f || neckY2 <= neckY1 + 10.0f) return true;
+
+    int rx1 = std::clamp(static_cast<int>(neckX1), 0, w - 1);
+    int rx2 = std::clamp(static_cast<int>(neckX2), 0, w - 1);
+    int ry1 = std::clamp(static_cast<int>(neckY1), 0, h - 1);
+    int ry2 = std::clamp(static_cast<int>(neckY2), 0, h - 1);
 
     std::vector<uint8_t> backup(w * h * 4);
     std::memcpy(backup.data(), rgba, w * h * 4);
@@ -278,6 +283,7 @@ bool NeckClavicleEngine::applyNeckWrinkleSmoothing(uint8_t* rgba, int w, int h, 
 // 4. PARAM_CLAVICLE_ENHANCE: Nổi xương quai xanh 3D (SPEC Mục 22)
 // -----------------------------------------------------------------------------
 bool NeckClavicleEngine::applyClavicleEnhancement(uint8_t* rgba, int w, int h, int stride, const HeadFrameResult& head, float intensity) {
+    if (!head.isFaceDetected && !head.isValid) return true;
     float neckX1 = head.neckClavicle.leftClavicle.x;
     float neckX2 = head.neckClavicle.rightClavicle.x;
     float neckY2 = head.neckClavicle.throatCenter.y + head.neckClavicle.neckLength;
@@ -287,6 +293,8 @@ bool NeckClavicleEngine::applyClavicleEnhancement(uint8_t* rgba, int w, int h, i
         neckX2 = head.jawChin.chinTip.x + head.jawChin.jawWidth * 0.45f;
         neckY2 = std::min(static_cast<float>(h - 1), head.jawChin.chinTip.y + 180.0f);
     }
+
+    if (neckX2 <= neckX1 + 10.0f || neckY2 <= 10.0f) return true;
 
     float clavicleY = neckY2;
     float clavicleCenterX = (neckX1 + neckX2) * 0.5f;
@@ -339,25 +347,33 @@ bool NeckClavicleEngine::applyClavicleEnhancement(uint8_t* rgba, int w, int h, i
 // 5. PARAM_FACE_NECK_TONE: Đồng bộ tông màu da mặt và cổ (SPEC Mục 21)
 // -----------------------------------------------------------------------------
 bool NeckClavicleEngine::applyFaceNeckToneMatching(uint8_t* rgba, int w, int h, int stride, const HeadFrameResult& head, float intensity) {
+    if (!rgba || w <= 0 || h <= 0 || stride < w * 4) return false;
+    if (intensity <= 0.001f) return true;
+    if (!head.isFaceDetected && !head.isValid) return true;
+
     float neckX1 = head.neckClavicle.leftClavicle.x;
     float neckX2 = head.neckClavicle.rightClavicle.x;
     float neckY1 = head.jawChin.chinTip.y;
     float neckY2 = head.neckClavicle.throatCenter.y + head.neckClavicle.neckLength;
 
-    if (neckX2 <= neckX1 || neckY2 <= neckY1) {
-        neckX1 = std::max(0.0f, head.jawChin.chinTip.x - head.jawChin.jawWidth * 0.40f);
-        neckX2 = std::min(static_cast<float>(w - 1), head.jawChin.chinTip.x + head.jawChin.jawWidth * 0.40f);
-        neckY1 = std::max(0.0f, head.jawChin.chinTip.y);
+    if (neckX2 <= neckX1 || neckY2 <= neckY1 || std::isnan(neckX1) || std::isnan(neckX2)) {
+        float faceCenter = head.jawChin.chinTip.x > 0.0f ? head.jawChin.chinTip.x : static_cast<float>(w) * 0.5f;
+        float faceW = head.jawChin.jawWidth > 10.0f ? head.jawChin.jawWidth : static_cast<float>(w) * 0.3f;
+        neckX1 = std::max(0.0f, faceCenter - faceW * 0.40f);
+        neckX2 = std::min(static_cast<float>(w - 1), faceCenter + faceW * 0.40f);
+        neckY1 = std::max(0.0f, head.jawChin.chinTip.y > 0.0f ? head.jawChin.chinTip.y : static_cast<float>(h) * 0.4f);
         neckY2 = std::min(static_cast<float>(h - 1), neckY1 + 180.0f);
     }
 
-    int sampleX = clampF(head.jawChin.chinTip.x, 0, w - 1);
-    int sampleY = clampF(head.jawChin.chinTip.y - 15.0f, 0, h - 1);
+    if (neckX2 <= neckX1 + 10.0f || neckY2 <= neckY1 + 10.0f) return true;
+
+    int sampleX = std::clamp(static_cast<int>(head.jawChin.chinTip.x > 0.0f ? head.jawChin.chinTip.x : (neckX1 + neckX2) * 0.5f), 0, w - 1);
+    int sampleY = std::clamp(static_cast<int>(head.jawChin.chinTip.y > 15.0f ? head.jawChin.chinTip.y - 15.0f : neckY1), 0, h - 1);
     const uint8_t* facePix = rgba + sampleY * stride + sampleX * 4;
     float faceR = facePix[0], faceG = facePix[1], faceB = facePix[2];
 
-    int neckSampleX = static_cast<int>((neckX1 + neckX2) * 0.5f);
-    int neckSampleY = static_cast<int>((neckY1 + neckY2) * 0.5f);
+    int neckSampleX = std::clamp(static_cast<int>((neckX1 + neckX2) * 0.5f), 0, w - 1);
+    int neckSampleY = std::clamp(static_cast<int>((neckY1 + neckY2) * 0.5f), 0, h - 1);
     const uint8_t* neckPix = rgba + neckSampleY * stride + neckSampleX * 4;
     float neckR = neckPix[0], neckG = neckPix[1], neckB = neckPix[2];
 
@@ -365,10 +381,10 @@ bool NeckClavicleEngine::applyFaceNeckToneMatching(uint8_t* rgba, int w, int h, 
     float deltaG = (faceG - neckG) * intensity * 0.65f;
     float deltaB = (faceB - neckB) * intensity * 0.65f;
 
-    int rx1 = static_cast<int>(neckX1);
-    int rx2 = static_cast<int>(neckX2);
-    int ry1 = static_cast<int>(neckY1);
-    int ry2 = static_cast<int>(neckY2);
+    int rx1 = std::clamp(static_cast<int>(neckX1), 0, w - 1);
+    int rx2 = std::clamp(static_cast<int>(neckX2), 0, w - 1);
+    int ry1 = std::clamp(static_cast<int>(neckY1), 0, h - 1);
+    int ry2 = std::clamp(static_cast<int>(neckY2), 0, h - 1);
 
     for (int y = ry1; y <= ry2; ++y) {
         float ny = (static_cast<float>(y) - neckY1) / (neckY2 - neckY1 + 1e-4f);

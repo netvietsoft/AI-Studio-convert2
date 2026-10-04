@@ -16,7 +16,7 @@ namespace meitu_native {
 // =========================================================================
 
 struct BoundingBox2D {
-    float x1, y1, x2, y2;
+    float x1 = 0.0f, y1 = 0.0f, x2 = 0.0f, y2 = 0.0f;
     float width() const { return std::max(0.0f, x2 - x1); }
     float height() const { return std::max(0.0f, y2 - y1); }
     float centerX() const { return (x1 + x2) * 0.5f; }
@@ -24,7 +24,8 @@ struct BoundingBox2D {
 };
 
 struct Point2DF {
-    float x, y;
+    float x = 0.0f;
+    float y = 0.0f;
 };
 
 // 1.1. Head Geometry (Kích thước đầu, vòm sọ, vòm trán, tỷ lệ đầu/mặt — Mục 2, 3)
