@@ -1517,3 +1517,46 @@ unning: 0).
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
 
+
+---
+
+### [2026-10-04 11:55:00 +07:00] HOÀN TẤT TASK_040 — F:\CONVERT ROOT SOURCE TREE FULL DISCOVERY
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY_20261004T111500+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Gốc quét thẩm quyền (Authoritative Scan Root):** `F:\CONVERT` (Toàn bộ cây thư mục gốc ổ đĩa)
+- **Hiệu chỉnh phạm vi:** Sửa đổi triệt để phạm vi hẹp của `TASK_039` (vốn chỉ quét `F:\CONVERT\com.mt.mtxx.mtxx`) thành toàn bộ `F:\CONVERT`.
+- **Luồng thực thi (Execution Lane):** `f-convert-root-source-discovery`
+- **Máy Runner vật lý:** `CONVERT2-WINDOWS-03`
+- **Kết luận thẩm định (Final Verdict):** **`PASS — PHYSICAL RUNNER FULL F:\CONVERT ROOT ENUMERATION COMPLETE`**
+- **Nội dung điều tra & Phát hiện chiến lược:**
+  1. **Khảo sát Toàn diện Thư mục Cấp 1 tại `F:\CONVERT`:**
+     * `F:\CONVERT\com.mt.mtxx.mtxx`: Không gian phát triển Meitu Reborn chính, gồm `CONVERT2` (active), `CONVERT` (tiền nhiệm V1), `SOURCE` (dịch ngược APK), `Yeucau` (ảnh mẫu & mask chuẩn), `beard_assets_10_png`, `_stray_backup_w9`, `ẢNH`.
+     * `F:\CONVERT\com.lightricks.facetune.free`: Không gian Facetune hoàn chỉnh, gồm `CONVERT` (dự án Android đa module), `SOURCE` (`jadx_out`, `apktool_out`, `extracted_xapk`), `Report` (báo cáo phân tích tính năng). Được chỉ định rõ trong văn bản gốc `F:\CONVERT\1.txt`.
+     * `F:\CONVERT\Material Image Editor`: Thư mục tài nguyên bộ lọc độc lập, gồm `Mitu\material` chứa bộ lọc Apple camera (`apple_camera_filter`), 12 gói tài nguyên online (`2014` đến `5002`), sticker, mosaic, LUTs.
+     * `F:\CONVERT\tools`: Tiện ích hạ tầng (trình cài đặt Docker Desktop, MinIO, mã thiết lập WSL).
+     * **11 văn bản & mã nguồn gốc:** `1.txt` (CEO & Facetune SOURCE charter), `2.txt` (tham chiếu distillation), `3.txt` - `5.txt` (yêu cầu da và thanh trượt), `Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`.
+  2. **Giải mã Thư mục Mã nguồn Bổ sung Chủ tịch Nhớ:**
+     * **Ứng viên Hair/JNI Mạnh nhất:** `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT\apps\android\core\native-bridge\src\main\cpp`.
+       Chứa **50 tệp C++ hoàn chỉnh**, bao gồm toàn bộ hệ sinh thái `hair_v2_*.cpp`, `hair_matting_engine.cpp`, `hair_strand_dye.cpp`, và tệp cầu nối `jni_bridge.cpp` đồ sộ **159 KB** với bảng ánh xạ JNI chi tiết.
+       Đối chiếu so sánh với `CONVERT2`: 15 tệp C++ trùng khớp tuyệt đối (`EXACT_MATCH`), 16 tệp được cải tiến trong CONVERT2, 33 tệp mới trong CONVERT2, và **32 tệp độc nhất chỉ có ở CONVERT V1** (bao gồm `hair_v2_barrier.cpp`, `HairBeardDyeEngine.cpp`, `pbd_cloth_simulator.cpp`, `virtual_tryon_engine.cpp`, `video_timeline_compositor.cpp`).
+     * **Ứng viên Facetune:** `F:\CONVERT\com.lightricks.facetune.free\SOURCE` (trùng khớp chỉ thị `1.txt`).
+  3. **Trả lời Đầy đủ 10 Câu hỏi Bắt buộc của Chủ tịch:**
+     1. *Thư mục con trực tiếp:* `com.mt.mtxx.mtxx`, `com.lightricks.facetune.free`, `Material Image Editor`, `tools`.
+     2. *Chứa mã nguồn Java/Kotlin/C/C++ chỉnh sửa được:* `com.mt.mtxx.mtxx\CONVERT2`, `com.mt.mtxx.mtxx\CONVERT`, `com.lightricks.facetune.free\CONVERT`.
+     3. *Chứa Java/Smali dịch ngược:* `com.mt.mtxx.mtxx\SOURCE\jadx_src`, `com.mt.mtxx.mtxx\SOURCE\apktool_out`, `com.lightricks.facetune.free\SOURCE\jadx_out`, `com.lightricks.facetune.free\SOURCE\apktool_out`.
+     4. *Chứa nhị phân native thuần túy:* `com.mt.mtxx.mtxx\SOURCE\extracted_native_libs` (45 .so arm64-v8a), `com.lightricks.facetune.free\SOURCE\extracted_xapk`.
+     5. *Chứa output dịch ngược / thiết kế lại:* `com.mt.mtxx.mtxx\SOURCE\Redesign`, `com.lightricks.facetune.free\SOURCE\Redesign`.
+     6. *Là bản sao / sao lưu:* `com.mt.mtxx.mtxx\_stray_backup_w9`.
+     7. *Chứa mã nguồn chưa có trong CONVERT2:* `com.mt.mtxx.mtxx\CONVERT` (32 tệp C++ độc nhất và các module `drafts`, `livephoto`, `idphoto`, `poster`, `puzzle`).
+     8. *Giá trị Hair/JNI mạnh nhất:* `com.mt.mtxx.mtxx\CONVERT\apps\android\core\native-bridge\src\main\cpp` (489 keyword hits, 50 tệp C++, 159KB JNI bridge).
+     9. *Thư mục cấp dữ liệu cho TASK_038:* `com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a` kết hợp chéo với `com.mt.mtxx.mtxx\CONVERT\apps\android\core\native-bridge\src\main\cpp\jni_bridge.cpp`.
+     10. *Thư mục bổ sung Chủ tịch nhớ nhất:* `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT` (kho tiền nhiệm chứa toàn bộ C++ engine) và `F:\CONVERT\com.lightricks.facetune.free\SOURCE` (kho Facetune ghi trong `1.txt`).
+  4. **Hồ sơ Báo cáo Hoàn chỉnh:**
+     * Thư mục báo cáo: `.ai/reports/TASK_040_F_CONVERT_ROOT_SOURCE_TREE_FULL_DISCOVERY/` gồm đầy đủ 13 báo cáo chuẩn (`00_AUDIT_INDEX.md` đến `12_REPORT_DRIVE_MIRROR.md`) cùng cây trích xuất `raw/`.
+     * Gói deliverables: `CONVERT2_TASK040_REPORT_PACKAGE.zip` (43,340 bytes, SHA-256: `44E9202E8A35E186FF964BDC8C02997715DD869FE1E6C1686E986D7911D74544`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ PASS}$$
+
