@@ -124,3 +124,15 @@
   3. Reconcile chính xác `github_run_id: "37242297847"` và các mã băm đầy đủ 40 ký tự hex vào `.ai/state.json`.
 - **Quy tắc phòng ngừa:** Mỗi tác vụ điều phối song song bắt buộc phải có bước Dispatch Integration Pass cuối chu kỳ để xác nhận 100% lệnh trong command bus được dọn dẹp và nghiệm thu hoàn tất trước khi báo cáo kết thúc nhiệm vụ.
 
+---
+
+### [ERR-012] Tránh Giả Định Tính Năng Hoàn Tất Từ Nhãn API / Tuyên Bố Bề Mặt (Declaration-Only Bias - TASK_056)
+- **Thời điểm phát hiện:** 2026-10-05 trong chu kỳ phân tích sâu `TASK_056`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong quy trình dịch ngược và phân tích thư viện nhị phân SO, việc chỉ dựa vào danh sách ký hiệu (`nm -D`, `strings`) dễ dẫn đến việc ngộ nhận một hàm là hoàn chỉnh chỉ vì có tên hàm mang ý nghĩa đồ họa.
+  2. Các hàm phức tạp như nội suy 3D LUT (Tetrahedral), tán xạ ánh kim sợi tóc (Dual-Lobe), hoặc ổn định thời gian video đòi hỏi cấu trúc toán học chính xác (6-simplex decomposition, góc lệch biểu bì cuticle tilt, và kẹp hộp màu lân cận 3x3) mà nếu thiếu, việc tái dựng sẽ tạo ra lỗi chất lượng thị giác (banding, mất chi tiết lọn tóc, nhấp nháy khung hình).
+- **Giải pháp triệt để:**
+  1. Thiết lập quy chuẩn kiểm toán 3 tầng bắt buộc cho mọi hiện vật trong Knowledge Base: Bằng chứng nhị phân thô (RVA, mã máy ARM64 / opcodes) -> Đặc tả toán học giải tích -> Shader GLSL tối ưu hóa và Mã giả C++ phòng sạch độc lập (Rule 11).
+  2. Bổ sung các bài kiểm tra triệt biến (Ablation Matrix) đo lường trực tiếp độ sụt giảm chất lượng hình ảnh khi từng thành phần giải thuật bị vô hiệu hóa.
+- **Quy tắc phòng ngừa:** TUYỆT ĐỐI CẤM tuyên bố hoàn tất phục dựng chỉ từ danh sách khai báo hoặc định danh bề mặt. Mọi ánh xạ hiệu ứng hình ảnh (Image Effect Graph) phải có đầy đủ chứng cứ phân tích tĩnh sâu, công thức giải tích và mã giả C++ có thể biên dịch kiểm thử được.
+

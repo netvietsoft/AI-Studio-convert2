@@ -1,0 +1,42 @@
+{
+  "task_id": "TASK_056_SO45_CONTINUOUS_DEEP_IMAGE_EFFECT_GRAPH_ACTIVE",
+  "command_id": "TASK_056_SO45_CONTINUOUS_DEEP_IMAGE_EFFECT_GRAPH_20261005T063200+0700",
+  "baseline_task": "TASK_055_TASK054_PROVENANCE_DISPATCH_INTEGRATOR_AND_MIRROR_CORRECTION_ACTIVE",
+  "new_modules_added": [
+    {
+      "module_name": "Tetrahedral 3D LUT Color Grading",
+      "algorithm_file": ".ai/reverse_engineering/algorithms/tetrahedral_3d_lut_color_grading.md",
+      "shader_file": ".ai/reverse_engineering/shaders/glsl_tetrahedral_3d_lut.glsl",
+      "pseudocode_file": ".ai/reverse_engineering/pseudocode/tetrahedral_3d_lut_pseudocode.cpp",
+      "function_spec": ".ai/reverse_engineering/functions/tetrahedral_3d_lut_sample.md",
+      "referenced_so": "libPVGColorFunctions.so",
+      "rva_offset": "0x00011400"
+    },
+    {
+      "module_name": "Dual-Lobe Strand Specular Lighting",
+      "algorithm_file": ".ai/reverse_engineering/algorithms/dual_lobe_strand_specular_lighting.md",
+      "shader_file": ".ai/reverse_engineering/shaders/glsl_dual_lobe_strand_specular.glsl",
+      "pseudocode_file": ".ai/reverse_engineering/pseudocode/dual_lobe_hair_specular_pseudocode.cpp",
+      "function_spec": ".ai/reverse_engineering/functions/dual_lobe_hair_specular.md",
+      "referenced_so": "libLayerFlow.so",
+      "rva_offset": "0x0007b420"
+    },
+    {
+      "module_name": "Optical Flow Temporal Hair Stabilizer",
+      "algorithm_file": ".ai/reverse_engineering/algorithms/optical_flow_temporal_hair_stabilizer.md",
+      "shader_file": ".ai/reverse_engineering/shaders/glsl_temporal_hair_coherence.glsl",
+      "pseudocode_file": ".ai/reverse_engineering/pseudocode/temporal_hair_stabilizer_pseudocode.cpp",
+      "function_spec": ".ai/reverse_engineering/functions/temporal_consistency_blend.md",
+      "referenced_so": "libffmpegfilter.so",
+      "rva_offset": "0x00098200"
+    },
+    {
+      "module_name": "Cross-Module Callgraph Expansion",
+      "callgraph_file": ".ai/reverse_engineering/callgraphs/tetrahedral_lut_and_temporal_callgraph.md",
+      "scope": "Traces pipeline execution from Java/Kotlin JNI through C++ LayerFlow, PVG, and ffmpegfilter"
+    }
+  ],
+  "knowledge_base_version": "2.3",
+  "rule_11_compliance": "PASS_CLEANROOM_SPEC_ONLY",
+  "production_code_modification": "NONE_FROZEN"
+}
