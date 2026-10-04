@@ -1,0 +1,190 @@
+FUNCTION_ID,RVA,SIZE,RECOVERED_NAME,EXPORT,JNI_DIRECT_EXPORT,REGISTER_NATIVES_TARGET,CALLER_COUNT,CALLEE_COUNT,IMPORTED_APIS,SEMANTIC_LABEL,CONFIDENCE
+FN_libMTGif_000085C4,0x85C4,24,sub_85C4,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_000085DC,0x85DC,56,sub_85DC,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00008614,0x8614,44,FormatConvert::AllocMediaCoder(),YES,NO,NO,0,0,malloc,UTILITY,FACT
+FN_libMTGif_00008640,0x8640,44,FormatConvert::ImageParamsInitial(FormatConvert::_ImageParams*),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000866C,0x866C,632,FormatConvert::VideoFormatTranser::ThreadFunc_Video_Decoder(void*),YES,NO,NO,0,0,av_packet_alloc;pthread_mutex_unlock;pthread_mutex_lock;pthread_cond_wait;av_read_frame;avcodec_send_packet;av_packet_unref;av_frame_alloc;avcodec_receive_frame;av_frame_get_best_effort_timestamp,MEDIA_CODEC,FACT
+FN_libMTGif_000088E4,0x88E4,344,FormatConvert::VideoFormatTranser::_ImageConvert(AVFrame**),YES,NO,NO,0,0,av_frame_alloc;av_image_alloc;sws_scale;av_freep;av_frame_free;exit;__stack_chk_fail,MEDIA_CODEC,FACT
+FN_libMTGif_00008A3C,0x8A3C,424,FormatConvert::VideoFormatTranser::_flush(),YES,NO,NO,0,0,avcodec_send_packet;pthread_mutex_unlock;pthread_mutex_lock;pthread_cond_wait;av_frame_alloc;avcodec_receive_frame;av_frame_get_best_effort_timestamp;_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame;av_frame_free;_Znwm,MEDIA_CODEC,FACT
+FN_libMTGif_00008BE4,0x8BE4,208,FormatConvert::VideoFormatTranser::_release(),YES,NO,NO,0,0,avcodec_is_open;avcodec_close;avcodec_free_context;avformat_close_input;sws_freeContext,MEDIA_CODEC,FACT
+FN_libMTGif_00008CB4,0x8CB4,300,FormatConvert::VideoFormatTranser::VideoFormatTranser(),YES,NO,NO,0,2,malloc;pthread_cond_init;pthread_mutex_init;_ZdlPv,MEDIA_CODEC,FACT
+FN_libMTGif_00008DE0,0x8DE0,8,sub_8DE0,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00008DE8,0x8DE8,84,sub_8DE8,NO,NO,NO,0,0,_ZdlPv,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00008E3C,0x8E3C,16,FormatConvert::VideoFormatTranser::prepare(),YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_00008E4C,0x8E4C,264,sub_8E4C,NO,NO,NO,0,0,av_register_all;avformat_network_init;_ZdlPv;_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv;_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv;_ZN13FormatConvert18VideoFormatTranser16_SwsMediaInitialEv;_ZN13FormatConvert18VideoFormatTranser8_releaseEv,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00008F54,0x8F54,604,FormatConvert::VideoFormatTranser::_InputMediaInitial(),YES,NO,NO,0,0,avformat_open_input;avcodec_close;avcodec_free_context;avformat_close_input;avformat_find_stream_info;av_find_best_stream;avcodec_find_decoder;avcodec_alloc_context3;avcodec_parameters_to_context;av_dict_get,MEDIA_CODEC,FACT
+FN_libMTGif_000091B0,0x91B0,1184,FormatConvert::VideoFormatTranser::_OutputMediaInitial(),YES,NO,NO,0,0,av_image_get_buffer_size;avformat_alloc_output_context2;avio_open;strlen;__strncpy_chk;avcodec_find_encoder_by_name;avformat_new_stream;avcodec_alloc_context3;av_opt_set;av_dict_set,MEDIA_CODEC,FACT
+FN_libMTGif_00009650,0x9650,188,FormatConvert::VideoFormatTranser::_SwsMediaInitial(),YES,NO,NO,0,0,sws_getContext;exit,MEDIA_CODEC,FACT
+FN_libMTGif_0000970C,0x970C,400,"FormatConvert::VideoFormatTranser::receiveFrame(unsigned char**, long*)",YES,NO,NO,0,0,pthread_mutex_lock;pthread_cond_wait;pthread_mutex_unlock;_ZdlPv;pthread_cond_signal;av_mallocz;memcpy;av_rescale_q;av_freep;av_frame_free,MEDIA_CODEC,FACT
+FN_libMTGif_0000989C,0x989C,4,sub_989C,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_000098A0,0x98A0,60,sub_98A0,NO,NO,NO,0,0,av_freep;av_frame_free,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_000098DC,0x98DC,8,FormatConvert::VideoFormatTranser::getOutputImageParams(),YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_000098E4,0x98E4,276,FormatConvert::VideoFormatTranser::stop(),YES,NO,NO,0,0,pthread_cond_signal;pthread_join;pthread_mutex_lock;av_frame_free;av_freep;_ZdlPv;pthread_mutex_unlock;pthread_cond_destroy;pthread_mutex_destroy;_ZN13FormatConvert18VideoFormatTranser8_releaseEv,MEDIA_CODEC,FACT
+FN_libMTGif_000099F8,0x99F8,696,FormatConvert::VideoFormatTranser::doConvert(),YES,NO,NO,0,0,avformat_write_header;av_packet_alloc;pthread_create;av_packet_free;_ZN13FormatConvert18VideoFormatTranser8_releaseEv;av_read_frame;_ZN13FormatConvert18VideoFormatTranser11_TransMediaEPP8AVPacket;av_packet_unref;av_interleaved_write_frame;__stack_chk_fail,MEDIA_CODEC,FACT
+FN_libMTGif_00009CB0,0x9CB0,844,FormatConvert::VideoFormatTranser::_TransMedia(AVPacket**),YES,NO,NO,0,1,avcodec_send_packet;av_frame_alloc;avcodec_receive_frame;_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame;av_freep;avcodec_send_frame;av_packet_alloc;avcodec_receive_packet;av_packet_free;av_rescale_q,MEDIA_CODEC,FACT
+FN_libMTGif_00009FFC,0x9FFC,164,FormatConvert::VideoFormatTranser::~VideoFormatTranser(),YES,NO,NO,0,1,_ZN13FormatConvert18VideoFormatTranser8_releaseEv;av_freep;free;_ZdlPv,MEDIA_CODEC,FACT
+FN_libMTGif_0000A0A0,0xA0A0,16,sub_A0A0,NO,NO,NO,1,0,__cxa_begin_catch;_ZSt9terminatev,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000A0B0,0xA0B0,60,FormatConvert::VideoFormatTranser::setInputVideoMediaFile(char*),YES,NO,NO,0,0,av_freep;av_strdup,MEDIA_CODEC,FACT
+FN_libMTGif_0000A0EC,0xA0EC,16,FormatConvert::VideoFormatTranser::setVideoOutputFrameRate(float),YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_0000A0FC,0xA0FC,8,FormatConvert::VideoFormatTranser::setVideoOutputPixFormat(FormatConvert::IMAGE_PIX_FORMAT),YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_0000A104,0xA104,8,FormatConvert::VideoFormatTranser::setVideoOutputBitrate(long),YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_0000A10C,0xA10C,16,"FormatConvert::VideoFormatTranser::setVideoOutputSize(int, int)",YES,NO,NO,0,0,,MEDIA_CODEC,FACT
+FN_libMTGif_0000A11C,0xA11C,60,FormatConvert::VideoFormatTranser::setOutputVideoMediaFile(char*),YES,NO,NO,0,0,av_freep;av_strdup,MEDIA_CODEC,FACT
+FN_libMTGif_0000A158,0xA158,68,MTGif::MTGif(),YES,NO,NO,0,1,_Znwm;_ZN11CMTImageGifC1Ev;_ZdlPv,UTILITY,FACT
+FN_libMTGif_0000A19C,0xA19C,24,MTGif::~MTGif(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1B4,0xA1B4,8,"MTGif::SaveGifHeader(char const*, int, int, int, int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1BC,0xA1BC,16,"MTGif::SaveGifFrame(int, unsigned char*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1CC,0xA1CC,8,"MTGif::SaveGifFrame(unsigned char*, int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1D4,0xA1D4,12,MTGif::SaveGifFrame(unsigned char*),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1E0,0xA1E0,8,MTGif::SaveClose(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1E8,0xA1E8,8,MTGif::SetThreadNum(int),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A1F0,0xA1F0,636,get_nearest_index,YES,NO,NO,0,0,__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000A46C,0xA46C,68,CMTImageGif::CMTImageGif(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A4B0,0xA4B0,96,CMTImageGif::~CMTImageGif(),YES,NO,NO,0,0,fclose,UTILITY,FACT
+FN_libMTGif_0000A510,0xA510,68,CxIOFile::~CxIOFile(),YES,NO,NO,0,0,fclose,UTILITY,FACT
+FN_libMTGif_0000A554,0xA554,36,CMTImageGif::~CMTImageGif(),YES,NO,NO,0,0,_ZN11CMTImageGifD1Ev,UTILITY,FACT
+FN_libMTGif_0000A578,0xA578,64,"CMTImageGif::Putword(int, CxFile*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A5B8,0xA5B8,248,"CMTImageGif::EncodeHeader(CxFile*, unsigned char*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A6B0,0xA6B0,216,CMTImageGif::EncodeLoopExtension(CxFile*),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A788,0xA788,212,"CMTImageGif::EncodeExtension(CxFile*, int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000A85C,0xA85C,380,"CMTImageGif::EncodeBody(CxFile*, unsigned char*, unsigned char*, bool)",YES,NO,NO,0,0,_ZN11CMTImageGif11compressLZWEiPhP6CxFile,UTILITY,FACT
+FN_libMTGif_0000A9D8,0xA9D8,540,"CMTImageGif::compressLZW(int, unsigned char*, CxFile*)",YES,NO,NO,0,0,memset;_ZN11CMTImageGif6outputEs,UTILITY,FACT
+FN_libMTGif_0000ABF4,0xABF4,68,CMTImageGif::GifNextPixel(unsigned char*),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AC38,0xAC38,16,CMTImageGif::cl_hash(int),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AC48,0xAC48,588,CMTImageGif::output(short),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AE94,0xAE94,4,"CMTImageGif::GetNearestIndex2(unsigned char*, unsigned char*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AE98,0xAE98,120,CMTImageGif::char_out(int),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AF10,0xAF10,96,CMTImageGif::flush_char(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000AF70,0xAF70,1452,CMTImageGif::DecreaseBpp2(void*),YES,NO,NO,0,0,_Znam;memset;get_nearest_index;_ZdaPv;pthread_exit;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000B51C,0xB51C,652,"CMTImageGif::SaveGifHeader(char const*, int, int, int, int)",YES,NO,NO,0,1,fopen;_ZdaPv;_Znam;_Znwm;_ZN10CQuantizerC1Ejj;_ZN10CQuantizer13SetColorTableEPh;_ZdlPv,UTILITY,FACT
+FN_libMTGif_0000B7A8,0xB7A8,1100,"CMTImageGif::SaveGifFrame(unsigned char*, int)",YES,NO,NO,0,0,_ZN10CQuantizer13ProcessImage2EPhii;_ZN10CQuantizer13SetColorTableEPh;sysconf;pthread_attr_init;pthread_create;_ZN11CMTImageGif12DecreaseBpp2EPv;pthread_join;_ZN11CMTImageGif11compressLZWEiPhP6CxFile;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000BBF4,0xBBF4,112,CMTImageGif::SaveClose(),YES,NO,NO,0,0,fputc;fclose;_ZdaPv,UTILITY,FACT
+FN_libMTGif_0000BC64,0xBC64,8,CxIOFile::PutC(unsigned char),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BC6C,0xBC6C,56,sub_BC6C,NO,NO,NO,0,0,fputc,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BCA4,0xBCA4,68,CxIOFile::Close(),YES,NO,NO,0,0,fclose,UTILITY,FACT
+FN_libMTGif_0000BCE8,0xBCE8,20,CMTImageGif::SetThreadNum(int),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BCFC,0xBCFC,32,CxIOFile::~CxIOFile(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BD1C,0xBD1C,40,sub_BD1C,NO,NO,NO,0,0,fclose,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BD44,0xBD44,36,"CxIOFile::Read(void*, unsigned long, unsigned long)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BD68,0xBD68,36,"CxIOFile::Write(void const*, unsigned long, unsigned long)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BD8C,0xBD8C,8,"CxIOFile::Seek(long, int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BD94,0xBD94,28,sub_BD94,NO,NO,NO,0,0,fseek,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BDB0,0xBDB0,16,CxIOFile::Tell(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BDC0,0xBDC0,116,CxIOFile::Size(),YES,NO,NO,0,0,ftell;fseek,UTILITY,FACT
+FN_libMTGif_0000BE34,0xBE34,8,CxIOFile::Flush(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BE3C,0xBE3C,28,sub_BE3C,NO,NO,NO,0,0,fflush,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BE58,0xBE58,8,CxIOFile::Eof(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BE60,0xBE60,36,sub_BE60,NO,NO,NO,0,0,feof,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BE84,0xBE84,8,CxIOFile::Error(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BE8C,0xBE8C,32,sub_BE8C,NO,NO,NO,0,0,ferror,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BEAC,0xBEAC,8,CxIOFile::GetC(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BEB4,0xBEB4,32,sub_BEB4,NO,NO,NO,0,0,getc,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BED4,0xBED4,32,"CxIOFile::GetS(char*, int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BEF4,0xBEF4,8,"CxIOFile::Scanf(char const*, void*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BEFC,0xBEFC,32,sub_BEFC,NO,NO,NO,0,0,fscanf,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000BF1C,0xBF1C,100,"CQuantizer::CQuantizer(unsigned int, unsigned int)",YES,NO,NO,0,0,memset,UTILITY,FACT
+FN_libMTGif_0000BF80,0xBF80,36,CQuantizer::~CQuantizer(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000BFA4,0xBFA4,240,CQuantizer::DeleteTree(_NODE**),YES,NO,NO,0,0,_ZN10CQuantizer10DeleteTreeEPP5_NODE;free,UTILITY,FACT
+FN_libMTGif_0000C094,0xC094,36,CQuantizer::~CQuantizer(),YES,NO,NO,0,0,_ZN10CQuantizerD1Ev,UTILITY,FACT
+FN_libMTGif_0000C0B8,0xC0B8,524,"CQuantizer::ProcessImage2(unsigned char*, int, int)",YES,NO,NO,0,0,calloc;_ZN10CQuantizer10ReduceTreeEjPjPP5_NODE,UTILITY,FACT
+FN_libMTGif_0000C2C4,0xC2C4,344,"CQuantizer::AddColor(_NODE**, unsigned char, unsigned char, unsigned char, unsigned int, unsigned int, unsigned int*, _NODE**)",YES,NO,NO,0,0,calloc,UTILITY,FACT
+FN_libMTGif_0000C41C,0xC41C,636,"CQuantizer::ReduceTree(unsigned int, unsigned int*, _NODE**)",YES,NO,NO,0,0,free,UTILITY,FACT
+FN_libMTGif_0000C698,0xC698,124,"CQuantizer::CreateNode(unsigned int, unsigned int, unsigned int*, _NODE**)",YES,NO,NO,0,0,calloc,UTILITY,FACT
+FN_libMTGif_0000C714,0xC714,392,"CQuantizer::GetPaletteColors(_NODE*, unsigned char*, unsigned int*)",YES,NO,NO,0,0,_ZN10CQuantizer16GetPaletteColorsEP5_NODEPhPj,UTILITY,FACT
+FN_libMTGif_0000C89C,0xC89C,96,CQuantizer::SetColorTable(unsigned char*),YES,NO,NO,0,0,_ZN10CQuantizer16GetPaletteColorsEP5_NODEPhPj;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000C8FC,0xC8FC,20,CGif89a::CGif89a(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000C910,0xC910,124,"CGif89a::CGif89a(char*, bool)",YES,NO,NO,0,0,strlen;_Znam;strcpy;_ZN7CGif89a4openEPcb,UTILITY,FACT
+FN_libMTGif_0000C98C,0xC98C,612,"CGif89a::open(char*, bool)",YES,NO,NO,0,0,fopen;fread;ftell;_ZN7CGif89a11checkFramesEv;_Znam;memset;_ZN7CGif89a12getAllFramesEv;fclose;_ZdaPv;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000CBF0,0xCBF0,48,CGif89a::~CGif89a(),YES,NO,NO,0,0,_ZN7CGif89a5closeEv;_ZdlPv,UTILITY,FACT
+FN_libMTGif_0000CC20,0xCC20,212,CGif89a::close(),YES,NO,NO,0,0,_ZdaPv,UTILITY,FACT
+FN_libMTGif_0000CCF4,0xCCF4,8,CGif89a::operator!(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000CCFC,0xCCFC,580,CGif89a::checkFrames(),YES,NO,NO,0,0,ftell;feof;fseek;fread;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000CF40,0xCF40,948,CGif89a::getAllFrames(),YES,NO,NO,0,0,ftell;feof;fseek;fread;_Znam;_ZN7CGif89a11extractDataEP5FRAME;_ZdaPv;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000D2F4,0xD2F4,2172,CGif89a::extractData(FRAME*),YES,NO,NO,0,0,_Znam;memset;fread;_ZdlPv;_ZdaPv;__stack_chk_fail,UTILITY,FACT
+FN_libMTGif_0000DB70,0xDB70,248,CGif89a::getNextFrameT(int*),YES,NO,NO,0,0,_ZN7CGif89a12getNextFrameEv;_Znam;_ZdaPv,UTILITY,FACT
+FN_libMTGif_0000DC68,0xDC68,932,CGif89a::getNextFrame(),YES,NO,NO,0,0,_ZdaPv;fread;fseek;feof;_Znam;_ZN7CGif89a11extractDataEP5FRAME;__stack_chk_fail;memcpy,UTILITY,FACT
+FN_libMTGif_0000E00C,0xE00C,4,"CGif89a::initStrTable(STRING_TABLE_ENTRY*, unsigned int)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E010,0xE010,88,sub_E010,NO,NO,NO,0,0,_Znam,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000E068,0xE068,316,"CGif89a::addStrTable(STRING_TABLE_ENTRY*, unsigned int, unsigned int, unsigned char)",YES,NO,NO,0,0,_Znam,UTILITY,FACT
+FN_libMTGif_0000E1A4,0xE1A4,8,CGif89a::getGlobalInfo(),YES,NO,NO,0,0,,GRAPHICS_RENDER,FACT
+FN_libMTGif_0000E1AC,0xE1AC,8,CGif89a::getVer(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E1B4,0xE1B4,8,CGif89a::getWidth(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E1BC,0xE1BC,8,CGif89a::getHeight(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E1C4,0xE1C4,8,CGif89a::getFrameNum(),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E1CC,0xE1CC,56,CGif89a::getDelay(int),YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E204,0xE204,196,JNI_OnLoad,YES,YES,NO,0,0,__stack_chk_fail,JNI_BRIDGE,FACT
+FN_libMTGif_0000E2C8,0xE2C8,104,"registerJNIMethods(_JNIEnv*, void*)",YES,NO,NO,0,0,,UTILITY,FACT
+FN_libMTGif_0000E330,0xE330,92,JNI_OnUnload,YES,YES,NO,0,0,__stack_chk_fail,JNI_BRIDGE,FACT
+FN_libMTGif_0000E38C,0xE38C,900,"MTGifJNI::nativeconvertVideo2Gif(_JNIEnv*, _jobject*, _jstring*, _jstring*, int, int, int, float)",YES,NO,NO,0,3,_Znwm;_ZN5mtgif9Video2GifC1Ev;strlen;memmove;_ZN5mtgif9Video2Gif4initENSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES7_iiif;_ZN5mtgif9Video2Gif3runEv;_ZdlPv;__android_log_print;_ZN5mtgif9Video2GifD1Ev;__stack_chk_fail,MEDIA_CODEC,FACT
+FN_libMTGif_0000E710,0xE710,20,sub_E710,NO,NO,NO,2,1,,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000E724,0xE724,80,sub_E724,NO,NO,NO,1,2,__cxa_allocate_exception;__cxa_throw;__cxa_free_exception,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000E774,0xE774,48,sub_E774,NO,NO,NO,1,0,_ZNSt11logic_errorC2EPKc,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000E7A4,0xE7A4,224,mtgif::Video2Gif::Video2Gif(),YES,NO,NO,0,2,_Znwm;_ZN13FormatConvert18VideoFormatTranserC1Ev;_ZN5MTGifC1Ev;_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6assignEPKc;_ZdlPv,MEDIA_CODEC,FACT
+FN_libMTGif_0000E884,0xE884,124,mtgif::Video2Gif::~Video2Gif(),YES,NO,NO,0,0,_ZN13FormatConvert18VideoFormatTranserD1Ev;_ZdlPv;_ZN5MTGifD1Ev,MEDIA_CODEC,FACT
+FN_libMTGif_0000E900,0xE900,216,"mtgif::Video2Gif::init(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>, int, int, int, float)",YES,NO,NO,0,0,_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_;_ZN13FormatConvert18VideoFormatTranser22setInputVideoMediaFileEPc;_ZN13FormatConvert18VideoFormatTranser18setVideoOutputSizeEii;_ZN13FormatConvert18VideoFormatTranser23setVideoOutputPixFormatENS_16IMAGE_PIX_FORMATE;_ZN13FormatConvert18VideoFormatTranser7prepareEv;__android_log_print,MEDIA_CODEC,FACT
+FN_libMTGif_0000E9D8,0xE9D8,660,mtgif::Video2Gif::run(),YES,NO,NO,0,0,_ZN13FormatConvert18VideoFormatTranser9doConvertEv;_ZN13FormatConvert18VideoFormatTranser12receiveFrameEPPhPl;__android_log_print;_ZN5MTGif13SaveGifHeaderEPKciiii;_ZN5MTGif12SaveGifFrameEPhi;free;_ZN13FormatConvert18VideoFormatTranser4stopEv;_ZN5MTGif9SaveCloseEv;__stack_chk_fail,MEDIA_CODEC,FACT
+FN_libMTGif_0000EC6C,0xEC6C,308,sub_EC6C,NO,NO,NO,1,6,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000EDA0,0xEDA0,4,sub_EDA0,NO,NO,NO,7,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000EDA4,0xEDA4,128,sub_EDA4,NO,NO,NO,0,3,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000EE24,0xEE24,244,sub_EE24,NO,NO,NO,1,5,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000EF18,0xEF18,4,sub_EF18,NO,NO,NO,2,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000EF1C,0xEF1C,164,sub_EF1C,NO,NO,NO,0,1,memcpy,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000EFC0,0xEFC0,4,sub_EFC0,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000EFC4,0xEFC4,120,sub_EFC4,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F03C,0xF03C,20,sub_F03C,NO,NO,NO,4,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F050,0xF050,4,sub_F050,NO,NO,NO,2,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F054,0xF054,60,sub_F054,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F090,0xF090,4,sub_F090,NO,NO,NO,2,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F094,0xF094,36,sub_F094,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F0B8,0xF0B8,4,sub_F0B8,NO,NO,NO,3,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F0BC,0xF0BC,396,sub_F0BC,NO,NO,NO,0,6,,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000F248,0xF248,712,sub_F248,NO,NO,NO,2,4,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000F510,0xF510,8,sub_F510,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F518,0xF518,8,sub_F518,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F520,0xF520,68,sub_F520,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F564,0xF564,164,sub_F564,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F608,0xF608,4,sub_F608,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F60C,0xF60C,64,sub_F60C,NO,NO,NO,0,0,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000F64C,0xF64C,164,sub_F64C,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F6F0,0xF6F0,4,sub_F6F0,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F6F4,0xF6F4,64,sub_F6F4,NO,NO,NO,0,0,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000F734,0xF734,20,sub_F734,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F748,0xF748,16,sub_F748,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F758,0xF758,16,sub_F758,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F768,0xF768,20,sub_F768,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F77C,0xF77C,4,sub_F77C,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F780,0xF780,216,sub_F780,NO,NO,NO,0,2,memset,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000F858,0xF858,68,sub_F858,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F89C,0xF89C,12,sub_F89C,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F8A8,0xF8A8,12,sub_F8A8,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F8B4,0xF8B4,4,sub_F8B4,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F8B8,0xF8B8,40,sub_F8B8,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F8E0,0xF8E0,4,sub_F8E0,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000F8E4,0xF8E4,636,sub_F8E4,NO,NO,NO,0,3,dl_iterate_phdr;pthread_rwlock_rdlock;pthread_rwlock_unlock;memset;getpid;syscall,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0000FB60,0xFB60,12,sub_FB60,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000FB6C,0xFB6C,288,sub_FB6C,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000FC8C,0xFC8C,4,sub_FC8C,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0000FC90,0xFC90,1156,sub_FC90,NO,NO,NO,0,8,memset;memcpy;fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00010114,0x10114,4,sub_10114,NO,NO,NO,3,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00010118,0x10118,3140,sub_10118,NO,NO,NO,0,24,memcpy;fprintf;fwrite;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00010D5C,0x10D5C,240,sub_10D5C,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00010E4C,0x10E4C,4,sub_10E4C,NO,NO,NO,0,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00010E50,0x10E50,64,sub_10E50,NO,NO,NO,0,0,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00010E90,0x10E90,4,sub_10E90,NO,NO,NO,4,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00010E94,0x10E94,524,sub_10E94,NO,NO,NO,0,1,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_000110A0,0x110A0,4,sub_110A0,NO,NO,NO,15,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_000110A4,0x110A4,904,sub_110A4,NO,NO,NO,0,1,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_0001142C,0x1142C,4,sub_1142C,NO,NO,NO,34,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00011430,0x11430,452,sub_11430,NO,NO,NO,0,0,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_000115F4,0x115F4,4,sub_115F4,NO,NO,NO,2,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_000115F8,0x115F8,2488,sub_115F8,NO,NO,NO,0,5,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00011FB0,0x11FB0,4,sub_11FB0,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_00011FB4,0x11FB4,720,sub_11FB4,NO,NO,NO,0,5,pthread_rwlock_rdlock;pthread_rwlock_unlock;memset;pthread_rwlock_wrlock;malloc;memcpy;free,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_00012284,0x12284,308,sub_12284,NO,NO,NO,0,1,,UTILITY,HYPOTHESIS
+FN_libMTGif_000123B8,0x123B8,4,sub_123B8,NO,NO,NO,2,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_000123BC,0x123BC,284,sub_123BC,NO,NO,NO,0,2,fprintf;fflush,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_000124D8,0x124D8,456,sub_124D8,NO,NO,NO,3,6,,UTILITY,HYPOTHESIS
+FN_libMTGif_000126A0,0x126A0,360,sub_126A0,NO,NO,NO,1,6,,UTILITY,HYPOTHESIS
+FN_libMTGif_00012808,0x12808,4,sub_12808,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
+FN_libMTGif_0001280C,0x1280C,440,sub_1280C,NO,NO,NO,0,0,fprintf;fflush;abort,UTILITY,HIGH_CONFIDENCE
+FN_libMTGif_000129C4,0x129C4,156,sub_129C4,NO,NO,NO,1,0,,UTILITY,HYPOTHESIS
