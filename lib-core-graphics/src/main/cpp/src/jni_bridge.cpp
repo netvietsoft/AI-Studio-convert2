@@ -2774,6 +2774,20 @@ Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeIsHairPipelineV2Enabled
     return meitu_native::hce::HairPipelineV2::isEnabled() ? JNI_TRUE : JNI_FALSE;
 }
 
+extern "C" JNIEXPORT void JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeSetHairPipelineVersion(
+    JNIEnv* env, jclass clazz, jint version
+) {
+    meitu_native::hce::HairPipelineV2::setExecutionVersion(version);
+}
+
+extern "C" JNIEXPORT jint JNICALL
+Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeGetHairPipelineVersion(
+    JNIEnv* env, jclass clazz
+) {
+    return meitu_native::hce::HairPipelineV2::getExecutionVersion();
+}
+
 extern "C" JNIEXPORT jboolean JNICALL
 Java_com_meitu_core_nativeengine_MeituNativeEngine_nativeApplyBeardGrayAway(
     JNIEnv* env, jclass clazz,

@@ -27,8 +27,17 @@ class HairPipelineV2 {
 public:
     static HairPipelineV2& getInstance();
 
+    enum class Version : int {
+        VERSION_V1 = 1,
+        VERSION_V2_BASELINE = 2,
+        VERSION_V3_REBUILD = 3
+    };
+
     static void setEnabled(bool enabled);
     static bool isEnabled();
+
+    static void setExecutionVersion(int version);
+    static int getExecutionVersion();
 
     static void sRGBToOKLab(float r, float g, float b, float& L, float& a, float& bCoord);
     static void oklabTosRGB(float L, float a, float bCoord, float& r, float& g, float& b);
@@ -104,6 +113,28 @@ public:
 
     // Full Pipeline V2 End-to-End
     bool executePipelineV2(
+        const uint32_t* srcPixels,
+        uint32_t* dstPixels,
+        int width, int height,
+        const MeituReborn::FusedFaceGeometry& fused,
+        const HairDyeMaterialParams& materialParams,
+        const HairSpecularParams& specularParams,
+        HairV2IntermediateStages* debugStages = nullptr
+    );
+
+    // Baseline V2 Pipeline (Preserved for rollback and exact A/B comparison)
+    bool executePipelineV2_Baseline(
+        const uint32_t* srcPixels,
+        uint32_t* dstPixels,
+        int width, int height,
+        const MeituReborn::FusedFaceGeometry& fused,
+        const HairDyeMaterialParams& materialParams,
+        const HairSpecularParams& specularParams,
+        HairV2IntermediateStages* debugStages = nullptr
+    );
+
+    // Rebuilt V3 Pipeline (TASK_035: Anatomical head-anchor, strict protected gates, false-positive elimination, natural salon OKLab dye)
+    bool executePipelineV3_Rebuild(
         const uint32_t* srcPixels,
         uint32_t* dstPixels,
         int width, int height,

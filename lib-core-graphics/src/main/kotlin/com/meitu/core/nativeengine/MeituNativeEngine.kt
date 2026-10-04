@@ -702,6 +702,13 @@ object MeituNativeEngine {
     @JvmStatic
     external fun nativeIsHairPipelineV2Enabled(): Boolean
 
+    // TASK_035: Hair Pipeline Execution Version (1 = V1 Legacy, 2 = V2 Baseline, 3 = V3 Rebuild)
+    @JvmStatic
+    external fun nativeSetHairPipelineVersion(version: Int)
+
+    @JvmStatic
+    external fun nativeGetHairPipelineVersion(): Int
+
     // 56. C++ Native Beard Gray Away (Target Gray Strands, Zero Skin Bleed)
     @JvmStatic
     external fun nativeApplyBeardGrayAway(

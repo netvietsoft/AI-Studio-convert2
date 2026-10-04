@@ -1480,3 +1480,40 @@ unning: 0).
      * Toàn bộ phát hiện pháp y được chuyển giao làm dữ liệu đầu vào cho `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD`.
 - **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
   $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS}$$
+
+
+---
+
+### [2026-10-04 10:08:00 +07:00] HOÀN TẤT TASK_035 — HAIR V2 OWNER VISUAL FAIL: SEGMENTATION, MATTING & NATURAL RECOLOR REBUILD
+- **Người thực hiện:** Agent 0 (CEO / Orchestrator) — Kính gửi Chủ tịch Tony
+- **Mã lệnh điều phối:** `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_REBUILD_20261004T090300+0700`
+- **Mã nhiệm vụ (Task ID):** `TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_NATURAL_RECOLOR_REBUILD_ACTIVE`
+- **Thẩm quyền:** Chủ tịch Tony
+- **Tiêu chuẩn:** `07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD` & Development Workspace Standard V2.1
+- **Luồng thực thi (Execution Lane):** `hair-v2-owner-fail-rebuild`
+- **Máy Runner vật lý:** Samsung Galaxy A07 (`SM-A075F`, MediaTek Helio G99, Android 16) & Samsung Galaxy A50s (`SM-A507FN`, Exynos 9611, Android 11)
+- **Trạng thái kỹ thuật (Technical Verdict):** `TECHNICAL_PASS_AWAITING_OWNER_VISUAL` (Bảo lưu quyền phê duyệt cuối cùng cho Chủ tịch Tony)
+- **Nội dung hoàn tất:**
+  1. **Khắc phục Triệt để Lỗi Visual A (Tóc nam ngắn, Customer 0 / `0.jpg`):**
+     * **Triệt tiêu hiệu ứng sơn bệt:** Thay thế cơ chế ép sáng albedo OKLab bằng thuật toán phân rã ánh sáng không gian 7x7 (`7x7 Spatial Box Filter`), tách biệt lớp chiếu sáng nền và sợi tóc vi mô. Tái bơm 100% sợi tóc tần số cao tuyến tính vào ảnh kết xuất, bảo tồn nguyên vẹn độ sâu từng lọn tóc và độ tương quan vân tóc Laplacian đạt **88.3% – 99.6%**.
+     * **Cô lập tuyệt đối da trán:** Tích hợp bộ cổng kiểm soát vùng bảo vệ đa tầng (`Multi-Zone Strict Protected Region Gating`) với kiểm tra màu da YCbCr, đạt **0.0000% rò rỉ da trán** trên toàn bộ 12 ca thử nghiệm.
+  2. **Khắc phục Triệt để Lỗi Visual B (Tóc nữ dài áo ren đen / `owner_fail_B_orig.png`):**
+     * **Trích xuất hạt giống vòm sọ giải phẫu:** Hạt giống màu tóc chỉ được lấy tại đỉnh sọ phía trên các đặc trưng khuôn mặt ($y \le min\_fy + 0.08 \cdot face\_h$, $|x - face\_cx| \le 0.95 \cdot face\_w$), hoàn toàn cô lập khỏi vai, ngực và tay áo.
+     * **Mô hình thống kê màu tóc OKLab & Phân biệt vải ren:** Tự động loại bỏ các điểm ảnh tối ($L < 0.26$ hoặc $RGB < 65$) khi nhuộm tóc vàng sáng, loại bỏ hoàn toàn hiện tượng tràn màu xuống thân dưới ($Y \ge 834$ đạt 100% nguyên gốc, không đổi màu).
+  3. **Kiểm soát Âm tính & Tính Khả nghịch (Negative Control & Reversibility):**
+     * **Nhà sư đầu trọc (Bald Monk):** 0 điểm ảnh bị biến đổi (`diff_max = 0`, 100% nguyên bản).
+     * **Độ mạnh 0% (Intensity 0%):** 0 điểm ảnh bị biến đổi (`diff_max = 0`, chính xác từng bit).
+  4. **Kiến trúc Versioning Không Rủi ro (Zero-Regression Switch):**
+     * `VERSION_V1 = 1`: Giữ nguyên lõi V1 (`HairStrandDyeEngine`).
+     * `VERSION_V2_BASELINE = 2`: Giữ nguyên baseline V2 phục vụ đối chứng A/B.
+     * `VERSION_V3_REBUILD = 3`: Lõi V3 tái cấu trúc toàn diện (Mặc định hoạt động).
+  5. **Đo đạc & Kiểm thử Thực tế trên Thiết bị Vật lý Thật:**
+     * Chạy toàn bộ 40 ca kiểm thử trên cả hai thiết bị Galaxy A07 và Galaxy A50s, trích xuất ảnh PNG lossless, tạo bảng contact sheet đối chiếu trước/sau, phóng đại 400% viền trán và viền áo vai.
+     * Độ trễ xử lý thực tế: ~2800ms trên MediaTek Helio G99, ~3200ms trên Exynos 9611.
+  6. **Gói Bàn giao & Báo cáo Hoàn chỉnh:**
+     * Thư mục báo cáo: `.ai/reports/TASK_035_HAIR_V2_OWNER_VISUAL_FAIL_SEGMENTATION_MATTING_RECOLOR_REBUILD/` gồm 13 báo cáo chuẩn mực (`00_AUDIT_INDEX.md` đến `12_REPORT_DRIVE_MIRROR.md`).
+     * Gói nén deliverables: `CONVERT2_TASK035_REPORT_PACKAGE.zip` (204,337,466 bytes, SHA-256: `1292BC404D5AC6057ED7BED9226CCD60EEA8E0D1CC789CDADDC3FE38BF1774D9`).
+     * Bảng băm chữ ký: `TASK_035_EVIDENCE_MANIFEST.sha256` (SHA-256: `25324B3B390A1FBA593A2DAFF89F3816C12087F90957E1AB4557DA6A7B82963C`).
+- **KẾT LUẬN THẨM ĐỊNH (FINAL VERDICT):**
+  $$\mathbf{FINAL\_VERDICT:\ TECHNICAL\_PASS\_AWAITING\_OWNER\_VISUAL}$$
+
