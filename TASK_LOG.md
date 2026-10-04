@@ -1965,3 +1965,23 @@ unning: 0).
 - **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Sẵn sàng cho kiểm duyệt độc lập).
 
 
+### [2026-10-04 23:26:00] TASK_053 — TASK052A WORKFLOW PROVENANCE CORRECTION & EVIDENCE TRUTH
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_053_TASK052A_PROVENANCE_EVIDENCE_CORRECTION_ACTIVE`
+- **Task Doc ID:** `1pyTUdJZDlxhEGWGSq_mjxlBAtlohSHGeerSADm5vT7E`
+- **Command ID:** `TASK_053_TASK052A_WORKFLOW_PROVENANCE_CORRECTION_20261004T231132+0700`
+- **Revision:** `2026-10-04T23:11:32.152000+07:00`
+- **Lane:** `so45-provenance-evidence-correction`
+- **Runner:** `CONVERT2-WINDOWS-02`
+- **Nội dung thực thi & Thành quả hiệu chỉnh:**
+  1. **Đồng nhất định danh thực thi lệnh (Execution Identity Reconciliation):** Đối soát và cập nhật chính xác GitHub Actions Worker Run `37210970250` (Job `111461926133`, CI Runner `CONVERT2-WINDOWS-03`), Continuation Runner `CONVERT2-WINDOWS-02` (lease `3b56bf567c694b0a904bdc28357f5107`), Integrator Run `37211305362`. Triệt tiêu hoàn toàn run ID lỗi thời `37210153111`.
+  2. **Hiệu chỉnh 11_MULTI_AGENT_LANE_PROVENANCE.md (True Wall-Clock & Sublanes):** Thay thế mốc cũ `21:15–21:21` bằng thời gian thực tế `2026-10-04T22:31:17+07:00` đến `2026-10-04T22:41:07+07:00` (9m 50s). Phân định dứt khoát 7 sublanes là logical sublanes chạy trên 1 tiến trình máy chủ, không phải các runner vật lý riêng biệt.
+  3. **Rà soát định lượng đối soát `raw_evidence/` & Xuất bản Ma trận Bằng chứng Minh bạch:** Rà soát từng tuyên bố số liệu với 73 tệp hiện vật thô. Xuất bản `15_PASS_UNKNOWN_UNVERIFIED_EVIDENCE_MATRIX.md` phân định rõ 3 trạng thái: 45/45 SO identity PASS; 9 Core SOs PASS, 36 SOs UNKNOWN; 24/30 hàm PASS, 6 hàm UNVERIFIED; 6/14 XREFs PASS, 8 UNVERIFIED; shaders/constants UNVERIFIED_IN_RAW_SAMPLE; mã giả C++ CLEANROOM_SPEC_ONLY. Cập nhật đồng bộ các tệp CSV registry.
+  4. **Kiểm chứng Target Commit 5cf745180:** Đối soát với baseline `04bd58f27b1c835e3d8e9e5566abee44ed16222b`, xác nhận tuyệt đối **0 dòng mã sản xuất** bị thay đổi, 19 tệp báo cáo, trạng thái và script điều phối (1816 insertions, 462 deletions).
+  5. **Khảo chứng & Phục hồi Report Drive Mirror:** Đóng gói toàn bộ 90 tệp báo cáo đã hiệu chỉnh vào `CONVERT2_TASK052A_REPORT_PACKAGE.zip` (1,412,298 bytes, SHA-256 `28ea7b8b14c3bc21b90e25f73624ecc64631af2decd659a9ad2d2ce11463017c`), đặt tại root repo, khảo chứng folder `13xDIqiI-vyP10pkypLI_6palmeJS-QRg` (4 mục hiện diện), kiểm tra cổng API và ghi nhận log HTTP 401 unauthenticated do thiếu write credentials. Cập nhật `13_REPORT_DRIVE_MIRROR_TRANSFER_MANIFEST.md`.
+  6. **Đóng gói báo cáo TASK_053:** Đóng gói hoàn chỉnh `CONVERT2_TASK053_REPORT_PACKAGE.zip` (17,719 bytes, SHA-256 `66d3b9bb4ca891d7b8507686fbffe642d86d1acc7d13b8fb36547e8f64e07307`).
+  7. **Tái khẳng định khóa cứng cổng V4:** Duy trì nghiêm ngặt `V4_IMPLEMENTATION_GATE = BLOCKED` (`07_V4_GATE_BLOCK_AFFIRMATION.md`), tuyệt đối 0 dòng code V4 production được viết.
+- **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Đầy đủ bằng chứng thực tế, sẵn sàng cho kiểm duyệt độc lập).
+
+
+

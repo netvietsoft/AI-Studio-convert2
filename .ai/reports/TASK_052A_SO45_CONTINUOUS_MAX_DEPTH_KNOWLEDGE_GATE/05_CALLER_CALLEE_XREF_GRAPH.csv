@@ -1,15 +1,15 @@
-caller_so,caller_rva,caller_symbol,callee_so,callee_rva,callee_symbol,call_type,pipeline_stage,evidence_opcode
-libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x0013488c,CMTFilterSoftHair::GrayFilterToFBO,DIRECT_BL,HAIR_PASS_1,ARM64 BL at 0x00134120
-libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134970,CMTFilterSoftHair::HairMaskFilterToFBO,DIRECT_BL,HAIR_PASS_2,ARM64 BL at 0x00134164
-libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134a60,CMTFilterSoftHair::BlurHFilterToFBO,DIRECT_BL,HAIR_PASS_3,ARM64 BL at 0x001341a8
-libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134b54,CMTFilterSoftHair::BlurVFilterToFBO,DIRECT_BL,HAIR_PASS_4,ARM64 BL at 0x001341ec
-libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134c48,CMTFilterSoftHair::SoftHairFilterToFBO,DIRECT_BL,HAIR_PASS_5,ARM64 BL at 0x00134230
-libMTFilterKernel.so,0x000c01d4,MTFilterKernelRender::nSetFilterKernelConfig,libMTFilterKernel.so,0x000d64a0,MTFilterKernel::CalEyeMouthEyeBrowMask,DIRECT_BL,BEAUTY_MASK_GEN,ARM64 BL at 0x000c0258
-libMTFilterKernel.so,0x000bfee4,MTFilterKernelRender::renderToOutTexture,libMTFilterKernel.so,0x000e4210,MTFilterKernel::MTFaceColorFilter::renderToTexture,DIRECT_BL,BEAUTY_SKIN_COLOR,ARM64 BL at 0x000bffd0
-libMTFilterKernel.so,0x000bfee4,MTFilterKernelRender::renderToOutTexture,libMTFilterKernel.so,0x000da120,MTFilterKernel::CMTDetailsFilter::renderToTexture,DIRECT_BL,BEAUTY_PORE_PRESERVE,ARM64 BL at 0x000c0018
-libarkernel3.so,0x0064384c,mtlabar3::BodySlimControl::setBodySlimOperateSwitch,libarkernel3.so,0x00643234,mtlabar3::AutomaticBodySlimControlInstance::setValueById,VIRTUAL_BLR,BODY_PARAM_DISPATCH,ARM64 BLR X8 at 0x00643890
-libarkernel3.so,0x00643234,mtlabar3::AutomaticBodySlimControlInstance::setValueById,libarkernel3.so,0x00643f98,mtlabar3::BodySlimControl::isSigModelIsNeckExistence,DIRECT_BL,BODY_SANITY_CHECK,ARM64 BL at 0x00643280
-libaidetectionplugin.so,0x00040b24,MMDetectionPlugin::AIDetector::copyTexture,libVERenderer.so,0x00064120,verenderer::MTRenderCommandEncoder::createWithByteArrays,DYNAMIC_PLT,GPU_CMD_ENCODE,ARM64 BL at PLT 0x00040c10
-libVERenderer.so,0x00064120,verenderer::MTRenderCommandEncoder::createWithByteArrays,libVERenderer.so,0x0006b520,backend::DeviceGL::createRenderPipelineGL,DIRECT_BL,GPU_PIPELINE_INIT,ARM64 BL at 0x000641e4
-libAIModelKit.so,0x0001bdfc,AIModelKitJni_cacheModel,libManis.so,0x008dc224,CacheModel,DYNAMIC_PLT,NEURAL_CACHE_DISPATCH,ARM64 BL at PLT 0x0001be40
-libaidetectionplugin.so,0x00043a7c,MMDetectionPlugin::AIDetector::getDetectData,libManis.so,0x00910c28,manisEngine::ManisEngine::ManisEngine,DYNAMIC_PLT,VISION_SEGMENT_INFER,ARM64 BL at PLT 0x00043b20
+caller_so,caller_rva,caller_symbol,callee_so,callee_rva,callee_symbol,call_type,pipeline_stage,evidence_opcode,evidence_status
+libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x0013488c,CMTFilterSoftHair::GrayFilterToFBO,DIRECT_BL,HAIR_PASS_1,ARM64 BL at 0x00134120,UNVERIFIED_IN_RAW
+libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134970,CMTFilterSoftHair::HairMaskFilterToFBO,DIRECT_BL,HAIR_PASS_2,ARM64 BL at 0x00134164,UNVERIFIED_IN_RAW
+libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134a60,CMTFilterSoftHair::BlurHFilterToFBO,DIRECT_BL,HAIR_PASS_3,ARM64 BL at 0x001341a8,UNVERIFIED_IN_RAW
+libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134b54,CMTFilterSoftHair::BlurVFilterToFBO,DIRECT_BL,HAIR_PASS_4,ARM64 BL at 0x001341ec,UNVERIFIED_IN_RAW
+libMTFilterKernel.so,0x001340ac,CMTFilterSoftHair::CMTFilterSoftHair,libMTFilterKernel.so,0x00134c48,CMTFilterSoftHair::SoftHairFilterToFBO,DIRECT_BL,HAIR_PASS_5,ARM64 BL at 0x00134230,UNVERIFIED_IN_RAW
+libMTFilterKernel.so,0x000c01d4,MTFilterKernelRender::nSetFilterKernelConfig,libMTFilterKernel.so,0x000d64a0,MTFilterKernel::CalEyeMouthEyeBrowMask,DIRECT_BL,BEAUTY_MASK_GEN,ARM64 BL at 0x000c0258,PASS_VERIFIED
+libMTFilterKernel.so,0x000bfee4,MTFilterKernelRender::renderToOutTexture,libMTFilterKernel.so,0x000e4210,MTFilterKernel::MTFaceColorFilter::renderToTexture,DIRECT_BL,BEAUTY_SKIN_COLOR,ARM64 BL at 0x000bffd0,PASS_VERIFIED
+libMTFilterKernel.so,0x000bfee4,MTFilterKernelRender::renderToOutTexture,libMTFilterKernel.so,0x000da120,MTFilterKernel::CMTDetailsFilter::renderToTexture,DIRECT_BL,BEAUTY_PORE_PRESERVE,ARM64 BL at 0x000c0018,PASS_VERIFIED
+libarkernel3.so,0x0064384c,mtlabar3::BodySlimControl::setBodySlimOperateSwitch,libarkernel3.so,0x00643234,mtlabar3::AutomaticBodySlimControlInstance::setValueById,VIRTUAL_BLR,BODY_PARAM_DISPATCH,ARM64 BLR X8 at 0x00643890,UNVERIFIED_IN_RAW
+libarkernel3.so,0x00643234,mtlabar3::AutomaticBodySlimControlInstance::setValueById,libarkernel3.so,0x00643f98,mtlabar3::BodySlimControl::isSigModelIsNeckExistence,DIRECT_BL,BODY_SANITY_CHECK,ARM64 BL at 0x00643280,UNVERIFIED_IN_RAW
+libaidetectionplugin.so,0x00040b24,MMDetectionPlugin::AIDetector::copyTexture,libVERenderer.so,0x00064120,verenderer::MTRenderCommandEncoder::createWithByteArrays,DYNAMIC_PLT,GPU_CMD_ENCODE,ARM64 BL at PLT 0x00040c10,PASS_VERIFIED
+libVERenderer.so,0x00064120,verenderer::MTRenderCommandEncoder::createWithByteArrays,libVERenderer.so,0x0006b520,backend::DeviceGL::createRenderPipelineGL,DIRECT_BL,GPU_PIPELINE_INIT,ARM64 BL at 0x000641e4,PASS_VERIFIED
+libAIModelKit.so,0x0001bdfc,AIModelKitJni_cacheModel,libManis.so,0x008dc224,CacheModel,DYNAMIC_PLT,NEURAL_CACHE_DISPATCH,ARM64 BL at PLT 0x0001be40,PASS_VERIFIED
+libaidetectionplugin.so,0x00043a7c,MMDetectionPlugin::AIDetector::getDetectData,libManis.so,0x00910c28,manisEngine::ManisEngine::ManisEngine,DYNAMIC_PLT,VISION_SEGMENT_INFER,ARM64 BL at PLT 0x00043b20,PASS_VERIFIED

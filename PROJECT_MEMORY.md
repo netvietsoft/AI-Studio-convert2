@@ -763,4 +763,35 @@ etBin == 0.
   3. *Hằng số toán học & Mô hình thực tế:* Xác lập trọng số BT.601, Gaussian 5-tap tách biệt, Pegtop SoftLight, BiSeNet 19 classes, MediaPipe FP16 (256x256), chuẩn CIE D65 CIELAB. Triệt tiêu các tên mô hình phỏng đoán.
   4. *Đặc tả Clean-Room C++ Pseudocode:* Cung cấp mã giả sạch có tính khả thi tái dựng cao (Reimplementability Score >= 92%).
   5. *Khóa cứng cổng V4 (V4 Hard Gate = BLOCKED):* Tuyệt đối không sinh mã nguồn sản xuất V4 trước khi toàn bộ kiến thức được thẩm định và phê duyệt độc lập bởi Hội đồng Giám sát và Chủ tịch Tony.
-- **Phán Quyết Nghiệm Thu Cổng Tri Thức:** `FINAL_VERDICT: REVIEW_CANDIDATE`.
+- **Phán Quyết Nghiệm Thu Cổng Tri Thức:** `FINAL_VERDICT: REVIEW_CANDIDATE`.
+
+---
+
+## 17. HIỆU CHỈNH XUẤT XỨ WORKFLOW VÀ TÍNH TOÀN VẸN BẰNG CHỨNG (TASK_053) (2026-10-04)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_053 — TASK052A WORKFLOW PROVENANCE CORRECTION — ACTIVE` (Doc ID: `1pyTUdJZDlxhEGWGSq_mjxlBAtlohSHGeerSADm5vT7E`).
+- **Nội dung thực thi & giải quyết dứt điểm phán quyết NEEDS_FIX:**
+  1. *Đồng nhất định danh thực thi lệnh và Runner CI vật lý:*
+     - Khảo chứng và cập nhật mã thực thi GitHub Actions Run **`37210970250`** (Job ID **`111461926133`**, runner vật lý `CONVERT2-WINDOWS-03` tại `C:\actions-runner-03`, commit `f6955982f`), Integrator Run **`37211305362`**.
+     - Ghi nhận phiên continuation host trên `CONVERT2-WINDOWS-02` (lease token `3b56bf567c694b0a904bdc28357f5107`), triệt tiêu hoàn toàn run ID lỗi thời `37210153111`.
+  2. *Đính chính 11_MULTI_AGENT_LANE_PROVENANCE.md:*
+     - Thu hồi vĩnh viễn các mốc thời gian cũ `21:15–21:21` và tên worker giả định `CONVERT2-WORKER-LANE-A-ELF`...
+     - Cập nhật thời gian continuation thực tế: **`2026-10-04T22:31:17+07:00`** đến **`2026-10-04T22:41:07+07:00`** (9m 50s).
+     - Phân định rõ ràng: 7 sublanes là các **Logical Sublanes** tuần tự trong một tiến trình điều phối duy nhất trên runner `CONVERT2-WINDOWS-02`, không phải nhiều máy phần cứng riêng rẽ.
+  3. *Kiểm toán định lượng đối soát trực tiếp `raw_evidence/`:*
+     - Xuất bản tài liệu chuẩn `15_PASS_UNKNOWN_UNVERIFIED_EVIDENCE_MATRIX.md` phân loại trung thực 3 trạng thái:
+       + **PASS_VERIFIED:** 45/45 SHA-256 và GNU Build-ID; 9 thư viện cốt lõi có dump thô đầy đủ; 24/30 hàm trọng điểm; 6/14 liên kết XREF; 7/7 liên kết DEX/JNI; target commit `5cf745180`.
+       + **UNKNOWN:** 36 thư viện .so chưa trích xuất disassembly/symbol sâu (không dùng số liệu giả định).
+       + **UNVERIFIED / CLEANROOM_SPEC_ONLY:** 6 hàm decompile lý thuyết; 8 liên kết chuỗi FBO nội bộ; 7 hằng số / shader / mô hình đường dẫn ngoài; 4 đặc tả mã giả Clean-Room C++ (chưa đo đạc on-device).
+     - Cập nhật đồng bộ các tệp bảng biểu `02_`, `03_`, `05_`, `06_`, `07_`, `08_` CSV registries.
+  4. *Kiểm chứng biến động Target Commit 5cf745180:*
+     - Xác nhận đối soát với baseline `04bd58f27b1c835e3d8e9e5566abee44ed16222b`: **0 dòng mã sản xuất** bị can thiệp (`app/`, `lib-*`). Biến động chỉ gồm 19 tệp báo cáo, dữ liệu kiểm toán và script (1816 insertions, 462 deletions).
+  5. *Khảo chứng và phục hồi Report Drive Mirror:*
+     - Đóng gói toàn bộ 90 tệp báo cáo đã hiệu chỉnh vào `CONVERT2_TASK052A_REPORT_PACKAGE.zip` (1,412,298 bytes, SHA-256 `28ea7b8b14c3bc21b90e25f73624ecc64631af2decd659a9ad2d2ce11463017c`), lưu tại root repo và thư mục báo cáo.
+     - Quét thư mục Report Drive `13xDIqiI-vyP10pkypLI_6palmeJS-QRg` (4 mục hiện diện), kiểm tra cổng API và ghi nhận log HTTP 401 unauthenticated do thiếu write credentials. Cập nhật `13_REPORT_DRIVE_MIRROR_TRANSFER_MANIFEST.md`.
+  6. *Đóng gói báo cáo TASK_053:*
+     - Hoàn thành trọn bộ 8 tài liệu báo cáo tại `.ai/reports/TASK_053_TASK052A_WORKFLOW_PROVENANCE_CORRECTION/`.
+     - Đóng gói thành công `CONVERT2_TASK053_REPORT_PACKAGE.zip` (17,719 bytes, SHA-256 `66d3b9bb4ca891d7b8507686fbffe642d86d1acc7d13b8fb36547e8f64e07307`).
+  7. *Tái khẳng định khóa cứng cổng V4:*
+     - Duy trì nghiêm ngặt `V4_IMPLEMENTATION_GATE = BLOCKED` (`07_V4_GATE_BLOCK_AFFIRMATION.md`), tuyệt đối 0 dòng code V4 production được viết.
+- **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Đầy đủ bằng chứng thực tế, sẵn sàng cho kiểm duyệt độc lập).
+

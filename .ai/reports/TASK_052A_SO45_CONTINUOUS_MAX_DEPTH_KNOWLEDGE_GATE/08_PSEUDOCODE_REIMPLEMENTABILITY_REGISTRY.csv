@@ -1,5 +1,5 @@
 algorithm_id,algorithm_name,source_so,reimplementability_score,cleanroom_c_plus_plus_spec,validation_status
-ALG-HAIR-001,Directional Soft Hair Dyeing with Structure Tensor,libMTFilterKernel.so,100%,"// Clean-room C++ implementation of CMTFilterSoftHair
+ALG-HAIR-001,Directional Soft Hair Dyeing with Structure Tensor,libMTFilterKernel.so,ESTIMATED_100%_THEORETICAL,"// Clean-room C++ implementation of CMTFilterSoftHair
 void HairDyeEngine::renderSoftHair(const Framebuffer& srcFbo, const Texture2D& hairMask, const Vec4& dyeColor, float intensity) {
     // Pass 1: Extract Luminance FBO
     Framebuffer grayFbo = extractLuminance(srcFbo); // dot(rgb, [0.298912, 0.586611, 0.114478])
@@ -10,8 +10,8 @@ void HairDyeEngine::renderSoftHair(const Framebuffer& srcFbo, const Texture2D& h
     Framebuffer blurVFbo = gaussianBlur1D(blurHFbo, Vec2(0.0f, 1.0f/h), kGaussianWeights5);
     // Pass 5: Directional Line-Integral Anisotropic Composite with Pegtop SoftLight
     compositeAnisotropicPegtop(srcFbo, blurVFbo, hairMask, dyeColor, intensity, 0.4f /* unsharp */);
-}",VALIDATED_ON_DEVICE
-ALG-FACE-002,Facial Feature Protection Exclusion Mask (Zero Leakage),libMTFilterKernel.so,98%,"// Clean-room C++ implementation of CalEyeMouthEyeBrowMask
+}",CLEANROOM_SPEC_ONLY_UNVERIFIED_ON_DEVICE
+ALG-FACE-002,Facial Feature Protection Exclusion Mask (Zero Leakage),libMTFilterKernel.so,ESTIMATED_98%_THEORETICAL,"// Clean-room C++ implementation of CalEyeMouthEyeBrowMask
 void FaceProtectionEngine::generateExclusionMask(const Landmark106& lmk, Texture2D& outMask) {
     outMask.clear(0); // 0 = apply skin effect, 255 = protect
     // Rasterize convex hulls for Left Eye (lmk 52..71), Right Eye (lmk 72..91), Mouth (lmk 92..105)
@@ -20,8 +20,8 @@ void FaceProtectionEngine::generateExclusionMask(const Landmark106& lmk, Texture
     rasterizeConvexPolygon(lmk.getMouthContour(), 255, outMask);
     // Apply 3.5 px anti-aliased feathering to boundary
     boxBlurFeather(outMask, 3.5f);
-}",VALIDATED_ON_DEVICE
-ALG-SKIN-003,Skin Smoothing with Micro-Pore Texture Retention,libMTFilterKernel.so / libLayerFlow.so,95%,"// Clean-room C++ implementation of CMTDetailsFilter + GuidedFilter
+}",CLEANROOM_SPEC_ONLY_UNVERIFIED_ON_DEVICE
+ALG-SKIN-003,Skin Smoothing with Micro-Pore Texture Retention,libMTFilterKernel.so / libLayerFlow.so,ESTIMATED_95%_THEORETICAL,"// Clean-room C++ implementation of CMTDetailsFilter + GuidedFilter
 void SkinEngine::applySkinSmoothPreservePores(const Texture2D& src, const Texture2D& mask, float smoothLevel, float poreRetainLevel) {
     // 1. Bilateral / Guided Filter base smoothing
     Texture2D baseSmooth = guidedFilter(src, 8 /* radius */, 0.02f /* eps */);
@@ -31,8 +31,8 @@ void SkinEngine::applySkinSmoothPreservePores(const Texture2D& src, const Textur
     Texture2D smoothedWithPores = baseSmooth + highPassPores * std::clamp(poreRetainLevel, 0.75f, 1.25f);
     // 4. Alpha composite into original according to face mask
     blendWithMask(src, smoothedWithPores, mask, smoothLevel);
-}",VALIDATED_ON_DEVICE
-ALG-BODY-004,Skeleton-Guided Body Slimming with Zero Background Distortion,libarkernel3.so,92%,"// Clean-room C++ implementation of mtlabar3::BodySlimControl
+}",CLEANROOM_SPEC_ONLY_UNVERIFIED_ON_DEVICE
+ALG-BODY-004,Skeleton-Guided Body Slimming with Zero Background Distortion,libarkernel3.so,ESTIMATED_92%_THEORETICAL,"// Clean-room C++ implementation of mtlabar3::BodySlimControl
 bool BodySlimEngine::applyBodySlim(Image& img, const BodyPose17& pose, float waistSlim, float legLength) {
     if (!pose.hasLegsVisible()) return false; // Hard safety check: Bust portraits no-op
     // Build bone segment bounding cylinders (Waist: Hip-Shoulder axis, Legs: Knee-Ankle axis)
@@ -43,4 +43,4 @@ bool BodySlimEngine::applyBodySlim(Image& img, const BodyPose17& pose, float wai
     mesh.attenuateOuterBoundary(img.width, img.height, 32 /* margin px */);
     // Bicubic subpixel texture warp
     return warpImageBicubic(img, mesh);
-}",VALIDATED_ON_DEVICE
+}",CLEANROOM_SPEC_ONLY_UNVERIFIED_ON_DEVICE

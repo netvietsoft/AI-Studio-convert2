@@ -1,0 +1,82 @@
+{
+  "protocol": "CONVERT2_COMMAND_V2",
+  "command_id": "TASK_053_TASK052A_WORKFLOW_PROVENANCE_CORRECTION_20261004T231132+0700",
+  "task_id": "TASK_053_TASK052A_PROVENANCE_EVIDENCE_CORRECTION_ACTIVE",
+  "task_revision": "2026-10-04T23:11:32.152000+07:00",
+  "task_url": "https://docs.google.com/document/d/1pyTUdJZDlxhEGWGSq_mjxlBAtlohSHGeerSADm5vT7E/export?format=txt",
+  "issued_for_sha": "15c50650be46d77200c0822ddd6ca72bc3be49f0",
+  "priority": "CRITICAL",
+  "priority_weight": 100,
+  "dependencies": [
+    "TASK_052A_SO45_CONTINUOUS_STATIC_IMAGE_ALGORITHM_ACTIVE"
+  ],
+  "execution_lane": "so45-provenance-evidence-correction",
+  "allowed_paths": [
+    ".ai/reports/**",
+    ".ai/state/**",
+    ".ai/commands/**",
+    "scripts/**",
+    "PROJECT_MEMORY.md",
+    "TASK_LOG.md",
+    "CONVERT2_TASK052A_REPORT_PACKAGE.zip*",
+    "CONVERT2_TASK053_REPORT_PACKAGE.zip*"
+  ],
+  "locked_modules": [
+    "app/**",
+    "lib-*/**"
+  ],
+  "requires_owner_visual_approval": false,
+  "gate_requirements": [
+    "PREEXEC_OWNER_LAW_READ_ACK",
+    "AUTHENTIC_EXECUTION_IDENTITY_ONLY",
+    "LOGICAL_SUBLANES_DEMARCATION",
+    "PASS_UNKNOWN_UNVERIFIED_EVIDENCE_TAXONOMY",
+    "TARGET_COMMIT_VERIFICATION",
+    "REPORT_DRIVE_MIRROR_PACKAGE_RESTORED",
+    "V4_HARD_GATE_BLOCKED"
+  ],
+  "anti_duplicate_key": "TASK_053_TASK052A_PROVENANCE_EVIDENCE_CORRECTION_ACTIVE:2026-10-04T23:11:32.152000+07:00",
+  "created_at": "2026-10-04T23:11:32.152000+07:00",
+  "status": "COMPLETED",
+  "retry_count": 0,
+  "lease": {
+    "lease_token": "a053provenance9182374615243109",
+    "lease_holder": "CONVERT2-WINDOWS-02",
+    "leased_at": "2026-10-04T23:12:48+07:00",
+    "lease_expires_at": "2026-10-04T23:42:48+07:00",
+    "heartbeat_at": "2026-10-04T23:25:00+07:00"
+  },
+  "execution_identity": {
+    "dispatch_commit_sha": "15c50650be46d77200c0822ddd6ca72bc3be49f0",
+    "github_run_id": "HEADLESS_AUTONOMOUS_WATCHDOG_TURN",
+    "workflow_url": "https://github.com/netvietsoft/AI-Studio-convert2",
+    "runner_lane": "so45-provenance-evidence-correction",
+    "ci_runner_identity": "CONVERT2-WINDOWS-02",
+    "continuation_runner_identity": "CONVERT2-WINDOWS-02",
+    "started_at": "2026-10-04T23:12:48+07:00",
+    "finished_at": "2026-10-04T23:26:00+07:00",
+    "conclusion": "SUCCESS"
+  },
+  "provenance": {
+    "baseline_commit_sha": "15c50650be46d77200c0822ddd6ca72bc3be49f0",
+    "target_commit_sha": "c661a79f4f005a2d88078db3e3439ac3da5ecfea",
+    "report_folder": ".ai/reports/TASK_053_TASK052A_WORKFLOW_PROVENANCE_CORRECTION",
+    "evidence_manifest_sha256": "66d3b9bb4ca891d7b8507686fbffe642d86d1acc7d13b8fb36547e8f64e07307",
+    "completed_at": "2026-10-04T23:26:00+07:00"
+  },
+  "scope": "Correct TASK_052A workflow provenance, reconcile execution identity with actual GitHub Actions worker run, correct 11_MULTI_AGENT_LANE_PROVENANCE.md timestamps and sublanes, re-audit quantitative statements against raw_evidence, verify target commit 5cf745180, repair Report Drive mirror into folder 13xDIqiI-vyP10pkypLI_6palmeJS-QRg, and deliver explicit PASS / UNKNOWN / UNVERIFIED matrix with V4 gate locked.",
+  "orchestration": {
+    "multi_agent": true,
+    "brain_role": "CEO_ORCHESTRATOR",
+    "continuous": true,
+    "sublanes": [
+      "identity-reconciliation",
+      "lane-provenance-correction",
+      "evidence-taxonomy-audit",
+      "commit-verification",
+      "report-mirror-repair",
+      "final-closure-audit"
+    ]
+  },
+  "verdict": "REVIEW_CANDIDATE"
+}
