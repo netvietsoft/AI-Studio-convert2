@@ -83,3 +83,16 @@
   3. Cập nhật trạng thái `.ai/state.json` thành `BLOCKED_EXTERNAL_AUTH` một cách minh bạch, nhất quán trên mọi trường dữ liệu.
 - **Quy tắc phòng ngừa:** TUYỆT ĐỐI KHÔNG gán cứng `verdict = PASS` trong bất kỳ orchestrator hoặc script nào. Trạng thái phán quyết tối cao phải là hàm phụ thuộc có kiểm chứng thực nghiệm của 100% các cổng nghiệm thu.
 
+---
+
+### [ERR-009] Mâu thuẫn danh tính nhị phân và lỗ hổng bằng chứng thô trong chuỗi decompiler (TASK_051 / TASK_052A)
+- **Thời điểm phát hiện:** 2026-10-04 trong chu kỳ kiểm toán tự trị `TASK_052A`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong `TASK_051`, script khởi tạo dữ liệu vô tình copy-paste mã băm lạ (`4b54e7d7ff6b2bc2fa8f21919865ffb528b1767b4478d38e78beabdc7ad1fba9`) và Build-ID (`4020a109...`) vào `03_FUNCTION_MASTER_REGISTRY.csv`, mâu thuẫn với tệp nhị phân gốc trên đĩa và ma trận `02_45_SO_MASTER_MATURITY_MATRIX.csv`.
+  2. Thư mục `raw_evidence/` của TASK_051 chỉ chứa tệp `README.txt` 196 bytes, thiếu bằng chứng thô (ELF header, dynamic demangled symbols, XREFs, assembly traces) từ các tác vụ tiền nhiệm.
+- **Giải pháp triệt để:**
+  1. Thu hồi và loại bỏ hoàn toàn mã băm `4b54e7d7...`. Khóa chặt danh tính nhị phân duy nhất của `libMTFilterKernel.so`: SHA-256 `f938fe73095fceba72875d1ab42f8aeb6a9f31f3933831bec070404c0e7ecac4`, GNU Build-ID `05d25f33b47237df48aab961ae026386d69fa8eb`, kích thước 1,858,440 bytes.
+  2. Sao chép và tổ chức lại toàn bộ 73 tệp hiện vật bằng chứng thô thực tế vào `raw_evidence/` và lập `RAW_EVIDENCE_MANIFEST.json` với mã băm bitwise SHA-256 độc lập.
+- **Quy tắc phòng ngừa:** Mọi báo cáo tái cấu trúc nhị phân bắt buộc phải có bước tiền kiểm tra băm tự động đối chiếu trực tiếp với tệp `.so` trong `jniLibs/arm64-v8a` trước khi xuất xưởng bảng phân loại hàm.
+
+

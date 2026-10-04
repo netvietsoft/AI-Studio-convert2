@@ -1,0 +1,5 @@
+so_name,evidence_type,identifier,rodata_offset,byte_length,content_snippet,mathematical_purpose,pipeline_stage,confidence
+libMTFilterKernel.so,GLSL_FRAGMENT_SHADER,MTSoftHair_GrayFilter,0x804fc,215,"dot(color.rgb, vec3(0.298912, 0.586611, 0.114478));",ITU-R BT.601 Grayscale Luminance extraction,HAIR_COLOR_P0_PASS1,PROVEN
+libMTFilterKernel.so,GLSL_FRAGMENT_SHADER,MTSoftHair_TensorField,0x89635,789,"gradDouble = vec2(grad2.x - grad2.y, 2.0 * grad.x * grad.y) / gradLen2;",2D Structure Tensor & Double-Angle Orientation field,HAIR_COLOR_P0_PASS2,PROVEN
+libMTFilterKernel.so,RODATA_FLOAT_ARRAY,GaussianWeights_5Tap,0x0008edd8,20,"[0.159676, 0.263348, 0.122118, 0.030573, 0.004122]",Separable 1D Gaussian kernel for Tensor smoothing,HAIR_COLOR_P0_PASS3_4,PROVEN
+libMTFilterKernel.so,GLSL_FUNCTION,Pegtop_SoftLight,0x82369,312,(1.0 - 2.0*b)*a*a + 2.0*b*a;,Pegtop soft light mathematical blend for hair dye realism,HAIR_COLOR_P0_PASS5,PROVEN

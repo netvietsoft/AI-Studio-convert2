@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaidetectionplugin.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000003e970 <.text>:
+   3e970:      	bti	c
+   3e974:      	nop
+   3e978:      	adr	x0, 0x81dc0
+   3e97c:      	b	0x79900 <__cxa_finalize@plt>
+   3e980:      	bti	c
+   3e984:      	ret
+   3e988:      	bti	c
+   3e98c:      	b	0x3e980 <.text+0x10>
+   3e990:      	bti	c
+   3e994:      	cbz	x0, 0x3e9a0 <.text+0x30>
+   3e998:      	mov	x16, x0
+   3e99c:      	br	x16
+   3e9a0:      	ret
+   3e9a4:      	bti	c
+   3e9a8:      	mov	x1, x0
+   3e9ac:      	nop
+   3e9b0:      	adr	x0, 0x3e990 <.text+0x20>
+   3e9b4:      	nop
+   3e9b8:      	adr	x2, 0x81dc0
+   3e9bc:      	b	0x79910 <__cxa_atexit@plt>
+
+000000000003e9c0 <AIDetectorDynamicPlugin_ExitFunc>:
+   3e9c0:      	mov	w0, wzr
+   3e9c4:      	ret
+
+000000000003e9c8 <AIDetectorDynamicPlugin_InitPlugin>:
+   3e9c8:      	sub	sp, sp, #0x50
+   3e9cc:      	stp	x29, x30, [sp, #0x30]
+   3e9d0:      	str	x19, [sp, #0x40]
+   3e9d4:      	add	x29, sp, #0x30
+   3e9d8:      	mrs	x19, TPIDR_EL0
+   3e9dc:      	adrp	x9, 0x2f000
+   3e9e0:      	mov	x1, sp
+   3e9e4:      	ldr	x8, [x19, #0x28]
+   3e9e8:      	ldr	d0, [x9, #0x8c0]
+   3e9ec:      	mov	w9, #0x3                // =3
+   3e9f0:      	stur	x8, [x29, #-0x8]
+   3e9f4:      	mov	w8, #0x1                // =1
+   3e9f8:      	ldr	x10, [x0, #0x10]
+   3e9fc:      	str	w9, [sp, #0x8]
+   3ea00:      	nop
+   3ea04:      	adr	x9, 0x3eaa4 <AIDetectorDynamicPlugin_InitPlugin+0xdc>
+   3ea08:      	str	w8, [sp, #0x20]
+   3ea0c:      	nop
+   3ea10:      	adr	x8, 0x3ed44 <AIDetectorDynamicPlugin_InitPlugin+0x37c>
+   3ea14:      	nop
+   3ea18:      	adr	x0, 0x31668
+   3ea1c:      	str	d0, [sp]
+   3ea20:      	stp	x9, x8, [sp, #0x10]
+   3ea24:      	blr	x10
+   3ea28:      	tbnz	w0, #0x1f, 0x3ea38 <AIDetectorDynamicPlugin_InitPlugin+0x70>
+   3ea2c:      	adrp	x0, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ea30:      	ldr	x0, [x0, #0xd40]
+   3ea34:      	b	0x3ea80 <AIDetectorDynamicPlugin_InitPlugin+0xb8>
+   3ea38:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ea3c:      	ldr	x8, [x8, #0xd50]
+   3ea40:      	ldr	w8, [x8]
+   3ea44:      	cmp	w8, #0x5
+   3ea48:      	b.gt	0x3ea7c <AIDetectorDynamicPlugin_InitPlugin+0xb4>
+   3ea4c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ea50:      	adrp	x3, 0x30000
+   3ea54:      	add	x3, x3, #0x8b2
+   3ea58:      	ldr	x8, [x8, #0xd58]
+   3ea5c:      	adrp	x1, 0x30000
+   3ea60:      	add	x1, x1, #0x45
+   3ea64:      	adrp	x2, 0x2f000
+   3ea68:      	add	x2, x2, #0xb21
+   3ea6c:      	mov	w4, #0x44               // =68
+   3ea70:      	ldr	w0, [x8, #0x14]
+   3ea74:      	mov	x5, x3
+   3ea78:      	bl	0x79920 <__android_log_print@plt>
+   3ea7c:      	mov	x0, xzr
+   3ea80:      	ldr	x8, [x19, #0x28]
+   3ea84:      	ldur	x9, [x29, #-0x8]
+   3ea88:      	cmp	x8, x9
+   3ea8c:      	b.ne	0x3eaa0 <AIDetectorDynamicPlugin_InitPlugin+0xd8>
+   3ea90:      	ldp	x29, x30, [sp, #0x30]
+   3ea94:      	ldr	x19, [sp, #0x40]
+   3ea98:      	add	sp, sp, #0x50
+   3ea9c:      	ret
+   3eaa0:      	bl	0x79930 <__stack_chk_fail@plt>
+   3eaa4:      	sub	sp, sp, #0x180
+   3eaa8:      	stp	x29, x30, [sp, #0x140]
+   3eaac:      	stp	x28, x23, [sp, #0x150]
+   3eab0:      	stp	x22, x21, [sp, #0x160]
+   3eab4:      	stp	x20, x19, [sp, #0x170]
+   3eab8:      	add	x29, sp, #0x140
+   3eabc:      	mrs	x22, TPIDR_EL0
+   3eac0:      	adrp	x20, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3eac4:      	mov	x19, x0
+   3eac8:      	ldr	x8, [x22, #0x28]
+   3eacc:      	ldr	x20, [x20, #0xd50]
+   3ead0:      	stur	x8, [x29, #-0x8]
+   3ead4:      	ldr	w8, [x20]
+   3ead8:      	cmp	w8, #0x5
+   3eadc:      	b.gt	0x3eb10 <AIDetectorDynamicPlugin_InitPlugin+0x148>
+   3eae0:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3eae4:      	adrp	x1, 0x30000
+   3eae8:      	add	x1, x1, #0x45
+   3eaec:      	ldr	x8, [x8, #0xd58]
+   3eaf0:      	adrp	x2, 0x31000
+   3eaf4:      	add	x2, x2, #0x580
+   3eaf8:      	adrp	x3, 0x31000
+   3eafc:      	add	x3, x3, #0x89c
+   3eb00:      	mov	w4, #0xf                // =15
+   3eb04:      	ldr	w0, [x8, #0x14]
+   3eb08:      	mov	x5, x19
+   3eb0c:      	bl	0x79920 <__android_log_print@plt>
+   3eb10:      	cbz	x19, 0x3eb28 <AIDetectorDynamicPlugin_InitPlugin+0x160>
+   3eb14:      	ldr	x0, [x19]
+   3eb18:      	nop
+   3eb1c:      	adr	x1, 0x31668
+   3eb20:      	bl	0x79940 <strcmp@plt>
+   3eb24:      	cbz	w0, 0x3eb6c <AIDetectorDynamicPlugin_InitPlugin+0x1a4>
+   3eb28:      	ldr	w8, [x20]
+   3eb2c:      	cmp	w8, #0x5
+   3eb30:      	b.gt	0x3eb64 <AIDetectorDynamicPlugin_InitPlugin+0x19c>
+   3eb34:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3eb38:      	adrp	x3, 0x31000
+   3eb3c:      	add	x3, x3, #0x89c
+   3eb40:      	ldr	x8, [x8, #0xd58]
+   3eb44:      	adrp	x1, 0x30000
+   3eb48:      	add	x1, x1, #0x45
+   3eb4c:      	adrp	x2, 0x30000
+   3eb50:      	add	x2, x2, #0x713
+   3eb54:      	mov	w4, #0x1c               // =28
+   3eb58:      	ldr	w0, [x8, #0x14]
+   3eb5c:      	mov	x5, x3
+   3eb60:      	bl	0x79920 <__android_log_print@plt>
+   3eb64:      	mov	x0, xzr
+   3eb68:      	b	0x3ecac <AIDetectorDynamicPlugin_InitPlugin+0x2e4>
+   3eb6c:      	nop
+   3eb70:      	adr	x0, 0x89350
+   3eb74:      	bl	0x79950 <_ZNSt6__ndk15mutex4lockEv@plt>
+   3eb78:      	adrp	x23, 0x89000
+   3eb7c:      	ldr	w8, [x23, #0x378]
+   3eb80:      	cbnz	w8, 0x3eb8c <AIDetectorDynamicPlugin_InitPlugin+0x1c4>
+   3eb84:      	bl	0x79960 <vlai_init@plt>
+   3eb88:      	ldr	w8, [x23, #0x378]
+   3eb8c:      	add	w8, w8, #0x1
+   3eb90:      	str	w8, [x23, #0x378]
+   3eb94:      	mov	w0, #0x130              // =304
+   3eb98:      	bl	0x79970 <_Znwm@plt>
+   3eb9c:      	mov	x19, x0
+   3eba0:      	bl	0x79980 <_ZN17MMDetectionPlugin10AIDetectorC1Ev@plt>
+   3eba4:      	add	x0, sp, #0x20
+   3eba8:      	add	x21, sp, #0x20
+   3ebac:      	bl	0x3ef78 <AIDetectorDynamicPlugin_InitPlugin+0x5b0>
+   3ebb0:      	bl	0x79990 <pthread_self@plt>
+   3ebb4:      	mov	x1, x0
+   3ebb8:      	add	x0, x21, #0x10
+   3ebbc:      	bl	0x3f09c <AIDetectorDynamicPlugin_InitPlugin+0x6d4>
+   3ebc0:      	ldr	w8, [x20]
+   3ebc4:      	cmp	w8, #0x5
+   3ebc8:      	b.gt	0x3ec40 <AIDetectorDynamicPlugin_InitPlugin+0x278>
+   3ebcc:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ebd0:      	add	x9, sp, #0x20
+   3ebd4:      	ldr	x8, [x8, #0xd58]
+   3ebd8:      	ldr	w20, [x23, #0x378]
+   3ebdc:      	ldr	w21, [x8, #0x14]
+   3ebe0:      	add	x8, sp, #0x8
+   3ebe4:      	add	x0, x9, #0x18
+   3ebe8:      	add	x23, sp, #0x8
+   3ebec:      	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3ebf0:      	ldrb	w8, [sp, #0x8]
+   3ebf4:      	ldr	x9, [sp, #0x18]
+   3ebf8:      	orr	x10, x23, #0x1
+   3ebfc:      	tst	w8, #0x1
+   3ec00:      	csel	x7, x10, x9, eq
+   3ec04:      	adrp	x1, 0x30000
+   3ec08:      	add	x1, x1, #0x45
+   3ec0c:      	adrp	x2, 0x30000
+   3ec10:      	add	x2, x2, #0xe53
+   3ec14:      	adrp	x3, 0x31000
+   3ec18:      	add	x3, x3, #0x89c
+   3ec1c:      	mov	w0, w21
+   3ec20:      	mov	w4, #0x19               // =25
+   3ec24:      	mov	w5, w20
+   3ec28:      	mov	x6, x19
+   3ec2c:      	bl	0x79920 <__android_log_print@plt>
+   3ec30:      	ldrb	w8, [sp, #0x8]
+   3ec34:      	tbz	w8, #0x0, 0x3ec40 <AIDetectorDynamicPlugin_InitPlugin+0x278>
+   3ec38:      	ldr	x0, [sp, #0x18]
+   3ec3c:      	bl	0x799b0 <_ZdlPv@plt>
+   3ec40:      	adrp	x20, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ec44:      	add	x21, sp, #0x20
+   3ec48:      	ldr	x20, [x20, #0xd60]
+   3ec4c:      	ldr	x8, [x20]
+   3ec50:      	ldp	x9, x10, [x20, #0x40]
+   3ec54:      	str	x8, [sp, #0x20]
+   3ec58:      	ldur	x8, [x8, #-0x18]
+   3ec5c:      	str	x9, [x21, x8]
+   3ec60:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ec64:      	ldr	x8, [x8, #0xd68]
+   3ec68:      	ldrb	w9, [sp, #0x78]
+   3ec6c:      	add	x8, x8, #0x10
+   3ec70:      	stp	x10, x8, [sp, #0x30]
+   3ec74:      	tbz	w9, #0x0, 0x3ec80 <AIDetectorDynamicPlugin_InitPlugin+0x2b8>
+   3ec78:      	ldr	x0, [sp, #0x88]
+   3ec7c:      	bl	0x799b0 <_ZdlPv@plt>
+   3ec80:      	add	x0, x21, #0x18
+   3ec84:      	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec88:      	add	x0, sp, #0x20
+   3ec8c:      	add	x1, x20, #0x8
+   3ec90:      	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec94:      	add	x0, x21, #0x80
+   3ec98:      	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec9c:      	nop
+   3eca0:      	adr	x0, 0x89350
+   3eca4:      	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3eca8:      	mov	x0, x19
+   3ecac:      	ldr	x8, [x22, #0x28]
+   3ecb0:      	ldur	x9, [x29, #-0x8]
+   3ecb4:      	cmp	x8, x9
+   3ecb8:      	b.ne	0x3ed40 <AIDetectorDynamicPlugin_InitPlugin+0x378>
+   3ecbc:      	ldp	x20, x19, [sp, #0x170]
+   3ecc0:      	ldp	x22, x21, [sp, #0x160]
+   3ecc4:      	ldp	x28, x23, [sp, #0x150]
+   3ecc8:      	ldp	x29, x30, [sp, #0x140]
+   3eccc:      	add	sp, sp, #0x180
+   3ecd0:      	ret
+   3ecd4:      	b	0x3ed18 <AIDetectorDynamicPlugin_InitPlugin+0x350>
+   3ecd8:      	ldrb	w8, [sp, #0x8]
+   3ecdc:      	mov	x20, x0
+   3ece0:      	tbz	w8, #0x0, 0x3ecf8 <AIDetectorDynamicPlugin_InitPlugin+0x330>
+   3ece4:      	ldr	x0, [sp, #0x18]
+   3ece8:      	bl	0x799b0 <_ZdlPv@plt>
+   3ecec:      	b	0x3ecf8 <AIDetectorDynamicPlugin_InitPlugin+0x330>
+   3ecf0:      	b	0x3ecf4 <AIDetectorDynamicPlugin_InitPlugin+0x32c>
+   3ecf4:      	mov	x20, x0
+   3ecf8:      	add	x0, sp, #0x20
+   3ecfc:      	bl	0x79a00 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3ed00:      	b	0x3ed1c <AIDetectorDynamicPlugin_InitPlugin+0x354>
+   3ed04:      	b	0x3ed18 <AIDetectorDynamicPlugin_InitPlugin+0x350>
+   3ed08:      	mov	x20, x0
+   3ed0c:      	mov	x0, x19
+   3ed10:      	bl	0x799b0 <_ZdlPv@plt>
+   3ed14:      	b	0x3ed1c <AIDetectorDynamicPlugin_InitPlugin+0x354>
+   3ed18:      	mov	x20, x0
+   3ed1c:      	nop
+   3ed20:      	adr	x0, 0x89350
+   3ed24:      	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3ed28:      	ldr	x8, [x22, #0x28]
+   3ed2c:      	ldur	x9, [x29, #-0x8]
+   3ed30:      	cmp	x8, x9
+   3ed34:      	b.ne	0x3ed40 <AIDetectorDynamicPlugin_InitPlugin+0x378>
+   3ed38:      	mov	x0, x20
+   3ed3c:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3ed40:      	bl	0x79930 <__stack_chk_fail@plt>
+   3ed44:      	sub	sp, sp, #0x180
+   3ed48:      	stp	x29, x30, [sp, #0x140]
+   3ed4c:      	stp	x28, x23, [sp, #0x150]
+   3ed50:      	stp	x22, x21, [sp, #0x160]
+   3ed54:      	stp	x20, x19, [sp, #0x170]
+   3ed58:      	add	x29, sp, #0x140
+   3ed5c:      	mrs	x22, TPIDR_EL0
+   3ed60:      	ldr	x8, [x22, #0x28]
+   3ed64:      	stur	x8, [x29, #-0x8]
+   3ed68:      	cbz	x0, 0x3eeb0 <AIDetectorDynamicPlugin_InitPlugin+0x4e8>
+   3ed6c:      	mov	x19, x0
+   3ed70:      	nop
+   3ed74:      	adr	x0, 0x89350
+   3ed78:      	bl	0x79950 <_ZNSt6__ndk15mutex4lockEv@plt>
+   3ed7c:      	ldr	x8, [x19]
+   3ed80:      	mov	x0, x19
+   3ed84:      	ldr	x8, [x8, #0x8]
+   3ed88:      	blr	x8
+   3ed8c:      	adrp	x20, 0x89000
+   3ed90:      	ldr	w8, [x20, #0x378]
+   3ed94:      	sub	w8, w8, #0x1
+   3ed98:      	str	w8, [x20, #0x378]
+   3ed9c:      	add	x0, sp, #0x20
+   3eda0:      	add	x21, sp, #0x20
+   3eda4:      	bl	0x3ef78 <AIDetectorDynamicPlugin_InitPlugin+0x5b0>
+   3eda8:      	bl	0x79990 <pthread_self@plt>
+   3edac:      	mov	x1, x0
+   3edb0:      	add	x0, x21, #0x10
+   3edb4:      	bl	0x3f09c <AIDetectorDynamicPlugin_InitPlugin+0x6d4>
+   3edb8:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3edbc:      	ldr	x8, [x8, #0xd50]
+   3edc0:      	ldr	w8, [x8]
+   3edc4:      	cmp	w8, #0x5
+   3edc8:      	b.gt	0x3ee40 <AIDetectorDynamicPlugin_InitPlugin+0x478>
+   3edcc:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3edd0:      	add	x9, sp, #0x20
+   3edd4:      	ldr	x8, [x8, #0xd58]
+   3edd8:      	ldr	w20, [x20, #0x378]
+   3eddc:      	ldr	w21, [x8, #0x14]
+   3ede0:      	add	x8, sp, #0x8
+   3ede4:      	add	x0, x9, #0x18
+   3ede8:      	add	x23, sp, #0x8
+   3edec:      	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3edf0:      	ldrb	w8, [sp, #0x8]
+   3edf4:      	ldr	x9, [sp, #0x18]
+   3edf8:      	orr	x10, x23, #0x1
+   3edfc:      	tst	w8, #0x1
+   3ee00:      	csel	x7, x10, x9, eq
+   3ee04:      	adrp	x1, 0x30000
+   3ee08:      	add	x1, x1, #0x45
+   3ee0c:      	adrp	x2, 0x2f000
+   3ee10:      	add	x2, x2, #0xe9c
+   3ee14:      	adrp	x3, 0x31000
+   3ee18:      	add	x3, x3, #0x8ad
+   3ee1c:      	mov	w0, w21
+   3ee20:      	mov	w4, #0x27               // =39
+   3ee24:      	mov	w5, w20
+   3ee28:      	mov	x6, x19
+   3ee2c:      	bl	0x79920 <__android_log_print@plt>
+   3ee30:      	ldrb	w8, [sp, #0x8]
+   3ee34:      	tbz	w8, #0x0, 0x3ee40 <AIDetectorDynamicPlugin_InitPlugin+0x478>
+   3ee38:      	ldr	x0, [sp, #0x18]
+   3ee3c:      	bl	0x799b0 <_ZdlPv@plt>
+   3ee40:      	adrp	x19, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ee44:      	add	x20, sp, #0x20
+   3ee48:      	ldr	x19, [x19, #0xd60]
+   3ee4c:      	ldr	x8, [x19]
+   3ee50:      	ldp	x9, x10, [x19, #0x40]
+   3ee54:      	str	x8, [sp, #0x20]
+   3ee58:      	ldur	x8, [x8, #-0x18]
+   3ee5c:      	str	x9, [x20, x8]
+   3ee60:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ee64:      	ldr	x8, [x8, #0xd68]
+   3ee68:      	ldrb	w9, [sp, #0x78]
+   3ee6c:      	add	x8, x8, #0x10
+   3ee70:      	stp	x10, x8, [sp, #0x30]
+   3ee74:      	tbz	w9, #0x0, 0x3ee80 <AIDetectorDynamicPlugin_InitPlugin+0x4b8>
+   3ee78:      	ldr	x0, [sp, #0x88]
+   3ee7c:      	bl	0x799b0 <_ZdlPv@plt>
+   3ee80:      	add	x0, x20, #0x18
+   3ee84:      	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee88:      	add	x0, sp, #0x20
+   3ee8c:      	add	x1, x19, #0x8
+   3ee90:      	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee94:      	add	x0, x20, #0x80
+   3ee98:      	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee9c:      	nop
+   3eea0:      	adr	x0, 0x89350
+   3eea4:      	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3eea8:      	mov	w0, wzr
+   3eeac:      	b	0x3eef8 <AIDetectorDynamicPlugin_InitPlugin+0x530>
+   3eeb0:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3eeb4:      	ldr	x8, [x8, #0xd50]
+   3eeb8:      	ldr	w8, [x8]
+   3eebc:      	cmp	w8, #0x5
+   3eec0:      	b.gt	0x3eef4 <AIDetectorDynamicPlugin_InitPlugin+0x52c>
+   3eec4:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3eec8:      	adrp	x3, 0x31000
+   3eecc:      	add	x3, x3, #0x8ad
+   3eed0:      	ldr	x8, [x8, #0xd58]
+   3eed4:      	adrp	x1, 0x30000
+   3eed8:      	add	x1, x1, #0x45
+   3eedc:      	adrp	x2, 0x30000
+   3eee0:      	add	x2, x2, #0x713
+   3eee4:      	mov	w4, #0x2d               // =45
+   3eee8:      	ldr	w0, [x8, #0x14]
+   3eeec:      	mov	x5, x3
+   3eef0:      	bl	0x79920 <__android_log_print@plt>
+   3eef4:      	mov	w0, #-0x1               // =-1
+   3eef8:      	ldr	x8, [x22, #0x28]
+   3eefc:      	ldur	x9, [x29, #-0x8]
+   3ef00:      	cmp	x8, x9
+   3ef04:      	b.ne	0x3ef74 <AIDetectorDynamicPlugin_InitPlugin+0x5ac>
+   3ef08:      	ldp	x20, x19, [sp, #0x170]
+   3ef0c:      	ldp	x22, x21, [sp, #0x160]
+   3ef10:      	ldp	x28, x23, [sp, #0x150]
+   3ef14:      	ldp	x29, x30, [sp, #0x140]
+   3ef18:      	add	sp, sp, #0x180
+   3ef1c:      	ret
+   3ef20:      	ldrb	w8, [sp, #0x8]
+   3ef24:      	mov	x19, x0
+   3ef28:      	tbz	w8, #0x0, 0x3ef40 <AIDetectorDynamicPlugin_InitPlugin+0x578>
+   3ef2c:      	ldr	x0, [sp, #0x18]
+   3ef30:      	bl	0x799b0 <_ZdlPv@plt>
+   3ef34:      	b	0x3ef40 <AIDetectorDynamicPlugin_InitPlugin+0x578>
+   3ef38:      	b	0x3ef3c <AIDetectorDynamicPlugin_InitPlugin+0x574>
+   3ef3c:      	mov	x19, x0
+   3ef40:      	add	x0, sp, #0x20
+   3ef44:      	bl	0x79a00 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3ef48:      	b	0x3ef50 <AIDetectorDynamicPlugin_InitPlugin+0x588>
+   3ef4c:      	mov	x19, x0
+   3ef50:      	nop
+   3ef54:      	adr	x0, 0x89350
+   3ef58:      	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3ef5c:      	ldr	x8, [x22, #0x28]
+   3ef60:      	ldur	x9, [x29, #-0x8]
+   3ef64:      	cmp	x8, x9
+   3ef68:      	b.ne	0x3ef74 <AIDetectorDynamicPlugin_InitPlugin+0x5ac>
+   3ef6c:      	mov	x0, x19
+   3ef70:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3ef74:      	bl	0x79930 <__stack_chk_fail@plt>
+   3ef78:      	stp	x29, x30, [sp, #-0x50]!
+   3ef7c:      	stp	x26, x25, [sp, #0x10]
+   3ef80:      	stp	x24, x23, [sp, #0x20]
+   3ef84:      	stp	x22, x21, [sp, #0x30]
+   3ef88:      	stp	x20, x19, [sp, #0x40]
+   3ef8c:      	mov	x29, sp
+   3ef90:      	adrp	x23, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ef94:      	adrp	x22, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ef98:      	mov	x20, x0
+   3ef9c:      	ldr	x23, [x23, #0xd70]
+   3efa0:      	ldr	x22, [x22, #0xd60]
+   3efa4:      	mov	x26, x0
+   3efa8:      	mov	x19, x0
+   3efac:      	ldr	x8, [x22, #0x10]
+   3efb0:      	add	x24, x23, #0x68
+   3efb4:      	add	x25, x23, #0x40
+   3efb8:      	str	x24, [x20, #0x80]!
+   3efbc:      	ldr	x9, [x22, #0x18]
+   3efc0:      	str	x25, [x26, #0x10]!
+   3efc4:      	str	x8, [x0]
+   3efc8:      	ldur	x8, [x8, #-0x18]
+   3efcc:      	str	xzr, [x0, #0x8]
+   3efd0:      	str	x9, [x0, x8]
+   3efd4:      	ldr	x8, [x0]
+   3efd8:      	ldur	x8, [x8, #-0x18]
+   3efdc:      	add	x21, x0, x8
+   3efe0:      	add	x1, x0, #0x18
+   3efe4:      	mov	x0, x21
+   3efe8:      	bl	0x79a10 <_ZNSt6__ndk18ios_base4initEPv@plt>
+   3efec:      	ldr	x9, [x22, #0x20]
+   3eff0:      	mov	w8, #-0x1               // =-1
+   3eff4:      	str	xzr, [x21, #0x88]
+   3eff8:      	str	w8, [x21, #0x90]
+   3effc:      	ldr	x10, [x22, #0x8]
+   3f000:      	ldr	x8, [x22, #0x28]
+   3f004:      	str	x9, [x19, #0x10]
+   3f008:      	ldur	x9, [x9, #-0x18]
+   3f00c:      	str	x8, [x26, x9]
+   3f010:      	ldr	x9, [x22, #0x30]
+   3f014:      	str	x10, [x19]
+   3f018:      	ldur	x8, [x10, #-0x18]
+   3f01c:      	add	x10, x23, #0x18
+   3f020:      	str	x9, [x19, x8]
+   3f024:      	str	x10, [x19]
+   3f028:      	str	x24, [x19, #0x80]
+   3f02c:      	str	x25, [x19, #0x10]
+   3f030:      	add	x0, x19, #0x18
+   3f034:      	bl	0x79a20 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEEC2Ev@plt>
+   3f038:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f03c:      	movi	v0.2d, #0000000000000000
+   3f040:      	ldr	x8, [x8, #0xd68]
+   3f044:      	add	x8, x8, #0x10
+   3f048:      	str	x8, [x19, #0x18]
+   3f04c:      	mov	w8, #0x18               // =24
+   3f050:      	stur	q0, [x19, #0x58]
+   3f054:      	stur	q0, [x19, #0x68]
+   3f058:      	str	w8, [x19, #0x78]
+   3f05c:      	ldp	x20, x19, [sp, #0x40]
+   3f060:      	ldp	x22, x21, [sp, #0x30]
+   3f064:      	ldp	x24, x23, [sp, #0x20]
+   3f068:      	ldp	x26, x25, [sp, #0x10]
+   3f06c:      	ldp	x29, x30, [sp], #0x50
+   3f070:      	ret
+   3f074:      	mov	x21, x0
+   3f078:      	add	x1, x22, #0x8
+   3f07c:      	mov	x0, x19
+   3f080:      	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f084:      	b	0x3f08c <AIDetectorDynamicPlugin_InitPlugin+0x6c4>
+   3f088:      	mov	x21, x0
+   3f08c:      	mov	x0, x20
+   3f090:      	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f094:      	mov	x0, x21
+   3f098:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3f09c:      	sub	sp, sp, #0x1a0
+   3f0a0:      	stp	x29, x30, [sp, #0x140]
+   3f0a4:      	str	x28, [sp, #0x150]
+   3f0a8:      	stp	x26, x25, [sp, #0x160]
+   3f0ac:      	stp	x24, x23, [sp, #0x170]
+   3f0b0:      	stp	x22, x21, [sp, #0x180]
+   3f0b4:      	stp	x20, x19, [sp, #0x190]
+   3f0b8:      	add	x29, sp, #0x140
+   3f0bc:      	mrs	x23, TPIDR_EL0
+   3f0c0:      	adrp	x22, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f0c4:      	adrp	x25, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f0c8:      	ldr	x22, [x22, #0xd78]
+   3f0cc:      	ldr	x8, [x23, #0x28]
+   3f0d0:      	ldr	x25, [x25, #0xd80]
+   3f0d4:      	add	x24, sp, #0x30
+   3f0d8:      	mov	x20, x1
+   3f0dc:      	mov	x19, x0
+   3f0e0:      	stur	x8, [x29, #-0x8]
+   3f0e4:      	ldp	x8, x9, [x25, #0x8]
+   3f0e8:      	add	x26, x22, #0x40
+   3f0ec:      	str	x26, [sp, #0xa0]
+   3f0f0:      	str	x8, [sp, #0x30]
+   3f0f4:      	ldur	x8, [x8, #-0x18]
+   3f0f8:      	str	x9, [x24, x8]
+   3f0fc:      	ldr	x8, [sp, #0x30]
+   3f100:      	ldur	x8, [x8, #-0x18]
+   3f104:      	add	x21, x24, x8
+   3f108:      	add	x1, x24, #0x8
+   3f10c:      	mov	x0, x21
+   3f110:      	bl	0x79a10 <_ZNSt6__ndk18ios_base4initEPv@plt>
+   3f114:      	mov	w8, #-0x1               // =-1
+   3f118:      	add	x9, x22, #0x18
+   3f11c:      	str	xzr, [x21, #0x88]
+   3f120:      	str	w8, [x21, #0x90]
+   3f124:      	str	x9, [sp, #0x30]
+   3f128:      	str	x26, [sp, #0xa0]
+   3f12c:      	add	x0, x24, #0x8
+   3f130:      	bl	0x79a20 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEEC2Ev@plt>
+   3f134:      	adrp	x26, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f138:      	movi	v0.2d, #0000000000000000
+   3f13c:      	ldr	x26, [x26, #0xd68]
+   3f140:      	ldr	x9, [sp, #0x30]
+   3f144:      	add	x8, x26, #0x10
+   3f148:      	str	x8, [sp, #0x38]
+   3f14c:      	mov	w8, #0x10               // =16
+   3f150:      	stur	q0, [sp, #0x78]
+   3f154:      	stur	q0, [sp, #0x88]
+   3f158:      	str	w8, [sp, #0x98]
+   3f15c:      	ldur	x22, [x9, #-0x18]
+   3f160:      	bl	0x79a30 <_ZNSt6__ndk16locale7classicEv@plt>
+   3f164:      	add	x8, sp, #0x30
+   3f168:      	mov	x21, x0
+   3f16c:      	add	x22, x8, x22
+   3f170:      	add	x8, sp, #0x20
+   3f174:      	mov	x0, x22
+   3f178:      	bl	0x79a40 <_ZNKSt6__ndk18ios_base6getlocEv@plt>
+   3f17c:      	add	x8, sp, #0x8
+   3f180:      	mov	x0, x22
+   3f184:      	mov	x1, x21
+   3f188:      	bl	0x79a50 <_ZNSt6__ndk18ios_base5imbueERKNS_6localeE@plt>
+   3f18c:      	add	x0, sp, #0x8
+   3f190:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f194:      	ldr	x22, [x22, #0x28]
+   3f198:      	cbz	x22, 0x3f1d0 <AIDetectorDynamicPlugin_InitPlugin+0x808>
+   3f19c:      	ldr	x8, [x22]
+   3f1a0:      	ldr	x8, [x8, #0x10]
+   3f1a4:      	mov	x0, x22
+   3f1a8:      	mov	x1, x21
+   3f1ac:      	blr	x8
+   3f1b0:      	add	x0, sp, #0x28
+   3f1b4:      	add	x1, x22, #0x8
+   3f1b8:      	bl	0x79a70 <_ZNSt6__ndk16localeC1ERKS0_@plt>
+   3f1bc:      	add	x0, x22, #0x8
+   3f1c0:      	mov	x1, x21
+   3f1c4:      	bl	0x79a80 <_ZNSt6__ndk16localeaSERKS0_@plt>
+   3f1c8:      	add	x0, sp, #0x28
+   3f1cc:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f1d0:      	add	x0, sp, #0x20
+   3f1d4:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f1d8:      	add	x0, sp, #0x30
+   3f1dc:      	mov	x1, x20
+   3f1e0:      	bl	0x79a90 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEl@plt>
+   3f1e4:      	add	x8, sp, #0x8
+   3f1e8:      	add	x0, x24, #0x8
+   3f1ec:      	add	x20, sp, #0x8
+   3f1f0:      	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3f1f4:      	ldrb	w8, [sp, #0x8]
+   3f1f8:      	ldp	x10, x9, [sp, #0x10]
+   3f1fc:      	orr	x12, x20, #0x1
+   3f200:      	lsr	x11, x8, #1
+   3f204:      	tst	w8, #0x1
+   3f208:      	csel	x1, x12, x9, eq
+   3f20c:      	csel	x2, x11, x10, eq
+   3f210:      	mov	x0, x19
+   3f214:      	bl	0x3f430 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x7c>
+   3f218:      	ldrb	w8, [sp, #0x8]
+   3f21c:      	mov	x19, x0
+   3f220:      	tbz	w8, #0x0, 0x3f22c <AIDetectorDynamicPlugin_InitPlugin+0x864>
+   3f224:      	ldr	x0, [sp, #0x18]
+   3f228:      	bl	0x799b0 <_ZdlPv@plt>
+   3f22c:      	ldr	x8, [x25]
+   3f230:      	ldr	x9, [x25, #0x18]
+   3f234:      	add	x10, sp, #0x30
+   3f238:      	str	x8, [sp, #0x30]
+   3f23c:      	ldur	x8, [x8, #-0x18]
+   3f240:      	str	x9, [x10, x8]
+   3f244:      	add	x9, x26, #0x10
+   3f248:      	ldrb	w8, [sp, #0x78]
+   3f24c:      	str	x9, [sp, #0x38]
+   3f250:      	tbz	w8, #0x0, 0x3f25c <AIDetectorDynamicPlugin_InitPlugin+0x894>
+   3f254:      	ldr	x0, [sp, #0x88]
+   3f258:      	bl	0x799b0 <_ZdlPv@plt>
+   3f25c:      	add	x0, x24, #0x8
+   3f260:      	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f264:      	add	x0, sp, #0x30
+   3f268:      	add	x1, x25, #0x8
+   3f26c:      	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f270:      	add	x0, x24, #0x70
+   3f274:      	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f278:      	ldr	x8, [x23, #0x28]
+   3f27c:      	ldur	x9, [x29, #-0x8]
+   3f280:      	cmp	x8, x9
+   3f284:      	b.ne	0x3f320 <AIDetectorDynamicPlugin_InitPlugin+0x958>
+   3f288:      	mov	x0, x19
+   3f28c:      	ldp	x20, x19, [sp, #0x190]
+   3f290:      	ldr	x28, [sp, #0x150]
+   3f294:      	ldp	x22, x21, [sp, #0x180]
+   3f298:      	ldp	x24, x23, [sp, #0x170]
+   3f29c:      	ldp	x26, x25, [sp, #0x160]
+   3f2a0:      	ldp	x29, x30, [sp, #0x140]
+   3f2a4:      	add	sp, sp, #0x1a0
+   3f2a8:      	ret
+   3f2ac:      	ldrb	w8, [sp, #0x8]
+   3f2b0:      	mov	x19, x0
+   3f2b4:      	tbz	w8, #0x0, 0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2b8:      	ldr	x0, [sp, #0x18]
+   3f2bc:      	bl	0x799b0 <_ZdlPv@plt>
+   3f2c0:      	b	0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2c4:      	b	0x3f2fc <AIDetectorDynamicPlugin_InitPlugin+0x934>
+   3f2c8:      	mov	x19, x0
+   3f2cc:      	add	x0, sp, #0x30
+   3f2d0:      	add	x1, x25, #0x8
+   3f2d4:      	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f2d8:      	b	0x3f2e0 <AIDetectorDynamicPlugin_InitPlugin+0x918>
+   3f2dc:      	mov	x19, x0
+   3f2e0:      	add	x0, x24, #0x70
+   3f2e4:      	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f2e8:      	b	0x3f308 <AIDetectorDynamicPlugin_InitPlugin+0x940>
+   3f2ec:      	mov	x19, x0
+   3f2f0:      	add	x0, sp, #0x20
+   3f2f4:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f2f8:      	b	0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2fc:      	mov	x19, x0
+   3f300:      	add	x0, sp, #0x30
+   3f304:      	bl	0x79ab0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3f308:      	ldr	x8, [x23, #0x28]
+   3f30c:      	ldur	x9, [x29, #-0x8]
+   3f310:      	cmp	x8, x9
+   3f314:      	b.ne	0x3f320 <AIDetectorDynamicPlugin_InitPlugin+0x958>
+   3f318:      	mov	x0, x19
+   3f31c:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3f320:      	bl	0x79930 <__stack_chk_fail@plt>
+
+000000000003f324 <std::__ndk1::basic_stringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_stringstream()>:
+   3f324:      	stp	x29, x30, [sp, #-0x30]!
+   3f328:      	str	x21, [sp, #0x10]
+   3f32c:      	stp	x20, x19, [sp, #0x20]
+   3f330:      	mov	x29, sp
+   3f334:      	adrp	x21, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f338:      	adrp	x9, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f33c:      	mov	x20, x0
+   3f340:      	ldr	x21, [x21, #0xd60]
+   3f344:      	mov	x19, x0
+   3f348:      	ldr	x8, [x21]
+   3f34c:      	ldp	x10, x11, [x21, #0x40]
+   3f350:      	str	x8, [x0]
+   3f354:      	ldur	x8, [x8, #-0x18]
+   3f358:      	ldr	x9, [x9, #0xd68]
+   3f35c:      	str	x10, [x0, x8]
+   3f360:      	add	x8, x9, #0x10
+   3f364:      	str	x8, [x20, #0x18]!
+   3f368:      	ldrb	w8, [x20, #0x40]
+   3f36c:      	stur	x11, [x20, #-0x8]
+   3f370:      	tbz	w8, #0x0, 0x3f37c <std::__ndk1::basic_stringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_stringstream()+0x58>
+   3f374:      	ldr	x0, [x19, #0x68]
+   3f378:      	bl	0x799b0 <_ZdlPv@plt>
+   3f37c:      	mov	x0, x20
+   3f380:      	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f384:      	add	x1, x21, #0x8
+   3f388:      	mov	x0, x19
+   3f38c:      	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f390:      	add	x0, x19, #0x80
+   3f394:      	ldp	x20, x19, [sp, #0x20]
+   3f398:      	ldr	x21, [sp, #0x10]
+   3f39c:      	ldp	x29, x30, [sp], #0x30
+   3f3a0:      	b	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f3a4:      	stp	x29, x30, [sp, #-0x10]!
+   3f3a8:      	mov	x29, sp
+   3f3ac:      	bl	0x79ac0 <__cxa_begin_catch@plt>
+   3f3b0:      	bl	0x79ad0 <_ZSt9terminatev@plt>
+
+000000000003f3b4 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()>:
+   3f3b4:      	stp	x29, x30, [sp, #-0x30]!
+   3f3b8:      	str	x21, [sp, #0x10]
+   3f3bc:      	stp	x20, x19, [sp, #0x20]
+   3f3c0:      	mov	x29, sp
+   3f3c4:      	adrp	x21, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f3c8:      	adrp	x9, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f3cc:      	mov	x20, x0
+   3f3d0:      	ldr	x21, [x21, #0xd80]
+   3f3d4:      	mov	x19, x0
+   3f3d8:      	ldr	x8, [x21]
+   3f3dc:      	ldr	x10, [x21, #0x18]
+   3f3e0:      	str	x8, [x0]
+   3f3e4:      	ldur	x8, [x8, #-0x18]
+   3f3e8:      	ldr	x9, [x9, #0xd68]
+   3f3ec:      	str	x10, [x0, x8]
+   3f3f0:      	add	x8, x9, #0x10
+   3f3f4:      	str	x8, [x20, #0x8]!
+   3f3f8:      	ldrb	w8, [x20, #0x40]
+   3f3fc:      	tbz	w8, #0x0, 0x3f408 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x54>
+   3f400:      	ldr	x0, [x19, #0x58]
+   3f404:      	bl	0x799b0 <_ZdlPv@plt>
+   3f408:      	mov	x0, x20
+   3f40c:      	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f410:      	add	x1, x21, #0x8
+   3f414:      	mov	x0, x19
+   3f418:      	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f41c:      	add	x0, x19, #0x70
+   3f420:      	ldp	x20, x19, [sp, #0x20]
+   3f424:      	ldr	x21, [sp, #0x10]
+   3f428:      	ldp	x29, x30, [sp], #0x30
+   3f42c:      	b	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f430:      	sub	sp, sp, #0x70
+   3f434:      	stp	x29, x30, [sp, #0x20]
+   3f438:      	stp	x26, x25, [sp, #0x30]
+   3f43c:      	stp	x24, x23, [sp, #0x40]
+   3f440:      	stp	x22, x21, [sp, #0x50]
+   3f444:      	stp	x20, x19, [sp, #0x60]
+   3f448:      	add	x29, sp, #0x20
+   3f44c:      	mrs	x24, TPIDR_EL0
+   3f450:      	mov	x21, x2
+   3f454:      	mov	x20, x1
+   3f458:      	ldr	x8, [x24, #0x28]
+   3f45c:      	mov	x19, x0
+   3f460:      	stur	x8, [x29, #-0x8]
+   3f464:      	mov	x0, sp
+   3f468:      	mov	x1, x19
+   3f46c:      	bl	0x79ae0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_@plt>
+   3f470:      	ldrb	w8, [sp]
+   3f474:      	cbz	w8, 0x3f520 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x16c>
+   3f478:      	ldr	x8, [x19]
+   3f47c:      	ldur	x8, [x8, #-0x18]
+   3f480:      	add	x4, x19, x8
+   3f484:      	ldr	w5, [x4, #0x90]
+   3f488:      	ldr	x22, [x4, #0x28]
+   3f48c:      	ldr	w25, [x4, #0x8]
+   3f490:      	cmn	w5, #0x1
+   3f494:      	b.ne	0x3f4e0 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x12c>
+   3f498:      	add	x8, sp, #0x10
+   3f49c:      	mov	x0, x4
+   3f4a0:      	mov	x26, x4
+   3f4a4:      	bl	0x79a40 <_ZNKSt6__ndk18ios_base6getlocEv@plt>
+   3f4a8:      	adrp	x1, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f4ac:      	add	x0, sp, #0x10
+   3f4b0:      	ldr	x1, [x1, #0xd88]
+   3f4b4:      	bl	0x79af0 <_ZNKSt6__ndk16locale9use_facetERNS0_2idE@plt>
+   3f4b8:      	ldr	x8, [x0]
+   3f4bc:      	ldr	x8, [x8, #0x38]
+   3f4c0:      	mov	w1, #0x20               // =32
+   3f4c4:      	blr	x8
+   3f4c8:      	mov	w23, w0
+   3f4cc:      	add	x0, sp, #0x10
+   3f4d0:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f4d4:      	and	w5, w23, #0xff
+   3f4d8:      	mov	x4, x26
+   3f4dc:      	str	w5, [x26, #0x90]
+   3f4e0:      	mov	w8, #0xb0               // =176
+   3f4e4:      	add	x3, x20, x21
+   3f4e8:      	and	w8, w25, w8
+   3f4ec:      	cmp	w8, #0x20
+   3f4f0:      	csel	x2, x3, x20, eq
+   3f4f4:      	mov	x0, x22
+   3f4f8:      	mov	x1, x20
+   3f4fc:      	bl	0x3f5c8 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x214>
+   3f500:      	cbnz	x0, 0x3f520 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x16c>
+   3f504:      	ldr	x8, [x19]
+   3f508:      	mov	w9, #0x5                // =5
+   3f50c:      	ldur	x8, [x8, #-0x18]
+   3f510:      	add	x0, x19, x8
+   3f514:      	ldr	w8, [x0, #0x20]
+   3f518:      	orr	w1, w8, w9
+   3f51c:      	bl	0x79b00 <_ZNSt6__ndk18ios_base5clearEj@plt>
+   3f520:      	mov	x0, sp
+   3f524:      	bl	0x79b10 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+   3f528:      	ldr	x8, [x24, #0x28]
+   3f52c:      	ldur	x9, [x29, #-0x8]
+   3f530:      	cmp	x8, x9
+   3f534:      	b.ne	0x3f5c0 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x20c>
+   3f538:      	mov	x0, x19
+   3f53c:      	ldp	x20, x19, [sp, #0x60]
+   3f540:      	ldp	x22, x21, [sp, #0x50]
+   3f544:      	ldp	x24, x23, [sp, #0x40]
+   3f548:      	ldp	x26, x25, [sp, #0x30]
+   3f54c:      	ldp	x29, x30, [sp, #0x20]
+   3f550:      	add	sp, sp, #0x70
+   3f554:      	ret
+   3f558:      	b	0x3f56c <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x1b8>
+   3f55c:      	mov	x20, x0
+   3f560:      	add	x0, sp, #0x10
+   3f564:      	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f568:      	b	0x3f570 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x1bc>
+   3f56c:      	mov	x20, x0
+   3f570:      	mov	x0, sp
+   3f574:      	bl	0x79b10 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+   3f578:      	b	0x3f580 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x1cc>
+   3f57c:      	mov	x20, x0
+   3f580:      	mov	x0, x20
+   3f584:      	bl	0x79ac0 <__cxa_begin_catch@plt>
+   3f588:      	ldr	x8, [x19]
+   3f58c:      	ldur	x8, [x8, #-0x18]
+   3f590:      	add	x0, x19, x8
+   3f594:      	bl	0x79b20 <_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv@plt>
+   3f598:      	bl	0x79b30 <__cxa_end_catch@plt>
+   3f59c:      	b	0x3f528 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x174>
+   3f5a0:      	mov	x19, x0
+   3f5a4:      	bl	0x79b30 <__cxa_end_catch@plt>
+   3f5a8:      	ldr	x8, [x24, #0x28]
+   3f5ac:      	ldur	x9, [x29, #-0x8]
+   3f5b0:      	cmp	x8, x9
+   3f5b4:      	b.ne	0x3f5c0 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x20c>
+   3f5b8:      	mov	x0, x19
+   3f5bc:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3f5c0:      	bl	0x79930 <__stack_chk_fail@plt>
+   3f5c4:      	bl	0x3f3a4 <std::__ndk1::basic_stringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_stringstream()+0x80>
+   3f5c8:      	sub	sp, sp, #0x80
+   3f5cc:      	stp	x29, x30, [sp, #0x20]
+   3f5d0:      	str	x27, [sp, #0x30]
+   3f5d4:      	stp	x26, x25, [sp, #0x40]
+   3f5d8:      	stp	x24, x23, [sp, #0x50]
+   3f5dc:      	stp	x22, x21, [sp, #0x60]
+   3f5e0:      	stp	x20, x19, [sp, #0x70]
+   3f5e4:      	add	x29, sp, #0x20
+   3f5e8:      	mrs	x26, TPIDR_EL0
+   3f5ec:      	mov	x19, x0
+   3f5f0:      	ldr	x8, [x26, #0x28]
+   3f5f4:      	stur	x8, [x29, #-0x8]
+   3f5f8:      	cbz	x0, 0x3f718 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x364>
+   3f5fc:      	ldr	x8, [x4, #0x18]
+   3f600:      	sub	x9, x3, x1
+   3f604:      	sub	x25, x2, x1
+   3f608:      	mov	w24, w5
+   3f60c:      	mov	x20, x4
+   3f610:      	mov	x22, x3
+   3f614:      	subs	x8, x8, x9
+   3f618:      	mov	x21, x2
+   3f61c:      	csel	x23, x8, xzr, gt
+   3f620:      	cmp	x25, #0x1
+   3f624:      	b.lt	0x3f644 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x290>
+   3f628:      	ldr	x8, [x19]
+   3f62c:      	mov	x0, x19
+   3f630:      	mov	x2, x25
+   3f634:      	ldr	x8, [x8, #0x60]
+   3f638:      	blr	x8
+   3f63c:      	cmp	x0, x25
+   3f640:      	b.ne	0x3f714 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x360>
+   3f644:      	cmp	x23, #0x1
+   3f648:      	b.lt	0x3f6e0 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x32c>
+   3f64c:      	cmp	x23, #0x17
+   3f650:      	b.hs	0x3f668 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x2b4>
+   3f654:      	lsl	w8, w23, #1
+   3f658:      	mov	x9, sp
+   3f65c:      	orr	x25, x9, #0x1
+   3f660:      	strb	w8, [sp]
+   3f664:      	b	0x3f684 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x2d0>
+   3f668:      	orr	x27, x23, #0xf
+   3f66c:      	add	x0, x27, #0x1
+   3f670:      	bl	0x79970 <_Znwm@plt>
+   3f674:      	add	x8, x27, #0x2
+   3f678:      	mov	x25, x0
+   3f67c:      	stp	x23, x0, [sp, #0x8]
+   3f680:      	str	x8, [sp]
+   3f684:      	mov	x0, x25
+   3f688:      	mov	w1, w24
+   3f68c:      	mov	x2, x23
+   3f690:      	bl	0x79b40 <memset@plt>
+   3f694:      	strb	wzr, [x25, x23]
+   3f698:      	ldr	x9, [x19]
+   3f69c:      	mov	x11, sp
+   3f6a0:      	ldrb	w8, [sp]
+   3f6a4:      	ldr	x10, [sp, #0x10]
+   3f6a8:      	orr	x11, x11, #0x1
+   3f6ac:      	tst	w8, #0x1
+   3f6b0:      	ldr	x8, [x9, #0x60]
+   3f6b4:      	csel	x1, x11, x10, eq
+   3f6b8:      	mov	x0, x19
+   3f6bc:      	mov	x2, x23
+   3f6c0:      	blr	x8
+   3f6c4:      	ldrb	w8, [sp]
+   3f6c8:      	mov	x24, x0
+   3f6cc:      	tbz	w8, #0x0, 0x3f6d8 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x324>
+   3f6d0:      	ldr	x0, [sp, #0x10]
+   3f6d4:      	bl	0x799b0 <_ZdlPv@plt>
+   3f6d8:      	cmp	x24, x23
+   3f6dc:      	b.ne	0x3f714 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x360>
+   3f6e0:      	sub	x22, x22, x21
+   3f6e4:      	cmp	x22, #0x1
+   3f6e8:      	b.lt	0x3f70c <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x358>
+   3f6ec:      	ldr	x8, [x19]
+   3f6f0:      	mov	x0, x19
+   3f6f4:      	mov	x1, x21
+   3f6f8:      	mov	x2, x22
+   3f6fc:      	ldr	x8, [x8, #0x60]
+   3f700:      	blr	x8
+   3f704:      	cmp	x0, x22
+   3f708:      	b.ne	0x3f714 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x360>
+   3f70c:      	str	xzr, [x20, #0x18]
+   3f710:      	b	0x3f718 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x364>
+   3f714:      	mov	x19, xzr
+   3f718:      	ldr	x8, [x26, #0x28]
+   3f71c:      	ldur	x9, [x29, #-0x8]
+   3f720:      	cmp	x8, x9
+   3f724:      	b.ne	0x3f778 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x3c4>
+   3f728:      	mov	x0, x19
+   3f72c:      	ldp	x20, x19, [sp, #0x70]
+   3f730:      	ldr	x27, [sp, #0x30]
+   3f734:      	ldp	x22, x21, [sp, #0x60]
+   3f738:      	ldp	x24, x23, [sp, #0x50]
+   3f73c:      	ldp	x26, x25, [sp, #0x40]
+   3f740:      	ldp	x29, x30, [sp, #0x20]
+   3f744:      	add	sp, sp, #0x80
+   3f748:      	ret
+   3f74c:      	ldrb	w8, [sp]
+   3f750:      	mov	x19, x0
+   3f754:      	tbz	w8, #0x0, 0x3f760 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x3ac>
+   3f758:      	ldr	x0, [sp, #0x10]
+   3f75c:      	bl	0x799b0 <_ZdlPv@plt>
+   3f760:      	ldr	x8, [x26, #0x28]
+   3f764:      	ldur	x9, [x29, #-0x8]
+   3f768:      	cmp	x8, x9
+   3f76c:      	b.ne	0x3f778 <std::__ndk1::basic_ostringstream<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_ostringstream()+0x3c4>
+   3f770:      	mov	x0, x19
+   3f774:      	bl	0x75c14 <MMDetectionPlugin::ExAnySegmentModule::runExtraDetect(MMDetectionPlugin::_ExtraDetectionOption const*, MMDetectionPlugin::DetectionFrame const*, vlai_graphics_env_handle&, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>, std::__ndk1::vector<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>, std::__ndk1::allocator<std::__ndk1::shared_ptr<MMDetectionPlugin::DetectionResult>>>&)+0xc74>
+   3f778:      	bl	0x79930 <__stack_chk_fail@plt>
+   3f77c:      	adrp	x0, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f780:      	nop
+   3f784:      	adr	x1, 0x89350
+   3f788:      	ldr	x0, [x0, #0xd90]
+   3f78c:      	nop
+   3f790:      	adr	x2, 0x81dc0
+   3f794:      	b	0x79910 <__cxa_atexit@plt>
+
+000000000003f798 <MMDetectionPlugin::_getClassID(char const*)>:
+   3f798:      	stp	x29, x30, [sp, #-0x30]!
+   3f79c:      	stp	x22, x21, [sp, #0x10]
+   3f7a0:      	stp	x20, x19, [sp, #0x20]
+   3f7a4:      	mov	x29, sp
+   3f7a8:      	cbz	x0, 0x3f888 <MMDetectionPlugin::_getClassID(char const*)+0xf0>
+   3f7ac:      	adrp	x8, 0x89000
+   3f7b0:      	mov	x19, x0
+   3f7b4:      	ldr	w0, [x8, #0x398]
+   3f7b8:      	bl	0x79b60 <pthread_getspecific@plt>
+   3f7bc:      	mov	x20, x0
+   3f7c0:      	cbnz	x0, 0x3f7d8 <MMDetectionPlugin::_getClassID(char const*)+0x40>
+   3f7c4:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f7c8:      	ldr	x8, [x8, #0xd98]
+   3f7cc:      	ldr	x0, [x8]
+   3f7d0:      	bl	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+   3f7d4:      	mov	x20, x0
+   3f7d8:      	ldr	x8, [x20]
+   3f7dc:      	mov	x0, x20
+   3f7e0:      	mov	x1, x19
+   3f7e4:      	ldr	x8, [x8, #0x538]
+   3f7e8:      	blr	x8
+   3f7ec:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f7f0:      	adrp	x9, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f7f4:      	mov	x21, x0
+   3f7f8:      	ldr	x8, [x8, #0xda0]
+   3f7fc:      	ldr	x9, [x9, #0xda8]
+   3f800:      	mov	x0, x20
+   3f804:      	mov	x3, x21
+   3f808:      	ldr	x1, [x8]
+   3f80c:      	ldr	x2, [x9]
+   3f810:      	bl	0x79b80 <_ZN7_JNIEnv16CallObjectMethodEP8_jobjectP10_jmethodIDz@plt>
+   3f814:      	mov	x22, x0
+   3f818:      	cbnz	x0, 0x3f870 <MMDetectionPlugin::_getClassID(char const*)+0xd8>
+   3f81c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f820:      	ldr	x8, [x8, #0xd50]
+   3f824:      	ldr	w8, [x8]
+   3f828:      	cmp	w8, #0x5
+   3f82c:      	b.gt	0x3f860 <MMDetectionPlugin::_getClassID(char const*)+0xc8>
+   3f830:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f834:      	nop
+   3f838:      	adr	x1, 0x30045
+   3f83c:      	ldr	x8, [x8, #0xd58]
+   3f840:      	adrp	x2, 0x2f000
+   3f844:      	add	x2, x2, #0x8c8
+   3f848:      	adrp	x3, 0x30000
+   3f84c:      	add	x3, x3, #0x55f
+   3f850:      	mov	w4, #0x19               // =25
+   3f854:      	ldr	w0, [x8, #0x14]
+   3f858:      	mov	x5, x19
+   3f85c:      	bl	0x79920 <__android_log_print@plt>
+   3f860:      	ldr	x8, [x20]
+   3f864:      	mov	x0, x20
+   3f868:      	ldr	x8, [x8, #0x88]
+   3f86c:      	blr	x8
+   3f870:      	ldr	x8, [x20]
+   3f874:      	mov	x0, x20
+   3f878:      	mov	x1, x21
+   3f87c:      	ldr	x8, [x8, #0xb8]
+   3f880:      	blr	x8
+   3f884:      	b	0x3f88c <MMDetectionPlugin::_getClassID(char const*)+0xf4>
+   3f888:      	mov	x22, xzr
+   3f88c:      	mov	x0, x22
+   3f890:      	ldp	x20, x19, [sp, #0x20]
+   3f894:      	ldp	x22, x21, [sp, #0x10]
+   3f898:      	ldp	x29, x30, [sp], #0x30
+   3f89c:      	ret
+
+000000000003f8a0 <MMDetectionPlugin::JniHelper::getEnv()>:
+   3f8a0:      	stp	x29, x30, [sp, #-0x10]!
+   3f8a4:      	mov	x29, sp
+   3f8a8:      	adrp	x8, 0x89000
+   3f8ac:      	ldr	w0, [x8, #0x398]
+   3f8b0:      	bl	0x79b60 <pthread_getspecific@plt>
+   3f8b4:      	cbz	x0, 0x3f8c0 <MMDetectionPlugin::JniHelper::getEnv()+0x20>
+   3f8b8:      	ldp	x29, x30, [sp], #0x10
+   3f8bc:      	ret
+   3f8c0:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f8c4:      	ldr	x8, [x8, #0xd98]
+   3f8c8:      	ldr	x0, [x8]
+   3f8cc:      	ldp	x29, x30, [sp], #0x10
+   3f8d0:      	b	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+
+000000000003f8d4 <_JNIEnv::CallObjectMethod(_jobject*, _jmethodID*, ...)>:
+   3f8d4:      	sub	sp, sp, #0x120
+   3f8d8:      	stp	x29, x30, [sp, #0x100]
+   3f8dc:      	stp	x28, x19, [sp, #0x110]
+   3f8e0:      	add	x29, sp, #0x100
+   3f8e4:      	stp	x3, x4, [x29, #-0x78]
+   3f8e8:      	sub	x9, x29, #0x78
+   3f8ec:      	mov	x10, sp
+   3f8f0:      	stp	x5, x6, [x29, #-0x68]
+   3f8f4:      	add	x10, x10, #0x80
+   3f8f8:      	sub	x3, x29, #0x50
+   3f8fc:      	stur	x7, [x29, #-0x58]
+   3f900:      	stp	q0, q1, [sp]
+   3f904:      	stp	q2, q3, [sp, #0x20]
+   3f908:      	stp	q4, q5, [sp, #0x40]
+   3f90c:      	stp	q6, q7, [sp, #0x60]
+   3f910:      	mrs	x19, TPIDR_EL0
+   3f914:      	ldr	x8, [x19, #0x28]
+   3f918:      	stur	x8, [x29, #-0x8]
+   3f91c:      	add	x8, x9, #0x28
+   3f920:      	add	x9, x29, #0x20
+   3f924:      	stp	x9, x8, [x29, #-0x28]
+   3f928:      	mov	x8, #-0x28              // =-40
+   3f92c:      	sub	x9, x29, #0x28
+   3f930:      	movk	x8, #0xff80, lsl #32
+   3f934:      	stp	x10, x8, [x29, #-0x18]
+   3f938:      	ldr	x8, [x0]
+   3f93c:      	ldp	q0, q1, [x9]
+   3f940:      	ldr	x8, [x8, #0x118]
+   3f944:      	stp	q0, q1, [x29, #-0x50]
+   3f948:      	blr	x8
+   3f94c:      	ldr	x8, [x19, #0x28]
+   3f950:      	ldur	x9, [x29, #-0x8]
+   3f954:      	cmp	x8, x9
+   3f958:      	b.ne	0x3f96c <_JNIEnv::CallObjectMethod(_jobject*, _jmethodID*, ...)+0x98>
+   3f95c:      	ldp	x28, x19, [sp, #0x110]
+   3f960:      	ldp	x29, x30, [sp, #0x100]
+   3f964:      	add	sp, sp, #0x120
+   3f968:      	ret
+   3f96c:      	bl	0x79930 <__stack_chk_fail@plt>
+
+000000000003f970 <MMDetectionPlugin::_detachCurrentThread(void*)>:
+   3f970:      	stp	x29, x30, [sp, #-0x10]!
+   3f974:      	mov	x29, sp
+   3f978:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f97c:      	ldr	x8, [x8, #0xd50]
+   3f980:      	ldr	w8, [x8]
+   3f984:      	cmp	w8, #0x2
+   3f988:      	b.gt	0x3f9c4 <MMDetectionPlugin::_detachCurrentThread(void*)+0x54>
+   3f98c:      	bl	0x79990 <pthread_self@plt>
+   3f990:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f994:      	mov	x5, x0
+   3f998:      	nop
+   3f99c:      	adr	x1, 0x30045
+   3f9a0:      	ldr	x8, [x8, #0xd58]
+   3f9a4:      	adrp	x2, 0x31000
+   3f9a8:      	add	x2, x2, #0x400
+   3f9ac:      	adrp	x3, 0x31000
+   3f9b0:      	add	x3, x3, #0x26d
+   3f9b4:      	ldr	w8, [x8, #0x8]
+   3f9b8:      	mov	w4, #0x2e               // =46
+   3f9bc:      	mov	w0, w8
+   3f9c0:      	bl	0x79920 <__android_log_print@plt>
+   3f9c4:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f9c8:      	ldr	x8, [x8, #0xd98]
+   3f9cc:      	ldr	x0, [x8]
+   3f9d0:      	ldr	x8, [x0]
+   3f9d4:      	ldr	x1, [x8, #0x28]
+   3f9d8:      	ldp	x29, x30, [sp], #0x10
+   3f9dc:      	br	x1
+
+000000000003f9e0 <MMDetectionPlugin::JniHelper::getJavaVM()>:
+   3f9e0:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3f9e4:      	ldr	x8, [x8, #0xd50]
+   3f9e8:      	ldr	w8, [x8]
+   3f9ec:      	cmp	w8, #0x2
+   3f9f0:      	b.gt	0x3fa38 <MMDetectionPlugin::JniHelper::getJavaVM()+0x58>
+   3f9f4:      	stp	x29, x30, [sp, #-0x10]!
+   3f9f8:      	mov	x29, sp
+   3f9fc:      	bl	0x79990 <pthread_self@plt>
+   3fa00:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fa04:      	mov	x5, x0
+   3fa08:      	nop
+   3fa0c:      	adr	x1, 0x30045
+   3fa10:      	ldr	x8, [x8, #0xd58]
+   3fa14:      	adrp	x2, 0x31000
+   3fa18:      	add	x2, x2, #0x400
+   3fa1c:      	adrp	x3, 0x31000
+   3fa20:      	add	x3, x3, #0x26d
+   3fa24:      	ldr	w8, [x8, #0x8]
+   3fa28:      	mov	w4, #0x2e               // =46
+   3fa2c:      	mov	w0, w8
+   3fa30:      	bl	0x79920 <__android_log_print@plt>
+   3fa34:      	ldp	x29, x30, [sp], #0x10
+   3fa38:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fa3c:      	ldr	x8, [x8, #0xd98]
+   3fa40:      	ldr	x0, [x8]
+   3fa44:      	ret
+
+000000000003fa48 <MMDetectionPlugin::JniHelper::setJavaVM(_JavaVM*)>:
+   3fa48:      	stp	x29, x30, [sp, #-0x20]!
+   3fa4c:      	str	x19, [sp, #0x10]
+   3fa50:      	mov	x29, sp
+   3fa54:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fa58:      	mov	x19, x0
+   3fa5c:      	ldr	x8, [x8, #0xd50]
+   3fa60:      	ldr	w8, [x8]
+   3fa64:      	cmp	w8, #0x2
+   3fa68:      	b.gt	0x3faa8 <MMDetectionPlugin::JniHelper::setJavaVM(_JavaVM*)+0x60>
+   3fa6c:      	bl	0x79990 <pthread_self@plt>
+   3fa70:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fa74:      	mov	x6, x0
+   3fa78:      	nop
+   3fa7c:      	adr	x1, 0x30045
+   3fa80:      	ldr	x8, [x8, #0xd58]
+   3fa84:      	adrp	x2, 0x31000
+   3fa88:      	add	x2, x2, #0xa0d
+   3fa8c:      	adrp	x3, 0x31000
+   3fa90:      	add	x3, x3, #0x324
+   3fa94:      	ldr	w8, [x8, #0x8]
+   3fa98:      	mov	w4, #0x35               // =53
+   3fa9c:      	mov	x5, x19
+   3faa0:      	mov	w0, w8
+   3faa4:      	bl	0x79920 <__android_log_print@plt>
+   3faa8:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3faac:      	adrp	x1, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fab0:      	nop
+   3fab4:      	adr	x0, 0x89398 <MMDetectionPlugin::JniHelper::_psJavaVM+0x8>
+   3fab8:      	ldr	x8, [x8, #0xd98]
+   3fabc:      	ldr	x1, [x1, #0xdb0]
+   3fac0:      	str	x19, [x8]
+   3fac4:      	ldr	x19, [sp, #0x10]
+   3fac8:      	ldp	x29, x30, [sp], #0x20
+   3facc:      	b	0x79bb0 <pthread_key_create@plt>
+
+000000000003fad0 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)>:
+   3fad0:      	sub	sp, sp, #0x30
+   3fad4:      	stp	x29, x30, [sp, #0x10]
+   3fad8:      	stp	x20, x19, [sp, #0x20]
+   3fadc:      	add	x29, sp, #0x10
+   3fae0:      	mrs	x20, TPIDR_EL0
+   3fae4:      	mov	w2, #0x4                // =4
+   3fae8:      	mov	x1, sp
+   3faec:      	ldr	x8, [x20, #0x28]
+   3faf0:      	movk	w2, #0x1, lsl #16
+   3faf4:      	mov	x19, x0
+   3faf8:      	str	x8, [sp, #0x8]
+   3fafc:      	ldr	x8, [x0]
+   3fb00:      	str	xzr, [sp]
+   3fb04:      	ldr	x8, [x8, #0x30]
+   3fb08:      	blr	x8
+   3fb0c:      	cmn	w0, #0x3
+   3fb10:      	b.eq	0x3fb58 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x88>
+   3fb14:      	cmn	w0, #0x2
+   3fb18:      	b.eq	0x3fb24 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x54>
+   3fb1c:      	cbz	w0, 0x3fb40 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x70>
+   3fb20:      	b	0x3fb98 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0xc8>
+   3fb24:      	ldr	x8, [x19]
+   3fb28:      	mov	x1, sp
+   3fb2c:      	mov	x0, x19
+   3fb30:      	mov	x2, xzr
+   3fb34:      	ldr	x8, [x8, #0x20]
+   3fb38:      	blr	x8
+   3fb3c:      	tbnz	w0, #0x1f, 0x3fbfc <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x12c>
+   3fb40:      	adrp	x8, 0x89000
+   3fb44:      	ldr	x1, [sp]
+   3fb48:      	ldr	w0, [x8, #0x398]
+   3fb4c:      	bl	0x79bc0 <pthread_setspecific@plt>
+   3fb50:      	ldr	x0, [sp]
+   3fb54:      	b	0x3fbdc <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x10c>
+   3fb58:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fb5c:      	ldr	x8, [x8, #0xd50]
+   3fb60:      	ldr	w8, [x8]
+   3fb64:      	cmp	w8, #0x5
+   3fb68:      	b.gt	0x3fbd8 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x108>
+   3fb6c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fb70:      	nop
+   3fb74:      	adr	x1, 0x30045
+   3fb78:      	ldr	x8, [x8, #0xd58]
+   3fb7c:      	adrp	x2, 0x30000
+   3fb80:      	add	x2, x2, #0x8d5
+   3fb84:      	adrp	x3, 0x2f000
+   3fb88:      	add	x3, x3, #0xbb4
+   3fb8c:      	mov	w4, #0x5d               // =93
+   3fb90:      	ldr	w0, [x8, #0x14]
+   3fb94:      	bl	0x79920 <__android_log_print@plt>
+   3fb98:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fb9c:      	ldr	x8, [x8, #0xd50]
+   3fba0:      	ldr	w8, [x8]
+   3fba4:      	cmp	w8, #0x5
+   3fba8:      	b.gt	0x3fbd8 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x108>
+   3fbac:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fbb0:      	nop
+   3fbb4:      	adr	x1, 0x30045
+   3fbb8:      	ldr	x8, [x8, #0xd58]
+   3fbbc:      	adrp	x2, 0x30000
+   3fbc0:      	add	x2, x2, #0xca2
+   3fbc4:      	adrp	x3, 0x2f000
+   3fbc8:      	add	x3, x3, #0xbb4
+   3fbcc:      	mov	w4, #0x5e               // =94
+   3fbd0:      	ldr	w0, [x8, #0x14]
+   3fbd4:      	bl	0x79920 <__android_log_print@plt>
+   3fbd8:      	mov	x0, xzr
+   3fbdc:      	ldr	x8, [x20, #0x28]
+   3fbe0:      	ldr	x9, [sp, #0x8]
+   3fbe4:      	cmp	x8, x9
+   3fbe8:      	b.ne	0x3fc38 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x168>
+   3fbec:      	ldp	x20, x19, [sp, #0x20]
+   3fbf0:      	ldp	x29, x30, [sp, #0x10]
+   3fbf4:      	add	sp, sp, #0x30
+   3fbf8:      	ret
+   3fbfc:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fc00:      	ldr	x8, [x8, #0xd50]
+   3fc04:      	ldr	w8, [x8]
+   3fc08:      	cmp	w8, #0x5
+   3fc0c:      	b.gt	0x3fbd8 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x108>
+   3fc10:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fc14:      	nop
+   3fc18:      	adr	x1, 0x30045
+   3fc1c:      	ldr	x8, [x8, #0xd58]
+   3fc20:      	adrp	x2, 0x2f000
+   3fc24:      	add	x2, x2, #0x8fb
+   3fc28:      	adrp	x3, 0x2f000
+   3fc2c:      	add	x3, x3, #0xbb4
+   3fc30:      	mov	w4, #0x50               // =80
+   3fc34:      	b	0x3fbd0 <MMDetectionPlugin::JniHelper::cacheEnv(_JavaVM*)+0x100>
+   3fc38:      	bl	0x79930 <__stack_chk_fail@plt>
+
+000000000003fc3c <MMDetectionPlugin::JniHelper::setClassLoaderFrom(_jobject*)>:
+   3fc3c:      	mov	w0, #0x1                // =1
+   3fc40:      	ret
+
+000000000003fc44 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)>:
+   3fc44:      	mov	x8, x0
+   3fc48:      	mov	w0, wzr
+   3fc4c:      	cbz	x1, 0x3fda4 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x160>
+   3fc50:      	stp	x29, x30, [sp, #-0x40]!
+   3fc54:      	stp	x24, x23, [sp, #0x10]
+   3fc58:      	stp	x22, x21, [sp, #0x20]
+   3fc5c:      	stp	x20, x19, [sp, #0x30]
+   3fc60:      	mov	x29, sp
+   3fc64:      	mov	x20, x2
+   3fc68:      	cbz	x2, 0x3fd94 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fc6c:      	cbz	x3, 0x3fd94 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fc70:      	mov	x24, x8
+   3fc74:      	adrp	x8, 0x89000
+   3fc78:      	mov	x21, x1
+   3fc7c:      	ldr	w0, [x8, #0x398]
+   3fc80:      	mov	x22, x3
+   3fc84:      	bl	0x79b60 <pthread_getspecific@plt>
+   3fc88:      	mov	x19, x0
+   3fc8c:      	cbnz	x0, 0x3fca8 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x64>
+   3fc90:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fc94:      	ldr	x8, [x8, #0xd98]
+   3fc98:      	ldr	x0, [x8]
+   3fc9c:      	bl	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+   3fca0:      	mov	x19, x0
+   3fca4:      	cbz	x0, 0x3fda8 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x164>
+   3fca8:      	ldr	x8, [x19]
+   3fcac:      	mov	x0, x19
+   3fcb0:      	mov	x1, x21
+   3fcb4:      	ldr	x8, [x8, #0x30]
+   3fcb8:      	blr	x8
+   3fcbc:      	cbz	x0, 0x3fcf8 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xb4>
+   3fcc0:      	ldr	x8, [x19]
+   3fcc4:      	mov	x23, x0
+   3fcc8:      	mov	x0, x19
+   3fccc:      	mov	x1, x23
+   3fcd0:      	mov	x2, x20
+   3fcd4:      	mov	x3, x22
+   3fcd8:      	ldr	x8, [x8, #0x388]
+   3fcdc:      	blr	x8
+   3fce0:      	cbz	x0, 0x3fd3c <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xf8>
+   3fce4:      	mov	x8, x0
+   3fce8:      	mov	w0, #0x1                // =1
+   3fcec:      	stp	x19, x23, [x24]
+   3fcf0:      	str	x8, [x24, #0x10]
+   3fcf4:      	b	0x3fd94 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fcf8:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fcfc:      	ldr	x8, [x8, #0xd50]
+   3fd00:      	ldr	w8, [x8]
+   3fd04:      	cmp	w8, #0x5
+   3fd08:      	b.gt	0x3fd80 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x13c>
+   3fd0c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fd10:      	nop
+   3fd14:      	adr	x1, 0x30045
+   3fd18:      	ldr	x8, [x8, #0xd58]
+   3fd1c:      	adrp	x2, 0x2f000
+   3fd20:      	add	x2, x2, #0xbbd
+   3fd24:      	adrp	x3, 0x30000
+   3fd28:      	add	x3, x3, #0x909
+   3fd2c:      	mov	w4, #0xa1               // =161
+   3fd30:      	ldr	w0, [x8, #0x14]
+   3fd34:      	mov	x5, x21
+   3fd38:      	b	0x3fd7c <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x138>
+   3fd3c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fd40:      	ldr	x8, [x8, #0xd50]
+   3fd44:      	ldr	w8, [x8]
+   3fd48:      	cmp	w8, #0x5
+   3fd4c:      	b.gt	0x3fd80 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x13c>
+   3fd50:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fd54:      	nop
+   3fd58:      	adr	x1, 0x30045
+   3fd5c:      	ldr	x8, [x8, #0xd58]
+   3fd60:      	adrp	x2, 0x2f000
+   3fd64:      	add	x2, x2, #0x941
+   3fd68:      	adrp	x3, 0x30000
+   3fd6c:      	add	x3, x3, #0x909
+   3fd70:      	mov	w4, #0xa9               // =169
+   3fd74:      	ldr	w0, [x8, #0x14]
+   3fd78:      	mov	x5, x20
+   3fd7c:      	bl	0x79920 <__android_log_print@plt>
+   3fd80:      	ldr	x8, [x19]
+   3fd84:      	mov	x0, x19
+   3fd88:      	ldr	x8, [x8, #0x88]
+   3fd8c:      	blr	x8
+   3fd90:      	mov	w0, wzr
+   3fd94:      	ldp	x20, x19, [sp, #0x30]
+   3fd98:      	ldp	x22, x21, [sp, #0x20]
+   3fd9c:      	ldp	x24, x23, [sp, #0x10]
+   3fda0:      	ldp	x29, x30, [sp], #0x40
+   3fda4:      	ret
+   3fda8:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fdac:      	ldr	x8, [x8, #0xd50]
+   3fdb0:      	ldr	w8, [x8]
+   3fdb4:      	cmp	w8, #0x5
+   3fdb8:      	b.gt	0x3fd90 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x14c>
+   3fdbc:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fdc0:      	nop
+   3fdc4:      	adr	x1, 0x30045
+   3fdc8:      	ldr	x8, [x8, #0xd58]
+   3fdcc:      	adrp	x2, 0x31000
+   3fdd0:      	add	x2, x2, #0x32e
+   3fdd4:      	adrp	x3, 0x30000
+   3fdd8:      	add	x3, x3, #0x909
+   3fddc:      	mov	w4, #0x9a               // =154
+   3fde0:      	ldr	w0, [x8, #0x14]
+   3fde4:      	bl	0x79920 <__android_log_print@plt>
+   3fde8:      	b	0x3fd90 <MMDetectionPlugin::JniHelper::getStaticMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x14c>
+
+000000000003fdec <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)>:
+   3fdec:      	mov	x8, x0
+   3fdf0:      	mov	w0, wzr
+   3fdf4:      	cbz	x1, 0x3ff4c <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x160>
+   3fdf8:      	stp	x29, x30, [sp, #-0x40]!
+   3fdfc:      	stp	x24, x23, [sp, #0x10]
+   3fe00:      	stp	x22, x21, [sp, #0x20]
+   3fe04:      	stp	x20, x19, [sp, #0x30]
+   3fe08:      	mov	x29, sp
+   3fe0c:      	mov	x20, x2
+   3fe10:      	cbz	x2, 0x3ff3c <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fe14:      	cbz	x3, 0x3ff3c <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fe18:      	mov	x24, x8
+   3fe1c:      	adrp	x8, 0x89000
+   3fe20:      	mov	x21, x1
+   3fe24:      	ldr	w0, [x8, #0x398]
+   3fe28:      	mov	x22, x3
+   3fe2c:      	bl	0x79b60 <pthread_getspecific@plt>
+   3fe30:      	mov	x19, x0
+   3fe34:      	cbnz	x0, 0x3fe50 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x64>
+   3fe38:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fe3c:      	ldr	x8, [x8, #0xd98]
+   3fe40:      	ldr	x0, [x8]
+   3fe44:      	bl	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+   3fe48:      	mov	x19, x0
+   3fe4c:      	cbz	x0, 0x3ff3c <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fe50:      	ldr	x8, [x19]
+   3fe54:      	mov	x0, x19
+   3fe58:      	mov	x1, x21
+   3fe5c:      	ldr	x8, [x8, #0x30]
+   3fe60:      	blr	x8
+   3fe64:      	cbz	x0, 0x3fea0 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xb4>
+   3fe68:      	ldr	x8, [x19]
+   3fe6c:      	mov	x23, x0
+   3fe70:      	mov	x0, x19
+   3fe74:      	mov	x1, x23
+   3fe78:      	mov	x2, x20
+   3fe7c:      	mov	x3, x22
+   3fe80:      	ldr	x8, [x8, #0x108]
+   3fe84:      	blr	x8
+   3fe88:      	cbz	x0, 0x3fee4 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xf8>
+   3fe8c:      	mov	x8, x0
+   3fe90:      	mov	w0, #0x1                // =1
+   3fe94:      	stp	x19, x23, [x24]
+   3fe98:      	str	x8, [x24, #0x10]
+   3fe9c:      	b	0x3ff3c <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3fea0:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fea4:      	ldr	x8, [x8, #0xd50]
+   3fea8:      	ldr	w8, [x8]
+   3feac:      	cmp	w8, #0x5
+   3feb0:      	b.gt	0x3ff28 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x13c>
+   3feb4:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3feb8:      	nop
+   3febc:      	adr	x1, 0x30045
+   3fec0:      	ldr	x8, [x8, #0xd58]
+   3fec4:      	adrp	x2, 0x2f000
+   3fec8:      	add	x2, x2, #0xbbd
+   3fecc:      	adrp	x3, 0x2f000
+   3fed0:      	add	x3, x3, #0x973
+   3fed4:      	mov	w4, #0xc8               // =200
+   3fed8:      	ldr	w0, [x8, #0x14]
+   3fedc:      	mov	x5, x21
+   3fee0:      	b	0x3ff24 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x138>
+   3fee4:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fee8:      	ldr	x8, [x8, #0xd50]
+   3feec:      	ldr	w8, [x8]
+   3fef0:      	cmp	w8, #0x5
+   3fef4:      	b.gt	0x3ff28 <MMDetectionPlugin::JniHelper::getMethodInfo_DefaultClassLoader(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x13c>
+   3fef8:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3fefc:      	nop
+   3ff00:      	adr	x1, 0x30045
+   3ff04:      	ldr	x8, [x8, #0xd58]
+   3ff08:      	adrp	x2, 0x2f000
+   3ff0c:      	add	x2, x2, #0xeee
+   3ff10:      	adrp	x3, 0x2f000
+   3ff14:      	add	x3, x3, #0x973
+   3ff18:      	mov	w4, #0xd0               // =208
+   3ff1c:      	ldr	w0, [x8, #0x14]
+   3ff20:      	mov	x5, x20
+   3ff24:      	bl	0x79920 <__android_log_print@plt>
+   3ff28:      	ldr	x8, [x19]
+   3ff2c:      	mov	x0, x19
+   3ff30:      	ldr	x8, [x8, #0x88]
+   3ff34:      	blr	x8
+   3ff38:      	mov	w0, wzr
+   3ff3c:      	ldp	x20, x19, [sp, #0x30]
+   3ff40:      	ldp	x22, x21, [sp, #0x20]
+   3ff44:      	ldp	x24, x23, [sp, #0x10]
+   3ff48:      	ldp	x29, x30, [sp], #0x40
+   3ff4c:      	ret
+
+000000000003ff50 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)>:
+   3ff50:      	mov	x8, x0
+   3ff54:      	mov	w0, wzr
+   3ff58:      	cbz	x1, 0x400b0 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x160>
+   3ff5c:      	stp	x29, x30, [sp, #-0x40]!
+   3ff60:      	stp	x24, x23, [sp, #0x10]
+   3ff64:      	stp	x22, x21, [sp, #0x20]
+   3ff68:      	stp	x20, x19, [sp, #0x30]
+   3ff6c:      	mov	x29, sp
+   3ff70:      	mov	x20, x2
+   3ff74:      	cbz	x2, 0x400a0 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3ff78:      	cbz	x3, 0x400a0 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3ff7c:      	mov	x24, x8
+   3ff80:      	adrp	x8, 0x89000
+   3ff84:      	mov	x21, x1
+   3ff88:      	ldr	w0, [x8, #0x398]
+   3ff8c:      	mov	x22, x3
+   3ff90:      	bl	0x79b60 <pthread_getspecific@plt>
+   3ff94:      	mov	x19, x0
+   3ff98:      	cbnz	x0, 0x3ffb4 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x64>
+   3ff9c:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   3ffa0:      	ldr	x8, [x8, #0xd98]
+   3ffa4:      	ldr	x0, [x8]
+   3ffa8:      	bl	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+   3ffac:      	mov	x19, x0
+   3ffb0:      	cbz	x0, 0x400a0 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   3ffb4:      	ldr	x8, [x19]
+   3ffb8:      	mov	x0, x19
+   3ffbc:      	mov	x1, x21
+   3ffc0:      	ldr	x8, [x8, #0x30]
+   3ffc4:      	blr	x8
+   3ffc8:      	cbz	x0, 0x40004 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xb4>
+   3ffcc:      	ldr	x8, [x19]
+   3ffd0:      	mov	x23, x0
+   3ffd4:      	mov	x0, x19
+   3ffd8:      	mov	x1, x23
+   3ffdc:      	mov	x2, x20
+   3ffe0:      	mov	x3, x22
+   3ffe4:      	ldr	x8, [x8, #0x108]
+   3ffe8:      	blr	x8
+   3ffec:      	cbz	x0, 0x40048 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0xf8>
+   3fff0:      	mov	x8, x0
+   3fff4:      	mov	w0, #0x1                // =1
+   3fff8:      	stp	x19, x23, [x24]
+   3fffc:      	str	x8, [x24, #0x10]
+   40000:      	b	0x400a0 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x150>
+   40004:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   40008:      	ldr	x8, [x8, #0xd50]
+   4000c:      	ldr	w8, [x8]
+   40010:      	cmp	w8, #0x5
+   40014:      	b.gt	0x4008c <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x13c>
+   40018:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   4001c:      	nop
+   40020:      	adr	x1, 0x30045
+   40024:      	ldr	x8, [x8, #0xd58]
+   40028:      	adrp	x2, 0x2f000
+   4002c:      	add	x2, x2, #0xbbd
+   40030:      	adrp	x3, 0x31000
+   40034:      	add	x3, x3, #0x34f
+   40038:      	mov	w4, #0xef               // =239
+   4003c:      	ldr	w0, [x8, #0x14]
+   40040:      	mov	x5, x21
+   40044:      	b	0x40088 <MMDetectionPlugin::JniHelper::getMethodInfo(MMDetectionPlugin::JniMethodInfo_&, char const*, char const*, char const*)+0x138>
+   40048:      	adrp	x8, 0x82000 <typeinfo for MMDetectionPlugin::FaceModule+0x10>
+   4004c:      	ldr	x8, [x8, #0xd50]

@@ -80,3 +80,15 @@
   3. **Khóa chống trùng lũy đẳng:** `anti_duplicate_key = task_id + ":" + task_revision`, tự động loại bỏ lệnh phát trùng nhưng cho phép cập nhật phiên bản mới.
   4. **Thu hồi lease xác định (Stale Lease Recovery):** Khóa thuê có hạn dùng (`lease_expires_at`). Khi runner crash hoặc ngắt mạng, Orchestrator tự động thu hồi lệnh về `PENDING`, tăng `retry_count`, tuyệt đối không nhân bản task.
   5. **Bảo toàn nguồn gốc 5 thành phần (Provenance Guards):** Bắt buộc liên kết `dispatch_commit_sha`, `github_run_id`, `runner_lane`, `target_commit_sha`, và `report_folder` trước khi đóng dấu `COMPLETED`.
+
+---
+
+### [ACQ-007] Toán Học Ten-Xơ Cấu Trúc Hướng 2D & Tích Phân Đường Cong Cho Nhuộm Tóc Tự Nhiên (CMTFilterSoftHair)
+- **Bối cảnh:** Khi đổi màu tóc, các bộ lọc làm mờ đẳng hướng thông thường làm bết các sợi tóc và phá hủy chiều sâu tự nhiên.
+- **Giải pháp tối ưu từ đảo ngược kỹ thuật:**
+  1. Trích xuất Luminance sử dụng trọng số ITU-R BT.601 ($Y = 0.298912 R + 0.586611 G + 0.114478 B$).
+  2. Xây dựng trường ten-xơ hướng góc kép (Double-Angle Structure Tensor) bằng gradient Sobel 2D: $\vec{g} = (g_x^2 - g_y^2, 2 g_x g_y) / |\nabla I|^2$.
+  3. Làm mượt ten-xơ bằng bộ lọc Gaussian 1D khả tách (separable 5-tap kernel: `[0.159676, 0.263348, 0.122118, 0.030573, 0.004122]`).
+  4. Lấy mẫu tích phân đường cong có hướng (Line-Integral Convolution) dọc theo vector tiếp tuyến của sợi tóc.
+  5. Hòa trộn màu nhuộm bằng công thức toán học **Pegtop SoftLight**: $f(a,b) = (1.0 - 2.0b)a^2 + 2.0ba$ kết hợp Unsharp Mask factor $0.4 \times 1.8$, bảo lưu $100\%$ độ sâu vi sợi tóc và không bao giờ gây bệt màu.
+

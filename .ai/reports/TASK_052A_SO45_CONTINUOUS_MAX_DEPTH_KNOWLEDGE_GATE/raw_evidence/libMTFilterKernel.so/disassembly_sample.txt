@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTFilterKernel.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000be3a0 <.text>:
+   be3a0:      	bti	c
+   be3a4:      	nop
+   be3a8:      	adr	x0, 0x1b90c0
+   be3ac:      	b	0x1b4230 <__cxa_finalize@plt>
+   be3b0:      	bti	c
+   be3b4:      	ret
+   be3b8:      	bti	c
+   be3bc:      	b	0xbe3b0 <.text+0x10>
+   be3c0:      	bti	c
+   be3c4:      	cbz	x0, 0xbe3d0 <.text+0x30>
+   be3c8:      	mov	x16, x0
+   be3cc:      	br	x16
+   be3d0:      	ret
+   be3d4:      	bti	c
+   be3d8:      	mov	x1, x0
+   be3dc:      	nop
+   be3e0:      	adr	x0, 0xbe3c0 <.text+0x20>
+   be3e4:      	nop
+   be3e8:      	adr	x2, 0x1b90c0
+   be3ec:      	b	0x1b4240 <__cxa_atexit@plt>
+
+00000000000be3f0 <registerFaceDataMethods(_JNIEnv*, void*)>:
+   be3f0:      	stp	x29, x30, [sp, #-0x20]!
+   be3f4:      	str	x19, [sp, #0x10]
+   be3f8:      	mov	x29, sp
+   be3fc:      	ldr	x8, [x0]
+   be400:      	nop
+   be404:      	adr	x1, 0x8aa12
+   be408:      	mov	x19, x0
+   be40c:      	ldr	x8, [x8, #0x30]
+   be410:      	blr	x8
+   be414:      	cbz	x0, 0xbe448 <registerFaceDataMethods(_JNIEnv*, void*)+0x58>
+   be418:      	ldr	x8, [x19]
+   be41c:      	mov	x1, x0
+   be420:      	adrp	x2, 0x1ca000
+   be424:      	add	x2, x2, #0x2d8
+   be428:      	mov	x0, x19
+   be42c:      	mov	w3, #0x19               // =25
+   be430:      	ldr	x8, [x8, #0x6b8]
+   be434:      	blr	x8
+   be438:      	asr	w0, w0, #31
+   be43c:      	ldr	x19, [sp, #0x10]
+   be440:      	ldp	x29, x30, [sp], #0x20
+   be444:      	ret
+   be448:      	mov	w0, #-0x1               // =-1
+   be44c:      	ldr	x19, [sp, #0x10]
+   be450:      	ldp	x29, x30, [sp], #0x20
+   be454:      	ret
+
+00000000000be458 <MTFilterKernelFaceDataJNI::create(_JNIEnv*, _jobject*)>:
+   be458:      	mov	w1, #0xb180             // =45440
+   be45c:      	mov	w0, #0x1                // =1
+   be460:      	movk	w1, #0x1, lsl #16
+   be464:      	b	0x1b4250 <calloc@plt>
+
+00000000000be468 <MTFilterKernelFaceDataJNI::finalize(_JNIEnv*, _jobject*, long)>:
+   be468:      	cbz	x2, 0xbe474 <MTFilterKernelFaceDataJNI::finalize(_JNIEnv*, _jobject*, long)+0xc>
+   be46c:      	mov	x0, x2
+   be470:      	b	0x1b4260 <free@plt>
+   be474:      	ret
+
+00000000000be478 <MTFilterKernelFaceDataJNI::getFaceCount(_JNIEnv*, _jobject*, long)>:
+   be478:      	stp	x29, x30, [sp, #-0x10]!
+   be47c:      	mov	x29, sp
+   be480:      	cbz	x2, 0xbe490 <MTFilterKernelFaceDataJNI::getFaceCount(_JNIEnv*, _jobject*, long)+0x18>
+   be484:      	ldr	w0, [x2]
+   be488:      	ldp	x29, x30, [sp], #0x10
+   be48c:      	ret
+   be490:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be494:      	cmp	w0, #0x5
+   be498:      	b.gt	0xbe4b4 <MTFilterKernelFaceDataJNI::getFaceCount(_JNIEnv*, _jobject*, long)+0x3c>
+   be49c:      	adrp	x1, 0x7c000
+   be4a0:      	add	x1, x1, #0x24e
+   be4a4:      	adrp	x2, 0x7e000
+   be4a8:      	add	x2, x2, #0x78e
+   be4ac:      	mov	w0, #0x6                // =6
+   be4b0:      	bl	0x1b4270 <__android_log_print@plt>
+   be4b4:      	mov	w0, wzr
+   be4b8:      	ldp	x29, x30, [sp], #0x10
+   be4bc:      	ret
+
+00000000000be4c0 <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)>:
+   be4c0:      	sub	sp, sp, #0x50
+   be4c4:      	stp	x29, x30, [sp, #0x20]
+   be4c8:      	str	x21, [sp, #0x30]
+   be4cc:      	stp	x20, x19, [sp, #0x40]
+   be4d0:      	add	x29, sp, #0x20
+   be4d4:      	mrs	x21, TPIDR_EL0
+   be4d8:      	ldr	x8, [x21, #0x28]
+   be4dc:      	stur	x8, [x29, #-0x8]
+   be4e0:      	cbz	x2, 0xbe540 <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)+0x80>
+   be4e4:      	ldr	w8, [x2]
+   be4e8:      	cmp	w8, w3
+   be4ec:      	b.le	0xbe564 <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)+0xa4>
+   be4f0:      	mov	w8, #0x2b58             // =11096
+   be4f4:      	ldr	x9, [x0]
+   be4f8:      	mov	w1, #0x4                // =4
+   be4fc:      	smaddl	x8, w3, w8, x2
+   be500:      	mov	x19, x0
+   be504:      	ldur	q0, [x8, #0x18]
+   be508:      	ldr	x8, [x9, #0x5a8]
+   be50c:      	str	q0, [sp]
+   be510:      	blr	x8
+   be514:      	ldr	x8, [x19]
+   be518:      	mov	x20, x0
+   be51c:      	mov	x4, sp
+   be520:      	mov	x0, x19
+   be524:      	mov	x1, x20
+   be528:      	mov	w2, wzr
+   be52c:      	ldr	x8, [x8, #0x6a8]
+   be530:      	mov	w3, #0x4                // =4
+   be534:      	blr	x8
+   be538:      	mov	x0, x20
+   be53c:      	b	0xbe568 <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)+0xa8>
+   be540:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be544:      	cmp	w0, #0x5
+   be548:      	b.gt	0xbe564 <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)+0xa4>
+   be54c:      	adrp	x1, 0x7c000
+   be550:      	add	x1, x1, #0x24e
+   be554:      	adrp	x2, 0x70000
+   be558:      	add	x2, x2, #0x67f
+   be55c:      	mov	w0, #0x6                // =6
+   be560:      	bl	0x1b4270 <__android_log_print@plt>
+   be564:      	mov	x0, xzr
+   be568:      	ldr	x8, [x21, #0x28]
+   be56c:      	ldur	x9, [x29, #-0x8]
+   be570:      	cmp	x8, x9
+   be574:      	b.ne	0xbe58c <MTFilterKernelFaceDataJNI::getFaceRect(_JNIEnv*, _jobject*, long, int)+0xcc>
+   be578:      	ldp	x20, x19, [sp, #0x40]
+   be57c:      	ldr	x21, [sp, #0x30]
+   be580:      	ldp	x29, x30, [sp, #0x20]
+   be584:      	add	sp, sp, #0x50
+   be588:      	ret
+   be58c:      	bl	0x1b4280 <__stack_chk_fail@plt>
+
+00000000000be590 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)>:
+   be590:      	stp	x29, x30, [sp, #-0x50]!
+   be594:      	str	x28, [sp, #0x10]
+   be598:      	stp	x24, x23, [sp, #0x20]
+   be59c:      	stp	x22, x21, [sp, #0x30]
+   be5a0:      	stp	x20, x19, [sp, #0x40]
+   be5a4:      	mov	x29, sp
+   be5a8:      	sub	sp, sp, #0x2, lsl #12   // =0x2000
+   be5ac:      	sub	sp, sp, #0xe00
+   be5b0:      	mrs	x23, TPIDR_EL0
+   be5b4:      	ldr	x8, [x23, #0x28]
+   be5b8:      	stur	x8, [x29, #-0x8]
+   be5bc:      	cbz	x2, 0xbe7c0 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x230>
+   be5c0:      	ldr	w8, [x2]
+   be5c4:      	cmp	w8, w4
+   be5c8:      	b.le	0xbe7e4 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x254>
+   be5cc:      	mov	w8, #0x2b58             // =11096
+   be5d0:      	mov	x19, x0
+   be5d4:      	add	x24, sp, #0x2a0
+   be5d8:      	smaddl	x8, w4, w8, x2
+   be5dc:      	add	x0, sp, #0x2a0
+   be5e0:      	mov	w2, #0x2b58             // =11096
+   be5e4:      	add	x22, x24, #0x114
+   be5e8:      	mov	w20, w3
+   be5ec:      	add	x1, x8, #0xc
+   be5f0:      	bl	0x1b4290 <memcpy@plt>
+   be5f4:      	mov	w8, w20
+   be5f8:      	cmp	w20, #0x1
+   be5fc:      	b.gt	0xbe818 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x288>
+   be600:      	cbz	w8, 0xbe874 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x2e4>
+   be604:      	cmp	w8, #0x1
+   be608:      	b.ne	0xbe854 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x2c4>
+   be60c:      	ldr	q0, [x22, #0xf8]!
+   be610:      	add	x8, sp, #0x19
+   be614:      	ldr	q1, [x22, #0xe0]!
+   be618:      	add	x9, sp, #0x179
+   be61c:      	ldr	q2, [x22, #-0x20]!
+   be620:      	stur	q0, [sp, #0x8]
+   be624:      	ldr	q3, [x22, #-0x20]!
+   be628:      	stur	q1, [sp, #0xe8]
+   be62c:      	ldr	q4, [x22, #-0x20]!
+   be630:      	stur	q2, [sp, #0xc8]
+   be634:      	ldr	q5, [x22, #-0x20]!
+   be638:      	stur	q3, [sp, #0xa8]
+   be63c:      	ldr	q6, [x22, #-0x20]!
+   be640:      	mov	x0, x19
+   be644:      	ldp	q7, q0, [x22, #-0x20]!
+   be648:      	ldur	q16, [x22, #-0x10]
+   be64c:      	mov	w1, #0xa6               // =166
+   be650:      	stur	q6, [sp, #0x48]
+   be654:      	stur	q0, [sp, #0x38]
+   be658:      	ldr	q0, [x22, #0x50]
+   be65c:      	stur	q7, [sp, #0x28]
+   be660:      	ldr	q7, [x22, #0x30]
+   be664:      	stur	q0, [sp, #0x78]
+   be668:      	ldr	q0, [x22, #0x70]
+   be66c:      	stur	q16, [sp, #0x18]
+   be670:      	stur	q0, [sp, #0x98]
+   be674:      	ldr	q0, [x22, #0x90]
+   be678:      	stur	q7, [sp, #0x58]
+   be67c:      	stur	q0, [sp, #0xb8]
+   be680:      	ldr	q0, [x22, #0xb0]
+   be684:      	stur	q5, [sp, #0x68]
+   be688:      	stur	q0, [sp, #0xd8]
+   be68c:      	ldp	q0, q2, [x22, #0xd0]
+   be690:      	stur	q4, [sp, #0x88]
+   be694:      	stur	q0, [sp, #0xf8]
+   be698:      	ldp	q3, q0, [x22, #0xf0]
+   be69c:      	stur	q3, [x8, #0xff]
+   be6a0:      	add	x8, sp, #0x9
+   be6a4:      	stur	q2, [x8, #0xff]
+   be6a8:      	ldp	q1, q2, [x22, #0x110]
+   be6ac:      	add	x8, sp, #0x39
+   be6b0:      	stur	q1, [x8, #0xff]
+   be6b4:      	add	x8, sp, #0x29
+   be6b8:      	stur	q0, [x8, #0xff]
+   be6bc:      	ldp	q0, q1, [x22, #0x130]
+   be6c0:      	add	x8, sp, #0x49
+   be6c4:      	stur	q2, [x8, #0xff]
+   be6c8:      	add	x8, sp, #0x59
+   be6cc:      	stur	q0, [x8, #0xff]
+   be6d0:      	ldp	q0, q2, [x22, #0x150]
+   be6d4:      	add	x8, sp, #0x69
+   be6d8:      	stur	q1, [x8, #0xff]
+   be6dc:      	add	x8, sp, #0x79
+   be6e0:      	stur	q0, [x8, #0xff]
+   be6e4:      	ldp	q0, q1, [x22, #0x170]
+   be6e8:      	add	x8, sp, #0x89
+   be6ec:      	stur	q2, [x8, #0xff]
+   be6f0:      	add	x8, sp, #0x99
+   be6f4:      	stur	q0, [x8, #0xff]
+   be6f8:      	ldp	q3, q0, [x22, #0x190]
+   be6fc:      	add	x8, sp, #0xb9
+   be700:      	stur	q3, [x8, #0xff]
+   be704:      	add	x8, sp, #0xa9
+   be708:      	stur	q1, [x8, #0xff]
+   be70c:      	ldp	q2, q1, [x22, #0x1b0]
+   be710:      	add	x8, sp, #0xd9
+   be714:      	stur	q2, [x8, #0xff]
+   be718:      	add	x8, sp, #0xc9
+   be71c:      	stur	q0, [x8, #0xff]
+   be720:      	ldp	q3, q0, [x22, #0x1d0]
+   be724:      	add	x8, sp, #0xf9
+   be728:      	stur	q3, [x8, #0xff]
+   be72c:      	add	x8, sp, #0xe9
+   be730:      	stur	q1, [x8, #0xff]
+   be734:      	ldp	q1, q2, [x22, #0x1f0]
+   be738:      	add	x8, sp, #0x109
+   be73c:      	stur	q0, [x8, #0xff]
+   be740:      	ldp	q3, q0, [x22, #0x210]
+   be744:      	add	x8, sp, #0x119
+   be748:      	stur	q1, [x8, #0xff]
+   be74c:      	add	x8, sp, #0x139
+   be750:      	stur	q3, [x8, #0xff]
+   be754:      	add	x8, sp, #0x129
+   be758:      	stur	q2, [x8, #0xff]
+   be75c:      	ldp	q1, q2, [x22, #0x230]
+   be760:      	add	x8, sp, #0x159
+   be764:      	stur	q1, [x8, #0xff]
+   be768:      	add	x8, sp, #0x149
+   be76c:      	ldr	d1, [x22, #0x270]
+   be770:      	stur	q0, [x8, #0xff]
+   be774:      	ldp	q3, q0, [x22, #0x250]
+   be778:      	ldr	x8, [x19]
+   be77c:      	str	d1, [sp, #0x298]
+   be780:      	stur	q3, [x9, #0xff]
+   be784:      	add	x9, sp, #0x169
+   be788:      	ldr	x8, [x8, #0x5a8]
+   be78c:      	stur	q2, [x9, #0xff]
+   be790:      	add	x9, sp, #0x189
+   be794:      	stur	q0, [x9, #0xff]
+   be798:      	blr	x8
+   be79c:      	ldr	x8, [x19]
+   be7a0:      	mov	x20, x0
+   be7a4:      	add	x4, sp, #0x8
+   be7a8:      	mov	x0, x19
+   be7ac:      	mov	x1, x20
+   be7b0:      	mov	w2, wzr
+   be7b4:      	ldr	x8, [x8, #0x6a8]
+   be7b8:      	mov	w3, #0xa6               // =166
+   be7bc:      	b	0xbe950 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x3c0>
+   be7c0:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be7c4:      	cmp	w0, #0x5
+   be7c8:      	b.gt	0xbe7e4 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x254>
+   be7cc:      	adrp	x1, 0x7c000
+   be7d0:      	add	x1, x1, #0x24e
+   be7d4:      	adrp	x2, 0x8c000
+   be7d8:      	add	x2, x2, #0x1f7
+   be7dc:      	mov	w0, #0x6                // =6
+   be7e0:      	bl	0x1b4270 <__android_log_print@plt>
+   be7e4:      	mov	x0, xzr
+   be7e8:      	ldr	x8, [x23, #0x28]
+   be7ec:      	ldur	x9, [x29, #-0x8]
+   be7f0:      	cmp	x8, x9
+   be7f4:      	b.ne	0xbea8c <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x4fc>
+   be7f8:      	add	sp, sp, #0x2, lsl #12   // =0x2000
+   be7fc:      	add	sp, sp, #0xe00
+   be800:      	ldp	x20, x19, [sp, #0x40]
+   be804:      	ldr	x28, [sp, #0x10]
+   be808:      	ldp	x22, x21, [sp, #0x30]
+   be80c:      	ldp	x24, x23, [sp, #0x20]
+   be810:      	ldp	x29, x30, [sp], #0x50
+   be814:      	ret
+   be818:      	cmp	w8, #0x2
+   be81c:      	b.eq	0xbe95c <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x3cc>
+   be820:      	cmp	w8, #0x3
+   be824:      	b.ne	0xbe854 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x2c4>
+   be828:      	ldr	w22, [sp, #0x1724]
+   be82c:      	cmp	w22, #0x1
+   be830:      	b.lt	0xbe7e4 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x254>
+   be834:      	lsl	x0, x22, #3
+   be838:      	lsl	w20, w22, #1
+   be83c:      	bl	0x1b42a0 <_Znam@plt>
+   be840:      	cmp	w22, #0x8
+   be844:      	mov	x21, x0
+   be848:      	b.hs	0xbe988 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x3f8>
+   be84c:      	mov	x8, xzr
+   be850:      	b	0xbe9bc <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x42c>
+   be854:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be858:      	cmp	w0, #0x5
+   be85c:      	b.gt	0xbe7e4 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x254>
+   be860:      	adrp	x1, 0x7c000
+   be864:      	add	x1, x1, #0x24e
+   be868:      	adrp	x2, 0x78000
+   be86c:      	add	x2, x2, #0x8db
+   be870:      	b	0xbe7dc <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x24c>
+   be874:      	ldur	q0, [x24, #0x44]
+   be878:      	ldur	q1, [x24, #0x34]
+   be87c:      	add	x8, sp, #0x2a0
+   be880:      	ldur	q2, [x24, #0x64]
+   be884:      	add	x8, x8, #0xf4
+   be888:      	mov	x0, x19
+   be88c:      	stur	q0, [sp, #0x18]
+   be890:      	ldur	q0, [x24, #0x54]
+   be894:      	mov	w1, #0x4e               // =78
+   be898:      	stur	q1, [sp, #0x8]
+   be89c:      	ldur	q1, [x24, #0x84]
+   be8a0:      	stur	q0, [sp, #0x28]
+   be8a4:      	ldur	q0, [x24, #0x74]
+   be8a8:      	stur	q2, [sp, #0x38]
+   be8ac:      	ldur	q2, [x24, #0xa4]
+   be8b0:      	stur	q0, [sp, #0x48]
+   be8b4:      	ldur	q0, [x24, #0x94]
+   be8b8:      	stur	q1, [sp, #0x58]
+   be8bc:      	ldur	q1, [x24, #0xc4]
+   be8c0:      	stur	q0, [sp, #0x68]
+   be8c4:      	ldur	q0, [x24, #0xb4]
+   be8c8:      	stur	q2, [sp, #0x78]
+   be8cc:      	ldur	q2, [x24, #0xe4]
+   be8d0:      	stur	q1, [sp, #0x98]
+   be8d4:      	ldur	q1, [x24, #0xf4]
+   be8d8:      	stur	q0, [sp, #0x88]
+   be8dc:      	ldur	q0, [x24, #0xd4]
+   be8e0:      	stur	q2, [sp, #0xb8]
+   be8e4:      	stur	q1, [sp, #0xc8]
+   be8e8:      	ldp	q1, q2, [x22]
+   be8ec:      	stur	q0, [sp, #0xa8]
+   be8f0:      	ldr	q0, [x8, #0x10]
+   be8f4:      	add	x8, sp, #0x19
+   be8f8:      	stur	q0, [sp, #0xd8]
+   be8fc:      	stur	q2, [sp, #0xf8]
+   be900:      	ldp	q2, q0, [x22, #0x20]
+   be904:      	stur	q1, [sp, #0xe8]
+   be908:      	stur	q0, [x8, #0xff]
+   be90c:      	add	x8, sp, #0x9
+   be910:      	stur	q2, [x8, #0xff]
+   be914:      	ldr	x8, [x19]
+   be918:      	ldr	d2, [x22, #0x50]
+   be91c:      	ldp	d1, d0, [x22, #0x40]
+   be920:      	ldr	x8, [x8, #0x5a8]
+   be924:      	str	d2, [sp, #0x138]
+   be928:      	stp	d1, d0, [sp, #0x128]
+   be92c:      	blr	x8
+   be930:      	ldr	x8, [x19]
+   be934:      	mov	x20, x0
+   be938:      	add	x4, sp, #0x8
+   be93c:      	mov	x0, x19
+   be940:      	mov	x1, x20
+   be944:      	mov	w2, wzr
+   be948:      	ldr	x8, [x8, #0x6a8]
+   be94c:      	mov	w3, #0x4e               // =78
+   be950:      	blr	x8
+   be954:      	mov	x0, x20
+   be958:      	b	0xbe7e8 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x258>
+   be95c:      	ldr	w24, [sp, #0x890]
+   be960:      	cmp	w24, #0x1
+   be964:      	b.lt	0xbe7e4 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x254>
+   be968:      	lsl	x0, x24, #3
+   be96c:      	lsl	w20, w24, #1
+   be970:      	bl	0x1b42a0 <_Znam@plt>
+   be974:      	cmp	w24, #0x8
+   be978:      	mov	x21, x0
+   be97c:      	b.hs	0xbe9ec <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x45c>
+   be980:      	mov	x8, xzr
+   be984:      	b	0xbea1c <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x48c>
+   be988:      	mov	w9, #0x14ac             // =5292
+   be98c:      	and	x8, x22, #0x7ffffff8
+   be990:      	add	x10, x21, #0x20
+   be994:      	add	x9, x24, x9
+   be998:      	mov	x11, x8
+   be99c:      	ldp	q1, q0, [x9, #-0x20]
+   be9a0:      	subs	x11, x11, #0x8
+   be9a4:      	stp	q1, q0, [x10, #-0x20]
+   be9a8:      	ldp	q0, q2, [x9], #0x40
+   be9ac:      	stp	q0, q2, [x10], #0x40
+   be9b0:      	b.ne	0xbe99c <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x40c>
+   be9b4:      	cmp	x8, x22
+   be9b8:      	b.eq	0xbea44 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x4b4>
+   be9bc:      	lsl	x10, x8, #3
+   be9c0:      	add	x9, sp, #0x2a0
+   be9c4:      	mov	w11, #0x148c            // =5260
+   be9c8:      	add	x9, x9, x11
+   be9cc:      	sub	x8, x22, x8
+   be9d0:      	add	x9, x10, x9
+   be9d4:      	add	x10, x21, x10
+   be9d8:      	ldr	d0, [x9], #0x8
+   be9dc:      	subs	x8, x8, #0x1
+   be9e0:      	str	d0, [x10], #0x8
+   be9e4:      	b.ne	0xbe9d8 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x448>
+   be9e8:      	b	0xbea44 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x4b4>
+   be9ec:      	and	x8, x24, #0x7ffffff8
+   be9f0:      	add	x9, x22, #0x504
+   be9f4:      	add	x10, x21, #0x20
+   be9f8:      	mov	x11, x8
+   be9fc:      	ldp	q1, q0, [x9, #-0x20]
+   bea00:      	subs	x11, x11, #0x8
+   bea04:      	stp	q1, q0, [x10, #-0x20]
+   bea08:      	ldp	q0, q2, [x9], #0x40
+   bea0c:      	stp	q0, q2, [x10], #0x40
+   bea10:      	b.ne	0xbe9fc <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x46c>
+   bea14:      	cmp	x8, x24
+   bea18:      	b.eq	0xbea44 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x4b4>
+   bea1c:      	lsl	x10, x8, #3
+   bea20:      	add	x9, sp, #0x2a0
+   bea24:      	sub	x8, x24, x8
+   bea28:      	add	x9, x10, x9
+   bea2c:      	add	x10, x21, x10
+   bea30:      	add	x9, x9, #0x5f8
+   bea34:      	ldr	d0, [x9], #0x8
+   bea38:      	subs	x8, x8, #0x1
+   bea3c:      	str	d0, [x10], #0x8
+   bea40:      	b.ne	0xbea34 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x4a4>
+   bea44:      	ldr	x8, [x19]
+   bea48:      	mov	x0, x19
+   bea4c:      	mov	w1, w20
+   bea50:      	ldr	x8, [x8, #0x5a8]
+   bea54:      	blr	x8
+   bea58:      	ldr	x8, [x19]
+   bea5c:      	mov	x22, x0
+   bea60:      	mov	x0, x19
+   bea64:      	mov	x1, x22
+   bea68:      	mov	w2, wzr
+   bea6c:      	mov	w3, w20
+   bea70:      	ldr	x8, [x8, #0x6a8]
+   bea74:      	mov	x4, x21
+   bea78:      	blr	x8
+   bea7c:      	mov	x0, x21
+   bea80:      	bl	0x1b42b0 <_ZdaPv@plt>
+   bea84:      	mov	x0, x22
+   bea88:      	b	0xbe7e8 <MTFilterKernelFaceDataJNI::getLandmark(_JNIEnv*, _jobject*, long, int, int)+0x258>
+   bea8c:      	bl	0x1b4280 <__stack_chk_fail@plt>
+
+00000000000bea90 <MTFilterKernelFaceDataJNI::getDetectWidth(_JNIEnv*, _jobject*, long)>:
+   bea90:      	stp	x29, x30, [sp, #-0x10]!
+   bea94:      	mov	x29, sp
+   bea98:      	cbz	x2, 0xbeaac <MTFilterKernelFaceDataJNI::getDetectWidth(_JNIEnv*, _jobject*, long)+0x1c>
+   bea9c:      	ldr	s0, [x2, #0x4]
+   beaa0:      	fcvtzs	w0, s0
+   beaa4:      	ldp	x29, x30, [sp], #0x10
+   beaa8:      	ret
+   beaac:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beab0:      	cmp	w0, #0x5
+   beab4:      	b.gt	0xbead0 <MTFilterKernelFaceDataJNI::getDetectWidth(_JNIEnv*, _jobject*, long)+0x40>
+   beab8:      	adrp	x1, 0x7c000
+   beabc:      	add	x1, x1, #0x24e
+   beac0:      	adrp	x2, 0x8b000
+   beac4:      	add	x2, x2, #0xba0
+   beac8:      	mov	w0, #0x6                // =6
+   beacc:      	bl	0x1b4270 <__android_log_print@plt>
+   bead0:      	mov	w0, wzr
+   bead4:      	ldp	x29, x30, [sp], #0x10
+   bead8:      	ret
+
+00000000000beadc <MTFilterKernelFaceDataJNI::getDetectHeight(_JNIEnv*, _jobject*, long)>:
+   beadc:      	stp	x29, x30, [sp, #-0x10]!
+   beae0:      	mov	x29, sp
+   beae4:      	cbz	x2, 0xbeaf8 <MTFilterKernelFaceDataJNI::getDetectHeight(_JNIEnv*, _jobject*, long)+0x1c>
+   beae8:      	ldr	s0, [x2, #0x8]
+   beaec:      	fcvtzs	w0, s0
+   beaf0:      	ldp	x29, x30, [sp], #0x10
+   beaf4:      	ret
+   beaf8:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beafc:      	cmp	w0, #0x5
+   beb00:      	b.gt	0xbeb1c <MTFilterKernelFaceDataJNI::getDetectHeight(_JNIEnv*, _jobject*, long)+0x40>
+   beb04:      	adrp	x1, 0x7c000
+   beb08:      	add	x1, x1, #0x24e
+   beb0c:      	adrp	x2, 0x8c000
+   beb10:      	add	x2, x2, #0xa0d
+   beb14:      	mov	w0, #0x6                // =6
+   beb18:      	bl	0x1b4270 <__android_log_print@plt>
+   beb1c:      	mov	w0, wzr
+   beb20:      	ldp	x29, x30, [sp], #0x10
+   beb24:      	ret
+
+00000000000beb28 <MTFilterKernelFaceDataJNI::getRace(_JNIEnv*, _jobject*, long, int)>:
+   beb28:      	stp	x29, x30, [sp, #-0x10]!
+   beb2c:      	mov	x29, sp
+   beb30:      	cbz	x2, 0xbeb6c <MTFilterKernelFaceDataJNI::getRace(_JNIEnv*, _jobject*, long, int)+0x44>
+   beb34:      	ldr	w8, [x2]
+   beb38:      	cmp	w8, w3
+   beb3c:      	b.le	0xbeb90 <MTFilterKernelFaceDataJNI::getRace(_JNIEnv*, _jobject*, long, int)+0x68>
+   beb40:      	mov	w8, #0x2b58             // =11096
+   beb44:      	mov	w9, #0x2348             // =9032
+   beb48:      	smaddl	x8, w3, w8, x2
+   beb4c:      	ldrb	w8, [x8, x9]
+   beb50:      	cbz	w8, 0xbeb9c <MTFilterKernelFaceDataJNI::getRace(_JNIEnv*, _jobject*, long, int)+0x74>
+   beb54:      	sxtw	x8, w3
+   beb58:      	mov	w9, #0x2b58             // =11096
+   beb5c:      	smaddl	x8, w8, w9, x2
+   beb60:      	ldr	w0, [x8, #0x234c]
+   beb64:      	ldp	x29, x30, [sp], #0x10
+   beb68:      	ret
+   beb6c:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beb70:      	cmp	w0, #0x5
+   beb74:      	b.gt	0xbeb90 <MTFilterKernelFaceDataJNI::getRace(_JNIEnv*, _jobject*, long, int)+0x68>
+   beb78:      	adrp	x1, 0x7c000
+   beb7c:      	add	x1, x1, #0x24e
+   beb80:      	adrp	x2, 0x70000
+   beb84:      	add	x2, x2, #0x67f
+   beb88:      	mov	w0, #0x6                // =6
+   beb8c:      	bl	0x1b4270 <__android_log_print@plt>
+   beb90:      	mov	w0, wzr
+   beb94:      	ldp	x29, x30, [sp], #0x10
+   beb98:      	ret
+   beb9c:      	mov	w0, #-0x1               // =-1
+   beba0:      	ldp	x29, x30, [sp], #0x10
+   beba4:      	ret
+
+00000000000beba8 <MTFilterKernelFaceDataJNI::getGender(_JNIEnv*, _jobject*, long, int)>:
+   beba8:      	stp	x29, x30, [sp, #-0x10]!
+   bebac:      	mov	x29, sp
+   bebb0:      	cbz	x2, 0xbebec <MTFilterKernelFaceDataJNI::getGender(_JNIEnv*, _jobject*, long, int)+0x44>
+   bebb4:      	ldr	w8, [x2]
+   bebb8:      	cmp	w8, w3
+   bebbc:      	b.le	0xbec10 <MTFilterKernelFaceDataJNI::getGender(_JNIEnv*, _jobject*, long, int)+0x68>
+   bebc0:      	mov	w8, #0x2b58             // =11096
+   bebc4:      	mov	w9, #0x2338             // =9016
+   bebc8:      	smaddl	x8, w3, w8, x2
+   bebcc:      	ldrb	w8, [x8, x9]
+   bebd0:      	cbz	w8, 0xbec1c <MTFilterKernelFaceDataJNI::getGender(_JNIEnv*, _jobject*, long, int)+0x74>
+   bebd4:      	sxtw	x8, w3
+   bebd8:      	mov	w9, #0x2b58             // =11096
+   bebdc:      	smaddl	x8, w8, w9, x2
+   bebe0:      	ldr	w0, [x8, #0x233c]
+   bebe4:      	ldp	x29, x30, [sp], #0x10
+   bebe8:      	ret
+   bebec:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bebf0:      	cmp	w0, #0x5
+   bebf4:      	b.gt	0xbec10 <MTFilterKernelFaceDataJNI::getGender(_JNIEnv*, _jobject*, long, int)+0x68>
+   bebf8:      	adrp	x1, 0x7c000
+   bebfc:      	add	x1, x1, #0x24e
+   bec00:      	adrp	x2, 0x70000
+   bec04:      	add	x2, x2, #0x67f
+   bec08:      	mov	w0, #0x6                // =6
+   bec0c:      	bl	0x1b4270 <__android_log_print@plt>
+   bec10:      	mov	w0, wzr
+   bec14:      	ldp	x29, x30, [sp], #0x10
+   bec18:      	ret
+   bec1c:      	mov	w0, #-0x1               // =-1
+   bec20:      	ldp	x29, x30, [sp], #0x10
+   bec24:      	ret
+
+00000000000bec28 <MTFilterKernelFaceDataJNI::getAge(_JNIEnv*, _jobject*, long, int)>:
+   bec28:      	stp	x29, x30, [sp, #-0x10]!
+   bec2c:      	mov	x29, sp
+   bec30:      	cbz	x2, 0xbec6c <MTFilterKernelFaceDataJNI::getAge(_JNIEnv*, _jobject*, long, int)+0x44>
+   bec34:      	ldr	w8, [x2]
+   bec38:      	cmp	w8, w3
+   bec3c:      	b.le	0xbec90 <MTFilterKernelFaceDataJNI::getAge(_JNIEnv*, _jobject*, long, int)+0x68>
+   bec40:      	mov	w8, #0x2b58             // =11096
+   bec44:      	mov	w9, #0x2340             // =9024
+   bec48:      	smaddl	x8, w3, w8, x2
+   bec4c:      	ldrb	w8, [x8, x9]
+   bec50:      	cbz	w8, 0xbec9c <MTFilterKernelFaceDataJNI::getAge(_JNIEnv*, _jobject*, long, int)+0x74>
+   bec54:      	sxtw	x8, w3
+   bec58:      	mov	w9, #0x2b58             // =11096
+   bec5c:      	smaddl	x8, w8, w9, x2
+   bec60:      	ldr	w0, [x8, #0x2344]
+   bec64:      	ldp	x29, x30, [sp], #0x10
+   bec68:      	ret
+   bec6c:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bec70:      	cmp	w0, #0x5
+   bec74:      	b.gt	0xbec90 <MTFilterKernelFaceDataJNI::getAge(_JNIEnv*, _jobject*, long, int)+0x68>
+   bec78:      	adrp	x1, 0x7c000
+   bec7c:      	add	x1, x1, #0x24e
+   bec80:      	adrp	x2, 0x88000
+   bec84:      	add	x2, x2, #0x430
+   bec88:      	mov	w0, #0x6                // =6
+   bec8c:      	bl	0x1b4270 <__android_log_print@plt>
+   bec90:      	mov	w0, wzr
+   bec94:      	ldp	x29, x30, [sp], #0x10
+   bec98:      	ret
+   bec9c:      	mov	w0, #-0x1               // =-1
+   beca0:      	ldp	x29, x30, [sp], #0x10
+   beca4:      	ret
+
+00000000000beca8 <MTFilterKernelFaceDataJNI::setFaceCount(_JNIEnv*, _jobject*, long, int)>:
+   beca8:      	cbz	x2, 0xbecb4 <MTFilterKernelFaceDataJNI::setFaceCount(_JNIEnv*, _jobject*, long, int)+0xc>
+   becac:      	str	w3, [x2]
+   becb0:      	ret
+   becb4:      	stp	x29, x30, [sp, #-0x10]!
+   becb8:      	mov	x29, sp
+   becbc:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   becc0:      	cmp	w0, #0x5
+   becc4:      	ldp	x29, x30, [sp], #0x10
+   becc8:      	b.gt	0xbece4 <MTFilterKernelFaceDataJNI::setFaceCount(_JNIEnv*, _jobject*, long, int)+0x3c>
+   beccc:      	adrp	x1, 0x7c000
+   becd0:      	add	x1, x1, #0x24e
+   becd4:      	adrp	x2, 0x6f000
+   becd8:      	add	x2, x2, #0x734
+   becdc:      	mov	w0, #0x6                // =6
+   bece0:      	b	0x1b4270 <__android_log_print@plt>
+   bece4:      	ret
+
+00000000000bece8 <MTFilterKernelFaceDataJNI::setDetectSize(_JNIEnv*, _jobject*, long, int, int)>:
+   bece8:      	cbz	x2, 0xbecfc <MTFilterKernelFaceDataJNI::setDetectSize(_JNIEnv*, _jobject*, long, int, int)+0x14>
+   becec:      	scvtf	s0, w3
+   becf0:      	scvtf	s1, w4
+   becf4:      	stp	s0, s1, [x2, #0x4]
+   becf8:      	ret
+   becfc:      	stp	x29, x30, [sp, #-0x10]!
+   bed00:      	mov	x29, sp
+   bed04:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bed08:      	cmp	w0, #0x5
+   bed0c:      	ldp	x29, x30, [sp], #0x10
+   bed10:      	b.gt	0xbed2c <MTFilterKernelFaceDataJNI::setDetectSize(_JNIEnv*, _jobject*, long, int, int)+0x44>
+   bed14:      	adrp	x1, 0x7c000
+   bed18:      	add	x1, x1, #0x24e
+   bed1c:      	adrp	x2, 0x72000
+   bed20:      	add	x2, x2, #0xe5c
+   bed24:      	mov	w0, #0x6                // =6
+   bed28:      	b	0x1b4270 <__android_log_print@plt>
+   bed2c:      	ret
+
+00000000000bed30 <MTFilterKernelFaceDataJNI::setFaceRect(_JNIEnv*, _jobject*, long, int, _jfloatArray*)>:
+   bed30:      	stp	x29, x30, [sp, #-0x30]!
+   bed34:      	stp	x22, x21, [sp, #0x10]
+   bed38:      	stp	x20, x19, [sp, #0x20]
+   bed3c:      	mov	x29, sp
+   bed40:      	mov	w19, w3
+   bed44:      	cbz	x2, 0xbedb0 <MTFilterKernelFaceDataJNI::setFaceRect(_JNIEnv*, _jobject*, long, int, _jfloatArray*)+0x80>
+   bed48:      	cmp	w19, #0x9
+   bed4c:      	b.gt	0xbedb0 <MTFilterKernelFaceDataJNI::setFaceRect(_JNIEnv*, _jobject*, long, int, _jfloatArray*)+0x80>
+   bed50:      	ldr	x8, [x0]
+   bed54:      	mov	x21, x2
+   bed58:      	mov	x1, x4
+   bed5c:      	mov	x2, xzr
+   bed60:      	mov	x20, x4
+   bed64:      	mov	x22, x0
+   bed68:      	ldr	x8, [x8, #0x5e8]
+   bed6c:      	blr	x8
+   bed70:      	mov	w8, #0x2b58             // =11096
+   bed74:      	ldr	q0, [x0]
+   bed78:      	mov	w10, #0x1               // =1
+   bed7c:      	smaddl	x8, w19, w8, x21
+   bed80:      	mov	x2, x0
+   bed84:      	mov	x0, x22
+   bed88:      	mov	x1, x20
+   bed8c:      	mov	w3, wzr
+   bed90:      	stur	q0, [x8, #0x18]
+   bed94:      	ldr	x9, [x22]
+   bed98:      	ldr	x4, [x9, #0x628]
+   bed9c:      	strb	w10, [x8, #0x14]
+   beda0:      	ldp	x20, x19, [sp, #0x20]
+   beda4:      	ldp	x22, x21, [sp, #0x10]
+   beda8:      	ldp	x29, x30, [sp], #0x30
+   bedac:      	br	x4
+   bedb0:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bedb4:      	cmp	w0, #0x5
+   bedb8:      	b.gt	0xbede4 <MTFilterKernelFaceDataJNI::setFaceRect(_JNIEnv*, _jobject*, long, int, _jfloatArray*)+0xb4>
+   bedbc:      	adrp	x1, 0x7c000
+   bedc0:      	add	x1, x1, #0x24e
+   bedc4:      	adrp	x2, 0x6f000
+   bedc8:      	add	x2, x2, #0x788
+   bedcc:      	mov	w0, #0x6                // =6
+   bedd0:      	mov	w3, w19
+   bedd4:      	ldp	x20, x19, [sp, #0x20]
+   bedd8:      	ldp	x22, x21, [sp, #0x10]
+   beddc:      	ldp	x29, x30, [sp], #0x30
+   bede0:      	b	0x1b4270 <__android_log_print@plt>
+   bede4:      	ldp	x20, x19, [sp, #0x20]
+   bede8:      	ldp	x22, x21, [sp, #0x10]
+   bedec:      	ldp	x29, x30, [sp], #0x30
+   bedf0:      	ret
+
+00000000000bedf4 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)>:
+   bedf4:      	stp	x29, x30, [sp, #-0x50]!
+   bedf8:      	str	x25, [sp, #0x10]
+   bedfc:      	stp	x24, x23, [sp, #0x20]
+   bee00:      	stp	x22, x21, [sp, #0x30]
+   bee04:      	stp	x20, x19, [sp, #0x40]
+   bee08:      	mov	x29, sp
+   bee0c:      	cbz	x2, 0xbeea8 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0xb4>
+   bee10:      	mov	w19, w4
+   bee14:      	cmp	w4, #0x9
+   bee18:      	b.gt	0xbeecc <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0xd8>
+   bee1c:      	cbz	x5, 0xbf188 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x394>
+   bee20:      	ldr	x8, [x0]
+   bee24:      	mov	x1, x5
+   bee28:      	mov	w25, w3
+   bee2c:      	mov	x24, x2
+   bee30:      	mov	x23, x0
+   bee34:      	mov	x20, x5
+   bee38:      	ldr	x8, [x8, #0x558]
+   bee3c:      	blr	x8
+   bee40:      	cmp	w0, #0x1
+   bee44:      	b.lt	0xbeee8 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0xf4>
+   bee48:      	ldr	x8, [x23]
+   bee4c:      	mov	w21, w0
+   bee50:      	mov	x0, x23
+   bee54:      	mov	x1, x20
+   bee58:      	mov	x2, xzr
+   bee5c:      	sxtw	x22, w19
+   bee60:      	ldr	x8, [x8, #0x5e8]
+   bee64:      	blr	x8
+   bee68:      	mov	x19, x0
+   bee6c:      	cbnz	w25, 0xbef10 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x11c>
+   bee70:      	cmp	w21, #0x4e
+   bee74:      	b.ne	0xbef10 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x11c>
+   bee78:      	mov	w9, #0x2b58             // =11096
+   bee7c:      	add	x11, x19, #0x138
+   bee80:      	mov	x8, x24
+   bee84:      	smaddl	x9, w22, w9, x24
+   bee88:      	add	x10, x9, #0x40
+   bee8c:      	cmp	x10, x11
+   bee90:      	b.hs	0xbeff4 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x200>
+   bee94:      	add	x9, x9, #0x178
+   bee98:      	cmp	x19, x9
+   bee9c:      	b.hs	0xbeff4 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x200>
+   beea0:      	mov	x9, xzr
+   beea4:      	b	0xbf04c <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x258>
+   beea8:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beeac:      	cmp	w0, #0x5
+   beeb0:      	b.gt	0xbeecc <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0xd8>
+   beeb4:      	adrp	x1, 0x7c000
+   beeb8:      	add	x1, x1, #0x24e
+   beebc:      	adrp	x2, 0x8c000
+   beec0:      	add	x2, x2, #0xf8b
+   beec4:      	mov	w0, #0x6                // =6
+   beec8:      	bl	0x1b4270 <__android_log_print@plt>
+   beecc:      	mov	w0, wzr
+   beed0:      	ldp	x20, x19, [sp, #0x40]
+   beed4:      	ldr	x25, [sp, #0x10]
+   beed8:      	ldp	x22, x21, [sp, #0x30]
+   beedc:      	ldp	x24, x23, [sp, #0x20]
+   beee0:      	ldp	x29, x30, [sp], #0x50
+   beee4:      	ret
+   beee8:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beeec:      	cmp	w0, #0x5
+   beef0:      	b.gt	0xbf188 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x394>
+   beef4:      	adrp	x1, 0x7c000
+   beef8:      	add	x1, x1, #0x24e
+   beefc:      	adrp	x2, 0x88000
+   bef00:      	add	x2, x2, #0x47e
+   bef04:      	mov	w0, #0x6                // =6
+   bef08:      	bl	0x1b4270 <__android_log_print@plt>
+   bef0c:      	b	0xbf188 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x394>
+   bef10:      	cmp	w25, #0x1
+   bef14:      	mov	x8, x24
+   bef18:      	b.ne	0xbef58 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x164>
+   bef1c:      	cmp	w21, #0xa6
+   bef20:      	b.ne	0xbef58 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x164>
+   bef24:      	mov	w9, #0x2b58             // =11096
+   bef28:      	add	x11, x19, #0x298
+   bef2c:      	mov	x1, x20
+   bef30:      	smaddl	x9, w22, w9, x8
+   bef34:      	mov	x0, x23
+   bef38:      	add	x10, x9, #0x218
+   bef3c:      	cmp	x10, x11
+   bef40:      	b.hs	0xbf08c <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x298>
+   bef44:      	add	x9, x9, #0x4b0
+   bef48:      	cmp	x19, x9
+   bef4c:      	b.hs	0xbf08c <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x298>
+   bef50:      	mov	x9, xzr
+   bef54:      	b	0xbf140 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x34c>
+   bef58:      	cmp	w25, #0x3
+   bef5c:      	mov	x1, x20
+   bef60:      	mov	x0, x23
+   bef64:      	b.eq	0xbf1a4 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3b0>
+   bef68:      	cmp	w25, #0x2
+   bef6c:      	b.ne	0xbf230 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x43c>
+   bef70:      	mov	w9, #0x2b58             // =11096
+   bef74:      	cmp	w21, #0x1
+   bef78:      	smaddl	x10, w22, w9, x8
+   bef7c:      	lsr	w9, w21, #1
+   bef80:      	str	w9, [x10, #0x5fc]
+   bef84:      	b.eq	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bef88:      	cmp	w9, #0x1
+   bef8c:      	csinc	w9, w9, wzr, hi
+   bef90:      	cmp	w21, #0x10
+   bef94:      	b.lo	0xbefc0 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x1cc>
+   bef98:      	mov	w10, #0x2b58            // =11096
+   bef9c:      	smaddl	x11, w22, w10, x8
+   befa0:      	lsl	x10, x9, #3
+   befa4:      	add	x12, x19, x10
+   befa8:      	add	x11, x11, #0x604
+   befac:      	cmp	x11, x12
+   befb0:      	b.hs	0xbf26c <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x478>
+   befb4:      	add	x10, x11, x10
+   befb8:      	cmp	x19, x10
+   befbc:      	b.hs	0xbf26c <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x478>
+   befc0:      	mov	x10, xzr
+   befc4:      	mov	w11, #0x2b58            // =11096
+   befc8:      	lsl	x12, x10, #3
+   befcc:      	sub	x9, x9, x10
+   befd0:      	smaddl	x11, w22, w11, x12
+   befd4:      	add	x11, x11, x8
+   befd8:      	add	x8, x19, x12
+   befdc:      	add	x11, x11, #0x604
+   befe0:      	ldr	d0, [x8], #0x8
+   befe4:      	subs	x9, x9, #0x1
+   befe8:      	str	d0, [x11], #0x8
+   befec:      	b.ne	0xbefe0 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x1ec>
+   beff0:      	b	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   beff4:      	mov	w9, #0x2b58             // =11096
+   beff8:      	ldp	q1, q0, [x19]
+   beffc:      	nop
+   bf000:      	smaddl	x9, w22, w9, x8
+   bf004:      	stp	q1, q0, [x9, #0x40]
+   bf008:      	ldp	q1, q0, [x19, #0x20]
+   bf00c:      	stp	q1, q0, [x9, #0x60]
+   bf010:      	ldp	q1, q0, [x19, #0x40]
+   bf014:      	stp	q1, q0, [x9, #0x80]
+   bf018:      	ldp	q1, q0, [x19, #0x60]
+   bf01c:      	stp	q1, q0, [x9, #0xa0]
+   bf020:      	ldp	q1, q0, [x19, #0x80]
+   bf024:      	stp	q1, q0, [x9, #0xc0]
+   bf028:      	ldp	q1, q0, [x19, #0xa0]
+   bf02c:      	stp	q1, q0, [x9, #0xe0]
+   bf030:      	ldp	q1, q0, [x19, #0xc0]
+   bf034:      	stp	q1, q0, [x9, #0x100]
+   bf038:      	ldp	q1, q0, [x19, #0xe0]
+   bf03c:      	stp	q1, q0, [x9, #0x120]
+   bf040:      	ldp	q1, q0, [x19, #0x100]
+   bf044:      	stp	q1, q0, [x9, #0x140]
+   bf048:      	mov	w9, #0x24               // =36
+   bf04c:      	mov	w10, #0x2b58            // =11096
+   bf050:      	mov	x1, x20
+   bf054:      	mov	x0, x23
+   bf058:      	smaddl	x10, w22, w10, x8
+   bf05c:      	lsl	x8, x9, #3
+   bf060:      	add	x9, x10, #0x44
+   bf064:      	add	x10, x19, x8
+   bf068:      	add	x11, x9, x8
+   bf06c:      	add	x8, x8, #0x8
+   bf070:      	ldr	s0, [x10]
+   bf074:      	cmp	x8, #0x138
+   bf078:      	stur	s0, [x11, #-0x4]
+   bf07c:      	ldr	s0, [x10, #0x4]
+   bf080:      	str	s0, [x11]
+   bf084:      	b.ne	0xbf064 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x270>
+   bf088:      	b	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf08c:      	mov	w9, #0x2b58             // =11096
+   bf090:      	ldp	q1, q0, [x19]
+   bf094:      	nop
+   bf098:      	smaddl	x9, w22, w9, x8
+   bf09c:      	add	x9, x9, #0x218
+   bf0a0:      	stp	q1, q0, [x9]
+   bf0a4:      	ldp	q1, q0, [x19, #0x20]
+   bf0a8:      	stp	q1, q0, [x9, #0x20]
+   bf0ac:      	ldp	q1, q0, [x19, #0x40]
+   bf0b0:      	stp	q1, q0, [x9, #0x40]
+   bf0b4:      	ldp	q1, q0, [x19, #0x60]
+   bf0b8:      	stp	q1, q0, [x9, #0x60]
+   bf0bc:      	ldp	q1, q0, [x19, #0x80]
+   bf0c0:      	stp	q1, q0, [x9, #0x80]
+   bf0c4:      	ldp	q1, q0, [x19, #0xa0]
+   bf0c8:      	stp	q1, q0, [x9, #0xa0]
+   bf0cc:      	ldp	q1, q0, [x19, #0xc0]
+   bf0d0:      	stp	q1, q0, [x9, #0xc0]
+   bf0d4:      	ldp	q1, q0, [x19, #0xe0]
+   bf0d8:      	stp	q1, q0, [x9, #0xe0]
+   bf0dc:      	ldp	q1, q0, [x19, #0x100]
+   bf0e0:      	stp	q1, q0, [x9, #0x100]
+   bf0e4:      	ldp	q1, q0, [x19, #0x120]
+   bf0e8:      	stp	q1, q0, [x9, #0x120]
+   bf0ec:      	ldp	q1, q0, [x19, #0x140]
+   bf0f0:      	stp	q1, q0, [x9, #0x140]
+   bf0f4:      	ldp	q1, q0, [x19, #0x160]
+   bf0f8:      	stp	q1, q0, [x9, #0x160]
+   bf0fc:      	ldp	q1, q0, [x19, #0x180]
+   bf100:      	stp	q1, q0, [x9, #0x180]
+   bf104:      	ldp	q1, q0, [x19, #0x1a0]
+   bf108:      	stp	q1, q0, [x9, #0x1a0]
+   bf10c:      	ldp	q1, q0, [x19, #0x1c0]
+   bf110:      	stp	q1, q0, [x9, #0x1c0]
+   bf114:      	ldp	q1, q0, [x19, #0x1e0]
+   bf118:      	stp	q1, q0, [x9, #0x1e0]
+   bf11c:      	ldp	q1, q0, [x19, #0x200]
+   bf120:      	stp	q1, q0, [x9, #0x200]
+   bf124:      	ldp	q1, q0, [x19, #0x220]
+   bf128:      	stp	q1, q0, [x9, #0x220]
+   bf12c:      	ldp	q1, q0, [x19, #0x240]
+   bf130:      	stp	q1, q0, [x9, #0x240]
+   bf134:      	ldp	q1, q0, [x19, #0x260]
+   bf138:      	stp	q1, q0, [x9, #0x260]
+   bf13c:      	mov	w9, #0x50               // =80
+   bf140:      	mov	w10, #0x2b58            // =11096
+   bf144:      	smaddl	x10, w22, w10, x8
+   bf148:      	lsl	x8, x9, #3
+   bf14c:      	add	x9, x10, #0x21c
+   bf150:      	add	x10, x19, x8
+   bf154:      	add	x11, x9, x8
+   bf158:      	add	x8, x8, #0x8
+   bf15c:      	ldr	s0, [x10]
+   bf160:      	cmp	x8, #0x298
+   bf164:      	stur	s0, [x11, #-0x4]
+   bf168:      	ldr	s0, [x10, #0x4]
+   bf16c:      	str	s0, [x11]
+   bf170:      	b.ne	0xbf150 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x35c>
+   bf174:      	ldr	x8, [x0]
+   bf178:      	mov	x2, x19
+   bf17c:      	mov	w3, wzr
+   bf180:      	ldr	x8, [x8, #0x628]
+   bf184:      	blr	x8
+   bf188:      	mov	w0, #0x1                // =1
+   bf18c:      	ldp	x20, x19, [sp, #0x40]
+   bf190:      	ldr	x25, [sp, #0x10]
+   bf194:      	ldp	x22, x21, [sp, #0x30]
+   bf198:      	ldp	x24, x23, [sp, #0x20]
+   bf19c:      	ldp	x29, x30, [sp], #0x50
+   bf1a0:      	ret
+   bf1a4:      	cmp	w21, #0x1
+   bf1a8:      	b.eq	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf1ac:      	lsr	w9, w21, #1
+   bf1b0:      	cmp	w9, #0x1
+   bf1b4:      	csinc	w10, w9, wzr, hi
+   bf1b8:      	cmp	w21, #0x10
+   bf1bc:      	b.lo	0xbf1ec <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3f8>
+   bf1c0:      	mov	w11, #0x2b58            // =11096
+   bf1c4:      	mov	w13, #0x1498            // =5272
+   bf1c8:      	smaddl	x12, w22, w11, x8
+   bf1cc:      	lsl	x11, x10, #3
+   bf1d0:      	add	x12, x12, x13
+   bf1d4:      	add	x13, x19, x11
+   bf1d8:      	cmp	x12, x13
+   bf1dc:      	b.hs	0xbf2ac <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4b8>
+   bf1e0:      	add	x11, x12, x11
+   bf1e4:      	cmp	x19, x11
+   bf1e8:      	b.hs	0xbf2ac <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4b8>
+   bf1ec:      	mov	x11, xzr
+   bf1f0:      	mov	w12, #0x2b58            // =11096
+   bf1f4:      	lsl	x13, x11, #3
+   bf1f8:      	sub	x10, x10, x11
+   bf1fc:      	smaddl	x14, w22, w12, x13
+   bf200:      	mov	w12, #0x1498            // =5272
+   bf204:      	add	x15, x8, x12
+   bf208:      	add	x12, x19, x13
+   bf20c:      	add	x13, x14, x15
+   bf210:      	ldr	d0, [x12], #0x8
+   bf214:      	subs	x10, x10, #0x1
+   bf218:      	str	d0, [x13], #0x8
+   bf21c:      	b.ne	0xbf210 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x41c>
+   bf220:      	mov	w10, #0x2b58            // =11096
+   bf224:      	smaddl	x8, w22, w10, x8
+   bf228:      	str	w9, [x8, #0x1490]
+   bf22c:      	b	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf230:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf234:      	mov	w8, w0
+   bf238:      	mov	x1, x20
+   bf23c:      	mov	x0, x23
+   bf240:      	cmp	w8, #0x5
+   bf244:      	b.gt	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf248:      	adrp	x1, 0x7c000
+   bf24c:      	add	x1, x1, #0x24e
+   bf250:      	adrp	x2, 0x7b000
+   bf254:      	add	x2, x2, #0x9b
+   bf258:      	mov	w0, #0x6                // =6
+   bf25c:      	bl	0x1b4270 <__android_log_print@plt>
+   bf260:      	mov	x0, x23
+   bf264:      	mov	x1, x20
+   bf268:      	b	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf26c:      	mov	w10, #0x2b58            // =11096
+   bf270:      	add	x12, x19, #0x20
+   bf274:      	smaddl	x11, w22, w10, x8
+   bf278:      	and	x10, x9, #0x3ffffff8
+   bf27c:      	mov	x13, x10
+   bf280:      	add	x11, x11, #0x604
+   bf284:      	ldp	q0, q1, [x12, #-0x20]
+   bf288:      	subs	x13, x13, #0x8
+   bf28c:      	ldp	q3, q2, [x12], #0x40
+   bf290:      	stp	q0, q1, [x11]
+   bf294:      	stp	q3, q2, [x11, #0x20]
+   bf298:      	add	x11, x11, #0x40
+   bf29c:      	b.ne	0xbf284 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x490>
+   bf2a0:      	cmp	x10, x9
+   bf2a4:      	b.eq	0xbf174 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x380>
+   bf2a8:      	b	0xbefc4 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x1d0>
+   bf2ac:      	mov	w11, #0x2b58            // =11096
+   bf2b0:      	mov	w13, #0x14b8            // =5304
+   bf2b4:      	smaddl	x12, w22, w11, x8
+   bf2b8:      	and	x11, x10, #0x3ffffff8
+   bf2bc:      	mov	x14, x11
+   bf2c0:      	add	x12, x12, x13
+   bf2c4:      	add	x13, x19, #0x20
+   bf2c8:      	ldp	q0, q1, [x13, #-0x20]
+   bf2cc:      	subs	x14, x14, #0x8
+   bf2d0:      	ldp	q3, q2, [x13], #0x40
+   bf2d4:      	stp	q0, q1, [x12, #-0x20]
+   bf2d8:      	stp	q3, q2, [x12], #0x40
+   bf2dc:      	b.ne	0xbf2c8 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4d4>
+   bf2e0:      	cmp	x11, x10
+   bf2e4:      	b.eq	0xbf220 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x42c>
+   bf2e8:      	b	0xbf1f0 <MTFilterKernelFaceDataJNI::setLandmark(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3fc>
+
+00000000000bf2ec <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)>:
+   bf2ec:      	stp	x29, x30, [sp, #-0x50]!
+   bf2f0:      	str	x25, [sp, #0x10]
+   bf2f4:      	stp	x24, x23, [sp, #0x20]
+   bf2f8:      	stp	x22, x21, [sp, #0x30]
+   bf2fc:      	stp	x20, x19, [sp, #0x40]
+   bf300:      	mov	x29, sp
+   bf304:      	cbz	x2, 0xbf330 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x44>
+   bf308:      	mov	w19, w4
+   bf30c:      	cmp	w4, #0x9
+   bf310:      	b.le	0xbf358 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x6c>
+   bf314:      	mov	w0, wzr
+   bf318:      	ldp	x20, x19, [sp, #0x40]
+   bf31c:      	ldr	x25, [sp, #0x10]
+   bf320:      	ldp	x22, x21, [sp, #0x30]
+   bf324:      	ldp	x24, x23, [sp, #0x20]
+   bf328:      	ldp	x29, x30, [sp], #0x50
+   bf32c:      	ret
+   bf330:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf334:      	cmp	w0, #0x5
+   bf338:      	b.gt	0xbf7f0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x504>
+   bf33c:      	adrp	x1, 0x7c000
+   bf340:      	add	x1, x1, #0x24e
+   bf344:      	adrp	x2, 0x8c000
+   bf348:      	add	x2, x2, #0xf8b
+   bf34c:      	mov	w0, #0x6                // =6
+   bf350:      	bl	0x1b4270 <__android_log_print@plt>
+   bf354:      	b	0xbf7f0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x504>
+   bf358:      	cbz	x5, 0xbf7f0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x504>
+   bf35c:      	ldr	x8, [x0]
+   bf360:      	mov	x1, x5
+   bf364:      	mov	w25, w3
+   bf368:      	mov	x24, x2
+   bf36c:      	mov	x23, x0
+   bf370:      	mov	x21, x5
+   bf374:      	ldr	x8, [x8, #0x558]
+   bf378:      	blr	x8
+   bf37c:      	sxtw	x22, w19
+   bf380:      	cmp	w0, #0x1
+   bf384:      	b.lt	0xbf500 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x214>
+   bf388:      	ldr	x8, [x23]
+   bf38c:      	mov	w20, w0
+   bf390:      	mov	x0, x23
+   bf394:      	mov	x1, x21
+   bf398:      	mov	x2, xzr
+   bf39c:      	ldr	x8, [x8, #0x5e8]
+   bf3a0:      	blr	x8
+   bf3a4:      	mov	x19, x0
+   bf3a8:      	cbnz	w25, 0xbf52c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x240>
+   bf3ac:      	cmp	w20, #0x4e
+   bf3b0:      	b.ne	0xbf52c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x240>
+   bf3b4:      	mov	w8, #0x2b58             // =11096
+   bf3b8:      	ldr	s0, [x19]
+   bf3bc:      	mov	x1, x21
+   bf3c0:      	smaddl	x8, w22, w8, x24
+   bf3c4:      	mov	x0, x23
+   bf3c8:      	str	s0, [x8, #0x178]
+   bf3cc:      	ldr	s0, [x19, #0x4]
+   bf3d0:      	str	s0, [x8, #0x17c]
+   bf3d4:      	ldr	s0, [x19, #0x8]
+   bf3d8:      	str	s0, [x8, #0x180]
+   bf3dc:      	ldr	s0, [x19, #0xc]
+   bf3e0:      	str	s0, [x8, #0x184]
+   bf3e4:      	ldr	s0, [x19, #0x10]
+   bf3e8:      	str	s0, [x8, #0x188]
+   bf3ec:      	ldr	s0, [x19, #0x14]
+   bf3f0:      	str	s0, [x8, #0x18c]
+   bf3f4:      	ldr	s0, [x19, #0x18]
+   bf3f8:      	str	s0, [x8, #0x190]
+   bf3fc:      	ldr	s0, [x19, #0x1c]
+   bf400:      	str	s0, [x8, #0x194]
+   bf404:      	ldr	s0, [x19, #0x20]
+   bf408:      	str	s0, [x8, #0x198]
+   bf40c:      	ldr	s0, [x19, #0x24]
+   bf410:      	str	s0, [x8, #0x19c]
+   bf414:      	ldr	s0, [x19, #0x28]
+   bf418:      	str	s0, [x8, #0x1a0]
+   bf41c:      	ldr	s0, [x19, #0x2c]
+   bf420:      	str	s0, [x8, #0x1a4]
+   bf424:      	ldr	s0, [x19, #0x30]
+   bf428:      	str	s0, [x8, #0x1a8]
+   bf42c:      	ldr	s0, [x19, #0x34]
+   bf430:      	str	s0, [x8, #0x1ac]
+   bf434:      	ldr	s0, [x19, #0x38]
+   bf438:      	str	s0, [x8, #0x1b0]
+   bf43c:      	ldr	s0, [x19, #0x3c]
+   bf440:      	str	s0, [x8, #0x1b4]
+   bf444:      	ldr	s0, [x19, #0x40]
+   bf448:      	str	s0, [x8, #0x1b8]
+   bf44c:      	ldr	s0, [x19, #0x44]
+   bf450:      	str	s0, [x8, #0x1bc]
+   bf454:      	ldr	s0, [x19, #0x48]
+   bf458:      	str	s0, [x8, #0x1c0]
+   bf45c:      	ldr	s0, [x19, #0x4c]
+   bf460:      	str	s0, [x8, #0x1c4]
+   bf464:      	ldr	s0, [x19, #0x50]
+   bf468:      	str	s0, [x8, #0x1c8]
+   bf46c:      	ldr	s0, [x19, #0x54]
+   bf470:      	str	s0, [x8, #0x1cc]
+   bf474:      	ldr	s0, [x19, #0x58]
+   bf478:      	str	s0, [x8, #0x1d0]
+   bf47c:      	ldr	s0, [x19, #0x5c]
+   bf480:      	str	s0, [x8, #0x1d4]
+   bf484:      	ldr	s0, [x19, #0x60]
+   bf488:      	str	s0, [x8, #0x1d8]
+   bf48c:      	ldr	s0, [x19, #0x64]
+   bf490:      	str	s0, [x8, #0x1dc]
+   bf494:      	ldr	s0, [x19, #0x68]
+   bf498:      	str	s0, [x8, #0x1e0]
+   bf49c:      	ldr	s0, [x19, #0x6c]
+   bf4a0:      	str	s0, [x8, #0x1e4]
+   bf4a4:      	ldr	s0, [x19, #0x70]
+   bf4a8:      	str	s0, [x8, #0x1e8]
+   bf4ac:      	ldr	s0, [x19, #0x74]
+   bf4b0:      	str	s0, [x8, #0x1ec]
+   bf4b4:      	ldr	s0, [x19, #0x78]
+   bf4b8:      	str	s0, [x8, #0x1f0]
+   bf4bc:      	ldr	s0, [x19, #0x7c]
+   bf4c0:      	str	s0, [x8, #0x1f4]
+   bf4c4:      	ldr	s0, [x19, #0x80]
+   bf4c8:      	str	s0, [x8, #0x1f8]
+   bf4cc:      	ldr	s0, [x19, #0x84]
+   bf4d0:      	str	s0, [x8, #0x1fc]
+   bf4d4:      	ldr	s0, [x19, #0x88]
+   bf4d8:      	str	s0, [x8, #0x200]
+   bf4dc:      	ldr	s0, [x19, #0x8c]
+   bf4e0:      	str	s0, [x8, #0x204]
+   bf4e4:      	ldr	s0, [x19, #0x90]
+   bf4e8:      	str	s0, [x8, #0x208]
+   bf4ec:      	ldr	s0, [x19, #0x94]
+   bf4f0:      	str	s0, [x8, #0x20c]
+   bf4f4:      	ldr	s0, [x19, #0x98]
+   bf4f8:      	str	s0, [x8, #0x210]
+   bf4fc:      	b	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf500:      	mov	w8, #0x2b58             // =11096
+   bf504:      	smaddl	x8, w22, w8, x24
+   bf508:      	strb	wzr, [x8, #0xfb4]
+   bf50c:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf510:      	cmp	w0, #0x5
+   bf514:      	b.gt	0xbf7f0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x504>
+   bf518:      	adrp	x1, 0x7c000
+   bf51c:      	add	x1, x1, #0x24e
+   bf520:      	adrp	x2, 0x88000
+   bf524:      	add	x2, x2, #0x47e
+   bf528:      	b	0xbf34c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x60>
+   bf52c:      	cmp	w25, #0x1
+   bf530:      	mov	x8, x24
+   bf534:      	b.ne	0xbf56c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x280>
+   bf538:      	cmp	w20, #0xa6
+   bf53c:      	b.ne	0xbf56c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x280>
+   bf540:      	mov	w9, #0x2b58             // =11096
+   bf544:      	mov	x1, x21
+   bf548:      	mov	x0, x23
+   bf54c:      	smaddl	x10, w22, w9, x8
+   bf550:      	smull	x9, w22, w9
+   bf554:      	sub	x10, x10, x19
+   bf558:      	add	x10, x10, #0x4b0
+   bf55c:      	cmp	x10, #0x10
+   bf560:      	b.hs	0xbf5f0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x304>
+   bf564:      	mov	x10, xzr
+   bf568:      	b	0xbf6a0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3b4>
+   bf56c:      	cmp	w25, #0x2
+   bf570:      	mov	x1, x21
+   bf574:      	mov	x0, x23
+   bf578:      	b.eq	0xbf6c4 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3d8>
+   bf57c:      	cmp	w25, #0x3
+   bf580:      	b.ne	0xbf72c <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x440>
+   bf584:      	cmp	w20, #0xc
+   bf588:      	mov	w9, w20
+   bf58c:      	b.lo	0xbf5ac <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x2c0>
+   bf590:      	mov	w10, #0x2b58            // =11096
+   bf594:      	mov	w12, #0x1e48            // =7752
+   bf598:      	smaddl	x11, w22, w10, x8
+   bf59c:      	sub	x11, x11, x19
+   bf5a0:      	add	x11, x11, x12
+   bf5a4:      	cmp	x11, #0x20
+   bf5a8:      	b.hs	0xbf768 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x47c>
+   bf5ac:      	mov	x10, xzr
+   bf5b0:      	mov	w11, #0x2b58            // =11096
+   bf5b4:      	lsl	x12, x10, #2
+   bf5b8:      	sub	x9, x9, x10
+   bf5bc:      	smaddl	x13, w22, w11, x12
+   bf5c0:      	mov	w11, #0x1e48            // =7752
+   bf5c4:      	add	x14, x8, x11
+   bf5c8:      	add	x11, x19, x12
+   bf5cc:      	add	x12, x13, x14
+   bf5d0:      	ldr	s0, [x11], #0x4
+   bf5d4:      	subs	x9, x9, #0x1
+   bf5d8:      	str	s0, [x12], #0x4
+   bf5dc:      	b.ne	0xbf5d0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x2e4>
+   bf5e0:      	mov	w9, #0x2b58             // =11096
+   bf5e4:      	smaddl	x8, w22, w9, x8
+   bf5e8:      	str	w20, [x8, #0x1490]
+   bf5ec:      	b	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf5f0:      	mov	w10, #0x2b58            // =11096
+   bf5f4:      	ldr	q0, [x19]
+   bf5f8:      	nop
+   bf5fc:      	smaddl	x10, w22, w10, x8
+   bf600:      	str	q0, [x10, #0x4b0]
+   bf604:      	ldr	q0, [x19, #0x10]
+   bf608:      	str	q0, [x10, #0x4c0]
+   bf60c:      	ldr	q0, [x19, #0x20]
+   bf610:      	str	q0, [x10, #0x4d0]
+   bf614:      	ldr	q0, [x19, #0x30]
+   bf618:      	str	q0, [x10, #0x4e0]
+   bf61c:      	ldr	q0, [x19, #0x40]
+   bf620:      	str	q0, [x10, #0x4f0]
+   bf624:      	ldr	q0, [x19, #0x50]
+   bf628:      	str	q0, [x10, #0x500]
+   bf62c:      	ldr	q0, [x19, #0x60]
+   bf630:      	str	q0, [x10, #0x510]
+   bf634:      	ldr	q0, [x19, #0x70]
+   bf638:      	str	q0, [x10, #0x520]
+   bf63c:      	ldr	q0, [x19, #0x80]
+   bf640:      	str	q0, [x10, #0x530]
+   bf644:      	ldr	q0, [x19, #0x90]
+   bf648:      	str	q0, [x10, #0x540]
+   bf64c:      	ldr	q0, [x19, #0xa0]
+   bf650:      	str	q0, [x10, #0x550]
+   bf654:      	ldr	q0, [x19, #0xb0]
+   bf658:      	str	q0, [x10, #0x560]
+   bf65c:      	ldr	q0, [x19, #0xc0]
+   bf660:      	str	q0, [x10, #0x570]
+   bf664:      	ldr	q0, [x19, #0xd0]
+   bf668:      	str	q0, [x10, #0x580]
+   bf66c:      	ldr	q0, [x19, #0xe0]
+   bf670:      	str	q0, [x10, #0x590]
+   bf674:      	ldr	q0, [x19, #0xf0]
+   bf678:      	str	q0, [x10, #0x5a0]
+   bf67c:      	ldr	q0, [x19, #0x100]
+   bf680:      	str	q0, [x10, #0x5b0]
+   bf684:      	ldr	q0, [x19, #0x110]
+   bf688:      	str	q0, [x10, #0x5c0]
+   bf68c:      	ldr	q0, [x19, #0x120]
+   bf690:      	str	q0, [x10, #0x5d0]
+   bf694:      	ldr	q0, [x19, #0x130]
+   bf698:      	str	q0, [x10, #0x5e0]
+   bf69c:      	mov	w10, #0x50              // =80
+   bf6a0:      	lsl	x10, x10, #2
+   bf6a4:      	add	x8, x9, x8
+   bf6a8:      	add	x8, x8, #0x4b0
+   bf6ac:      	ldr	s0, [x19, x10]
+   bf6b0:      	str	s0, [x8, x10]
+   bf6b4:      	add	x10, x10, #0x4
+   bf6b8:      	cmp	x10, #0x14c
+   bf6bc:      	b.ne	0xbf6ac <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x3c0>
+   bf6c0:      	b	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf6c4:      	mov	w9, #0x2b58             // =11096
+   bf6c8:      	mov	w10, #0x1               // =1
+   bf6cc:      	cmp	w20, #0xc
+   bf6d0:      	smaddl	x9, w22, w9, x8
+   bf6d4:      	strb	w10, [x9, #0xfb4]
+   bf6d8:      	mov	w9, w20
+   bf6dc:      	b.lo	0xbf6f8 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x40c>
+   bf6e0:      	mov	w10, #0x2b58            // =11096
+   bf6e4:      	smaddl	x11, w22, w10, x8
+   bf6e8:      	sub	x11, x11, x19
+   bf6ec:      	add	x11, x11, #0xfb8
+   bf6f0:      	cmp	x11, #0x20
+   bf6f4:      	b.hs	0xbf7a8 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4bc>
+   bf6f8:      	mov	x10, xzr
+   bf6fc:      	mov	w11, #0x2b58            // =11096
+   bf700:      	lsl	x12, x10, #2
+   bf704:      	sub	x9, x9, x10
+   bf708:      	smaddl	x11, w22, w11, x12
+   bf70c:      	add	x11, x11, x8
+   bf710:      	add	x8, x19, x12
+   bf714:      	add	x11, x11, #0xfb8
+   bf718:      	ldr	s0, [x8], #0x4
+   bf71c:      	subs	x9, x9, #0x1
+   bf720:      	str	s0, [x11], #0x4
+   bf724:      	b.ne	0xbf718 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x42c>
+   bf728:      	b	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf72c:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf730:      	mov	w8, w0
+   bf734:      	mov	x1, x21
+   bf738:      	mov	x0, x23
+   bf73c:      	cmp	w8, #0x5
+   bf740:      	b.gt	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf744:      	adrp	x1, 0x7c000
+   bf748:      	add	x1, x1, #0x24e
+   bf74c:      	adrp	x2, 0x7b000
+   bf750:      	add	x2, x2, #0x9b
+   bf754:      	mov	w0, #0x6                // =6
+   bf758:      	bl	0x1b4270 <__android_log_print@plt>
+   bf75c:      	mov	x0, x23
+   bf760:      	mov	x1, x21
+   bf764:      	b	0xbf7dc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4f0>
+   bf768:      	smull	x11, w22, w10
+   bf76c:      	and	x10, x9, #0x7ffffff8
+   bf770:      	mov	w13, #0x1e58            // =7768
+   bf774:      	add	x12, x11, x8
+   bf778:      	add	x11, x19, #0x10
+   bf77c:      	add	x12, x12, x13
+   bf780:      	mov	x13, x10
+   bf784:      	ldp	q0, q1, [x11, #-0x10]
+   bf788:      	subs	x13, x13, #0x8
+   bf78c:      	add	x11, x11, #0x20
+   bf790:      	stp	q0, q1, [x12, #-0x10]
+   bf794:      	add	x12, x12, #0x20
+   bf798:      	b.ne	0xbf784 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x498>
+   bf79c:      	cmp	x10, x9
+   bf7a0:      	b.eq	0xbf5e0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x2f4>
+   bf7a4:      	b	0xbf5b0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x2c4>
+   bf7a8:      	smull	x11, w22, w10
+   bf7ac:      	and	x10, x9, #0x7ffffff8
+   bf7b0:      	mov	x13, x10
+   bf7b4:      	add	x12, x11, x8
+   bf7b8:      	add	x11, x19, #0x10
+   bf7bc:      	add	x12, x12, #0xfb8
+   bf7c0:      	ldp	q0, q1, [x11, #-0x10]
+   bf7c4:      	subs	x13, x13, #0x8
+   bf7c8:      	add	x11, x11, #0x20
+   bf7cc:      	stp	q0, q1, [x12], #0x20
+   bf7d0:      	b.ne	0xbf7c0 <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x4d4>
+   bf7d4:      	cmp	x10, x9
+   bf7d8:      	b.ne	0xbf6fc <MTFilterKernelFaceDataJNI::setLandmarkVisible(_JNIEnv*, _jobject*, long, int, int, _jfloatArray*)+0x410>
+   bf7dc:      	ldr	x8, [x0]
+   bf7e0:      	mov	x2, x19
+   bf7e4:      	mov	w3, wzr
+   bf7e8:      	ldr	x8, [x8, #0x628]
+   bf7ec:      	blr	x8
+   bf7f0:      	mov	w0, #0x1                // =1
+   bf7f4:      	ldp	x20, x19, [sp, #0x40]
+   bf7f8:      	ldr	x25, [sp, #0x10]
+   bf7fc:      	ldp	x22, x21, [sp, #0x30]
+   bf800:      	ldp	x24, x23, [sp, #0x20]
+   bf804:      	ldp	x29, x30, [sp], #0x50
+   bf808:      	ret
+
+00000000000bf80c <MTFilterKernelFaceDataJNI::setRace(_JNIEnv*, _jobject*, long, int, int)>:
+   bf80c:      	stp	x29, x30, [sp, #-0x20]!
+   bf810:      	str	x19, [sp, #0x10]
+   bf814:      	mov	x29, sp
+   bf818:      	cbz	x2, 0xbf844 <MTFilterKernelFaceDataJNI::setRace(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf81c:      	cmp	w3, #0x9
+   bf820:      	b.gt	0xbf844 <MTFilterKernelFaceDataJNI::setRace(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf824:      	mov	w8, #0x2b58             // =11096
+   bf828:      	mvn	w9, w4
+   bf82c:      	mov	w10, #0x2348            // =9032
+   bf830:      	smaddl	x8, w3, w8, x2
+   bf834:      	lsr	w9, w9, #31
+   bf838:      	strb	w9, [x8, x10]
+   bf83c:      	str	w4, [x8, #0x234c]
+   bf840:      	b	0xbf878 <MTFilterKernelFaceDataJNI::setRace(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf844:      	mov	w19, w3
+   bf848:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf84c:      	cmp	w0, #0x5
+   bf850:      	b.gt	0xbf878 <MTFilterKernelFaceDataJNI::setRace(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf854:      	adrp	x1, 0x7c000
+   bf858:      	add	x1, x1, #0x24e
+   bf85c:      	adrp	x2, 0x8c000
+   bf860:      	add	x2, x2, #0x24a
+   bf864:      	mov	w0, #0x6                // =6
+   bf868:      	mov	w3, w19
+   bf86c:      	ldr	x19, [sp, #0x10]
+   bf870:      	ldp	x29, x30, [sp], #0x20
+   bf874:      	b	0x1b4270 <__android_log_print@plt>
+   bf878:      	ldr	x19, [sp, #0x10]
+   bf87c:      	ldp	x29, x30, [sp], #0x20
+   bf880:      	ret
+
+00000000000bf884 <MTFilterKernelFaceDataJNI::setGender(_JNIEnv*, _jobject*, long, int, int)>:
+   bf884:      	stp	x29, x30, [sp, #-0x20]!
+   bf888:      	str	x19, [sp, #0x10]
+   bf88c:      	mov	x29, sp
+   bf890:      	cbz	x2, 0xbf8bc <MTFilterKernelFaceDataJNI::setGender(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf894:      	cmp	w3, #0x9
+   bf898:      	b.gt	0xbf8bc <MTFilterKernelFaceDataJNI::setGender(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf89c:      	mov	w8, #0x2b58             // =11096
+   bf8a0:      	mvn	w9, w4
+   bf8a4:      	mov	w10, #0x2338            // =9016
+   bf8a8:      	smaddl	x8, w3, w8, x2
+   bf8ac:      	lsr	w9, w9, #31
+   bf8b0:      	strb	w9, [x8, x10]
+   bf8b4:      	str	w4, [x8, #0x233c]
+   bf8b8:      	b	0xbf8f0 <MTFilterKernelFaceDataJNI::setGender(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf8bc:      	mov	w19, w3
+   bf8c0:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf8c4:      	cmp	w0, #0x5
+   bf8c8:      	b.gt	0xbf8f0 <MTFilterKernelFaceDataJNI::setGender(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf8cc:      	adrp	x1, 0x7c000
+   bf8d0:      	add	x1, x1, #0x24e
+   bf8d4:      	adrp	x2, 0x7f000
+   bf8d8:      	add	x2, x2, #0x8a
+   bf8dc:      	mov	w0, #0x6                // =6
+   bf8e0:      	mov	w3, w19
+   bf8e4:      	ldr	x19, [sp, #0x10]
+   bf8e8:      	ldp	x29, x30, [sp], #0x20
+   bf8ec:      	b	0x1b4270 <__android_log_print@plt>
+   bf8f0:      	ldr	x19, [sp, #0x10]
+   bf8f4:      	ldp	x29, x30, [sp], #0x20
+   bf8f8:      	ret
+
+00000000000bf8fc <MTFilterKernelFaceDataJNI::setAge(_JNIEnv*, _jobject*, long, int, int)>:
+   bf8fc:      	stp	x29, x30, [sp, #-0x20]!
+   bf900:      	str	x19, [sp, #0x10]
+   bf904:      	mov	x29, sp
+   bf908:      	cbz	x2, 0xbf934 <MTFilterKernelFaceDataJNI::setAge(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf90c:      	cmp	w3, #0x9
+   bf910:      	b.gt	0xbf934 <MTFilterKernelFaceDataJNI::setAge(_JNIEnv*, _jobject*, long, int, int)+0x38>
+   bf914:      	mov	w8, #0x2b58             // =11096
+   bf918:      	mvn	w9, w4
+   bf91c:      	mov	w10, #0x2340            // =9024
+   bf920:      	smaddl	x8, w3, w8, x2
+   bf924:      	lsr	w9, w9, #31
+   bf928:      	strb	w9, [x8, x10]
+   bf92c:      	str	w4, [x8, #0x2344]
+   bf930:      	b	0xbf968 <MTFilterKernelFaceDataJNI::setAge(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf934:      	mov	w19, w3
+   bf938:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf93c:      	cmp	w0, #0x5
+   bf940:      	b.gt	0xbf968 <MTFilterKernelFaceDataJNI::setAge(_JNIEnv*, _jobject*, long, int, int)+0x6c>
+   bf944:      	adrp	x1, 0x7c000
+   bf948:      	add	x1, x1, #0x24e
+   bf94c:      	adrp	x2, 0x89000
+   bf950:      	add	x2, x2, #0xf1e
+   bf954:      	mov	w0, #0x6                // =6
+   bf958:      	mov	w3, w19
+   bf95c:      	ldr	x19, [sp, #0x10]
+   bf960:      	ldp	x29, x30, [sp], #0x20
+   bf964:      	b	0x1b4270 <__android_log_print@plt>
+   bf968:      	ldr	x19, [sp, #0x10]
+   bf96c:      	ldp	x29, x30, [sp], #0x20
+   bf970:      	ret
+
+00000000000bf974 <MTFilterKernelFaceDataJNI::getFaceID(_JNIEnv*, _jobject*, long, int)>:
+   bf974:      	stp	x29, x30, [sp, #-0x10]!
+   bf978:      	mov	x29, sp
+   bf97c:      	cbz	x2, 0xbf9b4 <MTFilterKernelFaceDataJNI::getFaceID(_JNIEnv*, _jobject*, long, int)+0x40>
+   bf980:      	ldr	w8, [x2]
+   bf984:      	cmp	w8, w3
+   bf988:      	b.le	0xbf9d8 <MTFilterKernelFaceDataJNI::getFaceID(_JNIEnv*, _jobject*, long, int)+0x64>
+   bf98c:      	mov	w8, #0x2b58             // =11096
+   bf990:      	smaddl	x8, w3, w8, x2
+   bf994:      	ldrb	w8, [x8, #0xc]
+   bf998:      	cbz	w8, 0xbf9d8 <MTFilterKernelFaceDataJNI::getFaceID(_JNIEnv*, _jobject*, long, int)+0x64>
+   bf99c:      	sxtw	x8, w3
+   bf9a0:      	mov	w9, #0x2b58             // =11096
+   bf9a4:      	smaddl	x8, w8, w9, x2
+   bf9a8:      	ldr	w0, [x8, #0x10]
+   bf9ac:      	ldp	x29, x30, [sp], #0x10
+   bf9b0:      	ret
+   bf9b4:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf9b8:      	cmp	w0, #0x5
+   bf9bc:      	b.gt	0xbf9d8 <MTFilterKernelFaceDataJNI::getFaceID(_JNIEnv*, _jobject*, long, int)+0x64>
+   bf9c0:      	adrp	x1, 0x7c000
+   bf9c4:      	add	x1, x1, #0x24e
+   bf9c8:      	adrp	x2, 0x7c000
+   bf9cc:      	add	x2, x2, #0x25b
+   bf9d0:      	mov	w0, #0x6                // =6
+   bf9d4:      	bl	0x1b4270 <__android_log_print@plt>
+   bf9d8:      	mov	w0, #-0x1               // =-1
+   bf9dc:      	ldp	x29, x30, [sp], #0x10
+   bf9e0:      	ret
+
+00000000000bf9e4 <MTFilterKernelFaceDataJNI::setFaceID(_JNIEnv*, _jobject*, long, int, int)>:
+   bf9e4:      	stp	x29, x30, [sp, #-0x20]!
+   bf9e8:      	str	x19, [sp, #0x10]
+   bf9ec:      	mov	x29, sp
+   bf9f0:      	cbz	x2, 0xbfa18 <MTFilterKernelFaceDataJNI::setFaceID(_JNIEnv*, _jobject*, long, int, int)+0x34>
+   bf9f4:      	cmp	w3, #0x9
+   bf9f8:      	b.gt	0xbfa18 <MTFilterKernelFaceDataJNI::setFaceID(_JNIEnv*, _jobject*, long, int, int)+0x34>
+   bf9fc:      	mov	w8, #0x2b58             // =11096
+   bfa00:      	mvn	w9, w4
+   bfa04:      	smaddl	x8, w3, w8, x2
+   bfa08:      	lsr	w9, w9, #31
+   bfa0c:      	strb	w9, [x8, #0xc]
+   bfa10:      	str	w4, [x8, #0x10]
+   bfa14:      	b	0xbfa4c <MTFilterKernelFaceDataJNI::setFaceID(_JNIEnv*, _jobject*, long, int, int)+0x68>
+   bfa18:      	mov	w19, w3
+   bfa1c:      	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bfa20:      	cmp	w0, #0x5
+   bfa24:      	b.gt	0xbfa4c <MTFilterKernelFaceDataJNI::setFaceID(_JNIEnv*, _jobject*, long, int, int)+0x68>
+   bfa28:      	adrp	x1, 0x7c000
+   bfa2c:      	add	x1, x1, #0x24e
+   bfa30:      	adrp	x2, 0x87000
+   bfa34:      	add	x2, x2, #0x51b
+   bfa38:      	mov	w0, #0x6                // =6
+   bfa3c:      	mov	w3, w19
+   bfa40:      	ldr	x19, [sp, #0x10]
+   bfa44:      	ldp	x29, x30, [sp], #0x20
+   bfa48:      	b	0x1b4270 <__android_log_print@plt>
+   bfa4c:      	ldr	x19, [sp, #0x10]
