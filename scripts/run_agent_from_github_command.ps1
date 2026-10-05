@@ -42,6 +42,22 @@ if (-not (Get-Command agy -ErrorAction SilentlyContinue)) { Fail "agy is not ava
 $isRepo = (& git rev-parse --is-inside-work-tree 2>$null)
 if ($LASTEXITCODE -ne 0 -or $isRepo.Trim() -ne "true") { Fail "RepoPath is not a Git working tree." }
 
+# CI workspace recovery: a failed prior ACK rebase can leave .git/rebase-merge or
+# .git/rebase-apply behind on a persistent self-hosted runner. actions/checkout
+# cleans the worktree but does not remove an in-progress rebase under .git.
+# Abort only an actual Git rebase before mutating command-bus state.
+$gitDir = (& git rev-parse --git-dir).Trim()
+$rebaseMerge = Join-Path $gitDir "rebase-merge"
+$rebaseApply = Join-Path $gitDir "rebase-apply"
+if ((Test-Path $rebaseMerge) -or (Test-Path $rebaseApply)) {
+    Write-RunnerLog "Recovering stale Git rebase left by a previous failed runner turn..."
+    & git rebase --abort 2>&1 | ForEach-Object { Write-Host $_ }
+    if ($LASTEXITCODE -ne 0) {
+        Fail "STALE_REBASE_RECOVERY_FAILED: Git reports an in-progress rebase but git rebase --abort failed."
+    }
+    Write-RunnerLog "Stale Git rebase aborted successfully."
+}
+
 $runnerDir = Join-Path $RepoPath ".ai\runner"
 New-Item -ItemType Directory -Force -Path $runnerDir | Out-Null
 
