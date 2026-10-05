@@ -42,6 +42,25 @@ if (-not (Get-Command agy -ErrorAction SilentlyContinue)) { Fail "agy is not ava
 $isRepo = (& git rev-parse --is-inside-work-tree 2>$null)
 if ($LASTEXITCODE -ne 0 -or $isRepo.Trim() -ne "true") { Fail "RepoPath is not a Git working tree." }
 
+# Persistent self-hosted runner recovery: an interrupted merge/rebase can leave
+# stage 1/2/3 entries in the Git index. That makes one lifecycle JSON appear
+# three times to git ls-files --stage and causes false duplicate-command failures.
+$unmerged = @(& git ls-files -u)
+if ($unmerged.Count -gt 0) {
+    Write-RunnerLog "Recovering stale unmerged Git index entries from previous runner turn..."
+    & git merge --abort 2>$null
+    & git rebase --abort 2>$null
+    & git reset --hard HEAD
+    if ($LASTEXITCODE -ne 0) {
+        Fail "STALE_INDEX_RECOVERY_FAILED: unable to reset unmerged Git index to checked-out HEAD."
+    }
+    $stillUnmerged = @(& git ls-files -u)
+    if ($stillUnmerged.Count -gt 0) {
+        Fail "STALE_INDEX_RECOVERY_FAILED: unmerged index entries remain after reset."
+    }
+    Write-RunnerLog "Stale unmerged Git index cleared; lifecycle index is single-stage again."
+}
+
 # CI workspace recovery: a failed prior ACK rebase can leave .git/rebase-merge or
 # .git/rebase-apply behind on a persistent self-hosted runner. actions/checkout
 # cleans the worktree but does not remove an in-progress rebase under .git.
