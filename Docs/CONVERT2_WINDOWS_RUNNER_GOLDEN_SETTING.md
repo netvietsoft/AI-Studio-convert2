@@ -92,11 +92,30 @@ At the time of recovery:
 Git:
 D:\SetupC\Git\cmd\git.exe
 
+Git system config:
+D:\SetupC\Git\etc\gitconfig
+
 Python:
 C:\Python314\python.exe
 ```
 
-Do not assume these remain valid forever. Worker preflight must verify them on every infrastructure recovery.
+**Required ACL:** because the runner service is `LocalSystem`, `SYSTEM` must have at least Read & Execute access to the Git installation and its `etc\gitconfig`. A real Worker validation on 2026-10-05 proved that merely configuring `safe.directory` is not sufficient if LocalSystem cannot read Git's system configuration.
+
+Canonical ACL repair, PowerShell as Administrator:
+
+```powershell
+icacls "D:\SetupC\Git" /grant "SYSTEM:(OI)(CI)RX" /T
+```
+
+Verification:
+
+```powershell
+icacls "D:\SetupC\Git\etc\gitconfig"
+```
+
+The output must show a SYSTEM allow entry that permits reading the file. Do not grant Full Control unless there is a separately approved reason.
+
+Do not assume tool paths remain valid forever. Worker preflight must verify them on every infrastructure recovery.
 
 ## 2. Required Git system configuration
 
@@ -293,6 +312,7 @@ Recovery applied:
 - restarted the GitHub Actions runner service;
 - verified repository, AGY 1.2.16, clean working tree, remote, and service state;
 - reran the failed Worker as a real validation run.
+- the validation then exposed a second LocalSystem ACL defect: `D:\SetupC\Git\etc\gitconfig` returned `Permission denied`; therefore SYSTEM Read & Execute access to the Git installation is part of the golden baseline.
 
 ## 10. Post-recovery acceptance
 
