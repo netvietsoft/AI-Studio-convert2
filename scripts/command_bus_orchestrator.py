@@ -1412,7 +1412,7 @@ class CommandBusOrchestrator:
 
         # Step 2: Push reservations atomically to main
         try:
-            subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+            subprocess.run(["git", "add", ".ai/commands", ".ai/state", ".ai/state.json"], check=True, cwd=str(self.repo_root))
             commit_msg = f"chore(command-bus): reserve {len(reserved)} command(s) for dispatch [run {dispatcher_run_id}]"
             subprocess.run(["git", "commit", "-m", commit_msg], check=True, cwd=str(self.repo_root))
 
