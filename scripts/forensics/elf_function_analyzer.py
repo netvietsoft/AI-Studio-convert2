@@ -387,8 +387,8 @@ def analyze_single_library(so_path_str, reg_natives_json_str, out_base_dir_str):
         return function_records, count_summary
 
 def main():
-    src_dir = Path(r"F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a")
-    report_dir = Path(".ai/reports/TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION")
+    src_dir = Path(os.environ.get("SO45_SOURCE_DIR", r"F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a"))
+    report_dir = Path(os.environ.get("SO45_REPORT_DIR", ".ai/reports/TASK_038_45SO_DEEP_FUNCTION_XREF_JNI_BRIDGE_RECONSTRUCTION"))
     report_dir.mkdir(parents=True, exist_ok=True)
     
     # Load RegisterNatives tables
@@ -413,11 +413,24 @@ def main():
                     
     reg_json_str = json.dumps(reg_natives_by_lib)
     so_files = sorted(list(src_dir.glob("*.so")))
+    # Optional deterministic sharding lets distinct physical runners divide the
+    # corpus without copying source binaries. Example: SO_SHARD_COUNT=3 and
+    # SO_SHARD_INDEX=0/1/2. Never call local processes separate physical runners.
+    shard_count = max(1, int(os.environ.get("SO_SHARD_COUNT", "1")))
+    shard_index = int(os.environ.get("SO_SHARD_INDEX", "0"))
+    if not 0 <= shard_index < shard_count:
+        raise ValueError(f"SO_SHARD_INDEX must be in [0,{shard_count - 1}]")
+    if shard_count > 1:
+        so_files = [p for i, p in enumerate(so_files) if i % shard_count == shard_index]
+
+    cpu_count = os.cpu_count() or 1
+    requested_workers = int(os.environ.get("SO45_WORKERS", str(min(6, cpu_count))))
+    worker_count = max(1, min(requested_workers, cpu_count, max(1, len(so_files))))
     all_functions = []
     lib_counts = []
     
-    print(f"[*] Starting parallel function census across {len(so_files)} libraries with 6 workers...")
-    with ProcessPoolExecutor(max_workers=6) as executor:
+    print(f"[*] Starting function census: libraries={len(so_files)}, workers={worker_count}, shard={shard_index}/{shard_count}, source={src_dir}")
+    with ProcessPoolExecutor(max_workers=worker_count) as executor:
         futures = {
             executor.submit(analyze_single_library, str(so), reg_json_str, str(report_dir)): so.name
             for so in so_files
