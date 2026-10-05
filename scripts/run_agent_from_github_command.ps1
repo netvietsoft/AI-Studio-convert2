@@ -217,6 +217,11 @@ Mandatory rules:
 11. Never call CPU fallback GPU success.
 12. Do not start P7 unless an ACTIVE Task explicitly authorizes it.
 13. End this one execution turn after handoff.
+14. Treat the command JSON instructions as mandatory execution requirements:
+$([string]$command.instructions)
+15. If the ACTIVE Task/command requires parallel lanes, execute substantive independent lanes concurrently where dependencies permit. Use distinct process/worker identity, timestamps, lane-specific raw evidence/output paths, and avoid concurrent writes to the same mutable file. Lane labels alone are not proof of concurrency.
+16. On a single physical runner, prefer isolated per-lane workspaces/worktrees or read-only analysis lanes plus one integration writer. Do not misreport local lanes as distinct physical GitHub runners.
+17. Preserve the existing architecture as rollback unless the ACTIVE Task explicitly authorizes decommissioning a specific trigger/component.
 "@
 
 $rc = 0
