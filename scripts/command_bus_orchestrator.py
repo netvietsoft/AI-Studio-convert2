@@ -1309,7 +1309,7 @@ class CommandBusOrchestrator:
                         subprocess.run(["git", "checkout", "--theirs", c_file], cwd=str(self.repo_root), capture_output=True)
                         subprocess.run(["git", "add", c_file], cwd=str(self.repo_root), capture_output=True)
                     self.rebuild_index()
-                    subprocess.run(["git", "add", ".ai/commands", ".ai/state"], cwd=str(self.repo_root), capture_output=True)
+                    subprocess.run(["git", "add", ".ai/commands", ".ai/state", ".ai/state.json"], cwd=str(self.repo_root), capture_output=True)
                     subprocess.run(["git", "commit", "-m", merge_msg], cwd=str(self.repo_root), capture_output=True)
                 elif conflicts:
                     subprocess.run(["git", "merge", "--abort"], cwd=str(self.repo_root), capture_output=True)
@@ -1566,7 +1566,7 @@ class CommandBusOrchestrator:
                 self.rebuild_index()
 
         # Persist reservation SHA / rollback state and fail loudly if any worker dispatch failed.
-        subprocess.run(["git", "add", ".ai/commands", ".ai/state"], check=True, cwd=str(self.repo_root))
+        subprocess.run(["git", "add", ".ai/commands", ".ai/state", ".ai/state.json"], check=True, cwd=str(self.repo_root))
         if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=str(self.repo_root)).returncode != 0:
             subprocess.run(["git", "commit", "-m",
                             f"chore(command-bus): persist dispatch outcome [run {dispatcher_run_id}]"],
