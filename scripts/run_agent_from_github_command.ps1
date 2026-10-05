@@ -37,7 +37,29 @@ Set-Location $RepoPath
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) { Fail "git is not available in PATH." }
 if (-not (Get-Command python -ErrorAction SilentlyContinue)) { Fail "python is not available in PATH." }
-if (-not (Get-Command agy -ErrorAction SilentlyContinue)) { Fail "agy is not available in PATH." }
+
+# Resolve AGY independently of the Windows service PATH.
+$agyCommand = Get-Command agy -ErrorAction SilentlyContinue
+$agyExe = if ($agyCommand) { $agyCommand.Source } else { $null }
+if ([string]::IsNullOrWhiteSpace($agyExe)) {
+    $agyCandidates = @(
+        $env:AGY_EXE,
+        "C:\Users\PC.DESKTOP-81LIH38\AppData\Local\agy\bin\agy.exe"
+    ) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+    foreach ($candidate in $agyCandidates) {
+        if (Test-Path $candidate) { $agyExe = $candidate; break }
+    }
+}
+if ([string]::IsNullOrWhiteSpace($agyExe) -or -not (Test-Path $agyExe)) {
+    Fail "agy executable not found. Checked service PATH, AGY_EXE, and known PC profile install path."
+}
+Write-RunnerLog "Resolved AGY executable: $agyExe"
+try {
+    $agyVersion = (& $agyExe --version 2>&1 | Out-String).Trim()
+    Write-RunnerLog "AGY executable preflight passed: $agyVersion"
+} catch {
+    Fail "agy executable exists but cannot run under runner service identity: $($_.Exception.Message)"
+}
 
 $isRepo = (& git rev-parse --is-inside-work-tree 2>$null)
 if ($LASTEXITCODE -ne 0 -or $isRepo.Trim() -ne "true") { Fail "RepoPath is not a Git working tree." }
@@ -277,7 +299,7 @@ if ($command.execution_script -and (Test-Path (Join-Path $RepoPath $command.exec
 } else {
     Write-RunnerLog "Launching agy for command_id=$targetCmdId task_id=$($command.task_id)"
     try {
-        & agy `
+        & $agyExe `
           --dangerously-skip-permissions `
           --mode=accept-edits `
           --print-timeout ("{0}m" -f $PrintTimeoutMinutes) `
