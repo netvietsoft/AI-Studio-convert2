@@ -1181,7 +1181,7 @@ class CommandBusOrchestrator:
                     continue
                 try:
                     res_time = datetime.datetime.fromisoformat(res_time_str)
-                    if now - res_time > datetime.timedelta(seconds=900):
+                    if now - res_time > datetime.timedelta(seconds=180):
                         cid = cmd["command_id"]
                         tid = cmd["task_id"]
 
