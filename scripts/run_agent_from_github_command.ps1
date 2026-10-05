@@ -51,11 +51,11 @@ $rebaseMerge = Join-Path $gitDir "rebase-merge"
 $rebaseApply = Join-Path $gitDir "rebase-apply"
 if ((Test-Path $rebaseMerge) -or (Test-Path $rebaseApply)) {
     Write-RunnerLog "Recovering stale Git rebase left by a previous failed runner turn..."
-    & git rebase --abort 2>&1 | ForEach-Object { Write-Host $_ }
+    & git rebase --quit 2>&1 | ForEach-Object { Write-Host $_ }
     if ($LASTEXITCODE -ne 0) {
-        Fail "STALE_REBASE_RECOVERY_FAILED: Git reports an in-progress rebase but git rebase --abort failed."
+        Fail "STALE_REBASE_RECOVERY_FAILED: Git reports stale rebase metadata but git rebase --quit failed."
     }
-    Write-RunnerLog "Stale Git rebase aborted successfully."
+    Write-RunnerLog "Stale Git rebase metadata cleared with --quit; checked-out HEAD/worktree preserved."
 }
 
 $runnerDir = Join-Path $RepoPath ".ai\runner"
