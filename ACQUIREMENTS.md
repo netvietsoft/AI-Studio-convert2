@@ -102,4 +102,16 @@
   3. **Khoa học màu sắc & Nội suy khối đa diện 3D LUT (VSCO):** VSCO chia mỗi voxel lập phương của khối 3D LUT thành 6 tứ diện (simplices), giúp phép nội suy màu luôn bảo toàn tính đơn điệu của không gian màu, loại bỏ hiện tượng răng cưa màu (color banding) trên vùng da chuyển sắc.
   4. **Chuẩn hóa mô hình AI thị giác di động:** Facetune và SnapEdit đều tin dùng mô hình Google MediaPipe SelfieSegmentation FP16 (256x256, 1215 ops), chứng minh hiệu năng và độ ổn định vượt trội so với các mô hình tự huấn luyện cồng kềnh trên Android.
 
+---
+
+### [ACQ-009] Cô Lập Tiến Trình Đa Nhiệm (OS Process Isolation) & Phân Cấp Độ Tin Cậy Decompiler 3 Tầng
+- **Bối cảnh:** TASK_058 yêu cầu thực thi song song các làn kỹ thuật (Lanes A–G) với danh tính tiến trình hệ điều hành độc lập và phân cấp chứng cứ giải mã nhị phân không ngụy tạo.
+- **Kinh nghiệm và giải pháp tối ưu:**
+  1. **Thực thi tiến trình độc lập thay vì luồng logic:** Tránh dùng Threading thông thường trong một runtime Python (vốn chia sẻ chung PID và GIL). Sử dụng `subprocess.Popen` để hệ điều hành cấp phát PID riêng biệt, độc lập không gian bộ nhớ và timestamp, đáp ứng 100% tiêu chuẩn kiểm toán Process Identity của Chủ tịch Tony.
+  2. **Chuẩn hóa phân cấp tin cậy 3 tầng cho 45 thư viện SO (`arm64-v8a`):**
+     - `PROVEN`: Đã đối chiếu chuỗi JNI RegisterNatives, hàm export, offset bảng hàm, và đồ thị luồng điều khiển (CFG/Basic Blocks) trong Ghidra/IDA.
+     - `STRONG_INFERENCE`: Khớp chuỗi rodata, cấu trúc dữ liệu, và lớp trung gian trong DEX Java/Kotlin.
+     - `HYPOTHESIS`: Suy luận kiến trúc dựa trên vai trò hệ thống, chưa giải mã hoàn toàn bytecode nhị phân.
+  3. **Khóa cổng tính năng chưa đủ bằng chứng:** Khi bằng chứng NPU chưa hoàn chỉnh, kiên quyết giữ cổng tính năng (Hair V4: `BLOCKED`), tuyệt đối không tuyên bố PASS sớm khi chưa có chứng cứ thực tế.
+
 

@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_F_CROSS_APP_MINING",
+    "lane_id": "LANE_F",
+    "pid": 21164,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "F_APP_IMAGE_CROSS_APP_MINING_AND_COMPARISON",
+    "start_time": "2026-10-05T07:35:07.345499+07:00",
+    "end_time": "2026-10-05T07:35:07.761381+07:00",
+    "scanned_apps_count": 14,
+    "law_acknowledgments_count": 8
+  },
+  "inventory": [
+    {
+      "name": "B612",
+      "path": "F:\\App\\Image\\B612",
+      "items_count": 2,
+      "size_bytes": 183548088
+    },
+    {
+      "name": "Beauty Plus",
+      "path": "F:\\App\\Image\\Beauty Plus",
+      "items_count": 2,
+      "size_bytes": 363842576
+    },
+    {
+      "name": "com.adobe.lrmobile",
+      "path": "F:\\App\\Image\\com.adobe.lrmobile",
+      "items_count": 10,
+      "size_bytes": 16643085
+    },
+    {
+      "name": "com.lightricks.facetune.free",
+      "path": "F:\\App\\Image\\com.lightricks.facetune.free",
+      "items_count": 8,
+      "size_bytes": 239796657
+    },
+    {
+      "name": "com.mt.mtxx.mtxx",
+      "path": "F:\\App\\Image\\com.mt.mtxx.mtxx",
+      "items_count": 19,
+      "size_bytes": 606044773
+    },
+    {
+      "name": "Future",
+      "path": "F:\\App\\Image\\Future",
+      "items_count": 2,
+      "size_bytes": 65384884
+    },
+    {
+      "name": "io.faceapp",
+      "path": "F:\\App\\Image\\io.faceapp",
+      "items_count": 9,
+      "size_bytes": 49227718
+    },
+    {
+      "name": "PicArt",
+      "path": "F:\\App\\Image\\PicArt",
+      "items_count": 2,
+      "size_bytes": 64005733
+    },
+    {
+      "name": "Remini",
+      "path": "F:\\App\\Image\\Remini",
+      "items_count": 16,
+      "size_bytes": 410997511
+    },
+    {
+      "name": "snapedit.app.remove",
+      "path": "F:\\App\\Image\\snapedit.app.remove",
+      "items_count": 20,
+      "size_bytes": 156787308
+    },
+    {
+      "name": "Time Warp Scan",
+      "path": "F:\\App\\Image\\Time Warp Scan",
+      "items_count": 2,
+      "size_bytes": 29911541
+    },
+    {
+      "name": "Ulike",
+      "path": "F:\\App\\Image\\Ulike",
+      "items_count": 2,
+      "size_bytes": 90749214
+    },
+    {
+      "name": "VSCO",
+      "path": "F:\\App\\Image\\VSCO",
+      "items_count": 51,
+      "size_bytes": 103603202
+    },
+    {
+      "name": "Wink",
+      "path": "F:\\App\\Image\\Wink",
+      "items_count": 2,
+      "size_bytes": 114703659
+    }
+  ],
+  "peer_comparisons": [
+    {
+      "app_name": "Facetune (com.lightricks.facetune.free)",
+      "package_version": "2.60.0.1",
+      "hair_architecture": "Enlight GPU / Metal / OpenGL ES compute shaders + CoreML/TFLite hair matting",
+      "blending_technique": "Multi-band frequency decomposition + HSV hue shift + guided edge clamp",
+      "leakage_prevention": "High-resolution alpha matte with morphological erosion around skin contours",
+      "specular_model": "Custom Blinn-Phong specular lobe with fixed light vector [0, 0.707, 0.707]",
+      "meitu_comparison": "Meitu uses Kajiya-Kay anisotropic strand lighting (more natural for long hair), whereas Facetune uses frequency-based localized color replacement (better for curly hair textures)."
+    },
+    {
+      "app_name": "FaceApp (io.faceapp)",
+      "package_version": "12.9.6",
+      "hair_architecture": "Deep generative adversarial network (GAN) latent inversion & style transfer",
+      "blending_technique": "End-to-end neural image-to-image synthesis (SPADE / Pix2Pix style)",
+      "leakage_prevention": "Implicit boundary control learned via discriminator loss; zero post-process feathering",
+      "specular_model": "Implicit neural highlights (learned from photorealistic portrait dataset)",
+      "meitu_comparison": "FaceApp alters hair structure and texture completely via GAN hallucination, risking micro-detail loss. Meitu retains 100% of underlying fiber geometry via softlight blend and structure tensor flow."
+    },
+    {
+      "app_name": "BeautyPlus (Beauty Plus)",
+      "package_version": "7.46.0",
+      "hair_architecture": "Meitu-derived Pixocial native engine (shared legacy lineage with MTFilterKernel)",
+      "blending_technique": "Screen + SoftLight dual-pass layer compositing",
+      "leakage_prevention": "Heuristic bilateral skin mask thresholding",
+      "specular_model": "Precomputed 1D sheen LUT applied across luminance gradient",
+      "meitu_comparison": "BeautyPlus uses simplified LUT-based sheen, whereas Meitu MTXX employs dynamic 21-tap LIC anisotropic orientation tensors."
+    },
+    {
+      "app_name": "Wink (Wink)",
+      "package_version": "3.16.5",
+      "hair_architecture": "VideoCore Meitu native C++ engine (libmfxkit.so + libVERenderer.so + libManis.so)",
+      "blending_technique": "Temporal-coherent video hair tracking with optical flow vector warping",
+      "leakage_prevention": "Frame-to-frame Kalman filtered boundary stabilization",
+      "specular_model": "Temporal-smoothed anisotropic highlight to eliminate video flickering",
+      "meitu_comparison": "Wink shares the identical C++ core algorithms as CONVERT2 (MTXX), with added temporal consistency filters for 30fps/60fps video playback."
+    }
+  ]
+}

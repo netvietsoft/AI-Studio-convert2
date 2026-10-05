@@ -1,0 +1,75 @@
+{
+  "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+  "task_doc_id": "1A3IhiG76ZWmQEte2Nulsqlhh3KvypD71C4e20cEIfpI",
+  "github_run_id": "37246754606",
+  "dispatcher_run_id": "37246658920",
+  "runner_identity": "CONVERT2-WINDOWS-02",
+  "dispatch_command_id": "TASK_058_SO45_CONTINUATION_20261005T072500+0700",
+  "baseline_commit_sha": "c3cdf29aa0a65d3fa929ab4f737100c644b1ada4",
+  "reconciled_commits": [
+    {
+      "commit": "97f5fbd7b",
+      "message": "feat(bus): queue command for TASK_056",
+      "significance": "Command bus task queuing"
+    },
+    {
+      "commit": "4e731b79e",
+      "message": "feat(bus): queue command for TASK_057",
+      "significance": "Command bus task queuing"
+    },
+    {
+      "commit": "0e488b1fb",
+      "message": "feat(bus): durable worker ACK for TASK_057",
+      "significance": "Durable ACK commit before execution (run 37246754606)"
+    },
+    {
+      "commit": "c3cdf29aa",
+      "message": "chore(sync): update sync-command-bus.yml to run on main branch changes",
+      "significance": "Workflow synchronization"
+    }
+  ],
+  "state_transition_lifecycle": [
+    {
+      "from": "NONE",
+      "to": "CREATED",
+      "actor": "Command Bus Dispatcher"
+    },
+    {
+      "from": "CREATED",
+      "to": "DISPATCHED",
+      "actor": "Command Bus Dispatcher"
+    },
+    {
+      "from": "DISPATCHED",
+      "to": "RESERVED",
+      "actor": "Runner Agent (Pre-ACK)"
+    },
+    {
+      "from": "RESERVED",
+      "to": "RUNNING / EXECUTING",
+      "actor": "Runner Agent (Durable Commit 0e488b1fb)"
+    },
+    {
+      "from": "RUNNING",
+      "to": "COMPLETED",
+      "actor": "Runner Agent (Deliverables Generation)"
+    },
+    {
+      "from": "COMPLETED",
+      "to": "REVIEW_CANDIDATE",
+      "actor": "Orchestrator Audit"
+    }
+  ],
+  "regression_tests": {
+    "test_file": "tests/test_command_bus_state_reconciliation.py",
+    "passed_tests_count": 5,
+    "total_repo_tests_passed": 31,
+    "test_names": [
+      "test_reconcile_global_state_transitions_to_running",
+      "test_anti_duplicate_key_prevents_re_execution",
+      "test_atomic_monotonic_transitions",
+      "test_durable_worker_ack_committed_before_execution",
+      "test_crash_recovery_preserves_reserved_state"
+    ]
+  }
+}

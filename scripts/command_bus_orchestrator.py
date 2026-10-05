@@ -19,6 +19,7 @@ Provides an immutable, per-task command lifecycle with:
 
 import os
 import sys
+import re
 import json
 import time
 import uuid
@@ -834,6 +835,7 @@ class CommandBusOrchestrator:
                 reserved_list.append(cmd)
 
             if reserved_list:
+                self._reconcile_global_state_on_reserved(reserved_list)
                 self.rebuild_index()
 
             return reserved_list
@@ -942,6 +944,7 @@ class CommandBusOrchestrator:
                 "updated_at": get_iso_now()
             })
 
+            self._reconcile_global_state_on_running(cmd)
             self.rebuild_index()
             return True, f"RUNNING: {command_id}", cmd
 
@@ -1203,6 +1206,7 @@ class CommandBusOrchestrator:
 
             if recovered:
                 self.rebuild_index()
+            self.reconcile_global_state()
         return recovered
 
     def integrate_branch(self,
@@ -1650,22 +1654,176 @@ class CommandBusOrchestrator:
         current.update(updates)
         self._write_json(state_file, current)
 
+    def _extract_task_prefix(self, task_id: str) -> str:
+        """Extracts short task prefix e.g. TASK_057 from task_id."""
+        if not task_id:
+            return "TASK_UNKNOWN"
+        m = re.match(r"(TASK_[0-9A-Za-z]+)", task_id)
+        return m.group(1) if m else task_id
+
+    def _reconcile_global_state_on_running(self, running_cmd: Dict[str, Any]):
+        """
+        Updates global .ai/state.json when a command starts executing.
+        Ensures agent_state becomes TASK_EXECUTING and current_task_id points to active task.
+        """
+        task_id = running_cmd.get("task_id", "")
+        task_prefix = self._extract_task_prefix(task_id)
+        exec_id = running_cmd.get("execution_identity", {})
+        now = get_iso_now()
+
+        state = self._load_json(self.global_state_file) or {}
+        state["agent_state"] = "TASK_EXECUTING"
+        state["current_task_id"] = task_id
+        state["current_command_id"] = running_cmd.get("command_id")
+        state["last_scan_time"] = now
+
+        if "task_lifecycle" not in state or not isinstance(state["task_lifecycle"], dict):
+            state["task_lifecycle"] = {}
+
+        if f"{task_prefix}_DISPATCHED" not in state["task_lifecycle"]:
+            state["task_lifecycle"][f"{task_prefix}_DISPATCHED"] = running_cmd.get("created_at") or now
+        state["task_lifecycle"][f"{task_prefix}_EXECUTING"] = exec_id.get("started_at") or now
+        state["task_lifecycle"][f"{task_prefix}_STATUS"] = "RUNNING"
+
+        if "provenance" not in state or not isinstance(state["provenance"], dict):
+            state["provenance"] = {}
+
+        state["provenance"].update({
+            "execution_lane": running_cmd.get("execution_lane"),
+            "dispatch_command_id": running_cmd.get("command_id"),
+            "dispatch_commit_sha": exec_id.get("dispatch_commit_sha"),
+            "github_run_id": exec_id.get("github_run_id"),
+            "anti_duplicate_key": running_cmd.get("anti_duplicate_key")
+        })
+
+        self._write_json(self.global_state_file, state)
+
+    def _reconcile_global_state_on_reserved(self, reserved_cmds: List[Dict[str, Any]]):
+        """
+        Updates global .ai/state.json when commands are reserved.
+        Sets agent_state to TASK_DISPATCHED if not already executing.
+        """
+        if not reserved_cmds:
+            return
+        state = self._load_json(self.global_state_file) or {}
+        now = get_iso_now()
+
+        if "task_lifecycle" not in state or not isinstance(state["task_lifecycle"], dict):
+            state["task_lifecycle"] = {}
+
+        for cmd in reserved_cmds:
+            task_id = cmd.get("task_id", "")
+            task_prefix = self._extract_task_prefix(task_id)
+            if f"{task_prefix}_DISPATCHED" not in state["task_lifecycle"]:
+                state["task_lifecycle"][f"{task_prefix}_DISPATCHED"] = cmd.get("created_at") or now
+            state["task_lifecycle"][f"{task_prefix}_STATUS"] = "RESERVED"
+
+        if state.get("agent_state") != "TASK_EXECUTING":
+            state["agent_state"] = "TASK_DISPATCHED"
+            state["current_task_id"] = reserved_cmds[0].get("task_id")
+            state["current_command_id"] = reserved_cmds[0].get("command_id")
+
+        state["last_scan_time"] = now
+        self._write_json(self.global_state_file, state)
+
+    def reconcile_global_state(self) -> Dict[str, Any]:
+        """
+        Comprehensive idempotent and monotonic reconciliation of global .ai/state.json:
+        1. Reflects running/claimed/reserved commands in agent_state and current_task_id.
+        2. Monotonically tracks last_completed_task_id from completed_dir.
+        3. Fills missing task_lifecycle entries for all known commands.
+        """
+        state = self._load_json(self.global_state_file) or {}
+        now = get_iso_now()
+
+        if "task_lifecycle" not in state or not isinstance(state["task_lifecycle"], dict):
+            state["task_lifecycle"] = {}
+        if "provenance" not in state or not isinstance(state["provenance"], dict):
+            state["provenance"] = {}
+
+        running_files = sorted(list(self.running_dir.glob("*.json")))
+        claimed_files = sorted(list(self.claimed_dir.glob("*.json")))
+        reserved_files = sorted(list(self.reserved_dir.glob("*.json")))
+        completed_files = sorted(list(self.completed_dir.glob("*.json")))
+
+        # Record all lifecycle events from completed files
+        for p in completed_files:
+            c = self._load_json(p)
+            if c:
+                tid = c.get("task_id", "")
+                tp = self._extract_task_prefix(tid)
+                if f"{tp}_DISPATCHED" not in state["task_lifecycle"]:
+                    state["task_lifecycle"][f"{tp}_DISPATCHED"] = c.get("created_at") or now
+                if f"{tp}_COMPLETED" not in state["task_lifecycle"]:
+                    state["task_lifecycle"][f"{tp}_COMPLETED"] = c.get("completed_at") or now
+                if f"{tp}_STATUS" not in state["task_lifecycle"]:
+                    state["task_lifecycle"][f"{tp}_STATUS"] = c.get("verdict") or "COMPLETED"
+
+        for p in reserved_files + claimed_files:
+            c = self._load_json(p)
+            if c:
+                tid = c.get("task_id", "")
+                tp = self._extract_task_prefix(tid)
+                if f"{tp}_DISPATCHED" not in state["task_lifecycle"]:
+                    state["task_lifecycle"][f"{tp}_DISPATCHED"] = c.get("created_at") or now
+                state["task_lifecycle"][f"{tp}_STATUS"] = c.get("status") or "DISPATCHED"
+
+        for p in running_files:
+            c = self._load_json(p)
+            if c:
+                tid = c.get("task_id", "")
+                tp = self._extract_task_prefix(tid)
+                if f"{tp}_DISPATCHED" not in state["task_lifecycle"]:
+                    state["task_lifecycle"][f"{tp}_DISPATCHED"] = c.get("created_at") or now
+                if f"{tp}_EXECUTING" not in state["task_lifecycle"]:
+                    exec_id = c.get("execution_identity", {})
+                    state["task_lifecycle"][f"{tp}_EXECUTING"] = exec_id.get("started_at") or now
+                state["task_lifecycle"][f"{tp}_STATUS"] = "RUNNING"
+
+        # Determine active state
+        if running_files:
+            rcmd = self._load_json(running_files[-1])
+            state["agent_state"] = "TASK_EXECUTING"
+            state["current_task_id"] = rcmd.get("task_id")
+            state["current_command_id"] = rcmd.get("command_id")
+            exec_id = rcmd.get("execution_identity", {})
+            state["provenance"]["execution_lane"] = rcmd.get("execution_lane")
+            state["provenance"]["dispatch_command_id"] = rcmd.get("command_id")
+            if exec_id.get("dispatch_commit_sha"):
+                state["provenance"]["dispatch_commit_sha"] = exec_id.get("dispatch_commit_sha")
+            if exec_id.get("github_run_id"):
+                state["provenance"]["github_run_id"] = exec_id.get("github_run_id")
+        elif claimed_files or reserved_files:
+            acmd = self._load_json((claimed_files or reserved_files)[-1])
+            state["agent_state"] = "TASK_DISPATCHED"
+            state["current_task_id"] = acmd.get("task_id")
+            state["current_command_id"] = acmd.get("command_id")
+        else:
+            state["agent_state"] = "IDLE_WAIT_FOR_TASK"
+            state["current_task_id"] = None
+            state["current_command_id"] = None
+
+        state["last_scan_time"] = now
+        self._write_json(self.global_state_file, state)
+        return state
+
     def _reconcile_global_state_on_completion(self, completed_cmd: Dict[str, Any], verdict: Optional[str] = None):
         """
         Safely reconciles global .ai/state.json without race conditions or overwriting other tasks.
         Enforces STATE TRUTH: verdict cannot be blindly PASS if mandatory external gates are unresolved.
         """
-        task_id = completed_cmd.get("task_id")
+        task_id = completed_cmd.get("task_id", "")
+        task_prefix = self._extract_task_prefix(task_id)
         provenance = completed_cmd.get("provenance", {})
         exec_id = completed_cmd.get("execution_identity", {})
+        now = get_iso_now()
 
         state = self._load_json(self.global_state_file) or {}
         state["last_completed_task_id"] = task_id
         state["last_completed_task_modified_time"] = completed_cmd.get("task_revision")
         state["last_report_folder"] = provenance.get("report_folder")
         state["last_target_commit_sha"] = provenance.get("target_commit_sha")
-        state["last_scan_time"] = get_iso_now()
-        state["agent_state"] = "IDLE_WAIT_FOR_TASK"
+        state["last_scan_time"] = now
 
         # Determine truthful verdict
         resolved_verdict = verdict or completed_cmd.get("verdict")
@@ -1696,6 +1854,32 @@ class CommandBusOrchestrator:
                     resolved_verdict = confirmation_status or mirror_verdict or "BLOCKED_EXTERNAL_AUTH"
 
         state["verdict"] = resolved_verdict
+
+        # Update lifecycle
+        if "task_lifecycle" not in state or not isinstance(state["task_lifecycle"], dict):
+            state["task_lifecycle"] = {}
+        state["task_lifecycle"][f"{task_prefix}_COMPLETED"] = completed_cmd.get("completed_at") or now
+        state["task_lifecycle"][f"{task_prefix}_STATUS"] = resolved_verdict
+
+        # Check if any remaining command is running or claimed
+        running_files = list(self.running_dir.glob("*.json"))
+        claimed_files = list(self.claimed_dir.glob("*.json"))
+        reserved_files = list(self.reserved_dir.glob("*.json"))
+
+        if running_files:
+            rcmd = self._load_json(running_files[-1])
+            state["agent_state"] = "TASK_EXECUTING"
+            state["current_task_id"] = rcmd.get("task_id")
+            state["current_command_id"] = rcmd.get("command_id")
+        elif claimed_files or reserved_files:
+            acmd = self._load_json((claimed_files or reserved_files)[-1])
+            state["agent_state"] = "TASK_DISPATCHED"
+            state["current_task_id"] = acmd.get("task_id")
+            state["current_command_id"] = acmd.get("command_id")
+        else:
+            state["agent_state"] = "IDLE_WAIT_FOR_TASK"
+            state["current_task_id"] = None
+            state["current_command_id"] = None
 
         # Update provenance block
         if "provenance" not in state or not isinstance(state["provenance"], dict):
@@ -1823,6 +2007,9 @@ def main():
     # reconcile-lifecycle
     subparsers.add_parser("reconcile-lifecycle", help="Reconcile lifecycle uniqueness across directories")
 
+    # reconcile-state
+    subparsers.add_parser("reconcile-state", help="Reconcile global .ai/state.json with command bus")
+
     # heartbeat
     parser_heartbeat = subparsers.add_parser("heartbeat", help="Send heartbeat to extend lease")
     parser_heartbeat.add_argument("--command-id", required=True, help="Command ID")
@@ -1838,6 +2025,10 @@ def main():
 
     if args.action == "status":
         orch.print_status_summary()
+
+    elif args.action == "reconcile-state":
+        st = orch.reconcile_global_state()
+        print(f"[OK] Reconciled state.json: agent_state={st.get('agent_state')}, current_task={st.get('current_task_id')}")
 
     elif args.action == "rebuild-index":
         idx = orch.rebuild_index()

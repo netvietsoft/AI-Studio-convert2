@@ -1,0 +1,448 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_E_DECOMPILER_CONFIDENCE",
+    "lane_id": "LANE_E",
+    "pid": 67320,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "SO45_DECOMPILER_CONFIDENCE_AND_BINARY_AUDIT",
+    "start_time": "2026-10-05T07:35:07.367702+07:00",
+    "end_time": "2026-10-05T07:35:07.987646+07:00",
+    "total_binaries_scanned": 46,
+    "tier_counts": {
+      "PROVEN": 15,
+      "STRONG_INFERENCE": 16,
+      "HYPOTHESIS": 2,
+      "PROVEN_VENDOR_SDK": 3,
+      "PROVEN_OPEN_SOURCE": 8,
+      "PROVEN_SYSTEM": 2
+    }
+  },
+  "hair_v4_gate_status": {
+    "status": "BLOCKED",
+    "blocker_reason": "Hair V4 architecture requires complete decompiler proof of Manis Neural NPU pipeline and custom Kajiya-Kay Marschner 3D hair model. Partial heuristic recovery does not satisfy Chairman Tony V2.1 zero-fabrication gate.",
+    "authorized_versions": [
+      "Hair Color Engine V1 (Heuristic SoftLight)",
+      "Hair Color Engine V2 (Guided Feathering)",
+      "Hair Color Engine V3 (Anisotropic GLSL Specular)"
+    ]
+  },
+  "gpu_cpu_truth_policy": {
+    "declaration": "CPU Fallback is strictly identified as CPU execution. Never labeled as GPU acceleration. Real GPU requires verified EGL/GLES shader kernel execution."
+  },
+  "binaries": [
+    {
+      "so_name": "libaicodec.so",
+      "size_bytes": 2107800,
+      "sha256": "F957A5B290991053F65943356816E837AE5A9D996FA0B2809FC89F680FC8A3CC",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Hardware-accelerated AI video/image compression",
+      "evidence_basis": "MediaCodec NDK bindings, YUV buffer transfer"
+    },
+    {
+      "so_name": "libaidetectionplugin.so",
+      "size_bytes": 531680,
+      "sha256": "910EF898F457CAC694080829B8F7B219AE6CC696F5ADEBE90BECA9A70C0DEDA8",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Face landmark detection (106/171/240 points), eye/mouth contour tracking",
+      "evidence_basis": "Landmark coordinate arrays, regression cascade symbols"
+    },
+    {
+      "so_name": "libAIModelKit.so",
+      "size_bytes": 280608,
+      "sha256": "96EB16089DA9B1B797928A73EC4B4DDD27C43BC557940C96CA167CF657A89B9C",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Model package decryption, integrity verification, memory mapping",
+      "evidence_basis": "AES/RC4 decryption keys, model header validation routines"
+    },
+    {
+      "so_name": "libAIModelSearchKit.so",
+      "size_bytes": 1027728,
+      "sha256": "20233F05B4B010280D16E728103A0995CA2580697B5F9C708FA333E9FF8D1899",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Local model caching, dynamic model indexing, version resolution",
+      "evidence_basis": "Filesystem indexing routines, sqlite/json cache bindings"
+    },
+    {
+      "so_name": "libarkernel3.so",
+      "size_bytes": 17786488,
+      "sha256": "E08C1D494EEF98759AA92594CA26420E097DF51965A4407CC639A97BBAF35442",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Augmented Reality tracking, 3D face mesh fitting, facial geometry",
+      "evidence_basis": "Perspective-n-Point solvers, ICP alignment, dense mesh reconstruction"
+    },
+    {
+      "so_name": "libarkernel3_android.so",
+      "size_bytes": 693576,
+      "sha256": "81AAC3F4CDF285C4E71D0514EA985C60C5A88AC7C5CA9F1A95F812E3368799DA",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Android JNI bindings for ARKernel3",
+      "evidence_basis": "Exported Java_com_meitu_arkernel_* functions"
+    },
+    {
+      "so_name": "libarkernel3_c.so",
+      "size_bytes": 501664,
+      "sha256": "549ACE66FE1522B7E9596FCE23A3A254FBEC25442F177235A10173DFF8FDE339",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "C ABI interface wrapper for ARKernel3",
+      "evidence_basis": "Exported extern 'C' functions"
+    },
+    {
+      "so_name": "libARKernelInterface.so",
+      "size_bytes": 17829224,
+      "sha256": "594C5085475D8BB58BAACB20293AEC805211AA5CCC53B3542F3149196D354953",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Cross-platform API interface for AR features",
+      "evidence_basis": "Virtual method tables, interface stubs"
+    },
+    {
+      "so_name": "libARSPM.so",
+      "size_bytes": 5298024,
+      "sha256": "EC420F2EEC97CF2DEBBF4778045CFD0AC08B78EAE656A4F90E282D49B3EF0114",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Statistical parameter models for facial morphology and hair shape",
+      "evidence_basis": "PCA coefficient vectors, deformation matrices"
+    },
+    {
+      "so_name": "libbmpKit.so",
+      "size_bytes": 486360,
+      "sha256": "550E87FBFD13B8DE0833789DF04038C659E0472606E6A161EAF775BA126CD168",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Fast Bitmap raw memory manipulation and direct pixel access",
+      "evidence_basis": "LockPixels/UnlockPixels JNI implementations"
+    },
+    {
+      "so_name": "libbuffer_pgl.so",
+      "size_bytes": 9000,
+      "sha256": "D416381C202993E4A03FD6AE0C5B407F1531F61FC45F518AD5B7F4620D5A2133",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Shared memory circular buffer for multi-process IPC",
+      "evidence_basis": "ashmem/mmap IPC primitives"
+    },
+    {
+      "so_name": "libbytehook.so",
+      "size_bytes": 59080,
+      "sha256": "1FA39F206CF1CB5863DC3770EC3A21339921364E647A3AB4DBB094EAB83676D8",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "ByteDance PLT/GOT hook library for Android runtime instrumentation",
+      "evidence_basis": "Public ByteHook open-source headers and symbols"
+    },
+    {
+      "so_name": "libc++_shared.so",
+      "size_bytes": 1292904,
+      "sha256": "4397241B4BD20A8E579BFB41D21107857E12985F6A01CA0C2A5F83380D1270B4",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_SYSTEM",
+      "functional_role": "LLVM libc++ standard C++ runtime",
+      "evidence_basis": "Standard libc++ ABI symbols"
+    },
+    {
+      "so_name": "libCtaApiLib.so",
+      "size_bytes": 494080,
+      "sha256": "4A91CCAC45408DAA30E8DD60F7C6EEE68AEFFBDD66E1E9B6E435B1AA3377FCD5",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "China Telecommunication Authority compliance and permission gate",
+      "evidence_basis": "Permission query hooks, telephony manager stubs"
+    },
+    {
+      "so_name": "libdexvmp.so",
+      "size_bytes": 516600,
+      "sha256": "B4A46520EC989FEF5346833DB8F9A1BD6A6690902731414ED26F65CC529CC06E",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Dex Virtual Machine Protection (Anti-tamper / bytecode obfuscation)",
+      "evidence_basis": "Custom bytecode interpreter loop, opcode dispatch table"
+    },
+    {
+      "so_name": "libfantasy.so",
+      "size_bytes": 2623024,
+      "sha256": "FEFB87A88745A4AA8E8DCC421C7EC46A91A648E7AFEF86A312D1A3776A8C7724",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "High-end portrait retouching, hair volume enhancement, skin mesh deformation",
+      "evidence_basis": "Rodata strings, DEX integration in retouch modules"
+    },
+    {
+      "so_name": "libffavc.so",
+      "size_bytes": 1161456,
+      "sha256": "1E214164A6C153F74F25018C1625F3E71D1D5BA601F6592C4DD89385DCC4B0BC",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "H.264/AVC hardware/software decoding wrapper",
+      "evidence_basis": "AVC bitstream parser symbols"
+    },
+    {
+      "so_name": "libffmpeg.so",
+      "size_bytes": 7546632,
+      "sha256": "D8DF8C5CB7A6B5A7EB771782D74A38E0B8D3CFACD1FBEF1AE67A96171E3325C9",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "Audio/Video muxing, demuxing, software decoding",
+      "evidence_basis": "Standard FFmpeg 4.x export table, avcodec/avformat symbols"
+    },
+    {
+      "so_name": "libffmpegfilter.so",
+      "size_bytes": 267600,
+      "sha256": "F22A7EA6DA3194D046ECBCE5CE3B602BCB56EDFD96444A6E29E1A3C3449CF981",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "FFmpeg libavfilter custom Meitu video filters",
+      "evidence_basis": "AVFilter definitions, filtergraph bindings"
+    },
+    {
+      "so_name": "libfftw3.so",
+      "size_bytes": 502784,
+      "sha256": "0968CEE954C2BCBBB8DF9DACA5A9D122343B280462AAAD9533F083F15A4B1C32",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "Fast Fourier Transform library for frequency-domain image filtering",
+      "evidence_basis": "Standard FFTW 3.x symbols"
+    },
+    {
+      "so_name": "libfile_lock_pgl.so",
+      "size_bytes": 6312,
+      "sha256": "D14096B150B4B2F21263FDB4F1C61EEA3FCD76804C776DE2395B13DFBE1D8CA0",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Process file locking and multi-process concurrency primitives",
+      "evidence_basis": "fcntl/flock wrappers"
+    },
+    {
+      "so_name": "libfntvcrash.so",
+      "size_bytes": 57592,
+      "sha256": "91B4BFD158229E340D5C7F6722DF9D1A1AB72B9E3A5DD72DA903BAD571FA7E11",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Native signal handler and crash stacktrace recorder (SIGSEGV, SIGBUS)",
+      "evidence_basis": "sigaction handlers, unwinder symbols"
+    },
+    {
+      "so_name": "libglide-webp.so",
+      "size_bytes": 412080,
+      "sha256": "2F7F38ACC0D294A3333069AA8A3C07E69D4BC0A64F162215578BD55DBE1A4486",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "Glide WebP decoding animation integration",
+      "evidence_basis": "Standard WebP image format parsers"
+    },
+    {
+      "so_name": "libhiai.so",
+      "size_bytes": 446504,
+      "sha256": "30A096C17346403D98A32A1A4D0762FA8E220F6C40E65AEC9460CDFD6C7418EE",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_VENDOR_SDK",
+      "functional_role": "Huawei HiAI NPU hardware runtime",
+      "evidence_basis": "Vendor standard symbols"
+    },
+    {
+      "so_name": "libhiai_ir.so",
+      "size_bytes": 868936,
+      "sha256": "C96AF03947BDE73255F4B77E3C253AE63130FDFED8B259196D24BBF3BA84A7D1",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_VENDOR_SDK",
+      "functional_role": "Huawei HiAI Intermediate Representation graph builder",
+      "evidence_basis": "Vendor standard symbols"
+    },
+    {
+      "so_name": "libhiai_ir_build.so",
+      "size_bytes": 27120,
+      "sha256": "5357C178714545BA0EC715556F70252BF650DD53099170B3FE5519B6EC42CEDD",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_VENDOR_SDK",
+      "functional_role": "Huawei HiAI Model Compiler",
+      "evidence_basis": "Vendor standard symbols"
+    },
+    {
+      "so_name": "libhttpelf.so",
+      "size_bytes": 51272,
+      "sha256": "26CA2AC83E64FE651C4CBC15CF124FC8D86A51F560D753A6FAE7CC840DD3EA91",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Network ELF loader / secure remote feature downloader",
+      "evidence_basis": "HTTP client strings, dlopen from memory buffers"
+    },
+    {
+      "so_name": "libKKMusicFX.so",
+      "size_bytes": 519504,
+      "sha256": "CD876A2E49A129B1BCEFDC4ACA42047FAA4AAF954C6C1286EDB80209AC38031D",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Audio effects and background music synchronization for video editing",
+      "evidence_basis": "Audio DSP biquad filter routines, equalizer settings"
+    },
+    {
+      "so_name": "libkoom-strip-dump.so",
+      "size_bytes": 576288,
+      "sha256": "DB0DB1BDEF5F51386EA2036682C0129B842AA5E3445A26D60EA6C5D29113FAA3",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "Kwai Koom OOM memory leak analyzer and heap dump stripper",
+      "evidence_basis": "Standard KOOM symbols and dump structures"
+    },
+    {
+      "so_name": "liblabdeviceinfo.so",
+      "size_bytes": 126312,
+      "sha256": "68EE1BC7A413742159A9375FF3DCC2D78C31F4259AB697E252ACB4F2DFE90E5E",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Hardware fingerprinting (SoC, GPU family, OpenGL extensions)",
+      "evidence_basis": "glGetString, /proc/cpuinfo parser, ro.soc.manufacturer"
+    },
+    {
+      "so_name": "libLayerFlow.so",
+      "size_bytes": 5544776,
+      "sha256": "EF8D1581038778B72ABCA3CA8FD5046E49FD44E0465871B023647FE42A582262",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Multi-layer image compositing, blending stack, alpha masking",
+      "evidence_basis": "String references in rodata, DEX cross-references, symbol exports"
+    },
+    {
+      "so_name": "libManis.so",
+      "size_bytes": 9928576,
+      "sha256": "19DAF9B4B1718C843169D68391E99A27D10BD3CECE52226C887C3AB9B93DDDC2",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Meitu Neural Inference Engine (NPU/GPU/CPU fallback abstraction)",
+      "evidence_basis": "Model loading symbols, tensor allocation routines, layer implementations"
+    },
+    {
+      "so_name": "libmanis_npu_adapter.so",
+      "size_bytes": 1022088,
+      "sha256": "99A9A4B161B9797D7CF621E93A51A7DF408F80C84E652BBC6724EEF7E71CA6F3",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Hardware acceleration bridge for Qualcomm NPU, MediaTek APU",
+      "evidence_basis": "Driver dlopen calls, runtime device capability detection"
+    },
+    {
+      "so_name": "libmfxkit.so",
+      "size_bytes": 773652,
+      "sha256": "78923A90997D34C5DD51215A6CD2BC26C9731806FD9037E4AA71FD3873D3BB4F",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Hair Dye Synthesis, SoftLight Blend, Guided Feathering, Specular Kajiya-Kay",
+      "evidence_basis": "Raw disassembly, Ghidra CFG, JNI RegisterNatives table (0x000cb504), GLSL source strings"
+    },
+    {
+      "so_name": "libMTARMPM.so",
+      "size_bytes": 99704,
+      "sha256": "A8CC628D8542EF953BCBEA36252DF569FF03EFCEA40C3E99A01A5D01489965B4",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "HYPOTHESIS",
+      "functional_role": "Morphable parameter models for body and head pose",
+      "evidence_basis": "String heuristics, call graph tracing from AR module"
+    },
+    {
+      "so_name": "libMTFilterKernel.so",
+      "size_bytes": 1858440,
+      "sha256": "F938FE73095FCEBA72875D1AB42F8AEB6A9F31F3933831BEC070404C0E7ECAC4",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "GPU Shader effects, LUT color transformations, texture sampling",
+      "evidence_basis": "Exported JNI functions, shader bytecode references, render pass descriptors"
+    },
+    {
+      "so_name": "libMTGif.so",
+      "size_bytes": 83560,
+      "sha256": "A896D526A7EE74611FFD9A611B797C65505E60B4C60FF27FAB75ECABBE69A134",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_OPEN_SOURCE",
+      "functional_role": "GIF encoding and frame-rate optimization",
+      "evidence_basis": "GifLib standard functions"
+    },
+    {
+      "so_name": "libMtlabSign.so",
+      "size_bytes": 22016,
+      "sha256": "6901812E71F57BD62614000AD735CAFDF0DAC5282DBEB766B818DD1F1D333CAB",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "API request HMAC-SHA256 signature generator and anti-replay protection",
+      "evidence_basis": "Cryptographic hash functions, token validation"
+    },
+    {
+      "so_name": "libMTLReportTool.so",
+      "size_bytes": 73224,
+      "sha256": "C34587E543305B8E92FE3156A424F86251667C363D1758BE61917D1EF1F1152C",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Telemetry, performance metric aggregation, frame time reporter",
+      "evidence_basis": "JSON metric payload builders, logcat emitters"
+    },
+    {
+      "so_name": "libomp.so",
+      "size_bytes": 1205616,
+      "sha256": "1E542457489E1355838573A303CB186EBD70C724FBDDAC0C739FA9A42E13FE75",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN_SYSTEM",
+      "functional_role": "LLVM OpenMP parallel multithreading runtime",
+      "evidence_basis": "Standard OpenMP API symbols"
+    },
+    {
+      "so_name": "libPVGCodec.so",
+      "size_bytes": 1283760,
+      "sha256": "4FA5F275C8DDECF7CAA960C812108EC9E801365BFE5BC9CF38598233BC449FFC",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Photo & Video Generation custom codec interface",
+      "evidence_basis": "Frame encoding/decoding symbols"
+    },
+    {
+      "so_name": "libPVGColorFunctions.so",
+      "size_bytes": 380224,
+      "sha256": "3AAB7535EEFD304FEF426EFD49C1FEE51300261EDC766CDC551355C3EEBB04E6",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "PROVEN",
+      "functional_role": "Color space transformations (RGB, LAB, HSV, YUV), color grading",
+      "evidence_basis": "Exported C API, mathematical formula recovery, SIMD NEON routines"
+    },
+    {
+      "so_name": "libPVGImageCodec.so",
+      "size_bytes": 5133080,
+      "sha256": "7745F3A95EC533332C96AFF8D8D8C11D18E3011109741562BF3B319D3842FB1B",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "High-efficiency still image decoder (WebP, HEIF, custom formats)",
+      "evidence_basis": "Libjpeg-turbo/libwebp references, decodeBitmap symbols"
+    },
+    {
+      "so_name": "libPVGLive.so",
+      "size_bytes": 603200,
+      "sha256": "E443F6A16CB8137D74A1583529666EB02BF4859B372175E2B4C226F6E188484C",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "HYPOTHESIS",
+      "functional_role": "Live streaming video frame processing engine",
+      "evidence_basis": "RTMP/RTSP buffer references, frame dropping logic"
+    },
+    {
+      "so_name": "libPVGVideoCodec.so",
+      "size_bytes": 1150016,
+      "sha256": "336CF1E8CDAAAC1AD5BF77B96A03AE9AD90527E583C82AEA44B05B25E5DA4D26",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "Video track rendering and export encoder",
+      "evidence_basis": "SurfaceTexture and EGLWindowSurface hooks"
+    },
+    {
+      "so_name": "libVERenderer.so",
+      "size_bytes": 429728,
+      "sha256": "2DA896556822804506871C47FADDA3FADF8537952E38642E6C496CCBBAB8CA46",
+      "architecture": "arm64-v8a",
+      "confidence_tier": "STRONG_INFERENCE",
+      "functional_role": "OpenGL ES / Vulkan viewport rendering engine",
+      "evidence_basis": "EGL/GLES context management symbols, draw call sequences"
+    }
+  ]
+}

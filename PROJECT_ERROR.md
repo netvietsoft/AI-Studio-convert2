@@ -124,3 +124,16 @@
   3. Reconcile chính xác `github_run_id: "37242297847"` và các mã băm đầy đủ 40 ký tự hex vào `.ai/state.json`.
 - **Quy tắc phòng ngừa:** Mỗi tác vụ điều phối song song bắt buộc phải có bước Dispatch Integration Pass cuối chu kỳ để xác nhận 100% lệnh trong command bus được dọn dẹp và nghiệm thu hoàn tất trước khi báo cáo kết thúc nhiệm vụ.
 
+---
+
+### [ERR-012] Lệch pha trạng thái Command Bus và Stale Global State (`.ai/state.json`) (TASK_056/057 -> TASK_058)
+- **Thời điểm phát hiện:** 2026-10-05 trong chu kỳ kiểm toán tự trị `TASK_058`.
+- **Nguyên nhân gốc rễ:**
+  1. Trong `scripts/command_bus_orchestrator.py`, các hàm `start_command()` và `reserve_command()` chỉ cập nhật tệp trạng thái cụ thể của task (`.ai/state/tasks/<task_id>.json`) nhưng không đồng bộ ghi vào tệp trạng thái toàn cục tối cao (`.ai/state.json`).
+  2. Dù GitHub Actions đã chạy `TASK_056` và `TASK_057` với commit worker ACK bền vững `0e488b1fb` (run `37246754606`), tệp `.ai/state.json` vẫn tiếp tục báo `IDLE_WAIT_FOR_TASK` và `last_completed: TASK_055`.
+- **Giải pháp triệt để:**
+  1. Bổ sung `_reconcile_global_state_on_running` và `_reconcile_global_state_on_reserved` trong `scripts/command_bus_orchestrator.py`, đảm bảo mọi chuyển đổi trạng thái cục bộ đều được cập nhật nguyên tử (atomic) vào `.ai/state.json`.
+  2. Bắt buộc chuyển đổi trạng thái đơn điệu (monotonic): `CREATED -> DISPATCHED -> RESERVED -> RUNNING -> COMPLETED -> REVIEW_CANDIDATE`.
+  3. Bổ sung bộ kiểm thử hồi quy toàn diện `tests/test_command_bus_state_reconciliation.py` (5 tests) chứng minh việc commit durable worker ACK diễn ra trước khi thực thi tính toán nặng.
+- **Quy tắc phòng ngừa:** Tuyệt đối cấm để lệch pha giữa hàng đợi command bus và tệp trạng thái toàn cục. Mọi thay đổi trạng thái lệnh trong command bus phải lập tức đồng bộ nguyên tử vào `.ai/state.json`.
+

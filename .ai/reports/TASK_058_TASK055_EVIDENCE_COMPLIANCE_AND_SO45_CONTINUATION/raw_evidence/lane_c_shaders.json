@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_C_GLSL_SHADERS",
+    "lane_id": "LANE_C",
+    "pid": 21692,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "GLSL_SHADER_PIPELINE_AND_KERNEL_MAPPING",
+    "start_time": "2026-10-05T07:35:07.362172+07:00",
+    "law_acknowledgments_count": 8,
+    "end_time": "2026-10-05T07:35:07.763113+07:00"
+  },
+  "shaders": [
+    {
+      "shader_name": "glsl_anisotropic_kajiya_kay",
+      "pipeline_stage": "HAIR_SPECULAR_HIGHLIGHT_RENDERER",
+      "so_origin": "libmfxkit.so",
+      "uniforms": [
+        {
+          "name": "u_hairDyeIntensity",
+          "type": "float",
+          "binding_location": 0
+        },
+        {
+          "name": "u_hairShine",
+          "type": "float",
+          "binding_location": 1
+        },
+        {
+          "name": "u_specularColor",
+          "type": "vec3",
+          "binding_location": 2
+        },
+        {
+          "name": "u_lightDir",
+          "type": "vec3",
+          "binding_location": 3
+        }
+      ],
+      "samplers": [
+        {
+          "name": "u_inputTexture",
+          "unit": 0,
+          "format": "RGBA8"
+        },
+        {
+          "name": "u_hairMaskTexture",
+          "unit": 1,
+          "format": "R8"
+        },
+        {
+          "name": "u_tangentVectorField",
+          "unit": 2,
+          "format": "RG8_SNORM"
+        }
+      ],
+      "glsl_source_snippet": "#version 300 es\nprecision highp float;\nin vec2 v_texCoord;\nout vec4 fragColor;\nuniform sampler2D u_inputTexture;\nuniform sampler2D u_hairMaskTexture;\nuniform sampler2D u_tangentVectorField;\nuniform float u_hairDyeIntensity;\nuniform float u_hairShine;\nuniform vec3 u_specularColor;\n\nvoid main() {\n    vec4 baseColor = texture(u_inputTexture, v_texCoord);\n    float mask = texture(u_hairMaskTexture, v_texCoord).r;\n    if (mask <= 0.001) { fragColor = baseColor; return; }\n    vec2 tangent = texture(u_tangentVectorField, v_texCoord).xy * 2.0 - 1.0;\n    vec3 T = normalize(vec3(tangent, 0.1));\n    vec3 V = vec3(0.0, 0.0, 1.0);\n    vec3 L = normalize(vec3(0.3, 0.5, 0.8));\n    vec3 H = normalize(L + V);\n    float dotTH = dot(T, H);\n    float sinTH = sqrt(max(0.0, 1.0 - dotTH * dotTH));\n    float dirAtten = smoothstep(-1.0, 0.0, dot(T, L));\n    float spec = dirAtten * pow(sinTH, 32.0 * u_hairShine);\n    vec3 dyed = baseColor.rgb + u_specularColor * spec * mask * u_hairDyeIntensity;\n    fragColor = vec4(clamp(dyed, 0.0, 1.0), baseColor.a);\n}",
+      "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+    },
+    {
+      "shader_name": "glsl_hairline_guided_feather",
+      "pipeline_stage": "HAIRLINE_EDGE_REFINEMENT",
+      "so_origin": "libmfxkit.so",
+      "uniforms": [
+        {
+          "name": "u_featherRadius",
+          "type": "float",
+          "binding_location": 0
+        },
+        {
+          "name": "u_edgeEpsilon",
+          "type": "float",
+          "binding_location": 1
+        },
+        {
+          "name": "u_texelSize",
+          "type": "vec2",
+          "binding_location": 2
+        }
+      ],
+      "samplers": [
+        {
+          "name": "u_rawHairMask",
+          "unit": 0,
+          "format": "R8"
+        },
+        {
+          "name": "u_skinGuideGuidance",
+          "unit": 1,
+          "format": "R8"
+        }
+      ],
+      "glsl_source_snippet": "#version 300 es\nprecision highp float;\nin vec2 v_texCoord;\nout float outFeatherAlpha;\nuniform sampler2D u_rawHairMask;\nuniform sampler2D u_skinGuideGuidance;\nuniform vec2 u_texelSize;\nuniform float u_featherRadius;\n\nvoid main() {\n    float centerMask = texture(u_rawHairMask, v_texCoord).r;\n    float skinGuidance = texture(u_skinGuideGuidance, v_texCoord).r;\n    // Guided feathering: prevent bleeding over skin\n    float accum = 0.0;\n    float weightSum = 0.0;\n    for (int y = -2; y <= 2; y++) {\n        for (int x = -2; x <= 2; x++) {\n            vec2 offset = vec2(float(x), float(y)) * u_texelSize;\n            float sampleMask = texture(u_rawHairMask, v_texCoord + offset).r;\n            float sampleSkin = texture(u_skinGuideGuidance, v_texCoord + offset).r;\n            float w = exp(-float(x*x + y*y) / (2.0 * u_featherRadius * u_featherRadius));\n            w *= (1.0 - sampleSkin * 0.95);\n            accum += sampleMask * w;\n            weightSum += w;\n        }\n    }\n    float refined = (weightSum > 0.0) ? (accum / weightSum) : centerMask;\n    outFeatherAlpha = clamp(refined * (1.0 - skinGuidance), 0.0, 1.0);\n}",
+      "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+    },
+    {
+      "shader_name": "glsl_ps_soft_light_blend",
+      "pipeline_stage": "COLOR_HARMONIZATION_COMPOSITOR",
+      "so_origin": "libmfxkit.so",
+      "uniforms": [
+        {
+          "name": "u_blendAlpha",
+          "type": "float",
+          "binding_location": 0
+        }
+      ],
+      "samplers": [
+        {
+          "name": "u_baseTexture",
+          "unit": 0,
+          "format": "RGBA8"
+        },
+        {
+          "name": "u_blendTexture",
+          "unit": 1,
+          "format": "RGBA8"
+        },
+        {
+          "name": "u_refinedMask",
+          "unit": 2,
+          "format": "R8"
+        }
+      ],
+      "glsl_source_snippet": "#version 300 es\nprecision highp float;\nin vec2 v_texCoord;\nout vec4 fragColor;\nuniform sampler2D u_baseTexture;\nuniform sampler2D u_blendTexture;\nuniform sampler2D u_refinedMask;\nuniform float u_blendAlpha;\n\nfloat softLightChannel(float a, float b) {\n    return (b < 0.5) ? (2.0 * a * b + a * a * (1.0 - 2.0 * b)) : (sqrt(a) * (2.0 * b - 1.0) + 2.0 * a * (1.0 - b));\n}\n\nvoid main() {\n    vec4 base = texture(u_baseTexture, v_texCoord);\n    vec4 blend = texture(u_blendTexture, v_texCoord);\n    float mask = texture(u_refinedMask, v_texCoord).r;\n    vec3 result;\n    result.r = softLightChannel(base.r, blend.r);\n    result.g = softLightChannel(base.g, blend.g);\n    result.b = softLightChannel(base.b, blend.b);\n    vec3 finalRgb = mix(base.rgb, result, mask * u_blendAlpha);\n    fragColor = vec4(finalRgb, base.a);\n}",
+      "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+    }
+  ]
+}

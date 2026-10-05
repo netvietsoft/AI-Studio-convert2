@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_A_JNI_DEX_XREF",
+    "lane_id": "LANE_A",
+    "pid": 65916,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "JNI_REGISTER_NATIVES_AND_DEX_CALLGRAPH_XREF",
+    "start_time": "2026-10-05T07:35:07.348168+07:00",
+    "law_acknowledgments_count": 8,
+    "end_time": "2026-10-05T07:35:07.748837+07:00"
+  },
+  "jni_bindings": [
+    {
+      "so_name": "libmfxkit.so",
+      "dex_class": "com.meitu.library.mfxkit.MFXKitBridge",
+      "native_function": "nSetTraditionHairDyeIntensityAndShine",
+      "jni_signature": "(JFF)V",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_mfxkit_native_methods",
+      "offset_hex": "0x000cb504",
+      "call_chain": "Android UI -> HairDyeViewModel -> MFXKitBridge.nSetTraditionHairDyeIntensityAndShine -> libmfxkit.so -> MTSoftHairFilter",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libmfxkit.so",
+      "dex_class": "com.meitu.library.mfxkit.MFXKitBridge",
+      "native_function": "decodeHairDyeConfig",
+      "jni_signature": "(Ljava/lang/String;[B)J",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_mfxkit_native_methods",
+      "offset_hex": "0x000cb5c0",
+      "call_chain": "Android UI -> HairDyeConfigLoader -> MFXKitBridge.decodeHairDyeConfig -> libmfxkit.so -> loadHairDyeConfig",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libmfxkit.so",
+      "dex_class": "com.meitu.library.mfxkit.MFXKitBridge",
+      "native_function": "loadHairDyeConfig",
+      "jni_signature": "(JLjava/lang/String;)Z",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_mfxkit_native_methods",
+      "offset_hex": "0x000cb5ec",
+      "call_chain": "MFXKitBridge.loadHairDyeConfig -> libmfxkit.so -> LFDenseHairModular",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libmfxkit.so",
+      "dex_class": "com.meitu.library.mfxkit.MFXKitBridge",
+      "native_function": "nativeProcessHairMask",
+      "jni_signature": "(J[BII[B)I",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_mfxkit_native_methods",
+      "offset_hex": "0x000cb618",
+      "call_chain": "HairSegmentationProcessor -> MFXKitBridge.nativeProcessHairMask -> libmfxkit.so -> HairMaskFeatherFilter",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libimage_proc.so",
+      "dex_class": "com.meitu.imageproc.MTFaceBeautyBridge",
+      "native_function": "nativeApplySkinSmoothingAndWhitening",
+      "jni_signature": "(J[BIIFF)Z",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_face_beauty_methods",
+      "offset_hex": "0x0004a120",
+      "call_chain": "FaceBeautyManager -> MTFaceBeautyBridge.nativeApplySkinSmoothingAndWhitening -> libimage_proc.so -> MTSkinSmoothBilateral",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libimage_proc.so",
+      "dex_class": "com.meitu.imageproc.MTBodySlimBridge",
+      "native_function": "nativeApplyLiquifyMeshDeformation",
+      "jni_signature": "(J[F[FII)I",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_liquify_methods",
+      "offset_hex": "0x000628e0",
+      "call_chain": "BodySlimController -> MTBodySlimBridge.nativeApplyLiquifyMeshDeformation -> libimage_proc.so -> LiquifyWarpGrid",
+      "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+    },
+    {
+      "so_name": "libyuv.so",
+      "dex_class": "com.meitu.library.yuv.YUVConverter",
+      "native_function": "I420ToARGB",
+      "jni_signature": "([B[BII)I",
+      "registration_type": "EXPORTED_SYMBOL",
+      "table_symbol": "Java_com_meitu_library_yuv_YUVConverter_I420ToARGB",
+      "offset_hex": "0x0001f340",
+      "call_chain": "CameraFrameConsumer -> YUVConverter.I420ToARGB -> libyuv.so -> libyuv::I420ToARGB",
+      "confidence": "PROVEN_EXPORTED_SYMBOL"
+    },
+    {
+      "so_name": "libbisenet.so",
+      "dex_class": "com.meitu.vision.BiSeNetSegmenter",
+      "native_function": "nativeInferenceHairParsing",
+      "jni_signature": "(J[FII[F)I",
+      "registration_type": "DYNAMIC_REGISTER_NATIVES",
+      "table_symbol": "g_bisenet_methods",
+      "offset_hex": "0x0008e400",
+      "call_chain": "BiSeNetModelRunner -> BiSeNetSegmenter.nativeInferenceHairParsing -> libbisenet.so -> ncnn::Extractor",
+      "confidence": "STRONG_INFERENCE_RODATA_MATCH"
+    }
+  ]
+}

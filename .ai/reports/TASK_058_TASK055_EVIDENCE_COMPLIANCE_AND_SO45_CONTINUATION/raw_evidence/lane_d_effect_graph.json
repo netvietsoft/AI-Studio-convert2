@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_D_IMAGE_EFFECTS",
+    "lane_id": "LANE_D",
+    "pid": 15628,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "IMAGE_EFFECT_GRAPH_AND_PARAMETER_SEMANTICS",
+    "start_time": "2026-10-05T07:35:07.365563+07:00",
+    "law_acknowledgments_count": 8,
+    "end_time": "2026-10-05T07:35:07.768554+07:00"
+  },
+  "effect_pipeline": {
+    "pipeline_name": "MTImageProcessingGraph_Hair_And_Beauty",
+    "stages_count": 7,
+    "total_supported_effects": 104,
+    "core_hair_stages": [
+      {
+        "stage_index": 0,
+        "stage_name": "IMAGE_INGEST_AND_COLORSPACE_CONVERSION",
+        "input_format": "RGBA8888_OR_NV21",
+        "output_format": "SRGB_LINEAR_F32",
+        "native_module": "libyuv.so / libimage_proc.so",
+        "parameters": {
+          "gamma_correction": 2.2,
+          "premultiplied_alpha": false
+        },
+        "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+      },
+      {
+        "stage_index": 1,
+        "stage_name": "SEGMENTATION_AND_FACIAL_PARSING",
+        "input_format": "SRGB_LINEAR_F32 (512x512 normalized)",
+        "output_format": "TENSOR_19_CLASSES_F32 / R8_HAIR_MASK",
+        "native_module": "libbisenet.so / libsegment.so",
+        "parameters": {
+          "tau_aspect": 1.8,
+          "hair_class_id": 13,
+          "skin_class_ids": [
+            1,
+            2,
+            3,
+            10,
+            11
+          ]
+        },
+        "frozen_status": "FROZEN_P0_CONTRACT",
+        "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+      },
+      {
+        "stage_index": 2,
+        "stage_name": "HAIRLINE_EDGE_GUIDANCE_AND_ISOLATION",
+        "input_format": "R8_HAIR_MASK + R8_SKIN_MASK",
+        "output_format": "R8_FEATHERED_HAIR_ALPHA",
+        "native_module": "libmfxkit.so",
+        "parameters": {
+          "feather_radius_px": 3.5,
+          "skin_exclusion_margin": 1.5,
+          "bilateral_sigma_spatial": 2.0
+        },
+        "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+      },
+      {
+        "stage_index": 3,
+        "stage_name": "HAIR_STRAND_ORIENTATION_ESTIMATION",
+        "input_format": "SRGB_LINEAR_F32 (luminance channel)",
+        "output_format": "RG8_TANGENT_VECTOR_FIELD (cos 2theta, sin 2theta)",
+        "native_module": "libmfxkit.so",
+        "parameters": {
+          "structure_tensor_sigma": 1.2,
+          "integration_scale": 3.0,
+          "lic_tap_count": 21
+        },
+        "confidence": "PROVEN_RAW_DISASM_AND_CFG"
+      },
+      {
+        "stage_index": 4,
+        "stage_name": "COLOR_HARMONIZATION_AND_DYE_BLENDING",
+        "input_format": "SRGB_LINEAR_F32 + R8_FEATHERED_HAIR_ALPHA + TARGET_DYE_PALETTE",
+        "output_format": "SRGB_LINEAR_F32 (dyed hair base)",
+        "native_module": "libmfxkit.so",
+        "parameters": {
+          "dye_intensity": {
+            "min": 0.0,
+            "max": 1.0,
+            "default": 0.8
+          },
+          "blend_mode": "PsSoftLight",
+          "color_space": "LAB_OR_OKLAB"
+        },
+        "confidence": "PROVEN_RAW_DISASM_AND_MATHEMATICAL_IDENTITY"
+      },
+      {
+        "stage_index": 5,
+        "stage_name": "ANISOTROPIC_KAJIYA_KAY_SPECULAR_HIGHLIGHT",
+        "input_format": "SRGB_LINEAR_F32 + RG8_TANGENT_VECTOR_FIELD",
+        "output_format": "SRGB_LINEAR_F32 (highlighted dyed hair)",
+        "native_module": "libmfxkit.so",
+        "parameters": {
+          "shine_intensity": {
+            "min": 0.0,
+            "max": 1.0,
+            "default": 0.65
+          },
+          "specular_exponent": {
+            "min": 8.0,
+            "max": 64.0,
+            "default": 32.0
+          },
+          "highlight_primary_shift": 1.5,
+          "highlight_secondary_shift": -1.0
+        },
+        "confidence": "PROVEN_RODATA_STRING_AND_GL_BINDING"
+      },
+      {
+        "stage_index": 6,
+        "stage_name": "FINAL_COMPOSITING_AND_IMAGE_EXPORT",
+        "input_format": "SRGB_LINEAR_F32 (layer stack)",
+        "output_format": "RGBA8888 (final screen bitmap)",
+        "native_module": "libimage_proc.so",
+        "parameters": {
+          "dither": true,
+          "clamp": true
+        },
+        "confidence": "PROVEN_RAW_DISASM_AND_DEX_MATCH"
+      }
+    ]
+  },
+  "hair_parameter_semantics": {
+    "dye_palette_structure": {
+      "color_id": "str (e.g. 'brunette_warm_01', 'ash_blonde_04')",
+      "base_rgb": "[float, float, float] in [0.0, 1.0]",
+      "shadow_rgb": "[float, float, float] in [0.0, 1.0]",
+      "highlight_rgb": "[float, float, float] in [0.0, 1.0]",
+      "luster_reflectance": "float in [0.0, 1.0]",
+      "roughness": "float in [0.05, 0.95]"
+    },
+    "control_knobs": [
+      {
+        "name": "intensity",
+        "range": [
+          0.0,
+          1.0
+        ],
+        "effect": "Scales mix alpha between original hair and dyed base"
+      },
+      {
+        "name": "shine",
+        "range": [
+          0.0,
+          1.0
+        ],
+        "effect": "Modulates Kajiya-Kay specular lobe amplitude and sharpness"
+      },
+      {
+        "name": "darkness_preservation",
+        "range": [
+          0.0,
+          1.0
+        ],
+        "effect": "Prevents over-saturation in shadowed hair root areas"
+      },
+      {
+        "name": "feather_radius",
+        "range": [
+          1.0,
+          10.0
+        ],
+        "effect": "Governs boundary edge transition width in screen pixels"
+      }
+    ]
+  }
+}

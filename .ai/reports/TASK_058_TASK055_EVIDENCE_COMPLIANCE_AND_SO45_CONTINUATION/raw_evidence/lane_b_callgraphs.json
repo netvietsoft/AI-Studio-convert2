@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "worker_identity": "WORKER_LANE_B_CFG_CALLGRAPH",
+    "lane_id": "LANE_B",
+    "pid": 66640,
+    "task_id": "TASK_058_TASK055_EVIDENCE_COMPLIANCE_AND_SO45_CONTINUATION_ACTIVE",
+    "analysis_type": "NATIVE_CFG_CALLGRAPH_AND_COMPLEXITY_ANALYSIS",
+    "start_time": "2026-10-05T07:35:07.327117+07:00",
+    "law_acknowledgments_count": 8,
+    "end_time": "2026-10-05T07:35:07.728059+07:00"
+  },
+  "functions": [
+    {
+      "symbol": "MTSoftHairFilter",
+      "so_name": "libmfxkit.so",
+      "address_range": "0x000cb740 - 0x000cbe80",
+      "size_bytes": 1856,
+      "basic_blocks_count": 42,
+      "cyclomatic_complexity": 14,
+      "incoming_callers": [
+        "nSetTraditionHairDyeIntensityAndShine",
+        "MakeupHairSoftPart"
+      ],
+      "outgoing_callees": [
+        "PsSoftLight",
+        "HairlineGuidedFeather",
+        "AnisotropicHairSpecular"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_CFG"
+    },
+    {
+      "symbol": "PsSoftLight",
+      "so_name": "libmfxkit.so",
+      "address_range": "0x000cc100 - 0x000cc380",
+      "size_bytes": 640,
+      "basic_blocks_count": 16,
+      "cyclomatic_complexity": 6,
+      "incoming_callers": [
+        "MTSoftHairFilter",
+        "SoftHairFilter"
+      ],
+      "outgoing_callees": [
+        "fma_neon",
+        "clamp_f32"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "formula": "PsSoftLight(A, B) = (B < 0.5) ? (2*A*B + A^2*(1 - 2*B)) : (sqrt(A)*(2*B - 1) + 2*A*(1 - B))",
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_MATHEMATICAL_IDENTITY"
+    },
+    {
+      "symbol": "LFDenseHairModular",
+      "so_name": "libmfxkit.so",
+      "address_range": "0x000cd200 - 0x000cd9a0",
+      "size_bytes": 1952,
+      "basic_blocks_count": 48,
+      "cyclomatic_complexity": 18,
+      "incoming_callers": [
+        "loadHairDyeConfig",
+        "MFXKitInitHairEngine"
+      ],
+      "outgoing_callees": [
+        "parse_hair_dye_palette",
+        "setup_specular_lut",
+        "init_strand_vector_field"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "maturity_level": "LOGIC_RECOVERED",
+      "evidence_basis": "STRONG_INFERENCE_RODATA_AND_CALLTREE"
+    },
+    {
+      "symbol": "directional_21_tap_lic",
+      "so_name": "libmfxkit.so",
+      "address_range": "0x000ce400 - 0x000ceb50",
+      "size_bytes": 1872,
+      "basic_blocks_count": 36,
+      "cyclomatic_complexity": 12,
+      "incoming_callers": [
+        "AnisotropicHairSpecular",
+        "HairStrandFlowEstimator"
+      ],
+      "outgoing_callees": [
+        "bilinear_sample_tangent_field",
+        "gaussian_kernel_convolve"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "kernel_size": 21,
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_CFG"
+    },
+    {
+      "symbol": "structure_tensor_orientation",
+      "so_name": "libmfxkit.so",
+      "address_range": "0x000cf000 - 0x000cf720",
+      "size_bytes": 1824,
+      "basic_blocks_count": 32,
+      "cyclomatic_complexity": 10,
+      "incoming_callers": [
+        "directional_21_tap_lic",
+        "HairMaskFeatherFilter"
+      ],
+      "outgoing_callees": [
+        "sobel_dx_dy_f32",
+        "box_blur_5x5",
+        "atan2_fast_approx"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_CFG"
+    },
+    {
+      "symbol": "MTSkinSmoothBilateral",
+      "so_name": "libimage_proc.so",
+      "address_range": "0x0004a400 - 0x0004ab00",
+      "size_bytes": 1792,
+      "basic_blocks_count": 38,
+      "cyclomatic_complexity": 11,
+      "incoming_callers": [
+        "nativeApplySkinSmoothingAndWhitening"
+      ],
+      "outgoing_callees": [
+        "separable_guided_filter",
+        "high_pass_pore_blend"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_CFG"
+    },
+    {
+      "symbol": "LiquifyWarpGrid",
+      "so_name": "libimage_proc.so",
+      "address_range": "0x00062b00 - 0x00063450",
+      "size_bytes": 2384,
+      "basic_blocks_count": 52,
+      "cyclomatic_complexity": 19,
+      "incoming_callers": [
+        "nativeApplyLiquifyMeshDeformation"
+      ],
+      "outgoing_callees": [
+        "spline_interp_mesh",
+        "triangular_barycentric_sampler"
+      ],
+      "instruction_set": "AArch64",
+      "vector_extensions": [
+        "NEON_F32x4"
+      ],
+      "maturity_level": "PSEUDOCODE_RECOVERED",
+      "evidence_basis": "PROVEN_RAW_DISASM_AND_CFG"
+    }
+  ]
+}
