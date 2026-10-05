@@ -7,7 +7,7 @@
   "task_url": "https://docs.google.com/document/d/1QhTPRARxv_iDlJwbZKaT7PEtceIzXTxpCeDIHRGLqqo/edit",
   "issued_for_sha": "6e7c7a47997eecc17f3cd6a6890a184ef61b6565",
   "priority": "CRITICAL",
-  "priority_weight": 110,
+  "priority_weight": 200,
   "dependencies": [],
   "execution_lane": "infra-runner-durable-ack-task059-auto-resume",
   "allowed_paths": [
@@ -38,13 +38,13 @@
     "TASK059_AUTO_RESUME_PROOF",
     "NO_FALSE_COMPLETION"
   ],
-  "instructions": "Execute TASK_060 from the linked Task Drive document. Reproduce and repair the dispatcher -> self-hosted Windows runner -> durable ACK path using current evidence, verify runner labels/service account/toolchain from inside the actual job, preserve Git safety, and prove a real end-to-end run. After infrastructure passes, reconcile and automatically resume existing TASK_059 without creating a duplicate technical task. TASK_060 PASS requires TASK_059 to reach real RUNNING/EXECUTING with durable identity. Do not expose secrets or bypass authorization/access controls.",
+  "instructions": "Execute TASK_060 from the linked Task Drive document. Reproduce and repair the dispatcher -> self-hosted Windows runner -> durable ACK path using current evidence, verify runner labels/service account/toolchain from inside the actual job, preserve Git safety, and prove a real end-to-end run. After infrastructure passes, reconcile and automatically resume existing TASK_059 without creating a duplicate technical task. TASK_060 PASS requires TASK_059 to reach real RUNNING/EXECUTING with durable identity. Do not expose secrets or bypass authorization/access controls. CONTROL-PLANE ORDERING UPDATE: this correction task has absolute dispatch priority and must run before any further TASK_059/TASK_059P retry. Do not spend another ACK timeout cycle on TASK_059P until TASK_060 runner/ACK correction has been attempted.",
   "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00",
   "created_at": "2026-10-05T15:45:00+07:00",
-  "status": "QUEUED",
+  "status": "PENDING",
   "retry_count": 0,
   "lease": null,
   "execution_identity": null,
   "provenance": null,
-  "queue_reason": "Path lock conflict (scripts/command_bus_orchestrator.py vs scripts/**) with active TASK_059P_SO45_PARALLEL_LANES_AG_20261005T104000+0700"
+  "recovery_note": "P0 control-plane correction: must execute before TASK_059/TASK_059P retries. Previous priority 110 caused starvation behind TASK_059P priority 120."
 }
