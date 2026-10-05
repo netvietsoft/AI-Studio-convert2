@@ -820,4 +820,33 @@ etBin == 0.
   6. *Duy trì kỷ cương dự án:* 0 dòng mã sản xuất (`app/`, `lib-*`) bị can thiệp. Duy trì nghiêm ngặt `V4_IMPLEMENTATION_GATE = BLOCKED`.
 - **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Minh bạch 100%, sẵn sàng cho kiểm toán độc lập).
 
+---
+
+## 20. KHẮC PHỤC TRIỆT ĐỂ DISPATCHER-WORKER ACK RACE VÀ BẢO ĐẢM TÍNH BỀN VỮNG ĐIỀU PHỐI LIÊN TỤC (TASK_057) (2026-10-05)
+- **Căn cứ chỉ thị:** Chủ tịch Tony ban hành `TASK_057_DISPATCHER_WORKER_ACK_RACE_AND_CONTINUOUS_EXECUTION_CORRECTION_ACTIVE` (Command ID: `TASK_057_DISPATCHER_WORKER_ACK_RACE_CORRECTION_20261005T065500+0700`, Dispatch SHA: `d9e20d58fc8e923141804ccbde7697ad33432b92`).
+- **Nội dung thực thi & Thành quả hiệu chỉnh cốt lõi:**
+  1. *Truy tìm căn nguyên lỗi ACK Race (Dispatcher Run 37244920379 vs Worker Run 37245007835):*
+     - Dispatcher khởi tạo workflow_dispatch và thăm dò `origin/main` trong 90s.
+     - Worker nhận job và thực hiện claim/start cục bộ nhưng chuyển nhánh `agent/...` mà không đẩy trạng thái CLAIM/lease/execution_identity lên `origin/main`.
+     - Dispatcher hết timeout 90s đã mù quáng thực hiện commit rollback `70fbccc6c` đẩy lệnh về `PENDING`, gây ra hiện tượng xung đột giả (`FALSE_PENDING_WHILE_WORKER_RUNNING`) khi Worker vẫn đang chạy thực tế suốt 14 phút.
+     - Sau khi Worker hoàn thành, Integrator chặn nhánh vì gói sản phẩm báo cáo `.zip` và `.zip.sha256` ở thư mục gốc không nằm trong `allowed_paths` của lệnh.
+  2. *Giải pháp kỹ thuật toàn diện:*
+     - **Bước 5A trong `scripts/run_agent_from_github_command.ps1`:** Bắt buộc Worker đẩy xác nhận bền vững (`CLAIMED` / `RUNNING`, lease token, execution identity thực) lên `origin/main` ngay trước khi khởi chạy phiên agent.
+     - **Hàng rào liveness và nới rộng timeout trong `scripts/command_bus_orchestrator.py`:** Mở rộng thời gian chờ ACK lên 180s; bổ sung kiểm tra liveness qua GitHub Actions CLI (`gh run list --workflow=convert2-worker.yml`); tuyệt đối ngăn cấm Dispatcher rollback về `PENDING` nếu Worker đang ở trạng thái `in_progress` hoặc `queued`.
+     - **Cơ chế Idempotent Claim & Start:** Cho phép runner thử lại hoặc khôi phục trạng thái an toàn mà không xung đột hay báo lỗi vi phạm đơn trạng thái.
+     - **Mở rộng `SHARED_RECONCILED_PATHS`:** Tự động dung nạp các tệp đóng gói báo cáo `convert2_task*.zip`, `*.zip.sha256`, `acquirements.md`, `acquirement.md`, `standards.txt` qua cổng Serial Integrator mà không bị lỗi `BLOCKED_UNAUTHORIZED_PATH`.
+  3. *Khôi phục trạng thái liên tục cho TASK_056:*
+     - Cập nhật `.ai/commands/pending/TASK_056_...json`: bổ sung `allowed_paths` cho các sản phẩm tri thức đảo ngược SO45 và báo cáo `.zip`, xóa bỏ `dispatch_error`.
+     - Bảo đảm TASK_056 sẵn sàng điều phối thực thi ngay khi TASK_057 được tích hợp hoàn tất.
+  4. *Bộ kiểm thử tự động & Bằng chứng thực tế:*
+     - Bổ sung 3 test cases hồi quy trong `tests/test_command_bus_lifecycle_invariants.py`: `test_idempotent_claim_and_start_for_same_runner`, `test_claim_recovers_from_false_pending`, `test_shared_reconciled_path_deliverables`. Toàn bộ 9/9 tests PASS.
+     - Kiểm toán vòng đời `validate-lifecycle` đạt `[PASS] Lifecycle Invariant Validation`.
+     - Runner CI vật lý: `actions-runner-03` (`CONVERT2-WINDOWS-03`), Worker Run ID: `37246754606`, Dispatcher Run ID: `37246658920`.
+  5. *Đóng gói và bàn giao:*
+     - Hoàn thành trọn bộ 16 báo cáo chuẩn tại `.ai/reports/TASK_057_DISPATCHER_WORKER_ACK_RACE_CORRECTION/`.
+     - Đóng gói `CONVERT2_TASK057_REPORT_PACKAGE.zip` (SHA-256: `93f557efe7f69bce066e51e37b403eb7d948565b72a72a281822f32075646061`).
+  6. *Kỷ luật phạm vi:* Tuyệt đối 0 dòng mã sản xuất (`app/**`, `lib-*/**`, hair/image production modules) bị can thiệp.
+- **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Minh bạch 100%, sẵn sàng cho cổng Serial Integrator).
+
+
 

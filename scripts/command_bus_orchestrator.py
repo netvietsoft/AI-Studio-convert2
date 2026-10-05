@@ -147,7 +147,10 @@ SHARED_RECONCILED_PATHS = {
     ".ai/runner/**",
     "project_memory.md",
     "project_error.md",
-    "task_log.md"
+    "task_log.md",
+    "acquirements.md",
+    "acquirement.md",
+    "standards.txt"
 }
 
 
@@ -157,7 +160,10 @@ def is_shared_reconciled_path(p: str) -> bool:
         return True
     if norm.startswith(".ai/state") or norm.startswith(".ai/commands") or norm.startswith(".ai/runner"):
         return True
-    if norm in ["task_log.md", "project_memory.md", "project_error.md"]:
+    if norm in ["task_log.md", "project_memory.md", "project_error.md", "acquirements.md", "acquirement.md", "standards.txt"]:
+        return True
+    # Deliverable report packages & SHA checksums at repository root
+    if norm.startswith("convert2_task") and (norm.endswith(".zip") or norm.endswith(".zip.sha256")):
         return True
     return False
 
@@ -856,6 +862,17 @@ class CommandBusOrchestrator:
                 # Check where it currently is
                 res = self._find_command_file(command_id)
                 if res:
+                    f_path, f_status = res
+                    # Idempotent re-claim check:
+                    # If this runner already holds the lease on a CLAIMED or RUNNING command,
+                    # allow idempotent continuation rather than failing with status mismatch!
+                    if f_status in {"CLAIMED", "RUNNING"}:
+                        existing_cmd = self._load_json(f_path)
+                        if existing_cmd:
+                            holder = (existing_cmd.get("lease") or {}).get("lease_holder")
+                            exec_runner = (existing_cmd.get("execution_identity") or {}).get("runner_identity")
+                            if holder == runner_identity or exec_runner == runner_identity:
+                                return True, f"IDEMPOTENT_CLAIM: {command_id} already held by {runner_identity}", existing_cmd
                     return False, f"Cannot claim command {command_id}: currently in status {res[1]}", None
                 return False, f"Command {command_id} not found", None
 
@@ -910,7 +927,12 @@ class CommandBusOrchestrator:
         """
         with FileLock(self.lock_file):
             claimed_file = self.claimed_dir / f"{command_id}.json"
+            running_file = self.running_dir / f"{command_id}.json"
             if not claimed_file.is_file():
+                if running_file.is_file():
+                    cmd = self._load_json(running_file)
+                    if cmd and cmd.get("lease") and cmd["lease"].get("lease_token") == lease_token:
+                        return True, f"IDEMPOTENT_START: {command_id} already RUNNING", cmd
                 return False, f"Command {command_id} not in claimed directory", None
 
             cmd = self._load_json(claimed_file)
@@ -1467,7 +1489,7 @@ class CommandBusOrchestrator:
                 # Require a durable ACK written by the Worker to origin/main:
                 # lease + execution_identity and CLAIMED/RUNNING status.  Without
                 # this handshake a command must never remain RESERVED forever.
-                ack_deadline = time.time() + 90
+                ack_deadline = time.time() + 180
                 acked = False
                 while time.time() < ack_deadline:
                     subprocess.run(
@@ -1476,59 +1498,72 @@ class CommandBusOrchestrator:
                         capture_output=True,
                         text=True
                     )
-                    remote_path = f".ai/commands/reserved/{cid}.json"
-                    remote = subprocess.run(
-                        ["git", "show", f"origin/main:{remote_path}"],
-                        cwd=str(self.repo_root),
-                        capture_output=True,
-                        text=True
-                    )
-                    if remote.returncode == 0:
-                        try:
-                            remote_cmd = json.loads(remote.stdout)
-                            lease = remote_cmd.get("lease")
-                            exec_id = remote_cmd.get("execution_identity")
-                            remote_status = remote_cmd.get("status")
-                            if lease and exec_id and remote_status in {"CLAIMED", "RUNNING"}:
-                                acked = True
-                                print(
-                                    f"[DISPATCH_ACK] Worker claimed {cid} "
-                                    f"(status={remote_status}, run_id={exec_id.get('run_id')})."
-                                )
-                                break
-                        except (json.JSONDecodeError, TypeError):
-                            pass
-                    else:
-                        # The Worker may move the command out of reserved very
-                        # quickly. Check running/completed as positive ACK paths.
-                        for remote_dir in ("running", "completed"):
-                            moved = subprocess.run(
-                                ["git", "show", f"origin/main:.ai/commands/{remote_dir}/{cid}.json"],
-                                cwd=str(self.repo_root),
-                                capture_output=True,
-                                text=True
-                            )
-                            if moved.returncode == 0:
-                                try:
-                                    moved_cmd = json.loads(moved.stdout)
-                                    if moved_cmd.get("execution_identity"):
-                                        acked = True
-                                        print(f"[DISPATCH_ACK] Worker advanced {cid} to {remote_dir}.")
-                                        break
-                                except (json.JSONDecodeError, TypeError):
-                                    pass
-                        if acked:
-                            break
+                    # Check claimed, running, and completed on origin/main as positive ACK paths
+                    for remote_dir in ("claimed", "running", "completed"):
+                        remote_path = f".ai/commands/{remote_dir}/{cid}.json"
+                        remote = subprocess.run(
+                            ["git", "show", f"origin/main:{remote_path}"],
+                            cwd=str(self.repo_root),
+                            capture_output=True,
+                            text=True
+                        )
+                        if remote.returncode == 0:
+                            try:
+                                remote_cmd = json.loads(remote.stdout)
+                                lease = remote_cmd.get("lease")
+                                exec_id = remote_cmd.get("execution_identity")
+                                remote_status = remote_cmd.get("status")
+                                if (lease or exec_id) and remote_status in {"CLAIMED", "RUNNING", "COMPLETED"}:
+                                    acked = True
+                                    print(
+                                        f"[DISPATCH_ACK] Worker advanced {cid} to {remote_dir} "
+                                        f"(status={remote_status}, run_id={(exec_id or {}).get('github_run_id')})."
+                                    )
+                                    break
+                            except (json.JSONDecodeError, TypeError):
+                                pass
+                    if acked:
+                        break
                     time.sleep(5)
 
                 if acked:
                     print(f"[DISPATCH_OK] Dispatched and acknowledged {cid}.")
                     dispatched.append(cmd)
                 else:
-                    dispatch_error = (
-                        "Worker ACK timeout after workflow_dispatch: no durable "
-                        "lease/execution_identity CLAIM observed within 90s"
-                    )
+                    # Check GitHub Actions run status before deciding to rollback to PENDING.
+                    # If the worker is queued or running in GitHub Actions, it MUST NOT be
+                    # rolled back to PENDING, which would cause false PENDING coexistence.
+                    worker_alive = False
+                    active_run_id = None
+                    try:
+                        gh_proc = subprocess.run(
+                            ["gh", "run", "list", "--workflow=convert2-worker.yml", "--limit", "5",
+                             "--json", "databaseId,status,conclusion,createdAt,url"],
+                            cwd=str(self.repo_root),
+                            capture_output=True,
+                            text=True
+                        )
+                        if gh_proc.returncode == 0:
+                            runs = json.loads(gh_proc.stdout)
+                            for r in runs:
+                                if r.get("status") in {"in_progress", "queued"}:
+                                    worker_alive = True
+                                    active_run_id = r.get("databaseId")
+                                    break
+                    except Exception as e:
+                        print(f"[DISPATCH_WARN] Failed to inspect gh worker run status: {e}")
+
+                    if worker_alive:
+                        print(
+                            f"[DISPATCH_PENDING_GUARD] Worker run {active_run_id} is in_progress/queued in GitHub Actions. "
+                            f"Preserving reservation for {cid} to prevent false coexistence with PENDING."
+                        )
+                        dispatched.append(cmd)
+                    else:
+                        dispatch_error = (
+                            "Worker ACK timeout after workflow_dispatch: no durable "
+                            "lease/execution_identity CLAIM observed within 180s and no active worker run found"
+                        )
             else:
                 dispatch_error = (
                     res.stderr or res.stdout or "unknown gh workflow dispatch error"

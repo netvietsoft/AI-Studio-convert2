@@ -124,3 +124,21 @@
   3. Reconcile chính xác `github_run_id: "37242297847"` và các mã băm đầy đủ 40 ký tự hex vào `.ai/state.json`.
 - **Quy tắc phòng ngừa:** Mỗi tác vụ điều phối song song bắt buộc phải có bước Dispatch Integration Pass cuối chu kỳ để xác nhận 100% lệnh trong command bus được dọn dẹp và nghiệm thu hoàn tất trước khi báo cáo kết thúc nhiệm vụ.
 
+---
+
+### [ERR-012] Dispatcher/Worker ACK Race and Premature False PENDING Rollback (TASK_056 -> TASK_057)
+- **Thời điểm phát hiện:** 2026-10-05 trong chu kỳ điều phối `TASK_056` (Dispatcher run `37244920379` & Worker run `37245007835`).
+- **Nguyên nhân gốc rễ:**
+  1. Thiếu bước công bố xác nhận bền vững (Pre-Execution Remote ACK Push): Runner script `run_agent_from_github_command.ps1` cũ chỉ chuyển trạng thái `CLAIMED`/`RUNNING` trên checkout cục bộ rồi nhảy ngay sang nhánh cô lập `agent/...` để chạy `agy`, không đẩy commit xác nhận lên `origin/main`.
+  2. Dispatcher timeout mù 90 giây: Dispatcher chỉ kiểm tra `origin/main:.ai/commands/reserved/` trong 90s rồi tự ý đẩy commit rollback lệnh về `PENDING`, bỏ qua kiểm tra trạng thái thực thi thực tế của worker trên GitHub Actions.
+  3. Hậu quả: Worker thực tế đang miệt mài chạy trên nhánh tác vụ suốt 14 phút trong khi trên `main` command bị hiển thị sai thành `PENDING`, gây nguy cơ kích hoạt worker trùng lặp.
+  4. Cổng Serial Integrator chặn tệp nén bàn giao: `integrate_branch` từ chối nhánh do tệp `CONVERT2_TASK*.zip` và `*.sha256` không nằm trong `allowed_paths` hoặc `SHARED_RECONCILED_PATHS`.
+- **Giải pháp triệt để:**
+  1. Bổ sung Bước 5A vào `run_agent_from_github_command.ps1`: Ngay sau khi claim và start command, runner commit và push bền vững trạng thái `CLAIMED`/`RUNNING` kèm `lease` và `execution_identity` lên `origin/main` trước khi tiến hành tác vụ dài hạn.
+  2. Mở rộng ACK timeout trong `command_bus_orchestrator.py` lên 180s, kiểm tra đồng thời cả 3 thư mục `claimed/`, `running/`, `completed/` trên `origin/main`.
+  3. Cài đặt GitHub Actions Liveness Guard: Trước khi quyết định rollback, Dispatcher truy vấn `gh run list --workflow=convert2-worker.yml`. Nếu worker đang `in_progress` hoặc `queued`, tuyệt đối không rollback về `PENDING`.
+  4. Bổ sung hỗ trợ `IDEMPOTENT_CLAIM` và `IDEMPOTENT_START` cho cùng runner identity.
+  5. Bổ sung `convert2_task*.zip` và `convert2_task*.zip.sha256` vào `SHARED_RECONCILED_PATHS` và cập nhật `allowed_paths` của `TASK_056`.
+- **Quy tắc phòng ngừa:** Mọi tương tác bất đồng bộ phân tán giữa Dispatcher trên đám mây và Worker tự lưu trữ phải có bắt tay xác nhận hai chiều bền vững (durable two-way handshake) trên Git và kiểm tra trạng thái tiến trình thực tế trước khi áp dụng cơ chế phục hồi timeout.
+
+

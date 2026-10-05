@@ -103,3 +103,17 @@
   4. **Chuẩn hóa mô hình AI thị giác di động:** Facetune và SnapEdit đều tin dùng mô hình Google MediaPipe SelfieSegmentation FP16 (256x256, 1215 ops), chứng minh hiệu năng và độ ổn định vượt trội so với các mô hình tự huấn luyện cồng kềnh trên Android.
 
 
+
+---
+
+### [ACQ-009] Bắt Tay Xác Nhận Hai Chiều Bền Vững (Durable Two-Way Handshake) & Chống Race Condition Dispatcher/Worker
+- **Bối cảnh:** Khi điều phối luồng công việc tự động giữa Dispatcher (chạy định kỳ trên đám mây) và Agent Worker (chạy trên hạ tầng self-hosted runner), việc chênh lệch thời gian khởi động có thể gây hiện tượng timeout giả (false timeout) và rollback sai lệch về PENDING.
+- **Giải pháp tối ưu từ TASK_057:**
+  1. **Bước 5A (Pre-Execution Remote ACK Push):** Worker bắt buộc phải commit và push trạng thái CLAIMED/RUNNING kèm lease_token và execution_identity lên origin/main ngay sau khi claim thành công và TRƯỚC KHI bắt đầu phiên làm việc dài hạn với agent CLI (gy).
+  2. **Vòng lặp polling thích ứng & Liveness Guard phía Dispatcher:**
+     - Mở rộng thời gian chờ ACK lên 180s để đáp ứng độ trễ mạng và checkout repo của self-hosted runner.
+     - Kiểm tra đồng thời cả 3 thư mục: claimed/, 
+unning/, completed/ trên origin/main.
+     - Tuyệt đối cấm rollback về PENDING nếu truy vấn gh run list --workflow=convert2-worker.yml cho thấy worker vẫn đang in_progress hoặc queued.
+  3. **Lũy đẳng trong vòng đời lệnh (Idempotent Claim/Start):** Cho phép runner tiếp tục (IDEMPOTENT_CLAIM / IDEMPOTENT_START) nếu chính runner đó đã sở hữu lease, ngăn chặn lỗi crash do thử lại hoặc tái kết nối.
+  4. **Quy chuẩn đường dẫn hòa giải (SHARED_RECONCILED_PATHS):** Các gói bàn giao nén (CONVERT2_TASK*.zip, *.sha256) tại thư mục gốc repository được tự động coi là tệp dùng chung, không bị chặn bởi cổng kiểm duyệt đường dẫn llowed_paths của Serial Integrator.

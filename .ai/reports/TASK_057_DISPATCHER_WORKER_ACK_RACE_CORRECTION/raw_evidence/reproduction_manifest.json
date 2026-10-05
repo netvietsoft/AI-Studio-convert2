@@ -1,0 +1,38 @@
+{
+  "task_id": "TASK_057_DISPATCHER_WORKER_ACK_RACE_AND_CONTINUOUS_EXECUTION_CORRECTION_ACTIVE",
+  "command_id": "TASK_057_DISPATCHER_WORKER_ACK_RACE_CORRECTION_20261005T065500+0700",
+  "incident_summary": "Dispatcher/Worker ACK race on Dispatcher run 37244920379 and Worker run 37245007835",
+  "timestamp": "2026-10-05T07:22:02.181163+07:00",
+  "reproduction_evidence": {
+    "dispatcher_run_id": "37244920379",
+    "dispatcher_reservation_commit": "75ef9591cba33583705d9c42f3e17df5502da3a2",
+    "dispatcher_reservation_time": "2026-10-04T23:47:09.121742+00:00",
+    "dispatcher_timeout_time": "2026-10-04T23:48:47.347032+00:00",
+    "dispatcher_timeout_duration_seconds": 98.2,
+    "dispatcher_rollback_commit": "70fbccc6c3b376ba45052f5d3f8bf1cd2b67349f",
+    "dispatcher_error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 90s",
+    "worker_run_id": "37245007835",
+    "worker_runner": "actions-runner-02 (CONVERT2-WINDOWS-02)",
+    "worker_started_at": "2026-10-04T23:46:35Z (06:46:35 VN)",
+    "worker_claimed_locally_at": "2026-10-05 06:46:36 VN",
+    "worker_defect": "Did not push durable ACK commit to origin/main before starting 14-minute agy execution",
+    "coexistence_defect": "Legitimate worker 37245007835 was actively executing while origin/main falsely marked command PENDING",
+    "integrator_run_id": "37245885064",
+    "integrator_status": "FAILED",
+    "integrator_error": "BLOCKED_UNAUTHORIZED_PATH on report package zips and reverse engineering knowledge index",
+    "raw_log_files": [
+      "37244920379_dispatcher_timeout.log",
+      "37245007835_worker_execution.log",
+      "37246658920_dispatcher_ack_success.log",
+      "37246754606_worker_ack_claim.log"
+    ]
+  },
+  "root_causes": [
+    "Missing Pre-Execution Remote ACK Push in run_agent_from_github_command.ps1",
+    "Blind 90s Timeout in Dispatcher without verifying GitHub Actions Worker Liveness",
+    "Incomplete Remote ACK Directory Inspection in dispatch_commands (missing claimed/)",
+    "Integrator allowed_paths path gate blocking root deliverables (convert2_task*.zip)",
+    "Lack of Idempotent Claim Support in claim_command for restarted or retried workers"
+  ],
+  "resolution": "APPLIED_AND_VERIFIED"
+}

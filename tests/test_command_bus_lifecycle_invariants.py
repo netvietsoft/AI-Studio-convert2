@@ -189,6 +189,103 @@ class TestCommandBusLifecycleInvariants(unittest.TestCase):
         dups = {cid: ds for cid, ds in c_map.items() if len(ds) > 1}
         self.assertEqual(len(dups), 0, f"Git index contains duplicate commands across lifecycle dirs: {dups}")
 
+    def test_idempotent_claim_and_start_for_same_runner(self):
+        """Invariant 7: Idempotent re-claim and start by same runner must succeed without failing."""
+        ok, _, cmd = self.orch.create_command(
+            task_id="TASK_IDEMPOTENT_TEST",
+            task_url="https://docs.google.com/test_idempotent",
+            task_revision="rev_idem",
+            issued_for_sha="commit_sha_idem"
+        )
+        self.assertTrue(ok)
+        cid = cmd["command_id"]
+        runner = "runner-idem-1"
+
+        # 1. First claim
+        ok_claim1, msg1, cl1 = self.orch.claim_command(cid, runner_identity=runner)
+        self.assertTrue(ok_claim1)
+        self.assertIn("CLAIMED", msg1)
+        tok = cl1["lease"]["lease_token"]
+
+        # 2. Second claim by same runner (idempotent re-claim)
+        ok_claim2, msg2, cl2 = self.orch.claim_command(cid, runner_identity=runner)
+        self.assertTrue(ok_claim2)
+        self.assertIn("IDEMPOTENT_CLAIM", msg2)
+        self.assertEqual(cl2["lease"]["lease_token"], tok)
+
+        # 3. First start
+        ok_start1, s_msg1, s_cmd1 = self.orch.start_command(cid, tok, dispatch_commit_sha="disp_idem")
+        self.assertTrue(ok_start1)
+        self.assertIn("RUNNING", s_msg1)
+
+        # 4. Second start by same runner (idempotent start)
+        ok_start2, s_msg2, s_cmd2 = self.orch.start_command(cid, tok, dispatch_commit_sha="disp_idem")
+        self.assertTrue(ok_start2)
+        self.assertIn("IDEMPOTENT_START", s_msg2)
+
+        # 5. Claim by a different runner must fail
+        ok_other, msg_other, _ = self.orch.claim_command(cid, runner_identity="runner-other")
+        self.assertFalse(ok_other)
+        self.assertIn("currently in status RUNNING", msg_other)
+
+    def test_claim_recovers_from_false_pending(self):
+        """Invariant 8: Legitimate worker can claim and advance command even if falsely returned to pending."""
+        ok, _, cmd = self.orch.create_command(
+            task_id="TASK_FALSE_PENDING_TEST",
+            task_url="https://docs.google.com/test_fp",
+            task_revision="rev_fp",
+            issued_for_sha="commit_sha_fp"
+        )
+        self.assertTrue(ok)
+        cid = cmd["command_id"]
+
+        # Reserve
+        res_list = self.orch.reserve_commands(dispatcher_run_id="disp-fp", specific_command_id=cid)
+        self.assertEqual(len(res_list), 1)
+        res_tok = res_list[0]["reservation"]["reservation_token"]
+
+        # Simulate false timeout rollback to pending with dispatch_error
+        res_file = self.orch.reserved_dir / f"{cid}.json"
+        cmd_fp = self.orch._load_json(res_file)
+        cmd_fp["status"] = "PENDING"
+        cmd_fp["reservation"] = None
+        cmd_fp["dispatch_error"] = {
+            "dispatcher_run_id": "disp-fp",
+            "error": "Worker ACK timeout after workflow_dispatch: no durable lease observed within 90s"
+        }
+        self.orch._write_json(self.orch.pending_dir / f"{cid}.json", cmd_fp)
+        res_file.unlink(missing_ok=True)
+
+        # Worker arrives: claims from pending
+        runner = "GITHUB_ACTIONS_WORKER_FP"
+        ok_cl, cl_msg, cl_cmd = self.orch.claim_command(cid, runner_identity=runner, reservation_token=res_tok)
+        self.assertTrue(ok_cl)
+        self.assertIn("CLAIMED", cl_msg)
+        self.assertEqual(cl_cmd["status"], "CLAIMED")
+        self.assertFalse((self.orch.pending_dir / f"{cid}.json").is_file())
+        self.assertTrue((self.orch.claimed_dir / f"{cid}.json").is_file())
+
+        # Transitions to RUNNING
+        tok = cl_cmd["lease"]["lease_token"]
+        ok_st, st_msg, st_cmd = self.orch.start_command(cid, tok, dispatch_commit_sha="disp_fp_sha", github_run_id="run_fp")
+        self.assertTrue(ok_st)
+        self.assertEqual(st_cmd["status"], "RUNNING")
+        self.assertFalse((self.orch.claimed_dir / f"{cid}.json").is_file())
+        self.assertTrue((self.orch.running_dir / f"{cid}.json").is_file())
+
+    def test_shared_reconciled_path_deliverables(self):
+        """Invariant 9: Report deliverables (zips, sha256) and acquirements must be recognized as shared reconciled."""
+        from command_bus_orchestrator import is_shared_reconciled_path
+        self.assertTrue(is_shared_reconciled_path("CONVERT2_TASK057_REPORT_PACKAGE.zip"))
+        self.assertTrue(is_shared_reconciled_path("CONVERT2_TASK057_REPORT_PACKAGE.zip.sha256"))
+        self.assertTrue(is_shared_reconciled_path("CONVERT2_TASK056_REPORT_PACKAGE.zip"))
+        self.assertTrue(is_shared_reconciled_path("acquirements.md"))
+        self.assertTrue(is_shared_reconciled_path("ACQUIREMENTS.md"))
+        self.assertTrue(is_shared_reconciled_path("standards.txt"))
+        self.assertTrue(is_shared_reconciled_path(".ai/state/tasks/TASK_057.json"))
+        # Non-shared paths must return False
+        self.assertFalse(is_shared_reconciled_path("app/src/main/java/Main.kt"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

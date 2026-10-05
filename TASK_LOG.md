@@ -2018,6 +2018,30 @@ unning: 0).
   6. **Duy trì kỷ cương dự án:** 0 dòng mã sản xuất (`app/`, `lib-*`) bị can thiệp. Duy trì nghiêm ngặt `V4_IMPLEMENTATION_GATE = BLOCKED`.
 - **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE` (Minh bạch 100%, sẵn sàng cho kiểm toán độc lập).
 
+---
+
+### [2026-10-05 07:25:00] TASK_057 — DISPATCHER-WORKER ACK RACE & CONTINUOUS EXECUTION CORRECTION
+- **Authority:** Chủ tịch Tony (Chairman)
+- **Task ID:** `TASK_057_DISPATCHER_WORKER_ACK_RACE_AND_CONTINUOUS_EXECUTION_CORRECTION_ACTIVE`
+- **Command ID:** `TASK_057_DISPATCHER_WORKER_ACK_RACE_CORRECTION_20261005T065500+0700`
+- **Revision:** `2026-10-05T06:55:00+07:00`
+- **Lane:** `infra-dispatcher-worker-ack-race-correction`
+- **Runner CI:** `actions-runner-03` (`CONVERT2-WINDOWS-03`)
+- **Worker Run ID:** `37246754606`
+- **Dispatcher Run ID:** `37246658920`
+- **Dispatch SHA:** `d9e20d58fc8e923141804ccbde7697ad33432b92`
+- **Nội dung thực thi & Thành quả đạt được:**
+  1. **Tái hiện và xác định căn nguyên lỗi ACK Race:** Phân tích log thô Dispatcher `37244920379` và Worker `37245007835`. Worker claim và branch mà không đẩy ACK lên `origin/main`. Dispatcher chờ 90s rồi rollback về `PENDING`, gây ra hiện tượng xung đột giả (`FALSE_PENDING_WHILE_WORKER_RUNNING`). Integrator sau đó chặn gói zip báo cáo do không thuộc `allowed_paths`.
+  2. **Hiệu chỉnh Bước 5A trong `scripts/run_agent_from_github_command.ps1`:** Đẩy bền vững trạng thái `CLAIMED` / `RUNNING`, lease token, execution identity thực lên `origin/main` trước khi agent chạy.
+  3. **Tăng cường bảo vệ trong `scripts/command_bus_orchestrator.py`:** Mở rộng timeout lên 180s, kiểm tra liveness của worker qua `gh run list --workflow=convert2-worker.yml`, cấm rollback nếu worker đang chạy hoặc trong hàng đợi. Bổ sung cơ chế Idempotent Claim & Start.
+  4. **Mở rộng `SHARED_RECONCILED_PATHS`:** Cho phép `convert2_task*.zip`, `*.sha256`, `acquirements.md`, `acquirement.md`, `standards.txt` đi qua cổng Integrator mà không bị chặn bởi `BLOCKED_UNAUTHORIZED_PATH`.
+  5. **Khôi phục trạng thái sẵn sàng cho TASK_056:** Mở rộng `allowed_paths` của TASK_056 cho các tệp báo cáo và tri thức SO45, xóa bỏ lỗi `dispatch_error`.
+  6. **Kiểm thử tự động & Nghiệm thu:** 9/9 unit tests passed trong `test_command_bus_lifecycle_invariants.py`. Lệnh `validate-lifecycle` đạt PASS.
+  7. **Đóng gói báo cáo:** Hoàn thành 16/16 tài liệu tại `.ai/reports/TASK_057_DISPATCHER_WORKER_ACK_RACE_CORRECTION/`, đóng gói `CONVERT2_TASK057_REPORT_PACKAGE.zip` (SHA-256: `93f557efe7f69bce066e51e37b403eb7d948565b72a72a281822f32075646061`).
+  8. **Kỷ luật phạm vi:** Tuyệt đối không can thiệp mã nguồn `app/**` hay các thuật toán ảnh/tóc sản xuất.
+- **Phán Quyết Nghiệm Thu Đề Xuất:** `REVIEW_CANDIDATE`.
+
+
 
 
 

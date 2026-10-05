@@ -131,7 +131,7 @@ if (-not [string]::IsNullOrWhiteSpace($ReservationToken)) {
 $claimOut = & python "scripts\command_bus_orchestrator.py" @claimArgs 2>&1
 $claimExitCode = $LASTEXITCODE
 $claimText = ($claimOut | Out-String)
-if ($claimExitCode -ne 0 -or $claimText -notmatch "\[OK\]\s+CLAIMED") {
+if ($claimExitCode -ne 0 -or ($claimText -notmatch "\[OK\]\s+CLAIMED" -and $claimText -notmatch "\[OK\]\s+IDEMPOTENT_CLAIM")) {
     if ($claimText -match "BLOCKED_BINDING_MISMATCH") {
         Fail "BLOCKED_BINDING_MISMATCH: $claimText"
     }
@@ -139,9 +139,12 @@ if ($claimExitCode -ne 0 -or $claimText -notmatch "\[OK\]\s+CLAIMED") {
     exit 0
 }
 
-# Extract lease token from claimed file
+# Extract lease token from claimed file (or running file if idempotent continuation)
 $claimedFile = Join-Path $RepoPath ".ai\commands\claimed\$targetCmdId.json"
-if (-not (Test-Path $claimedFile)) { Fail "Claimed file not found after claim: $claimedFile" }
+if (-not (Test-Path $claimedFile)) {
+    $claimedFile = Join-Path $RepoPath ".ai\commands\running\$targetCmdId.json"
+}
+if (-not (Test-Path $claimedFile)) { Fail "Claimed/running file not found after claim: $targetCmdId" }
 $claimedData = Get-Content -Raw -Path $claimedFile | ConvertFrom-Json
 $leaseToken = [string]$claimedData.lease.lease_token
 
@@ -159,7 +162,8 @@ $startOut = & python "scripts\command_bus_orchestrator.py" start `
     --run-id "$($env:GITHUB_RUN_ID)" `
     --url "$wfUrl" 2>&1
 
-if ($LASTEXITCODE -ne 0) {
+$startText = ($startOut | Out-String)
+if ($LASTEXITCODE -ne 0 -and $startText -notmatch "IDEMPOTENT_START") {
     Fail "Failed to transition $targetCmdId to RUNNING: $startOut"
 }
 
