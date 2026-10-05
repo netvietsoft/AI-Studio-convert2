@@ -43,6 +43,37 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
+      - name: Bootstrap AGY for runner service
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          Write-Host "Runner identity: $(whoami)"
+          Write-Host "Runner LOCALAPPDATA: $env:LOCALAPPDATA"
+
+          $agyBin = Join-Path $env:LOCALAPPDATA "agy\bin"
+          $agyExe = Join-Path $agyBin "agy.exe"
+          $existing = Get-Command agy -ErrorAction SilentlyContinue
+
+          if ($existing) {
+            $agyExe = $existing.Source
+            $agyBin = Split-Path $agyExe -Parent
+            Write-Host "Using AGY already visible to runner service."
+          } elseif (-not (Test-Path -LiteralPath $agyExe -ErrorAction SilentlyContinue)) {
+            Write-Host "AGY is not installed for this service identity; installing from official Google Antigravity installer."
+            $installer = Join-Path $env:RUNNER_TEMP "install-antigravity-cli.ps1"
+            Invoke-WebRequest -UseBasicParsing -Uri "https://antigravity.google/cli/install.ps1" -OutFile $installer
+            powershell.exe -NoProfile -ExecutionPolicy Bypass -File $installer
+            if ($LASTEXITCODE -ne 0) { throw "Official AGY installer failed with exit code $LASTEXITCODE" }
+          }
+
+          if (-not (Test-Path -LiteralPath $agyExe -ErrorAction SilentlyContinue)) {
+            throw "AGY bootstrap did not produce an executable at $agyExe"
+          }
+
+          Add-Content -Path $env:GITHUB_PATH -Value $agyBin
+          & $agyExe --version
+          if ($LASTEXITCODE -ne 0) { throw "AGY binary preflight failed with exit code $LASTEXITCODE" }
+
       - name: Run Agent Worker
         shell: powershell
         env:
