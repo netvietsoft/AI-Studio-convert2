@@ -163,6 +163,24 @@ if ($LASTEXITCODE -ne 0) {
     Fail "Failed to transition $targetCmdId to RUNNING: $startOut"
 }
 
+# Step 5A: Persist durable ACK/CLAIM/RUNNING state to main BEFORE long-running task work.
+# Dispatcher polls remote main; without this push it cannot observe the worker lease/execution_identity
+# and falsely rolls the command back to PENDING after the ACK timeout.
+if ($env:GITHUB_RUN_ID) {
+    Write-RunnerLog "Persisting durable worker ACK to remote main before task execution..."
+    & git add ".ai/commands" ".ai/state" ".ai/state.json"
+    & git commit -m "chore(command-bus): durable worker ACK for $targetCmdId [run $env:GITHUB_RUN_ID]" --allow-empty
+    if ($LASTEXITCODE -ne 0) { Fail "Failed to commit durable worker ACK for $targetCmdId" }
+
+    # Rebase once to preserve any dispatcher-side metadata written after this worker checkout.
+    & git pull --rebase origin main
+    if ($LASTEXITCODE -ne 0) { Fail "Failed to rebase durable worker ACK for $targetCmdId onto origin/main" }
+
+    & git push origin HEAD:main
+    if ($LASTEXITCODE -ne 0) { Fail "Failed to push durable worker ACK for $targetCmdId to origin/main" }
+    Write-RunnerLog "Durable worker ACK is visible on remote main."
+}
+
 # Step 6: Isolated Task Branch Setup
 $taskBranch = "agent/$targetCmdId"
 Write-RunnerLog "Setting up isolated task branch: $taskBranch..."
