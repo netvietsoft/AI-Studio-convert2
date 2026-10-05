@@ -41,21 +41,16 @@
   "instructions": "Execute TASK_060 from the linked Task Drive document. Reproduce and repair the dispatcher -> self-hosted Windows runner -> durable ACK path using current evidence, verify runner labels/service account/toolchain from inside the actual job, preserve Git safety, and prove a real end-to-end run. After infrastructure passes, reconcile and automatically resume existing TASK_059 without creating a duplicate technical task. TASK_060 PASS requires TASK_059 to reach real RUNNING/EXECUTING with durable identity. Do not expose secrets or bypass authorization/access controls. CONTROL-PLANE ORDERING UPDATE: this correction task has absolute dispatch priority and must run before any further TASK_059/TASK_059P retry. Do not spend another ACK timeout cycle on TASK_059P until TASK_060 runner/ACK correction has been attempted.",
   "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00",
   "created_at": "2026-10-05T15:45:00+07:00",
-  "status": "RESERVED",
+  "status": "PENDING",
   "retry_count": 0,
   "lease": null,
   "execution_identity": null,
   "provenance": null,
   "recovery_note": "P0 control-plane correction: must execute before TASK_059/TASK_059P retries. Previous priority 110 caused starvation behind TASK_059P priority 120. Runner bootstrap patched at 649b516093960e07292debf029ae5b552e2c51ab: resolve AGY via absolute known install path when service PATH misses it. Redispatch required.",
-  "reservation": {
-    "reservation_token": "28daeea935bf41f5a15bd7a5c9ab5bc2",
-    "dispatcher_run_id": "37320513440",
-    "reserved_at": "2026-10-05T13:57:02.835180+00:00",
-    "reservation_sha": null
-  },
+  "reservation": null,
   "dispatch_error": {
-    "dispatcher_run_id": "37318703536",
-    "failed_at": "2026-10-05T13:48:12.702047+00:00",
+    "dispatcher_run_id": "37320513440",
+    "failed_at": "2026-10-05T14:01:08.684066+00:00",
     "error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 240s"
   }
 }
