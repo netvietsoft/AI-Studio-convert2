@@ -1471,7 +1471,11 @@ class CommandBusOrchestrator:
                 # Require a durable ACK written by the Worker to origin/main:
                 # lease + execution_identity and CLAIMED/RUNNING status.  Without
                 # this handshake a command must never remain RESERVED forever.
-                ack_deadline = time.time() + 90
+                # Self-hosted runners can spend time in GitHub's queue even when the
+                # Windows service is healthy. Give the worker enough time to be assigned
+                # and persist its durable RUNNING ACK before rolling the reservation back.
+                ack_timeout_seconds = int(os.getenv("CONVERT2_WORKER_ACK_TIMEOUT_SECONDS", "240"))
+                ack_deadline = time.time() + ack_timeout_seconds
                 acked = False
                 while time.time() < ack_deadline:
                     subprocess.run(
@@ -1531,7 +1535,7 @@ class CommandBusOrchestrator:
                 else:
                     dispatch_error = (
                         "Worker ACK timeout after workflow_dispatch: no durable "
-                        "lease/execution_identity CLAIM observed within 90s"
+                        f"lease/execution_identity CLAIM observed within {ack_timeout_seconds}s"
                     )
             else:
                 dispatch_error = (
