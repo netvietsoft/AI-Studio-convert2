@@ -1,13 +1,13 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-10-06T08:47:27.073579+07:00",
+  "updated_at": "2026-10-06T11:42:43.523065+07:00",
   "counts": {
-    "pending": 4,
+    "pending": 5,
     "reserved": 0,
     "claimed": 0,
-    "running": 1,
+    "running": 0,
     "completed": 60,
-    "failed": 0
+    "failed": 1
   },
   "commands": {
     "TASK_050_TASK049_BODY_VISUAL_EVIDENCE_PROVENANCE_CLOSURE_20261004T184000+0700": {
@@ -23,7 +23,7 @@
       "task_id": "TASK_056_SO45_CONTINUOUS_DEEP_IMAGE_EFFECT_GRAPH_ACTIVE",
       "task_revision": "2026-10-05T06:32:00+07:00",
       "priority": "CRITICAL",
-      "status": "QUEUED",
+      "status": "WAITING_DEPENDENCY",
       "execution_lane": "so45-continuous-deep-image-effect-graph",
       "created_at": "2026-10-05T06:32:00+07:00",
       "anti_duplicate_key": "TASK_056_SO45_CONTINUOUS_DEEP_IMAGE_EFFECT_GRAPH_ACTIVE:2026-10-05T06:32:00+07:00"
@@ -32,7 +32,7 @@
       "task_id": "TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE",
       "task_revision": "2026-10-05T11:08:00+07:00",
       "priority": "CRITICAL",
-      "status": "QUEUED",
+      "status": "WAITING_DEPENDENCY",
       "execution_lane": "so45-parallel-lanes-a-g",
       "created_at": "2026-10-05T10:40:00+07:00",
       "anti_duplicate_key": "TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE:2026-10-05T10:40:00+07:00:PARALLEL_AG"
@@ -41,19 +41,19 @@
       "task_id": "TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE",
       "task_revision": "2026-10-05T08:15:00+07:00",
       "priority": "CRITICAL",
-      "status": "QUEUED",
+      "status": "WAITING_DEPENDENCY",
       "execution_lane": "so45-evidence-truth-provenance-deep-analysis",
       "created_at": "2026-10-05T08:15:00+07:00",
       "anti_duplicate_key": "TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE:2026-10-05T08:15:00+07:00"
     },
-    "TASK_060_RUNNER_DURABLE_ACK_TASK059_AUTO_RESUME_20261005T154500+0700": {
-      "task_id": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE",
-      "task_revision": "2026-10-05T15:45:00+07:00",
+    "TASK_060C_BOUNDED_INFRA_SMOKE_20261006T041837499Z": {
+      "task_id": "TASK_060C_TASK060_CHECKPOINT_INTEGRATION_AUTH_REAL_RERUN_CORRECTION_ACTIVE",
+      "task_revision": "2026-10-06T04:18:37.499Z",
       "priority": "CRITICAL",
-      "status": "RUNNING",
-      "execution_lane": "infra-runner-durable-ack-task059-auto-resume",
-      "created_at": "2026-10-05T15:45:00+07:00",
-      "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00"
+      "status": "PENDING",
+      "execution_lane": "infra-task060c-bounded-proof",
+      "created_at": "2026-10-06T11:42:42.913687+07:00",
+      "anti_duplicate_key": "TASK_060C_TASK060_CHECKPOINT_INTEGRATION_AUTH_REAL_RERUN_CORRECTION_ACTIVE:2026-10-06T04:18:37.499Z"
     },
     "CMD_ACCEPT_001_RUNNER_POOL_HEALTH_20261003T091500+0700": {
       "task_id": "TASK_021_ACCEPT_INFRA_RUNNER_POOL_HEALTH",
@@ -540,6 +540,15 @@
       "execution_lane": "infra-dispatcher-worker-ack-race-correction",
       "created_at": "2026-10-05T06:55:00+07:00",
       "anti_duplicate_key": "TASK_057_DISPATCHER_WORKER_ACK_RACE_AND_CONTINUOUS_EXECUTION_CORRECTION_ACTIVE:2026-10-05T06:55:00+07:00"
+    },
+    "TASK_060_RUNNER_DURABLE_ACK_TASK059_AUTO_RESUME_20261005T154500+0700": {
+      "task_id": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE",
+      "task_revision": "2026-10-05T15:45:00+07:00",
+      "priority": "CRITICAL",
+      "status": "FAILED",
+      "execution_lane": "infra-runner-durable-ack-task059-auto-resume",
+      "created_at": "2026-10-05T15:45:00+07:00",
+      "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00"
     }
   }
 }

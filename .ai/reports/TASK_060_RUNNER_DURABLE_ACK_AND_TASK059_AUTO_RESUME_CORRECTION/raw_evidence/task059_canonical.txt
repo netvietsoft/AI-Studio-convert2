@@ -1,0 +1,70 @@
+﻿TASK_059 — TASK058 EVIDENCE TRUTH AND PROVENANCE CORRECTION
+STATUS: ACTIVE
+PRIORITY: P0
+PROJECT: CONVERT2
+
+
+PURPOSE
+Correct the evidence and provenance defects found during audit of TASK_058. Continue the authorized CONVERT2 technical analysis in parallel while correcting orchestration evidence.
+
+
+MANDATORY STARTUP
+Agent 0 and every worker must read and ACK the current project constitution, task execution standard, report/evidence standard, Git audit standard, state-machine handoff standard, startup checklist, memory bootstrap, and Development Workspace Standard before execution. Record worker identity, process ID, timestamp, and standard version/hash where available.
+
+
+AUDIT VERDICT
+TASK_058 = NEEDS_FIX. Do not mark it PASS unless this correction task produces independently verifiable evidence.
+
+
+CORRECTIONS
+1. Reconcile the Git history and state so baseline commit, worker ACK commit, technical target commit, report/package commit and state commit are explicitly distinguished.
+2. Correct the mismatch between the target SHA recorded in state and the later TASK_058 package commit.
+3. A generated summary must not be the sole evidence for its own technical claim.
+4. Every upgraded PROVEN claim must point to raw evidence, source artifact, hash, tool/version and exact source anchor.
+5. Report Drive mirror defects must be repaired but must not stop technical work.
+
+
+
+
+PARALLEL EXECUTION
+Run independent lanes with verifiable process identities:
+Lane A — JNI/RegisterNatives and DEX cross-reference evidence.
+Lane B — native call graph and function-cluster evidence.
+Lane C — shader/effect pipeline evidence.
+Lane D — image-effect graph and parameter-semantics evidence.
+Lane E — decompiler/disassembly evidence and confidence grading.
+Lane F — authorized F:\App\Image component/source analysis.
+Lane G — integration and evidence audit.
+
+
+Do not count lane labels as independent workers. Record distinct worker/process identity and start/end timestamps. Deep-analysis claims require substantive raw evidence rather than only short generated summaries.
+
+
+EVIDENCE STANDARD
+Classify material findings as PROVEN, STRONG_INFERENCE, HYPOTHESIS or UNKNOWN.
+For PROVEN findings record source path, SHA-256, analysis tool/version, relevant command/configuration, raw output and exact function/symbol/offset/source anchor where applicable.
+
+
+REQUIRED REPORT
+Create .ai/reports/TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION/ containing:
+00_AUDIT_INDEX.md
+01_MASTER_REPORT.md
+02_CLAIM_TO_RAW_EVIDENCE_MATRIX.md
+03_PROVENANCE_CHAIN.md
+04_SO45_DEEP_DELTA_MATRIX.md
+05_IMAGE_EFFECT_GRAPH_DEEP_DELTA.md
+06_F_APP_IMAGE_DEEP_DELTA.md
+07_WORKER_INDEPENDENCE_AND_TIMING.md
+08_RAW_EVIDENCE_MANIFEST.sha256
+raw_evidence/
+
+
+Update PROJECT_ERROR.md and ACQUIREMENTS.md with defects and lessons.
+
+
+PASS CONDITION
+PASS only when the provenance chain is consistent, material PROVEN claims resolve to independently checkable raw evidence, claimed worker independence is verifiable, and the technical delta is substantive. Otherwise return NEEDS_FIX or BLOCKED with exact gaps.
+
+
+CONTINUOUS HANDOFF
+When the task reaches REVIEW_CANDIDATE, persist a deterministic continuation handoff so the technical lanes do not lose their next work after restart or interruption.

@@ -31,6 +31,98 @@ function Fail {
     throw $Message
 }
 
+function Invoke-RunnerGit {
+    param([string]$WorkingTree, [string[]]$Arguments, [switch]$AllowFailure)
+    # Windows PowerShell turns redirected native stderr into ErrorRecords. Preserve
+    # the actual native exit code rather than treating harmless Git progress as failure.
+    $savedPreference = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = "Continue"
+        $output = & git -C $WorkingTree @Arguments 2>$null
+        $exitCode = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $savedPreference
+    }
+    if ($exitCode -ne 0 -and -not $AllowFailure) {
+        throw "Git $($Arguments[0]) failed with exit code $exitCode"
+    }
+    return [pscustomobject]@{ ExitCode = $exitCode; Output = ($output | Out-String).Trim() }
+}
+
+function Set-CommandFailure {
+    param([string]$WorkingTree, [string]$FailureMessage)
+    if ($env:GITHUB_RUN_ID) {
+        $canonicalPath = Join-Path $WorkingTree ".ai\commands\running\$targetCmdId.json"
+        if (-not (Test-Path -LiteralPath $canonicalPath)) {
+            throw "FAILED transition rejected for $targetCmdId; current canonical lease/status must match this worker"
+        }
+        $canonical = Get-Content -Raw -LiteralPath $canonicalPath | ConvertFrom-Json
+        if ($canonical.lease.lease_token -ne $leaseToken -or $canonical.execution_identity.github_run_id -ne $env:GITHUB_RUN_ID) {
+            throw "FAILED transition rejected for $targetCmdId; current canonical lease/status must match this worker"
+        }
+    }
+    $orchestratorPath = Join-Path $RepoPath "scripts\command_bus_orchestrator.py"
+    $failureOutput = & python $orchestratorPath --repo-root $WorkingTree fail `
+        --command-id $targetCmdId --lease-token $leaseToken --error $FailureMessage 2>&1
+    $failureExit = $LASTEXITCODE
+    if ($failureExit -ne 0 -or ($failureOutput | Out-String) -notmatch "\[OK\]\s+FAILED") {
+        # Do not print the lease or unfiltered subprocess output.
+        throw "FAILED transition rejected for $targetCmdId; current canonical lease/status must match this worker"
+    }
+}
+
+function Publish-CommandFailure {
+    param([string]$FailureMessage)
+    # Start from canonical main on every attempt. Never merge the task branch into
+    # this control-plane update, and revalidate the lease after a concurrent push.
+    for ($attempt = 1; $attempt -le 3; $attempt++) {
+        $failureWorktree = Join-Path ([System.IO.Path]::GetTempPath()) ("convert2-failure-" + [guid]::NewGuid().ToString("N"))
+        $createdWorktree = $false
+        try {
+            Invoke-RunnerGit $RepoPath @("fetch", "origin", "main") | Out-Null
+            $baseSha = (Invoke-RunnerGit $RepoPath @("rev-parse", "refs/remotes/origin/main")).Output
+            Invoke-RunnerGit $RepoPath @("worktree", "add", "--detach", "--no-checkout", $failureWorktree, $baseSha) | Out-Null
+            $createdWorktree = $true
+            # Only materialize lifecycle files; large source/evidence trees stay out.
+            Invoke-RunnerGit $failureWorktree @("sparse-checkout", "set", "--no-cone", "/.ai/commands/", "/.ai/state/", "/.ai/state.json") | Out-Null
+            Invoke-RunnerGit $failureWorktree @("checkout", "--detach", $baseSha) | Out-Null
+            Set-CommandFailure $failureWorktree $FailureMessage
+            Invoke-RunnerGit $failureWorktree @("add", "-A", "--", ".ai/commands", ".ai/state", ".ai/state.json", ":(exclude).ai/commands/.bus.lock") | Out-Null
+            $changedPaths = (Invoke-RunnerGit $failureWorktree @("diff", "--cached", "--name-only")).Output -split "\r?\n"
+            foreach ($changedPath in $changedPaths) {
+                if ($changedPath -and $changedPath -notmatch '^\.ai/(commands/|state/|state\.json$)') {
+                    throw "Refusing failure publication outside lifecycle metadata"
+                }
+            }
+            Invoke-RunnerGit $failureWorktree @("commit", "-m", "chore(command-bus): durable FAILED for $targetCmdId [run $env:GITHUB_RUN_ID]") | Out-Null
+            $push = Invoke-RunnerGit $failureWorktree @("push", "origin", "HEAD:main") -AllowFailure
+            if ($push.ExitCode -eq 0) {
+                Write-RunnerLog "Durable FAILED state published to remote main for $targetCmdId."
+                # Remove only our generated, untracked advisory lock, then ask Git
+                # to remove this self-created worktree without force or recursive deletion.
+                $busLock = Join-Path $failureWorktree ".ai\commands\.bus.lock"
+                $trackedLock = Invoke-RunnerGit $failureWorktree @("ls-files", "--", ".ai/commands/.bus.lock")
+                if (-not $trackedLock.Output -and (Test-Path -LiteralPath $busLock)) {
+                    Remove-Item -LiteralPath $busLock
+                }
+                $cleanup = Invoke-RunnerGit $RepoPath @("worktree", "remove", $failureWorktree) -AllowFailure
+                if ($cleanup.ExitCode -ne 0) { Write-RunnerLog "Published failure worktree retained for inspection: $failureWorktree" }
+                return
+            }
+            Write-RunnerLog "Failure publication attempt $attempt rejected; retained evidence worktree: $failureWorktree"
+            Invoke-RunnerGit $RepoPath @("fetch", "origin", "main") | Out-Null
+            $latestSha = (Invoke-RunnerGit $RepoPath @("rev-parse", "refs/remotes/origin/main")).Output
+            if ($latestSha -eq $baseSha) {
+                throw "FAILED publication push rejected without a concurrent main update (exit $($push.ExitCode))"
+            }
+        } catch {
+            if ($createdWorktree) { Write-RunnerLog "Failure publication evidence preserved at $failureWorktree" }
+            throw
+        }
+    }
+    throw "FAILED publication did not succeed after 3 concurrent main updates; runtime was not retried"
+}
+
 if (-not (Test-Path $RepoPath)) { throw "RepoPath does not exist: $RepoPath" }
 
 Set-Location $RepoPath
@@ -56,6 +148,7 @@ if ([string]::IsNullOrWhiteSpace($agyExe) -or -not (Test-Path $agyExe)) {
 Write-RunnerLog "Resolved AGY executable: $agyExe"
 try {
     $agyVersion = (& $agyExe --version 2>&1 | Out-String).Trim()
+    if ($LASTEXITCODE -ne 0) { throw "AGY --version exited with code $LASTEXITCODE" }
     Write-RunnerLog "AGY executable preflight passed: $agyVersion"
 } catch {
     Fail "agy executable exists but cannot run under runner service identity: $($_.Exception.Message)"
@@ -203,7 +296,7 @@ $claimedData = Get-Content -Raw -Path $claimedFile | ConvertFrom-Json
 $leaseToken = [string]$claimedData.lease.lease_token
 
 # Step 5: Transition to RUNNING with execution identity
-$headSha = (& git rev-parse HEAD).Trim()
+$headSha = (Invoke-RunnerGit $RepoPath @("rev-parse", "HEAD")).Output
 $wfUrl = if ($env:GITHUB_SERVER_URL -and $env:GITHUB_REPOSITORY -and $env:GITHUB_RUN_ID) {
     "$($env:GITHUB_SERVER_URL)/$($env:GITHUB_REPOSITORY)/actions/runs/$($env:GITHUB_RUN_ID)"
 } else { "local://$([Environment]::MachineName)/$targetCmdId" }
@@ -216,7 +309,8 @@ $startOut = & python "scripts\command_bus_orchestrator.py" start `
     --run-id "$($env:GITHUB_RUN_ID)" `
     --url "$wfUrl" 2>&1
 
-if ($LASTEXITCODE -ne 0) {
+$startExitCode = $LASTEXITCODE
+if ($startExitCode -ne 0 -or ($startOut | Out-String) -notmatch "\[OK\]\s+RUNNING") {
     Fail "Failed to transition $targetCmdId to RUNNING: $startOut"
 }
 
@@ -225,7 +319,8 @@ if ($LASTEXITCODE -ne 0) {
 # and falsely rolls the command back to PENDING after the ACK timeout.
 if ($env:GITHUB_RUN_ID) {
     Write-RunnerLog "Persisting durable worker ACK to remote main before task execution..."
-    & git add ".ai/commands" ".ai/state" ".ai/state.json"
+    & git add ".ai/commands" ".ai/state" ".ai/state.json" ":(exclude).ai/commands/.bus.lock"
+    if ($LASTEXITCODE -ne 0) { Fail "Failed to stage durable worker ACK for $targetCmdId" }
     & git commit -m "chore(command-bus): durable worker ACK for $targetCmdId [run $env:GITHUB_RUN_ID]" --allow-empty
     if ($LASTEXITCODE -ne 0) { Fail "Failed to commit durable worker ACK for $targetCmdId" }
 
@@ -239,9 +334,10 @@ if ($env:GITHUB_RUN_ID) {
 }
 
 # Step 6: Isolated Task Branch Setup
-$taskBranch = "agent/$targetCmdId"
+$attemptIdentity = if ($env:GITHUB_RUN_ID) { "run-$env:GITHUB_RUN_ID" } else { "local-$([Environment]::MachineName)-$PID" }
+$taskBranch = "agent/$targetCmdId-$attemptIdentity-$([guid]::NewGuid().ToString('N').Substring(0, 8))"
 Write-RunnerLog "Setting up isolated task branch: $taskBranch..."
-& git checkout -B "$taskBranch"
+& git checkout -b "$taskBranch"
 if ($LASTEXITCODE -ne 0) {
     Fail "Failed to checkout isolated task branch $taskBranch"
 }
@@ -311,9 +407,16 @@ if ($command.execution_script -and (Test-Path (Join-Path $RepoPath $command.exec
     }
 }
 
-$finalHead = (& git rev-parse HEAD).Trim()
-$currentBranch = (& git rev-parse --abbrev-ref HEAD).Trim()
+$finalHead = (Invoke-RunnerGit $RepoPath @("rev-parse", "HEAD")).Output
+$currentBranch = (Invoke-RunnerGit $RepoPath @("rev-parse", "--abbrev-ref", "HEAD")).Output
 Write-RunnerLog "Execution turn finished. ExitCode=$rc HEAD=$finalHead on branch $currentBranch"
+
+if ($rc -ne 0) {
+    $failureMessage = "Agent runtime execution exited with error code $rc"
+    Write-RunnerLog "Persisting FAILED lifecycle before task-branch publication..."
+    Set-CommandFailure $RepoPath $failureMessage
+    if ($env:GITHUB_RUN_ID) { Publish-CommandFailure $failureMessage }
+}
 
 if ($currentBranch -eq "main" -or [string]::IsNullOrWhiteSpace($taskBranch) -or $currentBranch -ne $taskBranch) {
     # Direct main execution (e.g. initial bootstrapping or legacy runner)
@@ -358,27 +461,26 @@ if ($currentBranch -eq "main" -or [string]::IsNullOrWhiteSpace($taskBranch) -or 
 
     if ($rc -eq 0 -and (-not [string]::IsNullOrWhiteSpace($reportFolder))) {
         Write-RunnerLog "Completing command $targetCmdId in orchestrator directly..."
-        & python "scripts\command_bus_orchestrator.py" complete `
+        $completeOut = & python "scripts\command_bus_orchestrator.py" complete `
             --command-id "$targetCmdId" `
             --lease-token "$leaseToken" `
             --target-sha "$targetSha" `
             --report "$reportFolder" `
-            --manifest-hash "$evidenceHash" | Out-Null
+            --manifest-hash "$evidenceHash" 2>&1
+        $completeExitCode = $LASTEXITCODE
+        if ($completeExitCode -ne 0 -or ($completeOut | Out-String) -notmatch "\[OK\]\s+COMPLETED") {
+            Fail "Failed to complete $targetCmdId; orchestrator did not acknowledge COMPLETED"
+        }
         Write-RunnerLog "Command $targetCmdId completed successfully."
     } elseif ($rc -ne 0) {
-        Write-RunnerLog "Failing command $targetCmdId in orchestrator..."
-        & python "scripts\command_bus_orchestrator.py" fail `
-            --command-id "$targetCmdId" `
-            --lease-token "$leaseToken" `
-            --error "agy execution exited with error code $rc" | Out-Null
         throw "agy exited with code $rc"
     }
 } else {
     # Task branch execution
     Write-RunnerLog "Pushing task branch $taskBranch to remote..."
-    & git add -A
-    & git commit -m "feat($($command.task_id)): autonomous task execution for $targetCmdId" --allow-empty
-    & git push origin "$taskBranch" --force
+    Invoke-RunnerGit $RepoPath @("add", "-A", "--", ".", ":(exclude).ai/commands/.bus.lock") | Out-Null
+    Invoke-RunnerGit $RepoPath @("commit", "-m", "feat($($command.task_id)): autonomous task execution for $targetCmdId", "--allow-empty") | Out-Null
+    Invoke-RunnerGit $RepoPath @("push", "origin", $taskBranch) | Out-Null
     Write-RunnerLog "Task branch $taskBranch pushed successfully."
 
     # Record runner state
@@ -419,11 +521,6 @@ if ($currentBranch -eq "main" -or [string]::IsNullOrWhiteSpace($taskBranch) -or 
         }
         Write-RunnerLog "Command $targetCmdId processing completed."
     } else {
-        Write-RunnerLog "Failing command $targetCmdId in orchestrator..."
-        & python "scripts\command_bus_orchestrator.py" fail `
-            --command-id "$targetCmdId" `
-            --lease-token "$leaseToken" `
-            --error "agy execution exited with error code $rc" | Out-Null
         throw "agy exited with code $rc"
     }
 }

@@ -1,0 +1,90 @@
+﻿NO RECONFIRMATION RULE
+Khi Task có STATUS=ACTIVE, Agent được phép bắt đầu thực thi ngay trong đúng scope sau preflight. Không hỏi lại Tony để xin phép bắt đầu. Chỉ hỏi khi thiếu dữ liệu bắt buộc, có xung đột scope/quyền, hoặc gặp BLOCK/STOP thực sự.
+
+
+IMPORTANT — NO RECONFIRMATION / NO PERMISSION LOOP
+Nếu Task có STATUS=ACTIVE thì đó chính là authorization để Agent triển khai trong đúng scope.
+Agent KHÔNG được hỏi lại Chủ tịch Tony các câu như:
+- "Có cho phép triển khai không?"
+- "Xin xác nhận để bắt đầu."
+- "Tôi có thể thực hiện bước tiếp theo chứ?"
+Sau khi preflight đạt, Agent phải tự bắt đầu thực thi Task.
+Chỉ được dừng để hỏi khi thiếu dữ liệu bắt buộc, có mâu thuẫn authorization, cần mở rộng scope ngoài Task, hoặc gặp STOP/BLOCK condition thực sự.
+Không được biến việc đọc tài liệu thành một vòng xin phép thủ công.
+
+
+CONVERT2 — AGENT STARTUP CHECKLIST
+Version: 1.0
+Status: MUST RUN EVERY SESSION
+
+
+BEFORE ANY WORK
+
+
+[ ] 1. Tôi đã đọc 00_AGENT_WORKFLOW_MASTER_CONSTITUTION.
+[ ] 2. Tôi đã đọc 01_TASK_INTAKE_EXECUTION_STANDARD.
+[ ] 3. Tôi đã đọc 02_REPORT_EVIDENCE_SUBMISSION_STANDARD.
+[ ] 4. Tôi đã đọc 03_GIT_COMMIT_CODE_AUDIT_STANDARD.
+[ ] 5. Tôi đã đọc 04_STATE_MACHINE_HANDOFF_STANDARD.
+[ ] 6. Tôi đã xác định đúng Task ACTIVE mới nhất.
+[ ] 7. Tôi đã ghi Task ID.
+[ ] 8. Tôi đã đọc governing specs của Task.
+[ ] 9. Tôi đã kiểm tra repository URL.
+[ ] 10. Tôi đã kiểm tra branch/worktree.
+[ ] 11. Tôi đã kiểm tra git status.
+[ ] 12. Tôi đã ghi base commit.
+[ ] 13. Tôi đã kiểm tra locks/lease nếu áp dụng.
+[ ] 14. Tôi hiểu allowed files.
+[ ] 15. Tôi hiểu forbidden files.
+[ ] 16. Tôi hiểu hard gates.
+[ ] 17. Tôi hiểu evidence phải nộp.
+[ ] 18. Tôi hiểu allowed final verdicts.
+[ ] 19. Tôi hiểu stop condition.
+[ ] 20. Tôi chưa bắt đầu code trước khi hoàn tất preflight.
+
+
+BEFORE FINAL REPORT
+
+
+[ ] 21. Build/test được chạy trên source state đã xác định.
+[ ] 22. Nếu có code, tôi đã commit + push.
+[ ] 23. Report có target commit SHA.
+[ ] 24. Raw evidence tồn tại.
+[ ] 25. Manifest được tạo.
+[ ] 26. SHA-256 freeze được verify.
+[ ] 27. Tester report tồn tại nếu Task yêu cầu.
+[ ] 28. Reviewer report tồn tại nếu Task yêu cầu.
+[ ] 29. 00_AUDIT_INDEX.md đầy đủ.
+[ ] 30. Report được nộp đúng Report folder.
+[ ] 31. Tôi đã STOP và không tự mở task tiếp theo.
+
+
+FAIL ANY REQUIRED CHECK = DO NOT CLAIM PASS
+
+
+MANDATORY DURABLE MEMORY / CRASH RECOVERY ADDENDUM
+BEFORE EVERY TASK
+[ ] 32. Tôi đã đọc toàn bộ ./Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt.
+[ ] 33. Tôi đã đọc AGENTS.md và Docs/rules.md.
+[ ] 34. Tôi đã đọc PROJECT_ERROR.md để tránh lặp lại lỗi cũ.
+[ ] 35. Tôi đã đọc ACQUIREMENTS.md để tái sử dụng kinh nghiệm đã xác minh.
+[ ] 36. Tôi đã đọc PROJECT_MEMORY.md, TASK_LOG.md và .ai/state.json nếu tồn tại.
+[ ] 37. Tôi đã đối chiếu last verified checkpoint với Git/Task Drive.
+
+
+DURING TASK
+[ ] 38. Sau mỗi milestone/lỗi/fix quan trọng tôi đã checkpoint .ai/state.json + TASK_LOG.md.
+[ ] 39. Trước build/test/wait dài hoặc thao tác rủi ro tôi đã lưu recovery checkpoint.
+[ ] 40. Nếu network lỗi, tôi đã ghi pending_push thay vì giả định đã push.
+
+
+BEFORE FINAL REPORT
+[ ] 41. Tôi đã review/update PROJECT_ERROR.md hoặc ghi NOT_APPLICABLE có lý do.
+[ ] 42. Tôi đã review/update ACQUIREMENTS.md hoặc ghi NOT_APPLICABLE có lý do.
+[ ] 43. Tôi đã update PROJECT_MEMORY.md.
+[ ] 44. Tôi đã update TASK_LOG.md.
+[ ] 45. Tôi đã update .ai/state.json với pending_steps + next_safe_action.
+[ ] 46. Report có MEMORY_HANDOFF/recovery instructions.
+[ ] 47. Durable memory changes đã commit/push khi Git/network khả dụng.
+FAIL MEMORY GATE = MEMORY_HANDOFF_INCOMPLETE; DO NOT CLAIM PASS.
+.

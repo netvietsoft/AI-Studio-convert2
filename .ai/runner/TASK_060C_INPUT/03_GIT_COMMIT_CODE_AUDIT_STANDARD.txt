@@ -1,0 +1,107 @@
+﻿CONVERT2 — GIT COMMIT & CODE AUDIT STANDARD
+Version: 1.0
+Status: CANONICAL
+
+
+REPOSITORY:
+https://github.com/netvietsoft/AI-Studio-convert2
+
+
+1. SOURCE-CODE AUDIT REQUIREMENT
+Bất kỳ claim nào phụ thuộc code như:
+implemented
+fixed
+wired
+GPU path active
+JNI changed
+algorithm unchanged
+fallback added
+performance optimized
+
+
+phải truy được tới một Git commit đã PUSH.
+
+
+2. REPORT FIELDS FOR CODE TASK
+Bắt buộc:
+repository_url
+branch
+base_commit_sha
+parent_sha
+target_commit_sha
+commit_subject
+changed_files
+files_added
+files_modified
+files_deleted
+related_task_id
+
+
+3. NO LOCAL-ONLY ACCEPTANCE
+Không nghiệm thu code từ:
+- working tree chưa commit;
+- screenshot;
+- pasted fragment;
+- local path;
+- prose report;
+- hash không gắn với commit truy xuất được.
+
+
+Thiếu commit/push:
+CODE_AUDIT_BLOCKED_MISSING_COMMIT
+
+
+4. BRANCH DISCIPLINE
+Theo Workspace Standard:
+- không direct-write main/master nếu bị cấm;
+- 1 task/branch/worktree;
+- commit message phải có Task ID;
+- không rewrite commit đã dùng làm evidence nếu chưa supersede.
+
+
+5. DIFF EVIDENCE
+Mọi code task phải có:
+git diff --name-status BASE..TARGET
+git diff BASE..TARGET -- relevant/files
+
+
+Nếu task yêu cầu immutability:
+cung cấp hash/diff cho frozen files.
+
+
+6. AUDIT SOURCE ORDER
+Tony audit:
+1) xác nhận commit SHA tồn tại;
+2) đọc parent/base;
+3) đọc diff;
+4) đọc full relevant source;
+5) đối chiếu runtime/test evidence;
+6) đối chiếu report;
+7) kết luận PASS/NEEDS_FIX.
+
+
+7. COMMIT AFTER FIX
+Nếu audit trả NEEDS_FIX:
+- Agent sửa trên task/branch được giao;
+- tạo commit mới;
+- push;
+- report commit SHA mới;
+- không thay bằng working-tree claim.
+
+
+8. BUILD TRACEABILITY
+Build/test report phải ghi target_commit_sha.
+Nếu build log không chứng minh đang build commit nào, evidence bị hạ độ tin cậy.
+
+
+9. RELEASE/FREEZE
+Final freeze phải gắn với:
+- target_commit_sha;
+- relevant source hashes;
+- manifest;
+- build/test artifacts.
+
+
+10. SOURCE CONFLICT
+Nếu report nói một đằng, source ở declared commit nói một nẻo:
+SOURCE AT DECLARED COMMIT WINS.

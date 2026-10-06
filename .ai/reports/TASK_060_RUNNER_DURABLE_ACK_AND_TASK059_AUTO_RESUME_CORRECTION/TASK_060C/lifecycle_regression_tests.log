@@ -1,0 +1,50 @@
+test_live_repository_no_simultaneous_running_completed (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_live_repository_no_simultaneous_running_completed)
+Invariant 2: No command can exist simultaneously in running/ and completed/. ... ok
+test_live_repository_zero_duplicates (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_live_repository_zero_duplicates)
+Invariant 1: Live repository must contain strictly ZERO duplicates across all directories. ... ok
+test_live_repository_zero_git_tracked_duplicates (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_live_repository_zero_git_tracked_duplicates)
+Invariant 6: Git index must contain strictly ZERO duplicate commands across directories. ... ok
+test_rebuild_index_automatically_purges_duplicates (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_rebuild_index_automatically_purges_duplicates)
+Invariant 4: rebuild_index() must automatically purge duplicates without manual intervention. ... ok
+test_reconcile_lifecycle_deterministic_precedence (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_reconcile_lifecycle_deterministic_precedence)
+Invariant 3: Reconcile must strictly favor terminal states (completed/failed over running/pending). ... ok
+test_recover_stale_leases_never_resurrects_terminal_commands (tests.test_command_bus_lifecycle_invariants.TestCommandBusLifecycleInvariants.test_recover_stale_leases_never_resurrects_terminal_commands)
+Invariant 5: Expired leases in running/claimed must never resurrect already completed commands. ... ok
+test_complete_cli_rejection_is_nonzero_and_valid_completion_still_succeeds (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_complete_cli_rejection_is_nonzero_and_valid_completion_still_succeeds) ... ok
+test_concurrent_failures_retain_both_records (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_concurrent_failures_retain_both_records) ... ok
+test_contended_lock_retry_closes_each_opened_handle (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_contended_lock_retry_closes_each_opened_handle) ... ok
+test_fail_cli_targets_explicit_repo_and_rejects_stale_token (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_fail_cli_targets_explicit_repo_and_rejects_stale_token) ... ok
+test_failure_has_one_lifecycle_directory_and_releases_overlapping_paths (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_failure_has_one_lifecycle_directory_and_releases_overlapping_paths) ... ok
+test_failure_of_current_command_selects_remaining_active_command (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_failure_of_current_command_selects_remaining_active_command) ... ok
+test_newer_completed_execution_keeps_completion_when_older_worker_fails (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_newer_completed_execution_keeps_completion_when_older_worker_fails) ... ok
+test_newer_execution_of_same_task_keeps_running_lifecycle (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_newer_execution_of_same_task_keeps_running_lifecycle) ... ok
+test_newer_global_state_without_local_command_file_is_preserved (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_newer_global_state_without_local_command_file_is_preserved) ... ok
+test_other_current_running_command_and_provenance_are_preserved (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_other_current_running_command_and_provenance_are_preserved) ... ok
+test_sole_failure_clears_running_state_and_retains_exact_identity (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_sole_failure_clears_running_state_and_retains_exact_identity) ... ok
+test_stale_token_rejection_changes_no_durable_state (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_stale_token_rejection_changes_no_durable_state) ... ok
+test_start_cli_rejection_is_nonzero_and_valid_start_still_succeeds (tests.test_command_bus_failure_state.TestCommandBusFailureState.test_start_cli_rejection_is_nonzero_and_valid_start_still_succeeds) ... ok
+test_1_stale_state_reconciliation_detects_running_and_reserved (tests.test_command_bus_state_reconciliation.TestCommandBusStateReconciliation.test_1_stale_state_reconciliation_detects_running_and_reserved)
+Requirement 1: Fix state transitions so .ai/state.json cannot remain ... ok
+test_2_duplicate_dispatch_prevention (tests.test_command_bus_state_reconciliation.TestCommandBusStateReconciliation.test_2_duplicate_dispatch_prevention)
+Requirement 2: Duplicate dispatch rejection based on anti_duplicate_key and reservation. ... ok
+test_3_concurrent_worker_ack_persistence (tests.test_command_bus_state_reconciliation.TestCommandBusStateReconciliation.test_3_concurrent_worker_ack_persistence)
+Requirement 3: Durable worker ACK is committed before long execution. ... ok
+test_4_crash_restart_after_ack_and_stale_recovery (tests.test_command_bus_state_reconciliation.TestCommandBusStateReconciliation.test_4_crash_restart_after_ack_and_stale_recovery)
+Requirement 4: Crash/restart after ACK recovers cleanly without rolling back active unexpired lease. ... ok
+test_5_monotonic_completion_handoff (tests.test_command_bus_state_reconciliation.TestCommandBusStateReconciliation.test_5_monotonic_completion_handoff)
+Requirement 5: Transitions strictly follow CREATED -> DISPATCHED -> EXECUTING -> COMPLETED ... ok
+test_package_sha256_truthfulness (tests.test_state_truth_and_gate_consistency.TestStateTruthAndGateConsistency.test_package_sha256_truthfulness)
+Invariant 4: Deliverable package hashes must match canonical constants. ... ok
+test_simulated_false_pass_rejection (tests.test_state_truth_and_gate_consistency.TestStateTruthAndGateConsistency.test_simulated_false_pass_rejection)
+Invariant 5: Validator rejects any synthetic state that sets verdict=PASS with unresolved gates. ... ok
+test_task_status_verdict_coherence (tests.test_state_truth_and_gate_consistency.TestStateTruthAndGateConsistency.test_task_status_verdict_coherence)
+Invariant 3: task_status, verdict, and confirmation_gate must be mutually coherent. ... ok
+test_verdict_cannot_be_pass_when_confirmation_gate_active (tests.test_state_truth_and_gate_consistency.TestStateTruthAndGateConsistency.test_verdict_cannot_be_pass_when_confirmation_gate_active)
+Invariant 1: If confirmation_gate is active/unresolved, verdict MUST NOT be PASS. ... ok
+test_verdict_cannot_be_pass_when_report_mirror_unresolved (tests.test_state_truth_and_gate_consistency.TestStateTruthAndGateConsistency.test_verdict_cannot_be_pass_when_report_mirror_unresolved)
+Invariant 2: If report_drive_mirror_verdict is not PASS, verdict MUST NOT be PASS. ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 3.444s
+
+OK

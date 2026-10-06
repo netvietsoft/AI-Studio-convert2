@@ -1,0 +1,99 @@
+﻿TASK_060 — RUNNER DURABLE ACK + TASK_059 AUTO-RESUME CORRECTION
+
+
+STATUS: ACTIVE
+PRIORITY: P0 / CRITICAL
+PROJECT: CONVERT2
+PARENT ACTIVE TECHNICAL TASK: TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE
+TASK_059 DOC ID: 1X2-fs-oa2sawXcOCfJSqQDnvkWw48n6pw1IVvGWvIJA
+
+
+PURPOSE
+Repair the currently blocked dispatcher → self-hosted Windows runner → durable worker ACK lifecycle. Once the path is proven healthy, automatically resume TASK_059. Infrastructure repair is NOT completion of TASK_059 or SO45 technical analysis.
+
+
+MANDATORY STARTUP
+Agent 0 and every worker must read and ACK the current project constitution, Development Workspace Standard V2.1, task execution standard, evidence/report standard, Git audit standard, state-machine handoff standard, startup checklist, memory bootstrap, PROJECT_ERROR.md and ACQUIREMENTS.md. Persist worker identity, runner identity, service account, PID, timestamp, standard version/hash where available.
+
+
+CURRENT BLOCKER TO REPRODUCE
+The dispatcher can reserve and workflow_dispatch a worker, but the worker has failed to produce durable ACK within the dispatcher timeout. Previous runner recovery also exposed account/environment differences when the Windows service ran under LocalSystem. Do not assume the old diagnosis is still current: reproduce against the latest run and record raw evidence.
+
+
+WORKSTREAM A — RUNNER IDENTITY AND LABEL TRUTH
+1. Enumerate the actual online self-hosted runner name and all labels.
+2. Compare exact labels with convert2-worker.yml runs-on requirements.
+3. Record GitHub run/job IDs, runner name, runner group, OS, service name and Windows service account.
+4. Remove stale routing assumptions. Never report RUNNING merely because a workflow run exists.
+
+
+WORKSTREAM B — SERVICE ACCOUNT + TOOLCHAIN ENVIRONMENT
+1. Verify the runner service account intentionally used for CONVERT2.
+2. Verify PATH and executable resolution from inside the runner job, not from an interactive user shell.
+3. Verify git, PowerShell, Python, Node where required, agy/agent runtime where required, Android/ADB/JDK/SDK where required by TASK_059.
+4. Verify repository safe.directory/ownership without globally weakening Git security unnecessarily.
+5. Verify authorized access to required local paths including F:\App\Image when TASK_059 needs them.
+6. Never print secrets/tokens into logs.
+
+
+WORKSTREAM C — DURABLE ACK CONTRACT
+1. Trace dispatcher reservation → workflow_dispatch → worker job start → claim → durable ACK commit/state → RUNNING.
+2. Durable ACK must be persisted before long technical execution.
+3. Dispatcher must distinguish QUEUED/PENDING from a worker that actually started.
+4. Timeout/retry must be idempotent and must not create duplicate workers or roll a legitimately running command back to false PENDING.
+5. Record reservation token, command ID, dispatcher run ID, worker run ID, ACK commit SHA and execution identity.
+
+
+WORKSTREAM D — REAL END-TO-END PROOF
+Perform a real GitHub Actions execution on the current Windows runner.
+PASS proof requires all of:
+- dispatcher run created and succeeds;
+- TASK_060 correction command reserved exactly once;
+- worker job actually starts on the intended Windows runner;
+- durable ACK is visible in Git/state before long execution;
+- lifecycle validation shows one command in exactly one state directory;
+- worker can execute a bounded smoke command under the same service environment;
+- no false PENDING while worker is alive.
+
+
+WORKSTREAM E — AUTO-RESUME TASK_059
+After A-D pass:
+1. Reconcile TASK_059 command state without creating a duplicate technical task.
+2. Re-dispatch/resume TASK_059 automatically.
+3. Require durable ACK and prove TASK_059 reaches RUNNING/EXECUTING on the real Windows runner.
+4. Resume its substantive lanes A-G and evidence requirements from the existing TASK_059 document.
+5. Do not mark TASK_060 PASS if infrastructure is repaired but TASK_059 cannot be resumed; classify the exact remaining blocker.
+
+
+DO NOT
+- Do not create TASK_061 merely because TASK_060 infrastructure repair completed.
+- Do not mark TASK_059 complete from infrastructure evidence.
+- Do not fabricate runner/ACK evidence.
+- Do not disable Git safety globally as a shortcut.
+- Do not bypass authorization, access controls, DRM, payment, anti-abuse, or expose secrets.
+- Do not destroy the old architecture or rollback path.
+
+
+REQUIRED REPORT
+.ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/
+00_AUDIT_INDEX.md
+01_MASTER_REPORT.md
+02_RUNNER_IDENTITY_LABEL_MATRIX.md
+03_SERVICE_ACCOUNT_ENVIRONMENT_EVIDENCE.md
+04_DISPATCH_RESERVE_WORKER_ACK_TIMELINE.md
+05_LIFECYCLE_SINGLE_STATE_PROOF.md
+06_REAL_GITHUB_RUN_PROOF.md
+07_TASK059_RESUME_PROOF.md
+08_RAW_EVIDENCE_MANIFEST.sha256
+raw_evidence/
+
+
+Update PROJECT_ERROR.md and ACQUIREMENTS.md with the root cause, failed approaches, durable fix and reboot/recovery requirements.
+
+
+VERDICT RULE
+PASS only when the dispatcher/worker/ACK path is proven end-to-end AND TASK_059 is successfully resumed to real RUNNING/EXECUTING with durable identity. NEEDS_FIX when the repair is materially correct but evidence or resilience is incomplete. BLOCKED when runner/toolchain/auth/path dependency prevents real execution; name the exact blocker and evidence.
+
+
+CONTINUOUS HANDOFF
+Persist deterministic state before exit or interruption. After TASK_059 resumes, technical work must continue from its existing evidence/provenance requirements rather than waiting idle for another manual task.

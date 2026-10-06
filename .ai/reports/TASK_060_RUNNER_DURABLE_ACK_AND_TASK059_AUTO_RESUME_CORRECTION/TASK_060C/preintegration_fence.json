@@ -1,0 +1,402 @@
+{
+  "observed_at": "2026-10-06T04:37Z",
+  "main_sha": "5eca94001b6b80fdff80f4ab0a1cea61cc8523b7",
+  "command": {
+    "protocol": "CONVERT2_COMMAND_V2",
+    "command_id": "TASK_060_RUNNER_DURABLE_ACK_TASK059_AUTO_RESUME_20261005T154500+0700",
+    "task_id": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE",
+    "task_revision": "2026-10-05T15:45:00+07:00",
+    "parent_task_id": "TASK_059_TASK058_EVIDENCE_TRUTH_AND_SO45_DEEP_PROVENANCE_CORRECTION_ACTIVE",
+    "task_url": "https://docs.google.com/document/d/1QhTPRARxv_iDlJwbZKaT7PEtceIzXTxpCeDIHRGLqqo/edit",
+    "issued_for_sha": "894238250454c93f1930480b57484def3713916b",
+    "priority": "CRITICAL",
+    "priority_weight": 200,
+    "dependencies": [],
+    "execution_lane": "infra-runner-durable-ack-task059-auto-resume",
+    "allowed_paths": [
+      ".github/workflows/convert2-dispatcher.yml",
+      ".github/workflows/convert2-worker.yml",
+      ".ai/commands/**",
+      ".ai/state.json",
+      ".ai/state/**",
+      ".ai/runner/**",
+      ".ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/**",
+      "scripts/command_bus_orchestrator.py",
+      "scripts/run_agent_from_github_command.ps1",
+      "tests/**",
+      "PROJECT_ERROR.md",
+      "ACQUIREMENTS.md",
+      "PROJECT_MEMORY.md",
+      "TASK_LOG.md"
+    ],
+    "locked_modules": [],
+    "gate_requirements": [
+      "PREEXEC_OWNER_LAW_READ_ACK",
+      "PREEXEC_WORKSPACE_STANDARD_READ_ACK",
+      "REAL_RUNNER_IDENTITY_PROOF",
+      "SERVICE_ACCOUNT_ENVIRONMENT_PROOF",
+      "DURABLE_ACK_BEFORE_LONG_EXECUTION",
+      "LIFECYCLE_SINGLE_STATE",
+      "REAL_GITHUB_RUN_PROOF",
+      "TASK059_AUTO_RESUME_PROOF",
+      "NO_FALSE_COMPLETION"
+    ],
+    "instructions": "Execute TASK_060 from the linked Task Drive document. Reproduce and repair the dispatcher -> self-hosted Windows runner -> durable ACK path using current evidence, verify runner labels/service account/toolchain from inside the actual job, preserve Git safety, and prove a real end-to-end run. After infrastructure passes, reconcile and automatically resume existing TASK_059 without creating a duplicate technical task. TASK_060 PASS requires TASK_059 to reach real RUNNING/EXECUTING with durable identity. Do not expose secrets or bypass authorization/access controls. CONTROL-PLANE ORDERING UPDATE: this correction task has absolute dispatch priority and must run before any further TASK_059/TASK_059P retry. Do not spend another ACK timeout cycle on TASK_059P until TASK_060 runner/ACK correction has been attempted.",
+    "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00",
+    "created_at": "2026-10-05T15:45:00+07:00",
+    "status": "RUNNING",
+    "retry_count": 2,
+    "lease": {
+      "lease_token": "a59da47fbf2d4cb8b94cefc8868b3941",
+      "lease_holder": "GITHUB_ACTIONS_37401017912",
+      "leased_at": "2026-10-06T08:47:26.540485+07:00",
+      "lease_expires_at": "2026-10-06T09:17:26.540485+07:00",
+      "heartbeat_at": "2026-10-06T08:47:26.540485+07:00"
+    },
+    "execution_identity": {
+      "dispatch_commit_sha": "de28eedd8659898ae4604ce63ae3ec5cad2b79ab",
+      "github_run_id": "37401017912",
+      "workflow_url": "https://github.com/netvietsoft/AI-Studio-convert2/actions/runs/37401017912",
+      "runner_lane": "infra-runner-durable-ack-task059-auto-resume",
+      "started_at": "2026-10-06T08:47:26.945264+07:00",
+      "finished_at": null,
+      "conclusion": "RUNNING"
+    },
+    "provenance": null,
+    "recovery_note": "P0 control-plane correction: must execute before TASK_059/TASK_059P retries. Previous priority 110 caused starvation behind TASK_059P priority 120. Runner bootstrap patched at 649b516093960e07292debf029ae5b552e2c51ab: resolve AGY via absolute known install path when service PATH misses it. Redispatch required. Service-profile bootstrap added at 894238250454c93f1930480b57484def3713916b; worker installs official AGY under its own LOCALAPPDATA and adds it to GITHUB_PATH, avoiding user-profile ACL dependency.",
+    "reservation": {
+      "reservation_token": "ed8dc9fc85284436a2785da4c22561e4",
+      "dispatcher_run_id": "37400905046",
+      "reserved_at": "2026-10-06T01:48:20.770831+00:00",
+      "reservation_sha": "de28eedd8659898ae4604ce63ae3ec5cad2b79ab"
+    },
+    "dispatch_error": {
+      "dispatcher_run_id": "37320513440",
+      "failed_at": "2026-10-05T14:01:08.684066+00:00",
+      "error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 240s"
+    },
+    "stale_recovery_record": {
+      "recovered_at": "2026-10-06T01:48:18.418469+00:00",
+      "previous_holder": "GITHUB_ACTIONS_37375334362",
+      "expired_at": "2026-10-06T04:50:26.139638+07:00",
+      "attempt": 2
+    }
+  },
+  "state_owner": {
+    "current_command_id": "TASK_060_RUNNER_DURABLE_ACK_TASK059_AUTO_RESUME_20261005T154500+0700",
+    "current_task_id": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE",
+    "github_run_id": "37401017912"
+  },
+  "workers": [
+    {
+      "id": 37401017912,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "de28eedd8659898ae4604ce63ae3ec5cad2b79ab",
+      "created_at": "2026-10-06T01:48:23Z",
+      "updated_at": "2026-10-06T01:50:17Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37375334362,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "5179e7a4693c9f173564aa64fe97ccb89745d9ef",
+      "created_at": "2026-10-05T21:21:18Z",
+      "updated_at": "2026-10-05T21:23:17Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37323653062,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "61c098a63ed4481ec7b1209ee554db2347dbabc3",
+      "created_at": "2026-10-05T14:18:34Z",
+      "updated_at": "2026-10-05T14:20:56Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37320785866,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "9122fad7e080a2729af40eefe83c6dfa393c9769",
+      "created_at": "2026-10-05T13:57:05Z",
+      "updated_at": "2026-10-05T13:57:51Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37319098423,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "eeaf5d56e1c343253ca2a7d81144a31fed717a6f",
+      "created_at": "2026-10-05T13:44:09Z",
+      "updated_at": "2026-10-05T13:44:59Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37318388969,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "a4c030da361ccce1185c89ad2d18e7cd2d28093c",
+      "created_at": "2026-10-05T13:38:35Z",
+      "updated_at": "2026-10-05T13:39:31Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37306675375,
+      "name": "CONVERT2 Agent Worker",
+      "status": "pending",
+      "conclusion": null,
+      "head_sha": "9776964f7efe17718557cc9f88eac885fbb9bd26",
+      "created_at": "2026-10-05T12:01:08Z",
+      "updated_at": "2026-10-05T12:01:10Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37301868179,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "5e881b17940b76c15bb0608d40537bf2139f7d08",
+      "created_at": "2026-10-05T11:16:20Z",
+      "updated_at": "2026-10-05T12:01:10Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37299294993,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "fec832bd0c02bb4a528caf8e88579eebe46d05f3",
+      "created_at": "2026-10-05T10:52:08Z",
+      "updated_at": "2026-10-05T11:16:22Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37287079468,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "4cde346b17c6ae1c54858dfbc739ffe153140ad2",
+      "created_at": "2026-10-05T08:59:16Z",
+      "updated_at": "2026-10-05T10:52:12Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37285756033,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "e3c6a221d921a3946431b2303d0caa00a5bc3fcc",
+      "created_at": "2026-10-05T08:46:42Z",
+      "updated_at": "2026-10-05T08:59:18Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37279714206,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "f07a1768b90722c56ecf01e0859959918edc652c",
+      "created_at": "2026-10-05T07:47:22Z",
+      "updated_at": "2026-10-05T08:46:45Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37269795811,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "df9924940fa0aac1db4099cea097e9b9acffc059",
+      "created_at": "2026-10-05T05:53:44Z",
+      "updated_at": "2026-10-05T07:47:25Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37267220764,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "c29287d4f136e8bed5064fc913773b070fec1106",
+      "created_at": "2026-10-05T05:18:52Z",
+      "updated_at": "2026-10-05T05:53:46Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37264849305,
+      "name": "CONVERT2 Agent Worker",
+      "status": "queued",
+      "conclusion": null,
+      "head_sha": "36b9dab52f06e0928af0c90cd8cc738813e003eb",
+      "created_at": "2026-10-05T04:44:46Z",
+      "updated_at": "2026-10-05T04:44:46Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37262343401,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "76ff035b6a867cca78a3368d8054135b04f8b880",
+      "created_at": "2026-10-05T04:10:21Z",
+      "updated_at": "2026-10-05T04:26:52Z",
+      "run_attempt": 3
+    },
+    {
+      "id": 37261556938,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "3802086a63409d23ecb1fb222b56d339fcc601fc",
+      "created_at": "2026-10-05T03:58:45Z",
+      "updated_at": "2026-10-05T03:59:25Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37260642091,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "b430a6294178ad5221f914ef6616b0f3d09e23cd",
+      "created_at": "2026-10-05T03:44:39Z",
+      "updated_at": "2026-10-05T03:46:00Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37254954666,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "7fc6924f78741968ee19e738d9566a6ecb511c76",
+      "created_at": "2026-10-05T02:19:38Z",
+      "updated_at": "2026-10-05T03:45:23Z",
+      "run_attempt": 3
+    },
+    {
+      "id": 37246754606,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "d9e20d58fc8e923141804ccbde7697ad33432b92",
+      "created_at": "2026-10-05T00:14:56Z",
+      "updated_at": "2026-10-05T00:32:20Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37245424230,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "ec620e486587ca763bcb18734e234bb00605d648",
+      "created_at": "2026-10-04T23:54:17Z",
+      "updated_at": "2026-10-05T00:15:12Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37245007835,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "75ef9591cba33583705d9c42f3e17df5502da3a2",
+      "created_at": "2026-10-04T23:47:11Z",
+      "updated_at": "2026-10-05T00:02:18Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37243305197,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "5861e1c7accb3ed0b6bdcf13455b7d81ea9d7bb4",
+      "created_at": "2026-10-04T23:18:57Z",
+      "updated_at": "2026-10-04T23:47:32Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37242390465,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "c75efcb2b03024f8cf888367f3f53ce47ca313f4",
+      "created_at": "2026-10-04T23:04:09Z",
+      "updated_at": "2026-10-04T23:37:30Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37242148505,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "590d459c71f1b9e9d6211847bf0237a314899a55",
+      "created_at": "2026-10-04T23:00:31Z",
+      "updated_at": "2026-10-04T23:12:56Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37210970250,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "d5f43aae1493e5833b13feda7a1b508d0ac2927b",
+      "created_at": "2026-10-04T14:54:02Z",
+      "updated_at": "2026-10-04T15:06:32Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37209971276,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "6ef831a010bb8821429bc9a232053fbacba84c71",
+      "created_at": "2026-10-04T14:37:57Z",
+      "updated_at": "2026-10-04T14:59:42Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37204962051,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "b7ca2dc975472c14bf586c67f93d54b226169971",
+      "created_at": "2026-10-04T13:15:20Z",
+      "updated_at": "2026-10-04T13:45:57Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37201115600,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "4c2ef4e4dc4b6743e318a9658e049e1a228b0fd6",
+      "created_at": "2026-10-04T12:09:02Z",
+      "updated_at": "2026-10-04T12:25:11Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37196307358,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "b64e93e756ddf6c3f830e3d1d55fcc7dea49b565",
+      "created_at": "2026-10-04T10:43:46Z",
+      "updated_at": "2026-10-04T12:11:29Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 37192470215,
+      "name": "CONVERT2 Agent Worker",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "4b7dcca6ec898ff56e4c65e444e384abdf7fb7e3",
+      "created_at": "2026-10-04T09:32:09Z",
+      "updated_at": "2026-10-04T11:06:16Z",
+      "run_attempt": 1
+    }
+  ]
+}

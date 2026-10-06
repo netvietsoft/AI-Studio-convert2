@@ -1,0 +1,128 @@
+﻿CANONICAL AUTONOMOUS EXECUTION ADDENDUM
+Bắt buộc đọc thêm 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD. Nếu có xung đột với quy tắc bổ sung cũ về xin phép, STOP sau report, quét Task hoặc confirmation, tài liệu 07 được ưu tiên.
+
+
+NO RECONFIRMATION RULE
+Khi Task có STATUS=ACTIVE, Agent được phép bắt đầu thực thi ngay trong đúng scope sau preflight. Không hỏi lại Tony để xin phép bắt đầu. Chỉ hỏi khi thiếu dữ liệu bắt buộc, có xung đột scope/quyền, hoặc gặp BLOCK/STOP thực sự.
+
+
+IMPORTANT — NO RECONFIRMATION / NO PERMISSION LOOP
+Nếu Task có STATUS=ACTIVE thì đó chính là authorization để Agent triển khai trong đúng scope.
+Agent KHÔNG được hỏi lại Chủ tịch Tony các câu như:
+- "Có cho phép triển khai không?"
+- "Xin xác nhận để bắt đầu."
+- "Tôi có thể thực hiện bước tiếp theo chứ?"
+Sau khi preflight đạt, Agent phải tự bắt đầu thực thi Task.
+Chỉ được dừng để hỏi khi thiếu dữ liệu bắt buộc, có mâu thuẫn authorization, cần mở rộng scope ngoài Task, hoặc gặp STOP/BLOCK condition thực sự.
+Không được biến việc đọc tài liệu thành một vòng xin phép thủ công.
+
+
+CONVERT2 — AGENT WORKFLOW MASTER CONSTITUTION
+Version: 1.0
+Status: CANONICAL / MUST READ FIRST
+Scope: All Agents, all technical tasks, all audits
+
+
+CANONICAL LOCATIONS
+REPORT FOLDER:
+https://drive.google.com/drive/u/0/folders/13xDIqiI-vyP10pkypLI_6palmeJS-QRg
+
+
+TASK FOLDER:
+https://drive.google.com/drive/u/0/folders/1T9_2fbCGa-q8N6kOZ69WAztLlGmJu60h
+
+
+SOURCE CODE REPOSITORY:
+https://github.com/netvietsoft/AI-Studio-convert2
+
+
+1. GOLDEN RULE
+Task Drive = nơi Chủ tịch Tony giao việc.
+Report Drive = nơi Agent nộp báo cáo và evidence.
+GitHub = source of truth của code đã commit/push.
+
+
+Không trộn vai trò 3 nguồn.
+
+
+2. MANDATORY STARTUP READ ORDER
+Mỗi phiên Agent trước khi làm việc phải:
+1) đọc tài liệu này;
+2) đọc 01_TASK_INTAKE_EXECUTION_STANDARD;
+3) đọc 02_REPORT_EVIDENCE_SUBMISSION_STANDARD;
+4) đọc 03_GIT_COMMIT_CODE_AUDIT_STANDARD;
+5) đọc 04_STATE_MACHINE_HANDOFF_STANDARD;
+6) đọc 05_AGENT_STARTUP_CHECKLIST;
+7) đọc Task ACTIVE mới nhất trong Task folder;
+8) đọc các governing specs mà Task dẫn chiếu;
+9) kiểm tra branch/worktree/locks/git status trước khi ghi code.
+
+
+Không được làm theo memory mơ hồ nếu Task/Report/Git có nguồn rõ ràng hơn.
+
+
+3. SINGLE DIRECTION WORKFLOW
+Chủ tịch Tony -> TASK FOLDER -> Agent
+Agent -> GIT COMMIT/PUSH (nếu có code) -> REPORT FOLDER
+Tony -> đọc REPORT + kiểm tra GIT -> tạo TASK tiếp theo
+
+
+4. WRITE OWNERSHIP
+Chủ tịch Tony:
+- tạo/chỉnh tài liệu giao việc trong Task folder;
+- không dùng Report folder để giao việc.
+
+
+Agent:
+- đọc Task folder;
+- không sửa Task đã ban hành;
+- nộp report/evidence vào Report folder;
+- commit/push code khi task có thay đổi source.
+
+
+5. SOURCE OF TRUTH ORDER
+Khi audit:
+1) code ở declared Git commit;
+2) raw test/build/runtime evidence;
+3) raw CSV/benchmark/parity;
+4) manifest/freeze hashes;
+5) Tester/Reviewer report;
+6) Master/Executive report.
+
+
+Nếu executive report mâu thuẫn code/raw evidence:
+code/raw evidence thắng.
+
+
+6. NO SELF-PASS
+Agent không được tự coi một phase là hoàn tất chỉ vì report nói PASS.
+PASS cuối cùng chỉ có giá trị sau vòng audit của Chủ tịch Tony theo Task hiện hành.
+
+
+7. NO SILENT SCOPE EXPANSION
+Agent không được:
+- mở phase mới;
+- sửa module frozen;
+- thêm model/cloud/generative;
+- thay metric/gate;
+- refactor ngoài scope;
+- tự mở P7;
+trừ khi Task ACTIVE cho phép bằng văn bản.
+
+
+8. REQUIRED TASK ID
+Mọi công việc phải có Task ID.
+Code commit, report folder, audit index và evidence phải tham chiếu Task ID đó.
+
+
+9. STOP CONDITION
+Khi task yêu cầu STOP:
+- dừng code;
+- dừng branch expansion;
+- không tự làm bước kế tiếp;
+- chỉ nộp report/evidence.
+
+
+10. MEMORY RULE
+Agent phải coi bộ tài liệu 00–05 là "operational memory".
+Nếu session/model bị reset, phải đọc lại bộ này trước khi làm việc.

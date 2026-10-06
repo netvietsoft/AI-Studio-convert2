@@ -7,7 +7,9 @@
   "issued_for_sha": "2eadc481f44a22c49d670898c3cd8f2713dc9fff",
   "priority": "CRITICAL",
   "priority_weight": 100,
-  "dependencies": [],
+  "dependencies": [
+    "TASK_060C_BOUNDED_INFRA_SMOKE_20261006T041837499Z"
+  ],
   "execution_lane": "so45-continuous-deep-image-effect-graph",
   "allowed_paths": [
     ".ai/commands/**",
@@ -45,7 +47,7 @@
   "instructions": "Continue maximum-depth analysis of the authorized 45 .so corpus and image-effect graph from verified TASK_054 evidence. Do not claim completion from declarations alone. Produce raw evidence and knowledge-base delta for every new mapping. Preserve old architecture as rollback; do not modify or decommission production hair V2/V3/V4 automatic triggers unless explicitly authorized. Distinguish logical sublanes from real physical workers. Any report not mirrored to Report Drive must record PROCESS_DEFECT_MIRROR and require repair without blocking technical analysis. Read the project owner law/workspace standard before execution and record ACK.",
   "anti_duplicate_key": "TASK_056_SO45_CONTINUOUS_DEEP_IMAGE_EFFECT_GRAPH_ACTIVE:2026-10-05T06:32:00+07:00",
   "created_at": "2026-10-05T06:32:00+07:00",
-  "status": "QUEUED",
+  "status": "WAITING_DEPENDENCY",
   "retry_count": 0,
   "reservation": null,
   "dispatch_error": {
@@ -53,5 +55,14 @@
     "failed_at": "2026-10-04T23:48:47.347032+00:00",
     "error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 90s"
   },
-  "queue_reason": "Path lock conflict (ACQUIREMENTS.md vs ACQUIREMENTS.md) with active TASK_060_RUNNER_DURABLE_ACK_TASK059_AUTO_RESUME_20261005T154500+0700"
+  "queue_reason": "TASK_060C infrastructure acceptance required before technical execution",
+  "blocked_by_dependencies": [
+    "TASK_060C_BOUNDED_INFRA_SMOKE_20261006T041837499Z"
+  ],
+  "infrastructure_admission_gate": {
+    "command_id": "TASK_060C_BOUNDED_INFRA_SMOKE_20261006T041837499Z",
+    "accepted": false,
+    "task_revision": "2026-10-06T04:18:37.499Z",
+    "release_requires": "Guarded independent acceptance of real TASK060 A-D gates; preserve controlled failed proof history"
+  }
 }

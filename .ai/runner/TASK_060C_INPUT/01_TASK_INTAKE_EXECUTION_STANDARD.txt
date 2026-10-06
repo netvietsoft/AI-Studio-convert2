@@ -1,0 +1,94 @@
+﻿NO RECONFIRMATION RULE
+Khi Task có STATUS=ACTIVE, Agent được phép bắt đầu thực thi ngay trong đúng scope sau preflight. Không hỏi lại Tony để xin phép bắt đầu. Chỉ hỏi khi thiếu dữ liệu bắt buộc, có xung đột scope/quyền, hoặc gặp BLOCK/STOP thực sự.
+
+
+IMPORTANT — NO RECONFIRMATION / NO PERMISSION LOOP
+Nếu Task có STATUS=ACTIVE thì đó chính là authorization để Agent triển khai trong đúng scope.
+Agent KHÔNG được hỏi lại Chủ tịch Tony các câu như:
+- "Có cho phép triển khai không?"
+- "Xin xác nhận để bắt đầu."
+- "Tôi có thể thực hiện bước tiếp theo chứ?"
+Sau khi preflight đạt, Agent phải tự bắt đầu thực thi Task.
+Chỉ được dừng để hỏi khi thiếu dữ liệu bắt buộc, có mâu thuẫn authorization, cần mở rộng scope ngoài Task, hoặc gặp STOP/BLOCK condition thực sự.
+Không được biến việc đọc tài liệu thành một vòng xin phép thủ công.
+
+
+CONVERT2 — TASK INTAKE & EXECUTION STANDARD
+Version: 1.0
+Status: CANONICAL
+
+
+1. TASK SOURCE
+Chỉ Task nằm trong TASK FOLDER và có STATUS=ACTIVE mới được thi hành.
+
+
+2. TASK INTAKE
+Trước khi làm:
+- ghi Task ID;
+- đọc mục tiêu;
+- đọc scope;
+- đọc allowed files;
+- đọc forbidden files;
+- đọc dependencies;
+- đọc acceptance gates;
+- đọc evidence required;
+- đọc allowed final verdicts;
+- đọc stop condition.
+
+
+3. PRE-FLIGHT
+Agent phải kiểm tra:
+- repository URL;
+- branch;
+- worktree;
+- git status;
+- base commit;
+- locks/lease/fencing token nếu workspace standard yêu cầu;
+- governing docs/specs;
+- frozen hashes nếu có.
+
+
+4. TASK PLAN
+Agent tạo execution plan nội bộ theo:
+AUDIT -> DESIGN -> IMPLEMENT -> TEST -> BENCHMARK -> VALIDATE -> REPORT.
+Không bỏ AUDIT trước khi sửa code.
+
+
+5. SCOPE CONTROL
+Nếu phát hiện vấn đề ngoài scope:
+- không tự sửa;
+- ghi vào report;
+- final status dùng NEEDS_FIX/BLOCKED nếu ảnh hưởng gate;
+- chờ Task mới.
+
+
+6. PRODUCTION EDIT RULE
+Chỉ file nằm trong allowed scope mới được chỉnh.
+Nếu cần file ngoài scope:
+STOP và báo SCOPE_EXPANSION_REQUIRED.
+
+
+7. TEST RULE
+Không thay acceptance threshold sau khi đã nhìn thấy kết quả.
+Không xóa mẫu fail để đạt PASS.
+Không thay holdout thành tuning data mà không khai báo.
+
+
+8. HARDWARE CLAIM RULE
+Nếu Task yêu cầu physical device/GPU:
+- phải chạy trên thiết bị thật;
+- phải có runtime provenance;
+- không dùng fallback/mock để đại diện hardware path.
+
+
+9. COMPLETION RULE
+Agent chỉ được chuyển sang report khi:
+- implementation xong hoặc đã xác định blocker;
+- build/test evidence đã thu thập;
+- code đã commit/push nếu có thay đổi source;
+- report package đã sẵn sàng.
+
+
+10. FINAL VERDICT
+Chỉ dùng verdict mà Task cho phép.
+Không tự tạo verdict khác để né gate.
