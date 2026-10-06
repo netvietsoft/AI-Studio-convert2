@@ -1,0 +1,128 @@
+﻿CONVERT2 — REPORT & EVIDENCE SUBMISSION STANDARD
+Version: 1.0
+Status: CANONICAL
+
+
+REPORT FOLDER:
+https://drive.google.com/drive/u/0/folders/13xDIqiI-vyP10pkypLI_6palmeJS-QRg
+
+
+1. REPORT FOLDER NAMING
+Mỗi Task phải có thư mục report riêng:
+<TASK_ID>_REPORT
+
+
+Ví dụ:
+TASK_001_HCE_V1_GPU_RUNTIME_CLOSURE_REPORT
+
+
+2. MANDATORY ROOT FILE
+00_AUDIT_INDEX.md
+
+
+Phải chứa:
+task_id
+task_title
+task_url
+report_status
+final_verdict
+repository_url
+branch
+base_commit_sha
+parent_sha
+target_commit_sha
+commit_subject
+changed_files
+build_status
+test_status
+benchmark_status
+tester_verdict
+reviewer_verdict
+manifest_file
+freeze_file
+known_issues
+stop_condition_status
+
+
+3. MINIMUM REPORT PACKAGE
+Tùy Task, nhưng mặc định phải có:
+- 00_AUDIT_INDEX.md
+- MASTER_REPORT.md
+- TEST_REPORT.md
+- REVIEW_REPORT.md
+- MANIFEST.csv
+- FREEZE.sha256
+- raw evidence Task yêu cầu.
+
+
+4. RAW EVIDENCE FIRST
+Nếu claim dựa trên:
+- benchmark -> nộp CSV/log raw;
+- parity -> nộp raw diff/hash;
+- GPU -> nộp runtime trace;
+- JNI -> nộp source trace + runtime trace nếu yêu cầu;
+- visual -> nộp manifest + ảnh/artifact;
+- memory/thermal -> nộp measurement logs;
+- dataset -> nộp sample identity/metadata.
+
+
+Không được chỉ viết prose summary.
+
+
+5. FILE NAMING
+Tên file phải có chức năng rõ:
+*_METRICS.csv
+*_BENCHMARK.csv
+*_TRACE.md
+*_PROVENANCE.md
+*_MANIFEST.csv
+*_FREEZE.sha256
+*_TEST_REPORT.md
+*_REVIEW_REPORT.md
+
+
+6. MANIFEST
+MANIFEST.csv tối thiểu:
+artifact_name
+relative_path
+sha256
+size_bytes
+category
+status
+
+
+7. FREEZE
+FREEZE.sha256 phải:
+- dùng hash SHA-256;
+- liệt kê đúng file thuộc package;
+- verify thành công trước report final;
+- không hash file chưa tồn tại;
+- không âm thầm overwrite freeze cũ.
+
+
+8. CLAIM DISCIPLINE
+Không dùng:
+"100%", "perfect", "zero risk", "world-class", "full physical", "never crash"
+trừ khi evidence đúng phạm vi hỗ trợ.
+
+
+Claim phải scoped:
+"62/62 tested samples"
+"no crash observed in 300 documented runs"
+"actual Vulkan dispatch on device X"
+...
+
+
+9. SUPERSEDED REPORT
+Nếu correction mới thay report cũ:
+- giữ report cũ;
+- đánh dấu SUPERSEDED;
+- không xóa evidence lịch sử.
+
+
+10. SUBMISSION
+Sau khi upload xong:
+- verify folder contents;
+- verify manifest/freezes;
+- ghi STOP;
+- không tự mở task mới.

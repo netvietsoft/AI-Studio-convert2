@@ -162,3 +162,11 @@
 - Verification: scoped failure and real-local-Git/PowerShell regression tests recorded in TASK_060 TEST_REPORT.md. Fake AGY exit1 is explicitly MOCK runtime; no physical or live authenticated runner PASS is inferred.
 - Prevention: terminal events must be durable and tied to current command identity; test stale events, concurrent pushes and lock contention.
 - Links: TASK_060 raw evidence and code diff; ACQ-20261006-001.
+
+## ERR-20261006-001/002 ? TASK_060C guarded integration checkpoint
+- TASK060C ACTIVE revision2026-10-06T04:18:37.499Z authorizes continuing the existing infrastructure repair. Approved Google setup location remains pending; no credential configuration was performed.
+- Actual GitHub runner inventory now verified: sole runner25 CONVERT2-WINDOWS-01 online, Windows; labels self-hosted,Windows,X64,convert2,worker-1. This closes the earlier label-inventory uncertainty only.
+- Two historical unassigned Task059P attempts37306675375 and37264849305 were freshly fenced and cancelled in that order; API terminal-cancelled receipts are in TASK060/TASK_060C. Their command association is strong historical source+single-reservation/head/time correlation, without direct event token equality.
+- Latest old060 worker37401017912/job112067979241 remains completed/failure with no newer execution observed. Isolated checkpoint reconciles its exact lingering RUNNING ownership to FAILED; actual job completion time is separate from reconciliation time.
+- Existing059,059P,056 command IDs retain exact unique060C dependency. Controlled probe always returns nonzero, including review-required42 after actual auth success; this must not manufacture COMPLETED or admit parent work. Real checkpoint acceptance still pending.
+- GitHub API timestamps and local OS/tool clocks are preserved independently; observed offsets preclude unsupported cross-clock duration claims.

@@ -127,3 +127,9 @@
 - Evidence: observed worker run37401017912, dispatcher37400905046, ACK13e7d390; local regression fixtures recorded in TASK_060 report. Local tests use MOCK runtime and real local bare Git, not an authenticated production runner.
 - Limits: no TASK_059 resume proof, full runner label inventory, authenticated service smoke or live corrected-run proof yet. Keep CANDIDATE until those gates are verified.
 - Links: ERR-20261006-001/002; .ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/.
+## ACQ-20261006-002 ? Quarantine old snapshots and retain admission after a negative proof
+- Status: CANDIDATE; owner /root; Task060C.
+- Queued workflows can retain old reserved-command snapshots after canonical timeout rollback. Gate changes on current main alone do not protect against an older queued worker.
+- Freshly verify exact historical correlation and unassigned status, cancel newer pending concurrency attempt first, verify terminal, then cancel older queued attempt before releasing stale locks.
+- Exact command-ID dependencies remain unsatisfied when a deliberately controlled lifecycle proof fails. After independent real infrastructure acceptance, release admission through guarded metadata and preserve failed history; never relabel a negative attempt COMPLETED.
+- Evidence: TASK060 report/TASK_060C cancellation receipts, runner inventory and local_atomic_metadata_proof.json. Deployment and bounded real rerun remain pending.

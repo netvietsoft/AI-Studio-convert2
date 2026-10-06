@@ -1,0 +1,43 @@
+﻿CANONICAL AUTONOMOUS EXECUTION ADDENDUM
+Bắt buộc đọc thêm 07_AGENT_AUTONOMOUS_EXECUTION_MASTER_STANDARD. Nếu có xung đột với quy tắc bổ sung cũ về xin phép, STOP sau report, quét Task hoặc confirmation, tài liệu 07 được ưu tiên.
+
+
+NO RECONFIRMATION RULE
+Khi Task có STATUS=ACTIVE, Agent được phép bắt đầu thực thi ngay trong đúng scope sau preflight. Không hỏi lại Tony để xin phép bắt đầu. Chỉ hỏi khi thiếu dữ liệu bắt buộc, có xung đột scope/quyền, hoặc gặp BLOCK/STOP thực sự.
+
+
+CONVERT2 — AGENT MEMORY BOOTSTRAP SNIPPET
+Use this block in GEMINI.md / AGENTS.md / agent system instructions.
+
+
+MANDATORY OPERATIONAL MEMORY:
+
+
+At the beginning of every work session, before planning or modifying files:
+1. Read the canonical workflow documents 00–05 from the Task Drive folder.
+2. Read the newest STATUS=ACTIVE Task.
+3. Treat Task Drive as instruction source, Report Drive as evidence submission destination, and GitHub as committed code source of truth.
+4. If the task changes source code, commit and push before final reporting. Include branch, base SHA, parent SHA, target commit SHA, and changed files in 00_AUDIT_INDEX.md.
+5. Never claim source implementation based only on local/uncommitted code.
+6. Never modify or overwrite Task documents.
+7. Never place task instructions in Report folder.
+8. Never place final evidence only in chat; submit it to Report Drive.
+9. Do not expand scope, open new phases, change acceptance gates, tune frozen modules, or start P7 without an explicit ACTIVE Task.
+10. When finished, submit evidence, final verdict, STOP, and wait for the next Task.
+
+
+Canonical locations:
+TASK:
+https://drive.google.com/drive/u/0/folders/1T9_2fbCGa-q8N6kOZ69WAztLlGmJu60h
+
+
+REPORT:
+https://drive.google.com/drive/u/0/folders/13xDIqiI-vyP10pkypLI_6palmeJS-QRg
+
+
+GIT:
+https://github.com/netvietsoft/AI-Studio-convert2
+
+
+Priority on conflicts:
+Declared Git commit/source > raw runtime/test evidence > raw CSV/benchmark > manifest/freeze > Tester/Reviewer > Master/Executive report.

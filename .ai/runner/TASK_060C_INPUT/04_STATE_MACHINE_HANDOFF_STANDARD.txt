@@ -1,0 +1,93 @@
+﻿CONVERT2 — TASK / REPORT / AUDIT STATE MACHINE
+Version: 1.0
+Status: CANONICAL
+
+
+STATE FLOW
+
+
+TASK_CREATED
+-> TASK_ACTIVE
+-> AGENT_PREFLIGHT
+-> IN_PROGRESS
+-> CODE_COMMITTED (nếu có code)
+-> REPORT_SUBMITTED
+-> AUDIT_IN_PROGRESS
+-> PASS hoặc NEEDS_FIX/BLOCKED
+-> NEXT_TASK hoặc CLOSED
+
+
+1. TASK_CREATED
+Chủ tịch Tony tạo task trong Task folder.
+
+
+2. TASK_ACTIVE
+Chỉ task có STATUS=ACTIVE được Agent thi hành.
+
+
+3. AGENT_PREFLIGHT
+Agent đọc bộ tài liệu 00–05, task, repo state, dependencies.
+
+
+4. IN_PROGRESS
+Agent làm trong đúng scope/branch/worktree.
+
+
+5. CODE_COMMITTED
+Nếu có code:
+commit + push trước khi report final.
+
+
+6. REPORT_SUBMITTED
+Agent nộp report/evidence vào Report folder.
+Không sửa Task.
+
+
+7. AUDIT_IN_PROGRESS
+Tony đọc:
+- report;
+- raw evidence;
+- declared Git commit khi cần code.
+
+
+8. PASS
+Chỉ khi tất cả hard gates đạt.
+Tony có thể tạo task phase tiếp theo nếu được Chủ tịch cho phép.
+
+
+9. NEEDS_FIX
+Tony tạo Task Correction mới trong Task folder.
+Agent không tự suy diễn hướng sửa ngoài task mới.
+
+
+10. BLOCKED
+Dùng khi thiếu:
+commit
+evidence
+device
+dependency
+authorization
+hoặc có contradiction chưa giải quyết.
+
+
+11. CLOSED
+Task/phase đóng cho validated scope.
+Không tự mở lại nếu không có Change Request / Task mới.
+
+
+12. CONCURRENCY
+Nhiều Agent có thể chạy song song nếu:
+- dependencies cho phép;
+- worktree/branch riêng;
+- file locks không xung đột;
+- integration gate vẫn tuần tự theo contract.
+
+
+13. HANDOFF GUARANTEE
+Mỗi handoff phải có:
+Task ID
+Report folder
+Commit SHA nếu có code
+Final verdict
+Known issues
+Next authorized action = NONE hoặc explicit Task mới.

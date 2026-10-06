@@ -41,7 +41,7 @@
   "instructions": "Execute TASK_060 from the linked Task Drive document. Reproduce and repair the dispatcher -> self-hosted Windows runner -> durable ACK path using current evidence, verify runner labels/service account/toolchain from inside the actual job, preserve Git safety, and prove a real end-to-end run. After infrastructure passes, reconcile and automatically resume existing TASK_059 without creating a duplicate technical task. TASK_060 PASS requires TASK_059 to reach real RUNNING/EXECUTING with durable identity. Do not expose secrets or bypass authorization/access controls. CONTROL-PLANE ORDERING UPDATE: this correction task has absolute dispatch priority and must run before any further TASK_059/TASK_059P retry. Do not spend another ACK timeout cycle on TASK_059P until TASK_060 runner/ACK correction has been attempted.",
   "anti_duplicate_key": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE:2026-10-05T15:45:00+07:00",
   "created_at": "2026-10-05T15:45:00+07:00",
-  "status": "RUNNING",
+  "status": "FAILED",
   "retry_count": 2,
   "lease": {
     "lease_token": "a59da47fbf2d4cb8b94cefc8868b3941",
@@ -56,8 +56,11 @@
     "workflow_url": "https://github.com/netvietsoft/AI-Studio-convert2/actions/runs/37401017912",
     "runner_lane": "infra-runner-durable-ack-task059-auto-resume",
     "started_at": "2026-10-06T08:47:26.945264+07:00",
-    "finished_at": null,
-    "conclusion": "RUNNING"
+    "finished_at": "2026-10-06T01:50:16Z",
+    "conclusion": "FAILURE",
+    "error_message": "Observed GitHub worker37401017912/job112067979241 completed failure at2026-10-06T01:50:16Z after service AGY authentication timeout; reconcile lingering canonical RUNNING only after current lease/run ownership and no-newer-execution checks. TASK_060C bounded proof pending; TASK059 gated.",
+    "finished_at_source": "GitHub worker job completed_at",
+    "lifecycle_reconciled_at": "2026-10-06T04:42:43.475582+00:00"
   },
   "provenance": null,
   "recovery_note": "P0 control-plane correction: must execute before TASK_059/TASK_059P retries. Previous priority 110 caused starvation behind TASK_059P priority 120. Runner bootstrap patched at 649b516093960e07292debf029ae5b552e2c51ab: resolve AGY via absolute known install path when service PATH misses it. Redispatch required. Service-profile bootstrap added at 894238250454c93f1930480b57484def3713916b; worker installs official AGY under its own LOCALAPPDATA and adds it to GITHUB_PATH, avoiding user-profile ACL dependency.",
@@ -77,5 +80,20 @@
     "previous_holder": "GITHUB_ACTIONS_37375334362",
     "expired_at": "2026-10-06T04:50:26.139638+07:00",
     "attempt": 2
+  },
+  "reconciliation": {
+    "reconciled_at": "2026-10-06T04:42:43.475582+00:00",
+    "reason": "Truth correction for observed terminal worker; not a new runtime attempt",
+    "canonical_base_sha": "5eca94001b6b80fdff80f4ab0a1cea61cc8523b7",
+    "observed_worker_run_id": "37401017912",
+    "observed_worker_job_id": "112067979241",
+    "observed_worker_completed_at": "2026-10-06T01:50:16Z",
+    "observed_worker_conclusion": "failure",
+    "observed_runner_name": "CONVERT2-WINDOWS-01",
+    "quarantined_run_ids": [
+      "37306675375",
+      "37264849305"
+    ],
+    "no_newer_execution_observed": true
   }
 }
