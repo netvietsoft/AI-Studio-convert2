@@ -139,6 +139,61 @@ class TestRunnerFailurePublication(unittest.TestCase):
             "git('push', 'origin', 'main')\n"
         )
 
+    def install_execution_script(self, exit_code):
+        command_path = self.worker / ".ai" / "commands" / "pending" / f"{COMMAND_ID}.json"
+        command = json.loads(command_path.read_text(encoding="utf-8"))
+        command["execution_script"] = "scripts/mock_execution.ps1"
+        command_path.write_text(json.dumps(command), encoding="utf-8")
+        (self.worker / "scripts" / "mock_execution.ps1").write_text(
+            "param([string]$CommandId, [string]$TaskId, [string]$ExecutionLane, [string]$RepoPath)\n"
+            "$probe = @{upstream_source='MOCK'; command_id=$CommandId; task_id=$TaskId; repo_path=$RepoPath}\n"
+            "$probe | ConvertTo-Json | Set-Content -Encoding UTF8 (Join-Path $RepoPath '.ai/runner/mock_script_probe.json')\n"
+            f"Write-Host 'MOCK execution_script exits {exit_code}'\n"
+            f"exit {exit_code}\n", encoding="utf-8",
+        )
+        self.git(self.worker, "add", "-A")
+        self.git(self.worker, "commit", "-m", "MOCK bounded execution_script fixture")
+        self.git(self.worker, "push", "origin", "main")
+
+    def test_nonzero_execution_script_publishes_failure_without_integrator(self):
+        self.install_execution_script(9)
+        result = self.run_worker()
+        self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("MOCK execution_script exits 9", result.stdout)
+        self.assertIn("Execution turn finished. ExitCode=9", result.stdout, result.stderr)
+        self.assertIn("Durable FAILED state published", result.stdout, result.stderr)
+        self.assertNotIn("Launching agy", result.stdout)
+        self.assertNotIn("Triggering Serial Integrator", result.stdout)
+        self.assertNotIn("processing completed", result.stdout)
+        canonical = self.remote_json(f".ai/commands/failed/{COMMAND_ID}.json")
+        self.assertEqual(canonical["status"], "FAILED")
+        self.assertEqual(canonical["execution_identity"]["conclusion"], "FAILURE")
+        self.assertIn("error code 9", canonical["execution_identity"]["error_message"])
+        probe = json.loads((self.worker / ".ai" / "runner" / "mock_script_probe.json").read_text(encoding="utf-8-sig"))
+        self.assertEqual(probe["upstream_source"], "MOCK")
+        self.assertEqual(probe["command_id"], COMMAND_ID)
+        self.assertEqual(probe["task_id"], TASK_ID)
+        self.assertEqual(Path(probe["repo_path"]), self.worker)
+
+    def test_zero_execution_script_only_requests_mock_integrator(self):
+        self.install_execution_script(0)
+        integrator_probe = self.root / "mock_integrator_requested"
+        self.env["MOCK_INTEGRATOR_PROBE"] = str(integrator_probe)
+        (self.tools / "gh.cmd").write_text(
+            "@echo off\n"
+            'echo upstream_source=MOCK > "%MOCK_INTEGRATOR_PROBE%"\n'
+            "exit /b 0\n", encoding="ascii",
+        )
+        result = self.run_worker()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("Execution turn finished. ExitCode=0", result.stdout)
+        self.assertNotIn("Launching agy", result.stdout)
+        self.assertNotIn("Durable FAILED state published", result.stdout)
+        self.assertTrue(integrator_probe.exists())
+        # This asserts a request to a local MOCK CLI, not real integration or PASS.
+        self.assertEqual(self.remote_json(f".ai/commands/running/{COMMAND_ID}.json")["status"], "RUNNING")
+        self.assertEqual(len(self.attempt_branches()), 1)
+
     def test_failed_runtime_publishes_only_lifecycle_to_main(self):
         result = self.run_worker()
         self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
