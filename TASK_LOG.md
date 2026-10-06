@@ -2021,3 +2021,13 @@ unning: 0).
 
 
 
+
+### 2026-10-06 — TASK_060 current-evidence intake and local failure-state correction
+
+- Read canonical Task Drive and governing documents; located dated workspace standard after exact F path was absent.
+- Original workspace read-only: main997a1fd, nine tracked deletions,4106 untracked files; preserved user changes.
+- Current remote source5eca940 differs from local checkpoint. Real worker37401017912 / job112067979241 on CONVERT2-WINDOWS-01 produced ACK13e7d390, then AGY authentication timed out under Network Service. Dispatcher37400905046 acknowledged successfully.
+- Isolated checkout and scoped leases1003–1005; parallel wrapper/state implementation and independent review. Regression runtimes are MOCK; local Git/PowerShell operations are real fixtures.
+- User confirmed approved unattended authentication setup is available and will identify it. Dependent live verification/resumption remains pending.
+- Evidence, remaining gates and restart instructions: .ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/.
+- 2026-10-06: Published technical commit f9c7c814150596c2ed799452c7f8d835336b1b46 on codex/task060-ack-failure-state-20261006 and draft PR https://github.com/netvietsoft/AI-Studio-convert2/pull/2 after independent review and 46 passing local tests. TASK_060 remains BLOCKED for authenticated live validation; TASK_059 not resumed. Report checkpoint is not completion.

@@ -137,3 +137,28 @@
   3. Bổ sung bộ kiểm thử hồi quy toàn diện `tests/test_command_bus_state_reconciliation.py` (5 tests) chứng minh việc commit durable worker ACK diễn ra trước khi thực thi tính toán nặng.
 - **Quy tắc phòng ngừa:** Tuyệt đối cấm để lệch pha giữa hàng đợi command bus và tệp trạng thái toàn cục. Mọi thay đổi trạng thái lệnh trong command bus phải lập tức đồng bộ nguyên tử vào `.ai/state.json`.
 
+
+## ERR-20261006-001 — AGY service-profile authentication blocks the worker after durable ACK
+
+- Status: INVESTIGATING; Severity: S1 HIGH; Component: Windows runner / AGY authentication.
+- Owner: /root; Task: TASK_060; First seen in inspected run: 2026-10-06T01:47:32Z.
+- Environment: CONVERT2-WINDOWS-01, OSIN, NT AUTHORITY\NETWORK SERVICE, AGY 1.2.17.
+- Symptoms: AGY version preflight passed, then authentication required, 60-second timeout and runtime exit 1.
+- Root cause: observed service execution lacked a usable authenticated session. Location/configuration of the user-confirmed approved unattended setup is pending; do not infer credential absence on the whole machine.
+- Failed approach to avoid: installing/resolving the executable and treating --version as authenticated readiness; rerunning long technical tasks before service-account readiness.
+- Verification: worker run 37401017912, job 112067979241; sanitized complete log in TASK_060 raw_evidence. Durable ACK commit 13e7d39094e577ec045ab1209f622b596baf885e precedes the timeout.
+- Resolution: pending approved setup location and service-environment verification. No credential file read, copied or created in this session.
+- Prevention: verify execution identity and authorized authentication separately from executable resolution.
+- Links: .ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/03_SERVICE_ACCOUNT_ENVIRONMENT_EVIDENCE.md; ACQ-20261006-001.
+
+## ERR-20261006-002 — Runtime failure was not published and contended lock retries leaked handles
+
+- Status: MITIGATED; Resolution scope: local only; Severity: S1 HIGH; Component: command bus failure lifecycle.
+- Owner: /root; Task: TASK_060; Source baseline: 5eca94001b6b80fdff80f4ab0a1cea61cc8523b7.
+- Root cause confirmed: wrapper pushed task branch before fail_command, then threw without publishing terminal mutation; fail_command omitted global failure reconciliation. Remote RUNNING persisted after completed failed job. Independent audit confirmed this ordering from source and raw logs.
+- Additional reproduced defect: FileLock retry opened a Windows handle before nonblocking lock acquisition and did not close it on contention. Actual concurrent failure fixture cleanup raised WinError32 before the close-on-failed-attempt fix.
+- Failed approaches to avoid: directory-uniqueness tests alone as live-execution proof; late failure overwriting a newer command of the same task; force-pushing a reused task branch.
+- Local correction: publish lifecycle failure from current canonical main with lease/run revalidation, bounded normal-push retries and no task-source merge; preserve newer per-task/global execution state; close failed acquisition handles; reject failed CLI transitions; preserve legacy branches and exclude transient locks. Independent review approved this bounded correction; 46 local tests pass. Corrected live-run acceptance is pending.
+- Verification: scoped failure and real-local-Git/PowerShell regression tests recorded in TASK_060 TEST_REPORT.md. Fake AGY exit1 is explicitly MOCK runtime; no physical or live authenticated runner PASS is inferred.
+- Prevention: terminal events must be durable and tied to current command identity; test stale events, concurrent pushes and lock contention.
+- Links: TASK_060 raw evidence and code diff; ACQ-20261006-001.

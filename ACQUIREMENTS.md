@@ -115,3 +115,15 @@
   3. **Khóa cổng tính năng chưa đủ bằng chứng:** Khi bằng chứng NPU chưa hoàn chỉnh, kiên quyết giữ cổng tính năng (Hair V4: `BLOCKED`), tuyệt đối không tuyên bố PASS sớm khi chưa có chứng cứ thực tế.
 
 
+
+## ACQ-20261006-001 — Publish terminal lifecycle from current canonical state, separate from runtime authentication
+
+- Status: CANDIDATE; Category: PROCESS / INFRASTRUCTURE; Owner: /root; Task: TASK_060.
+- Context: a durable worker ACK succeeded but the runtime stopped for service-profile authentication, and the later failure mutation was never published.
+- Distilled knowledge: ACK, runtime readiness, terminal state publication and substantive task completion require separate evidence. A normal-push isolated lifecycle update must revalidate the canonical command lease and preserve newer execution identities; task source/evidence belongs to the existing integration review path.
+- When to use: a worker already claimed a command, then exits unsuccessfully while canonical command state still points to that execution.
+- When not to use: no current matching claim, replaced lease, unrelated newer execution, or a request to merge source/evidence without review.
+- Checklist: observe exact run/job/account; validate executable and authorized authentication independently; fail current command before publication; stage only lifecycle paths; use normal push with bounded concurrency retries; reject replaced lease; preserve evidence on failure; verify remote state and new real runner behavior.
+- Evidence: observed worker run37401017912, dispatcher37400905046, ACK13e7d390; local regression fixtures recorded in TASK_060 report. Local tests use MOCK runtime and real local bare Git, not an authenticated production runner.
+- Limits: no TASK_059 resume proof, full runner label inventory, authenticated service smoke or live corrected-run proof yet. Keep CANDIDATE until those gates are verified.
+- Links: ERR-20261006-001/002; .ai/reports/TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION/.
