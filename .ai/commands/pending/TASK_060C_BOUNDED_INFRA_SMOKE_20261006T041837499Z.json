@@ -7,7 +7,9 @@
   "issued_for_sha": "5eca94001b6b80fdff80f4ab0a1cea61cc8523b7",
   "priority": "CRITICAL",
   "priority_weight": 220,
-  "dependencies": [],
+  "dependencies": [
+    "TASK_060D_DURABLE_ACK_BUS_LOCK_20261006T121100+0700"
+  ],
   "execution_lane": "infra-task060c-bounded-proof",
   "allowed_paths": [
     ".github/workflows/convert2-dispatcher.yml",
@@ -35,7 +37,7 @@
   ],
   "anti_duplicate_key": "TASK_060C_TASK060_CHECKPOINT_INTEGRATION_AUTH_REAL_RERUN_CORRECTION_ACTIVE:2026-10-06T04:18:37.499Z",
   "created_at": "2026-10-06T11:42:42.913687+07:00",
-  "status": "PENDING",
+  "status": "WAITING_DEPENDENCY",
   "retry_count": 0,
   "lease": null,
   "execution_identity": null,
@@ -43,7 +45,7 @@
   "parent_task_id": "TASK_060_RUNNER_DURABLE_ACK_AND_TASK059_AUTO_RESUME_CORRECTION_ACTIVE",
   "execution_script": ".ai/runner/task060c_smoke.ps1",
   "runner_label": "convert2",
-  "instructions": "Run only the bounded TASK_060C infrastructure readiness proof from execution_script. Existing service profile session only; no credential/configuration changes. Require exact runner/account/run/command binding. Read/hash mandatory rules packet and label script ACK honestly. Record actual auth outcome separately from deliberate review-required exit42. Do not execute TASK059 or TASK059P, do not mark Task060/060C PASS, do not invoke integrate_branch. All technical parent work requires independently reviewed real infrastructure gates before admission.",
+  "instructions": "Run only the bounded TASK_060C infrastructure readiness proof from execution_script after TASK_060D passes. Existing service profile session only; no credential/configuration changes. Require exact runner/account/run/command binding. Read/hash mandatory rules packet and label script ACK honestly. Record actual auth outcome separately from deliberate review-required exit42. Do not execute TASK059 or TASK059P, do not mark Task060/060C PASS, do not invoke integrate_branch. All technical parent work requires independently reviewed real infrastructure gates before admission.",
   "expected_runner_name": "CONVERT2-WINDOWS-01",
   "expected_service_sid": "S-1-5-20",
   "bounded_runtime_seconds": 90,
@@ -55,5 +57,9 @@
     "dispatcher_run_id": "37415795007",
     "failed_at": "2026-10-06T04:58:17.590822+00:00",
     "error": "Worker ACK timeout after workflow_dispatch: no durable lease/execution_identity CLAIM observed within 240s"
-  }
+  },
+  "queue_reason": "TASK_060D durable ACK .bus.lock staging correction must pass before TASK_060C is retried.",
+  "blocked_by_dependencies": [
+    "TASK_060D_DURABLE_ACK_BUS_LOCK_20261006T121100+0700"
+  ]
 }
