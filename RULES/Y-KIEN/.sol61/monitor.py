@@ -327,7 +327,10 @@ class Monitor:
             after = path.stat()
             if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
                 raise AuditError(f"Task changed while reading: {path}")
-            statuses = re.findall(r"^\s*(?:#+\s*)?STATUS\s*:\s*([A-Z_]+)\s*$", text, re.M | re.I)
+            # Markdown emphasis may wrap the key, colon, or value. Still match
+            # the entire metadata line so INACTIVE can never become ACTIVE.
+            metadata_text = re.sub(r"\*\*|__", "", text)
+            statuses = re.findall(r"^\s*(?:#+\s*)?STATUS\s*:\s*([A-Z_]+)\s*$", metadata_text, re.M | re.I)
             status = statuses[0].upper() if len(set(value.upper() for value in statuses)) == 1 else "UNKNOWN"
             supersedes = re.findall(r"^\s*SUPERSEDES\s*:\s*(.*)$", text, re.M | re.I)
             item = tasks.setdefault(identifier, {"documents": {}, "statuses": [], "texts": [], "supersedes": []})
@@ -369,6 +372,26 @@ class Monitor:
                 if directory.exists():
                     paths.update(path for path in directory.rglob("*") if path.is_file()
                                  and path.suffix.lower() in {".c", ".h", ".glsl", ".fs", ".txt", ".raw", ".spirv", ".json", ".csv"})
+        if identifier == "TASK_062":
+            # Bind the actual acceptance fixtures and deployed shaders, not just
+            # the C++ file mentioned in the report. These are read-only inputs.
+            for name in ("scripts/generate_task062_demo.py", "scripts/build_reference_implementation.py",
+                         "README_HAIR_MASK.md", "lib-core-graphics/src/main/cpp/src/jni_bridge.cpp",
+                         "lib-core-graphics/src/main/cpp/src/hair/hair_pipeline_v2.cpp",
+                         "lib-core-graphics/src/main/cpp/CMakeLists.txt",
+                         ".ai/reconstruction/evidence/TASK_061/decoded_shaders/ARKernel3Builtin_Shaders_MTFilter_HairMaskMix.fs",
+                         ".ai/reconstruction/evidence/TASK_061/decoded_shaders/ARKernel3Builtin_Shaders_HairSoft_MTFilter_PsSoftLightr.fs"):
+                paths.add(self.root / name)
+            for name in ("tests/hair", "app/src/main/assets/ARKernelBuiltin/Shaders",
+                         "RULES/REPORT/TASK_061_REPORT/07_REFERENCE_IMPL"):
+                directory = self.root / name
+                if directory.exists():
+                    paths.update(path for path in directory.rglob("*") if path.is_file()
+                                 and not ignored(path.relative_to(directory))
+                                 and path.suffix.lower() in {".py", ".fs", ".vs", ".png"})
+            for pattern in ("lib-core-graphics/build/intermediates/cxx/Debug/*/logs/*/build_stdout_meitu_reborn_native.txt",
+                            "lib-core-graphics/build/intermediates/cxx/Debug/*/logs/*/build_stderr_meitu_reborn_native.txt"):
+                paths.update(self.root.glob(pattern))
         # P0 code is hashed as a boundary; the monitor cannot write it.
         for name in ("lib-core-graphics/src/main/cpp/include/ai/bisenet_face_parser.h",
                      "lib-core-graphics/src/main/cpp/src/ai/bisenet_face_parser.cpp",

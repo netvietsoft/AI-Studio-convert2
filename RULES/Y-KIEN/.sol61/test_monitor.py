@@ -86,6 +86,33 @@ class MonitorBehaviorTests(unittest.TestCase):
         self.assertEqual(len(matches), 1, result)
         return matches[0]
 
+    def test_markdown_status_is_exact_and_conflicts_remain(self):
+        path = self.tasks / "TASK_901.md"
+        path.write_text("# TASK_901\n**STATUS:** ACTIVE\n", encoding="utf-8")
+        self.assertEqual(self.m._tasks()["TASK_901"]["status"], "ACTIVE")
+        path.write_text("# TASK_901\n**STATUS:** INACTIVE\n", encoding="utf-8")
+        self.assertEqual(self.m._tasks()["TASK_901"]["status"], "INACTIVE")
+        path.write_text("# TASK_901\n**STATUS:** ACTIVE\nSTATUS: INACTIVE\n", encoding="utf-8")
+        self.assertEqual(self.m._tasks()["TASK_901"]["status"], "UNKNOWN")
+
+    def test_task062_source_fixture_change_invalidates_binding(self):
+        self._task("TASK_062", "ACTIVE")
+        report = self.reports / "TASK_062_REPORT"
+        report.mkdir()
+        (report / "report.md").write_text("Acceptance claim.\n", encoding="utf-8")
+        fixture = self.root / "tests/hair/test_fixture.py"
+        fixture.parent.mkdir(parents=True)
+        fixture.write_text("value = 1\n", encoding="utf-8")
+        self.m.scan()
+        self.clock.advance(61)
+        ready = self._candidate(self.m.scan(), "TASK_062")
+        self.assertTrue(ready["stable"])
+        self.assertIn("tests/hair/test_fixture.py", ready["snapshot"]["source"])
+        fixture.write_text("value = 2\n", encoding="utf-8")
+        revised = self._candidate(self.m.scan(), "TASK_062")
+        self.assertNotEqual(ready["review_id"], revised["review_id"])
+        self.assertFalse(revised["stable"])
+
     def _stable(self):
         self.assertFalse(self._candidate(self.m.scan())["stable"])
         self.clock.advance(61)
