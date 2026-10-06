@@ -748,7 +748,16 @@ bool HairPipelineV2::executePipelineV2_Baseline(
     return true;
 }
 
-// Rebuilt V3 Pipeline (TASK_035: Anatomical head-anchor, strict protected gates, false-positive elimination, natural salon OKLab dye)
+// Verbatim Pegtop SoftLight kernel from Meitu MTFilter_PsSoftLightr.fs (TASK_062)
+static inline float softLightPegtop(float A, float B) {
+    if (B <= 0.5f) {
+        return (A * B / 0.5f) + A * A * (1.0f - 2.0f * B);
+    } else {
+        return (A * (1.0f - B) / 0.5f) + std::sqrt(std::max(0.0f, A)) * (2.0f * B - 1.0f);
+    }
+}
+
+// Rebuilt V3 Pipeline (TASK_035 & TASK_062: Mask Exclusion Clamping + Pegtop SoftLight)
 bool HairPipelineV2::executePipelineV3_Rebuild(
     const uint32_t* srcPixels,
     uint32_t* dstPixels,
@@ -833,10 +842,11 @@ bool HairPipelineV2::executePipelineV3_Rebuild(
         forehead_y = height * 0.24f;
     }
 
-    // 4. Strict Protected Region Gate
+    // 4. Strict Protected Region Gate & Mask Exclusion Clamping (TASK_062 / MTFilter_HairMaskMix.fs)
     // Non-hair classes: 1=Skin, 2..6=Eyes/Brows/Glasses, 7..9=Ears/Earrings,
     // 10..13=Nose/Mouth/Lips, 14,15=Neck/Necklace, 16=Cloth, 18=Hat
     std::vector<uint8_t> protectedMask(width * height, 0);
+    std::vector<float> exclusionMask(width * height, 0.0f);
 
     #pragma omp parallel for schedule(static, 32)
     for (int y = 0; y < height; ++y) {
@@ -849,43 +859,58 @@ bool HairPipelineV2::executePipelineV3_Rebuild(
             int r = RGBA_R(c), g = RGBA_G(c), b = RGBA_B(c);
             bool isSkin = isHumanSkinPixel(r, g, b);
 
-            // A. Semantic label protection
+            // A. Semantic label protection (facial skin, eyes, nose, ears, neck, cloth, hat)
             if (lbl == 1 || (lbl >= 2 && lbl <= 15) || lbl == 16 || lbl == 18) {
                 protectedMask[idx] = 1;
+                exclusionMask[idx] = 1.0f;
                 continue;
             }
 
-            // B. Outside person protection
+            // B. Outside person protection (background)
             if (hasPersonSeg && personProb[idx] < 0.20f) {
                 protectedMask[idx] = 1;
+                exclusionMask[idx] = 1.0f;
                 continue;
             }
 
             // Top background corners
             if (y < 0.16f * height && (x < 0.20f * width || x > 0.80f * width) && lbl != 17) {
                 protectedMask[idx] = 1;
+                exclusionMask[idx] = 1.0f;
                 continue;
             }
 
-            // C. Dynamic Face & Forehead Oval Skin Protection (Zero leakage onto forehead!)
-            float dx = (static_cast<float>(x) - face_cx) / (face_w * 0.68f + 1.0f);
-            float dy = (ny - face_cy) / (face_h * 0.72f + 1.0f);
-            bool inFaceOval = (dx * dx + dy * dy <= 1.0f) && (ny >= forehead_y - 0.10f * face_h) && (ny <= chin_y + 0.10f * face_h);
-            if (inFaceOval && isSkin) {
-                protectedMask[idx] = 1;
-                continue;
-            }
-
-            // Forehead hairline region: strictly protect any skin or near-skin
-            if (ny >= forehead_y - 0.05f * face_h && ny <= forehead_y + 0.40f * face_h && std::abs(static_cast<float>(x) - face_cx) <= face_w * 0.60f) {
-                float yVal = 0.299f * r + 0.587f * g + 0.114f * b;
-                float cr = (r - yVal) * 0.713f + 128.0f;
-                if ((cr >= 122.0f && cr <= 180.0f && r > b) || isSkin) {
+            // C. Direct Skin Protection: strictly exclude any human skin outside cranial scalp
+            if (isSkin) {
+                // If below eyebrows or outside cranium skull width, 100% protect
+                if (ny > min_fy || std::abs(static_cast<float>(x) - face_cx) > face_w * 0.90f) {
                     protectedMask[idx] = 1;
+                    exclusionMask[idx] = 1.0f;
                     continue;
                 }
             }
         }
+    }
+
+    // Mask Exclusion Clamping: Verbatim Meitu HairMaskMix fragment logic (MTFilter_HairMaskMix.fs)
+    // float blackvalue = 1.0 - black.r;
+    // float val = src.r;
+    // if (black.r > 0.0) { if (src.r > blackvalue) val = blackvalue; }
+    #pragma omp parallel for schedule(static, 32)
+    for (int i = 0; i < width * height; ++i) {
+        float rawHair = fullHairProb[i];
+        float exclVal = exclusionMask[i];
+        float blackValue = 1.0f - exclVal;
+        float val = rawHair;
+        if (exclVal > 0.0f) {
+            if (rawHair > blackValue) {
+                val = blackValue;
+            }
+        }
+        if (exclVal >= 0.95f || protectedMask[i]) {
+            val = 0.0f;
+        }
+        fullHairProb[i] = val;
     }
 
     // 5. Scalp Hair Seed & Appearance Model
@@ -1122,82 +1147,79 @@ bool HairPipelineV2::executePipelineV3_Rebuild(
         finalAlpha[i] = alpha;
     }
 
-    // 8. Natural Salon Color Transform in OKLab
+    // 8. Natural Salon Color Transform via Pegtop SoftLight (TASK_062 / MTFilter_PsSoftLightr.fs)
     float hueRad = materialParams.targetHue * 0.0174532925f; // Deg to Rad
     float targetC = std::clamp(materialParams.targetChroma / 100.0f * 0.28f, 0.0f, 0.35f);
     float targetA = targetC * std::cos(hueRad);
     float targetBCoord = targetC * std::sin(hueRad);
     float targetL = std::clamp(materialParams.targetLightness / 100.0f, 0.05f, 0.95f);
 
-    std::vector<float> origL(width * height, 0.0f);
-    std::vector<float> origA(width * height, 0.0f);
-    std::vector<float> origB(width * height, 0.0f);
+    float targetDyeR, targetDyeG, targetDyeB;
+    oklabTosRGB(targetL, targetA, targetBCoord, targetDyeR, targetDyeG, targetDyeB);
+    targetDyeR = std::clamp(targetDyeR, 0.0f, 1.0f);
+    targetDyeG = std::clamp(targetDyeG, 0.0f, 1.0f);
+    targetDyeB = std::clamp(targetDyeB, 0.0f, 1.0f);
+
+    std::vector<float> origR(width * height), origG(width * height), origB(width * height);
+    std::vector<float> baseR(width * height), baseG(width * height), baseB(width * height);
 
     #pragma omp parallel for schedule(static, 32)
     for (int i = 0; i < width * height; ++i) {
         uint32_t c = origSrc[i];
-        sRGBToOKLab(RGBA_R(c) / 255.0f, RGBA_G(c) / 255.0f, RGBA_B(c) / 255.0f, origL[i], origA[i], origB[i]);
+        origR[i] = RGBA_R(c) / 255.0f;
+        origG[i] = RGBA_G(c) / 255.0f;
+        origB[i] = RGBA_B(c) / 255.0f;
     }
 
-    // Base illumination map via 2D box filter (r=3, 7x7)
-    std::vector<float> baseL(width * height, 0.0f);
-    boxFilter2D(origL.data(), baseL.data(), width, height, 3);
+    // Base illumination map via 2D box filter (r=3, 7x7) for high-frequency cuticle detail
+    boxFilter2D(origR.data(), baseR.data(), width, height, 3);
+    boxFilter2D(origG.data(), baseG.data(), width, height, 3);
+    boxFilter2D(origB.data(), baseB.data(), width, height, 3);
 
     float intensity = std::clamp(materialParams.blendIntensity, 0.0f, 1.0f);
+    float bleachFactor = std::clamp(materialParams.bleachPower * 0.75f, 0.0f, 0.85f);
 
     #pragma omp parallel for schedule(static, 32)
     for (int i = 0; i < width * height; ++i) {
         float alpha = finalAlpha[i] * intensity;
-        if (alpha <= 0.001f) {
+        if (alpha <= 0.001f || exclusionMask[i] >= 0.95f || protectedMask[i]) {
             dstPixels[i] = origSrc[i];
             continue;
         }
 
-        float oL = origL[i];
-        float bL = baseL[i];
+        float r = origR[i];
+        float g = origG[i];
+        float b = origB[i];
 
-        // Strand ratio & detail preservation (preserves 100% curls and highlights, eliminates chalky paint)
-        float strandRatio = std::clamp((oL + 0.02f) / (bL + 0.02f), 0.70f, 1.45f);
-        float strandDetail = oL - bL;
+        // A. Stage 0: Pre-Whitening / Melanin Bleach
+        float Y = 0.299f * r + 0.587f * g + 0.114f * b;
+        float baseDesatR = r * (1.0f - bleachFactor) + Y * bleachFactor;
+        float baseDesatG = g * (1.0f - bleachFactor) + Y * bleachFactor;
+        float baseDesatB = b * (1.0f - bleachFactor) + Y * bleachFactor;
 
-        // Salon Melanin Lift
-        float liftAmount = targetL - bL;
-        float melaninCurve = (bL > 0.0f) ? (0.40f + 0.60f * std::sqrt(std::clamp(bL, 0.0f, 1.0f))) : 0.40f;
-        float liftedBaseL = bL + liftAmount * materialParams.bleachPower * melaninCurve * intensity;
+        // B. Stage 3: Photoshop Pegtop SoftLight Kernel (MTFilter_PsSoftLightr.fs)
+        float dyedR = softLightPegtop(baseDesatR, targetDyeR);
+        float dyedG = softLightPegtop(baseDesatG, targetDyeG);
+        float dyedB = softLightPegtop(baseDesatB, targetDyeB);
 
-        // Reconstructed physical strand luminance
-        float finalL = std::clamp(liftedBaseL * strandRatio + strandDetail * 0.35f, 0.02f, 0.98f);
+        // C. Stage 4: High-frequency Cuticle & Specular Detail Preservation
+        float detailR = r - baseR[i];
+        float detailG = g - baseG[i];
+        float detailB = b - baseB[i];
+        dyedR = std::clamp(dyedR + 0.25f * detailR, 0.0f, 1.0f);
+        dyedG = std::clamp(dyedG + 0.25f * detailG, 0.0f, 1.0f);
+        dyedB = std::clamp(dyedB + 0.25f * detailB, 0.0f, 1.0f);
 
-        // Salon Chroma Toner Deposition (bell-curve midtone weighting)
-        float midtone = 4.0f * finalL * (1.0f - finalL);
-        float dyeStrength = std::clamp(0.45f + 0.55f * midtone, 0.0f, 1.0f) * intensity;
-        float finalA = origA[i] * (1.0f - dyeStrength) + targetA * dyeStrength;
-        float finalB = origB[i] * (1.0f - dyeStrength) + targetBCoord * dyeStrength;
+        // D. Stage 5: Alpha Compositing
+        float compR = r * (1.0f - alpha) + dyedR * alpha;
+        float compG = g * (1.0f - alpha) + dyedG * alpha;
+        float compB = b * (1.0f - alpha) + dyedB * alpha;
 
-        // Neutral Specular Glint preservation
-        float specGlint = std::clamp((oL - 0.50f) / 0.40f, 0.0f, 1.0f) * specularParams.apparentShine * 0.70f;
-        finalA = finalA * (1.0f - 0.5f * specGlint) + origA[i] * (0.5f * specGlint);
-        finalB = finalB * (1.0f - 0.5f * specGlint) + origB[i] * (0.5f * specGlint);
+        int finalR = clampU8(static_cast<int>(std::round(compR * 255.0f)));
+        int finalG = clampU8(static_cast<int>(std::round(compG * 255.0f)));
+        int finalB = clampU8(static_cast<int>(std::round(compB * 255.0f)));
 
-        // Convert back to sRGB
-        float outR, outG, outB;
-        oklabTosRGB(finalL, finalA, finalB, outR, outG, outB);
-
-        int dyeR = clampU8(static_cast<int>(std::round(outR * 255.0f)));
-        int dyeG = clampU8(static_cast<int>(std::round(outG * 255.0f)));
-        int dyeB = clampU8(static_cast<int>(std::round(outB * 255.0f)));
-
-        // Alpha Compositing
-        if (alpha >= 0.999f) {
-            dstPixels[i] = PACK_RGBA(dyeR, dyeG, dyeB, RGBA_A(origSrc[i]));
-        } else {
-            uint32_t oc = origSrc[i];
-            float invA = 1.0f - alpha;
-            int r = static_cast<int>(std::round(RGBA_R(oc) * invA + dyeR * alpha));
-            int g = static_cast<int>(std::round(RGBA_G(oc) * invA + dyeG * alpha));
-            int b = static_cast<int>(std::round(RGBA_B(oc) * invA + dyeB * alpha));
-            dstPixels[i] = PACK_RGBA(clampU8(r), clampU8(g), clampU8(b), RGBA_A(oc));
-        }
+        dstPixels[i] = PACK_RGBA(finalR, finalG, finalB, RGBA_A(origSrc[i]));
     }
 
     LOGI("HairPipelineV3: executePipelineV3_Rebuild complete. w=%d, h=%d, intensity=%.2f", width, height, intensity);
