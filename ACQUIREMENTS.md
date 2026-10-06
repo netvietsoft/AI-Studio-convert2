@@ -115,3 +115,13 @@
   3. **Khóa cổng tính năng chưa đủ bằng chứng:** Khi bằng chứng NPU chưa hoàn chỉnh, kiên quyết giữ cổng tính năng (Hair V4: `BLOCKED`), tuyệt đối không tuyên bố PASS sớm khi chưa có chứng cứ thực tế.
 
 
+
+---
+
+### [ACQ-010] Quy Trình Thực Thi Tự Trị Cục Bộ & Chuẩn Nộp Báo Cáo Tại RULES\REPORT (TASK_059 / TASK_060)
+- **Bối cảnh:** Các tác vụ điều phối trước đây bị nghẽn do phụ thuộc vào vòng lặp GitHub Actions Runner từ xa (C:\actions-runner*) dễ mất mạng và timeout ACK.
+- **Kinh nghiệm và giải pháp tối ưu:**
+  1. **Tách rời hoàn toàn khỏi runner từ xa khi mất kết nối:** Không busy-loop chờ đợi runner GitHub khi xảy ra sự cố mạng. Chuyển sang mô hình Local Multi-Process Autonomous Loop dưới quyền điều phối trực tiếp của CEO Agent 0.
+  2. **Chuẩn nộp báo cáo chính thức:** Toàn bộ báo cáo task xuất xưởng trực tiếp vào F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\RULES\REPORT\<TASK_ID>_REPORT, đồng thời đồng bộ gương vào .ai/reports.
+  3. **Khảo sát nhị phân thực nghiệm:** Luôn đọc mã băm SHA-256 và kích thước từ nhị phân thực tế trên đĩa (SOURCE/extracted_native_libs/lib/arm64-v8a), triệt tiêu 100% việc tạo lập các tên thư viện suy đoán/giả định.
+  4. **Kênh trao đổi & đánh giá chiến lược:** Mọi trao đổi đánh giá với Chủ tịch Tony và các đội Agent được ghi tuần tự vào CONVERSION/AGY_<NUMBER>.md.

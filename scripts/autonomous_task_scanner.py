@@ -56,8 +56,16 @@ def scan_for_active_task():
 
     last_completed = state.get("last_completed_task_id", "")
     last_num = extract_task_number(last_completed)
-    if last_num < 60:
-        last_num = 60  # TASK_059 and TASK_060 are officially completed in RULES/REPORT
+    
+    # Also find the highest completed task directory in RULES/REPORT
+    highest_report_num = 60
+    if REPORT_DIR.exists():
+        for r_name in os.listdir(REPORT_DIR):
+            n = extract_task_number(r_name)
+            if n > highest_report_num:
+                highest_report_num = n
+    if last_num < highest_report_num:
+        last_num = highest_report_num
 
     candidates = []
     for f in os.listdir(TASK_DIR):
@@ -92,24 +100,40 @@ def scan_for_active_task():
 
     candidates.sort(key=lambda x: x["mtime"], reverse=True)
 
-    # Check for NEW active tasks with task_num > last_num or newer mtime
+    # Check for NEW active tasks (task_num > last_num or newer modified time)
     new_active = []
     for c in candidates:
-        if "ACTIVE" in c["status"].upper():
-            # If task number is strictly greater than 60, it's a new task!
-            if c["task_num"] > last_num:
-                new_active.append(c)
-            # Or if it's not yet reported in RULES/REPORT and not in .ai/reports
-            elif c["task_num"] > 0:
-                report_exists = False
-                for rdir in [REPORT_DIR, AI_REPORTS_DIR]:
-                    if rdir.exists():
-                        for item in os.listdir(rdir):
-                            if f"TASK_{c['task_num']:03d}" in item or f"TASK_{c['task_num']}" in item:
-                                report_exists = True
-                                break
-                if not report_exists and c["task_num"] >= 60:
+        if "ACTIVE" in c["status"].upper() and c["task_num"] > 0:
+            # Check if already completed in lifecycle or earlier sequence
+            is_completed = False
+            task_key_3 = f"TASK_{c['task_num']:03d}_COMPLETED"
+            task_key_2 = f"TASK_{c['task_num']}_COMPLETED"
+            if task_key_3 in state.get("task_lifecycle", {}) or task_key_2 in state.get("task_lifecycle", {}):
+                is_completed = True
+            elif c["task_num"] <= last_num:
+                is_completed = True
+
+            # Check if this task already has a report in RULES/REPORT or .ai/reports
+            report_dir = None
+            for rdir in [REPORT_DIR, AI_REPORTS_DIR]:
+                if rdir.exists():
+                    for item in os.listdir(rdir):
+                        if (f"TASK_{c['task_num']:03d}" in item.upper() or f"TASK_{c['task_num']}" in item.upper()):
+                            report_dir = rdir / item
+                            is_completed = True
+                            break
+                    if report_dir:
+                        break
+            
+            if is_completed and report_dir and report_dir.exists():
+                # Report already exists. Check if task file was updated AFTER the report was generated
+                report_mtime = report_dir.stat().st_mtime
+                if c["mtime"] > (report_mtime + 10): # 10s tolerance
+                    # Task was revised after report was submitted
                     new_active.append(c)
+            elif not is_completed and c["task_num"] > last_num:
+                # Strictly new task
+                new_active.append(c)
 
     log_entry = f"[{now_str}] Autonomous Scanner Check. Last completed task: TASK_{last_num:03d}.\n"
     if new_active:

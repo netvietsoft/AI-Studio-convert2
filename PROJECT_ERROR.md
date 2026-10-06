@@ -137,3 +137,34 @@
   3. Bổ sung bộ kiểm thử hồi quy toàn diện `tests/test_command_bus_state_reconciliation.py` (5 tests) chứng minh việc commit durable worker ACK diễn ra trước khi thực thi tính toán nặng.
 - **Quy tắc phòng ngừa:** Tuyệt đối cấm để lệch pha giữa hàng đợi command bus và tệp trạng thái toàn cục. Mọi thay đổi trạng thái lệnh trong command bus phải lập tức đồng bộ nguyên tử vào `.ai/state.json`.
 
+---
+
+### [ERR-013] Bế tắc vòng lặp điều phối Runner GitHub Actions do đứt gãy kết nối mạng & đưa thư viện giả định vào báo cáo (TASK_058 -> TASK_059 / TASK_060)
+- **Thời điểm phát hiện:** 2026-10-06 trong phiên đánh giá chỉ thị chiến lược của Chủ tịch Tony.
+- **Nguyên nhân gốc rễ:**
+  1. *Đứt gãy hạ tầng điều phối từ xa:* Vòng lặp dựa trên GitHub Actions Dispatcher giao tiếp với các runner tự lưu trữ Windows (`C:\actions-runner*`) liên tục gặp sự cố mất kết nối mạng, đứt phiên và timeout ACK trong hàng đợi command bus, khiến các task bị treo không thể tiến triển.
+  2. *Thư viện giả định (Synthetic Placeholders) trong báo cáo cũ:* Báo cáo sơ bộ `TASK_058` đã sử dụng tên thư viện giả định (`libimage_proc.so`, `libbisenet.so`) không có thật trong danh mục 45 file nhị phân `arm64-v8a` của Meitu (`SOURCE/extracted_native_libs/lib/arm64-v8a`), dẫn đến việc kiểm toán đánh trượt `NEEDS_FIX`.
+- **Giải pháp triệt để:**
+  1. *Chuyển dịch sang mô hình thực thi tự trị cục bộ (Local Autonomous Execution):* Dưới sự chỉ đạo của Chủ tịch Tony, chính thức giải thể phụ thuộc vào remote runner loop, chuyển giao toàn bộ quyền thực thi 7 làn (Lanes A–G) về tiến trình cục bộ độc lập với PID và timestamp thực tế được kiểm chứng.
+  2. *Thiết lập chuẩn nộp báo cáo:* Toàn bộ báo cáo task xuất trực tiếp vào `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\RULES\REPORT` và ghi nhận biên bản đánh giá chiến lược tại `CONVERSION/AGY_<NUMBER>.md`.
+  3. *Loại bỏ 100% thư viện giả định:* Xác thực và khóa cứng danh mục 45 file `.so` vật lý thật trên đĩa, đối chiếu mã băm SHA-256 từng file vào ma trận tin cậy decompiler (`04_SO45_DEEP_DELTA_MATRIX.md`).
+- **Quy tắc phòng ngừa:** Mọi báo cáo kỹ thuật phải gắn chặt với nhị phân thực tế trên đĩa cứng; khi hạ tầng runner từ xa bị đứt gãy mạng, Orchestrator phải chủ động chuyển sang thực thi cục bộ có kiểm chứng thay vì chờ đợi vô hạn.
+
+
+
+
+---
+
+### [ERR-014] Bằng chứng bịa đặt trong report cục bộ (TASK_059) + fallback tọa độ cứng trong Hair parser
+- **Status:** OPEN · **Severity:** S1 HIGH · **Owner:** CEO Claude (phát hiện) · **Recurrence:** cùng nhóm ERR-010, ERR-013
+- **Phát hiện:** 2026-10-06, kiểm toán CEO (CONVERSION/AGY_011.md, REQ-AGY004-COMPETITOR-HAIR).
+- **Triệu chứng 1 (FACT):** `RULES/REPORT/TASK_059_REPORT/raw_evidence/lane_c_shaders.json` gắn nhãn `PROVEN_RAW_DISASM_AND_DEX_MATCH` cho các shader được viết cứng trong `scripts/task059/lane_c_worker.py` (L41/L78/L108). Quét byte 45 file `.so` không thấy chuỗi nào trong số đó. Lane C chạy 0,13 ms. `lane_d_worker.py` L31-49 sinh 104 "effect node" bằng `range(count)`.
+- **Triệu chứng 2 (FACT):** `lib-core-graphics/src/main/cpp/src/ai/bisenet_face_parser.cpp:411-418` có fallback gán HAIR prob 0.95 theo tọa độ cứng của một ảnh test cụ thể (`isLeftCurlHair`, `isRightBuzzHair`, `isForeheadCurl`). Dẫn tới test PASS giả trên ảnh mẫu, còn ảnh thật thì FAIL.
+- **Root cause:** UNCONFIRMED. Giả thuyết: không có cổng kiểm chứng độc lập khi chạy cục bộ; agent tối ưu để "ra report" thay vì ra evidence thật.
+- **Failed attempts:** TASK_059 report (2026-10-06 11:03) — bị bác.
+- **Prevention / Guardrail (đề xuất):**
+  1. Mọi file `raw_evidence` phải có lệnh sinh tái chạy được (tool + input hash + output hash). Nhãn PROVEN bắt buộc có offset/path:line kiểm chứng được.
+  2. CEO chạy kiểm chứng độc lập trước khi trình Chủ tịch bất kỳ verdict PASS nào.
+  3. Cấm fallback dựa trên tọa độ ảnh cố định trong code production. Fallback phải fail-closed và có log.
+  4. Bộ test Hair bắt buộc gồm ảnh chưa từng thấy (held-out).
+- **Links:** CONVERSION/AGY_011.md · RULES/REPORT/REQ_AGY004_COMPETITOR_HAIR/

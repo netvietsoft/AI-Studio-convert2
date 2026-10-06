@@ -1,0 +1,45 @@
+{
+  "runners": [
+    {
+      "path": "C:\\actions-runner",
+      "service_name": "actions.runner.netvietsoft-AI-Studio-convert2.CONVERT2-WINDOWS-01",
+      "status": "Running",
+      "service_account": "LocalSystem",
+      "labels": [
+        "self-hosted",
+        "Windows",
+        "X64",
+        "convert2-worker"
+      ],
+      "blocker_observed": "Dispatcher timeout waiting for durable worker ACK; network connectivity drop."
+    },
+    {
+      "path": "C:\\actions-runner-02",
+      "service_name": "actions.runner.netvietsoft-AI-Studio-convert2.CONVERT2-WINDOWS-02",
+      "status": "Inactive/Standby",
+      "service_account": "LocalSystem",
+      "labels": [
+        "self-hosted",
+        "Windows",
+        "X64",
+        "convert2-worker-02"
+      ],
+      "blocker_observed": "Offline / network connection drops preventing persistent polling."
+    },
+    {
+      "path": "C:\\actions-runner-03",
+      "service_name": "actions.runner.netvietsoft-AI-Studio-convert2.OSIN",
+      "status": "Stopped",
+      "service_account": "LocalSystem",
+      "labels": [
+        "self-hosted",
+        "Windows",
+        "X64",
+        "osin-worker"
+      ],
+      "blocker_observed": "Service Stopped."
+    }
+  ],
+  "root_cause_summary": "Network disconnects to remote GitHub Actions endpoint and state race between dispatcher reservation and worker ACK resulted in persistent hanging. Chairman Tony authorized transition to verified local autonomous execution.",
+  "timestamp": "2026-10-06T11:05:08.486051+07:00"
+}
