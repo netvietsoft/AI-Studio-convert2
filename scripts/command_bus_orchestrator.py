@@ -79,6 +79,7 @@ class FileLock:
         start_time = time.time()
         self.lock_file.parent.mkdir(parents=True, exist_ok=True)
         while True:
+            fd = None
             try:
                 if os.name == 'nt':
                     import msvcrt
@@ -95,6 +96,11 @@ class FileLock:
                 locks[key] = {"fd": fd, "count": 1}
                 return self
             except (BlockingIOError, OSError, PermissionError):
+                # A contended nonblocking acquisition still opened a handle.
+                # Close it before retrying, especially on Windows where leaked
+                # handles prevent later lifecycle cleanup from removing files.
+                if fd is not None:
+                    os.close(fd)
                 if time.time() - start_time > self.timeout:
                     raise TimeoutError(f"Timed out acquiring lock on {self.lock_file} after {self.timeout}s")
                 time.sleep(0.05)
@@ -1094,14 +1100,20 @@ class CommandBusOrchestrator:
             hist = self.history_dir / f"{command_id}.json"
             self._write_json(hist, cmd)
 
-            self._update_task_state(cmd["task_id"], {
-                "command_id": command_id,
-                "status": "FAILED",
-                "error_message": error_message,
-                "finished_at": now,
-                "updated_at": now
-            })
+            task_state = self._load_json(self.tasks_state_dir / f"{cmd['task_id']}.json") or {}
+            # A late failure belongs to its command, not a newer execution that
+            # already owns this task's durable state. The bus lock serializes
+            # this ownership check with claim/start and the failure transition.
+            if task_state.get("command_id") in [None, command_id]:
+                self._update_task_state(cmd["task_id"], {
+                    "command_id": command_id,
+                    "status": "FAILED",
+                    "error_message": error_message,
+                    "finished_at": now,
+                    "updated_at": now
+                })
 
+            self._reconcile_global_state_on_failure(cmd)
             self.rebuild_index()
             return True, f"FAILED: {command_id} with error: {error_message}", cmd
 
@@ -1665,6 +1677,134 @@ class CommandBusOrchestrator:
         m = re.match(r"(TASK_[0-9A-Za-z]+)", task_id)
         return m.group(1) if m else task_id
 
+    def _reconcile_global_state_on_failure(self, failed_cmd: Dict[str, Any]):
+        """Record a failure without replacing another command's current state.
+
+        The bus lock covers the terminal move and this read/modify/write. A
+        command-keyed record retains the exact failed execution even when a
+        newer revision of the same task is executing or has already completed.
+        """
+        with FileLock(self.lock_file):
+            state = self._load_json(self.global_state_file) or {}
+            command_id = failed_cmd.get("command_id")
+            task_id = failed_cmd.get("task_id", "")
+            task_prefix = self._extract_task_prefix(task_id)
+            latest_task_state = self._load_json(self.tasks_state_dir / f"{task_id}.json") or {}
+            latest_command_id = latest_task_state.get("command_id")
+            task_owned_by_other_command = bool(latest_command_id and latest_command_id != command_id)
+            latest_status = latest_task_state.get("status", "")
+            latest_other_terminal = task_owned_by_other_command and (
+                latest_status in ["COMPLETED", "FAILED"] or latest_status.startswith("BLOCKED")
+            )
+            exec_id = failed_cmd.get("execution_identity") or {}
+            finished_at = exec_id.get("finished_at")
+
+            if not isinstance(state.get("command_failures"), dict):
+                state["command_failures"] = {}
+            state["command_failures"][command_id] = {
+                "command_id": command_id,
+                "task_id": task_id,
+                "task_revision": failed_cmd.get("task_revision"),
+                "status": "FAILED",
+                "execution_lane": failed_cmd.get("execution_lane"),
+                "runner_identity": (failed_cmd.get("lease") or {}).get("lease_holder"),
+                "execution_identity": dict(exec_id),
+                "error_message": exec_id.get("error_message"),
+                "finished_at": finished_at
+            }
+
+            active_commands = []
+            for directory in [self.running_dir, self.claimed_dir, self.reserved_dir]:
+                for path in sorted(directory.glob("*.json")):
+                    command = self._load_json(path)
+                    if command and command.get("command_id") != command_id:
+                        active_commands.append(command)
+
+            current_command_id = state.get("current_command_id")
+            current_task_id = state.get("current_task_id")
+            provenance = state.get("provenance")
+            provenance_command_id = provenance.get("dispatch_command_id") if isinstance(provenance, dict) else None
+            unrelated_current = bool(
+                (current_command_id and current_command_id != command_id)
+                or (current_task_id and current_task_id != task_id)
+                or (not current_command_id and current_task_id == task_id
+                    and provenance_command_id and provenance_command_id != command_id)
+            )
+
+            if not isinstance(state.get("task_lifecycle"), dict):
+                state["task_lifecycle"] = {}
+            lifecycle = state["task_lifecycle"]
+            lifecycle[f"{task_prefix}_FAILED"] = finished_at
+            # A task can have several executions. Failure of an older command
+            # must not relabel its newer active or terminal execution as failed.
+            same_task_active = any(
+                self._extract_task_prefix(command.get("task_id", "")) == task_prefix
+                for command in active_commands
+            ) or (unrelated_current and self._extract_task_prefix(current_task_id) == task_prefix)
+            if not same_task_active and not task_owned_by_other_command:
+                lifecycle[f"{task_prefix}_STATUS"] = "FAILED"
+
+            if not unrelated_current:
+                if not isinstance(state.get("provenance"), dict):
+                    state["provenance"] = {}
+                if active_commands:
+                    active = active_commands[-1]
+                    # Prefer RUNNING, then CLAIMED, then RESERVED; the list is
+                    # grouped in that order and each group is deterministic.
+                    for status in ["RUNNING", "CLAIMED", "RESERVED"]:
+                        candidates = [command for command in active_commands if command.get("status") == status]
+                        if candidates:
+                            active = candidates[-1]
+                            break
+                    active_identity = active.get("execution_identity") or {}
+                    state["agent_state"] = "TASK_EXECUTING" if active.get("status") == "RUNNING" else "TASK_PREFLIGHT"
+                    state["current_task_id"] = active.get("task_id")
+                    state["current_command_id"] = active.get("command_id")
+                    state["task_status"] = active.get("status")
+                    state["verdict"] = active.get("verdict")
+                    state["provenance"].update({
+                        "execution_lane": active.get("execution_lane"),
+                        "runner_identity": (active.get("lease") or {}).get("lease_holder"),
+                        "dispatch_command_id": active.get("command_id"),
+                        "dispatch_commit_sha": active_identity.get("dispatch_commit_sha"),
+                        "github_run_id": active_identity.get("github_run_id"),
+                        "workflow_url": active_identity.get("workflow_url"),
+                        "anti_duplicate_key": active.get("anti_duplicate_key"),
+                        "conclusion": active_identity.get("conclusion"),
+                        "finished_at": active_identity.get("finished_at"),
+                        "error_message": active_identity.get("error_message")
+                    })
+                else:
+                    state["agent_state"] = "SCANNING_TASKS"
+                    state["current_task_id"] = None
+                    state["current_command_id"] = None
+                    if latest_other_terminal:
+                        # The stale current pointer may still name this older
+                        # worker after another execution completed. Clear that
+                        # pointer while retaining the newer terminal result and
+                        # its already gate-resolved verdict/provenance.
+                        state["task_status"] = latest_status
+                        if state.get("verdict") is None:
+                            state["verdict"] = latest_status
+                    else:
+                        state["task_status"] = "FAILED"
+                        state["verdict"] = "FAILED"
+                        state["provenance"].update({
+                            "execution_lane": failed_cmd.get("execution_lane"),
+                            "runner_identity": (failed_cmd.get("lease") or {}).get("lease_holder"),
+                            "dispatch_command_id": command_id,
+                            "dispatch_commit_sha": exec_id.get("dispatch_commit_sha"),
+                            "github_run_id": exec_id.get("github_run_id"),
+                            "workflow_url": exec_id.get("workflow_url"),
+                            "anti_duplicate_key": failed_cmd.get("anti_duplicate_key"),
+                            "conclusion": "FAILURE",
+                            "finished_at": finished_at,
+                            "error_message": exec_id.get("error_message")
+                        })
+
+            # Completion markers and last_completed_* are deliberately untouched.
+            self._write_json(self.global_state_file, state)
+
     def _reconcile_global_state_on_running(self, running_cmd: Dict[str, Any]):
         """
         Updates global .ai/state.json when a command starts executing.
@@ -1921,6 +2061,8 @@ class CommandBusOrchestrator:
 
 def main():
     parser = argparse.ArgumentParser(description="CONVERT2 Command Bus Orchestrator")
+    parser.add_argument("--repo-root", "--repo", dest="repo_root", default=None,
+                        help="Repository whose command bus and state should be updated")
     subparsers = parser.add_subparsers(dest="action", help="Subcommands")
 
     # status
@@ -2025,7 +2167,7 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    orch = CommandBusOrchestrator()
+    orch = CommandBusOrchestrator(repo_root=Path(args.repo_root) if args.repo_root else None)
 
     if args.action == "status":
         orch.print_status_summary()
@@ -2121,6 +2263,8 @@ def main():
     elif args.action == "start":
         ok, msg, data = orch.start_command(args.command_id, args.lease_token, args.dispatch_sha, args.run_id, args.url)
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
+        if not ok:
+            sys.exit(1)
 
     elif args.action == "complete":
         ok, msg, data = orch.complete_command(
@@ -2128,10 +2272,14 @@ def main():
             conclusion="SUCCESS", verdict=args.verdict
         )
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
+        if not ok:
+            sys.exit(1)
 
     elif args.action == "fail":
         ok, msg, data = orch.fail_command(args.command_id, args.lease_token, args.error)
         print(f"[{'OK' if ok else 'FAIL'}] {msg}")
+        if not ok:
+            sys.exit(1)
 
     elif args.action == "validate-lifecycle":
         is_valid, violations, summary = orch.validate_lifecycle_invariants()
