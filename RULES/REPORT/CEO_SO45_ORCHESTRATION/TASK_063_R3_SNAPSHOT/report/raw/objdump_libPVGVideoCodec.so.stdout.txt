@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libPVGVideoCodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000064830 <.text>:
+   64830:      	bti	c
+   64834:      	nop
+   64838:      	adr	x0, #0xb2398
+   6483c:      	b	0x111140 <__cxa_finalize@plt>
+   64840:      	bti	c
+   64844:      	ret
+   64848:      	bti	c
+   6484c:      	b	0x64840 <.text+0x10>
+   64850:      	bti	c
+   64854:      	cbz	x0, 0x64860 <.text+0x30>
+   64858:      	mov	x16, x0
+   6485c:      	br	x16
+   64860:      	ret
+   64864:      	bti	c
+   64868:      	mov	x1, x0
+   6486c:      	nop
+   64870:      	adr	x0, #-0x20
+   64874:      	nop
+   64878:      	adr	x2, #0xb2358
+   6487c:      	b	0x111150 <__cxa_atexit@plt>
+
+0000000000064880 <_ZN8PVGVIDEO14queryPVGReturnENS_9PVGReturnE>:
+   64880:      	cmp	w0, #0x3c
+   64884:      	b.hi	0x6489c <_ZN8PVGVIDEO14queryPVGReturnENS_9PVGReturnE+0x1c>
+   64888:      	nop
+   6488c:      	adr	x8, #0xbb5bc
+   64890:      	add	x8, x8, w0, uxtw #3
+   64894:      	ldr	x0, [x8]
+   64898:      	ret
+   6489c:      	sub	w8, w0, #0x51
+   648a0:      	cmp	w8, #0x18
+   648a4:      	b.hi	0x648bc <_ZN8PVGVIDEO14queryPVGReturnENS_9PVGReturnE+0x3c>
+   648a8:      	nop
+   648ac:      	adr	x9, #0xb232c
+   648b0:      	add	x8, x9, w8, uxtw #3
+   648b4:      	ldr	x0, [x8]
+   648b8:      	ret
+   648bc:      	adrp	x0, 0x3a000
+   648c0:      	add	x0, x0, #0x38b
+   648c4:      	ret
+
+00000000000648c8 <_ZN8PVGVIDEO12PVGVideoInfo5validEv>:
+   648c8:      	ldp	w8, w9, [x0]
+   648cc:      	cmp	w8, #0x0
+   648d0:      	ccmp	w9, #0x0, #0x4, gt
+   648d4:      	cset	w0, gt
+   648d8:      	ret
+
+00000000000648dc <_ZN8PVGVIDEO12PVGAudioInfo5validEv>:
+   648dc:      	ldr	w9, [x0]
+   648e0:      	mov	x8, x0
+   648e4:      	mov	w0, wzr
+   648e8:      	cmp	w9, #0x1
+   648ec:      	b.lt	0x64908 <_ZN8PVGVIDEO12PVGAudioInfo5validEv+0x2c>
+   648f0:      	ldr	w9, [x8, #0x4]
+   648f4:      	cmp	w9, #0x1
+   648f8:      	b.lt	0x64908 <_ZN8PVGVIDEO12PVGAudioInfo5validEv+0x2c>
+   648fc:      	ldr	w8, [x8, #0x8]
+   64900:      	cmp	w8, #0x0
+   64904:      	cset	w0, ne
+   64908:      	ret
+
+000000000006490c <_ZN8PVGVIDEO12PVGHWContextC2ENS_16PVGHWContextTypeE>:
+   6490c:      	stp	x29, x30, [sp, #-0x20]!
+   64910:      	stp	x20, x19, [sp, #0x10]
+   64914:      	mov	x29, sp
+   64918:      	mov	w19, w1
+   6491c:      	mov	x20, x0
+   64920:      	bl	0x111190 <_ZN8PVGVIDEO6PVGRefC2Ev@plt>
+   64924:      	adrp	x8, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64928:      	ldr	x8, [x8, #0xd48]
+   6492c:      	stp	xzr, xzr, [x20, #0x38]
+   64930:      	add	x8, x8, #0x10
+   64934:      	str	x8, [x20]
+   64938:      	stp	wzr, w19, [x20, #0x48]
+   6493c:      	ldp	x20, x19, [sp, #0x10]
+   64940:      	ldp	x29, x30, [sp], #0x20
+   64944:      	ret
+
+0000000000064948 <_ZN8PVGVIDEO10PVGContextC2Ev>:
+   64948:      	stp	x29, x30, [sp, #-0x20]!
+   6494c:      	str	x19, [sp, #0x10]
+   64950:      	mov	x29, sp
+   64954:      	mov	x19, x0
+   64958:      	bl	0x111190 <_ZN8PVGVIDEO6PVGRefC2Ev@plt>
+   6495c:      	adrp	x8, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64960:      	movi	v0.2d, #0000000000000000
+   64964:      	mov	w9, #0x3f800000
+   64968:      	ldr	x8, [x8, #0xd50]
+   6496c:      	str	xzr, [x19, #0x58]
+   64970:      	str	w9, [x19, #0x60]
+   64974:      	add	x8, x8, #0x10
+   64978:      	stp	xzr, xzr, [x19, #0x68]
+   6497c:      	str	x8, [x19]
+   64980:      	adrp	x8, 0x3d000
+   64984:      	ldr	q1, [x8, #0xa70]
+   64988:      	stur	q0, [x19, #0x38]
+   6498c:      	stur	q0, [x19, #0x48]
+   64990:      	str	wzr, [x19, #0x78]
+   64994:      	stp	q0, q0, [x19, #0x80]
+   64998:      	stp	q0, q0, [x19, #0xa0]
+   6499c:      	str	wzr, [x19, #0xc0]
+   649a0:      	stur	q1, [x19, #0xc4]
+   649a4:      	str	xzr, [x19, #0x190]
+   649a8:      	str	xzr, [x19, #0x1c0]
+   649ac:      	stp	q0, q0, [x19, #0x1d0]
+   649b0:      	str	q0, [x19, #0xd8]!
+   649b4:      	str	xzr, [x19, #0x90]
+   649b8:      	stp	q0, q0, [x19, #0x10]
+   649bc:      	stp	q0, q0, [x19, #0x30]
+   649c0:      	stp	q0, q0, [x19, #0x50]
+   649c4:      	stp	q0, q0, [x19, #0x70]
+   649c8:      	str	w9, [x19, #0x118]
+   649cc:      	ldr	x19, [sp, #0x10]
+   649d0:      	ldp	x29, x30, [sp], #0x20
+   649d4:      	ret
+
+00000000000649d8 <_ZN8PVGVIDEO10PVGContextD2Ev>:
+   649d8:      	stp	x29, x30, [sp, #-0x30]!
+   649dc:      	str	x21, [sp, #0x10]
+   649e0:      	stp	x20, x19, [sp, #0x20]
+   649e4:      	mov	x29, sp
+   649e8:      	adrp	x8, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   649ec:      	mov	x19, x0
+   649f0:      	ldr	x8, [x8, #0xd50]
+   649f4:      	ldr	x0, [x0, #0x68]
+   649f8:      	add	x8, x8, #0x10
+   649fc:      	str	x8, [x19]
+   64a00:      	cbz	x0, 0x64a0c <_ZN8PVGVIDEO10PVGContextD2Ev+0x34>
+   64a04:      	bl	0x1111a0 <_ZN8PVGVIDEO6PVGRef7releaseEv@plt>
+   64a08:      	str	xzr, [x19, #0x68]
+   64a0c:      	ldr	x20, [x19, #0x1e0]
+   64a10:      	cbnz	x20, 0x64a50 <_ZN8PVGVIDEO10PVGContextD2Ev+0x78>
+   64a14:      	ldr	x0, [x19, #0x1d0]
+   64a18:      	str	xzr, [x19, #0x1d0]
+   64a1c:      	cbz	x0, 0x64a24 <_ZN8PVGVIDEO10PVGContextD2Ev+0x4c>
+   64a20:      	bl	0x1111b0 <_ZdlPv@plt>
+   64a24:      	ldr	x0, [x19, #0x1c0]
+   64a28:      	add	x9, x19, #0x1a0
+   64a2c:      	cmp	x0, x9
+   64a30:      	b.eq	0x64a84 <_ZN8PVGVIDEO10PVGContextD2Ev+0xac>
+   64a34:      	cbz	x0, 0x64a98 <_ZN8PVGVIDEO10PVGContextD2Ev+0xc0>
+   64a38:      	mov	w8, #0x5
+   64a3c:      	b	0x64a8c <_ZN8PVGVIDEO10PVGContextD2Ev+0xb4>
+   64a40:      	mov	x0, x20
+   64a44:      	bl	0x1111b0 <_ZdlPv@plt>
+   64a48:      	mov	x20, x21
+   64a4c:      	cbz	x21, 0x64a14 <_ZN8PVGVIDEO10PVGContextD2Ev+0x3c>
+   64a50:      	ldrb	w8, [x20, #0x28]
+   64a54:      	ldr	x21, [x20]
+   64a58:      	tbnz	w8, #0x0, 0x64a68 <_ZN8PVGVIDEO10PVGContextD2Ev+0x90>
+   64a5c:      	ldrb	w8, [x20, #0x10]
+   64a60:      	tbz	w8, #0x0, 0x64a40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x68>
+   64a64:      	b	0x64a78 <_ZN8PVGVIDEO10PVGContextD2Ev+0xa0>
+   64a68:      	ldr	x0, [x20, #0x38]
+   64a6c:      	bl	0x1111b0 <_ZdlPv@plt>
+   64a70:      	ldrb	w8, [x20, #0x10]
+   64a74:      	tbz	w8, #0x0, 0x64a40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x68>
+   64a78:      	ldr	x0, [x20, #0x20]
+   64a7c:      	bl	0x1111b0 <_ZdlPv@plt>
+   64a80:      	b	0x64a40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x68>
+   64a84:      	mov	w8, #0x4
+   64a88:      	mov	x0, x9
+   64a8c:      	ldr	x9, [x0]
+   64a90:      	ldr	x8, [x9, x8, lsl #3]
+   64a94:      	blr	x8
+   64a98:      	ldr	x0, [x19, #0x190]
+   64a9c:      	add	x9, x19, #0x170
+   64aa0:      	cmp	x0, x9
+   64aa4:      	b.eq	0x64ab4 <_ZN8PVGVIDEO10PVGContextD2Ev+0xdc>
+   64aa8:      	cbz	x0, 0x64ac8 <_ZN8PVGVIDEO10PVGContextD2Ev+0xf0>
+   64aac:      	mov	w8, #0x5
+   64ab0:      	b	0x64abc <_ZN8PVGVIDEO10PVGContextD2Ev+0xe4>
+   64ab4:      	mov	w8, #0x4
+   64ab8:      	mov	x0, x9
+   64abc:      	ldr	x9, [x0]
+   64ac0:      	ldr	x8, [x9, x8, lsl #3]
+   64ac4:      	blr	x8
+   64ac8:      	ldrb	w8, [x19, #0xe0]
+   64acc:      	tbnz	w8, #0x0, 0x64aec <_ZN8PVGVIDEO10PVGContextD2Ev+0x114>
+   64ad0:      	ldrb	w8, [x19, #0xa8]
+   64ad4:      	tbnz	w8, #0x0, 0x64afc <_ZN8PVGVIDEO10PVGContextD2Ev+0x124>
+   64ad8:      	ldrb	w8, [x19, #0x88]
+   64adc:      	tbnz	w8, #0x0, 0x64b0c <_ZN8PVGVIDEO10PVGContextD2Ev+0x134>
+   64ae0:      	ldr	x20, [x19, #0x50]
+   64ae4:      	cbnz	x20, 0x64b50 <_ZN8PVGVIDEO10PVGContextD2Ev+0x178>
+   64ae8:      	b	0x64b1c <_ZN8PVGVIDEO10PVGContextD2Ev+0x144>
+   64aec:      	ldr	x0, [x19, #0xf0]
+   64af0:      	bl	0x1111b0 <_ZdlPv@plt>
+   64af4:      	ldrb	w8, [x19, #0xa8]
+   64af8:      	tbz	w8, #0x0, 0x64ad8 <_ZN8PVGVIDEO10PVGContextD2Ev+0x100>
+   64afc:      	ldr	x0, [x19, #0xb8]
+   64b00:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b04:      	ldrb	w8, [x19, #0x88]
+   64b08:      	tbz	w8, #0x0, 0x64ae0 <_ZN8PVGVIDEO10PVGContextD2Ev+0x108>
+   64b0c:      	ldr	x0, [x19, #0x98]
+   64b10:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b14:      	ldr	x20, [x19, #0x50]
+   64b18:      	cbnz	x20, 0x64b50 <_ZN8PVGVIDEO10PVGContextD2Ev+0x178>
+   64b1c:      	ldr	x0, [x19, #0x40]
+   64b20:      	str	xzr, [x19, #0x40]
+   64b24:      	cbz	x0, 0x64b2c <_ZN8PVGVIDEO10PVGContextD2Ev+0x154>
+   64b28:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b2c:      	mov	x0, x19
+   64b30:      	ldp	x20, x19, [sp, #0x20]
+   64b34:      	ldr	x21, [sp, #0x10]
+   64b38:      	ldp	x29, x30, [sp], #0x30
+   64b3c:      	b	0x1111c0 <_ZN8PVGVIDEO6PVGRefD2Ev@plt>
+   64b40:      	mov	x0, x20
+   64b44:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b48:      	mov	x20, x21
+   64b4c:      	cbz	x21, 0x64b1c <_ZN8PVGVIDEO10PVGContextD2Ev+0x144>
+   64b50:      	ldrb	w8, [x20, #0x28]
+   64b54:      	ldr	x21, [x20]
+   64b58:      	tbnz	w8, #0x0, 0x64b68 <_ZN8PVGVIDEO10PVGContextD2Ev+0x190>
+   64b5c:      	ldrb	w8, [x20, #0x10]
+   64b60:      	tbz	w8, #0x0, 0x64b40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x168>
+   64b64:      	b	0x64b78 <_ZN8PVGVIDEO10PVGContextD2Ev+0x1a0>
+   64b68:      	ldr	x0, [x20, #0x38]
+   64b6c:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b70:      	ldrb	w8, [x20, #0x10]
+   64b74:      	tbz	w8, #0x0, 0x64b40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x168>
+   64b78:      	ldr	x0, [x20, #0x20]
+   64b7c:      	bl	0x1111b0 <_ZdlPv@plt>
+   64b80:      	b	0x64b40 <_ZN8PVGVIDEO10PVGContextD2Ev+0x168>
+   64b84:      	bl	0x64b88 <_ZN8PVGVIDEO10PVGContextD2Ev+0x1b0>
+   64b88:      	stp	x29, x30, [sp, #-0x10]!
+   64b8c:      	mov	x29, sp
+   64b90:      	bl	0x1111d0 <__cxa_begin_catch@plt>
+   64b94:      	bl	0x1111e0 <_ZSt9terminatev@plt>
+
+0000000000064b98 <_ZN8PVGVIDEO10PVGContextD0Ev>:
+   64b98:      	stp	x29, x30, [sp, #-0x20]!
+   64b9c:      	str	x19, [sp, #0x10]
+   64ba0:      	mov	x29, sp
+   64ba4:      	mov	x19, x0
+   64ba8:      	bl	0x1111f0 <_ZN8PVGVIDEO10PVGContextD1Ev@plt>
+   64bac:      	mov	x0, x19
+   64bb0:      	ldr	x19, [sp, #0x10]
+   64bb4:      	ldp	x29, x30, [sp], #0x20
+   64bb8:      	b	0x1111b0 <_ZdlPv@plt>
+
+0000000000064bbc <_ZN8PVGVIDEO10PVGContext16setCodecStrategyENS_16PVGCodecStrategyE>:
+   64bbc:      	mov	x8, x0
+   64bc0:      	mov	w0, wzr
+   64bc4:      	str	x1, [x8, #0x38]
+   64bc8:      	ret
+
+0000000000064bcc <_ZNK8PVGVIDEO10PVGContext16getCodecStrategyEv>:
+   64bcc:      	ldr	x0, [x0, #0x38]
+   64bd0:      	ret
+
+0000000000064bd4 <_ZN8PVGVIDEO10PVGContext14setCodecParamsERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_>:
+   64bd4:      	sub	sp, sp, #0x40
+   64bd8:      	stp	x29, x30, [sp, #0x20]
+   64bdc:      	stp	x20, x19, [sp, #0x30]
+   64be0:      	add	x29, sp, #0x20
+   64be4:      	mrs	x20, TPIDR_EL0
+   64be8:      	ldr	x8, [x20, #0x28]
+   64bec:      	stur	x8, [x29, #-0x8]
+   64bf0:      	ldrb	w8, [x1]
+   64bf4:      	ldr	x9, [x1, #0x8]
+   64bf8:      	lsr	x10, x8, #1
+   64bfc:      	tst	w8, #0x1
+   64c00:      	csel	x8, x10, x9, eq
+   64c04:      	cbz	x8, 0x64c58 <_ZN8PVGVIDEO10PVGContext14setCodecParamsERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_+0x84>
+   64c08:      	mov	x19, x2
+   64c0c:      	nop
+   64c10:      	adr	x2, #-0x2700e
+   64c14:      	add	x0, x0, #0x40
+   64c18:      	add	x3, sp, #0x10
+   64c1c:      	add	x4, sp, #0xf
+   64c20:      	str	x1, [sp, #0x10]
+   64c24:      	bl	0x65390 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2c>
+   64c28:      	add	x0, x0, #0x28
+   64c2c:      	mov	x1, x19
+   64c30:      	bl	0x111220 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+   64c34:      	mov	w0, wzr
+   64c38:      	ldr	x8, [x20, #0x28]
+   64c3c:      	ldur	x9, [x29, #-0x8]
+   64c40:      	cmp	x8, x9
+   64c44:      	b.ne	0x64cb8 <_ZN8PVGVIDEO10PVGContext14setCodecParamsERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_+0xe4>
+   64c48:      	ldp	x20, x19, [sp, #0x30]
+   64c4c:      	ldp	x29, x30, [sp, #0x20]
+   64c50:      	add	sp, sp, #0x40
+   64c54:      	ret
+   64c58:      	adrp	x8, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64c5c:      	ldr	x8, [x8, #0xd58]
+   64c60:      	ldr	w8, [x8]
+   64c64:      	cmp	w8, #0x5
+   64c68:      	b.gt	0x64ca4 <_ZN8PVGVIDEO10PVGContext14setCodecParamsERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_+0xd0>
+   64c6c:      	mov	x19, x0
+   64c70:      	bl	0x111230 <pthread_self@plt>
+   64c74:      	nop
+   64c78:      	adr	x1, #-0x2d1ae
+   64c7c:      	mov	x6, x0
+   64c80:      	adrp	x3, 0x21000
+   64c84:      	add	x3, x3, #0xb9
+   64c88:      	adrp	x4, 0x1b000
+   64c8c:      	add	x4, x4, #0xf07
+   64c90:      	mov	w0, #0x5
+   64c94:      	mov	x2, x1
+   64c98:      	mov	w5, #0x2c
+   64c9c:      	mov	x7, x19
+   64ca0:      	bl	0x111240 <_Z15vllog_tag_print13vllog_level_tPKcS1_S1_z@plt>
+   64ca4:      	mov	w0, #0x10
+   64ca8:      	ldr	x8, [x20, #0x28]
+   64cac:      	ldur	x9, [x29, #-0x8]
+   64cb0:      	cmp	x8, x9
+   64cb4:      	b.eq	0x64c48 <_ZN8PVGVIDEO10PVGContext14setCodecParamsERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_+0x74>
+   64cb8:      	bl	0x111250 <__stack_chk_fail@plt>
+
+0000000000064cbc <_ZN8PVGVIDEO10PVGContext14getCodecParamsEv>:
+   64cbc:      	add	x0, x0, #0x40
+   64cc0:      	ret
+
+0000000000064cc4 <_ZN8PVGVIDEO10PVGContext12setHWContextEPNS_12PVGHWContextE>:
+   64cc4:      	stp	x29, x30, [sp, #-0x20]!
+   64cc8:      	stp	x20, x19, [sp, #0x10]
+   64ccc:      	mov	x29, sp
+   64cd0:      	mov	x19, x0
+   64cd4:      	ldr	x0, [x0, #0x68]
+   64cd8:      	mov	x20, x1
+   64cdc:      	cbz	x0, 0x64ce8 <_ZN8PVGVIDEO10PVGContext12setHWContextEPNS_12PVGHWContextE+0x24>
+   64ce0:      	bl	0x1111a0 <_ZN8PVGVIDEO6PVGRef7releaseEv@plt>
+   64ce4:      	str	xzr, [x19, #0x68]
+   64ce8:      	cbz	x20, 0x64cf4 <_ZN8PVGVIDEO10PVGContext12setHWContextEPNS_12PVGHWContextE+0x30>
+   64cec:      	mov	x0, x20
+   64cf0:      	bl	0x111270 <_ZN8PVGVIDEO6PVGRef6retainEv@plt>
+   64cf4:      	mov	w0, wzr
+   64cf8:      	str	x20, [x19, #0x68]
+   64cfc:      	ldp	x20, x19, [sp, #0x10]
+   64d00:      	ldp	x29, x30, [sp], #0x20
+   64d04:      	ret
+
+0000000000064d08 <_ZNK8PVGVIDEO10PVGContext12getHWContextEv>:
+   64d08:      	ldr	x0, [x0, #0x68]
+   64d0c:      	ret
+
+0000000000064d10 <_ZN8PVGVIDEO10PVGContext17setInputDimensionEii>:
+   64d10:      	mov	x8, x0
+   64d14:      	mov	w0, wzr
+   64d18:      	stp	w1, w2, [x8, #0x70]
+   64d1c:      	ret
+
+0000000000064d20 <_ZN8PVGVIDEO10PVGContext13getInputWidthEv>:
+   64d20:      	ldr	w0, [x0, #0x70]
+   64d24:      	ret
+
+0000000000064d28 <_ZN8PVGVIDEO10PVGContext14getInputHeightEv>:
+   64d28:      	ldr	w0, [x0, #0x74]
+   64d2c:      	ret
+
+0000000000064d30 <_ZN8PVGVIDEO10PVGContext27setExpectedInputVideoFormatENS_9PVGFormatE>:
+   64d30:      	mov	x8, x0
+   64d34:      	mov	w0, wzr
+   64d38:      	str	w1, [x8, #0x78]
+   64d3c:      	ret
+
+0000000000064d40 <_ZN8PVGVIDEO10PVGContext27getExpectedInputVideoFormatEv>:
+   64d40:      	ldr	w0, [x0, #0x78]
+   64d44:      	ret
+
+0000000000064d48 <_ZN8PVGVIDEO10PVGContext15setVideoBitrateEl>:
+   64d48:      	sub	sp, sp, #0x30
+   64d4c:      	stp	x29, x30, [sp, #0x10]
+   64d50:      	stp	x20, x19, [sp, #0x20]
+   64d54:      	add	x29, sp, #0x10
+   64d58:      	cmp	x1, #0x0
+   64d5c:      	mov	x19, x0
+   64d60:      	b.le	0x64d7c <_ZN8PVGVIDEO10PVGContext15setVideoBitrateEl+0x34>
+   64d64:      	mov	w0, wzr
+   64d68:      	str	x1, [x19, #0x80]
+   64d6c:      	ldp	x20, x19, [sp, #0x20]
+   64d70:      	ldp	x29, x30, [sp, #0x10]
+   64d74:      	add	sp, sp, #0x30
+   64d78:      	ret
+   64d7c:      	adrp	x9, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64d80:      	ldr	x9, [x9, #0xd58]
+   64d84:      	ldr	w9, [x9]
+   64d88:      	cmp	w9, #0x5
+   64d8c:      	b.gt	0x64dcc <_ZN8PVGVIDEO10PVGContext15setVideoBitrateEl+0x84>
+   64d90:      	mov	x20, x1
+   64d94:      	bl	0x111230 <pthread_self@plt>
+   64d98:      	nop
+   64d9c:      	adr	x1, #-0x2d2d2
+   64da0:      	mov	x6, x0
+   64da4:      	adrp	x3, 0x32000
+   64da8:      	add	x3, x3, #0x9b4
+   64dac:      	adrp	x4, 0x29000
+   64db0:      	add	x4, x4, #0x66c
+   64db4:      	mov	w0, #0x5
+   64db8:      	mov	x2, x1
+   64dbc:      	mov	w5, #0x5b
+   64dc0:      	mov	x7, x19
+   64dc4:      	str	x20, [sp]
+   64dc8:      	bl	0x111240 <_Z15vllog_tag_print13vllog_level_tPKcS1_S1_z@plt>
+   64dcc:      	mov	w0, #0x10
+   64dd0:      	ldp	x20, x19, [sp, #0x20]
+   64dd4:      	ldp	x29, x30, [sp, #0x10]
+   64dd8:      	add	sp, sp, #0x30
+   64ddc:      	ret
+
+0000000000064de0 <_ZNK8PVGVIDEO10PVGContext15getVideoBitrateEv>:
+   64de0:      	ldr	x0, [x0, #0x80]
+   64de4:      	ret
+
+0000000000064de8 <_ZN8PVGVIDEO10PVGContext10setGOPSizeEi>:
+   64de8:      	sub	sp, sp, #0x30
+   64dec:      	stp	x29, x30, [sp, #0x10]
+   64df0:      	stp	x20, x19, [sp, #0x20]
+   64df4:      	add	x29, sp, #0x10
+   64df8:      	cmp	w1, #0x0
+   64dfc:      	mov	x19, x0
+   64e00:      	b.le	0x64e1c <_ZN8PVGVIDEO10PVGContext10setGOPSizeEi+0x34>
+   64e04:      	mov	w0, wzr
+   64e08:      	str	w1, [x19, #0xa0]
+   64e0c:      	ldp	x20, x19, [sp, #0x20]
+   64e10:      	ldp	x29, x30, [sp, #0x10]
+   64e14:      	add	sp, sp, #0x30
+   64e18:      	ret
+   64e1c:      	adrp	x9, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64e20:      	ldr	x9, [x9, #0xd58]
+   64e24:      	ldr	w9, [x9]
+   64e28:      	cmp	w9, #0x5
+   64e2c:      	b.gt	0x64e6c <_ZN8PVGVIDEO10PVGContext10setGOPSizeEi+0x84>
+   64e30:      	mov	w20, w1
+   64e34:      	bl	0x111230 <pthread_self@plt>
+   64e38:      	nop
+   64e3c:      	adr	x1, #-0x2d372
+   64e40:      	mov	x6, x0
+   64e44:      	adrp	x3, 0x39000
+   64e48:      	add	x3, x3, #0xdc
+   64e4c:      	adrp	x4, 0x2f000
+   64e50:      	add	x4, x4, #0x6ae
+   64e54:      	mov	w0, #0x5
+   64e58:      	mov	x2, x1
+   64e5c:      	mov	w5, #0x68
+   64e60:      	mov	x7, x19
+   64e64:      	str	w20, [sp]
+   64e68:      	bl	0x111240 <_Z15vllog_tag_print13vllog_level_tPKcS1_S1_z@plt>
+   64e6c:      	mov	w0, #0x10
+   64e70:      	ldp	x20, x19, [sp, #0x20]
+   64e74:      	ldp	x29, x30, [sp, #0x10]
+   64e78:      	add	sp, sp, #0x30
+   64e7c:      	ret
+
+0000000000064e80 <_ZNK8PVGVIDEO10PVGContext10getGOPSizeEv>:
+   64e80:      	ldr	w0, [x0, #0xa0]
+   64e84:      	ret
+
+0000000000064e88 <_ZN8PVGVIDEO10PVGContext10setProfileERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE>:
+   64e88:      	stp	x29, x30, [sp, #-0x10]!
+   64e8c:      	mov	x29, sp
+   64e90:      	add	x0, x0, #0x88
+   64e94:      	bl	0x111220 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+   64e98:      	mov	w0, wzr
+   64e9c:      	ldp	x29, x30, [sp], #0x10
+   64ea0:      	ret
+
+0000000000064ea4 <_ZNK8PVGVIDEO10PVGContext10getProfileEv>:
+   64ea4:      	add	x0, x0, #0x88
+   64ea8:      	ret
+
+0000000000064eac <_ZN8PVGVIDEO10PVGContext12setFramerateEf>:
+   64eac:      	str	d8, [sp, #-0x20]!
+   64eb0:      	stp	x29, x30, [sp, #0x8]
+   64eb4:      	str	x19, [sp, #0x18]
+   64eb8:      	add	x29, sp, #0x8
+   64ebc:      	movi	v1.2s, #0x34, lsl #24
+   64ec0:      	mov	x19, x0
+   64ec4:      	fcmp	s0, s1
+   64ec8:      	b.ls	0x64ee4 <_ZN8PVGVIDEO10PVGContext12setFramerateEf+0x38>
+   64ecc:      	mov	w0, wzr
+   64ed0:      	str	s0, [x19, #0xa4]
+   64ed4:      	ldp	x29, x30, [sp, #0x8]
+   64ed8:      	ldr	x19, [sp, #0x18]
+   64edc:      	ldr	d8, [sp], #0x20
+   64ee0:      	ret
+   64ee4:      	adrp	x9, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64ee8:      	ldr	x9, [x9, #0xd58]
+   64eec:      	ldr	w9, [x9]
+   64ef0:      	cmp	w9, #0x5
+   64ef4:      	b.gt	0x64f34 <_ZN8PVGVIDEO10PVGContext12setFramerateEf+0x88>
+   64ef8:      	fmov	s8, s0
+   64efc:      	bl	0x111230 <pthread_self@plt>
+   64f00:      	fcvt	d0, s8
+   64f04:      	nop
+   64f08:      	adr	x1, #-0x2d43e
+   64f0c:      	mov	x6, x0
+   64f10:      	adrp	x3, 0x39000
+   64f14:      	add	x3, x3, #0x117
+   64f18:      	adrp	x4, 0x2e000
+   64f1c:      	add	x4, x4, #0x7ed
+   64f20:      	mov	w0, #0x5
+   64f24:      	mov	x2, x1
+   64f28:      	mov	w5, #0x7e
+   64f2c:      	mov	x7, x19
+   64f30:      	bl	0x111240 <_Z15vllog_tag_print13vllog_level_tPKcS1_S1_z@plt>
+   64f34:      	mov	w0, #0x10
+   64f38:      	ldp	x29, x30, [sp, #0x8]
+   64f3c:      	ldr	x19, [sp, #0x18]
+   64f40:      	ldr	d8, [sp], #0x20
+   64f44:      	ret
+
+0000000000064f48 <_ZNK8PVGVIDEO10PVGContext12getFramerateEv>:
+   64f48:      	ldr	s0, [x0, #0xa4]
+   64f4c:      	ret
+
+0000000000064f50 <_ZN8PVGVIDEO10PVGContext6setDarENS_11PVGRationalE>:
+   64f50:      	mov	x8, x0
+   64f54:      	mov	w0, wzr
+   64f58:      	str	x1, [x8, #0xc0]
+   64f5c:      	ret
+
+0000000000064f60 <_ZNK8PVGVIDEO10PVGContext6getDarEv>:
+   64f60:      	ldr	x0, [x0, #0xc0]
+   64f64:      	ret
+
+0000000000064f68 <_ZN8PVGVIDEO10PVGContext19setInputAudioFormatEii>:
+   64f68:      	mov	x8, x0
+   64f6c:      	mov	w0, wzr
+   64f70:      	stp	w1, w2, [x8, #0xc8]
+   64f74:      	ret
+
+0000000000064f78 <_ZNK8PVGVIDEO10PVGContext16getInputChannelsEv>:
+   64f78:      	ldr	w0, [x0, #0xc8]
+   64f7c:      	ret
+
+0000000000064f80 <_ZNK8PVGVIDEO10PVGContext18getInputSampleRateEv>:
+   64f80:      	ldr	w0, [x0, #0xcc]
+   64f84:      	ret
+
+0000000000064f88 <_ZN8PVGVIDEO10PVGContext27setExpectedInputAudioFormatENS_9PVGFormatE>:
+   64f88:      	mov	x8, x0
+   64f8c:      	mov	w0, wzr
+   64f90:      	str	w1, [x8, #0xd0]
+   64f94:      	ret
+
+0000000000064f98 <_ZNK8PVGVIDEO10PVGContext27getExpectedInputAudioFormatEv>:
+   64f98:      	ldr	w0, [x0, #0xd0]
+   64f9c:      	ret
+
+0000000000064fa0 <_ZN8PVGVIDEO10PVGContext15setAudioBitrateEl>:
+   64fa0:      	sub	sp, sp, #0x30
+   64fa4:      	stp	x29, x30, [sp, #0x10]
+   64fa8:      	stp	x20, x19, [sp, #0x20]
+   64fac:      	add	x29, sp, #0x10
+   64fb0:      	cmp	x1, #0x0
+   64fb4:      	mov	x19, x0
+   64fb8:      	b.le	0x64fd4 <_ZN8PVGVIDEO10PVGContext15setAudioBitrateEl+0x34>
+   64fbc:      	mov	w0, wzr
+   64fc0:      	str	x1, [x19, #0xd8]
+   64fc4:      	ldp	x20, x19, [sp, #0x20]
+   64fc8:      	ldp	x29, x30, [sp, #0x10]
+   64fcc:      	add	sp, sp, #0x30
+   64fd0:      	ret
+   64fd4:      	adrp	x9, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   64fd8:      	ldr	x9, [x9, #0xd58]
+   64fdc:      	ldr	w9, [x9]
+   64fe0:      	cmp	w9, #0x5
+   64fe4:      	b.gt	0x65024 <_ZN8PVGVIDEO10PVGContext15setAudioBitrateEl+0x84>
+   64fe8:      	mov	x20, x1
+   64fec:      	bl	0x111230 <pthread_self@plt>
+   64ff0:      	nop
+   64ff4:      	adr	x1, #-0x2d52a
+   64ff8:      	mov	x6, x0
+   64ffc:      	adrp	x3, 0x32000
+   65000:      	add	x3, x3, #0x9b4
+   65004:      	adrp	x4, 0x22000
+   65008:      	add	x4, x4, #0x3e1
+   6500c:      	mov	w0, #0x5
+   65010:      	mov	x2, x1
+   65014:      	mov	w5, #0xac
+   65018:      	mov	x7, x19
+   6501c:      	str	x20, [sp]
+   65020:      	bl	0x111240 <_Z15vllog_tag_print13vllog_level_tPKcS1_S1_z@plt>
+   65024:      	mov	w0, #0x10
+   65028:      	ldp	x20, x19, [sp, #0x20]
+   6502c:      	ldp	x29, x30, [sp, #0x10]
+   65030:      	add	sp, sp, #0x30
+   65034:      	ret
+
+0000000000065038 <_ZNK8PVGVIDEO10PVGContext15getAudioBitrateEv>:
+   65038:      	ldr	x0, [x0, #0xd8]
+   6503c:      	ret
+
+0000000000065040 <_ZN8PVGVIDEO10PVGContext23setContentLightMetadataERKNS_20ContentLightMetadataE>:
+   65040:      	ldr	x8, [x1]
+   65044:      	str	x8, [x0, #0x150]
+   65048:      	ret
+
+000000000006504c <_ZNK8PVGVIDEO10PVGContext23getContentLightMetadataEv>:
+   6504c:      	add	x0, x0, #0x150
+   65050:      	ret
+
+0000000000065054 <_ZN8PVGVIDEO10PVGContext27setMasteringDisplayMetadataERKNS_24MasteringDisplayMetadataE>:
+   65054:      	ldp	q1, q0, [x1]
+   65058:      	add	x8, x0, #0xf8
+   6505c:      	str	q0, [x8, #0x10]
+   65060:      	stur	q1, [x0, #0xf8]
+   65064:      	ldp	q2, q0, [x1, #0x30]
+   65068:      	ldr	x9, [x1, #0x50]
+   6506c:      	ldr	q1, [x1, #0x20]
+   65070:      	str	x9, [x0, #0x148]
+   65074:      	stp	q2, q0, [x8, #0x30]
+   65078:      	str	q1, [x8, #0x20]
+   6507c:      	ret
+
+0000000000065080 <_ZNK8PVGVIDEO10PVGContext27getMasteringDisplayMetadataEv>:
+   65080:      	add	x0, x0, #0xf8
+   65084:      	ret
+
+0000000000065088 <_ZN8PVGVIDEO10PVGContext28setAmbientViewingEnvironmentERKNS_25AmbientViewingEnvironmentE>:
+   65088:      	ldr	x8, [x1, #0x10]
+   6508c:      	ldr	q0, [x1]
+   65090:      	add	x9, x0, #0x158
+   65094:      	str	x8, [x0, #0x168]
+   65098:      	str	q0, [x9]
+   6509c:      	ret
+
+00000000000650a0 <_ZNK8PVGVIDEO10PVGContext28getAmbientViewingEnvironmentEv>:
+   650a0:      	add	x0, x0, #0x158
+   650a4:      	ret
+
+00000000000650a8 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE>:
+   650a8:      	sub	sp, sp, #0x60
+   650ac:      	stp	x29, x30, [sp, #0x40]
+   650b0:      	stp	x20, x19, [sp, #0x50]
+   650b4:      	add	x29, sp, #0x40
+   650b8:      	mrs	x20, TPIDR_EL0
+   650bc:      	mov	x19, x0
+   650c0:      	ldr	x8, [x20, #0x28]
+   650c4:      	stur	x8, [x29, #-0x8]
+   650c8:      	ldr	x8, [x1, #0x20]
+   650cc:      	cbz	x8, 0x650f0 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x48>
+   650d0:      	cmp	x8, x1
+   650d4:      	b.eq	0x650f8 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x50>
+   650d8:      	ldr	x9, [x8]
+   650dc:      	mov	x0, x8
+   650e0:      	ldr	x9, [x9, #0x10]
+   650e4:      	blr	x9
+   650e8:      	str	x0, [sp, #0x20]
+   650ec:      	b	0x65114 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x6c>
+   650f0:      	str	xzr, [sp, #0x20]
+   650f4:      	b	0x65114 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x6c>
+   650f8:      	mov	x8, sp
+   650fc:      	ldr	x9, [x1]
+   65100:      	mov	x0, x1
+   65104:      	str	x8, [sp, #0x20]
+   65108:      	mov	x1, sp
+   6510c:      	ldr	x8, [x9, #0x18]
+   65110:      	blr	x8
+   65114:      	mov	x0, sp
+   65118:      	add	x1, x19, #0x170
+   6511c:      	mov	x19, sp
+   65120:      	bl	0x6601c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xcb8>
+   65124:      	ldr	x0, [sp, #0x20]
+   65128:      	cmp	x0, x19
+   6512c:      	b.eq	0x6513c <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x94>
+   65130:      	cbz	x0, 0x65150 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0xa8>
+   65134:      	mov	w8, #0x5
+   65138:      	b	0x65144 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0x9c>
+   6513c:      	mov	w8, #0x4
+   65140:      	mov	x0, sp
+   65144:      	ldr	x9, [x0]
+   65148:      	ldr	x8, [x9, x8, lsl #3]
+   6514c:      	blr	x8
+   65150:      	ldr	x8, [x20, #0x28]
+   65154:      	ldur	x9, [x29, #-0x8]
+   65158:      	cmp	x8, x9
+   6515c:      	b.ne	0x65174 <_ZN8PVGVIDEO10PVGContext32setCheckDropDecodedFrameFunctionERKNSt6__ndk18functionIFblEEE+0xcc>
+   65160:      	mov	w0, wzr
+   65164:      	ldp	x20, x19, [sp, #0x50]
+   65168:      	ldp	x29, x30, [sp, #0x40]
+   6516c:      	add	sp, sp, #0x60
+   65170:      	ret
+   65174:      	bl	0x111250 <__stack_chk_fail@plt>
+
+0000000000065178 <_ZN8PVGVIDEO10PVGContext32getCheckDropDecodedFrameFunctionEv>:
+   65178:      	add	x0, x0, #0x170
+   6517c:      	ret
+
+0000000000065180 <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE>:
+   65180:      	sub	sp, sp, #0x60
+   65184:      	stp	x29, x30, [sp, #0x40]
+   65188:      	stp	x20, x19, [sp, #0x50]
+   6518c:      	add	x29, sp, #0x40
+   65190:      	mrs	x20, TPIDR_EL0
+   65194:      	mov	x19, x0
+   65198:      	ldr	x8, [x20, #0x28]
+   6519c:      	stur	x8, [x29, #-0x8]
+   651a0:      	ldr	x8, [x1, #0x20]
+   651a4:      	cbz	x8, 0x651c8 <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x48>
+   651a8:      	cmp	x8, x1
+   651ac:      	b.eq	0x651d0 <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x50>
+   651b0:      	ldr	x9, [x8]
+   651b4:      	mov	x0, x8
+   651b8:      	ldr	x9, [x9, #0x10]
+   651bc:      	blr	x9
+   651c0:      	str	x0, [sp, #0x20]
+   651c4:      	b	0x651ec <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x6c>
+   651c8:      	str	xzr, [sp, #0x20]
+   651cc:      	b	0x651ec <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x6c>
+   651d0:      	mov	x8, sp
+   651d4:      	ldr	x9, [x1]
+   651d8:      	mov	x0, x1
+   651dc:      	str	x8, [sp, #0x20]
+   651e0:      	mov	x1, sp
+   651e4:      	ldr	x8, [x9, #0x18]
+   651e8:      	blr	x8
+   651ec:      	mov	x0, sp
+   651f0:      	add	x1, x19, #0x1a0
+   651f4:      	mov	x19, sp
+   651f8:      	bl	0x661b4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xe50>
+   651fc:      	ldr	x0, [sp, #0x20]
+   65200:      	cmp	x0, x19
+   65204:      	b.eq	0x65214 <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x94>
+   65208:      	cbz	x0, 0x65228 <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0xa8>
+   6520c:      	mov	w8, #0x5
+   65210:      	b	0x6521c <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0x9c>
+   65214:      	mov	w8, #0x4
+   65218:      	mov	x0, sp
+   6521c:      	ldr	x9, [x0]
+   65220:      	ldr	x8, [x9, x8, lsl #3]
+   65224:      	blr	x8
+   65228:      	ldr	x8, [x20, #0x28]
+   6522c:      	ldur	x9, [x29, #-0x8]
+   65230:      	cmp	x8, x9
+   65234:      	b.ne	0x6524c <_ZN8PVGVIDEO10PVGContext30setReleaseInputTextureFunctionERKNSt6__ndk18functionIFviEEE+0xcc>
+   65238:      	mov	w0, wzr
+   6523c:      	ldp	x20, x19, [sp, #0x50]
+   65240:      	ldp	x29, x30, [sp, #0x40]
+   65244:      	add	sp, sp, #0x60
+   65248:      	ret
+   6524c:      	bl	0x111250 <__stack_chk_fail@plt>
+
+0000000000065250 <_ZN8PVGVIDEO10PVGContext30getReleaseInputTextureFunctionEv>:
+   65250:      	add	x0, x0, #0x1a0
+   65254:      	ret
+
+0000000000065258 <_ZN8PVGVIDEO10PVGContext11addMetadataERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_>:
+   65258:      	sub	sp, sp, #0x40
+   6525c:      	stp	x29, x30, [sp, #0x20]
+   65260:      	stp	x20, x19, [sp, #0x30]
+   65264:      	add	x29, sp, #0x20
+   65268:      	mrs	x20, TPIDR_EL0
+   6526c:      	mov	x19, x2
+   65270:      	nop
+   65274:      	adr	x2, #-0x27672
+   65278:      	ldr	x8, [x20, #0x28]
+   6527c:      	add	x0, x0, #0x1d0
+   65280:      	add	x3, sp, #0x10
+   65284:      	add	x4, sp, #0xf
+   65288:      	stur	x8, [x29, #-0x8]
+   6528c:      	str	x1, [sp, #0x10]
+   65290:      	bl	0x65390 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2c>
+   65294:      	add	x0, x0, #0x28
+   65298:      	mov	x1, x19
+   6529c:      	bl	0x111220 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+   652a0:      	ldr	x8, [x20, #0x28]
+   652a4:      	ldur	x9, [x29, #-0x8]
+   652a8:      	cmp	x8, x9
+   652ac:      	b.ne	0x652c0 <_ZN8PVGVIDEO10PVGContext11addMetadataERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEES9_+0x68>
+   652b0:      	ldp	x20, x19, [sp, #0x30]
+   652b4:      	ldp	x29, x30, [sp, #0x20]
+   652b8:      	add	sp, sp, #0x40
+   652bc:      	ret
+   652c0:      	bl	0x111250 <__stack_chk_fail@plt>
+
+00000000000652c4 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv>:
+   652c4:      	ldr	x8, [x0, #0x1e8]
+   652c8:      	cbz	x8, 0x6531c <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x58>
+   652cc:      	stp	x29, x30, [sp, #-0x30]!
+   652d0:      	str	x21, [sp, #0x10]
+   652d4:      	stp	x20, x19, [sp, #0x20]
+   652d8:      	mov	x29, sp
+   652dc:      	ldr	x20, [x0, #0x1e0]
+   652e0:      	mov	x19, x0
+   652e4:      	cbnz	x20, 0x65330 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x6c>
+   652e8:      	ldr	x8, [x19, #0x1d8]
+   652ec:      	str	xzr, [x19, #0x1e0]
+   652f0:      	cbz	x8, 0x6530c <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x48>
+   652f4:      	mov	x9, xzr
+   652f8:      	ldr	x10, [x19, #0x1d0]
+   652fc:      	str	xzr, [x10, x9, lsl #3]
+   65300:      	add	x9, x9, #0x1
+   65304:      	cmp	x8, x9
+   65308:      	b.ne	0x652f8 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x34>
+   6530c:      	str	xzr, [x19, #0x1e8]
+   65310:      	ldp	x20, x19, [sp, #0x20]
+   65314:      	ldr	x21, [sp, #0x10]
+   65318:      	ldp	x29, x30, [sp], #0x30
+   6531c:      	ret
+   65320:      	mov	x0, x20
+   65324:      	bl	0x1111b0 <_ZdlPv@plt>
+   65328:      	mov	x20, x21
+   6532c:      	cbz	x21, 0x652e8 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x24>
+   65330:      	ldrb	w8, [x20, #0x28]
+   65334:      	ldr	x21, [x20]
+   65338:      	tbnz	w8, #0x0, 0x65348 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x84>
+   6533c:      	ldrb	w8, [x20, #0x10]
+   65340:      	tbz	w8, #0x0, 0x65320 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x5c>
+   65344:      	b	0x65358 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x94>
+   65348:      	ldr	x0, [x20, #0x38]
+   6534c:      	bl	0x1111b0 <_ZdlPv@plt>
+   65350:      	ldrb	w8, [x20, #0x10]
+   65354:      	tbz	w8, #0x0, 0x65320 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x5c>
+   65358:      	ldr	x0, [x20, #0x20]
+   6535c:      	bl	0x1111b0 <_ZdlPv@plt>
+   65360:      	b	0x65320 <_ZN8PVGVIDEO10PVGContext13clearMetadataEv+0x5c>
+
+0000000000065364 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv>:
+   65364:      	add	x0, x0, #0x1d0
+   65368:      	ret
+   6536c:      	stp	x29, x30, [sp, #-0x20]!
+   65370:      	str	x19, [sp, #0x10]
+   65374:      	mov	x29, sp
+   65378:      	mov	x19, x0
+   6537c:      	bl	0x1111c0 <_ZN8PVGVIDEO6PVGRefD2Ev@plt>
+   65380:      	mov	x0, x19
+   65384:      	ldr	x19, [sp, #0x10]
+   65388:      	ldp	x29, x30, [sp], #0x20
+   6538c:      	b	0x1111b0 <_ZdlPv@plt>
+   65390:      	sub	sp, sp, #0x80
+   65394:      	stp	x29, x30, [sp, #0x20]
+   65398:      	stp	x28, x27, [sp, #0x30]
+   6539c:      	stp	x26, x25, [sp, #0x40]
+   653a0:      	stp	x24, x23, [sp, #0x50]
+   653a4:      	stp	x22, x21, [sp, #0x60]
+   653a8:      	stp	x20, x19, [sp, #0x70]
+   653ac:      	add	x29, sp, #0x20
+   653b0:      	mrs	x23, TPIDR_EL0
+   653b4:      	mov	x21, x3
+   653b8:      	mov	x22, x1
+   653bc:      	ldr	x8, [x23, #0x28]
+   653c0:      	mov	x19, x0
+   653c4:      	stur	x8, [x29, #-0x8]
+   653c8:      	ldrb	w8, [x1]
+   653cc:      	ldp	x10, x9, [x1, #0x8]
+   653d0:      	lsr	x11, x8, #1
+   653d4:      	tst	w8, #0x1
+   653d8:      	csinc	x1, x9, x1, ne
+   653dc:      	csel	x2, x11, x10, eq
+   653e0:      	mov	x0, sp
+   653e4:      	bl	0x658b0 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x54c>
+   653e8:      	ldr	x24, [x19, #0x8]
+   653ec:      	mov	x20, x0
+   653f0:      	cbz	x24, 0x65418 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xb4>
+   653f4:      	fmov	d0, x24
+   653f8:      	cnt	v0.8b, v0.8b
+   653fc:      	uaddlv	h0, v0.8b
+   65400:      	fmov	w8, s0
+   65404:      	cmp	x8, #0x1
+   65408:      	b.hi	0x6541c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xb8>
+   6540c:      	sub	x9, x24, #0x1
+   65410:      	and	x25, x9, x20
+   65414:      	b	0x65430 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xcc>
+   65418:      	b	0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   6541c:      	cmp	x20, x24
+   65420:      	mov	x25, x20
+   65424:      	b.lo	0x65430 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xcc>
+   65428:      	udiv	x9, x20, x24
+   6542c:      	msub	x25, x9, x24, x20
+   65430:      	ldr	x9, [x19]
+   65434:      	ldr	x9, [x9, x25, lsl #3]
+   65438:      	cbz	x9, 0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   6543c:      	ldr	x0, [x9]
+   65440:      	cbz	x0, 0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   65444:      	ldrb	w9, [x22]
+   65448:      	ldp	x11, x12, [x22, #0x8]
+   6544c:      	add	x13, x22, #0x1
+   65450:      	lsr	x10, x9, #1
+   65454:      	tst	w9, #0x1
+   65458:      	csel	x22, x13, x12, eq
+   6545c:      	csel	x26, x10, x11, eq
+   65460:      	cmp	x8, #0x2
+   65464:      	b.hs	0x65480 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x11c>
+   65468:      	sub	x27, x24, #0x1
+   6546c:      	b	0x65528 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1c4>
+   65470:      	cmp	x8, x25
+   65474:      	b.ne	0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   65478:      	ldr	x0, [x0]
+   6547c:      	cbz	x0, 0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   65480:      	ldr	x8, [x0, #0x8]
+   65484:      	cmp	x8, x20
+   65488:      	b.ne	0x654dc <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x178>
+   6548c:      	ldrb	w9, [x0, #0x10]
+   65490:      	ldr	x2, [x0, #0x18]
+   65494:      	lsr	x8, x9, #1
+   65498:      	tst	w9, #0x1
+   6549c:      	csel	x10, x8, x2, eq
+   654a0:      	cmp	x10, x26
+   654a4:      	b.ne	0x65478 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x114>
+   654a8:      	tbnz	w9, #0x0, 0x654f0 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x18c>
+   654ac:      	cmp	w9, #0x2
+   654b0:      	b.lo	0x655a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x240>
+   654b4:      	mov	x9, xzr
+   654b8:      	add	x10, x0, x9
+   654bc:      	ldrb	w11, [x22, x9]
+   654c0:      	ldrb	w10, [x10, #0x11]
+   654c4:      	cmp	w10, w11
+   654c8:      	b.ne	0x65478 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x114>
+   654cc:      	add	x9, x9, #0x1
+   654d0:      	cmp	x8, x9
+   654d4:      	b.ne	0x654b8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x154>
+   654d8:      	b	0x655a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x240>
+   654dc:      	cmp	x8, x24
+   654e0:      	b.lo	0x65470 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x10c>
+   654e4:      	udiv	x9, x8, x24
+   654e8:      	msub	x8, x9, x24, x8
+   654ec:      	b	0x65470 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x10c>
+   654f0:      	ldr	x8, [x0, #0x20]
+   654f4:      	mov	x27, x0
+   654f8:      	mov	x1, x22
+   654fc:      	mov	x0, x8
+   65500:      	bl	0x1113b0 <memcmp@plt>
+   65504:      	mov	w8, w0
+   65508:      	mov	x0, x27
+   6550c:      	cbnz	w8, 0x65478 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x114>
+   65510:      	b	0x655a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x240>
+   65514:      	and	x8, x8, x27
+   65518:      	cmp	x8, x25
+   6551c:      	b.ne	0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   65520:      	ldr	x0, [x0]
+   65524:      	cbz	x0, 0x655ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x248>
+   65528:      	ldr	x8, [x0, #0x8]
+   6552c:      	cmp	x8, x20
+   65530:      	b.ne	0x65514 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1b0>
+   65534:      	ldrb	w9, [x0, #0x10]
+   65538:      	ldr	x2, [x0, #0x18]
+   6553c:      	lsr	x8, x9, #1
+   65540:      	tst	w9, #0x1
+   65544:      	csel	x10, x8, x2, eq
+   65548:      	cmp	x10, x26
+   6554c:      	b.ne	0x65520 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1bc>
+   65550:      	tbnz	w9, #0x0, 0x65584 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x220>
+   65554:      	cmp	w9, #0x2
+   65558:      	b.lo	0x655a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x240>
+   6555c:      	mov	x9, xzr
+   65560:      	add	x10, x0, x9
+   65564:      	ldrb	w11, [x22, x9]
+   65568:      	ldrb	w10, [x10, #0x11]
+   6556c:      	cmp	w10, w11
+   65570:      	b.ne	0x65520 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1bc>
+   65574:      	add	x9, x9, #0x1
+   65578:      	cmp	x8, x9
+   6557c:      	b.ne	0x65560 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1fc>
+   65580:      	b	0x655a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x240>
+   65584:      	ldr	x8, [x0, #0x20]
+   65588:      	mov	x28, x0
+   6558c:      	mov	x1, x22
+   65590:      	mov	x0, x8
+   65594:      	bl	0x1113b0 <memcmp@plt>
+   65598:      	mov	w8, w0
+   6559c:      	mov	x0, x28
+   655a0:      	cbnz	w8, 0x65520 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x1bc>
+   655a4:      	mov	x1, xzr
+   655a8:      	b	0x657f4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x490>
+   655ac:      	mov	w0, #0x40
+   655b0:      	add	x26, x19, #0x10
+   655b4:      	bl	0x1113c0 <_Znwm@plt>
+   655b8:      	ldr	x8, [x21]
+   655bc:      	stp	x0, x26, [sp]
+   655c0:      	mov	x22, x0
+   655c4:      	strb	wzr, [sp, #0x10]
+   655c8:      	stp	xzr, x20, [x0]
+   655cc:      	ldrb	w9, [x8]
+   655d0:      	tbnz	w9, #0x0, 0x655e8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x284>
+   655d4:      	ldr	x9, [x8, #0x10]
+   655d8:      	ldr	q0, [x8]
+   655dc:      	stur	x9, [x22, #0x20]
+   655e0:      	stur	q0, [x22, #0x10]
+   655e4:      	b	0x655f4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x290>
+   655e8:      	ldp	x2, x1, [x8, #0x8]
+   655ec:      	add	x0, x22, #0x10
+   655f0:      	bl	0x65d30 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x9cc>
+   655f4:      	ldr	x8, [x19, #0x18]
+   655f8:      	ldr	s1, [x19, #0x20]
+   655fc:      	stp	xzr, xzr, [x22, #0x28]
+   65600:      	str	xzr, [x22, #0x38]
+   65604:      	add	x8, x8, #0x1
+   65608:      	ucvtf	s0, x8
+   6560c:      	mov	w8, #0x1
+   65610:      	strb	w8, [sp, #0x10]
+   65614:      	cbz	x24, 0x6564c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2e8>
+   65618:      	ucvtf	s2, x24
+   6561c:      	fmul	s2, s1, s2
+   65620:      	fcmp	s2, s0
+   65624:      	b.mi	0x6564c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2e8>
+   65628:      	ldr	x8, [x19]
+   6562c:      	ldr	x9, [sp]
+   65630:      	ldr	x8, [x8, x25, lsl #3]
+   65634:      	cbz	x8, 0x65750 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3ec>
+   65638:      	ldr	x10, [x8]
+   6563c:      	str	x10, [x9]
+   65640:      	ldr	x0, [sp]
+   65644:      	str	x0, [x8]
+   65648:      	b	0x657e4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x480>
+   6564c:      	lsl	x8, x24, #1
+   65650:      	cmp	x24, #0x3
+   65654:      	b.lo	0x65668 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x304>
+   65658:      	sub	x9, x24, #0x1
+   6565c:      	tst	x24, x9
+   65660:      	cset	w9, ne
+   65664:      	b	0x6566c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x308>
+   65668:      	mov	w9, #0x1
+   6566c:      	fdiv	s0, s0, s1
+   65670:      	orr	x8, x9, x8
+   65674:      	fcvtpu	x10, s0
+   65678:      	cmp	x8, x10
+   6567c:      	csel	x21, x8, x10, hi
+   65680:      	subs	x8, x21, #0x1
+   65684:      	b.ne	0x65690 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x32c>
+   65688:      	mov	w21, #0x2
+   6568c:      	b	0x656a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x340>
+   65690:      	tst	x21, x8
+   65694:      	b.eq	0x656a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x340>
+   65698:      	mov	x0, x21
+   6569c:      	bl	0x1113d0 <_ZNSt6__ndk112__next_primeEm@plt>
+   656a0:      	mov	x21, x0
+   656a4:      	ldr	x22, [x19, #0x8]
+   656a8:      	cmp	x21, x22
+   656ac:      	b.ls	0x656c0 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x35c>
+   656b0:      	mov	x0, x19
+   656b4:      	mov	x1, x21
+   656b8:      	bl	0x65e44 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xae0>
+   656bc:      	b	0x6572c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3c8>
+   656c0:      	b.hs	0x6572c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3c8>
+   656c4:      	ldr	x8, [x19, #0x18]
+   656c8:      	ldr	s1, [x19, #0x20]
+   656cc:      	cmp	x22, #0x3
+   656d0:      	ucvtf	s0, x8
+   656d4:      	fdiv	s0, s0, s1
+   656d8:      	fcvtpu	x0, s0
+   656dc:      	b.lo	0x65718 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3b4>
+   656e0:      	fmov	d0, x22
+   656e4:      	cnt	v0.8b, v0.8b
+   656e8:      	uaddlv	h0, v0.8b
+   656ec:      	fmov	w8, s0
+   656f0:      	cmp	x8, #0x1
+   656f4:      	b.hi	0x65718 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3b4>
+   656f8:      	sub	x8, x0, #0x1
+   656fc:      	mov	w9, #0x1
+   65700:      	cmp	x0, #0x2
+   65704:      	clz	x8, x8
+   65708:      	neg	x8, x8
+   6570c:      	lsl	x8, x9, x8
+   65710:      	csel	x0, x0, x8, lo
+   65714:      	b	0x6571c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3b8>
+   65718:      	bl	0x1113d0 <_ZNSt6__ndk112__next_primeEm@plt>
+   6571c:      	cmp	x21, x0
+   65720:      	csel	x21, x21, x0, hi
+   65724:      	cmp	x21, x22
+   65728:      	b.lo	0x656b0 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x34c>
+   6572c:      	ldr	x24, [x19, #0x8]
+   65730:      	sub	x8, x24, #0x1
+   65734:      	tst	x24, x8
+   65738:      	b.ne	0x6578c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x428>
+   6573c:      	and	x25, x8, x20
+   65740:      	ldr	x8, [x19]
+   65744:      	ldr	x9, [sp]
+   65748:      	ldr	x8, [x8, x25, lsl #3]
+   6574c:      	cbnz	x8, 0x65638 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2d4>
+   65750:      	ldr	x8, [x19, #0x10]
+   65754:      	str	x8, [x9]
+   65758:      	ldr	x8, [sp]
+   6575c:      	ldr	x9, [x19]
+   65760:      	str	x8, [x19, #0x10]
+   65764:      	str	x26, [x9, x25, lsl #3]
+   65768:      	ldr	x0, [sp]
+   6576c:      	ldr	x8, [x0]
+   65770:      	cbz	x8, 0x657e4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x480>
+   65774:      	sub	x9, x24, #0x1
+   65778:      	ldr	x8, [x8, #0x8]
+   6577c:      	tst	x24, x9
+   65780:      	b.ne	0x657c8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x464>
+   65784:      	and	x8, x8, x9
+   65788:      	b	0x657d8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x474>
+   6578c:      	cmp	x20, x24
+   65790:      	b.hs	0x657ac <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x448>
+   65794:      	mov	x25, x20
+   65798:      	ldr	x8, [x19]
+   6579c:      	ldr	x9, [sp]
+   657a0:      	ldr	x8, [x8, x20, lsl #3]
+   657a4:      	cbnz	x8, 0x65638 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2d4>
+   657a8:      	b	0x65750 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3ec>
+   657ac:      	udiv	x8, x20, x24
+   657b0:      	msub	x25, x8, x24, x20
+   657b4:      	ldr	x8, [x19]
+   657b8:      	ldr	x9, [sp]
+   657bc:      	ldr	x8, [x8, x25, lsl #3]
+   657c0:      	cbnz	x8, 0x65638 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x2d4>
+   657c4:      	b	0x65750 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x3ec>
+   657c8:      	cmp	x8, x24
+   657cc:      	b.lo	0x657d8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x474>
+   657d0:      	udiv	x9, x8, x24
+   657d4:      	msub	x8, x9, x24, x8
+   657d8:      	ldr	x9, [x19]
+   657dc:      	str	x0, [x9, x8, lsl #3]
+   657e0:      	ldr	x0, [sp]
+   657e4:      	ldr	x8, [x19, #0x18]
+   657e8:      	mov	w1, #0x1
+   657ec:      	add	x8, x8, #0x1
+   657f0:      	str	x8, [x19, #0x18]
+   657f4:      	ldr	x8, [x23, #0x28]
+   657f8:      	ldur	x9, [x29, #-0x8]
+   657fc:      	cmp	x8, x9
+   65800:      	b.ne	0x6584c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x4e8>
+   65804:      	ldp	x20, x19, [sp, #0x70]
+   65808:      	ldp	x22, x21, [sp, #0x60]
+   6580c:      	ldp	x24, x23, [sp, #0x50]
+   65810:      	ldp	x26, x25, [sp, #0x40]
+   65814:      	ldp	x28, x27, [sp, #0x30]
+   65818:      	ldp	x29, x30, [sp, #0x20]
+   6581c:      	add	sp, sp, #0x80
+   65820:      	ret
+   65824:      	b	0x65828 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x4c4>
+   65828:      	mov	x19, x0
+   6582c:      	mov	x0, sp
+   65830:      	bl	0x65854 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x4f0>
+   65834:      	ldr	x8, [x23, #0x28]
+   65838:      	ldur	x9, [x29, #-0x8]
+   6583c:      	cmp	x8, x9
+   65840:      	b.ne	0x6584c <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x4e8>
+   65844:      	mov	x0, x19
+   65848:      	bl	0x10d454 <JNI_OnUnload+0x9a054>
+   6584c:      	bl	0x111250 <__stack_chk_fail@plt>
+   65850:      	bl	0x64b88 <_ZN8PVGVIDEO10PVGContextD2Ev+0x1b0>
+   65854:      	stp	x29, x30, [sp, #-0x20]!
+   65858:      	str	x19, [sp, #0x10]
+   6585c:      	mov	x29, sp
+   65860:      	ldr	x19, [x0]
+   65864:      	str	xzr, [x0]
+   65868:      	cbz	x19, 0x658a4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x540>
+   6586c:      	ldrb	w8, [x0, #0x10]
+   65870:      	cbz	w8, 0x65894 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x530>
+   65874:      	ldrb	w8, [x19, #0x28]
+   65878:      	tbz	w8, #0x0, 0x65884 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x520>
+   6587c:      	ldr	x0, [x19, #0x38]
+   65880:      	bl	0x1111b0 <_ZdlPv@plt>
+   65884:      	ldrb	w8, [x19, #0x10]
+   65888:      	tbz	w8, #0x0, 0x65894 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x530>
+   6588c:      	ldr	x0, [x19, #0x20]
+   65890:      	bl	0x1111b0 <_ZdlPv@plt>
+   65894:      	mov	x0, x19
+   65898:      	ldr	x19, [sp, #0x10]
+   6589c:      	ldp	x29, x30, [sp], #0x20
+   658a0:      	b	0x1111b0 <_ZdlPv@plt>
+   658a4:      	ldr	x19, [sp, #0x10]
+   658a8:      	ldp	x29, x30, [sp], #0x20
+   658ac:      	ret
+   658b0:      	cmp	x2, #0x20
+   658b4:      	b.hi	0x65910 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x5ac>
+   658b8:      	cmp	x2, #0x10
+   658bc:      	b.hi	0x659d8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x674>
+   658c0:      	cmp	x2, #0x9
+   658c4:      	b.lo	0x65c58 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x8f4>
+   658c8:      	add	x8, x1, x2
+   658cc:      	mov	x11, #0x2d69
+   658d0:      	ldr	x10, [x1]
+   658d4:      	ldur	x8, [x8, #-0x8]
+   658d8:      	movk	x11, #0xeb38, lsl #16
+   658dc:      	movk	x11, #0xea08, lsl #32
+   658e0:      	add	x9, x8, x2
+   658e4:      	movk	x11, #0x9ddf, lsl #48
+   658e8:      	ror	x9, x9, x2
+   658ec:      	eor	x10, x9, x10
+   658f0:      	mul	x10, x10, x11
+   658f4:      	eor	x9, x9, x10, lsr #47
+   658f8:      	eor	x9, x9, x10
+   658fc:      	mul	x9, x9, x11
+   65900:      	eor	x9, x9, x9, lsr #47
+   65904:      	mul	x9, x9, x11
+   65908:      	eor	x0, x9, x8
+   6590c:      	ret
+   65910:      	add	x9, x1, x2
+   65914:      	cmp	x2, #0x40
+   65918:      	b.hi	0x65a84 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x720>
+   6591c:      	ldp	x10, x11, [x9, #-0x10]
+   65920:      	mov	x8, #0x3127
+   65924:      	movk	x8, #0x97cb, lsl #16
+   65928:      	ldp	x13, x14, [x1]
+   6592c:      	movk	x8, #0xc85c, lsl #32
+   65930:      	ldp	x0, x9, [x9, #-0x20]
+   65934:      	movk	x8, #0xc3a5, lsl #48
+   65938:      	add	x12, x10, x2
+   6593c:      	madd	x12, x12, x8, x13
+   65940:      	ldp	x15, x13, [x1, #0x10]
+   65944:      	add	x0, x0, x15
+   65948:      	add	x11, x11, x13
+   6594c:      	add	x9, x9, x0
+   65950:      	add	x14, x12, x14
+   65954:      	add	x16, x12, x13
+   65958:      	ror	x12, x12, #0x25
+   6595c:      	ror	x17, x14, #0x7
+   65960:      	ror	x16, x16, #0x34
+   65964:      	add	x14, x14, x15
+   65968:      	ror	x15, x14, #0x1f
+   6596c:      	add	x10, x9, x10
+   65970:      	ror	x9, x9, #0x7
+   65974:      	add	x12, x17, x12
+   65978:      	ror	x17, x0, #0x25
+   6597c:      	add	x12, x12, x16
+   65980:      	add	x16, x11, x0
+   65984:      	add	x11, x10, x11
+   65988:      	add	x12, x12, x15
+   6598c:      	ror	x15, x16, #0x34
+   65990:      	add	x13, x13, x17
+   65994:      	ror	x10, x10, #0x1f
+   65998:      	add	x9, x13, x9
+   6599c:      	add	x11, x11, x12
+   659a0:      	add	x9, x9, x15
+   659a4:      	mul	x11, x11, x8
+   659a8:      	add	x9, x9, x10
+   659ac:      	mov	x10, #0x404f
+   659b0:      	movk	x10, #0x2f90, lsl #16
+   659b4:      	add	x9, x14, x9
+   659b8:      	movk	x10, #0x6a3b, lsl #32
+   659bc:      	movk	x10, #0x9ae1, lsl #48
+   659c0:      	madd	x9, x9, x10, x11
+   659c4:      	eor	x9, x9, x9, lsr #47
+   659c8:      	madd	x8, x9, x8, x12
+   659cc:      	eor	x8, x8, x8, lsr #47
+   659d0:      	mul	x0, x8, x10
+   659d4:      	ret
+   659d8:      	mov	x9, #0xf273
+   659dc:      	ldp	x8, x11, [x1]
+   659e0:      	movk	x9, #0xbe98, lsl #16
+   659e4:      	add	x10, x1, x2
+   659e8:      	mov	x12, #0x404f
+   659ec:      	movk	x9, #0xb66f, lsl #32
+   659f0:      	movk	x12, #0x2f90, lsl #16
+   659f4:      	mov	x14, #0x6557
+   659f8:      	movk	x9, #0xb492, lsl #48
+   659fc:      	movk	x12, #0x6a3b, lsl #32
+   65a00:      	movk	x14, #0x509e, lsl #16
+   65a04:      	mul	x8, x8, x9
+   65a08:      	ldp	x10, x9, [x10, #-0x10]
+   65a0c:      	movk	x12, #0x9ae1, lsl #48
+   65a10:      	movk	x14, #0xd7c7, lsl #32
+   65a14:      	movk	x14, #0xc949, lsl #48
+   65a18:      	mul	x9, x9, x12
+   65a1c:      	sub	x12, x8, x11
+   65a20:      	eor	x11, x11, x14
+   65a24:      	mov	x14, #0x3127
+   65a28:      	movk	x14, #0x97cb, lsl #16
+   65a2c:      	ror	x12, x12, #0x2b
+   65a30:      	ror	x11, x11, #0x14
+   65a34:      	movk	x14, #0xc85c, lsl #32
+   65a38:      	ror	x13, x9, #0x1e
+   65a3c:      	movk	x14, #0xc3a5, lsl #48
+   65a40:      	add	x11, x2, x11
+   65a44:      	add	x8, x8, x11
+   65a48:      	add	x12, x13, x12
+   65a4c:      	madd	x10, x10, x14, x12
+   65a50:      	sub	x8, x8, x9
+   65a54:      	eor	x9, x10, x8
+   65a58:      	mov	x10, #0x2d69
+   65a5c:      	movk	x10, #0xeb38, lsl #16
+   65a60:      	movk	x10, #0xea08, lsl #32
+   65a64:      	movk	x10, #0x9ddf, lsl #48
+   65a68:      	mul	x9, x9, x10
+   65a6c:      	eor	x8, x8, x9, lsr #47
+   65a70:      	eor	x8, x8, x9
+   65a74:      	mul	x8, x8, x10
+   65a78:      	eor	x8, x8, x8, lsr #47
+   65a7c:      	mul	x0, x8, x10
+   65a80:      	ret
+   65a84:      	ldp	x15, x11, [x9, #-0x38]
+   65a88:      	mov	x8, #0x2d69
+   65a8c:      	ldp	x13, x12, [x9, #-0x20]
+   65a90:      	movk	x8, #0xeb38, lsl #16
+   65a94:      	movk	x8, #0xea08, lsl #32
+   65a98:      	ldur	x16, [x9, #-0x40]
+   65a9c:      	ldur	x3, [x9, #-0x28]
+   65aa0:      	add	x10, x11, x2
+   65aa4:      	movk	x8, #0x9ddf, lsl #48
+   65aa8:      	eor	x10, x12, x10
+   65aac:      	ldp	x0, x4, [x9, #-0x10]
+   65ab0:      	mul	x10, x10, x8
+   65ab4:      	mov	x9, #0xf273
+   65ab8:      	add	x16, x16, x2
+   65abc:      	movk	x9, #0xbe98, lsl #16
+   65ac0:      	movk	x9, #0xb66f, lsl #32
+   65ac4:      	add	x5, x3, x4
+   65ac8:      	movk	x9, #0xb492, lsl #48
+   65acc:      	add	x13, x13, x9
+   65ad0:      	eor	x14, x12, x10, lsr #47
+   65ad4:      	eor	x10, x14, x10
+   65ad8:      	ldr	x14, [x1], #0x20
+   65adc:      	mul	x10, x10, x8
+   65ae0:      	eor	x10, x10, x10, lsr #47
+   65ae4:      	mul	x17, x10, x8
+   65ae8:      	add	x10, x15, x0
+   65aec:      	add	x15, x15, x11
+   65af0:      	add	x0, x12, x0
+   65af4:      	add	x12, x16, x15
+   65af8:      	add	x13, x10, x13
+   65afc:      	madd	x11, x3, x9, x14
+   65b00:      	add	x14, x3, x16
+   65b04:      	ror	x15, x12, #0x2c
+   65b08:      	add	x0, x13, x0
+   65b0c:      	add	x12, x12, x3
+   65b10:      	add	x3, x13, x5
+   65b14:      	ror	x5, x0, #0x2c
+   65b18:      	add	x15, x15, x16
+   65b1c:      	sub	x16, x2, #0x1
+   65b20:      	add	x14, x14, x17
+   65b24:      	ror	x2, x3, #0x15
+   65b28:      	and	x3, x16, #0xffffffffffffffc0
+   65b2c:      	ror	x14, x14, #0x15
+   65b30:      	add	x13, x5, x13
+   65b34:      	add	x16, x15, x14
+   65b38:      	add	x15, x0, x4
+   65b3c:      	add	x14, x13, x2
+   65b40:      	neg	x13, x3
+   65b44:      	ldp	x2, x0, [x1, #-0x20]
+   65b48:      	add	x11, x11, x12
+   65b4c:      	add	x17, x17, x15
+   65b50:      	add	x11, x11, x10
+   65b54:      	madd	x2, x16, x9, x2
+   65b58:      	ror	x17, x17, #0x21
+   65b5c:      	add	x10, x10, x16
+   65b60:      	adds	x13, x13, #0x40
+   65b64:      	add	x11, x11, x0
+   65b68:      	ldp	x6, x4, [x1]
+   65b6c:      	ror	x16, x11, #0x25
+   65b70:      	mul	x11, x17, x9
+   65b74:      	ldp	x3, x17, [x1, #0x10]
+   65b78:      	add	x12, x4, x12
+   65b7c:      	mul	x16, x16, x9
+   65b80:      	add	x15, x2, x15
+   65b84:      	add	x10, x10, x3
+   65b88:      	add	x3, x4, x3
+   65b8c:      	add	x4, x14, x6
+   65b90:      	ror	x10, x10, #0x2a
+   65b94:      	add	x4, x11, x4
+   65b98:      	madd	x10, x10, x9, x12
+   65b9c:      	ldp	x5, x12, [x1, #-0x10]
+   65ba0:      	add	x1, x1, #0x40
+   65ba4:      	add	x0, x0, x5
+   65ba8:      	add	x5, x5, x4
+   65bac:      	add	x15, x15, x12
+   65bb0:      	add	x0, x2, x0
+   65bb4:      	add	x12, x0, x12
+   65bb8:      	ror	x6, x0, #0x2c
+   65bbc:      	eor	x0, x16, x14
+   65bc0:      	add	x14, x4, x3
+   65bc4:      	add	x16, x10, x5
+   65bc8:      	add	x15, x15, x0
+   65bcc:      	ror	x3, x14, #0x2c
+   65bd0:      	add	x16, x16, x17
+   65bd4:      	ror	x5, x15, #0x15
+   65bd8:      	add	x2, x6, x2
+   65bdc:      	ror	x6, x16, #0x15
+   65be0:      	add	x15, x14, x17
+   65be4:      	add	x14, x3, x4
+   65be8:      	add	x16, x2, x5
+   65bec:      	mov	x17, x0
+   65bf0:      	add	x14, x14, x6
+   65bf4:      	b.ne	0x65b44 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x7e0>
+   65bf8:      	eor	x12, x15, x12
+   65bfc:      	eor	x13, x14, x16
+   65c00:      	eor	x10, x10, x10, lsr #47
+   65c04:      	mul	x12, x12, x8
+   65c08:      	mul	x13, x13, x8
+   65c0c:      	madd	x9, x10, x9, x0
+   65c10:      	eor	x15, x15, x12, lsr #47
+   65c14:      	eor	x14, x14, x13, lsr #47
+   65c18:      	eor	x12, x15, x12
+   65c1c:      	mul	x12, x12, x8
+   65c20:      	eor	x13, x14, x13
+   65c24:      	mul	x13, x13, x8
+   65c28:      	eor	x10, x12, x12, lsr #47
+   65c2c:      	eor	x12, x13, x13, lsr #47
+   65c30:      	madd	x9, x10, x8, x9
+   65c34:      	madd	x10, x12, x8, x11
+   65c38:      	eor	x9, x10, x9
+   65c3c:      	mul	x9, x9, x8
+   65c40:      	eor	x10, x10, x9, lsr #47
+   65c44:      	eor	x9, x10, x9
+   65c48:      	mul	x9, x9, x8
+   65c4c:      	eor	x9, x9, x9, lsr #47
+   65c50:      	mul	x0, x9, x8
+   65c54:      	ret
+   65c58:      	cmp	x2, #0x4
+   65c5c:      	b.lo	0x65ca4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x940>
+   65c60:      	ldr	w8, [x1]
+   65c64:      	add	x9, x1, x2
+   65c68:      	mov	x10, #0x2d69
+   65c6c:      	ldur	w9, [x9, #-0x4]
+   65c70:      	movk	x10, #0xeb38, lsl #16
+   65c74:      	lsl	w8, w8, #3
+   65c78:      	movk	x10, #0xea08, lsl #32
+   65c7c:      	movk	x10, #0x9ddf, lsl #48
+   65c80:      	add	x8, x8, x2
+   65c84:      	eor	x8, x8, x9
+   65c88:      	mul	x8, x8, x10
+   65c8c:      	eor	x9, x9, x8, lsr #47
+   65c90:      	eor	x8, x9, x8
+   65c94:      	mul	x8, x8, x10
+   65c98:      	eor	x8, x8, x8, lsr #47
+   65c9c:      	mul	x0, x8, x10
+   65ca0:      	ret
+   65ca4:      	mov	x0, #0x404f
+   65ca8:      	movk	x0, #0x2f90, lsl #16
+   65cac:      	movk	x0, #0x6a3b, lsl #32
+   65cb0:      	movk	x0, #0x9ae1, lsl #48
+   65cb4:      	cbz	x2, 0x65c54 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0x8f0>
+   65cb8:      	lsr	x8, x2, #1
+   65cbc:      	add	x10, x1, x2
+   65cc0:      	ldrb	w9, [x1]
+   65cc4:      	ldurb	w10, [x10, #-0x1]
+   65cc8:      	ldrb	w8, [x1, x8]
+   65ccc:      	orr	x8, x9, x8, lsl #8
+   65cd0:      	orr	x9, x2, x10, lsl #2
+   65cd4:      	mov	x10, #0x6557
+   65cd8:      	movk	x10, #0x509e, lsl #16
+   65cdc:      	movk	x10, #0xd7c7, lsl #32
+   65ce0:      	mul	x8, x8, x0
+   65ce4:      	movk	x10, #0xc949, lsl #48
+   65ce8:      	mul	x9, x9, x10
+   65cec:      	eor	x8, x9, x8
+   65cf0:      	eor	x8, x8, x8, lsr #47
+   65cf4:      	mul	x0, x8, x0
+   65cf8:      	ret
+   65cfc:      	stp	x29, x30, [sp, #-0x20]!
+   65d00:      	str	x19, [sp, #0x10]
+   65d04:      	mov	x29, sp
+   65d08:      	mov	w0, #0x8
+   65d0c:      	bl	0x1113e0 <__cxa_allocate_exception@plt>
+   65d10:      	mov	x19, x0
+   65d14:      	bl	0x1113f0 <_ZNSt20bad_array_new_lengthC1Ev@plt>
+   65d18:      	adrp	x1, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   65d1c:      	adrp	x2, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   65d20:      	mov	x0, x19
+   65d24:      	ldr	x1, [x1, #0xd60]
+   65d28:      	ldr	x2, [x2, #0xd68]
+   65d2c:      	bl	0x111400 <__cxa_throw@plt>
+   65d30:      	stp	x29, x30, [sp, #-0x30]!
+   65d34:      	stp	x22, x21, [sp, #0x10]
+   65d38:      	stp	x20, x19, [sp, #0x20]
+   65d3c:      	mov	x29, sp
+   65d40:      	mov	x19, x2
+   65d44:      	cmp	x2, #0x16
+   65d48:      	b.hi	0x65d68 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xa04>
+   65d4c:      	lsl	w8, w19, #1
+   65d50:      	strb	w8, [x0], #0x1
+   65d54:      	add	x2, x19, #0x1
+   65d58:      	ldp	x20, x19, [sp, #0x20]
+   65d5c:      	ldp	x22, x21, [sp, #0x10]
+   65d60:      	ldp	x29, x30, [sp], #0x30
+   65d64:      	b	0x111410 <memmove@plt>
+   65d68:      	mov	x20, x0
+   65d6c:      	cmn	x19, #0x10
+   65d70:      	b.hs	0x65da8 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xa44>
+   65d74:      	orr	x22, x19, #0xf
+   65d78:      	mov	x21, x1
+   65d7c:      	add	x0, x22, #0x1
+   65d80:      	bl	0x1113c0 <_Znwm@plt>
+   65d84:      	add	x8, x22, #0x2
+   65d88:      	mov	x1, x21
+   65d8c:      	stp	x19, x0, [x20, #0x8]
+   65d90:      	str	x8, [x20]
+   65d94:      	add	x2, x19, #0x1
+   65d98:      	ldp	x20, x19, [sp, #0x20]
+   65d9c:      	ldp	x22, x21, [sp, #0x10]
+   65da0:      	ldp	x29, x30, [sp], #0x30
+   65da4:      	b	0x111410 <memmove@plt>
+   65da8:      	mov	x0, x20
+   65dac:      	bl	0x65db0 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xa4c>
+   65db0:      	stp	x29, x30, [sp, #-0x10]!
+   65db4:      	mov	x29, sp
+   65db8:      	adrp	x0, 0x35000
+   65dbc:      	add	x0, x0, #0xc17
+   65dc0:      	bl	0x65dc4 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xa60>
+   65dc4:      	stp	x29, x30, [sp, #-0x20]!
+   65dc8:      	stp	x20, x19, [sp, #0x10]
+   65dcc:      	mov	x29, sp
+   65dd0:      	mov	x20, x0
+   65dd4:      	mov	w0, #0x10
+   65dd8:      	bl	0x1113e0 <__cxa_allocate_exception@plt>
+   65ddc:      	mov	x19, x0
+   65de0:      	mov	x1, x20
+   65de4:      	bl	0x65e14 <_ZNK8PVGVIDEO10PVGContext11getMetadataEv+0xab0>
+   65de8:      	adrp	x1, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   65dec:      	adrp	x2, 0x11a000 <_ZTINSt6__ndk110__function6__baseIFbllEEE+0x100>
+   65df0:      	mov	x0, x19
+   65df4:      	ldr	x1, [x1, #0xd70]
+   65df8:      	ldr	x2, [x2, #0xd78]
+   65dfc:      	bl	0x111400 <__cxa_throw@plt>
+   65e00:      	mov	x20, x0
+   65e04:      	mov	x0, x19

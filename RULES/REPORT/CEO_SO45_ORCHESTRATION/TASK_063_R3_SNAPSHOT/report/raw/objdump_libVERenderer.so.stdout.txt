@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libVERenderer.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000381a0 <.text>:
+   381a0:      	bti	c
+   381a4:      	nop
+   381a8:      	adr	x0, #0x31ab8
+   381ac:      	b	0x63e10 <__cxa_finalize@plt>
+   381b0:      	bti	c
+   381b4:      	ret
+   381b8:      	bti	c
+   381bc:      	b	0x381b0 <.text+0x10>
+   381c0:      	bti	c
+   381c4:      	cbz	x0, 0x381d0 <.text+0x30>
+   381c8:      	mov	x16, x0
+   381cc:      	br	x16
+   381d0:      	ret
+   381d4:      	bti	c
+   381d8:      	mov	x1, x0
+   381dc:      	nop
+   381e0:      	adr	x0, #-0x20
+   381e4:      	nop
+   381e8:      	adr	x2, #0x31a78
+   381ec:      	b	0x63e20 <__cxa_atexit@plt>
+
+00000000000381f0 <_ZN10verenderer7Color3BC2Ev>:
+   381f0:      	strh	wzr, [x0]
+   381f4:      	strb	wzr, [x0, #0x2]
+   381f8:      	ret
+
+00000000000381fc <_ZN10verenderer7Color3BC2Ehhh>:
+   381fc:      	strb	w1, [x0]
+   38200:      	strb	w2, [x0, #0x1]
+   38204:      	strb	w3, [x0, #0x2]
+   38208:      	ret
+
+000000000003820c <_ZN10verenderer7Color3BC2ERKNS_7Color4BE>:
+   3820c:      	ldrb	w8, [x1]
+   38210:      	strb	w8, [x0]
+   38214:      	ldurh	w8, [x1, #0x1]
+   38218:      	sturh	w8, [x0, #0x1]
+   3821c:      	ret
+
+0000000000038220 <_ZN10verenderer7Color3BC2ERKNS_7Color4FE>:
+   38220:      	mov	w8, #0x437f0000
+   38224:      	ldp	s0, s2, [x1]
+   38228:      	fmov	s1, w8
+   3822c:      	ldr	s3, [x1, #0x8]
+   38230:      	fmul	s0, s0, s1
+   38234:      	fmul	s2, s2, s1
+   38238:      	fmul	s1, s3, s1
+   3823c:      	fcvtzs	w8, s0
+   38240:      	fcvtzs	w9, s2
+   38244:      	fcvtzs	w10, s1
+   38248:      	strb	w8, [x0]
+   3824c:      	strb	w9, [x0, #0x1]
+   38250:      	strb	w10, [x0, #0x2]
+   38254:      	ret
+
+0000000000038258 <_ZNK10verenderer7Color3BeqERKS0_>:
+   38258:      	ldrh	w8, [x0]
+   3825c:      	ldrh	w9, [x1]
+   38260:      	ldrb	w10, [x0, #0x2]
+   38264:      	ldrb	w11, [x1, #0x2]
+   38268:      	cmp	w8, w9
+   3826c:      	ccmp	w10, w11, #0x0, eq
+   38270:      	cset	w0, eq
+   38274:      	ret
+
+0000000000038278 <_ZNK10verenderer7Color3BeqERKNS_7Color4BE>:
+   38278:      	ldrb	w8, [x0]
+   3827c:      	ldrb	w9, [x1]
+   38280:      	cmp	w8, w9
+   38284:      	b.ne	0x382b8 <_ZNK10verenderer7Color3BeqERKNS_7Color4BE+0x40>
+   38288:      	ldrb	w8, [x0, #0x1]
+   3828c:      	ldrb	w9, [x1, #0x1]
+   38290:      	cmp	w8, w9
+   38294:      	b.ne	0x382b8 <_ZNK10verenderer7Color3BeqERKNS_7Color4BE+0x40>
+   38298:      	ldrb	w8, [x0, #0x2]
+   3829c:      	ldrb	w9, [x1, #0x2]
+   382a0:      	cmp	w8, w9
+   382a4:      	b.ne	0x382b8 <_ZNK10verenderer7Color3BeqERKNS_7Color4BE+0x40>
+   382a8:      	ldrb	w8, [x1, #0x3]
+   382ac:      	cmp	w8, #0xff
+   382b0:      	cset	w0, eq
+   382b4:      	ret
+   382b8:      	mov	w0, wzr
+   382bc:      	ret
+
+00000000000382c0 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE>:
+   382c0:      	sub	sp, sp, #0x40
+   382c4:      	stp	x29, x30, [sp, #0x20]
+   382c8:      	stp	x20, x19, [sp, #0x30]
+   382cc:      	add	x29, sp, #0x20
+   382d0:      	mrs	x20, TPIDR_EL0
+   382d4:      	fmov	s0, #1.00000000
+   382d8:      	ldr	x8, [x20, #0x28]
+   382dc:      	stur	x8, [x29, #-0x8]
+   382e0:      	ldr	s1, [x1, #0xc]
+   382e4:      	fcmp	s1, s0
+   382e8:      	b.ne	0x38340 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0x80>
+   382ec:      	mov	x19, x1
+   382f0:      	mov	x1, x0
+   382f4:      	add	x0, sp, #0x8
+   382f8:      	bl	0x63e30 <_ZN10verenderer7Color4FC1ERKNS_7Color3BE@plt>
+   382fc:      	ldr	s0, [sp, #0x8]
+   38300:      	ldr	s1, [x19]
+   38304:      	fcmp	s0, s1
+   38308:      	b.ne	0x38340 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0x80>
+   3830c:      	ldr	s0, [sp, #0xc]
+   38310:      	ldr	s1, [x19, #0x4]
+   38314:      	fcmp	s0, s1
+   38318:      	b.ne	0x38340 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0x80>
+   3831c:      	ldr	s0, [sp, #0x10]
+   38320:      	ldr	s1, [x19, #0x8]
+   38324:      	fcmp	s0, s1
+   38328:      	b.ne	0x38340 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0x80>
+   3832c:      	ldr	s0, [sp, #0x14]
+   38330:      	ldr	s1, [x19, #0xc]
+   38334:      	fcmp	s0, s1
+   38338:      	cset	w0, eq
+   3833c:      	b	0x38344 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0x84>
+   38340:      	mov	w0, wzr
+   38344:      	ldr	x8, [x20, #0x28]
+   38348:      	ldur	x9, [x29, #-0x8]
+   3834c:      	cmp	x8, x9
+   38350:      	b.ne	0x38364 <_ZNK10verenderer7Color3BeqERKNS_7Color4FE+0xa4>
+   38354:      	ldp	x20, x19, [sp, #0x30]
+   38358:      	ldp	x29, x30, [sp, #0x20]
+   3835c:      	add	sp, sp, #0x40
+   38360:      	ret
+   38364:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+0000000000038368 <_ZNK10verenderer7Color4FeqERKS0_>:
+   38368:      	ldr	s0, [x0]
+   3836c:      	ldr	s1, [x1]
+   38370:      	fcmp	s0, s1
+   38374:      	b.ne	0x383ac <_ZNK10verenderer7Color4FeqERKS0_+0x44>
+   38378:      	ldr	s0, [x0, #0x4]
+   3837c:      	ldr	s1, [x1, #0x4]
+   38380:      	fcmp	s0, s1
+   38384:      	b.ne	0x383ac <_ZNK10verenderer7Color4FeqERKS0_+0x44>
+   38388:      	ldr	s0, [x0, #0x8]
+   3838c:      	ldr	s1, [x1, #0x8]
+   38390:      	fcmp	s0, s1
+   38394:      	b.ne	0x383ac <_ZNK10verenderer7Color4FeqERKS0_+0x44>
+   38398:      	ldr	s0, [x0, #0xc]
+   3839c:      	ldr	s1, [x1, #0xc]
+   383a0:      	fcmp	s0, s1
+   383a4:      	cset	w0, eq
+   383a8:      	ret
+   383ac:      	mov	w0, wzr
+   383b0:      	ret
+
+00000000000383b4 <_ZNK10verenderer7Color3BneERKS0_>:
+   383b4:      	ldrb	w8, [x0]
+   383b8:      	ldrb	w9, [x1]
+   383bc:      	cmp	w8, w9
+   383c0:      	b.ne	0x383e8 <_ZNK10verenderer7Color3BneERKS0_+0x34>
+   383c4:      	ldrb	w8, [x0, #0x1]
+   383c8:      	ldrb	w9, [x1, #0x1]
+   383cc:      	cmp	w8, w9
+   383d0:      	b.ne	0x383e8 <_ZNK10verenderer7Color3BneERKS0_+0x34>
+   383d4:      	ldrb	w8, [x0, #0x2]
+   383d8:      	ldrb	w9, [x1, #0x2]
+   383dc:      	cmp	w8, w9
+   383e0:      	cset	w0, ne
+   383e4:      	ret
+   383e8:      	mov	w0, #0x1
+   383ec:      	ret
+
+00000000000383f0 <_ZNK10verenderer7Color3BneERKNS_7Color4BE>:
+   383f0:      	ldrb	w8, [x0]
+   383f4:      	ldrb	w9, [x1]
+   383f8:      	cmp	w8, w9
+   383fc:      	b.ne	0x38430 <_ZNK10verenderer7Color3BneERKNS_7Color4BE+0x40>
+   38400:      	ldrb	w8, [x0, #0x1]
+   38404:      	ldrb	w9, [x1, #0x1]
+   38408:      	cmp	w8, w9
+   3840c:      	b.ne	0x38430 <_ZNK10verenderer7Color3BneERKNS_7Color4BE+0x40>
+   38410:      	ldrb	w8, [x0, #0x2]
+   38414:      	ldrb	w9, [x1, #0x2]
+   38418:      	cmp	w8, w9
+   3841c:      	b.ne	0x38430 <_ZNK10verenderer7Color3BneERKNS_7Color4BE+0x40>
+   38420:      	ldrb	w8, [x1, #0x3]
+   38424:      	cmp	w8, #0xff
+   38428:      	cset	w0, ne
+   3842c:      	ret
+   38430:      	mov	w0, #0x1
+   38434:      	ret
+
+0000000000038438 <_ZNK10verenderer7Color3BneERKNS_7Color4FE>:
+   38438:      	sub	sp, sp, #0x40
+   3843c:      	stp	x29, x30, [sp, #0x20]
+   38440:      	stp	x20, x19, [sp, #0x30]
+   38444:      	add	x29, sp, #0x20
+   38448:      	mrs	x20, TPIDR_EL0
+   3844c:      	fmov	s0, #1.00000000
+   38450:      	ldr	x8, [x20, #0x28]
+   38454:      	stur	x8, [x29, #-0x8]
+   38458:      	ldr	s1, [x1, #0xc]
+   3845c:      	fcmp	s1, s0
+   38460:      	b.ne	0x384b8 <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0x80>
+   38464:      	mov	x19, x1
+   38468:      	mov	x1, x0
+   3846c:      	add	x0, sp, #0x8
+   38470:      	bl	0x63e30 <_ZN10verenderer7Color4FC1ERKNS_7Color3BE@plt>
+   38474:      	ldr	s0, [sp, #0x8]
+   38478:      	ldr	s1, [x19]
+   3847c:      	fcmp	s0, s1
+   38480:      	b.ne	0x384b8 <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0x80>
+   38484:      	ldr	s0, [sp, #0xc]
+   38488:      	ldr	s1, [x19, #0x4]
+   3848c:      	fcmp	s0, s1
+   38490:      	b.ne	0x384b8 <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0x80>
+   38494:      	ldr	s0, [sp, #0x10]
+   38498:      	ldr	s1, [x19, #0x8]
+   3849c:      	fcmp	s0, s1
+   384a0:      	b.ne	0x384b8 <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0x80>
+   384a4:      	ldr	s0, [sp, #0x14]
+   384a8:      	ldr	s1, [x19, #0xc]
+   384ac:      	fcmp	s0, s1
+   384b0:      	cset	w0, ne
+   384b4:      	b	0x384bc <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0x84>
+   384b8:      	mov	w0, #0x1
+   384bc:      	ldr	x8, [x20, #0x28]
+   384c0:      	ldur	x9, [x29, #-0x8]
+   384c4:      	cmp	x8, x9
+   384c8:      	b.ne	0x384dc <_ZNK10verenderer7Color3BneERKNS_7Color4FE+0xa4>
+   384cc:      	ldp	x20, x19, [sp, #0x30]
+   384d0:      	ldp	x29, x30, [sp, #0x20]
+   384d4:      	add	sp, sp, #0x40
+   384d8:      	ret
+   384dc:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+00000000000384e0 <_ZN10verenderer7Color4BC2Ev>:
+   384e0:      	str	wzr, [x0]
+   384e4:      	ret
+
+00000000000384e8 <_ZN10verenderer7Color4BC2Ehhhh>:
+   384e8:      	strb	w1, [x0]
+   384ec:      	strb	w2, [x0, #0x1]
+   384f0:      	strb	w3, [x0, #0x2]
+   384f4:      	strb	w4, [x0, #0x3]
+   384f8:      	ret
+
+00000000000384fc <_ZN10verenderer7Color4BC2ERKNS_7Color3BE>:
+   384fc:      	ldrb	w9, [x1]
+   38500:      	mov	w8, #0xff
+   38504:      	strb	w9, [x0]
+   38508:      	ldurh	w9, [x1, #0x1]
+   3850c:      	strb	w8, [x0, #0x3]
+   38510:      	sturh	w9, [x0, #0x1]
+   38514:      	ret
+
+0000000000038518 <_ZN10verenderer7Color4BC2ERKNS_7Color4FE>:
+   38518:      	mov	w8, #0x437f0000
+   3851c:      	ldr	q1, [x1]
+   38520:      	dup	v0.4s, w8
+   38524:      	fmul	v0.4s, v1.4s, v0.4s
+   38528:      	fcvtzs	v0.4s, v0.4s
+   3852c:      	xtn	v0.4h, v0.4s
+   38530:      	xtn	v0.8b, v0.8h
+   38534:      	str	s0, [x0]
+   38538:      	ret
+
+000000000003853c <_ZNK10verenderer7Color4BeqERKS0_>:
+   3853c:      	ldr	w8, [x0]
+   38540:      	ldr	w9, [x1]
+   38544:      	cmp	w8, w9
+   38548:      	cset	w0, eq
+   3854c:      	ret
+
+0000000000038550 <_ZNK10verenderer7Color4BeqERKNS_7Color3BE>:
+   38550:      	ldrb	w8, [x0]
+   38554:      	ldrb	w9, [x1]
+   38558:      	cmp	w8, w9
+   3855c:      	b.ne	0x38590 <_ZNK10verenderer7Color4BeqERKNS_7Color3BE+0x40>
+   38560:      	ldrb	w8, [x0, #0x1]
+   38564:      	ldrb	w9, [x1, #0x1]
+   38568:      	cmp	w8, w9
+   3856c:      	b.ne	0x38590 <_ZNK10verenderer7Color4BeqERKNS_7Color3BE+0x40>
+   38570:      	ldrb	w8, [x0, #0x2]
+   38574:      	ldrb	w9, [x1, #0x2]
+   38578:      	cmp	w8, w9
+   3857c:      	b.ne	0x38590 <_ZNK10verenderer7Color4BeqERKNS_7Color3BE+0x40>
+   38580:      	ldrb	w8, [x0, #0x3]
+   38584:      	cmp	w8, #0xff
+   38588:      	cset	w0, eq
+   3858c:      	ret
+   38590:      	mov	w0, wzr
+   38594:      	ret
+
+0000000000038598 <_ZNK10verenderer7Color4BeqERKNS_7Color4FE>:
+   38598:      	sub	sp, sp, #0x30
+   3859c:      	stp	x29, x30, [sp, #0x10]
+   385a0:      	stp	x20, x19, [sp, #0x20]
+   385a4:      	add	x29, sp, #0x10
+   385a8:      	mrs	x20, TPIDR_EL0
+   385ac:      	mov	x19, x0
+   385b0:      	add	x0, sp, #0x4
+   385b4:      	ldr	x8, [x20, #0x28]
+   385b8:      	str	x8, [sp, #0x8]
+   385bc:      	bl	0x63e50 <_ZN10verenderer7Color4BC1ERKNS_7Color4FE@plt>
+   385c0:      	ldr	w8, [x19]
+   385c4:      	ldr	w9, [sp, #0x4]
+   385c8:      	ldr	x10, [x20, #0x28]
+   385cc:      	ldr	x11, [sp, #0x8]
+   385d0:      	cmp	w8, w9
+   385d4:      	cset	w0, eq
+   385d8:      	cmp	x10, x11
+   385dc:      	b.ne	0x385f0 <_ZNK10verenderer7Color4BeqERKNS_7Color4FE+0x58>
+   385e0:      	ldp	x20, x19, [sp, #0x20]
+   385e4:      	ldp	x29, x30, [sp, #0x10]
+   385e8:      	add	sp, sp, #0x30
+   385ec:      	ret
+   385f0:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+00000000000385f4 <_ZNK10verenderer7Color4BneERKS0_>:
+   385f4:      	ldrb	w8, [x0]
+   385f8:      	ldrb	w9, [x1]
+   385fc:      	cmp	w8, w9
+   38600:      	b.ne	0x38638 <_ZNK10verenderer7Color4BneERKS0_+0x44>
+   38604:      	ldrb	w8, [x0, #0x1]
+   38608:      	ldrb	w9, [x1, #0x1]
+   3860c:      	cmp	w8, w9
+   38610:      	b.ne	0x38638 <_ZNK10verenderer7Color4BneERKS0_+0x44>
+   38614:      	ldrb	w8, [x0, #0x2]
+   38618:      	ldrb	w9, [x1, #0x2]
+   3861c:      	cmp	w8, w9
+   38620:      	b.ne	0x38638 <_ZNK10verenderer7Color4BneERKS0_+0x44>
+   38624:      	ldrb	w8, [x0, #0x3]
+   38628:      	ldrb	w9, [x1, #0x3]
+   3862c:      	cmp	w8, w9
+   38630:      	cset	w0, ne
+   38634:      	ret
+   38638:      	mov	w0, #0x1
+   3863c:      	ret
+
+0000000000038640 <_ZNK10verenderer7Color4BneERKNS_7Color3BE>:
+   38640:      	ldrb	w8, [x0]
+   38644:      	ldrb	w9, [x1]
+   38648:      	cmp	w8, w9
+   3864c:      	b.ne	0x38680 <_ZNK10verenderer7Color4BneERKNS_7Color3BE+0x40>
+   38650:      	ldrb	w8, [x0, #0x1]
+   38654:      	ldrb	w9, [x1, #0x1]
+   38658:      	cmp	w8, w9
+   3865c:      	b.ne	0x38680 <_ZNK10verenderer7Color4BneERKNS_7Color3BE+0x40>
+   38660:      	ldrb	w8, [x0, #0x2]
+   38664:      	ldrb	w9, [x1, #0x2]
+   38668:      	cmp	w8, w9
+   3866c:      	b.ne	0x38680 <_ZNK10verenderer7Color4BneERKNS_7Color3BE+0x40>
+   38670:      	ldrb	w8, [x0, #0x3]
+   38674:      	cmp	w8, #0xff
+   38678:      	cset	w0, ne
+   3867c:      	ret
+   38680:      	mov	w0, #0x1
+   38684:      	ret
+
+0000000000038688 <_ZNK10verenderer7Color4BneERKNS_7Color4FE>:
+   38688:      	sub	sp, sp, #0x30
+   3868c:      	stp	x29, x30, [sp, #0x10]
+   38690:      	stp	x20, x19, [sp, #0x20]
+   38694:      	add	x29, sp, #0x10
+   38698:      	mrs	x20, TPIDR_EL0
+   3869c:      	mov	x19, x0
+   386a0:      	add	x0, sp, #0x4
+   386a4:      	ldr	x8, [x20, #0x28]
+   386a8:      	str	x8, [sp, #0x8]
+   386ac:      	bl	0x63e50 <_ZN10verenderer7Color4BC1ERKNS_7Color4FE@plt>
+   386b0:      	ldrb	w8, [x19]
+   386b4:      	ldrb	w9, [sp, #0x4]
+   386b8:      	cmp	w8, w9
+   386bc:      	b.ne	0x386f4 <_ZNK10verenderer7Color4BneERKNS_7Color4FE+0x6c>
+   386c0:      	ldrb	w8, [x19, #0x1]
+   386c4:      	ldrb	w9, [sp, #0x5]
+   386c8:      	cmp	w8, w9
+   386cc:      	b.ne	0x386f4 <_ZNK10verenderer7Color4BneERKNS_7Color4FE+0x6c>
+   386d0:      	ldrb	w8, [x19, #0x2]
+   386d4:      	ldrb	w9, [sp, #0x6]
+   386d8:      	cmp	w8, w9
+   386dc:      	b.ne	0x386f4 <_ZNK10verenderer7Color4BneERKNS_7Color4FE+0x6c>
+   386e0:      	ldrb	w8, [x19, #0x3]
+   386e4:      	ldrb	w9, [sp, #0x7]
+   386e8:      	cmp	w8, w9
+   386ec:      	cset	w0, ne
+   386f0:      	b	0x386f8 <_ZNK10verenderer7Color4BneERKNS_7Color4FE+0x70>
+   386f4:      	mov	w0, #0x1
+   386f8:      	ldr	x8, [x20, #0x28]
+   386fc:      	ldr	x9, [sp, #0x8]
+   38700:      	cmp	x8, x9
+   38704:      	b.ne	0x38718 <_ZNK10verenderer7Color4BneERKNS_7Color4FE+0x90>
+   38708:      	ldp	x20, x19, [sp, #0x20]
+   3870c:      	ldp	x29, x30, [sp, #0x10]
+   38710:      	add	sp, sp, #0x30
+   38714:      	ret
+   38718:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+000000000003871c <_ZN10verenderer7Color4FC2Ev>:
+   3871c:      	stp	xzr, xzr, [x0]
+   38720:      	ret
+
+0000000000038724 <_ZN10verenderer7Color4FC2Effff>:
+   38724:      	stp	s0, s1, [x0]
+   38728:      	stp	s2, s3, [x0, #0x8]
+   3872c:      	ret
+
+0000000000038730 <_ZN10verenderer7Color4FC2ERKNS_7Color3BE>:
+   38730:      	ldr	b0, [x1]
+   38734:      	ldr	b2, [x1, #0x1]
+   38738:      	mov	w8, #0x437f0000
+   3873c:      	ldr	b3, [x1, #0x2]
+   38740:      	fmov	s1, w8
+   38744:      	mov	w8, #0x3f800000
+   38748:      	ucvtf	s0, s0
+   3874c:      	ucvtf	s2, s2
+   38750:      	str	w8, [x0, #0xc]
+   38754:      	ucvtf	s3, s3
+   38758:      	fdiv	s0, s0, s1
+   3875c:      	fdiv	s2, s2, s1
+   38760:      	fdiv	s1, s3, s1
+   38764:      	stp	s0, s2, [x0]
+   38768:      	str	s1, [x0, #0x8]
+   3876c:      	ret
+
+0000000000038770 <_ZN10verenderer7Color4FC2ERKNS_7Color4BE>:
+   38770:      	ldr	s0, [x1]
+   38774:      	mov	w8, #0x437f0000
+   38778:      	dup	v1.4s, w8
+   3877c:      	ushll	v0.8h, v0.8b, #0x0
+   38780:      	ushll	v0.4s, v0.4h, #0x0
+   38784:      	ucvtf	v0.4s, v0.4s
+   38788:      	fdiv	v0.4s, v0.4s, v1.4s
+   3878c:      	str	q0, [x0]
+   38790:      	ret
+
+0000000000038794 <_ZNK10verenderer7Color4FeqERKNS_7Color3BE>:
+   38794:      	sub	sp, sp, #0x30
+   38798:      	stp	x29, x30, [sp, #0x10]
+   3879c:      	stp	x20, x19, [sp, #0x20]
+   387a0:      	add	x29, sp, #0x10
+   387a4:      	mrs	x20, TPIDR_EL0
+   387a8:      	fmov	s0, #1.00000000
+   387ac:      	ldr	x9, [x20, #0x28]
+   387b0:      	str	x9, [sp, #0x8]
+   387b4:      	ldr	s1, [x0, #0xc]
+   387b8:      	fcmp	s1, s0
+   387bc:      	b.ne	0x38808 <_ZNK10verenderer7Color4FeqERKNS_7Color3BE+0x74>
+   387c0:      	mov	x8, x0
+   387c4:      	mov	x19, x1
+   387c8:      	add	x0, sp, #0x4
+   387cc:      	mov	x1, x8
+   387d0:      	bl	0x63e60 <_ZN10verenderer7Color3BC1ERKNS_7Color4FE@plt>
+   387d4:      	ldrb	w8, [sp, #0x4]
+   387d8:      	ldrb	w9, [x19]
+   387dc:      	cmp	w8, w9
+   387e0:      	b.ne	0x38808 <_ZNK10verenderer7Color4FeqERKNS_7Color3BE+0x74>
+   387e4:      	ldrb	w8, [sp, #0x5]
+   387e8:      	ldrb	w9, [x19, #0x1]
+   387ec:      	cmp	w8, w9
+   387f0:      	b.ne	0x38808 <_ZNK10verenderer7Color4FeqERKNS_7Color3BE+0x74>
+   387f4:      	ldrb	w8, [sp, #0x6]
+   387f8:      	ldrb	w9, [x19, #0x2]
+   387fc:      	cmp	w8, w9
+   38800:      	cset	w0, eq
+   38804:      	b	0x3880c <_ZNK10verenderer7Color4FeqERKNS_7Color3BE+0x78>
+   38808:      	mov	w0, wzr
+   3880c:      	ldr	x8, [x20, #0x28]
+   38810:      	ldr	x9, [sp, #0x8]
+   38814:      	cmp	x8, x9
+   38818:      	b.ne	0x3882c <_ZNK10verenderer7Color4FeqERKNS_7Color3BE+0x98>
+   3881c:      	ldp	x20, x19, [sp, #0x20]
+   38820:      	ldp	x29, x30, [sp, #0x10]
+   38824:      	add	sp, sp, #0x30
+   38828:      	ret
+   3882c:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+0000000000038830 <_ZNK10verenderer7Color4FeqERKNS_7Color4BE>:
+   38830:      	sub	sp, sp, #0x40
+   38834:      	stp	x29, x30, [sp, #0x20]
+   38838:      	stp	x20, x19, [sp, #0x30]
+   3883c:      	add	x29, sp, #0x20
+   38840:      	mrs	x20, TPIDR_EL0
+   38844:      	mov	x19, x0
+   38848:      	add	x0, sp, #0x8
+   3884c:      	ldr	x8, [x20, #0x28]
+   38850:      	stur	x8, [x29, #-0x8]
+   38854:      	bl	0x63e70 <_ZN10verenderer7Color4FC1ERKNS_7Color4BE@plt>
+   38858:      	ldr	s0, [x19]
+   3885c:      	ldr	s1, [sp, #0x8]
+   38860:      	fcmp	s0, s1
+   38864:      	b.ne	0x3889c <_ZNK10verenderer7Color4FeqERKNS_7Color4BE+0x6c>
+   38868:      	ldr	s0, [x19, #0x4]
+   3886c:      	ldr	s1, [sp, #0xc]
+   38870:      	fcmp	s0, s1
+   38874:      	b.ne	0x3889c <_ZNK10verenderer7Color4FeqERKNS_7Color4BE+0x6c>
+   38878:      	ldr	s0, [x19, #0x8]
+   3887c:      	ldr	s1, [sp, #0x10]
+   38880:      	fcmp	s0, s1
+   38884:      	b.ne	0x3889c <_ZNK10verenderer7Color4FeqERKNS_7Color4BE+0x6c>
+   38888:      	ldr	s0, [x19, #0xc]
+   3888c:      	ldr	s1, [sp, #0x14]
+   38890:      	fcmp	s0, s1
+   38894:      	cset	w0, eq
+   38898:      	b	0x388a0 <_ZNK10verenderer7Color4FeqERKNS_7Color4BE+0x70>
+   3889c:      	mov	w0, wzr
+   388a0:      	ldr	x8, [x20, #0x28]
+   388a4:      	ldur	x9, [x29, #-0x8]
+   388a8:      	cmp	x8, x9
+   388ac:      	b.ne	0x388c0 <_ZNK10verenderer7Color4FeqERKNS_7Color4BE+0x90>
+   388b0:      	ldp	x20, x19, [sp, #0x30]
+   388b4:      	ldp	x29, x30, [sp, #0x20]
+   388b8:      	add	sp, sp, #0x40
+   388bc:      	ret
+   388c0:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+00000000000388c4 <_ZNK10verenderer7Color4FneERKS0_>:
+   388c4:      	ldr	s0, [x0]
+   388c8:      	ldr	s1, [x1]
+   388cc:      	fcmp	s0, s1
+   388d0:      	b.ne	0x38908 <_ZNK10verenderer7Color4FneERKS0_+0x44>
+   388d4:      	ldr	s0, [x0, #0x4]
+   388d8:      	ldr	s1, [x1, #0x4]
+   388dc:      	fcmp	s0, s1
+   388e0:      	b.ne	0x38908 <_ZNK10verenderer7Color4FneERKS0_+0x44>
+   388e4:      	ldr	s0, [x0, #0x8]
+   388e8:      	ldr	s1, [x1, #0x8]
+   388ec:      	fcmp	s0, s1
+   388f0:      	b.ne	0x38908 <_ZNK10verenderer7Color4FneERKS0_+0x44>
+   388f4:      	ldr	s0, [x0, #0xc]
+   388f8:      	ldr	s1, [x1, #0xc]
+   388fc:      	fcmp	s0, s1
+   38900:      	cset	w0, ne
+   38904:      	ret
+   38908:      	mov	w0, #0x1
+   3890c:      	ret
+
+0000000000038910 <_ZNK10verenderer7Color4FneERKNS_7Color3BE>:
+   38910:      	sub	sp, sp, #0x30
+   38914:      	stp	x29, x30, [sp, #0x10]
+   38918:      	stp	x20, x19, [sp, #0x20]
+   3891c:      	add	x29, sp, #0x10
+   38920:      	mrs	x20, TPIDR_EL0
+   38924:      	fmov	s0, #1.00000000
+   38928:      	ldr	x9, [x20, #0x28]
+   3892c:      	str	x9, [sp, #0x8]
+   38930:      	ldr	s1, [x0, #0xc]
+   38934:      	fcmp	s1, s0
+   38938:      	b.ne	0x38984 <_ZNK10verenderer7Color4FneERKNS_7Color3BE+0x74>
+   3893c:      	mov	x8, x0
+   38940:      	mov	x19, x1
+   38944:      	add	x0, sp, #0x4
+   38948:      	mov	x1, x8
+   3894c:      	bl	0x63e60 <_ZN10verenderer7Color3BC1ERKNS_7Color4FE@plt>
+   38950:      	ldrb	w8, [sp, #0x4]
+   38954:      	ldrb	w9, [x19]
+   38958:      	cmp	w8, w9
+   3895c:      	b.ne	0x38984 <_ZNK10verenderer7Color4FneERKNS_7Color3BE+0x74>
+   38960:      	ldrb	w8, [sp, #0x5]
+   38964:      	ldrb	w9, [x19, #0x1]
+   38968:      	cmp	w8, w9
+   3896c:      	b.ne	0x38984 <_ZNK10verenderer7Color4FneERKNS_7Color3BE+0x74>
+   38970:      	ldrb	w8, [sp, #0x6]
+   38974:      	ldrb	w9, [x19, #0x2]
+   38978:      	cmp	w8, w9
+   3897c:      	cset	w0, ne
+   38980:      	b	0x38988 <_ZNK10verenderer7Color4FneERKNS_7Color3BE+0x78>
+   38984:      	mov	w0, #0x1
+   38988:      	ldr	x8, [x20, #0x28]
+   3898c:      	ldr	x9, [sp, #0x8]
+   38990:      	cmp	x8, x9
+   38994:      	b.ne	0x389a8 <_ZNK10verenderer7Color4FneERKNS_7Color3BE+0x98>
+   38998:      	ldp	x20, x19, [sp, #0x20]
+   3899c:      	ldp	x29, x30, [sp, #0x10]
+   389a0:      	add	sp, sp, #0x30
+   389a4:      	ret
+   389a8:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+00000000000389ac <_ZNK10verenderer7Color4FneERKNS_7Color4BE>:
+   389ac:      	sub	sp, sp, #0x40
+   389b0:      	stp	x29, x30, [sp, #0x20]
+   389b4:      	stp	x20, x19, [sp, #0x30]
+   389b8:      	add	x29, sp, #0x20
+   389bc:      	mrs	x20, TPIDR_EL0
+   389c0:      	mov	x19, x0
+   389c4:      	add	x0, sp, #0x8
+   389c8:      	ldr	x8, [x20, #0x28]
+   389cc:      	stur	x8, [x29, #-0x8]
+   389d0:      	bl	0x63e70 <_ZN10verenderer7Color4FC1ERKNS_7Color4BE@plt>
+   389d4:      	ldr	s0, [x19]
+   389d8:      	ldr	s1, [sp, #0x8]
+   389dc:      	fcmp	s0, s1
+   389e0:      	b.ne	0x38a18 <_ZNK10verenderer7Color4FneERKNS_7Color4BE+0x6c>
+   389e4:      	ldr	s0, [x19, #0x4]
+   389e8:      	ldr	s1, [sp, #0xc]
+   389ec:      	fcmp	s0, s1
+   389f0:      	b.ne	0x38a18 <_ZNK10verenderer7Color4FneERKNS_7Color4BE+0x6c>
+   389f4:      	ldr	s0, [x19, #0x8]
+   389f8:      	ldr	s1, [sp, #0x10]
+   389fc:      	fcmp	s0, s1
+   38a00:      	b.ne	0x38a18 <_ZNK10verenderer7Color4FneERKNS_7Color4BE+0x6c>
+   38a04:      	ldr	s0, [x19, #0xc]
+   38a08:      	ldr	s1, [sp, #0x14]
+   38a0c:      	fcmp	s0, s1
+   38a10:      	cset	w0, ne
+   38a14:      	b	0x38a1c <_ZNK10verenderer7Color4FneERKNS_7Color4BE+0x70>
+   38a18:      	mov	w0, #0x1
+   38a1c:      	ldr	x8, [x20, #0x28]
+   38a20:      	ldur	x9, [x29, #-0x8]
+   38a24:      	cmp	x8, x9
+   38a28:      	b.ne	0x38a3c <_ZNK10verenderer7Color4FneERKNS_7Color4BE+0x90>
+   38a2c:      	ldp	x20, x19, [sp, #0x30]
+   38a30:      	ldp	x29, x30, [sp, #0x20]
+   38a34:      	add	sp, sp, #0x40
+   38a38:      	ret
+   38a3c:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+0000000000038a40 <_ZN10verenderer3RefC2Ev>:
+   38a40:      	adrp	x8, 0x6b000
+   38a44:      	movi	v0.2d, #0000000000000000
+   38a48:      	ldr	x8, [x8, #0xa8]
+   38a4c:      	str	xzr, [x0, #0x28]
+   38a50:      	add	x8, x8, #0x10
+   38a54:      	str	x8, [x0]
+   38a58:      	mov	w8, #0x1
+   38a5c:      	stur	q0, [x0, #0x8]
+   38a60:      	stur	q0, [x0, #0x18]
+   38a64:      	str	w8, [x0, #0x30]
+   38a68:      	ret
+
+0000000000038a6c <_ZN10verenderer3RefD2Ev>:
+   38a6c:      	adrp	x8, 0x6b000
+   38a70:      	ldr	x8, [x8, #0xa8]
+   38a74:      	add	x8, x8, #0x10
+   38a78:      	str	x8, [x0], #0x8
+   38a7c:      	b	0x63eb0 <_ZNSt6__ndk15mutexD1Ev@plt>
+
+0000000000038a80 <_ZN10verenderer3RefD0Ev>:
+   38a80:      	stp	x29, x30, [sp, #-0x20]!
+   38a84:      	str	x19, [sp, #0x10]
+   38a88:      	mov	x29, sp
+   38a8c:      	mov	x19, x0
+   38a90:      	bl	0x63ec0 <_ZN10verenderer3RefD1Ev@plt>
+   38a94:      	mov	x0, x19
+   38a98:      	ldr	x19, [sp, #0x10]
+   38a9c:      	ldp	x29, x30, [sp], #0x20
+   38aa0:      	b	0x63ed0 <_ZdlPv@plt>
+
+0000000000038aa4 <_ZN10verenderer3Ref6retainEv>:
+   38aa4:      	stp	x29, x30, [sp, #-0x20]!
+   38aa8:      	str	x19, [sp, #0x10]
+   38aac:      	mov	x29, sp
+   38ab0:      	mov	x19, x0
+   38ab4:      	add	x0, x0, #0x8
+   38ab8:      	bl	0x63ef0 <_ZNSt6__ndk15mutex4lockEv@plt>
+   38abc:      	ldr	w8, [x19, #0x30]
+   38ac0:      	add	x0, x19, #0x8
+   38ac4:      	add	w8, w8, #0x1
+   38ac8:      	str	w8, [x19, #0x30]
+   38acc:      	ldr	x19, [sp, #0x10]
+   38ad0:      	ldp	x29, x30, [sp], #0x20
+   38ad4:      	b	0x63f00 <_ZNSt6__ndk15mutex6unlockEv@plt>
+
+0000000000038ad8 <_ZN10verenderer3Ref7releaseEv>:
+   38ad8:      	stp	x29, x30, [sp, #-0x20]!
+   38adc:      	stp	x20, x19, [sp, #0x10]
+   38ae0:      	mov	x29, sp
+   38ae4:      	mov	x19, x0
+   38ae8:      	add	x0, x0, #0x8
+   38aec:      	bl	0x63ef0 <_ZNSt6__ndk15mutex4lockEv@plt>
+   38af0:      	ldr	w8, [x19, #0x30]
+   38af4:      	add	x0, x19, #0x8
+   38af8:      	sub	w20, w8, #0x1
+   38afc:      	str	w20, [x19, #0x30]
+   38b00:      	bl	0x63f00 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   38b04:      	cbz	w20, 0x38b14 <_ZN10verenderer3Ref7releaseEv+0x3c>
+   38b08:      	ldp	x20, x19, [sp, #0x10]
+   38b0c:      	ldp	x29, x30, [sp], #0x20
+   38b10:      	ret
+   38b14:      	ldr	x8, [x19]
+   38b18:      	ldr	x1, [x8, #0x8]
+   38b1c:      	mov	x0, x19
+   38b20:      	ldp	x20, x19, [sp, #0x10]
+   38b24:      	ldp	x29, x30, [sp], #0x20
+   38b28:      	br	x1
+
+0000000000038b2c <_ZNK10verenderer3Ref17getReferenceCountEv>:
+   38b2c:      	ldr	w0, [x0, #0x30]
+   38b30:      	ret
+
+0000000000038b34 <_ZN10verenderer4SizeC2Ev>:
+   38b34:      	str	xzr, [x0]
+   38b38:      	ret
+
+0000000000038b3c <_ZN10verenderer4SizeC2Eff>:
+   38b3c:      	stp	s0, s1, [x0]
+   38b40:      	ret
+
+0000000000038b44 <_ZN10verenderer4SizeC2ERKS0_>:
+   38b44:      	ldr	d0, [x1]
+   38b48:      	str	d0, [x0]
+   38b4c:      	ret
+
+0000000000038b50 <_ZN10verenderer4SizeC2ERKNS_4Vec2E>:
+   38b50:      	ldr	d0, [x1]
+   38b54:      	str	d0, [x0]
+   38b58:      	ret
+
+0000000000038b5c <_ZN10verenderer4SizeaSERKS0_>:
+   38b5c:      	ldr	d0, [x1]
+   38b60:      	str	d0, [x0]
+   38b64:      	ret
+
+0000000000038b68 <_ZN10verenderer4Size7setSizeEff>:
+   38b68:      	stp	s0, s1, [x0]
+   38b6c:      	ret
+
+0000000000038b70 <_ZN10verenderer4SizeaSERKNS_4Vec2E>:
+   38b70:      	ldr	d0, [x1]
+   38b74:      	str	d0, [x0]
+   38b78:      	ret
+
+0000000000038b7c <_ZNK10verenderer4SizeplERKS0_>:
+   38b7c:      	ldp	s0, s1, [x0]
+   38b80:      	mov	x0, x8
+   38b84:      	ldp	s2, s3, [x1]
+   38b88:      	fadd	s0, s0, s2
+   38b8c:      	fadd	s1, s1, s3
+   38b90:      	b	0x63f30 <_ZN10verenderer4SizeC1Eff@plt>
+
+0000000000038b94 <_ZNK10verenderer4SizemiERKS0_>:
+   38b94:      	ldp	s0, s1, [x0]
+   38b98:      	mov	x0, x8
+   38b9c:      	ldp	s2, s3, [x1]
+   38ba0:      	fsub	s0, s0, s2
+   38ba4:      	fsub	s1, s1, s3
+   38ba8:      	b	0x63f30 <_ZN10verenderer4SizeC1Eff@plt>
+
+0000000000038bac <_ZNK10verenderer4SizemlEf>:
+   38bac:      	ldp	s1, s3, [x0]
+   38bb0:      	mov	x0, x8
+   38bb4:      	fmul	s2, s1, s0
+   38bb8:      	fmul	s1, s3, s0
+   38bbc:      	fmov	s0, s2
+   38bc0:      	b	0x63f30 <_ZN10verenderer4SizeC1Eff@plt>
+
+0000000000038bc4 <_ZNK10verenderer4SizedvEf>:
+   38bc4:      	ldp	s1, s3, [x0]
+   38bc8:      	mov	x0, x8
+   38bcc:      	fdiv	s2, s1, s0
+   38bd0:      	fdiv	s1, s3, s0
+   38bd4:      	fmov	s0, s2
+   38bd8:      	b	0x63f30 <_ZN10verenderer4SizeC1Eff@plt>
+
+0000000000038bdc <_ZNK10verenderer4Size6equalsERKS0_>:
+   38bdc:      	ldr	s1, [x0]
+   38be0:      	ldr	s2, [x1]
+   38be4:      	movi	v0.2s, #0x34, lsl #24
+   38be8:      	fabd	s1, s1, s2
+   38bec:      	fcmp	s1, s0
+   38bf0:      	b.pl	0x38c10 <_ZNK10verenderer4Size6equalsERKS0_+0x34>
+   38bf4:      	ldr	s0, [x0, #0x4]
+   38bf8:      	ldr	s1, [x1, #0x4]
+   38bfc:      	fabd	s0, s0, s1
+   38c00:      	movi	v1.2s, #0x34, lsl #24
+   38c04:      	fcmp	s0, s1
+   38c08:      	cset	w0, mi
+   38c0c:      	ret
+   38c10:      	mov	w0, wzr
+   38c14:      	ret
+
+0000000000038c18 <_ZN10verenderer4SizeeqERKS0_>:
+   38c18:      	ldr	s1, [x0]
+   38c1c:      	ldr	s2, [x1]
+   38c20:      	movi	v0.2s, #0x34, lsl #24
+   38c24:      	fabd	s1, s1, s2
+   38c28:      	fcmp	s1, s0
+   38c2c:      	b.pl	0x38c4c <_ZN10verenderer4SizeeqERKS0_+0x34>
+   38c30:      	ldr	s0, [x0, #0x4]
+   38c34:      	ldr	s1, [x1, #0x4]
+   38c38:      	fabd	s0, s0, s1
+   38c3c:      	movi	v1.2s, #0x34, lsl #24
+   38c40:      	fcmp	s0, s1
+   38c44:      	cset	w0, mi
+   38c48:      	ret
+   38c4c:      	mov	w0, wzr
+   38c50:      	ret
+
+0000000000038c54 <_ZN10verenderer4SizeneERKS0_>:
+   38c54:      	ldr	s1, [x0]
+   38c58:      	ldr	s2, [x1]
+   38c5c:      	movi	v0.2s, #0x34, lsl #24
+   38c60:      	fabd	s1, s1, s2
+   38c64:      	fcmp	s1, s0
+   38c68:      	b.ge	0x38c88 <_ZN10verenderer4SizeneERKS0_+0x34>
+   38c6c:      	ldr	s0, [x0, #0x4]
+   38c70:      	ldr	s1, [x1, #0x4]
+   38c74:      	fabd	s0, s0, s1
+   38c78:      	movi	v1.2s, #0x34, lsl #24
+   38c7c:      	fcmp	s0, s1
+   38c80:      	cset	w0, ge
+   38c84:      	ret
+   38c88:      	mov	w0, #0x1
+   38c8c:      	ret
+
+0000000000038c90 <_ZN10verenderer4RectC2Ev>:
+   38c90:      	stp	x29, x30, [sp, #-0x20]!
+   38c94:      	stp	x20, x19, [sp, #0x10]
+   38c98:      	mov	x29, sp
+   38c9c:      	mov	x19, x0
+   38ca0:      	bl	0x63f40 <_ZN10verenderer4Vec2C1Ev@plt>
+   38ca4:      	add	x0, x19, #0x8
+   38ca8:      	bl	0x63f50 <_ZN10verenderer4SizeC1Ev@plt>
+   38cac:      	stp	xzr, xzr, [x19]
+   38cb0:      	ldp	x20, x19, [sp, #0x10]
+   38cb4:      	ldp	x29, x30, [sp], #0x20
+   38cb8:      	ret
+   38cbc:      	mov	x20, x0
+   38cc0:      	mov	x0, x19
+   38cc4:      	bl	0x63f60 <_ZN10verenderer4Vec2D1Ev@plt>
+   38cc8:      	mov	x0, x20
+   38ccc:      	bl	0x60124 <XXH32_digest+0x95c>
+
+0000000000038cd0 <_ZN10verenderer4Rect7setRectEffff>:
+   38cd0:      	stp	s0, s1, [x0]
+   38cd4:      	stp	s2, s3, [x0, #0x8]
+   38cd8:      	ret
+
+0000000000038cdc <_ZN10verenderer4RectC2Effff>:
+   38cdc:      	stp	d11, d10, [sp, #-0x40]!
+   38ce0:      	stp	d9, d8, [sp, #0x10]
+   38ce4:      	stp	x29, x30, [sp, #0x20]
+   38ce8:      	stp	x20, x19, [sp, #0x30]
+   38cec:      	add	x29, sp, #0x20
+   38cf0:      	fmov	s8, s3
+   38cf4:      	fmov	s9, s2
+   38cf8:      	mov	x19, x0
+   38cfc:      	fmov	s10, s1
+   38d00:      	fmov	s11, s0
+   38d04:      	bl	0x63f40 <_ZN10verenderer4Vec2C1Ev@plt>
+   38d08:      	add	x0, x19, #0x8
+   38d0c:      	bl	0x63f50 <_ZN10verenderer4SizeC1Ev@plt>
+   38d10:      	stp	s11, s10, [x19]
+   38d14:      	stp	s9, s8, [x19, #0x8]
+   38d18:      	ldp	x20, x19, [sp, #0x30]
+   38d1c:      	ldp	x29, x30, [sp, #0x20]
+   38d20:      	ldp	d9, d8, [sp, #0x10]
+   38d24:      	ldp	d11, d10, [sp], #0x40
+   38d28:      	ret
+   38d2c:      	mov	x20, x0
+   38d30:      	mov	x0, x19
+   38d34:      	bl	0x63f60 <_ZN10verenderer4Vec2D1Ev@plt>
+   38d38:      	mov	x0, x20
+   38d3c:      	bl	0x60124 <XXH32_digest+0x95c>
+
+0000000000038d40 <_ZN10verenderer4RectC2ERKS0_>:
+   38d40:      	stp	x29, x30, [sp, #-0x20]!
+   38d44:      	stp	x20, x19, [sp, #0x10]
+   38d48:      	mov	x29, sp
+   38d4c:      	mov	x20, x1
+   38d50:      	mov	x19, x0
+   38d54:      	bl	0x63f40 <_ZN10verenderer4Vec2C1Ev@plt>
+   38d58:      	add	x0, x19, #0x8
+   38d5c:      	bl	0x63f50 <_ZN10verenderer4SizeC1Ev@plt>
+   38d60:      	ldr	q0, [x20]
+   38d64:      	str	q0, [x19]
+   38d68:      	ldp	x20, x19, [sp, #0x10]
+   38d6c:      	ldp	x29, x30, [sp], #0x20
+   38d70:      	ret
+   38d74:      	mov	x20, x0
+   38d78:      	mov	x0, x19
+   38d7c:      	bl	0x63f60 <_ZN10verenderer4Vec2D1Ev@plt>
+   38d80:      	mov	x0, x20
+   38d84:      	bl	0x60124 <XXH32_digest+0x95c>
+
+0000000000038d88 <_ZN10verenderer4RectaSERKS0_>:
+   38d88:      	ldr	q0, [x1]
+   38d8c:      	str	q0, [x0]
+   38d90:      	ret
+
+0000000000038d94 <_ZNK10verenderer4RecteqERKS0_>:
+   38d94:      	stp	x29, x30, [sp, #-0x20]!
+   38d98:      	stp	x20, x19, [sp, #0x10]
+   38d9c:      	mov	x29, sp
+   38da0:      	mov	x19, x1
+   38da4:      	mov	x20, x0
+   38da8:      	bl	0x63f80 <_ZNK10verenderer4Vec26equalsERKS0_@plt>
+   38dac:      	tbz	w0, #0x0, 0x38de4 <_ZNK10verenderer4RecteqERKS0_+0x50>
+   38db0:      	ldr	s0, [x20, #0x8]
+   38db4:      	ldr	s1, [x19, #0x8]
+   38db8:      	fabd	s0, s0, s1
+   38dbc:      	movi	v1.2s, #0x34, lsl #24
+   38dc0:      	fcmp	s0, s1
+   38dc4:      	b.pl	0x38de4 <_ZNK10verenderer4RecteqERKS0_+0x50>
+   38dc8:      	ldr	s0, [x20, #0xc]
+   38dcc:      	ldr	s1, [x19, #0xc]
+   38dd0:      	fabd	s0, s0, s1
+   38dd4:      	movi	v1.2s, #0x34, lsl #24
+   38dd8:      	fcmp	s0, s1
+   38ddc:      	cset	w0, mi
+   38de0:      	b	0x38de8 <_ZNK10verenderer4RecteqERKS0_+0x54>
+   38de4:      	mov	w0, wzr
+   38de8:      	ldp	x20, x19, [sp, #0x10]
+   38dec:      	ldp	x29, x30, [sp], #0x20
+   38df0:      	ret
+
+0000000000038df4 <_ZNK10verenderer4Rect6equalsERKS0_>:
+   38df4:      	stp	x29, x30, [sp, #-0x20]!
+   38df8:      	stp	x20, x19, [sp, #0x10]
+   38dfc:      	mov	x29, sp
+   38e00:      	mov	x19, x1
+   38e04:      	mov	x20, x0
+   38e08:      	bl	0x63f80 <_ZNK10verenderer4Vec26equalsERKS0_@plt>
+   38e0c:      	tbz	w0, #0x0, 0x38e44 <_ZNK10verenderer4Rect6equalsERKS0_+0x50>
+   38e10:      	ldr	s0, [x20, #0x8]
+   38e14:      	ldr	s1, [x19, #0x8]
+   38e18:      	fabd	s0, s0, s1
+   38e1c:      	movi	v1.2s, #0x34, lsl #24
+   38e20:      	fcmp	s0, s1
+   38e24:      	b.pl	0x38e44 <_ZNK10verenderer4Rect6equalsERKS0_+0x50>
+   38e28:      	ldr	s0, [x20, #0xc]
+   38e2c:      	ldr	s1, [x19, #0xc]
+   38e30:      	fabd	s0, s0, s1
+   38e34:      	movi	v1.2s, #0x34, lsl #24
+   38e38:      	fcmp	s0, s1
+   38e3c:      	cset	w0, mi
+   38e40:      	b	0x38e48 <_ZNK10verenderer4Rect6equalsERKS0_+0x54>
+   38e44:      	mov	w0, wzr
+   38e48:      	ldp	x20, x19, [sp, #0x10]
+   38e4c:      	ldp	x29, x30, [sp], #0x20
+   38e50:      	ret
+
+0000000000038e54 <_ZNK10verenderer4RectneERKS0_>:
+   38e54:      	stp	x29, x30, [sp, #-0x20]!
+   38e58:      	stp	x20, x19, [sp, #0x10]
+   38e5c:      	mov	x29, sp
+   38e60:      	mov	x19, x1
+   38e64:      	mov	x20, x0
+   38e68:      	bl	0x63f80 <_ZNK10verenderer4Vec26equalsERKS0_@plt>
+   38e6c:      	tbz	w0, #0x0, 0x38ea4 <_ZNK10verenderer4RectneERKS0_+0x50>
+   38e70:      	ldr	s0, [x20, #0x8]
+   38e74:      	ldr	s1, [x19, #0x8]
+   38e78:      	fabd	s0, s0, s1
+   38e7c:      	movi	v1.2s, #0x34, lsl #24
+   38e80:      	fcmp	s0, s1
+   38e84:      	b.pl	0x38ea4 <_ZNK10verenderer4RectneERKS0_+0x50>
+   38e88:      	ldr	s0, [x20, #0xc]
+   38e8c:      	ldr	s1, [x19, #0xc]
+   38e90:      	fabd	s0, s0, s1
+   38e94:      	movi	v1.2s, #0x34, lsl #24
+   38e98:      	fcmp	s0, s1
+   38e9c:      	cset	w0, pl
+   38ea0:      	b	0x38ea8 <_ZNK10verenderer4RectneERKS0_+0x54>
+   38ea4:      	mov	w0, #0x1
+   38ea8:      	ldp	x20, x19, [sp, #0x10]
+   38eac:      	ldp	x29, x30, [sp], #0x20
+   38eb0:      	ret
+
+0000000000038eb4 <_ZNK10verenderer4Rect7getMaxXEv>:
+   38eb4:      	ldr	s0, [x0]
+   38eb8:      	ldr	s1, [x0, #0x8]
+   38ebc:      	fadd	s0, s0, s1
+   38ec0:      	ret
+
+0000000000038ec4 <_ZNK10verenderer4Rect7getMidXEv>:
+   38ec4:      	fmov	s0, #0.50000000
+   38ec8:      	ldr	s1, [x0, #0x8]
+   38ecc:      	fmul	s0, s1, s0
+   38ed0:      	ldr	s1, [x0]
+   38ed4:      	fadd	s0, s1, s0
+   38ed8:      	ret
+
+0000000000038edc <_ZNK10verenderer4Rect7getMinXEv>:
+   38edc:      	ldr	s0, [x0]
+   38ee0:      	ret
+
+0000000000038ee4 <_ZNK10verenderer4Rect7getMaxYEv>:
+   38ee4:      	ldr	s0, [x0, #0x4]
+   38ee8:      	ldr	s1, [x0, #0xc]
+   38eec:      	fadd	s0, s0, s1
+   38ef0:      	ret
+
+0000000000038ef4 <_ZNK10verenderer4Rect7getMidYEv>:
+   38ef4:      	fmov	s0, #0.50000000
+   38ef8:      	ldr	s1, [x0, #0xc]
+   38efc:      	fmul	s0, s1, s0
+   38f00:      	ldr	s1, [x0, #0x4]
+   38f04:      	fadd	s0, s1, s0
+   38f08:      	ret
+
+0000000000038f0c <_ZNK10verenderer4Rect7getMinYEv>:
+   38f0c:      	ldr	s0, [x0, #0x4]
+   38f10:      	ret
+
+0000000000038f14 <_ZNK10verenderer4Rect13containsPointERKNS_4Vec2E>:
+   38f14:      	ldr	s0, [x1]
+   38f18:      	ldr	s1, [x0]
+   38f1c:      	fcmp	s0, s1
+   38f20:      	b.ge	0x38f2c <_ZNK10verenderer4Rect13containsPointERKNS_4Vec2E+0x18>
+   38f24:      	mov	w0, wzr
+   38f28:      	ret
+   38f2c:      	ldr	s2, [x0, #0x8]
+   38f30:      	fadd	s1, s1, s2
+   38f34:      	fcmp	s0, s1
+   38f38:      	b.ls	0x38f44 <_ZNK10verenderer4Rect13containsPointERKNS_4Vec2E+0x30>
+   38f3c:      	mov	w0, wzr
+   38f40:      	ret
+   38f44:      	ldr	s0, [x1, #0x4]
+   38f48:      	ldr	s1, [x0, #0x4]
+   38f4c:      	fcmp	s0, s1
+   38f50:      	b.ge	0x38f5c <_ZNK10verenderer4Rect13containsPointERKNS_4Vec2E+0x48>
+   38f54:      	mov	w0, wzr
+   38f58:      	ret
+   38f5c:      	ldr	s2, [x0, #0xc]
+   38f60:      	fadd	s1, s1, s2
+   38f64:      	fcmp	s0, s1
+   38f68:      	b.ls	0x38f74 <_ZNK10verenderer4Rect13containsPointERKNS_4Vec2E+0x60>
+   38f6c:      	mov	w0, wzr
+   38f70:      	ret
+   38f74:      	mov	w0, #0x1
+   38f78:      	ret
+
+0000000000038f7c <_ZNK10verenderer4Rect14intersectsRectERKS0_>:
+   38f7c:      	ldr	s0, [x0]
+   38f80:      	ldr	s1, [x0, #0x8]
+   38f84:      	fadd	s2, s0, s1
+   38f88:      	ldr	s1, [x1]
+   38f8c:      	fcmp	s2, s1
+   38f90:      	b.pl	0x38f9c <_ZNK10verenderer4Rect14intersectsRectERKS0_+0x20>
+   38f94:      	mov	w0, wzr
+   38f98:      	ret
+   38f9c:      	ldr	s2, [x1, #0x8]
+   38fa0:      	fadd	s1, s1, s2
+   38fa4:      	fcmp	s1, s0
+   38fa8:      	b.pl	0x38fb4 <_ZNK10verenderer4Rect14intersectsRectERKS0_+0x38>
+   38fac:      	mov	w0, wzr
+   38fb0:      	ret
+   38fb4:      	ldr	s0, [x0, #0x4]
+   38fb8:      	ldr	s1, [x0, #0xc]
+   38fbc:      	fadd	s2, s0, s1
+   38fc0:      	ldr	s1, [x1, #0x4]
+   38fc4:      	fcmp	s2, s1
+   38fc8:      	b.pl	0x38fd4 <_ZNK10verenderer4Rect14intersectsRectERKS0_+0x58>
+   38fcc:      	mov	w0, wzr
+   38fd0:      	ret
+   38fd4:      	ldr	s2, [x1, #0xc]
+   38fd8:      	fadd	s1, s1, s2
+   38fdc:      	fcmp	s1, s0
+   38fe0:      	cset	w0, pl
+   38fe4:      	ret
+
+0000000000038fe8 <_ZN10verenderer4Rect5mergeERKS0_>:
+   38fe8:      	ldp	d0, d1, [x0]
+   38fec:      	ldp	d2, d3, [x1]
+   38ff0:      	fadd	v1.2s, v0.2s, v1.2s
+   38ff4:      	fadd	v3.2s, v2.2s, v3.2s
+   38ff8:      	fcmgt	v4.2s, v0.2s, v2.2s
+   38ffc:      	fcmgt	v5.2s, v3.2s, v1.2s
+   39000:      	bit	v0.8b, v2.8b, v4.8b
+   39004:      	bit	v1.8b, v3.8b, v5.8b
+   39008:      	fsub	v1.2s, v1.2s, v0.2s
+   3900c:      	stp	d0, d1, [x0]
+   39010:      	ret
+
+0000000000039014 <_ZNK10verenderer4Rect13unionWithRectERKS0_>:
+   39014:      	ldp	s2, s0, [x0, #0x4]
+   39018:      	ldr	s1, [x0]
+   3901c:      	ldr	s3, [x0, #0xc]
+   39020:      	mov	x0, x8
+   39024:      	ldr	s5, [x1]
+   39028:      	ldp	s6, s4, [x1, #0x4]
+   3902c:      	ldr	s7, [x1, #0xc]
+   39030:      	fadd	s0, s1, s0
+   39034:      	fadd	s3, s2, s3
+   39038:      	fadd	s4, s5, s4
+   3903c:      	fcmp	s0, s1
+   39040:      	fcsel	s16, s0, s1, mi
+   39044:      	fcsel	s1, s1, s0, mi
+   39048:      	fcmp	s3, s2
+   3904c:      	fadd	s0, s6, s7
+   39050:      	fcsel	s17, s2, s3, mi
+   39054:      	fcsel	s2, s3, s2, mi
+   39058:      	fcmp	s4, s5
+   3905c:      	fcsel	s3, s4, s5, mi
+   39060:      	fcsel	s4, s5, s4, mi
+   39064:      	fcmp	s0, s6
+   39068:      	fcsel	s5, s6, s0, mi
+   3906c:      	fcsel	s6, s0, s6, mi
+   39070:      	fcmp	s3, s16
+   39074:      	fcsel	s0, s3, s16, mi
+   39078:      	fcmp	s1, s4
+   3907c:      	fcsel	s3, s4, s1, mi
+   39080:      	fcmp	s17, s5
+   39084:      	fcsel	s4, s5, s17, mi
+   39088:      	fcmp	s6, s2
+   3908c:      	fcsel	s1, s6, s2, mi
+   39090:      	fsub	s2, s3, s0
+   39094:      	fsub	s3, s4, s1
+   39098:      	b	0x63f90 <_ZN10verenderer4RectC1Effff@plt>
+
+000000000003909c <_ZN10verenderer4Rect7inflateEff>:
+   3909c:      	ldp	d2, d3, [x0]
+   390a0:      	mov	v0.s[1], v1.s[0]
+   390a4:      	movi	v1.2s, #0x40, lsl #24
+   390a8:      	fsub	v2.2s, v2.2s, v0.2s
+   390ac:      	fmla	v3.2s, v1.2s, v0.2s
+   390b0:      	stp	d2, d3, [x0]
+   390b4:      	ret
+
+00000000000390b8 <_ZN10verenderer4RectD2Ev>:
+   390b8:      	b	0x63f60 <_ZN10verenderer4Vec2D1Ev@plt>
+   390bc:      	stp	x29, x30, [sp, #-0x20]!
+   390c0:      	str	x19, [sp, #0x10]
+   390c4:      	mov	x29, sp
+   390c8:      	movi	d0, #0000000000000000
+   390cc:      	movi	d1, #0000000000000000
+   390d0:      	adrp	x0, 0x6b000
+   390d4:      	ldr	x0, [x0, #0xc8]
+   390d8:      	bl	0x63f30 <_ZN10verenderer4SizeC1Eff@plt>
+   390dc:      	movi	d0, #0000000000000000
+   390e0:      	movi	d1, #0000000000000000
+   390e4:      	adrp	x19, 0x6b000
+   390e8:      	movi	d2, #0000000000000000
+   390ec:      	movi	d3, #0000000000000000
+   390f0:      	ldr	x19, [x19, #0xd0]
+   390f4:      	mov	x0, x19
+   390f8:      	bl	0x63f90 <_ZN10verenderer4RectC1Effff@plt>
+   390fc:      	adrp	x0, 0x6b000
+   39100:      	nop
+   39104:      	adr	x2, #0x30b5c
+   39108:      	ldr	x0, [x0, #0xc0]
+   3910c:      	mov	x1, x19
+   39110:      	ldr	x19, [sp, #0x10]
+   39114:      	ldp	x29, x30, [sp], #0x20
+   39118:      	b	0x63e20 <__cxa_atexit@plt>
+
+000000000003911c <_ZN10verenderer4Mat4C2Ev>:
+   3911c:      	adrp	x8, 0x6b000
+   39120:      	ldr	x8, [x8, #0xd8]
+   39124:      	ldp	q1, q0, [x8, #0x20]
+   39128:      	ldp	q2, q3, [x8]
+   3912c:      	stp	q1, q0, [x0, #0x20]
+   39130:      	stp	q2, q3, [x0]
+   39134:      	ret
+
+0000000000039138 <_ZN10verenderer4Mat4C2Effffffffffffffff>:
+   39138:      	str	s0, [x0]
+   3913c:      	ldr	s0, [sp, #0x20]
+   39140:      	ldr	s16, [sp]
+   39144:      	str	s1, [x0, #0x10]
+   39148:      	ldr	s1, [sp, #0x28]
+   3914c:      	str	s0, [x0, #0xc]
+   39150:      	ldr	s0, [sp, #0x8]
+   39154:      	str	s1, [x0, #0x1c]
+   39158:      	ldr	s1, [sp, #0x30]
+   3915c:      	stp	s5, s0, [x0, #0x14]
+   39160:      	ldr	s0, [sp, #0x10]
+   39164:      	str	s1, [x0, #0x2c]
+   39168:      	ldr	s1, [sp, #0x38]
+   3916c:      	stp	s6, s0, [x0, #0x24]
+   39170:      	ldr	s0, [sp, #0x18]
+   39174:      	stp	s4, s16, [x0, #0x4]
+   39178:      	str	s2, [x0, #0x20]
+   3917c:      	str	s3, [x0, #0x30]
+   39180:      	stp	s7, s0, [x0, #0x34]
+   39184:      	str	s1, [x0, #0x3c]
+   39188:      	ret
+
+000000000003918c <_ZN10verenderer4Mat43setEffffffffffffffff>:
+   3918c:      	str	s0, [x0]
+   39190:      	ldr	s0, [sp, #0x20]
+   39194:      	ldr	s16, [sp]
+   39198:      	str	s1, [x0, #0x10]
+   3919c:      	ldr	s1, [sp, #0x28]
+   391a0:      	str	s0, [x0, #0xc]
+   391a4:      	ldr	s0, [sp, #0x8]
+   391a8:      	str	s1, [x0, #0x1c]
+   391ac:      	ldr	s1, [sp, #0x30]
+   391b0:      	stp	s5, s0, [x0, #0x14]
+   391b4:      	ldr	s0, [sp, #0x10]
+   391b8:      	str	s1, [x0, #0x2c]
+   391bc:      	ldr	s1, [sp, #0x38]
+   391c0:      	stp	s6, s0, [x0, #0x24]
+   391c4:      	ldr	s0, [sp, #0x18]
+   391c8:      	stp	s4, s16, [x0, #0x4]
+   391cc:      	str	s2, [x0, #0x20]
+   391d0:      	str	s3, [x0, #0x30]
+   391d4:      	stp	s7, s0, [x0, #0x34]
+   391d8:      	str	s1, [x0, #0x3c]
+   391dc:      	ret
+
+00000000000391e0 <_ZN10verenderer4Mat4C2EPKf>:
+   391e0:      	ldp	q1, q0, [x1, #0x20]
+   391e4:      	ldp	q2, q3, [x1]
+   391e8:      	stp	q1, q0, [x0, #0x20]
+   391ec:      	stp	q2, q3, [x0]
+   391f0:      	ret
+
+00000000000391f4 <_ZN10verenderer4Mat43setEPKf>:
+   391f4:      	ldp	q1, q0, [x1, #0x20]
+   391f8:      	ldp	q2, q3, [x1]
+   391fc:      	stp	q1, q0, [x0, #0x20]
+   39200:      	stp	q2, q3, [x0]
+   39204:      	ret
+
+0000000000039208 <_ZN10verenderer4Mat4C2ERKS0_>:
+   39208:      	ldp	q1, q0, [x1, #0x20]
+   3920c:      	ldp	q2, q3, [x1]
+   39210:      	stp	q1, q0, [x0, #0x20]
+   39214:      	stp	q2, q3, [x0]
+   39218:      	ret
+
+000000000003921c <_ZN10verenderer4Mat4D2Ev>:
+   3921c:      	ret
+
+0000000000039220 <_ZN10verenderer4Mat412createLookAtERKNS_4Vec3ES3_S3_PS0_>:
+   39220:      	sub	sp, sp, #0x20
+   39224:      	stp	x29, x30, [sp, #0x10]
+   39228:      	add	x29, sp, #0x10
+   3922c:      	ldp	s0, s1, [x0]
+   39230:      	ldr	s2, [x0, #0x8]
+   39234:      	ldp	s3, s4, [x1]
+   39238:      	mov	x0, x3
+   3923c:      	ldp	s6, s7, [x2]
+   39240:      	ldr	s5, [x1, #0x8]
+   39244:      	ldr	s16, [x2, #0x8]
+   39248:      	str	s16, [sp]
+   3924c:      	bl	0x63fb0 <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_@plt>
+   39250:      	ldp	x29, x30, [sp, #0x10]
+   39254:      	add	sp, sp, #0x20
+   39258:      	ret
+
+000000000003925c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_>:
+   3925c:      	sub	sp, sp, #0xa0
+   39260:      	str	d12, [sp, #0x50]
+   39264:      	stp	d11, d10, [sp, #0x60]
+   39268:      	stp	d9, d8, [sp, #0x70]
+   3926c:      	stp	x29, x30, [sp, #0x80]
+   39270:      	stp	x20, x19, [sp, #0x90]
+   39274:      	add	x29, sp, #0x80
+   39278:      	mrs	x20, TPIDR_EL0
+   3927c:      	mov	x19, x0
+   39280:      	add	x0, sp, #0x3c
+   39284:      	ldr	x8, [x20, #0x28]
+   39288:      	fmov	s8, s7
+   3928c:      	fmov	s9, s6
+   39290:      	fmov	s10, s5
+   39294:      	fmov	s11, s4
+   39298:      	fmov	s12, s3
+   3929c:      	stur	x8, [x29, #-0x38]
+   392a0:      	bl	0x63fc0 <_ZN10verenderer4Vec3C1Efff@plt>
+   392a4:      	fmov	s0, s12
+   392a8:      	fmov	s1, s11
+   392ac:      	add	x0, sp, #0x30
+   392b0:      	fmov	s2, s10
+   392b4:      	bl	0x63fc0 <_ZN10verenderer4Vec3C1Efff@plt>
+   392b8:      	fmov	s0, s9
+   392bc:      	fmov	s1, s8
+   392c0:      	ldr	s2, [x29, #0x20]
+   392c4:      	add	x0, sp, #0x24
+   392c8:      	bl	0x63fc0 <_ZN10verenderer4Vec3C1Efff@plt>
+   392cc:      	add	x0, sp, #0x24
+   392d0:      	bl	0x63fd0 <_ZN10verenderer4Vec39normalizeEv@plt>
+   392d4:      	add	x0, sp, #0x18
+   392d8:      	bl	0x63fe0 <_ZN10verenderer4Vec3C1Ev@plt>
+   392dc:      	add	x0, sp, #0x3c
+   392e0:      	add	x1, sp, #0x30
+   392e4:      	add	x2, sp, #0x18
+   392e8:      	bl	0x63ff0 <_ZN10verenderer4Vec38subtractERKS0_S2_PS0_@plt>
+   392ec:      	add	x0, sp, #0x18
+   392f0:      	bl	0x63fd0 <_ZN10verenderer4Vec39normalizeEv@plt>
+   392f4:      	add	x0, sp, #0xc
+   392f8:      	bl	0x63fe0 <_ZN10verenderer4Vec3C1Ev@plt>
+   392fc:      	add	x0, sp, #0x24
+   39300:      	add	x1, sp, #0x18
+   39304:      	add	x2, sp, #0xc
+   39308:      	bl	0x64000 <_ZN10verenderer4Vec35crossERKS0_S2_PS0_@plt>
+   3930c:      	add	x0, sp, #0xc
+   39310:      	bl	0x63fd0 <_ZN10verenderer4Vec39normalizeEv@plt>
+   39314:      	mov	x0, sp
+   39318:      	bl	0x63fe0 <_ZN10verenderer4Vec3C1Ev@plt>
+   3931c:      	add	x0, sp, #0x18
+   39320:      	add	x1, sp, #0xc
+   39324:      	mov	x2, sp
+   39328:      	bl	0x64000 <_ZN10verenderer4Vec35crossERKS0_S2_PS0_@plt>
+   3932c:      	mov	x0, sp
+   39330:      	bl	0x63fd0 <_ZN10verenderer4Vec39normalizeEv@plt>
+   39334:      	ldp	s0, s3, [sp, #0xc]
+   39338:      	str	wzr, [x19, #0xc]
+   3933c:      	ldp	s1, s4, [sp]
+   39340:      	str	wzr, [x19, #0x1c]
+   39344:      	str	wzr, [x19, #0x2c]
+   39348:      	stp	s0, s1, [x19]
+   3934c:      	ldp	s2, s0, [sp, #0x18]
+   39350:      	ldr	s1, [sp, #0x14]
+   39354:      	stp	s3, s4, [x19, #0x10]
+   39358:      	str	s0, [x19, #0x18]
+   3935c:      	ldr	s0, [sp, #0x8]
+   39360:      	str	s2, [x19, #0x8]
+   39364:      	stp	s1, s0, [x19, #0x20]
+   39368:      	ldr	s0, [sp, #0x20]
+   3936c:      	str	s0, [x19, #0x28]
+   39370:      	add	x0, sp, #0xc
+   39374:      	add	x1, sp, #0x3c
+   39378:      	bl	0x64010 <_ZN10verenderer4Vec33dotERKS0_S2_@plt>
+   3937c:      	fneg	s0, s0
+   39380:      	str	s0, [x19, #0x30]
+   39384:      	mov	x0, sp
+   39388:      	add	x1, sp, #0x3c
+   3938c:      	bl	0x64010 <_ZN10verenderer4Vec33dotERKS0_S2_@plt>
+   39390:      	fneg	s0, s0
+   39394:      	str	s0, [x19, #0x34]
+   39398:      	add	x0, sp, #0x18
+   3939c:      	add	x1, sp, #0x3c
+   393a0:      	bl	0x64010 <_ZN10verenderer4Vec33dotERKS0_S2_@plt>
+   393a4:      	fneg	s0, s0
+   393a8:      	mov	w8, #0x3f800000
+   393ac:      	mov	x0, sp
+   393b0:      	str	w8, [x19, #0x3c]
+   393b4:      	str	s0, [x19, #0x38]
+   393b8:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393bc:      	add	x0, sp, #0xc
+   393c0:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393c4:      	add	x0, sp, #0x18
+   393c8:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393cc:      	add	x0, sp, #0x24
+   393d0:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393d4:      	add	x0, sp, #0x30
+   393d8:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393dc:      	add	x0, sp, #0x3c
+   393e0:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   393e4:      	ldr	x8, [x20, #0x28]
+   393e8:      	ldur	x9, [x29, #-0x38]
+   393ec:      	cmp	x8, x9
+   393f0:      	b.ne	0x3949c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x240>
+   393f4:      	ldp	x20, x19, [sp, #0x90]
+   393f8:      	ldr	d12, [sp, #0x50]
+   393fc:      	ldp	x29, x30, [sp, #0x80]
+   39400:      	ldp	d9, d8, [sp, #0x70]
+   39404:      	ldp	d11, d10, [sp, #0x60]
+   39408:      	add	sp, sp, #0xa0
+   3940c:      	ret
+   39410:      	mov	x19, x0
+   39414:      	b	0x3945c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x200>
+   39418:      	mov	x19, x0
+   3941c:      	b	0x39464 <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x208>
+   39420:      	mov	x19, x0
+   39424:      	b	0x3946c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x210>
+   39428:      	mov	x19, x0
+   3942c:      	b	0x3946c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x210>
+   39430:      	mov	x19, x0
+   39434:      	b	0x39474 <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x218>
+   39438:      	mov	x19, x0
+   3943c:      	b	0x3947c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x220>
+   39440:      	mov	x19, x0
+   39444:      	b	0x3945c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x200>
+   39448:      	mov	x19, x0
+   3944c:      	b	0x39464 <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x208>
+   39450:      	mov	x19, x0
+   39454:      	mov	x0, sp
+   39458:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   3945c:      	add	x0, sp, #0xc
+   39460:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   39464:      	add	x0, sp, #0x18
+   39468:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   3946c:      	add	x0, sp, #0x24
+   39470:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   39474:      	add	x0, sp, #0x30
+   39478:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   3947c:      	add	x0, sp, #0x3c
+   39480:      	bl	0x64020 <_ZN10verenderer4Vec3D1Ev@plt>
+   39484:      	ldr	x8, [x20, #0x28]
+   39488:      	ldur	x9, [x29, #-0x38]
+   3948c:      	cmp	x8, x9
+   39490:      	b.ne	0x3949c <_ZN10verenderer4Mat412createLookAtEfffffffffPS0_+0x240>
+   39494:      	mov	x0, x19
+   39498:      	bl	0x60124 <XXH32_digest+0x95c>
+   3949c:      	bl	0x63e40 <__stack_chk_fail@plt>
+
+00000000000394a0 <_ZN10verenderer4Mat417createPerspectiveEffffPS0_>:
+   394a0:      	stp	d13, d12, [sp, #-0x50]!
+   394a4:      	stp	d11, d10, [sp, #0x10]
+   394a8:      	stp	d9, d8, [sp, #0x20]
+   394ac:      	stp	x29, x30, [sp, #0x30]
+   394b0:      	str	x19, [sp, #0x40]
+   394b4:      	add	x29, sp, #0x30
+   394b8:      	mov	w8, #0xfa35
+   394bc:      	fmov	s8, s2
+   394c0:      	fmov	s10, s1
+   394c4:      	movk	w8, #0x3c8e, lsl #16
+   394c8:      	mov	x19, x0
+   394cc:      	fmov	s9, s3
+   394d0:      	fmov	s2, w8
+   394d4:      	mov	w8, #0xfdb
+   394d8:      	movk	w8, #0x3fc9, lsl #16
+   394dc:      	fmov	s1, w8
+   394e0:      	fmul	s0, s0, s2
+   394e4:      	fmov	s2, #0.50000000
+   394e8:      	fmul	s11, s0, s2
+   394ec:      	fmov	s0, s11
+   394f0:      	bl	0x64030 <fmodf@plt>
+   394f4:      	mov	w8, #0x37bd
+   394f8:      	fabs	s0, s0
+   394fc:      	movk	w8, #0x3586, lsl #16
+   39500:      	fmov	s1, w8
+   39504:      	fcmp	s0, s1
+   39508:      	b.mi	0x39568 <_ZN10verenderer4Mat417createPerspectiveEffffPS0_+0xc8>
+   3950c:      	fsub	s0, s9, s8
+   39510:      	fmov	s12, #1.00000000
+   39514:      	fdiv	s13, s12, s0
+   39518:      	fmov	s0, s11
+   3951c:      	bl	0x64040 <tanf@plt>
+   39520:      	fdiv	s1, s12, s10
+   39524:      	fmov	s2, #-2.00000000
+   39528:      	movi	v3.2d, #0000000000000000
+   3952c:      	fadd	s4, s8, s9
+   39530:      	mov	w8, #-0x40800000
+   39534:      	fmul	s2, s9, s2
+   39538:      	stp	q3, q3, [x19]
+   3953c:      	fnmul	s4, s4, s13
+   39540:      	stp	q3, q3, [x19, #0x20]
+   39544:      	str	w8, [x19, #0x2c]
+   39548:      	fmul	s2, s2, s8
+   3954c:      	str	s4, [x19, #0x28]
+   39550:      	fdiv	s0, s12, s0
+   39554:      	fmul	s1, s1, s0
+   39558:      	str	s0, [x19, #0x14]
+   3955c:      	str	s1, [x19]
+   39560:      	fmul	s1, s2, s13
+   39564:      	str	s1, [x19, #0x38]
+   39568:      	ldp	x29, x30, [sp, #0x30]
+   3956c:      	ldr	x19, [sp, #0x40]
+   39570:      	ldp	d9, d8, [sp, #0x20]
+   39574:      	ldp	d11, d10, [sp, #0x10]
+   39578:      	ldp	d13, d12, [sp], #0x50
+   3957c:      	ret
+
+0000000000039580 <_ZN10verenderer4Mat418createOrthographicEffffPS0_>:
+   39580:      	movi	v4.2s, #0x3f, lsl #24
+   39584:      	mov	w8, #0x3f800000
+   39588:      	mov	v0.s[1], v1.s[0]
+   3958c:      	fmul	v0.2s, v0.2s, v4.2s
+   39590:      	fmov	s4, #2.00000000
+   39594:      	fneg	v6.2s, v0.2s
+   39598:      	fadd	v1.2s, v0.2s, v0.2s
+   3959c:      	fsub	v6.2s, v6.2s, v0.2s
+   395a0:      	fsub	v0.2s, v0.2s, v0.2s
+   395a4:      	fdiv	s5, s4, s1
+   395a8:      	mov	s1, v1.s[1]
+   395ac:      	fdiv	v0.2s, v0.2s, v6.2s
+   395b0:      	fsub	s6, s2, s3
+   395b4:      	fadd	s2, s2, s3
+   395b8:      	movi	v3.2d, #0000000000000000
+   395bc:      	stp	q3, q3, [x0]
+   395c0:      	stp	q3, q3, [x0, #0x20]
+   395c4:      	str	s5, [x0]
+   395c8:      	str	w8, [x0, #0x3c]
+   395cc:      	fdiv	s1, s4, s1
+   395d0:      	str	d0, [x0, #0x30]
+   395d4:      	fdiv	s4, s4, s6
+   395d8:      	str	s1, [x0, #0x14]
+   395dc:      	fdiv	s2, s2, s6
+   395e0:      	str	s4, [x0, #0x28]
+   395e4:      	str	s2, [x0, #0x38]
+   395e8:      	ret
+
+00000000000395ec <_ZN10verenderer4Mat427createOrthographicOffCenterEffffffPS0_>:
+   395ec:      	fsub	s6, s1, s0
+   395f0:      	fsub	s16, s3, s2
+   395f4:      	mov	w8, #0x3f800000
+   395f8:      	mov	v0.s[1], v2.s[0]
+   395fc:      	mov	v1.s[1], v3.s[0]
+   39600:      	fsub	s17, s4, s5
+   39604:      	fmov	s7, #2.00000000
+   39608:      	fadd	v2.2s, v0.2s, v1.2s
+   3960c:      	fsub	v0.2s, v0.2s, v1.2s
+   39610:      	fadd	s1, s4, s5
+   39614:      	fdiv	s6, s7, s6
+   39618:      	fdiv	s16, s7, s16
+   3961c:      	fdiv	s7, s7, s17
+   39620:      	fdiv	v0.2s, v2.2s, v0.2s
+   39624:      	movi	v2.2d, #0000000000000000
+   39628:      	stp	q2, q2, [x0]
+   3962c:      	stp	q2, q2, [x0, #0x20]
+   39630:      	str	s6, [x0]
+   39634:      	str	s16, [x0, #0x14]
+   39638:      	str	s7, [x0, #0x28]
+   3963c:      	str	w8, [x0, #0x3c]
+   39640:      	fdiv	s1, s1, s17
+   39644:      	str	d0, [x0, #0x30]
+   39648:      	str	s1, [x0, #0x38]
+   3964c:      	ret
+
+0000000000039650 <_ZN10verenderer4Mat415createBillboardERKNS_4Vec3ES3_S3_PS0_>:
+   39650:      	mov	x4, x3
+   39654:      	mov	x3, xzr
+   39658:      	b	0x64050 <_ZN10verenderer4Mat421createBillboardHelperERKNS_4Vec3ES3_S3_PS2_PS0_@plt>
+

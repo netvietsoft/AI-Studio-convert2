@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTLReportTool.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000007d90 <.text>:
+    7d90:      	bti	c
+    7d94:      	nop
+    7d98:      	adr	x0, #0xd048
+    7d9c:      	b	0x10730 <__cxa_finalize@plt>
+    7da0:      	bti	c
+    7da4:      	ret
+    7da8:      	bti	c
+    7dac:      	b	0x7da0 <.text+0x10>
+    7db0:      	bti	c
+    7db4:      	cbz	x0, 0x7dc0 <.text+0x30>
+    7db8:      	mov	x16, x0
+    7dbc:      	br	x16
+    7dc0:      	ret
+    7dc4:      	bti	c
+    7dc8:      	mov	x1, x0
+    7dcc:      	nop
+    7dd0:      	adr	x0, #-0x20
+    7dd4:      	nop
+    7dd8:      	adr	x2, #0xd008
+    7ddc:      	b	0x10740 <__cxa_atexit@plt>
+    7de0:      	bti	c
+    7de4:      	nop
+    7de8:      	adr	x3, #0xcff8
+    7dec:      	b	0x10750 <__register_atfork@plt>
+    7df0:      	stp	x29, x30, [sp, #-0x30]!
+    7df4:      	stp	x22, x21, [sp, #0x10]
+    7df8:      	stp	x20, x19, [sp, #0x20]
+    7dfc:      	mov	x29, sp
+    7e00:      	mov	x19, x0
+    7e04:      	mov	x0, x1
+    7e08:      	mov	x21, x1
+    7e0c:      	bl	0x10760 <strlen@plt>
+    7e10:      	cmn	x0, #0x10
+    7e14:      	b.hs	0x7e74 <.text+0xe4>
+    7e18:      	mov	x20, x0
+    7e1c:      	cmp	x0, #0x17
+    7e20:      	b.hs	0x7e34 <.text+0xa4>
+    7e24:      	lsl	w8, w20, #1
+    7e28:      	strb	w8, [x19], #0x1
+    7e2c:      	cbnz	x20, 0x7e50 <.text+0xc0>
+    7e30:      	b	0x7e60 <.text+0xd0>
+    7e34:      	orr	x22, x20, #0xf
+    7e38:      	add	x0, x22, #0x1
+    7e3c:      	bl	0x10770 <_Znwm@plt>
+    7e40:      	add	x8, x22, #0x2
+    7e44:      	stp	x20, x0, [x19, #0x8]
+    7e48:      	str	x8, [x19]
+    7e4c:      	mov	x19, x0
+    7e50:      	mov	x0, x19
+    7e54:      	mov	x1, x21
+    7e58:      	mov	x2, x20
+    7e5c:      	bl	0x10780 <memmove@plt>
+    7e60:      	strb	wzr, [x19, x20]
+    7e64:      	ldp	x20, x19, [sp, #0x20]
+    7e68:      	ldp	x22, x21, [sp, #0x10]
+    7e6c:      	ldp	x29, x30, [sp], #0x30
+    7e70:      	ret
+    7e74:      	mov	x0, x19
+    7e78:      	bl	0x7eac <.text+0x11c>
+    7e7c:      	ldr	x9, [x0, #0x20]
+    7e80:      	cmp	x9, x0
+    7e84:      	b.eq	0x7e98 <.text+0x108>
+    7e88:      	cbz	x9, 0x7ea8 <.text+0x118>
+    7e8c:      	mov	w8, #0x5
+    7e90:      	mov	x0, x9
+    7e94:      	b	0x7e9c <.text+0x10c>
+    7e98:      	mov	w8, #0x4
+    7e9c:      	ldr	x9, [x0]
+    7ea0:      	ldr	x1, [x9, x8, lsl #3]
+    7ea4:      	br	x1
+    7ea8:      	ret
+    7eac:      	stp	x29, x30, [sp, #-0x10]!
+    7eb0:      	mov	x29, sp
+    7eb4:      	adrp	x0, 0x5000
+    7eb8:      	add	x0, x0, #0x608
+    7ebc:      	bl	0x7ec0 <.text+0x130>
+    7ec0:      	stp	x29, x30, [sp, #-0x20]!
+    7ec4:      	stp	x20, x19, [sp, #0x10]
+    7ec8:      	mov	x29, sp
+    7ecc:      	mov	x20, x0
+    7ed0:      	mov	w0, #0x10
+    7ed4:      	bl	0x107b0 <__cxa_allocate_exception@plt>
+    7ed8:      	mov	x19, x0
+    7edc:      	mov	x1, x20
+    7ee0:      	bl	0x7f10 <.text+0x180>
+    7ee4:      	adrp	x1, 0x15000
+    7ee8:      	adrp	x2, 0x15000
+    7eec:      	mov	x0, x19
+    7ef0:      	ldr	x1, [x1, #0x180]
+    7ef4:      	ldr	x2, [x2, #0x188]
+    7ef8:      	bl	0x107c0 <__cxa_throw@plt>
+    7efc:      	mov	x20, x0
+    7f00:      	mov	x0, x19
+    7f04:      	bl	0x107d0 <__cxa_free_exception@plt>
+    7f08:      	mov	x0, x20
+    7f0c:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    7f10:      	stp	x29, x30, [sp, #-0x20]!
+    7f14:      	str	x19, [sp, #0x10]
+    7f18:      	mov	x29, sp
+    7f1c:      	mov	x19, x0
+    7f20:      	bl	0x107e0 <_ZNSt11logic_errorC2EPKc@plt>
+    7f24:      	adrp	x8, 0x15000
+    7f28:      	ldr	x8, [x8, #0x190]
+    7f2c:      	add	x8, x8, #0x10
+    7f30:      	str	x8, [x19]
+    7f34:      	ldr	x19, [sp, #0x10]
+    7f38:      	ldp	x29, x30, [sp], #0x20
+    7f3c:      	ret
+    7f40:      	stp	x29, x30, [sp, #-0x30]!
+    7f44:      	stp	x22, x21, [sp, #0x10]
+    7f48:      	stp	x20, x19, [sp, #0x20]
+    7f4c:      	mov	x29, sp
+    7f50:      	mov	x20, x2
+    7f54:      	mov	x19, x1
+    7f58:      	cmp	x2, #0x16
+    7f5c:      	mov	x21, x0
+    7f60:      	b.hi	0x7f70 <.text+0x1e0>
+    7f64:      	lsl	w8, w20, #1
+    7f68:      	strb	w8, [x21], #0x1
+    7f6c:      	b	0x7f94 <.text+0x204>
+    7f70:      	cmn	x20, #0x10
+    7f74:      	b.hs	0x7fb0 <.text+0x220>
+    7f78:      	orr	x22, x20, #0xf
+    7f7c:      	add	x0, x22, #0x1
+    7f80:      	bl	0x10770 <_Znwm@plt>
+    7f84:      	add	x8, x22, #0x2
+    7f88:      	stp	x20, x0, [x21, #0x8]
+    7f8c:      	str	x8, [x21]
+    7f90:      	mov	x21, x0
+    7f94:      	add	x2, x20, #0x1
+    7f98:      	mov	x0, x21
+    7f9c:      	mov	x1, x19
+    7fa0:      	ldp	x20, x19, [sp, #0x20]
+    7fa4:      	ldp	x22, x21, [sp, #0x10]
+    7fa8:      	ldp	x29, x30, [sp], #0x30
+    7fac:      	b	0x10780 <memmove@plt>
+    7fb0:      	mov	x0, x21
+    7fb4:      	bl	0x7eac <.text+0x11c>
+    7fb8:      	stp	x29, x30, [sp, #-0x20]!
+    7fbc:      	stp	x20, x19, [sp, #0x10]
+    7fc0:      	mov	x29, sp
+    7fc4:      	nop
+    7fc8:      	adr	x19, #0x116b8
+    7fcc:      	nop
+    7fd0:      	adr	x1, #-0x304a
+    7fd4:      	mov	x0, x19
+    7fd8:      	bl	0x7df0 <.text+0x60>
+    7fdc:      	adrp	x0, 0x15000
+    7fe0:      	nop
+    7fe4:      	adr	x20, #0xcdfc
+    7fe8:      	ldr	x0, [x0, #0x198]
+    7fec:      	mov	x1, x19
+    7ff0:      	mov	x2, x20
+    7ff4:      	bl	0x10740 <__cxa_atexit@plt>
+    7ff8:      	nop
+    7ffc:      	adr	x1, #0x116a4
+    8000:      	nop
+    8004:      	adr	x0, #-0x188
+    8008:      	mov	x2, x20
+    800c:      	str	xzr, [x1, #0x20]
+    8010:      	ldp	x20, x19, [sp, #0x10]
+    8014:      	ldp	x29, x30, [sp], #0x20
+    8018:      	b	0x10740 <__cxa_atexit@plt>
+
+000000000000801c <_ZN13MTLReportTool9Interface4ImplC2Ev>:
+    801c:      	ret
+
+0000000000008020 <_ZN13MTLReportTool9Interface4ImplD2Ev>:
+    8020:      	ret
+
+0000000000008024 <_ZN13MTLReportTool9InterfaceC2Ev>:
+    8024:      	stp	x29, x30, [sp, #-0x20]!
+    8028:      	stp	x20, x19, [sp, #0x10]
+    802c:      	mov	x29, sp
+    8030:      	mov	x19, x0
+    8034:      	str	xzr, [x0]
+    8038:      	mov	w0, #0x1
+    803c:      	bl	0x10770 <_Znwm@plt>
+    8040:      	mov	x20, x0
+    8044:      	bl	0x107f0 <_ZN13MTLReportTool9Interface4ImplC1Ev@plt>
+    8048:      	str	x20, [x19]
+    804c:      	ldp	x20, x19, [sp, #0x10]
+    8050:      	ldp	x29, x30, [sp], #0x20
+    8054:      	ret
+    8058:      	mov	x19, x0
+    805c:      	mov	x0, x20
+    8060:      	bl	0x10790 <_ZdlPv@plt>
+    8064:      	mov	x0, x19
+    8068:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+
+000000000000806c <_ZN13MTLReportTool9InterfaceD2Ev>:
+    806c:      	stp	x29, x30, [sp, #-0x20]!
+    8070:      	stp	x20, x19, [sp, #0x10]
+    8074:      	mov	x29, sp
+    8078:      	ldr	x20, [x0]
+    807c:      	cbz	x20, 0x8098 <_ZN13MTLReportTool9InterfaceD2Ev+0x2c>
+    8080:      	mov	x19, x0
+    8084:      	mov	x0, x20
+    8088:      	bl	0x10800 <_ZN13MTLReportTool9Interface4ImplD1Ev@plt>
+    808c:      	mov	x0, x20
+    8090:      	bl	0x10790 <_ZdlPv@plt>
+    8094:      	str	xzr, [x19]
+    8098:      	ldp	x20, x19, [sp, #0x10]
+    809c:      	ldp	x29, x30, [sp], #0x20
+    80a0:      	ret
+
+00000000000080a4 <_ZN13MTLReportTool9Interface7versionEv>:
+    80a4:      	nop
+    80a8:      	adr	x0, #-0x2992
+    80ac:      	ret
+    80b0:      	stp	x29, x30, [sp, #-0x10]!
+    80b4:      	mov	x29, sp
+    80b8:      	bl	0x10860 <__cxa_begin_catch@plt>
+    80bc:      	bl	0x10870 <_ZSt9terminatev@plt>
+    80c0:      	stp	x29, x30, [sp, #-0x50]!
+    80c4:      	stp	x26, x25, [sp, #0x10]
+    80c8:      	stp	x24, x23, [sp, #0x20]
+    80cc:      	stp	x22, x21, [sp, #0x30]
+    80d0:      	stp	x20, x19, [sp, #0x40]
+    80d4:      	mov	x29, sp
+    80d8:      	adrp	x23, 0x15000
+    80dc:      	adrp	x22, 0x15000
+    80e0:      	mov	x20, x0
+    80e4:      	ldr	x23, [x23, #0x1b0]
+    80e8:      	ldr	x22, [x22, #0x1a0]
+    80ec:      	mov	x26, x0
+    80f0:      	mov	x19, x0
+    80f4:      	ldr	x8, [x22, #0x10]
+    80f8:      	add	x24, x23, #0x68
+    80fc:      	add	x25, x23, #0x40
+    8100:      	str	x24, [x20, #0x80]!
+    8104:      	ldr	x9, [x22, #0x18]
+    8108:      	str	x25, [x26, #0x10]!
+    810c:      	str	x8, [x0]
+    8110:      	ldur	x8, [x8, #-0x18]
+    8114:      	str	xzr, [x0, #0x8]
+    8118:      	str	x9, [x0, x8]
+    811c:      	ldr	x8, [x0]
+    8120:      	ldur	x8, [x8, #-0x18]
+    8124:      	add	x21, x0, x8
+    8128:      	add	x1, x0, #0x18
+    812c:      	mov	x0, x21
+    8130:      	bl	0x10900 <_ZNSt6__ndk18ios_base4initEPv@plt>
+    8134:      	ldr	x9, [x22, #0x20]
+    8138:      	mov	w8, #-0x1
+    813c:      	str	xzr, [x21, #0x88]
+    8140:      	str	w8, [x21, #0x90]
+    8144:      	ldr	x10, [x22, #0x8]
+    8148:      	ldr	x8, [x22, #0x28]
+    814c:      	str	x9, [x19, #0x10]
+    8150:      	ldur	x9, [x9, #-0x18]
+    8154:      	str	x8, [x26, x9]
+    8158:      	ldr	x9, [x22, #0x30]
+    815c:      	str	x10, [x19]
+    8160:      	ldur	x8, [x10, #-0x18]
+    8164:      	add	x10, x23, #0x18
+    8168:      	str	x9, [x19, x8]
+    816c:      	str	x10, [x19]
+    8170:      	str	x24, [x19, #0x80]
+    8174:      	str	x25, [x19, #0x10]
+    8178:      	add	x0, x19, #0x18
+    817c:      	bl	0x10910 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEEC2Ev@plt>
+    8180:      	adrp	x8, 0x15000
+    8184:      	movi	v0.2d, #0000000000000000
+    8188:      	ldr	x8, [x8, #0x1a8]
+    818c:      	add	x8, x8, #0x10
+    8190:      	str	x8, [x19, #0x18]
+    8194:      	mov	w8, #0x18
+    8198:      	stur	q0, [x19, #0x58]
+    819c:      	stur	q0, [x19, #0x68]
+    81a0:      	str	w8, [x19, #0x78]
+    81a4:      	ldp	x20, x19, [sp, #0x40]
+    81a8:      	ldp	x22, x21, [sp, #0x30]
+    81ac:      	ldp	x24, x23, [sp, #0x20]
+    81b0:      	ldp	x26, x25, [sp, #0x10]
+    81b4:      	ldp	x29, x30, [sp], #0x50
+    81b8:      	ret
+    81bc:      	mov	x21, x0
+    81c0:      	add	x1, x22, #0x8
+    81c4:      	mov	x0, x19
+    81c8:      	bl	0x108d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+    81cc:      	b	0x81d4 <_ZN13MTLReportTool9Interface7versionEv+0x130>
+    81d0:      	mov	x21, x0
+    81d4:      	mov	x0, x20
+    81d8:      	bl	0x108e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+    81dc:      	mov	x0, x21
+    81e0:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    81e4:      	stp	x29, x30, [sp, #-0x30]!
+    81e8:      	str	x21, [sp, #0x10]
+    81ec:      	stp	x20, x19, [sp, #0x20]
+    81f0:      	mov	x29, sp
+    81f4:      	adrp	x21, 0x15000
+    81f8:      	adrp	x9, 0x15000
+    81fc:      	mov	x20, x0
+    8200:      	ldr	x21, [x21, #0x1a0]
+    8204:      	mov	x19, x0
+    8208:      	ldr	x8, [x21]
+    820c:      	ldp	x10, x11, [x21, #0x40]
+    8210:      	str	x8, [x0]
+    8214:      	ldur	x8, [x8, #-0x18]
+    8218:      	ldr	x9, [x9, #0x1a8]
+    821c:      	str	x10, [x0, x8]
+    8220:      	add	x8, x9, #0x10
+    8224:      	str	x8, [x20, #0x18]!
+    8228:      	ldrb	w8, [x20, #0x40]
+    822c:      	stur	x11, [x20, #-0x8]
+    8230:      	tbz	w8, #0x0, 0x823c <_ZN13MTLReportTool9Interface7versionEv+0x198>
+    8234:      	ldr	x0, [x19, #0x68]
+    8238:      	bl	0x10790 <_ZdlPv@plt>
+    823c:      	mov	x0, x20
+    8240:      	bl	0x108c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+    8244:      	add	x1, x21, #0x8
+    8248:      	mov	x0, x19
+    824c:      	bl	0x108d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+    8250:      	add	x0, x19, #0x80
+    8254:      	ldp	x20, x19, [sp, #0x20]
+    8258:      	ldr	x21, [sp, #0x10]
+    825c:      	ldp	x29, x30, [sp], #0x30
+    8260:      	b	0x108e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+    8264:      	sub	sp, sp, #0x70
+    8268:      	stp	x29, x30, [sp, #0x20]
+    826c:      	stp	x26, x25, [sp, #0x30]
+    8270:      	stp	x24, x23, [sp, #0x40]
+    8274:      	stp	x22, x21, [sp, #0x50]
+    8278:      	stp	x20, x19, [sp, #0x60]
+    827c:      	add	x29, sp, #0x20
+    8280:      	mrs	x25, TPIDR_EL0
+    8284:      	mov	x21, x2
+    8288:      	mov	x20, x1
+    828c:      	ldr	x8, [x25, #0x28]
+    8290:      	mov	x19, x0
+    8294:      	stur	x8, [x29, #-0x8]
+    8298:      	mov	x0, sp
+    829c:      	mov	x1, x19
+    82a0:      	bl	0x10950 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_@plt>
+    82a4:      	ldrb	w8, [sp]
+    82a8:      	cbz	w8, 0x8350 <_ZN13MTLReportTool9Interface7versionEv+0x2ac>
+    82ac:      	ldr	x8, [x19]
+    82b0:      	ldur	x8, [x8, #-0x18]
+    82b4:      	add	x22, x19, x8
+    82b8:      	ldr	w5, [x22, #0x90]
+    82bc:      	ldr	x23, [x22, #0x28]
+    82c0:      	ldr	w26, [x22, #0x8]
+    82c4:      	cmn	w5, #0x1
+    82c8:      	b.ne	0x830c <_ZN13MTLReportTool9Interface7versionEv+0x268>
+    82cc:      	add	x8, sp, #0x10
+    82d0:      	mov	x0, x22
+    82d4:      	bl	0x10920 <_ZNKSt6__ndk18ios_base6getlocEv@plt>
+    82d8:      	adrp	x1, 0x15000
+    82dc:      	add	x0, sp, #0x10
+    82e0:      	ldr	x1, [x1, #0x1b8]
+    82e4:      	bl	0x10930 <_ZNKSt6__ndk16locale9use_facetERNS0_2idE@plt>
+    82e8:      	ldr	x8, [x0]
+    82ec:      	ldr	x8, [x8, #0x38]
+    82f0:      	mov	w1, #0x20
+    82f4:      	blr	x8
+    82f8:      	mov	w24, w0
+    82fc:      	add	x0, sp, #0x10
+    8300:      	bl	0x10940 <_ZNSt6__ndk16localeD1Ev@plt>
+    8304:      	and	w5, w24, #0xff
+    8308:      	str	w5, [x22, #0x90]
+    830c:      	mov	w8, #0xb0
+    8310:      	add	x3, x20, x21
+    8314:      	and	w8, w26, w8
+    8318:      	cmp	w8, #0x20
+    831c:      	csel	x2, x3, x20, eq
+    8320:      	mov	x0, x23
+    8324:      	mov	x1, x20
+    8328:      	mov	x4, x22
+    832c:      	bl	0x83f8 <_ZN13MTLReportTool9Interface7versionEv+0x354>
+    8330:      	cbnz	x0, 0x8350 <_ZN13MTLReportTool9Interface7versionEv+0x2ac>
+    8334:      	ldr	x8, [x19]
+    8338:      	mov	w9, #0x5
+    833c:      	ldur	x8, [x8, #-0x18]
+    8340:      	add	x0, x19, x8
+    8344:      	ldr	w8, [x0, #0x20]
+    8348:      	orr	w1, w8, w9
+    834c:      	bl	0x10960 <_ZNSt6__ndk18ios_base5clearEj@plt>
+    8350:      	mov	x0, sp
+    8354:      	bl	0x10970 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+    8358:      	ldr	x8, [x25, #0x28]
+    835c:      	ldur	x9, [x29, #-0x8]
+    8360:      	cmp	x8, x9
+    8364:      	b.ne	0x83f0 <_ZN13MTLReportTool9Interface7versionEv+0x34c>
+    8368:      	mov	x0, x19
+    836c:      	ldp	x20, x19, [sp, #0x60]
+    8370:      	ldp	x22, x21, [sp, #0x50]
+    8374:      	ldp	x24, x23, [sp, #0x40]
+    8378:      	ldp	x26, x25, [sp, #0x30]
+    837c:      	ldp	x29, x30, [sp, #0x20]
+    8380:      	add	sp, sp, #0x70
+    8384:      	ret
+    8388:      	b	0x839c <_ZN13MTLReportTool9Interface7versionEv+0x2f8>
+    838c:      	mov	x20, x0
+    8390:      	add	x0, sp, #0x10
+    8394:      	bl	0x10940 <_ZNSt6__ndk16localeD1Ev@plt>
+    8398:      	b	0x83a0 <_ZN13MTLReportTool9Interface7versionEv+0x2fc>
+    839c:      	mov	x20, x0
+    83a0:      	mov	x0, sp
+    83a4:      	bl	0x10970 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+    83a8:      	b	0x83b0 <_ZN13MTLReportTool9Interface7versionEv+0x30c>
+    83ac:      	mov	x20, x0
+    83b0:      	mov	x0, x20
+    83b4:      	bl	0x10860 <__cxa_begin_catch@plt>
+    83b8:      	ldr	x8, [x19]
+    83bc:      	ldur	x8, [x8, #-0x18]
+    83c0:      	add	x0, x19, x8
+    83c4:      	bl	0x10980 <_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv@plt>
+    83c8:      	bl	0x10990 <__cxa_end_catch@plt>
+    83cc:      	b	0x8358 <_ZN13MTLReportTool9Interface7versionEv+0x2b4>
+    83d0:      	mov	x19, x0
+    83d4:      	bl	0x10990 <__cxa_end_catch@plt>
+    83d8:      	ldr	x8, [x25, #0x28]
+    83dc:      	ldur	x9, [x29, #-0x8]
+    83e0:      	cmp	x8, x9
+    83e4:      	b.ne	0x83f0 <_ZN13MTLReportTool9Interface7versionEv+0x34c>
+    83e8:      	mov	x0, x19
+    83ec:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    83f0:      	bl	0x10840 <__stack_chk_fail@plt>
+    83f4:      	bl	0x80b0 <_ZN13MTLReportTool9Interface7versionEv+0xc>
+    83f8:      	sub	sp, sp, #0x70
+    83fc:      	stp	x29, x30, [sp, #0x20]
+    8400:      	stp	x26, x25, [sp, #0x30]
+    8404:      	stp	x24, x23, [sp, #0x40]
+    8408:      	stp	x22, x21, [sp, #0x50]
+    840c:      	stp	x20, x19, [sp, #0x60]
+    8410:      	add	x29, sp, #0x20
+    8414:      	mrs	x26, TPIDR_EL0
+    8418:      	mov	x19, x0
+    841c:      	ldr	x8, [x26, #0x28]
+    8420:      	stur	x8, [x29, #-0x8]
+    8424:      	cbz	x0, 0x8508 <_ZN13MTLReportTool9Interface7versionEv+0x464>
+    8428:      	ldr	x8, [x4, #0x18]
+    842c:      	sub	x9, x3, x1
+    8430:      	sub	x25, x2, x1
+    8434:      	mov	w24, w5
+    8438:      	mov	x20, x4
+    843c:      	mov	x22, x3
+    8440:      	subs	x8, x8, x9
+    8444:      	mov	x21, x2
+    8448:      	csel	x23, x8, xzr, gt
+    844c:      	cmp	x25, #0x1
+    8450:      	b.lt	0x8470 <_ZN13MTLReportTool9Interface7versionEv+0x3cc>
+    8454:      	ldr	x8, [x19]
+    8458:      	mov	x0, x19
+    845c:      	mov	x2, x25
+    8460:      	ldr	x8, [x8, #0x60]
+    8464:      	blr	x8
+    8468:      	cmp	x0, x25
+    846c:      	b.ne	0x8504 <_ZN13MTLReportTool9Interface7versionEv+0x460>
+    8470:      	cmp	x23, #0x1
+    8474:      	b.lt	0x84d0 <_ZN13MTLReportTool9Interface7versionEv+0x42c>
+    8478:      	mov	x0, sp
+    847c:      	mov	x1, x23
+    8480:      	mov	w2, w24
+    8484:      	mov	x24, sp
+    8488:      	bl	0x8568 <_ZN13MTLReportTool9Interface7versionEv+0x4c4>
+    848c:      	ldrb	w8, [sp]
+    8490:      	ldr	x9, [x19]
+    8494:      	orr	x11, x24, #0x1
+    8498:      	ldr	x10, [sp, #0x10]
+    849c:      	tst	w8, #0x1
+    84a0:      	ldr	x8, [x9, #0x60]
+    84a4:      	csel	x1, x11, x10, eq
+    84a8:      	mov	x0, x19
+    84ac:      	mov	x2, x23
+    84b0:      	blr	x8
+    84b4:      	ldrb	w8, [sp]
+    84b8:      	mov	x24, x0
+    84bc:      	tbz	w8, #0x0, 0x84c8 <_ZN13MTLReportTool9Interface7versionEv+0x424>
+    84c0:      	ldr	x0, [sp, #0x10]
+    84c4:      	bl	0x10790 <_ZdlPv@plt>
+    84c8:      	cmp	x24, x23
+    84cc:      	b.ne	0x8504 <_ZN13MTLReportTool9Interface7versionEv+0x460>
+    84d0:      	sub	x22, x22, x21
+    84d4:      	cmp	x22, #0x1
+    84d8:      	b.lt	0x84fc <_ZN13MTLReportTool9Interface7versionEv+0x458>
+    84dc:      	ldr	x8, [x19]
+    84e0:      	mov	x0, x19
+    84e4:      	mov	x1, x21
+    84e8:      	mov	x2, x22
+    84ec:      	ldr	x8, [x8, #0x60]
+    84f0:      	blr	x8
+    84f4:      	cmp	x0, x22
+    84f8:      	b.ne	0x8504 <_ZN13MTLReportTool9Interface7versionEv+0x460>
+    84fc:      	str	xzr, [x20, #0x18]
+    8500:      	b	0x8508 <_ZN13MTLReportTool9Interface7versionEv+0x464>
+    8504:      	mov	x19, xzr
+    8508:      	ldr	x8, [x26, #0x28]
+    850c:      	ldur	x9, [x29, #-0x8]
+    8510:      	cmp	x8, x9
+    8514:      	b.ne	0x8564 <_ZN13MTLReportTool9Interface7versionEv+0x4c0>
+    8518:      	mov	x0, x19
+    851c:      	ldp	x20, x19, [sp, #0x60]
+    8520:      	ldp	x22, x21, [sp, #0x50]
+    8524:      	ldp	x24, x23, [sp, #0x40]
+    8528:      	ldp	x26, x25, [sp, #0x30]
+    852c:      	ldp	x29, x30, [sp, #0x20]
+    8530:      	add	sp, sp, #0x70
+    8534:      	ret
+    8538:      	ldrb	w8, [sp]
+    853c:      	mov	x19, x0
+    8540:      	tbz	w8, #0x0, 0x854c <_ZN13MTLReportTool9Interface7versionEv+0x4a8>
+    8544:      	ldr	x0, [sp, #0x10]
+    8548:      	bl	0x10790 <_ZdlPv@plt>
+    854c:      	ldr	x8, [x26, #0x28]
+    8550:      	ldur	x9, [x29, #-0x8]
+    8554:      	cmp	x8, x9
+    8558:      	b.ne	0x8564 <_ZN13MTLReportTool9Interface7versionEv+0x4c0>
+    855c:      	mov	x0, x19
+    8560:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    8564:      	bl	0x10840 <__stack_chk_fail@plt>
+    8568:      	stp	x29, x30, [sp, #-0x30]!
+    856c:      	stp	x22, x21, [sp, #0x10]
+    8570:      	stp	x20, x19, [sp, #0x20]
+    8574:      	mov	x29, sp
+    8578:      	cmn	x1, #0x10
+    857c:      	mov	x20, x0
+    8580:      	b.hs	0x85e4 <_ZN13MTLReportTool9Interface7versionEv+0x540>
+    8584:      	mov	w21, w2
+    8588:      	mov	x19, x1
+    858c:      	cmp	x1, #0x17
+    8590:      	b.hs	0x85a4 <_ZN13MTLReportTool9Interface7versionEv+0x500>
+    8594:      	lsl	w8, w19, #1
+    8598:      	strb	w8, [x20], #0x1
+    859c:      	cbnz	x19, 0x85c0 <_ZN13MTLReportTool9Interface7versionEv+0x51c>
+    85a0:      	b	0x85d0 <_ZN13MTLReportTool9Interface7versionEv+0x52c>
+    85a4:      	orr	x22, x19, #0xf
+    85a8:      	add	x0, x22, #0x1
+    85ac:      	bl	0x10770 <_Znwm@plt>
+    85b0:      	add	x8, x22, #0x2
+    85b4:      	stp	x19, x0, [x20, #0x8]
+    85b8:      	str	x8, [x20]
+    85bc:      	mov	x20, x0
+    85c0:      	mov	x0, x20
+    85c4:      	mov	w1, w21
+    85c8:      	mov	x2, x19
+    85cc:      	bl	0x109a0 <memset@plt>
+    85d0:      	strb	wzr, [x20, x19]
+    85d4:      	ldp	x20, x19, [sp, #0x20]
+    85d8:      	ldp	x22, x21, [sp, #0x10]
+    85dc:      	ldp	x29, x30, [sp], #0x30
+    85e0:      	ret
+    85e4:      	mov	x0, x20
+    85e8:      	bl	0x7eac <.text+0x11c>
+    85ec:      	stp	x29, x30, [sp, #-0x20]!
+    85f0:      	str	x19, [sp, #0x10]
+    85f4:      	mov	x29, sp
+    85f8:      	ldrb	w8, [x1]
+    85fc:      	mov	x19, x0
+    8600:      	tbnz	w8, #0x0, 0x8618 <_ZN13MTLReportTool9Interface7versionEv+0x574>
+    8604:      	ldr	x8, [x1, #0x10]
+    8608:      	ldr	q0, [x1]
+    860c:      	str	x8, [x19, #0x10]
+    8610:      	str	q0, [x19]
+    8614:      	b	0x8628 <_ZN13MTLReportTool9Interface7versionEv+0x584>
+    8618:      	ldp	x2, x8, [x1, #0x8]
+    861c:      	mov	x0, x19
+    8620:      	mov	x1, x8
+    8624:      	bl	0x7f40 <.text+0x1b0>
+    8628:      	str	xzr, [x19, #0x18]
+    862c:      	strb	wzr, [x19, #0x20]
+    8630:      	ldr	x19, [sp, #0x10]
+    8634:      	ldp	x29, x30, [sp], #0x20
+    8638:      	ret
+    863c:      	stp	x29, x30, [sp, #-0x20]!
+    8640:      	str	x19, [sp, #0x10]
+    8644:      	mov	x29, sp
+    8648:      	mov	x19, x0
+    864c:      	ldr	x0, [x0, #0x18]
+    8650:      	cbz	x0, 0x865c <_ZN13MTLReportTool9Interface7versionEv+0x5b8>
+    8654:      	bl	0x109b0 <fclose@plt>
+    8658:      	str	xzr, [x19, #0x18]
+    865c:      	ldrb	w8, [x19]
+    8660:      	tbnz	w8, #0x0, 0x8670 <_ZN13MTLReportTool9Interface7versionEv+0x5cc>
+    8664:      	ldr	x19, [sp, #0x10]
+    8668:      	ldp	x29, x30, [sp], #0x20
+    866c:      	ret
+    8670:      	ldr	x0, [x19, #0x10]
+    8674:      	ldr	x19, [sp, #0x10]
+    8678:      	ldp	x29, x30, [sp], #0x20
+    867c:      	b	0x10790 <_ZdlPv@plt>
+    8680:      	stp	x29, x30, [sp, #-0x20]!
+    8684:      	str	x19, [sp, #0x10]
+    8688:      	mov	x29, sp
+    868c:      	mov	x19, x0
+    8690:      	ldr	x0, [x0, #0x18]
+    8694:      	cbz	x0, 0x86a0 <_ZN13MTLReportTool9Interface7versionEv+0x5fc>
+    8698:      	bl	0x109b0 <fclose@plt>
+    869c:      	str	xzr, [x19, #0x18]
+    86a0:      	ldr	x19, [sp, #0x10]
+    86a4:      	ldp	x29, x30, [sp], #0x20
+    86a8:      	ret
+    86ac:      	stp	x29, x30, [sp, #-0x30]!
+    86b0:      	stp	x22, x21, [sp, #0x10]
+    86b4:      	stp	x20, x19, [sp, #0x20]
+    86b8:      	mov	x29, sp
+    86bc:      	mov	x19, x0
+    86c0:      	mov	x20, x8
+    86c4:      	bl	0x8714 <_ZN13MTLReportTool9Interface7versionEv+0x670>
+    86c8:      	mov	x21, x0
+    86cc:      	add	w8, w21, #0x1
+    86d0:      	sxtw	x22, w8
+    86d4:      	mov	x0, x22
+    86d8:      	bl	0x109c0 <_Znam@plt>
+    86dc:      	ldr	x3, [x19, #0x18]
+    86e0:      	mov	x1, x22
+    86e4:      	mov	w2, #0x1
+    86e8:      	mov	x19, x0
+    86ec:      	bl	0x109d0 <fread@plt>
+    86f0:      	mov	x0, x20
+    86f4:      	mov	x1, x19
+    86f8:      	strb	wzr, [x19, w21, sxtw]
+    86fc:      	bl	0x7df0 <.text+0x60>
+    8700:      	mov	x0, x19
+    8704:      	ldp	x20, x19, [sp, #0x20]
+    8708:      	ldp	x22, x21, [sp, #0x10]
+    870c:      	ldp	x29, x30, [sp], #0x30
+    8710:      	b	0x109e0 <_ZdaPv@plt>
+    8714:      	stp	x29, x30, [sp, #-0x20]!
+    8718:      	str	x19, [sp, #0x10]
+    871c:      	mov	x29, sp
+    8720:      	mov	x19, x0
+    8724:      	ldr	x0, [x0, #0x18]
+    8728:      	cbz	x0, 0x8760 <_ZN13MTLReportTool9Interface7versionEv+0x6bc>
+    872c:      	mov	x1, xzr
+    8730:      	mov	w2, #0x2
+    8734:      	bl	0x109f0 <fseek@plt>
+    8738:      	ldr	x0, [x19, #0x18]
+    873c:      	bl	0x10a00 <ftell@plt>
+    8740:      	ldr	x8, [x19, #0x18]
+    8744:      	mov	x19, x0
+    8748:      	mov	x1, xzr
+    874c:      	mov	w2, wzr
+    8750:      	mov	x0, x8
+    8754:      	bl	0x109f0 <fseek@plt>
+    8758:      	mov	x0, x19
+    875c:      	b	0x8764 <_ZN13MTLReportTool9Interface7versionEv+0x6c0>
+    8760:      	mov	x0, #-0x1
+    8764:      	ldr	x19, [sp, #0x10]
+    8768:      	ldp	x29, x30, [sp], #0x20
+    876c:      	ret
+    8770:      	ldrb	w8, [x0, #0x20]
+    8774:      	cbz	w8, 0x8780 <_ZN13MTLReportTool9Interface7versionEv+0x6dc>
+    8778:      	mov	w0, #0x1
+    877c:      	ret
+    8780:      	stp	x29, x30, [sp, #-0x20]!
+    8784:      	str	x19, [sp, #0x10]
+    8788:      	mov	x29, sp
+    878c:      	ldrb	w8, [x0]
+    8790:      	ldr	x9, [x0, #0x10]
+    8794:      	mov	x19, x0
+    8798:      	ldrb	w10, [x1]
+    879c:      	tst	w8, #0x1
+    87a0:      	ldr	x8, [x1, #0x10]
+    87a4:      	csinc	x0, x9, x0, ne
+    87a8:      	tst	w10, #0x1
+    87ac:      	csinc	x1, x8, x1, ne
+    87b0:      	bl	0x10a10 <fopen@plt>
+    87b4:      	cmp	x0, #0x0
+    87b8:      	str	x0, [x19, #0x18]
+    87bc:      	cset	w0, ne
+    87c0:      	strb	w0, [x19, #0x20]
+    87c4:      	ldr	x19, [sp, #0x10]
+    87c8:      	ldp	x29, x30, [sp], #0x20
+    87cc:      	ret
+    87d0:      	ldr	x3, [x0, #0x18]
+    87d4:      	cbz	x3, 0x87f8 <_ZN13MTLReportTool9Interface7versionEv+0x754>
+    87d8:      	ldrb	w8, [x1]
+    87dc:      	ldp	x10, x9, [x1, #0x8]
+    87e0:      	mov	w2, #0x1
+    87e4:      	tst	w8, #0x1
+    87e8:      	lsr	x8, x8, #1
+    87ec:      	csinc	x0, x9, x1, ne
+    87f0:      	csel	x1, x8, x10, eq
+    87f4:      	b	0x10a20 <fwrite@plt>
+    87f8:      	mov	x0, xzr
+    87fc:      	ret
+    8800:      	b	0x8898 <_ZN13MTLReportTool9Interface7versionEv+0x7f4>
+    8804:      	sub	sp, sp, #0x40
+    8808:      	stp	x29, x30, [sp, #0x20]
+    880c:      	stp	x20, x19, [sp, #0x30]
+    8810:      	add	x29, sp, #0x20
+    8814:      	mrs	x20, TPIDR_EL0
+    8818:      	ldr	x8, [x20, #0x28]
+    881c:      	stur	x8, [x29, #-0x8]
+    8820:      	mov	x8, sp
+    8824:      	bl	0x8ac4 <_ZN13MTLReportTool9Interface7versionEv+0xa20>
+    8828:      	mov	x0, sp
+    882c:      	bl	0x88c8 <_ZN13MTLReportTool9Interface7versionEv+0x824>
+    8830:      	ldrb	w8, [sp]
+    8834:      	mov	w19, w0
+    8838:      	tbz	w8, #0x0, 0x8844 <_ZN13MTLReportTool9Interface7versionEv+0x7a0>
+    883c:      	ldr	x0, [sp, #0x10]
+    8840:      	bl	0x10790 <_ZdlPv@plt>
+    8844:      	ldr	x8, [x20, #0x28]
+    8848:      	ldur	x9, [x29, #-0x8]
+    884c:      	cmp	x8, x9
+    8850:      	b.ne	0x8894 <_ZN13MTLReportTool9Interface7versionEv+0x7f0>
+    8854:      	and	w0, w19, #0x1
+    8858:      	ldp	x20, x19, [sp, #0x30]
+    885c:      	ldp	x29, x30, [sp, #0x20]
+    8860:      	add	sp, sp, #0x40
+    8864:      	ret
+    8868:      	ldrb	w8, [sp]
+    886c:      	mov	x19, x0
+    8870:      	tbz	w8, #0x0, 0x887c <_ZN13MTLReportTool9Interface7versionEv+0x7d8>
+    8874:      	ldr	x0, [sp, #0x10]
+    8878:      	bl	0x10790 <_ZdlPv@plt>
+    887c:      	ldr	x8, [x20, #0x28]
+    8880:      	ldur	x9, [x29, #-0x8]
+    8884:      	cmp	x8, x9
+    8888:      	b.ne	0x8894 <_ZN13MTLReportTool9Interface7versionEv+0x7f0>
+    888c:      	mov	x0, x19
+    8890:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    8894:      	bl	0x10840 <__stack_chk_fail@plt>
+    8898:      	stp	x29, x30, [sp, #-0x10]!
+    889c:      	mov	x29, sp
+    88a0:      	ldrb	w8, [x0]
+    88a4:      	ldr	x9, [x0, #0x10]
+    88a8:      	mov	w1, wzr
+    88ac:      	tst	w8, #0x1
+    88b0:      	csinc	x0, x9, x0, ne
+    88b4:      	bl	0x10a40 <access@plt>
+    88b8:      	cmp	w0, #0x0
+    88bc:      	cset	w0, eq
+    88c0:      	ldp	x29, x30, [sp], #0x10
+    88c4:      	ret
+    88c8:      	sub	sp, sp, #0x40
+    88cc:      	stp	x29, x30, [sp, #0x20]
+    88d0:      	stp	x20, x19, [sp, #0x30]
+    88d4:      	add	x29, sp, #0x20
+    88d8:      	mrs	x20, TPIDR_EL0
+    88dc:      	ldr	x8, [x20, #0x28]
+    88e0:      	stur	x8, [x29, #-0x8]
+    88e4:      	ldrb	w8, [x0]
+    88e8:      	ldr	x9, [x0, #0x8]
+    88ec:      	lsr	x10, x8, #1
+    88f0:      	tst	w8, #0x1
+    88f4:      	csel	x9, x10, x9, eq
+    88f8:      	cbz	x9, 0x8934 <_ZN13MTLReportTool9Interface7versionEv+0x890>
+    88fc:      	ldr	x9, [x0, #0x10]
+    8900:      	tst	w8, #0x1
+    8904:      	mov	x19, x0
+    8908:      	mov	w1, wzr
+    890c:      	csinc	x0, x9, x0, ne
+    8910:      	bl	0x10a40 <access@plt>
+    8914:      	cbz	w0, 0x893c <_ZN13MTLReportTool9Interface7versionEv+0x898>
+    8918:      	ldrb	w8, [x19]
+    891c:      	tbnz	w8, #0x0, 0x8944 <_ZN13MTLReportTool9Interface7versionEv+0x8a0>
+    8920:      	ldr	q0, [x19]
+    8924:      	ldr	x8, [x19, #0x10]
+    8928:      	str	q0, [sp]
+    892c:      	str	x8, [sp, #0x10]
+    8930:      	b	0x8950 <_ZN13MTLReportTool9Interface7versionEv+0x8ac>
+    8934:      	mov	w19, wzr
+    8938:      	b	0x89d0 <_ZN13MTLReportTool9Interface7versionEv+0x92c>
+    893c:      	mov	w19, #0x1
+    8940:      	b	0x89d0 <_ZN13MTLReportTool9Interface7versionEv+0x92c>
+    8944:      	ldp	x2, x1, [x19, #0x8]
+    8948:      	mov	x0, sp
+    894c:      	bl	0x7f40 <.text+0x1b0>
+    8950:      	ldrb	w11, [sp]
+    8954:      	ldp	x9, x8, [sp, #0x8]
+    8958:      	mov	x12, sp
+    895c:      	lsr	x10, x11, #1
+    8960:      	ands	w11, w11, #0x1
+    8964:      	orr	x19, x12, #0x1
+    8968:      	csel	x12, x19, x8, eq
+    896c:      	csel	x13, x10, x9, eq
+    8970:      	add	x12, x12, x13
+    8974:      	ldurb	w12, [x12, #-0x1]
+    8978:      	cmp	w12, #0x2f
+    897c:      	b.eq	0x89a8 <_ZN13MTLReportTool9Interface7versionEv+0x904>
+    8980:      	cmp	w12, #0x5c
+    8984:      	b.eq	0x89a8 <_ZN13MTLReportTool9Interface7versionEv+0x904>
+    8988:      	adrp	x1, 0x4000
+    898c:      	add	x1, x1, #0x9c5
+    8990:      	mov	x0, sp
+    8994:      	bl	0x108f0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    8998:      	ldrb	w11, [sp]
+    899c:      	ldp	x9, x8, [sp, #0x8]
+    89a0:      	lsr	x10, x11, #1
+    89a4:      	and	w11, w11, #0x1
+    89a8:      	cmp	w11, #0x0
+    89ac:      	csel	x0, x19, x8, eq
+    89b0:      	csel	x8, x10, x9, eq
+    89b4:      	add	x1, x0, x8
+    89b8:      	bl	0x8a24 <_ZN13MTLReportTool9Interface7versionEv+0x980>
+    89bc:      	ldrb	w8, [sp]
+    89c0:      	mov	w19, w0
+    89c4:      	tbz	w8, #0x0, 0x89d0 <_ZN13MTLReportTool9Interface7versionEv+0x92c>
+    89c8:      	ldr	x0, [sp, #0x10]
+    89cc:      	bl	0x10790 <_ZdlPv@plt>
+    89d0:      	ldr	x8, [x20, #0x28]
+    89d4:      	ldur	x9, [x29, #-0x8]
+    89d8:      	cmp	x8, x9
+    89dc:      	b.ne	0x8a20 <_ZN13MTLReportTool9Interface7versionEv+0x97c>
+    89e0:      	and	w0, w19, #0x1
+    89e4:      	ldp	x20, x19, [sp, #0x30]
+    89e8:      	ldp	x29, x30, [sp, #0x20]
+    89ec:      	add	sp, sp, #0x40
+    89f0:      	ret
+    89f4:      	ldrb	w8, [sp]
+    89f8:      	mov	x19, x0
+    89fc:      	tbz	w8, #0x0, 0x8a08 <_ZN13MTLReportTool9Interface7versionEv+0x964>
+    8a00:      	ldr	x0, [sp, #0x10]
+    8a04:      	bl	0x10790 <_ZdlPv@plt>
+    8a08:      	ldr	x8, [x20, #0x28]
+    8a0c:      	ldur	x9, [x29, #-0x8]
+    8a10:      	cmp	x8, x9
+    8a14:      	b.ne	0x8a20 <_ZN13MTLReportTool9Interface7versionEv+0x97c>
+    8a18:      	mov	x0, x19
+    8a1c:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    8a20:      	bl	0x10840 <__stack_chk_fail@plt>
+    8a24:      	stp	x29, x30, [sp, #-0x30]!
+    8a28:      	str	x21, [sp, #0x10]
+    8a2c:      	stp	x20, x19, [sp, #0x20]
+    8a30:      	mov	x29, sp
+    8a34:      	mov	x19, x1
+    8a38:      	mov	x20, x0
+    8a3c:      	sub	x19, x19, #0x1
+    8a40:      	cmp	x19, x20
+    8a44:      	b.eq	0x8aa8 <_ZN13MTLReportTool9Interface7versionEv+0xa04>
+    8a48:      	ldrb	w21, [x19]
+    8a4c:      	cmp	w21, #0x5c
+    8a50:      	b.eq	0x8a5c <_ZN13MTLReportTool9Interface7versionEv+0x9b8>
+    8a54:      	cmp	w21, #0x2f
+    8a58:      	b.ne	0x8a3c <_ZN13MTLReportTool9Interface7versionEv+0x998>
+    8a5c:      	mov	x0, x20
+    8a60:      	mov	w1, wzr
+    8a64:      	strb	wzr, [x19]
+    8a68:      	bl	0x10a40 <access@plt>
+    8a6c:      	cbz	w0, 0x8a98 <_ZN13MTLReportTool9Interface7versionEv+0x9f4>
+    8a70:      	mov	x0, x20
+    8a74:      	mov	x1, x19
+    8a78:      	bl	0x8a24 <_ZN13MTLReportTool9Interface7versionEv+0x980>
+    8a7c:      	tbz	w0, #0x0, 0x8aa0 <_ZN13MTLReportTool9Interface7versionEv+0x9fc>
+    8a80:      	mov	x0, x20
+    8a84:      	mov	w1, #0x1ed
+    8a88:      	bl	0x10a50 <mkdir@plt>
+    8a8c:      	cmn	w0, #0x1
+    8a90:      	cset	w8, ne
+    8a94:      	b	0x8aa4 <_ZN13MTLReportTool9Interface7versionEv+0xa00>
+    8a98:      	mov	w8, #0x1
+    8a9c:      	b	0x8aa4 <_ZN13MTLReportTool9Interface7versionEv+0xa00>
+    8aa0:      	mov	w8, wzr
+    8aa4:      	strb	w21, [x19]
+    8aa8:      	cmp	x19, x20
+    8aac:      	cset	w9, ne
+    8ab0:      	and	w0, w9, w8
+    8ab4:      	ldp	x20, x19, [sp, #0x20]
+    8ab8:      	ldr	x21, [sp, #0x10]
+    8abc:      	ldp	x29, x30, [sp], #0x30
+    8ac0:      	ret
+    8ac4:      	sub	sp, sp, #0x80
+    8ac8:      	stp	x29, x30, [sp, #0x50]
+    8acc:      	stp	x22, x21, [sp, #0x60]
+    8ad0:      	stp	x20, x19, [sp, #0x70]
+    8ad4:      	add	x29, sp, #0x50
+    8ad8:      	mrs	x22, TPIDR_EL0
+    8adc:      	mov	x19, x8
+    8ae0:      	ldr	x9, [x22, #0x28]
+    8ae4:      	stur	x9, [x29, #-0x8]
+    8ae8:      	ldrb	w9, [x0]
+    8aec:      	ldr	x2, [x0, #0x8]
+    8af0:      	lsr	x10, x9, #1
+    8af4:      	tst	w9, #0x1
+    8af8:      	csel	x10, x10, x2, eq
+    8afc:      	cbz	x10, 0x8b1c <_ZN13MTLReportTool9Interface7versionEv+0xa78>
+    8b00:      	mov	x20, x0
+    8b04:      	tbnz	w9, #0x0, 0x8b38 <_ZN13MTLReportTool9Interface7versionEv+0xa94>
+    8b08:      	ldr	q0, [x20]
+    8b0c:      	ldr	x8, [x20, #0x10]
+    8b10:      	str	q0, [sp, #0x20]
+    8b14:      	str	x8, [sp, #0x30]
+    8b18:      	b	0x8b44 <_ZN13MTLReportTool9Interface7versionEv+0xaa0>
+    8b1c:      	ldr	x8, [x22, #0x28]
+    8b20:      	ldur	x9, [x29, #-0x8]
+    8b24:      	cmp	x8, x9
+    8b28:      	b.ne	0x8c94 <_ZN13MTLReportTool9Interface7versionEv+0xbf0>
+    8b2c:      	stp	xzr, xzr, [x19]
+    8b30:      	str	xzr, [x19, #0x10]
+    8b34:      	b	0x8c50 <_ZN13MTLReportTool9Interface7versionEv+0xbac>
+    8b38:      	ldr	x1, [x20, #0x10]
+    8b3c:      	add	x0, sp, #0x20
+    8b40:      	bl	0x7f40 <.text+0x1b0>
+    8b44:      	add	x8, sp, #0x20
+    8b48:      	orr	x21, x8, #0x1
+    8b4c:      	ldrb	w8, [sp, #0x20]
+    8b50:      	ldp	x10, x9, [sp, #0x28]
+    8b54:      	lsr	x11, x8, #1
+    8b58:      	tst	w8, #0x1
+    8b5c:      	csel	x9, x21, x9, eq
+    8b60:      	csel	x8, x11, x10, eq
+    8b64:      	add	x9, x9, x8
+    8b68:      	ldurb	w9, [x9, #-0x1]
+    8b6c:      	cmp	w9, #0x5c
+    8b70:      	b.eq	0x8b7c <_ZN13MTLReportTool9Interface7versionEv+0xad8>
+    8b74:      	cmp	w9, #0x2f
+    8b78:      	b.ne	0x8bb8 <_ZN13MTLReportTool9Interface7versionEv+0xb14>
+    8b7c:      	sub	x3, x8, #0x1
+    8b80:      	add	x0, sp, #0x8
+    8b84:      	add	x1, sp, #0x20
+    8b88:      	sub	x4, x29, #0x9
+    8b8c:      	mov	x2, xzr
+    8b90:      	bl	0x108a0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2ERKS5_mmRKS4_@plt>
+    8b94:      	ldrb	w8, [sp, #0x20]
+    8b98:      	tbz	w8, #0x0, 0x8ba4 <_ZN13MTLReportTool9Interface7versionEv+0xb00>
+    8b9c:      	ldr	x0, [sp, #0x30]
+    8ba0:      	bl	0x10790 <_ZdlPv@plt>
+    8ba4:      	ldur	q0, [sp, #0x8]
+    8ba8:      	ldr	x8, [sp, #0x18]
+    8bac:      	str	q0, [sp, #0x20]
+    8bb0:      	str	x8, [sp, #0x30]
+    8bb4:      	b	0x8b4c <_ZN13MTLReportTool9Interface7versionEv+0xaa8>
+    8bb8:      	mov	x0, x20
+    8bbc:      	mov	w1, #0x2f
+    8bc0:      	mov	x2, #-0x1
+    8bc4:      	bl	0x10a30 <_ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5rfindEcm@plt>
+    8bc8:      	mov	x21, x0
+    8bcc:      	mov	x0, x20
+    8bd0:      	mov	w1, #0x5c
+    8bd4:      	mov	x2, #-0x1
+    8bd8:      	bl	0x10a30 <_ZNKSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5rfindEcm@plt>
+    8bdc:      	and	x8, x0, x21
+    8be0:      	cmn	x8, #0x1
+    8be4:      	b.eq	0x8c28 <_ZN13MTLReportTool9Interface7versionEv+0xb84>
+    8be8:      	mov	x3, x0
+    8bec:      	cmn	x21, #0x1
+    8bf0:      	b.eq	0x8c08 <_ZN13MTLReportTool9Interface7versionEv+0xb64>
+    8bf4:      	cmp	x21, x3
+    8bf8:      	csel	x8, x21, x3, hi
+    8bfc:      	cmn	x3, #0x1
+    8c00:      	csel	x3, x21, x8, eq
+    8c04:      	b	0x8c10 <_ZN13MTLReportTool9Interface7versionEv+0xb6c>
+    8c08:      	cmn	x3, #0x1
+    8c0c:      	b.eq	0x8c28 <_ZN13MTLReportTool9Interface7versionEv+0xb84>
+    8c10:      	add	x4, sp, #0x8
+    8c14:      	mov	x0, x19
+    8c18:      	mov	x1, x20
+    8c1c:      	mov	x2, xzr
+    8c20:      	bl	0x108a0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2ERKS5_mmRKS4_@plt>
+    8c24:      	b	0x8c30 <_ZN13MTLReportTool9Interface7versionEv+0xb8c>
+    8c28:      	stp	xzr, xzr, [x19]
+    8c2c:      	str	xzr, [x19, #0x10]
+    8c30:      	ldrb	w8, [sp, #0x20]
+    8c34:      	tbz	w8, #0x0, 0x8c40 <_ZN13MTLReportTool9Interface7versionEv+0xb9c>
+    8c38:      	ldr	x0, [sp, #0x30]
+    8c3c:      	bl	0x10790 <_ZdlPv@plt>
+    8c40:      	ldr	x8, [x22, #0x28]
+    8c44:      	ldur	x9, [x29, #-0x8]
+    8c48:      	cmp	x8, x9
+    8c4c:      	b.ne	0x8c94 <_ZN13MTLReportTool9Interface7versionEv+0xbf0>
+    8c50:      	ldp	x20, x19, [sp, #0x70]
+    8c54:      	ldp	x22, x21, [sp, #0x60]
+    8c58:      	ldp	x29, x30, [sp, #0x50]
+    8c5c:      	add	sp, sp, #0x80
+    8c60:      	ret
+    8c64:      	b	0x8c68 <_ZN13MTLReportTool9Interface7versionEv+0xbc4>
+    8c68:      	ldrb	w8, [sp, #0x20]
+    8c6c:      	mov	x19, x0
+    8c70:      	tbz	w8, #0x0, 0x8c7c <_ZN13MTLReportTool9Interface7versionEv+0xbd8>
+    8c74:      	ldr	x0, [sp, #0x30]
+    8c78:      	bl	0x10790 <_ZdlPv@plt>
+    8c7c:      	ldr	x8, [x22, #0x28]
+    8c80:      	ldur	x9, [x29, #-0x8]
+    8c84:      	cmp	x8, x9
+    8c88:      	b.ne	0x8c94 <_ZN13MTLReportTool9Interface7versionEv+0xbf0>
+    8c8c:      	mov	x0, x19
+    8c90:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    8c94:      	bl	0x10840 <__stack_chk_fail@plt>
+    8c98:      	stp	x29, x30, [sp, #-0x20]!
+    8c9c:      	str	x19, [sp, #0x10]
+    8ca0:      	mov	x29, sp
+    8ca4:      	mov	w0, #0x8
+    8ca8:      	bl	0x107b0 <__cxa_allocate_exception@plt>
+    8cac:      	mov	x19, x0
+    8cb0:      	bl	0x10a60 <_ZNSt20bad_array_new_lengthC1Ev@plt>
+    8cb4:      	adrp	x1, 0x15000
+    8cb8:      	adrp	x2, 0x15000
+    8cbc:      	mov	x0, x19
+    8cc0:      	ldr	x1, [x1, #0x1c0]
+    8cc4:      	ldr	x2, [x2, #0x1c8]
+    8cc8:      	bl	0x107c0 <__cxa_throw@plt>
+    8ccc:      	stp	x29, x30, [sp, #-0x30]!
+    8cd0:      	str	x21, [sp, #0x10]
+    8cd4:      	stp	x20, x19, [sp, #0x20]
+    8cd8:      	mov	x29, sp
+    8cdc:      	cmn	x2, #0x10
+    8ce0:      	mov	x19, x0
+    8ce4:      	b.hs	0x8d30 <_ZN13MTLReportTool9Interface7versionEv+0xc8c>
+    8ce8:      	mov	x20, x2
+    8cec:      	cmp	x2, #0x16
+    8cf0:      	b.hi	0x8d08 <_ZN13MTLReportTool9Interface7versionEv+0xc64>
+    8cf4:      	lsl	w8, w20, #1
+    8cf8:      	stp	xzr, xzr, [x19]
+    8cfc:      	str	xzr, [x19, #0x10]
+    8d00:      	strb	w8, [x19]
+    8d04:      	b	0x8d20 <_ZN13MTLReportTool9Interface7versionEv+0xc7c>
+    8d08:      	orr	x21, x20, #0xf
+    8d0c:      	add	x0, x21, #0x1
+    8d10:      	bl	0x10770 <_Znwm@plt>
+    8d14:      	add	x8, x21, #0x2
+    8d18:      	stp	x20, x0, [x19, #0x8]
+    8d1c:      	str	x8, [x19]
+    8d20:      	ldp	x20, x19, [sp, #0x20]
+    8d24:      	ldr	x21, [sp, #0x10]
+    8d28:      	ldp	x29, x30, [sp], #0x30
+    8d2c:      	ret
+    8d30:      	mov	x0, x19
+    8d34:      	bl	0x7eac <.text+0x11c>
+    8d38:      	stp	x29, x30, [sp, #-0x30]!
+    8d3c:      	stp	x22, x21, [sp, #0x10]
+    8d40:      	stp	x20, x19, [sp, #0x20]
+    8d44:      	mov	x29, sp
+    8d48:      	stp	xzr, xzr, [x0]
+    8d4c:      	str	xzr, [x0, #0x10]
+    8d50:      	cbz	x1, 0x8d80 <_ZN13MTLReportTool9Interface7versionEv+0xcdc>
+    8d54:      	mov	x21, x2
+    8d58:      	mov	x20, x1
+    8d5c:      	mov	x19, x0
+    8d60:      	bl	0x8db0 <_ZN13MTLReportTool9Interface7versionEv+0xd0c>
+    8d64:      	ldr	x22, [x19, #0x8]
+    8d68:      	ldrb	w1, [x21]
+    8d6c:      	mov	x2, x20
+    8d70:      	mov	x0, x22
+    8d74:      	bl	0x109a0 <memset@plt>
+    8d78:      	add	x8, x22, x20
+    8d7c:      	str	x8, [x19, #0x8]
+    8d80:      	ldp	x20, x19, [sp, #0x20]
+    8d84:      	ldp	x22, x21, [sp, #0x10]
+    8d88:      	ldp	x29, x30, [sp], #0x30
+    8d8c:      	ret
+    8d90:      	ldr	x8, [x19]
+    8d94:      	mov	x20, x0
+    8d98:      	cbz	x8, 0x8da8 <_ZN13MTLReportTool9Interface7versionEv+0xd04>
+    8d9c:      	mov	x0, x8
+    8da0:      	str	x8, [x19, #0x8]
+    8da4:      	bl	0x10790 <_ZdlPv@plt>
+    8da8:      	mov	x0, x20
+    8dac:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    8db0:      	stp	x29, x30, [sp, #-0x20]!
+    8db4:      	stp	x20, x19, [sp, #0x10]
+    8db8:      	mov	x29, sp
+    8dbc:      	mov	x19, x0
+    8dc0:      	tbnz	x1, #0x3f, 0x8de8 <_ZN13MTLReportTool9Interface7versionEv+0xd44>
+    8dc4:      	mov	x0, x1
+    8dc8:      	mov	x20, x1
+    8dcc:      	bl	0x10770 <_Znwm@plt>
+    8dd0:      	add	x8, x0, x20
+    8dd4:      	stp	x0, x0, [x19]
+    8dd8:      	str	x8, [x19, #0x10]
+    8ddc:      	ldp	x20, x19, [sp, #0x10]
+    8de0:      	ldp	x29, x30, [sp], #0x20
+    8de4:      	ret
+    8de8:      	mov	x0, x19
+    8dec:      	bl	0x8df0 <_ZN13MTLReportTool9Interface7versionEv+0xd4c>
+    8df0:      	stp	x29, x30, [sp, #-0x10]!
+    8df4:      	mov	x29, sp
+    8df8:      	adrp	x0, 0x5000
+    8dfc:      	add	x0, x0, #0x4ea
+    8e00:      	bl	0x7ec0 <.text+0x130>
+
+0000000000008e04 <_ZN5utils8TimeCostC2Ev>:
+    8e04:      	stp	x29, x30, [sp, #-0x20]!
+    8e08:      	stp	x20, x19, [sp, #0x10]
+    8e0c:      	mov	x29, sp
+    8e10:      	mov	x19, x0
+    8e14:      	mov	w0, #0x8
+    8e18:      	bl	0x10770 <_Znwm@plt>
+    8e1c:      	mov	x20, x0
+    8e20:      	bl	0x10a90 <_ZNSt6__ndk16chrono12steady_clock3nowEv@plt>
+    8e24:      	str	x20, [x19]
+    8e28:      	str	x0, [x20]
+    8e2c:      	bl	0x10a90 <_ZNSt6__ndk16chrono12steady_clock3nowEv@plt>
+    8e30:      	str	x0, [x20]
+    8e34:      	ldp	x20, x19, [sp, #0x10]
+    8e38:      	ldp	x29, x30, [sp], #0x20
+    8e3c:      	ret
+
+0000000000008e40 <_ZN5utils8TimeCostD2Ev>:
+    8e40:      	ldr	x0, [x0]
+    8e44:      	cbz	x0, 0x8e4c <_ZN5utils8TimeCostD2Ev+0xc>
+    8e48:      	b	0x10790 <_ZdlPv@plt>
+    8e4c:      	ret
+
+0000000000008e50 <_ZN5utils8TimeCost5startEv>:
+    8e50:      	stp	x29, x30, [sp, #-0x20]!
+    8e54:      	str	x19, [sp, #0x10]
+    8e58:      	mov	x29, sp
+    8e5c:      	ldr	x19, [x0]
+    8e60:      	bl	0x10a90 <_ZNSt6__ndk16chrono12steady_clock3nowEv@plt>
+    8e64:      	str	x0, [x19]
+    8e68:      	ldr	x19, [sp, #0x10]
+    8e6c:      	ldp	x29, x30, [sp], #0x20
+    8e70:      	ret
+
+0000000000008e74 <_ZNK5utils8TimeCost8durationENS0_4UnitE>:
+    8e74:      	ldr	x0, [x0]
+    8e78:      	b	0x8e7c <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x8>
+    8e7c:      	stp	x29, x30, [sp, #-0x20]!
+    8e80:      	stp	x20, x19, [sp, #0x10]
+    8e84:      	mov	x29, sp
+    8e88:      	mov	w19, w1
+    8e8c:      	mov	x20, x0
+    8e90:      	bl	0x10a90 <_ZNSt6__ndk16chrono12steady_clock3nowEv@plt>
+    8e94:      	ldr	x8, [x20]
+    8e98:      	cmp	w19, #0x1
+    8e9c:      	sub	x0, x0, x8
+    8ea0:      	b.gt	0x8eb0 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x3c>
+    8ea4:      	cbz	w19, 0x8edc <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x68>
+    8ea8:      	cmp	w19, #0x1
+    8eac:      	b	0x8ec0 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x4c>
+    8eb0:      	cmp	w19, #0x2
+    8eb4:      	b.eq	0x8ef8 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x84>
+    8eb8:      	cmp	w19, #0x3
+    8ebc:      	b.eq	0x8f14 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0xa0>
+    8ec0:      	mov	x8, #0x34db
+    8ec4:      	movk	x8, #0xd7b6, lsl #16
+    8ec8:      	movk	x8, #0xde82, lsl #32
+    8ecc:      	movk	x8, #0x431b, lsl #48
+    8ed0:      	smulh	x8, x0, x8
+    8ed4:      	asr	x9, x8, #18
+    8ed8:      	b	0x8f10 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x9c>
+    8edc:      	mov	x8, #0x94b3
+    8ee0:      	movk	x8, #0x26d6, lsl #16
+    8ee4:      	movk	x8, #0xbe8, lsl #32
+    8ee8:      	movk	x8, #0x112e, lsl #48
+    8eec:      	smulh	x8, x0, x8
+    8ef0:      	asr	x9, x8, #26
+    8ef4:      	b	0x8f10 <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x9c>
+    8ef8:      	mov	x8, #0xf7cf
+    8efc:      	movk	x8, #0xe353, lsl #16
+    8f00:      	movk	x8, #0x9ba5, lsl #32
+    8f04:      	movk	x8, #0x20c4, lsl #48
+    8f08:      	smulh	x8, x0, x8
+    8f0c:      	asr	x9, x8, #7
+    8f10:      	add	x0, x9, x8, lsr #63
+    8f14:      	ldp	x20, x19, [sp, #0x10]
+    8f18:      	ldp	x29, x30, [sp], #0x20
+    8f1c:      	ret
+
+0000000000008f20 <_ZN5utils8TimeCost5resetEv>:
+    8f20:      	stp	x29, x30, [sp, #-0x20]!
+    8f24:      	str	x19, [sp, #0x10]
+    8f28:      	mov	x29, sp
+    8f2c:      	ldr	x19, [x0]
+    8f30:      	bl	0x10a90 <_ZNSt6__ndk16chrono12steady_clock3nowEv@plt>
+    8f34:      	str	x0, [x19]
+    8f38:      	ldr	x19, [sp, #0x10]
+    8f3c:      	ldp	x29, x30, [sp], #0x20
+    8f40:      	ret
+
+0000000000008f44 <_ZN5utils11LogTimeCostC2EPKcz>:
+    8f44:      	sub	sp, sp, #0x160
+    8f48:      	stp	x29, x30, [sp, #0x120]
+    8f4c:      	str	x28, [sp, #0x130]
+    8f50:      	stp	x22, x21, [sp, #0x140]
+    8f54:      	stp	x20, x19, [sp, #0x150]
+    8f58:      	add	x29, sp, #0x120
+    8f5c:      	stp	x2, x3, [sp, #0x88]
+    8f60:      	mov	x19, x0
+    8f64:      	mov	w0, #0x8
+    8f68:      	stp	x4, x5, [sp, #0x98]
+    8f6c:      	mov	x20, x1
+    8f70:      	stp	x6, x7, [sp, #0xa8]
+    8f74:      	stp	q0, q1, [sp]
+    8f78:      	stp	q2, q3, [sp, #0x20]
+    8f7c:      	stp	q4, q5, [sp, #0x40]
+    8f80:      	stp	q6, q7, [sp, #0x60]
+    8f84:      	mrs	x22, TPIDR_EL0
+    8f88:      	ldr	x8, [x22, #0x28]
+    8f8c:      	stur	x8, [x29, #-0x8]
+    8f90:      	bl	0x10770 <_Znwm@plt>
+    8f94:      	mov	x21, x0
+    8f98:      	bl	0x10aa0 <_ZN5utils8TimeCostC1Ev@plt>
+    8f9c:      	fmov	d0, xzr
+    8fa0:      	movi	v1.2s, #0x1
+    8fa4:      	str	x21, [x19]
+    8fa8:      	mov	x21, x19
+    8fac:      	str	xzr, [x21, #0x8]!
+    8fb0:      	mov	v0.d[1], v0.d[0]
+    8fb4:      	str	d1, [x19, #0x20]
+    8fb8:      	str	q0, [x19, #0x10]
+    8fbc:      	cbz	x20, 0x90a8 <_ZN5utils11LogTimeCostC2EPKcz+0x164>
+    8fc0:      	add	x9, sp, #0x88
+    8fc4:      	add	x8, x29, #0x40
+    8fc8:      	mov	x10, sp
+    8fcc:      	add	x9, x9, #0x30
+    8fd0:      	stp	x8, x9, [x29, #-0x50]
+    8fd4:      	mov	x8, #-0x30
+    8fd8:      	add	x9, x10, #0x80
+    8fdc:      	movk	x8, #0xff80, lsl #32
+    8fe0:      	stp	x9, x8, [x29, #-0x40]
+    8fe4:      	ldp	q0, q1, [x29, #-0x50]
+    8fe8:      	stp	q0, q1, [x29, #-0x30]
+    8fec:      	sub	x5, x29, #0x30
+    8ff0:      	mov	x0, xzr
+    8ff4:      	mov	x1, xzr
+    8ff8:      	mov	w2, wzr
+    8ffc:      	mov	x3, #-0x1
+    9000:      	mov	x4, x20
+    9004:      	bl	0x10a80 <__vsnprintf_chk@plt>
+    9008:      	cmp	w0, #0x1
+    900c:      	b.lt	0x90a8 <_ZN5utils11LogTimeCostC2EPKcz+0x164>
+    9010:      	add	w1, w0, #0x1
+    9014:      	sturb	wzr, [x29, #-0x30]
+    9018:      	sub	x0, x29, #0x68
+    901c:      	sub	x2, x29, #0x30
+    9020:      	bl	0x8d38 <_ZN13MTLReportTool9Interface7versionEv+0xc94>
+    9024:      	add	x9, sp, #0x88
+    9028:      	add	x8, x29, #0x40
+    902c:      	add	x9, x9, #0x30
+    9030:      	stp	x8, x9, [x29, #-0x50]
+    9034:      	mov	x8, #-0x30
+    9038:      	mov	x9, sp
+    903c:      	movk	x8, #0xff80, lsl #32
+    9040:      	add	x9, x9, #0x80
+    9044:      	stp	x9, x8, [x29, #-0x40]
+    9048:      	ldp	x0, x8, [x29, #-0x68]
+    904c:      	ldp	q0, q1, [x29, #-0x50]
+    9050:      	sub	x1, x8, x0
+    9054:      	stp	q0, q1, [x29, #-0x30]
+    9058:      	sub	x5, x29, #0x30
+    905c:      	mov	w2, wzr
+    9060:      	mov	x3, #-0x1
+    9064:      	mov	x4, x20
+    9068:      	bl	0x10a80 <__vsnprintf_chk@plt>
+    906c:      	ldur	x1, [x29, #-0x68]
+    9070:      	sub	x0, x29, #0x30
+    9074:      	bl	0x7df0 <.text+0x60>
+    9078:      	ldrb	w8, [x21]
+    907c:      	tbz	w8, #0x0, 0x9088 <_ZN5utils11LogTimeCostC2EPKcz+0x144>
+    9080:      	ldr	x0, [x19, #0x18]
+    9084:      	bl	0x10790 <_ZdlPv@plt>
+    9088:      	ldur	q0, [x29, #-0x30]
+    908c:      	ldur	x8, [x29, #-0x20]
+    9090:      	ldur	x0, [x29, #-0x68]
+    9094:      	str	q0, [x21]
+    9098:      	str	x8, [x21, #0x10]
+    909c:      	cbz	x0, 0x90a8 <_ZN5utils11LogTimeCostC2EPKcz+0x164>
+    90a0:      	stur	x0, [x29, #-0x60]
+    90a4:      	bl	0x10790 <_ZdlPv@plt>
+    90a8:      	ldr	x8, [x22, #0x28]
+    90ac:      	ldur	x9, [x29, #-0x8]
+    90b0:      	cmp	x8, x9
+    90b4:      	b.ne	0x9140 <_ZN5utils11LogTimeCostC2EPKcz+0x1fc>
+    90b8:      	ldp	x20, x19, [sp, #0x150]
+    90bc:      	ldr	x28, [sp, #0x130]
+    90c0:      	ldp	x22, x21, [sp, #0x140]
+    90c4:      	ldp	x29, x30, [sp, #0x120]
+    90c8:      	add	sp, sp, #0x160
+    90cc:      	ret
+    90d0:      	b	0x90d4 <_ZN5utils11LogTimeCostC2EPKcz+0x190>
+    90d4:      	mov	x20, x0
+    90d8:      	ldur	x0, [x29, #-0x68]
+    90dc:      	cbz	x0, 0x90f4 <_ZN5utils11LogTimeCostC2EPKcz+0x1b0>
+    90e0:      	stur	x0, [x29, #-0x60]
+    90e4:      	bl	0x10790 <_ZdlPv@plt>
+    90e8:      	b	0x90f4 <_ZN5utils11LogTimeCostC2EPKcz+0x1b0>
+    90ec:      	b	0x90f0 <_ZN5utils11LogTimeCostC2EPKcz+0x1ac>
+    90f0:      	mov	x20, x0
+    90f4:      	ldrb	w8, [x21]
+    90f8:      	tbz	w8, #0x0, 0x9104 <_ZN5utils11LogTimeCostC2EPKcz+0x1c0>
+    90fc:      	ldr	x0, [x19, #0x18]
+    9100:      	bl	0x10790 <_ZdlPv@plt>
+    9104:      	ldr	x21, [x19]
+    9108:      	str	xzr, [x19]
+    910c:      	cbz	x21, 0x9128 <_ZN5utils11LogTimeCostC2EPKcz+0x1e4>
+    9110:      	mov	x0, x21
+    9114:      	bl	0x10ab0 <_ZN5utils8TimeCostD1Ev@plt>
+    9118:      	b	0x9120 <_ZN5utils11LogTimeCostC2EPKcz+0x1dc>
+    911c:      	mov	x20, x0
+    9120:      	mov	x0, x21
+    9124:      	bl	0x10790 <_ZdlPv@plt>
+    9128:      	ldr	x8, [x22, #0x28]
+    912c:      	ldur	x9, [x29, #-0x8]
+    9130:      	cmp	x8, x9
+    9134:      	b.ne	0x9140 <_ZN5utils11LogTimeCostC2EPKcz+0x1fc>
+    9138:      	mov	x0, x20
+    913c:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+    9140:      	bl	0x10840 <__stack_chk_fail@plt>
+
+0000000000009144 <_ZN5utils11LogTimeCostC2ERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEN16NS_MTLREPORTTOOL8LogLevelENS_8TimeCost4UnitE>:
+    9144:      	stp	x29, x30, [sp, #-0x40]!
+    9148:      	str	x23, [sp, #0x10]
+    914c:      	stp	x22, x21, [sp, #0x20]
+    9150:      	stp	x20, x19, [sp, #0x30]
+    9154:      	mov	x29, sp
+    9158:      	mov	x19, x0
+    915c:      	mov	w0, #0x8
+    9160:      	mov	w21, w3
+    9164:      	mov	w20, w2
+    9168:      	mov	x23, x1
+    916c:      	bl	0x10770 <_Znwm@plt>
+    9170:      	mov	x22, x0
+    9174:      	bl	0x10aa0 <_ZN5utils8TimeCostC1Ev@plt>
+    9178:      	mov	x0, x19
+    917c:      	str	x22, [x0], #0x8
+    9180:      	ldrb	w8, [x23]
+    9184:      	tbnz	w8, #0x0, 0x919c <_ZN5utils11LogTimeCostC2ERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEN16NS_MTLREPORTTOOL8LogLevelENS_8TimeCost4UnitE+0x58>
+    9188:      	ldr	x8, [x23, #0x10]
+    918c:      	ldr	q0, [x23]
+    9190:      	str	x8, [x0, #0x10]
+    9194:      	str	q0, [x0]
+    9198:      	b	0x91a4 <_ZN5utils11LogTimeCostC2ERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEN16NS_MTLREPORTTOOL8LogLevelENS_8TimeCost4UnitE+0x60>
+    919c:      	ldp	x2, x1, [x23, #0x8]
+    91a0:      	bl	0x7f40 <.text+0x1b0>
+    91a4:      	stp	w21, w20, [x19, #0x20]
+    91a8:      	ldp	x20, x19, [sp, #0x30]
+    91ac:      	ldr	x23, [sp, #0x10]
+    91b0:      	ldp	x22, x21, [sp, #0x20]
+    91b4:      	ldp	x29, x30, [sp], #0x40
+    91b8:      	ret
+    91bc:      	ldr	x22, [x19]
+    91c0:      	mov	x20, x0
+    91c4:      	str	xzr, [x19]
+    91c8:      	cbz	x22, 0x91e4 <_ZN5utils11LogTimeCostC2ERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEN16NS_MTLREPORTTOOL8LogLevelENS_8TimeCost4UnitE+0xa0>
+    91cc:      	mov	x0, x22
+    91d0:      	bl	0x10ab0 <_ZN5utils8TimeCostD1Ev@plt>
+    91d4:      	b	0x91dc <_ZN5utils11LogTimeCostC2ERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEN16NS_MTLREPORTTOOL8LogLevelENS_8TimeCost4UnitE+0x98>
+    91d8:      	mov	x20, x0
+    91dc:      	mov	x0, x22
+    91e0:      	bl	0x10790 <_ZdlPv@plt>
+    91e4:      	mov	x0, x20
+    91e8:      	bl	0xca4c <JNI_OnUnload+0x1cc>
+
+00000000000091ec <_ZN5utils11LogTimeCostD2Ev>:
+    91ec:      	stp	x29, x30, [sp, #-0x20]!
+    91f0:      	stp	x20, x19, [sp, #0x10]
+    91f4:      	mov	x29, sp
+    91f8:      	mov	x19, x0
+    91fc:      	nop
+    9200:      	adr	x1, #-0x477e
+    9204:      	bl	0x10ac0 <_ZNK5utils11LogTimeCost3logEPKcz@plt>
+    9208:      	ldrb	w8, [x19, #0x8]
+    920c:      	tbz	w8, #0x0, 0x9218 <_ZN5utils11LogTimeCostD2Ev+0x2c>
+    9210:      	ldr	x0, [x19, #0x18]
+    9214:      	bl	0x10790 <_ZdlPv@plt>
+    9218:      	ldr	x20, [x19]
+    921c:      	str	xzr, [x19]
+    9220:      	cbz	x20, 0x923c <_ZN5utils11LogTimeCostD2Ev+0x50>
+    9224:      	mov	x0, x20
+    9228:      	bl	0x10ab0 <_ZN5utils8TimeCostD1Ev@plt>
+    922c:      	mov	x0, x20
+    9230:      	ldp	x20, x19, [sp, #0x10]
+    9234:      	ldp	x29, x30, [sp], #0x20
+    9238:      	b	0x10790 <_ZdlPv@plt>
+    923c:      	ldp	x20, x19, [sp, #0x10]
+    9240:      	ldp	x29, x30, [sp], #0x20
+    9244:      	ret
+    9248:      	bl	0x80b0 <_ZN13MTLReportTool9Interface7versionEv+0xc>
+
+000000000000924c <_ZNK5utils11LogTimeCost3logEPKcz>:
+    924c:      	stp	x29, x30, [sp, #-0x40]!
+    9250:      	stp	x28, x23, [sp, #0x10]
+    9254:      	stp	x22, x21, [sp, #0x20]
+    9258:      	stp	x20, x19, [sp, #0x30]
+    925c:      	mov	x29, sp
+    9260:      	sub	sp, sp, #0x520
+    9264:      	stp	x2, x3, [sp, #0x88]
+    9268:      	mov	x19, x0
+    926c:      	stp	x4, x5, [sp, #0x98]
+    9270:      	stp	x6, x7, [sp, #0xa8]
+    9274:      	stp	q0, q1, [sp]
+    9278:      	stp	q2, q3, [sp, #0x20]
+    927c:      	stp	q4, q5, [sp, #0x40]
+    9280:      	stp	q6, q7, [sp, #0x60]
+    9284:      	mrs	x22, TPIDR_EL0
+    9288:      	ldr	x8, [x22, #0x28]
+    928c:      	stur	x8, [x29, #-0x8]
+    9290:      	stp	xzr, xzr, [sp, #0xf0]
+    9294:      	str	xzr, [sp, #0x100]
+    9298:      	cbz	x1, 0x9384 <_ZNK5utils11LogTimeCost3logEPKcz+0x138>
+    929c:      	add	x9, sp, #0x88
+    92a0:      	add	x8, x29, #0x40
+    92a4:      	mov	x10, sp
+    92a8:      	add	x9, x9, #0x30
+    92ac:      	mov	x20, x1
+    92b0:      	stp	x8, x9, [sp, #0xd0]
+    92b4:      	mov	x8, #-0x30
+    92b8:      	add	x9, x10, #0x80
+    92bc:      	movk	x8, #0xff80, lsl #32
+    92c0:      	stp	x9, x8, [sp, #0xe0]
+    92c4:      	ldp	q0, q1, [sp, #0xd0]
+    92c8:      	stp	q0, q1, [sp, #0x110]
+    92cc:      	add	x5, sp, #0x110
+    92d0:      	mov	x0, xzr
+    92d4:      	mov	x1, xzr
+    92d8:      	mov	w2, wzr
+    92dc:      	mov	x3, #-0x1
+    92e0:      	mov	x4, x20
+    92e4:      	bl	0x10a80 <__vsnprintf_chk@plt>
+    92e8:      	cmp	w0, #0x1
+    92ec:      	b.lt	0x9384 <_ZNK5utils11LogTimeCost3logEPKcz+0x138>
+    92f0:      	add	w1, w0, #0x1
+    92f4:      	strb	wzr, [sp, #0x110]
+    92f8:      	add	x0, sp, #0xb8
+    92fc:      	add	x2, sp, #0x110
+    9300:      	bl	0x8d38 <_ZN13MTLReportTool9Interface7versionEv+0xc94>
+    9304:      	add	x9, sp, #0x88
+    9308:      	add	x8, x29, #0x40
+    930c:      	add	x9, x9, #0x30
+    9310:      	stp	x8, x9, [sp, #0xd0]
+    9314:      	mov	x8, #-0x30
+    9318:      	mov	x9, sp
+    931c:      	movk	x8, #0xff80, lsl #32
+    9320:      	add	x9, x9, #0x80
+    9324:      	stp	x9, x8, [sp, #0xe0]
+    9328:      	ldp	x0, x8, [sp, #0xb8]
+    932c:      	ldp	q0, q1, [sp, #0xd0]
+    9330:      	sub	x1, x8, x0
+    9334:      	stp	q0, q1, [sp, #0x110]
+    9338:      	add	x5, sp, #0x110
+    933c:      	mov	w2, wzr
+    9340:      	mov	x3, #-0x1
+    9344:      	mov	x4, x20
+    9348:      	bl	0x10a80 <__vsnprintf_chk@plt>
+    934c:      	ldr	x1, [sp, #0xb8]
+    9350:      	add	x0, sp, #0x110
+    9354:      	bl	0x7df0 <.text+0x60>
+    9358:      	ldr	q0, [sp, #0x110]
+    935c:      	ldr	x0, [sp, #0xb8]
+    9360:      	ldr	x8, [sp, #0x120]
+    9364:      	str	q0, [sp, #0xf0]
+    9368:      	str	x8, [sp, #0x100]
+    936c:      	cbz	x0, 0x9378 <_ZNK5utils11LogTimeCost3logEPKcz+0x12c>
+    9370:      	str	x0, [sp, #0xc0]
+    9374:      	bl	0x10790 <_ZdlPv@plt>
+    9378:      	ldrb	w23, [sp, #0xf0]
+    937c:      	ldr	x8, [sp, #0xf8]
+    9380:      	b	0x938c <_ZNK5utils11LogTimeCost3logEPKcz+0x140>
+    9384:      	mov	x8, xzr
+    9388:      	mov	w23, wzr
+    938c:      	lsr	w9, w23, #1
+    9390:      	ldrb	w10, [x19, #0x8]
+    9394:      	ands	w21, w23, #0x1
+    9398:      	ldr	x11, [x19, #0x18]
+    939c:      	csel	x8, x9, x8, eq
+    93a0:      	add	x9, x19, #0x9
+    93a4:      	tst	w10, #0x1
+    93a8:      	csel	x20, x9, x11, eq
+    93ac:      	cbz	x8, 0x93f4 <_ZNK5utils11LogTimeCost3logEPKcz+0x1a8>
+    93b0:      	ldr	x9, [x19]
+    93b4:      	add	x8, sp, #0xf0
+    93b8:      	ldr	x10, [sp, #0x100]
+    93bc:      	orr	x8, x8, #0x1
+    93c0:      	cmp	w21, #0x0
+    93c4:      	ldr	w1, [x19, #0x20]
+    93c8:      	ldr	x0, [x9]
+    93cc:      	csel	x21, x8, x10, eq
+    93d0:      	bl	0x8e7c <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x8>
+    93d4:      	ldr	w8, [x19, #0x20]
+    93d8:      	mov	x6, x0
+    93dc:      	cmp	w8, #0x3
+    93e0:      	b.hi	0x9424 <_ZNK5utils11LogTimeCost3logEPKcz+0x1d8>
+    93e4:      	nop
+    93e8:      	adr	x9, #0xba70
+    93ec:      	ldr	x7, [x9, x8, lsl #3]
+    93f0:      	b	0x942c <_ZNK5utils11LogTimeCost3logEPKcz+0x1e0>
+    93f4:      	ldr	x8, [x19]
+    93f8:      	ldr	w1, [x19, #0x20]
+    93fc:      	ldr	x0, [x8]
+    9400:      	bl	0x8e7c <_ZNK5utils8TimeCost8durationENS0_4UnitE+0x8>
+    9404:      	ldr	w8, [x19, #0x20]
+    9408:      	mov	x5, x0
+    940c:      	cmp	w8, #0x3
+    9410:      	b.hi	0x9480 <_ZNK5utils11LogTimeCost3logEPKcz+0x234>
+    9414:      	nop
+    9418:      	adr	x9, #0xba40
+    941c:      	ldr	x6, [x9, x8, lsl #3]
+    9420:      	b	0x9488 <_ZNK5utils11LogTimeCost3logEPKcz+0x23c>
+    9424:      	nop
+    9428:      	adr	x7, #-0x49a6
+    942c:      	adrp	x3, 0x5000
+    9430:      	add	x3, x3, #0x923
+    9434:      	add	x0, sp, #0x110
+    9438:      	mov	x4, x20
+    943c:      	mov	x5, x21
+    9440:      	bl	0x9500 <_ZNK5utils11LogTimeCost8durationENS_8TimeCost4UnitE+0xc>
+    9444:      	ldrb	w8, [sp, #0xf0]
+    9448:      	and	w21, w8, #0x1
+    944c:      	cbz	w21, 0x9458 <_ZNK5utils11LogTimeCost3logEPKcz+0x20c>
+    9450:      	ldr	x0, [sp, #0x100]
+    9454:      	bl	0x10790 <_ZdlPv@plt>
+    9458:      	ldr	x8, [x22, #0x28]
+    945c:      	ldur	x9, [x29, #-0x8]
+    9460:      	cmp	x8, x9
+    9464:      	b.ne	0x94f0 <_ZNK5utils11LogTimeCost3logEPKcz+0x2a4>
+    9468:      	add	sp, sp, #0x520
+    946c:      	ldp	x20, x19, [sp, #0x30]
+    9470:      	ldp	x22, x21, [sp, #0x20]
+    9474:      	ldp	x28, x23, [sp, #0x10]

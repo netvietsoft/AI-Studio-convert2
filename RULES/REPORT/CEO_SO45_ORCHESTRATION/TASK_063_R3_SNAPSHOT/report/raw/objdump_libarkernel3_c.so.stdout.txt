@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libarkernel3_c.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000005d014 <.text>:
+   5d014:      	bti	c
+   5d018:      	nop
+   5d01c:      	adr	x0, #0x1df14
+   5d020:      	b	0x714b0 <__cxa_finalize@plt>
+   5d024:      	bti	c
+   5d028:      	ret
+   5d02c:      	bti	c
+   5d030:      	b	0x5d024 <.text+0x10>
+   5d034:      	bti	c
+   5d038:      	cbz	x0, 0x5d044 <.text+0x30>
+   5d03c:      	mov	x16, x0
+   5d040:      	br	x16
+   5d044:      	ret
+   5d048:      	bti	c
+   5d04c:      	mov	x1, x0
+   5d050:      	nop
+   5d054:      	adr	x0, #-0x20
+   5d058:      	nop
+   5d05c:      	adr	x2, #0x1ded4
+   5d060:      	b	0x714c0 <__cxa_atexit@plt>
+   5d064:      	bti	c
+   5d068:      	nop
+   5d06c:      	adr	x3, #0x1dec4
+   5d070:      	b	0x714d0 <__register_atfork@plt>
+
+000000000005d074 <SWIG_rt_try>:
+   5d074:      	stp	x29, x30, [sp, #-0x20]!
+   5d078:      	stp	x20, x19, [sp, #0x10]
+   5d07c:      	mov	x29, sp
+   5d080:      	adrp	x20, 0x82000
+   5d084:      	adrp	x1, 0x7b000
+   5d088:      	mov	w2, #0x100
+   5d08c:      	ldr	x19, [x20, #0x248]
+   5d090:      	ldr	x1, [x1, #0x1a8]
+   5d094:      	mov	x0, x19
+   5d098:      	bl	0x714e0 <memcpy@plt>
+   5d09c:      	add	x8, x19, #0x100
+   5d0a0:      	str	x8, [x20, #0x248]
+   5d0a4:      	ldp	x20, x19, [sp, #0x10]
+   5d0a8:      	ldp	x29, x30, [sp], #0x20
+   5d0ac:      	ret
+   5d0b0:      	stp	x29, x30, [sp, #-0x20]!
+   5d0b4:      	stp	x20, x19, [sp, #0x10]
+   5d0b8:      	mov	x29, sp
+   5d0bc:      	adrp	x20, 0x82000
+   5d0c0:      	adrp	x1, 0x7b000
+   5d0c4:      	mov	w2, #0x100
+   5d0c8:      	ldr	x19, [x20, #0x248]
+   5d0cc:      	ldr	x1, [x1, #0x1a8]
+   5d0d0:      	mov	x0, x19
+   5d0d4:      	bl	0x714e0 <memcpy@plt>
+   5d0d8:      	add	x8, x19, #0x100
+   5d0dc:      	str	x8, [x20, #0x248]
+   5d0e0:      	ldp	x20, x19, [sp, #0x10]
+   5d0e4:      	ldp	x29, x30, [sp], #0x20
+   5d0e8:      	ret
+
+000000000005d0ec <SWIG_rt_catch>:
+   5d0ec:      	stp	x29, x30, [sp, #-0x30]!
+   5d0f0:      	str	x21, [sp, #0x10]
+   5d0f4:      	stp	x20, x19, [sp, #0x20]
+   5d0f8:      	mov	x29, sp
+   5d0fc:      	adrp	x20, 0x7b000
+   5d100:      	ldr	x20, [x20, #0x1b0]
+   5d104:      	cbz	x0, 0x5d144 <SWIG_rt_catch+0x58>
+   5d108:      	mov	x19, x0
+   5d10c:      	nop
+   5d110:      	adr	x0, #-0x132b7
+   5d114:      	mov	x1, x19
+   5d118:      	bl	0x714f0 <strcmp@plt>
+   5d11c:      	cbz	w0, 0x5d144 <SWIG_rt_catch+0x58>
+   5d120:      	ldr	x8, [x20, #0x10]
+   5d124:      	cbz	x8, 0x5d18c <SWIG_rt_catch+0xa0>
+   5d128:      	ldr	x21, [x8, #0x8]
+   5d12c:      	ldr	x0, [x21]
+   5d130:      	cbz	x0, 0x5d17c <SWIG_rt_catch+0x90>
+   5d134:      	mov	x1, x19
+   5d138:      	bl	0x714f0 <strcmp@plt>
+   5d13c:      	add	x21, x21, #0x8
+   5d140:      	cbnz	w0, 0x5d12c <SWIG_rt_catch+0x40>
+   5d144:      	adrp	x8, 0x82000
+   5d148:      	adrp	x10, 0x82000
+   5d14c:      	ldr	x9, [x8, #0x248]
+   5d150:      	ldr	x10, [x10, #0x250]
+   5d154:      	cmp	x9, x10
+   5d158:      	b.eq	0x5d174 <SWIG_rt_catch+0x88>
+   5d15c:      	sub	x1, x9, #0x100
+   5d160:      	adrp	x0, 0x7b000
+   5d164:      	mov	w2, #0x100
+   5d168:      	str	x1, [x8, #0x248]
+   5d16c:      	ldr	x0, [x0, #0x1a8]
+   5d170:      	bl	0x714e0 <memcpy@plt>
+   5d174:      	mov	w0, #0x1
+   5d178:      	str	w0, [x20, #0x18]
+   5d17c:      	ldp	x20, x19, [sp, #0x20]
+   5d180:      	ldr	x21, [sp, #0x10]
+   5d184:      	ldp	x29, x30, [sp], #0x30
+   5d188:      	ret
+   5d18c:      	mov	w0, wzr
+   5d190:      	b	0x5d17c <SWIG_rt_catch+0x90>
+   5d194:      	adrp	x8, 0x82000
+   5d198:      	adrp	x10, 0x82000
+   5d19c:      	ldr	x9, [x8, #0x248]
+   5d1a0:      	ldr	x10, [x10, #0x250]
+   5d1a4:      	cmp	x9, x10
+   5d1a8:      	b.eq	0x5d1c4 <SWIG_rt_catch+0xd8>
+   5d1ac:      	adrp	x0, 0x7b000
+   5d1b0:      	sub	x1, x9, #0x100
+   5d1b4:      	mov	w2, #0x100
+   5d1b8:      	ldr	x0, [x0, #0x1a8]
+   5d1bc:      	str	x1, [x8, #0x248]
+   5d1c0:      	b	0x714e0 <memcpy@plt>
+   5d1c4:      	ret
+
+000000000005d1c8 <SWIG_rt_throw>:
+   5d1c8:      	stp	x29, x30, [sp, #-0x30]!
+   5d1cc:      	str	x21, [sp, #0x10]
+   5d1d0:      	stp	x20, x19, [sp, #0x20]
+   5d1d4:      	mov	x29, sp
+   5d1d8:      	adrp	x21, 0x7b000
+   5d1dc:      	mov	x20, x1
+   5d1e0:      	mov	x19, x0
+   5d1e4:      	ldr	x21, [x21, #0x1b0]
+   5d1e8:      	ldr	x8, [x21, #0x8]
+   5d1ec:      	cbz	x8, 0x5d1fc <SWIG_rt_throw+0x34>
+   5d1f0:      	mov	x0, x8
+   5d1f4:      	bl	0x71500 <free@plt>
+   5d1f8:      	str	xzr, [x21, #0x8]
+   5d1fc:      	cbz	x20, 0x5d21c <SWIG_rt_throw+0x54>
+   5d200:      	mov	x0, x20
+   5d204:      	bl	0x71510 <strlen@plt>
+   5d208:      	add	x0, x0, #0x1
+   5d20c:      	bl	0x71520 <malloc@plt>
+   5d210:      	mov	x1, x20
+   5d214:      	str	x0, [x21, #0x8]
+   5d218:      	bl	0x71530 <strcpy@plt>
+   5d21c:      	str	x19, [x21, #0x10]
+   5d220:      	adrp	x0, 0x7b000
+   5d224:      	mov	w1, #0x1
+   5d228:      	str	wzr, [x21, #0x18]
+   5d22c:      	ldr	x0, [x0, #0x1a8]
+   5d230:      	bl	0x71540 <longjmp@plt>
+
+000000000005d234 <SWIG_rt_unhandled>:
+   5d234:      	stp	x29, x30, [sp, #-0x20]!
+   5d238:      	str	x19, [sp, #0x10]
+   5d23c:      	mov	x29, sp
+   5d240:      	adrp	x19, 0x7b000
+   5d244:      	ldr	x19, [x19, #0x1b0]
+   5d248:      	ldr	x0, [x19, #0x8]
+   5d24c:      	cbz	x0, 0x5d258 <SWIG_rt_unhandled+0x24>
+   5d250:      	bl	0x71500 <free@plt>
+   5d254:      	str	xzr, [x19, #0x8]
+   5d258:      	bl	0x5d194 <SWIG_rt_catch+0xa8>
+   5d25c:      	adrp	x0, 0x7b000
+   5d260:      	ldr	w1, [x19]
+   5d264:      	ldr	x0, [x0, #0x1a8]
+   5d268:      	bl	0x71540 <longjmp@plt>
+
+000000000005d26c <SWIG_rt_endtry>:
+   5d26c:      	stp	x29, x30, [sp, #-0x10]!
+   5d270:      	mov	x29, sp
+   5d274:      	adrp	x8, 0x7b000
+   5d278:      	ldr	x8, [x8, #0x1b0]
+   5d27c:      	ldr	w8, [x8, #0x18]
+   5d280:      	cbz	w8, 0x5d2a8 <SWIG_rt_endtry+0x3c>
+   5d284:      	adrp	x0, 0x7b000
+   5d288:      	ldr	x0, [x0, #0x1a8]
+   5d28c:      	bl	0x71550 <setjmp@plt>
+   5d290:      	cbnz	w0, 0x5d2dc <SWIG_rt_endtry+0x70>
+   5d294:      	bl	0x5d0b0 <SWIG_rt_try+0x3c>
+   5d298:      	nop
+   5d29c:      	adr	x0, #0x24e9c
+   5d2a0:      	mov	w1, #0x1
+   5d2a4:      	bl	0x71540 <longjmp@plt>
+   5d2a8:      	adrp	x8, 0x82000
+   5d2ac:      	adrp	x10, 0x82000
+   5d2b0:      	ldr	x9, [x8, #0x248]
+   5d2b4:      	ldr	x10, [x10, #0x250]
+   5d2b8:      	cmp	x9, x10
+   5d2bc:      	b.eq	0x5d2dc <SWIG_rt_endtry+0x70>
+   5d2c0:      	sub	x1, x9, #0x100
+   5d2c4:      	adrp	x0, 0x7b000
+   5d2c8:      	str	x1, [x8, #0x248]
+   5d2cc:      	mov	w8, #0x100
+   5d2d0:      	ldr	x0, [x0, #0x1a8]
+   5d2d4:      	mov	w2, w8
+   5d2d8:      	bl	0x714e0 <memcpy@plt>
+   5d2dc:      	ldp	x29, x30, [sp], #0x10
+   5d2e0:      	ret
+
+000000000005d2e4 <SWIG_exit>:
+   5d2e4:      	stp	x29, x30, [sp, #-0x20]!
+   5d2e8:      	str	x19, [sp, #0x10]
+   5d2ec:      	mov	x29, sp
+   5d2f0:      	mov	w19, w0
+   5d2f4:      	bl	0x5d300 <SWIG_exit+0x1c>
+   5d2f8:      	mov	w0, w19
+   5d2fc:      	bl	0x71560 <exit@plt>
+   5d300:      	stp	x29, x30, [sp, #-0x30]!
+   5d304:      	str	x21, [sp, #0x10]
+   5d308:      	stp	x20, x19, [sp, #0x20]
+   5d30c:      	mov	x29, sp
+   5d310:      	adrp	x8, 0x82000
+   5d314:      	ldr	x0, [x8, #0x250]
+   5d318:      	cbz	x0, 0x5d320 <SWIG_exit+0x3c>
+   5d31c:      	bl	0x71500 <free@plt>
+   5d320:      	adrp	x19, 0x7b000
+   5d324:      	ldr	x19, [x19, #0x1b0]
+   5d328:      	ldr	x0, [x19, #0x8]
+   5d32c:      	cbz	x0, 0x5d334 <SWIG_exit+0x50>
+   5d330:      	bl	0x71500 <free@plt>
+   5d334:      	ldr	x0, [x19, #0x10]
+   5d338:      	cbz	x0, 0x5d354 <SWIG_exit+0x70>
+   5d33c:      	ldr	x8, [x0, #0x8]
+   5d340:      	cbz	x8, 0x5d350 <SWIG_exit+0x6c>
+   5d344:      	mov	x0, x8
+   5d348:      	bl	0x71500 <free@plt>
+   5d34c:      	ldr	x0, [x19, #0x10]
+   5d350:      	bl	0x71500 <free@plt>
+   5d354:      	adrp	x19, 0x82000
+   5d358:      	ldr	x0, [x19, #0x240]
+   5d35c:      	cbz	x0, 0x5d39c <SWIG_exit+0xb8>
+   5d360:      	adrp	x20, 0x81000
+   5d364:      	ldr	w9, [x20, #0xfe8]
+   5d368:      	cmp	w9, #0x1
+   5d36c:      	b.lt	0x5d39c <SWIG_exit+0xb8>
+   5d370:      	mov	x21, xzr
+   5d374:      	ldr	x8, [x0, x21, lsl #3]
+   5d378:      	cbz	x8, 0x5d390 <SWIG_exit+0xac>
+   5d37c:      	mov	x0, x8
+   5d380:      	bl	0x6bbf4 <_wrap_Graphics_createWithDefaultBackend+0x30>
+   5d384:      	ldr	x0, [x19, #0x240]
+   5d388:      	ldr	w9, [x20, #0xfe8]
+   5d38c:      	str	xzr, [x0, x21, lsl #3]
+   5d390:      	add	x21, x21, #0x1
+   5d394:      	cmp	x21, w9, sxtw
+   5d398:      	b.lt	0x5d374 <SWIG_exit+0x90>
+   5d39c:      	bl	0x71500 <free@plt>
+   5d3a0:      	str	xzr, [x19, #0x240]
+   5d3a4:      	ldp	x20, x19, [sp, #0x20]
+   5d3a8:      	ldr	x21, [sp, #0x10]
+   5d3ac:      	ldp	x29, x30, [sp], #0x30
+   5d3b0:      	ret
+
+000000000005d3b4 <_wrap_Int2_x_set>:
+   5d3b4:      	cbz	x0, 0x5d3c4 <_wrap_Int2_x_set+0x10>
+   5d3b8:      	ldr	x8, [x0]
+   5d3bc:      	cbz	x8, 0x5d3c4 <_wrap_Int2_x_set+0x10>
+   5d3c0:      	str	w1, [x8]
+   5d3c4:      	ret
+
+000000000005d3c8 <_wrap_Int2_x_get>:
+   5d3c8:      	ldr	x8, [x0]
+   5d3cc:      	ldr	w0, [x8]
+   5d3d0:      	ret
+
+000000000005d3d4 <_wrap_Int2_y_set>:
+   5d3d4:      	cbz	x0, 0x5d3e4 <_wrap_Int2_y_set+0x10>
+   5d3d8:      	ldr	x8, [x0]
+   5d3dc:      	cbz	x8, 0x5d3e4 <_wrap_Int2_y_set+0x10>
+   5d3e0:      	str	w1, [x8, #0x4]
+   5d3e4:      	ret
+
+000000000005d3e8 <_wrap_Int2_y_get>:
+   5d3e8:      	ldr	x8, [x0]
+   5d3ec:      	ldr	w0, [x8, #0x4]
+   5d3f0:      	ret
+
+000000000005d3f4 <_wrap_Int3_x_set>:
+   5d3f4:      	cbz	x0, 0x5d404 <_wrap_Int3_x_set+0x10>
+   5d3f8:      	ldr	x8, [x0]
+   5d3fc:      	cbz	x8, 0x5d404 <_wrap_Int3_x_set+0x10>
+   5d400:      	str	w1, [x8]
+   5d404:      	ret
+
+000000000005d408 <_wrap_Int3_x_get>:
+   5d408:      	ldr	x8, [x0]
+   5d40c:      	ldr	w0, [x8]
+   5d410:      	ret
+
+000000000005d414 <_wrap_Int3_y_set>:
+   5d414:      	cbz	x0, 0x5d424 <_wrap_Int3_y_set+0x10>
+   5d418:      	ldr	x8, [x0]
+   5d41c:      	cbz	x8, 0x5d424 <_wrap_Int3_y_set+0x10>
+   5d420:      	str	w1, [x8, #0x4]
+   5d424:      	ret
+
+000000000005d428 <_wrap_Int3_y_get>:
+   5d428:      	ldr	x8, [x0]
+   5d42c:      	ldr	w0, [x8, #0x4]
+   5d430:      	ret
+
+000000000005d434 <_wrap_Int3_z_set>:
+   5d434:      	cbz	x0, 0x5d444 <_wrap_Int3_z_set+0x10>
+   5d438:      	ldr	x8, [x0]
+   5d43c:      	cbz	x8, 0x5d444 <_wrap_Int3_z_set+0x10>
+   5d440:      	str	w1, [x8, #0x8]
+   5d444:      	ret
+
+000000000005d448 <_wrap_Int3_z_get>:
+   5d448:      	ldr	x8, [x0]
+   5d44c:      	ldr	w0, [x8, #0x8]
+   5d450:      	ret
+
+000000000005d454 <_wrap_Float2_x_set>:
+   5d454:      	cbz	x0, 0x5d464 <_wrap_Float2_x_set+0x10>
+   5d458:      	ldr	x8, [x0]
+   5d45c:      	cbz	x8, 0x5d464 <_wrap_Float2_x_set+0x10>
+   5d460:      	str	s0, [x8]
+   5d464:      	ret
+
+000000000005d468 <_wrap_Float2_x_get>:
+   5d468:      	ldr	x8, [x0]
+   5d46c:      	ldr	s0, [x8]
+   5d470:      	ret
+
+000000000005d474 <_wrap_Float2_y_set>:
+   5d474:      	cbz	x0, 0x5d484 <_wrap_Float2_y_set+0x10>
+   5d478:      	ldr	x8, [x0]
+   5d47c:      	cbz	x8, 0x5d484 <_wrap_Float2_y_set+0x10>
+   5d480:      	str	s0, [x8, #0x4]
+   5d484:      	ret
+
+000000000005d488 <_wrap_Float2_y_get>:
+   5d488:      	ldr	x8, [x0]
+   5d48c:      	ldr	s0, [x8, #0x4]
+   5d490:      	ret
+
+000000000005d494 <_wrap_Float3_x_set>:
+   5d494:      	cbz	x0, 0x5d4a4 <_wrap_Float3_x_set+0x10>
+   5d498:      	ldr	x8, [x0]
+   5d49c:      	cbz	x8, 0x5d4a4 <_wrap_Float3_x_set+0x10>
+   5d4a0:      	str	s0, [x8]
+   5d4a4:      	ret
+
+000000000005d4a8 <_wrap_Float3_x_get>:
+   5d4a8:      	ldr	x8, [x0]
+   5d4ac:      	ldr	s0, [x8]
+   5d4b0:      	ret
+
+000000000005d4b4 <_wrap_Float3_y_set>:
+   5d4b4:      	cbz	x0, 0x5d4c4 <_wrap_Float3_y_set+0x10>
+   5d4b8:      	ldr	x8, [x0]
+   5d4bc:      	cbz	x8, 0x5d4c4 <_wrap_Float3_y_set+0x10>
+   5d4c0:      	str	s0, [x8, #0x4]
+   5d4c4:      	ret
+
+000000000005d4c8 <_wrap_Float3_y_get>:
+   5d4c8:      	ldr	x8, [x0]
+   5d4cc:      	ldr	s0, [x8, #0x4]
+   5d4d0:      	ret
+
+000000000005d4d4 <_wrap_Float3_z_set>:
+   5d4d4:      	cbz	x0, 0x5d4e4 <_wrap_Float3_z_set+0x10>
+   5d4d8:      	ldr	x8, [x0]
+   5d4dc:      	cbz	x8, 0x5d4e4 <_wrap_Float3_z_set+0x10>
+   5d4e0:      	str	s0, [x8, #0x8]
+   5d4e4:      	ret
+
+000000000005d4e8 <_wrap_Float3_z_get>:
+   5d4e8:      	ldr	x8, [x0]
+   5d4ec:      	ldr	s0, [x8, #0x8]
+   5d4f0:      	ret
+
+000000000005d4f4 <_wrap_Float4_x_set>:
+   5d4f4:      	cbz	x0, 0x5d504 <_wrap_Float4_x_set+0x10>
+   5d4f8:      	ldr	x8, [x0]
+   5d4fc:      	cbz	x8, 0x5d504 <_wrap_Float4_x_set+0x10>
+   5d500:      	str	s0, [x8]
+   5d504:      	ret
+
+000000000005d508 <_wrap_Float4_x_get>:
+   5d508:      	ldr	x8, [x0]
+   5d50c:      	ldr	s0, [x8]
+   5d510:      	ret
+
+000000000005d514 <_wrap_Float4_y_set>:
+   5d514:      	cbz	x0, 0x5d524 <_wrap_Float4_y_set+0x10>
+   5d518:      	ldr	x8, [x0]
+   5d51c:      	cbz	x8, 0x5d524 <_wrap_Float4_y_set+0x10>
+   5d520:      	str	s0, [x8, #0x4]
+   5d524:      	ret
+
+000000000005d528 <_wrap_Float4_y_get>:
+   5d528:      	ldr	x8, [x0]
+   5d52c:      	ldr	s0, [x8, #0x4]
+   5d530:      	ret
+
+000000000005d534 <_wrap_Float4_z_set>:
+   5d534:      	cbz	x0, 0x5d544 <_wrap_Float4_z_set+0x10>
+   5d538:      	ldr	x8, [x0]
+   5d53c:      	cbz	x8, 0x5d544 <_wrap_Float4_z_set+0x10>
+   5d540:      	str	s0, [x8, #0x8]
+   5d544:      	ret
+
+000000000005d548 <_wrap_Float4_z_get>:
+   5d548:      	ldr	x8, [x0]
+   5d54c:      	ldr	s0, [x8, #0x8]
+   5d550:      	ret
+
+000000000005d554 <_wrap_Float4_w_set>:
+   5d554:      	cbz	x0, 0x5d564 <_wrap_Float4_w_set+0x10>
+   5d558:      	ldr	x8, [x0]
+   5d55c:      	cbz	x8, 0x5d564 <_wrap_Float4_w_set+0x10>
+   5d560:      	str	s0, [x8, #0xc]
+   5d564:      	ret
+
+000000000005d568 <_wrap_Float4_w_get>:
+   5d568:      	ldr	x8, [x0]
+   5d56c:      	ldr	s0, [x8, #0xc]
+   5d570:      	ret
+
+000000000005d574 <_wrap_SizeI_width_set>:
+   5d574:      	cbz	x0, 0x5d584 <_wrap_SizeI_width_set+0x10>
+   5d578:      	ldr	x8, [x0]
+   5d57c:      	cbz	x8, 0x5d584 <_wrap_SizeI_width_set+0x10>
+   5d580:      	str	w1, [x8]
+   5d584:      	ret
+
+000000000005d588 <_wrap_SizeI_width_get>:
+   5d588:      	ldr	x8, [x0]
+   5d58c:      	ldr	w0, [x8]
+   5d590:      	ret
+
+000000000005d594 <_wrap_SizeI_height_set>:
+   5d594:      	cbz	x0, 0x5d5a4 <_wrap_SizeI_height_set+0x10>
+   5d598:      	ldr	x8, [x0]
+   5d59c:      	cbz	x8, 0x5d5a4 <_wrap_SizeI_height_set+0x10>
+   5d5a0:      	str	w1, [x8, #0x4]
+   5d5a4:      	ret
+
+000000000005d5a8 <_wrap_SizeI_height_get>:
+   5d5a8:      	ldr	x8, [x0]
+   5d5ac:      	ldr	w0, [x8, #0x4]
+   5d5b0:      	ret
+
+000000000005d5b4 <_wrap_SizeF_width_set>:
+   5d5b4:      	cbz	x0, 0x5d5c4 <_wrap_SizeF_width_set+0x10>
+   5d5b8:      	ldr	x8, [x0]
+   5d5bc:      	cbz	x8, 0x5d5c4 <_wrap_SizeF_width_set+0x10>
+   5d5c0:      	str	s0, [x8]
+   5d5c4:      	ret
+
+000000000005d5c8 <_wrap_SizeF_width_get>:
+   5d5c8:      	ldr	x8, [x0]
+   5d5cc:      	ldr	s0, [x8]
+   5d5d0:      	ret
+
+000000000005d5d4 <_wrap_SizeF_height_set>:
+   5d5d4:      	cbz	x0, 0x5d5e4 <_wrap_SizeF_height_set+0x10>
+   5d5d8:      	ldr	x8, [x0]
+   5d5dc:      	cbz	x8, 0x5d5e4 <_wrap_SizeF_height_set+0x10>
+   5d5e0:      	str	s0, [x8, #0x4]
+   5d5e4:      	ret
+
+000000000005d5e8 <_wrap_SizeF_height_get>:
+   5d5e8:      	ldr	x8, [x0]
+   5d5ec:      	ldr	s0, [x8, #0x4]
+   5d5f0:      	ret
+
+000000000005d5f4 <_wrap_RectF_left_set>:
+   5d5f4:      	cbz	x0, 0x5d604 <_wrap_RectF_left_set+0x10>
+   5d5f8:      	ldr	x8, [x0]
+   5d5fc:      	cbz	x8, 0x5d604 <_wrap_RectF_left_set+0x10>
+   5d600:      	str	s0, [x8]
+   5d604:      	ret
+
+000000000005d608 <_wrap_RectF_left_get>:
+   5d608:      	ldr	x8, [x0]
+   5d60c:      	ldr	s0, [x8]
+   5d610:      	ret
+
+000000000005d614 <_wrap_RectF_top_set>:
+   5d614:      	cbz	x0, 0x5d624 <_wrap_RectF_top_set+0x10>
+   5d618:      	ldr	x8, [x0]
+   5d61c:      	cbz	x8, 0x5d624 <_wrap_RectF_top_set+0x10>
+   5d620:      	str	s0, [x8, #0x4]
+   5d624:      	ret
+
+000000000005d628 <_wrap_RectF_top_get>:
+   5d628:      	ldr	x8, [x0]
+   5d62c:      	ldr	s0, [x8, #0x4]
+   5d630:      	ret
+
+000000000005d634 <_wrap_RectF_right_set>:
+   5d634:      	cbz	x0, 0x5d644 <_wrap_RectF_right_set+0x10>
+   5d638:      	ldr	x8, [x0]
+   5d63c:      	cbz	x8, 0x5d644 <_wrap_RectF_right_set+0x10>
+   5d640:      	str	s0, [x8, #0x8]
+   5d644:      	ret
+
+000000000005d648 <_wrap_RectF_right_get>:
+   5d648:      	ldr	x8, [x0]
+   5d64c:      	ldr	s0, [x8, #0x8]
+   5d650:      	ret
+
+000000000005d654 <_wrap_RectF_bottom_set>:
+   5d654:      	cbz	x0, 0x5d664 <_wrap_RectF_bottom_set+0x10>
+   5d658:      	ldr	x8, [x0]
+   5d65c:      	cbz	x8, 0x5d664 <_wrap_RectF_bottom_set+0x10>
+   5d660:      	str	s0, [x8, #0xc]
+   5d664:      	ret
+
+000000000005d668 <_wrap_RectF_bottom_get>:
+   5d668:      	ldr	x8, [x0]
+   5d66c:      	ldr	s0, [x8, #0xc]
+   5d670:      	ret
+
+000000000005d674 <_wrap_RectF_x>:
+   5d674:      	ldr	x8, [x0]
+   5d678:      	ldr	s0, [x8]
+   5d67c:      	ret
+
+000000000005d680 <_wrap_RectF_y>:
+   5d680:      	ldr	x8, [x0]
+   5d684:      	ldr	s0, [x8, #0x4]
+   5d688:      	ret
+
+000000000005d68c <_wrap_RectF_width>:
+   5d68c:      	ldr	x8, [x0]
+   5d690:      	ldr	s0, [x8, #0x8]
+   5d694:      	ldr	s1, [x8]
+   5d698:      	fsub	s0, s0, s1
+   5d69c:      	ret
+
+000000000005d6a0 <_wrap_RectF_height>:
+   5d6a0:      	ldr	x8, [x0]
+   5d6a4:      	ldr	s0, [x8, #0xc]
+   5d6a8:      	ldr	s1, [x8, #0x4]
+   5d6ac:      	fsub	s0, s0, s1
+   5d6b0:      	ret
+
+000000000005d6b4 <_wrap_RectI_left_set>:
+   5d6b4:      	cbz	x0, 0x5d6c4 <_wrap_RectI_left_set+0x10>
+   5d6b8:      	ldr	x8, [x0]
+   5d6bc:      	cbz	x8, 0x5d6c4 <_wrap_RectI_left_set+0x10>
+   5d6c0:      	str	w1, [x8]
+   5d6c4:      	ret
+
+000000000005d6c8 <_wrap_RectI_left_get>:
+   5d6c8:      	ldr	x8, [x0]
+   5d6cc:      	ldr	w0, [x8]
+   5d6d0:      	ret
+
+000000000005d6d4 <_wrap_RectI_top_set>:
+   5d6d4:      	cbz	x0, 0x5d6e4 <_wrap_RectI_top_set+0x10>
+   5d6d8:      	ldr	x8, [x0]
+   5d6dc:      	cbz	x8, 0x5d6e4 <_wrap_RectI_top_set+0x10>
+   5d6e0:      	str	w1, [x8, #0x4]
+   5d6e4:      	ret
+
+000000000005d6e8 <_wrap_RectI_top_get>:
+   5d6e8:      	ldr	x8, [x0]
+   5d6ec:      	ldr	w0, [x8, #0x4]
+   5d6f0:      	ret
+
+000000000005d6f4 <_wrap_RectI_right_set>:
+   5d6f4:      	cbz	x0, 0x5d704 <_wrap_RectI_right_set+0x10>
+   5d6f8:      	ldr	x8, [x0]
+   5d6fc:      	cbz	x8, 0x5d704 <_wrap_RectI_right_set+0x10>
+   5d700:      	str	w1, [x8, #0x8]
+   5d704:      	ret
+
+000000000005d708 <_wrap_RectI_right_get>:
+   5d708:      	ldr	x8, [x0]
+   5d70c:      	ldr	w0, [x8, #0x8]
+   5d710:      	ret
+
+000000000005d714 <_wrap_RectI_bottom_set>:
+   5d714:      	cbz	x0, 0x5d724 <_wrap_RectI_bottom_set+0x10>
+   5d718:      	ldr	x8, [x0]
+   5d71c:      	cbz	x8, 0x5d724 <_wrap_RectI_bottom_set+0x10>
+   5d720:      	str	w1, [x8, #0xc]
+   5d724:      	ret
+
+000000000005d728 <_wrap_RectI_bottom_get>:
+   5d728:      	ldr	x8, [x0]
+   5d72c:      	ldr	w0, [x8, #0xc]
+   5d730:      	ret
+
+000000000005d734 <_wrap_RectI_x>:
+   5d734:      	ldr	x8, [x0]
+   5d738:      	ldr	w0, [x8]
+   5d73c:      	ret
+
+000000000005d740 <_wrap_RectI_y>:
+   5d740:      	ldr	x8, [x0]
+   5d744:      	ldr	w0, [x8, #0x4]
+   5d748:      	ret
+
+000000000005d74c <_wrap_RectI_width>:
+   5d74c:      	ldr	x8, [x0]
+   5d750:      	ldr	w9, [x8, #0x8]
+   5d754:      	ldr	w8, [x8]
+   5d758:      	sub	w0, w9, w8
+   5d75c:      	ret
+
+000000000005d760 <_wrap_RectI_height>:
+   5d760:      	ldr	x8, [x0]
+   5d764:      	ldr	w9, [x8, #0xc]
+   5d768:      	ldr	w8, [x8, #0x4]
+   5d76c:      	sub	w0, w9, w8
+   5d770:      	ret
+
+000000000005d774 <_wrap_Origin2_x_set>:
+   5d774:      	cbz	x0, 0x5d784 <_wrap_Origin2_x_set+0x10>
+   5d778:      	ldr	x8, [x0]
+   5d77c:      	cbz	x8, 0x5d784 <_wrap_Origin2_x_set+0x10>
+   5d780:      	str	s0, [x8]
+   5d784:      	ret
+
+000000000005d788 <_wrap_Origin2_x_get>:
+   5d788:      	ldr	x8, [x0]
+   5d78c:      	ldr	s0, [x8]
+   5d790:      	ret
+
+000000000005d794 <_wrap_Origin2_y_set>:
+   5d794:      	cbz	x0, 0x5d7a4 <_wrap_Origin2_y_set+0x10>
+   5d798:      	ldr	x8, [x0]
+   5d79c:      	cbz	x8, 0x5d7a4 <_wrap_Origin2_y_set+0x10>
+   5d7a0:      	str	s0, [x8, #0x4]
+   5d7a4:      	ret
+
+000000000005d7a8 <_wrap_Origin2_y_get>:
+   5d7a8:      	ldr	x8, [x0]
+   5d7ac:      	ldr	s0, [x8, #0x4]
+   5d7b0:      	ret
+
+000000000005d7b4 <_wrap_Rect2F_origin_set>:
+   5d7b4:      	cbz	x0, 0x5d7d4 <_wrap_Rect2F_origin_set+0x20>
+   5d7b8:      	ldr	x8, [x0]
+   5d7bc:      	cbz	x1, 0x5d7dc <_wrap_Rect2F_origin_set+0x28>
+   5d7c0:      	ldr	x9, [x1]
+   5d7c4:      	cbz	x8, 0x5d7d0 <_wrap_Rect2F_origin_set+0x1c>
+   5d7c8:      	ldr	x9, [x9]
+   5d7cc:      	str	x9, [x8]
+   5d7d0:      	ret
+   5d7d4:      	mov	x8, xzr
+   5d7d8:      	cbnz	x1, 0x5d7c0 <_wrap_Rect2F_origin_set+0xc>
+   5d7dc:      	mov	x9, xzr
+   5d7e0:      	cbnz	x8, 0x5d7c8 <_wrap_Rect2F_origin_set+0x14>
+   5d7e4:      	b	0x5d7d0 <_wrap_Rect2F_origin_set+0x1c>
+
+000000000005d7e8 <_wrap_Rect2F_origin_get>:
+   5d7e8:      	stp	x29, x30, [sp, #-0x20]!
+   5d7ec:      	str	x19, [sp, #0x10]
+   5d7f0:      	mov	x29, sp
+   5d7f4:      	cbz	x0, 0x5d800 <_wrap_Rect2F_origin_get+0x18>
+   5d7f8:      	ldr	x19, [x0]
+   5d7fc:      	b	0x5d804 <_wrap_Rect2F_origin_get+0x1c>
+   5d800:      	mov	x19, xzr
+   5d804:      	adrp	x0, 0x49000
+   5d808:      	add	x0, x0, #0xd90
+   5d80c:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5d810:      	str	x19, [x0]
+   5d814:      	ldr	x19, [sp, #0x10]
+   5d818:      	ldp	x29, x30, [sp], #0x20
+   5d81c:      	ret
+   5d820:      	stp	x29, x30, [sp, #-0x50]!
+   5d824:      	stp	x26, x25, [sp, #0x10]
+   5d828:      	stp	x24, x23, [sp, #0x20]
+   5d82c:      	stp	x22, x21, [sp, #0x30]
+   5d830:      	stp	x20, x19, [sp, #0x40]
+   5d834:      	mov	x29, sp
+   5d838:      	mov	x20, x0
+   5d83c:      	bl	0x6bc20 <_wrap_Graphics_createWithDefaultBackend+0x5c>
+   5d840:      	mov	w0, #0x10
+   5d844:      	bl	0x71520 <malloc@plt>
+   5d848:      	mov	x19, x0
+   5d84c:      	str	xzr, [x0]
+   5d850:      	adrp	x1, 0x49000
+   5d854:      	add	x1, x1, #0x29b
+   5d858:      	mov	x0, x20
+   5d85c:      	bl	0x714f0 <strcmp@plt>
+   5d860:      	cbnz	w0, 0x5d87c <_wrap_Rect2F_origin_get+0x94>
+   5d864:      	mov	w0, #0x10
+   5d868:      	bl	0x71520 <malloc@plt>
+   5d86c:      	adrp	x8, 0x81000
+   5d870:      	str	x0, [x19, #0x8]
+   5d874:      	ldr	x8, [x8, #0xf68]
+   5d878:      	stp	x8, xzr, [x0]
+   5d87c:      	adrp	x1, 0x4a000
+   5d880:      	add	x1, x1, #0xf9
+   5d884:      	mov	x0, x20
+   5d888:      	bl	0x714f0 <strcmp@plt>
+   5d88c:      	cbnz	w0, 0x5d8a8 <_wrap_Rect2F_origin_get+0xc0>
+   5d890:      	mov	w0, #0x10
+   5d894:      	bl	0x71520 <malloc@plt>
+   5d898:      	adrp	x8, 0x81000
+   5d89c:      	str	x0, [x19, #0x8]
+   5d8a0:      	ldr	x8, [x8, #0xf70]
+   5d8a4:      	stp	x8, xzr, [x0]
+   5d8a8:      	adrp	x1, 0x4a000
+   5d8ac:      	add	x1, x1, #0x9bf
+   5d8b0:      	mov	x0, x20
+   5d8b4:      	bl	0x714f0 <strcmp@plt>
+   5d8b8:      	cbnz	w0, 0x5d8d4 <_wrap_Rect2F_origin_get+0xec>
+   5d8bc:      	mov	w0, #0x10
+   5d8c0:      	bl	0x71520 <malloc@plt>
+   5d8c4:      	adrp	x8, 0x81000
+   5d8c8:      	str	x0, [x19, #0x8]
+   5d8cc:      	ldr	x8, [x8, #0xf78]
+   5d8d0:      	stp	x8, xzr, [x0]
+   5d8d4:      	adrp	x1, 0x49000
+   5d8d8:      	add	x1, x1, #0x7c7
+   5d8dc:      	mov	x0, x20
+   5d8e0:      	bl	0x714f0 <strcmp@plt>
+   5d8e4:      	cbnz	w0, 0x5d900 <_wrap_Rect2F_origin_get+0x118>
+   5d8e8:      	mov	w0, #0x10
+   5d8ec:      	bl	0x71520 <malloc@plt>
+   5d8f0:      	adrp	x8, 0x81000
+   5d8f4:      	str	x0, [x19, #0x8]
+   5d8f8:      	ldr	x8, [x8, #0xf80]
+   5d8fc:      	stp	x8, xzr, [x0]
+   5d900:      	adrp	x1, 0x4a000
+   5d904:      	add	x1, x1, #0x971
+   5d908:      	mov	x0, x20
+   5d90c:      	bl	0x714f0 <strcmp@plt>
+   5d910:      	cbnz	w0, 0x5d92c <_wrap_Rect2F_origin_get+0x144>
+   5d914:      	mov	w0, #0x10
+   5d918:      	bl	0x71520 <malloc@plt>
+   5d91c:      	adrp	x8, 0x81000
+   5d920:      	str	x0, [x19, #0x8]
+   5d924:      	ldr	x8, [x8, #0xf88]
+   5d928:      	stp	x8, xzr, [x0]
+   5d92c:      	adrp	x1, 0x4a000
+   5d930:      	add	x1, x1, #0x59d
+   5d934:      	mov	x0, x20
+   5d938:      	bl	0x714f0 <strcmp@plt>
+   5d93c:      	cbnz	w0, 0x5d958 <_wrap_Rect2F_origin_get+0x170>
+   5d940:      	mov	w0, #0x10
+   5d944:      	bl	0x71520 <malloc@plt>
+   5d948:      	adrp	x8, 0x81000
+   5d94c:      	str	x0, [x19, #0x8]
+   5d950:      	ldr	x8, [x8, #0xf90]
+   5d954:      	stp	x8, xzr, [x0]
+   5d958:      	adrp	x1, 0x49000
+   5d95c:      	add	x1, x1, #0x66f
+   5d960:      	mov	x0, x20
+   5d964:      	bl	0x714f0 <strcmp@plt>
+   5d968:      	cbnz	w0, 0x5d984 <_wrap_Rect2F_origin_get+0x19c>
+   5d96c:      	mov	w0, #0x10
+   5d970:      	bl	0x71520 <malloc@plt>
+   5d974:      	adrp	x8, 0x81000
+   5d978:      	str	x0, [x19, #0x8]
+   5d97c:      	ldr	x8, [x8, #0xf98]
+   5d980:      	stp	x8, xzr, [x0]
+   5d984:      	adrp	x1, 0x49000
+   5d988:      	add	x1, x1, #0xc3e
+   5d98c:      	mov	x0, x20
+   5d990:      	bl	0x714f0 <strcmp@plt>
+   5d994:      	cbnz	w0, 0x5d9b0 <_wrap_Rect2F_origin_get+0x1c8>
+   5d998:      	mov	w0, #0x10
+   5d99c:      	bl	0x71520 <malloc@plt>
+   5d9a0:      	adrp	x8, 0x81000
+   5d9a4:      	str	x0, [x19, #0x8]
+   5d9a8:      	ldr	x8, [x8, #0xfa0]
+   5d9ac:      	stp	x8, xzr, [x0]
+   5d9b0:      	adrp	x1, 0x49000
+   5d9b4:      	add	x1, x1, #0x19e
+   5d9b8:      	mov	x0, x20
+   5d9bc:      	bl	0x714f0 <strcmp@plt>
+   5d9c0:      	cbnz	w0, 0x5d9dc <_wrap_Rect2F_origin_get+0x1f4>
+   5d9c4:      	mov	w0, #0x10
+   5d9c8:      	bl	0x71520 <malloc@plt>
+   5d9cc:      	adrp	x8, 0x81000
+   5d9d0:      	str	x0, [x19, #0x8]
+   5d9d4:      	ldr	x8, [x8, #0xfa8]
+   5d9d8:      	stp	x8, xzr, [x0]
+   5d9dc:      	adrp	x1, 0x49000
+   5d9e0:      	add	x1, x1, #0x1cd
+   5d9e4:      	mov	x0, x20
+   5d9e8:      	bl	0x714f0 <strcmp@plt>
+   5d9ec:      	cbnz	w0, 0x5da08 <_wrap_Rect2F_origin_get+0x220>
+   5d9f0:      	mov	w0, #0x10
+   5d9f4:      	bl	0x71520 <malloc@plt>
+   5d9f8:      	adrp	x8, 0x81000
+   5d9fc:      	str	x0, [x19, #0x8]
+   5da00:      	ldr	x8, [x8, #0xfb0]
+   5da04:      	stp	x8, xzr, [x0]
+   5da08:      	adrp	x1, 0x4a000
+   5da0c:      	add	x1, x1, #0xa48
+   5da10:      	mov	x0, x20
+   5da14:      	bl	0x714f0 <strcmp@plt>
+   5da18:      	cbnz	w0, 0x5da34 <_wrap_Rect2F_origin_get+0x24c>
+   5da1c:      	mov	w0, #0x10
+   5da20:      	bl	0x71520 <malloc@plt>
+   5da24:      	adrp	x8, 0x81000
+   5da28:      	str	x0, [x19, #0x8]
+   5da2c:      	ldr	x8, [x8, #0xfb8]
+   5da30:      	stp	x8, xzr, [x0]
+   5da34:      	adrp	x1, 0x49000
+   5da38:      	add	x1, x1, #0xc6d
+   5da3c:      	mov	x0, x20
+   5da40:      	bl	0x714f0 <strcmp@plt>
+   5da44:      	cbnz	w0, 0x5da60 <_wrap_Rect2F_origin_get+0x278>
+   5da48:      	mov	w0, #0x10
+   5da4c:      	bl	0x71520 <malloc@plt>
+   5da50:      	adrp	x8, 0x81000
+   5da54:      	str	x0, [x19, #0x8]
+   5da58:      	ldr	x8, [x8, #0xfc0]
+   5da5c:      	stp	x8, xzr, [x0]
+   5da60:      	adrp	x1, 0x49000
+   5da64:      	add	x1, x1, #0x32b
+   5da68:      	mov	x0, x20
+   5da6c:      	bl	0x714f0 <strcmp@plt>
+   5da70:      	cbnz	w0, 0x5da8c <_wrap_Rect2F_origin_get+0x2a4>
+   5da74:      	mov	w0, #0x10
+   5da78:      	bl	0x71520 <malloc@plt>
+   5da7c:      	adrp	x8, 0x81000
+   5da80:      	str	x0, [x19, #0x8]
+   5da84:      	ldr	x8, [x8, #0xfc8]
+   5da88:      	stp	x8, xzr, [x0]
+   5da8c:      	adrp	x1, 0x49000
+   5da90:      	add	x1, x1, #0x8a8
+   5da94:      	mov	x0, x20
+   5da98:      	bl	0x714f0 <strcmp@plt>
+   5da9c:      	cbnz	w0, 0x5dab8 <_wrap_Rect2F_origin_get+0x2d0>
+   5daa0:      	mov	w0, #0x10
+   5daa4:      	bl	0x71520 <malloc@plt>
+   5daa8:      	adrp	x8, 0x81000
+   5daac:      	str	x0, [x19, #0x8]
+   5dab0:      	ldr	x8, [x8, #0xfd0]
+   5dab4:      	stp	x8, xzr, [x0]
+   5dab8:      	adrp	x1, 0x4a000
+   5dabc:      	add	x1, x1, #0x625
+   5dac0:      	mov	x0, x20
+   5dac4:      	bl	0x714f0 <strcmp@plt>
+   5dac8:      	cbnz	w0, 0x5dae4 <_wrap_Rect2F_origin_get+0x2fc>
+   5dacc:      	mov	w0, #0x10
+   5dad0:      	bl	0x71520 <malloc@plt>
+   5dad4:      	adrp	x8, 0x81000
+   5dad8:      	str	x0, [x19, #0x8]
+   5dadc:      	ldr	x8, [x8, #0xfe0]
+   5dae0:      	stp	x8, xzr, [x0]
+   5dae4:      	adrp	x25, 0x82000
+   5dae8:      	adrp	x24, 0x82000
+   5daec:      	adrp	x23, 0x81000
+   5daf0:      	ldr	x20, [x25, #0x240]
+   5daf4:      	cbz	x20, 0x5db08 <_wrap_Rect2F_origin_get+0x320>
+   5daf8:      	ldr	w8, [x23, #0xfe8]
+   5dafc:      	ldr	x9, [x24, #0x258]
+   5db00:      	sxtw	x22, w8
+   5db04:      	b	0x5db38 <_wrap_Rect2F_origin_get+0x350>
+   5db08:      	ldr	w26, [x23, #0xfe8]
+   5db0c:      	sbfiz	x21, x26, #3, #32
+   5db10:      	sxtw	x22, w26
+   5db14:      	mov	x0, x21
+   5db18:      	bl	0x71520 <malloc@plt>
+   5db1c:      	mov	w1, wzr
+   5db20:      	mov	x2, x21
+   5db24:      	mov	x20, x0
+   5db28:      	str	x0, [x25, #0x240]
+   5db2c:      	bl	0x71570 <memset@plt>
+   5db30:      	mov	w8, w26
+   5db34:      	mov	x9, x20
+   5db38:      	str	x19, [x9], #0x8
+   5db3c:      	sub	x21, x9, x20
+   5db40:      	cmp	x22, x21, asr #3
+   5db44:      	str	x9, [x24, #0x258]
+   5db48:      	b.ne	0x5db9c <_wrap_Rect2F_origin_get+0x3b4>
+   5db4c:      	add	w26, w8, #0x100
+   5db50:      	lsl	w8, w26, #3
+   5db54:      	str	w26, [x23, #0xfe8]
+   5db58:      	sxtw	x22, w8
+   5db5c:      	mov	x0, x22
+   5db60:      	bl	0x71520 <malloc@plt>
+   5db64:      	mov	w1, wzr
+   5db68:      	mov	x2, x22
+   5db6c:      	mov	x23, x0
+   5db70:      	str	x0, [x25, #0x240]
+   5db74:      	bl	0x71570 <memset@plt>
+   5db78:      	mov	x0, x23
+   5db7c:      	mov	x1, x20
+   5db80:      	mov	x2, x21
+   5db84:      	bl	0x714e0 <memcpy@plt>
+   5db88:      	mov	x0, x20
+   5db8c:      	bl	0x71500 <free@plt>
+   5db90:      	add	x8, x23, w26, sxtw #3
+   5db94:      	sub	x8, x8, #0x800
+   5db98:      	str	x8, [x24, #0x258]
+   5db9c:      	mov	x0, x19
+   5dba0:      	ldp	x20, x19, [sp, #0x40]
+   5dba4:      	ldp	x22, x21, [sp, #0x30]
+   5dba8:      	ldp	x24, x23, [sp, #0x20]
+   5dbac:      	ldp	x26, x25, [sp, #0x10]
+   5dbb0:      	ldp	x29, x30, [sp], #0x50
+   5dbb4:      	ret
+
+000000000005dbb8 <_wrap_Rect2F_size_set>:
+   5dbb8:      	cbz	x0, 0x5dbd8 <_wrap_Rect2F_size_set+0x20>
+   5dbbc:      	ldr	x8, [x0]
+   5dbc0:      	cbz	x1, 0x5dbe0 <_wrap_Rect2F_size_set+0x28>
+   5dbc4:      	ldr	x9, [x1]
+   5dbc8:      	cbz	x8, 0x5dbd4 <_wrap_Rect2F_size_set+0x1c>
+   5dbcc:      	ldr	x9, [x9]
+   5dbd0:      	str	x9, [x8, #0x8]
+   5dbd4:      	ret
+   5dbd8:      	mov	x8, xzr
+   5dbdc:      	cbnz	x1, 0x5dbc4 <_wrap_Rect2F_size_set+0xc>
+   5dbe0:      	mov	x9, xzr
+   5dbe4:      	cbnz	x8, 0x5dbcc <_wrap_Rect2F_size_set+0x14>
+   5dbe8:      	b	0x5dbd4 <_wrap_Rect2F_size_set+0x1c>
+
+000000000005dbec <_wrap_Rect2F_size_get>:
+   5dbec:      	cbz	x0, 0x5dbf8 <_wrap_Rect2F_size_get+0xc>
+   5dbf0:      	ldr	x8, [x0]
+   5dbf4:      	b	0x5dbfc <_wrap_Rect2F_size_get+0x10>
+   5dbf8:      	mov	x8, xzr
+   5dbfc:      	stp	x29, x30, [sp, #-0x20]!
+   5dc00:      	str	x19, [sp, #0x10]
+   5dc04:      	mov	x29, sp
+   5dc08:      	adrp	x0, 0x4a000
+   5dc0c:      	add	x0, x0, #0x66d
+   5dc10:      	add	x19, x8, #0x8
+   5dc14:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5dc18:      	str	x19, [x0]
+   5dc1c:      	ldr	x19, [sp, #0x10]
+   5dc20:      	ldp	x29, x30, [sp], #0x20
+   5dc24:      	ret
+
+000000000005dc28 <_wrap_Quaternion_w_set>:
+   5dc28:      	cbz	x0, 0x5dc38 <_wrap_Quaternion_w_set+0x10>
+   5dc2c:      	ldr	x8, [x0]
+   5dc30:      	cbz	x8, 0x5dc38 <_wrap_Quaternion_w_set+0x10>
+   5dc34:      	str	s0, [x8]
+   5dc38:      	ret
+
+000000000005dc3c <_wrap_Quaternion_w_get>:
+   5dc3c:      	ldr	x8, [x0]
+   5dc40:      	ldr	s0, [x8]
+   5dc44:      	ret
+
+000000000005dc48 <_wrap_Quaternion_x_set>:
+   5dc48:      	cbz	x0, 0x5dc58 <_wrap_Quaternion_x_set+0x10>
+   5dc4c:      	ldr	x8, [x0]
+   5dc50:      	cbz	x8, 0x5dc58 <_wrap_Quaternion_x_set+0x10>
+   5dc54:      	str	s0, [x8, #0x4]
+   5dc58:      	ret
+
+000000000005dc5c <_wrap_Quaternion_x_get>:
+   5dc5c:      	ldr	x8, [x0]
+   5dc60:      	ldr	s0, [x8, #0x4]
+   5dc64:      	ret
+
+000000000005dc68 <_wrap_Quaternion_y_set>:
+   5dc68:      	cbz	x0, 0x5dc78 <_wrap_Quaternion_y_set+0x10>
+   5dc6c:      	ldr	x8, [x0]
+   5dc70:      	cbz	x8, 0x5dc78 <_wrap_Quaternion_y_set+0x10>
+   5dc74:      	str	s0, [x8, #0x8]
+   5dc78:      	ret
+
+000000000005dc7c <_wrap_Quaternion_y_get>:
+   5dc7c:      	ldr	x8, [x0]
+   5dc80:      	ldr	s0, [x8, #0x8]
+   5dc84:      	ret
+
+000000000005dc88 <_wrap_Quaternion_z_set>:
+   5dc88:      	cbz	x0, 0x5dc98 <_wrap_Quaternion_z_set+0x10>
+   5dc8c:      	ldr	x8, [x0]
+   5dc90:      	cbz	x8, 0x5dc98 <_wrap_Quaternion_z_set+0x10>
+   5dc94:      	str	s0, [x8, #0xc]
+   5dc98:      	ret
+
+000000000005dc9c <_wrap_Quaternion_z_get>:
+   5dc9c:      	ldr	x8, [x0]
+   5dca0:      	ldr	s0, [x8, #0xc]
+   5dca4:      	ret
+
+000000000005dca8 <_wrap_Color_colorSpace_set>:
+   5dca8:      	cbz	x0, 0x5dcb8 <_wrap_Color_colorSpace_set+0x10>
+   5dcac:      	ldr	x8, [x0]
+   5dcb0:      	cbz	x8, 0x5dcb8 <_wrap_Color_colorSpace_set+0x10>
+   5dcb4:      	str	w1, [x8]
+   5dcb8:      	ret
+
+000000000005dcbc <_wrap_Color_colorSpace_get>:
+   5dcbc:      	ldr	x8, [x0]
+   5dcc0:      	ldr	w0, [x8]
+   5dcc4:      	ret
+
+000000000005dcc8 <_wrap_Color_r_set>:
+   5dcc8:      	cbz	x0, 0x5dcd8 <_wrap_Color_r_set+0x10>
+   5dccc:      	ldr	x8, [x0]
+   5dcd0:      	cbz	x8, 0x5dcd8 <_wrap_Color_r_set+0x10>
+   5dcd4:      	str	s0, [x8, #0x4]
+   5dcd8:      	ret
+
+000000000005dcdc <_wrap_Color_r_get>:
+   5dcdc:      	ldr	x8, [x0]
+   5dce0:      	ldr	s0, [x8, #0x4]
+   5dce4:      	ret
+
+000000000005dce8 <_wrap_Color_g_set>:
+   5dce8:      	cbz	x0, 0x5dcf8 <_wrap_Color_g_set+0x10>
+   5dcec:      	ldr	x8, [x0]
+   5dcf0:      	cbz	x8, 0x5dcf8 <_wrap_Color_g_set+0x10>
+   5dcf4:      	str	s0, [x8, #0x8]
+   5dcf8:      	ret
+
+000000000005dcfc <_wrap_Color_g_get>:
+   5dcfc:      	ldr	x8, [x0]
+   5dd00:      	ldr	s0, [x8, #0x8]
+   5dd04:      	ret
+
+000000000005dd08 <_wrap_Color_b_set>:
+   5dd08:      	cbz	x0, 0x5dd18 <_wrap_Color_b_set+0x10>
+   5dd0c:      	ldr	x8, [x0]
+   5dd10:      	cbz	x8, 0x5dd18 <_wrap_Color_b_set+0x10>
+   5dd14:      	str	s0, [x8, #0xc]
+   5dd18:      	ret
+
+000000000005dd1c <_wrap_Color_b_get>:
+   5dd1c:      	ldr	x8, [x0]
+   5dd20:      	ldr	s0, [x8, #0xc]
+   5dd24:      	ret
+
+000000000005dd28 <_wrap_ColorA_colorSpace_set>:
+   5dd28:      	cbz	x0, 0x5dd38 <_wrap_ColorA_colorSpace_set+0x10>
+   5dd2c:      	ldr	x8, [x0]
+   5dd30:      	cbz	x8, 0x5dd38 <_wrap_ColorA_colorSpace_set+0x10>
+   5dd34:      	str	w1, [x8]
+   5dd38:      	ret
+
+000000000005dd3c <_wrap_ColorA_colorSpace_get>:
+   5dd3c:      	ldr	x8, [x0]
+   5dd40:      	ldr	w0, [x8]
+   5dd44:      	ret
+
+000000000005dd48 <_wrap_ColorA_r_set>:
+   5dd48:      	cbz	x0, 0x5dd58 <_wrap_ColorA_r_set+0x10>
+   5dd4c:      	ldr	x8, [x0]
+   5dd50:      	cbz	x8, 0x5dd58 <_wrap_ColorA_r_set+0x10>
+   5dd54:      	str	s0, [x8, #0x4]
+   5dd58:      	ret
+
+000000000005dd5c <_wrap_ColorA_r_get>:
+   5dd5c:      	ldr	x8, [x0]
+   5dd60:      	ldr	s0, [x8, #0x4]
+   5dd64:      	ret
+
+000000000005dd68 <_wrap_ColorA_g_set>:
+   5dd68:      	cbz	x0, 0x5dd78 <_wrap_ColorA_g_set+0x10>
+   5dd6c:      	ldr	x8, [x0]
+   5dd70:      	cbz	x8, 0x5dd78 <_wrap_ColorA_g_set+0x10>
+   5dd74:      	str	s0, [x8, #0x8]
+   5dd78:      	ret
+
+000000000005dd7c <_wrap_ColorA_g_get>:
+   5dd7c:      	ldr	x8, [x0]
+   5dd80:      	ldr	s0, [x8, #0x8]
+   5dd84:      	ret
+
+000000000005dd88 <_wrap_ColorA_b_set>:
+   5dd88:      	cbz	x0, 0x5dd98 <_wrap_ColorA_b_set+0x10>
+   5dd8c:      	ldr	x8, [x0]
+   5dd90:      	cbz	x8, 0x5dd98 <_wrap_ColorA_b_set+0x10>
+   5dd94:      	str	s0, [x8, #0xc]
+   5dd98:      	ret
+
+000000000005dd9c <_wrap_ColorA_b_get>:
+   5dd9c:      	ldr	x8, [x0]
+   5dda0:      	ldr	s0, [x8, #0xc]
+   5dda4:      	ret
+
+000000000005dda8 <_wrap_ColorA_alpha_set>:
+   5dda8:      	cbz	x0, 0x5ddb8 <_wrap_ColorA_alpha_set+0x10>
+   5ddac:      	ldr	x8, [x0]
+   5ddb0:      	cbz	x8, 0x5ddb8 <_wrap_ColorA_alpha_set+0x10>
+   5ddb4:      	str	s0, [x8, #0x10]
+   5ddb8:      	ret
+
+000000000005ddbc <_wrap_ColorA_alpha_get>:
+   5ddbc:      	ldr	x8, [x0]
+   5ddc0:      	ldr	s0, [x8, #0x10]
+   5ddc4:      	ret
+
+000000000005ddc8 <_wrap_new_VectorColorA>:
+   5ddc8:      	stp	x29, x30, [sp, #-0x20]!
+   5ddcc:      	str	x19, [sp, #0x10]
+   5ddd0:      	mov	x29, sp
+   5ddd4:      	adrp	x0, 0x49000
+   5ddd8:      	add	x0, x0, #0x29b
+   5dddc:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5dde0:      	mov	x19, x0
+   5dde4:      	mov	w0, #0x18
+   5dde8:      	bl	0x71580 <_Znwm@plt>
+   5ddec:      	mov	x8, x0
+   5ddf0:      	mov	x0, x19
+   5ddf4:      	stp	xzr, xzr, [x8, #0x8]
+   5ddf8:      	str	xzr, [x8]
+   5ddfc:      	str	x8, [x19]
+   5de00:      	ldr	x19, [sp, #0x10]
+   5de04:      	ldp	x29, x30, [sp], #0x20
+   5de08:      	ret
+
+000000000005de0c <_wrap_new_VectorColorA_size_t>:
+   5de0c:      	stp	x29, x30, [sp, #-0x30]!
+   5de10:      	str	x21, [sp, #0x10]
+   5de14:      	stp	x20, x19, [sp, #0x20]
+   5de18:      	mov	x29, sp
+   5de1c:      	mov	x21, x0
+   5de20:      	adrp	x0, 0x49000
+   5de24:      	add	x0, x0, #0x29b
+   5de28:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5de2c:      	mov	x19, x0
+   5de30:      	mov	w0, #0x18
+   5de34:      	bl	0x71580 <_Znwm@plt>
+   5de38:      	mov	x20, x0
+   5de3c:      	mov	x1, x21
+   5de40:      	bl	0x5de70 <_wrap_new_VectorColorA_size_t+0x64>
+   5de44:      	mov	x0, x19
+   5de48:      	str	x20, [x19]
+   5de4c:      	ldp	x20, x19, [sp, #0x20]
+   5de50:      	ldr	x21, [sp, #0x10]
+   5de54:      	ldp	x29, x30, [sp], #0x30
+   5de58:      	ret
+   5de5c:      	mov	x19, x0
+   5de60:      	mov	x0, x20
+   5de64:      	bl	0x71590 <_ZdlPv@plt>
+   5de68:      	mov	x0, x19
+   5de6c:      	bl	0x6d7d0 <_wrap_Graphics_createWithDefaultBackend+0x1c0c>
+   5de70:      	stp	x29, x30, [sp, #-0x20]!
+   5de74:      	stp	x20, x19, [sp, #0x10]
+   5de78:      	mov	x29, sp
+   5de7c:      	stp	xzr, xzr, [x0]
+   5de80:      	str	xzr, [x0, #0x10]
+   5de84:      	cbz	x1, 0x5dec4 <_wrap_new_VectorColorA_size_t+0xb8>
+   5de88:      	mov	x20, x1
+   5de8c:      	mov	x19, x0
+   5de90:      	bl	0x6bd04 <_wrap_Graphics_createWithDefaultBackend+0x140>
+   5de94:      	mov	w9, #0x14
+   5de98:      	ldr	x8, [x19, #0x8]
+   5de9c:      	adrp	x10, 0x49000
+   5dea0:      	madd	x9, x20, x9, x8
+   5dea4:      	ldr	q0, [x10, #0xb0]
+   5dea8:      	mov	w10, #0x1
+   5deac:      	str	w10, [x8]
+   5deb0:      	stur	q0, [x8, #0x4]
+   5deb4:      	add	x8, x8, #0x14
+   5deb8:      	cmp	x8, x9
+   5debc:      	b.ne	0x5deac <_wrap_new_VectorColorA_size_t+0xa0>
+   5dec0:      	str	x9, [x19, #0x8]
+   5dec4:      	ldp	x20, x19, [sp, #0x10]
+   5dec8:      	ldp	x29, x30, [sp], #0x20
+   5decc:      	ret
+   5ded0:      	ldr	x8, [x19]
+   5ded4:      	mov	x20, x0
+   5ded8:      	cbz	x8, 0x5dee8 <_wrap_new_VectorColorA_size_t+0xdc>
+   5dedc:      	mov	x0, x8
+   5dee0:      	str	x8, [x19, #0x8]
+   5dee4:      	bl	0x71590 <_ZdlPv@plt>
+   5dee8:      	mov	x0, x20
+   5deec:      	bl	0x6d7d0 <_wrap_Graphics_createWithDefaultBackend+0x1c0c>
+
+000000000005def0 <_wrap_VectorColorA_size>:
+   5def0:      	ldr	x8, [x0]
+   5def4:      	ldp	x8, x9, [x8]
+   5def8:      	sub	x8, x9, x8
+   5defc:      	mov	x9, #-0x3333333333333334
+   5df00:      	asr	x8, x8, #2
+   5df04:      	movk	x9, #0xcccd
+   5df08:      	mul	x0, x8, x9
+   5df0c:      	ret
+
+000000000005df10 <_wrap_VectorColorA_capacity>:
+   5df10:      	ldr	x8, [x0]
+   5df14:      	ldr	x9, [x8, #0x10]
+   5df18:      	ldr	x8, [x8]
+   5df1c:      	sub	x8, x9, x8
+   5df20:      	mov	x9, #-0x3333333333333334
+   5df24:      	asr	x8, x8, #2
+   5df28:      	movk	x9, #0xcccd
+   5df2c:      	mul	x0, x8, x9
+   5df30:      	ret
+
+000000000005df34 <_wrap_VectorColorA_reserve>:
+   5df34:      	ldr	x0, [x0]
+   5df38:      	b	0x5df3c <_wrap_VectorColorA_reserve+0x8>
+   5df3c:      	stp	x29, x30, [sp, #-0x20]!
+   5df40:      	stp	x20, x19, [sp, #0x10]
+   5df44:      	mov	x29, sp
+   5df48:      	mov	x19, x0
+   5df4c:      	ldr	x9, [x0, #0x10]!
+   5df50:      	ldr	x8, [x19]
+   5df54:      	mov	x10, #-0x3333333333333334
+   5df58:      	movk	x10, #0xcccd
+   5df5c:      	sub	x9, x9, x8
+   5df60:      	asr	x9, x9, #2
+   5df64:      	mul	x9, x9, x10
+   5df68:      	cmp	x9, x1
+   5df6c:      	b.hs	0x5dfe8 <_wrap_VectorColorA_reserve+0xb4>
+   5df70:      	mov	x9, #-0x3333333333333334
+   5df74:      	eor	x9, x9, #0xc000000000000001
+   5df78:      	cmp	x1, x9
+   5df7c:      	b.hs	0x5dff4 <_wrap_VectorColorA_reserve+0xc0>
+   5df80:      	ldr	x9, [x19, #0x8]
+   5df84:      	sub	x20, x9, x8
+   5df88:      	bl	0x6bd68 <_wrap_Graphics_createWithDefaultBackend+0x1a4>
+   5df8c:      	mov	w9, #0x14
+   5df90:      	mov	x8, x0
+   5df94:      	madd	x9, x1, x9, x0
+   5df98:      	ldp	x10, x0, [x19]
+   5df9c:      	add	x8, x8, x20
+   5dfa0:      	mov	x11, x8
+   5dfa4:      	cmp	x0, x10
+   5dfa8:      	b.eq	0x5dfd0 <_wrap_VectorColorA_reserve+0x9c>
+   5dfac:      	ldur	w12, [x0, #-0x4]
+   5dfb0:      	ldur	q0, [x0, #-0x14]
+   5dfb4:      	sub	x0, x0, #0x14
+   5dfb8:      	cmp	x0, x10
+   5dfbc:      	stur	w12, [x11, #-0x4]
+   5dfc0:      	stur	q0, [x11, #-0x14]
+   5dfc4:      	sub	x11, x11, #0x14
+   5dfc8:      	b.ne	0x5dfac <_wrap_VectorColorA_reserve+0x78>
+   5dfcc:      	ldr	x0, [x19]
+   5dfd0:      	stp	x11, x8, [x19]
+   5dfd4:      	str	x9, [x19, #0x10]
+   5dfd8:      	cbz	x0, 0x5dfe8 <_wrap_VectorColorA_reserve+0xb4>
+   5dfdc:      	ldp	x20, x19, [sp, #0x10]
+   5dfe0:      	ldp	x29, x30, [sp], #0x20
+   5dfe4:      	b	0x71590 <_ZdlPv@plt>
+   5dfe8:      	ldp	x20, x19, [sp, #0x10]
+   5dfec:      	ldp	x29, x30, [sp], #0x20
+   5dff0:      	ret
+   5dff4:      	mov	x0, x19
+   5dff8:      	bl	0x6bd54 <_wrap_Graphics_createWithDefaultBackend+0x190>
+
+000000000005dffc <_wrap_VectorColorA_empty>:
+   5dffc:      	ldr	x8, [x0]
+   5e000:      	ldp	x9, x8, [x8]
+   5e004:      	cmp	x9, x8
+   5e008:      	cset	w0, eq
+   5e00c:      	ret
+
+000000000005e010 <_wrap_VectorColorA_clear>:
+   5e010:      	ldr	x8, [x0]
+   5e014:      	ldr	x9, [x8]
+   5e018:      	str	x9, [x8, #0x8]
+   5e01c:      	ret
+
+000000000005e020 <_wrap_VectorColorA_push_back>:
+   5e020:      	stp	x29, x30, [sp, #-0x30]!
+   5e024:      	str	x21, [sp, #0x10]
+   5e028:      	stp	x20, x19, [sp, #0x20]
+   5e02c:      	mov	x29, sp
+   5e030:      	ldr	x19, [x0]
+   5e034:      	ldr	x20, [x1]
+   5e038:      	mov	x0, x19
+   5e03c:      	ldr	x9, [x19, #0x8]
+   5e040:      	ldr	x8, [x0, #0x10]!
+   5e044:      	cmp	x9, x8
+   5e048:      	b.hs	0x5e064 <_wrap_VectorColorA_push_back+0x44>
+   5e04c:      	ldr	w8, [x20, #0x10]
+   5e050:      	ldr	q0, [x20]
+   5e054:      	add	x20, x9, #0x14
+   5e058:      	str	w8, [x9, #0x10]
+   5e05c:      	str	q0, [x9]
+   5e060:      	b	0x5e12c <_wrap_VectorColorA_push_back+0x10c>
+   5e064:      	ldr	x11, [x19]
+   5e068:      	mov	x12, #-0x3333333333333334
+   5e06c:      	movk	x12, #0xcccd
+   5e070:      	sub	x9, x9, x11
+   5e074:      	asr	x9, x9, #2
+   5e078:      	mul	x21, x9, x12
+   5e07c:      	mov	x9, #-0x3333333333333334
+   5e080:      	movk	x9, #0xccc, lsl #48
+   5e084:      	add	x10, x21, #0x1
+   5e088:      	cmp	x10, x9
+   5e08c:      	b.hi	0x5e140 <_wrap_VectorColorA_push_back+0x120>
+   5e090:      	sub	x8, x8, x11
+   5e094:      	asr	x8, x8, #2
+   5e098:      	mul	x8, x8, x12
+   5e09c:      	mov	x12, #0x6666666666666666
+   5e0a0:      	movk	x12, #0x666, lsl #48
+   5e0a4:      	lsl	x11, x8, #1
+   5e0a8:      	cmp	x11, x10
+   5e0ac:      	csel	x10, x11, x10, hi
+   5e0b0:      	cmp	x8, x12
+   5e0b4:      	csel	x1, x10, x9, lo
+   5e0b8:      	cbz	x1, 0x5e0c4 <_wrap_VectorColorA_push_back+0xa4>
+   5e0bc:      	bl	0x6bd68 <_wrap_Graphics_createWithDefaultBackend+0x1a4>
+   5e0c0:      	b	0x5e0c8 <_wrap_VectorColorA_push_back+0xa8>
+   5e0c4:      	mov	x0, xzr
+   5e0c8:      	mov	w8, #0x14
+   5e0cc:      	ldr	w10, [x20, #0x10]
+   5e0d0:      	ldr	q0, [x20]
+   5e0d4:      	nop
+   5e0d8:      	madd	x9, x21, x8, x0
+   5e0dc:      	madd	x8, x1, x8, x0
+   5e0e0:      	str	w10, [x9, #0x10]
+   5e0e4:      	add	x20, x9, #0x14
+   5e0e8:      	str	q0, [x9]
+   5e0ec:      	ldp	x10, x0, [x19]
+   5e0f0:      	cmp	x0, x10
+   5e0f4:      	b.eq	0x5e11c <_wrap_VectorColorA_push_back+0xfc>
+   5e0f8:      	ldur	w11, [x0, #-0x4]
+   5e0fc:      	ldur	q0, [x0, #-0x14]
+   5e100:      	sub	x0, x0, #0x14
+   5e104:      	cmp	x0, x10
+   5e108:      	stur	w11, [x9, #-0x4]
+   5e10c:      	stur	q0, [x9, #-0x14]
+   5e110:      	sub	x9, x9, #0x14
+   5e114:      	b.ne	0x5e0f8 <_wrap_VectorColorA_push_back+0xd8>
+   5e118:      	ldr	x0, [x19]
+   5e11c:      	stp	x9, x20, [x19]
+   5e120:      	str	x8, [x19, #0x10]
+   5e124:      	cbz	x0, 0x5e12c <_wrap_VectorColorA_push_back+0x10c>
+   5e128:      	bl	0x71590 <_ZdlPv@plt>
+   5e12c:      	str	x20, [x19, #0x8]
+   5e130:      	ldp	x20, x19, [sp, #0x20]
+   5e134:      	ldr	x21, [sp, #0x10]
+   5e138:      	ldp	x29, x30, [sp], #0x30
+   5e13c:      	ret
+   5e140:      	mov	x0, x19
+   5e144:      	bl	0x6bd54 <_wrap_Graphics_createWithDefaultBackend+0x190>
+
+000000000005e148 <_wrap_VectorColorA_at>:
+   5e148:      	stp	x29, x30, [sp, #-0x20]!
+   5e14c:      	str	x19, [sp, #0x10]
+   5e150:      	mov	x29, sp
+   5e154:      	ldr	x0, [x0]
+   5e158:      	mov	x10, #-0x3333333333333334
+   5e15c:      	movk	x10, #0xcccd
+   5e160:      	ldp	x8, x9, [x0]
+   5e164:      	sub	x9, x9, x8
+   5e168:      	asr	x9, x9, #2
+   5e16c:      	mul	x9, x9, x10
+   5e170:      	cmp	x9, x1
+   5e174:      	b.ls	0x5e19c <_wrap_VectorColorA_at+0x54>
+   5e178:      	mov	w9, #0x14
+   5e17c:      	adrp	x0, 0x49000
+   5e180:      	add	x0, x0, #0xe6b
+   5e184:      	madd	x19, x1, x9, x8
+   5e188:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5e18c:      	str	x19, [x0]
+   5e190:      	ldr	x19, [sp, #0x10]
+   5e194:      	ldp	x29, x30, [sp], #0x20
+   5e198:      	ret
+   5e19c:      	bl	0x6be5c <_wrap_Graphics_createWithDefaultBackend+0x298>
+
+000000000005e1a0 <_wrap_new_VectorColor>:
+   5e1a0:      	stp	x29, x30, [sp, #-0x20]!
+   5e1a4:      	str	x19, [sp, #0x10]
+   5e1a8:      	mov	x29, sp
+   5e1ac:      	adrp	x0, 0x4a000
+   5e1b0:      	add	x0, x0, #0xf9
+   5e1b4:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5e1b8:      	mov	x19, x0
+   5e1bc:      	mov	w0, #0x18
+   5e1c0:      	bl	0x71580 <_Znwm@plt>
+   5e1c4:      	mov	x8, x0
+   5e1c8:      	mov	x0, x19
+   5e1cc:      	stp	xzr, xzr, [x8, #0x8]
+   5e1d0:      	str	xzr, [x8]
+   5e1d4:      	str	x8, [x19]
+   5e1d8:      	ldr	x19, [sp, #0x10]
+   5e1dc:      	ldp	x29, x30, [sp], #0x20
+   5e1e0:      	ret
+
+000000000005e1e4 <_wrap_new_VectorColor_size_t>:
+   5e1e4:      	stp	x29, x30, [sp, #-0x30]!
+   5e1e8:      	str	x21, [sp, #0x10]
+   5e1ec:      	stp	x20, x19, [sp, #0x20]
+   5e1f0:      	mov	x29, sp
+   5e1f4:      	mov	x21, x0
+   5e1f8:      	adrp	x0, 0x4a000
+   5e1fc:      	add	x0, x0, #0xf9
+   5e200:      	bl	0x5d820 <_wrap_Rect2F_origin_get+0x38>
+   5e204:      	mov	x19, x0
+   5e208:      	mov	w0, #0x18
+   5e20c:      	bl	0x71580 <_Znwm@plt>
+   5e210:      	mov	x20, x0
+   5e214:      	mov	x1, x21
+   5e218:      	bl	0x5e248 <_wrap_new_VectorColor_size_t+0x64>
+   5e21c:      	mov	x0, x19
+   5e220:      	str	x20, [x19]
+   5e224:      	ldp	x20, x19, [sp, #0x20]
+   5e228:      	ldr	x21, [sp, #0x10]
+   5e22c:      	ldp	x29, x30, [sp], #0x30
+   5e230:      	ret
+   5e234:      	mov	x19, x0
+   5e238:      	mov	x0, x20
+   5e23c:      	bl	0x71590 <_ZdlPv@plt>
+   5e240:      	mov	x0, x19
+   5e244:      	bl	0x6d7d0 <_wrap_Graphics_createWithDefaultBackend+0x1c0c>
+   5e248:      	stp	x29, x30, [sp, #-0x20]!
+   5e24c:      	stp	x20, x19, [sp, #0x10]
+   5e250:      	mov	x29, sp
+   5e254:      	stp	xzr, xzr, [x0]
+   5e258:      	str	xzr, [x0, #0x10]
+   5e25c:      	cbz	x1, 0x5e290 <_wrap_new_VectorColor_size_t+0xac>
+   5e260:      	mov	x20, x1
+   5e264:      	mov	x19, x0
+   5e268:      	bl	0x6bef0 <_wrap_Graphics_createWithDefaultBackend+0x32c>
+   5e26c:      	ldr	x8, [x19, #0x8]
+   5e270:      	mov	w10, #0x1
+   5e274:      	add	x9, x8, x20, lsl #4
+   5e278:      	stp	w10, wzr, [x8]
+   5e27c:      	str	xzr, [x8, #0x8]
+   5e280:      	add	x8, x8, #0x10
+   5e284:      	cmp	x8, x9
+   5e288:      	b.ne	0x5e278 <_wrap_new_VectorColor_size_t+0x94>
+   5e28c:      	str	x9, [x19, #0x8]
+   5e290:      	ldp	x20, x19, [sp, #0x10]
+   5e294:      	ldp	x29, x30, [sp], #0x20
+   5e298:      	ret
+   5e29c:      	ldr	x8, [x19]
+   5e2a0:      	mov	x20, x0
+   5e2a4:      	cbz	x8, 0x5e2b4 <_wrap_new_VectorColor_size_t+0xd0>
+   5e2a8:      	mov	x0, x8
+   5e2ac:      	str	x8, [x19, #0x8]
+   5e2b0:      	bl	0x71590 <_ZdlPv@plt>
+   5e2b4:      	mov	x0, x20
+   5e2b8:      	bl	0x6d7d0 <_wrap_Graphics_createWithDefaultBackend+0x1c0c>
+
+000000000005e2bc <_wrap_VectorColor_size>:
+   5e2bc:      	ldr	x8, [x0]
+   5e2c0:      	ldp	x8, x9, [x8]
+   5e2c4:      	sub	x8, x9, x8
+   5e2c8:      	asr	x0, x8, #4
+   5e2cc:      	ret
+
+000000000005e2d0 <_wrap_VectorColor_capacity>:
+   5e2d0:      	ldr	x8, [x0]
+   5e2d4:      	ldr	x9, [x8, #0x10]
+   5e2d8:      	ldr	x8, [x8]
+   5e2dc:      	sub	x8, x9, x8
+   5e2e0:      	asr	x0, x8, #4
+   5e2e4:      	ret
+
+000000000005e2e8 <_wrap_VectorColor_reserve>:
+   5e2e8:      	ldr	x0, [x0]
+   5e2ec:      	b	0x5e2f0 <_wrap_VectorColor_reserve+0x8>
+   5e2f0:      	stp	x29, x30, [sp, #-0x20]!
+   5e2f4:      	stp	x20, x19, [sp, #0x10]
+   5e2f8:      	mov	x29, sp
+   5e2fc:      	mov	x19, x0
+   5e300:      	ldr	x9, [x0, #0x10]!
+   5e304:      	ldr	x8, [x19]
+   5e308:      	sub	x9, x9, x8
+   5e30c:      	cmp	x1, x9, asr #4
+   5e310:      	b.ls	0x5e378 <_wrap_VectorColor_reserve+0x90>
+   5e314:      	lsr	x9, x1, #60
+   5e318:      	cbnz	x9, 0x5e384 <_wrap_VectorColor_reserve+0x9c>
+   5e31c:      	ldr	x9, [x19, #0x8]
+   5e320:      	sub	x20, x9, x8
+   5e324:      	bl	0x6bf44 <_wrap_Graphics_createWithDefaultBackend+0x380>
+   5e328:      	mov	x8, x0
+   5e32c:      	ldp	x10, x0, [x19]
+   5e330:      	add	x9, x8, x1, lsl #4
+   5e334:      	add	x8, x8, x20
+   5e338:      	mov	x11, x8
+   5e33c:      	cmp	x0, x10
+   5e340:      	b.eq	0x5e360 <_wrap_VectorColor_reserve+0x78>
+   5e344:      	ldur	q0, [x0, #-0x10]
+   5e348:      	sub	x0, x0, #0x10
+   5e34c:      	cmp	x0, x10
+   5e350:      	stur	q0, [x11, #-0x10]
+   5e354:      	sub	x11, x11, #0x10
+   5e358:      	b.ne	0x5e344 <_wrap_VectorColor_reserve+0x5c>
+   5e35c:      	ldr	x0, [x19]
+   5e360:      	stp	x11, x8, [x19]
+   5e364:      	str	x9, [x19, #0x10]
+   5e368:      	cbz	x0, 0x5e378 <_wrap_VectorColor_reserve+0x90>
+   5e36c:      	ldp	x20, x19, [sp, #0x10]
+   5e370:      	ldp	x29, x30, [sp], #0x20
+   5e374:      	b	0x71590 <_ZdlPv@plt>
+   5e378:      	ldp	x20, x19, [sp, #0x10]
+   5e37c:      	ldp	x29, x30, [sp], #0x20
+   5e380:      	ret
+   5e384:      	mov	x0, x19
+   5e388:      	bl	0x6bf30 <_wrap_Graphics_createWithDefaultBackend+0x36c>
+
+000000000005e38c <_wrap_VectorColor_empty>:
+   5e38c:      	ldr	x8, [x0]
+   5e390:      	ldp	x9, x8, [x8]
+   5e394:      	cmp	x9, x8
+   5e398:      	cset	w0, eq
+   5e39c:      	ret
+
+000000000005e3a0 <_wrap_VectorColor_clear>:
+   5e3a0:      	ldr	x8, [x0]
+   5e3a4:      	ldr	x9, [x8]
+   5e3a8:      	str	x9, [x8, #0x8]
+   5e3ac:      	ret
+
+000000000005e3b0 <_wrap_VectorColor_push_back>:
+   5e3b0:      	stp	x29, x30, [sp, #-0x30]!
+   5e3b4:      	str	x21, [sp, #0x10]
+   5e3b8:      	stp	x20, x19, [sp, #0x20]
+   5e3bc:      	mov	x29, sp
+   5e3c0:      	ldr	x19, [x0]

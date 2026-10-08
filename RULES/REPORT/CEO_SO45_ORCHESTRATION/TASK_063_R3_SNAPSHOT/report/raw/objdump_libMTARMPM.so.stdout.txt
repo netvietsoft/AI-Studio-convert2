@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTARMPM.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000000a240 <.text>:
+    a240:      	bti	c
+    a244:      	nop
+    a248:      	adr	x0, #0x110c8
+    a24c:      	b	0x16b00 <__cxa_finalize@plt>
+    a250:      	bti	c
+    a254:      	ret
+    a258:      	bti	c
+    a25c:      	b	0xa250 <.text+0x10>
+    a260:      	bti	c
+    a264:      	cbz	x0, 0xa270 <.text+0x30>
+    a268:      	mov	x16, x0
+    a26c:      	br	x16
+    a270:      	ret
+    a274:      	bti	c
+    a278:      	mov	x1, x0
+    a27c:      	nop
+    a280:      	adr	x0, #-0x20
+    a284:      	nop
+    a288:      	adr	x2, #0x11088
+    a28c:      	b	0x16b10 <__cxa_atexit@plt>
+    a290:      	bti	c
+    a294:      	nop
+    a298:      	adr	x3, #0x11078
+    a29c:      	b	0x16b20 <__register_atfork@plt>
+
+000000000000a2a0 <_Z21MTARMPMImplementationv>:
+    a2a0:      	mov	w0, #0x1
+    a2a4:      	ret
+
+000000000000a2a8 <_Z18MTARMPMSetLogLeveli>:
+    a2a8:      	ret
+
+000000000000a2ac <_Z16MTARMPMSetJavaVMPv>:
+    a2ac:      	stp	x29, x30, [sp, #-0x10]!
+    a2b0:      	mov	x29, sp
+    a2b4:      	bl	0x11ce8 <_Z20MTARMPMMusicGetSpeedPv+0x6fec>
+    a2b8:      	bl	0x11c78 <_Z20MTARMPMMusicGetSpeedPv+0x6f7c>
+    a2bc:      	ldp	x29, x30, [sp], #0x10
+    a2c0:      	b	0x10294 <_Z20MTARMPMMusicGetSpeedPv+0x5598>
+
+000000000000a2c4 <_Z19MTARMPMServiceStartv>:
+    a2c4:      	sub	sp, sp, #0x50
+    a2c8:      	stp	x29, x30, [sp, #0x20]
+    a2cc:      	str	x21, [sp, #0x30]
+    a2d0:      	stp	x20, x19, [sp, #0x40]
+    a2d4:      	add	x29, sp, #0x20
+    a2d8:      	mrs	x21, TPIDR_EL0
+    a2dc:      	ldr	x8, [x21, #0x28]
+    a2e0:      	stur	x8, [x29, #-0x8]
+    a2e4:      	add	x8, sp, #0x8
+    a2e8:      	bl	0xe970 <_Z20MTARMPMMusicGetSpeedPv+0x3c74>
+    a2ec:      	ldr	x0, [sp, #0x8]
+    a2f0:      	bl	0xeb5c <_Z20MTARMPMMusicGetSpeedPv+0x3e60>
+    a2f4:      	ldr	x20, [sp, #0x10]
+    a2f8:      	mov	w19, w0
+    a2fc:      	cbz	x20, 0xa328 <_Z19MTARMPMServiceStartv+0x64>
+    a300:      	add	x1, x20, #0x8
+    a304:      	mov	x0, #-0x1
+    a308:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a30c:      	cbnz	x0, 0xa328 <_Z19MTARMPMServiceStartv+0x64>
+    a310:      	ldr	x8, [x20]
+    a314:      	mov	x0, x20
+    a318:      	ldr	x8, [x8, #0x10]
+    a31c:      	blr	x8
+    a320:      	mov	x0, x20
+    a324:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a328:      	ldr	x8, [x21, #0x28]
+    a32c:      	ldur	x9, [x29, #-0x8]
+    a330:      	cmp	x8, x9
+    a334:      	b.ne	0xa374 <_Z19MTARMPMServiceStartv+0xb0>
+    a338:      	and	w0, w19, #0x1
+    a33c:      	ldp	x20, x19, [sp, #0x40]
+    a340:      	ldr	x21, [sp, #0x30]
+    a344:      	ldp	x29, x30, [sp, #0x20]
+    a348:      	add	sp, sp, #0x50
+    a34c:      	ret
+    a350:      	mov	x19, x0
+    a354:      	add	x0, sp, #0x8
+    a358:      	bl	0xa378 <_Z19MTARMPMServiceStartv+0xb4>
+    a35c:      	ldr	x8, [x21, #0x28]
+    a360:      	ldur	x9, [x29, #-0x8]
+    a364:      	cmp	x8, x9
+    a368:      	b.ne	0xa374 <_Z19MTARMPMServiceStartv+0xb0>
+    a36c:      	mov	x0, x19
+    a370:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    a374:      	bl	0x16b40 <__stack_chk_fail@plt>
+    a378:      	stp	x29, x30, [sp, #-0x20]!
+    a37c:      	str	x19, [sp, #0x10]
+    a380:      	mov	x29, sp
+    a384:      	ldr	x19, [x0, #0x8]
+    a388:      	cbz	x19, 0xa39c <_Z19MTARMPMServiceStartv+0xd8>
+    a38c:      	add	x1, x19, #0x8
+    a390:      	mov	x0, #-0x1
+    a394:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a398:      	cbz	x0, 0xa3a8 <_Z19MTARMPMServiceStartv+0xe4>
+    a39c:      	ldr	x19, [sp, #0x10]
+    a3a0:      	ldp	x29, x30, [sp], #0x20
+    a3a4:      	ret
+    a3a8:      	ldr	x8, [x19]
+    a3ac:      	mov	x0, x19
+    a3b0:      	ldr	x8, [x8, #0x10]
+    a3b4:      	blr	x8
+    a3b8:      	mov	x0, x19
+    a3bc:      	ldr	x19, [sp, #0x10]
+    a3c0:      	ldp	x29, x30, [sp], #0x20
+    a3c4:      	b	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+
+000000000000a3c8 <_Z19MTARMPMServicePausei>:
+    a3c8:      	sub	sp, sp, #0x40
+    a3cc:      	stp	x29, x30, [sp, #0x20]
+    a3d0:      	stp	x20, x19, [sp, #0x30]
+    a3d4:      	add	x29, sp, #0x20
+    a3d8:      	mrs	x20, TPIDR_EL0
+    a3dc:      	mov	w19, w0
+    a3e0:      	ldr	x8, [x20, #0x28]
+    a3e4:      	stur	x8, [x29, #-0x8]
+    a3e8:      	add	x8, sp, #0x8
+    a3ec:      	bl	0xe970 <_Z20MTARMPMMusicGetSpeedPv+0x3c74>
+    a3f0:      	ldr	x0, [sp, #0x8]
+    a3f4:      	cmp	w19, #0x1
+    a3f8:      	cset	w1, eq
+    a3fc:      	bl	0xecb8 <_Z20MTARMPMMusicGetSpeedPv+0x3fbc>
+    a400:      	ldr	x19, [sp, #0x10]
+    a404:      	cbz	x19, 0xa430 <_Z19MTARMPMServicePausei+0x68>
+    a408:      	add	x1, x19, #0x8
+    a40c:      	mov	x0, #-0x1
+    a410:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a414:      	cbnz	x0, 0xa430 <_Z19MTARMPMServicePausei+0x68>
+    a418:      	ldr	x8, [x19]
+    a41c:      	mov	x0, x19
+    a420:      	ldr	x8, [x8, #0x10]
+    a424:      	blr	x8
+    a428:      	mov	x0, x19
+    a42c:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a430:      	ldr	x8, [x20, #0x28]
+    a434:      	ldur	x9, [x29, #-0x8]
+    a438:      	cmp	x8, x9
+    a43c:      	b.ne	0xa474 <_Z19MTARMPMServicePausei+0xac>
+    a440:      	ldp	x20, x19, [sp, #0x30]
+    a444:      	ldp	x29, x30, [sp, #0x20]
+    a448:      	add	sp, sp, #0x40
+    a44c:      	ret
+    a450:      	mov	x19, x0
+    a454:      	add	x0, sp, #0x8
+    a458:      	bl	0xa378 <_Z19MTARMPMServiceStartv+0xb4>
+    a45c:      	ldr	x8, [x20, #0x28]
+    a460:      	ldur	x9, [x29, #-0x8]
+    a464:      	cmp	x8, x9
+    a468:      	b.ne	0xa474 <_Z19MTARMPMServicePausei+0xac>
+    a46c:      	mov	x0, x19
+    a470:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    a474:      	bl	0x16b40 <__stack_chk_fail@plt>
+
+000000000000a478 <_Z18MTARMPMServiceStopv>:
+    a478:      	sub	sp, sp, #0x40
+    a47c:      	stp	x29, x30, [sp, #0x20]
+    a480:      	stp	x20, x19, [sp, #0x30]
+    a484:      	add	x29, sp, #0x20
+    a488:      	mrs	x20, TPIDR_EL0
+    a48c:      	ldr	x8, [x20, #0x28]
+    a490:      	stur	x8, [x29, #-0x8]
+    a494:      	add	x8, sp, #0x8
+    a498:      	bl	0xe970 <_Z20MTARMPMMusicGetSpeedPv+0x3c74>
+    a49c:      	ldr	x0, [sp, #0x8]
+    a4a0:      	bl	0xed24 <_Z20MTARMPMMusicGetSpeedPv+0x4028>
+    a4a4:      	ldr	x19, [sp, #0x10]
+    a4a8:      	cbz	x19, 0xa4d4 <_Z18MTARMPMServiceStopv+0x5c>
+    a4ac:      	add	x1, x19, #0x8
+    a4b0:      	mov	x0, #-0x1
+    a4b4:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a4b8:      	cbnz	x0, 0xa4d4 <_Z18MTARMPMServiceStopv+0x5c>
+    a4bc:      	ldr	x8, [x19]
+    a4c0:      	mov	x0, x19
+    a4c4:      	ldr	x8, [x8, #0x10]
+    a4c8:      	blr	x8
+    a4cc:      	mov	x0, x19
+    a4d0:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a4d4:      	ldr	x8, [x20, #0x28]
+    a4d8:      	ldur	x9, [x29, #-0x8]
+    a4dc:      	cmp	x8, x9
+    a4e0:      	b.ne	0xa518 <_Z18MTARMPMServiceStopv+0xa0>
+    a4e4:      	ldp	x20, x19, [sp, #0x30]
+    a4e8:      	ldp	x29, x30, [sp, #0x20]
+    a4ec:      	add	sp, sp, #0x40
+    a4f0:      	ret
+    a4f4:      	mov	x19, x0
+    a4f8:      	add	x0, sp, #0x8
+    a4fc:      	bl	0xa378 <_Z19MTARMPMServiceStartv+0xb4>
+    a500:      	ldr	x8, [x20, #0x28]
+    a504:      	ldur	x9, [x29, #-0x8]
+    a508:      	cmp	x8, x9
+    a50c:      	b.ne	0xa518 <_Z18MTARMPMServiceStopv+0xa0>
+    a510:      	mov	x0, x19
+    a514:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    a518:      	bl	0x16b40 <__stack_chk_fail@plt>
+
+000000000000a51c <_Z23MTARMPMServiceIsStoppedv>:
+    a51c:      	sub	sp, sp, #0x50
+    a520:      	stp	x29, x30, [sp, #0x20]
+    a524:      	str	x21, [sp, #0x30]
+    a528:      	stp	x20, x19, [sp, #0x40]
+    a52c:      	add	x29, sp, #0x20
+    a530:      	mrs	x21, TPIDR_EL0
+    a534:      	ldr	x8, [x21, #0x28]
+    a538:      	stur	x8, [x29, #-0x8]
+    a53c:      	add	x8, sp, #0x8
+    a540:      	bl	0xe970 <_Z20MTARMPMMusicGetSpeedPv+0x3c74>
+    a544:      	ldr	x0, [sp, #0x8]
+    a548:      	bl	0xee50 <_Z20MTARMPMMusicGetSpeedPv+0x4154>
+    a54c:      	ldr	x20, [sp, #0x10]
+    a550:      	mov	w19, w0
+    a554:      	cbz	x20, 0xa580 <_Z23MTARMPMServiceIsStoppedv+0x64>
+    a558:      	add	x1, x20, #0x8
+    a55c:      	mov	x0, #-0x1
+    a560:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a564:      	cbnz	x0, 0xa580 <_Z23MTARMPMServiceIsStoppedv+0x64>
+    a568:      	ldr	x8, [x20]
+    a56c:      	mov	x0, x20
+    a570:      	ldr	x8, [x8, #0x10]
+    a574:      	blr	x8
+    a578:      	mov	x0, x20
+    a57c:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a580:      	ldr	x8, [x21, #0x28]
+    a584:      	ldur	x9, [x29, #-0x8]
+    a588:      	cmp	x8, x9
+    a58c:      	b.ne	0xa5cc <_Z23MTARMPMServiceIsStoppedv+0xb0>
+    a590:      	and	w0, w19, #0x1
+    a594:      	ldp	x20, x19, [sp, #0x40]
+    a598:      	ldr	x21, [sp, #0x30]
+    a59c:      	ldp	x29, x30, [sp, #0x20]
+    a5a0:      	add	sp, sp, #0x50
+    a5a4:      	ret
+    a5a8:      	mov	x19, x0
+    a5ac:      	add	x0, sp, #0x8
+    a5b0:      	bl	0xa378 <_Z19MTARMPMServiceStartv+0xb4>
+    a5b4:      	ldr	x8, [x21, #0x28]
+    a5b8:      	ldur	x9, [x29, #-0x8]
+    a5bc:      	cmp	x8, x9
+    a5c0:      	b.ne	0xa5cc <_Z23MTARMPMServiceIsStoppedv+0xb0>
+    a5c4:      	mov	x0, x19
+    a5c8:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    a5cc:      	bl	0x16b40 <__stack_chk_fail@plt>
+
+000000000000a5d0 <_Z24MTARMPMCreateMusicHandlev>:
+    a5d0:      	stp	x29, x30, [sp, #-0x20]!
+    a5d4:      	str	x19, [sp, #0x10]
+    a5d8:      	mov	x29, sp
+    a5dc:      	mov	w0, #0x40
+    a5e0:      	bl	0x16b50 <_Znwm@plt>
+    a5e4:      	mov	x19, x0
+    a5e8:      	stp	xzr, xzr, [x0]
+    a5ec:      	str	xzr, [x0, #0x30]
+    a5f0:      	bl	0xa8b8 <_Z16MTARMPMMusicLoadPvPKc+0x150>
+    a5f4:      	mov	x0, x19
+    a5f8:      	ldr	x19, [sp, #0x10]
+    a5fc:      	ldp	x29, x30, [sp], #0x20
+    a600:      	ret
+
+000000000000a604 <_Z25MTARMPMDestroyMusicHandleRPv>:
+    a604:      	stp	x29, x30, [sp, #-0x20]!
+    a608:      	stp	x20, x19, [sp, #0x10]
+    a60c:      	mov	x29, sp
+    a610:      	ldr	x20, [x0]
+    a614:      	cbz	x20, 0xa630 <_Z25MTARMPMDestroyMusicHandleRPv+0x2c>
+    a618:      	mov	x19, x0
+    a61c:      	mov	x0, x20
+    a620:      	bl	0xa63c <_Z25MTARMPMDestroyMusicHandleRPv+0x38>
+    a624:      	mov	x0, x20
+    a628:      	bl	0x16b60 <_ZdlPv@plt>
+    a62c:      	str	xzr, [x19]
+    a630:      	ldp	x20, x19, [sp, #0x10]
+    a634:      	ldp	x29, x30, [sp], #0x20
+    a638:      	ret
+    a63c:      	stp	x29, x30, [sp, #-0x20]!
+    a640:      	stp	x20, x19, [sp, #0x10]
+    a644:      	mov	x29, sp
+    a648:      	mov	x19, x0
+    a64c:      	bl	0xa8b8 <_Z16MTARMPMMusicLoadPvPKc+0x150>
+    a650:      	ldr	x0, [x19, #0x30]
+    a654:      	add	x20, x19, #0x10
+    a658:      	str	xzr, [x19, #0x30]
+    a65c:      	cmp	x0, x20
+    a660:      	b.eq	0xa670 <_Z25MTARMPMDestroyMusicHandleRPv+0x6c>
+    a664:      	cbz	x0, 0xa6b4 <_Z25MTARMPMDestroyMusicHandleRPv+0xb0>
+    a668:      	mov	w8, #0x5
+    a66c:      	b	0xa678 <_Z25MTARMPMDestroyMusicHandleRPv+0x74>
+    a670:      	mov	w8, #0x4
+    a674:      	mov	x0, x20
+    a678:      	ldr	x9, [x0]
+    a67c:      	ldr	x8, [x9, x8, lsl #3]
+    a680:      	blr	x8
+    a684:      	ldr	x9, [x19, #0x30]
+    a688:      	cmp	x9, x20
+    a68c:      	b.eq	0xa6a0 <_Z25MTARMPMDestroyMusicHandleRPv+0x9c>
+    a690:      	cbz	x9, 0xa6b4 <_Z25MTARMPMDestroyMusicHandleRPv+0xb0>
+    a694:      	mov	w8, #0x5
+    a698:      	mov	x20, x9
+    a69c:      	b	0xa6a4 <_Z25MTARMPMDestroyMusicHandleRPv+0xa0>
+    a6a0:      	mov	w8, #0x4
+    a6a4:      	ldr	x9, [x20]
+    a6a8:      	mov	x0, x20
+    a6ac:      	ldr	x8, [x9, x8, lsl #3]
+    a6b0:      	blr	x8
+    a6b4:      	mov	x0, x19
+    a6b8:      	ldp	x20, x19, [sp, #0x10]
+    a6bc:      	ldp	x29, x30, [sp], #0x20
+    a6c0:      	b	0xa9f4 <_Z16MTARMPMMusicLoadPvPKc+0x28c>
+
+000000000000a6c4 <_Z25MTARMPMMusicSetFuncStructPvS_>:
+    a6c4:      	cbz	x0, 0xa6d0 <_Z25MTARMPMMusicSetFuncStructPvS_+0xc>
+    a6c8:      	add	x0, x0, #0x10
+    a6cc:      	b	0xa6d4 <_Z25MTARMPMMusicSetFuncStructPvS_+0x10>
+    a6d0:      	ret
+    a6d4:      	sub	sp, sp, #0x70
+    a6d8:      	stp	x29, x30, [sp, #0x40]
+    a6dc:      	str	x21, [sp, #0x50]
+    a6e0:      	stp	x20, x19, [sp, #0x60]
+    a6e4:      	add	x29, sp, #0x40
+    a6e8:      	mrs	x20, TPIDR_EL0
+    a6ec:      	mov	x19, x0
+    a6f0:      	mov	x0, sp
+    a6f4:      	ldr	x8, [x20, #0x28]
+    a6f8:      	mov	x21, sp
+    a6fc:      	stur	x8, [x29, #-0x8]
+    a700:      	bl	0xaea8 <_Z20MTARMPMMusicGetSpeedPv+0x1ac>
+    a704:      	mov	x0, sp
+    a708:      	mov	x1, x19
+    a70c:      	bl	0xaf10 <_Z20MTARMPMMusicGetSpeedPv+0x214>
+    a710:      	ldr	x0, [sp, #0x20]
+    a714:      	cmp	x0, x21
+    a718:      	b.eq	0xa728 <_Z25MTARMPMMusicSetFuncStructPvS_+0x64>
+    a71c:      	cbz	x0, 0xa73c <_Z25MTARMPMMusicSetFuncStructPvS_+0x78>
+    a720:      	mov	w8, #0x5
+    a724:      	b	0xa730 <_Z25MTARMPMMusicSetFuncStructPvS_+0x6c>
+    a728:      	mov	w8, #0x4
+    a72c:      	mov	x0, sp
+    a730:      	ldr	x9, [x0]
+    a734:      	ldr	x8, [x9, x8, lsl #3]
+    a738:      	blr	x8
+    a73c:      	ldr	x8, [x20, #0x28]
+    a740:      	ldur	x9, [x29, #-0x8]
+    a744:      	cmp	x8, x9
+    a748:      	b.ne	0xa764 <_Z25MTARMPMMusicSetFuncStructPvS_+0xa0>
+    a74c:      	mov	x0, x19
+    a750:      	ldp	x20, x19, [sp, #0x60]
+    a754:      	ldr	x21, [sp, #0x50]
+    a758:      	ldp	x29, x30, [sp, #0x40]
+    a75c:      	add	sp, sp, #0x70
+    a760:      	ret
+    a764:      	bl	0x16b40 <__stack_chk_fail@plt>
+
+000000000000a768 <_Z16MTARMPMMusicLoadPvPKc>:
+    a768:      	sub	sp, sp, #0x70
+    a76c:      	stp	x29, x30, [sp, #0x40]
+    a770:      	stp	x22, x21, [sp, #0x50]
+    a774:      	stp	x20, x19, [sp, #0x60]
+    a778:      	add	x29, sp, #0x40
+    a77c:      	mrs	x22, TPIDR_EL0
+    a780:      	ldr	x8, [x22, #0x28]
+    a784:      	stur	x8, [x29, #-0x8]
+    a788:      	cbz	x0, 0xa854 <_Z16MTARMPMMusicLoadPvPKc+0xec>
+    a78c:      	mov	x19, x0
+    a790:      	ldr	x0, [x0]
+    a794:      	mov	x20, x1
+    a798:      	cbz	x0, 0xa7a8 <_Z16MTARMPMMusicLoadPvPKc+0x40>
+    a79c:      	bl	0xd284 <_Z20MTARMPMMusicGetSpeedPv+0x2588>
+    a7a0:      	mov	x0, x19
+    a7a4:      	bl	0xa8b8 <_Z16MTARMPMMusicLoadPvPKc+0x150>
+    a7a8:      	add	x8, sp, #0x18
+    a7ac:      	bl	0xe970 <_Z20MTARMPMMusicGetSpeedPv+0x3c74>
+    a7b0:      	ldr	x21, [sp, #0x18]
+    a7b4:      	mov	x0, sp
+    a7b8:      	mov	x1, x20
+    a7bc:      	bl	0xa90c <_Z16MTARMPMMusicLoadPvPKc+0x1a4>
+    a7c0:      	sub	x8, x29, #0x18
+    a7c4:      	mov	x1, sp
+    a7c8:      	mov	x0, x21
+    a7cc:      	bl	0xedb4 <_Z20MTARMPMMusicGetSpeedPv+0x40b8>
+    a7d0:      	sub	x1, x29, #0x18
+    a7d4:      	mov	x0, x19
+    a7d8:      	bl	0xa998 <_Z16MTARMPMMusicLoadPvPKc+0x230>
+    a7dc:      	ldur	x20, [x29, #-0x10]
+    a7e0:      	cbz	x20, 0xa80c <_Z16MTARMPMMusicLoadPvPKc+0xa4>
+    a7e4:      	add	x1, x20, #0x8
+    a7e8:      	mov	x0, #-0x1
+    a7ec:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a7f0:      	cbnz	x0, 0xa80c <_Z16MTARMPMMusicLoadPvPKc+0xa4>
+    a7f4:      	ldr	x8, [x20]
+    a7f8:      	mov	x0, x20
+    a7fc:      	ldr	x8, [x8, #0x10]
+    a800:      	blr	x8
+    a804:      	mov	x0, x20
+    a808:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a80c:      	ldrb	w8, [sp]
+    a810:      	tbz	w8, #0x0, 0xa81c <_Z16MTARMPMMusicLoadPvPKc+0xb4>
+    a814:      	ldr	x0, [sp, #0x10]
+    a818:      	bl	0x16b60 <_ZdlPv@plt>
+    a81c:      	ldr	x20, [sp, #0x20]
+    a820:      	cbz	x20, 0xa84c <_Z16MTARMPMMusicLoadPvPKc+0xe4>
+    a824:      	add	x1, x20, #0x8
+    a828:      	mov	x0, #-0x1
+    a82c:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a830:      	cbnz	x0, 0xa84c <_Z16MTARMPMMusicLoadPvPKc+0xe4>
+    a834:      	ldr	x8, [x20]
+    a838:      	mov	x0, x20
+    a83c:      	ldr	x8, [x8, #0x10]
+    a840:      	blr	x8
+    a844:      	mov	x0, x20
+    a848:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a84c:      	mov	x0, x19
+    a850:      	bl	0xaa44 <_Z16MTARMPMMusicLoadPvPKc+0x2dc>
+    a854:      	ldr	x8, [x22, #0x28]
+    a858:      	ldur	x9, [x29, #-0x8]
+    a85c:      	cmp	x8, x9
+    a860:      	b.ne	0xa8b4 <_Z16MTARMPMMusicLoadPvPKc+0x14c>
+    a864:      	ldp	x20, x19, [sp, #0x60]
+    a868:      	ldp	x22, x21, [sp, #0x50]
+    a86c:      	ldp	x29, x30, [sp, #0x40]
+    a870:      	add	sp, sp, #0x70
+    a874:      	ret
+    a878:      	ldrb	w8, [sp]
+    a87c:      	mov	x19, x0
+    a880:      	tbz	w8, #0x0, 0xa894 <_Z16MTARMPMMusicLoadPvPKc+0x12c>
+    a884:      	ldr	x0, [sp, #0x10]
+    a888:      	bl	0x16b60 <_ZdlPv@plt>
+    a88c:      	b	0xa894 <_Z16MTARMPMMusicLoadPvPKc+0x12c>
+    a890:      	mov	x19, x0
+    a894:      	add	x0, sp, #0x18
+    a898:      	bl	0xa378 <_Z19MTARMPMServiceStartv+0xb4>
+    a89c:      	ldr	x8, [x22, #0x28]
+    a8a0:      	ldur	x9, [x29, #-0x8]
+    a8a4:      	cmp	x8, x9
+    a8a8:      	b.ne	0xa8b4 <_Z16MTARMPMMusicLoadPvPKc+0x14c>
+    a8ac:      	mov	x0, x19
+    a8b0:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    a8b4:      	bl	0x16b40 <__stack_chk_fail@plt>
+    a8b8:      	stp	x29, x30, [sp, #-0x20]!
+    a8bc:      	str	x19, [sp, #0x10]
+    a8c0:      	mov	x29, sp
+    a8c4:      	ldr	x19, [x0, #0x8]
+    a8c8:      	stp	xzr, xzr, [x0]
+    a8cc:      	cbz	x19, 0xa8e0 <_Z16MTARMPMMusicLoadPvPKc+0x178>
+    a8d0:      	add	x1, x19, #0x8
+    a8d4:      	mov	x0, #-0x1
+    a8d8:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a8dc:      	cbz	x0, 0xa8ec <_Z16MTARMPMMusicLoadPvPKc+0x184>
+    a8e0:      	ldr	x19, [sp, #0x10]
+    a8e4:      	ldp	x29, x30, [sp], #0x20
+    a8e8:      	ret
+    a8ec:      	ldr	x8, [x19]
+    a8f0:      	mov	x0, x19
+    a8f4:      	ldr	x8, [x8, #0x10]
+    a8f8:      	blr	x8
+    a8fc:      	mov	x0, x19
+    a900:      	ldr	x19, [sp, #0x10]
+    a904:      	ldp	x29, x30, [sp], #0x20
+    a908:      	b	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a90c:      	stp	x29, x30, [sp, #-0x30]!
+    a910:      	stp	x22, x21, [sp, #0x10]
+    a914:      	stp	x20, x19, [sp, #0x20]
+    a918:      	mov	x29, sp
+    a91c:      	mov	x19, x0
+    a920:      	mov	x0, x1
+    a924:      	mov	x21, x1
+    a928:      	bl	0x16b70 <strlen@plt>
+    a92c:      	cmn	x0, #0x10
+    a930:      	b.hs	0xa990 <_Z16MTARMPMMusicLoadPvPKc+0x228>
+    a934:      	mov	x20, x0
+    a938:      	cmp	x0, #0x17
+    a93c:      	b.hs	0xa950 <_Z16MTARMPMMusicLoadPvPKc+0x1e8>
+    a940:      	lsl	w8, w20, #1
+    a944:      	strb	w8, [x19], #0x1
+    a948:      	cbnz	x20, 0xa96c <_Z16MTARMPMMusicLoadPvPKc+0x204>
+    a94c:      	b	0xa97c <_Z16MTARMPMMusicLoadPvPKc+0x214>
+    a950:      	orr	x22, x20, #0xf
+    a954:      	add	x0, x22, #0x1
+    a958:      	bl	0x16b50 <_Znwm@plt>
+    a95c:      	add	x8, x22, #0x2
+    a960:      	stp	x20, x0, [x19, #0x8]
+    a964:      	str	x8, [x19]
+    a968:      	mov	x19, x0
+    a96c:      	mov	x0, x19
+    a970:      	mov	x1, x21
+    a974:      	mov	x2, x20
+    a978:      	bl	0x16b80 <memmove@plt>
+    a97c:      	strb	wzr, [x19, x20]
+    a980:      	ldp	x20, x19, [sp, #0x20]
+    a984:      	ldp	x22, x21, [sp, #0x10]
+    a988:      	ldp	x29, x30, [sp], #0x30
+    a98c:      	ret
+    a990:      	mov	x0, x19
+    a994:      	bl	0xae14 <_Z20MTARMPMMusicGetSpeedPv+0x118>
+    a998:      	stp	x29, x30, [sp, #-0x20]!
+    a99c:      	stp	x20, x19, [sp, #0x10]
+    a9a0:      	mov	x29, sp
+    a9a4:      	ldr	q0, [x1]
+    a9a8:      	stp	xzr, xzr, [x1]
+    a9ac:      	mov	x19, x0
+    a9b0:      	ldr	x20, [x0, #0x8]
+    a9b4:      	str	q0, [x0]
+    a9b8:      	cbz	x20, 0xa9e4 <_Z16MTARMPMMusicLoadPvPKc+0x27c>
+    a9bc:      	add	x1, x20, #0x8
+    a9c0:      	mov	x0, #-0x1
+    a9c4:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    a9c8:      	cbnz	x0, 0xa9e4 <_Z16MTARMPMMusicLoadPvPKc+0x27c>
+    a9cc:      	ldr	x8, [x20]
+    a9d0:      	mov	x0, x20
+    a9d4:      	ldr	x8, [x8, #0x10]
+    a9d8:      	blr	x8
+    a9dc:      	mov	x0, x20
+    a9e0:      	bl	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    a9e4:      	mov	x0, x19
+    a9e8:      	ldp	x20, x19, [sp, #0x10]
+    a9ec:      	ldp	x29, x30, [sp], #0x20
+    a9f0:      	ret
+    a9f4:      	stp	x29, x30, [sp, #-0x20]!
+    a9f8:      	str	x19, [sp, #0x10]
+    a9fc:      	mov	x29, sp
+    aa00:      	ldr	x19, [x0, #0x8]
+    aa04:      	cbz	x19, 0xaa18 <_Z16MTARMPMMusicLoadPvPKc+0x2b0>
+    aa08:      	add	x1, x19, #0x8
+    aa0c:      	mov	x0, #-0x1
+    aa10:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    aa14:      	cbz	x0, 0xaa24 <_Z16MTARMPMMusicLoadPvPKc+0x2bc>
+    aa18:      	ldr	x19, [sp, #0x10]
+    aa1c:      	ldp	x29, x30, [sp], #0x20
+    aa20:      	ret
+    aa24:      	ldr	x8, [x19]
+    aa28:      	mov	x0, x19
+    aa2c:      	ldr	x8, [x8, #0x10]
+    aa30:      	blr	x8
+    aa34:      	mov	x0, x19
+    aa38:      	ldr	x19, [sp, #0x10]
+    aa3c:      	ldp	x29, x30, [sp], #0x20
+    aa40:      	b	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    aa44:      	sub	sp, sp, #0x90
+    aa48:      	stp	x29, x30, [sp, #0x60]
+    aa4c:      	str	x21, [sp, #0x70]
+    aa50:      	stp	x20, x19, [sp, #0x80]
+    aa54:      	add	x29, sp, #0x60
+    aa58:      	mrs	x21, TPIDR_EL0
+    aa5c:      	ldr	x8, [x21, #0x28]
+    aa60:      	stur	x8, [x29, #-0x8]
+    aa64:      	ldr	x19, [x0]
+    aa68:      	cbz	x19, 0xaaec <_Z16MTARMPMMusicLoadPvPKc+0x384>
+    aa6c:      	mov	x20, x0
+    aa70:      	nop
+    aa74:      	adr	x1, #-0x628a
+    aa78:      	add	x0, sp, #0x8
+    aa7c:      	bl	0xa90c <_Z16MTARMPMMusicLoadPvPKc+0x1a4>
+    aa80:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    aa84:      	add	x8, x8, #0x338
+    aa88:      	nop
+    aa8c:      	adr	x9, #0x298
+    aa90:      	stp	xzr, x20, [sp, #0x30]
+    aa94:      	add	x20, sp, #0x20
+    aa98:      	stp	x8, x9, [sp, #0x20]
+    aa9c:      	str	x20, [sp, #0x40]
+    aaa0:      	add	x1, sp, #0x8
+    aaa4:      	add	x2, sp, #0x20
+    aaa8:      	mov	x0, x19
+    aaac:      	bl	0xd9a0 <_Z20MTARMPMMusicGetSpeedPv+0x2ca4>
+    aab0:      	ldr	x0, [sp, #0x40]
+    aab4:      	cmp	x0, x20
+    aab8:      	b.eq	0xaac8 <_Z16MTARMPMMusicLoadPvPKc+0x360>
+    aabc:      	cbz	x0, 0xaadc <_Z16MTARMPMMusicLoadPvPKc+0x374>
+    aac0:      	mov	w8, #0x5
+    aac4:      	b	0xaad0 <_Z16MTARMPMMusicLoadPvPKc+0x368>
+    aac8:      	mov	w8, #0x4
+    aacc:      	add	x0, sp, #0x20
+    aad0:      	ldr	x9, [x0]
+    aad4:      	ldr	x8, [x9, x8, lsl #3]
+    aad8:      	blr	x8
+    aadc:      	ldrb	w8, [sp, #0x8]
+    aae0:      	tbz	w8, #0x0, 0xaaec <_Z16MTARMPMMusicLoadPvPKc+0x384>
+    aae4:      	ldr	x0, [sp, #0x18]
+    aae8:      	bl	0x16b60 <_ZdlPv@plt>
+    aaec:      	ldr	x8, [x21, #0x28]
+    aaf0:      	ldur	x9, [x29, #-0x8]
+    aaf4:      	cmp	x8, x9
+    aaf8:      	b.ne	0xab6c <_Z16MTARMPMMusicLoadPvPKc+0x404>
+    aafc:      	ldp	x20, x19, [sp, #0x80]
+    ab00:      	ldr	x21, [sp, #0x70]
+    ab04:      	ldp	x29, x30, [sp, #0x60]
+    ab08:      	add	sp, sp, #0x90
+    ab0c:      	ret
+    ab10:      	ldr	x8, [sp, #0x40]
+    ab14:      	mov	x19, x0
+    ab18:      	cmp	x8, x20
+    ab1c:      	b.ne	0xab2c <_Z16MTARMPMMusicLoadPvPKc+0x3c4>
+    ab20:      	mov	w9, #0x4
+    ab24:      	add	x8, sp, #0x20
+    ab28:      	b	0xab34 <_Z16MTARMPMMusicLoadPvPKc+0x3cc>
+    ab2c:      	cbz	x8, 0xab44 <_Z16MTARMPMMusicLoadPvPKc+0x3dc>
+    ab30:      	mov	w9, #0x5
+    ab34:      	ldr	x10, [x8]
+    ab38:      	mov	x0, x8
+    ab3c:      	ldr	x9, [x10, x9, lsl #3]
+    ab40:      	blr	x9
+    ab44:      	ldrb	w8, [sp, #0x8]
+    ab48:      	tbz	w8, #0x0, 0xab54 <_Z16MTARMPMMusicLoadPvPKc+0x3ec>
+    ab4c:      	ldr	x0, [sp, #0x18]
+    ab50:      	bl	0x16b60 <_ZdlPv@plt>
+    ab54:      	ldr	x8, [x21, #0x28]
+    ab58:      	ldur	x9, [x29, #-0x8]
+    ab5c:      	cmp	x8, x9
+    ab60:      	b.ne	0xab6c <_Z16MTARMPMMusicLoadPvPKc+0x404>
+    ab64:      	mov	x0, x19
+    ab68:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    ab6c:      	bl	0x16b40 <__stack_chk_fail@plt>
+
+000000000000ab70 <_Z22MTARMPMMusicFromMemoryPvPcj>:
+    ab70:      	stp	x29, x30, [sp, #-0x20]!
+    ab74:      	str	x19, [sp, #0x10]
+    ab78:      	mov	x29, sp
+    ab7c:      	cbz	x0, 0xaba0 <_Z22MTARMPMMusicFromMemoryPvPcj+0x30>
+    ab80:      	mov	x19, x0
+    ab84:      	ldr	x0, [x0]
+    ab88:      	cbz	x0, 0xaba0 <_Z22MTARMPMMusicFromMemoryPvPcj+0x30>
+    ab8c:      	bl	0xd284 <_Z20MTARMPMMusicGetSpeedPv+0x2588>
+    ab90:      	mov	x0, x19
+    ab94:      	ldr	x19, [sp, #0x10]
+    ab98:      	ldp	x29, x30, [sp], #0x20
+    ab9c:      	b	0xa8b8 <_Z16MTARMPMMusicLoadPvPKc+0x150>
+    aba0:      	ldr	x19, [sp, #0x10]
+    aba4:      	ldp	x29, x30, [sp], #0x20
+    aba8:      	ret
+
+000000000000abac <_Z16MTARMPMMusicPlayPv>:
+    abac:      	cbz	x0, 0xabbc <_Z16MTARMPMMusicPlayPv+0x10>
+    abb0:      	ldr	x0, [x0]
+    abb4:      	cbz	x0, 0xabbc <_Z16MTARMPMMusicPlayPv+0x10>
+    abb8:      	b	0xd4ec <_Z20MTARMPMMusicGetSpeedPv+0x27f0>
+    abbc:      	ret
+
+000000000000abc0 <_Z17MTARMPMMusicPausePv>:
+    abc0:      	cbz	x0, 0xabd0 <_Z17MTARMPMMusicPausePv+0x10>
+    abc4:      	ldr	x0, [x0]
+    abc8:      	cbz	x0, 0xabd0 <_Z17MTARMPMMusicPausePv+0x10>
+    abcc:      	b	0xd49c <_Z20MTARMPMMusicGetSpeedPv+0x27a0>
+    abd0:      	ret
+
+000000000000abd4 <_Z16MTARMPMMusicStopPv>:
+    abd4:      	cbz	x0, 0xabe4 <_Z16MTARMPMMusicStopPv+0x10>
+    abd8:      	ldr	x0, [x0]
+    abdc:      	cbz	x0, 0xabe4 <_Z16MTARMPMMusicStopPv+0x10>
+    abe0:      	b	0xd65c <_Z20MTARMPMMusicGetSpeedPv+0x2960>
+    abe4:      	ret
+
+000000000000abe8 <_Z19MTARMPMMusicDisposePv>:
+    abe8:      	cbz	x0, 0xabf8 <_Z19MTARMPMMusicDisposePv+0x10>
+    abec:      	ldr	x0, [x0]
+    abf0:      	cbz	x0, 0xabf8 <_Z19MTARMPMMusicDisposePv+0x10>
+    abf4:      	b	0xd284 <_Z20MTARMPMMusicGetSpeedPv+0x2588>
+    abf8:      	ret
+
+000000000000abfc <_Z21MTARMPMMusicIsPlayingPv>:
+    abfc:      	cbz	x0, 0xac1c <_Z21MTARMPMMusicIsPlayingPv+0x20>
+    ac00:      	ldr	x0, [x0]
+    ac04:      	cbz	x0, 0xac1c <_Z21MTARMPMMusicIsPlayingPv+0x20>
+    ac08:      	stp	x29, x30, [sp, #-0x10]!
+    ac0c:      	mov	x29, sp
+    ac10:      	bl	0xd474 <_Z20MTARMPMMusicGetSpeedPv+0x2778>
+    ac14:      	and	w0, w0, #0x1
+    ac18:      	ldp	x29, x30, [sp], #0x10
+    ac1c:      	ret
+
+000000000000ac20 <_Z24MTARMPMMusicGetLoopCountPv>:
+    ac20:      	cbz	x0, 0xac30 <_Z24MTARMPMMusicGetLoopCountPv+0x10>
+    ac24:      	ldr	x0, [x0]
+    ac28:      	cbz	x0, 0xac30 <_Z24MTARMPMMusicGetLoopCountPv+0x10>
+    ac2c:      	b	0xd454 <_Z20MTARMPMMusicGetSpeedPv+0x2758>
+    ac30:      	mov	w0, wzr
+    ac34:      	ret
+
+000000000000ac38 <_Z23MTARMPMMusicGetDurationPv>:
+    ac38:      	cbz	x0, 0xac48 <_Z23MTARMPMMusicGetDurationPv+0x10>
+    ac3c:      	ldr	x0, [x0]
+    ac40:      	cbz	x0, 0xac48 <_Z23MTARMPMMusicGetDurationPv+0x10>
+    ac44:      	b	0xd8f4 <_Z20MTARMPMMusicGetSpeedPv+0x2bf8>
+    ac48:      	movi	d0, #0000000000000000
+    ac4c:      	ret
+
+000000000000ac50 <_Z22MTARMPMMusicSetLoopingPvi>:
+    ac50:      	cbz	x0, 0xac68 <_Z22MTARMPMMusicSetLoopingPvi+0x18>
+    ac54:      	ldr	x0, [x0]
+    ac58:      	cbz	x0, 0xac68 <_Z22MTARMPMMusicSetLoopingPvi+0x18>
+    ac5c:      	cmp	w1, #0x0
+    ac60:      	cset	w1, ne
+    ac64:      	b	0xd59c <_Z20MTARMPMMusicGetSpeedPv+0x28a0>
+    ac68:      	ret
+
+000000000000ac6c <_Z22MTARMPMMusicGetLoopingPv>:
+    ac6c:      	cbz	x0, 0xac8c <_Z22MTARMPMMusicGetLoopingPv+0x20>
+    ac70:      	ldr	x0, [x0]
+    ac74:      	cbz	x0, 0xac8c <_Z22MTARMPMMusicGetLoopingPv+0x20>
+    ac78:      	stp	x29, x30, [sp, #-0x10]!
+    ac7c:      	mov	x29, sp
+    ac80:      	bl	0xd42c <_Z20MTARMPMMusicGetSpeedPv+0x2730>
+    ac84:      	and	w0, w0, #0x1
+    ac88:      	ldp	x29, x30, [sp], #0x10
+    ac8c:      	ret
+
+000000000000ac90 <_Z21MTARMPMMusicSetVolumePvf>:
+    ac90:      	cbz	x0, 0xaca0 <_Z21MTARMPMMusicSetVolumePvf+0x10>
+    ac94:      	ldr	x0, [x0]
+    ac98:      	cbz	x0, 0xaca0 <_Z21MTARMPMMusicSetVolumePvf+0x10>
+    ac9c:      	b	0xd5f8 <_Z20MTARMPMMusicGetSpeedPv+0x28fc>
+    aca0:      	ret
+
+000000000000aca4 <_Z21MTARMPMMusicGetVolumePv>:
+    aca4:      	cbz	x0, 0xacb4 <_Z21MTARMPMMusicGetVolumePv+0x10>
+    aca8:      	ldr	x0, [x0]
+    acac:      	cbz	x0, 0xacb4 <_Z21MTARMPMMusicGetVolumePv+0x10>
+    acb0:      	b	0xd654 <_Z20MTARMPMMusicGetSpeedPv+0x2958>
+    acb4:      	fmov	s0, #1.00000000
+    acb8:      	ret
+
+000000000000acbc <_Z23MTARMPMMusicSetPositionPvf>:
+    acbc:      	cbz	x0, 0xaccc <_Z23MTARMPMMusicSetPositionPvf+0x10>
+    acc0:      	ldr	x0, [x0]
+    acc4:      	cbz	x0, 0xaccc <_Z23MTARMPMMusicSetPositionPvf+0x10>
+    acc8:      	b	0xd6b4 <_Z20MTARMPMMusicGetSpeedPv+0x29b8>
+    accc:      	ret
+
+000000000000acd0 <_Z23MTARMPMMusicGetPositionPv>:
+    acd0:      	cbz	x0, 0xace0 <_Z23MTARMPMMusicGetPositionPv+0x10>
+    acd4:      	ldr	x0, [x0]
+    acd8:      	cbz	x0, 0xace0 <_Z23MTARMPMMusicGetPositionPv+0x10>
+    acdc:      	b	0xd788 <_Z20MTARMPMMusicGetSpeedPv+0x2a8c>
+    ace0:      	movi	d0, #0000000000000000
+    ace4:      	ret
+
+000000000000ace8 <_Z20MTARMPMMusicSetSpeedPvf>:
+    ace8:      	cbz	x0, 0xacf8 <_Z20MTARMPMMusicSetSpeedPvf+0x10>
+    acec:      	ldr	x0, [x0]
+    acf0:      	cbz	x0, 0xacf8 <_Z20MTARMPMMusicSetSpeedPvf+0x10>
+    acf4:      	b	0xd7bc <_Z20MTARMPMMusicGetSpeedPv+0x2ac0>
+    acf8:      	ret
+
+000000000000acfc <_Z20MTARMPMMusicGetSpeedPv>:
+    acfc:      	cbz	x0, 0xad0c <_Z20MTARMPMMusicGetSpeedPv+0x10>
+    ad00:      	ldr	x0, [x0]
+    ad04:      	cbz	x0, 0xad0c <_Z20MTARMPMMusicGetSpeedPv+0x10>
+    ad08:      	b	0xd8d8 <_Z20MTARMPMMusicGetSpeedPv+0x2bdc>
+    ad0c:      	fmov	s0, #1.00000000
+    ad10:      	ret
+    ad14:      	stp	x29, x30, [sp, #-0x10]!
+    ad18:      	mov	x29, sp
+    ad1c:      	bl	0x16b90 <__cxa_begin_catch@plt>
+    ad20:      	bl	0x16ba0 <_ZSt9terminatev@plt>
+    ad24:      	sub	sp, sp, #0x30
+    ad28:      	stp	x29, x30, [sp, #0x10]
+    ad2c:      	str	x19, [sp, #0x20]
+    ad30:      	add	x29, sp, #0x10
+    ad34:      	mrs	x19, TPIDR_EL0
+    ad38:      	ldr	x8, [x19, #0x28]
+    ad3c:      	str	x8, [sp, #0x8]
+    ad40:      	ldr	x0, [x0, #0x30]
+    ad44:      	cbz	x0, 0xad60 <_Z20MTARMPMMusicGetSpeedPv+0x64>
+    ad48:      	ldr	x8, [x0]
+    ad4c:      	mov	w9, #0x1
+    ad50:      	add	x1, sp, #0x4
+    ad54:      	str	w9, [sp, #0x4]
+    ad58:      	ldr	x8, [x8, #0x30]
+    ad5c:      	blr	x8
+    ad60:      	ldr	x8, [x19, #0x28]
+    ad64:      	ldr	x9, [sp, #0x8]
+    ad68:      	cmp	x8, x9
+    ad6c:      	b.ne	0xad80 <_Z20MTARMPMMusicGetSpeedPv+0x84>
+    ad70:      	ldp	x29, x30, [sp, #0x10]
+    ad74:      	ldr	x19, [sp, #0x20]
+    ad78:      	add	sp, sp, #0x30
+    ad7c:      	ret
+    ad80:      	bl	0x16b40 <__stack_chk_fail@plt>
+    ad84:      	ret
+    ad88:      	b	0x16b60 <_ZdlPv@plt>
+    ad8c:      	stp	x29, x30, [sp, #-0x20]!
+    ad90:      	str	x19, [sp, #0x10]
+    ad94:      	mov	x29, sp
+    ad98:      	mov	x19, x0
+    ad9c:      	mov	w0, #0x20
+    ada0:      	bl	0x16b50 <_Znwm@plt>
+    ada4:      	ldur	q0, [x19, #0x8]
+    ada8:      	ldr	x9, [x19, #0x18]
+    adac:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    adb0:      	add	x8, x8, #0x338
+    adb4:      	str	x8, [x0]
+    adb8:      	stur	q0, [x0, #0x8]
+    adbc:      	str	x9, [x0, #0x18]
+    adc0:      	ldr	x19, [sp, #0x10]
+    adc4:      	ldp	x29, x30, [sp], #0x20
+    adc8:      	ret
+    adcc:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    add0:      	add	x8, x8, #0x338
+    add4:      	str	x8, [x1]
+    add8:      	ldr	x8, [x0, #0x18]
+    addc:      	ldur	q0, [x0, #0x8]
+    ade0:      	str	x8, [x1, #0x18]
+    ade4:      	stur	q0, [x1, #0x8]
+    ade8:      	ret
+    adec:      	ret
+    adf0:      	b	0x16b60 <_ZdlPv@plt>
+    adf4:      	ldp	x9, x8, [x0, #0x10]
+    adf8:      	ldr	x2, [x0, #0x8]
+    adfc:      	add	x0, x8, x9, asr #1
+    ae00:      	tbz	w9, #0x0, 0xae0c <_Z20MTARMPMMusicGetSpeedPv+0x110>
+    ae04:      	ldr	x8, [x0]
+    ae08:      	ldr	x2, [x8, x2]
+    ae0c:      	ldr	x1, [x1]
+    ae10:      	br	x2
+    ae14:      	stp	x29, x30, [sp, #-0x10]!
+    ae18:      	mov	x29, sp
+    ae1c:      	adrp	x0, 0x5000
+    ae20:      	add	x0, x0, #0xa03
+    ae24:      	bl	0xae28 <_Z20MTARMPMMusicGetSpeedPv+0x12c>
+    ae28:      	stp	x29, x30, [sp, #-0x20]!
+    ae2c:      	stp	x20, x19, [sp, #0x10]
+    ae30:      	mov	x29, sp
+    ae34:      	mov	x20, x0
+    ae38:      	mov	w0, #0x10
+    ae3c:      	bl	0x16bb0 <__cxa_allocate_exception@plt>
+    ae40:      	mov	x19, x0
+    ae44:      	mov	x1, x20
+    ae48:      	bl	0xae78 <_Z20MTARMPMMusicGetSpeedPv+0x17c>
+    ae4c:      	adrp	x1, 0x1b000 <syscall@plt+0x3d00>
+    ae50:      	adrp	x2, 0x1b000 <syscall@plt+0x3d00>
+    ae54:      	mov	x0, x19
+    ae58:      	ldr	x1, [x1, #0x920]
+    ae5c:      	ldr	x2, [x2, #0x928]
+    ae60:      	bl	0x16bc0 <__cxa_throw@plt>
+    ae64:      	mov	x20, x0
+    ae68:      	mov	x0, x19
+    ae6c:      	bl	0x16bd0 <__cxa_free_exception@plt>
+    ae70:      	mov	x0, x20
+    ae74:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    ae78:      	stp	x29, x30, [sp, #-0x20]!
+    ae7c:      	str	x19, [sp, #0x10]
+    ae80:      	mov	x29, sp
+    ae84:      	mov	x19, x0
+    ae88:      	bl	0x16be0 <_ZNSt11logic_errorC2EPKc@plt>
+    ae8c:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    ae90:      	ldr	x8, [x8, #0x930]
+    ae94:      	add	x8, x8, #0x10
+    ae98:      	str	x8, [x19]
+    ae9c:      	ldr	x19, [sp, #0x10]
+    aea0:      	ldp	x29, x30, [sp], #0x20
+    aea4:      	ret
+    aea8:      	stp	x29, x30, [sp, #-0x20]!
+    aeac:      	str	x19, [sp, #0x10]
+    aeb0:      	mov	x29, sp
+    aeb4:      	ldr	x8, [x1, #0x20]
+    aeb8:      	mov	x19, x0
+    aebc:      	cbz	x8, 0xaee0 <_Z20MTARMPMMusicGetSpeedPv+0x1e4>
+    aec0:      	cmp	x8, x1
+    aec4:      	b.eq	0xaef0 <_Z20MTARMPMMusicGetSpeedPv+0x1f4>
+    aec8:      	ldr	x9, [x8]
+    aecc:      	mov	x0, x8
+    aed0:      	ldr	x9, [x9, #0x10]
+    aed4:      	blr	x9
+    aed8:      	str	x0, [x19, #0x20]
+    aedc:      	b	0xaee4 <_Z20MTARMPMMusicGetSpeedPv+0x1e8>
+    aee0:      	str	xzr, [x19, #0x20]
+    aee4:      	ldr	x19, [sp, #0x10]
+    aee8:      	ldp	x29, x30, [sp], #0x20
+    aeec:      	ret
+    aef0:      	str	x19, [x19, #0x20]
+    aef4:      	ldr	x0, [x1, #0x20]
+    aef8:      	ldr	x8, [x0]
+    aefc:      	ldr	x2, [x8, #0x18]
+    af00:      	mov	x1, x19
+    af04:      	ldr	x19, [sp, #0x10]
+    af08:      	ldp	x29, x30, [sp], #0x20
+    af0c:      	br	x2
+    af10:      	sub	sp, sp, #0x60
+    af14:      	stp	x29, x30, [sp, #0x30]
+    af18:      	str	x21, [sp, #0x40]
+    af1c:      	stp	x20, x19, [sp, #0x50]
+    af20:      	add	x29, sp, #0x30
+    af24:      	mrs	x21, TPIDR_EL0
+    af28:      	ldr	x8, [x21, #0x28]
+    af2c:      	cmp	x1, x0
+    af30:      	stur	x8, [x29, #-0x8]
+    af34:      	b.eq	0xb04c <_Z20MTARMPMMusicGetSpeedPv+0x350>
+    af38:      	ldr	x8, [x0, #0x20]
+    af3c:      	ldr	x9, [x1, #0x20]
+    af40:      	mov	x19, x1
+    af44:      	mov	x20, x0
+    af48:      	cmp	x8, x0
+    af4c:      	b.eq	0xaf64 <_Z20MTARMPMMusicGetSpeedPv+0x268>
+    af50:      	cmp	x9, x19
+    af54:      	b.eq	0xaf9c <_Z20MTARMPMMusicGetSpeedPv+0x2a0>
+    af58:      	str	x9, [x20, #0x20]
+    af5c:      	str	x8, [x19, #0x20]
+    af60:      	b	0xb04c <_Z20MTARMPMMusicGetSpeedPv+0x350>
+    af64:      	cmp	x9, x19
+    af68:      	b.eq	0xafd0 <_Z20MTARMPMMusicGetSpeedPv+0x2d4>
+    af6c:      	ldr	x8, [x20]
+    af70:      	ldr	x8, [x8, #0x18]
+    af74:      	mov	x0, x20
+    af78:      	mov	x1, x19
+    af7c:      	blr	x8
+    af80:      	ldr	x0, [x20, #0x20]
+    af84:      	ldr	x8, [x0]
+    af88:      	ldr	x8, [x8, #0x20]
+    af8c:      	blr	x8
+    af90:      	ldr	x8, [x19, #0x20]
+    af94:      	str	x8, [x20, #0x20]
+    af98:      	b	0xb048 <_Z20MTARMPMMusicGetSpeedPv+0x34c>
+    af9c:      	ldr	x8, [x19]
+    afa0:      	ldr	x8, [x8, #0x18]
+    afa4:      	mov	x0, x19
+    afa8:      	mov	x1, x20
+    afac:      	blr	x8
+    afb0:      	ldr	x0, [x19, #0x20]
+    afb4:      	ldr	x8, [x0]
+    afb8:      	ldr	x8, [x8, #0x20]
+    afbc:      	blr	x8
+    afc0:      	ldr	x8, [x20, #0x20]
+    afc4:      	str	x8, [x19, #0x20]
+    afc8:      	str	x20, [x20, #0x20]
+    afcc:      	b	0xb04c <_Z20MTARMPMMusicGetSpeedPv+0x350>
+    afd0:      	ldr	x8, [x20]
+    afd4:      	ldr	x8, [x8, #0x18]
+    afd8:      	mov	x1, sp
+    afdc:      	mov	x0, x20
+    afe0:      	blr	x8
+    afe4:      	ldr	x0, [x20, #0x20]
+    afe8:      	ldr	x8, [x0]
+    afec:      	ldr	x8, [x8, #0x20]
+    aff0:      	blr	x8
+    aff4:      	str	xzr, [x20, #0x20]
+    aff8:      	ldr	x0, [x19, #0x20]
+    affc:      	ldr	x8, [x0]
+    b000:      	ldr	x8, [x8, #0x18]
+    b004:      	mov	x1, x20
+    b008:      	blr	x8
+    b00c:      	ldr	x0, [x19, #0x20]
+    b010:      	ldr	x8, [x0]
+    b014:      	ldr	x8, [x8, #0x20]
+    b018:      	blr	x8
+    b01c:      	ldr	x8, [sp]
+    b020:      	str	xzr, [x19, #0x20]
+    b024:      	str	x20, [x20, #0x20]
+    b028:      	ldr	x8, [x8, #0x18]
+    b02c:      	mov	x0, sp
+    b030:      	mov	x1, x19
+    b034:      	blr	x8
+    b038:      	ldr	x8, [sp]
+    b03c:      	mov	x0, sp
+    b040:      	ldr	x8, [x8, #0x20]
+    b044:      	blr	x8
+    b048:      	str	x19, [x19, #0x20]
+    b04c:      	ldr	x8, [x21, #0x28]
+    b050:      	ldur	x9, [x29, #-0x8]
+    b054:      	cmp	x8, x9
+    b058:      	b.ne	0xb070 <_Z20MTARMPMMusicGetSpeedPv+0x374>
+    b05c:      	ldp	x20, x19, [sp, #0x50]
+    b060:      	ldr	x21, [sp, #0x40]
+    b064:      	ldp	x29, x30, [sp, #0x30]
+    b068:      	add	sp, sp, #0x60
+    b06c:      	ret
+    b070:      	bl	0x16b40 <__stack_chk_fail@plt>
+    b074:      	bl	0xad14 <_Z20MTARMPMMusicGetSpeedPv+0x18>
+    b078:      	stp	x29, x30, [sp, #-0x20]!
+    b07c:      	str	x19, [sp, #0x10]
+    b080:      	mov	x29, sp
+    b084:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    b088:      	add	x8, x8, #0x3b0
+    b08c:      	mov	x19, x0
+    b090:      	str	x8, [x0], #0x8
+    b094:      	ldrb	w8, [x1]
+    b098:      	tbnz	w8, #0x0, 0xb0b0 <_Z20MTARMPMMusicGetSpeedPv+0x3b4>
+    b09c:      	ldr	x8, [x1, #0x10]
+    b0a0:      	ldr	q0, [x1]
+    b0a4:      	str	x8, [x0, #0x10]
+    b0a8:      	str	q0, [x0]
+    b0ac:      	b	0xb0bc <_Z20MTARMPMMusicGetSpeedPv+0x3c0>
+    b0b0:      	ldp	x2, x8, [x1, #0x8]
+    b0b4:      	mov	x1, x8
+    b0b8:      	bl	0xca60 <_Z20MTARMPMMusicGetSpeedPv+0x1d64>
+    b0bc:      	movi	v0.2d, #0000000000000000
+    b0c0:      	mov	w8, #-0x1
+    b0c4:      	add	x9, x19, #0x138
+    b0c8:      	str	w8, [x19, #0x28]
+    b0cc:      	str	w8, [x19, #0x38]
+    b0d0:      	str	w8, [x19, #0xe8]
+    b0d4:      	add	x8, x19, #0x108
+    b0d8:      	stp	q0, q0, [x8]
+    b0dc:      	mov	w8, #0x3f800000
+    b0e0:      	stp	x8, xzr, [x19, #0x128]
+    b0e4:      	mov	w8, #0x1
+    b0e8:      	strh	w8, [x19, #0x174]
+    b0ec:      	mov	x8, #-0x8000000000000000
+    b0f0:      	str	x8, [x19, #0x178]
+    b0f4:      	add	x8, x19, #0x180
+    b0f8:      	str	q0, [x19, #0x1c0]
+    b0fc:      	stur	q0, [x8, #0x4c]
+    b100:      	mov	x8, #0x3ff0000000000000
+    b104:      	str	xzr, [x19, #0xd0]
+    b108:      	strb	wzr, [x19, #0xd8]
+    b10c:      	str	xzr, [x19, #0xe0]
+    b110:      	stp	q0, q0, [x19, #0x40]
+    b114:      	stp	q0, q0, [x19, #0x60]
+    b118:      	stp	q0, q0, [x19, #0x80]
+    b11c:      	str	q0, [x19, #0xa0]
+    b120:      	stp	xzr, xzr, [x19, #0xf0]
+    b124:      	str	wzr, [x19, #0x100]
+    b128:      	str	wzr, [x19, #0x160]
+    b12c:      	str	xzr, [x19, #0x168]
+    b130:      	str	wzr, [x19, #0x170]
+    b134:      	str	xzr, [x19, #0x210]
+    b138:      	strb	wzr, [x19, #0x220]
+    b13c:      	stp	q0, q0, [x19, #0x180]
+    b140:      	stp	q0, q0, [x19, #0x1a0]
+    b144:      	stp	q0, q0, [x9]
+    b148:      	str	xzr, [x19, #0x158]
+    b14c:      	strb	wzr, [x19, #0x20]
+    b150:      	str	x8, [x19, #0x1e0]
+    b154:      	ldr	x19, [sp, #0x10]
+    b158:      	ldp	x29, x30, [sp], #0x20
+    b15c:      	ret
+    b160:      	stp	x29, x30, [sp, #-0x20]!
+    b164:      	str	x19, [sp, #0x10]
+    b168:      	mov	x29, sp
+    b16c:      	ldr	x19, [x0, #0x8]
+    b170:      	cbz	x19, 0xb184 <_Z20MTARMPMMusicGetSpeedPv+0x488>
+    b174:      	add	x1, x19, #0x8
+    b178:      	mov	x0, #-0x1
+    b17c:      	bl	0x12cb0 <_Z20MTARMPMMusicGetSpeedPv+0x7fb4>
+    b180:      	cbz	x0, 0xb190 <_Z20MTARMPMMusicGetSpeedPv+0x494>
+    b184:      	ldr	x19, [sp, #0x10]
+    b188:      	ldp	x29, x30, [sp], #0x20
+    b18c:      	ret
+    b190:      	ldr	x8, [x19]
+    b194:      	mov	x0, x19
+    b198:      	ldr	x8, [x8, #0x10]
+    b19c:      	blr	x8
+    b1a0:      	mov	x0, x19
+    b1a4:      	ldr	x19, [sp, #0x10]
+    b1a8:      	ldp	x29, x30, [sp], #0x20
+    b1ac:      	b	0x16b30 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    b1b0:      	stp	x29, x30, [sp, #-0x20]!
+    b1b4:      	str	x19, [sp, #0x10]
+    b1b8:      	mov	x29, sp
+    b1bc:      	mov	x19, x0
+    b1c0:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    b1c4:      	add	x8, x8, #0x3b0
+    b1c8:      	str	x8, [x0]
+    b1cc:      	bl	0xb258 <_Z20MTARMPMMusicGetSpeedPv+0x55c>
+    b1d0:      	mov	x0, x19
+    b1d4:      	bl	0xb2b4 <_Z20MTARMPMMusicGetSpeedPv+0x5b8>
+    b1d8:      	ldr	x0, [x19, #0x210]
+    b1dc:      	add	x9, x19, #0x1f0
+    b1e0:      	cmp	x0, x9
+    b1e4:      	b.eq	0xb1f4 <_Z20MTARMPMMusicGetSpeedPv+0x4f8>
+    b1e8:      	cbz	x0, 0xb208 <_Z20MTARMPMMusicGetSpeedPv+0x50c>
+    b1ec:      	mov	w8, #0x5
+    b1f0:      	b	0xb1fc <_Z20MTARMPMMusicGetSpeedPv+0x500>
+    b1f4:      	mov	w8, #0x4
+    b1f8:      	mov	x0, x9
+    b1fc:      	ldr	x9, [x0]
+    b200:      	ldr	x8, [x9, x8, lsl #3]
+    b204:      	blr	x8
+    b208:      	add	x0, x19, #0x1a8
+    b20c:      	bl	0x16bf0 <_ZNSt6__ndk118condition_variableD1Ev@plt>
+    b210:      	add	x0, x19, #0x180
+    b214:      	bl	0x16c00 <_ZNSt6__ndk15mutexD1Ev@plt>
+    b218:      	add	x0, x19, #0xa0
+    b21c:      	bl	0xb160 <_Z20MTARMPMMusicGetSpeedPv+0x464>
+    b220:      	add	x0, x19, #0x70
+    b224:      	bl	0x16bf0 <_ZNSt6__ndk118condition_variableD1Ev@plt>
+    b228:      	add	x0, x19, #0x48
+    b22c:      	bl	0x16c00 <_ZNSt6__ndk15mutexD1Ev@plt>
+    b230:      	ldrb	w8, [x19, #0x8]
+    b234:      	tbnz	w8, #0x0, 0xb244 <_Z20MTARMPMMusicGetSpeedPv+0x548>
+    b238:      	ldr	x19, [sp, #0x10]
+    b23c:      	ldp	x29, x30, [sp], #0x20
+    b240:      	ret
+    b244:      	ldr	x0, [x19, #0x18]
+    b248:      	ldr	x19, [sp, #0x10]
+    b24c:      	ldp	x29, x30, [sp], #0x20
+    b250:      	b	0x16b60 <_ZdlPv@plt>
+    b254:      	bl	0xad14 <_Z20MTARMPMMusicGetSpeedPv+0x18>
+    b258:      	stp	x29, x30, [sp, #-0x20]!
+    b25c:      	stp	x20, x19, [sp, #0x10]
+    b260:      	mov	x29, sp
+    b264:      	mov	x20, x0
+    b268:      	ldr	x8, [x20, #0xa0]!
+    b26c:      	cbz	x8, 0xb2a8 <_Z20MTARMPMMusicGetSpeedPv+0x5ac>
+    b270:      	mov	x19, x0
+    b274:      	add	x0, x0, #0x48
+    b278:      	bl	0x16c10 <_ZNSt6__ndk15mutex4lockEv@plt>
+    b27c:      	mov	w8, #0x1
+    b280:      	add	x0, x19, #0x70
+    b284:      	strb	w8, [x19, #0xd8]
+    b288:      	bl	0x16c20 <_ZNSt6__ndk118condition_variable10notify_allEv@plt>
+    b28c:      	add	x0, x19, #0x48
+    b290:      	bl	0x16c30 <_ZNSt6__ndk15mutex6unlockEv@plt>
+    b294:      	ldr	x0, [x19, #0xa0]
+    b298:      	bl	0x16c40 <_ZNSt6__ndk16thread4joinEv@plt>
+    b29c:      	mov	x0, x20
+    b2a0:      	bl	0xbacc <_Z20MTARMPMMusicGetSpeedPv+0xdd0>
+    b2a4:      	strb	wzr, [x19, #0xd8]
+    b2a8:      	ldp	x20, x19, [sp, #0x10]
+    b2ac:      	ldp	x29, x30, [sp], #0x20
+    b2b0:      	ret
+    b2b4:      	stp	x29, x30, [sp, #-0x20]!
+    b2b8:      	stp	x20, x19, [sp, #0x10]
+    b2bc:      	mov	x29, sp
+    b2c0:      	ldr	x8, [x0, #0x130]
+    b2c4:      	mov	x19, x0
+    b2c8:      	cbz	x8, 0xb2d8 <_Z20MTARMPMMusicGetSpeedPv+0x5dc>
+    b2cc:      	add	x0, x19, #0x130
+    b2d0:      	bl	0x16c50 <swr_free@plt>
+    b2d4:      	str	xzr, [x19, #0x130]
+    b2d8:      	ldr	x8, [x19, #0x168]
+    b2dc:      	cbz	x8, 0xb300 <_Z20MTARMPMMusicGetSpeedPv+0x604>
+    b2e0:      	add	x20, x19, #0x48
+    b2e4:      	mov	x0, x20
+    b2e8:      	bl	0x16c10 <_ZNSt6__ndk15mutex4lockEv@plt>
+    b2ec:      	ldr	x0, [x19, #0x168]
+    b2f0:      	bl	0x16c60 <avcodec_close@plt>
+    b2f4:      	mov	x0, x20
+    b2f8:      	str	xzr, [x19, #0x168]
+    b2fc:      	bl	0x16c30 <_ZNSt6__ndk15mutex6unlockEv@plt>
+    b300:      	mov	x20, x19
+    b304:      	ldr	x8, [x20, #0xe0]!
+    b308:      	cbz	x8, 0xb318 <_Z20MTARMPMMusicGetSpeedPv+0x61c>
+    b30c:      	mov	x0, x20
+    b310:      	bl	0x16c70 <avformat_close_input@plt>
+    b314:      	str	xzr, [x20]
+    b318:      	add	x20, x19, #0x48
+    b31c:      	mov	x0, x20
+    b320:      	bl	0x16c10 <_ZNSt6__ndk15mutex4lockEv@plt>
+    b324:      	ldr	x0, [x19, #0x40]
+    b328:      	cbz	x0, 0xb334 <_Z20MTARMPMMusicGetSpeedPv+0x638>
+    b32c:      	bl	0x1258c <_Z20MTARMPMMusicGetSpeedPv+0x7890>
+    b330:      	str	xzr, [x19, #0x40]
+    b334:      	mov	x0, x20
+    b338:      	bl	0x16c30 <_ZNSt6__ndk15mutex6unlockEv@plt>
+    b33c:      	ldr	x8, [x19, #0x110]
+    b340:      	cbz	x8, 0xb34c <_Z20MTARMPMMusicGetSpeedPv+0x650>
+    b344:      	add	x0, x19, #0x110
+    b348:      	bl	0x16c80 <av_freep@plt>
+    b34c:      	str	wzr, [x19, #0x11c]
+    b350:      	str	wzr, [x19, #0x1d8]
+    b354:      	ldp	x20, x19, [sp, #0x10]
+    b358:      	ldp	x29, x30, [sp], #0x20
+    b35c:      	ret
+    b360:      	b	0xb364 <_Z20MTARMPMMusicGetSpeedPv+0x668>
+    b364:      	mov	x19, x0
+    b368:      	mov	x0, x20
+    b36c:      	bl	0x16c30 <_ZNSt6__ndk15mutex6unlockEv@plt>
+    b370:      	mov	x0, x19
+    b374:      	bl	0x12e14 <_Z20MTARMPMMusicGetSpeedPv+0x8118>
+    b378:      	stp	x29, x30, [sp, #-0x20]!
+    b37c:      	str	x19, [sp, #0x10]
+    b380:      	mov	x29, sp
+    b384:      	mov	x19, x0
+    b388:      	bl	0xb1b0 <_Z20MTARMPMMusicGetSpeedPv+0x4b4>
+    b38c:      	mov	x0, x19
+    b390:      	ldr	x19, [sp, #0x10]
+    b394:      	ldp	x29, x30, [sp], #0x20
+    b398:      	b	0x16b60 <_ZdlPv@plt>
+    b39c:      	sub	sp, sp, #0xd0
+    b3a0:      	stp	x29, x30, [sp, #0x90]
+    b3a4:      	str	x23, [sp, #0xa0]
+    b3a8:      	stp	x22, x21, [sp, #0xb0]
+    b3ac:      	stp	x20, x19, [sp, #0xc0]
+    b3b0:      	add	x29, sp, #0x90
+    b3b4:      	mrs	x23, TPIDR_EL0
+    b3b8:      	mov	x19, x0
+    b3bc:      	ldr	x8, [x23, #0x28]
+    b3c0:      	stur	x8, [x29, #-0x8]
+    b3c4:      	strb	w1, [x0, #0x20]
+    b3c8:      	bl	0x16c90 <avformat_alloc_context@plt>
+    b3cc:      	str	x0, [sp]
+    b3d0:      	cbz	x0, 0xb468 <_Z20MTARMPMMusicGetSpeedPv+0x76c>
+    b3d4:      	nop
+    b3d8:      	adr	x8, #0x2c4
+    b3dc:      	add	x22, x19, #0x9
+    b3e0:      	stp	x8, x19, [x0, #0xd8]
+    b3e4:      	ldr	x2, [x19, #0xd0]
+    b3e8:      	mov	x0, sp
+    b3ec:      	ldrb	w8, [x19, #0x8]
+    b3f0:      	ldr	x9, [x19, #0x18]
+    b3f4:      	mov	x3, xzr
+    b3f8:      	tst	w8, #0x1
+    b3fc:      	csel	x1, x22, x9, eq
+    b400:      	bl	0x16ca0 <avformat_open_input@plt>
+    b404:      	tbnz	w0, #0x1f, 0xb480 <_Z20MTARMPMMusicGetSpeedPv+0x784>
+    b408:      	movi	v0.2d, #0xffffffffffffffff
+    b40c:      	ldr	x0, [sp]
+    b410:      	mov	x8, #-0x1
+    b414:      	str	x8, [x19, #0x158]
+    b418:      	add	x8, x19, #0x138
+    b41c:      	str	x0, [x19, #0xe0]
+    b420:      	stp	q0, q0, [x8]
+    b424:      	bl	0x16cb0 <av_format_inject_global_side_data@plt>
+    b428:      	ldr	x0, [x19, #0xe0]
+    b42c:      	mov	x1, xzr
+    b430:      	bl	0x16cc0 <avformat_find_stream_info@plt>
+    b434:      	tbnz	w0, #0x1f, 0xb4d4 <_Z20MTARMPMMusicGetSpeedPv+0x7d8>
+    b438:      	ldr	x20, [x19, #0xe0]
+    b43c:      	ldr	x8, [x20, #0x20]
+    b440:      	cbz	x8, 0xb448 <_Z20MTARMPMMusicGetSpeedPv+0x74c>
+    b444:      	str	wzr, [x8, #0x50]
+    b448:      	adrp	x21, 0x1f000
+    b44c:      	ldr	w8, [x21, #0xdc8]
+    b450:      	tbz	w8, #0x1f, 0xb51c <_Z20MTARMPMMusicGetSpeedPv+0x820>
+    b454:      	ldr	x8, [x20, #0x8]
+    b458:      	ldrb	w9, [x8, #0x11]
+    b45c:      	tbnz	w9, #0x1, 0xb500 <_Z20MTARMPMMusicGetSpeedPv+0x804>
+    b460:      	mov	w8, wzr
+    b464:      	b	0xb518 <_Z20MTARMPMMusicGetSpeedPv+0x81c>
+    b468:      	nop
+    b46c:      	adr	x2, #-0x5e5d
+    b470:      	mov	w1, #0x8
+    b474:      	bl	0x16cd0 <av_log@plt>
+    b478:      	mov	w20, #-0xc
+    b47c:      	b	0xb654 <_Z20MTARMPMMusicGetSpeedPv+0x958>
+    b480:      	ldrb	w8, [x19, #0x8]
+    b484:      	ldr	x9, [x19, #0x18]
+    b488:      	add	x1, sp, #0x8
+    b48c:      	mov	w2, #0x80
+    b490:      	mov	w21, w0
+    b494:      	tst	w8, #0x1
+    b498:      	csel	x20, x22, x9, eq
+    b49c:      	add	x22, sp, #0x8
+    b4a0:      	bl	0x16ce0 <av_strerror@plt>
+    b4a4:      	tbz	w0, #0x1f, 0xb4b4 <_Z20MTARMPMMusicGetSpeedPv+0x7b8>
+    b4a8:      	neg	w0, w21
+    b4ac:      	bl	0x16cf0 <strerror@plt>
+    b4b0:      	mov	x22, x0
+    b4b4:      	adrp	x2, 0x4000
+    b4b8:      	add	x2, x2, #0xe44
+    b4bc:      	mov	x0, xzr
+    b4c0:      	mov	w1, #0x10
+    b4c4:      	mov	x3, x20
+    b4c8:      	mov	x4, x22
+    b4cc:      	bl	0x16cd0 <av_log@plt>
+    b4d0:      	b	0xb4f8 <_Z20MTARMPMMusicGetSpeedPv+0x7fc>
+    b4d4:      	ldrb	w8, [x19, #0x8]
+    b4d8:      	ldr	x9, [x19, #0x18]
+    b4dc:      	adrp	x2, 0x4000
+    b4e0:      	add	x2, x2, #0x598
+    b4e4:      	mov	x0, xzr
+    b4e8:      	mov	w1, #0x18
+    b4ec:      	tst	w8, #0x1
+    b4f0:      	csel	x3, x22, x9, eq
+    b4f4:      	bl	0x16cd0 <av_log@plt>
+    b4f8:      	mov	w20, #-0x1
+    b4fc:      	b	0xb654 <_Z20MTARMPMMusicGetSpeedPv+0x958>
+    b500:      	ldr	x1, [x8]
+    b504:      	adrp	x0, 0x5000
+    b508:      	add	x0, x0, #0xa10
+    b50c:      	bl	0x16d00 <strcmp@plt>
+    b510:      	cmp	w0, #0x0
+    b514:      	cset	w8, ne
+    b518:      	str	w8, [x21, #0xdc8]
+    b51c:      	ldr	x8, [x19, #0x178]
+    b520:      	mov	x9, #-0x8000000000000000
+    b524:      	cmp	x8, x9
+    b528:      	b.eq	0xb594 <_Z20MTARMPMMusicGetSpeedPv+0x898>
+    b52c:      	ldr	x10, [x20, #0x60]
+    b530:      	mov	w11, #0x3e8
+    b534:      	mov	x0, x20
+    b538:      	mov	w1, #-0x1
+    b53c:      	mov	x2, #-0x8000000000000000
+    b540:      	mov	x4, #0x7fffffffffffffff
+    b544:      	cmp	x10, x9
+    b548:      	mov	w5, wzr
+    b54c:      	csel	x9, xzr, x10, eq
+    b550:      	madd	x21, x8, x11, x9
+    b554:      	mov	x3, x21
+    b558:      	bl	0x16d10 <avformat_seek_file@plt>
+    b55c:      	tbz	w0, #0x1f, 0xb594 <_Z20MTARMPMMusicGetSpeedPv+0x898>
+    b560:      	scvtf	d0, x21
+    b564:      	adrp	x8, 0x5000
+    b568:      	ldr	x9, [x19, #0x18]
+    b56c:      	ldr	d1, [x8, #0xee8]
+    b570:      	ldrb	w8, [x19, #0x8]
+    b574:      	adrp	x2, 0x4000
+    b578:      	add	x2, x2, #0x7f2
+    b57c:      	mov	x0, xzr
+    b580:      	mov	w1, #0x18
+    b584:      	tst	w8, #0x1
+    b588:      	fdiv	d0, d0, d1
+    b58c:      	csel	x3, x22, x9, eq
+    b590:      	bl	0x16cd0 <av_log@plt>
+    b594:      	ldrb	w8, [x19, #0x8]
+    b598:      	ldr	x9, [x19, #0x18]
+    b59c:      	mov	w1, wzr
+    b5a0:      	ldr	x0, [x19, #0xe0]
+    b5a4:      	mov	w3, wzr
+    b5a8:      	tst	w8, #0x1
+    b5ac:      	csel	x2, x22, x9, eq
+    b5b0:      	bl	0x16d20 <av_dump_format@plt>
+    b5b4:      	ldr	x0, [x19, #0xe0]
+    b5b8:      	ldr	w8, [x0, #0x2c]
+    b5bc:      	cbz	w8, 0xb600 <_Z20MTARMPMMusicGetSpeedPv+0x904>
+    b5c0:      	ldr	x10, [x0, #0x30]
+    b5c4:      	mov	x9, xzr
+    b5c8:      	mov	w11, #0x30
+    b5cc:      	ldr	x12, [x10, x9, lsl #3]
+    b5d0:      	ldr	x13, [x12, #0x10]
+    b5d4:      	str	w11, [x12, #0x44]
+    b5d8:      	ldr	w12, [x19, #0x13c]
+    b5dc:      	ldr	w13, [x13]
+    b5e0:      	cmp	w13, #0x1
+    b5e4:      	ccmn	w12, #0x1, #0x0, eq
+    b5e8:      	b.ne	0xb5f4 <_Z20MTARMPMMusicGetSpeedPv+0x8f8>
+    b5ec:      	str	w9, [x19, #0x13c]
+    b5f0:      	ldr	w8, [x0, #0x2c]
+    b5f4:      	add	x9, x9, #0x1
+    b5f8:      	cmp	x9, x8
+    b5fc:      	b.lo	0xb5cc <_Z20MTARMPMMusicGetSpeedPv+0x8d0>
+    b600:      	mov	w8, #0x138
+    b604:      	mov	w9, #0x7fffffff
+    b608:      	ldr	w10, [x19, x8]
+    b60c:      	cmn	w10, #0x1
+    b610:      	b.ne	0xb618 <_Z20MTARMPMMusicGetSpeedPv+0x91c>
+    b614:      	str	w9, [x19, x8]
+    b618:      	add	x8, x8, #0x4
+    b61c:      	cmp	x8, #0x14c
+    b620:      	b.ne	0xb608 <_Z20MTARMPMMusicGetSpeedPv+0x90c>
+    b624:      	ldr	w2, [x19, #0x13c]
+    b628:      	ldr	w3, [x19, #0x138]
+    b62c:      	mov	w1, #0x1
+    b630:      	mov	x4, xzr
+    b634:      	mov	w5, wzr
+    b638:      	bl	0x16d30 <av_find_best_stream@plt>
+    b63c:      	str	w0, [x19, #0x13c]
+    b640:      	tbnz	w0, #0x1f, 0xb650 <_Z20MTARMPMMusicGetSpeedPv+0x954>
+    b644:      	mov	w1, w0
+    b648:      	mov	x0, x19
+    b64c:      	bl	0xb6a4 <_Z20MTARMPMMusicGetSpeedPv+0x9a8>
+    b650:      	mov	w20, wzr
+    b654:      	ldr	x8, [sp]
+    b658:      	cbz	x8, 0xb66c <_Z20MTARMPMMusicGetSpeedPv+0x970>
+    b65c:      	ldr	x8, [x19, #0xe0]
+    b660:      	cbnz	x8, 0xb66c <_Z20MTARMPMMusicGetSpeedPv+0x970>
+    b664:      	mov	x0, sp
+    b668:      	bl	0x16c70 <avformat_close_input@plt>
+    b66c:      	ldr	x8, [x23, #0x28]
+    b670:      	ldur	x9, [x29, #-0x8]
+    b674:      	cmp	x8, x9
+    b678:      	b.ne	0xb698 <_Z20MTARMPMMusicGetSpeedPv+0x99c>
+    b67c:      	mov	w0, w20
+    b680:      	ldp	x20, x19, [sp, #0xc0]
+    b684:      	ldr	x23, [sp, #0xa0]
+    b688:      	ldp	x22, x21, [sp, #0xb0]
+    b68c:      	ldp	x29, x30, [sp, #0x90]
+    b690:      	add	sp, sp, #0xd0
+    b694:      	ret
+    b698:      	bl	0x16b40 <__stack_chk_fail@plt>
+    b69c:      	ldrb	w0, [x0, #0xd8]
+    b6a0:      	ret
+    b6a4:      	sub	sp, sp, #0x90
+    b6a8:      	stp	x29, x30, [sp, #0x40]
+    b6ac:      	stp	x26, x25, [sp, #0x50]
+    b6b0:      	stp	x24, x23, [sp, #0x60]
+    b6b4:      	stp	x22, x21, [sp, #0x70]
+    b6b8:      	stp	x20, x19, [sp, #0x80]
+    b6bc:      	add	x29, sp, #0x40
+    b6c0:      	mrs	x24, TPIDR_EL0
+    b6c4:      	ldr	x8, [x24, #0x28]
+    b6c8:      	stur	x8, [x29, #-0x8]
+    b6cc:      	ldr	x25, [x0, #0xe0]
+    b6d0:      	stur	xzr, [x29, #-0x10]
+    b6d4:      	tbnz	w1, #0x1f, 0xb9ac <_Z20MTARMPMMusicGetSpeedPv+0xcb0>
+    b6d8:      	ldr	w8, [x25, #0x2c]
+    b6dc:      	mov	w21, w1
+    b6e0:      	cmp	w8, w1
+    b6e4:      	b.ls	0xb9ac <_Z20MTARMPMMusicGetSpeedPv+0xcb0>
+    b6e8:      	ldr	x8, [x25, #0x30]
+    b6ec:      	mov	x19, x0
+    b6f0:      	mov	x0, xzr
+    b6f4:      	ldr	x8, [x8, w21, uxtw #3]
+    b6f8:      	ldr	x20, [x8, #0x10]
+    b6fc:      	bl	0x16d40 <avcodec_alloc_context3@plt>
+    b700:      	mov	x1, x20
+    b704:      	mov	x22, x0
+    b708:      	stur	x0, [x29, #-0x18]
+    b70c:      	bl	0x16d50 <avcodec_parameters_to_context@plt>
+    b710:      	tbnz	w0, #0x1f, 0xb974 <_Z20MTARMPMMusicGetSpeedPv+0xc78>
+    b714:      	ldr	w0, [x22, #0x18]
+    b718:      	bl	0x16d60 <avcodec_find_decoder@plt>
+    b71c:      	cbz	x0, 0xb98c <_Z20MTARMPMMusicGetSpeedPv+0xc90>
+    b720:      	ldr	w8, [x0, #0x14]
+    b724:      	mov	x20, x0
+    b728:      	adrp	x1, 0x4000
+    b72c:      	add	x1, x1, #0x89e
+    b730:      	mov	x0, x22
+    b734:      	mov	x2, xzr
+    b738:      	mov	w3, #0x1
+    b73c:      	str	w8, [x22, #0x18]
+    b740:      	bl	0x16d70 <av_opt_set_int@plt>
+    b744:      	adrp	x1, 0x4000
+    b748:      	add	x1, x1, #0xc59
+    b74c:      	mov	x0, xzr
+    b750:      	mov	x2, xzr
+    b754:      	mov	w3, wzr
+    b758:      	bl	0x16d80 <av_dict_get@plt>
+    b75c:      	cbnz	x0, 0xb77c <_Z20MTARMPMMusicGetSpeedPv+0xa80>
+    b760:      	adrp	x1, 0x4000
+    b764:      	add	x1, x1, #0xc59
+    b768:      	adrp	x2, 0x4000
+    b76c:      	add	x2, x2, #0x817
+    b770:      	sub	x0, x29, #0x10
+    b774:      	mov	w3, wzr
+    b778:      	bl	0x16d90 <av_dict_set@plt>
+    b77c:      	ldr	w8, [x22, #0xc]
+    b780:      	cmp	w8, #0x1
+    b784:      	b.hi	0xb7a4 <_Z20MTARMPMMusicGetSpeedPv+0xaa8>
+    b788:      	adrp	x1, 0x5000
+    b78c:      	add	x1, x1, #0x431
+    b790:      	adrp	x2, 0x5000
+    b794:      	add	x2, x2, #0x3cb
+    b798:      	sub	x0, x29, #0x10
+    b79c:      	mov	w3, wzr
+    b7a0:      	bl	0x16d90 <av_dict_set@plt>
+    b7a4:      	sub	x2, x29, #0x10
+    b7a8:      	mov	x0, x22
+    b7ac:      	mov	x1, x20
+    b7b0:      	bl	0x16da0 <avcodec_open2@plt>
+    b7b4:      	mov	w20, w0
+    b7b8:      	tbnz	w0, #0x1f, 0xb960 <_Z20MTARMPMMusicGetSpeedPv+0xc64>
+    b7bc:      	str	wzr, [x19, #0x160]
+    b7c0:      	ldr	x8, [x25, #0x30]
+    b7c4:      	ldr	x8, [x8, w21, uxtw #3]
+    b7c8:      	str	wzr, [x8, #0x44]
+    b7cc:      	ldr	w8, [x22, #0xc]
+    b7d0:      	cmp	w8, #0x1
+    b7d4:      	b.ne	0xb968 <_Z20MTARMPMMusicGetSpeedPv+0xc6c>
+    b7d8:      	ldr	w8, [x22, #0x160]
+    b7dc:      	ldr	w26, [x22, #0x158]
+    b7e0:      	ldr	w23, [x22, #0x164]
+    b7e4:      	cmp	w8, #0x1
+    b7e8:      	b.eq	0xb7f8 <_Z20MTARMPMMusicGetSpeedPv+0xafc>
+    b7ec:      	add	x0, sp, #0x10
+    b7f0:      	mov	w1, w23
+    b7f4:      	bl	0x16db0 <av_channel_layout_default@plt>
+    b7f8:      	ldr	w1, [x19, #0x3c]
+    b7fc:      	add	x0, sp, #0x10
+    b800:      	stp	w23, w26, [x19, #0x28]
+    b804:      	str	w20, [x19, #0x100]
+    b808:      	str	w1, [x19, #0xb4]
+    b80c:      	bl	0x16db0 <av_channel_layout_default@plt>
+    b810:      	ldr	x8, [sp, #0x18]
+    b814:      	ldr	w23, [x19, #0x38]
+    b818:      	mov	w9, #0x1
+    b81c:      	str	w9, [x19, #0xc0]
+    b820:      	mov	x2, #0x1
+    b824:      	str	x8, [x19, #0xb8]
+    b828:      	movk	x2, #0x4240, lsl #32
+    b82c:      	str	w23, [x19, #0xb0]
+    b830:      	movk	x2, #0xf, lsl #48
+    b834:      	str	wzr, [x19, #0x118]
+    b838:      	str	wzr, [x19, #0x120]
+    b83c:      	str	w21, [x19, #0xe8]
+    b840:      	ldr	x8, [x25, #0x30]
+    b844:      	ldr	x8, [x8, w21, uxtw #3]
+    b848:      	str	x8, [x19, #0xf0]
+    b84c:      	ldr	x0, [x8, #0x30]
+    b850:      	ldr	x1, [x8, #0x20]
+    b854:      	bl	0x16dc0 <av_rescale_q@plt>
+    b858:      	mov	x8, #0xf7cf
+    b85c:      	str	x22, [x19, #0x168]
+    b860:      	movk	x8, #0xe353, lsl #16
+    b864:      	movk	x8, #0x9ba5, lsl #32
+    b868:      	movk	x8, #0x20c4, lsl #48
+    b86c:      	smulh	x8, x0, x8
+    b870:      	ldr	x0, [x19, #0x40]
+    b874:      	asr	x9, x8, #7
+    b878:      	add	x8, x9, x8, lsr #63
+    b87c:      	str	x8, [x19, #0xf8]
+    b880:      	cbz	x0, 0xb890 <_Z20MTARMPMMusicGetSpeedPv+0xb94>
+    b884:      	bl	0x1258c <_Z20MTARMPMMusicGetSpeedPv+0x7890>
+    b888:      	ldr	w23, [x19, #0x38]
+    b88c:      	str	xzr, [x19, #0x40]
+    b890:      	ldr	w1, [x19, #0x3c]
+    b894:      	mov	x0, xzr
+    b898:      	mov	w2, w23
+    b89c:      	mov	w3, #0x1
+    b8a0:      	mov	w4, wzr
+    b8a4:      	bl	0x16dd0 <av_samples_get_buffer_size@plt>
+    b8a8:      	bl	0x12298 <_Z20MTARMPMMusicGetSpeedPv+0x759c>
+    b8ac:      	str	x0, [x19, #0x40]
+    b8b0:      	mov	w0, #0x20
+    b8b4:      	bl	0x16b50 <_Znwm@plt>
+    b8b8:      	adrp	x8, 0x1b000 <syscall@plt+0x3d00>
+    b8bc:      	mov	x21, x0

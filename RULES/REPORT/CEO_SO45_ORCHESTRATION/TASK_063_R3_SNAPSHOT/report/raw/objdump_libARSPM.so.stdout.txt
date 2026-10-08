@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARSPM.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000012ca90 <.text>:
+  12ca90:      	bti	c
+  12ca94:      	adrp	x0, 0x4f5000 <syscall@plt+0x3bc0>
+  12ca98:      	add	x0, x0, #0x450
+  12ca9c:      	b	0x4f09c0 <__cxa_finalize@plt>
+  12caa0:      	bti	c
+  12caa4:      	ret
+  12caa8:      	bti	c
+  12caac:      	b	0x12caa0 <.text+0x10>
+  12cab0:      	bti	c
+  12cab4:      	cbz	x0, 0x12cac0 <.text+0x30>
+  12cab8:      	mov	x16, x0
+  12cabc:      	br	x16
+  12cac0:      	ret
+  12cac4:      	bti	c
+  12cac8:      	mov	x1, x0
+  12cacc:      	nop
+  12cad0:      	adr	x0, #-0x20
+  12cad4:      	adrp	x2, 0x4f5000 <syscall@plt+0x3bc0>
+  12cad8:      	add	x2, x2, #0x450
+  12cadc:      	b	0x4f09d0 <__cxa_atexit@plt>
+  12cae0:      	bti	c
+  12cae4:      	adrp	x3, 0x4f5000 <syscall@plt+0x3bc0>
+  12cae8:      	add	x3, x3, #0x450
+  12caec:      	b	0x4f09e0 <__register_atfork@plt>
+
+000000000012caf0 <_Z19ARSPMImplementationv>:
+  12caf0:      	mov	w0, #0x1
+  12caf4:      	ret
+
+000000000012caf8 <_Z16ARSPMSetLogLeveli>:
+  12caf8:      	ret
+
+000000000012cafc <_Z14ARSPMSetJavaVMPv>:
+  12cafc:      	ret
+
+000000000012cb00 <_Z24ARSPMCreateSkottieHandlev>:
+  12cb00:      	stp	x29, x30, [sp, #-0x20]!
+  12cb04:      	stp	x20, x19, [sp, #0x10]
+  12cb08:      	mov	x29, sp
+  12cb0c:      	mov	w0, #0x10
+  12cb10:      	bl	0x4f09f0 <_Znwm@plt>
+  12cb14:      	mov	x19, x0
+  12cb18:      	bl	0x12cb40 <_Z24ARSPMCreateSkottieHandlev+0x40>
+  12cb1c:      	mov	x0, x19
+  12cb20:      	ldp	x20, x19, [sp, #0x10]
+  12cb24:      	ldp	x29, x30, [sp], #0x20
+  12cb28:      	ret
+  12cb2c:      	mov	x20, x0
+  12cb30:      	mov	x0, x19
+  12cb34:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12cb38:      	mov	x0, x20
+  12cb3c:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12cb40:      	sub	sp, sp, #0x40
+  12cb44:      	stp	x29, x30, [sp, #0x20]
+  12cb48:      	stp	x20, x19, [sp, #0x30]
+  12cb4c:      	add	x29, sp, #0x20
+  12cb50:      	mrs	x20, TPIDR_EL0
+  12cb54:      	mov	x19, x0
+  12cb58:      	ldr	x8, [x20, #0x28]
+  12cb5c:      	stur	x8, [x29, #-0x8]
+  12cb60:      	stp	xzr, xzr, [x0]
+  12cb64:      	mov	w0, #0x60
+  12cb68:      	bl	0x4f09f0 <_Znwm@plt>
+  12cb6c:      	adrp	x8, 0x4f5000 <syscall@plt+0x3bc0>
+  12cb70:      	add	x8, x8, #0x4f0
+  12cb74:      	mov	x9, x0
+  12cb78:      	str	x8, [x0]
+  12cb7c:      	adrp	x8, 0x47000
+  12cb80:      	add	x1, sp, #0x8
+  12cb84:      	ldr	q0, [x8, #0x390]
+  12cb88:      	mov	x8, #0x3f800000
+  12cb8c:      	stp	xzr, xzr, [x0, #0x8]
+  12cb90:      	movk	x8, #0x10, lsl #32
+  12cb94:      	stp	xzr, xzr, [x0, #0x20]
+  12cb98:      	str	xzr, [x9, #0x18]!
+  12cb9c:      	stp	q0, q0, [x0, #0x30]
+  12cba0:      	stp	x8, xzr, [x0, #0x50]
+  12cba4:      	stp	x9, x0, [sp, #0x8]
+  12cba8:      	mov	x0, x19
+  12cbac:      	bl	0x131380 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x15c0>
+  12cbb0:      	ldr	x19, [sp, #0x10]
+  12cbb4:      	cbz	x19, 0x12cbe0 <_Z24ARSPMCreateSkottieHandlev+0xe0>
+  12cbb8:      	add	x1, x19, #0x8
+  12cbbc:      	mov	x0, #-0x1
+  12cbc0:      	bl	0x4ecb70 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcdb0>
+  12cbc4:      	cbnz	x0, 0x12cbe0 <_Z24ARSPMCreateSkottieHandlev+0xe0>
+  12cbc8:      	ldr	x8, [x19]
+  12cbcc:      	mov	x0, x19
+  12cbd0:      	ldr	x8, [x8, #0x10]
+  12cbd4:      	blr	x8
+  12cbd8:      	mov	x0, x19
+  12cbdc:      	bl	0x4f0a10 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  12cbe0:      	ldr	x8, [x20, #0x28]
+  12cbe4:      	ldur	x9, [x29, #-0x8]
+  12cbe8:      	cmp	x8, x9
+  12cbec:      	b.ne	0x12cc24 <_Z24ARSPMCreateSkottieHandlev+0x124>
+  12cbf0:      	ldp	x20, x19, [sp, #0x30]
+  12cbf4:      	ldp	x29, x30, [sp, #0x20]
+  12cbf8:      	add	sp, sp, #0x40
+  12cbfc:      	ret
+  12cc00:      	ldr	x8, [x20, #0x28]
+  12cc04:      	ldur	x9, [x29, #-0x8]
+  12cc08:      	cmp	x8, x9
+  12cc0c:      	b.ne	0x12cc24 <_Z24ARSPMCreateSkottieHandlev+0x124>
+  12cc10:      	mov	x20, x0
+  12cc14:      	mov	x0, x19
+  12cc18:      	bl	0x1313dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x161c>
+  12cc1c:      	mov	x0, x20
+  12cc20:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12cc24:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012cc28 <_Z25ARSPMDestroySkottieHandleRPv>:
+  12cc28:      	stp	x29, x30, [sp, #-0x20]!
+  12cc2c:      	stp	x20, x19, [sp, #0x10]
+  12cc30:      	mov	x29, sp
+  12cc34:      	ldr	x20, [x0]
+  12cc38:      	cbz	x20, 0x12cc54 <_Z25ARSPMDestroySkottieHandleRPv+0x2c>
+  12cc3c:      	mov	x19, x0
+  12cc40:      	mov	x0, x20
+  12cc44:      	bl	0x1313dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x161c>
+  12cc48:      	mov	x0, x20
+  12cc4c:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12cc50:      	str	xzr, [x19]
+  12cc54:      	ldp	x20, x19, [sp, #0x10]
+  12cc58:      	ldp	x29, x30, [sp], #0x20
+  12cc5c:      	ret
+
+000000000012cc60 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m>:
+  12cc60:      	sub	sp, sp, #0x90
+  12cc64:      	str	d8, [sp, #0x40]
+  12cc68:      	stp	x29, x30, [sp, #0x48]
+  12cc6c:      	str	x25, [sp, #0x58]
+  12cc70:      	stp	x24, x23, [sp, #0x60]
+  12cc74:      	stp	x22, x21, [sp, #0x70]
+  12cc78:      	stp	x20, x19, [sp, #0x80]
+  12cc7c:      	add	x29, sp, #0x48
+  12cc80:      	mrs	x24, TPIDR_EL0
+  12cc84:      	mov	w19, wzr
+  12cc88:      	ldr	x8, [x24, #0x28]
+  12cc8c:      	cmp	w2, #0x1
+  12cc90:      	stur	x8, [x29, #-0x10]
+  12cc94:      	b.lt	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cc98:      	mov	w21, w1
+  12cc9c:      	cmp	w1, #0x1
+  12cca0:      	b.lt	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cca4:      	mov	x23, x3
+  12cca8:      	cbz	x3, 0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccac:      	ldr	x25, [x0]
+  12ccb0:      	cbz	x25, 0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccb4:      	ubfiz	x8, x21, #2, #32
+  12ccb8:      	mov	x22, x4
+  12ccbc:      	cmp	x8, x4
+  12ccc0:      	b.hi	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccc4:      	mov	w8, w2
+  12ccc8:      	mov	w20, w2
+  12cccc:      	umulh	x8, x22, x8
+  12ccd0:      	cmp	xzr, x8
+  12ccd4:      	b.eq	0x12cce0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x80>
+  12ccd8:      	mov	w19, wzr
+  12ccdc:      	b	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cce0:      	add	x8, sp, #0x10
+  12cce4:      	mov	w0, w21
+  12cce8:      	mov	w1, w20
+  12ccec:      	mov	w2, #0x4
+  12ccf0:      	mov	w3, #0x2
+  12ccf4:      	fmov	s8, s0
+  12ccf8:      	bl	0x16814c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3838c>
+  12ccfc:      	add	x8, sp, #0x8
+  12cd00:      	add	x0, sp, #0x10
+  12cd04:      	mov	x1, x23
+  12cd08:      	mov	x2, x22
+  12cd0c:      	mov	x3, xzr
+  12cd10:      	bl	0x1ea858 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xbaa98>
+  12cd14:      	ldr	x0, [sp, #0x8]
+  12cd18:      	cmp	x0, #0x0
+  12cd1c:      	cset	w19, ne
+  12cd20:      	cbz	x0, 0x12cd88 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x128>
+  12cd24:      	bl	0x1e9970 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9bb0>
+  12cd28:      	mov	x22, x0
+  12cd2c:      	mov	w0, wzr
+  12cd30:      	bl	0x145ed8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x16118>
+  12cd34:      	stp	s0, s1, [x29, #-0x20]
+  12cd38:      	stp	s2, s3, [x29, #-0x18]
+  12cd3c:      	sub	x1, x29, #0x20
+  12cd40:      	mov	x0, x22
+  12cd44:      	mov	w2, #0x1
+  12cd48:      	bl	0x13fca8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfee8>
+  12cd4c:      	ldr	x0, [x25]
+  12cd50:      	ldr	x8, [x0]
+  12cd54:      	cbz	x8, 0x12cd6c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x10c>
+  12cd58:      	fcvt	d0, s8
+  12cd5c:      	mov	x0, x8
+  12cd60:      	mov	x1, xzr
+  12cd64:      	bl	0x46b27c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b4bc>
+  12cd68:      	ldr	x0, [x25]
+  12cd6c:      	scvtf	s0, w21
+  12cd70:      	scvtf	s1, w20
+  12cd74:      	mov	x1, x22
+  12cd78:      	bl	0x12ce04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a4>
+  12cd7c:      	ldr	x0, [sp, #0x8]
+  12cd80:      	mov	w1, wzr
+  12cd84:      	bl	0x1e9be0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9e20>
+  12cd88:      	add	x0, sp, #0x8
+  12cd8c:      	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12cd90:      	add	x0, sp, #0x10
+  12cd94:      	bl	0x167cb0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x37ef0>
+  12cd98:      	ldr	x8, [x24, #0x28]
+  12cd9c:      	ldur	x9, [x29, #-0x10]
+  12cda0:      	cmp	x8, x9
+  12cda4:      	b.ne	0x12ce00 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a0>
+  12cda8:      	mov	w0, w19
+  12cdac:      	ldp	x20, x19, [sp, #0x80]
+  12cdb0:      	ldr	x25, [sp, #0x58]
+  12cdb4:      	ldp	x22, x21, [sp, #0x70]
+  12cdb8:      	ldr	d8, [sp, #0x40]
+  12cdbc:      	ldp	x24, x23, [sp, #0x60]
+  12cdc0:      	ldp	x29, x30, [sp, #0x48]
+  12cdc4:      	add	sp, sp, #0x90
+  12cdc8:      	ret
+  12cdcc:      	mov	x19, x0
+  12cdd0:      	b	0x12cde0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x180>
+  12cdd4:      	mov	x19, x0
+  12cdd8:      	add	x0, sp, #0x8
+  12cddc:      	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12cde0:      	add	x0, sp, #0x10
+  12cde4:      	bl	0x167cb0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x37ef0>
+  12cde8:      	ldr	x8, [x24, #0x28]
+  12cdec:      	ldur	x9, [x29, #-0x10]
+  12cdf0:      	cmp	x8, x9
+  12cdf4:      	b.ne	0x12ce00 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a0>
+  12cdf8:      	mov	x0, x19
+  12cdfc:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12ce00:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12ce04:      	stp	x29, x30, [sp, #-0x20]!
+  12ce08:      	stp	x20, x19, [sp, #0x10]
+  12ce0c:      	mov	x29, sp
+  12ce10:      	ldp	s2, s3, [x0, #0x8]
+  12ce14:      	mov	x19, x0
+  12ce18:      	mov	x20, x1
+  12ce1c:      	fcmp	s0, s2
+  12ce20:      	fccmp	s1, s3, #0x0, eq
+  12ce24:      	b.eq	0x12ced8 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x278>
+  12ce28:      	ldr	s2, [x19, #0x10]
+  12ce2c:      	fcmp	s2, #0.0
+  12ce30:      	b.le	0x12ceb4 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x254>
+  12ce34:      	ldr	s3, [x19, #0x14]
+  12ce38:      	fcmp	s3, #0.0
+  12ce3c:      	b.le	0x12ceb4 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x254>
+  12ce40:      	fdiv	s4, s0, s2
+  12ce44:      	fmov	s6, #1.00000000
+  12ce48:      	str	wzr, [x19, #0x1c]
+  12ce4c:      	str	wzr, [x19, #0x24]
+  12ce50:      	str	xzr, [x19, #0x30]
+  12ce54:      	fdiv	s5, s1, s3
+  12ce58:      	fcmp	s5, s4
+  12ce5c:      	fcsel	s4, s5, s4, mi
+  12ce60:      	fmov	s5, #0.50000000
+  12ce64:      	fmsub	s2, s2, s4, s0
+  12ce68:      	fmsub	s3, s3, s4, s1
+  12ce6c:      	fcmp	s4, s6
+  12ce70:      	str	s4, [x19, #0x18]
+  12ce74:      	cset	w8, ne
+  12ce78:      	fmul	s2, s2, s5
+  12ce7c:      	fmul	s3, s3, s5
+  12ce80:      	fcmp	s2, #0.0
+  12ce84:      	str	s2, [x19, #0x20]
+  12ce88:      	stp	s4, s3, [x19, #0x28]
+  12ce8c:      	cset	w9, ne
+  12ce90:      	fcmp	s3, #0.0
+  12ce94:      	csinc	w9, w9, wzr, eq
+  12ce98:      	fcmp	s4, #0.0
+  12ce9c:      	orr	w8, w9, w8, lsl #1
+  12cea0:      	mov	w9, #0x3f800000
+  12cea4:      	str	w9, [x19, #0x38]
+  12cea8:      	orr	w9, w8, #0x10
+  12ceac:      	csel	w8, w9, w8, ne
+  12ceb0:      	b	0x12ced0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x270>
+  12ceb4:      	adrp	x8, 0x47000
+  12ceb8:      	ldr	q2, [x8, #0x390]
+  12cebc:      	mov	w8, #0x3f800000
+  12cec0:      	str	w8, [x19, #0x38]
+  12cec4:      	mov	w8, #0x10
+  12cec8:      	stur	q2, [x19, #0x18]
+  12cecc:      	stur	q2, [x19, #0x28]
+  12ced0:      	str	w8, [x19, #0x3c]
+  12ced4:      	stp	s0, s1, [x19, #0x8]
+  12ced8:      	add	x1, x19, #0x18
+  12cedc:      	mov	x0, x20
+  12cee0:      	bl	0x13a594 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa7d4>
+  12cee4:      	ldr	x0, [x19]
+  12cee8:      	mov	x1, x20
+  12ceec:      	mov	x2, xzr
+  12cef0:      	bl	0x46af0c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b14c>
+  12cef4:      	ldr	x0, [x19, #0x40]
+  12cef8:      	ldp	x20, x19, [sp, #0x10]
+  12cefc:      	ldp	x29, x30, [sp], #0x20
+  12cf00:      	b	0x12fdd0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x10>
+  12cf04:      	stp	x29, x30, [sp, #-0x20]!
+  12cf08:      	str	x19, [sp, #0x10]
+  12cf0c:      	mov	x29, sp
+  12cf10:      	ldr	x19, [x0]
+  12cf14:      	cbz	x19, 0x12cf3c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2dc>
+  12cf18:      	add	x1, x19, #0x8
+  12cf1c:      	mov	w0, #-0x1
+  12cf20:      	bl	0x4ecb10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcd50>
+  12cf24:      	cmp	w0, #0x1
+  12cf28:      	b.ne	0x12cf3c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2dc>
+  12cf2c:      	ldr	x8, [x19]
+  12cf30:      	ldr	x8, [x8, #0x10]
+  12cf34:      	mov	x0, x19
+  12cf38:      	blr	x8
+  12cf3c:      	ldr	x19, [sp, #0x10]
+  12cf40:      	ldp	x29, x30, [sp], #0x20
+  12cf44:      	ret
+  12cf48:      	bl	0x1300fc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33c>
+
+000000000012cf4c <_Z20ARSPMSkottieLoadDataRPvPKciS2_>:
+  12cf4c:      	sub	sp, sp, #0x50
+  12cf50:      	stp	x29, x30, [sp, #0x20]
+  12cf54:      	stp	x22, x21, [sp, #0x30]
+  12cf58:      	stp	x20, x19, [sp, #0x40]
+  12cf5c:      	add	x29, sp, #0x20
+  12cf60:      	mrs	x22, TPIDR_EL0
+  12cf64:      	ldr	x8, [x22, #0x28]
+  12cf68:      	stur	x8, [x29, #-0x8]
+  12cf6c:      	ldr	x8, [x0]
+  12cf70:      	cbz	x8, 0x12cfb0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x64>
+  12cf74:      	mov	x19, x1
+  12cf78:      	ldr	x20, [x8]
+  12cf7c:      	mov	x0, sp
+  12cf80:      	mov	x1, x3
+  12cf84:      	sxtw	x21, w2
+  12cf88:      	bl	0x12d2a0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x354>
+  12cf8c:      	mov	x3, sp
+  12cf90:      	mov	x0, x20
+  12cf94:      	mov	x1, x19
+  12cf98:      	mov	x2, x21
+  12cf9c:      	bl	0x12d004 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb8>
+  12cfa0:      	ldrb	w8, [sp]
+  12cfa4:      	tbz	w8, #0x0, 0x12cfb0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x64>
+  12cfa8:      	ldr	x0, [sp, #0x10]
+  12cfac:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12cfb0:      	ldr	x8, [x22, #0x28]
+  12cfb4:      	ldur	x9, [x29, #-0x8]
+  12cfb8:      	cmp	x8, x9
+  12cfbc:      	b.ne	0x12d000 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb4>
+  12cfc0:      	ldp	x20, x19, [sp, #0x40]
+  12cfc4:      	ldp	x22, x21, [sp, #0x30]
+  12cfc8:      	ldp	x29, x30, [sp, #0x20]
+  12cfcc:      	add	sp, sp, #0x50
+  12cfd0:      	ret
+  12cfd4:      	ldrb	w8, [sp]
+  12cfd8:      	mov	x19, x0
+  12cfdc:      	tbz	w8, #0x0, 0x12cfe8 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x9c>
+  12cfe0:      	ldr	x0, [sp, #0x10]
+  12cfe4:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12cfe8:      	ldr	x8, [x22, #0x28]
+  12cfec:      	ldur	x9, [x29, #-0x8]
+  12cff0:      	cmp	x8, x9
+  12cff4:      	b.ne	0x12d000 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb4>
+  12cff8:      	mov	x0, x19
+  12cffc:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d000:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12d004:      	sub	sp, sp, #0xe0
+  12d008:      	stp	x29, x30, [sp, #0xa0]
+  12d00c:      	stp	x24, x23, [sp, #0xb0]
+  12d010:      	stp	x22, x21, [sp, #0xc0]
+  12d014:      	stp	x20, x19, [sp, #0xd0]
+  12d018:      	add	x29, sp, #0xa0
+  12d01c:      	mrs	x23, TPIDR_EL0
+  12d020:      	mov	x21, x1
+  12d024:      	mov	x19, x0
+  12d028:      	ldr	x8, [x23, #0x28]
+  12d02c:      	sub	x0, x29, #0x30
+  12d030:      	mov	x1, x3
+  12d034:      	mov	x20, x2
+  12d038:      	stur	x8, [x29, #-0x8]
+  12d03c:      	bl	0x1d9228 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9468>
+  12d040:      	sub	x8, x29, #0x28
+  12d044:      	sub	x0, x29, #0x30
+  12d048:      	mov	w1, #0x1
+  12d04c:      	bl	0x466dcc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33700c>
+  12d050:      	ldur	x8, [x29, #-0x28]
+  12d054:      	stp	xzr, x8, [x29, #-0x28]
+  12d058:      	add	x8, sp, #0x10
+  12d05c:      	sub	x0, x29, #0x20
+  12d060:      	mov	w1, #0x1
+  12d064:      	bl	0x4672dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33751c>
+  12d068:      	ldr	x8, [sp, #0x10]
+  12d06c:      	str	xzr, [sp, #0x10]
+  12d070:      	stur	x8, [x29, #-0x18]
+  12d074:      	sub	x8, x29, #0x10
+  12d078:      	sub	x0, x29, #0x18
+  12d07c:      	bl	0x12ff20 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x160>
+  12d080:      	sub	x0, x29, #0x18
+  12d084:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d088:      	add	x0, sp, #0x10
+  12d08c:      	bl	0x12fbf0 <_Z16ARSPMSkSvgToRGBAPKci+0x510>
+  12d090:      	sub	x0, x29, #0x20
+  12d094:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d098:      	sub	x0, x29, #0x28
+  12d09c:      	bl	0x12ffdc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x21c>
+  12d0a0:      	sub	x0, x29, #0x30
+  12d0a4:      	bl	0x1d93f8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9638>
+  12d0a8:      	add	x0, sp, #0x10
+  12d0ac:      	mov	w1, wzr
+  12d0b0:      	bl	0x46a154 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a394>
+  12d0b4:      	mov	w0, #0x40
+  12d0b8:      	bl	0x4f09f0 <_Znwm@plt>
+  12d0bc:      	movi	v0.2d, #0000000000000000
+  12d0c0:      	ldr	x22, [x19, #0x40]
+  12d0c4:      	adrp	x8, 0x4f5000 <syscall@plt+0x3bc0>
+  12d0c8:      	add	x8, x8, #0x468
+  12d0cc:      	mov	w9, #0x1
+  12d0d0:      	stur	xzr, [x29, #-0x28]
+  12d0d4:      	stp	x8, xzr, [x0]
+  12d0d8:      	str	w9, [x0, #0x8]
+  12d0dc:      	stp	q0, q0, [x0, #0x10]
+  12d0e0:      	str	q0, [x0, #0x30]
+  12d0e4:      	str	x0, [x19, #0x40]
+  12d0e8:      	cbz	x22, 0x12d110 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1c4>
+  12d0ec:      	add	x1, x22, #0x8
+  12d0f0:      	mov	w0, #-0x1
+  12d0f4:      	bl	0x4ecb10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcd50>
+  12d0f8:      	cmp	w0, #0x1
+  12d0fc:      	b.ne	0x12d110 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1c4>
+  12d100:      	ldr	x8, [x22]
+  12d104:      	ldr	x8, [x8, #0x10]
+  12d108:      	mov	x0, x22
+  12d10c:      	blr	x8
+  12d110:      	sub	x0, x29, #0x28
+  12d114:      	bl	0x130024 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x264>
+  12d118:      	ldur	x22, [x29, #-0x10]
+  12d11c:      	cbz	x22, 0x12d12c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1e0>
+  12d120:      	add	x1, x22, #0x8
+  12d124:      	mov	w0, #0x1
+  12d128:      	bl	0x4eca80 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bccc0>
+  12d12c:      	str	x22, [sp, #0x8]
+  12d130:      	add	x0, sp, #0x10
+  12d134:      	add	x1, sp, #0x8
+  12d138:      	bl	0x46a2d0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a510>
+  12d13c:      	ldr	x24, [x19, #0x40]
+  12d140:      	mov	x22, x0
+  12d144:      	cbz	x24, 0x12d154 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x208>
+  12d148:      	add	x1, x24, #0x8
+  12d14c:      	mov	w0, #0x1
+  12d150:      	bl	0x4eca80 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bccc0>
+  12d154:      	str	x24, [sp]
+  12d158:      	mov	x1, sp
+  12d15c:      	mov	x0, x22
+  12d160:      	bl	0x46a328 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a568>
+  12d164:      	sub	x8, x29, #0x28
+  12d168:      	mov	x1, x21
+  12d16c:      	mov	x2, x20
+  12d170:      	bl	0x46a380 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a5c0>
+  12d174:      	ldur	x8, [x29, #-0x28]
+  12d178:      	ldr	x0, [x19]
+  12d17c:      	stur	xzr, [x29, #-0x28]
+  12d180:      	str	x8, [x19]
+  12d184:      	cbz	x0, 0x12d198 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x24c>
+  12d188:      	bl	0x1308bc <_Z21ARSPMSkSvgSegmentPathPvffbf+0xafc>
+  12d18c:      	ldur	x0, [x29, #-0x28]
+  12d190:      	cbz	x0, 0x12d198 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x24c>
+  12d194:      	bl	0x1308bc <_Z21ARSPMSkSvgSegmentPathPvffbf+0xafc>
+  12d198:      	mov	x0, sp
+  12d19c:      	bl	0x13006c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2ac>
+  12d1a0:      	add	x0, sp, #0x8
+  12d1a4:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d1a8:      	movi	d0, #0000000000000000
+  12d1ac:      	ldr	x8, [x19]
+  12d1b0:      	str	d0, [x19, #0x8]
+  12d1b4:      	cbz	x8, 0x12d1bc <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x270>
+  12d1b8:      	ldr	d0, [x8, #0x30]
+  12d1bc:      	add	x0, sp, #0x10
+  12d1c0:      	str	d0, [x19, #0x10]
+  12d1c4:      	bl	0x46a178 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a3b8>
+  12d1c8:      	sub	x0, x29, #0x10
+  12d1cc:      	bl	0x1300b4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2f4>
+  12d1d0:      	ldr	x8, [x23, #0x28]
+  12d1d4:      	ldur	x9, [x29, #-0x8]
+  12d1d8:      	cmp	x8, x9
+  12d1dc:      	b.ne	0x12d29c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x350>
+  12d1e0:      	ldp	x20, x19, [sp, #0xd0]
+  12d1e4:      	ldp	x22, x21, [sp, #0xc0]
+  12d1e8:      	ldp	x24, x23, [sp, #0xb0]
+  12d1ec:      	ldp	x29, x30, [sp, #0xa0]
+  12d1f0:      	add	sp, sp, #0xe0
+  12d1f4:      	ret
+  12d1f8:      	mov	x19, x0
+  12d1fc:      	sub	x0, x29, #0x28
+  12d200:      	bl	0x130024 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x264>
+  12d204:      	b	0x12d274 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x328>
+  12d208:      	mov	x19, x0
+  12d20c:      	b	0x12d26c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x320>
+  12d210:      	mov	x19, x0
+  12d214:      	b	0x12d274 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x328>
+  12d218:      	mov	x19, x0
+  12d21c:      	b	0x12d27c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x330>
+  12d220:      	mov	x19, x0
+  12d224:      	sub	x0, x29, #0x18
+  12d228:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d22c:      	add	x0, sp, #0x10
+  12d230:      	bl	0x12fbf0 <_Z16ARSPMSkSvgToRGBAPKci+0x510>
+  12d234:      	b	0x12d23c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x2f0>
+  12d238:      	mov	x19, x0
+  12d23c:      	sub	x0, x29, #0x20
+  12d240:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d244:      	sub	x0, x29, #0x28
+  12d248:      	bl	0x12ffdc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x21c>
+  12d24c:      	b	0x12d254 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x308>
+  12d250:      	mov	x19, x0
+  12d254:      	sub	x0, x29, #0x30
+  12d258:      	bl	0x1d93f8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9638>
+  12d25c:      	b	0x12d284 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x338>
+  12d260:      	mov	x19, x0
+  12d264:      	mov	x0, sp
+  12d268:      	bl	0x13006c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2ac>
+  12d26c:      	add	x0, sp, #0x8
+  12d270:      	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d274:      	add	x0, sp, #0x10
+  12d278:      	bl	0x46a178 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a3b8>
+  12d27c:      	sub	x0, x29, #0x10
+  12d280:      	bl	0x1300b4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2f4>
+  12d284:      	ldr	x8, [x23, #0x28]
+  12d288:      	ldur	x9, [x29, #-0x8]
+  12d28c:      	cmp	x8, x9
+  12d290:      	b.ne	0x12d29c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x350>
+  12d294:      	mov	x0, x19
+  12d298:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d29c:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12d2a0:      	stp	x29, x30, [sp, #-0x30]!
+  12d2a4:      	stp	x22, x21, [sp, #0x10]
+  12d2a8:      	stp	x20, x19, [sp, #0x20]
+  12d2ac:      	mov	x29, sp
+  12d2b0:      	mov	x19, x0
+  12d2b4:      	mov	x0, x1
+  12d2b8:      	mov	x21, x1
+  12d2bc:      	bl	0x4f0a30 <strlen@plt>
+  12d2c0:      	cmn	x0, #0x10
+  12d2c4:      	b.hs	0x12d324 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3d8>
+  12d2c8:      	mov	x20, x0
+  12d2cc:      	cmp	x0, #0x17
+  12d2d0:      	b.hs	0x12d2e4 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x398>
+  12d2d4:      	lsl	w8, w20, #1
+  12d2d8:      	strb	w8, [x19], #0x1
+  12d2dc:      	cbnz	x20, 0x12d300 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3b4>
+  12d2e0:      	b	0x12d310 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3c4>
+  12d2e4:      	orr	x22, x20, #0xf
+  12d2e8:      	add	x0, x22, #0x1
+  12d2ec:      	bl	0x4f09f0 <_Znwm@plt>
+  12d2f0:      	add	x8, x22, #0x2
+  12d2f4:      	stp	x20, x0, [x19, #0x8]
+  12d2f8:      	str	x8, [x19]
+  12d2fc:      	mov	x19, x0
+  12d300:      	mov	x0, x19
+  12d304:      	mov	x1, x21
+  12d308:      	mov	x2, x20
+  12d30c:      	bl	0x4f0a40 <memmove@plt>
+  12d310:      	strb	wzr, [x19, x20]
+  12d314:      	ldp	x20, x19, [sp, #0x20]
+  12d318:      	ldp	x22, x21, [sp, #0x10]
+  12d31c:      	ldp	x29, x30, [sp], #0x30
+  12d320:      	ret
+  12d324:      	mov	x0, x19
+  12d328:      	bl	0x1314b0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x16f0>
+
+000000000012d32c <_Z29ARSPMSkottieGetAnimationWidthRPv>:
+  12d32c:      	ldr	x8, [x0]
+  12d330:      	cbz	x8, 0x12d340 <_Z29ARSPMSkottieGetAnimationWidthRPv+0x14>
+  12d334:      	ldr	x8, [x8]
+  12d338:      	ldr	s0, [x8, #0x10]
+  12d33c:      	ret
+  12d340:      	movi	d0, #0000000000000000
+  12d344:      	ret
+
+000000000012d348 <_Z30ARSPMSkottieGetAnimationHeightRPv>:
+  12d348:      	ldr	x8, [x0]
+  12d34c:      	cbz	x8, 0x12d35c <_Z30ARSPMSkottieGetAnimationHeightRPv+0x14>
+  12d350:      	ldr	x8, [x8]
+  12d354:      	ldr	s0, [x8, #0x14]
+  12d358:      	ret
+  12d35c:      	movi	d0, #0000000000000000
+  12d360:      	ret
+
+000000000012d364 <_Z32ARSPMSkottieGetAnimationDurationRPv>:
+  12d364:      	movi	d0, #0000000000000000
+  12d368:      	ldr	x8, [x0]
+  12d36c:      	cbz	x8, 0x12d384 <_Z32ARSPMSkottieGetAnimationDurationRPv+0x20>
+  12d370:      	ldr	x8, [x8]
+  12d374:      	ldr	x8, [x8]
+  12d378:      	cbz	x8, 0x12d384 <_Z32ARSPMSkottieGetAnimationDurationRPv+0x20>
+  12d37c:      	ldr	d0, [x8, #0x48]
+  12d380:      	fcvt	s0, d0
+  12d384:      	ret
+
+000000000012d388 <_Z27ARSPMSkottieGetAnimationFPSRPv>:
+  12d388:      	movi	d0, #0000000000000000
+  12d38c:      	ldr	x8, [x0]
+  12d390:      	cbz	x8, 0x12d3a8 <_Z27ARSPMSkottieGetAnimationFPSRPv+0x20>
+  12d394:      	ldr	x8, [x8]
+  12d398:      	ldr	x8, [x8]
+  12d39c:      	cbz	x8, 0x12d3a8 <_Z27ARSPMSkottieGetAnimationFPSRPv+0x20>
+  12d3a0:      	ldr	d0, [x8, #0x50]
+  12d3a4:      	fcvt	s0, d0
+  12d3a8:      	ret
+
+000000000012d3ac <_Z24ARSPMSkottiAnimationDrawRPvfi>:
+  12d3ac:      	sub	sp, sp, #0x60
+  12d3b0:      	stp	d9, d8, [sp, #0x20]
+  12d3b4:      	stp	x29, x30, [sp, #0x30]
+  12d3b8:      	str	x21, [sp, #0x40]
+  12d3bc:      	stp	x20, x19, [sp, #0x50]
+  12d3c0:      	add	x29, sp, #0x30
+  12d3c4:      	mrs	x20, TPIDR_EL0
+  12d3c8:      	ldr	x8, [x20, #0x28]
+  12d3cc:      	str	x8, [sp, #0x18]
+  12d3d0:      	ldr	x21, [x0]
+  12d3d4:      	cbz	x21, 0x12d454 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xa8>
+  12d3d8:      	ldr	x8, [x21]
+  12d3dc:      	fmov	s8, s0
+  12d3e0:      	sxtw	x1, w1
+  12d3e4:      	add	x0, sp, #0x8
+  12d3e8:      	ldp	s0, s1, [x8, #0x10]
+  12d3ec:      	fcvtzs	w8, s0
+  12d3f0:      	fcvtzs	w9, s1
+  12d3f4:      	orr	x8, x8, x9, lsl #32
+  12d3f8:      	str	x8, [sp, #0x8]
+  12d3fc:      	add	x8, sp, #0x10
+  12d400:      	bl	0x131a10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1c50>
+  12d404:      	ldr	x19, [x21]
+  12d408:      	ldr	x0, [x19]
+  12d40c:      	cbz	x0, 0x12d420 <_Z24ARSPMSkottiAnimationDrawRPvfi+0x74>
+  12d410:      	fcvt	d0, s8
+  12d414:      	mov	x1, xzr
+  12d418:      	bl	0x46b27c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b4bc>
+  12d41c:      	ldr	x19, [x21]
+  12d420:      	ldp	s8, s9, [x19, #0x10]
+  12d424:      	ldr	x0, [sp, #0x10]
+  12d428:      	bl	0x1e9970 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9bb0>
+  12d42c:      	mov	x1, x0
+  12d430:      	fmov	s0, s8
+  12d434:      	fmov	s1, s9
+  12d438:      	mov	x0, x19
+  12d43c:      	bl	0x12ce04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a4>
+  12d440:      	ldr	x0, [sp, #0x10]
+  12d444:      	mov	w1, wzr
+  12d448:      	bl	0x1e9be0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9e20>
+  12d44c:      	add	x0, sp, #0x10
+  12d450:      	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12d454:      	ldr	x8, [x20, #0x28]
+  12d458:      	ldr	x9, [sp, #0x18]
+  12d45c:      	cmp	x8, x9
+  12d460:      	b.ne	0x12d4a0 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xf4>
+  12d464:      	ldp	x20, x19, [sp, #0x50]
+  12d468:      	ldr	x21, [sp, #0x40]
+  12d46c:      	ldp	x29, x30, [sp, #0x30]
+  12d470:      	ldp	d9, d8, [sp, #0x20]
+  12d474:      	add	sp, sp, #0x60
+  12d478:      	ret
+  12d47c:      	mov	x19, x0
+  12d480:      	add	x0, sp, #0x10
+  12d484:      	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12d488:      	ldr	x8, [x20, #0x28]
+  12d48c:      	ldr	x9, [sp, #0x18]
+  12d490:      	cmp	x8, x9
+  12d494:      	b.ne	0x12d4a0 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xf4>
+  12d498:      	mov	x0, x19
+  12d49c:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d4a0:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012d4a4 <_Z24ARSPMGetBidiVisualIndexsPKci>:
+  12d4a4:      	sub	sp, sp, #0x60
+  12d4a8:      	stp	x29, x30, [sp, #0x10]
+  12d4ac:      	str	x25, [sp, #0x20]
+  12d4b0:      	stp	x24, x23, [sp, #0x30]
+  12d4b4:      	stp	x22, x21, [sp, #0x40]
+  12d4b8:      	stp	x20, x19, [sp, #0x50]
+  12d4bc:      	add	x29, sp, #0x10
+  12d4c0:      	mrs	x21, TPIDR_EL0
+  12d4c4:      	mov	x19, x8
+  12d4c8:      	ldr	x8, [x21, #0x28]
+  12d4cc:      	str	x8, [sp, #0x8]
+  12d4d0:      	stp	xzr, xzr, [x19]
+  12d4d4:      	str	xzr, [x19, #0x10]
+  12d4d8:      	cbz	x0, 0x12d5b4 <_Z24ARSPMGetBidiVisualIndexsPKci+0x110>
+  12d4dc:      	cmp	w1, #0x1
+  12d4e0:      	b.lt	0x12d5b4 <_Z24ARSPMGetBidiVisualIndexsPKci+0x110>
+  12d4e4:      	add	x20, x0, w1, uxtw
+  12d4e8:      	mov	w22, wzr
+  12d4ec:      	mov	x23, #0x7ffffffffffffffc
+  12d4f0:      	mov	x24, #0x3fffffffffffffff
+  12d4f4:      	str	x0, [sp]
+  12d4f8:      	mov	x0, sp
+  12d4fc:      	mov	x1, x20
+  12d500:      	bl	0x134b74 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4db4>
+  12d504:      	ldp	x9, x8, [x19, #0x8]
+  12d508:      	cmp	x9, x8
+  12d50c:      	b.hs	0x12d51c <_Z24ARSPMGetBidiVisualIndexsPKci+0x78>
+  12d510:      	str	w22, [x9], #0x4
+  12d514:      	mov	x25, x9
+  12d518:      	b	0x12d5a0 <_Z24ARSPMGetBidiVisualIndexsPKci+0xfc>
+  12d51c:      	ldr	x0, [x19]
+  12d520:      	sub	x10, x9, x0
+  12d524:      	asr	x25, x10, #2
+  12d528:      	add	x10, x25, #0x1
+  12d52c:      	lsr	x11, x10, #62
+  12d530:      	cbnz	x11, 0x12d5e0 <_Z24ARSPMGetBidiVisualIndexsPKci+0x13c>
+  12d534:      	sub	x8, x8, x0
+  12d538:      	asr	x11, x8, #1
+  12d53c:      	cmp	x11, x10
+  12d540:      	csel	x10, x11, x10, hi
+  12d544:      	cmp	x8, x23
+  12d548:      	csel	x1, x10, x24, lo
+  12d54c:      	cbz	x1, 0x12d564 <_Z24ARSPMGetBidiVisualIndexsPKci+0xc0>
+  12d550:      	add	x0, x19, #0x10
+  12d554:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12d558:      	mov	x8, x0
+  12d55c:      	ldp	x0, x9, [x19]
+  12d560:      	b	0x12d568 <_Z24ARSPMGetBidiVisualIndexsPKci+0xc4>
+  12d564:      	mov	x8, xzr
+  12d568:      	add	x10, x8, x25, lsl #2
+  12d56c:      	cmp	x9, x0
+  12d570:      	mov	x25, x10
+  12d574:      	str	w22, [x25], #0x4
+  12d578:      	b.eq	0x12d58c <_Z24ARSPMGetBidiVisualIndexsPKci+0xe8>
+  12d57c:      	ldr	w11, [x9, #-0x4]!
+  12d580:      	cmp	x9, x0
+  12d584:      	str	w11, [x10, #-0x4]!
+  12d588:      	b.ne	0x12d57c <_Z24ARSPMGetBidiVisualIndexsPKci+0xd8>
+  12d58c:      	add	x8, x8, x1, lsl #2
+  12d590:      	stp	x10, x25, [x19]
+  12d594:      	str	x8, [x19, #0x10]
+  12d598:      	cbz	x0, 0x12d5a0 <_Z24ARSPMGetBidiVisualIndexsPKci+0xfc>
+  12d59c:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d5a0:      	ldr	x8, [sp]
+  12d5a4:      	add	w22, w22, #0x1
+  12d5a8:      	str	x25, [x19, #0x8]
+  12d5ac:      	cmp	x8, x20
+  12d5b0:      	b.lo	0x12d4f8 <_Z24ARSPMGetBidiVisualIndexsPKci+0x54>
+  12d5b4:      	ldr	x8, [x21, #0x28]
+  12d5b8:      	ldr	x9, [sp, #0x8]
+  12d5bc:      	cmp	x8, x9
+  12d5c0:      	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d5c4:      	ldp	x20, x19, [sp, #0x50]
+  12d5c8:      	ldr	x25, [sp, #0x20]
+  12d5cc:      	ldp	x22, x21, [sp, #0x40]
+  12d5d0:      	ldp	x24, x23, [sp, #0x30]
+  12d5d4:      	ldp	x29, x30, [sp, #0x10]
+  12d5d8:      	add	sp, sp, #0x60
+  12d5dc:      	ret
+  12d5e0:      	ldr	x8, [x21, #0x28]
+  12d5e4:      	ldr	x9, [sp, #0x8]
+  12d5e8:      	cmp	x8, x9
+  12d5ec:      	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d5f0:      	mov	x0, x19
+  12d5f4:      	bl	0x130d98 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfd8>
+  12d5f8:      	b	0x12d600 <_Z24ARSPMGetBidiVisualIndexsPKci+0x15c>
+  12d5fc:      	b	0x12d600 <_Z24ARSPMGetBidiVisualIndexsPKci+0x15c>
+  12d600:      	mov	x20, x0
+  12d604:      	ldr	x0, [x19]
+  12d608:      	cbz	x0, 0x12d614 <_Z24ARSPMGetBidiVisualIndexsPKci+0x170>
+  12d60c:      	str	x0, [x19, #0x8]
+  12d610:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d614:      	ldr	x8, [x21, #0x28]
+  12d618:      	ldr	x9, [sp, #0x8]
+  12d61c:      	cmp	x8, x9
+  12d620:      	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d624:      	mov	x0, x20
+  12d628:      	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d62c:      	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012d630 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE>:
+  12d630:      	sub	sp, sp, #0x180
+  12d634:      	stp	x29, x30, [sp, #0x120]
+  12d638:      	stp	x28, x27, [sp, #0x130]
+  12d63c:      	stp	x26, x25, [sp, #0x140]
+  12d640:      	stp	x24, x23, [sp, #0x150]
+  12d644:      	stp	x22, x21, [sp, #0x160]
+  12d648:      	stp	x20, x19, [sp, #0x170]
+  12d64c:      	add	x29, sp, #0x120
+  12d650:      	mrs	x24, TPIDR_EL0
+  12d654:      	ldr	x8, [x24, #0x28]
+  12d658:      	stur	x8, [x29, #-0x10]
+  12d65c:      	cbz	w1, 0x12d6e4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xb4>
+  12d660:      	mov	x21, x0
+  12d664:      	mov	w20, wzr
+  12d668:      	stp	xzr, xzr, [sp, #0x88]
+  12d66c:      	str	xzr, [sp, #0x98]
+  12d670:      	cbz	x0, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d674:      	tbnz	w1, #0x1f, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d678:      	mov	x19, x2
+  12d67c:      	mov	w23, w1
+  12d680:      	mov	x0, xzr
+  12d684:      	mov	w1, wzr
+  12d688:      	mov	x2, x21
+  12d68c:      	mov	x3, x23
+  12d690:      	bl	0x134de8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x5028>
+  12d694:      	mov	w20, w0
+  12d698:      	cmp	w0, #0x1
+  12d69c:      	b.lt	0x12d760 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x130>
+  12d6a0:      	mov	w22, w20
+  12d6a4:      	sub	x0, x29, #0x28
+  12d6a8:      	mov	x1, x22
+  12d6ac:      	bl	0x130904 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb44>
+  12d6b0:      	ldur	x0, [x29, #-0x28]
+  12d6b4:      	mov	w1, w20
+  12d6b8:      	mov	x2, x21
+  12d6bc:      	mov	x3, x23
+  12d6c0:      	bl	0x134de8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x5028>
+  12d6c4:      	mov	w21, w0
+  12d6c8:      	cmp	w0, w20
+  12d6cc:      	b.ne	0x12d728 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xf8>
+  12d6d0:      	ldrb	w8, [sp, #0x88]
+  12d6d4:      	tbnz	w8, #0x0, 0x12d6ec <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xbc>
+  12d6d8:      	strh	wzr, [sp, #0x8a]
+  12d6dc:      	strb	wzr, [sp, #0x88]
+  12d6e0:      	b	0x12d6f8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xc8>
+  12d6e4:      	mov	w20, wzr
+  12d6e8:      	b	0x12d774 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x144>
+  12d6ec:      	ldr	x8, [sp, #0x98]
+  12d6f0:      	strh	wzr, [x8]
+  12d6f4:      	str	xzr, [sp, #0x90]
+  12d6f8:      	add	x0, sp, #0x88
+  12d6fc:      	mov	x1, x22
+  12d700:      	bl	0x130978 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xbb8>
+  12d704:      	ldp	x22, x23, [x29, #-0x28]
+  12d708:      	cmp	x22, x23
+  12d70c:      	b.eq	0x12d72c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xfc>
+  12d710:      	ldrh	w1, [x22]
+  12d714:      	add	x0, sp, #0x88
+  12d718:      	bl	0x1309f0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xc30>
+  12d71c:      	add	x22, x22, #0x2
+  12d720:      	cmp	x22, x23
+  12d724:      	b.ne	0x12d710 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xe0>
+  12d728:      	ldur	x22, [x29, #-0x28]
+  12d72c:      	cbz	x22, 0x12d73c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x10c>
+  12d730:      	mov	x0, x22
+  12d734:      	stur	x22, [x29, #-0x20]
+  12d738:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d73c:      	cmp	w21, w20
+  12d740:      	b.ne	0x12d760 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x130>
+  12d744:      	ldrb	w8, [sp, #0x88]
+  12d748:      	tbnz	w8, #0x0, 0x12d7a8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x178>
+  12d74c:      	ldur	q0, [sp, #0x88]
+  12d750:      	ldr	x8, [sp, #0x98]
+  12d754:      	str	q0, [sp, #0x70]
+  12d758:      	str	x8, [sp, #0x80]
+  12d75c:      	b	0x12d7b4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x184>
+  12d760:      	mov	w20, wzr
+  12d764:      	ldrb	w8, [sp, #0x88]
+  12d768:      	tbz	w8, #0x0, 0x12d774 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x144>
+  12d76c:      	ldr	x0, [sp, #0x98]
+  12d770:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d774:      	ldr	x8, [x24, #0x28]
+  12d778:      	ldur	x9, [x29, #-0x10]
+  12d77c:      	cmp	x8, x9
+  12d780:      	b.ne	0x12e7b8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1188>
+  12d784:      	mov	w0, w20
+  12d788:      	ldp	x20, x19, [sp, #0x170]
+  12d78c:      	ldp	x22, x21, [sp, #0x160]
+  12d790:      	ldp	x24, x23, [sp, #0x150]
+  12d794:      	ldp	x26, x25, [sp, #0x140]
+  12d798:      	ldp	x28, x27, [sp, #0x130]
+  12d79c:      	ldp	x29, x30, [sp, #0x120]
+  12d7a0:      	add	sp, sp, #0x180
+  12d7a4:      	ret
+  12d7a8:      	ldp	x2, x1, [sp, #0x90]
+  12d7ac:      	add	x0, sp, #0x70
+  12d7b0:      	bl	0x1314c4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1704>
+  12d7b4:      	ldrb	w8, [sp, #0x70]
+  12d7b8:      	ldp	x9, x0, [sp, #0x78]
+  12d7bc:      	add	x11, sp, #0x70
+  12d7c0:      	lsr	x10, x8, #1
+  12d7c4:      	tst	w8, #0x1
+  12d7c8:      	orr	x11, x11, #0x2
+  12d7cc:      	csel	x10, x10, x9, eq
+  12d7d0:      	csel	x9, x11, x0, eq
+  12d7d4:      	cbz	x10, 0x12d92c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2fc>
+  12d7d8:      	lsl	x10, x10, #1
+  12d7dc:      	sub	x10, x10, #0x2
+  12d7e0:      	ldrb	w11, [x9, #0x1]
+  12d7e4:      	add	x9, x9, #0x2
+  12d7e8:      	lsl	w11, w11, #8
+  12d7ec:      	cmp	w11, #0x600
+  12d7f0:      	cset	w20, eq
+  12d7f4:      	ccmp	x10, #0x0, #0x4, ne
+  12d7f8:      	sub	x10, x10, #0x2
+  12d7fc:      	b.ne	0x12d7e0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1b0>
+  12d800:      	tbz	w8, #0x0, 0x12d808 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d8>
+  12d804:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d808:      	cbz	w20, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d80c:      	ldrb	w8, [sp, #0x88]
+  12d810:      	ldr	x9, [sp, #0x90]
+  12d814:      	stp	xzr, xzr, [sp, #0x58]
+  12d818:      	str	xzr, [sp, #0x68]
+  12d81c:      	lsr	x10, x8, #1
+  12d820:      	tst	w8, #0x1
+  12d824:      	csel	x1, x10, x9, eq
+  12d828:      	add	x0, sp, #0x58
+  12d82c:      	bl	0x12e7bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x118c>
+  12d830:      	ldrb	w8, [sp, #0x88]
+  12d834:      	ldp	x9, x11, [sp, #0x90]
+  12d838:      	add	x12, sp, #0x88
+  12d83c:      	lsr	x10, x8, #1
+  12d840:      	tst	w8, #0x1
+  12d844:      	orr	x12, x12, #0x2
+  12d848:      	csel	x8, x10, x9, eq
+  12d84c:      	csel	x9, x12, x11, eq
+  12d850:      	cmp	x8, #0x0
+  12d854:      	str	x9, [sp, #0x50]
+  12d858:      	b.le	0x12d938 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x308>
+  12d85c:      	add	x20, x9, x8, lsl #1
+  12d860:      	add	x22, sp, #0x58
+  12d864:      	mov	x23, #0x7ffffffffffffffc
+  12d868:      	mov	x25, #0x3fffffffffffffff
+  12d86c:      	add	x0, sp, #0x50
+  12d870:      	mov	x1, x20
+  12d874:      	bl	0x134c20 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4e60>
+  12d878:      	ldp	x9, x8, [sp, #0x60]
+  12d87c:      	mov	w21, w0
+  12d880:      	cmp	x9, x8
+  12d884:      	b.hs	0x12d894 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x264>
+  12d888:      	str	w21, [x9], #0x4
+  12d88c:      	mov	x26, x9
+  12d890:      	b	0x12d918 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2e8>
+  12d894:      	ldr	x0, [sp, #0x58]
+  12d898:      	sub	x10, x9, x0
+  12d89c:      	asr	x26, x10, #2
+  12d8a0:      	add	x10, x26, #0x1
+  12d8a4:      	lsr	x11, x10, #62
+  12d8a8:      	cbnz	x11, 0x12e5f0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xfc0>
+  12d8ac:      	sub	x8, x8, x0
+  12d8b0:      	asr	x11, x8, #1
+  12d8b4:      	cmp	x11, x10
+  12d8b8:      	csel	x10, x11, x10, hi
+  12d8bc:      	cmp	x8, x23
+  12d8c0:      	csel	x1, x10, x25, lo
+  12d8c4:      	cbz	x1, 0x12d8dc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2ac>
+  12d8c8:      	add	x0, x22, #0x10
+  12d8cc:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12d8d0:      	mov	x8, x0
+  12d8d4:      	ldp	x0, x9, [sp, #0x58]
+  12d8d8:      	b	0x12d8e0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2b0>
+  12d8dc:      	mov	x8, xzr
+  12d8e0:      	add	x10, x8, x26, lsl #2
+  12d8e4:      	cmp	x9, x0
+  12d8e8:      	mov	x26, x10
+  12d8ec:      	str	w21, [x26], #0x4
+  12d8f0:      	b.eq	0x12d904 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2d4>
+  12d8f4:      	ldr	w11, [x9, #-0x4]!
+  12d8f8:      	cmp	x9, x0
+  12d8fc:      	str	w11, [x10, #-0x4]!
+  12d900:      	b.ne	0x12d8f4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2c4>
+  12d904:      	add	x8, x8, x1, lsl #2
+  12d908:      	stp	x10, x26, [sp, #0x58]
+  12d90c:      	str	x8, [sp, #0x68]
+  12d910:      	cbz	x0, 0x12d918 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2e8>
+  12d914:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12d918:      	ldr	x8, [sp, #0x50]
+  12d91c:      	str	x26, [sp, #0x60]
+  12d920:      	cmp	x8, x20
+  12d924:      	b.lo	0x12d86c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x23c>
+  12d928:      	b	0x12d93c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x30c>
+  12d92c:      	mov	w20, wzr
+  12d930:      	tbnz	w8, #0x0, 0x12d804 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d4>
+  12d934:      	b	0x12d808 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d8>
+  12d938:      	ldr	x26, [sp, #0x60]
+  12d93c:      	ldr	x8, [sp, #0x58]
+  12d940:      	stp	xzr, xzr, [sp, #0x38]
+  12d944:      	str	xzr, [sp, #0x48]
+  12d948:      	sub	x8, x26, x8
+  12d94c:      	asr	x1, x8, #2
+  12d950:      	add	x0, sp, #0x38
+  12d954:      	bl	0x12e7bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x118c>
+  12d958:      	ldp	x25, x21, [sp, #0x58]
+  12d95c:      	subs	x8, x21, x25
+  12d960:      	b.eq	0x12de74 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x844>
+  12d964:      	asr	x8, x8, #2
+  12d968:      	mov	x27, xzr
+  12d96c:      	mov	x22, #0x7ffffffffffffffc
+  12d970:      	mov	x23, #0x3fffffffffffffff
+  12d974:      	ldr	w20, [x25, x27, lsl #2]
+  12d978:      	sub	w9, w20, #0x610
+  12d97c:      	mov	w28, w20
+  12d980:      	cmp	w9, #0xb
+  12d984:      	b.hs	0x12d9a0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x370>
+  12d988:      	ldp	x9, x8, [sp, #0x40]
+  12d98c:      	cmp	x9, x8
+  12d990:      	b.hs	0x12da4c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x41c>
+  12d994:      	str	w28, [x9], #0x4
+  12d998:      	mov	x20, x9
+  12d99c:      	b	0x12dd90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x760>
+  12d9a0:      	sub	w9, w20, #0x6d6
+  12d9a4:      	cmp	w9, #0x18
+  12d9a8:      	b.lo	0x12d988 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x358>
+  12d9ac:      	cmp	w20, #0x670
+  12d9b0:      	b.eq	0x12d988 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x358>
+  12d9b4:      	sub	w9, w20, #0x64b
+  12d9b8:      	cmp	w9, #0x14
+  12d9bc:      	b.ls	0x12d988 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x358>
+  12d9c0:      	cmp	w20, #0x644
+  12d9c4:      	b.ne	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12d9c8:      	add	x26, x27, #0x1
+  12d9cc:      	cmp	x26, x8
+  12d9d0:      	b.hs	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12d9d4:      	ldr	w22, [x25, x26, lsl #2]
+  12d9d8:      	sub	w8, w22, #0x622
+  12d9dc:      	cmp	w8, #0x5
+  12d9e0:      	b.hi	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12d9e4:      	mov	w9, #0x1
+  12d9e8:      	lsl	w8, w9, w8
+  12d9ec:      	mov	w9, #0x2b
+  12d9f0:      	tst	w8, w9
+  12d9f4:      	b.eq	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12d9f8:      	cmp	w27, #0x1
+  12d9fc:      	b.lt	0x12dae8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4b8>
+  12da00:      	and	x8, x27, #0xffffffff
+  12da04:      	sub	x9, x25, #0x4
+  12da08:      	ldr	w0, [x9, x8, lsl #2]
+  12da0c:      	sub	w10, w0, #0x610
+  12da10:      	cmp	w10, #0xb
+  12da14:      	b.lo	0x12da38 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x408>
+  12da18:      	sub	w10, w0, #0x6d6
+  12da1c:      	cmp	w10, #0x18
+  12da20:      	b.lo	0x12da38 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x408>
+  12da24:      	cmp	w0, #0x670
+  12da28:      	b.eq	0x12da38 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x408>
+  12da2c:      	sub	w10, w0, #0x64b
+  12da30:      	cmp	w10, #0x14
+  12da34:      	b.hi	0x12dac4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x494>
+  12da38:      	sub	x8, x8, #0x1
+  12da3c:      	add	x10, x8, #0x1
+  12da40:      	cmp	x10, #0x1
+  12da44:      	b.hi	0x12da08 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x3d8>
+  12da48:      	b	0x12dae8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4b8>
+  12da4c:      	ldr	x0, [sp, #0x38]
+  12da50:      	sub	x10, x9, x0
+  12da54:      	asr	x20, x10, #2
+  12da58:      	add	x10, x20, #0x1
+  12da5c:      	lsr	x11, x10, #62
+  12da60:      	cbnz	x11, 0x12e620 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xff0>
+  12da64:      	sub	x8, x8, x0
+  12da68:      	asr	x11, x8, #1
+  12da6c:      	cmp	x11, x10
+  12da70:      	csel	x10, x11, x10, hi
+  12da74:      	cmp	x8, x22
+  12da78:      	csel	x1, x10, x23, lo
+  12da7c:      	cbz	x1, 0x12da98 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x468>
+  12da80:      	add	x8, sp, #0x38
+  12da84:      	add	x0, x8, #0x10
+  12da88:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12da8c:      	mov	x8, x0
+  12da90:      	ldp	x0, x9, [sp, #0x38]
+  12da94:      	b	0x12da9c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x46c>
+  12da98:      	mov	x8, xzr
+  12da9c:      	add	x10, x8, x20, lsl #2
+  12daa0:      	cmp	x9, x0
+  12daa4:      	mov	x20, x10
+  12daa8:      	str	w28, [x20], #0x4
+  12daac:      	b.eq	0x12dd7c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x74c>
+  12dab0:      	ldr	w11, [x9, #-0x4]!
+  12dab4:      	cmp	x9, x0
+  12dab8:      	str	w11, [x10, #-0x4]!
+  12dabc:      	b.ne	0x12dab0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x480>
+  12dac0:      	b	0x12dd7c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x74c>
+  12dac4:      	sub	x1, x29, #0x28
+  12dac8:      	stp	xzr, xzr, [x29, #-0x28]
+  12dacc:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dad0:      	tbz	w0, #0x0, 0x12dae8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4b8>
+  12dad4:      	ldp	w8, w9, [x29, #-0x20]
+  12dad8:      	orr	w8, w8, w9
+  12dadc:      	cmp	w8, #0x0
+  12dae0:      	cset	w8, ne
+  12dae4:      	b	0x12daec <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4bc>
+  12dae8:      	mov	w8, wzr
+  12daec:      	cmp	w22, #0x624
+  12daf0:      	b.gt	0x12db10 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4e0>
+  12daf4:      	cmp	w22, #0x622
+  12daf8:      	b.eq	0x12ddb0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x780>
+  12dafc:      	cmp	w22, #0x623
+  12db00:      	b.ne	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12db04:      	cmp	w8, #0x0
+  12db08:      	mov	w8, #0xfef7
+  12db0c:      	b	0x12ddc4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x794>
+  12db10:      	cmp	w22, #0x625
+  12db14:      	b.eq	0x12ddbc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x78c>
+  12db18:      	cmp	w22, #0x627
+  12db1c:      	b.ne	0x12db2c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x4fc>
+  12db20:      	cmp	w8, #0x0
+  12db24:      	mov	w8, #0xfefb
+  12db28:      	b	0x12ddc4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x794>
+  12db2c:      	subs	w8, w27, #0x1
+  12db30:      	b.lt	0x12db7c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x54c>
+  12db34:      	ldr	w9, [x25, x8, lsl #2]
+  12db38:      	sub	w10, w9, #0x610
+  12db3c:      	cmp	w10, #0xb
+  12db40:      	b.lo	0x12db64 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x534>
+  12db44:      	sub	w10, w9, #0x6d6
+  12db48:      	cmp	w10, #0x18
+  12db4c:      	b.lo	0x12db64 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x534>
+  12db50:      	cmp	w9, #0x670
+  12db54:      	b.eq	0x12db64 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x534>
+  12db58:      	sub	w9, w9, #0x64b
+  12db5c:      	cmp	w9, #0x14
+  12db60:      	b.hi	0x12db84 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x554>
+  12db64:      	cmp	x8, #0x0
+  12db68:      	sub	x8, x8, #0x1
+  12db6c:      	b.gt	0x12db34 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x504>
+  12db70:      	mov	w9, wzr
+  12db74:      	mov	w8, #-0x1
+  12db78:      	b	0x12db88 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x558>
+  12db7c:      	mov	w9, wzr
+  12db80:      	b	0x12db88 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x558>
+  12db84:      	mov	w9, #0x1
+  12db88:      	sub	x10, x21, x25
+  12db8c:      	add	x21, x27, #0x1
+  12db90:      	cmp	x21, x10, asr #2
+  12db94:      	b.hs	0x12dbf0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5c0>
+  12db98:      	asr	x10, x10, #2
+  12db9c:      	mov	w26, #0x1
+  12dba0:      	ldr	w11, [x25, x21, lsl #2]
+  12dba4:      	sub	w12, w11, #0x610
+  12dba8:      	cmp	w12, #0xb
+  12dbac:      	b.lo	0x12dbd0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5a0>
+  12dbb0:      	sub	w12, w11, #0x6d6
+  12dbb4:      	cmp	w12, #0x18
+  12dbb8:      	b.lo	0x12dbd0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5a0>
+  12dbbc:      	cmp	w11, #0x670
+  12dbc0:      	b.eq	0x12dbd0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5a0>
+  12dbc4:      	sub	w11, w11, #0x64b
+  12dbc8:      	cmp	w11, #0x14
+  12dbcc:      	b.hi	0x12dbe8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5b8>
+  12dbd0:      	add	x21, x21, #0x1
+  12dbd4:      	cmp	x21, x10
+  12dbd8:      	cset	w26, lo
+  12dbdc:      	cmp	x10, x21
+  12dbe0:      	b.ne	0x12dba0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x570>
+  12dbe4:      	mov	x21, x10
+  12dbe8:      	cbnz	w9, 0x12dbf8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x5c8>
+  12dbec:      	b	0x12dc44 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x614>
+  12dbf0:      	mov	w26, wzr
+  12dbf4:      	cbz	w9, 0x12dc44 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x614>
+  12dbf8:      	ldr	w0, [x25, w8, uxtw #2]
+  12dbfc:      	sub	x1, x29, #0x28
+  12dc00:      	stp	xzr, xzr, [x29, #-0x28]
+  12dc04:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dc08:      	tbz	w0, #0x0, 0x12dc44 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x614>
+  12dc0c:      	ldp	w8, w9, [x29, #-0x20]
+  12dc10:      	orr	w8, w8, w9
+  12dc14:      	cbz	w8, 0x12dc44 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x614>
+  12dc18:      	sub	x1, x29, #0x28
+  12dc1c:      	mov	w0, w28
+  12dc20:      	stp	xzr, xzr, [x29, #-0x28]
+  12dc24:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dc28:      	tbz	w0, #0x0, 0x12dc44 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x614>
+  12dc2c:      	ldur	w8, [x29, #-0x24]
+  12dc30:      	ldur	w9, [x29, #-0x1c]
+  12dc34:      	orr	w8, w8, w9
+  12dc38:      	cmp	w8, #0x0
+  12dc3c:      	cset	w22, ne
+  12dc40:      	b	0x12dc48 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x618>
+  12dc44:      	mov	w22, wzr
+  12dc48:      	tbz	w26, #0x0, 0x12dc98 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x668>
+  12dc4c:      	sub	x1, x29, #0x28
+  12dc50:      	mov	w0, w28
+  12dc54:      	stp	xzr, xzr, [x29, #-0x28]
+  12dc58:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dc5c:      	tbz	w0, #0x0, 0x12dc98 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x668>
+  12dc60:      	ldp	w8, w9, [x29, #-0x20]
+  12dc64:      	orr	w8, w8, w9
+  12dc68:      	cbz	w8, 0x12dc98 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x668>
+  12dc6c:      	ldr	w0, [x25, x21, lsl #2]
+  12dc70:      	sub	x1, x29, #0x28
+  12dc74:      	stp	xzr, xzr, [x29, #-0x28]
+  12dc78:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dc7c:      	tbz	w0, #0x0, 0x12dc98 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x668>
+  12dc80:      	ldur	w8, [x29, #-0x24]
+  12dc84:      	ldur	w9, [x29, #-0x1c]
+  12dc88:      	orr	w8, w8, w9
+  12dc8c:      	cmp	w8, #0x0
+  12dc90:      	cset	w21, ne
+  12dc94:      	b	0x12dc9c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x66c>
+  12dc98:      	mov	w21, wzr
+  12dc9c:      	sub	x1, x29, #0x28
+  12dca0:      	mov	w0, w28
+  12dca4:      	stp	xzr, xzr, [x29, #-0x28]
+  12dca8:      	bl	0x130de0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1020>
+  12dcac:      	tbz	w0, #0x0, 0x12dce8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x6b8>
+  12dcb0:      	cbz	w22, 0x12dccc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x69c>
+  12dcb4:      	ldur	w28, [x29, #-0x1c]
+  12dcb8:      	cmp	w28, #0x0
+  12dcbc:      	csel	w8, wzr, w21, eq
+  12dcc0:      	tbnz	w8, #0x0, 0x12dce8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x6b8>
+  12dcc4:      	ldur	w28, [x29, #-0x24]
+  12dcc8:      	cbnz	w28, 0x12dce8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x6b8>
+  12dccc:      	ldur	w28, [x29, #-0x20]
+  12dcd0:      	cmp	w28, #0x0
+  12dcd4:      	csel	w8, wzr, w21, eq
+  12dcd8:      	tbnz	w8, #0x0, 0x12dce8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x6b8>
+  12dcdc:      	ldur	w8, [x29, #-0x28]
+  12dce0:      	cmp	w8, #0x0
+  12dce4:      	csel	w28, w20, w8, eq
+  12dce8:      	ldp	x9, x8, [sp, #0x40]
+  12dcec:      	cmp	x9, x8
+  12dcf0:      	b.hs	0x12dd04 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x6d4>
+  12dcf4:      	str	w28, [x9], #0x4
+  12dcf8:      	mov	x20, x9
+  12dcfc:      	mov	x22, #0x7ffffffffffffffc
+  12dd00:      	b	0x12dd90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x760>
+  12dd04:      	ldr	x0, [sp, #0x38]
+  12dd08:      	mov	x22, #0x7ffffffffffffffc
+  12dd0c:      	sub	x10, x9, x0
+  12dd10:      	asr	x20, x10, #2
+  12dd14:      	add	x10, x20, #0x1
+  12dd18:      	lsr	x11, x10, #62
+  12dd1c:      	cbnz	x11, 0x12e638 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1008>
+  12dd20:      	sub	x8, x8, x0
+  12dd24:      	asr	x11, x8, #1
+  12dd28:      	cmp	x11, x10
+  12dd2c:      	csel	x10, x11, x10, hi
+  12dd30:      	cmp	x8, x22
+  12dd34:      	csel	x1, x10, x23, lo
+  12dd38:      	cbz	x1, 0x12dd54 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x724>
+  12dd3c:      	add	x8, sp, #0x38
+  12dd40:      	add	x0, x8, #0x10
+  12dd44:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12dd48:      	mov	x8, x0
+  12dd4c:      	ldp	x0, x9, [sp, #0x38]
+  12dd50:      	b	0x12dd58 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x728>
+  12dd54:      	mov	x8, xzr
+  12dd58:      	add	x10, x8, x20, lsl #2
+  12dd5c:      	cmp	x9, x0
+  12dd60:      	mov	x20, x10
+  12dd64:      	str	w28, [x20], #0x4
+  12dd68:      	b.eq	0x12dd7c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x74c>
+  12dd6c:      	ldr	w11, [x9, #-0x4]!
+  12dd70:      	cmp	x9, x0
+  12dd74:      	str	w11, [x10, #-0x4]!
+  12dd78:      	b.ne	0x12dd6c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x73c>
+  12dd7c:      	add	x8, x8, x1, lsl #2
+  12dd80:      	stp	x10, x20, [sp, #0x38]
+  12dd84:      	str	x8, [sp, #0x48]
+  12dd88:      	cbz	x0, 0x12dd90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x760>
+  12dd8c:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12dd90:      	ldp	x25, x21, [sp, #0x58]
+  12dd94:      	add	x27, x27, #0x1
+  12dd98:      	str	x20, [sp, #0x40]
+  12dd9c:      	sub	x9, x21, x25
+  12dda0:      	asr	x8, x9, #2
+  12dda4:      	cmp	x27, x9, asr #2
+  12dda8:      	b.lo	0x12d974 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x344>
+  12ddac:      	b	0x12de78 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x848>
+  12ddb0:      	cmp	w8, #0x0
+  12ddb4:      	mov	w8, #0xfef5
+  12ddb8:      	b	0x12ddc4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x794>
+  12ddbc:      	cmp	w8, #0x0
+  12ddc0:      	mov	w8, #0xfef9
+  12ddc4:      	cinc	w21, w8, ne
+  12ddc8:      	ldp	x9, x8, [sp, #0x40]
+  12ddcc:      	mov	x22, #0x7ffffffffffffffc
+  12ddd0:      	cmp	x9, x8
+  12ddd4:      	b.hs	0x12dde4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x7b4>
+  12ddd8:      	str	w21, [x9], #0x4
+  12dddc:      	mov	x20, x9
+  12dde0:      	b	0x12de6c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x83c>
+  12dde4:      	ldr	x0, [sp, #0x38]
+  12dde8:      	sub	x10, x9, x0
+  12ddec:      	asr	x20, x10, #2
+  12ddf0:      	add	x10, x20, #0x1
+  12ddf4:      	lsr	x11, x10, #62
+  12ddf8:      	cbnz	x11, 0x12e650 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1020>
+  12ddfc:      	sub	x8, x8, x0
+  12de00:      	asr	x11, x8, #1
+  12de04:      	cmp	x11, x10
+  12de08:      	csel	x10, x11, x10, hi
+  12de0c:      	cmp	x8, x22
+  12de10:      	csel	x1, x10, x23, lo
+  12de14:      	cbz	x1, 0x12de30 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x800>
+  12de18:      	add	x8, sp, #0x38
+  12de1c:      	add	x0, x8, #0x10
+  12de20:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12de24:      	mov	x8, x0
+  12de28:      	ldp	x0, x9, [sp, #0x38]
+  12de2c:      	b	0x12de34 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x804>
+  12de30:      	mov	x8, xzr
+  12de34:      	add	x10, x8, x20, lsl #2
+  12de38:      	cmp	x9, x0
+  12de3c:      	mov	x20, x10
+  12de40:      	str	w21, [x20], #0x4
+  12de44:      	b.eq	0x12de58 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x828>
+  12de48:      	ldr	w11, [x9, #-0x4]!
+  12de4c:      	cmp	x9, x0
+  12de50:      	str	w11, [x10, #-0x4]!
+  12de54:      	b.ne	0x12de48 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x818>
+  12de58:      	add	x8, x8, x1, lsl #2
+  12de5c:      	stp	x10, x20, [sp, #0x38]
+  12de60:      	str	x8, [sp, #0x48]
+  12de64:      	cbz	x0, 0x12de6c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x83c>
+  12de68:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12de6c:      	mov	x27, x26
+  12de70:      	b	0x12dd90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x760>
+  12de74:      	ldr	x20, [sp, #0x40]
+  12de78:      	ldr	x21, [sp, #0x38]
+  12de7c:      	stp	xzr, xzr, [sp, #0x20]
+  12de80:      	str	xzr, [sp, #0x30]
+  12de84:      	cmp	x21, x20
+  12de88:      	b.eq	0x12dec0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x890>
+  12de8c:      	ldr	w0, [x21]
+  12de90:      	sub	x1, x29, #0x28
+  12de94:      	bl	0x134cb4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4ef4>
+  12de98:      	mov	x2, x0
+  12de9c:      	add	x0, sp, #0x20
+  12dea0:      	sub	x1, x29, #0x28
+  12dea4:      	bl	0x4f0a50 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm@plt>
+  12dea8:      	add	x21, x21, #0x4
+  12deac:      	cmp	x21, x20
+  12deb0:      	b.ne	0x12de8c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x85c>
+  12deb4:      	ldp	x8, x9, [sp, #0x28]
+  12deb8:      	ldrb	w10, [sp, #0x20]
+  12debc:      	b	0x12decc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x89c>
+  12dec0:      	mov	x8, xzr
+  12dec4:      	mov	x9, xzr
+  12dec8:      	mov	w10, wzr
+  12decc:      	add	x11, sp, #0x20
+  12ded0:      	tst	w10, #0x1
+  12ded4:      	lsr	w10, w10, #1
+  12ded8:      	orr	x11, x11, #0x1
+  12dedc:      	mov	w20, wzr
+  12dee0:      	csel	x21, x11, x9, eq
+  12dee4:      	csel	x8, x10, x8, eq
+  12dee8:      	cbz	x21, 0x12e5bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xf8c>
+  12deec:      	cmp	w8, #0x1
+  12def0:      	b.lt	0x12e5bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xf8c>
+  12def4:      	and	x20, x8, #0xffffffff
+  12def8:      	stp	xzr, xzr, [x29, #-0x28]
+  12defc:      	stur	xzr, [x29, #-0x18]
+  12df00:      	sub	x0, x29, #0x28
+  12df04:      	mov	x1, x20
+  12df08:      	sub	x22, x29, #0x28
+  12df0c:      	bl	0x12e7bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x118c>
+  12df10:      	add	x20, x21, x20
+  12df14:      	mov	x23, #0x7ffffffffffffffc
+  12df18:      	mov	x25, #0x3fffffffffffffff
+  12df1c:      	stur	x21, [x29, #-0x30]
+  12df20:      	sub	x0, x29, #0x30
+  12df24:      	mov	x1, x20
+  12df28:      	bl	0x134b74 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4db4>
+  12df2c:      	ldp	x9, x8, [x29, #-0x20]
+  12df30:      	mov	w21, w0
+  12df34:      	cmp	x9, x8
+  12df38:      	b.hs	0x12df48 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x918>
+  12df3c:      	str	w21, [x9], #0x4
+  12df40:      	mov	x26, x9
+  12df44:      	b	0x12dfcc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x99c>
+  12df48:      	ldur	x0, [x29, #-0x28]
+  12df4c:      	sub	x10, x9, x0
+  12df50:      	asr	x26, x10, #2
+  12df54:      	add	x10, x26, #0x1
+  12df58:      	lsr	x11, x10, #62
+  12df5c:      	cbnz	x11, 0x12e608 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xfd8>
+  12df60:      	sub	x8, x8, x0
+  12df64:      	asr	x11, x8, #1
+  12df68:      	cmp	x11, x10
+  12df6c:      	csel	x10, x11, x10, hi
+  12df70:      	cmp	x8, x23
+  12df74:      	csel	x1, x10, x25, lo
+  12df78:      	cbz	x1, 0x12df90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x960>
+  12df7c:      	add	x0, x22, #0x10
+  12df80:      	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12df84:      	mov	x8, x0
+  12df88:      	ldp	x0, x9, [x29, #-0x28]
+  12df8c:      	b	0x12df94 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x964>
+  12df90:      	mov	x8, xzr
+  12df94:      	add	x10, x8, x26, lsl #2
+  12df98:      	cmp	x9, x0
+  12df9c:      	mov	x26, x10
+  12dfa0:      	str	w21, [x26], #0x4
+  12dfa4:      	b.eq	0x12dfb8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x988>
+  12dfa8:      	ldr	w11, [x9, #-0x4]!
+  12dfac:      	cmp	x9, x0
+  12dfb0:      	str	w11, [x10, #-0x4]!
+  12dfb4:      	b.ne	0x12dfa8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x978>
+  12dfb8:      	add	x8, x8, x1, lsl #2
+  12dfbc:      	stp	x10, x26, [x29, #-0x28]
+  12dfc0:      	stur	x8, [x29, #-0x18]
+  12dfc4:      	cbz	x0, 0x12dfcc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x99c>
+  12dfc8:      	bl	0x4f0a00 <_ZdlPv@plt>
+  12dfcc:      	ldur	x8, [x29, #-0x30]
+  12dfd0:      	stur	x26, [x29, #-0x20]
+  12dfd4:      	cmp	x8, x20
+  12dfd8:      	b.lo	0x12df20 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x8f0>
+  12dfdc:      	ldur	x0, [x29, #-0x28]
+  12dfe0:      	sub	x22, x26, x0
+  12dfe4:      	lsr	x21, x22, #2
+  12dfe8:      	cbz	w21, 0x12e1bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xb8c>
+  12dfec:      	sbfx	x20, x22, #2, #32
+  12dff0:      	mov	w8, #0x7
+  12dff4:      	stur	w8, [x29, #-0x68]
+  12dff8:      	sub	x0, x29, #0x48
+  12dffc:      	sub	x2, x29, #0x68
+  12e000:      	mov	x1, x20
+  12e004:      	bl	0x130e44 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1084>
+  12e008:      	ldur	x1, [x29, #-0x48]
+  12e00c:      	ubfx	x22, x22, #2, #32
+  12e010:      	cmp	w21, #0x1
+  12e014:      	b.lt	0x12e188 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xb58>
+  12e018:      	adrp	x13, 0x48000
+  12e01c:      	adrp	x12, 0x47000
+  12e020:      	adrp	x14, 0x47000
+  12e024:      	ldr	q1, [x13, #0x300]
+  12e028:      	adrp	x13, 0x48000
+  12e02c:      	ldur	x8, [x29, #-0x28]
+  12e030:      	ldr	q2, [x13, #0x60]
+  12e034:      	adrp	x13, 0x47000
+  12e038:      	ldr	q0, [x12, #0x860]
+  12e03c:      	ldr	q3, [x14, #0xfa0]
+  12e040:      	ldr	q4, [x13, #0x870]
+  12e044:      	mov	x15, #0x2600
+  12e048:      	mov	w9, #-0x1ab0
+  12e04c:      	mov	w10, #-0x20d0
+  12e050:      	mov	w11, #0x1dc0
+  12e054:      	mov	w12, #-0xfb1d
+  12e058:      	mov	w13, #0x7
+  12e05c:      	mov	w14, #0x1
+  12e060:      	movk	x15, #0x1, lsl #32
+  12e064:      	mov	x16, x1
+  12e068:      	mov	x17, x22
+  12e06c:      	ldr	w2, [x8], #0x4
+  12e070:      	sub	w0, w2, #0x30
+  12e074:      	cmp	w0, #0xa
+  12e078:      	b.hs	0x12e090 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa60>
+  12e07c:      	mov	w0, #0x3
+  12e080:      	subs	x17, x17, #0x1
+  12e084:      	str	w0, [x16], #0x4
+  12e088:      	b.ne	0x12e06c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa3c>
+  12e08c:      	b	0x12e188 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xb58>
+  12e090:      	sub	w0, w2, #0x660
+  12e094:      	cmp	w0, #0xa
+  12e098:      	mov	w0, #0x4
+  12e09c:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0a0:      	sub	w3, w2, #0x6f0
+  12e0a4:      	cmp	w3, #0xa
+  12e0a8:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0ac:      	lsr	w0, w2, #4
+  12e0b0:      	cmp	w0, #0xfe2
+  12e0b4:      	mov	w0, #0x5
+  12e0b8:      	b.eq	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0bc:      	add	w3, w2, w10
+  12e0c0:      	cmp	w3, #0x30
+  12e0c4:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0c8:      	and	w3, w2, #0xffffffc0
+  12e0cc:      	cmp	w3, w11
+  12e0d0:      	b.eq	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0d4:      	sub	w3, w2, #0x300
+  12e0d8:      	cmp	w3, #0x70
+  12e0dc:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0e0:      	add	w3, w2, w9
+  12e0e4:      	cmp	w3, #0x50
+  12e0e8:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e0ec:      	cmp	w2, #0x20
+  12e0f0:      	mov	w0, #0x6
+  12e0f4:      	b.hi	0x12e104 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xad4>
+  12e0f8:      	lsl	x3, x14, x2
+  12e0fc:      	tst	x3, x15
+  12e100:      	b.ne	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e104:      	cmp	w2, #0xa0
+  12e108:      	b.eq	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e10c:      	dup	v5.4s, w2
+  12e110:      	mov	w0, #0x2
+  12e114:      	add	v5.4s, v5.4s, v0.4s
+  12e118:      	cmhi	v5.4s, v1.4s, v5.4s
+  12e11c:      	xtn	v5.4h, v5.4s
+  12e120:      	umaxv	h5, v5.4h
+  12e124:      	fmov	w3, s5
+  12e128:      	tbnz	w3, #0x0, 0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e12c:      	and	w3, w2, #0xffffff00
+  12e130:      	cmp	w3, #0x600
+  12e134:      	b.eq	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e138:      	sub	w0, w2, #0x590
+  12e13c:      	cmp	w0, #0x370
+  12e140:      	mov	w0, #0x1
+  12e144:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e148:      	add	w3, w2, w12
+  12e14c:      	cmp	w3, #0x2e3
+  12e150:      	b.lo	0x12e080 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xa50>
+  12e154:      	and	w0, w2, #0xffffffdf
+  12e158:      	fmov	s5, w0
+  12e15c:      	mov	v5.s[1], w2
+  12e160:      	dup	v6.4s, v5.s[1]
+  12e164:      	zip1	v5.4s, v5.4s, v6.4s
+  12e168:      	add	v5.4s, v5.4s, v2.4s
+  12e16c:      	cmhi	v5.4s, v3.4s, v5.4s
+  12e170:      	and	v5.16b, v5.16b, v4.16b
+  12e174:      	addv	s5, v5.4s

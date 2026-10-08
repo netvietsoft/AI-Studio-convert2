@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhttpelf.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000005468 <.text>:
+    5468:      	bti	c
+    546c:      	nop
+    5470:      	adr	x0, #0xa730
+    5474:      	b	0xb990 <__cxa_finalize@plt>
+    5478:      	bti	c
+    547c:      	ret
+    5480:      	bti	c
+    5484:      	b	0x5478 <.text+0x10>
+    5488:      	bti	c
+    548c:      	cbz	x0, 0x5498 <.text+0x30>
+    5490:      	mov	x16, x0
+    5494:      	br	x16
+    5498:      	ret
+    549c:      	bti	c
+    54a0:      	mov	x1, x0
+    54a4:      	nop
+    54a8:      	adr	x0, #-0x20
+    54ac:      	nop
+    54b0:      	adr	x2, #0xa6f0
+    54b4:      	b	0xb9a0 <__cxa_atexit@plt>
+
+00000000000054b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send>:
+    54b8:      	sub	sp, sp, #0x60
+    54bc:      	stp	x29, x30, [sp, #0x10]
+    54c0:      	stp	x26, x25, [sp, #0x20]
+    54c4:      	stp	x24, x23, [sp, #0x30]
+    54c8:      	stp	x22, x21, [sp, #0x40]
+    54cc:      	stp	x20, x19, [sp, #0x50]
+    54d0:      	add	x29, sp, #0x10
+    54d4:      	mrs	x25, TPIDR_EL0
+    54d8:      	mov	x19, x2
+    54dc:      	mov	x20, x0
+    54e0:      	ldr	x8, [x25, #0x28]
+    54e4:      	mov	x21, xzr
+    54e8:      	cmp	w3, #0x7b
+    54ec:      	str	x8, [sp, #0x8]
+    54f0:      	b.le	0x55fc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x144>
+    54f4:      	cmp	w3, #0x7d
+    54f8:      	b.le	0x5684 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1cc>
+    54fc:      	cmp	w3, #0x7e
+    5500:      	b.eq	0x5770 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x2b8>
+    5504:      	cmp	w3, #0x8a
+    5508:      	b.eq	0x5808 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x350>
+    550c:      	cmp	w3, #0x9a
+    5510:      	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5514:      	mov	x0, x19
+    5518:      	bl	0x5ca8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7f0>
+    551c:      	ldr	x8, [x20]
+    5520:      	mov	x19, x0
+    5524:      	nop
+    5528:      	adr	x1, #-0x3f5c
+    552c:      	mov	x0, x20
+    5530:      	ldr	x8, [x8, #0x30]
+    5534:      	blr	x8
+    5538:      	ldr	x8, [x20]
+    553c:      	ldr	w1, [x19, #0xf0]
+    5540:      	mov	x22, x0
+    5544:      	mov	x0, x20
+    5548:      	mov	x2, x22
+    554c:      	mov	x3, xzr
+    5550:      	ldr	x8, [x8, #0x560]
+    5554:      	blr	x8
+    5558:      	ldr	w8, [x19, #0xf0]
+    555c:      	mov	x21, x0
+    5560:      	cmp	w8, #0x1
+    5564:      	b.lt	0x55dc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x124>
+    5568:      	mov	x23, xzr
+    556c:      	add	x26, x19, #0x10
+    5570:      	ldurb	w8, [x26, #-0x10]
+    5574:      	ldr	x9, [x20]
+    5578:      	sub	x11, x26, #0xf
+    557c:      	ldr	x10, [x26]
+    5580:      	mov	x0, x20
+    5584:      	tst	w8, #0x1
+    5588:      	ldr	x8, [x9, #0x538]
+    558c:      	csel	x1, x11, x10, eq
+    5590:      	blr	x8
+    5594:      	ldr	x8, [x20]
+    5598:      	mov	x24, x0
+    559c:      	mov	x0, x20
+    55a0:      	mov	x1, x21
+    55a4:      	mov	w2, w23
+    55a8:      	mov	x3, x24
+    55ac:      	ldr	x8, [x8, #0x570]
+    55b0:      	blr	x8
+    55b4:      	ldr	x8, [x20]
+    55b8:      	mov	x0, x20
+    55bc:      	mov	x1, x24
+    55c0:      	ldr	x8, [x8, #0xb8]
+    55c4:      	blr	x8
+    55c8:      	ldrsw	x8, [x19, #0xf0]
+    55cc:      	add	x23, x23, #0x1
+    55d0:      	add	x26, x26, #0x18
+    55d4:      	cmp	x23, x8
+    55d8:      	b.lt	0x5570 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb8>
+    55dc:      	ldr	x8, [x20]
+    55e0:      	mov	x0, x20
+    55e4:      	mov	x1, x22
+    55e8:      	ldr	x8, [x8, #0xb8]
+    55ec:      	blr	x8
+    55f0:      	mov	x0, x19
+    55f4:      	bl	0x6378 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xec0>
+    55f8:      	b	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    55fc:      	cmp	w3, #0x79
+    5600:      	b.gt	0x5620 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x168>
+    5604:      	cmp	w3, #0x6a
+    5608:      	b.eq	0x56e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x228>
+    560c:      	cmp	w3, #0x6b
+    5610:      	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5614:      	mov	x0, x19
+    5618:      	bl	0x5ad8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x620>
+    561c:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5620:      	cmp	w3, #0x7a
+    5624:      	b.eq	0x5724 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x26c>
+    5628:      	cmp	w3, #0x7b
+    562c:      	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5630:      	cbz	x4, 0x585c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3a4>
+    5634:      	ldr	x8, [x20]
+    5638:      	mov	x0, x20
+    563c:      	mov	x1, x4
+    5640:      	mov	x2, xzr
+    5644:      	mov	x21, x4
+    5648:      	ldr	x8, [x8, #0x5c0]
+    564c:      	blr	x8
+    5650:      	ldr	x8, [x20]
+    5654:      	mov	x22, x0
+    5658:      	mov	x0, x20
+    565c:      	mov	x1, x21
+    5660:      	ldr	x8, [x8, #0x558]
+    5664:      	blr	x8
+    5668:      	mov	w20, w0
+    566c:      	bl	0x64b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1000>
+    5670:      	sxtw	x2, w20
+    5674:      	mov	x1, x22
+    5678:      	mov	x21, x0
+    567c:      	bl	0xb9b0 <memcpy@plt>
+    5680:      	b	0x5864 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3ac>
+    5684:      	cmp	w3, #0x7c
+    5688:      	b.eq	0x57bc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x304>
+    568c:      	cmp	w3, #0x7d
+    5690:      	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5694:      	cbz	x4, 0x5878 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3c0>
+    5698:      	ldr	x8, [x20]
+    569c:      	mov	x0, x20
+    56a0:      	mov	x1, x4
+    56a4:      	mov	x2, xzr
+    56a8:      	mov	x21, x4
+    56ac:      	ldr	x8, [x8, #0x548]
+    56b0:      	blr	x8
+    56b4:      	mov	x22, x0
+    56b8:      	cbz	x0, 0x58c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x40c>
+    56bc:      	mov	x0, x22
+    56c0:      	bl	0xb9c0 <strlen@plt>
+    56c4:      	mov	x23, x0
+    56c8:      	add	w0, w23, #0x1
+    56cc:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    56d0:      	mov	x1, x22
+    56d4:      	mov	x24, x0
+    56d8:      	bl	0xb9d0 <strcpy@plt>
+    56dc:      	b	0x58d4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x41c>
+    56e0:      	bl	0x5aac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5f4>
+    56e4:      	ldr	x8, [x20]
+    56e8:      	str	x0, [sp]
+    56ec:      	mov	x0, x20
+    56f0:      	mov	w1, #0x1
+    56f4:      	ldr	x8, [x8, #0x5a0]
+    56f8:      	blr	x8
+    56fc:      	ldr	x8, [x20]
+    5700:      	mov	x21, x0
+    5704:      	mov	x4, sp
+    5708:      	mov	x0, x20
+    570c:      	mov	x1, x21
+    5710:      	mov	w2, wzr
+    5714:      	ldr	x8, [x8, #0x6a0]
+    5718:      	mov	w3, #0x1
+    571c:      	blr	x8
+    5720:      	b	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5724:      	cbz	x4, 0x5884 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3cc>
+    5728:      	ldr	x8, [x20]
+    572c:      	mov	x0, x20
+    5730:      	mov	x1, x4
+    5734:      	mov	x2, xzr
+    5738:      	mov	x21, x4
+    573c:      	ldr	x8, [x8, #0x548]
+    5740:      	blr	x8
+    5744:      	mov	x22, x0
+    5748:      	cbz	x0, 0x5904 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x44c>
+    574c:      	mov	x0, x22
+    5750:      	bl	0xb9c0 <strlen@plt>
+    5754:      	mov	x23, x0
+    5758:      	add	w0, w23, #0x1
+    575c:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    5760:      	mov	x1, x22
+    5764:      	mov	x24, x0
+    5768:      	bl	0xb9d0 <strcpy@plt>
+    576c:      	b	0x5914 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x45c>
+    5770:      	cbz	x4, 0x5890 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3d8>
+    5774:      	ldr	x8, [x20]
+    5778:      	mov	x0, x20
+    577c:      	mov	x1, x4
+    5780:      	mov	x2, xzr
+    5784:      	mov	x21, x4
+    5788:      	ldr	x8, [x8, #0x548]
+    578c:      	blr	x8
+    5790:      	mov	x22, x0
+    5794:      	cbz	x0, 0x5944 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x48c>
+    5798:      	mov	x0, x22
+    579c:      	bl	0xb9c0 <strlen@plt>
+    57a0:      	mov	x23, x0
+    57a4:      	add	w0, w23, #0x1
+    57a8:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    57ac:      	mov	x1, x22
+    57b0:      	mov	x24, x0
+    57b4:      	bl	0xb9d0 <strcpy@plt>
+    57b8:      	b	0x5954 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x49c>
+    57bc:      	cbz	x4, 0x589c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3e4>
+    57c0:      	ldr	x8, [x20]
+    57c4:      	mov	x0, x20
+    57c8:      	mov	x1, x4
+    57cc:      	mov	x2, xzr
+    57d0:      	mov	x21, x4
+    57d4:      	ldr	x8, [x8, #0x548]
+    57d8:      	blr	x8
+    57dc:      	mov	x22, x0
+    57e0:      	cbz	x0, 0x5984 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4cc>
+    57e4:      	mov	x0, x22
+    57e8:      	bl	0xb9c0 <strlen@plt>
+    57ec:      	mov	x23, x0
+    57f0:      	add	w0, w23, #0x1
+    57f4:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    57f8:      	mov	x1, x22
+    57fc:      	mov	x24, x0
+    5800:      	bl	0xb9d0 <strcpy@plt>
+    5804:      	b	0x5994 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4dc>
+    5808:      	cbz	x4, 0x58a8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3f0>
+    580c:      	ldr	x8, [x20]
+    5810:      	mov	x0, x20
+    5814:      	mov	x1, x4
+    5818:      	mov	x2, xzr
+    581c:      	mov	x21, x4
+    5820:      	ldr	x8, [x8, #0x5c0]
+    5824:      	blr	x8
+    5828:      	ldr	x8, [x20]
+    582c:      	mov	x22, x0
+    5830:      	mov	x0, x20
+    5834:      	mov	x1, x21
+    5838:      	ldr	x8, [x8, #0x558]
+    583c:      	blr	x8
+    5840:      	mov	w20, w0
+    5844:      	bl	0x64b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1000>
+    5848:      	sxtw	x2, w20
+    584c:      	mov	x1, x22
+    5850:      	mov	x21, x0
+    5854:      	bl	0xb9b0 <memcpy@plt>
+    5858:      	b	0x58b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3f8>
+    585c:      	mov	w20, wzr
+    5860:      	mov	x21, xzr
+    5864:      	mov	x0, x19
+    5868:      	mov	x1, x21
+    586c:      	mov	w2, w20
+    5870:      	bl	0x5a70 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5b8>
+    5874:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5878:      	mov	w23, wzr
+    587c:      	mov	x24, xzr
+    5880:      	b	0x58f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x438>
+    5884:      	mov	w23, wzr
+    5888:      	mov	x24, xzr
+    588c:      	b	0x5930 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x478>
+    5890:      	mov	w23, wzr
+    5894:      	mov	x24, xzr
+    5898:      	b	0x5970 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4b8>
+    589c:      	mov	w23, wzr
+    58a0:      	mov	x24, xzr
+    58a4:      	b	0x59b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4f8>
+    58a8:      	mov	w20, wzr
+    58ac:      	mov	x21, xzr
+    58b0:      	mov	x0, x19
+    58b4:      	mov	x1, x21
+    58b8:      	mov	w2, w20
+    58bc:      	bl	0x5aa0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5e8>
+    58c0:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    58c4:      	mov	w0, #0x1
+    58c8:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    58cc:      	mov	x24, x0
+    58d0:      	mov	w23, wzr
+    58d4:      	strb	wzr, [x24, w23, sxtw]
+    58d8:      	mov	x0, x20
+    58dc:      	mov	x1, x21
+    58e0:      	ldr	x8, [x20]
+    58e4:      	mov	x2, x22
+    58e8:      	ldr	x8, [x8, #0x550]
+    58ec:      	blr	x8
+    58f0:      	mov	x0, x19
+    58f4:      	mov	x1, x24
+    58f8:      	mov	w2, w23
+    58fc:      	bl	0x5a88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5d0>
+    5900:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5904:      	mov	w0, #0x1
+    5908:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    590c:      	mov	x24, x0
+    5910:      	mov	w23, wzr
+    5914:      	strb	wzr, [x24, w23, sxtw]
+    5918:      	mov	x0, x20
+    591c:      	mov	x1, x21
+    5920:      	ldr	x8, [x20]
+    5924:      	mov	x2, x22
+    5928:      	ldr	x8, [x8, #0x550]
+    592c:      	blr	x8
+    5930:      	mov	x0, x19
+    5934:      	mov	x1, x24
+    5938:      	mov	w2, w23
+    593c:      	bl	0x5a64 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5ac>
+    5940:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5944:      	mov	w0, #0x1
+    5948:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    594c:      	mov	x24, x0
+    5950:      	mov	w23, wzr
+    5954:      	strb	wzr, [x24, w23, sxtw]
+    5958:      	mov	x0, x20
+    595c:      	mov	x1, x21
+    5960:      	ldr	x8, [x20]
+    5964:      	mov	x2, x22
+    5968:      	ldr	x8, [x8, #0x550]
+    596c:      	blr	x8
+    5970:      	mov	x0, x19
+    5974:      	mov	x1, x24
+    5978:      	mov	w2, w23
+    597c:      	bl	0x5a94 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5dc>
+    5980:      	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5984:      	mov	w0, #0x1
+    5988:      	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    598c:      	mov	x24, x0
+    5990:      	mov	w23, wzr
+    5994:      	strb	wzr, [x24, w23, sxtw]
+    5998:      	mov	x0, x20
+    599c:      	mov	x1, x21
+    59a0:      	ldr	x8, [x20]
+    59a4:      	mov	x2, x22
+    59a8:      	ldr	x8, [x8, #0x550]
+    59ac:      	blr	x8
+    59b0:      	mov	x0, x19
+    59b4:      	mov	x1, x24
+    59b8:      	mov	w2, w23
+    59bc:      	bl	0x5a7c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5c4>
+    59c0:      	mov	x21, xzr
+    59c4:      	ldr	x8, [x25, #0x28]
+    59c8:      	ldr	x9, [sp, #0x8]
+    59cc:      	cmp	x8, x9
+    59d0:      	b.ne	0x59f4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x53c>
+    59d4:      	mov	x0, x21
+    59d8:      	ldp	x20, x19, [sp, #0x50]
+    59dc:      	ldp	x22, x21, [sp, #0x40]
+    59e0:      	ldp	x24, x23, [sp, #0x30]
+    59e4:      	ldp	x26, x25, [sp, #0x20]
+    59e8:      	ldp	x29, x30, [sp, #0x10]
+    59ec:      	add	sp, sp, #0x60
+    59f0:      	ret
+    59f4:      	bl	0xb9e0 <__stack_chk_fail@plt>
+    59f8:      	stp	x29, x30, [sp, #-0x20]!
+    59fc:      	str	x19, [sp, #0x10]
+    5a00:      	mov	x29, sp
+    5a04:      	mov	x19, x0
+    5a08:      	ldr	x0, [x0]
+    5a0c:      	cbz	x0, 0x5a14 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x55c>
+    5a10:      	bl	0xb9f0 <_ZdaPv@plt>
+    5a14:      	ldr	x0, [x19, #0x10]
+    5a18:      	cbz	x0, 0x5a20 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x568>
+    5a1c:      	bl	0xb9f0 <_ZdaPv@plt>
+    5a20:      	ldr	x0, [x19, #0x20]
+    5a24:      	cbz	x0, 0x5a2c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x574>
+    5a28:      	bl	0xb9f0 <_ZdaPv@plt>
+    5a2c:      	ldr	x0, [x19, #0x30]
+    5a30:      	cbz	x0, 0x5a38 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x580>
+    5a34:      	bl	0xb9f0 <_ZdaPv@plt>
+    5a38:      	ldr	x0, [x19, #0x40]
+    5a3c:      	cbz	x0, 0x5a44 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x58c>
+    5a40:      	bl	0xb9f0 <_ZdaPv@plt>
+    5a44:      	ldr	x0, [x19, #0x50]
+    5a48:      	cbz	x0, 0x5a58 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5a0>
+    5a4c:      	ldr	x19, [sp, #0x10]
+    5a50:      	ldp	x29, x30, [sp], #0x20
+    5a54:      	b	0xb9f0 <_ZdaPv@plt>
+    5a58:      	ldr	x19, [sp, #0x10]
+    5a5c:      	ldp	x29, x30, [sp], #0x20
+    5a60:      	ret
+    5a64:      	str	x1, [x0]
+    5a68:      	str	w2, [x0, #0x8]
+    5a6c:      	ret
+    5a70:      	str	x1, [x0, #0x10]
+    5a74:      	str	w2, [x0, #0x18]
+    5a78:      	ret
+    5a7c:      	str	x1, [x0, #0x20]
+    5a80:      	str	w2, [x0, #0x28]
+    5a84:      	ret
+    5a88:      	str	x1, [x0, #0x30]
+    5a8c:      	str	w2, [x0, #0x38]
+    5a90:      	ret
+    5a94:      	str	x1, [x0, #0x40]
+    5a98:      	str	w2, [x0, #0x48]
+    5a9c:      	ret
+    5aa0:      	str	x1, [x0, #0x50]
+    5aa4:      	str	w2, [x0, #0x58]
+    5aa8:      	ret
+    5aac:      	stp	x29, x30, [sp, #-0x10]!
+    5ab0:      	mov	x29, sp
+    5ab4:      	mov	w0, #0x60
+    5ab8:      	bl	0xba00 <_Znwm@plt>
+    5abc:      	str	wzr, [x0, #0x18]
+    5ac0:      	str	wzr, [x0, #0x28]
+    5ac4:      	str	wzr, [x0, #0x48]
+    5ac8:      	str	wzr, [x0, #0x58]
+    5acc:      	str	wzr, [x0, #0x38]
+    5ad0:      	ldp	x29, x30, [sp], #0x10
+    5ad4:      	ret
+    5ad8:      	cbz	x0, 0x5b00 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x648>
+    5adc:      	stp	x29, x30, [sp, #-0x20]!
+    5ae0:      	str	x19, [sp, #0x10]
+    5ae4:      	mov	x29, sp
+    5ae8:      	mov	x19, x0
+    5aec:      	bl	0x59f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x540>
+    5af0:      	mov	x0, x19
+    5af4:      	ldr	x19, [sp, #0x10]
+    5af8:      	ldp	x29, x30, [sp], #0x20
+    5afc:      	b	0xba10 <_ZdlPv@plt>
+    5b00:      	ret
+    5b04:      	stp	x29, x30, [sp, #-0x40]!
+    5b08:      	stp	x24, x23, [sp, #0x10]
+    5b0c:      	stp	x22, x21, [sp, #0x20]
+    5b10:      	stp	x20, x19, [sp, #0x30]
+    5b14:      	mov	x29, sp
+    5b18:      	sub	sp, sp, #0x20
+    5b1c:      	mrs	x23, TPIDR_EL0
+    5b20:      	mov	x19, x8
+    5b24:      	ldr	x8, [x23, #0x28]
+    5b28:      	stur	x8, [x29, #-0x8]
+    5b2c:      	ldrb	w8, [x0]
+    5b30:      	ldr	x9, [x0, #0x8]
+    5b34:      	lsr	x10, x8, #1
+    5b38:      	tst	w8, #0x1
+    5b3c:      	csel	x22, x10, x9, eq
+    5b40:      	mov	x10, sp
+    5b44:      	tst	w8, #0x1
+    5b48:      	add	x9, x22, #0x10
+    5b4c:      	and	x9, x9, #0xfffffffffffffff0
+    5b50:      	sub	x20, x10, x9
+    5b54:      	mov	sp, x20
+    5b58:      	ldr	x8, [x0, #0x10]
+    5b5c:      	mov	x2, x22
+    5b60:      	csinc	x21, x8, x0, ne
+    5b64:      	mov	x0, x20
+    5b68:      	mov	x1, x21
+    5b6c:      	bl	0xb9b0 <memcpy@plt>
+    5b70:      	subs	w8, w22, #0x1
+    5b74:      	strb	wzr, [x20, x22]
+    5b78:      	b.mi	0x5bb8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x700>
+    5b7c:      	mov	x10, xzr
+    5b80:      	add	x9, x21, #0x1
+    5b84:      	b	0x5b9c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6e4>
+    5b88:      	sub	x8, x8, #0x1
+    5b8c:      	add	x9, x9, #0x2
+    5b90:      	cmp	x10, x8
+    5b94:      	add	x10, x10, #0x1
+    5b98:      	b.ge	0x5bb8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x700>
+    5b9c:      	ldurb	w11, [x9, #-0x1]
+    5ba0:      	cmp	x8, x10
+    5ba4:      	strb	w11, [x20, x10]
+    5ba8:      	b.eq	0x5b88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6d0>
+    5bac:      	ldrb	w11, [x9]
+    5bb0:      	strb	w11, [x20, x8]
+    5bb4:      	b	0x5b88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6d0>
+    5bb8:      	mov	x0, x20
+    5bbc:      	bl	0xb9c0 <strlen@plt>
+    5bc0:      	cmn	x0, #0x10
+    5bc4:      	b.hs	0x5c60 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7a8>
+    5bc8:      	mov	x21, x0
+    5bcc:      	cmp	x0, #0x17
+    5bd0:      	b.hs	0x5bec <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x734>
+    5bd4:      	lsl	w8, w21, #1
+    5bd8:      	sub	x9, x29, #0x20
+    5bdc:      	orr	x22, x9, #0x1
+    5be0:      	sturb	w8, [x29, #-0x20]
+    5be4:      	cbnz	x21, 0x5c08 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x750>
+    5be8:      	b	0x5c18 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x760>
+    5bec:      	orr	x24, x21, #0xf
+    5bf0:      	add	x0, x24, #0x1
+    5bf4:      	bl	0xba00 <_Znwm@plt>
+    5bf8:      	add	x8, x24, #0x2
+    5bfc:      	mov	x22, x0
+    5c00:      	stp	x21, x0, [x29, #-0x18]
+    5c04:      	stur	x8, [x29, #-0x20]
+    5c08:      	mov	x0, x22
+    5c0c:      	mov	x1, x20
+    5c10:      	mov	x2, x21
+    5c14:      	bl	0xb9b0 <memcpy@plt>
+    5c18:      	strb	wzr, [x22, x21]
+    5c1c:      	sub	x0, x29, #0x20
+    5c20:      	mov	x8, x19
+    5c24:      	bl	0x7a10 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x2558>
+    5c28:      	ldurb	w8, [x29, #-0x20]
+    5c2c:      	tbz	w8, #0x0, 0x5c38 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x780>
+    5c30:      	ldur	x0, [x29, #-0x10]
+    5c34:      	bl	0xba10 <_ZdlPv@plt>
+    5c38:      	ldr	x8, [x23, #0x28]
+    5c3c:      	ldur	x9, [x29, #-0x8]
+    5c40:      	cmp	x8, x9
+    5c44:      	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c48:      	mov	sp, x29
+    5c4c:      	ldp	x20, x19, [sp, #0x30]
+    5c50:      	ldp	x22, x21, [sp, #0x20]
+    5c54:      	ldp	x24, x23, [sp, #0x10]
+    5c58:      	ldp	x29, x30, [sp], #0x40
+    5c5c:      	ret
+    5c60:      	ldr	x8, [x23, #0x28]
+    5c64:      	ldur	x9, [x29, #-0x8]
+    5c68:      	cmp	x8, x9
+    5c6c:      	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c70:      	sub	x0, x29, #0x20
+    5c74:      	bl	0x6564 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x10ac>
+    5c78:      	ldurb	w8, [x29, #-0x20]
+    5c7c:      	mov	x19, x0
+    5c80:      	tbz	w8, #0x0, 0x5c8c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7d4>
+    5c84:      	ldur	x0, [x29, #-0x10]
+    5c88:      	bl	0xba10 <_ZdlPv@plt>
+    5c8c:      	ldr	x8, [x23, #0x28]
+    5c90:      	ldur	x9, [x29, #-0x8]
+    5c94:      	cmp	x8, x9
+    5c98:      	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c9c:      	mov	x0, x19
+    5ca0:      	bl	0x7cac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x27f4>
+    5ca4:      	bl	0xb9e0 <__stack_chk_fail@plt>
+    5ca8:      	stp	x29, x30, [sp, #-0x50]!
+    5cac:      	stp	x28, x25, [sp, #0x10]
+    5cb0:      	stp	x24, x23, [sp, #0x20]
+    5cb4:      	stp	x22, x21, [sp, #0x30]
+    5cb8:      	stp	x20, x19, [sp, #0x40]
+    5cbc:      	mov	x29, sp
+    5cc0:      	sub	sp, sp, #0x190
+    5cc4:      	mrs	x24, TPIDR_EL0
+    5cc8:      	mov	x20, x0
+    5ccc:      	sub	x2, x29, #0x18
+    5cd0:      	ldr	x8, [x24, #0x28]
+    5cd4:      	mov	x19, sp
+    5cd8:      	sub	x21, x29, #0x18
+    5cdc:      	stur	x8, [x29, #-0x8]
+    5ce0:      	ldr	x0, [x0, #0x10]
+    5ce4:      	ldr	w1, [x20, #0x18]
+    5ce8:      	bl	0x65f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1140>
+    5cec:      	sub	x9, x29, #0x39
+    5cf0:      	mov	x8, xzr
+    5cf4:      	nop
+    5cf8:      	adr	x10, #-0x40f8
+    5cfc:      	add	x9, x9, #0x1
+    5d00:      	ldrb	w11, [x21, x8]
+    5d04:      	add	x8, x8, #0x1
+    5d08:      	cmp	x8, #0x10
+    5d0c:      	lsr	x12, x11, #4
+    5d10:      	and	x11, x11, #0xf
+    5d14:      	ldrb	w11, [x10, x11]
+    5d18:      	ldrb	w12, [x10, x12]
+    5d1c:      	sturb	w12, [x9, #-0x1]
+    5d20:      	strb	w11, [x9], #0x2
+    5d24:      	b.ne	0x5d00 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x848>
+    5d28:      	add	x0, x19, #0xc8
+    5d2c:      	mov	x1, xzr
+    5d30:      	sturb	wzr, [x29, #-0x19]
+    5d34:      	bl	0xba20 <gettimeofday@plt>
+    5d38:      	ldp	x8, x9, [x19, #0xc8]
+    5d3c:      	mov	w10, #0x3e8
+    5d40:      	sub	x0, x29, #0x9d
+    5d44:      	mov	w1, #0x64
+    5d48:      	mul	x8, x8, x10
+    5d4c:      	mov	x10, #0xf7cf
+    5d50:      	lsr	x9, x9, #3
+    5d54:      	movk	x10, #0xe353, lsl #16
+    5d58:      	movk	x10, #0x9ba5, lsl #32
+    5d5c:      	movk	x10, #0x20c4, lsl #48
+    5d60:      	umulh	x9, x9, x10
+    5d64:      	add	x4, x8, x9, lsr #4
+    5d68:      	bl	0x64c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1008>
+    5d6c:      	ldr	x1, [x20, #0x20]
+    5d70:      	mov	w21, w0
+    5d74:      	stp	xzr, xzr, [x19, #0xc8]
+    5d78:      	str	xzr, [x19, #0xd8]
+    5d7c:      	cbz	x1, 0x5d88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8d0>
+    5d80:      	add	x0, x19, #0xc8
+    5d84:      	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5d88:      	ldr	x1, [x20, #0x30]
+    5d8c:      	cbz	x1, 0x5d98 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8e0>
+    5d90:      	add	x0, x19, #0xc8
+    5d94:      	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5d98:      	ldr	x1, [x20, #0x40]
+    5d9c:      	cbz	x1, 0x5da8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8f0>
+    5da0:      	add	x0, x19, #0xc8
+    5da4:      	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5da8:      	add	x0, x19, #0xc8
+    5dac:      	sub	x1, x29, #0x39
+    5db0:      	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5db4:      	add	x0, x19, #0xc8
+    5db8:      	sub	x1, x29, #0x9d
+    5dbc:      	add	x22, x19, #0xc8
+    5dc0:      	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5dc4:      	ldrb	w8, [x19, #0xc8]
+    5dc8:      	ldr	x9, [x19, #0xd8]
+    5dcc:      	orr	x12, x22, #0x1
+    5dd0:      	ldr	w10, [x19, #0xd0]
+    5dd4:      	lsr	x11, x8, #1
+    5dd8:      	tst	w8, #0x1
+    5ddc:      	csel	x0, x12, x9, eq
+    5de0:      	csel	w1, w11, w10, eq
+    5de4:      	sub	x2, x29, #0xad
+    5de8:      	bl	0x65f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1140>
+    5dec:      	add	x8, x19, #0xb0
+    5df0:      	sub	x0, x29, #0xad
+    5df4:      	mov	w1, #0x10
+    5df8:      	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5dfc:      	mov	w0, w21
+    5e00:      	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e04:      	mov	w8, w0
+    5e08:      	mov	x9, sp
+    5e0c:      	mov	w22, w0
+    5e10:      	add	x8, x8, #0xf
+    5e14:      	mov	x25, sp
+    5e18:      	and	x8, x8, #0x1fffffff0
+    5e1c:      	sub	x23, x9, x8
+    5e20:      	mov	sp, x23
+    5e24:      	sub	x0, x29, #0x9d
+    5e28:      	sub	x2, x29, #0x18
+    5e2c:      	mov	w1, w21
+    5e30:      	mov	x3, x23
+    5e34:      	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5e38:      	add	x8, x19, #0x98
+    5e3c:      	mov	x0, x23
+    5e40:      	mov	w1, w22
+    5e44:      	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5e48:      	ldr	w0, [x20, #0x8]
+    5e4c:      	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e50:      	mov	w8, w0
+    5e54:      	mov	x9, sp
+    5e58:      	mov	w21, w0
+    5e5c:      	add	x8, x8, #0xf
+    5e60:      	and	x8, x8, #0x1fffffff0
+    5e64:      	sub	x22, x9, x8
+    5e68:      	mov	sp, x22
+    5e6c:      	ldr	x0, [x20]
+    5e70:      	ldr	w1, [x20, #0x8]
+    5e74:      	nop
+    5e78:      	adr	x2, #-0x42a5
+    5e7c:      	mov	x3, x22
+    5e80:      	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5e84:      	add	x8, x19, #0x80
+    5e88:      	mov	x0, x22
+    5e8c:      	mov	w1, w21
+    5e90:      	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5e94:      	ldr	w0, [x20, #0x58]
+    5e98:      	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e9c:      	mov	w8, w0
+    5ea0:      	mov	x9, sp
+    5ea4:      	mov	w21, w0
+    5ea8:      	add	x8, x8, #0xf
+    5eac:      	and	x8, x8, #0x1fffffff0
+    5eb0:      	sub	x22, x9, x8
+    5eb4:      	mov	sp, x22
+    5eb8:      	ldr	x0, [x20, #0x50]
+    5ebc:      	ldr	w1, [x20, #0x58]
+    5ec0:      	sub	x2, x29, #0x18
+    5ec4:      	mov	x3, x22
+    5ec8:      	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5ecc:      	add	x8, x19, #0x68
+    5ed0:      	mov	x0, x22
+    5ed4:      	mov	w1, w21
+    5ed8:      	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5edc:      	mov	w9, #0x2e32
+    5ee0:      	mov	w8, #0x6
+    5ee4:      	movk	w9, #0x30, lsl #16
+    5ee8:      	strb	w8, [x19, #0x50]
+    5eec:      	stur	w9, [x19, #0x51]
+    5ef0:      	mov	w0, #0x3
+    5ef4:      	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5ef8:      	mov	w9, w0
+    5efc:      	mov	x10, sp
+    5f00:      	mov	w20, w0
+    5f04:      	add	x9, x9, #0xf
+    5f08:      	add	x8, x19, #0x50
+    5f0c:      	and	x9, x9, #0x1fffffff0
+    5f10:      	orr	x8, x8, #0x1
+    5f14:      	sub	x21, x10, x9
+    5f18:      	mov	sp, x21
+    5f1c:      	ldrb	w9, [x19, #0x50]
+    5f20:      	ldr	x10, [x19, #0x60]
+    5f24:      	ldr	w11, [x19, #0x58]
+    5f28:      	lsr	x12, x9, #1
+    5f2c:      	tst	w9, #0x1
+    5f30:      	csel	x0, x8, x10, eq
+    5f34:      	csel	w1, w12, w11, eq
+    5f38:      	nop
+    5f3c:      	adr	x2, #-0x4369
+    5f40:      	mov	x3, x21
+    5f44:      	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5f48:      	add	x8, x19, #0x38
+    5f4c:      	mov	x0, x21
+    5f50:      	mov	w1, w20
+    5f54:      	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5f58:      	mov	w0, #0xf8
+    5f5c:      	bl	0xba00 <_Znwm@plt>
+    5f60:      	mov	w8, #0xa
+    5f64:      	movi	v0.2d, #0000000000000000
+    5f68:      	mov	x20, x0
+    5f6c:      	str	w8, [x0, #0xf0]
+    5f70:      	mov	w8, #0x18
+    5f74:      	strb	w8, [x19, #0x8]
+    5f78:      	mov	w8, #0x6c59
+    5f7c:      	movk	w8, #0x4e32, lsl #16
+    5f80:      	strb	wzr, [x19, #0x15]
+    5f84:      	stur	w8, [x19, #0x11]
+    5f88:      	adrp	x8, 0x1000
+    5f8c:      	add	x8, x8, #0x6a9
+    5f90:      	ldr	x8, [x8]
+    5f94:      	stp	q0, q0, [x0, #0x10]
+    5f98:      	stp	q0, q0, [x0, #0x30]
+    5f9c:      	stp	q0, q0, [x0, #0x50]
+    5fa0:      	stp	q0, q0, [x0, #0x70]
+    5fa4:      	stp	q0, q0, [x0, #0x90]
+    5fa8:      	stp	q0, q0, [x0, #0xb0]
+    5fac:      	stp	q0, q0, [x0, #0xd0]
+    5fb0:      	str	q0, [x0]
+    5fb4:      	stur	x8, [x19, #0x9]
+    5fb8:      	add	x8, x19, #0x20
+    5fbc:      	add	x0, x19, #0x8
+    5fc0:      	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    5fc4:      	ldrb	w8, [x20]
+    5fc8:      	tbz	w8, #0x0, 0x5fd4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb1c>
+    5fcc:      	ldr	x0, [x20, #0x10]
+    5fd0:      	bl	0xba10 <_ZdlPv@plt>
+    5fd4:      	ldr	q0, [x19, #0x20]
+    5fd8:      	ldr	x8, [x19, #0x30]
+    5fdc:      	str	q0, [x20]
+    5fe0:      	str	x8, [x20, #0x10]
+    5fe4:      	add	x0, x20, #0x18
+    5fe8:      	add	x1, x19, #0xb0
+    5fec:      	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    5ff0:      	mov	x9, #0x6c5a
+    5ff4:      	mov	w8, #0x10
+    5ff8:      	strb	wzr, [x19, #0x11]
+    5ffc:      	movk	x9, #0x5243, lsl #16
+    6000:      	strb	w8, [x19, #0x8]
+    6004:      	movk	x9, #0x5831, lsl #32
+    6008:      	movk	x9, #0x596b, lsl #48
+    600c:      	stur	x9, [x19, #0x9]
+    6010:      	add	x8, x19, #0x20
+    6014:      	add	x0, x19, #0x8
+    6018:      	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    601c:      	mov	x21, x20
+    6020:      	ldrb	w8, [x21, #0x30]!
+    6024:      	tbz	w8, #0x0, 0x6030 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb78>
+    6028:      	ldr	x0, [x20, #0x40]
+    602c:      	bl	0xba10 <_ZdlPv@plt>
+    6030:      	ldr	q0, [x19, #0x20]
+    6034:      	ldr	x8, [x19, #0x30]
+    6038:      	str	q0, [x21]
+    603c:      	str	x8, [x21, #0x10]
+    6040:      	add	x0, x20, #0x48
+    6044:      	add	x1, x19, #0x98
+    6048:      	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    604c:      	adrp	x9, 0x1000
+    6050:      	add	x9, x9, #0x605
+    6054:      	mov	w10, #0x7963
+    6058:      	ldr	x9, [x9]
+    605c:      	mov	w8, #0x18
+    6060:      	movk	w10, #0x6447, lsl #16
+    6064:      	strb	w8, [x19, #0x8]
+    6068:      	stur	w10, [x19, #0x11]
+    606c:      	stur	x9, [x19, #0x9]
+    6070:      	strb	wzr, [x19, #0x15]
+    6074:      	add	x8, x19, #0x20
+    6078:      	add	x0, x19, #0x8
+    607c:      	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    6080:      	mov	x21, x20
+    6084:      	ldrb	w8, [x21, #0x60]!
+    6088:      	tbz	w8, #0x0, 0x6094 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xbdc>
+    608c:      	ldr	x0, [x20, #0x70]
+    6090:      	bl	0xba10 <_ZdlPv@plt>
+    6094:      	ldr	q0, [x19, #0x20]
+    6098:      	ldr	x8, [x19, #0x30]
+    609c:      	str	q0, [x21]
+    60a0:      	str	x8, [x21, #0x10]
+    60a4:      	add	x0, x20, #0x78
+    60a8:      	add	x1, x19, #0x38
+    60ac:      	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    60b0:      	mov	x9, #0x7064
+    60b4:      	mov	w8, #0x10
+    60b8:      	strb	wzr, [x19, #0x11]
+    60bc:      	movk	x9, #0x4632, lsl #16
+    60c0:      	strb	w8, [x19, #0x8]
+    60c4:      	movk	x9, #0x4756, lsl #32
+    60c8:      	movk	x9, #0x5a70, lsl #48
+    60cc:      	stur	x9, [x19, #0x9]
+    60d0:      	add	x8, x19, #0x20
+    60d4:      	add	x0, x19, #0x8
+    60d8:      	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    60dc:      	mov	x21, x20
+    60e0:      	ldrb	w8, [x21, #0x90]!
+    60e4:      	tbz	w8, #0x0, 0x60f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xc38>
+    60e8:      	ldr	x0, [x20, #0xa0]
+    60ec:      	bl	0xba10 <_ZdlPv@plt>
+    60f0:      	ldr	q0, [x19, #0x20]
+    60f4:      	ldr	x8, [x19, #0x30]
+    60f8:      	str	q0, [x21]
+    60fc:      	str	x8, [x21, #0x10]
+    6100:      	add	x0, x20, #0xa8
+    6104:      	add	x1, x19, #0x80
+    6108:      	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    610c:      	adrp	x9, 0x1000
+    6110:      	add	x9, x9, #0x180
+    6114:      	mov	w10, #0x6e63
+    6118:      	ldr	x9, [x9]
+    611c:      	mov	w8, #0x18
+    6120:      	movk	w10, #0x6c6d, lsl #16
+    6124:      	strb	w8, [x19, #0x8]
+    6128:      	stur	w10, [x19, #0x11]
+    612c:      	stur	x9, [x19, #0x9]
+    6130:      	strb	wzr, [x19, #0x15]
+    6134:      	add	x8, x19, #0x20
+    6138:      	add	x0, x19, #0x8
+    613c:      	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    6140:      	mov	x21, x20
+    6144:      	ldrb	w8, [x21, #0xc0]!
+    6148:      	tbz	w8, #0x0, 0x6154 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xc9c>
+    614c:      	ldr	x0, [x20, #0xd0]
+    6150:      	bl	0xba10 <_ZdlPv@plt>
+    6154:      	ldr	q0, [x19, #0x20]
+    6158:      	ldr	x8, [x19, #0x30]
+    615c:      	str	q0, [x21]
+    6160:      	str	x8, [x21, #0x10]
+    6164:      	add	x0, x20, #0xd8
+    6168:      	add	x1, x19, #0x68
+    616c:      	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    6170:      	ldrb	w8, [x19, #0x38]
+    6174:      	tbnz	w8, #0x0, 0x61f4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd3c>
+    6178:      	ldrb	w8, [x19, #0x50]
+    617c:      	tbnz	w8, #0x0, 0x6204 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd4c>
+    6180:      	ldrb	w8, [x19, #0x68]
+    6184:      	tbnz	w8, #0x0, 0x6214 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd5c>
+    6188:      	ldrb	w8, [x19, #0x80]
+    618c:      	tbnz	w8, #0x0, 0x6224 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd6c>
+    6190:      	ldrb	w8, [x19, #0x98]
+    6194:      	tbz	w8, #0x0, 0x61a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce8>
+    6198:      	ldr	x0, [x19, #0xa8]
+    619c:      	bl	0xba10 <_ZdlPv@plt>
+    61a0:      	mov	sp, x25
+    61a4:      	ldrb	w8, [x19, #0xb0]
+    61a8:      	tbz	w8, #0x0, 0x61b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcfc>
+    61ac:      	ldr	x0, [x19, #0xc0]
+    61b0:      	bl	0xba10 <_ZdlPv@plt>
+    61b4:      	ldrb	w8, [x19, #0xc8]
+    61b8:      	tbz	w8, #0x0, 0x61c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd0c>
+    61bc:      	ldr	x0, [x19, #0xd8]
+    61c0:      	bl	0xba10 <_ZdlPv@plt>
+    61c4:      	ldr	x8, [x24, #0x28]
+    61c8:      	ldur	x9, [x29, #-0x8]
+    61cc:      	cmp	x8, x9
+    61d0:      	b.ne	0x6374 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xebc>
+    61d4:      	mov	x0, x20
+    61d8:      	mov	sp, x29
+    61dc:      	ldp	x20, x19, [sp, #0x40]
+    61e0:      	ldp	x22, x21, [sp, #0x30]
+    61e4:      	ldp	x24, x23, [sp, #0x20]
+    61e8:      	ldp	x28, x25, [sp, #0x10]
+    61ec:      	ldp	x29, x30, [sp], #0x50
+    61f0:      	ret
+    61f4:      	ldr	x0, [x19, #0x48]
+    61f8:      	bl	0xba10 <_ZdlPv@plt>
+    61fc:      	ldrb	w8, [x19, #0x50]
+    6200:      	tbz	w8, #0x0, 0x6180 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcc8>
+    6204:      	ldr	x0, [x19, #0x60]
+    6208:      	bl	0xba10 <_ZdlPv@plt>
+    620c:      	ldrb	w8, [x19, #0x68]
+    6210:      	tbz	w8, #0x0, 0x6188 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcd0>
+    6214:      	ldr	x0, [x19, #0x78]
+    6218:      	bl	0xba10 <_ZdlPv@plt>
+    621c:      	ldrb	w8, [x19, #0x80]
+    6220:      	tbz	w8, #0x0, 0x6190 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcd8>
+    6224:      	ldr	x0, [x19, #0x90]
+    6228:      	bl	0xba10 <_ZdlPv@plt>
+    622c:      	ldrb	w8, [x19, #0x98]
+    6230:      	tbnz	w8, #0x0, 0x6198 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce0>
+    6234:      	b	0x61a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce8>
+    6238:      	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    623c:      	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6240:      	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6244:      	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6248:      	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    624c:      	b	0x6264 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdac>
+    6250:      	b	0x6274 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdbc>
+    6254:      	b	0x6284 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdcc>
+    6258:      	b	0x6294 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xddc>
+    625c:      	b	0x62a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdec>
+    6260:      	b	0x62a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdec>
+    6264:      	mov	x20, x0
+    6268:      	ldrb	w8, [x19, #0x50]
+    626c:      	tbz	w8, #0x0, 0x62c8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe10>
+    6270:      	b	0x6320 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe68>
+    6274:      	mov	x20, x0
+    6278:      	ldrb	w8, [x19, #0x80]
+    627c:      	tbz	w8, #0x0, 0x62d8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe20>
+    6280:      	b	0x6340 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe88>
+    6284:      	mov	x20, x0
+    6288:      	ldrb	w8, [x19, #0x98]
+    628c:      	tbz	w8, #0x0, 0x62e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe28>
+    6290:      	b	0x6350 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe98>
+    6294:      	mov	x20, x0
+    6298:      	ldrb	w8, [x19, #0xb0]
+    629c:      	tbz	w8, #0x0, 0x62e8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe30>
+    62a0:      	b	0x6360 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xea8>
+    62a4:      	mov	x20, x0
+    62a8:      	ldrb	w8, [x19, #0xc8]
+    62ac:      	tbnz	w8, #0x0, 0x62f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe38>
+    62b0:      	b	0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    62b4:      	ldrb	w8, [x19, #0x38]
+    62b8:      	mov	x20, x0
+    62bc:      	tbnz	w8, #0x0, 0x6310 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe58>
+    62c0:      	ldrb	w8, [x19, #0x50]
+    62c4:      	tbnz	w8, #0x0, 0x6320 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe68>
+    62c8:      	ldrb	w8, [x19, #0x68]
+    62cc:      	tbnz	w8, #0x0, 0x6330 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe78>
+    62d0:      	ldrb	w8, [x19, #0x80]
+    62d4:      	tbnz	w8, #0x0, 0x6340 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe88>
+    62d8:      	ldrb	w8, [x19, #0x98]
+    62dc:      	tbnz	w8, #0x0, 0x6350 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe98>
+    62e0:      	ldrb	w8, [x19, #0xb0]
+    62e4:      	tbnz	w8, #0x0, 0x6360 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xea8>
+    62e8:      	ldrb	w8, [x19, #0xc8]
+    62ec:      	tbz	w8, #0x0, 0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    62f0:      	ldr	x0, [x19, #0xd8]
+    62f4:      	bl	0xba10 <_ZdlPv@plt>
+    62f8:      	ldr	x8, [x24, #0x28]
+    62fc:      	ldur	x9, [x29, #-0x8]
+    6300:      	cmp	x8, x9
+    6304:      	b.ne	0x6374 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xebc>
+    6308:      	mov	x0, x20
+    630c:      	bl	0x7cac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x27f4>
+    6310:      	ldr	x0, [x19, #0x48]
+    6314:      	bl	0xba10 <_ZdlPv@plt>
+    6318:      	ldrb	w8, [x19, #0x50]
+    631c:      	tbz	w8, #0x0, 0x62c8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe10>
+    6320:      	ldr	x0, [x19, #0x60]
+    6324:      	bl	0xba10 <_ZdlPv@plt>
+    6328:      	ldrb	w8, [x19, #0x68]
+    632c:      	tbz	w8, #0x0, 0x62d0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe18>
+    6330:      	ldr	x0, [x19, #0x78]
+    6334:      	bl	0xba10 <_ZdlPv@plt>
+    6338:      	ldrb	w8, [x19, #0x80]
+    633c:      	tbz	w8, #0x0, 0x62d8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe20>
+    6340:      	ldr	x0, [x19, #0x90]
+    6344:      	bl	0xba10 <_ZdlPv@plt>
+    6348:      	ldrb	w8, [x19, #0x98]
+    634c:      	tbz	w8, #0x0, 0x62e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe28>
+    6350:      	ldr	x0, [x19, #0xa8]
+    6354:      	bl	0xba10 <_ZdlPv@plt>
+    6358:      	ldrb	w8, [x19, #0xb0]
+    635c:      	tbz	w8, #0x0, 0x62e8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe30>
+    6360:      	ldr	x0, [x19, #0xc0]
+    6364:      	bl	0xba10 <_ZdlPv@plt>
+    6368:      	ldrb	w8, [x19, #0xc8]
+    636c:      	tbnz	w8, #0x0, 0x62f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe38>
+    6370:      	b	0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    6374:      	bl	0xb9e0 <__stack_chk_fail@plt>
+    6378:      	cbz	x0, 0x63a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xee8>
+    637c:      	stp	x29, x30, [sp, #-0x20]!
+    6380:      	str	x19, [sp, #0x10]
+    6384:      	mov	x29, sp
+    6388:      	mov	x19, x0
+    638c:      	bl	0x63a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xeec>
+    6390:      	mov	x0, x19
+    6394:      	ldr	x19, [sp, #0x10]
+    6398:      	ldp	x29, x30, [sp], #0x20
+    639c:      	b	0xba10 <_ZdlPv@plt>
+    63a0:      	ret
+    63a4:      	stp	x29, x30, [sp, #-0x20]!
+    63a8:      	str	x19, [sp, #0x10]
+    63ac:      	mov	x29, sp
+    63b0:      	ldrb	w8, [x0, #0xd8]
+    63b4:      	mov	x19, x0
+    63b8:      	tbnz	w8, #0x0, 0x6410 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf58>
+    63bc:      	ldrb	w8, [x19, #0xc0]
+    63c0:      	tbnz	w8, #0x0, 0x6420 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf68>
+    63c4:      	ldrb	w8, [x19, #0xa8]
+    63c8:      	tbnz	w8, #0x0, 0x6430 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf78>
+    63cc:      	ldrb	w8, [x19, #0x90]
+    63d0:      	tbnz	w8, #0x0, 0x6440 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf88>
+    63d4:      	ldrb	w8, [x19, #0x78]
+    63d8:      	tbnz	w8, #0x0, 0x6450 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf98>
+    63dc:      	ldrb	w8, [x19, #0x60]
+    63e0:      	tbnz	w8, #0x0, 0x6460 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfa8>
+    63e4:      	ldrb	w8, [x19, #0x48]
+    63e8:      	tbnz	w8, #0x0, 0x6470 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfb8>
+    63ec:      	ldrb	w8, [x19, #0x30]
+    63f0:      	tbnz	w8, #0x0, 0x6480 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfc8>
+    63f4:      	ldrb	w8, [x19, #0x18]
+    63f8:      	tbnz	w8, #0x0, 0x6490 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfd8>
+    63fc:      	ldrb	w8, [x19]
+    6400:      	tbnz	w8, #0x0, 0x64a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfe8>
+    6404:      	ldr	x19, [sp, #0x10]
+    6408:      	ldp	x29, x30, [sp], #0x20
+    640c:      	ret
+    6410:      	ldr	x0, [x19, #0xe8]
+    6414:      	bl	0xba10 <_ZdlPv@plt>
+    6418:      	ldrb	w8, [x19, #0xc0]
+    641c:      	tbz	w8, #0x0, 0x63c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf0c>
+    6420:      	ldr	x0, [x19, #0xd0]
+    6424:      	bl	0xba10 <_ZdlPv@plt>
+    6428:      	ldrb	w8, [x19, #0xa8]
+    642c:      	tbz	w8, #0x0, 0x63cc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf14>
+    6430:      	ldr	x0, [x19, #0xb8]
+    6434:      	bl	0xba10 <_ZdlPv@plt>
+    6438:      	ldrb	w8, [x19, #0x90]
+    643c:      	tbz	w8, #0x0, 0x63d4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf1c>
+    6440:      	ldr	x0, [x19, #0xa0]
+    6444:      	bl	0xba10 <_ZdlPv@plt>
+    6448:      	ldrb	w8, [x19, #0x78]
+    644c:      	tbz	w8, #0x0, 0x63dc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf24>
+    6450:      	ldr	x0, [x19, #0x88]
+    6454:      	bl	0xba10 <_ZdlPv@plt>
+    6458:      	ldrb	w8, [x19, #0x60]
+    645c:      	tbz	w8, #0x0, 0x63e4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf2c>
+    6460:      	ldr	x0, [x19, #0x70]
+    6464:      	bl	0xba10 <_ZdlPv@plt>
+    6468:      	ldrb	w8, [x19, #0x48]
+    646c:      	tbz	w8, #0x0, 0x63ec <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf34>
+    6470:      	ldr	x0, [x19, #0x58]
+    6474:      	bl	0xba10 <_ZdlPv@plt>
+    6478:      	ldrb	w8, [x19, #0x30]
+    647c:      	tbz	w8, #0x0, 0x63f4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf3c>
+    6480:      	ldr	x0, [x19, #0x40]
+    6484:      	bl	0xba10 <_ZdlPv@plt>
+    6488:      	ldrb	w8, [x19, #0x18]
+    648c:      	tbz	w8, #0x0, 0x63fc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf44>
+    6490:      	ldr	x0, [x19, #0x28]
+    6494:      	bl	0xba10 <_ZdlPv@plt>
+    6498:      	ldrb	w8, [x19]
+    649c:      	tbz	w8, #0x0, 0x6404 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf4c>
+    64a0:      	ldr	x0, [x19, #0x10]
+    64a4:      	ldr	x19, [sp, #0x10]
+    64a8:      	ldp	x29, x30, [sp], #0x20
+    64ac:      	b	0xba10 <_ZdlPv@plt>
+    64b0:      	sxtw	x0, w0
+    64b4:      	b	0xba50 <_Znam@plt>
+    64b8:      	sxtw	x0, w0
+    64bc:      	b	0xba50 <_Znam@plt>
+    64c0:      	sub	sp, sp, #0x110
+    64c4:      	stp	x29, x30, [sp, #0xf0]
+    64c8:      	stp	x28, x19, [sp, #0x100]
+    64cc:      	add	x29, sp, #0xf0
+    64d0:      	stp	x4, x5, [x29, #-0x70]
+    64d4:      	sub	x9, x29, #0x70
+    64d8:      	sub	x10, x29, #0x28
+    64dc:      	stp	x6, x7, [x29, #-0x60]
+    64e0:      	mov	x3, x1
+    64e4:      	adrp	x4, 0x1000
+    64e8:      	add	x4, x4, #0x23e
+    64ec:      	stp	q0, q1, [sp]
+    64f0:      	sub	x5, x29, #0x50
+    64f4:      	stp	q2, q3, [sp, #0x20]
+    64f8:      	mov	w1, #0x64
+    64fc:      	mov	w2, wzr
+    6500:      	stp	q4, q5, [sp, #0x40]
+    6504:      	stp	q6, q7, [sp, #0x60]
+    6508:      	mrs	x19, TPIDR_EL0
+    650c:      	ldr	x8, [x19, #0x28]
+    6510:      	stur	x8, [x29, #-0x8]
+    6514:      	add	x8, x9, #0x20
+    6518:      	add	x9, x29, #0x20
+    651c:      	stp	x9, x8, [x29, #-0x28]
+    6520:      	mov	x8, #-0x20
+    6524:      	mov	x9, sp
+    6528:      	movk	x8, #0xff80, lsl #32
+    652c:      	add	x9, x9, #0x80
+    6530:      	stp	x9, x8, [x29, #-0x18]
+    6534:      	ldp	q0, q1, [x10]
+    6538:      	stp	q0, q1, [x29, #-0x50]
+    653c:      	bl	0xba60 <__vsnprintf_chk@plt>
+    6540:      	ldr	x8, [x19, #0x28]
+    6544:      	ldur	x9, [x29, #-0x8]
+    6548:      	cmp	x8, x9
+    654c:      	b.ne	0x6560 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x10a8>
+    6550:      	ldp	x28, x19, [sp, #0x100]
+    6554:      	ldp	x29, x30, [sp, #0xf0]
+    6558:      	add	sp, sp, #0x110
+    655c:      	ret
+    6560:      	bl	0xb9e0 <__stack_chk_fail@plt>
+    6564:      	stp	x29, x30, [sp, #-0x10]!
+    6568:      	mov	x29, sp
+    656c:      	adrp	x0, 0x1000
+    6570:      	add	x0, x0, #0x997
+    6574:      	bl	0x6578 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x10c0>
+    6578:      	stp	x29, x30, [sp, #-0x20]!
+    657c:      	stp	x20, x19, [sp, #0x10]
+    6580:      	mov	x29, sp
+    6584:      	mov	x20, x0
+    6588:      	mov	w0, #0x10
+    658c:      	bl	0xba70 <__cxa_allocate_exception@plt>
+    6590:      	mov	x19, x0
+    6594:      	mov	x1, x20
+    6598:      	bl	0x65c8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1110>
+    659c:      	adrp	x1, 0xf000 <fwrite@plt+0x3470>
+    65a0:      	adrp	x2, 0xf000 <fwrite@plt+0x3470>
+    65a4:      	mov	x0, x19
+    65a8:      	ldr	x1, [x1, #0xe10]
+    65ac:      	ldr	x2, [x2, #0xe18]
+    65b0:      	bl	0xba80 <__cxa_throw@plt>
+    65b4:      	mov	x20, x0
+    65b8:      	mov	x0, x19
+    65bc:      	bl	0xba90 <__cxa_free_exception@plt>
+    65c0:      	mov	x0, x20
+    65c4:      	bl	0x7cac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x27f4>
+    65c8:      	stp	x29, x30, [sp, #-0x20]!
+    65cc:      	str	x19, [sp, #0x10]
+    65d0:      	mov	x29, sp
+    65d4:      	mov	x19, x0
+    65d8:      	bl	0xbaa0 <_ZNSt11logic_errorC2EPKc@plt>
+    65dc:      	adrp	x8, 0xf000 <fwrite@plt+0x3470>
+    65e0:      	ldr	x8, [x8, #0xe20]
+    65e4:      	add	x8, x8, #0x10
+    65e8:      	str	x8, [x19]
+    65ec:      	ldr	x19, [sp, #0x10]
+    65f0:      	ldp	x29, x30, [sp], #0x20
+    65f4:      	ret
+    65f8:      	sub	sp, sp, #0x90
+    65fc:      	stp	x29, x30, [sp, #0x70]
+    6600:      	stp	x20, x19, [sp, #0x80]
+    6604:      	add	x29, sp, #0x70
+    6608:      	mrs	x20, TPIDR_EL0
+    660c:      	adrp	x9, 0x1000
+    6610:      	mov	x19, x2
+    6614:      	ldr	x8, [x20, #0x28]
+    6618:      	ldr	q0, [x9, #0xbf0]
+    661c:      	mov	w2, w1
+    6620:      	mov	x1, x0
+    6624:      	mov	x0, sp
+    6628:      	stur	x8, [x29, #-0x8]
+    662c:      	str	xzr, [sp, #0x10]
+    6630:      	str	q0, [sp]
+    6634:      	bl	0x66b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x11fc>
+    6638:      	ldp	w8, w9, [sp, #0x10]
+    663c:      	mov	w11, #0x78
+    6640:      	mov	w12, #0x38
+    6644:      	nop
+    6648:      	adr	x1, #0xd910
+    664c:      	mov	x0, sp
+    6650:      	ubfx	w10, w8, #3, #6
+    6654:      	stp	w8, w9, [x29, #-0x10]
+    6658:      	cmp	w10, #0x38
+    665c:      	csel	w11, w12, w11, lo
+    6660:      	sub	w2, w11, w10
+    6664:      	bl	0x66b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x11fc>
+    6668:      	mov	x0, sp
+    666c:      	sub	x1, x29, #0x10
+    6670:      	mov	w2, #0x8
+    6674:      	bl	0x66b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x11fc>
+    6678:      	ldr	w8, [sp]
+    667c:      	ldur	x9, [sp, #0x4]
+    6680:      	ldr	w10, [sp, #0xc]
+    6684:      	str	w8, [x19]
+    6688:      	stur	x9, [x19, #0x4]
+    668c:      	str	w10, [x19, #0xc]
+    6690:      	ldr	x8, [x20, #0x28]
+    6694:      	ldur	x9, [x29, #-0x8]
+    6698:      	cmp	x8, x9
+    669c:      	b.ne	0x66b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x11f8>
+    66a0:      	ldp	x20, x19, [sp, #0x80]
+    66a4:      	ldp	x29, x30, [sp, #0x70]
+    66a8:      	add	sp, sp, #0x90
+    66ac:      	ret
+    66b0:      	bl	0xb9e0 <__stack_chk_fail@plt>
+    66b4:      	stp	x29, x30, [sp, #-0x40]!
+    66b8:      	stp	x24, x23, [sp, #0x10]
+    66bc:      	stp	x22, x21, [sp, #0x20]
+    66c0:      	stp	x20, x19, [sp, #0x30]
+    66c4:      	mov	x29, sp
+    66c8:      	ldp	w8, w9, [x0, #0x10]
+    66cc:      	lsr	w10, w2, #29
+    66d0:      	mov	w11, #0x40
+    66d4:      	mov	w19, w2
+    66d8:      	mov	x21, x1
+    66dc:      	mov	x20, x0
+    66e0:      	ubfx	x24, x8, #3, #6
+    66e4:      	adds	w8, w8, w2, lsl #3
+    66e8:      	adc	w9, w10, w9
+    66ec:      	sub	w22, w11, w24
+    66f0:      	stp	w8, w9, [x0, #0x10]
+    66f4:      	cmp	w22, w2
+    66f8:      	b.ls	0x6708 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1250>
+    66fc:      	mov	w22, wzr
+    6700:      	mov	w8, w24
+    6704:      	b	0x6760 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x12a8>
+    6708:      	add	x23, x20, #0x18
+    670c:      	mov	x1, x21
+    6710:      	mov	x2, x22
+    6714:      	add	x0, x23, x24
+    6718:      	bl	0xb9b0 <memcpy@plt>
+    671c:      	mov	x0, x20
+    6720:      	mov	x1, x23
+    6724:      	bl	0x6784 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x12cc>
+    6728:      	eor	w23, w24, #0x7f
+    672c:      	cmp	w23, w19
+    6730:      	b.hs	0x675c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x12a4>
+    6734:      	sub	w8, w23, #0x3f
+    6738:      	mov	x0, x20
+    673c:      	add	x1, x21, x8
+    6740:      	bl	0x6784 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x12cc>
+    6744:      	add	w23, w23, #0x40
+    6748:      	cmp	w23, w19
+    674c:      	b.lo	0x6734 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x127c>
+    6750:      	mov	x8, xzr
+    6754:      	sub	w22, w23, #0x3f
+    6758:      	b	0x6760 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x12a8>
+    675c:      	mov	x8, xzr
+    6760:      	add	x8, x20, x8
+    6764:      	add	x1, x21, w22, uxtw
+    6768:      	sub	w2, w19, w22
+    676c:      	add	x0, x8, #0x18
+    6770:      	ldp	x20, x19, [sp, #0x30]
+    6774:      	ldp	x22, x21, [sp, #0x20]
+    6778:      	ldp	x24, x23, [sp, #0x10]
+    677c:      	ldp	x29, x30, [sp], #0x40
+    6780:      	b	0xb9b0 <memcpy@plt>
+    6784:      	stp	x28, x27, [sp, #-0x50]!
+    6788:      	stp	x26, x25, [sp, #0x10]
+    678c:      	stp	x24, x23, [sp, #0x20]
+    6790:      	stp	x22, x21, [sp, #0x30]
+    6794:      	stp	x20, x19, [sp, #0x40]
+    6798:      	ld4	{ v0.16b, v1.16b, v2.16b, v3.16b }, [x1]
+    679c:      	mov	w12, #0x407d
+    67a0:      	ldr	w8, [x0, #0xc]
+    67a4:      	movk	w12, #0x8a51, lsl #16
+    67a8:      	ldr	w11, [x0]
+    67ac:      	ldp	w10, w9, [x0, #0x4]
+    67b0:      	and	w13, w9, w10
+    67b4:      	bic	w14, w8, w10
+    67b8:      	ushll	v4.8h, v0.8b, #0x0
+    67bc:      	ushll	v5.8h, v1.8b, #0x0
+    67c0:      	ushll	v6.8h, v2.8b, #0x0
+    67c4:      	ushll	v7.8h, v3.8b, #0x0
+    67c8:      	orr	w13, w14, w13
+    67cc:      	add	w13, w11, w13
+    67d0:      	ushll	v16.4s, v4.4h, #0x0
+    67d4:      	ushll	v17.4s, v5.4h, #0x8
+    67d8:      	shll	v18.4s, v6.4h, #16
+    67dc:      	ushll	v19.4s, v7.4h, #0x0
+    67e0:      	ushll2	v4.4s, v4.8h, #0x0
+    67e4:      	ushll2	v5.4s, v5.8h, #0x8
+    67e8:      	shll2	v6.4s, v6.8h, #16
+    67ec:      	ushll2	v7.4s, v7.8h, #0x0
+    67f0:      	orr	v16.16b, v17.16b, v16.16b
+    67f4:      	shl	v17.4s, v19.4s, #0x18
+    67f8:      	orr	v4.16b, v5.16b, v4.16b
+    67fc:      	shl	v5.4s, v7.4s, #0x18
+    6800:      	orr	v16.16b, v16.16b, v18.16b
+    6804:      	orr	v4.16b, v4.16b, v6.16b
+    6808:      	orr	v16.16b, v16.16b, v17.16b
+    680c:      	orr	v6.16b, v4.16b, v5.16b
+    6810:      	ushll2	v4.8h, v0.16b, #0x0
+    6814:      	ushll2	v5.8h, v1.16b, #0x0
+    6818:      	ushll2	v0.8h, v3.16b, #0x0
+    681c:      	fmov	w17, s16
+    6820:      	ushll	v1.4s, v4.4h, #0x0
+    6824:      	ushll	v7.4s, v0.4h, #0x0
+    6828:      	ushll2	v0.4s, v0.8h, #0x0
+    682c:      	add	w14, w13, w17
+    6830:      	mov	w13, v16.s[1]
+    6834:      	add	w12, w14, w12
+    6838:      	mov	w14, #0x995d
+    683c:      	ror	w12, w12, #0x19
+    6840:      	movk	w14, #0x6a88, lsl #16
+    6844:      	shl	v0.4s, v0.4s, #0x18
+    6848:      	add	w16, w12, w10
+    684c:      	add	w12, w8, w13
+    6850:      	and	w15, w16, w10
+    6854:      	bic	w1, w9, w16
+    6858:      	add	w14, w12, w14
+    685c:      	orr	w15, w15, w1
+    6860:      	mov	w12, v16.s[2]
+    6864:      	mov	w1, #0x25f4
+    6868:      	add	w14, w14, w15
+    686c:      	movk	w1, #0xfd70, lsl #16
+    6870:      	mov	w15, v16.s[3]
+    6874:      	ror	w14, w14, #0x14
+    6878:      	add	w4, w14, w16
+    687c:      	add	w14, w9, w12
+    6880:      	and	w2, w4, w16
+    6884:      	bic	w3, w10, w4
+    6888:      	add	w14, w14, w1
+    688c:      	orr	w1, w2, w3
+    6890:      	mov	w2, #0x3036
+    6894:      	add	w14, w14, w1
+    6898:      	movk	w2, #0xa755, lsl #16
+    689c:      	ror	w14, w14, #0xf
+    68a0:      	add	w1, w14, w4
+    68a4:      	add	w14, w10, w15
+    68a8:      	and	w3, w1, w4
+    68ac:      	bic	w5, w16, w1
+    68b0:      	add	w14, w14, w2
+    68b4:      	orr	w2, w3, w5
+    68b8:      	mov	w5, #0x15c1
+    68bc:      	add	w14, w14, w2
+    68c0:      	movk	w5, #0x489e, lsl #16
+    68c4:      	ror	w2, w14, #0xa
+    68c8:      	fmov	w14, s6
+    68cc:      	add	w3, w2, w1
+    68d0:      	add	w16, w14, w16
+    68d4:      	and	w2, w3, w1
+    68d8:      	bic	w6, w4, w3
+    68dc:      	add	w16, w16, w5
+    68e0:      	orr	w5, w2, w6
+    68e4:      	mov	w2, v6.s[1]
+    68e8:      	add	w16, w16, w5
+    68ec:      	mov	w5, #0xb84b
+    68f0:      	ror	w16, w16, #0x19
+    68f4:      	movk	w5, #0xf5cd, lsl #16
+    68f8:      	add	w6, w16, w3
+    68fc:      	add	w4, w2, w4
+    6900:      	mov	w16, v6.s[2]
+    6904:      	and	w7, w6, w3
+    6908:      	bic	w19, w1, w6
+    690c:      	add	w4, w4, w5
+    6910:      	orr	w5, w7, w19
+    6914:      	mov	w7, #0xbcf6
+    6918:      	add	w4, w4, w5
+    691c:      	mov	w5, v6.s[3]
+    6920:      	ushll2	v6.8h, v2.16b, #0x0
+    6924:      	ror	w4, w4, #0x14
+    6928:      	ushll	v2.4s, v5.4h, #0x8
+    692c:      	movk	w7, #0xc0ff, lsl #16
+    6930:      	add	w1, w16, w1
+    6934:      	add	w20, w4, w6
+    6938:      	shll	v3.4s, v6.4h, #16
+    693c:      	add	w1, w1, w7
+    6940:      	and	w4, w20, w6
+    6944:      	bic	w19, w3, w20
+    6948:      	orr	v1.16b, v2.16b, v1.16b
+    694c:      	orr	w4, w4, w19
+    6950:      	shl	v2.4s, v7.4s, #0x18
+    6954:      	add	w1, w1, w4
+    6958:      	mov	w4, #0x7d7e
+    695c:      	ror	w1, w1, #0xf
+    6960:      	orr	v1.16b, v1.16b, v3.16b
+    6964:      	movk	w4, #0x253f, lsl #16
+    6968:      	shll2	v3.4s, v6.8h, #16
+    696c:      	add	w7, w1, w20
+    6970:      	add	w1, w5, w3
+    6974:      	and	w3, w7, w20
+    6978:      	bic	w19, w6, w7
+    697c:      	orr	v1.16b, v1.16b, v2.16b
+    6980:      	add	w1, w1, w4
+    6984:      	orr	w3, w3, w19
+    6988:      	ushll2	v2.4s, v5.8h, #0x8
+    698c:      	add	w1, w1, w3
+    6990:      	mov	w3, #0xd535
+    6994:      	ror	w1, w1, #0xa
+    6998:      	fmov	w4, s1
+    699c:      	movk	w3, #0xe93f, lsl #16
+    69a0:      	add	w19, w1, w7
+    69a4:      	add	w1, w4, w6
+    69a8:      	and	w6, w19, w7
+    69ac:      	bic	w21, w20, w19
+    69b0:      	add	w3, w1, w3
+    69b4:      	orr	w6, w6, w21
+    69b8:      	mov	w1, v1.s[1]
+    69bc:      	add	w3, w3, w6
+    69c0:      	mov	w6, #0x6448
+    69c4:      	ror	w3, w3, #0x19
+    69c8:      	movk	w6, #0xd6cd, lsl #16
+    69cc:      	add	w21, w3, w19
+    69d0:      	add	w3, w1, w20
+    69d4:      	and	w20, w21, w19
+    69d8:      	bic	w22, w7, w21
+    69dc:      	add	w3, w3, w6
+    69e0:      	orr	w20, w20, w22
+    69e4:      	mov	w6, v1.s[2]
+    69e8:      	mov	w22, #0xae4
+    69ec:      	add	w3, w3, w20
+    69f0:      	movk	w22, #0x122, lsl #16
+    69f4:      	ror	w20, w3, #0x14
+    69f8:      	mov	w3, v1.s[3]
+    69fc:      	ushll2	v1.4s, v4.8h, #0x0
+    6a00:      	add	w23, w20, w21
+    6a04:      	add	w7, w6, w7
+    6a08:      	and	w20, w23, w21
+    6a0c:      	bic	w24, w19, w23
+    6a10:      	orr	v1.16b, v2.16b, v1.16b
+    6a14:      	add	w7, w7, w22
+    6a18:      	orr	w20, w20, w24
+    6a1c:      	add	w7, w7, w20
+    6a20:      	mov	w20, #0xd023
+    6a24:      	ror	w7, w7, #0xf
+    6a28:      	orr	v1.16b, v1.16b, v3.16b
+    6a2c:      	movk	w20, #0xd806, lsl #16
+    6a30:      	add	w22, w7, w23
+    6a34:      	add	w7, w3, w19
+    6a38:      	and	w19, w22, w23
+    6a3c:      	bic	w24, w21, w22
+    6a40:      	orr	v0.16b, v1.16b, v0.16b
+    6a44:      	add	w7, w7, w20
+    6a48:      	orr	w19, w19, w24
+    6a4c:      	add	w7, w7, w19
+    6a50:      	mov	w19, #0x6ea9
+    6a54:      	ror	w7, w7, #0xa
+    6a58:      	fmov	w20, s0
+    6a5c:      	movk	w19, #0xe84e, lsl #16
+    6a60:      	add	w24, w7, w22
+    6a64:      	add	w7, w20, w21
+    6a68:      	and	w21, w24, w22
+    6a6c:      	bic	w25, w23, w24
+    6a70:      	add	w19, w7, w19
+    6a74:      	orr	w21, w21, w25
+    6a78:      	mov	w7, v0.s[1]
+    6a7c:      	add	w19, w19, w21
+    6a80:      	mov	w21, #0x35d8
+    6a84:      	ror	w19, w19, #0x19
+    6a88:      	movk	w21, #0x2301, lsl #16
+    6a8c:      	add	w25, w19, w24
+    6a90:      	add	w19, w7, w23
+    6a94:      	and	w23, w25, w24
+    6a98:      	bic	w26, w22, w25
+    6a9c:      	add	w19, w19, w21
+    6aa0:      	orr	w23, w23, w26
+    6aa4:      	mov	w21, v0.s[2]
+    6aa8:      	add	w19, w19, w23
+    6aac:      	mov	w23, #0xe834
+    6ab0:      	ror	w19, w19, #0x14
+    6ab4:      	movk	w23, #0xc27a, lsl #16
+    6ab8:      	add	w26, w19, w25
+    6abc:      	add	w19, w21, w22
+    6ac0:      	and	w22, w26, w25
+    6ac4:      	bic	w27, w24, w26
+    6ac8:      	add	w23, w19, w23
+    6acc:      	orr	w22, w22, w27
+    6ad0:      	mov	w19, v0.s[3]
+    6ad4:      	add	w22, w23, w22
+    6ad8:      	mov	w23, #0x2bf4
+    6adc:      	ror	w22, w22, #0xf
+    6ae0:      	movk	w23, #0xf529, lsl #16
+    6ae4:      	add	w22, w22, w26
+    6ae8:      	add	w24, w19, w24
+    6aec:      	and	w27, w22, w26
+    6af0:      	bic	w28, w25, w22
+    6af4:      	add	w23, w24, w23
+    6af8:      	orr	w24, w27, w28
+    6afc:      	add	w25, w13, w25
+    6b00:      	bic	w27, w22, w26
+    6b04:      	add	w23, w23, w24
+    6b08:      	mov	w24, #0x1ac1
+    6b0c:      	ror	w23, w23, #0xa
+    6b10:      	movk	w24, #0x4671, lsl #16
+    6b14:      	add	w24, w25, w24
+    6b18:      	add	w23, w23, w22
+    6b1c:      	and	w28, w23, w26
+    6b20:      	add	w26, w16, w26
+    6b24:      	orr	w25, w28, w27
+    6b28:      	bic	w27, w23, w22
+    6b2c:      	add	w24, w24, w25
+    6b30:      	mov	w25, #0x840a
+    6b34:      	ror	w24, w24, #0x1b
+    6b38:      	movk	w25, #0xa90a, lsl #16
+    6b3c:      	add	w25, w26, w25
+    6b40:      	add	w24, w24, w23
+    6b44:      	and	w28, w24, w22
+    6b48:      	add	w22, w3, w22
+    6b4c:      	orr	w26, w28, w27
+    6b50:      	bic	w27, w24, w23
+    6b54:      	add	w25, w25, w26
+    6b58:      	mov	w26, #0xbef0
+    6b5c:      	ror	w25, w25, #0x17
+    6b60:      	movk	w26, #0xfd1b, lsl #16
+    6b64:      	add	w22, w22, w26
+    6b68:      	add	w25, w25, w24
+    6b6c:      	and	w28, w25, w23
+    6b70:      	add	w23, w17, w23
+    6b74:      	orr	w26, w28, w27
+    6b78:      	bic	w27, w25, w24
+    6b7c:      	add	w22, w22, w26
+    6b80:      	mov	w26, #0x10e5
+    6b84:      	ror	w22, w22, #0x12
+    6b88:      	movk	w26, #0x6878, lsl #16
+    6b8c:      	add	w23, w23, w26
+    6b90:      	add	w22, w22, w25
+    6b94:      	and	w28, w22, w24
+    6b98:      	add	w24, w2, w24
+    6b9c:      	orr	w26, w28, w27
+    6ba0:      	bic	w27, w22, w25
+    6ba4:      	add	w23, w23, w26
+    6ba8:      	mov	w26, #0xfc1b
+    6bac:      	ror	w23, w23, #0xc
+    6bb0:      	movk	w26, #0x8c37, lsl #16
+    6bb4:      	add	w24, w24, w26

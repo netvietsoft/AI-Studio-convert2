@@ -1,15 +1,15 @@
 # TASK_063 — SO45 input truth, evidence baseline and research dispatch
-STATUS: ACTIVE
+STATUS: BLOCKED
 ASSIGNEE: AGY_LEAD
 PRIORITY: P0
-MODIFIED_TIME: 2026-10-08T04:52:16.053278+00:00
+MODIFIED_TIME: 2026-10-08T05:18:59.048417+00:00
 
 ```json
 {
   "schema_version": "2.1.2",
   "task_id": "TASK_063",
   "revision": 3,
-  "status": "ACTIVE",
+  "status": "BLOCKED",
   "assignee": "AGY_LEAD",
   "agent_id": "ace29908-a2b0-4777-a070-6bd100509738",
   "priority": "P0",
@@ -47,7 +47,13 @@ MODIFIED_TIME: 2026-10-08T04:52:16.053278+00:00
   ],
   "authorization_reference": "Chairman Tony appoints Codex CEO and authorizes AGY SO45 research toward V4, user instruction 2026-10-08",
   "correction_review": ".ai/ceo/reviews/TASK_063_R2_79d93b4f_NEEDS_FIX.md",
-  "supersedes_revision": 2
+  "supersedes_revision": 2,
+  "escalation_status": "ESCALATION_REQUIRED",
+  "blocked_reason": "Final bounded R3 correction NEEDS_FIX; no retry-budget increase",
+  "blocked_at": "2026-10-08T05:18:59.048417+00:00",
+  "blocked_review": ".ai/ceo/reviews/TASK_063_R3_2041a6a2_NEEDS_FIX.md",
+  "blocked_fingerprint": "2041a6a220c14965c37a6f9634e160f7ef5ac5ef91675fd134fb0ded9c2e0f10",
+  "diagnostic_task": "TASK_067"
 }
 ```
 
@@ -105,3 +111,8 @@ Fix the six specific findings in the current review. Reuse valid original bytes 
 6. Reuse owned minute heartbeat; no duplicate registration. Record actual native run IDs/status/error/scan evidence, distinguish API/CLI listing mismatch, timeout/restart failures and busy ticks from successful scans. Continue authorized research when runtime works; report a real outage honestly.
 
 Publish a coherent R3 package with the same deliverable names, measured provenance and current revision3 COMPLETE.json; PROGRESS.json only on real milestones. All critical claims and >=5/45 ordinary records will be independently reviewed. TASK_064A..G remain PLANNED pending acceptance. Submit REVIEW_CANDIDATE_AWAITING_CEO before owned-branch commit/push and return to60s scanner. This is the final bounded baseline correction within max_fix_cycles3; unresolved tool/input limits should be explicit, not concealed or retried endlessly.
+
+
+## CEO escalation override — 2026-10-08T05:18:59.048417+00:00
+
+STATUS BLOCKED supersedes prior ACTIVE prose. R3 write lease revoked. Original max_fix_cycles3 and full attempt history retained. No further R3/R4 repair, baseline rewrite or commit is authorized. TASK067 is a separate bounded causal diagnostic only; it cannot accept this task, satisfy TASK064 dependencies, reset its budget or reopen V4. Campaign scanners continue. A separately recorded CEO disposition after independent diagnostic review is required to decide recovery.

@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libc++_shared.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000009ecb0 <.text>:
+   9ecb0:      	bti	c
+   9ecb4:      	nop
+   9ecb8:      	adr	x0, #0x9a638
+   9ecbc:      	b	0x1326e0 <__cxa_finalize@plt>
+   9ecc0:      	bti	c
+   9ecc4:      	ret
+   9ecc8:      	bti	c
+   9eccc:      	b	0x12dcc8 <__emutls_get_address+0x1ec>
+   9ecd0:      	bti	c
+   9ecd4:      	cbz	x0, 0x9ece0 <.text+0x30>
+   9ecd8:      	mov	x16, x0
+   9ecdc:      	br	x16
+   9ece0:      	ret
+   9ece4:      	bti	c
+   9ece8:      	mov	x1, x0
+   9ecec:      	nop
+   9ecf0:      	adr	x0, #-0x20
+   9ecf4:      	nop
+   9ecf8:      	adr	x2, #0x9a5f8
+   9ecfc:      	b	0x1326f8 <__cxa_atexit@plt>
+
+000000000009ed00 <__cxa_bad_cast>:
+   9ed00:      	paciasp
+   9ed04:      	stp	x29, x30, [sp, #-0x20]!
+   9ed08:      	str	x19, [sp, #0x10]
+   9ed0c:      	mov	x29, sp
+   9ed10:      	mov	w0, #0x8
+   9ed14:      	bl	0x132710 <__cxa_allocate_exception@plt>
+   9ed18:      	mov	x19, x0
+   9ed1c:      	bl	0x132728 <_ZNSt8bad_castC1Ev@plt>
+   9ed20:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed24:      	adrp	x2, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed28:      	mov	x0, x19
+   9ed2c:      	ldr	x1, [x1, #0x990]
+   9ed30:      	ldr	x2, [x2, #0x998]
+   9ed34:      	bl	0x132758 <__cxa_throw@plt>
+
+000000000009ed38 <__cxa_bad_typeid>:
+   9ed38:      	paciasp
+   9ed3c:      	stp	x29, x30, [sp, #-0x20]!
+   9ed40:      	str	x19, [sp, #0x10]
+   9ed44:      	mov	x29, sp
+   9ed48:      	mov	w0, #0x8
+   9ed4c:      	bl	0x132710 <__cxa_allocate_exception@plt>
+   9ed50:      	mov	x19, x0
+   9ed54:      	bl	0x132770 <_ZNSt10bad_typeidC1Ev@plt>
+   9ed58:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed5c:      	adrp	x2, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed60:      	mov	x0, x19
+   9ed64:      	ldr	x1, [x1, #0x9a0]
+   9ed68:      	ldr	x2, [x2, #0x9a8]
+   9ed6c:      	bl	0x132758 <__cxa_throw@plt>
+
+000000000009ed70 <__cxa_throw_bad_array_new_length>:
+   9ed70:      	paciasp
+   9ed74:      	stp	x29, x30, [sp, #-0x20]!
+   9ed78:      	str	x19, [sp, #0x10]
+   9ed7c:      	mov	x29, sp
+   9ed80:      	mov	w0, #0x8
+   9ed84:      	bl	0x132710 <__cxa_allocate_exception@plt>
+   9ed88:      	mov	x19, x0
+   9ed8c:      	bl	0x1327a0 <_ZNSt20bad_array_new_lengthC1Ev@plt>
+   9ed90:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed94:      	adrp	x2, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ed98:      	mov	x0, x19
+   9ed9c:      	ldr	x1, [x1, #0x9b0]
+   9eda0:      	ldr	x2, [x2, #0x9b8]
+   9eda4:      	bl	0x132758 <__cxa_throw@plt>
+   9eda8:      	paciasp
+   9edac:      	stp	x29, x30, [sp, #-0x30]!
+   9edb0:      	str	x21, [sp, #0x10]
+   9edb4:      	stp	x20, x19, [sp, #0x20]
+   9edb8:      	mov	x29, sp
+   9edbc:      	bl	0x1327d0 <__cxa_get_globals_fast@plt>
+   9edc0:      	cbz	x0, 0x9edcc <__cxa_throw_bad_array_new_length+0x5c>
+   9edc4:      	ldr	x19, [x0]
+   9edc8:      	cbnz	x19, 0x9edd8 <__cxa_throw_bad_array_new_length+0x68>
+   9edcc:      	nop
+   9edd0:      	adr	x0, #-0x47e58
+   9edd4:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9edd8:      	add	x0, x19, #0x60
+   9eddc:      	bl	0xba934 <_ZdaPvmSt11align_val_t+0x18>
+   9ede0:      	tbz	w0, #0x0, 0x9ee0c <__cxa_throw_bad_array_new_length+0x9c>
+   9ede4:      	add	x0, x19, #0x60
+   9ede8:      	bl	0xba928 <_ZdaPvmSt11align_val_t+0xc>
+   9edec:      	mov	x8, #0x2b01
+   9edf0:      	movk	x8, #0x432b, lsl #16
+   9edf4:      	movk	x8, #0x4e47, lsl #32
+   9edf8:      	movk	x8, #0x434c, lsl #48
+   9edfc:      	cmp	x0, x8
+   9ee00:      	b.ne	0x9ee20 <__cxa_throw_bad_array_new_length+0xb0>
+   9ee04:      	ldr	x8, [x19, #0x8]
+   9ee08:      	b	0x9ee24 <__cxa_throw_bad_array_new_length+0xb4>
+   9ee0c:      	adrp	x8, 0x146000
+   9ee10:      	adrp	x0, 0x55000
+   9ee14:      	add	x0, x0, #0xa4f
+   9ee18:      	ldr	x1, [x8, #0xe50]
+   9ee1c:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9ee20:      	add	x8, x19, #0x80
+   9ee24:      	ldr	x20, [x19, #0x10]
+   9ee28:      	mov	x1, xzr
+   9ee2c:      	mov	x2, xzr
+   9ee30:      	mov	x3, xzr
+   9ee34:      	str	x8, [x29, #0x18]
+   9ee38:      	ldr	x19, [x20, #0x8]
+   9ee3c:      	mov	x0, x19
+   9ee40:      	bl	0x1327e8 <__cxa_demangle@plt>
+   9ee44:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ee48:      	cmp	x0, #0x0
+   9ee4c:      	nop
+   9ee50:      	adr	x10, #0x164
+   9ee54:      	ldr	x8, [x8, #0x9c0]
+   9ee58:      	nop
+   9ee5c:      	adr	x11, #0x160
+   9ee60:      	csel	x19, x19, x0, eq
+   9ee64:      	ldr	x9, [x8]
+   9ee68:      	csel	x21, x11, x10, eq
+   9ee6c:      	ldr	x9, [x9, #0x20]
+   9ee70:      	add	x2, x29, #0x18
+   9ee74:      	mov	x0, x8
+   9ee78:      	mov	x1, x20
+   9ee7c:      	blr	x9
+   9ee80:      	tbz	w0, #0x0, 0x9eeb4 <__cxa_throw_bad_array_new_length+0x144>
+   9ee84:      	ldr	x0, [x29, #0x18]
+   9ee88:      	adrp	x9, 0x146000
+   9ee8c:      	ldr	x20, [x9, #0xe50]
+   9ee90:      	ldr	x8, [x0]
+   9ee94:      	ldr	x8, [x8, #0x10]
+   9ee98:      	blr	x8
+   9ee9c:      	mov	x3, x0
+   9eea0:      	adrp	x0, 0x56000
+   9eea4:      	add	x0, x0, #0x60b
+   9eea8:      	mov	x1, x20
+   9eeac:      	mov	x2, x19
+   9eeb0:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9eeb4:      	adrp	x8, 0x146000
+   9eeb8:      	ldr	x1, [x8, #0xe50]
+   9eebc:      	adrp	x0, 0x55000
+   9eec0:      	add	x0, x0, #0x59d
+   9eec4:      	mov	x2, x19
+   9eec8:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9eecc:      	mov	x20, x0
+   9eed0:      	cbnz	x19, 0x9eee0 <__cxa_throw_bad_array_new_length+0x170>
+   9eed4:      	b	0x9eee8 <__cxa_throw_bad_array_new_length+0x178>
+   9eed8:      	mov	x20, x0
+   9eedc:      	cbz	x19, 0x9eee8 <__cxa_throw_bad_array_new_length+0x178>
+   9eee0:      	mov	x0, x19
+   9eee4:      	blr	x21
+   9eee8:      	mov	x0, x20
+   9eeec:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9eef0:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9eef4:      	paciasp
+   9eef8:      	stp	x29, x30, [sp, #-0x10]!
+   9eefc:      	mov	x29, sp
+   9ef00:      	adrp	x8, 0x146000
+   9ef04:      	adrp	x9, 0x55000
+   9ef08:      	add	x9, x9, #0xb24
+   9ef0c:      	str	x9, [x8, #0xe50]
+   9ef10:      	bl	0x132800 <_ZSt9terminatev@plt>
+
+000000000009ef14 <_ZSt14set_unexpectedPFvvE>:
+   9ef14:      	paciasp
+   9ef18:      	stp	x29, x30, [sp, #-0x10]!
+   9ef1c:      	mov	x29, sp
+   9ef20:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ef24:      	cmp	x0, #0x0
+   9ef28:      	nop
+   9ef2c:      	adr	x8, #-0x38
+   9ef30:      	ldr	x1, [x1, #0x9c8]
+   9ef34:      	csel	x0, x8, x0, eq
+   9ef38:      	bl	0x12e510 <__emutls_get_address+0xa34>
+   9ef3c:      	ldp	x29, x30, [sp], #0x10
+   9ef40:      	autiasp
+   9ef44:      	ret
+   9ef48:      	paciasp
+   9ef4c:      	stp	x29, x30, [sp, #-0x10]!
+   9ef50:      	mov	x29, sp
+   9ef54:      	bl	0x132818 <__cxa_begin_catch@plt>
+   9ef58:      	bl	0x132800 <_ZSt9terminatev@plt>
+
+000000000009ef5c <_ZSt13set_terminatePFvvE>:
+   9ef5c:      	paciasp
+   9ef60:      	stp	x29, x30, [sp, #-0x10]!
+   9ef64:      	mov	x29, sp
+   9ef68:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9ef6c:      	cmp	x0, #0x0
+   9ef70:      	nop
+   9ef74:      	adr	x8, #-0x1cc
+   9ef78:      	ldr	x1, [x1, #0x9d0]
+   9ef7c:      	csel	x0, x8, x0, eq
+   9ef80:      	bl	0x12e510 <__emutls_get_address+0xa34>
+   9ef84:      	ldp	x29, x30, [sp], #0x10
+   9ef88:      	autiasp
+   9ef8c:      	ret
+
+000000000009ef90 <_ZSt15set_new_handlerPFvvE>:
+   9ef90:      	paciasp
+   9ef94:      	stp	x29, x30, [sp, #-0x10]!
+   9ef98:      	mov	x29, sp
+   9ef9c:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9efa0:      	ldr	x1, [x1, #0x9d8]
+   9efa4:      	bl	0x12e510 <__emutls_get_address+0xa34>
+   9efa8:      	ldp	x29, x30, [sp], #0x10
+   9efac:      	autiasp
+   9efb0:      	ret
+   9efb4:      	bti	c
+   9efb8:      	b	0x132830 <free@plt>
+   9efbc:      	bti	c
+   9efc0:      	ret
+
+000000000009efc4 <__cxa_get_globals>:
+   9efc4:      	paciasp
+   9efc8:      	stp	x29, x30, [sp, #-0x10]!
+   9efcc:      	mov	x29, sp
+   9efd0:      	nop
+   9efd4:      	adr	x0, #0xa7e8c
+   9efd8:      	bl	0x132860 <__emutls_get_address@plt>
+   9efdc:      	ldp	x29, x30, [sp], #0x10
+   9efe0:      	autiasp
+   9efe4:      	ret
+
+000000000009efe8 <__cxa_get_globals_fast>:
+   9efe8:      	paciasp
+   9efec:      	stp	x29, x30, [sp, #-0x10]!
+   9eff0:      	mov	x29, sp
+   9eff4:      	nop
+   9eff8:      	adr	x0, #0xa7e68
+   9effc:      	bl	0x132860 <__emutls_get_address@plt>
+   9f000:      	ldp	x29, x30, [sp], #0x10
+   9f004:      	autiasp
+   9f008:      	ret
+
+000000000009f00c <__cxa_guard_acquire>:
+   9f00c:      	paciasp
+   9f010:      	stp	x29, x30, [sp, #-0x40]!
+   9f014:      	str	x23, [sp, #0x10]
+   9f018:      	stp	x22, x21, [sp, #0x20]
+   9f01c:      	stp	x20, x19, [sp, #0x30]
+   9f020:      	mov	x29, sp
+   9f024:      	ldarb	w8, [x0]
+   9f028:      	cbz	w8, 0x9f034 <__cxa_guard_acquire+0x28>
+   9f02c:      	mov	w0, wzr
+   9f030:      	b	0x9f0d4 <__cxa_guard_acquire+0xc8>
+   9f034:      	nop
+   9f038:      	adr	x20, #0xa8050
+   9f03c:      	mov	x19, x0
+   9f040:      	nop
+   9f044:      	adr	x8, #-0x48bef
+   9f048:      	mov	x0, x20
+   9f04c:      	str	x8, [x29, #0x18]
+   9f050:      	bl	0x132890 <pthread_mutex_lock@plt>
+   9f054:      	cbnz	w0, 0x9f0ec <__cxa_guard_acquire+0xe0>
+   9f058:      	ldrb	w23, [x19, #0x1]
+   9f05c:      	tbz	w23, #0x1, 0x9f078 <__cxa_guard_acquire+0x6c>
+   9f060:      	ldr	w22, [x19, #0x4]
+   9f064:      	mov	w0, #0xb2
+   9f068:      	bl	0x1328a8 <syscall@plt>
+   9f06c:      	mov	x21, x0
+   9f070:      	cmp	w22, w21
+   9f074:      	b.eq	0x9f114 <__cxa_guard_acquire+0x108>
+   9f078:      	ldrb	w22, [x19, #0x1]
+   9f07c:      	tbz	w22, #0x1, 0x9f098 <__cxa_guard_acquire+0x8c>
+   9f080:      	orr	w8, w22, #0x4
+   9f084:      	strb	w8, [x19, #0x1]
+   9f088:      	add	x0, x20, #0x28
+   9f08c:      	mov	x1, x20
+   9f090:      	bl	0x1328c0 <pthread_cond_wait@plt>
+   9f094:      	b	0x9f078 <__cxa_guard_acquire+0x6c>
+   9f098:      	cmp	w22, #0x1
+   9f09c:      	b.eq	0x9f0bc <__cxa_guard_acquire+0xb0>
+   9f0a0:      	tbnz	w23, #0x1, 0x9f0b0 <__cxa_guard_acquire+0xa4>
+   9f0a4:      	mov	w0, #0xb2
+   9f0a8:      	bl	0x1328a8 <syscall@plt>
+   9f0ac:      	mov	w21, w0
+   9f0b0:      	mov	w8, #0x2
+   9f0b4:      	str	w21, [x19, #0x4]
+   9f0b8:      	strb	w8, [x19, #0x1]
+   9f0bc:      	nop
+   9f0c0:      	adr	x0, #0xa7fc8
+   9f0c4:      	bl	0x1328d8 <pthread_mutex_unlock@plt>
+   9f0c8:      	cbnz	w0, 0x9f100 <__cxa_guard_acquire+0xf4>
+   9f0cc:      	cmp	w22, #0x1
+   9f0d0:      	cset	w0, ne
+   9f0d4:      	ldp	x20, x19, [sp, #0x30]
+   9f0d8:      	ldr	x23, [sp, #0x10]
+   9f0dc:      	ldp	x22, x21, [sp, #0x20]
+   9f0e0:      	ldp	x29, x30, [sp], #0x40
+   9f0e4:      	autiasp
+   9f0e8:      	ret
+   9f0ec:      	adrp	x0, 0x54000
+   9f0f0:      	add	x0, x0, #0xe58
+   9f0f4:      	nop
+   9f0f8:      	adr	x1, #-0x48ca3
+   9f0fc:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f100:      	adrp	x0, 0x54000
+   9f104:      	add	x0, x0, #0x894
+   9f108:      	nop
+   9f10c:      	adr	x1, #-0x48cb7
+   9f110:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f114:      	adrp	x0, 0x56000
+   9f118:      	add	x0, x0, #0x9d8
+   9f11c:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f120:      	b	0x9f128 <__cxa_guard_acquire+0x11c>
+   9f124:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9f128:      	mov	x19, x0
+   9f12c:      	add	x0, x29, #0x18
+   9f130:      	bl	0x9f280 <__cxa_guard_abort+0x9c>
+   9f134:      	mov	x0, x19
+   9f138:      	bl	0x12e82c <__emutls_get_address+0xd50>
+
+000000000009f13c <__cxa_guard_release>:
+   9f13c:      	paciasp
+   9f140:      	stp	x29, x30, [sp, #-0x30]!
+   9f144:      	str	x21, [sp, #0x10]
+   9f148:      	stp	x20, x19, [sp, #0x20]
+   9f14c:      	mov	x29, sp
+   9f150:      	mov	w21, #0x1
+   9f154:      	mov	x19, x0
+   9f158:      	stlrb	w21, [x0]
+   9f15c:      	nop
+   9f160:      	adr	x0, #0xa7f28
+   9f164:      	bl	0x132890 <pthread_mutex_lock@plt>
+   9f168:      	cbnz	w0, 0x9f1ac <__cxa_guard_release+0x70>
+   9f16c:      	ldrb	w20, [x19, #0x1]
+   9f170:      	strb	w21, [x19, #0x1]
+   9f174:      	nop
+   9f178:      	adr	x0, #0xa7f10
+   9f17c:      	bl	0x1328d8 <pthread_mutex_unlock@plt>
+   9f180:      	cbnz	w0, 0x9f1b8 <__cxa_guard_release+0x7c>
+   9f184:      	tbz	w20, #0x2, 0x9f198 <__cxa_guard_release+0x5c>
+   9f188:      	adrp	x0, 0x147000 <__cxa_unexpected_handler+0x1b8>
+   9f18c:      	add	x0, x0, #0xb0
+   9f190:      	bl	0x132908 <pthread_cond_broadcast@plt>
+   9f194:      	cbnz	w0, 0x9f1cc <__cxa_guard_release+0x90>
+   9f198:      	ldp	x20, x19, [sp, #0x20]
+   9f19c:      	ldr	x21, [sp, #0x10]
+   9f1a0:      	ldp	x29, x30, [sp], #0x30
+   9f1a4:      	autiasp
+   9f1a8:      	ret
+   9f1ac:      	adrp	x0, 0x54000
+   9f1b0:      	add	x0, x0, #0xe58
+   9f1b4:      	b	0x9f1d4 <__cxa_guard_release+0x98>
+   9f1b8:      	adrp	x0, 0x54000
+   9f1bc:      	add	x0, x0, #0x894
+   9f1c0:      	adrp	x1, 0x55000
+   9f1c4:      	add	x1, x1, #0x2e5
+   9f1c8:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f1cc:      	adrp	x0, 0x56000
+   9f1d0:      	add	x0, x0, #0xb85
+   9f1d4:      	adrp	x1, 0x55000
+   9f1d8:      	add	x1, x1, #0x2e5
+   9f1dc:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f1e0:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009f1e4 <__cxa_guard_abort>:
+   9f1e4:      	paciasp
+   9f1e8:      	stp	x29, x30, [sp, #-0x20]!
+   9f1ec:      	stp	x20, x19, [sp, #0x10]
+   9f1f0:      	mov	x29, sp
+   9f1f4:      	mov	x19, x0
+   9f1f8:      	nop
+   9f1fc:      	adr	x0, #0xa7e8c
+   9f200:      	bl	0x132890 <pthread_mutex_lock@plt>
+   9f204:      	cbnz	w0, 0x9f248 <__cxa_guard_abort+0x64>
+   9f208:      	ldrb	w20, [x19, #0x1]
+   9f20c:      	str	wzr, [x19, #0x4]
+   9f210:      	strb	wzr, [x19, #0x1]
+   9f214:      	nop
+   9f218:      	adr	x0, #0xa7e70
+   9f21c:      	bl	0x1328d8 <pthread_mutex_unlock@plt>
+   9f220:      	cbnz	w0, 0x9f254 <__cxa_guard_abort+0x70>
+   9f224:      	tbz	w20, #0x2, 0x9f238 <__cxa_guard_abort+0x54>
+   9f228:      	adrp	x0, 0x147000 <__cxa_unexpected_handler+0x1b8>
+   9f22c:      	add	x0, x0, #0xb0
+   9f230:      	bl	0x132908 <pthread_cond_broadcast@plt>
+   9f234:      	cbnz	w0, 0x9f268 <__cxa_guard_abort+0x84>
+   9f238:      	ldp	x20, x19, [sp, #0x10]
+   9f23c:      	ldp	x29, x30, [sp], #0x20
+   9f240:      	autiasp
+   9f244:      	ret
+   9f248:      	adrp	x0, 0x54000
+   9f24c:      	add	x0, x0, #0xe58
+   9f250:      	b	0x9f270 <__cxa_guard_abort+0x8c>
+   9f254:      	adrp	x0, 0x54000
+   9f258:      	add	x0, x0, #0x894
+   9f25c:      	adrp	x1, 0x56000
+   9f260:      	add	x1, x1, #0x1f6
+   9f264:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f268:      	adrp	x0, 0x56000
+   9f26c:      	add	x0, x0, #0xb85
+   9f270:      	adrp	x1, 0x56000
+   9f274:      	add	x1, x1, #0x1f6
+   9f278:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f27c:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9f280:      	paciasp
+   9f284:      	stp	x29, x30, [sp, #-0x20]!
+   9f288:      	str	x19, [sp, #0x10]
+   9f28c:      	mov	x29, sp
+   9f290:      	mov	x19, x0
+   9f294:      	nop
+   9f298:      	adr	x0, #0xa7df0
+   9f29c:      	bl	0x1328d8 <pthread_mutex_unlock@plt>
+   9f2a0:      	cbnz	w0, 0x9f2b4 <__cxa_guard_abort+0xd0>
+   9f2a4:      	ldr	x19, [sp, #0x10]
+   9f2a8:      	ldp	x29, x30, [sp], #0x20
+   9f2ac:      	autiasp
+   9f2b0:      	ret
+   9f2b4:      	ldr	x1, [x19]
+   9f2b8:      	adrp	x0, 0x54000
+   9f2bc:      	add	x0, x0, #0x894
+   9f2c0:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f2c4:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009f2c8 <_ZSt14get_unexpectedv>:
+   9f2c8:      	bti	c
+   9f2cc:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9f2d0:      	ldr	x8, [x8, #0x9c8]
+   9f2d4:      	ldar	x0, [x8]
+   9f2d8:      	ret
+
+000000000009f2dc <_ZSt9terminatev>:
+   9f2dc:      	paciasp
+   9f2e0:      	stp	x30, x19, [sp, #-0x10]!
+   9f2e4:      	bl	0x1327d0 <__cxa_get_globals_fast@plt>
+   9f2e8:      	cbz	x0, 0x9f2f4 <_ZSt9terminatev+0x18>
+   9f2ec:      	ldr	x19, [x0]
+   9f2f0:      	cbnz	x19, 0x9f304 <_ZSt9terminatev+0x28>
+   9f2f4:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9f2f8:      	ldr	x8, [x8, #0x9d0]
+   9f2fc:      	ldar	x0, [x8]
+   9f300:      	bl	0x9f368 <_ZSt13get_terminatev+0x14>
+   9f304:      	add	x0, x19, #0x60
+   9f308:      	bl	0xba934 <_ZdaPvmSt11align_val_t+0x18>
+   9f30c:      	tbz	w0, #0x0, 0x9f2f4 <_ZSt9terminatev+0x18>
+   9f310:      	ldr	x0, [x19, #0x28]
+   9f314:      	bl	0x9f368 <_ZSt13get_terminatev+0x14>
+   9f318:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9f31c:      	paciasp
+   9f320:      	stp	x29, x30, [sp, #-0x10]!
+   9f324:      	mov	x29, sp
+   9f328:      	blr	x0
+   9f32c:      	nop
+   9f330:      	adr	x0, #-0x4a95d
+   9f334:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+
+000000000009f338 <_ZSt10unexpectedv>:
+   9f338:      	paciasp
+   9f33c:      	stp	x29, x30, [sp, #-0x10]!
+   9f340:      	mov	x29, sp
+   9f344:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9f348:      	ldr	x8, [x8, #0x9c8]
+   9f34c:      	ldar	x0, [x8]
+   9f350:      	bl	0x9f31c <_ZSt9terminatev+0x40>
+
+000000000009f354 <_ZSt13get_terminatev>:
+   9f354:      	bti	c
+   9f358:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9f35c:      	ldr	x8, [x8, #0x9d0]
+   9f360:      	ldar	x0, [x8]
+   9f364:      	ret
+   9f368:      	paciasp
+   9f36c:      	stp	x29, x30, [sp, #-0x10]!
+   9f370:      	mov	x29, sp
+   9f374:      	blr	x0
+   9f378:      	adrp	x0, 0x55000
+   9f37c:      	add	x0, x0, #0xf3
+   9f380:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f384:      	bl	0x132818 <__cxa_begin_catch@plt>
+   9f388:      	adrp	x0, 0x55000
+   9f38c:      	add	x0, x0, #0xb2f
+   9f390:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+   9f394:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009f398 <_ZSt15get_new_handlerv>:
+   9f398:      	bti	c
+   9f39c:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9f3a0:      	ldr	x8, [x8, #0x9d8]
+   9f3a4:      	ldar	x0, [x8]
+   9f3a8:      	ret
+
+000000000009f3ac <__cxa_vec_new>:
+   9f3ac:      	paciasp
+   9f3b0:      	sub	sp, sp, #0x80
+   9f3b4:      	stp	x29, x30, [sp, #0x30]
+   9f3b8:      	str	x25, [sp, #0x40]
+   9f3bc:      	stp	x24, x23, [sp, #0x50]
+   9f3c0:      	stp	x22, x21, [sp, #0x60]
+   9f3c4:      	stp	x20, x19, [sp, #0x70]
+   9f3c8:      	add	x29, sp, #0x30
+   9f3cc:      	umulh	x8, x0, x1
+   9f3d0:      	cmp	xzr, x8
+   9f3d4:      	b.ne	0x9f478 <__cxa_vec_new+0xcc>
+   9f3d8:      	mul	x8, x0, x1
+   9f3dc:      	mov	x20, x1
+   9f3e0:      	mov	x21, x0
+   9f3e4:      	mov	x25, x2
+   9f3e8:      	adds	x0, x8, x2
+   9f3ec:      	b.hs	0x9f478 <__cxa_vec_new+0xcc>
+   9f3f0:      	mov	x24, x4
+   9f3f4:      	mov	x19, x3
+   9f3f8:      	bl	0x132980 <_Znam@plt>
+   9f3fc:      	mov	x22, x0
+   9f400:      	mov	x23, x0
+   9f404:      	cbz	x25, 0x9f410 <__cxa_vec_new+0x64>
+   9f408:      	add	x23, x22, x25
+   9f40c:      	stur	x21, [x23, #-0x8]
+   9f410:      	cbz	x19, 0x9f454 <__cxa_vec_new+0xa8>
+   9f414:      	add	x8, x29, #0x18
+   9f418:      	stp	x20, x24, [sp, #0x18]
+   9f41c:      	stp	x23, x8, [sp, #0x8]
+   9f420:      	mov	w8, #0x1
+   9f424:      	strb	w8, [sp, #0x28]
+   9f428:      	str	xzr, [x29, #0x18]
+   9f42c:      	cbz	x21, 0x9f454 <__cxa_vec_new+0xa8>
+   9f430:      	mov	x24, x23
+   9f434:      	mov	x0, x24
+   9f438:      	blr	x19
+   9f43c:      	ldr	x8, [x29, #0x18]
+   9f440:      	add	x24, x24, x20
+   9f444:      	add	x8, x8, #0x1
+   9f448:      	cmp	x8, x21
+   9f44c:      	str	x8, [x29, #0x18]
+   9f450:      	b.lo	0x9f434 <__cxa_vec_new+0x88>
+   9f454:      	mov	x0, x23
+   9f458:      	ldp	x20, x19, [sp, #0x70]
+   9f45c:      	ldr	x25, [sp, #0x40]
+   9f460:      	ldp	x22, x21, [sp, #0x60]
+   9f464:      	ldp	x24, x23, [sp, #0x50]
+   9f468:      	ldp	x29, x30, [sp, #0x30]
+   9f46c:      	add	sp, sp, #0x80
+   9f470:      	autiasp
+   9f474:      	ret
+   9f478:      	bl	0x9fc18 <__cxa_vec_delete3+0xfc>
+   9f47c:      	mov	x19, x0
+   9f480:      	add	x0, sp, #0x8
+   9f484:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f488:      	mov	x0, x22
+   9f48c:      	bl	0x132998 <_ZdaPv@plt>
+   9f490:      	mov	x0, x19
+   9f494:      	bl	0x12e82c <__emutls_get_address+0xd50>
+
+000000000009f498 <__cxa_vec_new2>:
+   9f498:      	paciasp
+   9f49c:      	sub	sp, sp, #0x80
+   9f4a0:      	stp	x29, x30, [sp, #0x30]
+   9f4a4:      	stp	x26, x25, [sp, #0x40]
+   9f4a8:      	stp	x24, x23, [sp, #0x50]
+   9f4ac:      	stp	x22, x21, [sp, #0x60]
+   9f4b0:      	stp	x20, x19, [sp, #0x70]
+   9f4b4:      	add	x29, sp, #0x30
+   9f4b8:      	umulh	x8, x0, x1
+   9f4bc:      	cmp	xzr, x8
+   9f4c0:      	b.ne	0x9f574 <__cxa_vec_new2+0xdc>
+   9f4c4:      	mul	x8, x0, x1
+   9f4c8:      	mov	x20, x1
+   9f4cc:      	mov	x21, x0
+   9f4d0:      	mov	x26, x2
+   9f4d4:      	adds	x0, x8, x2
+   9f4d8:      	b.hs	0x9f574 <__cxa_vec_new2+0xdc>
+   9f4dc:      	mov	x19, x6
+   9f4e0:      	mov	x25, x4
+   9f4e4:      	mov	x22, x3
+   9f4e8:      	blr	x5
+   9f4ec:      	cbz	x0, 0x9f54c <__cxa_vec_new2+0xb4>
+   9f4f0:      	mov	x23, x0
+   9f4f4:      	mov	x24, x0
+   9f4f8:      	cbz	x26, 0x9f504 <__cxa_vec_new2+0x6c>
+   9f4fc:      	add	x24, x23, x26
+   9f500:      	stur	x21, [x24, #-0x8]
+   9f504:      	cbz	x22, 0x9f550 <__cxa_vec_new2+0xb8>
+   9f508:      	sub	x8, x29, #0x8
+   9f50c:      	stp	x20, x25, [sp, #0x10]
+   9f510:      	stp	x24, x8, [sp]
+   9f514:      	mov	w8, #0x1
+   9f518:      	strb	w8, [sp, #0x20]
+   9f51c:      	stur	xzr, [x29, #-0x8]
+   9f520:      	cbz	x21, 0x9f550 <__cxa_vec_new2+0xb8>
+   9f524:      	mov	x25, x24
+   9f528:      	mov	x0, x25
+   9f52c:      	blr	x22
+   9f530:      	ldur	x8, [x29, #-0x8]
+   9f534:      	add	x25, x25, x20
+   9f538:      	add	x8, x8, #0x1
+   9f53c:      	cmp	x8, x21
+   9f540:      	stur	x8, [x29, #-0x8]
+   9f544:      	b.lo	0x9f528 <__cxa_vec_new2+0x90>
+   9f548:      	b	0x9f550 <__cxa_vec_new2+0xb8>
+   9f54c:      	mov	x24, xzr
+   9f550:      	mov	x0, x24
+   9f554:      	ldp	x20, x19, [sp, #0x70]
+   9f558:      	ldp	x22, x21, [sp, #0x60]
+   9f55c:      	ldp	x24, x23, [sp, #0x50]
+   9f560:      	ldp	x26, x25, [sp, #0x40]
+   9f564:      	ldp	x29, x30, [sp, #0x30]
+   9f568:      	add	sp, sp, #0x80
+   9f56c:      	autiasp
+   9f570:      	ret
+   9f574:      	bl	0x9fc18 <__cxa_vec_delete3+0xfc>
+   9f578:      	mov	x20, x0
+   9f57c:      	mov	x0, sp
+   9f580:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f584:      	mov	x0, x23
+   9f588:      	blr	x19
+   9f58c:      	mov	x0, x20
+   9f590:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9f594:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009f598 <__cxa_vec_ctor>:
+   9f598:      	paciasp
+   9f59c:      	sub	sp, sp, #0x60
+   9f5a0:      	stp	x29, x30, [sp, #0x30]
+   9f5a4:      	stp	x22, x21, [sp, #0x40]
+   9f5a8:      	stp	x20, x19, [sp, #0x50]
+   9f5ac:      	add	x29, sp, #0x30
+   9f5b0:      	cbz	x3, 0x9f600 <__cxa_vec_ctor+0x68>
+   9f5b4:      	sub	x8, x29, #0x8
+   9f5b8:      	mov	x20, x2
+   9f5bc:      	mov	x21, x1
+   9f5c0:      	mov	x22, x0
+   9f5c4:      	stp	x0, x8, [sp]
+   9f5c8:      	mov	w8, #0x1
+   9f5cc:      	stp	x2, x4, [sp, #0x10]
+   9f5d0:      	strb	w8, [sp, #0x20]
+   9f5d4:      	stur	xzr, [x29, #-0x8]
+   9f5d8:      	cbz	x1, 0x9f600 <__cxa_vec_ctor+0x68>
+   9f5dc:      	mov	x19, x3
+   9f5e0:      	mov	x0, x22
+   9f5e4:      	blr	x19
+   9f5e8:      	ldur	x8, [x29, #-0x8]
+   9f5ec:      	add	x22, x22, x20
+   9f5f0:      	add	x8, x8, #0x1
+   9f5f4:      	cmp	x8, x21
+   9f5f8:      	stur	x8, [x29, #-0x8]
+   9f5fc:      	b.lo	0x9f5e0 <__cxa_vec_ctor+0x48>
+   9f600:      	ldp	x20, x19, [sp, #0x50]
+   9f604:      	ldp	x22, x21, [sp, #0x40]
+   9f608:      	ldp	x29, x30, [sp, #0x30]
+   9f60c:      	add	sp, sp, #0x60
+   9f610:      	autiasp
+   9f614:      	ret
+   9f618:      	mov	x19, x0
+   9f61c:      	mov	x0, sp
+   9f620:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f624:      	mov	x0, x19
+   9f628:      	bl	0x12e82c <__emutls_get_address+0xd50>
+
+000000000009f62c <__cxa_vec_new3>:
+   9f62c:      	paciasp
+   9f630:      	sub	sp, sp, #0x90
+   9f634:      	stp	x29, x30, [sp, #0x30]
+   9f638:      	str	x27, [sp, #0x40]
+   9f63c:      	stp	x26, x25, [sp, #0x50]
+   9f640:      	stp	x24, x23, [sp, #0x60]
+   9f644:      	stp	x22, x21, [sp, #0x70]
+   9f648:      	stp	x20, x19, [sp, #0x80]
+   9f64c:      	add	x29, sp, #0x30
+   9f650:      	umulh	x8, x0, x1
+   9f654:      	cmp	xzr, x8
+   9f658:      	b.ne	0x9f714 <__cxa_vec_new3+0xe8>
+   9f65c:      	mul	x8, x0, x1
+   9f660:      	mov	x20, x1
+   9f664:      	mov	x21, x0
+   9f668:      	mov	x27, x2
+   9f66c:      	adds	x23, x8, x2
+   9f670:      	b.hs	0x9f714 <__cxa_vec_new3+0xe8>
+   9f674:      	mov	x0, x23
+   9f678:      	mov	x19, x6
+   9f67c:      	mov	x26, x4
+   9f680:      	mov	x22, x3
+   9f684:      	blr	x5
+   9f688:      	cbz	x0, 0x9f6e8 <__cxa_vec_new3+0xbc>
+   9f68c:      	mov	x24, x0
+   9f690:      	mov	x25, x0
+   9f694:      	cbz	x27, 0x9f6a0 <__cxa_vec_new3+0x74>
+   9f698:      	add	x25, x24, x27
+   9f69c:      	stur	x21, [x25, #-0x8]
+   9f6a0:      	cbz	x22, 0x9f6ec <__cxa_vec_new3+0xc0>
+   9f6a4:      	add	x8, x29, #0x18
+   9f6a8:      	stp	x20, x26, [sp, #0x18]
+   9f6ac:      	stp	x25, x8, [sp, #0x8]
+   9f6b0:      	mov	w8, #0x1
+   9f6b4:      	strb	w8, [sp, #0x28]
+   9f6b8:      	str	xzr, [x29, #0x18]
+   9f6bc:      	cbz	x21, 0x9f6ec <__cxa_vec_new3+0xc0>
+   9f6c0:      	mov	x26, x25
+   9f6c4:      	mov	x0, x26
+   9f6c8:      	blr	x22
+   9f6cc:      	ldr	x8, [x29, #0x18]
+   9f6d0:      	add	x26, x26, x20
+   9f6d4:      	add	x8, x8, #0x1
+   9f6d8:      	cmp	x8, x21
+   9f6dc:      	str	x8, [x29, #0x18]
+   9f6e0:      	b.lo	0x9f6c4 <__cxa_vec_new3+0x98>
+   9f6e4:      	b	0x9f6ec <__cxa_vec_new3+0xc0>
+   9f6e8:      	mov	x25, xzr
+   9f6ec:      	mov	x0, x25
+   9f6f0:      	ldp	x20, x19, [sp, #0x80]
+   9f6f4:      	ldr	x27, [sp, #0x40]
+   9f6f8:      	ldp	x22, x21, [sp, #0x70]
+   9f6fc:      	ldp	x24, x23, [sp, #0x60]
+   9f700:      	ldp	x26, x25, [sp, #0x50]
+   9f704:      	ldp	x29, x30, [sp, #0x30]
+   9f708:      	add	sp, sp, #0x90
+   9f70c:      	autiasp
+   9f710:      	ret
+   9f714:      	bl	0x9fc18 <__cxa_vec_delete3+0xfc>
+   9f718:      	mov	x20, x0
+   9f71c:      	add	x0, sp, #0x8
+   9f720:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f724:      	mov	x0, x24
+   9f728:      	mov	x1, x23
+   9f72c:      	blr	x19
+   9f730:      	mov	x0, x20
+   9f734:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9f738:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009f73c <__cxa_vec_cctor>:
+   9f73c:      	paciasp
+   9f740:      	sub	sp, sp, #0x70
+   9f744:      	stp	x29, x30, [sp, #0x30]
+   9f748:      	stp	x24, x23, [sp, #0x40]
+   9f74c:      	stp	x22, x21, [sp, #0x50]
+   9f750:      	stp	x20, x19, [sp, #0x60]
+   9f754:      	add	x29, sp, #0x30
+   9f758:      	cbz	x4, 0x9f7b4 <__cxa_vec_cctor+0x78>
+   9f75c:      	sub	x8, x29, #0x8
+   9f760:      	mov	x20, x3
+   9f764:      	mov	x21, x2
+   9f768:      	mov	x23, x0
+   9f76c:      	stp	x0, x8, [sp]
+   9f770:      	mov	w8, #0x1
+   9f774:      	stp	x3, x5, [sp, #0x10]
+   9f778:      	strb	w8, [sp, #0x20]
+   9f77c:      	stur	xzr, [x29, #-0x8]
+   9f780:      	cbz	x2, 0x9f7b4 <__cxa_vec_cctor+0x78>
+   9f784:      	mov	x19, x4
+   9f788:      	mov	x22, x1
+   9f78c:      	mov	x24, xzr
+   9f790:      	add	x0, x23, x24
+   9f794:      	add	x1, x22, x24
+   9f798:      	blr	x19
+   9f79c:      	ldur	x8, [x29, #-0x8]
+   9f7a0:      	add	x24, x24, x20
+   9f7a4:      	add	x8, x8, #0x1
+   9f7a8:      	cmp	x8, x21
+   9f7ac:      	stur	x8, [x29, #-0x8]
+   9f7b0:      	b.lo	0x9f790 <__cxa_vec_cctor+0x54>
+   9f7b4:      	ldp	x20, x19, [sp, #0x60]
+   9f7b8:      	ldp	x22, x21, [sp, #0x50]
+   9f7bc:      	ldp	x24, x23, [sp, #0x40]
+   9f7c0:      	ldp	x29, x30, [sp, #0x30]
+   9f7c4:      	add	sp, sp, #0x70
+   9f7c8:      	autiasp
+   9f7cc:      	ret
+   9f7d0:      	mov	x19, x0
+   9f7d4:      	mov	x0, sp
+   9f7d8:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f7dc:      	mov	x0, x19
+   9f7e0:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9f7e4:      	paciasp
+   9f7e8:      	stp	x29, x30, [sp, #-0x30]!
+   9f7ec:      	stp	x22, x21, [sp, #0x10]
+   9f7f0:      	stp	x20, x19, [sp, #0x20]
+   9f7f4:      	mov	x29, sp
+   9f7f8:      	ldrb	w8, [x0, #0x20]
+   9f7fc:      	cbz	w8, 0x9f83c <__cxa_vec_cctor+0x100>
+   9f800:      	ldr	x19, [x0, #0x18]
+   9f804:      	cbz	x19, 0x9f83c <__cxa_vec_cctor+0x100>
+   9f808:      	ldp	x9, x8, [x0]
+   9f80c:      	ldr	x10, [x0, #0x10]
+   9f810:      	neg	x20, x10
+   9f814:      	ldr	x8, [x8]
+   9f818:      	sub	x11, x8, #0x1
+   9f81c:      	add	x21, x8, #0x1
+   9f820:      	madd	x0, x10, x11, x9
+   9f824:      	subs	x21, x21, #0x1
+   9f828:      	b.eq	0x9f83c <__cxa_vec_cctor+0x100>
+   9f82c:      	add	x22, x0, x20
+   9f830:      	blr	x19
+   9f834:      	mov	x0, x22
+   9f838:      	b	0x9f824 <__cxa_vec_cctor+0xe8>
+   9f83c:      	ldp	x20, x19, [sp, #0x20]
+   9f840:      	ldp	x22, x21, [sp, #0x10]
+   9f844:      	ldp	x29, x30, [sp], #0x30
+   9f848:      	autiasp
+   9f84c:      	ret
+   9f850:      	bl	0x132800 <_ZSt9terminatev@plt>
+
+000000000009f854 <__cxa_vec_dtor>:
+   9f854:      	paciasp
+   9f858:      	sub	sp, sp, #0x70
+   9f85c:      	stp	x29, x30, [sp, #0x30]
+   9f860:      	str	x23, [sp, #0x40]
+   9f864:      	stp	x22, x21, [sp, #0x50]
+   9f868:      	stp	x20, x19, [sp, #0x60]
+   9f86c:      	add	x29, sp, #0x30
+   9f870:      	cbz	x3, 0x9f8d0 <__cxa_vec_dtor+0x7c>
+   9f874:      	add	x8, x29, #0x18
+   9f878:      	mov	x19, x3
+   9f87c:      	str	x1, [x29, #0x18]
+   9f880:      	stp	x0, x8, [sp, #0x8]
+   9f884:      	mov	w8, #0x1
+   9f888:      	mov	x21, x2
+   9f88c:      	stp	x2, x3, [sp, #0x18]
+   9f890:      	mov	x22, x0
+   9f894:      	mov	x23, x1
+   9f898:      	strb	w8, [sp, #0x28]
+   9f89c:      	bl	0x1329b0 <__cxa_uncaught_exception@plt>
+   9f8a0:      	sub	x8, x23, #0x1
+   9f8a4:      	mov	w20, w0
+   9f8a8:      	madd	x0, x21, x8, x22
+   9f8ac:      	neg	x21, x21
+   9f8b0:      	ldr	x8, [x29, #0x18]
+   9f8b4:      	sub	x9, x8, #0x1
+   9f8b8:      	str	x9, [x29, #0x18]
+   9f8bc:      	cbz	x8, 0x9f8d0 <__cxa_vec_dtor+0x7c>
+   9f8c0:      	add	x22, x0, x21
+   9f8c4:      	blr	x19
+   9f8c8:      	mov	x0, x22
+   9f8cc:      	b	0x9f8b0 <__cxa_vec_dtor+0x5c>
+   9f8d0:      	ldp	x20, x19, [sp, #0x60]
+   9f8d4:      	ldr	x23, [sp, #0x40]
+   9f8d8:      	ldp	x22, x21, [sp, #0x50]
+   9f8dc:      	ldp	x29, x30, [sp, #0x30]
+   9f8e0:      	add	sp, sp, #0x70
+   9f8e4:      	autiasp
+   9f8e8:      	ret
+   9f8ec:      	tbz	w20, #0x0, 0x9f8f4 <__cxa_vec_dtor+0xa0>
+   9f8f0:      	bl	0x132800 <_ZSt9terminatev@plt>
+   9f8f4:      	mov	x19, x0
+   9f8f8:      	add	x0, sp, #0x8
+   9f8fc:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9f900:      	mov	x0, x19
+   9f904:      	bl	0x12e82c <__emutls_get_address+0xd50>
+
+000000000009f908 <__cxa_vec_cleanup>:
+   9f908:      	paciasp
+   9f90c:      	stp	x29, x30, [sp, #-0x30]!
+   9f910:      	stp	x22, x21, [sp, #0x10]
+   9f914:      	stp	x20, x19, [sp, #0x20]
+   9f918:      	mov	x29, sp
+   9f91c:      	cbz	x3, 0x9f94c <__cxa_vec_cleanup+0x44>
+   9f920:      	sub	x8, x1, #0x1
+   9f924:      	mov	x19, x3
+   9f928:      	neg	x20, x2
+   9f92c:      	madd	x0, x2, x8, x0
+   9f930:      	add	x21, x1, #0x1
+   9f934:      	subs	x21, x21, #0x1
+   9f938:      	b.eq	0x9f94c <__cxa_vec_cleanup+0x44>
+   9f93c:      	add	x22, x0, x20
+   9f940:      	blr	x19
+   9f944:      	mov	x0, x22
+   9f948:      	b	0x9f934 <__cxa_vec_cleanup+0x2c>
+   9f94c:      	ldp	x20, x19, [sp, #0x20]
+   9f950:      	ldp	x22, x21, [sp, #0x10]
+   9f954:      	ldp	x29, x30, [sp], #0x30
+   9f958:      	autiasp
+   9f95c:      	ret
+   9f960:      	bl	0x132800 <_ZSt9terminatev@plt>
+
+000000000009f964 <__cxa_vec_delete>:
+   9f964:      	paciasp
+   9f968:      	sub	sp, sp, #0x70
+   9f96c:      	stp	x29, x30, [sp, #0x30]
+   9f970:      	stp	x24, x23, [sp, #0x40]
+   9f974:      	stp	x22, x21, [sp, #0x50]
+   9f978:      	stp	x20, x19, [sp, #0x60]
+   9f97c:      	add	x29, sp, #0x30
+   9f980:      	cbz	x0, 0x9f9f4 <__cxa_vec_delete+0x90>
+   9f984:      	sub	x19, x0, x2
+   9f988:      	cbz	x2, 0x9f9ec <__cxa_vec_delete+0x88>
+   9f98c:      	mov	x20, x3
+   9f990:      	cbz	x3, 0x9f9ec <__cxa_vec_delete+0x88>
+   9f994:      	ldur	x22, [x0, #-0x8]
+   9f998:      	sub	x8, x29, #0x8
+   9f99c:      	stp	x1, x20, [sp, #0x10]
+   9f9a0:      	stp	x0, x8, [sp]
+   9f9a4:      	mov	w8, #0x1
+   9f9a8:      	mov	x23, x0
+   9f9ac:      	stur	x22, [x29, #-0x8]
+   9f9b0:      	mov	x24, x1
+   9f9b4:      	strb	w8, [sp, #0x20]
+   9f9b8:      	bl	0x1329b0 <__cxa_uncaught_exception@plt>
+   9f9bc:      	sub	x8, x22, #0x1
+   9f9c0:      	mov	w21, w0
+   9f9c4:      	neg	x22, x24
+   9f9c8:      	madd	x0, x24, x8, x23
+   9f9cc:      	ldur	x8, [x29, #-0x8]
+   9f9d0:      	sub	x9, x8, #0x1
+   9f9d4:      	stur	x9, [x29, #-0x8]
+   9f9d8:      	cbz	x8, 0x9f9ec <__cxa_vec_delete+0x88>
+   9f9dc:      	add	x23, x0, x22
+   9f9e0:      	blr	x20
+   9f9e4:      	mov	x0, x23
+   9f9e8:      	b	0x9f9cc <__cxa_vec_delete+0x68>
+   9f9ec:      	mov	x0, x19
+   9f9f0:      	bl	0x132998 <_ZdaPv@plt>
+   9f9f4:      	ldp	x20, x19, [sp, #0x60]
+   9f9f8:      	ldp	x22, x21, [sp, #0x50]
+   9f9fc:      	ldp	x24, x23, [sp, #0x40]
+   9fa00:      	ldp	x29, x30, [sp, #0x30]
+   9fa04:      	add	sp, sp, #0x70
+   9fa08:      	autiasp
+   9fa0c:      	ret
+   9fa10:      	tbz	w21, #0x0, 0x9fa18 <__cxa_vec_delete+0xb4>
+   9fa14:      	bl	0x132800 <_ZSt9terminatev@plt>
+   9fa18:      	mov	x20, x0
+   9fa1c:      	mov	x0, sp
+   9fa20:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9fa24:      	mov	x0, x19
+   9fa28:      	bl	0x132998 <_ZdaPv@plt>
+   9fa2c:      	mov	x0, x20
+   9fa30:      	bl	0x12e82c <__emutls_get_address+0xd50>
+
+000000000009fa34 <__cxa_vec_delete2>:
+   9fa34:      	paciasp
+   9fa38:      	sub	sp, sp, #0x80
+   9fa3c:      	stp	x29, x30, [sp, #0x30]
+   9fa40:      	str	x25, [sp, #0x40]
+   9fa44:      	stp	x24, x23, [sp, #0x50]
+   9fa48:      	stp	x22, x21, [sp, #0x60]
+   9fa4c:      	stp	x20, x19, [sp, #0x70]
+   9fa50:      	add	x29, sp, #0x30
+   9fa54:      	cbz	x0, 0x9fad0 <__cxa_vec_delete2+0x9c>
+   9fa58:      	sub	x19, x0, x2
+   9fa5c:      	cbz	x2, 0x9fac8 <__cxa_vec_delete2+0x94>
+   9fa60:      	mov	x20, x3
+   9fa64:      	cbz	x3, 0x9fac8 <__cxa_vec_delete2+0x94>
+   9fa68:      	ldur	x23, [x0, #-0x8]
+   9fa6c:      	add	x8, x29, #0x18
+   9fa70:      	mov	x22, x4
+   9fa74:      	stp	x0, x8, [sp, #0x8]
+   9fa78:      	mov	w8, #0x1
+   9fa7c:      	mov	x24, x0
+   9fa80:      	str	x23, [x29, #0x18]
+   9fa84:      	mov	x25, x1
+   9fa88:      	stp	x1, x20, [sp, #0x18]
+   9fa8c:      	strb	w8, [sp, #0x28]
+   9fa90:      	bl	0x1329b0 <__cxa_uncaught_exception@plt>
+   9fa94:      	sub	x8, x23, #0x1
+   9fa98:      	mov	w21, w0
+   9fa9c:      	neg	x23, x25
+   9faa0:      	madd	x0, x25, x8, x24
+   9faa4:      	ldr	x8, [x29, #0x18]
+   9faa8:      	sub	x9, x8, #0x1
+   9faac:      	str	x9, [x29, #0x18]
+   9fab0:      	cbz	x8, 0x9fac4 <__cxa_vec_delete2+0x90>
+   9fab4:      	add	x24, x0, x23
+   9fab8:      	blr	x20
+   9fabc:      	mov	x0, x24
+   9fac0:      	b	0x9faa4 <__cxa_vec_delete2+0x70>
+   9fac4:      	mov	x4, x22
+   9fac8:      	mov	x0, x19
+   9facc:      	blr	x4
+   9fad0:      	ldp	x20, x19, [sp, #0x70]
+   9fad4:      	ldr	x25, [sp, #0x40]
+   9fad8:      	ldp	x22, x21, [sp, #0x60]
+   9fadc:      	ldp	x24, x23, [sp, #0x50]
+   9fae0:      	ldp	x29, x30, [sp, #0x30]
+   9fae4:      	add	sp, sp, #0x80
+   9fae8:      	autiasp
+   9faec:      	ret
+   9faf0:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9faf4:      	tbz	w21, #0x0, 0x9fafc <__cxa_vec_delete2+0xc8>
+   9faf8:      	bl	0x132800 <_ZSt9terminatev@plt>
+   9fafc:      	mov	x20, x0
+   9fb00:      	add	x0, sp, #0x8
+   9fb04:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9fb08:      	mov	x0, x19
+   9fb0c:      	blr	x22
+   9fb10:      	mov	x0, x20
+   9fb14:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9fb18:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+
+000000000009fb1c <__cxa_vec_delete3>:
+   9fb1c:      	paciasp
+   9fb20:      	sub	sp, sp, #0x80
+   9fb24:      	stp	x29, x30, [sp, #0x30]
+   9fb28:      	stp	x26, x25, [sp, #0x40]
+   9fb2c:      	stp	x24, x23, [sp, #0x50]
+   9fb30:      	stp	x22, x21, [sp, #0x60]
+   9fb34:      	stp	x20, x19, [sp, #0x70]
+   9fb38:      	add	x29, sp, #0x30
+   9fb3c:      	cbz	x0, 0x9fbc8 <__cxa_vec_delete3+0xac>
+   9fb40:      	sub	x19, x0, x2
+   9fb44:      	cbz	x2, 0x9fbb8 <__cxa_vec_delete3+0x9c>
+   9fb48:      	ldur	x24, [x0, #-0x8]
+   9fb4c:      	mov	x21, x3
+   9fb50:      	madd	x20, x24, x1, x2
+   9fb54:      	cbz	x3, 0x9fbbc <__cxa_vec_delete3+0xa0>
+   9fb58:      	sub	x8, x29, #0x8
+   9fb5c:      	mov	x23, x4
+   9fb60:      	stur	x24, [x29, #-0x8]
+   9fb64:      	stp	x0, x8, [sp]
+   9fb68:      	mov	w8, #0x1
+   9fb6c:      	mov	x25, x0
+   9fb70:      	stp	x1, x21, [sp, #0x10]
+   9fb74:      	mov	x26, x1
+   9fb78:      	strb	w8, [sp, #0x20]
+   9fb7c:      	bl	0x1329b0 <__cxa_uncaught_exception@plt>
+   9fb80:      	sub	x8, x24, #0x1
+   9fb84:      	mov	w22, w0
+   9fb88:      	neg	x24, x26
+   9fb8c:      	madd	x0, x26, x8, x25
+   9fb90:      	ldur	x8, [x29, #-0x8]
+   9fb94:      	sub	x9, x8, #0x1
+   9fb98:      	stur	x9, [x29, #-0x8]
+   9fb9c:      	cbz	x8, 0x9fbb0 <__cxa_vec_delete3+0x94>
+   9fba0:      	add	x25, x0, x24
+   9fba4:      	blr	x21
+   9fba8:      	mov	x0, x25
+   9fbac:      	b	0x9fb90 <__cxa_vec_delete3+0x74>
+   9fbb0:      	mov	x4, x23
+   9fbb4:      	b	0x9fbbc <__cxa_vec_delete3+0xa0>
+   9fbb8:      	mov	x20, xzr
+   9fbbc:      	mov	x0, x19
+   9fbc0:      	mov	x1, x20
+   9fbc4:      	blr	x4
+   9fbc8:      	ldp	x20, x19, [sp, #0x70]
+   9fbcc:      	ldp	x22, x21, [sp, #0x60]
+   9fbd0:      	ldp	x24, x23, [sp, #0x50]
+   9fbd4:      	ldp	x26, x25, [sp, #0x40]
+   9fbd8:      	ldp	x29, x30, [sp, #0x30]
+   9fbdc:      	add	sp, sp, #0x80
+   9fbe0:      	autiasp
+   9fbe4:      	ret
+   9fbe8:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9fbec:      	tbz	w22, #0x0, 0x9fbf4 <__cxa_vec_delete3+0xd8>
+   9fbf0:      	bl	0x132800 <_ZSt9terminatev@plt>
+   9fbf4:      	mov	x21, x0
+   9fbf8:      	mov	x0, sp
+   9fbfc:      	bl	0x9f7e4 <__cxa_vec_cctor+0xa8>
+   9fc00:      	mov	x0, x19
+   9fc04:      	mov	x1, x20
+   9fc08:      	blr	x23
+   9fc0c:      	mov	x0, x21
+   9fc10:      	bl	0x12e82c <__emutls_get_address+0xd50>
+   9fc14:      	bl	0x9ef48 <_ZSt14set_unexpectedPFvvE+0x34>
+   9fc18:      	paciasp
+   9fc1c:      	stp	x29, x30, [sp, #-0x20]!
+   9fc20:      	str	x19, [sp, #0x10]
+   9fc24:      	mov	x29, sp
+   9fc28:      	mov	w0, #0x8
+   9fc2c:      	bl	0x132710 <__cxa_allocate_exception@plt>
+   9fc30:      	mov	x19, x0
+   9fc34:      	bl	0x1327a0 <_ZNSt20bad_array_new_lengthC1Ev@plt>
+   9fc38:      	adrp	x1, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fc3c:      	adrp	x2, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fc40:      	mov	x0, x19
+   9fc44:      	ldr	x1, [x1, #0x9b0]
+   9fc48:      	ldr	x2, [x2, #0x9b8]
+   9fc4c:      	bl	0x132758 <__cxa_throw@plt>
+
+000000000009fc50 <__cxa_pure_virtual>:
+   9fc50:      	paciasp
+   9fc54:      	stp	x29, x30, [sp, #-0x10]!
+   9fc58:      	mov	x29, sp
+   9fc5c:      	nop
+   9fc60:      	adr	x0, #-0x4b5a0
+   9fc64:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+
+000000000009fc68 <__cxa_deleted_virtual>:
+   9fc68:      	paciasp
+   9fc6c:      	stp	x29, x30, [sp, #-0x10]!
+   9fc70:      	mov	x29, sp
+   9fc74:      	adrp	x0, 0x56000
+   9fc78:      	add	x0, x0, #0x208
+   9fc7c:      	bl	0xa0110 <_ZNKSt10bad_typeid4whatEv+0x10>
+
+000000000009fc80 <_ZNSt9exceptionD2Ev>:
+   9fc80:      	bti	c
+   9fc84:      	ret
+
+000000000009fc88 <_ZNSt9exceptionD0Ev>:
+   9fc88:      	paciasp
+   9fc8c:      	stp	x29, x30, [sp, #-0x20]!
+   9fc90:      	str	x19, [sp, #0x10]
+   9fc94:      	mov	x29, sp
+   9fc98:      	mov	x19, x0
+   9fc9c:      	bl	0x1329e0 <_ZNSt9exceptionD1Ev@plt>
+   9fca0:      	mov	x0, x19
+   9fca4:      	ldr	x19, [sp, #0x10]
+   9fca8:      	ldp	x29, x30, [sp], #0x20
+   9fcac:      	autiasp
+   9fcb0:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fcb4 <_ZNKSt9exception4whatEv>:
+   9fcb4:      	bti	c
+   9fcb8:      	nop
+   9fcbc:      	adr	x0, #-0x4b1d3
+   9fcc0:      	ret
+
+000000000009fcc4 <_ZNSt13bad_exceptionD0Ev>:
+   9fcc4:      	paciasp
+   9fcc8:      	stp	x29, x30, [sp, #-0x20]!
+   9fccc:      	str	x19, [sp, #0x10]
+   9fcd0:      	mov	x29, sp
+   9fcd4:      	mov	x19, x0
+   9fcd8:      	bl	0x132a10 <_ZNSt13bad_exceptionD1Ev@plt>
+   9fcdc:      	mov	x0, x19
+   9fce0:      	ldr	x19, [sp, #0x10]
+   9fce4:      	ldp	x29, x30, [sp], #0x20
+   9fce8:      	autiasp
+   9fcec:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fcf0 <_ZNKSt13bad_exception4whatEv>:
+   9fcf0:      	bti	c
+   9fcf4:      	adrp	x0, 0x55000
+   9fcf8:      	add	x0, x0, #0x844
+   9fcfc:      	ret
+
+000000000009fd00 <_ZNSt9bad_allocC2Ev>:
+   9fd00:      	bti	c
+   9fd04:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fd08:      	ldr	x8, [x8, #0x9f0]
+   9fd0c:      	add	x8, x8, #0x10
+   9fd10:      	str	x8, [x0]
+   9fd14:      	ret
+
+000000000009fd18 <_ZNSt9bad_allocD0Ev>:
+   9fd18:      	paciasp
+   9fd1c:      	stp	x29, x30, [sp, #-0x20]!
+   9fd20:      	str	x19, [sp, #0x10]
+   9fd24:      	mov	x29, sp
+   9fd28:      	mov	x19, x0
+   9fd2c:      	bl	0x132a28 <_ZNSt9bad_allocD1Ev@plt>
+   9fd30:      	mov	x0, x19
+   9fd34:      	ldr	x19, [sp, #0x10]
+   9fd38:      	ldp	x29, x30, [sp], #0x20
+   9fd3c:      	autiasp
+   9fd40:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fd44 <_ZNKSt9bad_alloc4whatEv>:
+   9fd44:      	bti	c
+   9fd48:      	adrp	x0, 0x55000
+   9fd4c:      	add	x0, x0, #0x462
+   9fd50:      	ret
+
+000000000009fd54 <_ZNSt20bad_array_new_lengthC2Ev>:
+   9fd54:      	bti	c
+   9fd58:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fd5c:      	ldr	x8, [x8, #0xa00]
+   9fd60:      	add	x8, x8, #0x10
+   9fd64:      	str	x8, [x0]
+   9fd68:      	ret
+
+000000000009fd6c <_ZNSt20bad_array_new_lengthD0Ev>:
+   9fd6c:      	paciasp
+   9fd70:      	stp	x29, x30, [sp, #-0x20]!
+   9fd74:      	str	x19, [sp, #0x10]
+   9fd78:      	mov	x29, sp
+   9fd7c:      	mov	x19, x0
+   9fd80:      	bl	0x1327b8 <_ZNSt20bad_array_new_lengthD1Ev@plt>
+   9fd84:      	mov	x0, x19
+   9fd88:      	ldr	x19, [sp, #0x10]
+   9fd8c:      	ldp	x29, x30, [sp], #0x20
+   9fd90:      	autiasp
+   9fd94:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fd98 <_ZNKSt20bad_array_new_length4whatEv>:
+   9fd98:      	bti	c
+   9fd9c:      	adrp	x0, 0x54000
+   9fda0:      	add	x0, x0, #0xcc5
+   9fda4:      	ret
+
+000000000009fda8 <_ZNSt16invalid_argumentD2Ev>:
+   9fda8:      	paciasp
+   9fdac:      	stp	x29, x30, [sp, #-0x20]!
+   9fdb0:      	stp	x20, x19, [sp, #0x10]
+   9fdb4:      	mov	x29, sp
+   9fdb8:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fdbc:      	mov	x19, x0
+   9fdc0:      	ldr	x8, [x8, #0xa20]
+   9fdc4:      	ldr	x20, [x0, #0x8]
+   9fdc8:      	add	x8, x8, #0x10
+   9fdcc:      	sub	x1, x20, #0x8
+   9fdd0:      	str	x8, [x0]
+   9fdd4:      	mov	w0, #-0x1
+   9fdd8:      	bl	0x12e570 <__emutls_get_address+0xa94>
+   9fddc:      	cmp	w0, #0x1
+   9fde0:      	b.mi	0x9fdf8 <_ZNSt16invalid_argumentD2Ev+0x50>
+   9fde4:      	mov	x0, x19
+   9fde8:      	ldp	x20, x19, [sp, #0x10]
+   9fdec:      	ldp	x29, x30, [sp], #0x20
+   9fdf0:      	autiasp
+   9fdf4:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+   9fdf8:      	sub	x0, x20, #0x18
+   9fdfc:      	bl	0x1329f8 <_ZdlPv@plt>
+   9fe00:      	mov	x0, x19
+   9fe04:      	ldp	x20, x19, [sp, #0x10]
+   9fe08:      	ldp	x29, x30, [sp], #0x20
+   9fe0c:      	autiasp
+   9fe10:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+
+000000000009fe14 <_ZNSt11logic_errorD0Ev>:
+   9fe14:      	paciasp
+   9fe18:      	stp	x29, x30, [sp, #-0x20]!
+   9fe1c:      	str	x19, [sp, #0x10]
+   9fe20:      	mov	x29, sp
+   9fe24:      	mov	x19, x0
+   9fe28:      	bl	0x132a70 <_ZNSt11logic_errorD1Ev@plt>
+   9fe2c:      	mov	x0, x19
+   9fe30:      	ldr	x19, [sp, #0x10]
+   9fe34:      	ldp	x29, x30, [sp], #0x20
+   9fe38:      	autiasp
+   9fe3c:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fe40 <_ZNKSt11logic_error4whatEv>:
+   9fe40:      	bti	c
+   9fe44:      	ldr	x0, [x0, #0x8]
+   9fe48:      	ret
+
+000000000009fe4c <_ZNSt15underflow_errorD2Ev>:
+   9fe4c:      	paciasp
+   9fe50:      	stp	x29, x30, [sp, #-0x20]!
+   9fe54:      	stp	x20, x19, [sp, #0x10]
+   9fe58:      	mov	x29, sp
+   9fe5c:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   9fe60:      	mov	x19, x0
+   9fe64:      	ldr	x8, [x8, #0xa28]
+   9fe68:      	ldr	x20, [x0, #0x8]
+   9fe6c:      	add	x8, x8, #0x10
+   9fe70:      	sub	x1, x20, #0x8
+   9fe74:      	str	x8, [x0]
+   9fe78:      	mov	w0, #-0x1
+   9fe7c:      	bl	0x12e570 <__emutls_get_address+0xa94>
+   9fe80:      	cmp	w0, #0x1
+   9fe84:      	b.mi	0x9fe9c <_ZNSt15underflow_errorD2Ev+0x50>
+   9fe88:      	mov	x0, x19
+   9fe8c:      	ldp	x20, x19, [sp, #0x10]
+   9fe90:      	ldp	x29, x30, [sp], #0x20
+   9fe94:      	autiasp
+   9fe98:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+   9fe9c:      	sub	x0, x20, #0x18
+   9fea0:      	bl	0x1329f8 <_ZdlPv@plt>
+   9fea4:      	mov	x0, x19
+   9fea8:      	ldp	x20, x19, [sp, #0x10]
+   9feac:      	ldp	x29, x30, [sp], #0x20
+   9feb0:      	autiasp
+   9feb4:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+
+000000000009feb8 <_ZNSt13runtime_errorD0Ev>:
+   9feb8:      	paciasp
+   9febc:      	stp	x29, x30, [sp, #-0x20]!
+   9fec0:      	str	x19, [sp, #0x10]
+   9fec4:      	mov	x29, sp
+   9fec8:      	mov	x19, x0
+   9fecc:      	bl	0x132aa0 <_ZNSt13runtime_errorD1Ev@plt>
+   9fed0:      	mov	x0, x19
+   9fed4:      	ldr	x19, [sp, #0x10]
+   9fed8:      	ldp	x29, x30, [sp], #0x20
+   9fedc:      	autiasp
+   9fee0:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fee4 <_ZNKSt13runtime_error4whatEv>:
+   9fee4:      	bti	c
+   9fee8:      	ldr	x0, [x0, #0x8]
+   9feec:      	ret
+
+000000000009fef0 <_ZNSt12domain_errorD0Ev>:
+   9fef0:      	paciasp
+   9fef4:      	stp	x29, x30, [sp, #-0x20]!
+   9fef8:      	str	x19, [sp, #0x10]
+   9fefc:      	mov	x29, sp
+   9ff00:      	mov	x19, x0
+   9ff04:      	bl	0x132ad0 <_ZNSt12domain_errorD1Ev@plt>
+   9ff08:      	mov	x0, x19
+   9ff0c:      	ldr	x19, [sp, #0x10]
+   9ff10:      	ldp	x29, x30, [sp], #0x20
+   9ff14:      	autiasp
+   9ff18:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009ff1c <_ZNSt16invalid_argumentD0Ev>:
+   9ff1c:      	paciasp
+   9ff20:      	stp	x29, x30, [sp, #-0x20]!
+   9ff24:      	str	x19, [sp, #0x10]
+   9ff28:      	mov	x29, sp
+   9ff2c:      	mov	x19, x0
+   9ff30:      	bl	0x132ae8 <_ZNSt16invalid_argumentD1Ev@plt>
+   9ff34:      	mov	x0, x19
+   9ff38:      	ldr	x19, [sp, #0x10]
+   9ff3c:      	ldp	x29, x30, [sp], #0x20
+   9ff40:      	autiasp
+   9ff44:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009ff48 <_ZNSt12length_errorD0Ev>:
+   9ff48:      	paciasp
+   9ff4c:      	stp	x29, x30, [sp, #-0x20]!
+   9ff50:      	str	x19, [sp, #0x10]
+   9ff54:      	mov	x29, sp
+   9ff58:      	mov	x19, x0
+   9ff5c:      	bl	0x132b00 <_ZNSt12length_errorD1Ev@plt>
+   9ff60:      	mov	x0, x19
+   9ff64:      	ldr	x19, [sp, #0x10]
+   9ff68:      	ldp	x29, x30, [sp], #0x20
+   9ff6c:      	autiasp
+   9ff70:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009ff74 <_ZNSt12out_of_rangeD0Ev>:
+   9ff74:      	paciasp
+   9ff78:      	stp	x29, x30, [sp, #-0x20]!
+   9ff7c:      	str	x19, [sp, #0x10]
+   9ff80:      	mov	x29, sp
+   9ff84:      	mov	x19, x0
+   9ff88:      	bl	0x132b18 <_ZNSt12out_of_rangeD1Ev@plt>
+   9ff8c:      	mov	x0, x19
+   9ff90:      	ldr	x19, [sp, #0x10]
+   9ff94:      	ldp	x29, x30, [sp], #0x20
+   9ff98:      	autiasp
+   9ff9c:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009ffa0 <_ZNSt11range_errorD0Ev>:
+   9ffa0:      	paciasp
+   9ffa4:      	stp	x29, x30, [sp, #-0x20]!
+   9ffa8:      	str	x19, [sp, #0x10]
+   9ffac:      	mov	x29, sp
+   9ffb0:      	mov	x19, x0
+   9ffb4:      	bl	0x132b30 <_ZNSt11range_errorD1Ev@plt>
+   9ffb8:      	mov	x0, x19
+   9ffbc:      	ldr	x19, [sp, #0x10]
+   9ffc0:      	ldp	x29, x30, [sp], #0x20
+   9ffc4:      	autiasp
+   9ffc8:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009ffcc <_ZNSt14overflow_errorD0Ev>:
+   9ffcc:      	paciasp
+   9ffd0:      	stp	x29, x30, [sp, #-0x20]!
+   9ffd4:      	str	x19, [sp, #0x10]
+   9ffd8:      	mov	x29, sp
+   9ffdc:      	mov	x19, x0
+   9ffe0:      	bl	0x132b48 <_ZNSt14overflow_errorD1Ev@plt>
+   9ffe4:      	mov	x0, x19
+   9ffe8:      	ldr	x19, [sp, #0x10]
+   9ffec:      	ldp	x29, x30, [sp], #0x20
+   9fff0:      	autiasp
+   9fff4:      	b	0x1329f8 <_ZdlPv@plt>
+
+000000000009fff8 <_ZNSt15underflow_errorD0Ev>:
+   9fff8:      	paciasp
+   9fffc:      	stp	x29, x30, [sp, #-0x20]!
+   a0000:      	str	x19, [sp, #0x10]
+   a0004:      	mov	x29, sp
+   a0008:      	mov	x19, x0
+   a000c:      	bl	0x132b60 <_ZNSt15underflow_errorD1Ev@plt>
+   a0010:      	mov	x0, x19
+   a0014:      	ldr	x19, [sp, #0x10]
+   a0018:      	ldp	x29, x30, [sp], #0x20
+   a001c:      	autiasp
+   a0020:      	b	0x1329f8 <_ZdlPv@plt>
+
+00000000000a0024 <_ZNSt9type_infoD2Ev>:
+   a0024:      	bti	c
+   a0028:      	ret
+
+00000000000a002c <_ZNSt9type_infoD0Ev>:
+   a002c:      	paciasp
+   a0030:      	stp	x29, x30, [sp, #-0x20]!
+   a0034:      	str	x19, [sp, #0x10]
+   a0038:      	mov	x29, sp
+   a003c:      	mov	x19, x0
+   a0040:      	bl	0x132b90 <_ZNSt9type_infoD1Ev@plt>
+   a0044:      	mov	x0, x19
+   a0048:      	ldr	x19, [sp, #0x10]
+   a004c:      	ldp	x29, x30, [sp], #0x20
+   a0050:      	autiasp
+   a0054:      	b	0x1329f8 <_ZdlPv@plt>
+
+00000000000a0058 <_ZNSt8bad_castC2Ev>:
+   a0058:      	bti	c
+   a005c:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   a0060:      	ldr	x8, [x8, #0xaa0]
+   a0064:      	add	x8, x8, #0x10
+   a0068:      	str	x8, [x0]
+   a006c:      	ret
+
+00000000000a0070 <_ZNSt8bad_castD2Ev>:
+   a0070:      	bti	c
+   a0074:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+
+00000000000a0078 <_ZNSt8bad_castD0Ev>:
+   a0078:      	paciasp
+   a007c:      	stp	x29, x30, [sp, #-0x20]!
+   a0080:      	str	x19, [sp, #0x10]
+   a0084:      	mov	x29, sp
+   a0088:      	mov	x19, x0
+   a008c:      	bl	0x132740 <_ZNSt8bad_castD1Ev@plt>
+   a0090:      	mov	x0, x19
+   a0094:      	ldr	x19, [sp, #0x10]
+   a0098:      	ldp	x29, x30, [sp], #0x20
+   a009c:      	autiasp
+   a00a0:      	b	0x1329f8 <_ZdlPv@plt>
+
+00000000000a00a4 <_ZNKSt8bad_cast4whatEv>:
+   a00a4:      	bti	c
+   a00a8:      	nop
+   a00ac:      	adr	x0, #-0x4b5b4
+   a00b0:      	ret
+
+00000000000a00b4 <_ZNSt10bad_typeidC2Ev>:
+   a00b4:      	bti	c
+   a00b8:      	adrp	x8, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   a00bc:      	ldr	x8, [x8, #0xaa8]
+   a00c0:      	add	x8, x8, #0x10
+   a00c4:      	str	x8, [x0]
+   a00c8:      	ret
+
+00000000000a00cc <_ZNSt10bad_typeidD2Ev>:
+   a00cc:      	bti	c
+   a00d0:      	b	0x1329c8 <_ZNSt9exceptionD2Ev@plt>
+
+00000000000a00d4 <_ZNSt10bad_typeidD0Ev>:
+   a00d4:      	paciasp
+   a00d8:      	stp	x29, x30, [sp, #-0x20]!
+   a00dc:      	str	x19, [sp, #0x10]
+   a00e0:      	mov	x29, sp
+   a00e4:      	mov	x19, x0
+   a00e8:      	bl	0x132788 <_ZNSt10bad_typeidD1Ev@plt>
+   a00ec:      	mov	x0, x19
+   a00f0:      	ldr	x19, [sp, #0x10]
+   a00f4:      	ldp	x29, x30, [sp], #0x20
+   a00f8:      	autiasp
+   a00fc:      	b	0x1329f8 <_ZdlPv@plt>
+
+00000000000a0100 <_ZNKSt10bad_typeid4whatEv>:
+   a0100:      	bti	c
+   a0104:      	adrp	x0, 0x56000
+   a0108:      	add	x0, x0, #0xb9c
+   a010c:      	ret
+   a0110:      	paciasp
+   a0114:      	sub	sp, sp, #0x170
+   a0118:      	stp	x29, x30, [sp, #0x120]
+   a011c:      	str	x28, [sp, #0x130]
+   a0120:      	stp	x24, x23, [sp, #0x140]
+   a0124:      	stp	x22, x21, [sp, #0x150]
+   a0128:      	stp	x20, x19, [sp, #0x160]
+   a012c:      	add	x29, sp, #0x120
+   a0130:      	stp	x1, x2, [sp, #0x88]
+   a0134:      	adrp	x20, 0x141000 <_ZTVNSt6__ndk111regex_errorE+0x640>
+   a0138:      	mov	x19, x0
+   a013c:      	stp	x3, x4, [sp, #0x98]
+   a0140:      	nop
+   a0144:      	adr	x0, #-0x49352
+   a0148:      	stp	x5, x6, [sp, #0xa8]
+   a014c:      	mov	w1, #0xb
+   a0150:      	mov	w2, #0x1
+   a0154:      	str	x7, [sp, #0xb8]
+   a0158:      	stp	q0, q1, [sp]
+   a015c:      	stp	q2, q3, [sp, #0x20]
+   a0160:      	stp	q4, q5, [sp, #0x40]
+   a0164:      	stp	q6, q7, [sp, #0x60]
+   a0168:      	ldr	x20, [x20, #0xab0]
+   a016c:      	add	x3, x20, #0x130
+   a0170:      	bl	0x132bc0 <fwrite@plt>
+   a0174:      	mov	x21, #-0x38
+   a0178:      	mov	x8, sp
+   a017c:      	add	x9, sp, #0x88
+   a0180:      	movk	x21, #0xff80, lsl #32
+   a0184:      	add	x22, x8, #0x80
+   a0188:      	add	x23, x9, #0x38
+   a018c:      	add	x24, x29, #0x50
+   a0190:      	stp	x22, x21, [x29, #-0x10]
+   a0194:      	add	x0, x20, #0x130
+   a0198:      	stp	x24, x23, [x29, #-0x20]
+   a019c:      	sub	x2, x29, #0x40
+   a01a0:      	mov	x1, x19
+   a01a4:      	ldp	q1, q0, [x29, #-0x20]
+   a01a8:      	stp	q1, q0, [x29, #-0x40]
+   a01ac:      	bl	0x132bd8 <vfprintf@plt>
+   a01b0:      	add	x1, x20, #0x130
+   a01b4:      	mov	w0, #0xa
+   a01b8:      	bl	0x132bf0 <fputc@plt>
+   a01bc:      	stp	x22, x21, [x29, #-0x10]
+   a01c0:      	add	x0, x29, #0x18
+   a01c4:      	sub	x2, x29, #0x60
+   a01c8:      	stp	x24, x23, [x29, #-0x20]
+   a01cc:      	mov	x1, x19
+   a01d0:      	ldp	q1, q0, [x29, #-0x20]
+   a01d4:      	stp	q1, q0, [x29, #-0x60]
+   a01d8:      	bl	0x132c08 <vasprintf@plt>
+   a01dc:      	ldr	x0, [x29, #0x18]
+   a01e0:      	bl	0x132c20 <android_set_abort_message@plt>
+   a01e4:      	adrp	x0, 0x56000
+   a01e8:      	add	x0, x0, #0xd19
+   a01ec:      	mov	w1, wzr
+   a01f0:      	mov	w2, wzr
+   a01f4:      	bl	0x132c38 <openlog@plt>
+   a01f8:      	ldr	x2, [x29, #0x18]
+   a01fc:      	adrp	x1, 0x55000
+   a0200:      	add	x1, x1, #0x857
+   a0204:      	mov	w0, #0x2
+   a0208:      	bl	0x132c50 <syslog@plt>
+   a020c:      	bl	0x132c68 <closelog@plt>
+   a0210:      	bl	0x132c80 <abort@plt>
+   a0214:      	paciasp

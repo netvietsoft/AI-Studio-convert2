@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libfftw3.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000019cd0 <.text>:
+   19cd0:      	bti	c
+   19cd4:      	nop
+   19cd8:      	adr	x0, #0x60748
+   19cdc:      	b	0x75a20 <__cxa_finalize@plt>
+   19ce0:      	bti	c
+   19ce4:      	ret
+   19ce8:      	bti	c
+   19cec:      	b	0x19ce0 <.text+0x10>
+   19cf0:      	bti	c
+   19cf4:      	cbz	x0, 0x19d00 <.text+0x30>
+   19cf8:      	mov	x16, x0
+   19cfc:      	br	x16
+   19d00:      	ret
+   19d04:      	bti	c
+   19d08:      	mov	x1, x0
+   19d0c:      	nop
+   19d10:      	adr	x0, #-0x20
+   19d14:      	nop
+   19d18:      	adr	x2, #0x60708
+   19d1c:      	b	0x75a30 <__cxa_atexit@plt>
+
+0000000000019d20 <fftwf_alignment_of>:
+   19d20:      	mov	w0, wzr
+   19d24:      	ret
+
+0000000000019d28 <fftwf_malloc_plain>:
+   19d28:      	stp	x29, x30, [sp, #-0x20]!
+   19d2c:      	str	x19, [sp, #0x10]
+   19d30:      	mov	x29, sp
+   19d34:      	cmp	x0, #0x1
+   19d38:      	csinc	x0, x0, xzr, hi
+   19d3c:      	bl	0x75a80 <fftwf_kernel_malloc@plt>
+   19d40:      	cbz	x0, 0x19d50 <fftwf_malloc_plain+0x28>
+   19d44:      	ldr	x19, [sp, #0x10]
+   19d48:      	ldp	x29, x30, [sp], #0x20
+   19d4c:      	ret
+   19d50:      	nop
+   19d54:      	adr	x8, #-0xce07
+   19d58:      	adrp	x2, 0xe000
+   19d5c:      	add	x2, x2, #0x19b
+   19d60:      	mov	x19, x0
+   19d64:      	mov	x0, x8
+   19d68:      	mov	w1, #0x10d
+   19d6c:      	bl	0x75a90 <fftwf_assertion_failed@plt>
+   19d70:      	mov	x0, x19
+   19d74:      	ldr	x19, [sp, #0x10]
+   19d78:      	ldp	x29, x30, [sp], #0x20
+   19d7c:      	ret
+
+0000000000019d80 <fftwf_ifree>:
+   19d80:      	b	0x75ab0 <fftwf_kernel_free@plt>
+
+0000000000019d84 <fftwf_ifree0>:
+   19d84:      	cbz	x0, 0x19d8c <fftwf_ifree0+0x8>
+   19d88:      	b	0x75ab0 <fftwf_kernel_free@plt>
+   19d8c:      	ret
+
+0000000000019d90 <fftwf_mkapiplan>:
+   19d90:      	str	d8, [sp, #-0x60]!
+   19d94:      	stp	x29, x30, [sp, #0x8]
+   19d98:      	str	x27, [sp, #0x18]
+   19d9c:      	stp	x26, x25, [sp, #0x20]
+   19da0:      	stp	x24, x23, [sp, #0x30]
+   19da4:      	stp	x22, x21, [sp, #0x40]
+   19da8:      	stp	x20, x19, [sp, #0x50]
+   19dac:      	add	x29, sp, #0x8
+   19db0:      	mov	x20, x2
+   19db4:      	mov	w22, w1
+   19db8:      	mov	w21, w0
+   19dbc:      	bl	0x75ae0 <fftwf_the_planner@plt>
+   19dc0:      	mov	x19, x0
+   19dc4:      	tbnz	w22, #0x15, 0x19e84 <fftwf_mkapiplan+0xf4>
+   19dc8:      	tst	w22, #0x20
+   19dcc:      	mov	w8, #0x1
+   19dd0:      	mov	w9, #0x3
+   19dd4:      	cinc	w8, w8, ne
+   19dd8:      	tst	w22, #0x8
+   19ddc:      	ldr	d8, [x19, #0xf0]
+   19de0:      	csel	w8, w9, w8, ne
+   19de4:      	mov	w9, #0xff97
+   19de8:      	tst	w22, #0x40
+   19dec:      	movk	w9, #0xffdf, lsl #16
+   19df0:      	csel	w27, wzr, w8, ne
+   19df4:      	and	w25, w22, w9
+   19df8:      	bl	0x75af0 <fftwf_get_crude_time@plt>
+   19dfc:      	fcmp	d8, #0.0
+   19e00:      	stp	x0, x1, [x19, #0xe0]
+   19e04:      	nop
+   19e08:      	adr	x26, #-0xb678
+   19e0c:      	mov	x0, x19
+   19e10:      	mov	x2, x20
+   19e14:      	mov	w3, wzr
+   19e18:      	csel	x22, xzr, x27, ge
+   19e1c:      	ldr	w8, [x26, x22, lsl #2]
+   19e20:      	orr	w24, w8, w25
+   19e24:      	mov	w1, w24
+   19e28:      	bl	0x19f5c <fftwf_mkapiplan+0x1cc>
+   19e2c:      	cbz	x0, 0x19f08 <fftwf_mkapiplan+0x178>
+   19e30:      	add	x8, x26, x22, lsl #2
+   19e34:      	mov	x23, xzr
+   19e38:      	sub	x27, x27, x22
+   19e3c:      	add	x26, x8, #0x4
+   19e40:      	mov	x1, x23
+   19e44:      	mov	x23, x0
+   19e48:      	mov	w22, w24
+   19e4c:      	mov	x0, x1
+   19e50:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   19e54:      	ldr	d8, [x23, #0x28]
+   19e58:      	cbz	x27, 0x19ec4 <fftwf_mkapiplan+0x134>
+   19e5c:      	ldr	w8, [x26], #0x4
+   19e60:      	mov	x0, x19
+   19e64:      	mov	x2, x20
+   19e68:      	mov	w3, wzr
+   19e6c:      	orr	w24, w8, w25
+   19e70:      	mov	w1, w24
+   19e74:      	bl	0x19f5c <fftwf_mkapiplan+0x1cc>
+   19e78:      	sub	x27, x27, #0x1
+   19e7c:      	cbnz	x0, 0x19e40 <fftwf_mkapiplan+0xb0>
+   19e80:      	b	0x19ec0 <fftwf_mkapiplan+0x130>
+   19e84:      	mov	x0, x19
+   19e88:      	mov	w1, w22
+   19e8c:      	bl	0x75b10 <fftwf_mapflags@plt>
+   19e90:      	ldur	x8, [x19, #0xd4]
+   19e94:      	ldr	x9, [x19]
+   19e98:      	mov	x0, x19
+   19e9c:      	mov	x1, x20
+   19ea0:      	and	x8, x8, #0xffffffffff8fffff
+   19ea4:      	stur	x8, [x19, #0xd4]
+   19ea8:      	mov	w8, #0x1
+   19eac:      	ldr	x9, [x9, #0x8]
+   19eb0:      	str	w8, [x19, #0x6c]
+   19eb4:      	blr	x9
+   19eb8:      	movi	d8, #0000000000000000
+   19ebc:      	mov	x23, x0
+   19ec0:      	cbz	x23, 0x19f18 <fftwf_mkapiplan+0x188>
+   19ec4:      	mov	w0, #0x18
+   19ec8:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   19ecc:      	mov	x24, x0
+   19ed0:      	str	x20, [x0, #0x8]
+   19ed4:      	mov	w1, w22
+   19ed8:      	str	w21, [x0, #0x10]
+   19edc:      	mov	x0, x19
+   19ee0:      	mov	x2, x20
+   19ee4:      	mov	w3, #0x1
+   19ee8:      	bl	0x19f5c <fftwf_mkapiplan+0x1cc>
+   19eec:      	mov	w1, #0x2
+   19ef0:      	str	x0, [x24]
+   19ef4:      	str	d8, [x0, #0x28]
+   19ef8:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   19efc:      	mov	x0, x23
+   19f00:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   19f04:      	b	0x19f24 <fftwf_mkapiplan+0x194>
+   19f08:      	mov	w22, wzr
+   19f0c:      	movi	d8, #0000000000000000
+   19f10:      	mov	x23, xzr
+   19f14:      	cbnz	xzr, 0x19ec4 <fftwf_mkapiplan+0x134>
+   19f18:      	mov	x0, x20
+   19f1c:      	bl	0x75b30 <fftwf_problem_destroy@plt>
+   19f20:      	mov	x24, xzr
+   19f24:      	ldr	x8, [x19]
+   19f28:      	mov	x0, x19
+   19f2c:      	mov	w1, wzr
+   19f30:      	ldr	x8, [x8, #0x10]
+   19f34:      	blr	x8
+   19f38:      	mov	x0, x24
+   19f3c:      	ldp	x20, x19, [sp, #0x50]
+   19f40:      	ldr	x27, [sp, #0x18]
+   19f44:      	ldp	x22, x21, [sp, #0x40]
+   19f48:      	ldp	x24, x23, [sp, #0x30]
+   19f4c:      	ldp	x26, x25, [sp, #0x20]
+   19f50:      	ldp	x29, x30, [sp, #0x8]
+   19f54:      	ldr	d8, [sp], #0x60
+   19f58:      	ret
+   19f5c:      	stp	x29, x30, [sp, #-0x30]!
+   19f60:      	stp	x22, x21, [sp, #0x10]
+   19f64:      	stp	x20, x19, [sp, #0x20]
+   19f68:      	mov	x29, sp
+   19f6c:      	mov	w22, w3
+   19f70:      	mov	x19, x2
+   19f74:      	mov	w21, w1
+   19f78:      	mov	x20, x0
+   19f7c:      	bl	0x75b10 <fftwf_mapflags@plt>
+   19f80:      	ldur	x8, [x20, #0xd4]
+   19f84:      	ubfiz	w22, w22, #20, #3
+   19f88:      	ldr	x9, [x20]
+   19f8c:      	mov	x0, x20
+   19f90:      	mov	x1, x19
+   19f94:      	str	wzr, [x20, #0x6c]
+   19f98:      	and	x8, x8, #0xffffffffff8fffff
+   19f9c:      	orr	x8, x8, x22
+   19fa0:      	stur	x8, [x20, #0xd4]
+   19fa4:      	ldr	x8, [x9, #0x8]
+   19fa8:      	blr	x8
+   19fac:      	ldr	w8, [x20, #0x6c]
+   19fb0:      	cbnz	w8, 0x19ffc <fftwf_mkapiplan+0x26c>
+   19fb4:      	cbnz	x0, 0x19ffc <fftwf_mkapiplan+0x26c>
+   19fb8:      	mov	w8, #-0x69
+   19fbc:      	mov	x0, x20
+   19fc0:      	and	w8, w21, w8
+   19fc4:      	orr	w1, w8, #0x40
+   19fc8:      	bl	0x75b10 <fftwf_mapflags@plt>
+   19fcc:      	ldur	x8, [x20, #0xd4]
+   19fd0:      	ldr	x9, [x20]
+   19fd4:      	mov	x0, x20
+   19fd8:      	mov	x1, x19
+   19fdc:      	and	x8, x8, #0xffffffffff8fffff
+   19fe0:      	orr	x8, x8, x22
+   19fe4:      	stur	x8, [x20, #0xd4]
+   19fe8:      	mov	w8, #0x3
+   19fec:      	ldr	x9, [x9, #0x8]
+   19ff0:      	str	w8, [x20, #0x6c]
+   19ff4:      	blr	x9
+   19ff8:      	ldr	w8, [x20, #0x6c]
+   19ffc:      	cmp	w8, #0x2
+   1a000:      	b.ne	0x1a0b8 <fftwf_mkapiplan+0x328>
+   1a004:      	ldr	x8, [x20]
+   1a008:      	mov	x0, x20
+   1a00c:      	mov	w1, #0x1
+   1a010:      	ldr	x8, [x8, #0x10]
+   1a014:      	blr	x8
+   1a018:      	mov	x0, x20
+   1a01c:      	mov	w1, w21
+   1a020:      	bl	0x75b10 <fftwf_mapflags@plt>
+   1a024:      	ldur	x8, [x20, #0xd4]
+   1a028:      	ldr	x9, [x20]
+   1a02c:      	mov	x0, x20
+   1a030:      	mov	x1, x19
+   1a034:      	str	wzr, [x20, #0x6c]
+   1a038:      	and	x8, x8, #0xffffffffff8fffff
+   1a03c:      	orr	x8, x8, x22
+   1a040:      	stur	x8, [x20, #0xd4]
+   1a044:      	ldr	x8, [x9, #0x8]
+   1a048:      	blr	x8
+   1a04c:      	ldr	w8, [x20, #0x6c]
+   1a050:      	cmp	w8, #0x2
+   1a054:      	b.ne	0x1a0b8 <fftwf_mkapiplan+0x328>
+   1a058:      	ldr	x8, [x20]
+   1a05c:      	mov	x0, x20
+   1a060:      	mov	w1, #0x1
+   1a064:      	ldr	x8, [x8, #0x10]
+   1a068:      	blr	x8
+   1a06c:      	mov	w8, #-0x69
+   1a070:      	mov	x0, x20
+   1a074:      	and	w8, w21, w8
+   1a078:      	orr	w1, w8, #0x40
+   1a07c:      	bl	0x75b10 <fftwf_mapflags@plt>
+   1a080:      	ldur	x8, [x20, #0xd4]
+   1a084:      	ldr	x9, [x20]
+   1a088:      	mov	x0, x20
+   1a08c:      	mov	x1, x19
+   1a090:      	and	x8, x8, #0xffffffffff8fffff
+   1a094:      	orr	x8, x8, x22
+   1a098:      	stur	x8, [x20, #0xd4]
+   1a09c:      	mov	w8, #0x4
+   1a0a0:      	ldr	x2, [x9, #0x8]
+   1a0a4:      	str	w8, [x20, #0x6c]
+   1a0a8:      	ldp	x20, x19, [sp, #0x20]
+   1a0ac:      	ldp	x22, x21, [sp, #0x10]
+   1a0b0:      	ldp	x29, x30, [sp], #0x30
+   1a0b4:      	br	x2
+   1a0b8:      	ldp	x20, x19, [sp, #0x20]
+   1a0bc:      	ldp	x22, x21, [sp, #0x10]
+   1a0c0:      	ldp	x29, x30, [sp], #0x30
+   1a0c4:      	ret
+
+000000000001a0c8 <fftwf_destroy_plan>:
+   1a0c8:      	cbz	x0, 0x1a10c <fftwf_destroy_plan+0x44>
+   1a0cc:      	stp	x29, x30, [sp, #-0x20]!
+   1a0d0:      	str	x19, [sp, #0x10]
+   1a0d4:      	mov	x29, sp
+   1a0d8:      	ldr	x8, [x0]
+   1a0dc:      	mov	x19, x0
+   1a0e0:      	mov	w1, wzr
+   1a0e4:      	mov	x0, x8
+   1a0e8:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   1a0ec:      	ldr	x0, [x19]
+   1a0f0:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a0f4:      	ldr	x0, [x19, #0x8]
+   1a0f8:      	bl	0x75b30 <fftwf_problem_destroy@plt>
+   1a0fc:      	mov	x0, x19
+   1a100:      	ldr	x19, [sp, #0x10]
+   1a104:      	ldp	x29, x30, [sp], #0x20
+   1a108:      	b	0x75aa0 <fftwf_ifree@plt>
+   1a10c:      	ret
+
+000000000001a110 <fftwf_assertion_failed>:
+   1a110:      	stp	x29, x30, [sp, #-0x30]!
+   1a114:      	stp	x22, x21, [sp, #0x10]
+   1a118:      	stp	x20, x19, [sp, #0x20]
+   1a11c:      	mov	x29, sp
+   1a120:      	adrp	x22, 0x7d000 <fftwf_rdft_hc2cb_genus+0x2278>
+   1a124:      	mov	x21, x0
+   1a128:      	mov	x19, x2
+   1a12c:      	ldr	x22, [x22, #0xf48]
+   1a130:      	mov	w20, w1
+   1a134:      	add	x0, x22, #0x98
+   1a138:      	bl	0x75b40 <fflush@plt>
+   1a13c:      	nop
+   1a140:      	adr	x1, #-0xd1f1
+   1a144:      	add	x0, x22, #0x130
+   1a148:      	mov	x2, x19
+   1a14c:      	mov	w3, w20
+   1a150:      	mov	x4, x21
+   1a154:      	bl	0x75b50 <fprintf@plt>
+   1a158:      	bl	0x75b60 <abort@plt>
+
+000000000001a15c <fftwf_null_awake>:
+   1a15c:      	ret
+
+000000000001a160 <fftwf_nbuf>:
+   1a160:      	stp	x29, x30, [sp, #-0x20]!
+   1a164:      	stp	x20, x19, [sp, #0x10]
+   1a168:      	mov	x29, sp
+   1a16c:      	mov	w8, #0x10000
+   1a170:      	mov	x19, x1
+   1a174:      	cmp	x2, #0x0
+   1a178:      	sdiv	x1, x8, x0
+   1a17c:      	mov	w8, #0x100
+   1a180:      	mov	w0, #0x1
+   1a184:      	csel	x20, x8, x2, eq
+   1a188:      	bl	0x75b80 <fftwf_imax@plt>
+   1a18c:      	mov	x1, x0
+   1a190:      	mov	x0, x19
+   1a194:      	bl	0x75b90 <fftwf_imin@plt>
+   1a198:      	mov	x1, x0
+   1a19c:      	mov	x0, x20
+   1a1a0:      	bl	0x75b90 <fftwf_imin@plt>
+   1a1a4:      	add	x8, x0, #0x3
+   1a1a8:      	cmp	x0, #0x0
+   1a1ac:      	mov	x20, x0
+   1a1b0:      	csel	x8, x8, x0, lt
+   1a1b4:      	mov	w0, #0x1
+   1a1b8:      	asr	x1, x8, #2
+   1a1bc:      	bl	0x75b80 <fftwf_imax@plt>
+   1a1c0:      	cmp	x20, x0
+   1a1c4:      	b.lt	0x1a1e8 <fftwf_nbuf+0x88>
+   1a1c8:      	mov	x8, x0
+   1a1cc:      	mov	x9, x20
+   1a1d0:      	sdiv	x10, x19, x9
+   1a1d4:      	msub	x10, x10, x9, x19
+   1a1d8:      	cbz	x10, 0x1a1f8 <fftwf_nbuf+0x98>
+   1a1dc:      	cmp	x9, x8
+   1a1e0:      	sub	x9, x9, #0x1
+   1a1e4:      	b.gt	0x1a1d0 <fftwf_nbuf+0x70>
+   1a1e8:      	mov	x0, x20
+   1a1ec:      	ldp	x20, x19, [sp, #0x10]
+   1a1f0:      	ldp	x29, x30, [sp], #0x20
+   1a1f4:      	ret
+   1a1f8:      	mov	x20, x9
+   1a1fc:      	mov	x0, x20
+   1a200:      	ldp	x20, x19, [sp, #0x10]
+   1a204:      	ldp	x29, x30, [sp], #0x20
+   1a208:      	ret
+
+000000000001a20c <fftwf_bufdist>:
+   1a20c:      	cmp	x1, #0x1
+   1a210:      	b.eq	0x1a24c <fftwf_bufdist+0x40>
+   1a214:      	stp	x29, x30, [sp, #-0x20]!
+   1a218:      	str	x19, [sp, #0x10]
+   1a21c:      	mov	x29, sp
+   1a220:      	mov	w8, #0x6
+   1a224:      	mov	x19, x0
+   1a228:      	mov	w1, #0x8
+   1a22c:      	sub	x8, x8, x0
+   1a230:      	mov	x0, x8
+   1a234:      	bl	0x75bb0 <fftwf_modulo@plt>
+   1a238:      	mov	x8, x0
+   1a23c:      	mov	x0, x19
+   1a240:      	add	x0, x8, x19
+   1a244:      	ldr	x19, [sp, #0x10]
+   1a248:      	ldp	x29, x30, [sp], #0x20
+   1a24c:      	ret
+
+000000000001a250 <fftwf_toobig>:
+   1a250:      	cmp	x0, #0x10, lsl #12      // =0x10000
+   1a254:      	cset	w0, gt
+   1a258:      	ret
+
+000000000001a25c <fftwf_nbuf_redundant>:
+   1a25c:      	cmp	w2, #0x1
+   1a260:      	b.lt	0x1a3b8 <fftwf_nbuf_redundant+0x15c>
+   1a264:      	stp	x29, x30, [sp, #-0x50]!
+   1a268:      	stp	x26, x25, [sp, #0x10]
+   1a26c:      	stp	x24, x23, [sp, #0x20]
+   1a270:      	stp	x22, x21, [sp, #0x30]
+   1a274:      	stp	x20, x19, [sp, #0x40]
+   1a278:      	mov	x29, sp
+   1a27c:      	mov	w8, #0x10000
+   1a280:      	mov	x19, x3
+   1a284:      	mov	x20, x1
+   1a288:      	sdiv	x21, x8, x0
+   1a28c:      	mov	x24, xzr
+   1a290:      	mov	w25, w2
+   1a294:      	mov	w26, #0x100
+   1a298:      	ldr	x8, [x19, x24, lsl #3]
+   1a29c:      	mov	w0, #0x1
+   1a2a0:      	mov	x1, x21
+   1a2a4:      	cmp	x8, #0x0
+   1a2a8:      	csel	x22, x26, x8, eq
+   1a2ac:      	bl	0x75b80 <fftwf_imax@plt>
+   1a2b0:      	mov	x1, x0
+   1a2b4:      	mov	x0, x20
+   1a2b8:      	bl	0x75b90 <fftwf_imin@plt>
+   1a2bc:      	mov	x1, x0
+   1a2c0:      	mov	x0, x22
+   1a2c4:      	bl	0x75b90 <fftwf_imin@plt>
+   1a2c8:      	add	x8, x0, #0x3
+   1a2cc:      	cmp	x0, #0x0
+   1a2d0:      	mov	x22, x0
+   1a2d4:      	csel	x8, x8, x0, lt
+   1a2d8:      	mov	w0, #0x1
+   1a2dc:      	asr	x1, x8, #2
+   1a2e0:      	bl	0x75b80 <fftwf_imax@plt>
+   1a2e4:      	cmp	x22, x0
+   1a2e8:      	b.lt	0x1a310 <fftwf_nbuf_redundant+0xb4>
+   1a2ec:      	mov	x8, x22
+   1a2f0:      	sdiv	x9, x20, x8
+   1a2f4:      	msub	x9, x9, x8, x20
+   1a2f8:      	cbz	x9, 0x1a30c <fftwf_nbuf_redundant+0xb0>
+   1a2fc:      	cmp	x8, x0
+   1a300:      	sub	x8, x8, #0x1
+   1a304:      	b.gt	0x1a2f0 <fftwf_nbuf_redundant+0x94>
+   1a308:      	b	0x1a310 <fftwf_nbuf_redundant+0xb4>
+   1a30c:      	mov	x22, x8
+   1a310:      	ldr	x8, [x19, x25, lsl #3]
+   1a314:      	mov	w0, #0x1
+   1a318:      	mov	x1, x21
+   1a31c:      	cmp	x8, #0x0
+   1a320:      	csel	x23, x26, x8, eq
+   1a324:      	bl	0x75b80 <fftwf_imax@plt>
+   1a328:      	mov	x1, x0
+   1a32c:      	mov	x0, x20
+   1a330:      	bl	0x75b90 <fftwf_imin@plt>
+   1a334:      	mov	x1, x0
+   1a338:      	mov	x0, x23
+   1a33c:      	bl	0x75b90 <fftwf_imin@plt>
+   1a340:      	add	x8, x0, #0x3
+   1a344:      	cmp	x0, #0x0
+   1a348:      	mov	x23, x0
+   1a34c:      	csel	x8, x8, x0, lt
+   1a350:      	mov	w0, #0x1
+   1a354:      	asr	x1, x8, #2
+   1a358:      	bl	0x75b80 <fftwf_imax@plt>
+   1a35c:      	cmp	x23, x0
+   1a360:      	b.lt	0x1a388 <fftwf_nbuf_redundant+0x12c>
+   1a364:      	mov	x8, x23
+   1a368:      	sdiv	x9, x20, x8
+   1a36c:      	msub	x9, x9, x8, x20
+   1a370:      	cbz	x9, 0x1a384 <fftwf_nbuf_redundant+0x128>
+   1a374:      	cmp	x8, x0
+   1a378:      	sub	x8, x8, #0x1
+   1a37c:      	b.gt	0x1a368 <fftwf_nbuf_redundant+0x10c>
+   1a380:      	b	0x1a388 <fftwf_nbuf_redundant+0x12c>
+   1a384:      	mov	x23, x8
+   1a388:      	cmp	x22, x23
+   1a38c:      	b.eq	0x1a3c0 <fftwf_nbuf_redundant+0x164>
+   1a390:      	add	x24, x24, #0x1
+   1a394:      	cmp	x24, x25
+   1a398:      	b.ne	0x1a298 <fftwf_nbuf_redundant+0x3c>
+   1a39c:      	mov	w0, wzr
+   1a3a0:      	ldp	x20, x19, [sp, #0x40]
+   1a3a4:      	ldp	x22, x21, [sp, #0x30]
+   1a3a8:      	ldp	x24, x23, [sp, #0x20]
+   1a3ac:      	ldp	x26, x25, [sp, #0x10]
+   1a3b0:      	ldp	x29, x30, [sp], #0x50
+   1a3b4:      	ret
+   1a3b8:      	mov	w0, wzr
+   1a3bc:      	ret
+   1a3c0:      	mov	w0, #0x1
+   1a3c4:      	ldp	x20, x19, [sp, #0x40]
+   1a3c8:      	ldp	x22, x21, [sp, #0x30]
+   1a3cc:      	ldp	x24, x23, [sp, #0x20]
+   1a3d0:      	ldp	x26, x25, [sp, #0x10]
+   1a3d4:      	ldp	x29, x30, [sp], #0x50
+   1a3d8:      	ret
+
+000000000001a3dc <fftwf_rdft_buffered_register>:
+   1a3dc:      	stp	x29, x30, [sp, #-0x20]!
+   1a3e0:      	stp	x20, x19, [sp, #0x10]
+   1a3e4:      	mov	x29, sp
+   1a3e8:      	nop
+   1a3ec:      	adr	x20, #0x6003c
+   1a3f0:      	mov	x19, x0
+   1a3f4:      	mov	w0, #0x18
+   1a3f8:      	mov	x1, x20
+   1a3fc:      	bl	0x75be0 <fftwf_mksolver@plt>
+   1a400:      	mov	x1, x0
+   1a404:      	str	wzr, [x0, #0x10]
+   1a408:      	mov	x0, x19
+   1a40c:      	bl	0x75bf0 <fftwf_solver_register@plt>
+   1a410:      	mov	w0, #0x18
+   1a414:      	mov	x1, x20
+   1a418:      	bl	0x75be0 <fftwf_mksolver@plt>
+   1a41c:      	mov	x1, x0
+   1a420:      	mov	w8, #0x1
+   1a424:      	mov	x0, x19
+   1a428:      	str	w8, [x1, #0x10]
+   1a42c:      	ldp	x20, x19, [sp, #0x10]
+   1a430:      	ldp	x29, x30, [sp], #0x20
+   1a434:      	b	0x75bf0 <fftwf_solver_register@plt>
+   1a438:      	sub	sp, sp, #0xc0
+   1a43c:      	stp	x29, x30, [sp, #0x60]
+   1a440:      	stp	x28, x27, [sp, #0x70]
+   1a444:      	stp	x26, x25, [sp, #0x80]
+   1a448:      	stp	x24, x23, [sp, #0x90]
+   1a44c:      	stp	x22, x21, [sp, #0xa0]
+   1a450:      	stp	x20, x19, [sp, #0xb0]
+   1a454:      	add	x29, sp, #0x60
+   1a458:      	mrs	x27, TPIDR_EL0
+   1a45c:      	ldr	x8, [x27, #0x28]
+   1a460:      	stur	x8, [x29, #-0x8]
+   1a464:      	ldrb	w8, [x2, #0xd5]
+   1a468:      	tbnz	w8, #0x2, 0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a46c:      	mov	x23, x0
+   1a470:      	ldr	x0, [x1, #0x10]
+   1a474:      	ldr	w8, [x0]
+   1a478:      	cmp	w8, #0x1
+   1a47c:      	b.gt	0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a480:      	ldr	x20, [x1, #0x8]
+   1a484:      	ldr	w8, [x20]
+   1a488:      	cmp	w8, #0x1
+   1a48c:      	b.ne	0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a490:      	mov	x28, x1
+   1a494:      	mov	x19, x2
+   1a498:      	add	x1, sp, #0x20
+   1a49c:      	sub	x2, x29, #0x10
+   1a4a0:      	sub	x3, x29, #0x18
+   1a4a4:      	bl	0x75c00 <fftwf_tensor_tornk1@plt>
+   1a4a8:      	ldr	x0, [x20, #0x8]
+   1a4ac:      	bl	0x75bc0 <fftwf_toobig@plt>
+   1a4b0:      	cbz	w0, 0x1a4bc <fftwf_rdft_buffered_register+0xe0>
+   1a4b4:      	ldrb	w8, [x19, #0xd5]
+   1a4b8:      	tbnz	w8, #0x6, 0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a4bc:      	ldr	x0, [x20, #0x8]
+   1a4c0:      	ldr	x1, [sp, #0x20]
+   1a4c4:      	nop
+   1a4c8:      	adr	x22, #-0xbd08
+   1a4cc:      	ldr	w2, [x23, #0x10]
+   1a4d0:      	mov	w4, #0x2
+   1a4d4:      	mov	x3, x22
+   1a4d8:      	bl	0x75bd0 <fftwf_nbuf_redundant@plt>
+   1a4dc:      	cbz	w0, 0x1a53c <fftwf_rdft_buffered_register+0x160>
+   1a4e0:      	mov	x0, xzr
+   1a4e4:      	mov	x26, xzr
+   1a4e8:      	mov	x24, xzr
+   1a4ec:      	bl	0x75ac0 <fftwf_ifree0@plt>
+   1a4f0:      	mov	x0, xzr
+   1a4f4:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a4f8:      	mov	x0, x26
+   1a4fc:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a500:      	mov	x0, x24
+   1a504:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a508:      	mov	x0, xzr
+   1a50c:      	ldr	x8, [x27, #0x28]
+   1a510:      	ldur	x9, [x29, #-0x8]
+   1a514:      	cmp	x8, x9
+   1a518:      	b.ne	0x1a8a8 <fftwf_rdft_buffered_register+0x4cc>
+   1a51c:      	ldp	x20, x19, [sp, #0xb0]
+   1a520:      	ldp	x22, x21, [sp, #0xa0]
+   1a524:      	ldp	x24, x23, [sp, #0x90]
+   1a528:      	ldp	x26, x25, [sp, #0x80]
+   1a52c:      	ldp	x28, x27, [sp, #0x70]
+   1a530:      	ldp	x29, x30, [sp, #0x60]
+   1a534:      	add	sp, sp, #0xc0
+   1a538:      	ret
+   1a53c:      	ldp	x9, x10, [x28, #0x18]
+   1a540:      	mov	x8, x28
+   1a544:      	cmp	x9, x10
+   1a548:      	b.eq	0x1a56c <fftwf_rdft_buffered_register+0x190>
+   1a54c:      	ldr	w9, [x8, #0x28]
+   1a550:      	cmp	w9, #0x4
+   1a554:      	b.ne	0x1a584 <fftwf_rdft_buffered_register+0x1a8>
+   1a558:      	ldr	w10, [x19, #0xd4]
+   1a55c:      	mov	x9, x19
+   1a560:      	and	w10, w10, #0x1000
+   1a564:      	cbnz	w10, 0x1a598 <fftwf_rdft_buffered_register+0x1bc>
+   1a568:      	b	0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a56c:      	ldp	x0, x1, [x8, #0x8]
+   1a570:      	bl	0x75c10 <fftwf_tensor_inplace_strides2@plt>
+   1a574:      	mov	x8, x28
+   1a578:      	cbz	w0, 0x1a8b8 <fftwf_rdft_buffered_register+0x4dc>
+   1a57c:      	mov	x9, x19
+   1a580:      	b	0x1a598 <fftwf_rdft_buffered_register+0x1bc>
+   1a584:      	ldr	x9, [x20, #0x18]
+   1a588:      	cmp	x9, #0x1
+   1a58c:      	mov	x9, x19
+   1a590:      	cset	w10, gt
+   1a594:      	cbz	w10, 0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a598:      	mov	x20, x8
+   1a59c:      	ldur	x9, [x9, #0xd4]
+   1a5a0:      	ldr	w10, [x20, #0x28]!
+   1a5a4:      	cmp	w10, #0x4
+   1a5a8:      	b.ne	0x1a5c0 <fftwf_rdft_buffered_register+0x1e4>
+   1a5ac:      	tbz	w9, #0x10, 0x1a5e4 <fftwf_rdft_buffered_register+0x208>
+   1a5b0:      	ldp	x9, x10, [x8, #0x18]
+   1a5b4:      	cmp	x9, x10
+   1a5b8:      	b.ne	0x1a5e4 <fftwf_rdft_buffered_register+0x208>
+   1a5bc:      	b	0x1a5d0 <fftwf_rdft_buffered_register+0x1f4>
+   1a5c0:      	tbz	w9, #0x10, 0x1a5e4 <fftwf_rdft_buffered_register+0x208>
+   1a5c4:      	ldp	x9, x10, [x8, #0x18]
+   1a5c8:      	cmp	x9, x10
+   1a5cc:      	b.ne	0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a5d0:      	ldr	x8, [x8, #0x8]
+   1a5d4:      	ldr	x0, [x8, #0x8]
+   1a5d8:      	bl	0x75bc0 <fftwf_toobig@plt>
+   1a5dc:      	mov	x8, x28
+   1a5e0:      	cbnz	w0, 0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a5e4:      	ldr	x0, [x8, #0x8]
+   1a5e8:      	mov	x24, x8
+   1a5ec:      	bl	0x75c20 <fftwf_tensor_sz@plt>
+   1a5f0:      	ldr	x8, [x24, #0x10]
+   1a5f4:      	mov	x21, x0
+   1a5f8:      	sub	x1, x29, #0x10
+   1a5fc:      	sub	x2, x29, #0x18
+   1a600:      	sub	x3, x29, #0x20
+   1a604:      	mov	x0, x8
+   1a608:      	bl	0x75c00 <fftwf_tensor_tornk1@plt>
+   1a60c:      	ldrsw	x8, [x23, #0x10]
+   1a610:      	ldur	x1, [x29, #-0x10]
+   1a614:      	mov	x0, x21
+   1a618:      	ldr	w26, [x24, #0x28]
+   1a61c:      	ldr	x2, [x22, x8, lsl #3]
+   1a620:      	bl	0x75b70 <fftwf_nbuf@plt>
+   1a624:      	ldur	x1, [x29, #-0x10]
+   1a628:      	mov	x22, x0
+   1a62c:      	mov	x0, x21
+   1a630:      	bl	0x75ba0 <fftwf_bufdist@plt>
+   1a634:      	mul	x8, x22, x0
+   1a638:      	mov	x23, x0
+   1a63c:      	lsl	x0, x8, #2
+   1a640:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   1a644:      	ldr	x8, [x24, #0x8]
+   1a648:      	cmp	w26, #0x4
+   1a64c:      	mov	x25, x0
+   1a650:      	b.ne	0x1a6e4 <fftwf_rdft_buffered_register+0x308>
+   1a654:      	ldr	x2, [x8, #0x18]
+   1a658:      	mov	x0, x21
+   1a65c:      	mov	w1, #0x1
+   1a660:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1a664:      	ldur	x2, [x29, #-0x20]
+   1a668:      	mov	x24, x0
+   1a66c:      	mov	x0, x22
+   1a670:      	mov	x1, x23
+   1a674:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1a678:      	ldr	x3, [x28, #0x20]
+   1a67c:      	mov	x1, x0
+   1a680:      	mov	x0, x24
+   1a684:      	mov	x2, x25
+   1a688:      	mov	x4, x20
+   1a68c:      	bl	0x75c40 <fftwf_mkproblem_rdft_d@plt>
+   1a690:      	mov	x1, x0
+   1a694:      	mov	x0, x19
+   1a698:      	mov	w2, wzr
+   1a69c:      	mov	w3, wzr
+   1a6a0:      	mov	w4, #0x1000
+   1a6a4:      	bl	0x75c50 <fftwf_mkplan_f_d@plt>
+   1a6a8:      	mov	x24, x0
+   1a6ac:      	cbz	x0, 0x1a8ac <fftwf_rdft_buffered_register+0x4d0>
+   1a6b0:      	ldr	x8, [x28, #0x8]
+   1a6b4:      	ldur	x1, [x29, #-0x18]
+   1a6b8:      	mov	x0, x22
+   1a6bc:      	mov	x2, x23
+   1a6c0:      	mov	x3, x21
+   1a6c4:      	mov	w5, #0x1
+   1a6c8:      	ldr	x4, [x8, #0x10]
+   1a6cc:      	str	w26, [sp, #0x1c]
+   1a6d0:      	mov	x26, x28
+   1a6d4:      	bl	0x75c60 <fftwf_mktensor_2d@plt>
+   1a6d8:      	ldr	x1, [x28, #0x18]
+   1a6dc:      	mov	x2, x25
+   1a6e0:      	b	0x1a780 <fftwf_rdft_buffered_register+0x3a4>
+   1a6e4:      	ldr	x1, [x8, #0x10]
+   1a6e8:      	mov	x0, x21
+   1a6ec:      	mov	w2, #0x1
+   1a6f0:      	str	w26, [sp, #0x1c]
+   1a6f4:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1a6f8:      	ldur	x1, [x29, #-0x18]
+   1a6fc:      	mov	x24, x0
+   1a700:      	mov	x0, x22
+   1a704:      	mov	x2, x23
+   1a708:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1a70c:      	ldr	x2, [x28, #0x18]
+   1a710:      	mov	x1, x0
+   1a714:      	mov	x0, x24
+   1a718:      	mov	x3, x25
+   1a71c:      	mov	x4, x20
+   1a720:      	mov	x26, x28
+   1a724:      	bl	0x75c40 <fftwf_mkproblem_rdft_d@plt>
+   1a728:      	ldp	x8, x9, [x28, #0x18]
+   1a72c:      	mov	x1, x0
+   1a730:      	mov	x0, x19
+   1a734:      	mov	w2, wzr
+   1a738:      	mov	w3, wzr
+   1a73c:      	cmp	x8, x9
+   1a740:      	cset	w8, eq
+   1a744:      	lsl	w4, w8, #12
+   1a748:      	bl	0x75c50 <fftwf_mkplan_f_d@plt>
+   1a74c:      	mov	x24, x0
+   1a750:      	cbz	x0, 0x1a8ac <fftwf_rdft_buffered_register+0x4d0>
+   1a754:      	ldr	x8, [x28, #0x8]
+   1a758:      	ldur	x2, [x29, #-0x20]
+   1a75c:      	mov	x0, x22
+   1a760:      	mov	x1, x23
+   1a764:      	mov	x3, x21
+   1a768:      	mov	w4, #0x1
+   1a76c:      	ldr	x5, [x8, #0x18]
+   1a770:      	mov	x26, x28
+   1a774:      	bl	0x75c60 <fftwf_mktensor_2d@plt>
+   1a778:      	ldr	x2, [x28, #0x20]
+   1a77c:      	mov	x1, x25
+   1a780:      	bl	0x75c70 <fftwf_mkproblem_rdft_0_d@plt>
+   1a784:      	mov	x1, x0
+   1a788:      	mov	x0, x19
+   1a78c:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1a790:      	mov	x26, x0
+   1a794:      	cbz	x0, 0x1a8b0 <fftwf_rdft_buffered_register+0x4d4>
+   1a798:      	mov	x0, x25
+   1a79c:      	stp	x23, x21, [sp, #0x8]
+   1a7a0:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1a7a4:      	ldp	x9, x8, [x29, #-0x18]
+   1a7a8:      	ldur	x10, [x29, #-0x20]
+   1a7ac:      	ldr	x0, [x28, #0x8]
+   1a7b0:      	sdiv	x8, x8, x22
+   1a7b4:      	mul	x8, x8, x22
+   1a7b8:      	mul	x23, x8, x9
+   1a7bc:      	mul	x21, x10, x8
+   1a7c0:      	bl	0x75c90 <fftwf_tensor_copy@plt>
+   1a7c4:      	ldp	x1, x8, [x29, #-0x18]
+   1a7c8:      	mov	x25, x0
+   1a7cc:      	ldur	x2, [x29, #-0x20]
+   1a7d0:      	sdiv	x9, x8, x22
+   1a7d4:      	msub	x8, x9, x22, x8
+   1a7d8:      	mov	x0, x8
+   1a7dc:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1a7e0:      	ldp	x8, x9, [x28, #0x18]
+   1a7e4:      	mov	x1, x0
+   1a7e8:      	mov	x0, x25
+   1a7ec:      	mov	x4, x20
+   1a7f0:      	add	x2, x8, x23, lsl #2
+   1a7f4:      	add	x3, x9, x21, lsl #2
+   1a7f8:      	bl	0x75c40 <fftwf_mkproblem_rdft_d@plt>
+   1a7fc:      	mov	x1, x0
+   1a800:      	mov	x0, x19
+   1a804:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1a808:      	cbz	x0, 0x1a4ec <fftwf_rdft_buffered_register+0x110>
+   1a80c:      	ldr	w9, [sp, #0x1c]
+   1a810:      	nop
+   1a814:      	adr	x8, #0x270
+   1a818:      	mov	x19, x0
+   1a81c:      	nop
+   1a820:      	adr	x1, #0x5fc20
+   1a824:      	cmp	w9, #0x4
+   1a828:      	nop
+   1a82c:      	adr	x9, #0x180
+   1a830:      	csel	x2, x9, x8, eq
+   1a834:      	mov	w0, #0x88
+   1a838:      	bl	0x75ca0 <fftwf_mkplan_rdft@plt>
+   1a83c:      	ldp	x8, x9, [x29, #-0x20]
+   1a840:      	mov	x20, x0
+   1a844:      	ldr	x10, [sp, #0x10]
+   1a848:      	stp	x24, x26, [x0, #0x40]
+   1a84c:      	add	x1, x26, #0x8
+   1a850:      	add	x2, sp, #0x20
+   1a854:      	mul	x8, x8, x22
+   1a858:      	stp	x19, x10, [x0, #0x50]
+   1a85c:      	mul	x9, x9, x22
+   1a860:      	stp	x9, x8, [x0, #0x78]
+   1a864:      	ldur	x8, [x29, #-0x10]
+   1a868:      	stp	x8, x22, [x0, #0x60]
+   1a86c:      	ldr	x8, [sp, #0x8]
+   1a870:      	str	x8, [x0, #0x70]
+   1a874:      	add	x0, x24, #0x8
+   1a878:      	bl	0x75cb0 <fftwf_ops_add@plt>
+   1a87c:      	ldur	x8, [x29, #-0x10]
+   1a880:      	add	x1, sp, #0x20
+   1a884:      	add	x2, x19, #0x8
+   1a888:      	add	x3, x20, #0x8
+   1a88c:      	sdiv	x0, x8, x22
+   1a890:      	bl	0x75cc0 <fftwf_ops_madd@plt>
+   1a894:      	mov	x0, x20
+   1a898:      	ldr	x8, [x27, #0x28]
+   1a89c:      	ldur	x9, [x29, #-0x8]
+   1a8a0:      	cmp	x8, x9
+   1a8a4:      	b.eq	0x1a51c <fftwf_rdft_buffered_register+0x140>
+   1a8a8:      	bl	0x75cd0 <__stack_chk_fail@plt>
+   1a8ac:      	mov	x26, xzr
+   1a8b0:      	mov	x0, x25
+   1a8b4:      	b	0x1a4ec <fftwf_rdft_buffered_register+0x110>
+   1a8b8:      	ldr	x9, [x8, #0x10]
+   1a8bc:      	ldr	w10, [x9]
+   1a8c0:      	cbz	w10, 0x1a57c <fftwf_rdft_buffered_register+0x1a0>
+   1a8c4:      	ldrsw	x8, [x23, #0x10]
+   1a8c8:      	ldr	x0, [x20, #0x8]
+   1a8cc:      	ldr	x1, [x9, #0x8]
+   1a8d0:      	ldr	x2, [x22, x8, lsl #3]
+   1a8d4:      	bl	0x75b70 <fftwf_nbuf@plt>
+   1a8d8:      	ldr	x9, [x28, #0x10]
+   1a8dc:      	mov	x8, x28
+   1a8e0:      	ldr	x9, [x9, #0x8]
+   1a8e4:      	cmp	x0, x9
+   1a8e8:      	mov	x9, x19
+   1a8ec:      	b.ne	0x1a4e0 <fftwf_rdft_buffered_register+0x104>
+   1a8f0:      	b	0x1a598 <fftwf_rdft_buffered_register+0x1bc>
+   1a8f4:      	stp	x29, x30, [sp, #-0x20]!
+   1a8f8:      	stp	x20, x19, [sp, #0x10]
+   1a8fc:      	mov	x29, sp
+   1a900:      	mov	x19, x0
+   1a904:      	ldr	x0, [x0, #0x40]
+   1a908:      	mov	w20, w1
+   1a90c:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   1a910:      	ldr	x0, [x19, #0x48]
+   1a914:      	mov	w1, w20
+   1a918:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   1a91c:      	ldr	x0, [x19, #0x50]
+   1a920:      	mov	w1, w20
+   1a924:      	ldp	x20, x19, [sp, #0x10]
+   1a928:      	ldp	x29, x30, [sp], #0x20
+   1a92c:      	b	0x75b20 <fftwf_plan_awake@plt>
+   1a930:      	sub	sp, sp, #0x20
+   1a934:      	stp	x29, x30, [sp, #0x10]
+   1a938:      	add	x29, sp, #0x10
+   1a93c:      	ldp	x3, x9, [x0, #0x68]
+   1a940:      	mov	x8, x1
+   1a944:      	ldp	x10, x2, [x0, #0x50]
+   1a948:      	ldr	x4, [x0, #0x60]
+   1a94c:      	ldp	x6, x7, [x0, #0x40]
+   1a950:      	mov	x0, x8
+   1a954:      	sdiv	x11, x9, x2
+   1a958:      	msub	x5, x11, x2, x9
+   1a95c:      	ldr	x9, [x1]
+   1a960:      	nop
+   1a964:      	adr	x1, #-0xd58a
+   1a968:      	str	x10, [sp]
+   1a96c:      	blr	x9
+   1a970:      	ldp	x29, x30, [sp, #0x10]
+   1a974:      	add	sp, sp, #0x20
+   1a978:      	ret
+   1a97c:      	stp	x29, x30, [sp, #-0x20]!
+   1a980:      	str	x19, [sp, #0x10]
+   1a984:      	mov	x29, sp
+   1a988:      	mov	x19, x0
+   1a98c:      	ldr	x0, [x0, #0x50]
+   1a990:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a994:      	ldr	x0, [x19, #0x48]
+   1a998:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a99c:      	ldr	x0, [x19, #0x40]
+   1a9a0:      	ldr	x19, [sp, #0x10]
+   1a9a4:      	ldp	x29, x30, [sp], #0x20
+   1a9a8:      	b	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1a9ac:      	sub	sp, sp, #0x70
+   1a9b0:      	stp	x29, x30, [sp, #0x10]
+   1a9b4:      	stp	x28, x27, [sp, #0x20]
+   1a9b8:      	stp	x26, x25, [sp, #0x30]
+   1a9bc:      	stp	x24, x23, [sp, #0x40]
+   1a9c0:      	stp	x22, x21, [sp, #0x50]
+   1a9c4:      	stp	x20, x19, [sp, #0x60]
+   1a9c8:      	add	x29, sp, #0x10
+   1a9cc:      	ldp	x20, x8, [x0, #0x68]
+   1a9d0:      	mov	x19, x2
+   1a9d4:      	ldr	x26, [x0, #0x60]
+   1a9d8:      	ldp	x25, x28, [x0, #0x78]
+   1a9dc:      	ldp	x22, x23, [x0, #0x40]
+   1a9e0:      	mov	x21, x1
+   1a9e4:      	mul	x8, x20, x8
+   1a9e8:      	str	x0, [sp, #0x8]
+   1a9ec:      	lsl	x0, x8, #2
+   1a9f0:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   1a9f4:      	cmp	x20, x26
+   1a9f8:      	mov	x24, x0
+   1a9fc:      	b.gt	0x1aa48 <fftwf_rdft_buffered_register+0x66c>
+   1aa00:      	lsl	x27, x25, #2
+   1aa04:      	lsl	x28, x28, #2
+   1aa08:      	mov	x25, x20
+   1aa0c:      	ldr	x8, [x23, #0x38]
+   1aa10:      	mov	x0, x23
+   1aa14:      	mov	x1, x21
+   1aa18:      	mov	x2, x24
+   1aa1c:      	blr	x8
+   1aa20:      	ldr	x8, [x22, #0x38]
+   1aa24:      	mov	x0, x22
+   1aa28:      	mov	x1, x24
+   1aa2c:      	mov	x2, x19
+   1aa30:      	blr	x8
+   1aa34:      	add	x25, x25, x20
+   1aa38:      	add	x21, x21, x27
+   1aa3c:      	add	x19, x19, x28
+   1aa40:      	cmp	x25, x26
+   1aa44:      	b.le	0x1aa0c <fftwf_rdft_buffered_register+0x630>
+   1aa48:      	mov	x0, x24
+   1aa4c:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1aa50:      	ldr	x8, [sp, #0x8]
+   1aa54:      	mov	x1, x21
+   1aa58:      	ldr	x0, [x8, #0x50]
+   1aa5c:      	ldr	x3, [x0, #0x38]
+   1aa60:      	mov	x2, x19
+   1aa64:      	ldp	x20, x19, [sp, #0x60]
+   1aa68:      	ldp	x22, x21, [sp, #0x50]
+   1aa6c:      	ldp	x24, x23, [sp, #0x40]
+   1aa70:      	ldp	x26, x25, [sp, #0x30]
+   1aa74:      	ldp	x28, x27, [sp, #0x20]
+   1aa78:      	ldp	x29, x30, [sp, #0x10]
+   1aa7c:      	add	sp, sp, #0x70
+   1aa80:      	br	x3
+   1aa84:      	sub	sp, sp, #0x70
+   1aa88:      	stp	x29, x30, [sp, #0x10]
+   1aa8c:      	stp	x28, x27, [sp, #0x20]
+   1aa90:      	stp	x26, x25, [sp, #0x30]
+   1aa94:      	stp	x24, x23, [sp, #0x40]
+   1aa98:      	stp	x22, x21, [sp, #0x50]
+   1aa9c:      	stp	x20, x19, [sp, #0x60]
+   1aaa0:      	add	x29, sp, #0x10
+   1aaa4:      	ldp	x20, x8, [x0, #0x68]
+   1aaa8:      	mov	x19, x2
+   1aaac:      	ldr	x26, [x0, #0x60]
+   1aab0:      	ldp	x25, x28, [x0, #0x78]
+   1aab4:      	ldp	x22, x23, [x0, #0x40]
+   1aab8:      	mov	x21, x1
+   1aabc:      	mul	x8, x20, x8
+   1aac0:      	str	x0, [sp, #0x8]
+   1aac4:      	lsl	x0, x8, #2
+   1aac8:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   1aacc:      	cmp	x20, x26
+   1aad0:      	mov	x24, x0
+   1aad4:      	b.gt	0x1ab20 <fftwf_rdft_buffered_register+0x744>
+   1aad8:      	lsl	x27, x25, #2
+   1aadc:      	lsl	x28, x28, #2
+   1aae0:      	mov	x25, x20
+   1aae4:      	ldr	x8, [x22, #0x38]
+   1aae8:      	mov	x0, x22
+   1aaec:      	mov	x1, x21
+   1aaf0:      	mov	x2, x24
+   1aaf4:      	blr	x8
+   1aaf8:      	ldr	x8, [x23, #0x38]
+   1aafc:      	mov	x0, x23
+   1ab00:      	mov	x1, x24
+   1ab04:      	mov	x2, x19
+   1ab08:      	blr	x8
+   1ab0c:      	add	x25, x25, x20
+   1ab10:      	add	x21, x21, x27
+   1ab14:      	add	x19, x19, x28
+   1ab18:      	cmp	x25, x26
+   1ab1c:      	b.le	0x1aae4 <fftwf_rdft_buffered_register+0x708>
+   1ab20:      	mov	x0, x24
+   1ab24:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1ab28:      	ldr	x8, [sp, #0x8]
+   1ab2c:      	mov	x1, x21
+   1ab30:      	ldr	x0, [x8, #0x50]
+   1ab34:      	ldr	x3, [x0, #0x38]
+   1ab38:      	mov	x2, x19
+   1ab3c:      	ldp	x20, x19, [sp, #0x60]
+   1ab40:      	ldp	x22, x21, [sp, #0x50]
+   1ab44:      	ldp	x24, x23, [sp, #0x40]
+   1ab48:      	ldp	x26, x25, [sp, #0x30]
+   1ab4c:      	ldp	x28, x27, [sp, #0x20]
+   1ab50:      	ldp	x29, x30, [sp, #0x10]
+   1ab54:      	add	sp, sp, #0x70
+   1ab58:      	br	x3
+
+000000000001ab5c <fftwf_rdft2_buffered_register>:
+   1ab5c:      	stp	x29, x30, [sp, #-0x20]!
+   1ab60:      	stp	x20, x19, [sp, #0x10]
+   1ab64:      	mov	x29, sp
+   1ab68:      	nop
+   1ab6c:      	adr	x20, #0x5f8f4
+   1ab70:      	mov	x19, x0
+   1ab74:      	mov	w0, #0x18
+   1ab78:      	mov	x1, x20
+   1ab7c:      	bl	0x75be0 <fftwf_mksolver@plt>
+   1ab80:      	mov	x1, x0
+   1ab84:      	str	wzr, [x0, #0x10]
+   1ab88:      	mov	x0, x19
+   1ab8c:      	bl	0x75bf0 <fftwf_solver_register@plt>
+   1ab90:      	mov	w0, #0x18
+   1ab94:      	mov	x1, x20
+   1ab98:      	bl	0x75be0 <fftwf_mksolver@plt>
+   1ab9c:      	mov	x1, x0
+   1aba0:      	mov	w8, #0x1
+   1aba4:      	mov	x0, x19
+   1aba8:      	str	w8, [x1, #0x10]
+   1abac:      	ldp	x20, x19, [sp, #0x10]
+   1abb0:      	ldp	x29, x30, [sp], #0x20
+   1abb4:      	b	0x75bf0 <fftwf_solver_register@plt>
+   1abb8:      	sub	sp, sp, #0xd0
+   1abbc:      	stp	x29, x30, [sp, #0x70]
+   1abc0:      	stp	x28, x27, [sp, #0x80]
+   1abc4:      	stp	x26, x25, [sp, #0x90]
+   1abc8:      	stp	x24, x23, [sp, #0xa0]
+   1abcc:      	stp	x22, x21, [sp, #0xb0]
+   1abd0:      	stp	x20, x19, [sp, #0xc0]
+   1abd4:      	add	x29, sp, #0x70
+   1abd8:      	mrs	x28, TPIDR_EL0
+   1abdc:      	ldr	x8, [x28, #0x28]
+   1abe0:      	stur	x8, [x29, #-0x8]
+   1abe4:      	ldrb	w8, [x2, #0xd5]
+   1abe8:      	tbnz	w8, #0x2, 0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1abec:      	mov	x22, x0
+   1abf0:      	ldr	x0, [x1, #0x10]
+   1abf4:      	ldr	w8, [x0]
+   1abf8:      	cmp	w8, #0x1
+   1abfc:      	b.gt	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ac00:      	ldr	x20, [x1, #0x8]
+   1ac04:      	ldr	w8, [x20]
+   1ac08:      	cmp	w8, #0x1
+   1ac0c:      	b.ne	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ac10:      	ldrb	w8, [x20, #0x8]
+   1ac14:      	tbnz	w8, #0x0, 0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ac18:      	ldr	w8, [x1, #0x38]
+   1ac1c:      	orr	w8, w8, #0x4
+   1ac20:      	cmp	w8, #0x4
+   1ac24:      	b.ne	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ac28:      	mov	x25, x1
+   1ac2c:      	mov	x19, x2
+   1ac30:      	add	x1, sp, #0x30
+   1ac34:      	sub	x2, x29, #0x10
+   1ac38:      	sub	x3, x29, #0x18
+   1ac3c:      	bl	0x75c00 <fftwf_tensor_tornk1@plt>
+   1ac40:      	ldr	x0, [x20, #0x8]
+   1ac44:      	bl	0x75bc0 <fftwf_toobig@plt>
+   1ac48:      	cbz	w0, 0x1ac54 <fftwf_rdft2_buffered_register+0xf8>
+   1ac4c:      	ldrb	w8, [x19, #0xd5]
+   1ac50:      	tbnz	w8, #0x6, 0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ac54:      	ldr	x0, [x20, #0x8]
+   1ac58:      	ldr	x1, [sp, #0x30]
+   1ac5c:      	nop
+   1ac60:      	adr	x21, #-0xc490
+   1ac64:      	ldr	w2, [x22, #0x10]
+   1ac68:      	mov	w4, #0x2
+   1ac6c:      	mov	x3, x21
+   1ac70:      	bl	0x75bd0 <fftwf_nbuf_redundant@plt>
+   1ac74:      	cbz	w0, 0x1acd4 <fftwf_rdft2_buffered_register+0x178>
+   1ac78:      	mov	x0, xzr
+   1ac7c:      	mov	x24, xzr
+   1ac80:      	mov	x23, xzr
+   1ac84:      	bl	0x75ac0 <fftwf_ifree0@plt>
+   1ac88:      	mov	x0, xzr
+   1ac8c:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1ac90:      	mov	x0, x24
+   1ac94:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1ac98:      	mov	x0, x23
+   1ac9c:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1aca0:      	mov	x0, xzr
+   1aca4:      	ldr	x8, [x28, #0x28]
+   1aca8:      	ldur	x9, [x29, #-0x8]
+   1acac:      	cmp	x8, x9
+   1acb0:      	b.ne	0x1b16c <fftwf_rdft2_buffered_register+0x610>
+   1acb4:      	ldp	x20, x19, [sp, #0xc0]
+   1acb8:      	ldp	x22, x21, [sp, #0xb0]
+   1acbc:      	ldp	x24, x23, [sp, #0xa0]
+   1acc0:      	ldp	x26, x25, [sp, #0x90]
+   1acc4:      	ldp	x28, x27, [sp, #0x80]
+   1acc8:      	ldp	x29, x30, [sp, #0x70]
+   1accc:      	add	sp, sp, #0xd0
+   1acd0:      	ret
+   1acd4:      	ldr	x9, [x25, #0x18]
+   1acd8:      	ldr	x10, [x25, #0x28]
+   1acdc:      	mov	x8, x25
+   1ace0:      	cmp	x9, x10
+   1ace4:      	b.eq	0x1ad08 <fftwf_rdft2_buffered_register+0x1ac>
+   1ace8:      	ldr	w9, [x8, #0x38]
+   1acec:      	cmp	w9, #0x4
+   1acf0:      	b.ne	0x1ad24 <fftwf_rdft2_buffered_register+0x1c8>
+   1acf4:      	ldr	w10, [x19, #0xd4]
+   1acf8:      	mov	x9, x19
+   1acfc:      	and	w10, w10, #0x1000
+   1ad00:      	cbnz	w10, 0x1ad38 <fftwf_rdft2_buffered_register+0x1dc>
+   1ad04:      	b	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ad08:      	mov	x0, x8
+   1ad0c:      	mov	w1, #0x7fffffff
+   1ad10:      	bl	0x75ce0 <fftwf_rdft2_inplace_strides@plt>
+   1ad14:      	mov	x8, x25
+   1ad18:      	cbz	w0, 0x1b17c <fftwf_rdft2_buffered_register+0x620>
+   1ad1c:      	mov	x9, x19
+   1ad20:      	b	0x1ad38 <fftwf_rdft2_buffered_register+0x1dc>
+   1ad24:      	ldr	x9, [x20, #0x18]
+   1ad28:      	cmp	x9, #0x2
+   1ad2c:      	mov	x9, x19
+   1ad30:      	cset	w10, gt
+   1ad34:      	cbz	w10, 0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ad38:      	ldr	w10, [x8, #0x38]
+   1ad3c:      	ldur	x9, [x9, #0xd4]
+   1ad40:      	cmp	w10, #0x4
+   1ad44:      	b.ne	0x1ad60 <fftwf_rdft2_buffered_register+0x204>
+   1ad48:      	tbz	w9, #0x10, 0x1ad88 <fftwf_rdft2_buffered_register+0x22c>
+   1ad4c:      	ldr	x9, [x8, #0x18]
+   1ad50:      	ldr	x10, [x8, #0x28]
+   1ad54:      	cmp	x9, x10
+   1ad58:      	b.ne	0x1ad88 <fftwf_rdft2_buffered_register+0x22c>
+   1ad5c:      	b	0x1ad74 <fftwf_rdft2_buffered_register+0x218>
+   1ad60:      	tbz	w9, #0x10, 0x1ad88 <fftwf_rdft2_buffered_register+0x22c>
+   1ad64:      	ldr	x9, [x8, #0x18]
+   1ad68:      	ldr	x10, [x8, #0x28]
+   1ad6c:      	cmp	x9, x10
+   1ad70:      	b.ne	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ad74:      	ldr	x8, [x8, #0x8]
+   1ad78:      	ldr	x0, [x8, #0x8]
+   1ad7c:      	bl	0x75bc0 <fftwf_toobig@plt>
+   1ad80:      	mov	x8, x25
+   1ad84:      	cbnz	w0, 0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1ad88:      	ldr	x0, [x8, #0x8]
+   1ad8c:      	mov	x23, x8
+   1ad90:      	bl	0x75c20 <fftwf_tensor_sz@plt>
+   1ad94:      	ldr	x8, [x23, #0x10]
+   1ad98:      	mov	x20, x0
+   1ad9c:      	sub	x1, x29, #0x10
+   1ada0:      	sub	x2, x29, #0x18
+   1ada4:      	sub	x3, x29, #0x20
+   1ada8:      	mov	x0, x8
+   1adac:      	bl	0x75c00 <fftwf_tensor_tornk1@plt>
+   1adb0:      	ldrsw	x8, [x22, #0x10]
+   1adb4:      	ldur	x1, [x29, #-0x10]
+   1adb8:      	mov	x0, x20
+   1adbc:      	ldr	x2, [x21, x8, lsl #3]
+   1adc0:      	bl	0x75b70 <fftwf_nbuf@plt>
+   1adc4:      	ldur	x1, [x29, #-0x10]
+   1adc8:      	mov	x21, x0
+   1adcc:      	add	x0, x20, #0x2
+   1add0:      	bl	0x75ba0 <fftwf_bufdist@plt>
+   1add4:      	mul	x8, x21, x0
+   1add8:      	ldp	x9, x10, [x23, #0x28]
+   1addc:      	mov	x22, x0
+   1ade0:      	sub	x9, x9, x10
+   1ade4:      	cmp	x9, #0x1
+   1ade8:      	lsl	x0, x8, #2
+   1adec:      	cset	w27, lt
+   1adf0:      	cmp	x9, #0x0
+   1adf4:      	cset	w24, gt
+   1adf8:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   1adfc:      	ldp	x9, x8, [x29, #-0x18]
+   1ae00:      	add	x26, x0, w27, uxtw #2
+   1ae04:      	ldur	x10, [x29, #-0x20]
+   1ae08:      	str	x24, [sp, #0x10]
+   1ae0c:      	add	x24, x0, w24, uxtw #2
+   1ae10:      	str	x0, [sp, #0x28]
+   1ae14:      	sdiv	x8, x8, x21
+   1ae18:      	mul	x8, x8, x21
+   1ae1c:      	mul	x9, x8, x9
+   1ae20:      	mul	x8, x10, x8
+   1ae24:      	stp	x8, x9, [sp, #0x18]
+   1ae28:      	ldr	w9, [x23, #0x38]
+   1ae2c:      	ldr	x8, [x23, #0x8]
+   1ae30:      	cbz	w9, 0x1af88 <fftwf_rdft2_buffered_register+0x42c>
+   1ae34:      	ldr	x2, [x8, #0x18]
+   1ae38:      	mov	x0, x20
+   1ae3c:      	mov	w1, #0x2
+   1ae40:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1ae44:      	ldur	x2, [x29, #-0x20]
+   1ae48:      	mov	x23, x0
+   1ae4c:      	mov	x0, x21
+   1ae50:      	mov	x1, x22
+   1ae54:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1ae58:      	ldp	x2, x3, [x25, #0x18]
+   1ae5c:      	mov	x1, x0
+   1ae60:      	ldr	w6, [x25, #0x38]
+   1ae64:      	mov	x0, x23
+   1ae68:      	mov	x4, x24
+   1ae6c:      	mov	x5, x26
+   1ae70:      	bl	0x75cf0 <fftwf_mkproblem_rdft2_d@plt>
+   1ae74:      	mov	x1, x0
+   1ae78:      	mov	x0, x19
+   1ae7c:      	mov	w2, wzr
+   1ae80:      	mov	w3, wzr
+   1ae84:      	mov	w4, #0x1000
+   1ae88:      	bl	0x75c50 <fftwf_mkplan_f_d@plt>
+   1ae8c:      	mov	x23, x0
+   1ae90:      	cbz	x0, 0x1b170 <fftwf_rdft2_buffered_register+0x614>
+   1ae94:      	str	x27, [sp, #0x8]
+   1ae98:      	bl	0x75d00 <fftwf_mktensor_0d@plt>
+   1ae9c:      	cmp	x20, #0x0
+   1aea0:      	ldr	x8, [x25, #0x8]
+   1aea4:      	ldur	x1, [x29, #-0x18]
+   1aea8:      	cinc	x9, x20, lt
+   1aeac:      	mov	x2, x22
+   1aeb0:      	mov	x27, x0
+   1aeb4:      	asr	x9, x9, #1
+   1aeb8:      	ldr	x4, [x8, #0x10]
+   1aebc:      	mov	x0, x21
+   1aec0:      	mov	w5, #0x2
+   1aec4:      	mov	x22, x25
+   1aec8:      	str	x2, [sp]
+   1aecc:      	add	x3, x9, #0x1
+   1aed0:      	bl	0x75c60 <fftwf_mktensor_2d@plt>
+   1aed4:      	ldp	x2, x3, [x25, #0x28]
+   1aed8:      	mov	x1, x0
+   1aedc:      	mov	x0, x27
+   1aee0:      	mov	x4, x24
+   1aee4:      	mov	x5, x26
+   1aee8:      	bl	0x75d10 <fftwf_mkproblem_dft_d@plt>
+   1aeec:      	mov	x1, x0
+   1aef0:      	mov	x0, x19
+   1aef4:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1aef8:      	mov	x24, x0
+   1aefc:      	cbz	x0, 0x1b1b8 <fftwf_rdft2_buffered_register+0x65c>
+   1af00:      	ldr	x0, [sp, #0x28]
+   1af04:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1af08:      	ldr	x0, [x25, #0x8]
+   1af0c:      	mov	x22, x25
+   1af10:      	bl	0x75c90 <fftwf_tensor_copy@plt>
+   1af14:      	ldp	x1, x8, [x29, #-0x18]
+   1af18:      	mov	x25, x0
+   1af1c:      	ldur	x2, [x29, #-0x20]
+   1af20:      	sdiv	x9, x8, x21
+   1af24:      	msub	x8, x9, x21, x8
+   1af28:      	mov	x0, x8
+   1af2c:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1af30:      	ldp	x8, x11, [sp, #0x18]
+   1af34:      	mov	x1, x0
+   1af38:      	ldp	x9, x10, [x22, #0x18]
+   1af3c:      	mov	x0, x25
+   1af40:      	ldp	x12, x13, [x22, #0x28]
+   1af44:      	ldr	w6, [x22, #0x38]
+   1af48:      	lsl	x8, x8, #2
+   1af4c:      	lsl	x11, x11, #2
+   1af50:      	add	x2, x9, x8
+   1af54:      	add	x3, x10, x8
+   1af58:      	add	x4, x12, x11
+   1af5c:      	add	x5, x13, x11
+   1af60:      	bl	0x75cf0 <fftwf_mkproblem_rdft2_d@plt>
+   1af64:      	mov	x1, x0
+   1af68:      	mov	x0, x19
+   1af6c:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1af70:      	ldr	x22, [sp, #0x8]
+   1af74:      	cbz	x0, 0x1ac84 <fftwf_rdft2_buffered_register+0x128>
+   1af78:      	mov	x19, x0
+   1af7c:      	nop
+   1af80:      	adr	x2, #0x450
+   1af84:      	b	0x1b0ec <fftwf_rdft2_buffered_register+0x590>
+   1af88:      	ldr	x1, [x8, #0x10]
+   1af8c:      	mov	x0, x20
+   1af90:      	mov	w2, #0x2
+   1af94:      	str	x27, [sp, #0x8]
+   1af98:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1af9c:      	ldur	x1, [x29, #-0x18]
+   1afa0:      	mov	x23, x0
+   1afa4:      	mov	x0, x21
+   1afa8:      	mov	x2, x22
+   1afac:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1afb0:      	ldp	x2, x3, [x25, #0x18]
+   1afb4:      	mov	x1, x0
+   1afb8:      	ldr	w6, [x25, #0x38]
+   1afbc:      	mov	x0, x23
+   1afc0:      	mov	x4, x24
+   1afc4:      	mov	x5, x26
+   1afc8:      	mov	x27, x25
+   1afcc:      	bl	0x75cf0 <fftwf_mkproblem_rdft2_d@plt>
+   1afd0:      	ldr	x8, [x25, #0x18]
+   1afd4:      	ldr	x9, [x25, #0x28]
+   1afd8:      	mov	x1, x0
+   1afdc:      	mov	x0, x19
+   1afe0:      	mov	w2, wzr
+   1afe4:      	mov	w3, wzr
+   1afe8:      	cmp	x8, x9
+   1afec:      	cset	w8, eq
+   1aff0:      	lsl	w4, w8, #12
+   1aff4:      	bl	0x75c50 <fftwf_mkplan_f_d@plt>
+   1aff8:      	mov	x23, x0
+   1affc:      	cbz	x0, 0x1b170 <fftwf_rdft2_buffered_register+0x614>
+   1b000:      	bl	0x75d00 <fftwf_mktensor_0d@plt>
+   1b004:      	cmp	x20, #0x0
+   1b008:      	ldr	x8, [x25, #0x8]
+   1b00c:      	ldur	x2, [x29, #-0x20]
+   1b010:      	cinc	x9, x20, lt
+   1b014:      	mov	x1, x22
+   1b018:      	mov	x27, x0
+   1b01c:      	asr	x9, x9, #1
+   1b020:      	ldr	x5, [x8, #0x18]
+   1b024:      	mov	x0, x21
+   1b028:      	mov	w4, #0x2
+   1b02c:      	mov	x22, x25
+   1b030:      	str	x1, [sp]
+   1b034:      	add	x3, x9, #0x1
+   1b038:      	bl	0x75c60 <fftwf_mktensor_2d@plt>
+   1b03c:      	ldp	x4, x5, [x25, #0x28]
+   1b040:      	mov	x1, x0
+   1b044:      	mov	x0, x27
+   1b048:      	mov	x2, x24
+   1b04c:      	mov	x3, x26
+   1b050:      	bl	0x75d10 <fftwf_mkproblem_dft_d@plt>
+   1b054:      	mov	x1, x0
+   1b058:      	mov	x0, x19
+   1b05c:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1b060:      	mov	x24, x0
+   1b064:      	cbz	x0, 0x1b1b8 <fftwf_rdft2_buffered_register+0x65c>
+   1b068:      	ldr	x0, [sp, #0x28]
+   1b06c:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1b070:      	ldr	x0, [x25, #0x8]
+   1b074:      	mov	x22, x25
+   1b078:      	bl	0x75c90 <fftwf_tensor_copy@plt>
+   1b07c:      	ldp	x1, x8, [x29, #-0x18]
+   1b080:      	mov	x25, x0
+   1b084:      	ldur	x2, [x29, #-0x20]
+   1b088:      	sdiv	x9, x8, x21
+   1b08c:      	msub	x8, x9, x21, x8
+   1b090:      	mov	x0, x8
+   1b094:      	bl	0x75c30 <fftwf_mktensor_1d@plt>
+   1b098:      	ldp	x11, x8, [sp, #0x18]
+   1b09c:      	mov	x1, x0
+   1b0a0:      	ldp	x9, x10, [x22, #0x18]
+   1b0a4:      	mov	x0, x25
+   1b0a8:      	ldp	x12, x13, [x22, #0x28]
+   1b0ac:      	ldr	w6, [x22, #0x38]
+   1b0b0:      	lsl	x8, x8, #2
+   1b0b4:      	lsl	x11, x11, #2
+   1b0b8:      	add	x2, x9, x8
+   1b0bc:      	add	x3, x10, x8
+   1b0c0:      	add	x4, x12, x11
+   1b0c4:      	add	x5, x13, x11
+   1b0c8:      	bl	0x75cf0 <fftwf_mkproblem_rdft2_d@plt>
+   1b0cc:      	mov	x1, x0
+   1b0d0:      	mov	x0, x19
+   1b0d4:      	bl	0x75c80 <fftwf_mkplan_d@plt>
+   1b0d8:      	cbz	x0, 0x1ac84 <fftwf_rdft2_buffered_register+0x128>
+   1b0dc:      	ldr	x22, [sp, #0x8]
+   1b0e0:      	mov	x19, x0
+   1b0e4:      	nop
+   1b0e8:      	adr	x2, #0x190
+   1b0ec:      	nop
+   1b0f0:      	adr	x1, #0x5f388
+   1b0f4:      	mov	w0, #0x98
+   1b0f8:      	bl	0x75d20 <fftwf_mkplan_rdft2@plt>
+   1b0fc:      	ldp	x8, x9, [x29, #-0x20]
+   1b100:      	mov	x25, x0
+   1b104:      	ldr	x10, [sp, #0x10]
+   1b108:      	stp	x19, x20, [x0, #0x50]
+   1b10c:      	add	x1, x24, #0x8
+   1b110:      	stp	x23, x24, [x0, #0x40]
+   1b114:      	add	x2, sp, #0x30
+   1b118:      	mul	x8, x8, x21
+   1b11c:      	stp	x22, x10, [x0, #0x88]
+   1b120:      	ldur	x10, [x29, #-0x10]
+   1b124:      	mul	x9, x9, x21
+   1b128:      	stp	x10, x21, [x0, #0x60]
+   1b12c:      	stp	x9, x8, [x0, #0x78]
+   1b130:      	ldr	x8, [sp]
+   1b134:      	str	x8, [x0, #0x70]
+   1b138:      	add	x0, x23, #0x8
+   1b13c:      	bl	0x75cb0 <fftwf_ops_add@plt>
+   1b140:      	ldur	x8, [x29, #-0x10]
+   1b144:      	add	x1, sp, #0x30
+   1b148:      	add	x2, x19, #0x8
+   1b14c:      	add	x3, x25, #0x8
+   1b150:      	sdiv	x0, x8, x21
+   1b154:      	bl	0x75cc0 <fftwf_ops_madd@plt>
+   1b158:      	mov	x0, x25
+   1b15c:      	ldr	x8, [x28, #0x28]
+   1b160:      	ldur	x9, [x29, #-0x8]
+   1b164:      	cmp	x8, x9
+   1b168:      	b.eq	0x1acb4 <fftwf_rdft2_buffered_register+0x158>
+   1b16c:      	bl	0x75cd0 <__stack_chk_fail@plt>
+   1b170:      	ldr	x0, [sp, #0x28]
+   1b174:      	mov	x24, xzr
+   1b178:      	b	0x1ac84 <fftwf_rdft2_buffered_register+0x128>
+   1b17c:      	ldr	x9, [x8, #0x10]
+   1b180:      	ldr	w10, [x9]
+   1b184:      	cbz	w10, 0x1ad1c <fftwf_rdft2_buffered_register+0x1c0>
+   1b188:      	ldrsw	x8, [x22, #0x10]
+   1b18c:      	ldr	x0, [x20, #0x8]
+   1b190:      	ldr	x1, [x9, #0x8]
+   1b194:      	ldr	x2, [x21, x8, lsl #3]
+   1b198:      	bl	0x75b70 <fftwf_nbuf@plt>
+   1b19c:      	ldr	x9, [x25, #0x10]
+   1b1a0:      	mov	x8, x25
+   1b1a4:      	ldr	x9, [x9, #0x8]
+   1b1a8:      	cmp	x0, x9
+   1b1ac:      	mov	x9, x19
+   1b1b0:      	b.ne	0x1ac78 <fftwf_rdft2_buffered_register+0x11c>
+   1b1b4:      	b	0x1ad38 <fftwf_rdft2_buffered_register+0x1dc>
+   1b1b8:      	ldr	x0, [sp, #0x28]
+   1b1bc:      	b	0x1ac84 <fftwf_rdft2_buffered_register+0x128>
+   1b1c0:      	stp	x29, x30, [sp, #-0x20]!
+   1b1c4:      	stp	x20, x19, [sp, #0x10]
+   1b1c8:      	mov	x29, sp
+   1b1cc:      	mov	x19, x0
+   1b1d0:      	ldr	x0, [x0, #0x40]
+   1b1d4:      	mov	w20, w1
+   1b1d8:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   1b1dc:      	ldr	x0, [x19, #0x48]
+   1b1e0:      	mov	w1, w20
+   1b1e4:      	bl	0x75b20 <fftwf_plan_awake@plt>
+   1b1e8:      	ldr	x0, [x19, #0x50]
+   1b1ec:      	mov	w1, w20
+   1b1f0:      	ldp	x20, x19, [sp, #0x10]
+   1b1f4:      	ldp	x29, x30, [sp], #0x20
+   1b1f8:      	b	0x75b20 <fftwf_plan_awake@plt>
+   1b1fc:      	sub	sp, sp, #0x20
+   1b200:      	stp	x29, x30, [sp, #0x10]
+   1b204:      	add	x29, sp, #0x10
+   1b208:      	ldp	x3, x9, [x0, #0x68]
+   1b20c:      	mov	x8, x1
+   1b210:      	ldp	x10, x2, [x0, #0x50]
+   1b214:      	ldr	x4, [x0, #0x60]
+   1b218:      	ldp	x6, x7, [x0, #0x40]
+   1b21c:      	mov	x0, x8
+   1b220:      	sdiv	x11, x9, x2
+   1b224:      	msub	x5, x11, x2, x9
+   1b228:      	ldr	x9, [x1]
+   1b22c:      	nop
+   1b230:      	adr	x1, #-0xdd88
+   1b234:      	str	x10, [sp]
+   1b238:      	blr	x9
+   1b23c:      	ldp	x29, x30, [sp, #0x10]
+   1b240:      	add	sp, sp, #0x20
+   1b244:      	ret
+   1b248:      	stp	x29, x30, [sp, #-0x20]!
+   1b24c:      	str	x19, [sp, #0x10]
+   1b250:      	mov	x29, sp
+   1b254:      	mov	x19, x0
+   1b258:      	ldr	x0, [x0, #0x50]
+   1b25c:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1b260:      	ldr	x0, [x19, #0x48]
+   1b264:      	bl	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1b268:      	ldr	x0, [x19, #0x40]
+   1b26c:      	ldr	x19, [sp, #0x10]
+   1b270:      	ldp	x29, x30, [sp], #0x20
+   1b274:      	b	0x75b00 <fftwf_plan_destroy_internal@plt>
+   1b278:      	sub	sp, sp, #0xa0
+   1b27c:      	stp	x29, x30, [sp, #0x40]
+   1b280:      	stp	x28, x27, [sp, #0x50]
+   1b284:      	stp	x26, x25, [sp, #0x60]
+   1b288:      	stp	x24, x23, [sp, #0x70]
+   1b28c:      	stp	x22, x21, [sp, #0x80]
+   1b290:      	stp	x20, x19, [sp, #0x90]
+   1b294:      	add	x29, sp, #0x40
+   1b298:      	ldp	x22, x8, [x0, #0x68]
+   1b29c:      	mov	x28, x0
+   1b2a0:      	ldp	x9, x23, [x0, #0x78]
+   1b2a4:      	mov	x19, x4
+   1b2a8:      	ldr	x21, [x0, #0x60]
+   1b2ac:      	ldp	x24, x25, [x0, #0x40]
+   1b2b0:      	mul	x8, x22, x8
+   1b2b4:      	mov	x20, x3
+   1b2b8:      	mov	x26, x2
+   1b2bc:      	str	x9, [sp, #0x18]
+   1b2c0:      	mov	x27, x1
+   1b2c4:      	lsl	x0, x8, #2
+   1b2c8:      	bl	0x75a70 <fftwf_malloc_plain@plt>
+   1b2cc:      	cmp	x22, x21
+   1b2d0:      	stur	x22, [x29, #-0x8]
+   1b2d4:      	b.gt	0x1b394 <fftwf_rdft2_buffered_register+0x838>
+   1b2d8:      	ldp	x9, x8, [x28, #0x88]
+   1b2dc:      	mov	x10, x21
+   1b2e0:      	stp	x20, x19, [x29, #-0x18]
+   1b2e4:      	mov	x21, x27
+   1b2e8:      	lsl	x23, x23, #2
+   1b2ec:      	str	x26, [sp, #0x20]
+   1b2f0:      	mov	x19, xzr
+   1b2f4:      	mov	x20, xzr
+   1b2f8:      	add	x26, x0, x8, lsl #2
+   1b2fc:      	ldr	x8, [sp, #0x18]
+   1b300:      	stp	x28, x0, [sp, #0x8]
+   1b304:      	add	x27, x0, x9, lsl #2
+   1b308:      	lsl	x8, x8, #2
+   1b30c:      	str	x8, [sp, #0x18]
+   1b310:      	ldur	x28, [x29, #-0x8]
+   1b314:      	ldr	x9, [sp, #0x20]
+   1b318:      	ldr	x8, [x24, #0x38]
+   1b31c:      	add	x1, x21, x20
+   1b320:      	mov	x0, x24
+   1b324:      	mov	x3, x26
+   1b328:      	mov	x4, x27
+   1b32c:      	add	x2, x9, x20
+   1b330:      	mov	x22, x10
+   1b334:      	blr	x8
+   1b338:      	ldp	x10, x9, [x29, #-0x18]
+   1b33c:      	mov	x0, x25
+   1b340:      	ldr	x8, [x25, #0x38]
+   1b344:      	mov	x1, x26
+   1b348:      	mov	x2, x27
+   1b34c:      	add	x3, x10, x19
+   1b350:      	add	x4, x9, x19
+   1b354:      	blr	x8
+   1b358:      	ldur	x8, [x29, #-0x8]
+   1b35c:      	mov	x10, x22
+   1b360:      	add	x19, x19, x23
+   1b364:      	add	x28, x28, x8
+   1b368:      	ldr	x8, [sp, #0x18]
+   1b36c:      	cmp	x28, x22
+   1b370:      	add	x20, x20, x8
+   1b374:      	b.le	0x1b314 <fftwf_rdft2_buffered_register+0x7b8>
+   1b378:      	ldr	x26, [sp, #0x20]
+   1b37c:      	add	x27, x21, x20
+   1b380:      	ldp	x28, x0, [sp, #0x8]
+   1b384:      	add	x26, x26, x20
+   1b388:      	ldp	x20, x8, [x29, #-0x18]
+   1b38c:      	add	x20, x20, x19
+   1b390:      	add	x19, x8, x19
+   1b394:      	bl	0x75aa0 <fftwf_ifree@plt>
+   1b398:      	ldr	x0, [x28, #0x50]
+   1b39c:      	mov	x1, x27
+   1b3a0:      	mov	x2, x26
+   1b3a4:      	mov	x3, x20
+   1b3a8:      	ldr	x5, [x0, #0x38]
+   1b3ac:      	mov	x4, x19
+   1b3b0:      	ldp	x20, x19, [sp, #0x90]
+   1b3b4:      	ldp	x22, x21, [sp, #0x80]

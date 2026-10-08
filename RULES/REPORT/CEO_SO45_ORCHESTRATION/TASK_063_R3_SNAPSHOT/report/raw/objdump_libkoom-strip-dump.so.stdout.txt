@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libkoom-strip-dump.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000037bb0 <.text>:
+   37bb0:      	bti	c
+   37bb4:      	nop
+   37bb8:      	adr	x0, #0x53418
+   37bbc:      	b	0x851c0 <__cxa_finalize@plt>
+   37bc0:      	bti	c
+   37bc4:      	ret
+   37bc8:      	bti	c
+   37bcc:      	b	0x80684 <__emutls_get_address+0x1ec>
+   37bd0:      	bti	c
+   37bd4:      	cbz	x0, 0x37be0 <.text+0x30>
+   37bd8:      	mov	x16, x0
+   37bdc:      	br	x16
+   37be0:      	ret
+   37be4:      	bti	c
+   37be8:      	mov	x1, x0
+   37bec:      	nop
+   37bf0:      	adr	x0, #-0x20
+   37bf4:      	nop
+   37bf8:      	adr	x2, #0x533d8
+   37bfc:      	b	0x851d0 <__cxa_atexit@plt>
+   37c00:      	bti	c
+   37c04:      	nop
+   37c08:      	adr	x3, #0x533c8
+   37c0c:      	b	0x851e0 <__register_atfork@plt>
+
+0000000000037c10 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv>:
+   37c10:      	stp	x29, x30, [sp, #-0x20]!
+   37c14:      	str	x19, [sp, #0x10]
+   37c18:      	mov	x29, sp
+   37c1c:      	nop
+   37c20:      	adr	x8, #0x5c660
+   37c24:      	ldarb	w8, [x8]
+   37c28:      	tbz	w8, #0x0, 0x37c40 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv+0x30>
+   37c2c:      	ldr	x19, [sp, #0x10]
+   37c30:      	adrp	x0, 0x94000
+   37c34:      	add	x0, x0, #0x288
+   37c38:      	ldp	x29, x30, [sp], #0x20
+   37c3c:      	ret
+   37c40:      	nop
+   37c44:      	adr	x19, #0x5c63c
+   37c48:      	mov	x0, x19
+   37c4c:      	bl	0x85200 <__cxa_guard_acquire@plt>
+   37c50:      	cbz	w0, 0x37c2c <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv+0x1c>
+   37c54:      	adrp	x0, 0x94000
+   37c58:      	add	x0, x0, #0x288
+   37c5c:      	bl	0x85210 <_ZN4kwai12leak_monitor9HprofDumpC1Ev@plt>
+   37c60:      	adrp	x0, 0x8e000 <_ZTISt10bad_typeid+0x1e48>
+   37c64:      	nop
+   37c68:      	adr	x2, #0x53368
+   37c6c:      	ldr	x0, [x0, #0xec8]
+   37c70:      	add	x1, x19, #0x8
+   37c74:      	bl	0x851d0 <__cxa_atexit@plt>
+   37c78:      	mov	x0, x19
+   37c7c:      	bl	0x85220 <__cxa_guard_release@plt>
+   37c80:      	b	0x37c2c <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv+0x1c>
+   37c84:      	mov	x19, x0
+   37c88:      	nop
+   37c8c:      	adr	x0, #0x5c5f4
+   37c90:      	bl	0x85230 <__cxa_guard_abort@plt>
+   37c94:      	mov	x0, x19
+   37c98:      	bl	0x8130c <__emutls_get_address+0xe74>
+
+0000000000037c9c <_ZN4kwai12leak_monitor9HprofDumpD2Ev>:
+   37c9c:      	stp	x29, x30, [sp, #-0x20]!
+   37ca0:      	str	x19, [sp, #0x10]
+   37ca4:      	mov	x29, sp
+   37ca8:      	mov	x19, x0
+   37cac:      	add	x0, x0, #0x10
+   37cb0:      	bl	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+   37cb4:      	add	x0, x19, #0x8
+   37cb8:      	ldr	x19, [sp, #0x10]
+   37cbc:      	ldp	x29, x30, [sp], #0x20
+   37cc0:      	b	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+
+0000000000037cc4 <_ZN4kwai12leak_monitor9HprofDumpC2Ev>:
+   37cc4:      	sub	sp, sp, #0xa0
+   37cc8:      	stp	x29, x30, [sp, #0x70]
+   37ccc:      	str	x21, [sp, #0x80]
+   37cd0:      	stp	x20, x19, [sp, #0x90]
+   37cd4:      	add	x29, sp, #0x70
+   37cd8:      	movi	v0.2d, #0000000000000000
+   37cdc:      	mrs	x20, TPIDR_EL0
+   37ce0:      	mov	x19, x0
+   37ce4:      	ldr	x8, [x20, #0x28]
+   37ce8:      	mov	x21, x0
+   37cec:      	stur	x8, [x29, #-0x8]
+   37cf0:      	strb	wzr, [x0]
+   37cf4:      	str	xzr, [x21, #0x4]!
+   37cf8:      	stur	xzr, [x0, #0xc]
+   37cfc:      	str	wzr, [x0, #0x14]
+   37d00:      	stur	q0, [sp, #0x4c]
+   37d04:      	stp	q0, q0, [sp, #0x10]
+   37d08:      	stp	q0, q0, [sp, #0x30]
+   37d0c:      	str	q0, [sp]
+   37d10:      	adrp	x0, 0x23000
+   37d14:      	add	x0, x0, #0x316
+   37d18:      	mov	x1, sp
+   37d1c:      	bl	0x85240 <__system_property_get@plt>
+   37d20:      	cmp	w0, #0x1
+   37d24:      	b.lt	0x37d3c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0x78>
+   37d28:      	mov	x0, sp
+   37d2c:      	bl	0x85250 <atoi@plt>
+   37d30:      	cmp	w0, #0x0
+   37d34:      	csinv	w8, w0, wzr, gt
+   37d38:      	b	0x37d40 <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0x7c>
+   37d3c:      	mov	w8, #-0x1
+   37d40:      	str	w8, [x21]
+   37d44:      	ldr	x8, [x20, #0x28]
+   37d48:      	ldur	x9, [x29, #-0x8]
+   37d4c:      	cmp	x8, x9
+   37d50:      	b.ne	0x37d98 <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd4>
+   37d54:      	ldp	x20, x19, [sp, #0x90]
+   37d58:      	ldr	x21, [sp, #0x80]
+   37d5c:      	ldp	x29, x30, [sp, #0x70]
+   37d60:      	add	sp, sp, #0xa0
+   37d64:      	ret
+   37d68:      	mov	x21, x20
+   37d6c:      	mov	x20, x0
+   37d70:      	add	x0, x19, #0x10
+   37d74:      	bl	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+   37d78:      	add	x0, x19, #0x8
+   37d7c:      	bl	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+   37d80:      	ldr	x8, [x21, #0x28]
+   37d84:      	ldur	x9, [x29, #-0x8]
+   37d88:      	cmp	x8, x9
+   37d8c:      	b.ne	0x37d98 <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd4>
+   37d90:      	mov	x0, x20
+   37d94:      	bl	0x8130c <__emutls_get_address+0xe74>
+   37d98:      	bl	0x85260 <__stack_chk_fail@plt>
+   37d9c:      	mov	x1, xzr
+   37da0:      	b	0x382c0 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x114>
+
+0000000000037da4 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv>:
+   37da4:      	sub	sp, sp, #0x40
+   37da8:      	stp	x29, x30, [sp, #0x10]
+   37dac:      	str	x21, [sp, #0x20]
+   37db0:      	stp	x20, x19, [sp, #0x30]
+   37db4:      	add	x29, sp, #0x10
+   37db8:      	bl	0x38370 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x98>
+   37dbc:      	cbnz	w8, 0x3809c <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2f8>
+   37dc0:      	ldr	w8, [x0, #0x4]
+   37dc4:      	mov	x20, x0
+   37dc8:      	cmp	w8, #0x15
+   37dcc:      	b.lt	0x3809c <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2f8>
+   37dd0:      	nop
+   37dd4:      	adr	x0, #-0x144a5
+   37dd8:      	mov	w1, #0x2
+   37ddc:      	bl	0x85280 <_ZN4kwai6linker5DlFcn6dlopenEPKci@plt>
+   37de0:      	cbz	x0, 0x37e3c <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x98>
+   37de4:      	ldr	w8, [x20, #0x4]
+   37de8:      	mov	x19, x0
+   37dec:      	cmp	w8, #0x1d
+   37df0:      	b.gt	0x37e94 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0xf0>
+   37df4:      	adrp	x1, 0x23000
+   37df8:      	add	x1, x1, #0x90
+   37dfc:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37e00:      	str	x0, [x20, #0x18]
+   37e04:      	cbz	x0, 0x37f74 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x1d0>
+   37e08:      	adrp	x1, 0x22000
+   37e0c:      	add	x1, x1, #0x23
+   37e10:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37e14:      	str	x0, [x20, #0x20]
+   37e18:      	cbnz	x0, 0x37f60 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x1bc>
+   37e1c:      	bl	0x85290 <__errno@plt>
+   37e20:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37e24:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   37e28:      	adrp	x6, 0x21000
+   37e2c:      	add	x6, x6, #0x7f9
+   37e30:      	mov	w0, #0x6
+   37e34:      	mov	w4, #0x47
+   37e38:      	b	0x37f90 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x1ec>
+   37e3c:      	bl	0x85290 <__errno@plt>
+   37e40:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37e44:      	bl	0x38348 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x70>
+   37e48:      	b.ne	0x380b8 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x314>
+   37e4c:      	ldp	x20, x19, [sp, #0x30]
+   37e50:      	mov	x7, x0
+   37e54:      	ldp	x29, x30, [sp, #0x10]
+   37e58:      	adrp	x1, 0x22000
+   37e5c:      	add	x1, x1, #0x115
+   37e60:      	ldr	x21, [sp, #0x20]
+   37e64:      	adrp	x2, 0x22000
+   37e68:      	add	x2, x2, #0x823
+   37e6c:      	adrp	x3, 0x22000
+   37e70:      	add	x3, x3, #0x850
+   37e74:      	adrp	x5, 0x22000
+   37e78:      	add	x5, x5, #0x8a7
+   37e7c:      	adrp	x6, 0x22000
+   37e80:      	add	x6, x6, #0x1c
+   37e84:      	mov	w0, #0x6
+   37e88:      	mov	w4, #0x3e
+   37e8c:      	add	sp, sp, #0x40
+   37e90:      	b	0x852a0 <async_safe_format_log@plt>
+   37e94:      	cmp	w8, #0x22
+   37e98:      	b.hi	0x37f60 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x1bc>
+   37e9c:      	mov	w0, #0x40
+   37ea0:      	bl	0x852b0 <_Znam@plt>
+   37ea4:      	bl	0x38358 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x80>
+   37ea8:      	add	x0, x20, #0x8
+   37eac:      	bl	0x852c0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_@plt>
+   37eb0:      	mov	x0, sp
+   37eb4:      	bl	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+   37eb8:      	mov	w0, #0x40
+   37ebc:      	bl	0x852b0 <_Znam@plt>
+   37ec0:      	bl	0x38358 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x80>
+   37ec4:      	add	x0, x20, #0x10
+   37ec8:      	bl	0x852c0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_@plt>
+   37ecc:      	mov	x0, sp
+   37ed0:      	bl	0x37d9c <_ZN4kwai12leak_monitor9HprofDumpC2Ev+0xd8>
+   37ed4:      	adrp	x1, 0x22000
+   37ed8:      	add	x1, x1, #0xfb7
+   37edc:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37ee0:      	str	x0, [x20, #0x28]
+   37ee4:      	cbz	x0, 0x37fb4 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x210>
+   37ee8:      	adrp	x1, 0x23000
+   37eec:      	add	x1, x1, #0x1cd
+   37ef0:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37ef4:      	str	x0, [x20, #0x30]
+   37ef8:      	cbz	x0, 0x37fd4 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x230>
+   37efc:      	adrp	x1, 0x21000
+   37f00:      	add	x1, x1, #0x972
+   37f04:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37f08:      	str	x0, [x20, #0x38]
+   37f0c:      	cbz	x0, 0x37ff4 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x250>
+   37f10:      	adrp	x1, 0x23000
+   37f14:      	add	x1, x1, #0x5fa
+   37f18:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37f1c:      	str	x0, [x20, #0x40]
+   37f20:      	cbz	x0, 0x38014 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x270>
+   37f24:      	adrp	x1, 0x23000
+   37f28:      	add	x1, x1, #0x2f8
+   37f2c:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37f30:      	str	x0, [x20, #0x48]
+   37f34:      	cbz	x0, 0x38034 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x290>
+   37f38:      	adrp	x1, 0x22000
+   37f3c:      	add	x1, x1, #0xe5a
+   37f40:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37f44:      	str	x0, [x20, #0x50]
+   37f48:      	cbz	x0, 0x38054 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2b0>
+   37f4c:      	adrp	x1, 0x21000
+   37f50:      	add	x1, x1, #0xe5c
+   37f54:      	bl	0x38320 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x48>
+   37f58:      	str	x0, [x20, #0x58]
+   37f5c:      	cbz	x0, 0x38074 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2d0>
+   37f60:      	mov	x0, x19
+   37f64:      	bl	0x852d0 <_ZN4kwai6linker5DlFcn7dlcloseEPv@plt>
+   37f68:      	mov	w8, #0x1
+   37f6c:      	strb	w8, [x20]
+   37f70:      	b	0x3809c <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2f8>
+   37f74:      	bl	0x85290 <__errno@plt>
+   37f78:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37f7c:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   37f80:      	adrp	x6, 0x21000
+   37f84:      	add	x6, x6, #0x5a0
+   37f88:      	mov	w0, #0x6
+   37f8c:      	mov	w4, #0x43
+   37f90:      	bl	0x852a0 <async_safe_format_log@plt>
+   37f94:      	bl	0x38348 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x70>
+   37f98:      	b.ne	0x380b8 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x314>
+   37f9c:      	mov	x0, x19
+   37fa0:      	ldp	x20, x19, [sp, #0x30]
+   37fa4:      	ldp	x29, x30, [sp, #0x10]
+   37fa8:      	ldr	x21, [sp, #0x20]
+   37fac:      	add	sp, sp, #0x40
+   37fb0:      	b	0x852d0 <_ZN4kwai6linker5DlFcn7dlcloseEPv@plt>
+   37fb4:      	bl	0x85290 <__errno@plt>
+   37fb8:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37fbc:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   37fc0:      	adrp	x6, 0x22000
+   37fc4:      	add	x6, x6, #0x1cb
+   37fc8:      	mov	w0, #0x6
+   37fcc:      	mov	w4, #0x4f
+   37fd0:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   37fd4:      	bl	0x85290 <__errno@plt>
+   37fd8:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37fdc:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   37fe0:      	adrp	x6, 0x21000
+   37fe4:      	add	x6, x6, #0xe34
+   37fe8:      	mov	w0, #0x6
+   37fec:      	mov	w4, #0x53
+   37ff0:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   37ff4:      	bl	0x85290 <__errno@plt>
+   37ff8:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   37ffc:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   38000:      	adrp	x6, 0x22000
+   38004:      	add	x6, x6, #0x644
+   38008:      	mov	w0, #0x6
+   3800c:      	mov	w4, #0x5a
+   38010:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   38014:      	bl	0x85290 <__errno@plt>
+   38018:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   3801c:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   38020:      	adrp	x6, 0x23000
+   38024:      	add	x6, x6, #0x2e4
+   38028:      	mov	w0, #0x6
+   3802c:      	mov	w4, #0x5e
+   38030:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   38034:      	bl	0x85290 <__errno@plt>
+   38038:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   3803c:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   38040:      	adrp	x6, 0x22000
+   38044:      	add	x6, x6, #0x659
+   38048:      	mov	w0, #0x6
+   3804c:      	mov	w4, #0x62
+   38050:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   38054:      	bl	0x85290 <__errno@plt>
+   38058:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   3805c:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   38060:      	adrp	x6, 0x21000
+   38064:      	add	x6, x6, #0xe48
+   38068:      	mov	w0, #0x6
+   3806c:      	mov	w4, #0x66
+   38070:      	b	0x38090 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x2ec>
+   38074:      	bl	0x85290 <__errno@plt>
+   38078:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   3807c:      	bl	0x382f0 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x18>
+   38080:      	adrp	x6, 0x22000
+   38084:      	add	x6, x6, #0x28d
+   38088:      	mov	w0, #0x6
+   3808c:      	mov	w4, #0x6a
+   38090:      	bl	0x852a0 <async_safe_format_log@plt>
+   38094:      	mov	x0, x19
+   38098:      	bl	0x852d0 <_ZN4kwai6linker5DlFcn7dlcloseEPv@plt>
+   3809c:      	bl	0x38348 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x70>
+   380a0:      	b.ne	0x380b8 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv+0x314>
+   380a4:      	ldp	x20, x19, [sp, #0x30]
+   380a8:      	ldr	x21, [sp, #0x20]
+   380ac:      	ldp	x29, x30, [sp, #0x10]
+   380b0:      	add	sp, sp, #0x40
+   380b4:      	ret
+   380b8:      	bl	0x85260 <__stack_chk_fail@plt>
+
+00000000000380bc <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv>:
+   380bc:      	stp	x29, x30, [sp, #-0x20]!
+   380c0:      	stp	x20, x19, [sp, #0x10]
+   380c4:      	mov	x29, sp
+   380c8:      	ldrb	w8, [x0]
+   380cc:      	cbz	w8, 0x380ec <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0x30>
+   380d0:      	ldr	w8, [x0, #0x4]
+   380d4:      	mov	x19, x0
+   380d8:      	cmp	w8, #0x1d
+   380dc:      	b.gt	0x3811c <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0x60>
+   380e0:      	ldr	x8, [x19, #0x18]
+   380e4:      	blr	x8
+   380e8:      	b	0x3817c <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0xc0>
+   380ec:      	bl	0x85290 <__errno@plt>
+   380f0:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   380f4:      	bl	0x38328 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x50>
+   380f8:      	adrp	x5, 0x22000
+   380fc:      	add	x5, x5, #0x727
+   38100:      	adrp	x6, 0x22000
+   38104:      	add	x6, x6, #0xa26
+   38108:      	mov	w0, #0x6
+   3810c:      	mov	w4, #0x71
+   38110:      	bl	0x852a0 <async_safe_format_log@plt>
+   38114:      	mov	w0, #-0x1
+   38118:      	b	0x381a0 <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0xe4>
+   3811c:      	cmp	w8, #0x22
+   38120:      	b.hi	0x3817c <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0xc0>
+   38124:      	mrs	x8, TPIDR_EL0
+   38128:      	ldr	x20, [x8, #0x38]
+   3812c:      	ldr	x0, [x19, #0x10]
+   38130:      	ldr	x8, [x19, #0x38]
+   38134:      	mov	w2, #0xf
+   38138:      	mov	w3, #0xd
+   3813c:      	mov	x1, x20
+   38140:      	blr	x8
+   38144:      	ldr	x8, [x19, #0x28]
+   38148:      	ldr	x0, [x19, #0x8]
+   3814c:      	adrp	x1, 0x22000
+   38150:      	add	x1, x1, #0x115
+   38154:      	mov	w2, #0x1
+   38158:      	blr	x8
+   3815c:      	ldr	x8, [x19, #0x48]
+   38160:      	ldr	x9, [x19, #0x58]
+   38164:      	mov	x1, x20
+   38168:      	ldr	x0, [x8]
+   3816c:      	blr	x9
+   38170:      	ldr	x8, [x19, #0x40]
+   38174:      	ldr	x0, [x19, #0x10]
+   38178:      	blr	x8
+   3817c:      	bl	0x852f0 <fork@plt>
+   38180:      	cbnz	w0, 0x381a0 <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv+0xe4>
+   38184:      	mov	w0, #0x3c
+   38188:      	bl	0x85300 <alarm@plt>
+   3818c:      	adrp	x1, 0x21000
+   38190:      	add	x1, x1, #0xc20
+   38194:      	mov	w0, #0xf
+   38198:      	bl	0x85310 <prctl@plt>
+   3819c:      	mov	w0, wzr
+   381a0:      	ldp	x20, x19, [sp, #0x10]
+   381a4:      	ldp	x29, x30, [sp], #0x20
+   381a8:      	ret
+
+00000000000381ac <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi>:
+   381ac:      	sub	sp, sp, #0x40
+   381b0:      	stp	x29, x30, [sp, #0x10]
+   381b4:      	str	x21, [sp, #0x20]
+   381b8:      	stp	x20, x19, [sp, #0x30]
+   381bc:      	add	x29, sp, #0x10
+   381c0:      	bl	0x38370 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x98>
+   381c4:      	cbz	w8, 0x381e8 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x3c>
+   381c8:      	ldr	w8, [x0, #0x4]
+   381cc:      	mov	x20, x0
+   381d0:      	mov	w19, w1
+   381d4:      	cmp	w8, #0x1d
+   381d8:      	b.gt	0x38214 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x68>
+   381dc:      	ldr	x8, [x20, #0x20]
+   381e0:      	blr	x8
+   381e4:      	b	0x3823c <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x90>
+   381e8:      	bl	0x85290 <__errno@plt>
+   381ec:      	bl	0x38318 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x40>
+   381f0:      	bl	0x38328 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x50>
+   381f4:      	adrp	x5, 0x21000
+   381f8:      	add	x5, x5, #0xce5
+   381fc:      	adrp	x6, 0x22000
+   38200:      	add	x6, x6, #0xa26
+   38204:      	mov	w0, #0x6
+   38208:      	mov	w4, #0x89
+   3820c:      	bl	0x852a0 <async_safe_format_log@plt>
+   38210:      	b	0x38294 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0xe8>
+   38214:      	cmp	w8, #0x22
+   38218:      	b.hi	0x3823c <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x90>
+   3821c:      	ldp	x8, x10, [x20, #0x48]
+   38220:      	mrs	x9, TPIDR_EL0
+   38224:      	ldr	x1, [x9, #0x38]
+   38228:      	ldr	x0, [x8]
+   3822c:      	blr	x10
+   38230:      	ldr	x8, [x20, #0x30]
+   38234:      	ldr	x0, [x20, #0x8]
+   38238:      	blr	x8
+   3823c:      	add	x1, sp, #0x4
+   38240:      	mov	w0, w19
+   38244:      	mov	w2, wzr
+   38248:      	bl	0x85330 <waitpid@plt>
+   3824c:      	cmn	w0, #0x1
+   38250:      	b.ne	0x38268 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0xbc>
+   38254:      	bl	0x85290 <__errno@plt>
+   38258:      	ldr	w8, [x0]
+   3825c:      	cmp	w8, #0x4
+   38260:      	b.eq	0x3823c <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x90>
+   38264:      	b	0x38294 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0xe8>
+   38268:      	ldr	w8, [sp, #0x4]
+   3826c:      	ands	w5, w8, #0x7f
+   38270:      	b.eq	0x382b4 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x108>
+   38274:      	ubfx	w4, w8, #8, #8
+   38278:      	adrp	x1, 0x22000
+   3827c:      	add	x1, x1, #0x115
+   38280:      	adrp	x2, 0x23000
+   38284:      	add	x2, x2, #0x6da
+   38288:      	mov	w0, #0x6
+   3828c:      	mov	w3, w19
+   38290:      	bl	0x85340 <__android_log_print@plt>
+   38294:      	mov	w0, wzr
+   38298:      	bl	0x38348 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x70>
+   3829c:      	b.ne	0x382bc <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x110>
+   382a0:      	ldp	x20, x19, [sp, #0x30]
+   382a4:      	ldr	x21, [sp, #0x20]
+   382a8:      	ldp	x29, x30, [sp, #0x10]
+   382ac:      	add	sp, sp, #0x40
+   382b0:      	ret
+   382b4:      	mov	w0, #0x1
+   382b8:      	b	0x38298 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0xec>
+   382bc:      	bl	0x85260 <__stack_chk_fail@plt>
+   382c0:      	mov	x8, x0
+   382c4:      	ldr	x0, [x0]
+   382c8:      	str	xzr, [x8]
+   382cc:      	cbz	x0, 0x382d4 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi+0x128>
+   382d0:      	b	0x85350 <_ZdaPv@plt>
+   382d4:      	ret
+
+00000000000382d8 <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_>:
+   382d8:      	mov	x8, x0
+   382dc:      	ldr	x0, [x0]
+   382e0:      	str	x1, [x8]
+   382e4:      	cbz	x0, 0x382ec <_ZNSt6__ndk110unique_ptrIA_cNS_14default_deleteIS1_EEE5resetB8ne180000IPcTnNS_9enable_ifIXsr28_CheckArrayPointerConversionIT_EE5valueEiE4typeELi0EEEvS8_+0x14>
+   382e8:      	b	0x85350 <_ZdaPv@plt>
+   382ec:      	ret
+   382f0:      	mov	x7, x0
+   382f4:      	adrp	x1, 0x22000
+   382f8:      	add	x1, x1, #0x115
+   382fc:      	adrp	x2, 0x22000
+   38300:      	add	x2, x2, #0x823
+   38304:      	adrp	x3, 0x22000
+   38308:      	add	x3, x3, #0x850
+   3830c:      	adrp	x5, 0x22000
+   38310:      	add	x5, x5, #0x8a7
+   38314:      	ret
+   38318:      	ldr	w0, [x0]
+   3831c:      	b	0x85360 <strerror@plt>
+   38320:      	mov	x0, x19
+   38324:      	b	0x85370 <_ZN4kwai6linker5DlFcn5dlsymEPvPKc@plt>
+   38328:      	mov	x7, x0
+   3832c:      	adrp	x1, 0x22000
+   38330:      	add	x1, x1, #0x115
+   38334:      	adrp	x2, 0x22000
+   38338:      	add	x2, x2, #0x823
+   3833c:      	adrp	x3, 0x22000
+   38340:      	add	x3, x3, #0x850
+   38344:      	ret
+   38348:      	ldr	x8, [x21, #0x28]
+   3834c:      	ldr	x9, [sp, #0x8]
+   38350:      	cmp	x8, x9
+   38354:      	ret
+   38358:      	movi	v0.2d, #0000000000000000
+   3835c:      	mov	x1, x0
+   38360:      	str	xzr, [sp]
+   38364:      	stp	q0, q0, [x0]
+   38368:      	stp	q0, q0, [x0, #0x20]
+   3836c:      	ret
+   38370:      	mrs	x21, TPIDR_EL0
+   38374:      	ldr	x8, [x21, #0x28]
+   38378:      	str	x8, [sp, #0x8]
+   3837c:      	ldrb	w8, [x0]
+   38380:      	ret
+
+0000000000038384 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc>:
+   38384:      	stp	x29, x30, [sp, #-0x20]!
+   38388:      	stp	x20, x19, [sp, #0x10]
+   3838c:      	mov	x29, sp
+   38390:      	mov	x20, x0
+   38394:      	mov	x0, x1
+   38398:      	mov	x19, x1
+   3839c:      	bl	0x85390 <strlen@plt>
+   383a0:      	mov	x2, x0
+   383a4:      	mov	x0, x20
+   383a8:      	mov	x1, x19
+   383ac:      	ldp	x20, x19, [sp, #0x10]
+   383b0:      	ldp	x29, x30, [sp], #0x20
+   383b4:      	b	0x853a0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEPKcm@plt>
+
+00000000000383b8 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv>:
+   383b8:      	stp	x29, x30, [sp, #-0x40]!
+   383bc:      	str	x23, [sp, #0x10]
+   383c0:      	stp	x22, x21, [sp, #0x20]
+   383c4:      	stp	x20, x19, [sp, #0x30]
+   383c8:      	mov	x29, sp
+   383cc:      	mov	w0, wzr
+   383d0:      	mov	w1, wzr
+   383d4:      	bl	0x853c0 <bytehook_init@plt>
+   383d8:      	adrp	x19, 0x23000
+   383dc:      	add	x19, x19, #0x92f
+   383e0:      	adrp	x20, 0x21000
+   383e4:      	add	x20, x20, #0x9c6
+   383e8:      	nop
+   383ec:      	adr	x21, #0x9c
+   383f0:      	mov	x0, x19
+   383f4:      	mov	x1, xzr
+   383f8:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   383fc:      	adrp	x22, 0x22000
+   38400:      	add	x22, x22, #0xfd8
+   38404:      	mov	x1, xzr
+   38408:      	mov	x0, x22
+   3840c:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   38410:      	adrp	x23, 0x21000
+   38414:      	add	x23, x23, #0x881
+   38418:      	mov	x1, xzr
+   3841c:      	mov	x0, x23
+   38420:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   38424:      	adrp	x20, 0x21000
+   38428:      	add	x20, x20, #0xc34
+   3842c:      	nop
+   38430:      	adr	x21, #0x114
+   38434:      	adrp	x0, 0x23000
+   38438:      	add	x0, x0, #0x7d7
+   3843c:      	mov	x1, xzr
+   38440:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   38444:      	mov	x0, x19
+   38448:      	mov	x1, xzr
+   3844c:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   38450:      	mov	x0, x22
+   38454:      	mov	x1, xzr
+   38458:      	bl	0x38ba0 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x11c>
+   3845c:      	mov	x2, x20
+   38460:      	mov	x3, x21
+   38464:      	mov	x0, x23
+   38468:      	ldp	x20, x19, [sp, #0x30]
+   3846c:      	ldr	x23, [sp, #0x10]
+   38470:      	ldp	x22, x21, [sp, #0x20]
+   38474:      	mov	x1, xzr
+   38478:      	mov	x4, xzr
+   3847c:      	mov	x5, xzr
+   38480:      	ldp	x29, x30, [sp], #0x40
+   38484:      	b	0x853d0 <bytehook_hook_single@plt>
+   38488:      	stp	x29, x30, [sp, #-0x30]!
+   3848c:      	stp	x22, x21, [sp, #0x10]
+   38490:      	stp	x20, x19, [sp, #0x20]
+   38494:      	mov	x29, sp
+   38498:      	mov	x21, x0
+   3849c:      	nop
+   384a0:      	adr	x0, #-0x18
+   384a4:      	mov	x19, x30
+   384a8:      	mov	w20, w2
+   384ac:      	mov	w22, w1
+   384b0:      	bl	0x853e0 <bytehook_get_prev_func@plt>
+   384b4:      	mov	x8, x0
+   384b8:      	mov	x0, x21
+   384bc:      	mov	w1, w22
+   384c0:      	mov	w2, w20
+   384c4:      	blr	x8
+   384c8:      	nop
+   384cc:      	adr	x9, #0x5be1c
+   384d0:      	mov	w20, w0
+   384d4:      	ldrb	w8, [x9]
+   384d8:      	ldr	x9, [x9, #0x8]
+   384dc:      	lsr	x10, x8, #1
+   384e0:      	tst	w8, #0x1
+   384e4:      	csel	x9, x10, x9, eq
+   384e8:      	cbz	x9, 0x38530 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x178>
+   384ec:      	cbz	x21, 0x38518 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x160>
+   384f0:      	adrp	x9, 0x94000
+   384f4:      	add	x9, x9, #0x2e9
+   384f8:      	tst	w8, #0x1
+   384fc:      	ldur	x10, [x9, #0xf]
+   38500:      	mov	x0, x21
+   38504:      	csel	x1, x9, x10, eq
+   38508:      	bl	0x853f0 <strstr@plt>
+   3850c:      	cbz	x0, 0x38518 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x160>
+   38510:      	adrp	x8, 0x94000
+   38514:      	str	w20, [x8, #0x90]
+   38518:      	bl	0x85400 <bytehook_get_mode@plt>
+   3851c:      	cbnz	w0, 0x38530 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x178>
+   38520:      	mov	x30, x19
+   38524:      	xpaclri
+   38528:      	mov	x0, x30
+   3852c:      	bl	0x85410 <bytehook_pop_stack@plt>
+   38530:      	mov	w0, w20
+   38534:      	ldp	x20, x19, [sp, #0x20]
+   38538:      	ldp	x22, x21, [sp, #0x10]
+   3853c:      	ldp	x29, x30, [sp], #0x30
+   38540:      	ret
+   38544:      	sub	sp, sp, #0x80
+   38548:      	stp	x29, x30, [sp, #0x20]
+   3854c:      	stp	x28, x27, [sp, #0x30]
+   38550:      	stp	x26, x25, [sp, #0x40]
+   38554:      	stp	x24, x23, [sp, #0x50]
+   38558:      	stp	x22, x21, [sp, #0x60]
+   3855c:      	stp	x20, x19, [sp, #0x70]
+   38560:      	add	x29, sp, #0x20
+   38564:      	adrp	x8, 0x94000
+   38568:      	mov	x26, x30
+   3856c:      	mov	x19, x2
+   38570:      	ldr	w8, [x8, #0x90]
+   38574:      	mov	w21, w0
+   38578:      	mov	x22, x1
+   3857c:      	cmp	w8, w0
+   38580:      	b.ne	0x38894 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x4dc>
+   38584:      	adrp	x23, 0x194000
+   38588:      	str	wzr, [x23, #0x314]
+   3858c:      	ldrb	w9, [x22]
+   38590:      	orr	w8, w9, #0x10
+   38594:      	cmp	w8, #0x1c
+   38598:      	b.ne	0x388dc <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x524>
+   3859c:      	adrp	x8, 0x194000
+   385a0:      	stp	w21, w9, [sp]
+   385a4:      	mov	w24, wzr
+   385a8:      	ldrb	w13, [x8, #0x30c]
+   385ac:      	add	x8, x22, #0xd
+   385b0:      	str	x26, [sp, #0x8]
+   385b4:      	mov	w26, wzr
+   385b8:      	add	x28, x22, #0x2
+   385bc:      	add	x27, x22, #0x4
+   385c0:      	nop
+   385c4:      	adr	x14, #0x5bd3c
+   385c8:      	str	x8, [sp, #0x10]
+   385cc:      	adrp	x21, 0x23000
+   385d0:      	add	x21, x21, #0xa42
+   385d4:      	mov	w8, #0x9
+   385d8:      	mov	x16, #0x8a
+   385dc:      	mov	w15, #0x1
+   385e0:      	mov	w17, #0x15
+   385e4:      	movk	x16, #0x400, lsl #48
+   385e8:      	nop
+   385ec:      	adr	x0, #-0x14bb2
+   385f0:      	cmp	w8, w19
+   385f4:      	b.ge	0x388bc <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x504>
+   385f8:      	add	x9, x22, w8, sxtw
+   385fc:      	ldrb	w10, [x9]
+   38600:      	sub	w11, w10, #0x1
+   38604:      	cmp	w11, #0x7
+   38608:      	b.ls	0x38698 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x2e0>
+   3860c:      	sub	w11, w10, #0x89
+   38610:      	cmp	w11, #0x3a
+   38614:      	b.hi	0x38638 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x280>
+   38618:      	lsl	x12, x15, x11
+   3861c:      	tst	x12, x16
+   38620:      	b.ne	0x386b8 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x300>
+   38624:      	lsl	x12, x15, x11
+   38628:      	tst	x12, x17
+   3862c:      	b.ne	0x386d0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x318>
+   38630:      	cmp	x11, #0x5
+   38634:      	b.eq	0x386b0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x2f8>
+   38638:      	sub	w11, w10, #0x20
+   3863c:      	lsl	w25, w24, #1
+   38640:      	cmp	w11, #0x3
+   38644:      	b.hi	0x386c0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x308>
+   38648:      	adr	x10, #0x10
+   3864c:      	ldrb	w12, [x21, x11]
+   38650:      	add	x10, x10, x12, lsl #2
+   38654:      	br	x10
+   38658:      	ldur	w9, [x9, #0xd]
+   3865c:      	tst	w13, #0xff
+   38660:      	rev	w9, w9
+   38664:      	b.eq	0x38770 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x3b8>
+   38668:      	mov	w10, w24
+   3866c:      	add	w11, w8, w9
+   38670:      	add	x12, x14, w25, sxtw #2
+   38674:      	sbfiz	x10, x10, #3, #32
+   38678:      	add	w24, w24, #0x1
+   3867c:      	add	w9, w26, w9
+   38680:      	str	w24, [x23, #0x314]
+   38684:      	add	w26, w9, #0x11
+   38688:      	str	w8, [x14, x10]
+   3868c:      	add	w8, w11, #0x11
+   38690:      	str	w8, [x12, #0x4]
+   38694:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   38698:      	adr	x9, #0x10
+   3869c:      	ldrb	w10, [x0, x11]
+   386a0:      	add	x9, x9, x10, lsl #2
+   386a4:      	br	x9
+   386a8:      	add	w8, w8, #0x9
+   386ac:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   386b0:      	add	w8, w8, #0xd
+   386b4:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   386b8:      	add	w8, w8, #0x1
+   386bc:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   386c0:      	cmp	w10, #0xfe
+   386c4:      	b.eq	0x38718 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x360>
+   386c8:      	cmp	w10, #0xff
+   386cc:      	b.ne	0x388bc <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x504>
+   386d0:      	add	w8, w8, #0x5
+   386d4:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   386d8:      	ldur	w9, [x9, #0x9]
+   386dc:      	tst	w13, #0xff
+   386e0:      	rev	w10, w9
+   386e4:      	add	w9, w8, w10, lsl #2
+   386e8:      	b.eq	0x38764 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x3ac>
+   386ec:      	mov	w11, w24
+   386f0:      	add	x12, x14, w25, sxtw #2
+   386f4:      	add	w10, w26, w10, lsl #2
+   386f8:      	sbfiz	x11, x11, #3, #32
+   386fc:      	add	w24, w24, #0x1
+   38700:      	str	w24, [x23, #0x314]
+   38704:      	add	w26, w10, #0x11
+   38708:      	str	w8, [x14, x11]
+   3870c:      	add	w8, w9, #0x11
+   38710:      	str	w8, [x12, #0x4]
+   38714:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   38718:      	ldrb	w9, [x9, #0x4]
+   3871c:      	cmp	w9, #0x5a
+   38720:      	cset	w10, eq
+   38724:      	cmp	w9, #0x49
+   38728:      	csinc	w13, w10, wzr, ne
+   3872c:      	adrp	x10, 0x194000
+   38730:      	strb	w13, [x10, #0x30c]
+   38734:      	b.eq	0x38740 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x388>
+   38738:      	cmp	w9, #0x5a
+   3873c:      	b.ne	0x386a8 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x2f0>
+   38740:      	sbfiz	x9, x24, #3, #32
+   38744:      	add	x10, x14, w25, sxtw #2
+   38748:      	add	w24, w24, #0x1
+   3874c:      	str	w24, [x23, #0x314]
+   38750:      	add	w26, w26, #0x9
+   38754:      	str	w8, [x14, x9]
+   38758:      	add	w8, w8, #0x9
+   3875c:      	str	w8, [x10, #0x4]
+   38760:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   38764:      	mov	w13, wzr
+   38768:      	add	w8, w9, #0x11
+   3876c:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   38770:      	add	w8, w8, w9
+   38774:      	mov	w13, wzr
+   38778:      	add	w8, w8, #0x11
+   3877c:      	b	0x385f0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x238>
+   38780:      	ldurh	w9, [x9, #0x25]
+   38784:      	add	w8, w8, #0x27
+   38788:      	stur	w13, [x29, #-0x4]
+   3878c:      	rev16	w25, w9
+   38790:      	sxtw	x20, w8
+   38794:      	cbz	w25, 0x387b0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x3f8>
+   38798:      	ldrb	w0, [x28, x20]
+   3879c:      	bl	0x38b0c <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x88>
+   387a0:      	add	w8, w20, w0
+   387a4:      	sub	w25, w25, #0x1
+   387a8:      	add	w8, w8, #0x3
+   387ac:      	b	0x38790 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x3d8>
+   387b0:      	ldrh	w8, [x22, x20]
+   387b4:      	rev16	w25, w8
+   387b8:      	add	w8, w20, #0x2
+   387bc:      	sxtw	x20, w8
+   387c0:      	cbz	w25, 0x387dc <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x424>
+   387c4:      	ldrb	w0, [x27, x20]
+   387c8:      	bl	0x38b0c <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x88>
+   387cc:      	add	w8, w20, w0
+   387d0:      	sub	w25, w25, #0x1
+   387d4:      	add	w8, w8, #0x5
+   387d8:      	b	0x387bc <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x404>
+   387dc:      	ldrh	w8, [x22, x20]
+   387e0:      	ldur	w13, [x29, #-0x4]
+   387e4:      	nop
+   387e8:      	adr	x14, #0x5bb18
+   387ec:      	rev16	w9, w8
+   387f0:      	rev	w8, w8
+   387f4:      	lsl	w9, w9, #2
+   387f8:      	add	w8, w9, w8, lsr #16
+   387fc:      	add	w8, w20, w8
+   38800:      	add	w8, w8, #0x2
+   38804:      	b	0x385d8 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x220>
+   38808:      	mov	w10, w24
+   3880c:      	ldur	w9, [x9, #0x9]
+   38810:      	tst	w13, #0xff
+   38814:      	sbfiz	x10, x10, #3, #32
+   38818:      	mov	w23, w26
+   3881c:      	stur	w13, [x29, #-0x4]
+   38820:      	b.eq	0x38830 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x478>
+   38824:      	str	w8, [x14, x10]
+   38828:      	add	w20, w8, #0xe
+   3882c:      	b	0x38838 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x480>
+   38830:      	add	w20, w8, #0xe
+   38834:      	str	w20, [x14, x10]
+   38838:      	ldr	x10, [sp, #0x10]
+   3883c:      	mov	x21, x14
+   38840:      	rev	w26, w9
+   38844:      	ldrb	w0, [x10, w8, sxtw]
+   38848:      	bl	0x38b0c <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x88>
+   3884c:      	mul	w9, w0, w26
+   38850:      	sbfiz	x8, x25, #2, #32
+   38854:      	ldur	w13, [x29, #-0x4]
+   38858:      	mov	w26, w23
+   3885c:      	add	w24, w24, #0x1
+   38860:      	mov	x14, x21
+   38864:      	orr	x10, x8, #0x4
+   38868:      	tst	w13, #0xff
+   3886c:      	add	w8, w9, w20
+   38870:      	add	w9, w23, w9
+   38874:      	str	w8, [x21, x10]
+   38878:      	add	w9, w9, #0xe
+   3887c:      	adrp	x21, 0x23000
+   38880:      	add	x21, x21, #0xa42
+   38884:      	csel	w26, w23, w9, eq
+   38888:      	adrp	x23, 0x194000
+   3888c:      	str	w24, [x23, #0x314]
+   38890:      	b	0x385d8 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x220>
+   38894:      	nop
+   38898:      	adr	x0, #-0x354
+   3889c:      	bl	0x853e0 <bytehook_get_prev_func@plt>
+   388a0:      	mov	x8, x0
+   388a4:      	mov	w0, w21
+   388a8:      	mov	x1, x22
+   388ac:      	mov	x2, x19
+   388b0:      	blr	x8
+   388b4:      	mov	x19, x0
+   388b8:      	b	0x38974 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x5bc>
+   388bc:      	adrp	x8, 0x194000
+   388c0:      	mov	w10, w26
+   388c4:      	ldr	x26, [sp, #0x8]
+   388c8:      	ldr	w9, [x8, #0x310]
+   388cc:      	add	w9, w9, #0x1
+   388d0:      	str	w9, [x8, #0x310]
+   388d4:      	ldp	w21, w9, [sp]
+   388d8:      	b	0x388e4 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x52c>
+   388dc:      	mov	w24, wzr
+   388e0:      	mov	w10, wzr
+   388e4:      	and	w8, w9, #0xffffffef
+   388e8:      	cmp	w8, #0xc
+   388ec:      	b.ne	0x38904 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x54c>
+   388f0:      	ldur	w8, [x22, #0x5]
+   388f4:      	rev	w8, w8
+   388f8:      	sub	w8, w8, w10
+   388fc:      	rev	w8, w8
+   38900:      	stur	w8, [x22, #0x5]
+   38904:      	mov	x20, xzr
+   38908:      	mov	w8, wzr
+   3890c:      	adrp	x25, 0x94000
+   38910:      	add	x25, x25, #0x304
+   38914:      	cmp	x20, w24, sxtw
+   38918:      	b.ge	0x38948 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x590>
+   3891c:      	ldur	w9, [x25, #-0x4]
+   38920:      	subs	w9, w9, w8
+   38924:      	b.eq	0x3893c <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x584>
+   38928:      	sxtw	x2, w9
+   3892c:      	add	x1, x22, w8, sxtw
+   38930:      	mov	w0, w21
+   38934:      	bl	0x38a94 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x10>
+   38938:      	ldr	w24, [x23, #0x314]
+   3893c:      	ldr	w8, [x25], #0x8
+   38940:      	add	x20, x20, #0x1
+   38944:      	b	0x38914 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x55c>
+   38948:      	cmp	x19, w8, sxtw
+   3894c:      	b.eq	0x38964 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x5ac>
+   38950:      	sxtw	x8, w8
+   38954:      	mov	w0, w21
+   38958:      	sub	x2, x19, x8
+   3895c:      	add	x1, x22, x8
+   38960:      	bl	0x38a94 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x10>
+   38964:      	adrp	x8, 0x194000
+   38968:      	ldr	w9, [x8, #0x318]
+   3896c:      	add	w9, w9, #0x1
+   38970:      	str	w9, [x8, #0x318]
+   38974:      	bl	0x85400 <bytehook_get_mode@plt>
+   38978:      	cbnz	w0, 0x3898c <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv+0x5d4>
+   3897c:      	mov	x30, x26
+   38980:      	xpaclri
+   38984:      	mov	x0, x30
+   38988:      	bl	0x85410 <bytehook_pop_stack@plt>
+   3898c:      	mov	x0, x19
+   38990:      	ldp	x20, x19, [sp, #0x70]
+   38994:      	ldp	x22, x21, [sp, #0x60]
+   38998:      	ldp	x24, x23, [sp, #0x50]
+   3899c:      	ldp	x26, x25, [sp, #0x40]
+   389a0:      	ldp	x28, x27, [sp, #0x30]
+   389a4:      	ldp	x29, x30, [sp, #0x20]
+   389a8:      	add	sp, sp, #0x80
+   389ac:      	ret
+
+00000000000389b0 <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv>:
+   389b0:      	stp	x29, x30, [sp, #-0x20]!
+   389b4:      	str	x19, [sp, #0x10]
+   389b8:      	mov	x29, sp
+   389bc:      	adrp	x8, 0x194000
+   389c0:      	add	x8, x8, #0x320
+   389c4:      	ldarb	w8, [x8]
+   389c8:      	tbz	w8, #0x0, 0x389e0 <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv+0x30>
+   389cc:      	ldr	x19, [sp, #0x10]
+   389d0:      	adrp	x0, 0x194000
+   389d4:      	add	x0, x0, #0x308
+   389d8:      	ldp	x29, x30, [sp], #0x20
+   389dc:      	ret
+   389e0:      	adrp	x0, 0x194000
+   389e4:      	add	x0, x0, #0x320
+   389e8:      	bl	0x85200 <__cxa_guard_acquire@plt>
+   389ec:      	cbz	w0, 0x389cc <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv+0x1c>
+   389f0:      	adrp	x0, 0x194000
+   389f4:      	add	x0, x0, #0x308
+   389f8:      	bl	0x85430 <_ZN4kwai12leak_monitor10HprofStripC1Ev@plt>
+   389fc:      	adrp	x0, 0x194000
+   38a00:      	add	x0, x0, #0x320
+   38a04:      	bl	0x85220 <__cxa_guard_release@plt>
+   38a08:      	b	0x389cc <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv+0x1c>
+   38a0c:      	mov	x19, x0
+   38a10:      	adrp	x0, 0x194000
+   38a14:      	add	x0, x0, #0x320
+   38a18:      	bl	0x85230 <__cxa_guard_abort@plt>
+   38a1c:      	mov	x0, x19
+   38a20:      	bl	0x8130c <__emutls_get_address+0xe74>
+
+0000000000038a24 <_ZN4kwai12leak_monitor10HprofStripC2Ev>:
+   38a24:      	sub	sp, sp, #0x30
+   38a28:      	stp	x29, x30, [sp, #0x10]
+   38a2c:      	str	x19, [sp, #0x20]
+   38a30:      	add	x29, sp, #0x10
+   38a34:      	mrs	x19, TPIDR_EL0
+   38a38:      	nop
+   38a3c:      	adr	x0, #0x5b8c4
+   38a40:      	ldr	x8, [x19, #0x28]
+   38a44:      	add	x2, sp, #0x4
+   38a48:      	str	x8, [sp, #0x8]
+   38a4c:      	add	x8, x0, #0x100, lsl #12 // =0x100000
+   38a50:      	add	x1, x8, #0x8
+   38a54:      	str	wzr, [sp, #0x4]
+   38a58:      	bl	0x38a80 <_ZN4kwai12leak_monitor10HprofStripC2Ev+0x5c>
+   38a5c:      	ldr	x8, [x19, #0x28]
+   38a60:      	ldr	x9, [sp, #0x8]
+   38a64:      	cmp	x8, x9
+   38a68:      	b.ne	0x38a7c <_ZN4kwai12leak_monitor10HprofStripC2Ev+0x58>
+   38a6c:      	ldp	x29, x30, [sp, #0x10]
+   38a70:      	ldr	x19, [sp, #0x20]
+   38a74:      	add	sp, sp, #0x30
+   38a78:      	ret
+   38a7c:      	bl	0x85260 <__stack_chk_fail@plt>
+   38a80:      	b	0x38b38 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0xb4>
+
+0000000000038a84 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc>:
+   38a84:      	mov	x1, x0
+   38a88:      	nop
+   38a8c:      	adr	x0, #0x5b85c
+   38a90:      	b	0x85450 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6assignEPKc@plt>
+   38a94:      	stp	x29, x30, [sp, #-0x40]!
+   38a98:      	str	x23, [sp, #0x10]
+   38a9c:      	stp	x22, x21, [sp, #0x20]
+   38aa0:      	stp	x20, x19, [sp, #0x30]
+   38aa4:      	mov	x29, sp
+   38aa8:      	mov	x19, x2
+   38aac:      	mov	x20, x1
+   38ab0:      	mov	w21, w0
+   38ab4:      	nop
+   38ab8:      	adr	x22, #-0x24
+   38abc:      	mov	x23, x2
+   38ac0:      	cbz	x23, 0x38af4 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x70>
+   38ac4:      	mov	x0, x22
+   38ac8:      	bl	0x853e0 <bytehook_get_prev_func@plt>
+   38acc:      	sub	x9, x19, x23
+   38ad0:      	mov	x8, x0
+   38ad4:      	mov	w0, w21
+   38ad8:      	add	x1, x20, x9
+   38adc:      	mov	x2, x23
+   38ae0:      	blr	x8
+   38ae4:      	cmn	x0, #0x1
+   38ae8:      	csel	x8, xzr, x0, eq
+   38aec:      	sub	x23, x23, x8
+   38af0:      	cbnz	x23, 0x38ac4 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0x40>
+   38af4:      	mov	x0, x19
+   38af8:      	ldp	x20, x19, [sp, #0x30]
+   38afc:      	ldp	x22, x21, [sp, #0x20]
+   38b00:      	ldr	x23, [sp, #0x10]
+   38b04:      	ldp	x29, x30, [sp], #0x40
+   38b08:      	ret
+   38b0c:      	sub	w8, w0, #0x2
+   38b10:      	and	w9, w8, #0xff
+   38b14:      	cmp	w9, #0x9
+   38b18:      	b.hi	0x38b30 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0xac>
+   38b1c:      	and	x8, x8, #0xff
+   38b20:      	nop
+   38b24:      	adr	x9, #-0x150dc
+   38b28:      	ldr	w0, [x9, x8, lsl #2]
+   38b2c:      	ret
+   38b30:      	mov	w0, wzr
+   38b34:      	ret
+   38b38:      	sub	x8, x1, x0
+   38b3c:      	asr	x1, x8, #2
+   38b40:      	b	0x38b44 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0xc0>
+   38b44:      	subs	x1, x1, #0x1
+   38b48:      	b.lt	0x38b58 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0xd4>
+   38b4c:      	ldr	w8, [x2]
+   38b50:      	str	w8, [x0], #0x4
+   38b54:      	b	0x38b44 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc+0xc0>
+   38b58:      	ret
+   38b5c:      	stp	x29, x30, [sp, #-0x20]!
+   38b60:      	str	x19, [sp, #0x10]
+   38b64:      	mov	x29, sp
+   38b68:      	nop
+   38b6c:      	adr	x19, #0x5b77c
+   38b70:      	nop
+   38b74:      	adr	x1, #-0x16e81
+   38b78:      	mov	x0, x19
+   38b7c:      	bl	0x85380 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc@plt>
+   38b80:      	adrp	x0, 0x8e000 <_ZTISt10bad_typeid+0x1e48>
+   38b84:      	mov	x1, x19
+   38b88:      	nop
+   38b8c:      	adr	x2, #0x52444
+   38b90:      	ldr	x0, [x0, #0xed0]
+   38b94:      	ldr	x19, [sp, #0x10]
+   38b98:      	ldp	x29, x30, [sp], #0x20
+   38b9c:      	b	0x851d0 <__cxa_atexit@plt>
+   38ba0:      	mov	x2, x20
+   38ba4:      	mov	x3, x21
+   38ba8:      	mov	x4, xzr
+   38bac:      	mov	x5, xzr
+   38bb0:      	b	0x853d0 <bytehook_hook_single@plt>
+
+0000000000038bb4 <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_nativeInit>:
+   38bb4:      	stp	x29, x30, [sp, #-0x10]!
+   38bb8:      	mov	x29, sp
+   38bbc:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38bc0:      	ldp	x29, x30, [sp], #0x10
+   38bc4:      	b	0x85270 <_ZN4kwai12leak_monitor9HprofDump10InitializeEv@plt>
+
+0000000000038bc8 <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_suspendAndFork>:
+   38bc8:      	stp	x29, x30, [sp, #-0x10]!
+   38bcc:      	mov	x29, sp
+   38bd0:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38bd4:      	ldp	x29, x30, [sp], #0x10
+   38bd8:      	b	0x852e0 <_ZN4kwai12leak_monitor9HprofDump14SuspendAndForkEv@plt>
+
+0000000000038bdc <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_exitProcess>:
+   38bdc:      	stp	x29, x30, [sp, #-0x10]!
+   38be0:      	mov	x29, sp
+   38be4:      	bl	0x85470 <getpid@plt>
+   38be8:      	mov	w3, w0
+   38bec:      	nop
+   38bf0:      	adr	x1, #-0x161bf
+   38bf4:      	adrp	x2, 0x21000
+   38bf8:      	add	x2, x2, #0x9cb
+   38bfc:      	mov	w0, #0x4
+   38c00:      	bl	0x85340 <__android_log_print@plt>
+   38c04:      	mov	w0, wzr
+   38c08:      	bl	0x85480 <_exit@plt>
+
+0000000000038c0c <Java_com_kwai_koom_fastdump_ForkJvmHeapDumper_resumeAndWait>:
+   38c0c:      	stp	x29, x30, [sp, #-0x20]!
+   38c10:      	str	x19, [sp, #0x10]
+   38c14:      	mov	x29, sp
+   38c18:      	mov	w19, w2
+   38c1c:      	bl	0x851f0 <_ZN4kwai12leak_monitor9HprofDump11GetInstanceEv@plt>
+   38c20:      	mov	w1, w19
+   38c24:      	bl	0x85320 <_ZN4kwai12leak_monitor9HprofDump13ResumeAndWaitEi@plt>
+   38c28:      	ldr	x19, [sp, #0x10]
+   38c2c:      	and	w0, w0, #0x1
+   38c30:      	ldp	x29, x30, [sp], #0x20
+   38c34:      	ret
+
+0000000000038c38 <Java_com_kwai_koom_javaoom_hprof_ForkStripHeapDumper_initStripDump>:
+   38c38:      	b	0x853b0 <_ZN4kwai12leak_monitor10HprofStrip8HookInitEv@plt>
+
+0000000000038c3c <Java_com_kwai_koom_javaoom_hprof_ForkStripHeapDumper_hprofName>:
+   38c3c:      	stp	x29, x30, [sp, #-0x30]!
+   38c40:      	str	x21, [sp, #0x10]
+   38c44:      	stp	x20, x19, [sp, #0x20]
+   38c48:      	mov	x29, sp
+   38c4c:      	ldr	x8, [x0]
+   38c50:      	mov	x20, x2
+   38c54:      	mov	x1, x2
+   38c58:      	mov	x2, xzr
+   38c5c:      	mov	x19, x0
+   38c60:      	ldr	x8, [x8, #0x548]
+   38c64:      	blr	x8
+   38c68:      	mov	x21, x0
+   38c6c:      	bl	0x85420 <_ZN4kwai12leak_monitor10HprofStrip11GetInstanceEv@plt>
+   38c70:      	mov	x0, x21
+   38c74:      	bl	0x85440 <_ZN4kwai12leak_monitor10HprofStrip12SetHprofNameEPKc@plt>
+   38c78:      	ldr	x8, [x19]
+   38c7c:      	mov	x0, x19
+   38c80:      	mov	x1, x20
+   38c84:      	ldp	x20, x19, [sp, #0x20]
+   38c88:      	mov	x2, x21
+   38c8c:      	ldr	x3, [x8, #0x550]
+   38c90:      	ldr	x21, [sp, #0x10]
+   38c94:      	ldp	x29, x30, [sp], #0x30
+   38c98:      	br	x3
+   38c9c:      	stp	x29, x30, [sp, #-0x20]!
+   38ca0:      	str	x19, [sp, #0x10]
+   38ca4:      	mov	x29, sp
+   38ca8:      	adrp	x19, 0x194000
+   38cac:      	add	x19, x19, #0x328
+   38cb0:      	nop
+   38cb4:      	adr	x1, #-0x16fc1
+   38cb8:      	mov	x0, x19
+   38cbc:      	bl	0x85380 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc@plt>
+   38cc0:      	adrp	x0, 0x8e000 <_ZTISt10bad_typeid+0x1e48>
+   38cc4:      	mov	x1, x19
+   38cc8:      	nop
+   38ccc:      	adr	x2, #0x52304
+   38cd0:      	ldr	x0, [x0, #0xed0]
+   38cd4:      	ldr	x19, [sp, #0x10]
+   38cd8:      	ldp	x29, x30, [sp], #0x20
+   38cdc:      	b	0x851d0 <__cxa_atexit@plt>
+
+0000000000038ce0 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE>:
+   38ce0:      	stp	x29, x30, [sp, #-0x20]!
+   38ce4:      	stp	x20, x19, [sp, #0x10]
+   38ce8:      	mov	x29, sp
+   38cec:      	movi	v0.2d, #0000000000000000
+   38cf0:      	str	wzr, [x0, #0x30]
+   38cf4:      	mov	x19, x0
+   38cf8:      	stp	xzr, xzr, [x0, #0x38]
+   38cfc:      	mov	x20, x1
+   38d00:      	str	wzr, [x0, #0x48]
+   38d04:      	strb	wzr, [x19, #0x68]
+   38d08:      	stp	q0, q0, [x0]
+   38d0c:      	str	q0, [x0, #0x20]
+   38d10:      	ldr	x0, [x1]
+   38d14:      	strb	wzr, [x19, #0x98]
+   38d18:      	ldr	x8, [x0]
+   38d1c:      	ldr	x8, [x8, #0x10]
+   38d20:      	blr	x8
+   38d24:      	tbz	w0, #0x0, 0x38d3c <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0x5c>
+   38d28:      	mov	x0, x19
+   38d2c:      	mov	x1, x20
+   38d30:      	ldp	x20, x19, [sp, #0x10]
+   38d34:      	ldp	x29, x30, [sp], #0x20
+   38d38:      	b	0x38d5c <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0x7c>
+   38d3c:      	ldp	x20, x19, [sp, #0x10]
+   38d40:      	ldp	x29, x30, [sp], #0x20
+   38d44:      	ret
+   38d48:      	mov	x20, x0
+   38d4c:      	mov	x0, x19
+   38d50:      	bl	0x38dd4 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf4>
+   38d54:      	mov	x0, x20
+   38d58:      	bl	0x8130c <__emutls_get_address+0xe74>
+   38d5c:      	sub	sp, sp, #0x50
+   38d60:      	stp	x29, x30, [sp, #0x20]
+   38d64:      	stp	x22, x21, [sp, #0x30]
+   38d68:      	stp	x20, x19, [sp, #0x40]
+   38d6c:      	add	x29, sp, #0x20
+   38d70:      	mrs	x20, TPIDR_EL0
+   38d74:      	mov	x19, x0
+   38d78:      	ldr	x8, [x20, #0x28]
+   38d7c:      	stur	x8, [x29, #-0x8]
+   38d80:      	ldp	x22, x21, [x1]
+   38d84:      	cbz	x21, 0x38d94 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xb4>
+   38d88:      	add	x1, x21, #0x8
+   38d8c:      	mov	w0, #0x1
+   38d90:      	bl	0x81080 <__emutls_get_address+0xbe8>
+   38d94:      	ldr	q0, [x19]
+   38d98:      	mov	x0, sp
+   38d9c:      	stp	x22, x21, [x19]
+   38da0:      	str	q0, [sp]
+   38da4:      	bl	0x38dd4 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf4>
+   38da8:      	ldr	x8, [x20, #0x28]
+   38dac:      	ldur	x9, [x29, #-0x8]
+   38db0:      	cmp	x8, x9
+   38db4:      	b.ne	0x38dd0 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf0>
+   38db8:      	mov	x0, x19
+   38dbc:      	ldp	x20, x19, [sp, #0x40]
+   38dc0:      	ldp	x22, x21, [sp, #0x30]
+   38dc4:      	ldp	x29, x30, [sp, #0x20]
+   38dc8:      	add	sp, sp, #0x50
+   38dcc:      	ret
+   38dd0:      	bl	0x85260 <__stack_chk_fail@plt>
+   38dd4:      	ldr	x0, [x0, #0x8]
+   38dd8:      	cbz	x0, 0x38de0 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0x100>
+   38ddc:      	b	0x39708 <_ZN4kwai6linker9ElfReader7GnuHash4HashEPKh+0xa0>
+   38de0:      	ret
+
+0000000000038de4 <_ZN4kwai6linker9ElfReader10IsValidElfEv>:
+   38de4:      	ldr	x8, [x0]
+   38de8:      	cbz	x8, 0x38e08 <_ZN4kwai6linker9ElfReader10IsValidElfEv+0x24>
+   38dec:      	ldr	x8, [x8, #0x8]
+   38df0:      	mov	w9, #0x457f
+   38df4:      	movk	w9, #0x464c, lsl #16
+   38df8:      	ldr	w8, [x8]
+   38dfc:      	cmp	w8, w9
+   38e00:      	cset	w0, eq
+   38e04:      	ret
+   38e08:      	mov	w0, wzr
+   38e0c:      	ret
+
+0000000000038e10 <_ZN4kwai6linker9ElfReader4InitEv>:
+   38e10:      	stp	x29, x30, [sp, #-0x60]!
+   38e14:      	stp	x28, x27, [sp, #0x10]
+   38e18:      	stp	x26, x25, [sp, #0x20]
+   38e1c:      	stp	x24, x23, [sp, #0x30]
+   38e20:      	stp	x22, x21, [sp, #0x40]
+   38e24:      	stp	x20, x19, [sp, #0x50]
+   38e28:      	mov	x29, sp
+   38e2c:      	mov	x19, x0
+   38e30:      	bl	0x85490 <_ZN4kwai6linker9ElfReader10IsValidElfEv@plt>
+   38e34:      	tbz	w0, #0x0, 0x38e4c <_ZN4kwai6linker9ElfReader4InitEv+0x3c>
+   38e38:      	ldr	x23, [x19]
+   38e3c:      	ldp	x28, x9, [x23, #0x8]
+   38e40:      	ldrh	w8, [x28, #0x34]
+   38e44:      	cmp	x9, x8
+   38e48:      	b.hs	0x38e6c <_ZN4kwai6linker9ElfReader4InitEv+0x5c>
+   38e4c:      	mov	w0, wzr
+   38e50:      	ldp	x20, x19, [sp, #0x50]
+   38e54:      	ldp	x22, x21, [sp, #0x40]
+   38e58:      	ldp	x24, x23, [sp, #0x30]
+   38e5c:      	ldp	x26, x25, [sp, #0x20]
+   38e60:      	ldp	x28, x27, [sp, #0x10]
+   38e64:      	ldp	x29, x30, [sp], #0x60
+   38e68:      	ret
+   38e6c:      	ldrh	w8, [x28, #0x3c]
+   38e70:      	ldrh	w11, [x28, #0x3a]
+   38e74:      	ldr	x10, [x28, #0x28]
+   38e78:      	nop
+   38e7c:      	umaddl	x11, w11, w8, x10
+   38e80:      	cmp	x9, x11
+   38e84:      	b.hs	0x38e94 <_ZN4kwai6linker9ElfReader4InitEv+0x84>
+   38e88:      	mov	w0, wzr
+   38e8c:      	str	xzr, [x19, #0x10]
+   38e90:      	b	0x38e50 <_ZN4kwai6linker9ElfReader4InitEv+0x40>
+   38e94:      	adds	x10, x10, x28
+   38e98:      	str	x10, [x19, #0x10]
+   38e9c:      	b.eq	0x38e4c <_ZN4kwai6linker9ElfReader4InitEv+0x3c>
+   38ea0:      	ldrh	w11, [x28, #0x3e]
+   38ea4:      	add	x11, x10, x11, lsl #6
+   38ea8:      	ldp	x10, x11, [x11, #0x18]
+   38eac:      	add	x11, x11, x10
+   38eb0:      	cmp	x9, x11
+   38eb4:      	b.lo	0x38e4c <_ZN4kwai6linker9ElfReader4InitEv+0x3c>
+   38eb8:      	adds	x24, x10, x28
+   38ebc:      	b.eq	0x38e4c <_ZN4kwai6linker9ElfReader4InitEv+0x3c>
+   38ec0:      	mov	x25, xzr
+   38ec4:      	mov	x26, xzr
+   38ec8:      	nop
+   38ecc:      	adr	x27, #-0x1545c
+   38ed0:      	adrp	x22, 0x22000
+   38ed4:      	add	x22, x22, #0xa3b
+   38ed8:      	cmp	x26, x8
+   38edc:      	b.hs	0x3901c <_ZN4kwai6linker9ElfReader4InitEv+0x20c>
+   38ee0:      	ldr	x21, [x19, #0x10]
+   38ee4:      	add	x8, x21, x25
+   38ee8:      	ldr	x20, [x8, #0x20]
+   38eec:      	cbz	x20, 0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38ef0:      	ldr	w9, [x8, #0x4]
+   38ef4:      	sub	w9, w9, #0x1
+   38ef8:      	cmp	w9, #0xa
+   38efc:      	b.hi	0x38f40 <_ZN4kwai6linker9ElfReader4InitEv+0x130>
+   38f00:      	adr	x10, #0x10
+   38f04:      	ldrb	w11, [x27, x9]
+   38f08:      	add	x10, x10, x11, lsl #2
+   38f0c:      	br	x10
+   38f10:      	ldr	w8, [x8]
+   38f14:      	adrp	x1, 0x23000
+   38f18:      	add	x1, x1, #0x1eb
+   38f1c:      	add	x0, x24, x8
+   38f20:      	bl	0x854b0 <strcmp@plt>
+   38f24:      	cbnz	w0, 0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38f28:      	add	x8, x21, x25
+   38f2c:      	ldr	x9, [x23, #0x10]
+   38f30:      	str	w20, [x19, #0x48]
+   38f34:      	bl	0x39a10 <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x48>
+   38f38:      	str	x8, [x19, #0x40]
+   38f3c:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38f40:      	ldr	w8, [x8]
+   38f44:      	adrp	x1, 0x21000
+   38f48:      	add	x1, x1, #0x6a7
+   38f4c:      	add	x0, x24, x8
+   38f50:      	bl	0x854b0 <strcmp@plt>
+   38f54:      	cbnz	w0, 0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38f58:      	bl	0x399ec <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x24>
+   38f5c:      	bl	0x854c0 <_ZN4kwai6linker9ElfReader12BuildGnuHashEPj@plt>
+   38f60:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38f64:      	add	x8, x21, x25
+   38f68:      	ldr	x10, [x23, #0x10]
+   38f6c:      	mov	x1, x22
+   38f70:      	ldr	x9, [x8, #0x18]
+   38f74:      	ldr	w21, [x8]
+   38f78:      	add	x11, x9, x20
+   38f7c:      	add	x9, x9, x28
+   38f80:      	add	x0, x24, x21
+   38f84:      	cmp	x10, x11
+   38f88:      	csel	x20, xzr, x9, lo
+   38f8c:      	bl	0x854b0 <strcmp@plt>
+   38f90:      	cbz	w0, 0x39000 <_ZN4kwai6linker9ElfReader4InitEv+0x1f0>
+   38f94:      	add	x0, x24, x21
+   38f98:      	adrp	x1, 0x23000
+   38f9c:      	add	x1, x1, #0xa8
+   38fa0:      	bl	0x854b0 <strcmp@plt>
+   38fa4:      	cbnz	w0, 0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38fa8:      	str	x20, [x19, #0x38]
+   38fac:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38fb0:      	add	x8, x21, x25
+   38fb4:      	ldr	x10, [x23, #0x10]
+   38fb8:      	ldr	x9, [x8, #0x38]
+   38fbc:      	ldr	x8, [x8, #0x18]
+   38fc0:      	udiv	x9, x20, x9
+   38fc4:      	add	x11, x8, x20
+   38fc8:      	add	x8, x8, x28
+   38fcc:      	cmp	x10, x11
+   38fd0:      	csel	x8, xzr, x8, lo
+   38fd4:      	str	x8, [x19, #0x28]
+   38fd8:      	str	w9, [x19, #0x30]
+   38fdc:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38fe0:      	bl	0x399ec <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x24>
+   38fe4:      	bl	0x854d0 <_ZN4kwai6linker9ElfReader9BuildHashEPj@plt>
+   38fe8:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   38fec:      	add	x8, x21, x25
+   38ff0:      	ldr	x9, [x23, #0x10]
+   38ff4:      	bl	0x39a10 <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x48>
+   38ff8:      	str	x8, [x19, #0x18]
+   38ffc:      	b	0x39004 <_ZN4kwai6linker9ElfReader4InitEv+0x1f4>
+   39000:      	str	x20, [x19, #0x20]
+   39004:      	ldr	x23, [x19]
+   39008:      	add	x26, x26, #0x1
+   3900c:      	add	x25, x25, #0x40
+   39010:      	ldr	x28, [x23, #0x8]
+   39014:      	ldrh	w8, [x28, #0x3c]
+   39018:      	b	0x38ed8 <_ZN4kwai6linker9ElfReader4InitEv+0xc8>
+   3901c:      	mov	w0, #0x1
+   39020:      	b	0x38e50 <_ZN4kwai6linker9ElfReader4InitEv+0x40>
+
+0000000000039024 <_ZN4kwai6linker9ElfReader12IsValidRangeEl>:
+   39024:      	ldr	x8, [x0]
+   39028:      	ldr	x8, [x8, #0x10]
+   3902c:      	cmp	x8, x1
+   39030:      	cset	w0, hs
+   39034:      	ret
+
+0000000000039038 <_ZN4kwai6linker9ElfReader9BuildHashEPj>:
+   39038:      	cbz	x1, 0x39060 <_ZN4kwai6linker9ElfReader9BuildHashEPj+0x28>
+   3903c:      	ldr	w8, [x1]
+   39040:      	add	x9, x1, #0x8
+   39044:      	str	w8, [x0, #0x50]
+   39048:      	add	x8, x9, x8, lsl #2
+   3904c:      	ldr	w10, [x1, #0x4]
+   39050:      	stp	x9, x8, [x0, #0x58]
+   39054:      	mov	w8, #0x1
+   39058:      	str	w10, [x0, #0x54]
+   3905c:      	strb	w8, [x0, #0x68]
+   39060:      	ret
+
+0000000000039064 <_ZN4kwai6linker9ElfReader12BuildGnuHashEPj>:
+   39064:      	cbz	x1, 0x390ac <_ZN4kwai6linker9ElfReader12BuildGnuHashEPj+0x48>
+   39068:      	ldr	w8, [x1]
+   3906c:      	add	x10, x1, #0x10
+   39070:      	str	w8, [x0, #0x70]
+   39074:      	ldr	w9, [x1, #0x8]
+   39078:      	str	w9, [x0, #0x74]
+   3907c:      	add	x12, x10, x9, lsl #3
+   39080:      	sub	w9, w9, #0x1
+   39084:      	ldr	w11, [x1, #0xc]
+   39088:      	add	x8, x12, x8, lsl #2
+   3908c:      	stp	x10, x12, [x0, #0x80]
+   39090:      	str	w11, [x0, #0x78]
+   39094:      	ldr	w11, [x1, #0x4]
+   39098:      	str	w9, [x0, #0x74]
+   3909c:      	mov	w9, #0x1
+   390a0:      	strb	w9, [x0, #0x98]
+   390a4:      	sub	x8, x8, x11, lsl #2
+   390a8:      	str	x8, [x0, #0x90]
+   390ac:      	ret
+
+00000000000390b0 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb>:
+   390b0:      	sub	sp, sp, #0x130
+   390b4:      	stp	x29, x30, [sp, #0xe0]
+   390b8:      	stp	x28, x25, [sp, #0xf0]
+   390bc:      	stp	x24, x23, [sp, #0x100]
+   390c0:      	stp	x22, x21, [sp, #0x110]
+   390c4:      	stp	x20, x19, [sp, #0x120]
+   390c8:      	add	x29, sp, #0xe0
+   390cc:      	mrs	x23, TPIDR_EL0
+   390d0:      	ldr	x8, [x23, #0x28]
+   390d4:      	stur	x8, [x29, #-0x8]
+   390d8:      	cbz	x1, 0x39120 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x70>
+   390dc:      	ldrb	w8, [x0, #0x98]
+   390e0:      	mov	w22, w3
+   390e4:      	mov	x19, x2
+   390e8:      	mov	x20, x1
+   390ec:      	mov	x21, x0
+   390f0:      	cbz	w8, 0x3910c <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x5c>
+   390f4:      	mov	x0, x21
+   390f8:      	mov	x1, x20
+   390fc:      	bl	0x854f0 <_ZN4kwai6linker9ElfReader15LookupByGnuHashEPKc@plt>
+   39100:      	cbz	x0, 0x3911c <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x6c>
+   39104:      	add	x21, x0, x19
+   39108:      	b	0x39124 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x74>
+   3910c:      	mov	x0, x21
+   39110:      	mov	x1, x20
+   39114:      	bl	0x85500 <_ZN4kwai6linker9ElfReader15LookupByElfHashEPKc@plt>
+   39118:      	cbnz	x0, 0x39104 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x54>
+   3911c:      	tbz	w22, #0x0, 0x39150 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0xa0>
+   39120:      	mov	x21, xzr
+   39124:      	ldr	x8, [x23, #0x28]
+   39128:      	bl	0x39a30 <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x68>
+   3912c:      	b.ne	0x39278 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x1c8>
+   39130:      	mov	x0, x21
+   39134:      	ldp	x20, x19, [sp, #0x120]
+   39138:      	ldp	x22, x21, [sp, #0x110]
+   3913c:      	ldp	x24, x23, [sp, #0x100]
+   39140:      	ldp	x28, x25, [sp, #0xf0]
+   39144:      	ldp	x29, x30, [sp, #0xe0]
+   39148:      	add	sp, sp, #0x130
+   3914c:      	ret
+   39150:      	ldr	x8, [x21, #0x28]
+   39154:      	ldr	w22, [x21, #0x30]
+   39158:      	ldr	x25, [x21, #0x38]
+   3915c:      	add	x24, x8, #0x8
+   39160:      	cbz	x22, 0x39198 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0xe8>
+   39164:      	ldurb	w8, [x24, #-0x4]
+   39168:      	and	w8, w8, #0xf
+   3916c:      	sub	w8, w8, #0x1
+   39170:      	cmp	w8, #0x1
+   39174:      	b.hi	0x3918c <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0xdc>
+   39178:      	ldur	w8, [x24, #-0x8]
+   3917c:      	mov	x1, x20
+   39180:      	add	x0, x25, x8
+   39184:      	bl	0x854b0 <strcmp@plt>
+   39188:      	cbz	w0, 0x39224 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x174>
+   3918c:      	add	x24, x24, #0x18
+   39190:      	sub	x22, x22, #0x1
+   39194:      	cbnz	x22, 0x39164 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0xb4>
+   39198:      	stp	xzr, xzr, [sp, #0x20]
+   3919c:      	str	xzr, [sp, #0x30]
+   391a0:      	add	x1, sp, #0x20
+   391a4:      	mov	x0, x21
+   391a8:      	bl	0x85510 <_ZN4kwai6linker9ElfReader15DecGnuDebugdataERNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE@plt>
+   391ac:      	tbz	w0, #0x0, 0x39218 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x168>
+   391b0:      	mov	x8, sp
+   391b4:      	add	x0, sp, #0x20
+   391b8:      	bl	0x395e4 <_ZN4kwai6linker9ElfReader15DecGnuDebugdataERNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x1c8>
+   391bc:      	ldr	q0, [sp]
+   391c0:      	stp	xzr, xzr, [sp]
+   391c4:      	str	q0, [sp, #0x10]
+   391c8:      	add	x0, sp, #0x38
+   391cc:      	add	x1, sp, #0x10
+   391d0:      	bl	0x85520 <_ZN4kwai6linker9ElfReaderC1ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE@plt>
+   391d4:      	add	x0, sp, #0x10
+   391d8:      	bl	0x38dd4 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf4>
+   391dc:      	mov	x0, sp
+   391e0:      	bl	0x39630 <_ZN4kwai6linker9ElfReader15DecGnuDebugdataERNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x214>
+   391e4:      	add	x0, sp, #0x38
+   391e8:      	bl	0x854a0 <_ZN4kwai6linker9ElfReader4InitEv@plt>
+   391ec:      	mov	w22, w0
+   391f0:      	tbz	w0, #0x0, 0x3920c <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x15c>
+   391f4:      	add	x0, sp, #0x38
+   391f8:      	mov	x1, x20
+   391fc:      	mov	x2, x19
+   39200:      	mov	w3, wzr
+   39204:      	bl	0x854e0 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb@plt>
+   39208:      	mov	x21, x0
+   3920c:      	add	x0, sp, #0x38
+   39210:      	bl	0x38dd4 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf4>
+   39214:      	tbnz	w22, #0x0, 0x3921c <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x16c>
+   39218:      	mov	x21, xzr
+   3921c:      	bl	0x39a28 <_ZN4kwai6linker16MemoryElfWrapper7IsValidEv+0x60>
+   39220:      	b	0x39124 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x74>
+   39224:      	ldr	x8, [x24]
+   39228:      	add	x21, x8, x19
+   3922c:      	b	0x39124 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x74>
+   39230:      	mov	x19, x0
+   39234:      	add	x0, sp, #0x38
+   39238:      	bl	0x38dd4 <_ZN4kwai6linker9ElfReaderC2ENSt6__ndk110shared_ptrINS0_10ElfWrapperEEE+0xf4>
+   3923c:      	b	0x39260 <_ZN4kwai6linker9ElfReader12LookupSymbolEPKcyb+0x1b0>

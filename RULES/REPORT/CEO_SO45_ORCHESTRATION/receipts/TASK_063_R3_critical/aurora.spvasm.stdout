@@ -1,0 +1,93 @@
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 11
+; Bound: 94
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Fragment %4 "main" %18 %85
+               OpExecutionMode %4 OriginUpperLeft
+               OpDecorate %14 RelaxedPrecision
+               OpDecorate %14 DescriptorSet 0
+               OpDecorate %14 Binding 1
+               OpDecorate %15 RelaxedPrecision
+               OpDecorate %18 Location 0
+               OpDecorate %21 RelaxedPrecision
+               OpDecorate %24 RelaxedPrecision
+               OpMemberDecorate %32 0 RelaxedPrecision
+               OpMemberDecorate %32 0 Offset 0
+               OpMemberDecorate %32 1 RelaxedPrecision
+               OpMemberDecorate %32 1 Offset 8
+               OpDecorate %32 Block
+               OpDecorate %34 DescriptorSet 0
+               OpDecorate %34 Binding 0
+               OpDecorate %39 RelaxedPrecision
+               OpDecorate %41 RelaxedPrecision
+               OpDecorate %43 RelaxedPrecision
+               OpDecorate %44 RelaxedPrecision
+               OpDecorate %46 RelaxedPrecision
+               OpDecorate %55 RelaxedPrecision
+               OpDecorate %56 RelaxedPrecision
+               OpDecorate %65 RelaxedPrecision
+               OpDecorate %67 RelaxedPrecision
+               OpDecorate %68 RelaxedPrecision
+               OpDecorate %79 RelaxedPrecision
+               OpDecorate %80 RelaxedPrecision
+               OpDecorate %85 Location 0
+          %2 = OpTypeVoid
+          %3 = OpTypeFunction %2
+          %6 = OpTypeFloat 32
+         %11 = OpTypeImage %6 2D 0 0 0 1 Unknown
+         %12 = OpTypeSampledImage %11
+         %13 = OpTypePointer UniformConstant %12
+         %14 = OpVariable %13 UniformConstant
+         %16 = OpTypeVector %6 2
+         %17 = OpTypePointer Input %16
+         %18 = OpVariable %17 Input
+         %20 = OpTypeVector %6 4
+         %26 = OpConstant %6 0.398943007
+         %32 = OpTypeStruct %16 %6
+         %33 = OpTypePointer Uniform %32
+         %34 = OpVariable %33 Uniform
+         %35 = OpTypeInt 32 1
+         %36 = OpConstant %35 0
+         %37 = OpTypePointer Uniform %16
+         %40 = OpConstant %6 1.18242502
+         %45 = OpConstant %6 0.295962989
+         %64 = OpConstant %6 3.0293119
+         %69 = OpConstant %6 0.00456599984
+         %84 = OpTypePointer Output %20
+         %85 = OpVariable %84 Output
+         %89 = OpConstant %6 1
+          %4 = OpFunction %2 None %3
+          %5 = OpLabel
+         %15 = OpLoad %12 %14
+         %19 = OpLoad %16 %18
+         %21 = OpImageSampleImplicitLod %20 %15 %19
+         %24 = OpCompositeExtract %6 %21 0
+         %38 = OpAccessChain %37 %34 %36
+         %39 = OpLoad %16 %38
+         %41 = OpVectorTimesScalar %16 %39 %40
+         %42 = OpFSub %16 %19 %41
+         %43 = OpImageSampleImplicitLod %20 %15 %42
+         %44 = OpCompositeExtract %6 %43 0
+         %46 = OpFMul %6 %44 %45
+         %48 = OpExtInst %6 %1 Fma %24 %26 %46
+         %54 = OpFAdd %16 %19 %41
+         %55 = OpImageSampleImplicitLod %20 %15 %54
+         %56 = OpCompositeExtract %6 %55 0
+         %59 = OpExtInst %6 %1 Fma %56 %45 %48
+         %65 = OpVectorTimesScalar %16 %39 %64
+         %66 = OpFSub %16 %19 %65
+         %67 = OpImageSampleImplicitLod %20 %15 %66
+         %68 = OpCompositeExtract %6 %67 0
+         %72 = OpExtInst %6 %1 Fma %68 %69 %59
+         %78 = OpFAdd %16 %19 %65
+         %79 = OpImageSampleImplicitLod %20 %15 %78
+         %80 = OpCompositeExtract %6 %79 0
+         %83 = OpExtInst %6 %1 Fma %80 %69 %72
+         %93 = OpCompositeConstruct %20 %83 %83 %83 %89
+               OpStore %85 %93
+               OpReturn
+               OpFunctionEnd

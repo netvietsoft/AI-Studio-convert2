@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbmpKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000034470 <.text>:
+   34470:      	bti	c
+   34474:      	nop
+   34478:      	adr	x0, #0x45418
+   3447c:      	b	0x749b0 <__cxa_finalize@plt>
+   34480:      	bti	c
+   34484:      	ret
+   34488:      	bti	c
+   3448c:      	b	0x6fa38 <__emutls_get_address+0x1ec>
+   34490:      	bti	c
+   34494:      	cbz	x0, 0x344a0 <.text+0x30>
+   34498:      	mov	x16, x0
+   3449c:      	br	x16
+   344a0:      	ret
+   344a4:      	bti	c
+   344a8:      	mov	x1, x0
+   344ac:      	nop
+   344b0:      	adr	x0, #-0x20
+   344b4:      	nop
+   344b8:      	adr	x2, #0x453d8
+   344bc:      	b	0x749c0 <__cxa_atexit@plt>
+   344c0:      	bti	c
+   344c4:      	nop
+   344c8:      	adr	x3, #0x453c8
+   344cc:      	b	0x749d0 <__register_atfork@plt>
+
+00000000000344d0 <JNI_OnLoad>:
+   344d0:      	sub	sp, sp, #0x40
+   344d4:      	stp	x29, x30, [sp, #0x30]
+   344d8:      	add	x29, sp, #0x30
+   344dc:      	mrs	x8, TPIDR_EL0
+   344e0:      	ldr	x8, [x8, #0x28]
+   344e4:      	stur	x8, [x29, #-0x8]
+   344e8:      	str	x0, [sp, #0x10]
+   344ec:      	str	x1, [sp, #0x8]
+   344f0:      	mov	x8, xzr
+   344f4:      	stur	x8, [x29, #-0x10]
+   344f8:      	ldr	x0, [sp, #0x10]
+   344fc:      	sub	x1, x29, #0x10
+   34500:      	mov	w2, #0x4
+   34504:      	movk	w2, #0x1, lsl #16
+   34508:      	bl	0x749e0 <_ZN7_JavaVM6GetEnvEPPvi@plt>
+   3450c:      	cbz	w0, 0x34538 <JNI_OnLoad+0x68>
+   34510:      	b	0x34514 <JNI_OnLoad+0x44>
+   34514:      	nop
+   34518:      	adr	x1, #-0x1a6c4
+   3451c:      	adrp	x2, 0x1a000
+   34520:      	add	x2, x2, #0x9d4
+   34524:      	mov	w0, #0x6
+   34528:      	bl	0x749f0 <__android_log_print@plt>
+   3452c:      	mov	w8, #-0x1
+   34530:      	stur	w8, [x29, #-0x14]
+   34534:      	b	0x3457c <JNI_OnLoad+0xac>
+   34538:      	ldur	x0, [x29, #-0x10]
+   3453c:      	bl	0x74a00 <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv@plt>
+   34540:      	cbz	w0, 0x3456c <JNI_OnLoad+0x9c>
+   34544:      	b	0x34548 <JNI_OnLoad+0x78>
+   34548:      	nop
+   3454c:      	adr	x1, #-0x1a6f8
+   34550:      	adrp	x2, 0x1a000
+   34554:      	add	x2, x2, #0x209
+   34558:      	mov	w0, #0x6
+   3455c:      	bl	0x749f0 <__android_log_print@plt>
+   34560:      	mov	w8, #-0x1
+   34564:      	stur	w8, [x29, #-0x14]
+   34568:      	b	0x3457c <JNI_OnLoad+0xac>
+   3456c:      	mov	w8, #0x4
+   34570:      	movk	w8, #0x1, lsl #16
+   34574:      	stur	w8, [x29, #-0x14]
+   34578:      	b	0x3457c <JNI_OnLoad+0xac>
+   3457c:      	ldur	w0, [x29, #-0x14]
+   34580:      	str	w0, [sp, #0x4]
+   34584:      	mrs	x8, TPIDR_EL0
+   34588:      	ldr	x8, [x8, #0x28]
+   3458c:      	ldur	x9, [x29, #-0x8]
+   34590:      	subs	x8, x8, x9
+   34594:      	b.ne	0x345ac <JNI_OnLoad+0xdc>
+   34598:      	b	0x3459c <JNI_OnLoad+0xcc>
+   3459c:      	ldr	w0, [sp, #0x4]
+   345a0:      	ldp	x29, x30, [sp, #0x30]
+   345a4:      	add	sp, sp, #0x40
+   345a8:      	ret
+   345ac:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+00000000000345b0 <_ZN7_JavaVM6GetEnvEPPvi>:
+   345b0:      	sub	sp, sp, #0x30
+   345b4:      	stp	x29, x30, [sp, #0x20]
+   345b8:      	add	x29, sp, #0x20
+   345bc:      	stur	x0, [x29, #-0x8]
+   345c0:      	str	x1, [sp, #0x10]
+   345c4:      	str	w2, [sp, #0xc]
+   345c8:      	ldur	x0, [x29, #-0x8]
+   345cc:      	ldr	x8, [x0]
+   345d0:      	ldr	x8, [x8, #0x30]
+   345d4:      	ldr	x1, [sp, #0x10]
+   345d8:      	ldr	w2, [sp, #0xc]
+   345dc:      	blr	x8
+   345e0:      	ldp	x29, x30, [sp, #0x20]
+   345e4:      	add	sp, sp, #0x30
+   345e8:      	ret
+
+00000000000345ec <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv>:
+   345ec:      	sub	sp, sp, #0x30
+   345f0:      	stp	x29, x30, [sp, #0x20]
+   345f4:      	add	x29, sp, #0x20
+   345f8:      	str	x0, [sp, #0x10]
+   345fc:      	ldr	x0, [sp, #0x10]
+   34600:      	nop
+   34604:      	adr	x1, #-0x1bb06
+   34608:      	bl	0x74a20 <_ZN7_JNIEnv9FindClassEPKc@plt>
+   3460c:      	str	x0, [sp, #0x8]
+   34610:      	ldr	x8, [sp, #0x8]
+   34614:      	cbnz	x8, 0x34648 <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0x5c>
+   34618:      	b	0x3461c <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0x30>
+   3461c:      	mov	w0, #0x6
+   34620:      	adrp	x1, 0x19000
+   34624:      	add	x1, x1, #0xe54
+   34628:      	adrp	x2, 0x1a000
+   3462c:      	add	x2, x2, #0xea8
+   34630:      	nop
+   34634:      	adr	x3, #-0x1bb36
+   34638:      	bl	0x749f0 <__android_log_print@plt>
+   3463c:      	mov	w8, #-0x1
+   34640:      	stur	w8, [x29, #-0x4]
+   34644:      	b	0x3469c <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0xb0>
+   34648:      	ldr	x0, [sp, #0x10]
+   3464c:      	ldr	x1, [sp, #0x8]
+   34650:      	nop
+   34654:      	adr	x2, #0x4da44
+   34658:      	mov	w3, #0x10
+   3465c:      	bl	0x74a30 <_ZN7_JNIEnv15RegisterNativesEP7_jclassPK15JNINativeMethodi@plt>
+   34660:      	tbz	w0, #0x1f, 0x34694 <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0xa8>
+   34664:      	b	0x34668 <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0x7c>
+   34668:      	mov	w0, #0x6
+   3466c:      	adrp	x1, 0x19000
+   34670:      	add	x1, x1, #0xe54
+   34674:      	adrp	x2, 0x1a000
+   34678:      	add	x2, x2, #0xf24
+   3467c:      	nop
+   34680:      	adr	x3, #-0x1bb82
+   34684:      	bl	0x749f0 <__android_log_print@plt>
+   34688:      	mov	w8, #-0x1
+   3468c:      	stur	w8, [x29, #-0x4]
+   34690:      	b	0x3469c <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0xb0>
+   34694:      	stur	wzr, [x29, #-0x4]
+   34698:      	b	0x3469c <_ZN11KitApi30NDK18registerJniMethodsEP7_JNIEnv+0xb0>
+   3469c:      	ldur	w0, [x29, #-0x4]
+   346a0:      	ldp	x29, x30, [sp, #0x20]
+   346a4:      	add	sp, sp, #0x30
+   346a8:      	ret
+
+00000000000346ac <_ZN7_JNIEnv9FindClassEPKc>:
+   346ac:      	sub	sp, sp, #0x20
+   346b0:      	stp	x29, x30, [sp, #0x10]
+   346b4:      	add	x29, sp, #0x10
+   346b8:      	str	x0, [sp, #0x8]
+   346bc:      	str	x1, [sp]
+   346c0:      	ldr	x0, [sp, #0x8]
+   346c4:      	ldr	x8, [x0]
+   346c8:      	ldr	x8, [x8, #0x30]
+   346cc:      	ldr	x1, [sp]
+   346d0:      	blr	x8
+   346d4:      	ldp	x29, x30, [sp, #0x10]
+   346d8:      	add	sp, sp, #0x20
+   346dc:      	ret
+
+00000000000346e0 <_ZN7_JNIEnv15RegisterNativesEP7_jclassPK15JNINativeMethodi>:
+   346e0:      	sub	sp, sp, #0x30
+   346e4:      	stp	x29, x30, [sp, #0x20]
+   346e8:      	add	x29, sp, #0x20
+   346ec:      	stur	x0, [x29, #-0x8]
+   346f0:      	str	x1, [sp, #0x10]
+   346f4:      	str	x2, [sp, #0x8]
+   346f8:      	str	w3, [sp, #0x4]
+   346fc:      	ldur	x0, [x29, #-0x8]
+   34700:      	ldr	x8, [x0]
+   34704:      	ldr	x8, [x8, #0x6b8]
+   34708:      	ldr	x1, [sp, #0x10]
+   3470c:      	ldr	x2, [sp, #0x8]
+   34710:      	ldr	w3, [sp, #0x4]
+   34714:      	blr	x8
+   34718:      	ldp	x29, x30, [sp, #0x20]
+   3471c:      	add	sp, sp, #0x30
+   34720:      	ret
+
+0000000000034724 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_>:
+   34724:      	sub	sp, sp, #0x1f0
+   34728:      	stp	x29, x30, [sp, #0x1d0]
+   3472c:      	str	x28, [sp, #0x1e0]
+   34730:      	add	x29, sp, #0x1d0
+   34734:      	mrs	x8, TPIDR_EL0
+   34738:      	ldr	x8, [x8, #0x28]
+   3473c:      	stur	x8, [x29, #-0x8]
+   34740:      	str	x0, [sp, #0xe8]
+   34744:      	str	x1, [sp, #0xe0]
+   34748:      	str	x2, [sp, #0xd8]
+   3474c:      	nop
+   34750:      	adr	x1, #-0x1bf17
+   34754:      	sub	x0, x29, #0x38
+   34758:      	bl	0x74a40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc@plt>
+   3475c:      	ldr	x0, [sp, #0xe8]
+   34760:      	ldr	x1, [sp, #0xd8]
+   34764:      	sub	x2, x29, #0x1c
+   34768:      	bl	0x74a50 <AndroidBitmap_getInfo@plt>
+   3476c:      	str	w0, [sp, #0xb4]
+   34770:      	b	0x34774 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x50>
+   34774:      	ldr	w8, [sp, #0xb4]
+   34778:      	str	w8, [sp, #0xd4]
+   3477c:      	ldr	w8, [sp, #0xd4]
+   34780:      	cbnz	w8, 0x349d4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x2b0>
+   34784:      	b	0x34788 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x64>
+   34788:      	ldur	w0, [x29, #-0x1c]
+   3478c:      	sub	x8, x29, #0x50
+   34790:      	bl	0x74a60 <_ZNSt6__ndk19to_stringEj@plt>
+   34794:      	b	0x34798 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x74>
+   34798:      	sub	x0, x29, #0x38
+   3479c:      	sub	x1, x29, #0x50
+   347a0:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   347a4:      	str	x0, [sp, #0xa8]
+   347a8:      	b	0x347ac <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x88>
+   347ac:      	ldr	x0, [sp, #0xa8]
+   347b0:      	adrp	x1, 0x1b000
+   347b4:      	add	x1, x1, #0x394
+   347b8:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   347bc:      	str	x0, [sp, #0xa0]
+   347c0:      	b	0x347c4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0xa0>
+   347c4:      	ldur	w0, [x29, #-0x18]
+   347c8:      	sub	x8, x29, #0x68
+   347cc:      	bl	0x74a60 <_ZNSt6__ndk19to_stringEj@plt>
+   347d0:      	b	0x347d4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0xb0>
+   347d4:      	ldr	x0, [sp, #0xa0]
+   347d8:      	sub	x1, x29, #0x68
+   347dc:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   347e0:      	b	0x347e4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0xc0>
+   347e4:      	sub	x0, x29, #0x68
+   347e8:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   347ec:      	sub	x0, x29, #0x50
+   347f0:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   347f4:      	adrp	x1, 0x19000
+   347f8:      	add	x1, x1, #0x946
+   347fc:      	sub	x0, x29, #0x38
+   34800:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34804:      	b	0x34808 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0xe4>
+   34808:      	adrp	x1, 0x1a000
+   3480c:      	add	x1, x1, #0xa1b
+   34810:      	sub	x0, x29, #0x38
+   34814:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34818:      	str	x0, [sp, #0x98]
+   3481c:      	b	0x34820 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0xfc>
+   34820:      	ldur	w0, [x29, #-0x10]
+   34824:      	sub	x8, x29, #0x80
+   34828:      	bl	0x74a90 <_ZNSt6__ndk19to_stringEi@plt>
+   3482c:      	b	0x34830 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x10c>
+   34830:      	ldr	x0, [sp, #0x98]
+   34834:      	sub	x1, x29, #0x80
+   34838:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   3483c:      	str	x0, [sp, #0x90]
+   34840:      	b	0x34844 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x120>
+   34844:      	ldr	x0, [sp, #0x90]
+   34848:      	adrp	x1, 0x17000
+   3484c:      	add	x1, x1, #0xddd
+   34850:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34854:      	str	x0, [sp, #0x88]
+   34858:      	b	0x3485c <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x138>
+   3485c:      	sub	x8, x29, #0x1c
+   34860:      	add	x0, x8, #0xc
+   34864:      	bl	0x74aa0 <_ZN4Util23androidBitmapFormatNameER19AndroidBitmapFormat@plt>
+   34868:      	str	x0, [sp, #0x80]
+   3486c:      	b	0x34870 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x14c>
+   34870:      	ldr	x1, [sp, #0x80]
+   34874:      	ldr	x0, [sp, #0x88]
+   34878:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   3487c:      	b	0x34880 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x15c>
+   34880:      	sub	x0, x29, #0x80
+   34884:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34888:      	adrp	x1, 0x19000
+   3488c:      	add	x1, x1, #0x946
+   34890:      	sub	x0, x29, #0x38
+   34894:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34898:      	b	0x3489c <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x178>
+   3489c:      	adrp	x1, 0x1a000
+   348a0:      	add	x1, x1, #0x319
+   348a4:      	sub	x0, x29, #0x38
+   348a8:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   348ac:      	str	x0, [sp, #0x78]
+   348b0:      	b	0x348b4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x190>
+   348b4:      	ldur	w0, [x29, #-0x14]
+   348b8:      	sub	x8, x29, #0x98
+   348bc:      	bl	0x74a60 <_ZNSt6__ndk19to_stringEj@plt>
+   348c0:      	b	0x348c4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x1a0>
+   348c4:      	ldr	x0, [sp, #0x78]
+   348c8:      	sub	x1, x29, #0x98
+   348cc:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   348d0:      	b	0x348d4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x1b0>
+   348d4:      	sub	x0, x29, #0x98
+   348d8:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   348dc:      	adrp	x1, 0x19000
+   348e0:      	add	x1, x1, #0x946
+   348e4:      	sub	x0, x29, #0x38
+   348e8:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   348ec:      	b	0x348f0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x1cc>
+   348f0:      	adrp	x1, 0x18000
+   348f4:      	add	x1, x1, #0xeb7
+   348f8:      	sub	x0, x29, #0x38
+   348fc:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34900:      	str	x0, [sp, #0x70]
+   34904:      	b	0x34908 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x1e4>
+   34908:      	ldur	w0, [x29, #-0xc]
+   3490c:      	sub	x8, x29, #0xb0
+   34910:      	bl	0x74a60 <_ZNSt6__ndk19to_stringEj@plt>
+   34914:      	b	0x34918 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x1f4>
+   34918:      	ldr	x0, [sp, #0x70]
+   3491c:      	sub	x1, x29, #0xb0
+   34920:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   34924:      	b	0x34928 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x204>
+   34928:      	sub	x0, x29, #0xb0
+   3492c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34930:      	adrp	x1, 0x19000
+   34934:      	add	x1, x1, #0x946
+   34938:      	sub	x0, x29, #0x38
+   3493c:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34940:      	b	0x34944 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x220>
+   34944:      	b	0x34a80 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x35c>
+   34948:      	str	x0, [sp, #0xc8]
+   3494c:      	mov	w8, w1
+   34950:      	str	w8, [sp, #0xc4]
+   34954:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   34958:      	str	x0, [sp, #0xc8]
+   3495c:      	mov	w8, w1
+   34960:      	str	w8, [sp, #0xc4]
+   34964:      	b	0x34980 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x25c>
+   34968:      	str	x0, [sp, #0xc8]
+   3496c:      	mov	w8, w1
+   34970:      	str	w8, [sp, #0xc4]
+   34974:      	sub	x0, x29, #0x68
+   34978:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3497c:      	b	0x34980 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x25c>
+   34980:      	sub	x0, x29, #0x50
+   34984:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34988:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   3498c:      	str	x0, [sp, #0xc8]
+   34990:      	mov	w8, w1
+   34994:      	str	w8, [sp, #0xc4]
+   34998:      	sub	x0, x29, #0x80
+   3499c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   349a0:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   349a4:      	str	x0, [sp, #0xc8]
+   349a8:      	mov	w8, w1
+   349ac:      	str	w8, [sp, #0xc4]
+   349b0:      	sub	x0, x29, #0x98
+   349b4:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   349b8:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   349bc:      	str	x0, [sp, #0xc8]
+   349c0:      	mov	w8, w1
+   349c4:      	str	w8, [sp, #0xc4]
+   349c8:      	sub	x0, x29, #0xb0
+   349cc:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   349d0:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   349d4:      	adrp	x1, 0x19000
+   349d8:      	add	x1, x1, #0x78d
+   349dc:      	sub	x0, x29, #0x38
+   349e0:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   349e4:      	str	x0, [sp, #0x68]
+   349e8:      	b	0x349ec <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x2c8>
+   349ec:      	ldr	w0, [sp, #0xd4]
+   349f0:      	sub	x8, x29, #0xc8
+   349f4:      	bl	0x74a90 <_ZNSt6__ndk19to_stringEi@plt>
+   349f8:      	b	0x349fc <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x2d8>
+   349fc:      	ldr	x0, [sp, #0x68]
+   34a00:      	sub	x1, x29, #0xc8
+   34a04:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   34a08:      	str	x0, [sp, #0x60]
+   34a0c:      	b	0x34a10 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x2ec>
+   34a10:      	ldr	x0, [sp, #0x60]
+   34a14:      	adrp	x1, 0x17000
+   34a18:      	add	x1, x1, #0xddd
+   34a1c:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34a20:      	str	x0, [sp, #0x58]
+   34a24:      	b	0x34a28 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x304>
+   34a28:      	ldr	w0, [sp, #0xd4]
+   34a2c:      	bl	0x74ab0 <_ZN4Util23androidBitmapResultNameEi@plt>
+   34a30:      	str	x0, [sp, #0x50]
+   34a34:      	b	0x34a38 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x314>
+   34a38:      	ldr	x1, [sp, #0x50]
+   34a3c:      	ldr	x0, [sp, #0x58]
+   34a40:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34a44:      	b	0x34a48 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x324>
+   34a48:      	sub	x0, x29, #0xc8
+   34a4c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34a50:      	adrp	x1, 0x19000
+   34a54:      	add	x1, x1, #0x946
+   34a58:      	sub	x0, x29, #0x38
+   34a5c:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34a60:      	b	0x34a64 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x340>
+   34a64:      	b	0x34a80 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x35c>
+   34a68:      	str	x0, [sp, #0xc8]
+   34a6c:      	mov	w8, w1
+   34a70:      	str	w8, [sp, #0xc4]
+   34a74:      	sub	x0, x29, #0xc8
+   34a78:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34a7c:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   34a80:      	mov	w8, #-0x1
+   34a84:      	str	w8, [sp, #0xc0]
+   34a88:      	ldr	x0, [sp, #0xe8]
+   34a8c:      	ldr	x1, [sp, #0xd8]
+   34a90:      	bl	0x74ac0 <AndroidBitmap_getDataSpace@plt>
+   34a94:      	str	w0, [sp, #0x4c]
+   34a98:      	b	0x34a9c <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x378>
+   34a9c:      	ldr	w8, [sp, #0x4c]
+   34aa0:      	str	w8, [sp, #0xc0]
+   34aa4:      	adrp	x1, 0x1a000
+   34aa8:      	add	x1, x1, #0xb6a
+   34aac:      	sub	x0, x29, #0x38
+   34ab0:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34ab4:      	str	x0, [sp, #0x40]
+   34ab8:      	b	0x34abc <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x398>
+   34abc:      	ldr	w0, [sp, #0xc0]
+   34ac0:      	sub	x8, x29, #0xe0
+   34ac4:      	bl	0x74a90 <_ZNSt6__ndk19to_stringEi@plt>
+   34ac8:      	b	0x34acc <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x3a8>
+   34acc:      	ldr	x0, [sp, #0x40]
+   34ad0:      	sub	x1, x29, #0xe0
+   34ad4:      	bl	0x34c54 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x7c>
+   34ad8:      	str	x0, [sp, #0x38]
+   34adc:      	b	0x34ae0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x3bc>
+   34ae0:      	ldr	x0, [sp, #0x38]
+   34ae4:      	adrp	x1, 0x17000
+   34ae8:      	add	x1, x1, #0xddd
+   34aec:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34af0:      	str	x0, [sp, #0x30]
+   34af4:      	b	0x34af8 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x3d4>
+   34af8:      	ldr	w0, [sp, #0xc0]
+   34afc:      	bl	0x74ad0 <_ZN4Util13dataSpaceNameEi@plt>
+   34b00:      	str	x0, [sp, #0x28]
+   34b04:      	b	0x34b08 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x3e4>
+   34b08:      	ldr	x1, [sp, #0x28]
+   34b0c:      	ldr	x0, [sp, #0x30]
+   34b10:      	bl	0x74a70 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+   34b14:      	b	0x34b18 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x3f4>
+   34b18:      	sub	x0, x29, #0xe0
+   34b1c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34b20:      	ldr	x8, [sp, #0xe8]
+   34b24:      	str	x8, [sp, #0x18]
+   34b28:      	sub	x0, x29, #0x38
+   34b2c:      	bl	0x34cd4 <_ZN7_JNIEnv12NewStringUTFEPKc+0x34>
+   34b30:      	mov	x1, x0
+   34b34:      	ldr	x0, [sp, #0x18]
+   34b38:      	bl	0x74ae0 <_ZN7_JNIEnv12NewStringUTFEPKc@plt>
+   34b3c:      	str	x0, [sp, #0x20]
+   34b40:      	b	0x34b44 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x420>
+   34b44:      	ldr	x8, [sp, #0x20]
+   34b48:      	str	x8, [sp, #0xb8]
+   34b4c:      	ldr	x0, [sp, #0xb8]
+   34b50:      	str	x0, [sp, #0x10]
+   34b54:      	sub	x0, x29, #0x38
+   34b58:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34b5c:      	mrs	x8, TPIDR_EL0
+   34b60:      	ldr	x8, [x8, #0x28]
+   34b64:      	ldur	x9, [x29, #-0x8]
+   34b68:      	subs	x8, x8, x9
+   34b6c:      	b.ne	0x34bd4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x4b0>
+   34b70:      	b	0x34b74 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x450>
+   34b74:      	ldr	x0, [sp, #0x10]
+   34b78:      	ldr	x28, [sp, #0x1e0]
+   34b7c:      	ldp	x29, x30, [sp, #0x1d0]
+   34b80:      	add	sp, sp, #0x1f0
+   34b84:      	ret
+   34b88:      	str	x0, [sp, #0xc8]
+   34b8c:      	mov	w8, w1
+   34b90:      	str	w8, [sp, #0xc4]
+   34b94:      	sub	x0, x29, #0xe0
+   34b98:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34b9c:      	b	0x34ba0 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x47c>
+   34ba0:      	sub	x0, x29, #0x38
+   34ba4:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34ba8:      	b	0x34bac <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x488>
+   34bac:      	ldr	x0, [sp, #0xc8]
+   34bb0:      	str	x0, [sp, #0x8]
+   34bb4:      	mrs	x8, TPIDR_EL0
+   34bb8:      	ldr	x8, [x8, #0x28]
+   34bbc:      	ldur	x9, [x29, #-0x8]
+   34bc0:      	subs	x8, x8, x9
+   34bc4:      	b.ne	0x34bd4 <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x4b0>
+   34bc8:      	b	0x34bcc <_ZN11KitApi30NDK12jniLogBitmapEP7_JNIEnvP8_jobjectS3_+0x4a8>
+   34bcc:      	ldr	x0, [sp, #0x8]
+   34bd0:      	bl	0x704dc <__emutls_get_address+0xc90>
+   34bd4:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+0000000000034bd8 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc>:
+   34bd8:      	sub	sp, sp, #0x50
+   34bdc:      	stp	x29, x30, [sp, #0x40]
+   34be0:      	add	x29, sp, #0x40
+   34be4:      	mrs	x8, TPIDR_EL0
+   34be8:      	str	x8, [sp, #0x18]
+   34bec:      	ldr	x8, [x8, #0x28]
+   34bf0:      	stur	x8, [x29, #-0x8]
+   34bf4:      	stur	x0, [x29, #-0x18]
+   34bf8:      	str	x1, [sp, #0x20]
+   34bfc:      	ldur	x0, [x29, #-0x18]
+   34c00:      	str	x0, [sp, #0x10]
+   34c04:      	sub	x1, x29, #0x9
+   34c08:      	sub	x2, x29, #0xa
+   34c0c:      	bl	0x74af0 <_ZNSt6__ndk117__compressed_pairINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5__repES5_EC2B8ne180000INS_18__default_init_tagESA_EEOT_OT0_@plt>
+   34c10:      	ldr	x0, [sp, #0x20]
+   34c14:      	str	x0, [sp, #0x8]
+   34c18:      	bl	0x3649c <_ZNSt6__ndk117__compressed_pairINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5__repES5_EC2B8ne180000INS_18__default_init_tagESA_EEOT_OT0_+0x40>
+   34c1c:      	ldr	x1, [sp, #0x8]
+   34c20:      	mov	x2, x0
+   34c24:      	ldr	x0, [sp, #0x10]
+   34c28:      	bl	0x74b00 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6__initEPKcm@plt>
+   34c2c:      	ldr	x8, [sp, #0x18]
+   34c30:      	ldr	x8, [x8, #0x28]
+   34c34:      	ldur	x9, [x29, #-0x8]
+   34c38:      	subs	x8, x8, x9
+   34c3c:      	b.ne	0x34c50 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x78>
+   34c40:      	b	0x34c44 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC2B8ne180000ILi0EEEPKc+0x6c>
+   34c44:      	ldp	x29, x30, [sp, #0x40]
+   34c48:      	add	sp, sp, #0x50
+   34c4c:      	ret
+   34c50:      	bl	0x74a10 <__stack_chk_fail@plt>
+   34c54:      	sub	sp, sp, #0x30
+   34c58:      	stp	x29, x30, [sp, #0x20]
+   34c5c:      	add	x29, sp, #0x20
+   34c60:      	stur	x0, [x29, #-0x8]
+   34c64:      	str	x1, [sp, #0x10]
+   34c68:      	ldur	x8, [x29, #-0x8]
+   34c6c:      	str	x8, [sp, #0x8]
+   34c70:      	ldr	x0, [sp, #0x10]
+   34c74:      	bl	0x36364 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x398>
+   34c78:      	str	x0, [sp]
+   34c7c:      	ldr	x0, [sp, #0x10]
+   34c80:      	bl	0x360ac <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xe0>
+   34c84:      	ldr	x1, [sp]
+   34c88:      	mov	x2, x0
+   34c8c:      	ldr	x0, [sp, #0x8]
+   34c90:      	bl	0x74b10 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm@plt>
+   34c94:      	ldp	x29, x30, [sp, #0x20]
+   34c98:      	add	sp, sp, #0x30
+   34c9c:      	ret
+
+0000000000034ca0 <_ZN7_JNIEnv12NewStringUTFEPKc>:
+   34ca0:      	sub	sp, sp, #0x20
+   34ca4:      	stp	x29, x30, [sp, #0x10]
+   34ca8:      	add	x29, sp, #0x10
+   34cac:      	str	x0, [sp, #0x8]
+   34cb0:      	str	x1, [sp]
+   34cb4:      	ldr	x0, [sp, #0x8]
+   34cb8:      	ldr	x8, [x0]
+   34cbc:      	ldr	x8, [x8, #0x538]
+   34cc0:      	ldr	x1, [sp]
+   34cc4:      	blr	x8
+   34cc8:      	ldp	x29, x30, [sp, #0x10]
+   34ccc:      	add	sp, sp, #0x20
+   34cd0:      	ret
+   34cd4:      	sub	sp, sp, #0x20
+   34cd8:      	stp	x29, x30, [sp, #0x10]
+   34cdc:      	add	x29, sp, #0x10
+   34ce0:      	str	x0, [sp, #0x8]
+   34ce4:      	ldr	x0, [sp, #0x8]
+   34ce8:      	bl	0x36364 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x398>
+   34cec:      	ldp	x29, x30, [sp, #0x10]
+   34cf0:      	add	sp, sp, #0x20
+   34cf4:      	ret
+
+0000000000034cf8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo>:
+   34cf8:      	sub	sp, sp, #0x1b0
+   34cfc:      	stp	x29, x30, [sp, #0x190]
+   34d00:      	str	x28, [sp, #0x1a0]
+   34d04:      	add	x29, sp, #0x190
+   34d08:      	sub	x8, x29, #0x10
+   34d0c:      	str	x8, [sp, #0xb8]
+   34d10:      	mrs	x8, TPIDR_EL0
+   34d14:      	ldr	x8, [x8, #0x28]
+   34d18:      	stur	x8, [x29, #-0x8]
+   34d1c:      	stur	x0, [x29, #-0x68]
+   34d20:      	stur	x1, [x29, #-0x70]
+   34d24:      	stur	x2, [x29, #-0x78]
+   34d28:      	stur	x3, [x29, #-0x80]
+   34d2c:      	ldur	x0, [x29, #-0x70]
+   34d30:      	sub	x1, x29, #0x10
+   34d34:      	bl	0x3531c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x624>
+   34d38:      	stur	w0, [x29, #-0x84]
+   34d3c:      	ldur	w8, [x29, #-0x84]
+   34d40:      	cbz	w8, 0x34dc4 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0xcc>
+   34d44:      	b	0x34d48 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x50>
+   34d48:      	ldur	x8, [x29, #-0x78]
+   34d4c:      	str	x8, [sp, #0xa0]
+   34d50:      	ldur	w0, [x29, #-0x84]
+   34d54:      	str	w0, [sp, #0xac]
+   34d58:      	bl	0x74b30 <_ZN4Util22imageDecoderResultNameEi@plt>
+   34d5c:      	ldr	w3, [sp, #0xac]
+   34d60:      	mov	x4, x0
+   34d64:      	adrp	x0, 0x18000
+   34d68:      	add	x0, x0, #0x68c
+   34d6c:      	adrp	x1, 0x19000
+   34d70:      	add	x1, x1, #0x92
+   34d74:      	sub	x8, x29, #0x28
+   34d78:      	str	x8, [sp, #0xb0]
+   34d7c:      	mov	w2, #0x2b
+   34d80:      	bl	0x74b40 <_ZN4Util9newStringEPKcz@plt>
+   34d84:      	ldr	x0, [sp, #0xa0]
+   34d88:      	ldr	w1, [sp, #0xac]
+   34d8c:      	ldr	x2, [sp, #0xb0]
+   34d90:      	bl	0x74b50 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE@plt>
+   34d94:      	b	0x34d98 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0xa0>
+   34d98:      	sub	x0, x29, #0x28
+   34d9c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34da0:      	mov	x8, xzr
+   34da4:      	stur	x8, [x29, #-0x60]
+   34da8:      	b	0x352b8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5c0>
+   34dac:      	stur	x0, [x29, #-0x90]
+   34db0:      	mov	w8, w1
+   34db4:      	stur	w8, [x29, #-0x94]
+   34db8:      	sub	x0, x29, #0x28
+   34dbc:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   34dc0:      	b	0x352ec <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5f4>
+   34dc4:      	ldr	x8, [sp, #0xb8]
+   34dc8:      	ldr	x0, [x8]
+   34dcc:      	bl	0x74b60 <AImageDecoder_getHeaderInfo@plt>
+   34dd0:      	stur	x0, [x29, #-0xa0]
+   34dd4:      	ldur	x0, [x29, #-0xa0]
+   34dd8:      	bl	0x74b70 <AImageDecoderHeaderInfo_getDataSpace@plt>
+   34ddc:      	ldur	x8, [x29, #-0x78]
+   34de0:      	str	w0, [x8, #0x20]
+   34de4:      	ldur	x0, [x29, #-0xa0]
+   34de8:      	bl	0x74b80 <AImageDecoderHeaderInfo_getAlphaFlags@plt>
+   34dec:      	ldur	x8, [x29, #-0x78]
+   34df0:      	str	w0, [x8, #0x24]
+   34df4:      	ldur	x0, [x29, #-0xa0]
+   34df8:      	bl	0x74b90 <AImageDecoderHeaderInfo_getWidth@plt>
+   34dfc:      	ldur	x8, [x29, #-0x78]
+   34e00:      	str	w0, [x8, #0x18]
+   34e04:      	ldur	x0, [x29, #-0xa0]
+   34e08:      	bl	0x74ba0 <AImageDecoderHeaderInfo_getHeight@plt>
+   34e0c:      	ldur	x8, [x29, #-0x78]
+   34e10:      	str	w0, [x8, #0x1c]
+   34e14:      	ldur	x0, [x29, #-0xa0]
+   34e18:      	bl	0x74bb0 <AImageDecoderHeaderInfo_getMimeType@plt>
+   34e1c:      	str	x0, [sp, #0x98]
+   34e20:      	b	0x34e24 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x12c>
+   34e24:      	ldr	x8, [sp, #0x98]
+   34e28:      	stur	x8, [x29, #-0xa8]
+   34e2c:      	ldur	x8, [x29, #-0xa8]
+   34e30:      	cbz	x8, 0x34e44 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x14c>
+   34e34:      	b	0x34e38 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x140>
+   34e38:      	ldur	x0, [x29, #-0xa8]
+   34e3c:      	str	x0, [sp, #0x90]
+   34e40:      	b	0x34e54 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x15c>
+   34e44:      	nop
+   34e48:      	adr	x0, #-0x1c60f
+   34e4c:      	str	x0, [sp, #0x90]
+   34e50:      	b	0x34e54 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x15c>
+   34e54:      	ldr	x1, [sp, #0x90]
+   34e58:      	ldur	x8, [x29, #-0x78]
+   34e5c:      	add	x0, x8, #0x28
+   34e60:      	bl	0x3544c <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xd0>
+   34e64:      	b	0x34e68 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x170>
+   34e68:      	b	0x34ef8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x200>
+   34e6c:      	stur	x0, [x29, #-0x90]
+   34e70:      	mov	w8, w1
+   34e74:      	stur	w8, [x29, #-0x94]
+   34e78:      	b	0x34e7c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x184>
+   34e7c:      	ldur	w8, [x29, #-0x94]
+   34e80:      	subs	w8, w8, #0x2
+   34e84:      	b.ne	0x34f80 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x288>
+   34e88:      	b	0x34e8c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x194>
+   34e8c:      	ldur	x0, [x29, #-0x90]
+   34e90:      	bl	0x74bc0 <__cxa_begin_catch@plt>
+   34e94:      	stur	x0, [x29, #-0xb0]
+   34e98:      	ldur	x8, [x29, #-0x78]
+   34e9c:      	ldr	w9, [x8, #0x18]
+   34ea0:      	str	w9, [sp, #0x88]
+   34ea4:      	ldr	w8, [x8, #0x1c]
+   34ea8:      	str	w8, [sp, #0x8c]
+   34eac:      	ldur	x0, [x29, #-0xb0]
+   34eb0:      	ldr	x8, [x0]
+   34eb4:      	ldr	x8, [x8, #0x10]
+   34eb8:      	blr	x8
+   34ebc:      	ldr	w5, [sp, #0x88]
+   34ec0:      	ldr	w6, [sp, #0x8c]
+   34ec4:      	mov	x7, x0
+   34ec8:      	adrp	x1, 0x19000
+   34ecc:      	add	x1, x1, #0xe54
+   34ed0:      	adrp	x2, 0x1b000
+   34ed4:      	add	x2, x2, #0xa5
+   34ed8:      	adrp	x3, 0x19000
+   34edc:      	add	x3, x3, #0x92
+   34ee0:      	mov	w0, #0x6
+   34ee4:      	mov	w4, #0x38
+   34ee8:      	bl	0x749f0 <__android_log_print@plt>
+   34eec:      	b	0x34ef0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x1f8>
+   34ef0:      	bl	0x74bd0 <__cxa_end_catch@plt>
+   34ef4:      	b	0x34ef8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x200>
+   34ef8:      	ldur	x0, [x29, #-0xa0]
+   34efc:      	bl	0x74be0 <AImageDecoderHeaderInfo_getAndroidBitmapFormat@plt>
+   34f00:      	ldur	x8, [x29, #-0x78]
+   34f04:      	str	w0, [x8, #0x40]
+   34f08:      	ldur	x8, [x29, #-0x78]
+   34f0c:      	add	x0, x8, #0x18
+   34f10:      	bl	0x74bf0 <_ZN7ImgInfo8printLogEv@plt>
+   34f14:      	ldur	x0, [x29, #-0x78]
+   34f18:      	ldr	w1, [x0, #0x18]
+   34f1c:      	ldr	w2, [x0, #0x1c]
+   34f20:      	ldur	x3, [x29, #-0x80]
+   34f24:      	add	x4, x3, #0x4
+   34f28:      	bl	0x74c00 <_ZN3Req9calcDstWHEiiRiS0_@plt>
+   34f2c:      	ldr	x8, [sp, #0xb8]
+   34f30:      	ldr	x0, [x8]
+   34f34:      	ldur	x8, [x29, #-0x80]
+   34f38:      	ldr	w1, [x8]
+   34f3c:      	ldr	w2, [x8, #0x4]
+   34f40:      	bl	0x74c10 <AImageDecoder_setTargetSize@plt>
+   34f44:      	ldur	x8, [x29, #-0x78]
+   34f48:      	ldr	w8, [x8, #0xc]
+   34f4c:      	subs	w8, w8, #0x1
+   34f50:      	b.lt	0x34ff4 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x2fc>
+   34f54:      	b	0x34f58 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x260>
+   34f58:      	ldr	x8, [sp, #0xb8]
+   34f5c:      	ldr	x0, [x8]
+   34f60:      	ldur	x8, [x29, #-0x78]
+   34f64:      	ldr	w1, [x8, #0xc]
+   34f68:      	bl	0x74c20 <AImageDecoder_setAndroidBitmapFormat@plt>
+   34f6c:      	ldur	x8, [x29, #-0x78]
+   34f70:      	ldr	w8, [x8, #0xc]
+   34f74:      	ldur	x9, [x29, #-0x80]
+   34f78:      	str	w8, [x9, #0xc]
+   34f7c:      	b	0x35008 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x310>
+   34f80:      	ldur	x0, [x29, #-0x90]
+   34f84:      	bl	0x74bc0 <__cxa_begin_catch@plt>
+   34f88:      	ldur	x8, [x29, #-0x78]
+   34f8c:      	ldr	w5, [x8, #0x18]
+   34f90:      	ldr	w6, [x8, #0x1c]
+   34f94:      	adrp	x1, 0x19000
+   34f98:      	add	x1, x1, #0xe54
+   34f9c:      	adrp	x2, 0x1b000
+   34fa0:      	add	x2, x2, #0x79
+   34fa4:      	adrp	x3, 0x19000
+   34fa8:      	add	x3, x3, #0x92
+   34fac:      	mov	w0, #0x6
+   34fb0:      	mov	w4, #0x3a
+   34fb4:      	bl	0x749f0 <__android_log_print@plt>
+   34fb8:      	b	0x34fbc <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x2c4>
+   34fbc:      	bl	0x74bd0 <__cxa_end_catch@plt>
+   34fc0:      	b	0x34ef8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x200>
+   34fc4:      	stur	x0, [x29, #-0x90]
+   34fc8:      	mov	w8, w1
+   34fcc:      	stur	w8, [x29, #-0x94]
+   34fd0:      	bl	0x74bd0 <__cxa_end_catch@plt>
+   34fd4:      	b	0x34fd8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x2e0>
+   34fd8:      	b	0x352ec <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5f4>
+   34fdc:      	stur	x0, [x29, #-0x90]
+   34fe0:      	mov	w8, w1
+   34fe4:      	stur	w8, [x29, #-0x94]
+   34fe8:      	bl	0x74bd0 <__cxa_end_catch@plt>
+   34fec:      	b	0x34ff0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x2f8>
+   34ff0:      	b	0x352ec <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5f4>
+   34ff4:      	ldur	x8, [x29, #-0x78]
+   34ff8:      	ldr	w8, [x8, #0x40]
+   34ffc:      	ldur	x9, [x29, #-0x80]
+   35000:      	str	w8, [x9, #0xc]
+   35004:      	b	0x35008 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x310>
+   35008:      	ldur	x8, [x29, #-0x78]
+   3500c:      	ldr	w8, [x8, #0x10]
+   35010:      	subs	w8, w8, #0x1
+   35014:      	b.lt	0x35044 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x34c>
+   35018:      	b	0x3501c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x324>
+   3501c:      	ldr	x8, [sp, #0xb8]
+   35020:      	ldr	x0, [x8]
+   35024:      	ldur	x8, [x29, #-0x78]
+   35028:      	ldr	w1, [x8, #0x10]
+   3502c:      	bl	0x74c30 <AImageDecoder_setDataSpace@plt>
+   35030:      	ldur	x8, [x29, #-0x78]
+   35034:      	ldr	w8, [x8, #0x10]
+   35038:      	ldur	x9, [x29, #-0x80]
+   3503c:      	str	w8, [x9, #0x8]
+   35040:      	b	0x35058 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x360>
+   35044:      	ldur	x8, [x29, #-0x78]
+   35048:      	ldr	w8, [x8, #0x20]
+   3504c:      	ldur	x9, [x29, #-0x80]
+   35050:      	str	w8, [x9, #0x8]
+   35054:      	b	0x35058 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x360>
+   35058:      	ldr	x8, [sp, #0xb8]
+   3505c:      	ldr	x0, [x8]
+   35060:      	ldur	x8, [x29, #-0x78]
+   35064:      	ldrb	w9, [x8, #0x14]
+   35068:      	mov	w8, #0x1
+   3506c:      	bic	w1, w8, w9
+   35070:      	bl	0x74c40 <AImageDecoder_setUnpremultipliedRequired@plt>
+   35074:      	ldr	x8, [sp, #0xb8]
+   35078:      	ldr	x0, [x8]
+   3507c:      	bl	0x74c50 <AImageDecoder_getMinimumStride@plt>
+   35080:      	stur	x0, [x29, #-0xb8]
+   35084:      	ldur	x8, [x29, #-0x80]
+   35088:      	ldrsw	x8, [x8, #0x4]
+   3508c:      	ldur	x9, [x29, #-0xb8]
+   35090:      	mul	x8, x8, x9
+   35094:      	stur	x8, [x29, #-0xc0]
+   35098:      	ldur	x0, [x29, #-0xc0]
+   3509c:      	bl	0x74c60 <malloc@plt>
+   350a0:      	ldr	x8, [sp, #0xb8]
+   350a4:      	str	x0, [sp, #0xc8]
+   350a8:      	ldr	x0, [x8]
+   350ac:      	ldr	x1, [sp, #0xc8]
+   350b0:      	ldur	x2, [x29, #-0xb8]
+   350b4:      	ldur	x3, [x29, #-0xc0]
+   350b8:      	bl	0x74c70 <AImageDecoder_decodeImage@plt>
+   350bc:      	stur	w0, [x29, #-0x84]
+   350c0:      	ldur	w8, [x29, #-0x84]
+   350c4:      	cbz	w8, 0x351c0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x4c8>
+   350c8:      	b	0x350cc <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x3d4>
+   350cc:      	ldur	x8, [x29, #-0x78]
+   350d0:      	str	x8, [sp, #0x70]
+   350d4:      	ldur	w0, [x29, #-0x84]
+   350d8:      	str	w0, [sp, #0x7c]
+   350dc:      	bl	0x74b30 <_ZN4Util22imageDecoderResultNameEi@plt>
+   350e0:      	str	x0, [sp, #0x50]
+   350e4:      	ldur	x0, [x29, #-0x80]
+   350e8:      	ldr	w8, [x0]
+   350ec:      	str	w8, [sp, #0x5c]
+   350f0:      	ldr	w8, [x0, #0x4]
+   350f4:      	str	w8, [sp, #0x60]
+   350f8:      	ldr	w8, [x0, #0xc]!
+   350fc:      	str	w8, [sp, #0x64]
+   35100:      	bl	0x74aa0 <_ZN4Util23androidBitmapFormatNameER19AndroidBitmapFormat@plt>
+   35104:      	str	x0, [sp, #0x68]
+   35108:      	ldur	x8, [x29, #-0x80]
+   3510c:      	ldr	w0, [x8, #0x8]
+   35110:      	str	w0, [sp, #0x4c]
+   35114:      	bl	0x74ad0 <_ZN4Util13dataSpaceNameEi@plt>
+   35118:      	ldr	w8, [sp, #0x4c]
+   3511c:      	ldr	x3, [sp, #0x50]
+   35120:      	ldr	w4, [sp, #0x5c]
+   35124:      	ldr	w5, [sp, #0x60]
+   35128:      	ldr	w6, [sp, #0x64]
+   3512c:      	ldr	x7, [sp, #0x68]
+   35130:      	ldur	x10, [x29, #-0xb8]
+   35134:      	ldur	x11, [x29, #-0xc0]
+   35138:      	mov	x9, sp
+   3513c:      	str	x11, [x9, #0x18]
+   35140:      	str	x10, [x9, #0x10]
+   35144:      	str	x0, [x9, #0x8]
+   35148:      	str	w8, [x9]
+   3514c:      	adrp	x0, 0x18000
+   35150:      	add	x0, x0, #0xebe
+   35154:      	adrp	x1, 0x19000
+   35158:      	add	x1, x1, #0x92
+   3515c:      	sub	x8, x29, #0x40
+   35160:      	str	x8, [sp, #0x80]
+   35164:      	mov	w2, #0x5f
+   35168:      	bl	0x74b40 <_ZN4Util9newStringEPKcz@plt>
+   3516c:      	ldr	x0, [sp, #0x70]
+   35170:      	ldr	w1, [sp, #0x7c]
+   35174:      	ldr	x2, [sp, #0x80]
+   35178:      	bl	0x74b50 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE@plt>
+   3517c:      	b	0x35180 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x488>
+   35180:      	sub	x0, x29, #0x40
+   35184:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   35188:      	ldr	x8, [sp, #0xb8]
+   3518c:      	ldr	x0, [x8]
+   35190:      	bl	0x74c80 <AImageDecoder_delete@plt>
+   35194:      	ldr	x0, [sp, #0xc8]
+   35198:      	bl	0x74c90 <free@plt>
+   3519c:      	mov	x8, xzr
+   351a0:      	stur	x8, [x29, #-0x60]
+   351a4:      	b	0x352b8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5c0>
+   351a8:      	stur	x0, [x29, #-0x90]
+   351ac:      	mov	w8, w1
+   351b0:      	stur	w8, [x29, #-0x94]
+   351b4:      	sub	x0, x29, #0x40
+   351b8:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   351bc:      	b	0x352ec <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5f4>
+   351c0:      	ldur	x8, [x29, #-0x78]
+   351c4:      	ldrb	w8, [x8, #0x8]
+   351c8:      	tbnz	w8, #0x0, 0x352a0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5a8>
+   351cc:      	b	0x351d0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x4d8>
+   351d0:      	ldur	x8, [x29, #-0x78]
+   351d4:      	add	x0, x8, #0x28
+   351d8:      	bl	0x34cd4 <_ZN7_JNIEnv12NewStringUTFEPKc+0x34>
+   351dc:      	bl	0x74ca0 <_ZN4Util18canSkipDrawBgWhiteEPKc@plt>
+   351e0:      	and	w8, w0, #0x1
+   351e4:      	strb	w8, [sp, #0xc7]
+   351e8:      	ldrb	w8, [sp, #0xc7]
+   351ec:      	tbnz	w8, #0x0, 0x3529c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5a4>
+   351f0:      	b	0x351f4 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x4fc>
+   351f4:      	ldr	x0, [sp, #0xc8]
+   351f8:      	ldur	x8, [x29, #-0x80]
+   351fc:      	ldr	w1, [x8, #0xc]
+   35200:      	ldr	w2, [x8]
+   35204:      	ldr	w3, [x8, #0x4]
+   35208:      	bl	0x74cb0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii@plt>
+   3520c:      	and	w8, w0, #0x1
+   35210:      	strb	w8, [sp, #0xc6]
+   35214:      	ldrb	w8, [sp, #0xc6]
+   35218:      	tbnz	w8, #0x0, 0x35298 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5a0>
+   3521c:      	b	0x35220 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x528>
+   35220:      	ldur	x8, [x29, #-0x78]
+   35224:      	str	x8, [sp, #0x38]
+   35228:      	adrp	x0, 0x18000
+   3522c:      	add	x0, x0, #0xb7d
+   35230:      	adrp	x1, 0x19000
+   35234:      	add	x1, x1, #0x92
+   35238:      	sub	x8, x29, #0x58
+   3523c:      	str	x8, [sp, #0x40]
+   35240:      	mov	w2, #0x6d
+   35244:      	bl	0x74b40 <_ZN4Util9newStringEPKcz@plt>
+   35248:      	ldr	x0, [sp, #0x38]
+   3524c:      	ldr	x1, [sp, #0x40]
+   35250:      	bl	0x74cc0 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE@plt>
+   35254:      	b	0x35258 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x560>
+   35258:      	sub	x0, x29, #0x58
+   3525c:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   35260:      	ldr	x8, [sp, #0xb8]
+   35264:      	ldr	x0, [x8]
+   35268:      	bl	0x74c80 <AImageDecoder_delete@plt>
+   3526c:      	ldr	x0, [sp, #0xc8]
+   35270:      	bl	0x74c90 <free@plt>
+   35274:      	mov	x8, xzr
+   35278:      	stur	x8, [x29, #-0x60]
+   3527c:      	b	0x352b8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5c0>
+   35280:      	stur	x0, [x29, #-0x90]
+   35284:      	mov	w8, w1
+   35288:      	stur	w8, [x29, #-0x94]
+   3528c:      	sub	x0, x29, #0x58
+   35290:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   35294:      	b	0x352ec <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5f4>
+   35298:      	b	0x3529c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5a4>
+   3529c:      	b	0x352a0 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5a8>
+   352a0:      	ldr	x8, [sp, #0xb8]
+   352a4:      	ldr	x0, [x8]
+   352a8:      	bl	0x74c80 <AImageDecoder_delete@plt>
+   352ac:      	ldr	x8, [sp, #0xc8]
+   352b0:      	stur	x8, [x29, #-0x60]
+   352b4:      	b	0x352b8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5c0>
+   352b8:      	ldur	x0, [x29, #-0x60]
+   352bc:      	str	x0, [sp, #0x30]
+   352c0:      	mrs	x8, TPIDR_EL0
+   352c4:      	ldr	x8, [x8, #0x28]
+   352c8:      	ldur	x9, [x29, #-0x8]
+   352cc:      	subs	x8, x8, x9
+   352d0:      	b.ne	0x35318 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x620>
+   352d4:      	b	0x352d8 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x5e0>
+   352d8:      	ldr	x0, [sp, #0x30]
+   352dc:      	ldr	x28, [sp, #0x1a0]
+   352e0:      	ldp	x29, x30, [sp, #0x190]
+   352e4:      	add	sp, sp, #0x1b0
+   352e8:      	ret
+   352ec:      	ldur	x0, [x29, #-0x90]
+   352f0:      	str	x0, [sp, #0x28]
+   352f4:      	mrs	x8, TPIDR_EL0
+   352f8:      	ldr	x8, [x8, #0x28]
+   352fc:      	ldur	x9, [x29, #-0x8]
+   35300:      	subs	x8, x8, x9
+   35304:      	b.ne	0x35318 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x620>
+   35308:      	b	0x3530c <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x614>
+   3530c:      	ldr	x0, [sp, #0x28]
+   35310:      	bl	0x704dc <__emutls_get_address+0xc90>
+   35314:      	bl	0x35478 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xfc>
+   35318:      	bl	0x74a10 <__stack_chk_fail@plt>
+   3531c:      	sub	sp, sp, #0x40
+   35320:      	stp	x29, x30, [sp, #0x30]
+   35324:      	add	x29, sp, #0x30
+   35328:      	mrs	x8, TPIDR_EL0
+   3532c:      	str	x8, [sp, #0x8]
+   35330:      	ldr	x8, [x8, #0x28]
+   35334:      	stur	x8, [x29, #-0x8]
+   35338:      	str	x0, [sp, #0x18]
+   3533c:      	stur	x1, [x29, #-0x10]
+   35340:      	ldr	x0, [sp, #0x18]
+   35344:      	sub	x1, x29, #0x10
+   35348:      	bl	0x36564 <_ZNSt6__ndk117__compressed_pairINS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5__repES5_EC2B8ne180000INS_18__default_init_tagESA_EEOT_OT0_+0x108>
+   3534c:      	ldr	x8, [sp, #0x8]
+   35350:      	str	w0, [sp, #0x14]
+   35354:      	ldr	x8, [x8, #0x28]
+   35358:      	ldur	x9, [x29, #-0x8]
+   3535c:      	subs	x8, x8, x9
+   35360:      	b.ne	0x35378 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x680>
+   35364:      	b	0x35368 <_ZN11KitApi30NDK11imageDecodeEP7_JNIEnvRKNSt6__ndk18functionIFiPP13AImageDecoderEEER3ReqR7DstInfo+0x670>
+   35368:      	ldr	w0, [sp, #0x14]
+   3536c:      	ldp	x29, x30, [sp, #0x30]
+   35370:      	add	sp, sp, #0x40
+   35374:      	ret
+   35378:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+000000000003537c <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE>:
+   3537c:      	sub	sp, sp, #0x80
+   35380:      	stp	x29, x30, [sp, #0x70]
+   35384:      	add	x29, sp, #0x70
+   35388:      	str	x2, [sp, #0x10]
+   3538c:      	mov	w8, w1
+   35390:      	ldr	x1, [sp, #0x10]
+   35394:      	mrs	x9, TPIDR_EL0
+   35398:      	ldr	x9, [x9, #0x28]
+   3539c:      	stur	x9, [x29, #-0x8]
+   353a0:      	stur	x0, [x29, #-0x28]
+   353a4:      	stur	w8, [x29, #-0x2c]
+   353a8:      	str	x1, [sp, #0x38]
+   353ac:      	ldur	x9, [x29, #-0x28]
+   353b0:      	ldur	w8, [x29, #-0x2c]
+   353b4:      	add	x10, x9, #0x18
+   353b8:      	str	x10, [sp, #0x18]
+   353bc:      	str	w8, [x9, #0x60]
+   353c0:      	sub	x0, x29, #0x20
+   353c4:      	str	x0, [sp, #0x20]
+   353c8:      	bl	0x74cd0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_@plt>
+   353cc:      	ldr	x0, [sp, #0x18]
+   353d0:      	ldr	x1, [sp, #0x20]
+   353d4:      	bl	0x74ce0 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE@plt>
+   353d8:      	b	0x353dc <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x60>
+   353dc:      	sub	x0, x29, #0x20
+   353e0:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   353e4:      	mrs	x8, TPIDR_EL0
+   353e8:      	ldr	x8, [x8, #0x28]
+   353ec:      	ldur	x9, [x29, #-0x8]
+   353f0:      	subs	x8, x8, x9
+   353f4:      	b.ne	0x35448 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xcc>
+   353f8:      	b	0x353fc <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x80>
+   353fc:      	ldp	x29, x30, [sp, #0x70]
+   35400:      	add	sp, sp, #0x80
+   35404:      	ret
+   35408:      	str	x0, [sp, #0x30]
+   3540c:      	mov	w8, w1
+   35410:      	str	w8, [sp, #0x2c]
+   35414:      	sub	x0, x29, #0x20
+   35418:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3541c:      	b	0x35420 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xa4>
+   35420:      	ldr	x0, [sp, #0x30]
+   35424:      	str	x0, [sp, #0x8]
+   35428:      	mrs	x8, TPIDR_EL0
+   3542c:      	ldr	x8, [x8, #0x28]
+   35430:      	ldur	x9, [x29, #-0x8]
+   35434:      	subs	x8, x8, x9
+   35438:      	b.ne	0x35448 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xcc>
+   3543c:      	b	0x35440 <_ZN3Req21logAImageDecoderErrorEiNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xc4>
+   35440:      	ldr	x0, [sp, #0x8]
+   35444:      	bl	0x704dc <__emutls_get_address+0xc90>
+   35448:      	bl	0x74a10 <__stack_chk_fail@plt>
+   3544c:      	sub	sp, sp, #0x20
+   35450:      	stp	x29, x30, [sp, #0x10]
+   35454:      	add	x29, sp, #0x10
+   35458:      	str	x0, [sp, #0x8]
+   3545c:      	str	x1, [sp]
+   35460:      	ldr	x0, [sp, #0x8]
+   35464:      	ldr	x1, [sp]
+   35468:      	bl	0x74cf0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6assignEPKc@plt>
+   3546c:      	ldp	x29, x30, [sp, #0x10]
+   35470:      	add	sp, sp, #0x20
+   35474:      	ret
+   35478:      	stp	x29, x30, [sp, #-0x10]!
+   3547c:      	mov	x29, sp
+   35480:      	bl	0x74bc0 <__cxa_begin_catch@plt>
+   35484:      	bl	0x74d00 <_ZSt9terminatev@plt>
+
+0000000000035488 <_ZN7ImgInfo8printLogEv>:
+   35488:      	sub	sp, sp, #0x60
+   3548c:      	stp	x29, x30, [sp, #0x50]
+   35490:      	add	x29, sp, #0x50
+   35494:      	stur	x0, [x29, #-0x8]
+   35498:      	ldur	x8, [x29, #-0x8]
+   3549c:      	str	x8, [sp, #0x18]
+   354a0:      	ldr	w9, [x8]
+   354a4:      	stur	w9, [x29, #-0x20]
+   354a8:      	ldr	w9, [x8, #0x4]
+   354ac:      	stur	w9, [x29, #-0x1c]
+   354b0:      	add	x0, x8, #0x10
+   354b4:      	bl	0x34cd4 <_ZN7_JNIEnv12NewStringUTFEPKc+0x34>
+   354b8:      	ldr	x8, [sp, #0x18]
+   354bc:      	stur	x0, [x29, #-0x18]
+   354c0:      	add	x0, x8, #0x28
+   354c4:      	bl	0x74aa0 <_ZN4Util23androidBitmapFormatNameER19AndroidBitmapFormat@plt>
+   354c8:      	ldr	x8, [sp, #0x18]
+   354cc:      	stur	x0, [x29, #-0x10]
+   354d0:      	ldr	w0, [x8, #0xc]
+   354d4:      	bl	0x74d10 <_ZN4Util13alphaFlagNameEi@plt>
+   354d8:      	ldr	x8, [sp, #0x18]
+   354dc:      	str	x0, [sp, #0x20]
+   354e0:      	ldr	w9, [x8, #0x8]
+   354e4:      	stur	w9, [x29, #-0x24]
+   354e8:      	ldr	w0, [x8, #0x8]
+   354ec:      	bl	0x74ad0 <_ZN4Util13dataSpaceNameEi@plt>
+   354f0:      	ldr	x10, [sp, #0x20]
+   354f4:      	ldur	w9, [x29, #-0x24]
+   354f8:      	ldur	w4, [x29, #-0x20]
+   354fc:      	ldur	w5, [x29, #-0x1c]
+   35500:      	ldur	x6, [x29, #-0x18]
+   35504:      	ldur	x7, [x29, #-0x10]
+   35508:      	mov	x8, sp
+   3550c:      	str	x10, [x8]
+   35510:      	str	w9, [x8, #0x8]
+   35514:      	str	x0, [x8, #0x10]
+   35518:      	mov	w0, #0x3
+   3551c:      	adrp	x1, 0x19000
+   35520:      	add	x1, x1, #0xfa4
+   35524:      	adrp	x2, 0x1b000
+   35528:      	add	x2, x2, #0xce
+   3552c:      	mov	w3, #0x36
+   35530:      	bl	0x74d20 <_ZN6KitLog3logEiPKcz@plt>
+   35534:      	ldp	x29, x30, [sp, #0x50]
+   35538:      	add	sp, sp, #0x60
+   3553c:      	ret
+
+0000000000035540 <_ZN3Req9calcDstWHEiiRiS0_>:
+   35540:      	sub	sp, sp, #0x60
+   35544:      	stp	x29, x30, [sp, #0x50]
+   35548:      	add	x29, sp, #0x50
+   3554c:      	mrs	x8, TPIDR_EL0
+   35550:      	ldr	x8, [x8, #0x28]
+   35554:      	stur	x8, [x29, #-0x8]
+   35558:      	stur	x0, [x29, #-0x18]
+   3555c:      	stur	w1, [x29, #-0xc]
+   35560:      	stur	w2, [x29, #-0x10]
+   35564:      	stur	x3, [x29, #-0x20]
+   35568:      	str	x4, [sp, #0x28]
+   3556c:      	ldur	x8, [x29, #-0x18]
+   35570:      	str	x8, [sp, #0x18]
+   35574:      	ldur	w8, [x29, #-0xc]
+   35578:      	scvtf	d0, w8
+   3557c:      	ldur	w8, [x29, #-0x10]
+   35580:      	scvtf	d1, w8
+   35584:      	fdiv	d0, d0, d1
+   35588:      	str	d0, [sp, #0x20]
+   3558c:      	ldur	w8, [x29, #-0xc]
+   35590:      	ldur	w9, [x29, #-0x10]
+   35594:      	subs	w8, w8, w9
+   35598:      	b.le	0x355f0 <_ZN3Req9calcDstWHEiiRiS0_+0xb0>
+   3559c:      	b	0x355a0 <_ZN3Req9calcDstWHEiiRiS0_+0x60>
+   355a0:      	ldr	x1, [sp, #0x18]
+   355a4:      	add	x8, x1, #0x4
+   355a8:      	str	x8, [sp, #0x10]
+   355ac:      	sub	x0, x29, #0xc
+   355b0:      	bl	0x361f4 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x228>
+   355b4:      	mov	x1, x0
+   355b8:      	ldr	x0, [sp, #0x10]
+   355bc:      	bl	0x361c4 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x1f8>
+   355c0:      	ldr	w8, [x0]
+   355c4:      	ldur	x9, [x29, #-0x20]
+   355c8:      	str	w8, [x9]
+   355cc:      	ldur	x8, [x29, #-0x20]
+   355d0:      	ldr	w8, [x8]
+   355d4:      	scvtf	d0, w8
+   355d8:      	ldr	d1, [sp, #0x20]
+   355dc:      	fdiv	d0, d0, d1
+   355e0:      	fcvtas	w8, d0
+   355e4:      	ldr	x9, [sp, #0x28]
+   355e8:      	str	w8, [x9]
+   355ec:      	b	0x35640 <_ZN3Req9calcDstWHEiiRiS0_+0x100>
+   355f0:      	ldr	x1, [sp, #0x18]
+   355f4:      	add	x8, x1, #0x4
+   355f8:      	str	x8, [sp, #0x8]
+   355fc:      	sub	x0, x29, #0x10
+   35600:      	bl	0x361f4 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x228>
+   35604:      	mov	x1, x0
+   35608:      	ldr	x0, [sp, #0x8]
+   3560c:      	bl	0x361c4 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x1f8>
+   35610:      	ldr	w8, [x0]
+   35614:      	ldr	x9, [sp, #0x28]
+   35618:      	str	w8, [x9]
+   3561c:      	ldr	x8, [sp, #0x28]
+   35620:      	ldr	w8, [x8]
+   35624:      	scvtf	d0, w8
+   35628:      	ldr	d1, [sp, #0x20]
+   3562c:      	fmul	d0, d0, d1
+   35630:      	fcvtas	w8, d0
+   35634:      	ldur	x9, [x29, #-0x20]
+   35638:      	str	w8, [x9]
+   3563c:      	b	0x35640 <_ZN3Req9calcDstWHEiiRiS0_+0x100>
+   35640:      	mrs	x8, TPIDR_EL0
+   35644:      	ldr	x8, [x8, #0x28]
+   35648:      	ldur	x9, [x29, #-0x8]
+   3564c:      	subs	x8, x8, x9
+   35650:      	b.ne	0x35668 <_ZN3Req9calcDstWHEiiRiS0_+0x128>
+   35654:      	b	0x35658 <_ZN3Req9calcDstWHEiiRiS0_+0x118>
+   35658:      	mov	w0, #0x1
+   3565c:      	ldp	x29, x30, [sp, #0x50]
+   35660:      	add	sp, sp, #0x60
+   35664:      	ret
+   35668:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+000000000003566c <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii>:
+   3566c:      	sub	sp, sp, #0x80
+   35670:      	stp	x29, x30, [sp, #0x70]
+   35674:      	add	x29, sp, #0x70
+   35678:      	mrs	x8, TPIDR_EL0
+   3567c:      	ldr	x8, [x8, #0x28]
+   35680:      	stur	x8, [x29, #-0x8]
+   35684:      	stur	x0, [x29, #-0x18]
+   35688:      	stur	w1, [x29, #-0xc]
+   3568c:      	stur	w2, [x29, #-0x1c]
+   35690:      	stur	w3, [x29, #-0x20]
+   35694:      	ldur	w8, [x29, #-0xc]
+   35698:      	subs	w8, w8, #0x1
+   3569c:      	b.eq	0x356e4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x78>
+   356a0:      	b	0x356a4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x38>
+   356a4:      	ldur	w8, [x29, #-0xc]
+   356a8:      	str	w8, [sp, #0x18]
+   356ac:      	sub	x0, x29, #0xc
+   356b0:      	bl	0x74aa0 <_ZN4Util23androidBitmapFormatNameER19AndroidBitmapFormat@plt>
+   356b4:      	ldr	w4, [sp, #0x18]
+   356b8:      	mov	x5, x0
+   356bc:      	adrp	x1, 0x19000
+   356c0:      	add	x1, x1, #0x25d
+   356c4:      	adrp	x2, 0x18000
+   356c8:      	add	x2, x2, #0xba8
+   356cc:      	mov	w0, #0x6
+   356d0:      	mov	w3, #0x84
+   356d4:      	bl	0x74d20 <_ZN6KitLog3logEiPKcz@plt>
+   356d8:      	mov	w8, wzr
+   356dc:      	sturb	w8, [x29, #-0xd]
+   356e0:      	b	0x359ac <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x340>
+   356e4:      	ldur	w8, [x29, #-0x1c]
+   356e8:      	ldur	w9, [x29, #-0x20]
+   356ec:      	mul	w8, w8, w9
+   356f0:      	stur	w8, [x29, #-0x24]
+   356f4:      	ldur	x8, [x29, #-0x18]
+   356f8:      	stur	x8, [x29, #-0x30]
+   356fc:      	ldur	w8, [x29, #-0x24]
+   35700:      	subs	w8, w8, #0x10, lsl #12  // =0x10000
+   35704:      	b.le	0x358b4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x248>
+   35708:      	b	0x3570c <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0xa0>
+   3570c:      	mov	w8, #0x400
+   35710:      	mov	w0, w8
+   35714:      	bl	0x74d30 <_Znam@plt>
+   35718:      	str	x0, [sp, #0x38]
+   3571c:      	mov	w8, #0x100
+   35720:      	mov	w0, w8
+   35724:      	bl	0x74d30 <_Znam@plt>
+   35728:      	str	x0, [sp, #0x30]
+   3572c:      	mov	w8, wzr
+   35730:      	str	w8, [sp, #0x2c]
+   35734:      	b	0x35738 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0xcc>
+   35738:      	ldr	w8, [sp, #0x2c]
+   3573c:      	subs	w8, w8, #0xff
+   35740:      	b.gt	0x35794 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x128>
+   35744:      	b	0x35748 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0xdc>
+   35748:      	ldrsw	x9, [sp, #0x2c]
+   3574c:      	mov	w8, w9
+   35750:      	scvtf	s0, w8
+   35754:      	mov	w8, #0x437f0000
+   35758:      	fmov	s1, w8
+   3575c:      	fdiv	s0, s0, s1
+   35760:      	ldr	x8, [sp, #0x38]
+   35764:      	str	s0, [x8, x9, lsl #2]
+   35768:      	ldrsw	x10, [sp, #0x2c]
+   3576c:      	mov	w9, w10
+   35770:      	mov	w8, #0xff
+   35774:      	subs	w8, w8, w9
+   35778:      	ldr	x9, [sp, #0x30]
+   3577c:      	strb	w8, [x9, x10]
+   35780:      	b	0x35784 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x118>
+   35784:      	ldr	w8, [sp, #0x2c]
+   35788:      	add	w8, w8, #0x1
+   3578c:      	str	w8, [sp, #0x2c]
+   35790:      	b	0x35738 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0xcc>
+   35794:      	mov	w8, wzr
+   35798:      	str	w8, [sp, #0x28]
+   3579c:      	b	0x357a0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x134>
+   357a0:      	ldr	w8, [sp, #0x28]
+   357a4:      	ldur	w9, [x29, #-0x24]
+   357a8:      	subs	w8, w8, w9
+   357ac:      	b.ge	0x35870 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x204>
+   357b0:      	b	0x357b4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x148>
+   357b4:      	ldur	x9, [x29, #-0x30]
+   357b8:      	ldrb	w8, [x9]
+   357bc:      	scvtf	s0, w8
+   357c0:      	ldr	x8, [sp, #0x38]
+   357c4:      	ldrb	w10, [x9, #0x3]
+   357c8:      	ldr	s1, [x8, x10, lsl #2]
+   357cc:      	ldr	x8, [sp, #0x30]
+   357d0:      	ldrb	w8, [x8, x10]
+   357d4:      	scvtf	s2, w8
+   357d8:      	fmadd	s0, s0, s1, s2
+   357dc:      	fcvtzs	w8, s0
+   357e0:      	strb	w8, [x9]
+   357e4:      	ldur	x9, [x29, #-0x30]
+   357e8:      	ldrb	w8, [x9, #0x1]
+   357ec:      	scvtf	s0, w8
+   357f0:      	ldr	x8, [sp, #0x38]
+   357f4:      	ldrb	w10, [x9, #0x3]
+   357f8:      	ldr	s1, [x8, x10, lsl #2]
+   357fc:      	ldr	x8, [sp, #0x30]
+   35800:      	ldrb	w8, [x8, x10]
+   35804:      	scvtf	s2, w8
+   35808:      	fmadd	s0, s0, s1, s2
+   3580c:      	fcvtzs	w8, s0
+   35810:      	strb	w8, [x9, #0x1]
+   35814:      	ldur	x9, [x29, #-0x30]
+   35818:      	ldrb	w8, [x9, #0x2]
+   3581c:      	scvtf	s0, w8
+   35820:      	ldr	x8, [sp, #0x38]
+   35824:      	ldrb	w10, [x9, #0x3]
+   35828:      	ldr	s1, [x8, x10, lsl #2]
+   3582c:      	ldr	x8, [sp, #0x30]
+   35830:      	ldrb	w8, [x8, x10]
+   35834:      	scvtf	s2, w8
+   35838:      	fmadd	s0, s0, s1, s2
+   3583c:      	fcvtzs	w8, s0
+   35840:      	strb	w8, [x9, #0x2]
+   35844:      	ldur	x9, [x29, #-0x30]
+   35848:      	mov	w8, #0xff
+   3584c:      	strb	w8, [x9, #0x3]
+   35850:      	ldur	x8, [x29, #-0x30]
+   35854:      	add	x8, x8, #0x4
+   35858:      	stur	x8, [x29, #-0x30]
+   3585c:      	b	0x35860 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x1f4>
+   35860:      	ldr	w8, [sp, #0x28]
+   35864:      	add	w8, w8, #0x1
+   35868:      	str	w8, [sp, #0x28]
+   3586c:      	b	0x357a0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x134>
+   35870:      	ldr	x8, [sp, #0x38]
+   35874:      	mov	x0, x8
+   35878:      	str	x0, [sp, #0x10]
+   3587c:      	cbz	x8, 0x35890 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x224>
+   35880:      	b	0x35884 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x218>
+   35884:      	ldr	x0, [sp, #0x10]
+   35888:      	bl	0x74d40 <_ZdaPv@plt>
+   3588c:      	b	0x35890 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x224>
+   35890:      	ldr	x8, [sp, #0x30]
+   35894:      	mov	x0, x8
+   35898:      	str	x0, [sp, #0x8]
+   3589c:      	cbz	x8, 0x358b0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x244>
+   358a0:      	b	0x358a4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x238>
+   358a4:      	ldr	x0, [sp, #0x8]
+   358a8:      	bl	0x74d40 <_ZdaPv@plt>
+   358ac:      	b	0x358b0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x244>
+   358b0:      	b	0x359a0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x334>
+   358b4:      	mov	w8, wzr
+   358b8:      	str	w8, [sp, #0x24]
+   358bc:      	b	0x358c0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x254>
+   358c0:      	ldr	w8, [sp, #0x24]
+   358c4:      	ldur	w9, [x29, #-0x24]
+   358c8:      	subs	w8, w8, w9
+   358cc:      	b.ge	0x3599c <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x330>
+   358d0:      	b	0x358d4 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x268>
+   358d4:      	ldur	x8, [x29, #-0x30]
+   358d8:      	ldrb	w8, [x8, #0x3]
+   358dc:      	scvtf	s0, w8
+   358e0:      	mov	w8, #0x7fed
+   358e4:      	movk	w8, #0x3b80, lsl #16
+   358e8:      	fmov	s1, w8
+   358ec:      	fmul	s0, s0, s1
+   358f0:      	str	s0, [sp, #0x20]
+   358f4:      	ldur	x8, [x29, #-0x30]
+   358f8:      	ldrb	w9, [x8, #0x3]
+   358fc:      	mov	w8, #0xff
+   35900:      	subs	w9, w8, w9
+   35904:      	strb	w9, [sp, #0x1f]
+   35908:      	ldur	x10, [x29, #-0x30]
+   3590c:      	ldrb	w9, [x10]
+   35910:      	scvtf	s0, w9
+   35914:      	ldr	s1, [sp, #0x20]
+   35918:      	ldrb	w9, [sp, #0x1f]
+   3591c:      	scvtf	s2, w9
+   35920:      	fmadd	s0, s0, s1, s2
+   35924:      	fcvtzs	w9, s0
+   35928:      	strb	w9, [x10]
+   3592c:      	ldur	x10, [x29, #-0x30]
+   35930:      	ldrb	w9, [x10, #0x1]
+   35934:      	scvtf	s0, w9
+   35938:      	ldr	s1, [sp, #0x20]
+   3593c:      	ldrb	w9, [sp, #0x1f]
+   35940:      	scvtf	s2, w9
+   35944:      	fmadd	s0, s0, s1, s2
+   35948:      	fcvtzs	w9, s0
+   3594c:      	strb	w9, [x10, #0x1]
+   35950:      	ldur	x10, [x29, #-0x30]
+   35954:      	ldrb	w9, [x10, #0x2]
+   35958:      	scvtf	s0, w9
+   3595c:      	ldr	s1, [sp, #0x20]
+   35960:      	ldrb	w9, [sp, #0x1f]
+   35964:      	scvtf	s2, w9
+   35968:      	fmadd	s0, s0, s1, s2
+   3596c:      	fcvtzs	w9, s0
+   35970:      	strb	w9, [x10, #0x2]
+   35974:      	ldur	x9, [x29, #-0x30]
+   35978:      	strb	w8, [x9, #0x3]
+   3597c:      	ldur	x8, [x29, #-0x30]
+   35980:      	add	x8, x8, #0x4
+   35984:      	stur	x8, [x29, #-0x30]
+   35988:      	b	0x3598c <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x320>
+   3598c:      	ldr	w8, [sp, #0x24]
+   35990:      	add	w8, w8, #0x1
+   35994:      	str	w8, [sp, #0x24]
+   35998:      	b	0x358c0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x254>
+   3599c:      	b	0x359a0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x334>
+   359a0:      	mov	w8, #0x1
+   359a4:      	sturb	w8, [x29, #-0xd]
+   359a8:      	b	0x359ac <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x340>
+   359ac:      	ldurb	w8, [x29, #-0xd]
+   359b0:      	str	w8, [sp, #0x4]
+   359b4:      	mrs	x8, TPIDR_EL0
+   359b8:      	ldr	x8, [x8, #0x28]
+   359bc:      	ldur	x9, [x29, #-0x8]
+   359c0:      	subs	x8, x8, x9
+   359c4:      	b.ne	0x359e0 <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x374>
+   359c8:      	b	0x359cc <_ZN11KitApi30NDK18addWhiteBackgroundEPhiii+0x360>
+   359cc:      	ldr	w8, [sp, #0x4]
+   359d0:      	and	w0, w8, #0x1
+   359d4:      	ldp	x29, x30, [sp, #0x70]
+   359d8:      	add	sp, sp, #0x80
+   359dc:      	ret
+   359e0:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+00000000000359e4 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE>:
+   359e4:      	sub	sp, sp, #0x70
+   359e8:      	stp	x29, x30, [sp, #0x60]
+   359ec:      	add	x29, sp, #0x60
+   359f0:      	mrs	x8, TPIDR_EL0
+   359f4:      	ldr	x8, [x8, #0x28]
+   359f8:      	stur	x8, [x29, #-0x8]
+   359fc:      	stur	x0, [x29, #-0x28]
+   35a00:      	str	x1, [sp, #0x30]
+   35a04:      	ldur	x8, [x29, #-0x28]
+   35a08:      	add	x8, x8, #0x18
+   35a0c:      	str	x8, [sp, #0x10]
+   35a10:      	sub	x0, x29, #0x20
+   35a14:      	str	x0, [sp, #0x18]
+   35a18:      	bl	0x74cd0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_@plt>
+   35a1c:      	ldr	x0, [sp, #0x10]
+   35a20:      	ldr	x1, [sp, #0x18]
+   35a24:      	bl	0x74ce0 <_ZN7ImgInfo11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE@plt>
+   35a28:      	b	0x35a2c <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x48>
+   35a2c:      	sub	x0, x29, #0x20
+   35a30:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   35a34:      	mrs	x8, TPIDR_EL0
+   35a38:      	ldr	x8, [x8, #0x28]
+   35a3c:      	ldur	x9, [x29, #-0x8]
+   35a40:      	subs	x8, x8, x9
+   35a44:      	b.ne	0x35a98 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xb4>
+   35a48:      	b	0x35a4c <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x68>
+   35a4c:      	ldp	x29, x30, [sp, #0x60]
+   35a50:      	add	sp, sp, #0x70
+   35a54:      	ret
+   35a58:      	str	x0, [sp, #0x28]
+   35a5c:      	mov	w8, w1
+   35a60:      	str	w8, [sp, #0x24]
+   35a64:      	sub	x0, x29, #0x20
+   35a68:      	bl	0x74a80 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   35a6c:      	b	0x35a70 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0x8c>
+   35a70:      	ldr	x0, [sp, #0x28]
+   35a74:      	str	x0, [sp, #0x8]
+   35a78:      	mrs	x8, TPIDR_EL0
+   35a7c:      	ldr	x8, [x8, #0x28]
+   35a80:      	ldur	x9, [x29, #-0x8]
+   35a84:      	subs	x8, x8, x9
+   35a88:      	b.ne	0x35a98 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xb4>
+   35a8c:      	b	0x35a90 <_ZN3Req11logErrorMsgENSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE+0xac>
+   35a90:      	ldr	x0, [sp, #0x8]
+   35a94:      	bl	0x704dc <__emutls_get_address+0xc90>
+   35a98:      	bl	0x74a10 <__stack_chk_fail@plt>
+
+0000000000035a9c <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii>:
+   35a9c:      	sub	sp, sp, #0x90
+   35aa0:      	stp	x29, x30, [sp, #0x80]
+   35aa4:      	add	x29, sp, #0x80
+   35aa8:      	stur	x0, [x29, #-0x10]
+   35aac:      	stur	w1, [x29, #-0x14]
+   35ab0:      	stur	w2, [x29, #-0x18]
+   35ab4:      	stur	w3, [x29, #-0x1c]
+   35ab8:      	stur	w4, [x29, #-0x20]
+   35abc:      	adrp	x8, 0x19000
+   35ac0:      	add	x8, x8, #0xc68
+   35ac4:      	stur	x8, [x29, #-0x28]
+   35ac8:      	ldur	w8, [x29, #-0x14]
+   35acc:      	str	w8, [sp, #0x1c]
+   35ad0:      	cbz	w8, 0x35be4 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x148>
+   35ad4:      	b	0x35ad8 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x3c>
+   35ad8:      	ldr	w8, [sp, #0x1c]
+   35adc:      	subs	w8, w8, #0x1
+   35ae0:      	b.eq	0x35b28 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x8c>
+   35ae4:      	b	0x35ae8 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x4c>
+   35ae8:      	ldr	w8, [sp, #0x1c]
+   35aec:      	subs	w8, w8, #0x4
+   35af0:      	b.eq	0x35b38 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x9c>
+   35af4:      	b	0x35af8 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x5c>
+   35af8:      	ldr	w8, [sp, #0x1c]
+   35afc:      	subs	w8, w8, #0x7
+   35b00:      	b.eq	0x35b6c <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0xd0>
+   35b04:      	b	0x35b08 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x6c>
+   35b08:      	ldr	w8, [sp, #0x1c]
+   35b0c:      	subs	w8, w8, #0x8
+   35b10:      	b.eq	0x35ba0 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x104>
+   35b14:      	b	0x35b18 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x7c>
+   35b18:      	ldr	w8, [sp, #0x1c]
+   35b1c:      	subs	w8, w8, #0x9
+   35b20:      	b.eq	0x35bd4 <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x138>
+   35b24:      	b	0x35bec <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x150>
+   35b28:      	adrp	x8, 0x19000
+   35b2c:      	add	x8, x8, #0xc68
+   35b30:      	stur	x8, [x29, #-0x28]
+   35b34:      	b	0x35bec <_ZN11KitApi30NDK15jniCreateBitmapEP7_JNIEnviiii+0x150>
+   35b38:      	adrp	x8, 0x1b000
+   35b3c:      	add	x8, x8, #0x1bf
+   35b40:      	stur	x8, [x29, #-0x28]
+   35b44:      	ldur	x4, [x29, #-0x28]
+   35b48:      	mov	w0, #0x6
+   35b4c:      	adrp	x1, 0x19000

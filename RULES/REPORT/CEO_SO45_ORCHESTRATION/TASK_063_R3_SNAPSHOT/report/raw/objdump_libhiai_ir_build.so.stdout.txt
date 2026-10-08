@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai_ir_build.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000064d0 <.text>:
+    64d0:      	bti	c
+    64d4:      	nop
+    64d8:      	adr	x0, #0x78d8
+    64dc:      	b	0x9ad0 <__cxa_finalize@plt>
+    64e0:      	bti	c
+    64e4:      	ret
+    64e8:      	bti	c
+    64ec:      	b	0x64e0 <.text+0x10>
+    64f0:      	bti	c
+    64f4:      	cbz	x0, 0x6500 <.text+0x30>
+    64f8:      	mov	x16, x0
+    64fc:      	br	x16
+    6500:      	ret
+    6504:      	bti	c
+    6508:      	mov	x1, x0
+    650c:      	nop
+    6510:      	adr	x0, #-0x20
+    6514:      	nop
+    6518:      	adr	x2, #0x7898
+    651c:      	b	0x9ae0 <__cxa_atexit@plt>
+    6520:      	sub	sp, sp, #0x30
+    6524:      	str	x30, [sp, #0x10]
+    6528:      	stp	x20, x19, [sp, #0x20]
+    652c:      	mrs	x20, TPIDR_EL0
+    6530:      	mov	x19, x0
+    6534:      	ldr	x8, [x20, #0x28]
+    6538:      	str	x8, [sp, #0x8]
+    653c:      	ldrb	w8, [x0, #0x68]
+    6540:      	tbz	w8, #0x0, 0x654c <.text+0x7c>
+    6544:      	ldr	x0, [x19, #0x78]
+    6548:      	bl	0x9af0 <_ZdlPv@plt>
+    654c:      	ldr	x0, [x19, #0x48]
+    6550:      	cbz	x0, 0x655c <.text+0x8c>
+    6554:      	str	x0, [x19, #0x50]
+    6558:      	bl	0x9af0 <_ZdlPv@plt>
+    655c:      	add	x8, x19, #0x28
+    6560:      	mov	x0, sp
+    6564:      	str	x8, [sp]
+    6568:      	bl	0x7250 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0xdc>
+    656c:      	ldr	x1, [x19, #0x18]
+    6570:      	add	x0, x19, #0x10
+    6574:      	bl	0x72c8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x154>
+    6578:      	ldr	x8, [x20, #0x28]
+    657c:      	ldr	x9, [sp, #0x8]
+    6580:      	cmp	x8, x9
+    6584:      	b.ne	0x6598 <.text+0xc8>
+    6588:      	ldp	x20, x19, [sp, #0x20]
+    658c:      	ldr	x30, [sp, #0x10]
+    6590:      	add	sp, sp, #0x30
+    6594:      	ret
+    6598:      	bl	0x9b00 <__stack_chk_fail@plt>
+    659c:      	str	x30, [sp, #-0x30]!
+    65a0:      	stp	x22, x21, [sp, #0x10]
+    65a4:      	stp	x20, x19, [sp, #0x20]
+    65a8:      	mov	x19, x0
+    65ac:      	mov	x0, x1
+    65b0:      	mov	x21, x1
+    65b4:      	bl	0x9b10 <strlen@plt>
+    65b8:      	cmn	x0, #0x10
+    65bc:      	b.hs	0x661c <.text+0x14c>
+    65c0:      	mov	x20, x0
+    65c4:      	cmp	x0, #0x17
+    65c8:      	b.hs	0x65dc <.text+0x10c>
+    65cc:      	lsl	w8, w20, #1
+    65d0:      	strb	w8, [x19], #0x1
+    65d4:      	cbnz	x20, 0x65f8 <.text+0x128>
+    65d8:      	b	0x6608 <.text+0x138>
+    65dc:      	orr	x22, x20, #0xf
+    65e0:      	add	x0, x22, #0x1
+    65e4:      	bl	0x9b20 <_Znwm@plt>
+    65e8:      	add	x8, x22, #0x2
+    65ec:      	stp	x20, x0, [x19, #0x8]
+    65f0:      	str	x8, [x19]
+    65f4:      	mov	x19, x0
+    65f8:      	mov	x0, x19
+    65fc:      	mov	x1, x21
+    6600:      	mov	x2, x20
+    6604:      	bl	0x9b30 <memmove@plt>
+    6608:      	strb	wzr, [x19, x20]
+    660c:      	ldp	x20, x19, [sp, #0x20]
+    6610:      	ldp	x22, x21, [sp, #0x10]
+    6614:      	ldr	x30, [sp], #0x30
+    6618:      	ret
+    661c:      	mov	x0, x19
+    6620:      	bl	0x74c4 <_ZN2ge5GraphD0Ev+0x28>
+
+0000000000006624 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataE>:
+    6624:      	mov	w3, #0xc800000
+    6628:      	b	0x9b40 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj@plt>
+
+000000000000662c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj>:
+    662c:      	sub	sp, sp, #0xa0
+    6630:      	stp	x30, x25, [sp, #0x60]
+    6634:      	stp	x24, x23, [sp, #0x70]
+    6638:      	stp	x22, x21, [sp, #0x80]
+    663c:      	stp	x20, x19, [sp, #0x90]
+    6640:      	mrs	x25, TPIDR_EL0
+    6644:      	mov	w9, #0x1
+    6648:      	mov	w21, w3
+    664c:      	ldr	x8, [x25, #0x28]
+    6650:      	movk	w9, #0xc80, lsl #16
+    6654:      	cmp	w3, w9
+    6658:      	str	x8, [sp, #0x58]
+    665c:      	b.lo	0x66a8 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x7c>
+    6660:      	adrp	x0, 0x1000
+    6664:      	add	x0, x0, #0xb55
+    6668:      	mov	w1, #0x2f
+    666c:      	mov	w2, #0x75
+    6670:      	bl	0x9b50 <__strrchr_chk@plt>
+    6674:      	adrp	x1, 0x1000
+    6678:      	add	x1, x1, #0xfe7
+    667c:      	adrp	x2, 0x1000
+    6680:      	add	x2, x2, #0xd0d
+    6684:      	adrp	x4, 0x2000
+    6688:      	add	x4, x4, #0x1ae
+    668c:      	add	x3, x0, #0x1
+    6690:      	mov	w0, #0x3
+    6694:      	mov	w5, #0xe4
+    6698:      	mov	w6, w21
+    669c:      	bl	0x9b60 <AI_Log_Print@plt>
+    66a0:      	mov	w20, wzr
+    66a4:      	b	0x691c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2f0>
+    66a8:      	adrp	x8, 0x12000
+    66ac:      	mov	x20, x2
+    66b0:      	mov	x22, x1
+    66b4:      	ldrb	w8, [x8, #0x278]
+    66b8:      	tbnz	w8, #0x0, 0x66d8 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0xac>
+    66bc:      	nop
+    66c0:      	adr	x8, #0xbbb8
+    66c4:      	ldr	q0, [x8]
+    66c8:      	ldr	x8, [x8, #0x10]
+    66cc:      	str	q0, [sp, #0x20]
+    66d0:      	str	x8, [sp, #0x30]
+    66d4:      	b	0x66ec <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0xc0>
+    66d8:      	adrp	x8, 0x12000
+    66dc:      	add	x8, x8, #0x280
+    66e0:      	add	x0, sp, #0x20
+    66e4:      	ldp	x2, x1, [x8]
+    66e8:      	bl	0x74e4 <_ZN2ge5GraphD0Ev+0x48>
+    66ec:      	ldrb	w8, [sp, #0x20]
+    66f0:      	ldr	x9, [sp, #0x30]
+    66f4:      	add	x10, sp, #0x20
+    66f8:      	orr	x10, x10, #0x1
+    66fc:      	mov	w1, #0x100
+    6700:      	tst	w8, #0x1
+    6704:      	csel	x0, x10, x9, eq
+    6708:      	bl	0x9b70 <dlopen@plt>
+    670c:      	cbz	x0, 0x68cc <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2a0>
+    6710:      	adrp	x1, 0x1000
+    6714:      	add	x1, x1, #0xe87
+    6718:      	mov	x19, x0
+    671c:      	bl	0x9b80 <dlsym@plt>
+    6720:      	mov	x24, x0
+    6724:      	bl	0x9b90 <dlerror@plt>
+    6728:      	mov	x23, x0
+    672c:      	cbz	x24, 0x6880 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x254>
+    6730:      	blr	x24
+    6734:      	cbz	x0, 0x6880 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x254>
+    6738:      	blr	x24
+    673c:      	mov	x1, x0
+    6740:      	add	x0, sp, #0x8
+    6744:      	bl	0x659c <.text+0xcc>
+    6748:      	ldrb	w8, [sp, #0x8]
+    674c:      	ldr	x9, [sp, #0x10]
+    6750:      	lsr	x10, x8, #1
+    6754:      	tst	w8, #0x1
+    6758:      	csel	x8, x10, x9, eq
+    675c:      	cbz	x8, 0x6948 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x31c>
+    6760:      	adrp	x1, 0x1000
+    6764:      	add	x1, x1, #0xf5a
+    6768:      	add	x0, sp, #0x38
+    676c:      	add	x23, sp, #0x38
+    6770:      	bl	0x659c <.text+0xcc>
+    6774:      	ldrb	w8, [sp, #0x38]
+    6778:      	ldr	x9, [sp, #0x40]
+    677c:      	lsr	x10, x8, #1
+    6780:      	ands	w8, w8, #0x1
+    6784:      	csel	x9, x10, x9, eq
+    6788:      	cbz	x9, 0x69fc <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x3d0>
+    678c:      	ldr	x9, [sp, #0x48]
+    6790:      	orr	x10, x23, #0x1
+    6794:      	cmp	w8, #0x0
+    6798:      	mov	x0, x19
+    679c:      	csel	x1, x10, x9, eq
+    67a0:      	bl	0x9b80 <dlsym@plt>
+    67a4:      	ldrb	w8, [sp, #0x38]
+    67a8:      	cmp	x0, #0x0
+    67ac:      	cset	w23, ne
+    67b0:      	and	w8, w8, #0x1
+    67b4:      	cbz	w8, 0x67c0 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x194>
+    67b8:      	ldr	x0, [sp, #0x48]
+    67bc:      	bl	0x9af0 <_ZdlPv@plt>
+    67c0:      	adrp	x0, 0x1000
+    67c4:      	add	x0, x0, #0xb55
+    67c8:      	mov	w1, #0x2f
+    67cc:      	mov	w2, #0x75
+    67d0:      	bl	0x9b50 <__strrchr_chk@plt>
+    67d4:      	adrp	x1, 0x1000
+    67d8:      	add	x1, x1, #0xfe7
+    67dc:      	cbz	w23, 0x6988 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x35c>
+    67e0:      	adrp	x2, 0x1000
+    67e4:      	add	x2, x2, #0xcf1
+    67e8:      	adrp	x4, 0x2000
+    67ec:      	add	x4, x4, #0x1ae
+    67f0:      	add	x3, x0, #0x1
+    67f4:      	mov	w0, #0x1
+    67f8:      	mov	w5, #0x102
+    67fc:      	bl	0x9b60 <AI_Log_Print@plt>
+    6800:      	adrp	x1, 0x1000
+    6804:      	add	x1, x1, #0xf5a
+    6808:      	mov	x0, x19
+    680c:      	bl	0x9b80 <dlsym@plt>
+    6810:      	mov	x23, x0
+    6814:      	bl	0x9b90 <dlerror@plt>
+    6818:      	cbz	x23, 0x6a08 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x3dc>
+    681c:      	add	x0, sp, #0x38
+    6820:      	bl	0x9ba0 <_ZN2ge6BufferC1Ev@plt>
+    6824:      	add	x1, sp, #0x38
+    6828:      	mov	x0, x22
+    682c:      	bl	0x9bb0 <_ZNK2ge5Model4SaveERNS_6BufferE@plt>
+    6830:      	mov	w0, #0x10
+    6834:      	bl	0x9bc0 <malloc@plt>
+    6838:      	str	x0, [sp, #0x50]
+    683c:      	cbz	x0, 0x6a94 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x468>
+    6840:      	mov	x22, x0
+    6844:      	add	x0, sp, #0x38
+    6848:      	bl	0x9bd0 <_ZNK2ge6Buffer7GetSizeEv@plt>
+    684c:      	str	w0, [x22]
+    6850:      	add	x1, sp, #0x50
+    6854:      	mov	w0, #0x7
+    6858:      	mov	w2, #0x1
+    685c:      	mov	w3, w21
+    6860:      	blr	x23
+    6864:      	cbz	x0, 0x6b10 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x4e4>
+    6868:      	mov	x21, x0
+    686c:      	ldr	x0, [sp, #0x50]
+    6870:      	bl	0x9be0 <free@plt>
+    6874:      	add	x0, sp, #0x38
+    6878:      	bl	0x9bf0 <_ZN2ge6BufferD1Ev@plt>
+    687c:      	b	0x69dc <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x3b0>
+    6880:      	adrp	x0, 0x1000
+    6884:      	add	x0, x0, #0xb55
+    6888:      	mov	w1, #0x2f
+    688c:      	mov	w2, #0x75
+    6890:      	bl	0x9b50 <__strrchr_chk@plt>
+    6894:      	adrp	x1, 0x1000
+    6898:      	add	x1, x1, #0xfe7
+    689c:      	adrp	x2, 0x2000
+    68a0:      	add	x2, x2, #0x136
+    68a4:      	adrp	x4, 0x2000
+    68a8:      	add	x4, x4, #0x1ae
+    68ac:      	add	x3, x0, #0x1
+    68b0:      	mov	w0, #0x3
+    68b4:      	mov	w5, #0xf3
+    68b8:      	mov	x6, x23
+    68bc:      	bl	0x9b60 <AI_Log_Print@plt>
+    68c0:      	mov	x0, x19
+    68c4:      	bl	0x9c00 <dlclose@plt>
+    68c8:      	b	0x6908 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2dc>
+    68cc:      	adrp	x0, 0x1000
+    68d0:      	add	x0, x0, #0xb55
+    68d4:      	mov	w1, #0x2f
+    68d8:      	mov	w2, #0x75
+    68dc:      	bl	0x9b50 <__strrchr_chk@plt>
+    68e0:      	adrp	x1, 0x1000
+    68e4:      	add	x1, x1, #0xfe7
+    68e8:      	adrp	x2, 0x2000
+    68ec:      	add	x2, x2, #0x1d3
+    68f0:      	adrp	x4, 0x2000
+    68f4:      	add	x4, x4, #0x1ae
+    68f8:      	add	x3, x0, #0x1
+    68fc:      	mov	w0, #0x3
+    6900:      	mov	w5, #0xeb
+    6904:      	bl	0x9b60 <AI_Log_Print@plt>
+    6908:      	mov	w20, wzr
+    690c:      	ldrb	w8, [sp, #0x20]
+    6910:      	tbz	w8, #0x0, 0x691c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2f0>
+    6914:      	ldr	x0, [sp, #0x30]
+    6918:      	bl	0x9af0 <_ZdlPv@plt>
+    691c:      	ldr	x8, [x25, #0x28]
+    6920:      	ldr	x9, [sp, #0x58]
+    6924:      	cmp	x8, x9
+    6928:      	b.ne	0x6b7c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x550>
+    692c:      	mov	w0, w20
+    6930:      	ldp	x20, x19, [sp, #0x90]
+    6934:      	ldp	x22, x21, [sp, #0x80]
+    6938:      	ldp	x24, x23, [sp, #0x70]
+    693c:      	ldp	x30, x25, [sp, #0x60]
+    6940:      	add	sp, sp, #0xa0
+    6944:      	ret
+    6948:      	adrp	x0, 0x1000
+    694c:      	add	x0, x0, #0xb55
+    6950:      	mov	w1, #0x2f
+    6954:      	mov	w2, #0x75
+    6958:      	bl	0x9b50 <__strrchr_chk@plt>
+    695c:      	adrp	x1, 0x1000
+    6960:      	add	x1, x1, #0xfe7
+    6964:      	adrp	x2, 0x1000
+    6968:      	add	x2, x2, #0xccb
+    696c:      	adrp	x4, 0x2000
+    6970:      	add	x4, x4, #0x1ae
+    6974:      	add	x3, x0, #0x1
+    6978:      	mov	w0, #0x3
+    697c:      	mov	w5, #0xfa
+    6980:      	bl	0x9b60 <AI_Log_Print@plt>
+    6984:      	b	0x6b5c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x530>
+    6988:      	adrp	x2, 0x1000
+    698c:      	add	x2, x2, #0xbca
+    6990:      	adrp	x4, 0x2000
+    6994:      	add	x4, x4, #0x1ae
+    6998:      	add	x3, x0, #0x1
+    699c:      	mov	w0, #0x1
+    69a0:      	mov	w5, #0x105
+    69a4:      	bl	0x9b60 <AI_Log_Print@plt>
+    69a8:      	adrp	x1, 0x1000
+    69ac:      	add	x1, x1, #0xd49
+    69b0:      	mov	x0, x19
+    69b4:      	bl	0x9b80 <dlsym@plt>
+    69b8:      	mov	x22, x0
+    69bc:      	bl	0x9b90 <dlerror@plt>
+    69c0:      	cbz	x22, 0x6a4c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x420>
+    69c4:      	add	x1, sp, #0x38
+    69c8:      	mov	w0, #0x7
+    69cc:      	mov	w2, #0x1
+    69d0:      	blr	x22
+    69d4:      	cbz	x0, 0x6ad4 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x4a8>
+    69d8:      	mov	x21, x0
+    69dc:      	ldr	x8, [x21, #0x8]
+    69e0:      	mov	x0, x21
+    69e4:      	str	x8, [x20]
+    69e8:      	ldr	w8, [x21]
+    69ec:      	str	w8, [x20, #0x8]
+    69f0:      	bl	0x9be0 <free@plt>
+    69f4:      	mov	w20, #0x1
+    69f8:      	b	0x6b60 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x534>
+    69fc:      	mov	w23, wzr
+    6a00:      	cbnz	w8, 0x67b8 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x18c>
+    6a04:      	b	0x67c0 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x194>
+    6a08:      	mov	x24, x0
+    6a0c:      	adrp	x0, 0x1000
+    6a10:      	add	x0, x0, #0xb55
+    6a14:      	mov	w1, #0x2f
+    6a18:      	mov	w2, #0x75
+    6a1c:      	bl	0x9b50 <__strrchr_chk@plt>
+    6a20:      	adrp	x1, 0x1000
+    6a24:      	add	x1, x1, #0xfe7
+    6a28:      	adrp	x2, 0x1000
+    6a2c:      	add	x2, x2, #0xcb0
+    6a30:      	adrp	x4, 0x1000
+    6a34:      	add	x4, x4, #0xa46
+    6a38:      	add	x3, x0, #0x1
+    6a3c:      	mov	w0, #0x3
+    6a40:      	mov	w5, #0x4e
+    6a44:      	mov	x6, x24
+    6a48:      	b	0x6a8c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x460>
+    6a4c:      	mov	x21, x0
+    6a50:      	adrp	x0, 0x1000
+    6a54:      	add	x0, x0, #0xb55
+    6a58:      	mov	w1, #0x2f
+    6a5c:      	mov	w2, #0x75
+    6a60:      	bl	0x9b50 <__strrchr_chk@plt>
+    6a64:      	adrp	x1, 0x1000
+    6a68:      	add	x1, x1, #0xfe7
+    6a6c:      	adrp	x2, 0x1000
+    6a70:      	add	x2, x2, #0xcb0
+    6a74:      	adrp	x4, 0x1000
+    6a78:      	add	x4, x4, #0xb1b
+    6a7c:      	add	x3, x0, #0x1
+    6a80:      	mov	w0, #0x3
+    6a84:      	mov	w5, #0x71
+    6a88:      	mov	x6, x21
+    6a8c:      	bl	0x9b60 <AI_Log_Print@plt>
+    6a90:      	b	0x6b5c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x530>
+    6a94:      	adrp	x0, 0x1000
+    6a98:      	add	x0, x0, #0xb55
+    6a9c:      	mov	w1, #0x2f
+    6aa0:      	mov	w2, #0x75
+    6aa4:      	bl	0x9b50 <__strrchr_chk@plt>
+    6aa8:      	adrp	x1, 0x1000
+    6aac:      	add	x1, x1, #0xfe7
+    6ab0:      	adrp	x2, 0x2000
+    6ab4:      	add	x2, x2, #0x1f9
+    6ab8:      	adrp	x4, 0x1000
+    6abc:      	add	x4, x4, #0xa46
+    6ac0:      	add	x3, x0, #0x1
+    6ac4:      	mov	w0, #0x3
+    6ac8:      	mov	w5, #0x57
+    6acc:      	bl	0x9b60 <AI_Log_Print@plt>
+    6ad0:      	b	0x6b54 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x528>
+    6ad4:      	adrp	x0, 0x1000
+    6ad8:      	add	x0, x0, #0xb55
+    6adc:      	mov	w1, #0x2f
+    6ae0:      	mov	w2, #0x75
+    6ae4:      	bl	0x9b50 <__strrchr_chk@plt>
+    6ae8:      	adrp	x1, 0x1000
+    6aec:      	add	x1, x1, #0xfe7
+    6af0:      	adrp	x2, 0x1000
+    6af4:      	add	x2, x2, #0xe97
+    6af8:      	adrp	x4, 0x1000
+    6afc:      	add	x4, x4, #0xb1b
+    6b00:      	add	x3, x0, #0x1
+    6b04:      	mov	w0, #0x3
+    6b08:      	mov	w5, #0x78
+    6b0c:      	b	0x6980 <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x354>
+    6b10:      	adrp	x0, 0x1000
+    6b14:      	add	x0, x0, #0xb55
+    6b18:      	mov	w1, #0x2f
+    6b1c:      	mov	w2, #0x75
+    6b20:      	bl	0x9b50 <__strrchr_chk@plt>
+    6b24:      	adrp	x1, 0x1000
+    6b28:      	add	x1, x1, #0xfe7
+    6b2c:      	adrp	x2, 0x1000
+    6b30:      	add	x2, x2, #0xa4f
+    6b34:      	adrp	x4, 0x1000
+    6b38:      	add	x4, x4, #0xa46
+    6b3c:      	add	x3, x0, #0x1
+    6b40:      	mov	w0, #0x3
+    6b44:      	mov	w5, #0x5e
+    6b48:      	bl	0x9b60 <AI_Log_Print@plt>
+    6b4c:      	ldr	x0, [sp, #0x50]
+    6b50:      	bl	0x9be0 <free@plt>
+    6b54:      	add	x0, sp, #0x38
+    6b58:      	bl	0x9bf0 <_ZN2ge6BufferD1Ev@plt>
+    6b5c:      	mov	w20, wzr
+    6b60:      	mov	x0, x19
+    6b64:      	bl	0x9c00 <dlclose@plt>
+    6b68:      	ldrb	w8, [sp, #0x8]
+    6b6c:      	tbz	w8, #0x0, 0x690c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2e0>
+    6b70:      	ldr	x0, [sp, #0x18]
+    6b74:      	bl	0x9af0 <_ZdlPv@plt>
+    6b78:      	b	0x690c <_ZN4hiai11HiaiIrBuild15CreateModelBuffERN2ge5ModelERNS_15ModelBufferDataEj+0x2e0>
+    6b7c:      	bl	0x9b00 <__stack_chk_fail@plt>
+
+0000000000006b80 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE>:
+    6b80:      	ldr	x0, [x1]
+    6b84:      	str	wzr, [x1, #0x8]
+    6b88:      	cbz	x0, 0x6ba0 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x20>
+    6b8c:      	stp	x30, x19, [sp, #-0x10]!
+    6b90:      	mov	x19, x1
+    6b94:      	bl	0x9be0 <free@plt>
+    6b98:      	str	xzr, [x19]
+    6b9c:      	ldp	x30, x19, [sp], #0x10
+    6ba0:      	ret
+    6ba4:      	sub	sp, sp, #0x160
+    6ba8:      	str	x29, [sp, #0x130]
+    6bac:      	stp	x30, x21, [sp, #0x140]
+    6bb0:      	stp	x20, x19, [sp, #0x150]
+    6bb4:      	mrs	x21, TPIDR_EL0
+    6bb8:      	mov	x0, x3
+    6bbc:      	mov	x19, x2
+    6bc0:      	ldr	x8, [x21, #0x28]
+    6bc4:      	mov	x20, x1
+    6bc8:      	str	x8, [sp, #0x128]
+    6bcc:      	add	x8, sp, #0x50
+    6bd0:      	bl	0x84c8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0xea8>
+    6bd4:      	ldr	w8, [x19, #0x8]
+    6bd8:      	adrp	x1, 0x1000
+    6bdc:      	add	x1, x1, #0xeef
+    6be0:      	add	x0, sp, #0x18
+    6be4:      	str	x8, [sp, #0xc8]
+    6be8:      	bl	0x659c <.text+0xcc>
+    6bec:      	mov	x0, x20
+    6bf0:      	bl	0x9c10 <_ZNK2ge5Model7GetNameEv@plt>
+    6bf4:      	ldrb	w8, [x0]
+    6bf8:      	ldp	x10, x9, [x0, #0x8]
+    6bfc:      	lsr	x11, x8, #1
+    6c00:      	tst	w8, #0x1
+    6c04:      	csinc	x1, x9, x0, ne
+    6c08:      	add	x0, sp, #0x18
+    6c0c:      	csel	x2, x11, x10, eq
+    6c10:      	bl	0x9c20 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm@plt>
+    6c14:      	ldr	q0, [x0]
+    6c18:      	ldr	x8, [x0, #0x10]
+    6c1c:      	str	q0, [sp, #0x30]
+    6c20:      	str	x8, [sp, #0x40]
+    6c24:      	stp	xzr, xzr, [x0, #0x8]
+    6c28:      	str	xzr, [x0]
+    6c2c:      	ldrb	w8, [sp, #0x18]
+    6c30:      	tbz	w8, #0x0, 0x6c3c <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0xbc>
+    6c34:      	ldr	x0, [sp, #0x28]
+    6c38:      	bl	0x9af0 <_ZdlPv@plt>
+    6c3c:      	add	x8, sp, #0x18
+    6c40:      	add	x0, sp, #0x50
+    6c44:      	add	x1, sp, #0x30
+    6c48:      	mov	x2, x20
+    6c4c:      	bl	0x7f00 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x8e0>
+    6c50:      	ldr	x8, [sp, #0x18]
+    6c54:      	cbz	x8, 0x6cec <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x16c>
+    6c58:      	ldr	x0, [x19]
+    6c5c:      	ldr	w1, [x19, #0x8]
+    6c60:      	add	x8, sp, #0x8
+    6c64:      	mov	w2, wzr
+    6c68:      	bl	0x9c30 <_ZN4hiai17CreateLocalBufferEPvmb@plt>
+    6c6c:      	ldr	x0, [sp, #0x18]
+    6c70:      	str	xzr, [sp]
+    6c74:      	add	x1, sp, #0x8
+    6c78:      	mov	x2, sp
+    6c7c:      	ldr	x8, [x0]
+    6c80:      	ldr	x8, [x8, #0x10]
+    6c84:      	blr	x8
+    6c88:      	cbnz	w0, 0x6d30 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x1b0>
+    6c8c:      	ldr	x20, [sp]
+    6c90:      	cbz	x20, 0x6d30 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x1b0>
+    6c94:      	adrp	x0, 0x1000
+    6c98:      	add	x0, x0, #0xb55
+    6c9c:      	mov	w1, #0x2f
+    6ca0:      	mov	w2, #0x75
+    6ca4:      	str	w20, [x19, #0x8]
+    6ca8:      	bl	0x9b50 <__strrchr_chk@plt>
+    6cac:      	mov	w8, #0x1
+    6cb0:      	movk	w8, #0xc80, lsl #16
+    6cb4:      	cmp	w20, w8
+    6cb8:      	b.lo	0x6d7c <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x1fc>
+    6cbc:      	ldr	w6, [x19, #0x8]
+    6cc0:      	adrp	x1, 0x1000
+    6cc4:      	add	x1, x1, #0xfe7
+    6cc8:      	adrp	x2, 0x1000
+    6ccc:      	add	x2, x2, #0xdb8
+    6cd0:      	adrp	x4, 0x1000
+    6cd4:      	add	x4, x4, #0xf72
+    6cd8:      	add	x3, x0, #0x1
+    6cdc:      	mov	w0, #0x3
+    6ce0:      	mov	w5, #0x131
+    6ce4:      	bl	0x9b60 <AI_Log_Print@plt>
+    6ce8:      	b	0x6d74 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x1f4>
+    6cec:      	adrp	x0, 0x1000
+    6cf0:      	add	x0, x0, #0xb55
+    6cf4:      	mov	w1, #0x2f
+    6cf8:      	mov	w2, #0x75
+    6cfc:      	bl	0x9b50 <__strrchr_chk@plt>
+    6d00:      	adrp	x1, 0x2000
+    6d04:      	add	x1, x1, #0x22f
+    6d08:      	adrp	x2, 0x1000
+    6d0c:      	add	x2, x2, #0xb22
+    6d10:      	adrp	x4, 0x1000
+    6d14:      	add	x4, x4, #0xf72
+    6d18:      	add	x3, x0, #0x1
+    6d1c:      	mov	w0, #0x3
+    6d20:      	mov	w5, #0x127
+    6d24:      	bl	0x9b60 <AI_Log_Print@plt>
+    6d28:      	mov	w19, wzr
+    6d2c:      	b	0x6dd8 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x258>
+    6d30:      	adrp	x0, 0x1000
+    6d34:      	add	x0, x0, #0xb55
+    6d38:      	mov	w1, #0x2f
+    6d3c:      	mov	w2, #0x75
+    6d40:      	bl	0x9b50 <__strrchr_chk@plt>
+    6d44:      	adrp	x1, 0x2000
+    6d48:      	add	x1, x1, #0x22f
+    6d4c:      	adrp	x2, 0x1000
+    6d50:      	add	x2, x2, #0xfa1
+    6d54:      	adrp	x4, 0x1000
+    6d58:      	add	x4, x4, #0xf72
+    6d5c:      	adrp	x6, 0x1000
+    6d60:      	add	x6, x6, #0xa40
+    6d64:      	add	x3, x0, #0x1
+    6d68:      	mov	w0, #0x3
+    6d6c:      	mov	w5, #0x12c
+    6d70:      	bl	0x9b60 <AI_Log_Print@plt>
+    6d74:      	mov	w19, wzr
+    6d78:      	b	0x6da8 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x228>
+    6d7c:      	adrp	x1, 0x1000
+    6d80:      	add	x1, x1, #0xfe7
+    6d84:      	adrp	x2, 0x2000
+    6d88:      	add	x2, x2, #0xc7
+    6d8c:      	adrp	x4, 0x1000
+    6d90:      	add	x4, x4, #0xf72
+    6d94:      	add	x3, x0, #0x1
+    6d98:      	mov	w0, #0x1
+    6d9c:      	mov	w5, #0x135
+    6da0:      	mov	w19, #0x1
+    6da4:      	bl	0x9b60 <AI_Log_Print@plt>
+    6da8:      	ldr	x20, [sp, #0x10]
+    6dac:      	cbz	x20, 0x6dd8 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x258>
+    6db0:      	add	x1, x20, #0x8
+    6db4:      	mov	x0, #-0x1
+    6db8:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    6dbc:      	cbnz	x0, 0x6dd8 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x258>
+    6dc0:      	ldr	x8, [x20]
+    6dc4:      	mov	x0, x20
+    6dc8:      	ldr	x8, [x8, #0x10]
+    6dcc:      	blr	x8
+    6dd0:      	mov	x0, x20
+    6dd4:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    6dd8:      	ldr	x20, [sp, #0x20]
+    6ddc:      	cbz	x20, 0x6e08 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x288>
+    6de0:      	add	x1, x20, #0x8
+    6de4:      	mov	x0, #-0x1
+    6de8:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    6dec:      	cbnz	x0, 0x6e08 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x288>
+    6df0:      	ldr	x8, [x20]
+    6df4:      	mov	x0, x20
+    6df8:      	ldr	x8, [x8, #0x10]
+    6dfc:      	blr	x8
+    6e00:      	mov	x0, x20
+    6e04:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    6e08:      	ldrb	w8, [sp, #0x30]
+    6e0c:      	tbz	w8, #0x0, 0x6e18 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x298>
+    6e10:      	ldr	x0, [sp, #0x40]
+    6e14:      	bl	0x9af0 <_ZdlPv@plt>
+    6e18:      	ldrb	w8, [sp, #0x110]
+    6e1c:      	tbz	w8, #0x0, 0x6e28 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x2a8>
+    6e20:      	ldr	x0, [sp, #0x120]
+    6e24:      	bl	0x9af0 <_ZdlPv@plt>
+    6e28:      	ldrb	w8, [sp, #0xf0]
+    6e2c:      	tbz	w8, #0x0, 0x6e38 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x2b8>
+    6e30:      	ldr	x0, [sp, #0x100]
+    6e34:      	bl	0x9af0 <_ZdlPv@plt>
+    6e38:      	ldrb	w8, [sp, #0xd0]
+    6e3c:      	tbz	w8, #0x0, 0x6e48 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x2c8>
+    6e40:      	ldr	x0, [sp, #0xe0]
+    6e44:      	bl	0x9af0 <_ZdlPv@plt>
+    6e48:      	ldr	x1, [sp, #0xa8]
+    6e4c:      	add	x20, sp, #0x50
+    6e50:      	add	x0, x20, #0x50
+    6e54:      	bl	0x7340 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x1cc>
+    6e58:      	ldr	x0, [sp, #0x88]
+    6e5c:      	cbz	x0, 0x6e68 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x2e8>
+    6e60:      	str	x0, [sp, #0x90]
+    6e64:      	bl	0x9af0 <_ZdlPv@plt>
+    6e68:      	add	x0, sp, #0x30
+    6e6c:      	str	x20, [sp, #0x30]
+    6e70:      	bl	0x73b8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x244>
+    6e74:      	ldr	x8, [x21, #0x28]
+    6e78:      	ldr	x9, [sp, #0x128]
+    6e7c:      	cmp	x8, x9
+    6e80:      	b.ne	0x6e9c <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x31c>
+    6e84:      	mov	w0, w19
+    6e88:      	ldp	x20, x19, [sp, #0x150]
+    6e8c:      	ldp	x30, x21, [sp, #0x140]
+    6e90:      	ldr	x29, [sp, #0x130]
+    6e94:      	add	sp, sp, #0x160
+    6e98:      	ret
+    6e9c:      	bl	0x9b00 <__stack_chk_fail@plt>
+
+0000000000006ea0 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE>:
+    6ea0:      	sub	sp, sp, #0x80
+    6ea4:      	stp	x30, x25, [sp, #0x40]
+    6ea8:      	stp	x24, x23, [sp, #0x50]
+    6eac:      	stp	x22, x21, [sp, #0x60]
+    6eb0:      	stp	x20, x19, [sp, #0x70]
+    6eb4:      	mrs	x25, TPIDR_EL0
+    6eb8:      	mov	x21, x1
+    6ebc:      	add	x0, sp, #0x20
+    6ec0:      	ldr	x8, [x25, #0x28]
+    6ec4:      	mov	x19, x3
+    6ec8:      	mov	x20, x2
+    6ecc:      	str	x8, [sp, #0x38]
+    6ed0:      	str	x1, [sp, #0x8]
+    6ed4:      	adrp	x1, 0x1000
+    6ed8:      	add	x1, x1, #0xca5
+    6edc:      	bl	0x659c <.text+0xcc>
+    6ee0:      	mov	w8, #0x1
+    6ee4:      	add	x0, sp, #0x8
+    6ee8:      	add	x1, sp, #0x20
+    6eec:      	add	x2, sp, #0x18
+    6ef0:      	str	x8, [sp, #0x18]
+    6ef4:      	bl	0x9c60 <_ZN2ge9AttrUtils6SetIntEONS0_17AttrHolderAdapterERKNSt6__ndk112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEERKl@plt>
+    6ef8:      	ldrb	w8, [sp, #0x20]
+    6efc:      	tbz	w8, #0x0, 0x6f08 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x68>
+    6f00:      	ldr	x0, [sp, #0x30]
+    6f04:      	bl	0x9af0 <_ZdlPv@plt>
+    6f08:      	add	x8, sp, #0x20
+    6f0c:      	mov	x0, x21
+    6f10:      	bl	0x9c70 <_ZNK2ge5Model8GetGraphEv@plt>
+    6f14:      	add	x8, sp, #0x8
+    6f18:      	add	x0, sp, #0x20
+    6f1c:      	bl	0x9c80 <_ZN2ge10GraphUtils15GetComputeGraphERKNS_5GraphE@plt>
+    6f20:      	adrp	x8, 0xe000
+    6f24:      	ldr	x8, [x8, #0x58]
+    6f28:      	ldr	x22, [sp, #0x30]
+    6f2c:      	add	x8, x8, #0x10
+    6f30:      	str	x8, [sp, #0x20]
+    6f34:      	cbz	x22, 0x6f60 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0xc0>
+    6f38:      	add	x1, x22, #0x8
+    6f3c:      	mov	x0, #-0x1
+    6f40:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    6f44:      	cbnz	x0, 0x6f60 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0xc0>
+    6f48:      	ldr	x8, [x22]
+    6f4c:      	mov	x0, x22
+    6f50:      	ldr	x8, [x8, #0x10]
+    6f54:      	blr	x8
+    6f58:      	mov	x0, x22
+    6f5c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    6f60:      	ldp	x23, x22, [sp, #0x8]
+    6f64:      	cbz	x22, 0x6f8c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0xec>
+    6f68:      	add	x1, x22, #0x8
+    6f6c:      	mov	w0, #0x1
+    6f70:      	bl	0x9390 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x1d70>
+    6f74:      	cbz	x23, 0x6fc8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x128>
+    6f78:      	add	x1, x22, #0x8
+    6f7c:      	mov	w0, #0x1
+    6f80:      	stp	x23, x22, [sp, #0x20]
+    6f84:      	bl	0x9390 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x1d70>
+    6f88:      	b	0x6f94 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0xf4>
+    6f8c:      	cbz	x23, 0x6fc8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x128>
+    6f90:      	stp	x23, xzr, [sp, #0x20]
+    6f94:      	add	x0, sp, #0x20
+    6f98:      	bl	0x9c90 <_ZN4hiai13IRTransformer21VerifyIrReservedFieldENSt6__ndk110shared_ptrIN2ge12ComputeGraphEEE@plt>
+    6f9c:      	ldr	x24, [sp, #0x28]
+    6fa0:      	mov	w23, w0
+    6fa4:      	cbz	x24, 0x6fb8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x118>
+    6fa8:      	add	x1, x24, #0x8
+    6fac:      	mov	x0, #-0x1
+    6fb0:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    6fb4:      	cbz	x0, 0x7008 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x168>
+    6fb8:      	tbz	w23, #0x0, 0x7024 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x184>
+    6fbc:      	mov	w23, #0x1
+    6fc0:      	cbnz	x22, 0x7070 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1d0>
+    6fc4:      	b	0x7080 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1e0>
+    6fc8:      	adrp	x0, 0x1000
+    6fcc:      	add	x0, x0, #0xb55
+    6fd0:      	mov	w1, #0x2f
+    6fd4:      	mov	w2, #0x75
+    6fd8:      	bl	0x9b50 <__strrchr_chk@plt>
+    6fdc:      	adrp	x1, 0x2000
+    6fe0:      	add	x1, x1, #0x22f
+    6fe4:      	adrp	x2, 0x1000
+    6fe8:      	add	x2, x2, #0xa78
+    6fec:      	adrp	x4, 0x2000
+    6ff0:      	add	x4, x4, #0x2d2
+    6ff4:      	add	x3, x0, #0x1
+    6ff8:      	mov	w0, #0x3
+    6ffc:      	mov	w5, #0x13b
+    7000:      	bl	0x9b60 <AI_Log_Print@plt>
+    7004:      	b	0x7068 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1c8>
+    7008:      	ldr	x8, [x24]
+    700c:      	mov	x0, x24
+    7010:      	ldr	x8, [x8, #0x10]
+    7014:      	blr	x8
+    7018:      	mov	x0, x24
+    701c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    7020:      	tbnz	w23, #0x0, 0x6fbc <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x11c>
+    7024:      	adrp	x0, 0x1000
+    7028:      	add	x0, x0, #0xb55
+    702c:      	mov	w1, #0x2f
+    7030:      	mov	w2, #0x75
+    7034:      	bl	0x9b50 <__strrchr_chk@plt>
+    7038:      	adrp	x1, 0x2000
+    703c:      	add	x1, x1, #0x22f
+    7040:      	adrp	x2, 0x1000
+    7044:      	add	x2, x2, #0xc23
+    7048:      	adrp	x4, 0x2000
+    704c:      	add	x4, x4, #0x2d2
+    7050:      	adrp	x6, 0x1000
+    7054:      	add	x6, x6, #0xa40
+    7058:      	add	x3, x0, #0x1
+    705c:      	mov	w0, #0x3
+    7060:      	mov	w5, #0x13c
+    7064:      	bl	0x9b60 <AI_Log_Print@plt>
+    7068:      	mov	w23, wzr
+    706c:      	cbz	x22, 0x7080 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1e0>
+    7070:      	add	x1, x22, #0x8
+    7074:      	mov	x0, #-0x1
+    7078:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    707c:      	cbz	x0, 0x709c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1fc>
+    7080:      	tbz	w23, #0x0, 0x70b8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x218>
+    7084:      	mov	x1, x21
+    7088:      	mov	x2, x20
+    708c:      	mov	x3, x19
+    7090:      	bl	0x6ba4 <_ZN4hiai11HiaiIrBuild16ReleaseModelBuffERNS_15ModelBufferDataE+0x24>
+    7094:      	mov	w19, w0
+    7098:      	b	0x7100 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x260>
+    709c:      	ldr	x8, [x22]
+    70a0:      	mov	x0, x22
+    70a4:      	ldr	x8, [x8, #0x10]
+    70a8:      	blr	x8
+    70ac:      	mov	x0, x22
+    70b0:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    70b4:      	tbnz	w23, #0x0, 0x7084 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x1e4>
+    70b8:      	adrp	x0, 0x1000
+    70bc:      	add	x0, x0, #0xb55
+    70c0:      	mov	w1, #0x2f
+    70c4:      	mov	w2, #0x75
+    70c8:      	bl	0x9b50 <__strrchr_chk@plt>
+    70cc:      	adrp	x1, 0x2000
+    70d0:      	add	x1, x1, #0x22f
+    70d4:      	adrp	x2, 0x1000
+    70d8:      	add	x2, x2, #0xef8
+    70dc:      	adrp	x4, 0x2000
+    70e0:      	add	x4, x4, #0x6c
+    70e4:      	adrp	x6, 0x1000
+    70e8:      	add	x6, x6, #0xa40
+    70ec:      	add	x3, x0, #0x1
+    70f0:      	mov	w0, #0x3
+    70f4:      	mov	w5, #0x146
+    70f8:      	bl	0x9b60 <AI_Log_Print@plt>
+    70fc:      	mov	w19, wzr
+    7100:      	ldr	x20, [sp, #0x10]
+    7104:      	cbz	x20, 0x7130 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x290>
+    7108:      	add	x1, x20, #0x8
+    710c:      	mov	x0, #-0x1
+    7110:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7114:      	cbnz	x0, 0x7130 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x290>
+    7118:      	ldr	x8, [x20]
+    711c:      	mov	x0, x20
+    7120:      	ldr	x8, [x8, #0x10]
+    7124:      	blr	x8
+    7128:      	mov	x0, x20
+    712c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    7130:      	ldr	x8, [x25, #0x28]
+    7134:      	ldr	x9, [sp, #0x38]
+    7138:      	cmp	x8, x9
+    713c:      	b.ne	0x715c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE+0x2bc>
+    7140:      	and	w0, w19, #0x1
+    7144:      	ldp	x20, x19, [sp, #0x70]
+    7148:      	ldp	x22, x21, [sp, #0x60]
+    714c:      	ldp	x24, x23, [sp, #0x50]
+    7150:      	ldp	x30, x25, [sp, #0x40]
+    7154:      	add	sp, sp, #0x80
+    7158:      	ret
+    715c:      	bl	0x9b00 <__stack_chk_fail@plt>
+
+0000000000007160 <_ZN2ge5GraphD2Ev>:
+    7160:      	adrp	x8, 0xe000
+    7164:      	ldr	x8, [x8, #0x58]
+    7168:      	add	x8, x8, #0x10
+    716c:      	str	x8, [x0], #0x8
+    7170:      	b	0x745c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2e8>
+
+0000000000007174 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE>:
+    7174:      	sub	sp, sp, #0xc0
+    7178:      	stp	x30, x23, [sp, #0x90]
+    717c:      	stp	x22, x21, [sp, #0xa0]
+    7180:      	stp	x20, x19, [sp, #0xb0]
+    7184:      	mrs	x21, TPIDR_EL0
+    7188:      	mov	x22, sp
+    718c:      	mov	x20, x1
+    7190:      	ldr	x8, [x21, #0x28]
+    7194:      	adrp	x1, 0x1000
+    7198:      	add	x1, x1, #0xd0c
+    719c:      	add	x0, x22, #0x68
+    71a0:      	mov	x19, x2
+    71a4:      	add	x23, x22, #0x28
+    71a8:      	str	x8, [sp, #0x88]
+    71ac:      	add	x8, x22, #0x18
+    71b0:      	strb	wzr, [sp]
+    71b4:      	stp	wzr, wzr, [sp, #0x4]
+    71b8:      	stp	xzr, xzr, [sp, #0x20]
+    71bc:      	stp	x8, xzr, [sp, #0x10]
+    71c0:      	stp	xzr, xzr, [sp, #0x30]
+    71c4:      	str	wzr, [sp, #0x40]
+    71c8:      	stp	xzr, xzr, [sp, #0x50]
+    71cc:      	str	xzr, [sp, #0x48]
+    71d0:      	str	wzr, [sp, #0x60]
+    71d4:      	bl	0x659c <.text+0xcc>
+    71d8:      	mov	x3, sp
+    71dc:      	mov	x1, x20
+    71e0:      	mov	x2, x19
+    71e4:      	bl	0x9c50 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataERKNS_12BuildOptionsE@plt>
+    71e8:      	ldrb	w8, [sp, #0x68]
+    71ec:      	mov	w19, w0
+    71f0:      	tbz	w8, #0x0, 0x71fc <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x88>
+    71f4:      	ldr	x0, [sp, #0x78]
+    71f8:      	bl	0x9af0 <_ZdlPv@plt>
+    71fc:      	ldr	x0, [sp, #0x48]
+    7200:      	cbz	x0, 0x720c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x98>
+    7204:      	str	x0, [sp, #0x50]
+    7208:      	bl	0x9af0 <_ZdlPv@plt>
+    720c:      	add	x0, sp, #0x80
+    7210:      	str	x23, [sp, #0x80]
+    7214:      	bl	0x7250 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0xdc>
+    7218:      	ldr	x1, [sp, #0x18]
+    721c:      	add	x0, x22, #0x10
+    7220:      	bl	0x72c8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x154>
+    7224:      	ldr	x8, [x21, #0x28]
+    7228:      	ldr	x9, [sp, #0x88]
+    722c:      	cmp	x8, x9
+    7230:      	b.ne	0x724c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0xd8>
+    7234:      	and	w0, w19, #0x1
+    7238:      	ldp	x20, x19, [sp, #0xb0]
+    723c:      	ldp	x22, x21, [sp, #0xa0]
+    7240:      	ldp	x30, x23, [sp, #0x90]
+    7244:      	add	sp, sp, #0xc0
+    7248:      	ret
+    724c:      	bl	0x9b00 <__stack_chk_fail@plt>
+    7250:      	stp	x30, x19, [sp, #-0x10]!
+    7254:      	mov	x19, x0
+    7258:      	ldr	x0, [x0]
+    725c:      	ldr	x8, [x0]
+    7260:      	cbz	x8, 0x7278 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x104>
+    7264:      	bl	0x7280 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x10c>
+    7268:      	ldr	x8, [x19]
+    726c:      	ldr	x0, [x8]
+    7270:      	ldp	x30, x19, [sp], #0x10
+    7274:      	b	0x9af0 <_ZdlPv@plt>
+    7278:      	ldp	x30, x19, [sp], #0x10
+    727c:      	ret
+    7280:      	stp	x30, x21, [sp, #-0x20]!
+    7284:      	stp	x20, x19, [sp, #0x10]
+    7288:      	ldp	x20, x8, [x0]
+    728c:      	mov	x19, x0
+    7290:      	cmp	x8, x20
+    7294:      	b.eq	0x72b8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x144>
+    7298:      	mov	x21, x8
+    729c:      	ldr	x0, [x21, #-0x18]!
+    72a0:      	cbz	x0, 0x72ac <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x138>
+    72a4:      	stur	x0, [x8, #-0x10]
+    72a8:      	bl	0x9af0 <_ZdlPv@plt>
+    72ac:      	cmp	x21, x20
+    72b0:      	mov	x8, x21
+    72b4:      	b.ne	0x729c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x128>
+    72b8:      	str	x20, [x19, #0x8]
+    72bc:      	ldp	x20, x19, [sp, #0x10]
+    72c0:      	ldp	x30, x21, [sp], #0x20
+    72c4:      	ret
+    72c8:      	cbz	x1, 0x7308 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x194>
+    72cc:      	str	x30, [sp, #-0x20]!
+    72d0:      	stp	x20, x19, [sp, #0x10]
+    72d4:      	mov	x19, x1
+    72d8:      	ldr	x1, [x1]
+    72dc:      	mov	x20, x0
+    72e0:      	bl	0x72c8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x154>
+    72e4:      	ldr	x1, [x19, #0x8]
+    72e8:      	mov	x0, x20
+    72ec:      	bl	0x72c8 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x154>
+    72f0:      	add	x0, x19, #0x20
+    72f4:      	bl	0x730c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x198>
+    72f8:      	mov	x0, x19
+    72fc:      	ldp	x20, x19, [sp, #0x10]
+    7300:      	ldr	x30, [sp], #0x20
+    7304:      	b	0x9af0 <_ZdlPv@plt>
+    7308:      	ret
+    730c:      	stp	x30, x19, [sp, #-0x10]!
+    7310:      	mov	x19, x0
+    7314:      	ldr	x0, [x0, #0x18]
+    7318:      	cbz	x0, 0x7324 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x1b0>
+    731c:      	str	x0, [x19, #0x20]
+    7320:      	bl	0x9af0 <_ZdlPv@plt>
+    7324:      	ldrb	w8, [x19]
+    7328:      	tbnz	w8, #0x0, 0x7334 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x1c0>
+    732c:      	ldp	x30, x19, [sp], #0x10
+    7330:      	ret
+    7334:      	ldr	x0, [x19, #0x10]
+    7338:      	ldp	x30, x19, [sp], #0x10
+    733c:      	b	0x9af0 <_ZdlPv@plt>
+    7340:      	cbz	x1, 0x7380 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x20c>
+    7344:      	str	x30, [sp, #-0x20]!
+    7348:      	stp	x20, x19, [sp, #0x10]
+    734c:      	mov	x19, x1
+    7350:      	ldr	x1, [x1]
+    7354:      	mov	x20, x0
+    7358:      	bl	0x7340 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x1cc>
+    735c:      	ldr	x1, [x19, #0x8]
+    7360:      	mov	x0, x20
+    7364:      	bl	0x7340 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x1cc>
+    7368:      	add	x0, x19, #0x20
+    736c:      	bl	0x7384 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x210>
+    7370:      	mov	x0, x19
+    7374:      	ldp	x20, x19, [sp, #0x10]
+    7378:      	ldr	x30, [sp], #0x20
+    737c:      	b	0x9af0 <_ZdlPv@plt>
+    7380:      	ret
+    7384:      	stp	x30, x19, [sp, #-0x10]!
+    7388:      	mov	x19, x0
+    738c:      	ldr	x0, [x0, #0x18]
+    7390:      	cbz	x0, 0x739c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x228>
+    7394:      	str	x0, [x19, #0x20]
+    7398:      	bl	0x9af0 <_ZdlPv@plt>
+    739c:      	ldrb	w8, [x19]
+    73a0:      	tbnz	w8, #0x0, 0x73ac <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x238>
+    73a4:      	ldp	x30, x19, [sp], #0x10
+    73a8:      	ret
+    73ac:      	ldr	x0, [x19, #0x10]
+    73b0:      	ldp	x30, x19, [sp], #0x10
+    73b4:      	b	0x9af0 <_ZdlPv@plt>
+    73b8:      	str	x30, [sp, #-0x30]!
+    73bc:      	stp	x22, x21, [sp, #0x10]
+    73c0:      	stp	x20, x19, [sp, #0x20]
+    73c4:      	ldr	x21, [x0]
+    73c8:      	ldr	x22, [x21]
+    73cc:      	cbz	x22, 0x7418 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2a4>
+    73d0:      	ldr	x20, [x21, #0x8]
+    73d4:      	mov	x19, x0
+    73d8:      	mov	x0, x22
+    73dc:      	cmp	x20, x22
+    73e0:      	b.eq	0x7404 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x290>
+    73e4:      	sub	x20, x20, #0x38
+    73e8:      	add	x0, x21, #0x10
+    73ec:      	mov	x1, x20
+    73f0:      	bl	0x7428 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2b4>
+    73f4:      	cmp	x20, x22
+    73f8:      	b.ne	0x73e4 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x270>
+    73fc:      	ldr	x8, [x19]
+    7400:      	ldr	x0, [x8]
+    7404:      	str	x22, [x21, #0x8]
+    7408:      	ldp	x20, x19, [sp, #0x20]
+    740c:      	ldp	x22, x21, [sp, #0x10]
+    7410:      	ldr	x30, [sp], #0x30
+    7414:      	b	0x9af0 <_ZdlPv@plt>
+    7418:      	ldp	x20, x19, [sp, #0x20]
+    741c:      	ldp	x22, x21, [sp, #0x10]
+    7420:      	ldr	x30, [sp], #0x30
+    7424:      	ret
+    7428:      	stp	x30, x19, [sp, #-0x10]!
+    742c:      	ldrb	w8, [x1, #0x20]
+    7430:      	mov	x19, x1
+    7434:      	tbz	w8, #0x0, 0x7440 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2cc>
+    7438:      	ldr	x0, [x19, #0x30]
+    743c:      	bl	0x9af0 <_ZdlPv@plt>
+    7440:      	ldr	x0, [x19]
+    7444:      	cbz	x0, 0x7454 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2e0>
+    7448:      	str	x0, [x19, #0x8]
+    744c:      	ldp	x30, x19, [sp], #0x10
+    7450:      	b	0x9af0 <_ZdlPv@plt>
+    7454:      	ldp	x30, x19, [sp], #0x10
+    7458:      	ret
+    745c:      	stp	x30, x19, [sp, #-0x10]!
+    7460:      	ldr	x19, [x0, #0x8]
+    7464:      	cbz	x19, 0x7478 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x304>
+    7468:      	add	x1, x19, #0x8
+    746c:      	mov	x0, #-0x1
+    7470:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7474:      	cbz	x0, 0x7480 <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x30c>
+    7478:      	ldp	x30, x19, [sp], #0x10
+    747c:      	ret
+    7480:      	ldr	x8, [x19]
+    7484:      	mov	x0, x19
+    7488:      	ldr	x8, [x8, #0x10]
+    748c:      	blr	x8
+    7490:      	mov	x0, x19
+    7494:      	ldp	x30, x19, [sp], #0x10
+    7498:      	b	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+
+000000000000749c <_ZN2ge5GraphD0Ev>:
+    749c:      	stp	x30, x19, [sp, #-0x10]!
+    74a0:      	adrp	x8, 0xe000
+    74a4:      	mov	x19, x0
+    74a8:      	ldr	x8, [x8, #0x58]
+    74ac:      	add	x8, x8, #0x10
+    74b0:      	str	x8, [x0], #0x8
+    74b4:      	bl	0x745c <_ZN4hiai11HiaiIrBuild12BuildIRModelERN2ge5ModelERNS_15ModelBufferDataE+0x2e8>
+    74b8:      	mov	x0, x19
+    74bc:      	ldp	x30, x19, [sp], #0x10
+    74c0:      	b	0x9af0 <_ZdlPv@plt>
+    74c4:      	adrp	x0, 0x2000
+    74c8:      	add	x0, x0, #0x1be
+    74cc:      	bl	0x74d0 <_ZN2ge5GraphD0Ev+0x34>
+    74d0:      	str	x30, [sp, #-0x10]!
+    74d4:      	mov	x1, x0
+    74d8:      	adrp	x0, 0x1000
+    74dc:      	add	x0, x0, #0xdf4
+    74e0:      	bl	0x9ca0 <_ZNSt6__ndk122__libcpp_verbose_abortEPKcz@plt>
+    74e4:      	str	x30, [sp, #-0x30]!
+    74e8:      	stp	x22, x21, [sp, #0x10]
+    74ec:      	stp	x20, x19, [sp, #0x20]
+    74f0:      	mov	x20, x2
+    74f4:      	mov	x19, x1
+    74f8:      	cmp	x2, #0x16
+    74fc:      	mov	x21, x0
+    7500:      	b.hi	0x7510 <_ZN2ge5GraphD0Ev+0x74>
+    7504:      	lsl	w8, w20, #1
+    7508:      	strb	w8, [x21], #0x1
+    750c:      	b	0x7534 <_ZN2ge5GraphD0Ev+0x98>
+    7510:      	cmn	x20, #0x10
+    7514:      	b.hs	0x7550 <_ZN2ge5GraphD0Ev+0xb4>
+    7518:      	orr	x22, x20, #0xf
+    751c:      	add	x0, x22, #0x1
+    7520:      	bl	0x9b20 <_Znwm@plt>
+    7524:      	add	x8, x22, #0x2
+    7528:      	stp	x20, x0, [x21, #0x8]
+    752c:      	str	x8, [x21]
+    7530:      	mov	x21, x0
+    7534:      	add	x2, x20, #0x1
+    7538:      	mov	x0, x21
+    753c:      	mov	x1, x19
+    7540:      	ldp	x20, x19, [sp, #0x20]
+    7544:      	ldp	x22, x21, [sp, #0x10]
+    7548:      	ldr	x30, [sp], #0x30
+    754c:      	b	0x9b30 <memmove@plt>
+    7550:      	mov	x0, x21
+    7554:      	bl	0x74c4 <_ZN2ge5GraphD0Ev+0x28>
+    7558:      	stp	x30, x21, [sp, #-0x20]!
+    755c:      	stp	x20, x19, [sp, #0x10]
+    7560:      	nop
+    7564:      	adr	x19, #0xac94
+    7568:      	adrp	x1, 0x1000
+    756c:      	add	x1, x1, #0xd0c
+    7570:      	mov	x8, x19
+    7574:      	add	x0, x19, #0x68
+    7578:      	strb	wzr, [x19]
+    757c:      	stp	wzr, wzr, [x19, #0x4]
+    7580:      	stp	xzr, xzr, [x19, #0x20]
+    7584:      	str	xzr, [x8, #0x18]!
+    7588:      	str	x8, [x19, #0x10]
+    758c:      	stp	xzr, xzr, [x19, #0x30]
+    7590:      	str	wzr, [x19, #0x40]
+    7594:      	stp	xzr, xzr, [x19, #0x50]
+    7598:      	str	xzr, [x19, #0x48]
+    759c:      	str	wzr, [x19, #0x60]
+    75a0:      	bl	0x659c <.text+0xcc>
+    75a4:      	nop
+    75a8:      	adr	x20, #0x6808
+    75ac:      	nop
+    75b0:      	adr	x0, #-0x1090
+    75b4:      	mov	x1, x19
+    75b8:      	mov	x2, x20
+    75bc:      	bl	0x9ae0 <__cxa_atexit@plt>
+    75c0:      	nop
+    75c4:      	adr	x19, #0xacb4
+    75c8:      	nop
+    75cc:      	adr	x1, #-0x56fb
+    75d0:      	mov	x0, x19
+    75d4:      	bl	0x659c <.text+0xcc>
+    75d8:      	adrp	x21, 0xe000
+    75dc:      	mov	x1, x19
+    75e0:      	mov	x2, x20
+    75e4:      	ldr	x21, [x21, #0x60]
+    75e8:      	mov	x0, x21
+    75ec:      	bl	0x9ae0 <__cxa_atexit@plt>
+    75f0:      	nop
+    75f4:      	adr	x19, #0xac9c
+    75f8:      	adrp	x1, 0x1000
+    75fc:      	add	x1, x1, #0xf83
+    7600:      	mov	x0, x19
+    7604:      	bl	0x659c <.text+0xcc>
+    7608:      	mov	x1, x19
+    760c:      	mov	x2, x20
+    7610:      	mov	x0, x21
+    7614:      	ldp	x20, x19, [sp, #0x10]
+    7618:      	ldp	x30, x21, [sp], #0x20
+    761c:      	b	0x9ae0 <__cxa_atexit@plt>
+
+0000000000007620 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE>:
+    7620:      	sub	sp, sp, #0xc0
+    7624:      	stp	x30, x25, [sp, #0x80]
+    7628:      	stp	x24, x23, [sp, #0x90]
+    762c:      	stp	x22, x21, [sp, #0xa0]
+    7630:      	stp	x20, x19, [sp, #0xb0]
+    7634:      	mrs	x24, TPIDR_EL0
+    7638:      	ldr	x8, [x24, #0x28]
+    763c:      	str	x8, [sp, #0x78]
+    7640:      	ldr	x8, [x3]
+    7644:      	cbz	x8, 0x7804 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x1e4>
+    7648:      	mov	x21, x1
+    764c:      	adrp	x1, 0x1000
+    7650:      	add	x1, x1, #0xca5
+    7654:      	add	x0, sp, #0x30
+    7658:      	mov	x19, x4
+    765c:      	mov	x22, x3
+    7660:      	mov	x20, x2
+    7664:      	str	x8, [sp, #0x60]
+    7668:      	bl	0x659c <.text+0xcc>
+    766c:      	mov	w8, #0x1
+    7670:      	add	x0, sp, #0x60
+    7674:      	add	x1, sp, #0x30
+    7678:      	add	x2, sp, #0x18
+    767c:      	str	x8, [sp, #0x18]
+    7680:      	bl	0x9c60 <_ZN2ge9AttrUtils6SetIntEONS0_17AttrHolderAdapterERKNSt6__ndk112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEERKl@plt>
+    7684:      	ldrb	w8, [sp, #0x30]
+    7688:      	tbz	w8, #0x0, 0x7694 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x74>
+    768c:      	ldr	x0, [sp, #0x40]
+    7690:      	bl	0x9af0 <_ZdlPv@plt>
+    7694:      	adrp	x1, 0xe000
+    7698:      	ldr	x22, [x22]
+    769c:      	mov	w0, #0x20
+    76a0:      	ldr	x1, [x1, #0x68]
+    76a4:      	bl	0x9cb0 <_ZnwmRKSt9nothrow_t@plt>
+    76a8:      	cbz	x0, 0x76b4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x94>
+    76ac:      	stp	xzr, xzr, [x0, #0x10]
+    76b0:      	stp	x22, xzr, [x0]
+    76b4:      	str	x0, [sp, #0x28]
+    76b8:      	add	x8, sp, #0x30
+    76bc:      	mov	x0, x22
+    76c0:      	bl	0x9c70 <_ZNK2ge5Model8GetGraphEv@plt>
+    76c4:      	add	x8, sp, #0x18
+    76c8:      	add	x0, sp, #0x30
+    76cc:      	bl	0x9c80 <_ZN2ge10GraphUtils15GetComputeGraphERKNS_5GraphE@plt>
+    76d0:      	adrp	x25, 0xe000
+    76d4:      	ldr	x25, [x25, #0x58]
+    76d8:      	ldr	x22, [sp, #0x40]
+    76dc:      	add	x8, x25, #0x10
+    76e0:      	str	x8, [sp, #0x30]
+    76e4:      	cbz	x22, 0x7710 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0xf0>
+    76e8:      	add	x1, x22, #0x8
+    76ec:      	mov	x0, #-0x1
+    76f0:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    76f4:      	cbnz	x0, 0x7710 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0xf0>
+    76f8:      	ldr	x8, [x22]
+    76fc:      	mov	x0, x22
+    7700:      	ldr	x8, [x8, #0x10]
+    7704:      	blr	x8
+    7708:      	mov	x0, x22
+    770c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    7710:      	ldr	x9, [sp, #0x18]
+    7714:      	cbz	x9, 0x7848 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x228>
+    7718:      	ldr	x8, [sp, #0x20]
+    771c:      	stp	x9, x8, [sp, #0x8]
+    7720:      	cbz	x8, 0x7730 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x110>
+    7724:      	add	x1, x8, #0x8
+    7728:      	mov	w0, #0x1
+    772c:      	bl	0x9390 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x1d70>
+    7730:      	add	x0, sp, #0x8
+    7734:      	bl	0x9c90 <_ZN4hiai13IRTransformer21VerifyIrReservedFieldENSt6__ndk110shared_ptrIN2ge12ComputeGraphEEE@plt>
+    7738:      	ldr	x23, [sp, #0x10]
+    773c:      	mov	w22, w0
+    7740:      	cbz	x23, 0x7754 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x134>
+    7744:      	add	x1, x23, #0x8
+    7748:      	mov	x0, #-0x1
+    774c:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7750:      	cbz	x0, 0x7888 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x268>
+    7754:      	tbz	w22, #0x0, 0x78a4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x284>
+    7758:      	ldr	x23, [sp, #0x28]
+    775c:      	add	x8, sp, #0x30
+    7760:      	ldr	x0, [x23]
+    7764:      	bl	0x9c70 <_ZNK2ge5Model8GetGraphEv@plt>
+    7768:      	add	x8, sp, #0x60
+    776c:      	add	x0, sp, #0x30
+    7770:      	bl	0x9c80 <_ZN2ge10GraphUtils15GetComputeGraphERKNS_5GraphE@plt>
+    7774:      	ldr	x22, [sp, #0x40]
+    7778:      	add	x8, x25, #0x10
+    777c:      	str	x8, [sp, #0x30]
+    7780:      	cbz	x22, 0x77ac <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x18c>
+    7784:      	add	x1, x22, #0x8
+    7788:      	mov	x0, #-0x1
+    778c:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7790:      	cbnz	x0, 0x77ac <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x18c>
+    7794:      	ldr	x8, [x22]
+    7798:      	mov	x0, x22
+    779c:      	ldr	x8, [x8, #0x10]
+    77a0:      	blr	x8
+    77a4:      	mov	x0, x22
+    77a8:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    77ac:      	ldr	x8, [sp, #0x60]
+    77b0:      	cbz	x8, 0x78ec <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2cc>
+    77b4:      	adrp	x0, 0x1000
+    77b8:      	add	x0, x0, #0xbe3
+    77bc:      	mov	w1, #0x1
+    77c0:      	bl	0x9b70 <dlopen@plt>
+    77c4:      	cbz	x0, 0x792c <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x30c>
+    77c8:      	adrp	x1, 0x2000
+    77cc:      	add	x1, x1, #0x260
+    77d0:      	mov	x22, x0
+    77d4:      	bl	0x9b80 <dlsym@plt>
+    77d8:      	cbz	x0, 0x7970 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x350>
+    77dc:      	mov	x8, x0
+    77e0:      	ldr	x0, [sp, #0x60]
+    77e4:      	add	x1, x23, #0x8
+    77e8:      	blr	x8
+    77ec:      	mov	w23, w0
+    77f0:      	mov	x0, x22
+    77f4:      	bl	0x9c00 <dlclose@plt>
+    77f8:      	cmp	w23, #0x0
+    77fc:      	cset	w23, eq
+    7800:      	b	0x79b8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x398>
+    7804:      	adrp	x0, 0x1000
+    7808:      	add	x0, x0, #0xff4
+    780c:      	mov	w1, #0x2f
+    7810:      	mov	w2, #0x78
+    7814:      	bl	0x9b50 <__strrchr_chk@plt>
+    7818:      	adrp	x1, 0x2000
+    781c:      	add	x1, x1, #0x22f
+    7820:      	adrp	x2, 0x2000
+    7824:      	add	x2, x2, #0x238
+    7828:      	adrp	x4, 0x2000
+    782c:      	add	x4, x4, #0x2be
+    7830:      	add	x3, x0, #0x1
+    7834:      	mov	w0, #0x3
+    7838:      	mov	w5, #0x44
+    783c:      	bl	0x9b60 <AI_Log_Print@plt>
+    7840:      	str	xzr, [sp]
+    7844:      	b	0x7aac <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x48c>
+    7848:      	adrp	x0, 0x1000
+    784c:      	add	x0, x0, #0xff4
+    7850:      	mov	w1, #0x2f
+    7854:      	mov	w2, #0x78
+    7858:      	bl	0x9b50 <__strrchr_chk@plt>
+    785c:      	adrp	x1, 0x2000
+    7860:      	add	x1, x1, #0x22f
+    7864:      	adrp	x2, 0x1000
+    7868:      	add	x2, x2, #0xa78
+    786c:      	adrp	x4, 0x2000
+    7870:      	add	x4, x4, #0x2be
+    7874:      	add	x3, x0, #0x1
+    7878:      	mov	w0, #0x3
+    787c:      	mov	w5, #0x4a
+    7880:      	bl	0x9b60 <AI_Log_Print@plt>
+    7884:      	b	0x79fc <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3dc>
+    7888:      	ldr	x8, [x23]
+    788c:      	mov	x0, x23
+    7890:      	ldr	x8, [x8, #0x10]
+    7894:      	blr	x8
+    7898:      	mov	x0, x23
+    789c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    78a0:      	tbnz	w22, #0x0, 0x7758 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x138>
+    78a4:      	adrp	x0, 0x1000
+    78a8:      	add	x0, x0, #0xff4
+    78ac:      	mov	w1, #0x2f
+    78b0:      	mov	w2, #0x78
+    78b4:      	bl	0x9b50 <__strrchr_chk@plt>
+    78b8:      	adrp	x1, 0x2000
+    78bc:      	add	x1, x1, #0x22f
+    78c0:      	adrp	x2, 0x1000
+    78c4:      	add	x2, x2, #0xc23
+    78c8:      	adrp	x4, 0x2000
+    78cc:      	add	x4, x4, #0x2be
+    78d0:      	adrp	x6, 0x2000
+    78d4:      	add	x6, x6, #0x1cb
+    78d8:      	add	x3, x0, #0x1
+    78dc:      	mov	w0, #0x3
+    78e0:      	mov	w5, #0x4c
+    78e4:      	bl	0x9b60 <AI_Log_Print@plt>
+    78e8:      	b	0x79fc <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3dc>
+    78ec:      	adrp	x0, 0x1000
+    78f0:      	add	x0, x0, #0xff4
+    78f4:      	mov	w1, #0x2f
+    78f8:      	mov	w2, #0x78
+    78fc:      	bl	0x9b50 <__strrchr_chk@plt>
+    7900:      	adrp	x1, 0x2000
+    7904:      	add	x1, x1, #0x22f
+    7908:      	adrp	x2, 0x1000
+    790c:      	add	x2, x2, #0xa78
+    7910:      	adrp	x4, 0x2000
+    7914:      	add	x4, x4, #0x165
+    7918:      	add	x3, x0, #0x1
+    791c:      	mov	w0, #0x3
+    7920:      	mov	w5, #0x2e
+    7924:      	bl	0x9b60 <AI_Log_Print@plt>
+    7928:      	b	0x79b4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x394>
+    792c:      	adrp	x0, 0x1000
+    7930:      	add	x0, x0, #0xff4
+    7934:      	mov	w1, #0x2f
+    7938:      	mov	w2, #0x78
+    793c:      	bl	0x9b50 <__strrchr_chk@plt>
+    7940:      	adrp	x1, 0x1000
+    7944:      	add	x1, x1, #0xfe7
+    7948:      	adrp	x2, 0x2000
+    794c:      	add	x2, x2, #0x178
+    7950:      	adrp	x4, 0x2000
+    7954:      	add	x4, x4, #0x165
+    7958:      	add	x3, x0, #0x1
+    795c:      	mov	w0, #0x2
+    7960:      	mov	w5, #0x33
+    7964:      	bl	0x9b60 <AI_Log_Print@plt>
+    7968:      	mov	w23, #0x1
+    796c:      	b	0x79b8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x398>
+    7970:      	adrp	x0, 0x1000
+    7974:      	add	x0, x0, #0xff4
+    7978:      	mov	w1, #0x2f
+    797c:      	mov	w2, #0x78
+    7980:      	bl	0x9b50 <__strrchr_chk@plt>
+    7984:      	adrp	x1, 0x1000
+    7988:      	add	x1, x1, #0xfe7
+    798c:      	adrp	x2, 0x2000
+    7990:      	add	x2, x2, #0x282
+    7994:      	adrp	x4, 0x2000
+    7998:      	add	x4, x4, #0x165
+    799c:      	add	x3, x0, #0x1
+    79a0:      	mov	w0, #0x2
+    79a4:      	mov	w5, #0x39
+    79a8:      	bl	0x9b60 <AI_Log_Print@plt>
+    79ac:      	mov	x0, x22
+    79b0:      	bl	0x9c00 <dlclose@plt>
+    79b4:      	mov	w23, wzr
+    79b8:      	ldr	x22, [sp, #0x68]
+    79bc:      	cbz	x22, 0x79d0 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3b0>
+    79c0:      	add	x1, x22, #0x8
+    79c4:      	mov	x0, #-0x1
+    79c8:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    79cc:      	cbz	x0, 0x79e0 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3c0>
+    79d0:      	cbz	w23, 0x79fc <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3dc>
+    79d4:      	ldr	x23, [sp, #0x28]
+    79d8:      	str	xzr, [sp, #0x28]
+    79dc:      	b	0x7a00 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3e0>
+    79e0:      	ldr	x8, [x22]
+    79e4:      	mov	x0, x22
+    79e8:      	ldr	x8, [x8, #0x10]
+    79ec:      	blr	x8
+    79f0:      	mov	x0, x22
+    79f4:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    79f8:      	cbnz	w23, 0x79d4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x3b4>
+    79fc:      	mov	x23, xzr
+    7a00:      	ldr	x22, [sp, #0x20]
+    7a04:      	str	x23, [sp]
+    7a08:      	cbz	x22, 0x7a38 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x418>
+    7a0c:      	add	x1, x22, #0x8
+    7a10:      	mov	x0, #-0x1
+    7a14:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7a18:      	cbnz	x0, 0x7a34 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x414>
+    7a1c:      	ldr	x8, [x22]
+    7a20:      	mov	x0, x22
+    7a24:      	ldr	x8, [x8, #0x10]
+    7a28:      	blr	x8
+    7a2c:      	mov	x0, x22
+    7a30:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    7a34:      	ldr	x23, [sp]
+    7a38:      	add	x0, sp, #0x28
+    7a3c:      	bl	0x7cfc <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x6dc>
+    7a40:      	cbz	x23, 0x7aac <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x48c>
+    7a44:      	ldr	x2, [x23]
+    7a48:      	add	x8, sp, #0x60
+    7a4c:      	mov	x0, x21
+    7a50:      	mov	x1, x20
+    7a54:      	bl	0x7f00 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x8e0>
+    7a58:      	ldr	x8, [sp, #0x60]
+    7a5c:      	cbz	x8, 0x7af0 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x4d0>
+    7a60:      	mov	x20, x23
+    7a64:      	ldrb	w8, [x20, #0x8]!
+    7a68:      	ldr	x9, [x20, #0x8]
+    7a6c:      	lsr	x10, x8, #1
+    7a70:      	tst	w8, #0x1
+    7a74:      	csel	x8, x10, x9, eq
+    7a78:      	cbz	x8, 0x7ba4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x584>
+    7a7c:      	adrp	x1, 0x1000
+    7a80:      	add	x1, x1, #0xebc
+    7a84:      	add	x0, sp, #0x30
+    7a88:      	add	x21, sp, #0x30
+    7a8c:      	bl	0x659c <.text+0xcc>
+    7a90:      	ldrb	w8, [x20]
+    7a94:      	tbnz	w8, #0x0, 0x7b64 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x544>
+    7a98:      	ldr	x8, [x20, #0x10]
+    7a9c:      	ldr	q0, [x20]
+    7aa0:      	stur	x8, [x21, #0x28]
+    7aa4:      	stur	q0, [x21, #0x18]
+    7aa8:      	b	0x7b70 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x550>
+    7aac:      	adrp	x0, 0x1000
+    7ab0:      	add	x0, x0, #0xff4
+    7ab4:      	mov	w1, #0x2f
+    7ab8:      	mov	w2, #0x78
+    7abc:      	bl	0x9b50 <__strrchr_chk@plt>
+    7ac0:      	adrp	x1, 0x2000
+    7ac4:      	add	x1, x1, #0x22f
+    7ac8:      	nop
+    7acc:      	adr	x2, #-0x57ee
+    7ad0:      	adrp	x4, 0x1000
+    7ad4:      	add	x4, x4, #0xb4f
+    7ad8:      	add	x3, x0, #0x1
+    7adc:      	mov	w0, #0x3
+    7ae0:      	mov	w5, #0x68
+    7ae4:      	bl	0x9b60 <AI_Log_Print@plt>
+    7ae8:      	mov	w19, #0x1
+    7aec:      	b	0x7c30 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x610>
+    7af0:      	adrp	x0, 0x1000
+    7af4:      	add	x0, x0, #0xff4
+    7af8:      	mov	w1, #0x2f
+    7afc:      	mov	w2, #0x78
+    7b00:      	bl	0x9b50 <__strrchr_chk@plt>
+    7b04:      	adrp	x1, 0x2000
+    7b08:      	add	x1, x1, #0x22f
+    7b0c:      	adrp	x2, 0x1000
+    7b10:      	add	x2, x2, #0xb22
+    7b14:      	adrp	x4, 0x2000
+    7b18:      	add	x4, x4, #0xf1
+    7b1c:      	add	x3, x0, #0x1
+    7b20:      	mov	w0, #0x3
+    7b24:      	mov	w5, #0x58
+    7b28:      	bl	0x9b60 <AI_Log_Print@plt>
+    7b2c:      	ldr	x20, [sp, #0x68]
+    7b30:      	stp	xzr, xzr, [sp, #0x30]
+    7b34:      	cbz	x20, 0x7be8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x5c8>
+    7b38:      	add	x1, x20, #0x8
+    7b3c:      	mov	x0, #-0x1
+    7b40:      	bl	0x9a80 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x2460>
+    7b44:      	cbnz	x0, 0x7be8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x5c8>
+    7b48:      	ldr	x8, [x20]
+    7b4c:      	mov	x0, x20
+    7b50:      	ldr	x8, [x8, #0x10]
+    7b54:      	blr	x8
+    7b58:      	mov	x0, x20
+    7b5c:      	bl	0x9c40 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+    7b60:      	b	0x7be8 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x5c8>
+    7b64:      	ldp	x2, x1, [x23, #0x10]
+    7b68:      	add	x0, x21, #0x18
+    7b6c:      	bl	0x74e4 <_ZN2ge5GraphD0Ev+0x48>
+    7b70:      	ldr	x0, [sp, #0x60]
+    7b74:      	add	x1, sp, #0x30
+    7b78:      	ldr	x8, [x0]
+    7b7c:      	ldr	x8, [x8, #0x60]
+    7b80:      	blr	x8
+    7b84:      	ldrb	w8, [sp, #0x48]
+    7b88:      	tbz	w8, #0x0, 0x7b94 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x574>
+    7b8c:      	ldr	x0, [sp, #0x58]
+    7b90:      	bl	0x9af0 <_ZdlPv@plt>
+    7b94:      	ldrb	w8, [sp, #0x30]
+    7b98:      	tbz	w8, #0x0, 0x7ba4 <_ZN4hiai13HiaiIrBuildV25BuildERKNS_17ModelBuildOptionsERKNSt6__ndk112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS4_10shared_ptrIN2ge5ModelEEERNSD_INS_11IBuiltModelEEE+0x584>
+    7b9c:      	ldr	x0, [sp, #0x40]
+    7ba0:      	bl	0x9af0 <_ZdlPv@plt>
+    7ba4:      	adrp	x0, 0x1000
+    7ba8:      	add	x0, x0, #0xff4
+    7bac:      	mov	w1, #0x2f
+    7bb0:      	mov	w2, #0x78
+    7bb4:      	bl	0x9b50 <__strrchr_chk@plt>
+    7bb8:      	adrp	x1, 0x1000
+    7bbc:      	add	x1, x1, #0xfe7
+    7bc0:      	adrp	x2, 0x2000
+    7bc4:      	add	x2, x2, #0x111
+    7bc8:      	adrp	x4, 0x2000
+    7bcc:      	add	x4, x4, #0xf1
+    7bd0:      	add	x3, x0, #0x1
+    7bd4:      	mov	w0, #0x1
+    7bd8:      	mov	w5, #0x5f
+    7bdc:      	bl	0x9b60 <AI_Log_Print@plt>
+    7be0:      	ldr	q0, [sp, #0x60]
+    7be4:      	str	q0, [sp, #0x30]

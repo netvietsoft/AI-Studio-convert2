@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffavc.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000056090 <.text>:
+   56090:      	bti	c
+   56094:      	nop
+   56098:      	adr	x0, #0xafc68
+   5609c:      	b	0x101760 <__cxa_finalize@plt>
+   560a0:      	bti	c
+   560a4:      	ret
+   560a8:      	bti	c
+   560ac:      	b	0xfd054 <Java_org_ffavc_DecoderFactory_GetHandle+0xa6b0c>
+   560b0:      	bti	c
+   560b4:      	cbz	x0, 0x560c0 <.text+0x30>
+   560b8:      	mov	x16, x0
+   560bc:      	br	x16
+   560c0:      	ret
+   560c4:      	bti	c
+   560c8:      	mov	x1, x0
+   560cc:      	nop
+   560d0:      	adr	x0, #-0x20
+   560d4:      	nop
+   560d8:      	adr	x2, #0xafc28
+   560dc:      	b	0x101770 <__cxa_atexit@plt>
+   560e0:      	adrp	x8, 0x105000 <pthread_rwlock_rdlock@plt+0x3310>
+   560e4:      	add	x8, x8, #0xd18
+   560e8:      	str	x8, [x0]
+   560ec:      	b	0x560f0 <.text+0x60>
+   560f0:      	stp	x29, x30, [sp, #-0x20]!
+   560f4:      	stp	x20, x19, [sp, #0x10]
+   560f8:      	mov	x29, sp
+   560fc:      	mov	x20, x0
+   56100:      	mov	x19, x0
+   56104:      	ldr	x8, [x20, #0x10]!
+   56108:      	cbz	x8, 0x56118 <.text+0x88>
+   5610c:      	mov	x0, x20
+   56110:      	bl	0xc6958 <Java_org_ffavc_DecoderFactory_GetHandle+0x70410>
+   56114:      	str	xzr, [x20]
+   56118:      	mov	x0, x19
+   5611c:      	ldr	x8, [x0, #0x18]!
+   56120:      	cbz	x8, 0x56128 <.text+0x98>
+   56124:      	bl	0xd3a0c <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4c4>
+   56128:      	ldr	x8, [x19, #0x20]!
+   5612c:      	cbz	x8, 0x56140 <.text+0xb0>
+   56130:      	mov	x0, x19
+   56134:      	ldp	x20, x19, [sp, #0x10]
+   56138:      	ldp	x29, x30, [sp], #0x20
+   5613c:      	b	0x578cc <Java_org_ffavc_DecoderFactory_GetHandle+0x1384>
+   56140:      	ldp	x20, x19, [sp, #0x10]
+   56144:      	ldp	x29, x30, [sp], #0x20
+   56148:      	ret
+   5614c:      	stp	x29, x30, [sp, #-0x20]!
+   56150:      	str	x19, [sp, #0x10]
+   56154:      	mov	x29, sp
+   56158:      	adrp	x8, 0x105000 <pthread_rwlock_rdlock@plt+0x3310>
+   5615c:      	add	x8, x8, #0xd18
+   56160:      	mov	x19, x0
+   56164:      	str	x8, [x0]
+   56168:      	bl	0x560f0 <.text+0x60>
+   5616c:      	mov	x0, x19
+   56170:      	ldr	x19, [sp, #0x10]
+   56174:      	ldp	x29, x30, [sp], #0x20
+   56178:      	b	0xfb4a0 <Java_org_ffavc_DecoderFactory_GetHandle+0xa4f58>
+   5617c:      	ldrb	w8, [x2]
+   56180:      	ldr	x9, [x2, #0x8]
+   56184:      	lsr	x10, x8, #1
+   56188:      	tst	w8, #0x1
+   5618c:      	csel	x9, x10, x9, eq
+   56190:      	cmp	x9, #0x9
+   56194:      	b.ne	0x561cc <.text+0x13c>
+   56198:      	ldr	x9, [x2, #0x10]
+   5619c:      	tst	w8, #0x1
+   561a0:      	mov	x10, #0x6976
+   561a4:      	movk	x10, #0x6564, lsl #16
+   561a8:      	csinc	x8, x9, x2, ne
+   561ac:      	movk	x10, #0x2f6f, lsl #32
+   561b0:      	ldr	x9, [x8]
+   561b4:      	ldrb	w8, [x8, #0x8]
+   561b8:      	movk	x10, #0x7661, lsl #48
+   561bc:      	cmp	x9, x10
+   561c0:      	mov	w9, #0x63
+   561c4:      	ccmp	w8, w9, #0x0, eq
+   561c8:      	b.eq	0x561d4 <.text+0x144>
+   561cc:      	mov	w0, wzr
+   561d0:      	ret
+   561d4:      	stp	x29, x30, [sp, #-0x50]!
+   561d8:      	str	x25, [sp, #0x10]
+   561dc:      	stp	x24, x23, [sp, #0x20]
+   561e0:      	stp	x22, x21, [sp, #0x30]
+   561e4:      	stp	x20, x19, [sp, #0x40]
+   561e8:      	mov	x29, sp
+   561ec:      	ldp	x23, x24, [x1]
+   561f0:      	mov	x19, x0
+   561f4:      	cmp	x23, x24
+   561f8:      	b.eq	0x56250 <.text+0x1c0>
+   561fc:      	mov	x20, xzr
+   56200:      	mov	x8, x23
+   56204:      	ldr	x9, [x8, #0x8]
+   56208:      	add	x8, x8, #0x10
+   5620c:      	cmp	x8, x24
+   56210:      	add	x20, x9, x20
+   56214:      	b.ne	0x56204 <.text+0x174>
+   56218:      	mov	x0, x20
+   5621c:      	bl	0x101694
+   56220:      	cmp	x23, x24
+   56224:      	mov	x21, x0
+   56228:      	b.eq	0x56260 <.text+0x1d0>
+   5622c:      	mov	x25, xzr
+   56230:      	ldp	x1, x22, [x23], #0x10
+   56234:      	add	x0, x21, x25
+   56238:      	mov	x2, x22
+   5623c:      	bl	0x101780 <memcpy@plt>
+   56240:      	cmp	x23, x24
+   56244:      	add	x25, x22, x25
+   56248:      	b.ne	0x56230 <.text+0x1a0>
+   5624c:      	b	0x56260 <.text+0x1d0>
+   56250:      	mov	x0, xzr
+   56254:      	bl	0x101694
+   56258:      	mov	x21, x0
+   5625c:      	mov	x20, xzr
+   56260:      	mov	x0, x19
+   56264:      	mov	x1, x21
+   56268:      	mov	x2, x20
+   5626c:      	bl	0x56298 <.text+0x208>
+   56270:      	mov	w19, w0
+   56274:      	mov	x0, x21
+   56278:      	bl	0xfb4a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xa4f60>
+   5627c:      	and	w0, w19, #0x1
+   56280:      	ldp	x20, x19, [sp, #0x40]
+   56284:      	ldr	x25, [sp, #0x10]
+   56288:      	ldp	x22, x21, [sp, #0x30]
+   5628c:      	ldp	x24, x23, [sp, #0x20]
+   56290:      	ldp	x29, x30, [sp], #0x50
+   56294:      	ret
+   56298:      	sub	sp, sp, #0x100
+   5629c:      	stp	x29, x30, [sp, #0xc0]
+   562a0:      	str	x23, [sp, #0xd0]
+   562a4:      	stp	x22, x21, [sp, #0xe0]
+   562a8:      	stp	x20, x19, [sp, #0xf0]
+   562ac:      	add	x29, sp, #0xc0
+   562b0:      	mrs	x23, TPIDR_EL0
+   562b4:      	mov	x19, x0
+   562b8:      	mov	w0, #0x1b
+   562bc:      	ldr	x8, [x23, #0x28]
+   562c0:      	mov	x20, x2
+   562c4:      	mov	x21, x1
+   562c8:      	stur	x8, [x29, #-0x8]
+   562cc:      	bl	0x5665c <Java_org_ffavc_DecoderFactory_GetHandle+0x114>
+   562d0:      	str	x0, [x19, #0x8]
+   562d4:      	cbz	x0, 0x5634c <.text+0x2bc>
+   562d8:      	bl	0xc67c8 <Java_org_ffavc_DecoderFactory_GetHandle+0x70280>
+   562dc:      	str	x0, [x19, #0x10]
+   562e0:      	cbz	x0, 0x5634c <.text+0x2bc>
+   562e4:      	mov	x22, x0
+   562e8:      	add	x0, sp, #0x8
+   562ec:      	mov	w1, wzr
+   562f0:      	mov	w2, #0xb0
+   562f4:      	bl	0x101790 <memset@plt>
+   562f8:      	mov	w8, #0x1
+   562fc:      	add	x1, sp, #0x8
+   56300:      	mov	x0, x22
+   56304:      	str	x21, [sp, #0x18]
+   56308:      	str	w20, [sp, #0x20]
+   5630c:      	str	w8, [sp, #0x80]
+   56310:      	bl	0x596c8 <Java_org_ffavc_DecoderFactory_GetHandle+0x3180>
+   56314:      	tbnz	w0, #0x1f, 0x56348 <.text+0x2b8>
+   56318:      	ldp	x1, x0, [x19, #0x8]
+   5631c:      	mov	x2, xzr
+   56320:      	bl	0x5678c <Java_org_ffavc_DecoderFactory_GetHandle+0x244>
+   56324:      	tbnz	w0, #0x1f, 0x56348 <.text+0x2b8>
+   56328:      	bl	0x57898 <Java_org_ffavc_DecoderFactory_GetHandle+0x1350>
+   5632c:      	str	x0, [x19, #0x20]
+   56330:      	cbz	x0, 0x5634c <.text+0x2bc>
+   56334:      	bl	0xd3980 <Java_org_ffavc_DecoderFactory_GetHandle+0x7d438>
+   56338:      	cmp	x0, #0x0
+   5633c:      	str	x0, [x19, #0x18]
+   56340:      	cset	w0, ne
+   56344:      	b	0x5634c <.text+0x2bc>
+   56348:      	mov	w0, wzr
+   5634c:      	ldr	x8, [x23, #0x28]
+   56350:      	ldur	x9, [x29, #-0x8]
+   56354:      	cmp	x8, x9
+   56358:      	b.ne	0x56374 <.text+0x2e4>
+   5635c:      	ldp	x20, x19, [sp, #0xf0]
+   56360:      	ldr	x23, [sp, #0xd0]
+   56364:      	ldp	x22, x21, [sp, #0xe0]
+   56368:      	ldp	x29, x30, [sp, #0xc0]
+   5636c:      	add	sp, sp, #0x100
+   56370:      	ret
+   56374:      	bl	0x1017a0 <__stack_chk_fail@plt>
+   56378:      	stp	x29, x30, [sp, #-0x20]!
+   5637c:      	str	x19, [sp, #0x10]
+   56380:      	mov	x29, sp
+   56384:      	mov	x8, x0
+   56388:      	ldr	x0, [x0, #0x10]
+   5638c:      	mov	w19, #-0x2
+   56390:      	cbz	x0, 0x563c8 <.text+0x338>
+   56394:      	ldr	x8, [x8, #0x20]
+   56398:      	str	x1, [x8, #0x18]
+   5639c:      	mov	x1, x8
+   563a0:      	str	w2, [x8, #0x20]
+   563a4:      	bl	0x59a30 <Java_org_ffavc_DecoderFactory_GetHandle+0x34e8>
+   563a8:      	mov	w8, #0xb0bb
+   563ac:      	cmn	w0, #0xb
+   563b0:      	movk	w8, #0xdfb9, lsl #16
+   563b4:      	cinc	w9, w19, eq
+   563b8:      	cmp	w0, w8
+   563bc:      	mov	w8, #-0x1
+   563c0:      	ccmp	w0, w8, #0x0, ne
+   563c4:      	csel	w19, wzr, w9, gt
+   563c8:      	mov	w0, w19
+   563cc:      	ldr	x19, [sp, #0x10]
+   563d0:      	ldp	x29, x30, [sp], #0x20
+   563d4:      	ret
+   563d8:      	stp	x29, x30, [sp, #-0x20]!
+   563dc:      	str	x19, [sp, #0x10]
+   563e0:      	mov	x29, sp
+   563e4:      	mov	x19, x0
+   563e8:      	ldr	x0, [x0, #0x10]
+   563ec:      	ldr	x1, [x19, #0x18]
+   563f0:      	bl	0x57600 <Java_org_ffavc_DecoderFactory_GetHandle+0x10b8>
+   563f4:      	tbnz	w0, #0x1f, 0x5640c <.text+0x37c>
+   563f8:      	ldr	x8, [x19, #0x18]
+   563fc:      	ldr	x8, [x8]
+   56400:      	cbz	x8, 0x5640c <.text+0x37c>
+   56404:      	mov	w0, wzr
+   56408:      	b	0x56418 <.text+0x388>
+   5640c:      	cmn	w0, #0xb
+   56410:      	mov	w8, #-0x2
+   56414:      	cinc	w0, w8, eq
+   56418:      	ldr	x19, [sp, #0x10]
+   5641c:      	ldp	x29, x30, [sp], #0x20
+   56420:      	ret
+   56424:      	ldr	x8, [x0]
+   56428:      	mov	x1, xzr
+   5642c:      	mov	x2, xzr
+   56430:      	mov	x3, #-0x1
+   56434:      	ldr	x4, [x8, #0x18]
+   56438:      	br	x4
+   5643c:      	ldr	x0, [x0, #0x10]
+   56440:      	b	0x56e34 <Java_org_ffavc_DecoderFactory_GetHandle+0x8ec>
+   56444:      	stp	x29, x30, [sp, #-0x20]!
+   56448:      	stp	x20, x19, [sp, #0x10]
+   5644c:      	mov	x29, sp
+   56450:      	mov	x19, x0
+   56454:      	mov	w0, #0x28
+   56458:      	mov	x20, x8
+   5645c:      	bl	0x101628
+   56460:      	movi	v0.2d, #0000000000000000
+   56464:      	ldr	x9, [x19, #0x18]
+   56468:      	mov	x8, xzr
+   5646c:      	str	xzr, [x0, #0x20]
+   56470:      	str	x0, [x20]
+   56474:      	stp	q0, q0, [x0]
+   56478:      	add	x11, x9, x8, lsl #2
+   5647c:      	ldr	x10, [x9, x8, lsl #3]
+   56480:      	str	x10, [x0, x8, lsl #3]
+   56484:      	ldr	w10, [x11, #0x40]
+   56488:      	add	x11, x0, x8, lsl #2
+   5648c:      	add	x8, x8, #0x1
+   56490:      	cmp	x8, #0x3
+   56494:      	str	w10, [x11, #0x18]
+   56498:      	b.ne	0x56478 <.text+0x3e8>
+   5649c:      	ldp	x20, x19, [sp, #0x10]
+   564a0:      	ldp	x29, x30, [sp], #0x20
+   564a4:      	ret
+
+00000000000564a8 <_ZN5ffavc14DecoderFactory9GetHandleEv>:
+   564a8:      	stp	x29, x30, [sp, #-0x10]!
+   564ac:      	mov	x29, sp
+   564b0:      	nop
+   564b4:      	adr	x8, #0xcc9a4
+   564b8:      	ldarb	w8, [x8]
+   564bc:      	tbz	w8, #0x0, 0x564d0 <_ZN5ffavc14DecoderFactory9GetHandleEv+0x28>
+   564c0:      	nop
+   564c4:      	adr	x0, #0xcc98c
+   564c8:      	ldp	x29, x30, [sp], #0x10
+   564cc:      	ret
+   564d0:      	nop
+   564d4:      	adr	x0, #0xcc984
+   564d8:      	bl	0xe223c <Java_org_ffavc_DecoderFactory_GetHandle+0x8bcf4>
+   564dc:      	cbz	w0, 0x564c0 <_ZN5ffavc14DecoderFactory9GetHandleEv+0x18>
+   564e0:      	adrp	x8, 0x122000
+   564e4:      	adrp	x9, 0x105000 <pthread_rwlock_rdlock@plt+0x3310>
+   564e8:      	add	x9, x9, #0xd68
+   564ec:      	nop
+   564f0:      	adr	x0, #0xcc968
+   564f4:      	str	x9, [x8, #0xe50]
+   564f8:      	bl	0xe2380 <Java_org_ffavc_DecoderFactory_GetHandle+0x8be38>
+   564fc:      	b	0x564c0 <_ZN5ffavc14DecoderFactory9GetHandleEv+0x18>
+   56500:      	ret
+   56504:      	b	0xfb4a0 <Java_org_ffavc_DecoderFactory_GetHandle+0xa4f58>
+   56508:      	stp	x29, x30, [sp, #-0x20]!
+   5650c:      	str	x19, [sp, #0x10]
+   56510:      	mov	x29, sp
+   56514:      	mov	w0, #0x28
+   56518:      	mov	x19, x8
+   5651c:      	bl	0x101628
+   56520:      	movi	v0.2d, #0000000000000000
+   56524:      	adrp	x8, 0x105000 <pthread_rwlock_rdlock@plt+0x3310>
+   56528:      	add	x8, x8, #0xd18
+   5652c:      	str	x8, [x0]
+   56530:      	stur	q0, [x0, #0x8]
+   56534:      	stur	q0, [x0, #0x18]
+   56538:      	str	x0, [x19]
+   5653c:      	ldr	x19, [sp, #0x10]
+   56540:      	ldp	x29, x30, [sp], #0x20
+   56544:      	ret
+
+0000000000056548 <Java_org_ffavc_DecoderFactory_GetHandle>:
+   56548:      	b	0x1017b0 <_ZN5ffavc14DecoderFactory9GetHandleEv@plt>
+   5654c:      	stp	x30, x21, [sp, #-0x20]!
+   56550:      	stp	x20, x19, [sp, #0x10]
+   56554:      	ldr	x21, [x0]
+   56558:      	nop
+   5655c:      	adr	x8, #0xaf824
+   56560:      	mov	x20, x0
+   56564:      	nop
+   56568:      	adr	x0, #0xcc8f8
+   5656c:      	ldr	x19, [x8, x21, lsl #3]
+   56570:      	adrp	x1, 0x56000
+   56574:      	add	x1, x1, #0x5a4
+   56578:      	bl	0x1017c0 <pthread_once@plt>
+   5657c:      	cmp	x21, #0x1
+   56580:      	b.eq	0x56590 <Java_org_ffavc_DecoderFactory_GetHandle+0x48>
+   56584:      	add	x8, x21, #0x1
+   56588:      	str	x8, [x20]
+   5658c:      	b	0x56594 <Java_org_ffavc_DecoderFactory_GetHandle+0x4c>
+   56590:      	mov	x19, xzr
+   56594:      	mov	x0, x19
+   56598:      	ldp	x20, x19, [sp, #0x10]
+   5659c:      	ldp	x30, x21, [sp], #0x20
+   565a0:      	ret
+   565a4:      	str	x30, [sp, #-0x20]!
+   565a8:      	stp	x20, x19, [sp, #0x10]
+   565ac:      	mov	x19, xzr
+   565b0:      	nop
+   565b4:      	adr	x20, #0xaf7cc
+   565b8:      	cmp	x19, #0x8
+   565bc:      	b.eq	0x565d8 <Java_org_ffavc_DecoderFactory_GetHandle+0x90>
+   565c0:      	ldr	x0, [x20, x19]
+   565c4:      	ldr	x8, [x0, #0x80]
+   565c8:      	cbz	x8, 0x565d0 <Java_org_ffavc_DecoderFactory_GetHandle+0x88>
+   565cc:      	blr	x8
+   565d0:      	add	x19, x19, #0x8
+   565d4:      	b	0x565b8 <Java_org_ffavc_DecoderFactory_GetHandle+0x70>
+   565d8:      	ldp	x20, x19, [sp, #0x10]
+   565dc:      	ldr	x30, [sp], #0x20
+   565e0:      	ret
+   565e4:      	nop
+   565e8:      	adr	x1, #0x74448
+   565ec:      	b	0x565f0 <Java_org_ffavc_DecoderFactory_GetHandle+0xa8>
+   565f0:      	str	x30, [sp, #-0x30]!
+   565f4:      	stp	x22, x21, [sp, #0x10]
+   565f8:      	stp	x20, x19, [sp, #0x20]
+   565fc:      	mov	x19, x1
+   56600:      	mov	w20, w0
+   56604:      	mov	x21, xzr
+   56608:      	str	xzr, [sp, #0x8]
+   5660c:      	mov	x22, x21
+   56610:      	add	x0, sp, #0x8
+   56614:      	bl	0x5654c <Java_org_ffavc_DecoderFactory_GetHandle+0x4>
+   56618:      	cbz	x0, 0x56644 <Java_org_ffavc_DecoderFactory_GetHandle+0xfc>
+   5661c:      	mov	x21, x0
+   56620:      	blr	x19
+   56624:      	cbz	w0, 0x56610 <Java_org_ffavc_DecoderFactory_GetHandle+0xc8>
+   56628:      	ldr	w8, [x21, #0x14]
+   5662c:      	cmp	w8, w20
+   56630:      	b.ne	0x56610 <Java_org_ffavc_DecoderFactory_GetHandle+0xc8>
+   56634:      	ldrb	w8, [x21, #0x19]
+   56638:      	tbz	w8, #0x1, 0x56648 <Java_org_ffavc_DecoderFactory_GetHandle+0x100>
+   5663c:      	cbz	x22, 0x5660c <Java_org_ffavc_DecoderFactory_GetHandle+0xc4>
+   56640:      	b	0x56648 <Java_org_ffavc_DecoderFactory_GetHandle+0x100>
+   56644:      	mov	x21, x22
+   56648:      	mov	x0, x21
+   5664c:      	ldp	x20, x19, [sp, #0x20]
+   56650:      	ldp	x22, x21, [sp, #0x10]
+   56654:      	ldr	x30, [sp], #0x30
+   56658:      	ret
+   5665c:      	nop
+   56660:      	adr	x1, #0x743f8
+   56664:      	b	0x565f0 <Java_org_ffavc_DecoderFactory_GetHandle+0xa8>
+   56668:      	nop
+   5666c:      	adr	x1, #0x743c4
+   56670:      	b	0x56674 <Java_org_ffavc_DecoderFactory_GetHandle+0x12c>
+   56674:      	sub	sp, sp, #0x30
+   56678:      	stp	x30, x21, [sp, #0x10]
+   5667c:      	stp	x20, x19, [sp, #0x20]
+   56680:      	str	xzr, [sp, #0x8]
+   56684:      	cbz	x0, 0x566c0 <Java_org_ffavc_DecoderFactory_GetHandle+0x178>
+   56688:      	mov	x19, x1
+   5668c:      	mov	x20, x0
+   56690:      	add	x0, sp, #0x8
+   56694:      	bl	0x5654c <Java_org_ffavc_DecoderFactory_GetHandle+0x4>
+   56698:      	mov	x21, x0
+   5669c:      	cbz	x0, 0x566c4 <Java_org_ffavc_DecoderFactory_GetHandle+0x17c>
+   566a0:      	mov	x0, x21
+   566a4:      	blr	x19
+   566a8:      	cbz	w0, 0x56690 <Java_org_ffavc_DecoderFactory_GetHandle+0x148>
+   566ac:      	ldr	x1, [x21]
+   566b0:      	mov	x0, x20
+   566b4:      	bl	0x1017d0 <strcmp@plt>
+   566b8:      	cbnz	w0, 0x56690 <Java_org_ffavc_DecoderFactory_GetHandle+0x148>
+   566bc:      	b	0x566c4 <Java_org_ffavc_DecoderFactory_GetHandle+0x17c>
+   566c0:      	mov	x21, xzr
+   566c4:      	mov	x0, x21
+   566c8:      	ldp	x20, x19, [sp, #0x20]
+   566cc:      	ldp	x30, x21, [sp, #0x10]
+   566d0:      	add	sp, sp, #0x30
+   566d4:      	ret
+   566d8:      	nop
+   566dc:      	adr	x1, #0x7437c
+   566e0:      	b	0x56674 <Java_org_ffavc_DecoderFactory_GetHandle+0x12c>
+   566e4:      	stp	x30, x25, [sp, #-0x40]!
+   566e8:      	stp	x24, x23, [sp, #0x10]
+   566ec:      	stp	x22, x21, [sp, #0x20]
+   566f0:      	stp	x20, x19, [sp, #0x30]
+   566f4:      	sxtw	x23, w4
+   566f8:      	sxtw	x24, w5
+   566fc:      	bl	0x576bc <Java_org_ffavc_DecoderFactory_GetHandle+0x1174>
+   56700:      	mov	x25, x3
+   56704:      	cbz	x23, 0x5672c <Java_org_ffavc_DecoderFactory_GetHandle+0x1e4>
+   56708:      	mov	x0, x22
+   5670c:      	mov	x1, x20
+   56710:      	blr	x21
+   56714:      	cbz	x19, 0x5671c <Java_org_ffavc_DecoderFactory_GetHandle+0x1d4>
+   56718:      	str	w0, [x25]
+   5671c:      	sub	x23, x23, #0x1
+   56720:      	add	x20, x20, x24
+   56724:      	add	x25, x25, #0x4
+   56728:      	cbnz	x23, 0x56708 <Java_org_ffavc_DecoderFactory_GetHandle+0x1c0>
+   5672c:      	bl	0x576a8 <Java_org_ffavc_DecoderFactory_GetHandle+0x1160>
+   56730:      	ldp	x30, x25, [sp], #0x40
+   56734:      	ret
+   56738:      	str	x30, [sp, #-0x40]!
+   5673c:      	stp	x24, x23, [sp, #0x10]
+   56740:      	stp	x22, x21, [sp, #0x20]
+   56744:      	stp	x20, x19, [sp, #0x30]
+   56748:      	bic	w24, w4, w4, asr #31
+   5674c:      	bl	0x576bc <Java_org_ffavc_DecoderFactory_GetHandle+0x1174>
+   56750:      	mov	x23, xzr
+   56754:      	cmp	x24, x23
+   56758:      	b.eq	0x56780 <Java_org_ffavc_DecoderFactory_GetHandle+0x238>
+   5675c:      	mov	x0, x22
+   56760:      	mov	x1, x20
+   56764:      	mov	w2, w23
+   56768:      	mov	w3, wzr
+   5676c:      	blr	x21
+   56770:      	cbz	x19, 0x56778 <Java_org_ffavc_DecoderFactory_GetHandle+0x230>
+   56774:      	str	w0, [x19, x23, lsl #2]
+   56778:      	add	x23, x23, #0x1
+   5677c:      	b	0x56754 <Java_org_ffavc_DecoderFactory_GetHandle+0x20c>
+   56780:      	bl	0x576a8 <Java_org_ffavc_DecoderFactory_GetHandle+0x1160>
+   56784:      	ldr	x30, [sp], #0x40
+   56788:      	ret
+   5678c:      	str	x30, [sp, #-0x40]!
+   56790:      	stp	x24, x23, [sp, #0x10]
+   56794:      	stp	x22, x21, [sp, #0x20]
+   56798:      	stp	x20, x19, [sp, #0x30]
+   5679c:      	ldr	x8, [x0, #0x28]
+   567a0:      	cbz	x8, 0x567ac <Java_org_ffavc_DecoderFactory_GetHandle+0x264>
+   567a4:      	mov	w23, wzr
+   567a8:      	b	0x5685c <Java_org_ffavc_DecoderFactory_GetHandle+0x314>
+   567ac:      	ldr	x20, [x0, #0x10]
+   567b0:      	mov	x22, x2
+   567b4:      	mov	x19, x0
+   567b8:      	cbz	x1, 0x567e0 <Java_org_ffavc_DecoderFactory_GetHandle+0x298>
+   567bc:      	cbz	x20, 0x567f0 <Java_org_ffavc_DecoderFactory_GetHandle+0x2a8>
+   567c0:      	cmp	x20, x1
+   567c4:      	b.eq	0x567f0 <Java_org_ffavc_DecoderFactory_GetHandle+0x2a8>
+   567c8:      	ldr	x3, [x20]
+   567cc:      	ldr	x4, [x1]
+   567d0:      	adrp	x2, 0x25000
+   567d4:      	add	x2, x2, #0x3ce
+   567d8:      	bl	0x5769c <Java_org_ffavc_DecoderFactory_GetHandle+0x1154>
+   567dc:      	b	0x56858 <Java_org_ffavc_DecoderFactory_GetHandle+0x310>
+   567e0:      	cbnz	x20, 0x567f4 <Java_org_ffavc_DecoderFactory_GetHandle+0x2ac>
+   567e4:      	nop
+   567e8:      	adr	x2, #-0x3a136
+   567ec:      	b	0x56828 <Java_org_ffavc_DecoderFactory_GetHandle+0x2e0>
+   567f0:      	mov	x20, x1
+   567f4:      	ldr	w8, [x19, #0xc]
+   567f8:      	cmn	w8, #0x1
+   567fc:      	b.eq	0x5680c <Java_org_ffavc_DecoderFactory_GetHandle+0x2c4>
+   56800:      	ldr	w9, [x20, #0x10]
+   56804:      	cmp	w8, w9
+   56808:      	b.ne	0x56820 <Java_org_ffavc_DecoderFactory_GetHandle+0x2d8>
+   5680c:      	ldr	w8, [x19, #0x18]
+   56810:      	ldr	w9, [x20, #0x14]
+   56814:      	cbz	w8, 0x56830 <Java_org_ffavc_DecoderFactory_GetHandle+0x2e8>
+   56818:      	cmp	w8, w9
+   5681c:      	b.eq	0x56834 <Java_org_ffavc_DecoderFactory_GetHandle+0x2ec>
+   56820:      	adrp	x2, 0x1d000
+   56824:      	add	x2, x2, #0x2fb
+   56828:      	bl	0x57690 <Java_org_ffavc_DecoderFactory_GetHandle+0x1148>
+   5682c:      	b	0x56858 <Java_org_ffavc_DecoderFactory_GetHandle+0x310>
+   56830:      	mov	w8, w9
+   56834:      	ldr	w10, [x19, #0x50]
+   56838:      	mov	w11, #0xffbf
+   5683c:      	ldr	w9, [x20, #0x10]
+   56840:      	movk	w11, #0xfff, lsl #16
+   56844:      	str	w8, [x19, #0x18]
+   56848:      	cmp	w10, w11
+   5684c:      	str	w9, [x19, #0xc]
+   56850:      	str	x20, [x19, #0x10]
+   56854:      	b.ls	0x56874 <Java_org_ffavc_DecoderFactory_GetHandle+0x32c>
+   56858:      	mov	w23, #-0x16
+   5685c:      	mov	w0, w23
+   56860:      	ldp	x20, x19, [sp, #0x30]
+   56864:      	ldp	x22, x21, [sp, #0x20]
+   56868:      	ldp	x24, x23, [sp, #0x10]
+   5686c:      	ldr	x30, [sp], #0x40
+   56870:      	ret
+   56874:      	mov	x0, x20
+   56878:      	bl	0xcaa58 <Java_org_ffavc_DecoderFactory_GetHandle+0x74510>
+   5687c:      	cbz	w0, 0x56888 <Java_org_ffavc_DecoderFactory_GetHandle+0x340>
+   56880:      	bl	0x5b9f4 <Java_org_ffavc_DecoderFactory_GetHandle+0x54ac>
+   56884:      	b	0x5688c <Java_org_ffavc_DecoderFactory_GetHandle+0x344>
+   56888:      	bl	0x5cf00 <Java_org_ffavc_DecoderFactory_GetHandle+0x69b8>
+   5688c:      	mov	x21, x0
+   56890:      	cbz	x0, 0x56904 <Java_org_ffavc_DecoderFactory_GetHandle+0x3bc>
+   56894:      	str	x21, [x19, #0x28]
+   56898:      	bl	0xd3980 <Java_org_ffavc_DecoderFactory_GetHandle+0x7d438>
+   5689c:      	str	x0, [x21, #0x78]
+   568a0:      	bl	0x57898 <Java_org_ffavc_DecoderFactory_GetHandle+0x1350>
+   568a4:      	ldr	x8, [x21, #0x78]
+   568a8:      	mov	w23, #-0xc
+   568ac:      	str	x0, [x21, #0x70]
+   568b0:      	cbz	x8, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   568b4:      	cbz	x0, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   568b8:      	ldr	w0, [x20, #0x64]
+   568bc:      	cmp	w0, #0x1
+   568c0:      	b.lt	0x5690c <Java_org_ffavc_DecoderFactory_GetHandle+0x3c4>
+   568c4:      	ldr	x8, [x19, #0x20]
+   568c8:      	cbnz	x8, 0x568e8 <Java_org_ffavc_DecoderFactory_GetHandle+0x3a0>
+   568cc:      	bl	0xd7fe0 <Java_org_ffavc_DecoderFactory_GetHandle+0x81a98>
+   568d0:      	str	x0, [x19, #0x20]
+   568d4:      	cbz	x0, 0x56cf8 <Java_org_ffavc_DecoderFactory_GetHandle+0x7b0>
+   568d8:      	ldr	x8, [x20, #0x40]
+   568dc:      	cbz	x8, 0x568e8 <Java_org_ffavc_DecoderFactory_GetHandle+0x3a0>
+   568e0:      	str	x8, [x0]
+   568e4:      	bl	0xda858 <Java_org_ffavc_DecoderFactory_GetHandle+0x84310>
+   568e8:      	ldr	x8, [x20, #0x40]
+   568ec:      	cbz	x8, 0x56910 <Java_org_ffavc_DecoderFactory_GetHandle+0x3c8>
+   568f0:      	ldr	x0, [x19, #0x20]
+   568f4:      	mov	x1, x22
+   568f8:      	bl	0xdb548 <Java_org_ffavc_DecoderFactory_GetHandle+0x85000>
+   568fc:      	tbz	w0, #0x1f, 0x56910 <Java_org_ffavc_DecoderFactory_GetHandle+0x3c8>
+   56900:      	b	0x56c38 <Java_org_ffavc_DecoderFactory_GetHandle+0x6f0>
+   56904:      	mov	w23, #-0xc
+   56908:      	b	0x5685c <Java_org_ffavc_DecoderFactory_GetHandle+0x314>
+   5690c:      	str	xzr, [x19, #0x20]
+   56910:      	mov	x0, x19
+   56914:      	mov	x1, x22
+   56918:      	bl	0xdb548 <Java_org_ffavc_DecoderFactory_GetHandle+0x85000>
+   5691c:      	tbnz	w0, #0x1f, 0x56c38 <Java_org_ffavc_DecoderFactory_GetHandle+0x6f0>
+   56920:      	ldr	x1, [x19, #0x300]
+   56924:      	cbz	x1, 0x5693c <Java_org_ffavc_DecoderFactory_GetHandle+0x3f4>
+   56928:      	ldr	x0, [x20]
+   5692c:      	mov	w2, #0x2c
+   56930:      	bl	0xce3fc <Java_org_ffavc_DecoderFactory_GetHandle+0x77eb4>
+   56934:      	cmp	w0, #0x0
+   56938:      	b.le	0x56c64 <Java_org_ffavc_DecoderFactory_GetHandle+0x71c>
+   5693c:      	ldr	w8, [x19, #0x7c]
+   56940:      	cbz	w8, 0x56984 <Java_org_ffavc_DecoderFactory_GetHandle+0x43c>
+   56944:      	ldr	w2, [x19, #0x80]
+   56948:      	cbz	w2, 0x56984 <Java_org_ffavc_DecoderFactory_GetHandle+0x43c>
+   5694c:      	ldr	w9, [x19, #0x74]
+   56950:      	cbz	w9, 0x56978 <Java_org_ffavc_DecoderFactory_GetHandle+0x430>
+   56954:      	ldr	w9, [x19, #0x78]
+   56958:      	cbz	w9, 0x56978 <Java_org_ffavc_DecoderFactory_GetHandle+0x430>
+   5695c:      	ldr	w9, [x19, #0x18]
+   56960:      	cmp	w9, #0x1b
+   56964:      	b.eq	0x569ac <Java_org_ffavc_DecoderFactory_GetHandle+0x464>
+   56968:      	cmp	w9, #0x5c
+   5696c:      	b.eq	0x569ac <Java_org_ffavc_DecoderFactory_GetHandle+0x464>
+   56970:      	cmp	w9, #0xbd
+   56974:      	b.eq	0x569ac <Java_org_ffavc_DecoderFactory_GetHandle+0x464>
+   56978:      	mov	x0, x19
+   5697c:      	mov	w1, w8
+   56980:      	b	0x56998 <Java_org_ffavc_DecoderFactory_GetHandle+0x450>
+   56984:      	ldr	w1, [x19, #0x74]
+   56988:      	cbz	w1, 0x569a8 <Java_org_ffavc_DecoderFactory_GetHandle+0x460>
+   5698c:      	ldr	w2, [x19, #0x78]
+   56990:      	cbz	w2, 0x569a8 <Java_org_ffavc_DecoderFactory_GetHandle+0x460>
+   56994:      	mov	x0, x19
+   56998:      	bl	0xcaa80 <Java_org_ffavc_DecoderFactory_GetHandle+0x74538>
+   5699c:      	mov	w23, w0
+   569a0:      	tbnz	w0, #0x1f, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   569a4:      	ldr	w8, [x19, #0x7c]
+   569a8:      	cbz	w8, 0x569b4 <Java_org_ffavc_DecoderFactory_GetHandle+0x46c>
+   569ac:      	ldr	w1, [x19, #0x80]
+   569b0:      	b	0x569dc <Java_org_ffavc_DecoderFactory_GetHandle+0x494>
+   569b4:      	ldr	w1, [x19, #0x80]
+   569b8:      	cbz	w1, 0x569c4 <Java_org_ffavc_DecoderFactory_GetHandle+0x47c>
+   569bc:      	mov	w8, wzr
+   569c0:      	b	0x569dc <Java_org_ffavc_DecoderFactory_GetHandle+0x494>
+   569c4:      	ldr	w8, [x19, #0x74]
+   569c8:      	cbnz	w8, 0x569d4 <Java_org_ffavc_DecoderFactory_GetHandle+0x48c>
+   569cc:      	ldr	w8, [x19, #0x78]
+   569d0:      	cbz	w8, 0x56a20 <Java_org_ffavc_DecoderFactory_GetHandle+0x4d8>
+   569d4:      	mov	w8, wzr
+   569d8:      	mov	w1, wzr
+   569dc:      	ldr	x2, [x19, #0x318]
+   569e0:      	mov	w0, w8
+   569e4:      	bl	0x57664 <Java_org_ffavc_DecoderFactory_GetHandle+0x111c>
+   569e8:      	tbnz	w0, #0x1f, 0x569fc <Java_org_ffavc_DecoderFactory_GetHandle+0x4b4>
+   569ec:      	ldp	w0, w1, [x19, #0x74]
+   569f0:      	ldr	x2, [x19, #0x318]
+   569f4:      	bl	0x57664 <Java_org_ffavc_DecoderFactory_GetHandle+0x111c>
+   569f8:      	tbz	w0, #0x1f, 0x56a20 <Java_org_ffavc_DecoderFactory_GetHandle+0x4d8>
+   569fc:      	adrp	x2, 0x22000
+   56a00:      	add	x2, x2, #0xd15
+   56a04:      	mov	x0, x19
+   56a08:      	mov	w1, #0x18
+   56a0c:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56a10:      	mov	x0, x19
+   56a14:      	mov	w1, wzr
+   56a18:      	mov	w2, wzr
+   56a1c:      	bl	0xcaa80 <Java_org_ffavc_DecoderFactory_GetHandle+0x74538>
+   56a20:      	ldr	w0, [x19, #0x74]
+   56a24:      	cmp	w0, #0x1
+   56a28:      	b.lt	0x56a68 <Java_org_ffavc_DecoderFactory_GetHandle+0x520>
+   56a2c:      	ldr	w1, [x19, #0x78]
+   56a30:      	cmp	w1, #0x1
+   56a34:      	b.lt	0x56a68 <Java_org_ffavc_DecoderFactory_GetHandle+0x520>
+   56a38:      	ldur	x2, [x19, #0x84]
+   56a3c:      	bl	0xd6170 <Java_org_ffavc_DecoderFactory_GetHandle+0x7fc28>
+   56a40:      	tbz	w0, #0x1f, 0x56a68 <Java_org_ffavc_DecoderFactory_GetHandle+0x520>
+   56a44:      	ldp	w3, w4, [x19, #0x84]
+   56a48:      	adrp	x2, 0x23000
+   56a4c:      	add	x2, x2, #0x992
+   56a50:      	mov	x0, x19
+   56a54:      	mov	w1, #0x18
+   56a58:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56a5c:      	adrp	x8, 0x1c000
+   56a60:      	ldr	d0, [x8, #0x5f8]
+   56a64:      	stur	d0, [x19, #0x84]
+   56a68:      	ldr	w3, [x19, #0x158]
+   56a6c:      	tbnz	w3, #0x1f, 0x56c40 <Java_org_ffavc_DecoderFactory_GetHandle+0x6f8>
+   56a70:      	ldr	w3, [x19, #0x17c]
+   56a74:      	tbnz	w3, #0x1f, 0x56c4c <Java_org_ffavc_DecoderFactory_GetHandle+0x704>
+   56a78:      	ldr	w9, [x19, #0xc]
+   56a7c:      	ldr	w8, [x19, #0x164]
+   56a80:      	cmp	w9, #0x1
+   56a84:      	b.ne	0x56a98 <Java_org_ffavc_DecoderFactory_GetHandle+0x550>
+   56a88:      	cbz	w8, 0x56ac8 <Java_org_ffavc_DecoderFactory_GetHandle+0x580>
+   56a8c:      	add	x22, x19, #0x160
+   56a90:      	add	x24, x19, #0x164
+   56a94:      	b	0x56aa4 <Java_org_ffavc_DecoderFactory_GetHandle+0x55c>
+   56a98:      	add	x22, x19, #0x160
+   56a9c:      	add	x24, x19, #0x164
+   56aa0:      	cbz	w8, 0x56ad8 <Java_org_ffavc_DecoderFactory_GetHandle+0x590>
+   56aa4:      	mov	x0, x22
+   56aa8:      	bl	0xd0660 <Java_org_ffavc_DecoderFactory_GetHandle+0x7a118>
+   56aac:      	cbz	w0, 0x56c7c <Java_org_ffavc_DecoderFactory_GetHandle+0x734>
+   56ab0:      	ldr	w3, [x24]
+   56ab4:      	cmp	w3, #0x201
+   56ab8:      	b.lo	0x56ad8 <Java_org_ffavc_DecoderFactory_GetHandle+0x590>
+   56abc:      	adrp	x2, 0x1e000
+   56ac0:      	add	x2, x2, #0x97d
+   56ac4:      	b	0x56c54 <Java_org_ffavc_DecoderFactory_GetHandle+0x70c>
+   56ac8:      	ldrb	w8, [x20, #0x19]
+   56acc:      	tbz	w8, #0x2, 0x56d34 <Java_org_ffavc_DecoderFactory_GetHandle+0x7ec>
+   56ad0:      	add	x22, x19, #0x160
+   56ad4:      	add	x24, x19, #0x164
+   56ad8:      	ldr	w0, [x19, #0x18]
+   56adc:      	str	xzr, [x19, #0x338]
+   56ae0:      	bl	0x5926c <Java_org_ffavc_DecoderFactory_GetHandle+0x2d24>
+   56ae4:      	mov	x8, x0
+   56ae8:      	ldr	x0, [x19, #0x10]
+   56aec:      	str	x8, [x19, #0x2d8]
+   56af0:      	ldrb	w8, [x0, #0x19]
+   56af4:      	tbz	w8, #0x1, 0x56b04 <Java_org_ffavc_DecoderFactory_GetHandle+0x5bc>
+   56af8:      	ldr	w8, [x19, #0x204]
+   56afc:      	cmn	w8, #0x1
+   56b00:      	b.ge	0x56c8c <Java_org_ffavc_DecoderFactory_GetHandle+0x744>
+   56b04:      	ldr	w8, [x19, #0xc]
+   56b08:      	cmp	w8, #0x1
+   56b0c:      	b.ne	0x56b2c <Java_org_ffavc_DecoderFactory_GetHandle+0x5e4>
+   56b10:      	ldr	w8, [x19, #0x54]
+   56b14:      	cbz	w8, 0x56b20 <Java_org_ffavc_DecoderFactory_GetHandle+0x5d8>
+   56b18:      	ldr	w8, [x19, #0x58]
+   56b1c:      	cbnz	w8, 0x56b2c <Java_org_ffavc_DecoderFactory_GetHandle+0x5e4>
+   56b20:      	ldr	w9, [x19, #0x158]
+   56b24:      	mov	w8, #0x1
+   56b28:      	stp	w8, w9, [x19, #0x54]
+   56b2c:      	bl	0xcaa30 <Java_org_ffavc_DecoderFactory_GetHandle+0x744e8>
+   56b30:      	cbz	w0, 0x56b40 <Java_org_ffavc_DecoderFactory_GetHandle+0x5f8>
+   56b34:      	mov	x0, x19
+   56b38:      	bl	0x5c838 <Java_org_ffavc_DecoderFactory_GetHandle+0x62f0>
+   56b3c:      	b	0x56b48 <Java_org_ffavc_DecoderFactory_GetHandle+0x600>
+   56b40:      	mov	x0, x19
+   56b44:      	bl	0x5b434 <Java_org_ffavc_DecoderFactory_GetHandle+0x4eec>
+   56b48:      	mov	w23, w0
+   56b4c:      	tbnz	w0, #0x1f, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56b50:      	ldr	x8, [x21, #0x40]
+   56b54:      	cbnz	x8, 0x56b70 <Java_org_ffavc_DecoderFactory_GetHandle+0x628>
+   56b58:      	mov	x0, x20
+   56b5c:      	bl	0x56d88 <Java_org_ffavc_DecoderFactory_GetHandle+0x840>
+   56b60:      	mov	x0, x19
+   56b64:      	bl	0xc6a78 <Java_org_ffavc_DecoderFactory_GetHandle+0x70530>
+   56b68:      	bl	0x57684 <Java_org_ffavc_DecoderFactory_GetHandle+0x113c>
+   56b6c:      	tbnz	w23, #0x1f, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56b70:      	ldrb	w8, [x19, #0x298]
+   56b74:      	tbz	w8, #0x0, 0x56b80 <Java_org_ffavc_DecoderFactory_GetHandle+0x638>
+   56b78:      	ldr	x8, [x21, #0x40]
+   56b7c:      	cbz	x8, 0x56bac <Java_org_ffavc_DecoderFactory_GetHandle+0x664>
+   56b80:      	ldr	x8, [x20, #0x88]
+   56b84:      	cbz	x8, 0x56ba4 <Java_org_ffavc_DecoderFactory_GetHandle+0x65c>
+   56b88:      	mov	x0, x20
+   56b8c:      	bl	0x56d88 <Java_org_ffavc_DecoderFactory_GetHandle+0x840>
+   56b90:      	ldr	x8, [x20, #0x88]
+   56b94:      	mov	x0, x19
+   56b98:      	blr	x8
+   56b9c:      	bl	0x57684 <Java_org_ffavc_DecoderFactory_GetHandle+0x113c>
+   56ba0:      	tbnz	w23, #0x1f, 0x56ce8 <Java_org_ffavc_DecoderFactory_GetHandle+0x7a0>
+   56ba4:      	mov	w8, #0x1
+   56ba8:      	str	w8, [x21, #0x58]
+   56bac:      	ldr	x0, [x19, #0x10]
+   56bb0:      	bl	0xcaa58 <Java_org_ffavc_DecoderFactory_GetHandle+0x74510>
+   56bb4:      	cbz	w0, 0x56bf4 <Java_org_ffavc_DecoderFactory_GetHandle+0x6ac>
+   56bb8:      	ldr	x8, [x19, #0x38]
+   56bbc:      	cbnz	x8, 0x56bcc <Java_org_ffavc_DecoderFactory_GetHandle+0x684>
+   56bc0:      	mov	x0, x19
+   56bc4:      	bl	0x56dc8 <Java_org_ffavc_DecoderFactory_GetHandle+0x880>
+   56bc8:      	str	x0, [x19, #0x38]
+   56bcc:      	ldr	w8, [x24]
+   56bd0:      	cbz	w8, 0x56bec <Java_org_ffavc_DecoderFactory_GetHandle+0x6a4>
+   56bd4:      	mov	x0, x22
+   56bd8:      	bl	0xd0660 <Java_org_ffavc_DecoderFactory_GetHandle+0x7a118>
+   56bdc:      	cbz	w0, 0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56be0:      	ldr	w8, [x24]
+   56be4:      	cmp	w8, #0x200
+   56be8:      	b.hi	0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56bec:      	ldr	w8, [x19, #0x288]
+   56bf0:      	tbnz	w8, #0x1f, 0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56bf4:      	ldr	x8, [x20, #0x40]
+   56bf8:      	cbz	x8, 0x567a4 <Java_org_ffavc_DecoderFactory_GetHandle+0x25c>
+   56bfc:      	ldr	x9, [x19, #0x20]
+   56c00:      	ldr	x9, [x9]
+   56c04:      	cmp	x9, x8
+   56c08:      	b.eq	0x567a4 <Java_org_ffavc_DecoderFactory_GetHandle+0x25c>
+   56c0c:      	adrp	x2, 0x1c000
+   56c10:      	add	x2, x2, #0x6e0
+   56c14:      	adrp	x3, 0x28000
+   56c18:      	add	x3, x3, #0x5cf
+   56c1c:      	adrp	x4, 0x26000
+   56c20:      	add	x4, x4, #0x572
+   56c24:      	mov	x0, xzr
+   56c28:      	mov	w1, wzr
+   56c2c:      	mov	w5, #0x154
+   56c30:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56c34:      	bl	0x1017e0 <abort@plt>
+   56c38:      	mov	w23, w0
+   56c3c:      	b	0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56c40:      	adrp	x2, 0x27000
+   56c44:      	add	x2, x2, #0x32d
+   56c48:      	b	0x56c54 <Java_org_ffavc_DecoderFactory_GetHandle+0x70c>
+   56c4c:      	adrp	x2, 0x1f000
+   56c50:      	add	x2, x2, #0x9db
+   56c54:      	mov	x0, x19
+   56c58:      	mov	w1, #0x10
+   56c5c:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56c60:      	b	0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56c64:      	ldr	x3, [x20]
+   56c68:      	ldr	x4, [x19, #0x300]
+   56c6c:      	adrp	x2, 0x25000
+   56c70:      	add	x2, x2, #0x41a
+   56c74:      	bl	0x5769c <Java_org_ffavc_DecoderFactory_GetHandle+0x1154>
+   56c78:      	b	0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56c7c:      	adrp	x2, 0x27000
+   56c80:      	add	x2, x2, #0x346
+   56c84:      	bl	0x57690 <Java_org_ffavc_DecoderFactory_GetHandle+0x1148>
+   56c88:      	b	0x56d68 <Java_org_ffavc_DecoderFactory_GetHandle+0x820>
+   56c8c:      	mov	x0, x20
+   56c90:      	bl	0xcaa30 <Java_org_ffavc_DecoderFactory_GetHandle+0x744e8>
+   56c94:      	adrp	x8, 0x20000
+   56c98:      	add	x8, x8, #0xb2d
+   56c9c:      	cmp	w0, #0x0
+   56ca0:      	adrp	x9, 0x24000
+   56ca4:      	add	x9, x9, #0x96
+   56ca8:      	ldr	x4, [x20]
+   56cac:      	csel	x21, x9, x8, eq
+   56cb0:      	adrp	x2, 0x1e000
+   56cb4:      	add	x2, x2, #0xf7b
+   56cb8:      	mov	x0, x19
+   56cbc:      	mov	w1, #0x10
+   56cc0:      	mov	x3, x21
+   56cc4:      	mov	w5, #-0x2
+   56cc8:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56ccc:      	mov	x0, x20
+   56cd0:      	bl	0xcaa30 <Java_org_ffavc_DecoderFactory_GetHandle+0x744e8>
+   56cd4:      	mov	w8, w0
+   56cd8:      	ldr	w0, [x20, #0x14]
+   56cdc:      	cbnz	w8, 0x56d00 <Java_org_ffavc_DecoderFactory_GetHandle+0x7b8>
+   56ce0:      	bl	0x5665c <Java_org_ffavc_DecoderFactory_GetHandle+0x114>
+   56ce4:      	b	0x56d04 <Java_org_ffavc_DecoderFactory_GetHandle+0x7bc>
+   56ce8:      	ldr	w8, [x20, #0x60]
+   56cec:      	and	w8, w8, #0x2
+   56cf0:      	str	w8, [x21, #0x58]
+   56cf4:      	b	0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56cf8:      	mov	w23, #-0xc
+   56cfc:      	b	0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56d00:      	bl	0x565e4 <Java_org_ffavc_DecoderFactory_GetHandle+0x9c>
+   56d04:      	ldrb	w8, [x0, #0x19]
+   56d08:      	mov	w23, #0x5058
+   56d0c:      	movk	w23, #0xd44d, lsl #16
+   56d10:      	tbnz	w8, #0x1, 0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56d14:      	ldr	x4, [x0]
+   56d18:      	adrp	x2, 0x23000
+   56d1c:      	add	x2, x2, #0x9af
+   56d20:      	mov	x0, x19
+   56d24:      	mov	w1, #0x10
+   56d28:      	mov	x3, x21
+   56d2c:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56d30:      	b	0x56d6c <Java_org_ffavc_DecoderFactory_GetHandle+0x824>
+   56d34:      	mov	x0, x20
+   56d38:      	bl	0xcaa58 <Java_org_ffavc_DecoderFactory_GetHandle+0x74510>
+   56d3c:      	adrp	x8, 0x20000
+   56d40:      	add	x8, x8, #0x47b
+   56d44:      	cmp	w0, #0x0
+   56d48:      	adrp	x9, 0x1c000
+   56d4c:      	add	x9, x9, #0x6d8
+   56d50:      	adrp	x2, 0x25000
+   56d54:      	add	x2, x2, #0x43c
+   56d58:      	csel	x3, x9, x8, eq
+   56d5c:      	mov	x0, x19
+   56d60:      	mov	w1, #0x10
+   56d64:      	bl	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56d68:      	mov	w23, #-0x16
+   56d6c:      	mov	x0, x19
+   56d70:      	bl	0x576f8 <Java_org_ffavc_DecoderFactory_GetHandle+0x11b0>
+   56d74:      	b	0x5685c <Java_org_ffavc_DecoderFactory_GetHandle+0x314>
+   56d78:      	ldr	x8, [x0, #0x28]
+   56d7c:      	cmp	x8, #0x0
+   56d80:      	cset	w0, ne
+   56d84:      	ret
+   56d88:      	ldrb	w8, [x0, #0x60]
+   56d8c:      	tbz	w8, #0x0, 0x56da4 <Java_org_ffavc_DecoderFactory_GetHandle+0x85c>
+   56d90:      	ldr	x8, [x0, #0x88]
+   56d94:      	cbz	x8, 0x56da4 <Java_org_ffavc_DecoderFactory_GetHandle+0x85c>
+   56d98:      	nop
+   56d9c:      	adr	x0, #0xcc0c8
+   56da0:      	b	0x1017f0 <pthread_mutex_lock@plt>
+   56da4:      	ret
+   56da8:      	ldrb	w8, [x0, #0x60]
+   56dac:      	tbz	w8, #0x0, 0x56dc4 <Java_org_ffavc_DecoderFactory_GetHandle+0x87c>
+   56db0:      	ldr	x8, [x0, #0x88]
+   56db4:      	cbz	x8, 0x56dc4 <Java_org_ffavc_DecoderFactory_GetHandle+0x87c>
+   56db8:      	nop
+   56dbc:      	adr	x0, #0xcc0a8
+   56dc0:      	b	0x101800 <pthread_mutex_unlock@plt>
+   56dc4:      	ret
+   56dc8:      	stp	x30, x19, [sp, #-0x10]!
+   56dcc:      	ldr	w8, [x0, #0xc]
+   56dd0:      	mov	x19, x0
+   56dd4:      	sub	w9, w8, #0x2
+   56dd8:      	cmp	w9, #0x3
+   56ddc:      	b.lo	0x56e28 <Java_org_ffavc_DecoderFactory_GetHandle+0x8e0>
+   56de0:      	cmp	w8, #0x1
+   56de4:      	b.eq	0x56df4 <Java_org_ffavc_DecoderFactory_GetHandle+0x8ac>
+   56de8:      	cbz	w8, 0x56e28 <Java_org_ffavc_DecoderFactory_GetHandle+0x8e0>
+   56dec:      	mov	x0, xzr
+   56df0:      	b	0x56e2c <Java_org_ffavc_DecoderFactory_GetHandle+0x8e4>
+   56df4:      	ldr	w0, [x19, #0x18]
+   56df8:      	bl	0xcb1bc <Java_org_ffavc_DecoderFactory_GetHandle+0x74c74>
+   56dfc:      	cbz	w0, 0x56e28 <Java_org_ffavc_DecoderFactory_GetHandle+0x8e0>
+   56e00:      	sxtw	x8, w0
+   56e04:      	mov	x9, #0x7fffffffffffffff
+   56e08:      	ldrsw	x10, [x19, #0x158]
+   56e0c:      	ldrsw	x11, [x19, #0x164]
+   56e10:      	sdiv	x9, x9, x8
+   56e14:      	smull	x10, w11, w10
+   56e18:      	mul	x8, x10, x8
+   56e1c:      	cmp	x10, x9
+   56e20:      	csel	x0, xzr, x8, gt
+   56e24:      	b	0x56e2c <Java_org_ffavc_DecoderFactory_GetHandle+0x8e4>
+   56e28:      	ldr	x0, [x19, #0x38]
+   56e2c:      	ldp	x30, x19, [sp], #0x10
+   56e30:      	ret
+   56e34:      	str	x30, [sp, #-0x20]!
+   56e38:      	stp	x20, x19, [sp, #0x10]
+   56e3c:      	mov	x19, x0
+   56e40:      	ldr	x20, [x0, #0x28]
+   56e44:      	ldr	x0, [x0, #0x10]
+   56e48:      	bl	0xcaa30 <Java_org_ffavc_DecoderFactory_GetHandle+0x744e8>
+   56e4c:      	cbz	w0, 0x56e78 <Java_org_ffavc_DecoderFactory_GetHandle+0x930>
+   56e50:      	ldr	x8, [x19, #0x10]
+   56e54:      	ldrb	w8, [x8, #0x1a]
+   56e58:      	tbnz	w8, #0x5, 0x56e84 <Java_org_ffavc_DecoderFactory_GetHandle+0x93c>
+   56e5c:      	mov	x0, x19
+   56e60:      	ldp	x20, x19, [sp, #0x10]
+   56e64:      	adrp	x2, 0x20000
+   56e68:      	add	x2, x2, #0x483
+   56e6c:      	mov	w1, #0x18
+   56e70:      	ldr	x30, [sp], #0x20
+   56e74:      	b	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   56e78:      	mov	x0, x19
+   56e7c:      	bl	0x5b9bc <Java_org_ffavc_DecoderFactory_GetHandle+0x5474>
+   56e80:      	b	0x56e8c <Java_org_ffavc_DecoderFactory_GetHandle+0x944>
+   56e84:      	mov	x0, x19
+   56e88:      	bl	0x5ced4 <Java_org_ffavc_DecoderFactory_GetHandle+0x698c>
+   56e8c:      	ldr	x0, [x20, #0x78]
+   56e90:      	str	wzr, [x20, #0x68]
+   56e94:      	str	wzr, [x20, #0x80]
+   56e98:      	bl	0xd3a38 <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4f0>
+   56e9c:      	ldr	x0, [x20, #0x70]
+   56ea0:      	bl	0x578f4 <Java_org_ffavc_DecoderFactory_GetHandle+0x13ac>
+   56ea4:      	ldrb	w8, [x19, #0x298]
+   56ea8:      	tbnz	w8, #0x0, 0x56ec8 <Java_org_ffavc_DecoderFactory_GetHandle+0x980>
+   56eac:      	ldr	x8, [x19, #0x10]
+   56eb0:      	ldr	x1, [x8, #0xa0]
+   56eb4:      	cbz	x1, 0x56ed8 <Java_org_ffavc_DecoderFactory_GetHandle+0x990>
+   56eb8:      	mov	x0, x19
+   56ebc:      	ldp	x20, x19, [sp, #0x10]
+   56ec0:      	ldr	x30, [sp], #0x20
+   56ec4:      	br	x1
+   56ec8:      	mov	x0, x19
+   56ecc:      	ldp	x20, x19, [sp, #0x10]
+   56ed0:      	ldr	x30, [sp], #0x20
+   56ed4:      	b	0xc7a18 <Java_org_ffavc_DecoderFactory_GetHandle+0x714d0>
+   56ed8:      	ldp	x20, x19, [sp, #0x10]
+   56edc:      	ldr	x30, [sp], #0x20
+   56ee0:      	ret
+   56ee4:      	str	x30, [sp, #-0x30]!
+   56ee8:      	stp	x22, x21, [sp, #0x10]
+   56eec:      	stp	x20, x19, [sp, #0x20]
+   56ef0:      	mov	x19, x0
+   56ef4:      	mov	x20, xzr
+   56ef8:      	mov	x21, xzr
+   56efc:      	ldr	w8, [x19, #0xc]
+   56f00:      	cmp	x21, x8
+   56f04:      	b.hs	0x56f58 <Java_org_ffavc_DecoderFactory_GetHandle+0xa10>
+   56f08:      	ldur	x8, [x19, #0x10]
+   56f0c:      	ldr	x22, [x8, x20]
+   56f10:      	add	x0, x22, #0x18
+   56f14:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f18:      	add	x0, x22, #0x20
+   56f1c:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f20:      	add	x0, x22, #0x28
+   56f24:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f28:      	add	x0, x22, #0x30
+   56f2c:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f30:      	add	x0, x22, #0x50
+   56f34:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f38:      	add	x0, x22, #0x58
+   56f3c:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f40:      	ldur	x8, [x19, #0x10]
+   56f44:      	add	x0, x8, x20
+   56f48:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f4c:      	add	x21, x21, #0x1
+   56f50:      	add	x20, x20, #0x8
+   56f54:      	b	0x56efc <Java_org_ffavc_DecoderFactory_GetHandle+0x9b4>
+   56f58:      	add	x0, x19, #0x10
+   56f5c:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   56f60:      	movi	v0.2d, #0000000000000000
+   56f64:      	ldp	x22, x21, [sp, #0x10]
+   56f68:      	stp	q0, q0, [x19]
+   56f6c:      	ldp	x20, x19, [sp, #0x20]
+   56f70:      	ldr	x30, [sp], #0x30
+   56f74:      	ret
+   56f78:      	str	x30, [sp, #-0x10]!
+   56f7c:      	bl	0x576f8 <Java_org_ffavc_DecoderFactory_GetHandle+0x11b0>
+   56f80:      	mov	w0, wzr
+   56f84:      	ldr	x30, [sp], #0x10
+   56f88:      	ret
+   56f8c:      	str	x29, [sp, #-0x60]!
+   56f90:      	stp	x30, x27, [sp, #0x10]
+   56f94:      	stp	x26, x25, [sp, #0x20]
+   56f98:      	stp	x24, x23, [sp, #0x30]
+   56f9c:      	stp	x22, x21, [sp, #0x40]
+   56fa0:      	stp	x20, x19, [sp, #0x50]
+   56fa4:      	sub	sp, sp, #0x420
+   56fa8:      	ldr	x8, [x2, #0x2f8]
+   56fac:      	adrp	x26, 0x1e000
+   56fb0:      	add	x26, x26, #0x309
+   56fb4:      	mov	x19, x2
+   56fb8:      	cmp	x8, #0x0
+   56fbc:      	csel	x21, x26, x8, eq
+   56fc0:      	cbz	x0, 0x572a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd60>
+   56fc4:      	mov	w2, w1
+   56fc8:      	cmp	w1, #0x1
+   56fcc:      	b.lt	0x572a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd60>
+   56fd0:      	mov	x22, x0
+   56fd4:      	add	x0, sp, #0x20
+   56fd8:      	mov	w20, w3
+   56fdc:      	mov	x1, x22
+   56fe0:      	bl	0xce5f4 <Java_org_ffavc_DecoderFactory_GetHandle+0x780ac>
+   56fe4:      	ldr	w0, [x19, #0xc]
+   56fe8:      	bl	0xe1f58 <Java_org_ffavc_DecoderFactory_GetHandle+0x8ba10>
+   56fec:      	ldr	w8, [x19, #0x18]
+   56ff0:      	mov	x25, x0
+   56ff4:      	mov	w0, w8
+   56ff8:      	bl	0xcafbc <Java_org_ffavc_DecoderFactory_GetHandle+0x74a74>
+   56ffc:      	ldr	w8, [x19, #0x18]
+   57000:      	ldr	w1, [x19, #0x2b0]
+   57004:      	mov	x24, x0
+   57008:      	mov	w0, w8
+   5700c:      	bl	0xcb068 <Java_org_ffavc_DecoderFactory_GetHandle+0x74b20>
+   57010:      	cmp	x25, #0x0
+   57014:      	adrp	x27, 0x1e000
+   57018:      	add	x27, x27, #0xfe9
+   5701c:      	mov	x23, x0
+   57020:      	csel	x2, x27, x25, eq
+   57024:      	adrp	x1, 0x1c000
+   57028:      	add	x1, x1, #0x6fe
+   5702c:      	add	x0, sp, #0x20
+   57030:      	mov	x3, x24
+   57034:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57038:      	ldrb	w8, [x22]
+   5703c:      	eor	w8, w8, #0x20
+   57040:      	strb	w8, [x22]
+   57044:      	ldr	x8, [x19, #0x10]
+   57048:      	cbz	x8, 0x5706c <Java_org_ffavc_DecoderFactory_GetHandle+0xb24>
+   5704c:      	ldr	x22, [x8]
+   57050:      	mov	x1, x24
+   57054:      	mov	x0, x22
+   57058:      	bl	0x1017d0 <strcmp@plt>
+   5705c:      	cbz	w0, 0x5706c <Java_org_ffavc_DecoderFactory_GetHandle+0xb24>
+   57060:      	adrp	x1, 0x26000
+   57064:      	add	x1, x1, #0xc16
+   57068:      	bl	0x576e4 <Java_org_ffavc_DecoderFactory_GetHandle+0x119c>
+   5706c:      	cbz	x23, 0x57084 <Java_org_ffavc_DecoderFactory_GetHandle+0xb3c>
+   57070:      	adrp	x1, 0x26000
+   57074:      	add	x1, x1, #0xc16
+   57078:      	add	x0, sp, #0x20
+   5707c:      	mov	x2, x23
+   57080:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57084:      	ldr	w8, [x19, #0xc]
+   57088:      	cbnz	w8, 0x570c8 <Java_org_ffavc_DecoderFactory_GetHandle+0xb80>
+   5708c:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   57090:      	cmp	w0, #0x28
+   57094:      	b.lt	0x570c8 <Java_org_ffavc_DecoderFactory_GetHandle+0xb80>
+   57098:      	ldr	w2, [x19, #0xac]
+   5709c:      	cbz	w2, 0x570c8 <Java_org_ffavc_DecoderFactory_GetHandle+0xb80>
+   570a0:      	adrp	x8, 0x1e000
+   570a4:      	add	x8, x8, #0xff1
+   570a8:      	cmp	w2, #0x1
+   570ac:      	adrp	x9, 0x1f000
+   570b0:      	add	x9, x9, #0x9f4
+   570b4:      	adrp	x1, 0x27000
+   570b8:      	add	x1, x1, #0xf5e
+   570bc:      	csel	x3, x9, x8, gt
+   570c0:      	add	x0, sp, #0x20
+   570c4:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   570c8:      	ldr	w1, [x19, #0x1c]
+   570cc:      	cbz	w1, 0x570f8 <Java_org_ffavc_DecoderFactory_GetHandle+0xbb0>
+   570d0:      	movi	v0.2d, #0000000000000000
+   570d4:      	mov	x0, sp
+   570d8:      	stp	q0, q0, [sp]
+   570dc:      	bl	0xe206c <Java_org_ffavc_DecoderFactory_GetHandle+0x8bb24>
+   570e0:      	ldr	w3, [x19, #0x1c]
+   570e4:      	mov	x2, x0
+   570e8:      	adrp	x1, 0x22000
+   570ec:      	add	x1, x1, #0xd3b
+   570f0:      	add	x0, sp, #0x20
+   570f4:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   570f8:      	ldr	w8, [x19, #0xc]
+   570fc:      	cmp	w8, #0x3
+   57100:      	b.hi	0x572a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd60>
+   57104:      	nop
+   57108:      	adr	x9, #-0x3aa60
+   5710c:      	adr	x10, #0x10
+   57110:      	ldrb	w11, [x9, x8]
+   57114:      	add	x10, x10, x11, lsl #2
+   57118:      	br	x10
+   5711c:      	ldr	w0, [x19, #0x8c]
+   57120:      	cmn	w0, #0x1
+   57124:      	b.eq	0x572c8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd80>
+   57128:      	bl	0xdf850 <Java_org_ffavc_DecoderFactory_GetHandle+0x89308>
+   5712c:      	cmp	x0, #0x0
+   57130:      	csel	x3, x27, x0, eq
+   57134:      	b	0x572d0 <Java_org_ffavc_DecoderFactory_GetHandle+0xd88>
+   57138:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   5713c:      	cmp	w0, #0x30
+   57140:      	b.lt	0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   57144:      	ldp	w21, w22, [x19, #0x54]
+   57148:      	sxtw	x0, w21
+   5714c:      	sxtw	x1, w22
+   57150:      	bl	0xd7834 <Java_org_ffavc_DecoderFactory_GetHandle+0x812ec>
+   57154:      	cbz	w0, 0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   57158:      	bl	0x576d0 <Java_org_ffavc_DecoderFactory_GetHandle+0x1188>
+   5715c:      	b	0x57174 <Java_org_ffavc_DecoderFactory_GetHandle+0xc2c>
+   57160:      	ldr	w2, [x19, #0x74]
+   57164:      	cbz	w2, 0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   57168:      	ldr	w3, [x19, #0x78]
+   5716c:      	adrp	x1, 0x20000
+   57170:      	add	x1, x1, #0xb35
+   57174:      	bl	0x57674 <Java_org_ffavc_DecoderFactory_GetHandle+0x112c>
+   57178:      	b	0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   5717c:      	adrp	x1, 0x21000
+   57180:      	add	x1, x1, #0x216
+   57184:      	add	x0, sp, #0x20
+   57188:      	mov	x2, x21
+   5718c:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57190:      	ldr	w2, [x19, #0x158]
+   57194:      	cbz	w2, 0x571a4 <Java_org_ffavc_DecoderFactory_GetHandle+0xc5c>
+   57198:      	adrp	x1, 0x1f000
+   5719c:      	add	x1, x1, #0xf87
+   571a0:      	bl	0x5765c <Java_org_ffavc_DecoderFactory_GetHandle+0x1114>
+   571a4:      	add	x0, x19, #0x160
+   571a8:      	add	x1, sp, #0x20
+   571ac:      	bl	0xcff90 <Java_org_ffavc_DecoderFactory_GetHandle+0x79a48>
+   571b0:      	ldr	w0, [x19, #0x15c]
+   571b4:      	cmn	w0, #0x1
+   571b8:      	b.eq	0x571d8 <Java_org_ffavc_DecoderFactory_GetHandle+0xc90>
+   571bc:      	bl	0xe0ab4 <Java_org_ffavc_DecoderFactory_GetHandle+0x8a56c>
+   571c0:      	cbz	x0, 0x571d8 <Java_org_ffavc_DecoderFactory_GetHandle+0xc90>
+   571c4:      	mov	x2, x0
+   571c8:      	adrp	x1, 0x26000
+   571cc:      	add	x1, x1, #0xc1c
+   571d0:      	add	x0, sp, #0x20
+   571d4:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   571d8:      	ldr	w21, [x19, #0x28c]
+   571dc:      	cmp	w21, #0x1
+   571e0:      	b.lt	0x57204 <Java_org_ffavc_DecoderFactory_GetHandle+0xcbc>
+   571e4:      	ldr	w0, [x19, #0x15c]
+   571e8:      	bl	0xe0c20 <Java_org_ffavc_DecoderFactory_GetHandle+0x8a6d8>
+   571ec:      	cmp	w21, w0, lsl #3
+   571f0:      	b.eq	0x57204 <Java_org_ffavc_DecoderFactory_GetHandle+0xcbc>
+   571f4:      	ldr	w2, [x19, #0x28c]
+   571f8:      	adrp	x1, 0x1e000
+   571fc:      	add	x1, x1, #0x994
+   57200:      	bl	0x5765c <Java_org_ffavc_DecoderFactory_GetHandle+0x1114>
+   57204:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   57208:      	cmp	w0, #0x28
+   5720c:      	b.lt	0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   57210:      	ldr	w2, [x19, #0x18c]
+   57214:      	cbz	w2, 0x57224 <Java_org_ffavc_DecoderFactory_GetHandle+0xcdc>
+   57218:      	adrp	x1, 0x28000
+   5721c:      	add	x1, x1, #0x622
+   57220:      	bl	0x5765c <Java_org_ffavc_DecoderFactory_GetHandle+0x1114>
+   57224:      	ldr	w2, [x19, #0x190]
+   57228:      	cbz	w2, 0x57238 <Java_org_ffavc_DecoderFactory_GetHandle+0xcf0>
+   5722c:      	adrp	x1, 0x1d000
+   57230:      	add	x1, x1, #0x318
+   57234:      	bl	0x5765c <Java_org_ffavc_DecoderFactory_GetHandle+0x1114>
+   57238:      	cbz	w20, 0x57264 <Java_org_ffavc_DecoderFactory_GetHandle+0xd1c>
+   5723c:      	ldr	w8, [x19, #0x40]
+   57240:      	tbz	w8, #0x9, 0x57254 <Java_org_ffavc_DecoderFactory_GetHandle+0xd0c>
+   57244:      	adrp	x1, 0x1c000
+   57248:      	add	x1, x1, #0x705
+   5724c:      	bl	0x5767c <Java_org_ffavc_DecoderFactory_GetHandle+0x1134>
+   57250:      	ldr	w8, [x19, #0x40]
+   57254:      	tbz	w8, #0xa, 0x57264 <Java_org_ffavc_DecoderFactory_GetHandle+0xd1c>
+   57258:      	adrp	x1, 0x26000
+   5725c:      	add	x1, x1, #0xc21
+   57260:      	bl	0x5767c <Java_org_ffavc_DecoderFactory_GetHandle+0x1134>
+   57264:      	mov	x0, x19
+   57268:      	bl	0x56dc8 <Java_org_ffavc_DecoderFactory_GetHandle+0x880>
+   5726c:      	cbz	x0, 0x57284 <Java_org_ffavc_DecoderFactory_GetHandle+0xd3c>
+   57270:      	mov	w8, #0x3e8
+   57274:      	adrp	x1, 0x20000
+   57278:      	add	x1, x1, #0xb3d
+   5727c:      	sdiv	x2, x0, x8
+   57280:      	b	0x572a0 <Java_org_ffavc_DecoderFactory_GetHandle+0xd58>
+   57284:      	ldr	x8, [x19, #0x1d0]
+   57288:      	cmp	x8, #0x1
+   5728c:      	b.lt	0x572a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd60>
+   57290:      	mov	w9, #0x3e8
+   57294:      	adrp	x1, 0x27000
+   57298:      	add	x1, x1, #0x93e
+   5729c:      	udiv	x2, x8, x9
+   572a0:      	add	x0, sp, #0x20
+   572a4:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   572a8:      	add	sp, sp, #0x420
+   572ac:      	ldp	x20, x19, [sp, #0x50]
+   572b0:      	ldp	x22, x21, [sp, #0x40]
+   572b4:      	ldp	x24, x23, [sp, #0x30]
+   572b8:      	ldp	x26, x25, [sp, #0x20]
+   572bc:      	ldp	x30, x27, [sp, #0x10]
+   572c0:      	ldr	x29, [sp], #0x60
+   572c4:      	ret
+   572c8:      	adrp	x3, 0x24000
+   572cc:      	add	x3, x3, #0x6ba
+   572d0:      	adrp	x1, 0x1d000
+   572d4:      	add	x1, x1, #0x992
+   572d8:      	add	x0, sp, #0x20
+   572dc:      	mov	x2, x21
+   572e0:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   572e4:      	add	x0, sp, #0x20
+   572e8:      	mov	w1, #0x28
+   572ec:      	mov	w2, #0x1
+   572f0:      	bl	0xce7cc <Java_org_ffavc_DecoderFactory_GetHandle+0x78284>
+   572f4:      	ldp	w25, w8, [sp, #0x28]
+   572f8:      	cmp	w25, w8
+   572fc:      	b.hs	0x572a8 <Java_org_ffavc_DecoderFactory_GetHandle+0xd60>
+   57300:      	ldr	w22, [x19, #0x28c]
+   57304:      	cbz	w22, 0x57334 <Java_org_ffavc_DecoderFactory_GetHandle+0xdec>
+   57308:      	ldr	w0, [x19, #0x8c]
+   5730c:      	cmn	w0, #0x1
+   57310:      	b.eq	0x57334 <Java_org_ffavc_DecoderFactory_GetHandle+0xdec>
+   57314:      	bl	0xdfaa8 <Java_org_ffavc_DecoderFactory_GetHandle+0x89560>
+   57318:      	ldr	w8, [x0, #0x28]
+   5731c:      	cmp	w22, w8
+   57320:      	b.ge	0x57334 <Java_org_ffavc_DecoderFactory_GetHandle+0xdec>
+   57324:      	ldr	w2, [x19, #0x28c]
+   57328:      	adrp	x1, 0x21000
+   5732c:      	add	x1, x1, #0x883
+   57330:      	bl	0x5765c <Java_org_ffavc_DecoderFactory_GetHandle+0x1114>
+   57334:      	ldr	w0, [x19, #0xa0]
+   57338:      	cbz	w0, 0x5734c <Java_org_ffavc_DecoderFactory_GetHandle+0xe04>
+   5733c:      	bl	0xe0120 <Java_org_ffavc_DecoderFactory_GetHandle+0x89bd8>
+   57340:      	cbz	x0, 0x5734c <Java_org_ffavc_DecoderFactory_GetHandle+0xe04>
+   57344:      	mov	x2, x0
+   57348:      	bl	0x5764c <Java_org_ffavc_DecoderFactory_GetHandle+0x1104>
+   5734c:      	ldr	w0, [x19, #0x9c]
+   57350:      	cmp	w0, #0x2
+   57354:      	b.ne	0x57370 <Java_org_ffavc_DecoderFactory_GetHandle+0xe28>
+   57358:      	ldr	w8, [x19, #0x94]
+   5735c:      	cmp	w8, #0x2
+   57360:      	b.ne	0x57370 <Java_org_ffavc_DecoderFactory_GetHandle+0xe28>
+   57364:      	ldr	w8, [x19, #0x98]
+   57368:      	cmp	w8, #0x2
+   5736c:      	b.eq	0x573f4 <Java_org_ffavc_DecoderFactory_GetHandle+0xeac>
+   57370:      	bl	0xe0234 <Java_org_ffavc_DecoderFactory_GetHandle+0x89cec>
+   57374:      	ldr	w8, [x19, #0x94]
+   57378:      	cmp	x0, #0x0
+   5737c:      	csel	x22, x27, x0, eq
+   57380:      	mov	w0, w8
+   57384:      	bl	0xe0174 <Java_org_ffavc_DecoderFactory_GetHandle+0x89c2c>
+   57388:      	ldr	w8, [x19, #0x98]
+   5738c:      	cmp	x0, #0x0
+   57390:      	csel	x23, x27, x0, eq
+   57394:      	mov	w0, w8
+   57398:      	bl	0xe01e0 <Java_org_ffavc_DecoderFactory_GetHandle+0x89c98>
+   5739c:      	cmp	x0, #0x0
+   573a0:      	mov	x1, x23
+   573a4:      	csel	x24, x27, x0, eq
+   573a8:      	mov	x0, x22
+   573ac:      	bl	0x1017d0 <strcmp@plt>
+   573b0:      	cbnz	w0, 0x573c4 <Java_org_ffavc_DecoderFactory_GetHandle+0xe7c>
+   573b4:      	mov	x0, x22
+   573b8:      	mov	x1, x24
+   573bc:      	bl	0x1017d0 <strcmp@plt>
+   573c0:      	cbz	w0, 0x573e8 <Java_org_ffavc_DecoderFactory_GetHandle+0xea0>
+   573c4:      	adrp	x1, 0x26000
+   573c8:      	add	x1, x1, #0x587
+   573cc:      	add	x0, sp, #0x20
+   573d0:      	mov	x2, x22
+   573d4:      	mov	x3, x23
+   573d8:      	mov	x4, x24
+   573dc:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   573e0:      	mov	w22, wzr
+   573e4:      	b	0x573f8 <Java_org_ffavc_DecoderFactory_GetHandle+0xeb0>
+   573e8:      	adrp	x1, 0x24000
+   573ec:      	add	x1, x1, #0x9e
+   573f0:      	bl	0x576e4 <Java_org_ffavc_DecoderFactory_GetHandle+0x119c>
+   573f4:      	mov	w22, #0x1
+   573f8:      	ldr	w8, [x19, #0xa8]
+   573fc:      	cmp	w8, #0x5
+   57400:      	b.hi	0x57430 <Java_org_ffavc_DecoderFactory_GetHandle+0xee8>
+   57404:      	adrp	x9, 0x1c000
+   57408:      	add	x9, x9, #0x6ac
+   5740c:      	adrp	x2, 0x27000
+   57410:      	add	x2, x2, #0xf75
+   57414:      	adr	x10, #0x10
+   57418:      	ldrb	w11, [x9, x8]
+   5741c:      	add	x10, x10, x11, lsl #2
+   57420:      	br	x10
+   57424:      	adrp	x2, 0x25000
+   57428:      	add	x2, x2, #0x462
+   5742c:      	b	0x57450 <Java_org_ffavc_DecoderFactory_GetHandle+0xf08>
+   57430:      	adrp	x2, 0x1d000
+   57434:      	add	x2, x2, #0x997
+   57438:      	b	0x57450 <Java_org_ffavc_DecoderFactory_GetHandle+0xf08>
+   5743c:      	adrp	x2, 0x28000
+   57440:      	add	x2, x2, #0x608
+   57444:      	b	0x57450 <Java_org_ffavc_DecoderFactory_GetHandle+0xf08>
+   57448:      	adrp	x2, 0x27000
+   5744c:      	add	x2, x2, #0x35e
+   57450:      	bl	0x5764c <Java_org_ffavc_DecoderFactory_GetHandle+0x1104>
+   57454:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   57458:      	cmp	w0, #0x28
+   5745c:      	b.lt	0x57478 <Java_org_ffavc_DecoderFactory_GetHandle+0xf30>
+   57460:      	ldr	w0, [x19, #0xa4]
+   57464:      	cbz	w0, 0x57478 <Java_org_ffavc_DecoderFactory_GetHandle+0xf30>
+   57468:      	bl	0xe0288 <Java_org_ffavc_DecoderFactory_GetHandle+0x89d40>
+   5746c:      	cbz	x0, 0x57478 <Java_org_ffavc_DecoderFactory_GetHandle+0xf30>
+   57470:      	mov	x2, x0
+   57474:      	bl	0x5764c <Java_org_ffavc_DecoderFactory_GetHandle+0x1104>
+   57478:      	ldr	w8, [sp, #0x28]
+   5747c:      	cmp	w25, w8
+   57480:      	b.ne	0x574a0 <Java_org_ffavc_DecoderFactory_GetHandle+0xf58>
+   57484:      	ldr	x8, [sp, #0x20]
+   57488:      	sub	w9, w25, #0x1
+   5748c:      	strb	wzr, [x8, w9, uxtw]
+   57490:      	ldr	w8, [sp, #0x28]
+   57494:      	sub	w8, w8, #0x1
+   57498:      	str	w8, [sp, #0x28]
+   5749c:      	b	0x574cc <Java_org_ffavc_DecoderFactory_GetHandle+0xf84>
+   574a0:      	ldr	w9, [sp, #0x2c]
+   574a4:      	sub	w8, w8, #0x2
+   574a8:      	cmp	w8, w9
+   574ac:      	b.hs	0x574bc <Java_org_ffavc_DecoderFactory_GetHandle+0xf74>
+   574b0:      	ldr	x9, [sp, #0x20]
+   574b4:      	str	w8, [sp, #0x28]
+   574b8:      	strb	wzr, [x9, w8, uxtw]
+   574bc:      	add	x0, sp, #0x20
+   574c0:      	mov	w1, #0x29
+   574c4:      	mov	w2, #0x1
+   574c8:      	bl	0xce7cc <Java_org_ffavc_DecoderFactory_GetHandle+0x78284>
+   574cc:      	ldr	w3, [x19, #0x74]
+   574d0:      	cbz	w3, 0x5759c <Java_org_ffavc_DecoderFactory_GetHandle+0x1054>
+   574d4:      	cmp	w22, #0x0
+   574d8:      	ldr	w4, [x19, #0x78]
+   574dc:      	adrp	x1, 0x1f000
+   574e0:      	add	x1, x1, #0x9f6
+   574e4:      	csel	x2, x26, x21, ne
+   574e8:      	add	x0, sp, #0x20
+   574ec:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   574f0:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   574f4:      	cmp	w0, #0x28
+   574f8:      	b.lt	0x57530 <Java_org_ffavc_DecoderFactory_GetHandle+0xfe8>
+   574fc:      	ldr	w2, [x19, #0x7c]
+   57500:      	cbz	w2, 0x57530 <Java_org_ffavc_DecoderFactory_GetHandle+0xfe8>
+   57504:      	ldr	w3, [x19, #0x80]
+   57508:      	cbz	w3, 0x57530 <Java_org_ffavc_DecoderFactory_GetHandle+0xfe8>
+   5750c:      	ldr	w8, [x19, #0x74]
+   57510:      	cmp	w8, w2
+   57514:      	b.ne	0x57524 <Java_org_ffavc_DecoderFactory_GetHandle+0xfdc>
+   57518:      	ldr	w8, [x19, #0x78]
+   5751c:      	cmp	w8, w3
+   57520:      	b.eq	0x57530 <Java_org_ffavc_DecoderFactory_GetHandle+0xfe8>
+   57524:      	adrp	x1, 0x21000
+   57528:      	add	x1, x1, #0x20d
+   5752c:      	bl	0x57674 <Java_org_ffavc_DecoderFactory_GetHandle+0x112c>
+   57530:      	ldrsw	x8, [x19, #0x84]
+   57534:      	cbz	w8, 0x57578 <Java_org_ffavc_DecoderFactory_GetHandle+0x1030>
+   57538:      	ldpsw	x9, x10, [x19, #0x74]
+   5753c:      	ldrsw	x11, [x19, #0x88]
+   57540:      	add	x0, sp, #0x428
+   57544:      	mov	w4, #0x100000
+   57548:      	smull	x2, w9, w8
+   5754c:      	add	x8, sp, #0x428
+   57550:      	smull	x3, w11, w10
+   57554:      	add	x1, x8, #0x4
+   57558:      	bl	0xe050c <Java_org_ffavc_DecoderFactory_GetHandle+0x89fc4>
+   5755c:      	ldp	w2, w3, [x19, #0x84]
+   57560:      	ldr	w4, [sp, #0x428]
+   57564:      	ldr	w5, [sp, #0x42c]
+   57568:      	adrp	x1, 0x27000
+   5756c:      	add	x1, x1, #0x927
+   57570:      	add	x0, sp, #0x20
+   57574:      	bl	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57578:      	bl	0xd7574 <Java_org_ffavc_DecoderFactory_GetHandle+0x8102c>
+   5757c:      	cmp	w0, #0x30
+   57580:      	b.lt	0x5759c <Java_org_ffavc_DecoderFactory_GetHandle+0x1054>
+   57584:      	ldpsw	x21, x22, [x19, #0x54]
+   57588:      	mov	x0, x21
+   5758c:      	mov	x1, x22
+   57590:      	bl	0xd7834 <Java_org_ffavc_DecoderFactory_GetHandle+0x812ec>
+   57594:      	bl	0x576d0 <Java_org_ffavc_DecoderFactory_GetHandle+0x1188>
+   57598:      	bl	0x57674 <Java_org_ffavc_DecoderFactory_GetHandle+0x112c>
+   5759c:      	cbz	w20, 0x575b8 <Java_org_ffavc_DecoderFactory_GetHandle+0x1070>
+   575a0:      	ldr	w2, [x19, #0x1b4]
+   575a4:      	ldr	w3, [x19, #0x1b8]
+   575a8:      	adrp	x1, 0x1e000
+   575ac:      	add	x1, x1, #0x30c
+   575b0:      	bl	0x57674 <Java_org_ffavc_DecoderFactory_GetHandle+0x112c>
+   575b4:      	b	0x5723c <Java_org_ffavc_DecoderFactory_GetHandle+0xcf4>
+   575b8:      	ldr	w8, [x19, #0x2b8]
+   575bc:      	tbnz	w8, #0x1, 0x575cc <Java_org_ffavc_DecoderFactory_GetHandle+0x1084>
+   575c0:      	tbnz	w8, #0x2, 0x575e0 <Java_org_ffavc_DecoderFactory_GetHandle+0x1098>
+   575c4:      	tbz	w8, #0x0, 0x57264 <Java_org_ffavc_DecoderFactory_GetHandle+0xd1c>
+   575c8:      	b	0x575f4 <Java_org_ffavc_DecoderFactory_GetHandle+0x10ac>
+   575cc:      	adrp	x1, 0x1e000
+   575d0:      	add	x1, x1, #0x316
+   575d4:      	bl	0x5767c <Java_org_ffavc_DecoderFactory_GetHandle+0x1134>
+   575d8:      	ldr	w8, [x19, #0x2b8]
+   575dc:      	tbz	w8, #0x2, 0x575c4 <Java_org_ffavc_DecoderFactory_GetHandle+0x107c>
+   575e0:      	adrp	x1, 0x25000
+   575e4:      	add	x1, x1, #0xe8c
+   575e8:      	bl	0x5767c <Java_org_ffavc_DecoderFactory_GetHandle+0x1134>
+   575ec:      	ldr	w8, [x19, #0x2b8]
+   575f0:      	tbz	w8, #0x0, 0x57264 <Java_org_ffavc_DecoderFactory_GetHandle+0xd1c>
+   575f4:      	adrp	x1, 0x1d000
+   575f8:      	add	x1, x1, #0xef1
+   575fc:      	b	0x57260 <Java_org_ffavc_DecoderFactory_GetHandle+0xd18>
+   57600:      	str	x30, [sp, #-0x20]!
+   57604:      	stp	x20, x19, [sp, #0x10]
+   57608:      	mov	x20, x0
+   5760c:      	mov	x0, x1
+   57610:      	mov	x19, x1
+   57614:      	bl	0xd3a38 <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4f0>
+   57618:      	ldr	x0, [x20, #0x10]
+   5761c:      	bl	0xcaa58 <Java_org_ffavc_DecoderFactory_GetHandle+0x74510>
+   57620:      	cbz	w0, 0x57638 <Java_org_ffavc_DecoderFactory_GetHandle+0x10f0>
+   57624:      	mov	x0, x20
+   57628:      	mov	x1, x19
+   5762c:      	ldp	x20, x19, [sp, #0x10]
+   57630:      	ldr	x30, [sp], #0x20
+   57634:      	b	0x5a014 <Java_org_ffavc_DecoderFactory_GetHandle+0x3acc>
+   57638:      	mov	x0, x20
+   5763c:      	mov	x1, x19
+   57640:      	ldp	x20, x19, [sp, #0x10]
+   57644:      	ldr	x30, [sp], #0x20
+   57648:      	b	0x5ce80 <Java_org_ffavc_DecoderFactory_GetHandle+0x6938>
+   5764c:      	adrp	x1, 0x24000
+   57650:      	add	x1, x1, #0x9e
+   57654:      	add	x0, sp, #0x20
+   57658:      	b	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   5765c:      	add	x0, sp, #0x20
+   57660:      	b	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57664:      	mov	w3, #-0x1
+   57668:      	mov	w4, wzr
+   5766c:      	mov	x5, x19
+   57670:      	b	0xd6098 <Java_org_ffavc_DecoderFactory_GetHandle+0x7fb50>
+   57674:      	add	x0, sp, #0x20
+   57678:      	b	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   5767c:      	add	x0, sp, #0x20
+   57680:      	b	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   57684:      	mov	w23, w0
+   57688:      	mov	x0, x20
+   5768c:      	b	0x56da8 <Java_org_ffavc_DecoderFactory_GetHandle+0x860>
+   57690:      	mov	x0, x19
+   57694:      	mov	w1, #0x10
+   57698:      	b	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   5769c:      	mov	x0, x19
+   576a0:      	mov	w1, #0x10
+   576a4:      	b	0xd7424 <Java_org_ffavc_DecoderFactory_GetHandle+0x80edc>
+   576a8:      	ldp	x20, x19, [sp, #0x30]
+   576ac:      	mov	w0, wzr
+   576b0:      	ldp	x22, x21, [sp, #0x20]
+   576b4:      	ldp	x24, x23, [sp, #0x10]
+   576b8:      	ret
+   576bc:      	mov	x19, x3
+   576c0:      	mov	x20, x2
+   576c4:      	mov	x21, x1
+   576c8:      	mov	x22, x0
+   576cc:      	ret
+   576d0:      	sdiv	w2, w21, w0
+   576d4:      	adrp	x1, 0x22000
+   576d8:      	add	x1, x1, #0xd4a
+   576dc:      	sdiv	w3, w22, w0
+   576e0:      	ret
+   576e4:      	add	x0, sp, #0x20
+   576e8:      	mov	x2, x22
+   576ec:      	b	0xce614 <Java_org_ffavc_DecoderFactory_GetHandle+0x780cc>
+   576f0:      	mov	x0, x20
+   576f4:      	b	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   576f8:      	cbz	x0, 0x5785c <Java_org_ffavc_DecoderFactory_GetHandle+0x1314>
+   576fc:      	str	x30, [sp, #-0x30]!
+   57700:      	stp	x22, x21, [sp, #0x10]
+   57704:      	stp	x20, x19, [sp, #0x20]
+   57708:      	mov	x20, x0
+   5770c:      	mov	x19, x0
+   57710:      	ldr	x21, [x20, #0x28]!
+   57714:      	cbz	x21, 0x577a4 <Java_org_ffavc_DecoderFactory_GetHandle+0x125c>
+   57718:      	ldr	x8, [x21, #0x10]
+   5771c:      	cbz	x8, 0x57728 <Java_org_ffavc_DecoderFactory_GetHandle+0x11e0>
+   57720:      	mov	x0, x19
+   57724:      	bl	0xc6b44 <Java_org_ffavc_DecoderFactory_GetHandle+0x705fc>
+   57728:      	ldr	w8, [x21, #0x58]
+   5772c:      	cbz	w8, 0x57744 <Java_org_ffavc_DecoderFactory_GetHandle+0x11fc>
+   57730:      	ldr	x8, [x19, #0x10]
+   57734:      	ldr	x8, [x8, #0x98]
+   57738:      	cbz	x8, 0x57744 <Java_org_ffavc_DecoderFactory_GetHandle+0x11fc>
+   5773c:      	mov	x0, x19
+   57740:      	blr	x8
+   57744:      	add	x0, x21, #0x30
+   57748:      	str	wzr, [x21, #0x38]
+   5774c:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   57750:      	add	x0, x21, #0x78
+   57754:      	bl	0xd3a0c <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4c4>
+   57758:      	add	x0, x21, #0x70
+   5775c:      	bl	0x578cc <Java_org_ffavc_DecoderFactory_GetHandle+0x1384>
+   57760:      	add	x0, x21, #0x28
+   57764:      	bl	0x578cc <Java_org_ffavc_DecoderFactory_GetHandle+0x1384>
+   57768:      	add	x0, x21, #0x18
+   5776c:      	bl	0x578cc <Java_org_ffavc_DecoderFactory_GetHandle+0x1384>
+   57770:      	add	x0, x21, #0x48
+   57774:      	bl	0xd3a0c <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4c4>
+   57778:      	add	x0, x21, #0x50
+   5777c:      	bl	0xd3a0c <Java_org_ffavc_DecoderFactory_GetHandle+0x7d4c4>
+   57780:      	add	x0, x21, #0x8
+   57784:      	bl	0xc83a8 <Java_org_ffavc_DecoderFactory_GetHandle+0x71e60>
+   57788:      	mov	x0, x19
+   5778c:      	bl	0x5a88c <Java_org_ffavc_DecoderFactory_GetHandle+0x4344>
+   57790:      	add	x0, x21, #0x20
+   57794:      	bl	0x58830 <Java_org_ffavc_DecoderFactory_GetHandle+0x22e8>
+   57798:      	add	x0, x21, #0x98
+   5779c:      	bl	0xcfe0c <Java_org_ffavc_DecoderFactory_GetHandle+0x798c4>
+   577a0:      	bl	0x576f0 <Java_org_ffavc_DecoderFactory_GetHandle+0x11a8>
+   577a4:      	mov	x21, xzr
+   577a8:      	mov	x22, xzr
+   577ac:      	add	x20, x19, #0x308
+   577b0:      	ldrsw	x8, [x19, #0x310]
+   577b4:      	cmp	x22, x8
+   577b8:      	b.ge	0x577d4 <Java_org_ffavc_DecoderFactory_GetHandle+0x128c>
+   577bc:      	ldr	x8, [x20]
+   577c0:      	add	x0, x8, x21
+   577c4:      	bl	0xd7f5c <Java_org_ffavc_DecoderFactory_GetHandle+0x81a14>
+   577c8:      	add	x22, x22, #0x1
+   577cc:      	add	x21, x21, #0x18
+   577d0:      	b	0x577b0 <Java_org_ffavc_DecoderFactory_GetHandle+0x1268>
+   577d4:      	bl	0x576f0 <Java_org_ffavc_DecoderFactory_GetHandle+0x11a8>

@@ -1,0 +1,1500 @@
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhiai_ir.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000003ed60 <.text>:
+   3ed60:      	bti	c
+   3ed64:      	nop
+   3ed68:      	adr	x0, #0x960d8
+   3ed6c:      	b	0xcece0 <__cxa_finalize@plt>
+   3ed70:      	bti	c
+   3ed74:      	ret
+   3ed78:      	bti	c
+   3ed7c:      	b	0x3ed70 <.text+0x10>
+   3ed80:      	bti	c
+   3ed84:      	cbz	x0, 0x3ed90 <.text+0x30>
+   3ed88:      	mov	x16, x0
+   3ed8c:      	br	x16
+   3ed90:      	ret
+   3ed94:      	bti	c
+   3ed98:      	mov	x1, x0
+   3ed9c:      	nop
+   3eda0:      	adr	x0, #-0x20
+   3eda4:      	nop
+   3eda8:      	adr	x2, #0x96098
+   3edac:      	b	0xcecf0 <__cxa_atexit@plt>
+   3edb0:      	str	x30, [sp, #-0x30]!
+   3edb4:      	stp	x22, x21, [sp, #0x10]
+   3edb8:      	stp	x20, x19, [sp, #0x20]
+   3edbc:      	mov	x19, x0
+   3edc0:      	mov	x0, x1
+   3edc4:      	mov	x21, x1
+   3edc8:      	bl	0xced00 <strlen@plt>
+   3edcc:      	cmn	x0, #0x10
+   3edd0:      	b.hs	0x3ee30 <.text+0xd0>
+   3edd4:      	mov	x20, x0
+   3edd8:      	cmp	x0, #0x17
+   3eddc:      	b.hs	0x3edf0 <.text+0x90>
+   3ede0:      	lsl	w8, w20, #1
+   3ede4:      	strb	w8, [x19], #0x1
+   3ede8:      	cbnz	x20, 0x3ee0c <.text+0xac>
+   3edec:      	b	0x3ee1c <.text+0xbc>
+   3edf0:      	orr	x22, x20, #0xf
+   3edf4:      	add	x0, x22, #0x1
+   3edf8:      	bl	0xced10 <_Znwm@plt>
+   3edfc:      	add	x8, x22, #0x2
+   3ee00:      	stp	x20, x0, [x19, #0x8]
+   3ee04:      	str	x8, [x19]
+   3ee08:      	mov	x19, x0
+   3ee0c:      	mov	x0, x19
+   3ee10:      	mov	x1, x21
+   3ee14:      	mov	x2, x20
+   3ee18:      	bl	0xced20 <memmove@plt>
+   3ee1c:      	strb	wzr, [x19, x20]
+   3ee20:      	ldp	x20, x19, [sp, #0x20]
+   3ee24:      	ldp	x22, x21, [sp, #0x10]
+   3ee28:      	ldr	x30, [sp], #0x30
+   3ee2c:      	ret
+   3ee30:      	mov	x0, x19
+   3ee34:      	bl	0x42a8c <_ZNK2ge9AttrValue7IsEmptyEv+0x10>
+
+000000000003ee38 <_ZN2ge9AttrValue10NamedAttrsC2Ev>:
+   3ee38:      	stp	x30, x19, [sp, #-0x10]!
+   3ee3c:      	mov	x19, x0
+   3ee40:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3ee44:      	bl	0xced40 <_ZN4hiai12ProtoFactory18CreateNamedAttrDefEv@plt>
+   3ee48:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3ee4c:      	mov	w9, #0x1
+   3ee50:      	ldr	x8, [x8, #0x3d0]
+   3ee54:      	str	xzr, [x19, #0x28]
+   3ee58:      	strb	w9, [x19, #0x10]
+   3ee5c:      	add	x8, x8, #0x10
+   3ee60:      	stp	x8, x0, [x19]
+   3ee64:      	mov	x8, x19
+   3ee68:      	str	xzr, [x8, #0x20]!
+   3ee6c:      	str	x8, [x19, #0x18]
+   3ee70:      	ldp	x30, x19, [sp], #0x10
+   3ee74:      	ret
+
+000000000003ee78 <_ZN2ge9AttrValue10NamedAttrsC2EPN4hiai13INamedAttrDefEb>:
+   3ee78:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3ee7c:      	ldr	x8, [x8, #0x3d0]
+   3ee80:      	strb	w2, [x0, #0x10]
+   3ee84:      	str	xzr, [x0, #0x28]
+   3ee88:      	add	x8, x8, #0x10
+   3ee8c:      	stp	x8, x1, [x0]
+   3ee90:      	mov	x8, x0
+   3ee94:      	str	xzr, [x8, #0x20]!
+   3ee98:      	str	x8, [x0, #0x18]
+   3ee9c:      	ret
+
+000000000003eea0 <_ZN2ge9AttrValue10NamedAttrsD2Ev>:
+   3eea0:      	stp	x30, x19, [sp, #-0x10]!
+   3eea4:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3eea8:      	mov	x19, x0
+   3eeac:      	ldr	x8, [x8, #0x3d0]
+   3eeb0:      	ldrb	w9, [x0, #0x10]
+   3eeb4:      	add	x8, x8, #0x10
+   3eeb8:      	str	x8, [x0]
+   3eebc:      	cbz	w9, 0x3eed4 <_ZN2ge9AttrValue10NamedAttrsD2Ev+0x34>
+   3eec0:      	ldr	x8, [x19, #0x8]
+   3eec4:      	cbz	x8, 0x3eed4 <_ZN2ge9AttrValue10NamedAttrsD2Ev+0x34>
+   3eec8:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3eecc:      	ldr	x1, [x19, #0x8]
+   3eed0:      	bl	0xced50 <_ZN4hiai12ProtoFactory19DestroyNamedAttrDefEPNS_13INamedAttrDefE@plt>
+   3eed4:      	ldr	x1, [x19, #0x20]
+   3eed8:      	add	x0, x19, #0x18
+   3eedc:      	str	xzr, [x19, #0x8]
+   3eee0:      	ldp	x30, x19, [sp], #0x10
+   3eee4:      	b	0x42abc <_ZNK2ge9AttrValue7IsEmptyEv+0x40>
+
+000000000003eee8 <_ZN2ge9AttrValue10NamedAttrsD0Ev>:
+   3eee8:      	stp	x30, x19, [sp, #-0x10]!
+   3eeec:      	mov	x19, x0
+   3eef0:      	bl	0xced60 <_ZN2ge9AttrValue10NamedAttrsD1Ev@plt>
+   3eef4:      	mov	x0, x19
+   3eef8:      	ldp	x30, x19, [sp], #0x10
+   3eefc:      	b	0xced70 <_ZdlPv@plt>
+
+000000000003ef00 <_ZNK2ge9AttrValue10NamedAttrs13GetAttrMapDefEv>:
+   3ef00:      	ldr	x0, [x0, #0x8]
+   3ef04:      	cbz	x0, 0x3ef14 <_ZNK2ge9AttrValue10NamedAttrs13GetAttrMapDefEv+0x14>
+   3ef08:      	ldr	x8, [x0]
+   3ef0c:      	ldr	x1, [x8, #0x38]
+   3ef10:      	br	x1
+   3ef14:      	ret
+
+000000000003ef18 <_ZN2ge9AttrValue10NamedAttrs17MutableAttrMapDefEv>:
+   3ef18:      	ldr	x0, [x0, #0x8]
+   3ef1c:      	cbz	x0, 0x3ef2c <_ZN2ge9AttrValue10NamedAttrs17MutableAttrMapDefEv+0x14>
+   3ef20:      	ldr	x8, [x0]
+   3ef24:      	ldr	x1, [x8, #0x40]
+   3ef28:      	br	x1
+   3ef2c:      	ret
+
+000000000003ef30 <_ZN2ge9AttrValue10NamedAttrsC2ERKS1_>:
+   3ef30:      	str	x30, [sp, #-0x20]!
+   3ef34:      	stp	x20, x19, [sp, #0x10]
+   3ef38:      	mov	x19, x1
+   3ef3c:      	mov	x20, x0
+   3ef40:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3ef44:      	bl	0xced40 <_ZN4hiai12ProtoFactory18CreateNamedAttrDefEv@plt>
+   3ef48:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3ef4c:      	mov	w9, #0x1
+   3ef50:      	ldr	x8, [x8, #0x3d0]
+   3ef54:      	str	xzr, [x20, #0x28]
+   3ef58:      	strb	w9, [x20, #0x10]
+   3ef5c:      	add	x8, x8, #0x10
+   3ef60:      	stp	x8, x0, [x20]
+   3ef64:      	mov	x8, x20
+   3ef68:      	str	xzr, [x8, #0x20]!
+   3ef6c:      	str	x8, [x20, #0x18]
+   3ef70:      	cbz	x0, 0x3ef8c <_ZN2ge9AttrValue10NamedAttrsC2ERKS1_+0x5c>
+   3ef74:      	ldr	x8, [x0]
+   3ef78:      	ldr	x1, [x19, #0x8]
+   3ef7c:      	ldp	x20, x19, [sp, #0x10]
+   3ef80:      	ldr	x2, [x8, #0x10]
+   3ef84:      	ldr	x30, [sp], #0x20
+   3ef88:      	br	x2
+   3ef8c:      	ldp	x20, x19, [sp, #0x10]
+   3ef90:      	ldr	x30, [sp], #0x20
+   3ef94:      	ret
+
+000000000003ef98 <_ZN2ge9AttrValue10NamedAttrsaSERKS1_>:
+   3ef98:      	stp	x30, x19, [sp, #-0x10]!
+   3ef9c:      	mov	x19, x0
+   3efa0:      	cmp	x1, x0
+   3efa4:      	b.eq	0x3efbc <_ZN2ge9AttrValue10NamedAttrsaSERKS1_+0x24>
+   3efa8:      	ldr	x0, [x19, #0x8]
+   3efac:      	ldr	x1, [x1, #0x8]
+   3efb0:      	ldr	x8, [x0]
+   3efb4:      	ldr	x8, [x8, #0x10]
+   3efb8:      	blr	x8
+   3efbc:      	mov	x0, x19
+   3efc0:      	ldp	x30, x19, [sp], #0x10
+   3efc4:      	ret
+
+000000000003efc8 <_ZN2ge9AttrValue10NamedAttrs7SetNameERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE>:
+   3efc8:      	ldr	x0, [x0, #0x8]
+   3efcc:      	cbz	x0, 0x3efdc <_ZN2ge9AttrValue10NamedAttrs7SetNameERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x14>
+   3efd0:      	ldr	x8, [x0]
+   3efd4:      	ldr	x2, [x8, #0x30]
+   3efd8:      	br	x2
+   3efdc:      	ret
+
+000000000003efe0 <_ZNK2ge9AttrValue10NamedAttrs7GetNameEv>:
+   3efe0:      	ldr	x0, [x0, #0x8]
+   3efe4:      	cbz	x0, 0x3eff4 <_ZNK2ge9AttrValue10NamedAttrs7GetNameEv+0x14>
+   3efe8:      	ldr	x8, [x0]
+   3efec:      	ldr	x1, [x8, #0x20]
+   3eff0:      	br	x1
+   3eff4:      	nop
+   3eff8:      	adr	x0, #0xa0a10
+   3effc:      	ret
+
+000000000003f000 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE>:
+   3f000:      	sub	sp, sp, #0x60
+   3f004:      	str	x30, [sp, #0x30]
+   3f008:      	stp	x22, x21, [sp, #0x40]
+   3f00c:      	stp	x20, x19, [sp, #0x50]
+   3f010:      	mrs	x21, TPIDR_EL0
+   3f014:      	mov	x20, x1
+   3f018:      	mov	x19, x0
+   3f01c:      	ldr	x8, [x21, #0x28]
+   3f020:      	str	x8, [sp, #0x28]
+   3f024:      	nop
+   3f028:      	adr	x8, #0xa0a18
+   3f02c:      	ldarb	w8, [x8]
+   3f030:      	tbz	w8, #0x0, 0x3f1a0 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x1a0>
+   3f034:      	ldr	x8, [x19, #0x8]
+   3f038:      	cbz	x8, 0x3f0c0 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0xc0>
+   3f03c:      	ldr	x8, [x19]
+   3f040:      	mov	x0, x19
+   3f044:      	ldr	x8, [x8, #0x10]
+   3f048:      	blr	x8
+   3f04c:      	cbz	x0, 0x3f0fc <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0xfc>
+   3f050:      	add	x0, x19, #0x18
+   3f054:      	mov	x1, x20
+   3f058:      	bl	0x42b10 <_ZNK2ge9AttrValue7IsEmptyEv+0x94>
+   3f05c:      	add	x8, x19, #0x20
+   3f060:      	cmp	x8, x0
+   3f064:      	b.ne	0x3f0b8 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0xb8>
+   3f068:      	ldr	x8, [x19]
+   3f06c:      	mov	x0, x19
+   3f070:      	ldr	x8, [x8, #0x10]
+   3f074:      	blr	x8
+   3f078:      	ldr	x8, [x0]
+   3f07c:      	mov	x1, x20
+   3f080:      	ldr	x8, [x8, #0x40]
+   3f084:      	blr	x8
+   3f088:      	cbz	x0, 0x3f164 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x164>
+   3f08c:      	add	x8, sp, #0x8
+   3f090:      	add	x9, sp, #0x4
+   3f094:      	nop
+   3f098:      	adr	x1, #-0x533d
+   3f09c:      	stp	x0, x8, [sp, #0x8]
+   3f0a0:      	add	x0, x19, #0x18
+   3f0a4:      	add	x2, sp, #0x20
+   3f0a8:      	add	x3, sp, #0x10
+   3f0ac:      	strb	wzr, [sp, #0x4]
+   3f0b0:      	stp	x9, x20, [sp, #0x18]
+   3f0b4:      	bl	0x42bf8 <_ZNK2ge9AttrValue7IsEmptyEv+0x17c>
+   3f0b8:      	add	x0, x0, #0x38
+   3f0bc:      	b	0x3f140 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x140>
+   3f0c0:      	adrp	x0, 0x31000
+   3f0c4:      	add	x0, x0, #0x906
+   3f0c8:      	mov	w1, #0x2f
+   3f0cc:      	mov	w2, #0x61
+   3f0d0:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f0d4:      	adrp	x1, 0x38000
+   3f0d8:      	add	x1, x1, #0x46f
+   3f0dc:      	adrp	x2, 0x33000
+   3f0e0:      	add	x2, x2, #0xf67
+   3f0e4:      	adrp	x4, 0x39000
+   3f0e8:      	add	x4, x4, #0x79b
+   3f0ec:      	add	x3, x0, #0x1
+   3f0f0:      	mov	w0, #0x3
+   3f0f4:      	mov	w5, #0x61
+   3f0f8:      	b	0x3f134 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x134>
+   3f0fc:      	adrp	x0, 0x31000
+   3f100:      	add	x0, x0, #0x906
+   3f104:      	mov	w1, #0x2f
+   3f108:      	mov	w2, #0x61
+   3f10c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f110:      	adrp	x1, 0x38000
+   3f114:      	add	x1, x1, #0x46f
+   3f118:      	adrp	x2, 0x2e000
+   3f11c:      	add	x2, x2, #0xae5
+   3f120:      	adrp	x4, 0x39000
+   3f124:      	add	x4, x4, #0x79b
+   3f128:      	add	x3, x0, #0x1
+   3f12c:      	mov	w0, #0x3
+   3f130:      	mov	w5, #0x62
+   3f134:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f138:      	nop
+   3f13c:      	adr	x0, #0xa08e4
+   3f140:      	ldr	x8, [x21, #0x28]
+   3f144:      	ldr	x9, [sp, #0x28]
+   3f148:      	cmp	x8, x9
+   3f14c:      	b.ne	0x3f1f0 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x1f0>
+   3f150:      	ldp	x20, x19, [sp, #0x50]
+   3f154:      	ldr	x30, [sp, #0x30]
+   3f158:      	ldp	x22, x21, [sp, #0x40]
+   3f15c:      	add	sp, sp, #0x60
+   3f160:      	ret
+   3f164:      	adrp	x0, 0x31000
+   3f168:      	add	x0, x0, #0x906
+   3f16c:      	mov	w1, #0x2f
+   3f170:      	mov	w2, #0x61
+   3f174:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f178:      	adrp	x1, 0x38000
+   3f17c:      	add	x1, x1, #0x46f
+   3f180:      	adrp	x2, 0x38000
+   3f184:      	add	x2, x2, #0x3e6
+   3f188:      	adrp	x4, 0x39000
+   3f18c:      	add	x4, x4, #0x79b
+   3f190:      	add	x3, x0, #0x1
+   3f194:      	mov	w0, #0x3
+   3f198:      	mov	w5, #0x6a
+   3f19c:      	b	0x3f134 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x134>
+   3f1a0:      	nop
+   3f1a4:      	adr	x0, #0xa089c
+   3f1a8:      	bl	0xcedc0 <__cxa_guard_acquire@plt>
+   3f1ac:      	cbz	w0, 0x3f034 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x34>
+   3f1b0:      	nop
+   3f1b4:      	adr	x22, #0xa086c
+   3f1b8:      	mov	x1, xzr
+   3f1bc:      	mov	x0, x22
+   3f1c0:      	mov	w2, wzr
+   3f1c4:      	bl	0xcedd0 <_ZN2ge9AttrValueC1EPN4hiai8IAttrDefEb@plt>
+   3f1c8:      	adrp	x0, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3f1cc:      	nop
+   3f1d0:      	adr	x2, #0x95c70
+   3f1d4:      	ldr	x0, [x0, #0x3d8]
+   3f1d8:      	mov	x1, x22
+   3f1dc:      	bl	0xcecf0 <__cxa_atexit@plt>
+   3f1e0:      	nop
+   3f1e4:      	adr	x0, #0xa085c
+   3f1e8:      	bl	0xcedf0 <__cxa_guard_release@plt>
+   3f1ec:      	b	0x3f034 <_ZNK2ge9AttrValue10NamedAttrs7GetItemERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE+0x34>
+   3f1f0:      	bl	0xcee00 <__stack_chk_fail@plt>
+
+000000000003f1f4 <_ZNK2ge9AttrValue10NamedAttrs11SerializeToEPN4hiai13INamedAttrDefE>:
+   3f1f4:      	stp	x30, x19, [sp, #-0x10]!
+   3f1f8:      	mov	x19, x1
+   3f1fc:      	cbz	x1, 0x3f214 <_ZNK2ge9AttrValue10NamedAttrs11SerializeToEPN4hiai13INamedAttrDefE+0x20>
+   3f200:      	ldr	x8, [x19]
+   3f204:      	ldr	x1, [x0, #0x8]
+   3f208:      	mov	x0, x19
+   3f20c:      	ldr	x8, [x8, #0x10]
+   3f210:      	blr	x8
+   3f214:      	cmp	x19, #0x0
+   3f218:      	cset	w0, ne
+   3f21c:      	ldp	x30, x19, [sp], #0x10
+   3f220:      	ret
+
+000000000003f224 <_ZN2ge9AttrValueC2Ev>:
+   3f224:      	stp	x30, x19, [sp, #-0x10]!
+   3f228:      	mov	x19, x0
+   3f22c:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3f230:      	bl	0xcee20 <_ZN4hiai12ProtoFactory13CreateAttrDefEv@plt>
+   3f234:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3f238:      	mov	w9, #0x1
+   3f23c:      	ldr	x8, [x8, #0x3e0]
+   3f240:      	stp	xzr, x0, [x19, #0x8]
+   3f244:      	strb	w9, [x19, #0x18]
+   3f248:      	add	x8, x8, #0x10
+   3f24c:      	str	wzr, [x19, #0x1c]
+   3f250:      	str	x8, [x19]
+   3f254:      	cbz	x0, 0x3f268 <_ZN2ge9AttrValueC2Ev+0x44>
+   3f258:      	ldr	x8, [x0]
+   3f25c:      	ldr	x8, [x8, #0x10]
+   3f260:      	blr	x8
+   3f264:      	str	w0, [x19, #0x1c]
+   3f268:      	ldp	x30, x19, [sp], #0x10
+   3f26c:      	ret
+
+000000000003f270 <_ZN2ge9AttrValueC2EPN4hiai8IAttrDefEb>:
+   3f270:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3f274:      	ldr	x8, [x8, #0x3e0]
+   3f278:      	stp	xzr, x1, [x0, #0x8]
+   3f27c:      	strb	w2, [x0, #0x18]
+   3f280:      	add	x8, x8, #0x10
+   3f284:      	str	wzr, [x0, #0x1c]
+   3f288:      	str	x8, [x0]
+   3f28c:      	cbz	x1, 0x3f2b0 <_ZN2ge9AttrValueC2EPN4hiai8IAttrDefEb+0x40>
+   3f290:      	stp	x30, x19, [sp, #-0x10]!
+   3f294:      	ldr	x8, [x1]
+   3f298:      	mov	x19, x0
+   3f29c:      	mov	x0, x1
+   3f2a0:      	ldr	x8, [x8, #0x10]
+   3f2a4:      	blr	x8
+   3f2a8:      	str	w0, [x19, #0x1c]
+   3f2ac:      	ldp	x30, x19, [sp], #0x10
+   3f2b0:      	ret
+
+000000000003f2b4 <_ZN2ge9AttrValueD2Ev>:
+   3f2b4:      	stp	x30, x19, [sp, #-0x10]!
+   3f2b8:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3f2bc:      	mov	x19, x0
+   3f2c0:      	ldr	x8, [x8, #0x3e0]
+   3f2c4:      	ldrb	w9, [x0, #0x18]
+   3f2c8:      	add	x8, x8, #0x10
+   3f2cc:      	str	x8, [x0]
+   3f2d0:      	cbz	w9, 0x3f2e8 <_ZN2ge9AttrValueD2Ev+0x34>
+   3f2d4:      	ldr	x8, [x19, #0x10]
+   3f2d8:      	cbz	x8, 0x3f2e8 <_ZN2ge9AttrValueD2Ev+0x34>
+   3f2dc:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3f2e0:      	ldr	x1, [x19, #0x10]
+   3f2e4:      	bl	0xcee30 <_ZN4hiai12ProtoFactory14DestroyAttrDefEPNS_8IAttrDefE@plt>
+   3f2e8:      	stp	xzr, xzr, [x19, #0x8]
+   3f2ec:      	ldp	x30, x19, [sp], #0x10
+   3f2f0:      	ret
+
+000000000003f2f4 <_ZN2ge9AttrValueD0Ev>:
+   3f2f4:      	stp	x30, x19, [sp, #-0x10]!
+   3f2f8:      	mov	x19, x0
+   3f2fc:      	bl	0xcede0 <_ZN2ge9AttrValueD1Ev@plt>
+   3f300:      	mov	x0, x19
+   3f304:      	ldp	x30, x19, [sp], #0x10
+   3f308:      	b	0xced70 <_ZdlPv@plt>
+
+000000000003f30c <_ZN2ge9AttrValueC2ERKS0_>:
+   3f30c:      	str	x30, [sp, #-0x20]!
+   3f310:      	stp	x20, x19, [sp, #0x10]
+   3f314:      	mov	x20, x1
+   3f318:      	mov	x19, x0
+   3f31c:      	bl	0xcee10 <_ZN2ge9AttrValueC2Ev@plt>
+   3f320:      	ldr	x0, [x19, #0x10]
+   3f324:      	cbz	x0, 0x3f340 <_ZN2ge9AttrValueC2ERKS0_+0x34>
+   3f328:      	ldr	x8, [x0]
+   3f32c:      	ldr	x1, [x20, #0x10]
+   3f330:      	ldr	x8, [x8, #0x20]
+   3f334:      	blr	x8
+   3f338:      	ldr	w8, [x20, #0x1c]
+   3f33c:      	str	w8, [x19, #0x1c]
+   3f340:      	ldp	x20, x19, [sp, #0x10]
+   3f344:      	ldr	x30, [sp], #0x20
+   3f348:      	ret
+
+000000000003f34c <_ZN2ge9AttrValueaSERKS0_>:
+   3f34c:      	str	x30, [sp, #-0x20]!
+   3f350:      	stp	x20, x19, [sp, #0x10]
+   3f354:      	mov	x19, x0
+   3f358:      	cmp	x1, x0
+   3f35c:      	b.eq	0x3f384 <_ZN2ge9AttrValueaSERKS0_+0x38>
+   3f360:      	ldr	x0, [x19, #0x10]
+   3f364:      	cbz	x0, 0x3f384 <_ZN2ge9AttrValueaSERKS0_+0x38>
+   3f368:      	ldr	x8, [x0]
+   3f36c:      	mov	x20, x1
+   3f370:      	ldr	x1, [x1, #0x10]
+   3f374:      	ldr	x8, [x8, #0x20]
+   3f378:      	blr	x8
+   3f37c:      	ldr	w8, [x20, #0x1c]
+   3f380:      	str	w8, [x19, #0x1c]
+   3f384:      	mov	x0, x19
+   3f388:      	ldp	x20, x19, [sp, #0x10]
+   3f38c:      	ldr	x30, [sp], #0x20
+   3f390:      	ret
+
+000000000003f394 <_ZNK2ge9AttrValue11SerializeToEPN4hiai8IAttrDefE>:
+   3f394:      	stp	x30, x19, [sp, #-0x10]!
+   3f398:      	mov	x19, x1
+   3f39c:      	cbz	x1, 0x3f3b4 <_ZNK2ge9AttrValue11SerializeToEPN4hiai8IAttrDefE+0x20>
+   3f3a0:      	ldr	x8, [x19]
+   3f3a4:      	ldr	x1, [x0, #0x10]
+   3f3a8:      	mov	x0, x19
+   3f3ac:      	ldr	x8, [x8, #0x20]
+   3f3b0:      	blr	x8
+   3f3b4:      	cmp	x19, #0x0
+   3f3b8:      	cset	w0, ne
+   3f3bc:      	ldp	x30, x19, [sp], #0x10
+   3f3c0:      	ret
+
+000000000003f3c4 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE>:
+   3f3c4:      	sub	sp, sp, #0x50
+   3f3c8:      	stp	x30, x21, [sp, #0x30]
+   3f3cc:      	stp	x20, x19, [sp, #0x40]
+   3f3d0:      	mrs	x21, TPIDR_EL0
+   3f3d4:      	mov	x8, x1
+   3f3d8:      	mov	x19, x0
+   3f3dc:      	ldr	x9, [x21, #0x28]
+   3f3e0:      	add	x2, sp, #0x18
+   3f3e4:      	str	x9, [sp, #0x28]
+   3f3e8:      	ldr	x9, [x1]
+   3f3ec:      	str	x1, [x0, #0x8]
+   3f3f0:      	add	x1, sp, #0x20
+   3f3f4:      	stp	xzr, xzr, [sp, #0x18]
+   3f3f8:      	mov	x0, x8
+   3f3fc:      	ldr	x9, [x9]
+   3f400:      	blr	x9
+   3f404:      	ldr	x1, [sp, #0x20]
+   3f408:      	mov	w0, wzr
+   3f40c:      	cbz	x1, 0x3f4a8 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0xe4>
+   3f410:      	ldr	x2, [sp, #0x18]
+   3f414:      	cbz	x2, 0x3f4a8 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0xe4>
+   3f418:      	ldr	x20, [x19, #0x10]
+   3f41c:      	cbz	x20, 0x3f468 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0xa4>
+   3f420:      	mov	x0, sp
+   3f424:      	bl	0x3f4cc <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x108>
+   3f428:      	ldr	x8, [x20]
+   3f42c:      	mov	x1, sp
+   3f430:      	mov	x0, x20
+   3f434:      	ldr	x8, [x8, #0x88]
+   3f438:      	blr	x8
+   3f43c:      	ldrb	w8, [sp]
+   3f440:      	tbz	w8, #0x0, 0x3f44c <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x88>
+   3f444:      	ldr	x0, [sp, #0x10]
+   3f448:      	bl	0xced70 <_ZdlPv@plt>
+   3f44c:      	ldr	x0, [sp, #0x20]
+   3f450:      	cbz	x0, 0x3f458 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x94>
+   3f454:      	bl	0xcee60 <_ZdaPv@plt>
+   3f458:      	mov	w8, #0xa
+   3f45c:      	mov	w0, #0x1
+   3f460:      	str	w8, [x19, #0x1c]
+   3f464:      	b	0x3f4a8 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0xe4>
+   3f468:      	adrp	x0, 0x31000
+   3f46c:      	add	x0, x0, #0x906
+   3f470:      	mov	w1, #0x2f
+   3f474:      	mov	w2, #0x61
+   3f478:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f47c:      	adrp	x1, 0x38000
+   3f480:      	add	x1, x1, #0x46f
+   3f484:      	adrp	x2, 0x2e000
+   3f488:      	add	x2, x2, #0x4ea
+   3f48c:      	adrp	x4, 0x2e000
+   3f490:      	add	x4, x4, #0xb17
+   3f494:      	add	x3, x0, #0x1
+   3f498:      	mov	w0, #0x3
+   3f49c:      	mov	w5, #0xb6
+   3f4a0:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f4a4:      	mov	w0, wzr
+   3f4a8:      	ldr	x8, [x21, #0x28]
+   3f4ac:      	ldr	x9, [sp, #0x28]
+   3f4b0:      	cmp	x8, x9
+   3f4b4:      	b.ne	0x3f4c8 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x104>
+   3f4b8:      	ldp	x20, x19, [sp, #0x40]
+   3f4bc:      	ldp	x30, x21, [sp, #0x30]
+   3f4c0:      	add	sp, sp, #0x50
+   3f4c4:      	ret
+   3f4c8:      	bl	0xcee00 <__stack_chk_fail@plt>
+   3f4cc:      	str	x30, [sp, #-0x30]!
+   3f4d0:      	stp	x22, x21, [sp, #0x10]
+   3f4d4:      	stp	x20, x19, [sp, #0x20]
+   3f4d8:      	cmn	x2, #0x10
+   3f4dc:      	mov	x20, x0
+   3f4e0:      	b.hs	0x3f544 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x180>
+   3f4e4:      	mov	x19, x2
+   3f4e8:      	mov	x21, x1
+   3f4ec:      	cmp	x2, #0x17
+   3f4f0:      	b.hs	0x3f504 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x140>
+   3f4f4:      	lsl	w8, w19, #1
+   3f4f8:      	strb	w8, [x20], #0x1
+   3f4fc:      	cbnz	x19, 0x3f520 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x15c>
+   3f500:      	b	0x3f530 <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x16c>
+   3f504:      	orr	x22, x19, #0xf
+   3f508:      	add	x0, x22, #0x1
+   3f50c:      	bl	0xced10 <_Znwm@plt>
+   3f510:      	add	x8, x22, #0x2
+   3f514:      	stp	x19, x0, [x20, #0x8]
+   3f518:      	str	x8, [x20]
+   3f51c:      	mov	x20, x0
+   3f520:      	mov	x0, x20
+   3f524:      	mov	x1, x21
+   3f528:      	mov	x2, x19
+   3f52c:      	bl	0xced20 <memmove@plt>
+   3f530:      	strb	wzr, [x20, x19]
+   3f534:      	ldp	x20, x19, [sp, #0x20]
+   3f538:      	ldp	x22, x21, [sp, #0x10]
+   3f53c:      	ldr	x30, [sp], #0x30
+   3f540:      	ret
+   3f544:      	mov	x0, x20
+   3f548:      	bl	0x42a8c <_ZNK2ge9AttrValue7IsEmptyEv+0x10>
+
+000000000003f54c <_ZN2ge9AttrValue9GetCustomEv>:
+   3f54c:      	ldr	x0, [x0, #0x10]
+   3f550:      	cbz	x0, 0x3f560 <_ZN2ge9AttrValue9GetCustomEv+0x14>
+   3f554:      	ldr	x8, [x0]
+   3f558:      	ldr	x1, [x8, #0x80]
+   3f55c:      	br	x1
+   3f560:      	ret
+
+000000000003f564 <_ZN2ge9AttrValue6SetIntEl>:
+   3f564:      	stp	x30, x19, [sp, #-0x10]!
+   3f568:      	ldr	w8, [x0, #0x1c]
+   3f56c:      	orr	w8, w8, #0x4
+   3f570:      	cmp	w8, #0x4
+   3f574:      	b.ne	0x3f5a0 <_ZN2ge9AttrValue6SetIntEl+0x3c>
+   3f578:      	mov	x19, x0
+   3f57c:      	ldr	x0, [x0, #0x10]
+   3f580:      	cbz	x0, 0x3f5e8 <_ZN2ge9AttrValue6SetIntEl+0x84>
+   3f584:      	ldr	x8, [x0]
+   3f588:      	ldr	x8, [x8, #0x50]
+   3f58c:      	blr	x8
+   3f590:      	mov	w8, #0x4
+   3f594:      	mov	w0, #0x1
+   3f598:      	str	w8, [x19, #0x1c]
+   3f59c:      	b	0x3f628 <_ZN2ge9AttrValue6SetIntEl+0xc4>
+   3f5a0:      	adrp	x0, 0x31000
+   3f5a4:      	add	x0, x0, #0x906
+   3f5a8:      	mov	w1, #0x2f
+   3f5ac:      	mov	w2, #0x61
+   3f5b0:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f5b4:      	adrp	x1, 0x38000
+   3f5b8:      	add	x1, x1, #0x46f
+   3f5bc:      	adrp	x2, 0x32000
+   3f5c0:      	add	x2, x2, #0x77d
+   3f5c4:      	adrp	x4, 0x2f000
+   3f5c8:      	add	x4, x4, #0x569
+   3f5cc:      	adrp	x6, 0x2d000
+   3f5d0:      	add	x6, x6, #0x910
+   3f5d4:      	add	x3, x0, #0x1
+   3f5d8:      	mov	w0, #0x3
+   3f5dc:      	mov	w5, #0xcb
+   3f5e0:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f5e4:      	b	0x3f624 <_ZN2ge9AttrValue6SetIntEl+0xc0>
+   3f5e8:      	adrp	x0, 0x31000
+   3f5ec:      	add	x0, x0, #0x906
+   3f5f0:      	mov	w1, #0x2f
+   3f5f4:      	mov	w2, #0x61
+   3f5f8:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f5fc:      	adrp	x1, 0x38000
+   3f600:      	add	x1, x1, #0x46f
+   3f604:      	adrp	x2, 0x2e000
+   3f608:      	add	x2, x2, #0x4ea
+   3f60c:      	adrp	x4, 0x2f000
+   3f610:      	add	x4, x4, #0x569
+   3f614:      	add	x3, x0, #0x1
+   3f618:      	mov	w0, #0x3
+   3f61c:      	mov	w5, #0xcc
+   3f620:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f624:      	mov	w0, wzr
+   3f628:      	ldp	x30, x19, [sp], #0x10
+   3f62c:      	ret
+
+000000000003f630 <_ZNK2ge9AttrValue6GetIntEv>:
+   3f630:      	ldr	x0, [x0, #0x10]
+   3f634:      	cbz	x0, 0x3f644 <_ZNK2ge9AttrValue6GetIntEv+0x14>
+   3f638:      	ldr	x8, [x0]
+   3f63c:      	ldr	x1, [x8, #0x48]
+   3f640:      	br	x1
+   3f644:      	str	x30, [sp, #-0x10]!
+   3f648:      	adrp	x0, 0x31000
+   3f64c:      	add	x0, x0, #0x906
+   3f650:      	mov	w1, #0x2f
+   3f654:      	mov	w2, #0x61
+   3f658:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f65c:      	adrp	x1, 0x38000
+   3f660:      	add	x1, x1, #0x46f
+   3f664:      	adrp	x2, 0x2e000
+   3f668:      	add	x2, x2, #0x4ea
+   3f66c:      	adrp	x4, 0x37000
+   3f670:      	add	x4, x4, #0xd95
+   3f674:      	add	x3, x0, #0x1
+   3f678:      	mov	w0, #0x3
+   3f67c:      	mov	w5, #0xd5
+   3f680:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f684:      	mov	x0, xzr
+   3f688:      	ldr	x30, [sp], #0x10
+   3f68c:      	ret
+
+000000000003f690 <_ZN2ge9AttrValue10CreateFromEl>:
+   3f690:      	str	x30, [sp, #-0x20]!
+   3f694:      	stp	x20, x19, [sp, #0x10]
+   3f698:      	mov	x19, x0
+   3f69c:      	mov	x0, x8
+   3f6a0:      	mov	x20, x8
+   3f6a4:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3f6a8:      	mov	x0, x20
+   3f6ac:      	mov	x1, x19
+   3f6b0:      	ldp	x20, x19, [sp, #0x10]
+   3f6b4:      	ldr	x30, [sp], #0x20
+   3f6b8:      	b	0xcee70 <_ZN2ge9AttrValue6SetIntEl@plt>
+
+000000000003f6bc <_ZN2ge9AttrValue8SetFloatEf>:
+   3f6bc:      	stp	x30, x19, [sp, #-0x10]!
+   3f6c0:      	ldr	w8, [x0, #0x1c]
+   3f6c4:      	orr	w8, w8, #0x2
+   3f6c8:      	cmp	w8, #0x2
+   3f6cc:      	b.ne	0x3f6f8 <_ZN2ge9AttrValue8SetFloatEf+0x3c>
+   3f6d0:      	mov	x19, x0
+   3f6d4:      	ldr	x0, [x0, #0x10]
+   3f6d8:      	cbz	x0, 0x3f740 <_ZN2ge9AttrValue8SetFloatEf+0x84>
+   3f6dc:      	ldr	x8, [x0]
+   3f6e0:      	ldr	x8, [x8, #0x60]
+   3f6e4:      	blr	x8
+   3f6e8:      	mov	w8, #0x2
+   3f6ec:      	mov	w0, #0x1
+   3f6f0:      	str	w8, [x19, #0x1c]
+   3f6f4:      	b	0x3f780 <_ZN2ge9AttrValue8SetFloatEf+0xc4>
+   3f6f8:      	adrp	x0, 0x31000
+   3f6fc:      	add	x0, x0, #0x906
+   3f700:      	mov	w1, #0x2f
+   3f704:      	mov	w2, #0x61
+   3f708:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f70c:      	adrp	x1, 0x38000
+   3f710:      	add	x1, x1, #0x46f
+   3f714:      	adrp	x2, 0x34000
+   3f718:      	add	x2, x2, #0x5ee
+   3f71c:      	adrp	x4, 0x33000
+   3f720:      	add	x4, x4, #0xf93
+   3f724:      	adrp	x6, 0x2d000
+   3f728:      	add	x6, x6, #0x910
+   3f72c:      	add	x3, x0, #0x1
+   3f730:      	mov	w0, #0x3
+   3f734:      	mov	w5, #0xe2
+   3f738:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f73c:      	b	0x3f77c <_ZN2ge9AttrValue8SetFloatEf+0xc0>
+   3f740:      	adrp	x0, 0x31000
+   3f744:      	add	x0, x0, #0x906
+   3f748:      	mov	w1, #0x2f
+   3f74c:      	mov	w2, #0x61
+   3f750:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f754:      	adrp	x1, 0x38000
+   3f758:      	add	x1, x1, #0x46f
+   3f75c:      	adrp	x2, 0x2e000
+   3f760:      	add	x2, x2, #0x4ea
+   3f764:      	adrp	x4, 0x33000
+   3f768:      	add	x4, x4, #0xf93
+   3f76c:      	add	x3, x0, #0x1
+   3f770:      	mov	w0, #0x3
+   3f774:      	mov	w5, #0xe3
+   3f778:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f77c:      	mov	w0, wzr
+   3f780:      	ldp	x30, x19, [sp], #0x10
+   3f784:      	ret
+
+000000000003f788 <_ZNK2ge9AttrValue8GetFloatEv>:
+   3f788:      	ldr	x0, [x0, #0x10]
+   3f78c:      	cbz	x0, 0x3f79c <_ZNK2ge9AttrValue8GetFloatEv+0x14>
+   3f790:      	ldr	x8, [x0]
+   3f794:      	ldr	x1, [x8, #0x58]
+   3f798:      	br	x1
+   3f79c:      	str	x30, [sp, #-0x10]!
+   3f7a0:      	adrp	x0, 0x31000
+   3f7a4:      	add	x0, x0, #0x906
+   3f7a8:      	mov	w1, #0x2f
+   3f7ac:      	mov	w2, #0x61
+   3f7b0:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f7b4:      	adrp	x1, 0x38000
+   3f7b8:      	add	x1, x1, #0x46f
+   3f7bc:      	adrp	x2, 0x2e000
+   3f7c0:      	add	x2, x2, #0x4ea
+   3f7c4:      	adrp	x4, 0x36000
+   3f7c8:      	add	x4, x4, #0xbe3
+   3f7cc:      	add	x3, x0, #0x1
+   3f7d0:      	mov	w0, #0x3
+   3f7d4:      	mov	w5, #0xec
+   3f7d8:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f7dc:      	movi	d0, #0000000000000000
+   3f7e0:      	ldr	x30, [sp], #0x10
+   3f7e4:      	ret
+
+000000000003f7e8 <_ZN2ge9AttrValue10CreateFromEf>:
+   3f7e8:      	str	d8, [sp, #-0x20]!
+   3f7ec:      	stp	x30, x19, [sp, #0x10]
+   3f7f0:      	mov	x0, x8
+   3f7f4:      	fmov	s8, s0
+   3f7f8:      	mov	x19, x8
+   3f7fc:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3f800:      	mov	x0, x19
+   3f804:      	ldp	x30, x19, [sp, #0x10]
+   3f808:      	fmov	s0, s8
+   3f80c:      	ldr	d8, [sp], #0x20
+   3f810:      	b	0xceeb0 <_ZN2ge9AttrValue8SetFloatEf@plt>
+
+000000000003f814 <_ZN2ge9AttrValue7SetBoolEb>:
+   3f814:      	stp	x30, x19, [sp, #-0x10]!
+   3f818:      	ldr	w8, [x0, #0x1c]
+   3f81c:      	mov	x19, x0
+   3f820:      	cbz	w8, 0x3f82c <_ZN2ge9AttrValue7SetBoolEb+0x18>
+   3f824:      	cmp	w8, #0x3
+   3f828:      	b.ne	0x3f854 <_ZN2ge9AttrValue7SetBoolEb+0x40>
+   3f82c:      	ldr	x0, [x19, #0x10]
+   3f830:      	cbz	x0, 0x3f89c <_ZN2ge9AttrValue7SetBoolEb+0x88>
+   3f834:      	ldr	x8, [x0]
+   3f838:      	and	w1, w1, #0x1
+   3f83c:      	ldr	x8, [x8, #0x70]
+   3f840:      	blr	x8
+   3f844:      	mov	w8, #0x3
+   3f848:      	mov	w0, #0x1
+   3f84c:      	str	w8, [x19, #0x1c]
+   3f850:      	b	0x3f8dc <_ZN2ge9AttrValue7SetBoolEb+0xc8>
+   3f854:      	adrp	x0, 0x31000
+   3f858:      	add	x0, x0, #0x906
+   3f85c:      	mov	w1, #0x2f
+   3f860:      	mov	w2, #0x61
+   3f864:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f868:      	adrp	x1, 0x38000
+   3f86c:      	add	x1, x1, #0x46f
+   3f870:      	adrp	x2, 0x36000
+   3f874:      	add	x2, x2, #0x513
+   3f878:      	adrp	x4, 0x37000
+   3f87c:      	add	x4, x4, #0x1c8
+   3f880:      	adrp	x6, 0x2d000
+   3f884:      	add	x6, x6, #0x910
+   3f888:      	add	x3, x0, #0x1
+   3f88c:      	mov	w0, #0x3
+   3f890:      	mov	w5, #0xf9
+   3f894:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f898:      	b	0x3f8d8 <_ZN2ge9AttrValue7SetBoolEb+0xc4>
+   3f89c:      	adrp	x0, 0x31000
+   3f8a0:      	add	x0, x0, #0x906
+   3f8a4:      	mov	w1, #0x2f
+   3f8a8:      	mov	w2, #0x61
+   3f8ac:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f8b0:      	adrp	x1, 0x38000
+   3f8b4:      	add	x1, x1, #0x46f
+   3f8b8:      	adrp	x2, 0x2e000
+   3f8bc:      	add	x2, x2, #0x4ea
+   3f8c0:      	adrp	x4, 0x37000
+   3f8c4:      	add	x4, x4, #0x1c8
+   3f8c8:      	add	x3, x0, #0x1
+   3f8cc:      	mov	w0, #0x3
+   3f8d0:      	mov	w5, #0xfa
+   3f8d4:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f8d8:      	mov	w0, wzr
+   3f8dc:      	ldp	x30, x19, [sp], #0x10
+   3f8e0:      	ret
+
+000000000003f8e4 <_ZNK2ge9AttrValue7GetBoolEv>:
+   3f8e4:      	ldr	x0, [x0, #0x10]
+   3f8e8:      	cbz	x0, 0x3f8f8 <_ZNK2ge9AttrValue7GetBoolEv+0x14>
+   3f8ec:      	ldr	x8, [x0]
+   3f8f0:      	ldr	x1, [x8, #0x68]
+   3f8f4:      	br	x1
+   3f8f8:      	str	x30, [sp, #-0x10]!
+   3f8fc:      	adrp	x0, 0x31000
+   3f900:      	add	x0, x0, #0x906
+   3f904:      	mov	w1, #0x2f
+   3f908:      	mov	w2, #0x61
+   3f90c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f910:      	adrp	x1, 0x38000
+   3f914:      	add	x1, x1, #0x46f
+   3f918:      	adrp	x2, 0x2e000
+   3f91c:      	add	x2, x2, #0x4ea
+   3f920:      	adrp	x4, 0x2e000
+   3f924:      	add	x4, x4, #0x515
+   3f928:      	add	x3, x0, #0x1
+   3f92c:      	mov	w0, #0x3
+   3f930:      	mov	w5, #0x103
+   3f934:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f938:      	mov	w0, wzr
+   3f93c:      	ldr	x30, [sp], #0x10
+   3f940:      	ret
+
+000000000003f944 <_ZN2ge9AttrValue10CreateFromEb>:
+   3f944:      	str	x30, [sp, #-0x20]!
+   3f948:      	stp	x20, x19, [sp, #0x10]
+   3f94c:      	mov	w19, w0
+   3f950:      	mov	x0, x8
+   3f954:      	mov	x20, x8
+   3f958:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3f95c:      	mov	x0, x20
+   3f960:      	mov	w1, w19
+   3f964:      	ldp	x20, x19, [sp, #0x10]
+   3f968:      	ldr	x30, [sp], #0x20
+   3f96c:      	b	0xceee0 <_ZN2ge9AttrValue7SetBoolEb@plt>
+
+000000000003f970 <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE>:
+   3f970:      	stp	x30, x19, [sp, #-0x10]!
+   3f974:      	ldr	w8, [x0, #0x1c]
+   3f978:      	cmp	w8, #0x2
+   3f97c:      	b.hs	0x3f9a4 <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0x34>
+   3f980:      	mov	x19, x0
+   3f984:      	ldr	x0, [x0, #0x10]
+   3f988:      	cbz	x0, 0x3f9ec <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0x7c>
+   3f98c:      	ldr	x8, [x0]
+   3f990:      	ldr	x8, [x8, #0x40]
+   3f994:      	blr	x8
+   3f998:      	mov	w0, #0x1
+   3f99c:      	str	w0, [x19, #0x1c]
+   3f9a0:      	b	0x3fa2c <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0xbc>
+   3f9a4:      	adrp	x0, 0x31000
+   3f9a8:      	add	x0, x0, #0x906
+   3f9ac:      	mov	w1, #0x2f
+   3f9b0:      	mov	w2, #0x61
+   3f9b4:      	bl	0xceda0 <__strrchr_chk@plt>
+   3f9b8:      	adrp	x1, 0x38000
+   3f9bc:      	add	x1, x1, #0x46f
+   3f9c0:      	adrp	x2, 0x31000
+   3f9c4:      	add	x2, x2, #0x1fa
+   3f9c8:      	adrp	x4, 0x32000
+   3f9cc:      	add	x4, x4, #0xf4c
+   3f9d0:      	adrp	x6, 0x2d000
+   3f9d4:      	add	x6, x6, #0x910
+   3f9d8:      	add	x3, x0, #0x1
+   3f9dc:      	mov	w0, #0x3
+   3f9e0:      	mov	w5, #0x110
+   3f9e4:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3f9e8:      	b	0x3fa28 <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE+0xb8>
+   3f9ec:      	adrp	x0, 0x31000
+   3f9f0:      	add	x0, x0, #0x906
+   3f9f4:      	mov	w1, #0x2f
+   3f9f8:      	mov	w2, #0x61
+   3f9fc:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fa00:      	adrp	x1, 0x38000
+   3fa04:      	add	x1, x1, #0x46f
+   3fa08:      	adrp	x2, 0x2e000
+   3fa0c:      	add	x2, x2, #0x4ea
+   3fa10:      	adrp	x4, 0x32000
+   3fa14:      	add	x4, x4, #0xf4c
+   3fa18:      	add	x3, x0, #0x1
+   3fa1c:      	mov	w0, #0x3
+   3fa20:      	mov	w5, #0x111
+   3fa24:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fa28:      	mov	w0, wzr
+   3fa2c:      	ldp	x30, x19, [sp], #0x10
+   3fa30:      	ret
+
+000000000003fa34 <_ZNK2ge9AttrValue9GetStringEv>:
+   3fa34:      	ldr	x0, [x0, #0x10]
+   3fa38:      	cbz	x0, 0x3fa48 <_ZNK2ge9AttrValue9GetStringEv+0x14>
+   3fa3c:      	ldr	x8, [x0]
+   3fa40:      	ldr	x1, [x8, #0x30]
+   3fa44:      	br	x1
+   3fa48:      	str	x30, [sp, #-0x10]!
+   3fa4c:      	adrp	x0, 0x31000
+   3fa50:      	add	x0, x0, #0x906
+   3fa54:      	mov	w1, #0x2f
+   3fa58:      	mov	w2, #0x61
+   3fa5c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fa60:      	adrp	x1, 0x38000
+   3fa64:      	add	x1, x1, #0x46f
+   3fa68:      	adrp	x2, 0x2e000
+   3fa6c:      	add	x2, x2, #0x4ea
+   3fa70:      	adrp	x4, 0x36000
+   3fa74:      	add	x4, x4, #0x46
+   3fa78:      	add	x3, x0, #0x1
+   3fa7c:      	mov	w0, #0x3
+   3fa80:      	mov	w5, #0x11a
+   3fa84:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fa88:      	nop
+   3fa8c:      	adr	x0, #0x9ff7c
+   3fa90:      	ldr	x30, [sp], #0x10
+   3fa94:      	ret
+
+000000000003fa98 <_ZN2ge9AttrValue10CreateFromERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE>:
+   3fa98:      	str	x30, [sp, #-0x20]!
+   3fa9c:      	stp	x20, x19, [sp, #0x10]
+   3faa0:      	mov	x19, x0
+   3faa4:      	mov	x0, x8
+   3faa8:      	mov	x20, x8
+   3faac:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3fab0:      	mov	x0, x20
+   3fab4:      	mov	x1, x19
+   3fab8:      	ldp	x20, x19, [sp, #0x10]
+   3fabc:      	ldr	x30, [sp], #0x20
+   3fac0:      	b	0xcef10 <_ZN2ge9AttrValue9SetStringERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE@plt>
+
+000000000003fac4 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE>:
+   3fac4:      	str	x30, [sp, #-0x20]!
+   3fac8:      	stp	x20, x19, [sp, #0x10]
+   3facc:      	ldr	x20, [x1]
+   3fad0:      	cbz	x20, 0x3fb1c <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x58>
+   3fad4:      	ldr	w8, [x0, #0x1c]
+   3fad8:      	mov	x19, x0
+   3fadc:      	cbz	w8, 0x3fae8 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x24>
+   3fae0:      	cmp	w8, #0x6
+   3fae4:      	b.ne	0x3fb58 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x94>
+   3fae8:      	ldr	x0, [x19, #0x10]
+   3faec:      	cbz	x0, 0x3fb9c <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0xd8>
+   3faf0:      	ldr	x8, [x0]
+   3faf4:      	ldr	x8, [x8, #0xc8]
+   3faf8:      	blr	x8
+   3fafc:      	mov	x1, x0
+   3fb00:      	mov	x0, x20
+   3fb04:      	bl	0xcef50 <_ZNK2ge6Tensor11SerializeToEPN4hiai10ITensorDefE@plt>
+   3fb08:      	tbz	w0, #0x0, 0x3fbdc <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x118>
+   3fb0c:      	mov	w8, #0x6
+   3fb10:      	mov	w0, #0x1
+   3fb14:      	str	w8, [x19, #0x1c]
+   3fb18:      	b	0x3fc24 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x160>
+   3fb1c:      	adrp	x0, 0x31000
+   3fb20:      	add	x0, x0, #0x906
+   3fb24:      	mov	w1, #0x2f
+   3fb28:      	mov	w2, #0x61
+   3fb2c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fb30:      	adrp	x1, 0x38000
+   3fb34:      	add	x1, x1, #0x46f
+   3fb38:      	adrp	x2, 0x2d000
+   3fb3c:      	add	x2, x2, #0x916
+   3fb40:      	adrp	x4, 0x2d000
+   3fb44:      	add	x4, x4, #0x93c
+   3fb48:      	add	x3, x0, #0x1
+   3fb4c:      	mov	w0, #0x3
+   3fb50:      	mov	w5, #0x127
+   3fb54:      	b	0x3fbd4 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x110>
+   3fb58:      	adrp	x0, 0x31000
+   3fb5c:      	add	x0, x0, #0x906
+   3fb60:      	mov	w1, #0x2f
+   3fb64:      	mov	w2, #0x61
+   3fb68:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fb6c:      	adrp	x1, 0x38000
+   3fb70:      	add	x1, x1, #0x46f
+   3fb74:      	adrp	x2, 0x35000
+   3fb78:      	add	x2, x2, #0x1e0
+   3fb7c:      	adrp	x4, 0x2d000
+   3fb80:      	add	x4, x4, #0x93c
+   3fb84:      	adrp	x6, 0x2d000
+   3fb88:      	add	x6, x6, #0x910
+   3fb8c:      	add	x3, x0, #0x1
+   3fb90:      	mov	w0, #0x3
+   3fb94:      	mov	w5, #0x128
+   3fb98:      	b	0x3fc1c <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x158>
+   3fb9c:      	adrp	x0, 0x31000
+   3fba0:      	add	x0, x0, #0x906
+   3fba4:      	mov	w1, #0x2f
+   3fba8:      	mov	w2, #0x61
+   3fbac:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fbb0:      	adrp	x1, 0x38000
+   3fbb4:      	add	x1, x1, #0x46f
+   3fbb8:      	adrp	x2, 0x2e000
+   3fbbc:      	add	x2, x2, #0x4ea
+   3fbc0:      	adrp	x4, 0x2d000
+   3fbc4:      	add	x4, x4, #0x93c
+   3fbc8:      	add	x3, x0, #0x1
+   3fbcc:      	mov	w0, #0x3
+   3fbd0:      	mov	w5, #0x129
+   3fbd4:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fbd8:      	b	0x3fc20 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE+0x15c>
+   3fbdc:      	adrp	x0, 0x31000
+   3fbe0:      	add	x0, x0, #0x906
+   3fbe4:      	mov	w1, #0x2f
+   3fbe8:      	mov	w2, #0x61
+   3fbec:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fbf0:      	adrp	x1, 0x38000
+   3fbf4:      	add	x1, x1, #0x46f
+   3fbf8:      	adrp	x2, 0x2f000
+   3fbfc:      	add	x2, x2, #0xa76
+   3fc00:      	adrp	x4, 0x2d000
+   3fc04:      	add	x4, x4, #0x93c
+   3fc08:      	adrp	x6, 0x2d000
+   3fc0c:      	add	x6, x6, #0x910
+   3fc10:      	add	x3, x0, #0x1
+   3fc14:      	mov	w0, #0x3
+   3fc18:      	mov	w5, #0x12b
+   3fc1c:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fc20:      	mov	w0, wzr
+   3fc24:      	ldp	x20, x19, [sp, #0x10]
+   3fc28:      	ldr	x30, [sp], #0x20
+   3fc2c:      	ret
+
+000000000003fc30 <_ZNK2ge9AttrValue9GetTensorEv>:
+   3fc30:      	sub	sp, sp, #0x40
+   3fc34:      	str	x30, [sp, #0x20]
+   3fc38:      	stp	x20, x19, [sp, #0x30]
+   3fc3c:      	mrs	x20, TPIDR_EL0
+   3fc40:      	mov	x19, x8
+   3fc44:      	ldr	x9, [x20, #0x28]
+   3fc48:      	str	x9, [sp, #0x18]
+   3fc4c:      	ldr	x0, [x0, #0x10]
+   3fc50:      	cbz	x0, 0x3fc8c <_ZNK2ge9AttrValue9GetTensorEv+0x5c>
+   3fc54:      	ldr	x8, [x0]
+   3fc58:      	ldr	x8, [x8, #0xc8]
+   3fc5c:      	blr	x8
+   3fc60:      	str	x0, [sp, #0x10]
+   3fc64:      	add	x0, sp, #0x10
+   3fc68:      	add	x1, sp, #0xc
+   3fc6c:      	mov	x8, x19
+   3fc70:      	strb	wzr, [sp, #0xc]
+   3fc74:      	bl	0x3fcf0 <_ZNK2ge9AttrValue9GetTensorEv+0xc0>
+   3fc78:      	ldr	x8, [x20, #0x28]
+   3fc7c:      	ldr	x9, [sp, #0x18]
+   3fc80:      	cmp	x8, x9
+   3fc84:      	b.eq	0x3fcdc <_ZNK2ge9AttrValue9GetTensorEv+0xac>
+   3fc88:      	b	0x3fcec <_ZNK2ge9AttrValue9GetTensorEv+0xbc>
+   3fc8c:      	adrp	x0, 0x31000
+   3fc90:      	add	x0, x0, #0x906
+   3fc94:      	mov	w1, #0x2f
+   3fc98:      	mov	w2, #0x61
+   3fc9c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fca0:      	adrp	x1, 0x38000
+   3fca4:      	add	x1, x1, #0x46f
+   3fca8:      	adrp	x2, 0x2e000
+   3fcac:      	add	x2, x2, #0x4ea
+   3fcb0:      	adrp	x4, 0x37000
+   3fcb4:      	add	x4, x4, #0x93f
+   3fcb8:      	add	x3, x0, #0x1
+   3fcbc:      	mov	w0, #0x3
+   3fcc0:      	mov	w5, #0x132
+   3fcc4:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fcc8:      	ldr	x8, [x20, #0x28]
+   3fccc:      	ldr	x9, [sp, #0x18]
+   3fcd0:      	cmp	x8, x9
+   3fcd4:      	b.ne	0x3fcec <_ZNK2ge9AttrValue9GetTensorEv+0xbc>
+   3fcd8:      	stp	xzr, xzr, [x19]
+   3fcdc:      	ldp	x20, x19, [sp, #0x30]
+   3fce0:      	ldr	x30, [sp, #0x20]
+   3fce4:      	add	sp, sp, #0x40
+   3fce8:      	ret
+   3fcec:      	bl	0xcee00 <__stack_chk_fail@plt>
+   3fcf0:      	str	x30, [sp, #-0x30]!
+   3fcf4:      	stp	x22, x21, [sp, #0x10]
+   3fcf8:      	stp	x20, x19, [sp, #0x20]
+   3fcfc:      	mov	x21, x1
+   3fd00:      	adrp	x1, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3fd04:      	mov	x22, x0
+   3fd08:      	ldr	x1, [x1, #0x3e8]
+   3fd0c:      	mov	w0, #0x68
+   3fd10:      	mov	x19, x8
+   3fd14:      	bl	0xcef70 <_ZnwmRKSt9nothrow_t@plt>
+   3fd18:      	mov	x20, x0
+   3fd1c:      	cbz	x0, 0x3fd30 <_ZNK2ge9AttrValue9GetTensorEv+0x100>
+   3fd20:      	ldr	x1, [x22]
+   3fd24:      	ldrb	w2, [x21]
+   3fd28:      	mov	x0, x20
+   3fd2c:      	bl	0xcef80 <_ZN2ge6TensorC1EPN4hiai10ITensorDefEb@plt>
+   3fd30:      	mov	w0, #0x20
+   3fd34:      	str	x20, [x19]
+   3fd38:      	bl	0xced10 <_Znwm@plt>
+   3fd3c:      	adrp	x8, 0xda000 <_ZTVN4hiai10ProtoOpDefE+0x2128>
+   3fd40:      	ldr	x8, [x8, #0x3f0]
+   3fd44:      	stp	xzr, x20, [x0, #0x10]
+   3fd48:      	str	x0, [x19, #0x8]
+   3fd4c:      	ldp	x20, x19, [sp, #0x20]
+   3fd50:      	ldp	x22, x21, [sp, #0x10]
+   3fd54:      	add	x8, x8, #0x10
+   3fd58:      	stp	x8, xzr, [x0]
+   3fd5c:      	ldr	x30, [sp], #0x30
+   3fd60:      	ret
+
+000000000003fd64 <_ZN2ge9AttrValue10CreateFromERKNSt6__ndk110shared_ptrINS_6TensorEEE>:
+   3fd64:      	str	x30, [sp, #-0x20]!
+   3fd68:      	stp	x20, x19, [sp, #0x10]
+   3fd6c:      	mov	x19, x0
+   3fd70:      	mov	x0, x8
+   3fd74:      	mov	x20, x8
+   3fd78:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3fd7c:      	mov	x0, x20
+   3fd80:      	mov	x1, x19
+   3fd84:      	ldp	x20, x19, [sp, #0x10]
+   3fd88:      	ldr	x30, [sp], #0x20
+   3fd8c:      	b	0xcef40 <_ZN2ge9AttrValue9SetTensorERKNSt6__ndk110shared_ptrINS_6TensorEEE@plt>
+
+000000000003fd90 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE>:
+   3fd90:      	str	x30, [sp, #-0x20]!
+   3fd94:      	stp	x20, x19, [sp, #0x10]
+   3fd98:      	ldr	w8, [x0, #0x1c]
+   3fd9c:      	mov	x19, x0
+   3fda0:      	mov	x20, x1
+   3fda4:      	cbz	w8, 0x3fdb0 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x20>
+   3fda8:      	cmp	w8, #0x9
+   3fdac:      	b.ne	0x3fde8 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x58>
+   3fdb0:      	ldr	x0, [x19, #0x10]
+   3fdb4:      	cbz	x0, 0x3fe2c <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x9c>
+   3fdb8:      	ldr	x8, [x0]
+   3fdbc:      	ldr	x8, [x8, #0x98]
+   3fdc0:      	blr	x8
+   3fdc4:      	cbz	x0, 0x3fe6c <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0xdc>
+   3fdc8:      	ldr	x8, [x0]
+   3fdcc:      	ldr	x1, [x20, #0x8]
+   3fdd0:      	ldr	x8, [x8, #0x10]
+   3fdd4:      	blr	x8
+   3fdd8:      	mov	w8, #0x9
+   3fddc:      	mov	w0, #0x1
+   3fde0:      	str	w8, [x19, #0x1c]
+   3fde4:      	b	0x3feb4 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x124>
+   3fde8:      	adrp	x0, 0x31000
+   3fdec:      	add	x0, x0, #0x906
+   3fdf0:      	mov	w1, #0x2f
+   3fdf4:      	mov	w2, #0x61
+   3fdf8:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fdfc:      	adrp	x1, 0x38000
+   3fe00:      	add	x1, x1, #0x46f
+   3fe04:      	adrp	x2, 0x38000
+   3fe08:      	add	x2, x2, #0xcf6
+   3fe0c:      	adrp	x4, 0x2d000
+   3fe10:      	add	x4, x4, #0x946
+   3fe14:      	adrp	x6, 0x2d000
+   3fe18:      	add	x6, x6, #0x910
+   3fe1c:      	add	x3, x0, #0x1
+   3fe20:      	mov	w0, #0x3
+   3fe24:      	mov	w5, #0x13f
+   3fe28:      	b	0x3feac <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x11c>
+   3fe2c:      	adrp	x0, 0x31000
+   3fe30:      	add	x0, x0, #0x906
+   3fe34:      	mov	w1, #0x2f
+   3fe38:      	mov	w2, #0x61
+   3fe3c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fe40:      	adrp	x1, 0x38000
+   3fe44:      	add	x1, x1, #0x46f
+   3fe48:      	adrp	x2, 0x2e000
+   3fe4c:      	add	x2, x2, #0x4ea
+   3fe50:      	adrp	x4, 0x2d000
+   3fe54:      	add	x4, x4, #0x946
+   3fe58:      	add	x3, x0, #0x1
+   3fe5c:      	mov	w0, #0x3
+   3fe60:      	mov	w5, #0x140
+   3fe64:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3fe68:      	b	0x3feb0 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE+0x120>
+   3fe6c:      	adrp	x0, 0x31000
+   3fe70:      	add	x0, x0, #0x906
+   3fe74:      	mov	w1, #0x2f
+   3fe78:      	mov	w2, #0x61
+   3fe7c:      	bl	0xceda0 <__strrchr_chk@plt>
+   3fe80:      	adrp	x1, 0x38000
+   3fe84:      	add	x1, x1, #0x46f
+   3fe88:      	adrp	x2, 0x30000
+   3fe8c:      	add	x2, x2, #0xab7
+   3fe90:      	adrp	x4, 0x2d000
+   3fe94:      	add	x4, x4, #0x946
+   3fe98:      	adrp	x6, 0x2d000
+   3fe9c:      	add	x6, x6, #0x910
+   3fea0:      	add	x3, x0, #0x1
+   3fea4:      	mov	w0, #0x3
+   3fea8:      	mov	w5, #0x142
+   3feac:      	bl	0xcedb0 <AI_Log_Print@plt>
+   3feb0:      	mov	w0, wzr
+   3feb4:      	ldp	x20, x19, [sp, #0x10]
+   3feb8:      	ldr	x30, [sp], #0x20
+   3febc:      	ret
+
+000000000003fec0 <_ZNK2ge9AttrValue13GetNamedAttrsEv>:
+   3fec0:      	stp	x30, x19, [sp, #-0x10]!
+   3fec4:      	ldr	x0, [x0, #0x10]
+   3fec8:      	mov	x19, x8
+   3fecc:      	cbz	x0, 0x3fee4 <_ZNK2ge9AttrValue13GetNamedAttrsEv+0x24>
+   3fed0:      	ldr	x8, [x0]
+   3fed4:      	ldr	x8, [x8, #0x98]
+   3fed8:      	blr	x8
+   3fedc:      	mov	x1, x0
+   3fee0:      	b	0x3fee8 <_ZNK2ge9AttrValue13GetNamedAttrsEv+0x28>
+   3fee4:      	mov	x1, xzr
+   3fee8:      	mov	x0, x19
+   3feec:      	mov	w2, wzr
+   3fef0:      	ldp	x30, x19, [sp], #0x10
+   3fef4:      	b	0xcefc0 <_ZN2ge9AttrValue10NamedAttrsC1EPN4hiai13INamedAttrDefEb@plt>
+
+000000000003fef8 <_ZN2ge9AttrValue10CreateFromERKNS0_10NamedAttrsE>:
+   3fef8:      	str	x30, [sp, #-0x20]!
+   3fefc:      	stp	x20, x19, [sp, #0x10]
+   3ff00:      	mov	x19, x0
+   3ff04:      	mov	x0, x8
+   3ff08:      	mov	x20, x8
+   3ff0c:      	bl	0xceea0 <_ZN2ge9AttrValueC1Ev@plt>
+   3ff10:      	mov	x0, x20
+   3ff14:      	mov	x1, x19
+   3ff18:      	ldp	x20, x19, [sp, #0x10]
+   3ff1c:      	ldr	x30, [sp], #0x20
+   3ff20:      	b	0xcefa0 <_ZN2ge9AttrValue13SetNamedAttrsERKNS0_10NamedAttrsE@plt>
+
+000000000003ff24 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE>:
+   3ff24:      	stp	x30, x21, [sp, #-0x20]!
+   3ff28:      	stp	x20, x19, [sp, #0x10]
+   3ff2c:      	ldr	x8, [x1]
+   3ff30:      	cbz	x8, 0x3ffcc <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0xa8>
+   3ff34:      	mov	x19, x0
+   3ff38:      	ldr	x0, [x0, #0x10]
+   3ff3c:      	cbz	x0, 0x40008 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0xe4>
+   3ff40:      	ldr	w8, [x19, #0x1c]
+   3ff44:      	orr	w8, w8, #0x8
+   3ff48:      	cmp	w8, #0x8
+   3ff4c:      	b.ne	0x40044 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x120>
+   3ff50:      	ldr	x8, [x0]
+   3ff54:      	mov	x20, x1
+   3ff58:      	ldr	x8, [x8, #0xe0]
+   3ff5c:      	blr	x8
+   3ff60:      	cbz	x0, 0x4008c <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x168>
+   3ff64:      	mov	x21, x0
+   3ff68:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3ff6c:      	bl	0xceff0 <_ZN4hiai12ProtoFactory14CreateGraphDefEv@plt>
+   3ff70:      	ldr	x8, [x20]
+   3ff74:      	cbz	x8, 0x400c8 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1a4>
+   3ff78:      	ldr	x9, [x8]
+   3ff7c:      	mov	x20, x0
+   3ff80:      	mov	x0, x8
+   3ff84:      	ldr	x9, [x9, #0x78]
+   3ff88:      	blr	x9
+   3ff8c:      	mov	x1, x20
+   3ff90:      	bl	0xcf000 <_ZNK2ge15GraphSerializer11SerializeToEPN4hiai9IGraphDefE@plt>
+   3ff94:      	tbz	w0, #0x0, 0x40114 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1f0>
+   3ff98:      	ldr	x8, [x21]
+   3ff9c:      	mov	x0, x21
+   3ffa0:      	mov	x1, x20
+   3ffa4:      	ldr	x8, [x8, #0x38]
+   3ffa8:      	blr	x8
+   3ffac:      	mov	w21, w0
+   3ffb0:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   3ffb4:      	mov	x1, x20
+   3ffb8:      	bl	0xcf010 <_ZN4hiai12ProtoFactory15DestroyGraphDefEPNS_9IGraphDefE@plt>
+   3ffbc:      	mov	w8, #0x8
+   3ffc0:      	and	w0, w21, #0x1
+   3ffc4:      	str	w8, [x19, #0x1c]
+   3ffc8:      	b	0x40108 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1e4>
+   3ffcc:      	adrp	x0, 0x31000
+   3ffd0:      	add	x0, x0, #0x906
+   3ffd4:      	mov	w1, #0x2f
+   3ffd8:      	mov	w2, #0x61
+   3ffdc:      	bl	0xceda0 <__strrchr_chk@plt>
+   3ffe0:      	adrp	x1, 0x38000
+   3ffe4:      	add	x1, x1, #0x46f
+   3ffe8:      	adrp	x2, 0x2d000
+   3ffec:      	add	x2, x2, #0x916
+   3fff0:      	adrp	x4, 0x2e000
+   3fff4:      	add	x4, x4, #0xec8
+   3fff8:      	add	x3, x0, #0x1
+   3fffc:      	mov	w0, #0x3
+   40000:      	mov	w5, #0x159
+   40004:      	b	0x40100 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1dc>
+   40008:      	adrp	x0, 0x31000
+   4000c:      	add	x0, x0, #0x906
+   40010:      	mov	w1, #0x2f
+   40014:      	mov	w2, #0x61
+   40018:      	bl	0xceda0 <__strrchr_chk@plt>
+   4001c:      	adrp	x1, 0x38000
+   40020:      	add	x1, x1, #0x46f
+   40024:      	adrp	x2, 0x2e000
+   40028:      	add	x2, x2, #0x4ea
+   4002c:      	adrp	x4, 0x2e000
+   40030:      	add	x4, x4, #0xec8
+   40034:      	add	x3, x0, #0x1
+   40038:      	mov	w0, #0x3
+   4003c:      	mov	w5, #0x15a
+   40040:      	b	0x40100 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1dc>
+   40044:      	adrp	x0, 0x31000
+   40048:      	add	x0, x0, #0x906
+   4004c:      	mov	w1, #0x2f
+   40050:      	mov	w2, #0x61
+   40054:      	bl	0xceda0 <__strrchr_chk@plt>
+   40058:      	adrp	x1, 0x38000
+   4005c:      	add	x1, x1, #0x46f
+   40060:      	adrp	x2, 0x37000
+   40064:      	add	x2, x2, #0x1d0
+   40068:      	adrp	x4, 0x2e000
+   4006c:      	add	x4, x4, #0xec8
+   40070:      	adrp	x6, 0x2d000
+   40074:      	add	x6, x6, #0x910
+   40078:      	add	x3, x0, #0x1
+   4007c:      	mov	w0, #0x3
+   40080:      	mov	w5, #0x15b
+   40084:      	bl	0xcedb0 <AI_Log_Print@plt>
+   40088:      	b	0x40104 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1e0>
+   4008c:      	adrp	x0, 0x31000
+   40090:      	add	x0, x0, #0x906
+   40094:      	mov	w1, #0x2f
+   40098:      	mov	w2, #0x61
+   4009c:      	bl	0xceda0 <__strrchr_chk@plt>
+   400a0:      	adrp	x1, 0x38000
+   400a4:      	add	x1, x1, #0x46f
+   400a8:      	adrp	x2, 0x38000
+   400ac:      	add	x2, x2, #0x411
+   400b0:      	adrp	x4, 0x2e000
+   400b4:      	add	x4, x4, #0xec8
+   400b8:      	add	x3, x0, #0x1
+   400bc:      	mov	w0, #0x3
+   400c0:      	mov	w5, #0x15e
+   400c4:      	b	0x40100 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1dc>
+   400c8:      	adrp	x0, 0x31000
+   400cc:      	add	x0, x0, #0x906
+   400d0:      	mov	w1, #0x2f
+   400d4:      	mov	w2, #0x61
+   400d8:      	bl	0xceda0 <__strrchr_chk@plt>
+   400dc:      	adrp	x1, 0x38000
+   400e0:      	add	x1, x1, #0x46f
+   400e4:      	adrp	x2, 0x2d000
+   400e8:      	add	x2, x2, #0x916
+   400ec:      	adrp	x4, 0x2e000
+   400f0:      	add	x4, x4, #0xec8
+   400f4:      	add	x3, x0, #0x1
+   400f8:      	mov	w0, #0x3
+   400fc:      	mov	w5, #0x161
+   40100:      	bl	0xcedb0 <AI_Log_Print@plt>
+   40104:      	mov	w0, wzr
+   40108:      	ldp	x20, x19, [sp, #0x10]
+   4010c:      	ldp	x30, x21, [sp], #0x20
+   40110:      	ret
+   40114:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   40118:      	mov	x1, x20
+   4011c:      	bl	0xcf010 <_ZN4hiai12ProtoFactory15DestroyGraphDefEPNS_9IGraphDefE@plt>
+   40120:      	b	0x40104 <_ZN2ge9AttrValue8SetGraphERKNSt6__ndk110shared_ptrINS_12ComputeGraphEEE+0x1e0>
+
+0000000000040124 <_ZNK2ge9AttrValue8GetGraphEv>:
+   40124:      	sub	sp, sp, #0x50
+   40128:      	str	x30, [sp, #0x20]
+   4012c:      	stp	x22, x21, [sp, #0x30]
+   40130:      	stp	x20, x19, [sp, #0x40]
+   40134:      	mrs	x22, TPIDR_EL0
+   40138:      	mov	x19, x8
+   4013c:      	ldr	x9, [x22, #0x28]
+   40140:      	str	x9, [sp, #0x18]
+   40144:      	ldr	x0, [x0, #0x10]
+   40148:      	cbz	x0, 0x401c0 <_ZNK2ge9AttrValue8GetGraphEv+0x9c>
+   4014c:      	ldr	x8, [x0]
+   40150:      	ldr	x8, [x8, #0xe0]
+   40154:      	blr	x8
+   40158:      	cbz	x0, 0x401fc <_ZNK2ge9AttrValue8GetGraphEv+0xd8>
+   4015c:      	mov	x21, x0
+   40160:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   40164:      	bl	0xceff0 <_ZN4hiai12ProtoFactory14CreateGraphDefEv@plt>
+   40168:      	cbz	x0, 0x40238 <_ZNK2ge9AttrValue8GetGraphEv+0x114>
+   4016c:      	ldr	x8, [x0]
+   40170:      	mov	x1, x21
+   40174:      	mov	x20, x0
+   40178:      	ldr	x8, [x8, #0x38]
+   4017c:      	blr	x8
+   40180:      	tbz	w0, #0x0, 0x4029c <_ZNK2ge9AttrValue8GetGraphEv+0x178>
+   40184:      	mov	x8, sp
+   40188:      	mov	x0, x20
+   4018c:      	mov	w1, #0x1
+   40190:      	bl	0xcf030 <_ZN2ge12ComputeGraph4MakeEPN4hiai9IGraphDefEb@plt>
+   40194:      	ldr	x0, [sp]
+   40198:      	cbz	x0, 0x402ac <_ZNK2ge9AttrValue8GetGraphEv+0x188>
+   4019c:      	ldr	x8, [x0]
+   401a0:      	ldr	x8, [x8, #0x78]
+   401a4:      	blr	x8
+   401a8:      	bl	0xcf040 <_ZN2ge15GraphSerializer11UnSerializeEv@plt>
+   401ac:      	tbz	w0, #0x0, 0x402b8 <_ZNK2ge9AttrValue8GetGraphEv+0x194>
+   401b0:      	ldr	q0, [sp]
+   401b4:      	str	q0, [x19]
+   401b8:      	mov	x19, sp
+   401bc:      	b	0x402b8 <_ZNK2ge9AttrValue8GetGraphEv+0x194>
+   401c0:      	adrp	x0, 0x31000
+   401c4:      	add	x0, x0, #0x906
+   401c8:      	mov	w1, #0x2f
+   401cc:      	mov	w2, #0x61
+   401d0:      	bl	0xceda0 <__strrchr_chk@plt>
+   401d4:      	adrp	x1, 0x38000
+   401d8:      	add	x1, x1, #0x46f
+   401dc:      	adrp	x2, 0x2e000
+   401e0:      	add	x2, x2, #0x4ea
+   401e4:      	adrp	x4, 0x32000
+   401e8:      	add	x4, x4, #0xf56
+   401ec:      	add	x3, x0, #0x1
+   401f0:      	mov	w0, #0x3
+   401f4:      	mov	w5, #0x170
+   401f8:      	b	0x40270 <_ZNK2ge9AttrValue8GetGraphEv+0x14c>
+   401fc:      	adrp	x0, 0x31000
+   40200:      	add	x0, x0, #0x906
+   40204:      	mov	w1, #0x2f
+   40208:      	mov	w2, #0x61
+   4020c:      	bl	0xceda0 <__strrchr_chk@plt>
+   40210:      	adrp	x1, 0x38000
+   40214:      	add	x1, x1, #0x46f
+   40218:      	adrp	x2, 0x38000
+   4021c:      	add	x2, x2, #0x411
+   40220:      	adrp	x4, 0x32000
+   40224:      	add	x4, x4, #0xf56
+   40228:      	add	x3, x0, #0x1
+   4022c:      	mov	w0, #0x3
+   40230:      	mov	w5, #0x173
+   40234:      	b	0x40270 <_ZNK2ge9AttrValue8GetGraphEv+0x14c>
+   40238:      	adrp	x0, 0x31000
+   4023c:      	add	x0, x0, #0x906
+   40240:      	mov	w1, #0x2f
+   40244:      	mov	w2, #0x61
+   40248:      	bl	0xceda0 <__strrchr_chk@plt>
+   4024c:      	adrp	x1, 0x38000
+   40250:      	add	x1, x1, #0x46f
+   40254:      	adrp	x2, 0x2f000
+   40258:      	add	x2, x2, #0xabf
+   4025c:      	adrp	x4, 0x32000
+   40260:      	add	x4, x4, #0xf56
+   40264:      	add	x3, x0, #0x1
+   40268:      	mov	w0, #0x3
+   4026c:      	mov	w5, #0x176
+   40270:      	bl	0xcedb0 <AI_Log_Print@plt>
+   40274:      	ldr	x8, [x22, #0x28]
+   40278:      	ldr	x9, [sp, #0x18]
+   4027c:      	cmp	x8, x9
+   40280:      	b.ne	0x402fc <_ZNK2ge9AttrValue8GetGraphEv+0x1d8>
+   40284:      	stp	xzr, xzr, [x19]
+   40288:      	ldp	x20, x19, [sp, #0x40]
+   4028c:      	ldr	x30, [sp, #0x20]
+   40290:      	ldp	x22, x21, [sp, #0x30]
+   40294:      	add	sp, sp, #0x50
+   40298:      	ret
+   4029c:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   402a0:      	mov	x1, x20
+   402a4:      	bl	0xcf010 <_ZN4hiai12ProtoFactory15DestroyGraphDefEPNS_9IGraphDefE@plt>
+   402a8:      	b	0x40274 <_ZNK2ge9AttrValue8GetGraphEv+0x150>
+   402ac:      	bl	0xced30 <_ZN4hiai12ProtoFactory8InstanceEv@plt>
+   402b0:      	mov	x1, x20
+   402b4:      	bl	0xcf010 <_ZN4hiai12ProtoFactory15DestroyGraphDefEPNS_9IGraphDefE@plt>
+   402b8:      	stp	xzr, xzr, [x19]
+   402bc:      	ldr	x20, [sp, #0x8]
+   402c0:      	cbz	x20, 0x402ec <_ZNK2ge9AttrValue8GetGraphEv+0x1c8>
+   402c4:      	add	x1, x20, #0x8
+   402c8:      	mov	x0, #-0x1
+   402cc:      	bl	0xcec90 <AI_Log_Print+0x9d50>
+   402d0:      	cbnz	x0, 0x402ec <_ZNK2ge9AttrValue8GetGraphEv+0x1c8>
+   402d4:      	ldr	x8, [x20]
+   402d8:      	mov	x0, x20
+   402dc:      	ldr	x8, [x8, #0x10]
+   402e0:      	blr	x8
+   402e4:      	mov	x0, x20
+   402e8:      	bl	0xcf050 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   402ec:      	ldr	x8, [x22, #0x28]
+   402f0:      	ldr	x9, [sp, #0x18]
+   402f4:      	cmp	x8, x9
+   402f8:      	b.eq	0x40288 <_ZNK2ge9AttrValue8GetGraphEv+0x164>
+   402fc:      	bl	0xcee00 <__stack_chk_fail@plt>
+
+0000000000040300 <_ZN2ge9AttrValue9SetBufferERKNS_6BufferE>:
+   40300:      	sub	sp, sp, #0x50
+   40304:      	stp	x30, x23, [sp, #0x20]
+   40308:      	stp	x22, x21, [sp, #0x30]
+   4030c:      	stp	x20, x19, [sp, #0x40]
+   40310:      	mrs	x23, TPIDR_EL0
+   40314:      	ldr	x8, [x23, #0x28]
+   40318:      	str	x8, [sp, #0x18]
+   4031c:      	ldr	x20, [x0, #0x10]
+   40320:      	cbz	x20, 0x40394 <_ZN2ge9AttrValue9SetBufferERKNS_6BufferE+0x94>
+   40324:      	ldr	w8, [x0, #0x1c]
+   40328:      	mov	x19, x0
+   4032c:      	mov	x21, x1
+   40330:      	cbz	w8, 0x4033c <_ZN2ge9AttrValue9SetBufferERKNS_6BufferE+0x3c>
+   40334:      	cmp	w8, #0x7
+   40338:      	b.ne	0x403d4 <_ZN2ge9AttrValue9SetBufferERKNS_6BufferE+0xd4>
+   4033c:      	mov	x0, x21
+   40340:      	bl	0xcf070 <_ZNK2ge6Buffer7GetDataEv@plt>
+   40344:      	mov	x22, x0
+   40348:      	mov	x0, x21
+   4034c:      	bl	0xcf080 <_ZNK2ge6Buffer7GetSizeEv@plt>
+   40350:      	mov	x2, x0
+   40354:      	mov	x0, sp
+   40358:      	mov	x1, x22
+   4035c:      	bl	0x3f4cc <_ZN2ge9AttrValue9SetCustomERKNS_11ICustomAttrE+0x108>
+   40360:      	ldr	x8, [x20]
+   40364:      	mov	x1, sp
