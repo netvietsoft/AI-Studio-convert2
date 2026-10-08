@@ -1,0 +1,452 @@
+[
+  {
+    "source": {
+      "path": "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Roaming\\npm\\node_modules\\@getpaseo\\cli\\node_modules\\@getpaseo\\plugin\\dist\\server\\process.js",
+      "bytes": 2808,
+      "sha256": "34963fa9fd4719b02628656f1afce034f6283816af7e1ab4e3adfd8a8bc48969"
+    },
+    "lines": [
+      {
+        "line": 1,
+        "literal": "import { execFile, spawn, } from \"node:child_process\";"
+      },
+      {
+        "line": 2,
+        "literal": "import { extname } from \"node:path\";"
+      },
+      {
+        "line": 3,
+        "literal": "import { promisify } from \"node:util\";"
+      },
+      {
+        "line": 4,
+        "literal": "import { isWindowsCommandScript, quoteWindowsArgument, quoteWindowsCommand, } from \"./process-internal/windows-command.js\";"
+      },
+      {
+        "line": 5,
+        "literal": "const execFileAsync = promisify(execFile);"
+      },
+      {
+        "line": 6,
+        "literal": "function hasPathSeparator(value) {"
+      },
+      {
+        "line": 7,
+        "literal": "    return value.includes(\"/\") || value.includes(\"\\\\\");"
+      },
+      {
+        "line": 8,
+        "literal": "}"
+      },
+      {
+        "line": 9,
+        "literal": "function shouldUseWindowsShell(command, requestedShell) {"
+      },
+      {
+        "line": 10,
+        "literal": "    if (isWindowsCommandScript(command)) {"
+      },
+      {
+        "line": 11,
+        "literal": "        return true;"
+      },
+      {
+        "line": 12,
+        "literal": "    }"
+      },
+      {
+        "line": 13,
+        "literal": "    if (requestedShell !== undefined) {"
+      },
+      {
+        "line": 14,
+        "literal": "        return requestedShell;"
+      },
+      {
+        "line": 15,
+        "literal": "    }"
+      },
+      {
+        "line": 16,
+        "literal": "    return process.platform === \"win32\" && !hasPathSeparator(command) && !extname(command);"
+      },
+      {
+        "line": 17,
+        "literal": "}"
+      },
+      {
+        "line": 18,
+        "literal": "export function spawnProcess(command, args, options) {"
+      },
+      {
+        "line": 19,
+        "literal": "    const spawnOptions = options ?? {};"
+      },
+      {
+        "line": 20,
+        "literal": "    const isWindows = process.platform === \"win32\";"
+      },
+      {
+        "line": 21,
+        "literal": "    const shell = shouldUseWindowsShell(command, spawnOptions.shell);"
+      },
+      {
+        "line": 22,
+        "literal": "    const shouldQuoteForShell = isWindows && shell !== false;"
+      },
+      {
+        "line": 23,
+        "literal": "    const resolvedCommand = shouldQuoteForShell ? quoteWindowsCommand(command) : command;"
+      },
+      {
+        "line": 24,
+        "literal": "    const resolvedArgs = shouldQuoteForShell ? args.map(quoteWindowsArgument) : args;"
+      },
+      {
+        "line": 25,
+        "literal": "    return spawn(resolvedCommand, resolvedArgs, {"
+      },
+      {
+        "line": 26,
+        "literal": "        ...spawnOptions,"
+      },
+      {
+        "line": 27,
+        "literal": "        env: options?.env,"
+      },
+      {
+        "line": 28,
+        "literal": "        shell,"
+      },
+      {
+        "line": 29,
+        "literal": "        signal: options?.signal,"
+      },
+      {
+        "line": 30,
+        "literal": "        windowsHide: true,"
+      },
+      {
+        "line": 31,
+        "literal": "    });"
+      },
+      {
+        "line": 32,
+        "literal": "}"
+      },
+      {
+        "line": 33,
+        "literal": "export async function execCommand(command, args, options) {"
+      },
+      {
+        "line": 34,
+        "literal": "    const isWindows = process.platform === \"win32\";"
+      },
+      {
+        "line": 35,
+        "literal": "    const shell = shouldUseWindowsShell(command, options?.shell);"
+      },
+      {
+        "line": 36,
+        "literal": "    const shouldQuoteForShell = isWindows && shell !== false;"
+      },
+      {
+        "line": 37,
+        "literal": "    const resolvedCommand = shouldQuoteForShell ? quoteWindowsCommand(command) : command;"
+      },
+      {
+        "line": 38,
+        "literal": "    const resolvedArgs = shouldQuoteForShell ? args.map(quoteWindowsArgument) : args;"
+      },
+      {
+        "line": 39,
+        "literal": "    return execFileAsync(resolvedCommand, resolvedArgs, {"
+      },
+      {
+        "line": 40,
+        "literal": "        cwd: options?.cwd,"
+      },
+      {
+        "line": 41,
+        "literal": "        env: options?.env,"
+      },
+      {
+        "line": 42,
+        "literal": "        encoding: options?.encoding ?? \"utf8\","
+      },
+      {
+        "line": 43,
+        "literal": "        signal: options?.signal,"
+      },
+      {
+        "line": 44,
+        "literal": "        killSignal: options?.killSignal,"
+      },
+      {
+        "line": 45,
+        "literal": "        timeout: options?.timeout,"
+      },
+      {
+        "line": 46,
+        "literal": "        maxBuffer: options?.maxBuffer,"
+      },
+      {
+        "line": 47,
+        "literal": "        shell,"
+      },
+      {
+        "line": 48,
+        "literal": "        windowsHide: true,"
+      },
+      {
+        "line": 49,
+        "literal": "    });"
+      },
+      {
+        "line": 50,
+        "literal": "}"
+      },
+      {
+        "line": 51,
+        "literal": "/** Force-stop a CLI, including descendants behind Windows command-script launchers. */"
+      },
+      {
+        "line": 52,
+        "literal": "export async function terminateProcess(child, signal = \"SIGKILL\") {"
+      },
+      {
+        "line": 53,
+        "literal": "    if (process.platform !== \"win32\") {"
+      },
+      {
+        "line": 54,
+        "literal": "        child.kill(signal);"
+      },
+      {
+        "line": 55,
+        "literal": "        return;"
+      },
+      {
+        "line": 56,
+        "literal": "    }"
+      },
+      {
+        "line": 57,
+        "literal": "    if (child.pid === undefined)"
+      },
+      {
+        "line": 58,
+        "literal": "        return;"
+      },
+      {
+        "line": 59,
+        "literal": "    try {"
+      },
+      {
+        "line": 60,
+        "literal": "        await execCommand(\"taskkill.exe\", [\"/PID\", String(child.pid), \"/T\", \"/F\"], {"
+      },
+      {
+        "line": 61,
+        "literal": "            shell: false,"
+      },
+      {
+        "line": 62,
+        "literal": "            timeout: 5000,"
+      },
+      {
+        "line": 63,
+        "literal": "        });"
+      },
+      {
+        "line": 64,
+        "literal": "    }"
+      },
+      {
+        "line": 65,
+        "literal": "    catch (error) {"
+      },
+      {
+        "line": 66,
+        "literal": "        // The process can finish between its close check and taskkill."
+      },
+      {
+        "line": 67,
+        "literal": "        if (!(error instanceof Error && \"code\" in error && error.code === 128))"
+      },
+      {
+        "line": 68,
+        "literal": "            throw error;"
+      },
+      {
+        "line": 69,
+        "literal": "    }"
+      },
+      {
+        "line": 70,
+        "literal": "}"
+      },
+      {
+        "line": 71,
+        "literal": "//# sourceMappingURL=process.js.map"
+      }
+    ]
+  },
+  {
+    "source": {
+      "path": "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Roaming\\npm\\node_modules\\@getpaseo\\cli\\node_modules\\@getpaseo\\server\\dist\\server\\builtin-plugins\\antigravity-provider\\server\\internal\\process.ts",
+      "bytes": 7323,
+      "sha256": "542bd90ddb8a7f6edcee7ba8a26397e205d3bc71c4bcbf9a31a4a1d602145493"
+    },
+    "lines": [
+      {
+        "line": 182,
+        "literal": "  args: string[];"
+      },
+      {
+        "line": 183,
+        "literal": "  cwd?: string;"
+      },
+      {
+        "line": 184,
+        "literal": "}"
+      },
+      {
+        "line": 185,
+        "literal": "export function probe(options: ProbeOptions): Promise<string> {"
+      },
+      {
+        "line": 186,
+        "literal": "  return new Promise((resolve, reject) => {"
+      },
+      {
+        "line": 187,
+        "literal": "    const child = spawnProcess(options.launch.command, [...options.launch.args, ...options.args], {"
+      },
+      {
+        "line": 188,
+        "literal": "      env: options.launch.env,"
+      },
+      {
+        "line": 189,
+        "literal": "      cwd: options.cwd,"
+      },
+      {
+        "line": 190,
+        "literal": "      stdio: \"pipe\","
+      },
+      {
+        "line": 191,
+        "literal": "      detached: process.platform !== \"win32\","
+      },
+      {
+        "line": 192,
+        "literal": "    });"
+      },
+      {
+        "line": 193,
+        "literal": "    let stdout = \"\";"
+      },
+      {
+        "line": 194,
+        "literal": "    let stderr = \"\";"
+      },
+      {
+        "line": 195,
+        "literal": "    const deadline = setTimeout(() => {"
+      },
+      {
+        "line": 196,
+        "literal": "      const termination = Promise.resolve(signalGroup(child, \"SIGKILL\"));"
+      },
+      {
+        "line": 197,
+        "literal": "      void termination.then(() => {"
+      },
+      {
+        "line": 198,
+        "literal": "        reject(new AntigravityError(\"Antigravity discovery timed out\", \"PROBE_TIMEOUT\"));"
+      },
+      {
+        "line": 199,
+        "literal": "        return undefined;"
+      },
+      {
+        "line": 200,
+        "literal": "      }, reject);"
+      },
+      {
+        "line": 201,
+        "literal": "    }, 60_000);"
+      },
+      {
+        "line": 202,
+        "literal": "    child.stdout.on(\"data\", (chunk: Buffer) => {"
+      },
+      {
+        "line": 203,
+        "literal": "      stdout += chunk.toString();"
+      },
+      {
+        "line": 204,
+        "literal": "    });"
+      },
+      {
+        "line": 205,
+        "literal": "    child.stderr.on(\"data\", (chunk: Buffer) => {"
+      },
+      {
+        "line": 206,
+        "literal": "      stderr = (stderr + chunk.toString()).slice(-8192);"
+      },
+      {
+        "line": 207,
+        "literal": "    });"
+      },
+      {
+        "line": 208,
+        "literal": "    child.on(\"error\", (error: Error) => {"
+      },
+      {
+        "line": 209,
+        "literal": "      clearTimeout(deadline);"
+      },
+      {
+        "line": 210,
+        "literal": "      reject(new AntigravityError(error.message, \"SPAWN_ERROR\"));"
+      },
+      {
+        "line": 211,
+        "literal": "    });"
+      },
+      {
+        "line": 212,
+        "literal": "    child.on(\"close\", (code) => {"
+      },
+      {
+        "line": 213,
+        "literal": "      clearTimeout(deadline);"
+      },
+      {
+        "line": 214,
+        "literal": "      if (code === 0) resolve(stdout);"
+      },
+      {
+        "line": 215,
+        "literal": "      else"
+      },
+      {
+        "line": 216,
+        "literal": "        reject("
+      },
+      {
+        "line": 217,
+        "literal": "          new AntigravityError("
+      },
+      {
+        "line": 218,
+        "literal": "            diagnostic(stderr.trim() || `agy exited with code ${code}`),"
+      }
+    ]
+  }
+]

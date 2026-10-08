@@ -1,0 +1,519 @@
+[
+  {
+    "source": {
+      "path": "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Roaming\\npm\\node_modules\\@getpaseo\\cli\\node_modules\\@getpaseo\\server\\dist\\server\\builtin-plugins\\antigravity-provider\\server\\internal\\signals.ts",
+      "bytes": 1247,
+      "sha256": "d30f7656d1ffe462cad1014bdace5df7544e52588235b6e53d4bd68857b08ad8"
+    },
+    "start_line": 1,
+    "end_line": 37,
+    "lines": [
+      {
+        "line": 1,
+        "text": "import { execCommand } from \"@getpaseo/plugin/server\";"
+      },
+      {
+        "line": 2,
+        "text": ""
+      },
+      {
+        "line": 3,
+        "text": "interface SignalOptions {"
+      },
+      {
+        "line": 4,
+        "text": "  platform: NodeJS.Platform;"
+      },
+      {
+        "line": 5,
+        "text": "  pid: number;"
+      },
+      {
+        "line": 6,
+        "text": "  signal: NodeJS.Signals;"
+      },
+      {
+        "line": 7,
+        "text": "}"
+      },
+      {
+        "line": 8,
+        "text": ""
+      },
+      {
+        "line": 9,
+        "text": "type SignalPlan ="
+      },
+      {
+        "line": 10,
+        "text": "  | { type: \"group\"; pid: number; signal: NodeJS.Signals }"
+      },
+      {
+        "line": 11,
+        "text": "  | { type: \"tree\"; command: \"taskkill\"; args: string[] };"
+      },
+      {
+        "line": 12,
+        "text": ""
+      },
+      {
+        "line": 13,
+        "text": "export function signalPlan(options: SignalOptions): SignalPlan {"
+      },
+      {
+        "line": 14,
+        "text": "  if (options.platform === \"win32\") {"
+      },
+      {
+        "line": 15,
+        "text": "    return { type: \"tree\", command: \"taskkill\", args: [\"/PID\", String(options.pid), \"/T\", \"/F\"] };"
+      },
+      {
+        "line": 16,
+        "text": "  }"
+      },
+      {
+        "line": 17,
+        "text": "  return { type: \"group\", pid: -options.pid, signal: options.signal };"
+      },
+      {
+        "line": 18,
+        "text": "}"
+      },
+      {
+        "line": 19,
+        "text": ""
+      },
+      {
+        "line": 20,
+        "text": "export function signalProcess(options: SignalOptions): void | Promise<void> {"
+      },
+      {
+        "line": 21,
+        "text": "  const plan = signalPlan(options);"
+      },
+      {
+        "line": 22,
+        "text": "  if (plan.type === \"tree\") return killTree(plan);"
+      },
+      {
+        "line": 23,
+        "text": "  try {"
+      },
+      {
+        "line": 24,
+        "text": "    process.kill(plan.pid, plan.signal);"
+      },
+      {
+        "line": 25,
+        "text": "  } catch (error) {"
+      },
+      {
+        "line": 26,
+        "text": "    if (!(error instanceof Error && \"code\" in error && error.code === \"ESRCH\")) throw error;"
+      },
+      {
+        "line": 27,
+        "text": "  }"
+      },
+      {
+        "line": 28,
+        "text": "}"
+      },
+      {
+        "line": 29,
+        "text": ""
+      },
+      {
+        "line": 30,
+        "text": "async function killTree(plan: Extract<SignalPlan, { type: \"tree\" }>): Promise<void> {"
+      },
+      {
+        "line": 31,
+        "text": "  try {"
+      },
+      {
+        "line": 32,
+        "text": "    await execCommand(plan.command, plan.args, { shell: false });"
+      },
+      {
+        "line": 33,
+        "text": "  } catch (error) {"
+      },
+      {
+        "line": 34,
+        "text": "    // taskkill reports an already-exited PID with exit code 128."
+      },
+      {
+        "line": 35,
+        "text": "    if (!(error instanceof Error && \"code\" in error && error.code === 128)) throw error;"
+      },
+      {
+        "line": 36,
+        "text": "  }"
+      },
+      {
+        "line": 37,
+        "text": "}"
+      }
+    ]
+  },
+  {
+    "source": {
+      "path": "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Roaming\\npm\\node_modules\\@getpaseo\\cli\\node_modules\\@getpaseo\\server\\dist\\server\\builtin-plugins\\antigravity-provider\\server\\internal\\process.ts",
+      "bytes": 7323,
+      "sha256": "542bd90ddb8a7f6edcee7ba8a26397e205d3bc71c4bcbf9a31a4a1d602145493"
+    },
+    "start_line": 120,
+    "end_line": 180,
+    "lines": [
+      {
+        "line": 120,
+        "text": "  });"
+      },
+      {
+        "line": 121,
+        "text": ""
+      },
+      {
+        "line": 122,
+        "text": "  function fail(failure: AntigravityError): void {"
+      },
+      {
+        "line": 123,
+        "text": "    clearTimeout(startupDeadline);"
+      },
+      {
+        "line": 124,
+        "text": "    if (state === \"starting\") rejectReady(failure);"
+      },
+      {
+        "line": 125,
+        "text": "    if (state === \"ready\") options.onExit(failure);"
+      },
+      {
+        "line": 126,
+        "text": "    if (state === \"exited\" || state === \"stopping\") return;"
+      },
+      {
+        "line": 127,
+        "text": "    state = \"stopping\";"
+      },
+      {
+        "line": 128,
+        "text": "    cleanup = Promise.resolve(signalGroup(child, \"SIGKILL\"));"
+      },
+      {
+        "line": 129,
+        "text": "    // The stop operation awaits cleanup and owns reporting its failure."
+      },
+      {
+        "line": 130,
+        "text": "    void cleanup.catch(() => undefined);"
+      },
+      {
+        "line": 131,
+        "text": "  }"
+      },
+      {
+        "line": 132,
+        "text": ""
+      },
+      {
+        "line": 133,
+        "text": "  return {"
+      },
+      {
+        "line": 134,
+        "text": "    ready,"
+      },
+      {
+        "line": 135,
+        "text": "    selection: selection(options.config),"
+      },
+      {
+        "line": 136,
+        "text": "    prompt(text) {"
+      },
+      {
+        "line": 137,
+        "text": "      if (state !== \"ready\")"
+      },
+      {
+        "line": 138,
+        "text": "        return Promise.reject(new AntigravityError(\"Antigravity is not ready\"));"
+      },
+      {
+        "line": 139,
+        "text": "      return new Promise<void>((resolve, reject) => {"
+      },
+      {
+        "line": 140,
+        "text": "        child.stdin.write(encodePrompt(text), (error) => {"
+      },
+      {
+        "line": 141,
+        "text": "          if (error) reject(error);"
+      },
+      {
+        "line": 142,
+        "text": "          else resolve();"
+      },
+      {
+        "line": 143,
+        "text": "        });"
+      },
+      {
+        "line": 144,
+        "text": "      });"
+      },
+      {
+        "line": 145,
+        "text": "    },"
+      },
+      {
+        "line": 146,
+        "text": "    async stop(reason) {"
+      },
+      {
+        "line": 147,
+        "text": "      if (process.platform === \"win32\") await cleanup;"
+      },
+      {
+        "line": 148,
+        "text": "      if (state === \"exited\") return;"
+      },
+      {
+        "line": 149,
+        "text": "      if (state === \"starting\") rejectReady(new AntigravityError(\"Antigravity startup canceled\"));"
+      },
+      {
+        "line": 150,
+        "text": "      clearTimeout(startupDeadline);"
+      },
+      {
+        "line": 151,
+        "text": "      state = \"stopping\";"
+      },
+      {
+        "line": 152,
+        "text": "      if (process.platform === \"win32\") {"
+      },
+      {
+        "line": 153,
+        "text": "        // Node signal emulation kills only the leader; taskkill must see the live tree."
+      },
+      {
+        "line": 154,
+        "text": "        cleanup = Promise.resolve(signalGroup(child, \"SIGKILL\"));"
+      },
+      {
+        "line": 155,
+        "text": "        await cleanup;"
+      },
+      {
+        "line": 156,
+        "text": "        await exited;"
+      },
+      {
+        "line": 157,
+        "text": "        return;"
+      },
+      {
+        "line": 158,
+        "text": "      }"
+      },
+      {
+        "line": 159,
+        "text": "      if (reason === \"close\") child.stdin.end();"
+      },
+      {
+        "line": 160,
+        "text": "      else signalGroup(child, \"SIGINT\");"
+      },
+      {
+        "line": 161,
+        "text": "      const terminate = setTimeout(() => signalGroup(child, \"SIGTERM\"), 1000);"
+      },
+      {
+        "line": 162,
+        "text": "      const kill = setTimeout(() => signalGroup(child, \"SIGKILL\"), 2000);"
+      },
+      {
+        "line": 163,
+        "text": "      await exited;"
+      },
+      {
+        "line": 164,
+        "text": "      clearTimeout(terminate);"
+      },
+      {
+        "line": 165,
+        "text": "      clearTimeout(kill);"
+      },
+      {
+        "line": 166,
+        "text": "      // A tool can keep running after its CLI leader exits."
+      },
+      {
+        "line": 167,
+        "text": "      signalGroup(child, \"SIGKILL\");"
+      },
+      {
+        "line": 168,
+        "text": "    },"
+      },
+      {
+        "line": 169,
+        "text": "  };"
+      },
+      {
+        "line": 170,
+        "text": "}"
+      },
+      {
+        "line": 171,
+        "text": ""
+      },
+      {
+        "line": 172,
+        "text": "function signalGroup("
+      },
+      {
+        "line": 173,
+        "text": "  child: ChildProcessWithoutNullStreams,"
+      },
+      {
+        "line": 174,
+        "text": "  signal: NodeJS.Signals,"
+      },
+      {
+        "line": 175,
+        "text": "): void | Promise<void> {"
+      },
+      {
+        "line": 176,
+        "text": "  if (!child.pid) return;"
+      },
+      {
+        "line": 177,
+        "text": "  return signalProcess({ platform: process.platform, pid: child.pid, signal });"
+      },
+      {
+        "line": 178,
+        "text": "}"
+      },
+      {
+        "line": 179,
+        "text": ""
+      },
+      {
+        "line": 180,
+        "text": "interface ProbeOptions {"
+      }
+    ]
+  },
+  {
+    "source": {
+      "path": "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Roaming\\npm\\node_modules\\@getpaseo\\cli\\node_modules\\@getpaseo\\server\\dist\\server\\server\\daemon-worker.js",
+      "bytes": 11223,
+      "sha256": "dd2152bfee060b4c9737a5a435570e51953ada72af26e31c91d641fbe8baf9f0"
+    },
+    "start_line": 267,
+    "end_line": 289,
+    "lines": [
+      {
+        "line": 267,
+        "text": "    }"
+      },
+      {
+        "line": 268,
+        "text": "    process.on(\"SIGTERM\", () => beginShutdown(\"SIGTERM\"));"
+      },
+      {
+        "line": 269,
+        "text": "    process.on(\"SIGINT\", () => beginShutdown(\"SIGINT\"));"
+      },
+      {
+        "line": 270,
+        "text": "    process.on(\"uncaughtException\", (err) => {"
+      },
+      {
+        "line": 271,
+        "text": "        logger.fatal({ err }, \"Uncaught exception — daemon crashing\");"
+      },
+      {
+        "line": 272,
+        "text": "        exitAfterPinoFlush();"
+      },
+      {
+        "line": 273,
+        "text": "    });"
+      },
+      {
+        "line": 274,
+        "text": "    process.on(\"unhandledRejection\", (reason) => {"
+      },
+      {
+        "line": 275,
+        "text": "        logger.fatal({ err: reason }, \"Unhandled promise rejection — daemon crashing\");"
+      },
+      {
+        "line": 276,
+        "text": "        exitAfterPinoFlush();"
+      },
+      {
+        "line": 277,
+        "text": "    });"
+      },
+      {
+        "line": 278,
+        "text": "}"
+      },
+      {
+        "line": 279,
+        "text": "// Give pino async streams a moment to flush the fatal log entry to daemon.log"
+      },
+      {
+        "line": 280,
+        "text": "// before the process exits. Without this, the last few entries that explain"
+      },
+      {
+        "line": 281,
+        "text": "// why the daemon crashed can be lost."
+      },
+      {
+        "line": 282,
+        "text": "function exitAfterPinoFlush() {"
+      },
+      {
+        "line": 283,
+        "text": "    setTimeout(() => process.exit(1), 200);"
+      },
+      {
+        "line": 284,
+        "text": "}"
+      },
+      {
+        "line": 285,
+        "text": "main().catch((err) => {"
+      },
+      {
+        "line": 286,
+        "text": "    process.stderr.write(`${err instanceof Error ? (err.stack ?? err.message) : String(err)}\\n`);"
+      },
+      {
+        "line": 287,
+        "text": "    exitAfterPinoFlush();"
+      },
+      {
+        "line": 288,
+        "text": "});"
+      },
+      {
+        "line": 289,
+        "text": "//# sourceMappingURL=daemon-worker.js.map"
+      }
+    ]
+  }
+]

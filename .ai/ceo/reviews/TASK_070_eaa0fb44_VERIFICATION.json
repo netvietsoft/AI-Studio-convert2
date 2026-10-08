@@ -1,0 +1,108 @@
+{
+  "task_id": "TASK_070",
+  "revision": 1,
+  "fingerprint": "eaa0fb44d621030bf94314fe1c15d238e409c828895c8c9d2d5e960353025fc5",
+  "verified_at": "2026-10-08T08:41:37.205139+00:00",
+  "manifest_files": 18,
+  "code_files": 3,
+  "task_and_lease_binding_verified": true,
+  "completed_within_original_deadline": true,
+  "critical_controls_rerun": [
+    {
+      "label": "sentinel",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-c",
+        "print('TASK070_READ_ONLY_SENTINEL')"
+      ],
+      "started_at": "2026-10-08T08:41:35.999280+00:00",
+      "ended_at": "2026-10-08T08:41:36.280586+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "880a683a8f3aaf0dc6fe26066b48ec072523db9eccc0a0c6b86148005ebc562a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "CREATE_NO_WINDOW": true
+    },
+    {
+      "label": "stderr_nonzero",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-c",
+        "import sys; sys.stderr.write('TASK070_CONTROLLED_STDERR\\n'); sys.exit(7)"
+      ],
+      "started_at": "2026-10-08T08:41:36.284546+00:00",
+      "ended_at": "2026-10-08T08:41:36.484105+00:00",
+      "exit_code": 7,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c8de74251f75b4ec8b2b82e1cb48fa2065ceac893ef9849e9b79179230021802",
+      "CREATE_NO_WINDOW": true
+    }
+  ],
+  "own_thread_prefix_sha_verified": true,
+  "native_events_checked": 11,
+  "source_line_checks": [
+    {
+      "path": "C:/Users/PC.DESKTOP-81LIH38/AppData/Roaming/npm/node_modules/@getpaseo/cli/node_modules/@getpaseo/server/dist/server/builtin-plugins/antigravity-provider/server/internal/signals.ts",
+      "sha256": "d30f7656d1ffe462cad1014bdace5df7544e52588235b6e53d4bd68857b08ad8",
+      "line_anchors_checked": 37
+    },
+    {
+      "path": "C:/Users/PC.DESKTOP-81LIH38/AppData/Roaming/npm/node_modules/@getpaseo/cli/node_modules/@getpaseo/server/dist/server/builtin-plugins/antigravity-provider/server/internal/process.ts",
+      "sha256": "542bd90ddb8a7f6edcee7ba8a26397e205d3bc71c4bcbf9a31a4a1d602145493",
+      "line_anchors_checked": 61
+    },
+    {
+      "path": "C:/Users/PC.DESKTOP-81LIH38/AppData/Roaming/npm/node_modules/@getpaseo/cli/node_modules/@getpaseo/server/dist/server/server/daemon-worker.js",
+      "sha256": "dd2152bfee060b4c9737a5a435570e51953ada72af26e31c91d641fbe8baf9f0",
+      "line_anchors_checked": 23
+    },
+    {
+      "path": "C:/Users/PC.DESKTOP-81LIH38/AppData/Roaming/npm/node_modules/@getpaseo/cli/node_modules/@getpaseo/plugin/dist/server/process.js",
+      "sha256": "34963fa9fd4719b02628656f1afce034f6283816af7e1ab4e3adfd8a8bc48969",
+      "line_anchors_checked": 71
+    },
+    {
+      "path": "C:/Users/PC.DESKTOP-81LIH38/AppData/Roaming/npm/node_modules/@getpaseo/cli/node_modules/@getpaseo/server/dist/server/builtin-plugins/antigravity-provider/server/internal/process.ts",
+      "sha256": "542bd90ddb8a7f6edcee7ba8a26397e205d3bc71c4bcbf9a31a4a1d602145493",
+      "line_anchors_checked": 37
+    }
+  ],
+  "log_prefix_count_verified": 35,
+  "selected_fatal_and_restart_adjacency_verified": true,
+  "ordinary_provenance_checks": [
+    "collection script exact binding",
+    "collection actual final tool-result marker",
+    "later lookup actual final tool-result marker"
+  ],
+  "ordinary_coverage": "3 artifact provenance checks of18 ordinary report artifacts >=10%; all artifact hashes and critical source/control/trace claims also checked",
+  "outer_markers": [
+    {
+      "marker": "30848a",
+      "actual_output_records": [
+        {
+          "line": 420,
+          "timestamp": "2026-10-08T07:59:44.116Z",
+          "call_id": "call_dab59399149d4de9a1733a112ba49ec8"
+        }
+      ]
+    },
+    {
+      "marker": "a1eedc",
+      "actual_output_records": [
+        {
+          "line": 467,
+          "timestamp": "2026-10-08T08:03:50.676Z",
+          "call_id": "call_7d14a263869e4387ab02e405b058df74"
+        }
+      ]
+    }
+  ],
+  "historical_abort_initiator_and_cleanup_caller": "UNKNOWN",
+  "host_recovery": "NOT_ESTABLISHED",
+  "v4_or_baseline_acceptance": false
+}

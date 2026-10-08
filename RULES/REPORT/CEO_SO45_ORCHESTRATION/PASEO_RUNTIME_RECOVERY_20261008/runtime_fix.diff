@@ -1,0 +1,38 @@
+--- original/session.ts
++++ patched/session.ts
+@@ -335,6 +335,18 @@
+       if (this.state.type === "stopping" && this.state.driver === driver)
+         this.state = { type: "dormant" };
+       return undefined;
++    }, (error: unknown) => {
++      const exitCode = error instanceof Error && "code" in error ? String(error.code) : "UNKNOWN";
++      this.emit({
++        type: "session.runtime_failed",
++        sessionId: this.options.id,
++        error: {
++          message: `Process cleanup failed (exit ${exitCode}): ${error instanceof Error ? error.message : String(error)}`,
++          code: "PROCESS_CLEANUP_FAILED",
++        },
++      });
++      // Cleanup failure does not prove the process tree stopped: preserve current state.
++      return undefined;
+     });
+   }
+ 
+--- original/supervisor.js
++++ patched/supervisor.js
+@@ -199,12 +199,14 @@
+         writeLifecycleLog("Spawning worker", { workerEntry });
+         if (spawnSpec) {
+             child = spawn(spawnSpec.command, spawnSpec.args, {
++                windowsHide: true,
+                 stdio: ["inherit", "pipe", "pipe", "ipc"],
+                 env: spawnSpec.env ?? workerEnv,
+             });
+         }
+         else {
+             child = fork(workerEntry, workerArgs, {
++                windowsHide: true,
+                 stdio: ["inherit", "pipe", "pipe", "ipc"],
+                 env: workerEnv,
+                 execArgv: workerExecArgv,

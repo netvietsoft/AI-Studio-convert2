@@ -537,6 +537,8 @@ class Controller:
             raise ControlError("TASK_CHANGED_WITHOUT_REVISION_REQUIRES_CEO_HANDOFF")
         lease_id = existing["lease_id"] if existing else f"LEASE-CEO-WORKER-{task_id}-R{meta['revision']}"
         matches = [x for x in registry.get("active_locks", []) if x.get("lease_id") == lease_id]
+        if existing and not matches:
+            raise ControlError("WORKER_LEASE_MISSING_REQUIRES_CEO_HANDOFF")
         if matches and any(x.get("status") == "REVOKED" for x in matches):
             raise ControlError("REVOKED_LEASE_REQUIRES_CEO_HANDOFF")
         if matches and (len(matches) != 1 or not existing or matches[0].get("agent_id") != agent_id or
@@ -554,6 +556,15 @@ class Controller:
         fencing = existing["fencing_token"] if existing else max(
             [int(x.get("fencing_token", 0)) for x in updated.get("active_locks", [])] + [0]) + 1
         expiry = self.clock() + 2 * 3600
+        # Renewal consumes the original task budget; it never restarts its clock.
+        if meta.get("max_minutes") is not None:
+            minutes = meta["max_minutes"]
+            if isinstance(minutes, bool) or not isinstance(minutes, (int, float)) or not (0 < minutes < float("inf")):
+                raise ControlError("INVALID_TASK_TIME_BUDGET")
+            acquired = matches[0]["acquired_at"] if matches else iso(self.clock())
+            expiry = min(expiry, epoch(acquired) + minutes * 60)
+            if self.clock() >= expiry:
+                raise ControlError("TASK_TIME_BUDGET_EXHAUSTED")
         lease = {"lease_id": lease_id, "agent_id": agent_id, "task_id": task_id,
                  "task_revision": meta["revision"], "task_sha": meta["_task_sha"], "fencing_token": fencing,
                  "files_allowed": meta["files_allowed"], "files_forbidden": forbidden, "status": "ACTIVE",

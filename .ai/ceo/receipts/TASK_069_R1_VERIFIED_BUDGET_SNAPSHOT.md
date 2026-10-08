@@ -1,5 +1,5 @@
 # TASK069 - minimal SO45 verifier repair before any new baseline
-STATUS: BLOCKED
+STATUS: ACTIVE
 ASSIGNEE: 7de71900-89f8-4633-97a9-3efaf42ea6b8
 MODIFIED_TIME: 2026-10-08T06:55:18.583768+00:00
 
@@ -8,7 +8,7 @@ MODIFIED_TIME: 2026-10-08T06:55:18.583768+00:00
   "schema_version": "2.1.2",
   "task_id": "TASK_069",
   "revision": 1,
-  "status": "BLOCKED",
+  "status": "ACTIVE",
   "assignee": "7de71900-89f8-4633-97a9-3efaf42ea6b8",
   "agent_id": "7de71900-89f8-4633-97a9-3efaf42ea6b8",
   "priority": "P0",
@@ -67,5 +67,3 @@ Independently bind existing original raw fixtures before use. Reproduce all14 me
 
 ## Output and gate
 Own source modules/tests/scripts only scripts/so45_verifier_v1/**. RULES/REPORT/TASK_069_REPORT_R1 contains00audit,01master, module contract/spec, actual validation commands/raw outputs/receipts, fixture/input/code hash bindings, PROGRESS milestones, COMPLETE2.1.2 frozen manifest and explicit untested/UNKNOWN limits. Initial links to raw/harness_history.txt must use real file; no missing alias. Full implementation and all critical checks need independent review after>=60s stable. No commit/push before CEO review; reviewed ownedbranch publication only, unrelated workspace untouched. Task69 acceptance is tooling gate ONLY: does not accept063 or satisfy064/065/066/V4 dependencies. A future fresh baseline needs separately explicitCEOrecoverytask/disposition; this task cannot self-open it. Return existing scanner after task or block; no duplicate heartbeat.
-
-CEO BUDGET DISPOSITION: BLOCKED / ESCALATION_REQUIRED. Original R1 max_minutes30/max_fix_cycles1 and attempt history unchanged. No COMPLETE/code/report observed by deadline checkpoint. Lease1018 revoked; no further writes/renewal authorized. Runtime still-running is not proof of agent death or of successful execution. Preserve original task snapshot and diagnose runtime before any distinct corrective authorization.
