@@ -1,0 +1,1 @@
+The original index wording implied an accepted baseline. Corrected before acceptance: TASK063 remains BLOCKED; comparison concerns inspected evidence only. No SO45 verdict changed. Producer chain acquire.py -> finalize.py -> correct_index.py.
