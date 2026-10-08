@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 36
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libAIModelKit.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000001b5d0 <.text>:
+   1b5d0: d503245f     	bti	c
+   1b5d4: d503201f     	nop
+   1b5d8: 101453c0     	adr	x0, #0x28a78
+   1b5dc: 14009111     	b	0x3fa20 <__cxa_finalize@plt>
+   1b5e0: d503245f     	bti	c
+   1b5e4: d65f03c0     	ret
+   1b5e8: d503245f     	bti	c
+   1b5ec: 14007ecb     	b	0x3b118 <__emutls_get_address+0x1ec>
+   1b5f0: d503245f     	bti	c
+   1b5f4: b4000060     	cbz	x0, 0x1b600 <.text+0x30>
+   1b5f8: aa0003f0     	mov	x16, x0
+   1b5fc: d61f0200     	br	x16
+   1b600: d65f03c0     	ret
+   1b604: d503245f     	bti	c
+   1b608: aa0003e1     	mov	x1, x0
+   1b60c: d503201f     	nop
+   1b610: 10ffff00     	adr	x0, #-0x20
+   1b614: d503201f     	nop
+   1b618: 101451c2     	adr	x2, #0x28a38
+   1b61c: 14009105     	b	0x3fa30 <__cxa_atexit@plt>
+   1b620: d503245f     	bti	c
+   1b624: d503201f     	nop
+   1b628: 10145143     	adr	x3, #0x28a28
+   1b62c: 14009105     	b	0x3fa40 <__register_atfork@plt>
+
+000000000001b630 <_Z14copyJsonStringPcPKc>:
+   1b630: b4000100     	cbz	x0, 0x1b650 <_Z14copyJsonStringPcPKc+0x20>
+   1b634: b40000e1     	cbz	x1, 0x1b650 <_Z14copyJsonStringPcPKc+0x20>
+   1b638: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1b63c: 910003fd     	mov	x29, sp
+   1b640: 52801fe2     	mov	w2, #0xff
+   1b644: 94009103     	bl	0x3fa50 <strncpy@plt>
+   1b648: 3903fc1f     	strb	wzr, [x0, #0xff]
+   1b64c: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1b650: d65f03c0     	ret
+
+000000000001b654 <_Z12readJsonBoolP5cJSON>:
+   1b654: b4000340     	cbz	x0, 0x1b6bc <_Z12readJsonBoolP5cJSON+0x68>
+   1b658: b9401808     	ldr	w8, [x0, #0x18]
+   1b65c: 7100051f     	cmp	w8, #0x1
+   1b660: 54000280     	b.eq	0x1b6b0 <_Z12readJsonBoolP5cJSON+0x5c>
+   1b664: 71000d1f     	cmp	w8, #0x3
+   1b668: 540001c0     	b.eq	0x1b6a0 <_Z12readJsonBoolP5cJSON+0x4c>
+   1b66c: 7100111f     	cmp	w8, #0x4
+   1b670: 54000241     	b.ne	0x1b6b8 <_Z12readJsonBoolP5cJSON+0x64>
+   1b674: f9401000     	ldr	x0, [x0, #0x20]
+   1b678: b4000220     	cbz	x0, 0x1b6bc <_Z12readJsonBoolP5cJSON+0x68>
+   1b67c: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1b680: 910003fd     	mov	x29, sp
+   1b684: d503201f     	nop
+   1b688: 30fa8fa1     	adr	x1, #-0xae0b
+   1b68c: 940090f5     	bl	0x3fa60 <strstr@plt>
+   1b690: f100001f     	cmp	x0, #0x0
+   1b694: 1a9f07e0     	cset	w0, ne
+   1b698: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1b69c: d65f03c0     	ret
+   1b6a0: b9402808     	ldr	w8, [x0, #0x28]
+   1b6a4: 7100011f     	cmp	w8, #0x0
+   1b6a8: 1a9f07e0     	cset	w0, ne
+   1b6ac: d65f03c0     	ret
+   1b6b0: 52800020     	mov	w0, #0x1
+   1b6b4: d65f03c0     	ret
+   1b6b8: 2a1f03e0     	mov	w0, wzr
+   1b6bc: d65f03c0     	ret
+
+000000000001b6c0 <_Z17loadLibraryHandlev>:
+   1b6c0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1b6c4: f9000bf3     	str	x19, [sp, #0x10]
+   1b6c8: 910003fd     	mov	x29, sp
+   1b6cc: d503201f     	nop
+   1b6d0: 10184048     	adr	x8, #0x30808
+   1b6d4: 90000193     	adrp	x19, 0x4b000
+   1b6d8: 08dffd08     	ldarb	w8, [x8]
+   1b6dc: 360001e8     	tbz	w8, #0x0, 0x1b718 <_Z17loadLibraryHandlev+0x58>
+   1b6e0: f9476a60     	ldr	x0, [x19, #0xed0]
+   1b6e4: b5000140     	cbnz	x0, 0x1b70c <_Z17loadLibraryHandlev+0x4c>
+   1b6e8: 940090e6     	bl	0x3fa80 <dlerror@plt>
+   1b6ec: aa0003e3     	mov	x3, x0
+   1b6f0: b0ffffa1     	adrp	x1, 0x10000
+   1b6f4: 91119821     	add	x1, x1, #0x466
+   1b6f8: b0ffffa2     	adrp	x2, 0x10000
+   1b6fc: 910bb042     	add	x2, x2, #0x2ec
+   1b700: 528000c0     	mov	w0, #0x6
+   1b704: 940090e3     	bl	0x3fa90 <__android_log_print@plt>
+   1b708: f9476a60     	ldr	x0, [x19, #0xed0]
+   1b70c: f9400bf3     	ldr	x19, [sp, #0x10]
+   1b710: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1b714: d65f03c0     	ret
+   1b718: d503201f     	nop
+   1b71c: 10183de0     	adr	x0, #0x307bc
+   1b720: 940090e0     	bl	0x3faa0 <__cxa_guard_acquire@plt>
+   1b724: 34fffde0     	cbz	w0, 0x1b6e0 <_Z17loadLibraryHandlev+0x20>
+   1b728: d0ffffa0     	adrp	x0, 0x11000
+   1b72c: 9101a800     	add	x0, x0, #0x6a
+   1b730: 52800021     	mov	w1, #0x1
+   1b734: 940090df     	bl	0x3fab0 <dlopen@plt>
+   1b738: f9076a60     	str	x0, [x19, #0xed0]
+   1b73c: d503201f     	nop
+   1b740: 10183cc0     	adr	x0, #0x30798
+   1b744: 940090df     	bl	0x3fac0 <__cxa_guard_release@plt>
+   1b748: 17ffffe6     	b	0x1b6e0 <_Z17loadLibraryHandlev+0x20>
+   1b74c: aa0003f3     	mov	x19, x0
+   1b750: d503201f     	nop
+   1b754: 10183c20     	adr	x0, #0x30784
+   1b758: 940090de     	bl	0x3fad0 <__cxa_guard_abort@plt>
+   1b75c: aa1303e0     	mov	x0, x19
+   1b760: 94008103     	bl	0x3bb6c <__emutls_get_address+0xc40>
+
+000000000001b764 <_Z20parseManisDeviceInfoPKci>:
+   1b764: b4000920     	cbz	x0, 0x1b888 <_Z20parseManisDeviceInfoPKci+0x124>
+   1b768: 7100003f     	cmp	w1, #0x0
+   1b76c: 540008ed     	b.le	0x1b888 <_Z20parseManisDeviceInfoPKci+0x124>
+   1b770: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1b774: f9000bf3     	str	x19, [sp, #0x10]
+   1b778: 910003fd     	mov	x29, sp
+   1b77c: 940090dd     	bl	0x3faf0 <cJSON_Parse@plt>
+   1b780: b40014c0     	cbz	x0, 0x1ba18 <_Z20parseManisDeviceInfoPKci+0x2b4>
+   1b784: 90ffffa1     	adrp	x1, 0xf000
+   1b788: 913d2421     	add	x1, x1, #0xf49
+   1b78c: aa0003f3     	mov	x19, x0
+   1b790: 940090dc     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b794: b4000180     	cbz	x0, 0x1b7c4 <_Z20parseManisDeviceInfoPKci+0x60>
+   1b798: b9401808     	ldr	w8, [x0, #0x18]
+   1b79c: 7100111f     	cmp	w8, #0x4
+   1b7a0: 54000121     	b.ne	0x1b7c4 <_Z20parseManisDeviceInfoPKci+0x60>
+   1b7a4: f9401000     	ldr	x0, [x0, #0x20]
+   1b7a8: d503201f     	nop
+   1b7ac: 30fa8681     	adr	x1, #-0xaf2f
+   1b7b0: 940090ac     	bl	0x3fa60 <strstr@plt>
+   1b7b4: f100001f     	cmp	x0, #0x0
+   1b7b8: b0000188     	adrp	x8, 0x4c000
+   1b7bc: 1a9f07e9     	cset	w9, ne
+   1b7c0: 390f8509     	strb	w9, [x8, #0x3e1]
+   1b7c4: d0ffffa1     	adrp	x1, 0x11000
+   1b7c8: 9113bc21     	add	x1, x1, #0x4ef
+   1b7cc: aa1303e0     	mov	x0, x19
+   1b7d0: 940090cc     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b7d4: b4000160     	cbz	x0, 0x1b800 <_Z20parseManisDeviceInfoPKci+0x9c>
+   1b7d8: b9401808     	ldr	w8, [x0, #0x18]
+   1b7dc: 7100111f     	cmp	w8, #0x4
+   1b7e0: 54000101     	b.ne	0x1b800 <_Z20parseManisDeviceInfoPKci+0x9c>
+   1b7e4: f9401001     	ldr	x1, [x0, #0x20]
+   1b7e8: b40000c1     	cbz	x1, 0x1b800 <_Z20parseManisDeviceInfoPKci+0x9c>
+   1b7ec: 90000180     	adrp	x0, 0x4b000
+   1b7f0: 913b8400     	add	x0, x0, #0xee1
+   1b7f4: 52801fe2     	mov	w2, #0xff
+   1b7f8: 94009096     	bl	0x3fa50 <strncpy@plt>
+   1b7fc: 3903fc1f     	strb	wzr, [x0, #0xff]
+   1b800: b0ffffa1     	adrp	x1, 0x10000
+   1b804: 911b0021     	add	x1, x1, #0x6c0
+   1b808: aa1303e0     	mov	x0, x19
+   1b80c: 940090bd     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b810: b4000160     	cbz	x0, 0x1b83c <_Z20parseManisDeviceInfoPKci+0xd8>
+   1b814: b9401808     	ldr	w8, [x0, #0x18]
+   1b818: 7100111f     	cmp	w8, #0x4
+   1b81c: 54000101     	b.ne	0x1b83c <_Z20parseManisDeviceInfoPKci+0xd8>
+   1b820: f9401001     	ldr	x1, [x0, #0x20]
+   1b824: b40000c1     	cbz	x1, 0x1b83c <_Z20parseManisDeviceInfoPKci+0xd8>
+   1b828: b0000180     	adrp	x0, 0x4c000
+   1b82c: 91038400     	add	x0, x0, #0xe1
+   1b830: 52801fe2     	mov	w2, #0xff
+   1b834: 94009087     	bl	0x3fa50 <strncpy@plt>
+   1b838: 3903fc1f     	strb	wzr, [x0, #0xff]
+   1b83c: b0ffffa1     	adrp	x1, 0x10000
+   1b840: 91075821     	add	x1, x1, #0x1d6
+   1b844: aa1303e0     	mov	x0, x19
+   1b848: 940090ae     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b84c: b4000380     	cbz	x0, 0x1b8bc <_Z20parseManisDeviceInfoPKci+0x158>
+   1b850: b9401808     	ldr	w8, [x0, #0x18]
+   1b854: 7100051f     	cmp	w8, #0x1
+   1b858: 540002e0     	b.eq	0x1b8b4 <_Z20parseManisDeviceInfoPKci+0x150>
+   1b85c: 71000d1f     	cmp	w8, #0x3
+   1b860: 54000240     	b.eq	0x1b8a8 <_Z20parseManisDeviceInfoPKci+0x144>
+   1b864: 7100111f     	cmp	w8, #0x4
+   1b868: 540001c1     	b.ne	0x1b8a0 <_Z20parseManisDeviceInfoPKci+0x13c>
+   1b86c: f9401000     	ldr	x0, [x0, #0x20]
+   1b870: b4000180     	cbz	x0, 0x1b8a0 <_Z20parseManisDeviceInfoPKci+0x13c>
+   1b874: d503201f     	nop
+   1b878: 30fa8021     	adr	x1, #-0xaffb
+   1b87c: 94009079     	bl	0x3fa60 <strstr@plt>
+   1b880: f100001f     	cmp	x0, #0x0
+   1b884: 1400000b     	b	0x1b8b0 <_Z20parseManisDeviceInfoPKci+0x14c>
+   1b888: b0ffffa1     	adrp	x1, 0x10000
+   1b88c: 91119821     	add	x1, x1, #0x466
+   1b890: d0ffffa2     	adrp	x2, 0x11000
+   1b894: 9115d842     	add	x2, x2, #0x576
+   1b898: 528000c0     	mov	w0, #0x6
+   1b89c: 1400907d     	b	0x3fa90 <__android_log_print@plt>
+   1b8a0: 2a1f03e8     	mov	w8, wzr
+   1b8a4: 14000004     	b	0x1b8b4 <_Z20parseManisDeviceInfoPKci+0x150>
+   1b8a8: b9402808     	ldr	w8, [x0, #0x28]
+   1b8ac: 7100011f     	cmp	w8, #0x0
+   1b8b0: 1a9f07e8     	cset	w8, ne
+   1b8b4: b0000189     	adrp	x9, 0x4c000
+   1b8b8: 390f8928     	strb	w8, [x9, #0x3e2]
+   1b8bc: 90ffffa1     	adrp	x1, 0xf000
+   1b8c0: 9137d021     	add	x1, x1, #0xdf4
+   1b8c4: aa1303e0     	mov	x0, x19
+   1b8c8: 9400908e     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b8cc: b4000160     	cbz	x0, 0x1b8f8 <_Z20parseManisDeviceInfoPKci+0x194>
+   1b8d0: b9401808     	ldr	w8, [x0, #0x18]
+   1b8d4: 7100111f     	cmp	w8, #0x4
+   1b8d8: 54000101     	b.ne	0x1b8f8 <_Z20parseManisDeviceInfoPKci+0x194>
+   1b8dc: f9401001     	ldr	x1, [x0, #0x20]
+   1b8e0: b40000c1     	cbz	x1, 0x1b8f8 <_Z20parseManisDeviceInfoPKci+0x194>
+   1b8e4: b0000180     	adrp	x0, 0x4c000
+   1b8e8: 91078400     	add	x0, x0, #0x1e1
+   1b8ec: 52801fe2     	mov	w2, #0xff
+   1b8f0: 94009058     	bl	0x3fa50 <strncpy@plt>
+   1b8f4: 3903fc1f     	strb	wzr, [x0, #0xff]
+   1b8f8: 90ffffa1     	adrp	x1, 0xf000
+   1b8fc: 91314021     	add	x1, x1, #0xc50
+   1b900: aa1303e0     	mov	x0, x19
+   1b904: 9400907f     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b908: b40002c0     	cbz	x0, 0x1b960 <_Z20parseManisDeviceInfoPKci+0x1fc>
+   1b90c: b9401808     	ldr	w8, [x0, #0x18]
+   1b910: 7100051f     	cmp	w8, #0x1
+   1b914: 54000220     	b.eq	0x1b958 <_Z20parseManisDeviceInfoPKci+0x1f4>
+   1b918: 71000d1f     	cmp	w8, #0x3
+   1b91c: 54000180     	b.eq	0x1b94c <_Z20parseManisDeviceInfoPKci+0x1e8>
+   1b920: 7100111f     	cmp	w8, #0x4
+   1b924: 54000101     	b.ne	0x1b944 <_Z20parseManisDeviceInfoPKci+0x1e0>
+   1b928: f9401000     	ldr	x0, [x0, #0x20]
+   1b92c: b40000c0     	cbz	x0, 0x1b944 <_Z20parseManisDeviceInfoPKci+0x1e0>
+   1b930: d503201f     	nop
+   1b934: 30fa7a41     	adr	x1, #-0xb0b7
+   1b938: 9400904a     	bl	0x3fa60 <strstr@plt>
+   1b93c: f100001f     	cmp	x0, #0x0
+   1b940: 14000005     	b	0x1b954 <_Z20parseManisDeviceInfoPKci+0x1f0>
+   1b944: 2a1f03e8     	mov	w8, wzr
+   1b948: 14000004     	b	0x1b958 <_Z20parseManisDeviceInfoPKci+0x1f4>
+   1b94c: b9402808     	ldr	w8, [x0, #0x28]
+   1b950: 7100011f     	cmp	w8, #0x0
+   1b954: 1a9f07e8     	cset	w8, ne
+   1b958: b0000189     	adrp	x9, 0x4c000
+   1b95c: 390f8d28     	strb	w8, [x9, #0x3e3]
+   1b960: b0ffffa1     	adrp	x1, 0x10000
+   1b964: 91387821     	add	x1, x1, #0xe1e
+   1b968: aa1303e0     	mov	x0, x19
+   1b96c: 94009065     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b970: b4000160     	cbz	x0, 0x1b99c <_Z20parseManisDeviceInfoPKci+0x238>
+   1b974: b9401808     	ldr	w8, [x0, #0x18]
+   1b978: 7100111f     	cmp	w8, #0x4
+   1b97c: 54000101     	b.ne	0x1b99c <_Z20parseManisDeviceInfoPKci+0x238>
+   1b980: f9401001     	ldr	x1, [x0, #0x20]
+   1b984: b40000c1     	cbz	x1, 0x1b99c <_Z20parseManisDeviceInfoPKci+0x238>
+   1b988: b0000180     	adrp	x0, 0x4c000
+   1b98c: 910b8400     	add	x0, x0, #0x2e1
+   1b990: 52801fe2     	mov	w2, #0xff
+   1b994: 9400902f     	bl	0x3fa50 <strncpy@plt>
+   1b998: 3903fc1f     	strb	wzr, [x0, #0xff]
+   1b99c: 90ffffa1     	adrp	x1, 0xf000
+   1b9a0: 913d6c21     	add	x1, x1, #0xf5b
+   1b9a4: aa1303e0     	mov	x0, x19
+   1b9a8: 94009056     	bl	0x3fb00 <cJSON_GetObjectItem@plt>
+   1b9ac: b40002c0     	cbz	x0, 0x1ba04 <_Z20parseManisDeviceInfoPKci+0x2a0>
+   1b9b0: b9401808     	ldr	w8, [x0, #0x18]
+   1b9b4: 7100051f     	cmp	w8, #0x1
+   1b9b8: 54000220     	b.eq	0x1b9fc <_Z20parseManisDeviceInfoPKci+0x298>
+   1b9bc: 71000d1f     	cmp	w8, #0x3
+   1b9c0: 54000180     	b.eq	0x1b9f0 <_Z20parseManisDeviceInfoPKci+0x28c>
+   1b9c4: 7100111f     	cmp	w8, #0x4
+   1b9c8: 54000101     	b.ne	0x1b9e8 <_Z20parseManisDeviceInfoPKci+0x284>
+   1b9cc: f9401000     	ldr	x0, [x0, #0x20]
+   1b9d0: b40000c0     	cbz	x0, 0x1b9e8 <_Z20parseManisDeviceInfoPKci+0x284>
+   1b9d4: d503201f     	nop
+   1b9d8: 30fa7521     	adr	x1, #-0xb15b
+   1b9dc: 94009021     	bl	0x3fa60 <strstr@plt>
+   1b9e0: f100001f     	cmp	x0, #0x0
+   1b9e4: 14000005     	b	0x1b9f8 <_Z20parseManisDeviceInfoPKci+0x294>
+   1b9e8: 2a1f03e8     	mov	w8, wzr
+   1b9ec: 14000004     	b	0x1b9fc <_Z20parseManisDeviceInfoPKci+0x298>
+   1b9f0: b9402808     	ldr	w8, [x0, #0x28]
+   1b9f4: 7100011f     	cmp	w8, #0x0
+   1b9f8: 1a9f07e8     	cset	w8, ne
+   1b9fc: b0000189     	adrp	x9, 0x4c000
+   1ba00: 390f9128     	strb	w8, [x9, #0x3e4]
+   1ba04: aa1303e0     	mov	x0, x19
+   1ba08: 94009042     	bl	0x3fb10 <cJSON_Delete@plt>
+   1ba0c: 90000188     	adrp	x8, 0x4b000
+   1ba10: 52800029     	mov	w9, #0x1
+   1ba14: 393b8109     	strb	w9, [x8, #0xee0]
+   1ba18: f9400bf3     	ldr	x19, [sp, #0x10]
+   1ba1c: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1ba20: d65f03c0     	ret
+
+000000000001ba24 <_Z27ensureManisDeviceInfoLoadedv>:
+   1ba24: d100c3ff     	sub	sp, sp, #0x30
+   1ba28: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   1ba2c: f90013f3     	str	x19, [sp, #0x20]
+   1ba30: 910043fd     	add	x29, sp, #0x10
+   1ba34: d53bd053     	mrs	x19, TPIDR_EL0
+   1ba38: f9401668     	ldr	x8, [x19, #0x28]
+   1ba3c: f90007e8     	str	x8, [sp, #0x8]
+   1ba40: 90000188     	adrp	x8, 0x4b000
+   1ba44: 397b8108     	ldrb	w8, [x8, #0xee0]
+   1ba48: 34000128     	cbz	w8, 0x1ba6c <_Z27ensureManisDeviceInfoLoadedv+0x48>
+   1ba4c: f9401668     	ldr	x8, [x19, #0x28]
+   1ba50: f94007e9     	ldr	x9, [sp, #0x8]
+   1ba54: eb09011f     	cmp	x8, x9
+   1ba58: 540006c1     	b.ne	0x1bb30 <_Z27ensureManisDeviceInfoLoadedv+0x10c>
+   1ba5c: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   1ba60: f94013f3     	ldr	x19, [sp, #0x20]
+   1ba64: 9100c3ff     	add	sp, sp, #0x30
+   1ba68: d65f03c0     	ret
+   1ba6c: 94009001     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1ba70: b40001a0     	cbz	x0, 0x1baa4 <_Z27ensureManisDeviceInfoLoadedv+0x80>
+   1ba74: 90ffffa1     	adrp	x1, 0xf000
+   1ba78: 91317821     	add	x1, x1, #0xc5e
+   1ba7c: 9400902d     	bl	0x3fb30 <dlsym@plt>
+   1ba80: b40002c0     	cbz	x0, 0x1bad8 <_Z27ensureManisDeviceInfoLoadedv+0xb4>
+   1ba84: aa0003e8     	mov	x8, x0
+   1ba88: 910013e0     	add	x0, sp, #0x4
+   1ba8c: b90007ff     	str	wzr, [sp, #0x4]
+   1ba90: d63f0100     	blr	x8
+   1ba94: b4000400     	cbz	x0, 0x1bb14 <_Z27ensureManisDeviceInfoLoadedv+0xf0>
+   1ba98: b94007e1     	ldr	w1, [sp, #0x4]
+   1ba9c: 94009011     	bl	0x3fae0 <_Z20parseManisDeviceInfoPKci@plt>
+   1baa0: 17ffffeb     	b	0x1ba4c <_Z27ensureManisDeviceInfoLoadedv+0x28>
+   1baa4: f9401668     	ldr	x8, [x19, #0x28]
+   1baa8: f94007e9     	ldr	x9, [sp, #0x8]
+   1baac: eb09011f     	cmp	x8, x9
+   1bab0: 54000401     	b.ne	0x1bb30 <_Z27ensureManisDeviceInfoLoadedv+0x10c>
+   1bab4: b0ffffa1     	adrp	x1, 0x10000
+   1bab8: 91119821     	add	x1, x1, #0x466
+   1babc: d0ffffa2     	adrp	x2, 0x11000
+   1bac0: 911cb842     	add	x2, x2, #0x72e
+   1bac4: 528000c0     	mov	w0, #0x6
+   1bac8: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   1bacc: f94013f3     	ldr	x19, [sp, #0x20]
+   1bad0: 9100c3ff     	add	sp, sp, #0x30
+   1bad4: 14008fef     	b	0x3fa90 <__android_log_print@plt>
+   1bad8: 94008fea     	bl	0x3fa80 <dlerror@plt>
+   1badc: f9401668     	ldr	x8, [x19, #0x28]
+   1bae0: f94007e9     	ldr	x9, [sp, #0x8]
+   1bae4: eb09011f     	cmp	x8, x9
+   1bae8: 54000241     	b.ne	0x1bb30 <_Z27ensureManisDeviceInfoLoadedv+0x10c>
+   1baec: aa0003e3     	mov	x3, x0
+   1baf0: b0ffffa1     	adrp	x1, 0x10000
+   1baf4: 91119821     	add	x1, x1, #0x466
+   1baf8: b0ffffa2     	adrp	x2, 0x10000
+   1bafc: 91079042     	add	x2, x2, #0x1e4
+   1bb00: 528000c0     	mov	w0, #0x6
+   1bb04: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   1bb08: f94013f3     	ldr	x19, [sp, #0x20]
+   1bb0c: 9100c3ff     	add	sp, sp, #0x30
+   1bb10: 14008fe0     	b	0x3fa90 <__android_log_print@plt>
+   1bb14: b0ffffa1     	adrp	x1, 0x10000
+   1bb18: 91119821     	add	x1, x1, #0x466
+   1bb1c: 90ffffa2     	adrp	x2, 0xf000
+   1bb20: 913a2842     	add	x2, x2, #0xe8a
+   1bb24: 528000c0     	mov	w0, #0x6
+   1bb28: 94008fda     	bl	0x3fa90 <__android_log_print@plt>
+   1bb2c: 17ffffc8     	b	0x1ba4c <_Z27ensureManisDeviceInfoLoadedv+0x28>
+   1bb30: 94009004     	bl	0x3fb40 <__stack_chk_fail@plt>
+
+000000000001bb34 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable>:
+   1bb34: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+   1bb38: f9000bf7     	str	x23, [sp, #0x10]
+   1bb3c: a90257f6     	stp	x22, x21, [sp, #0x20]
+   1bb40: a9034ff4     	stp	x20, x19, [sp, #0x30]
+   1bb44: 910003fd     	mov	x29, sp
+   1bb48: aa0303f3     	mov	x19, x3
+   1bb4c: 2a0203f5     	mov	w21, w2
+   1bb50: aa0003f4     	mov	x20, x0
+   1bb54: 94008fc7     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1bb58: b4000540     	cbz	x0, 0x1bc00 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable+0xcc>
+   1bb5c: b0ffffa1     	adrp	x1, 0x10000
+   1bb60: 9123a021     	add	x1, x1, #0x8e8
+   1bb64: 94008ff3     	bl	0x3fb30 <dlsym@plt>
+   1bb68: b40002c0     	cbz	x0, 0x1bbc0 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable+0x8c>
+   1bb6c: f9400288     	ldr	x8, [x20]
+   1bb70: aa0003f6     	mov	x22, x0
+   1bb74: aa1403e0     	mov	x0, x20
+   1bb78: aa1303e1     	mov	x1, x19
+   1bb7c: aa1f03e2     	mov	x2, xzr
+   1bb80: f942a508     	ldr	x8, [x8, #0x548]
+   1bb84: d63f0100     	blr	x8
+   1bb88: b40002e0     	cbz	x0, 0x1bbe4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable+0xb0>
+   1bb8c: aa0003f7     	mov	x23, x0
+   1bb90: 2a1503e0     	mov	w0, w21
+   1bb94: aa1703e1     	mov	x1, x23
+   1bb98: d63f02c0     	blr	x22
+   1bb9c: f9400288     	ldr	x8, [x20]
+   1bba0: 2a0003f5     	mov	w21, w0
+   1bba4: aa1403e0     	mov	x0, x20
+   1bba8: aa1303e1     	mov	x1, x19
+   1bbac: aa1703e2     	mov	x2, x23
+   1bbb0: f942a908     	ldr	x8, [x8, #0x550]
+   1bbb4: d63f0100     	blr	x8
+   1bbb8: 120002a0     	and	w0, w21, #0x1
+   1bbbc: 14000011     	b	0x1bc00 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable+0xcc>
+   1bbc0: 94008fb0     	bl	0x3fa80 <dlerror@plt>
+   1bbc4: aa0003e3     	mov	x3, x0
+   1bbc8: b0ffffa1     	adrp	x1, 0x10000
+   1bbcc: 91119821     	add	x1, x1, #0x466
+   1bbd0: 90ffffa2     	adrp	x2, 0xf000
+   1bbd4: 91380042     	add	x2, x2, #0xe00
+   1bbd8: 528000c0     	mov	w0, #0x6
+   1bbdc: 94008fad     	bl	0x3fa90 <__android_log_print@plt>
+   1bbe0: 14000007     	b	0x1bbfc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setEnvVariable+0xc8>
+   1bbe4: b0ffffa1     	adrp	x1, 0x10000
+   1bbe8: 91119821     	add	x1, x1, #0x466
+   1bbec: b0ffffa2     	adrp	x2, 0x10000
+   1bbf0: 91013042     	add	x2, x2, #0x4c
+   1bbf4: 528000c0     	mov	w0, #0x6
+   1bbf8: 94008fa6     	bl	0x3fa90 <__android_log_print@plt>
+   1bbfc: 2a1f03e0     	mov	w0, wzr
+   1bc00: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+   1bc04: f9400bf7     	ldr	x23, [sp, #0x10]
+   1bc08: a94257f6     	ldp	x22, x21, [sp, #0x20]
+   1bc0c: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+   1bc10: d65f03c0     	ret
+
+000000000001bc14 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir>:
+   1bc14: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   1bc18: a90157f6     	stp	x22, x21, [sp, #0x10]
+   1bc1c: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   1bc20: 910003fd     	mov	x29, sp
+   1bc24: 2a0303f5     	mov	w21, w3
+   1bc28: aa0203f3     	mov	x19, x2
+   1bc2c: aa0003f4     	mov	x20, x0
+   1bc30: 94008f90     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1bc34: b4000520     	cbz	x0, 0x1bcd8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir+0xc4>
+   1bc38: b0ffffa1     	adrp	x1, 0x10000
+   1bc3c: 9131e021     	add	x1, x1, #0xc78
+   1bc40: 94008fbc     	bl	0x3fb30 <dlsym@plt>
+   1bc44: b40002a0     	cbz	x0, 0x1bc98 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir+0x84>
+   1bc48: f9400288     	ldr	x8, [x20]
+   1bc4c: aa0003f6     	mov	x22, x0
+   1bc50: aa1403e0     	mov	x0, x20
+   1bc54: aa1303e1     	mov	x1, x19
+   1bc58: aa1f03e2     	mov	x2, xzr
+   1bc5c: f942a508     	ldr	x8, [x8, #0x548]
+   1bc60: d63f0100     	blr	x8
+   1bc64: b40002c0     	cbz	x0, 0x1bcbc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir+0xa8>
+   1bc68: 72001ebf     	tst	w21, #0xff
+   1bc6c: aa0003f5     	mov	x21, x0
+   1bc70: 1a9f07e1     	cset	w1, ne
+   1bc74: d63f02c0     	blr	x22
+   1bc78: f9400288     	ldr	x8, [x20]
+   1bc7c: aa1403e0     	mov	x0, x20
+   1bc80: aa1303e1     	mov	x1, x19
+   1bc84: aa1503e2     	mov	x2, x21
+   1bc88: f942a908     	ldr	x8, [x8, #0x550]
+   1bc8c: d63f0100     	blr	x8
+   1bc90: 52800020     	mov	w0, #0x1
+   1bc94: 14000011     	b	0x1bcd8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir+0xc4>
+   1bc98: 94008f7a     	bl	0x3fa80 <dlerror@plt>
+   1bc9c: aa0003e3     	mov	x3, x0
+   1bca0: b0ffffa1     	adrp	x1, 0x10000
+   1bca4: 91119821     	add	x1, x1, #0x466
+   1bca8: d0ffffa2     	adrp	x2, 0x11000
+   1bcac: 91174442     	add	x2, x2, #0x5d1
+   1bcb0: 528000c0     	mov	w0, #0x6
+   1bcb4: 94008f77     	bl	0x3fa90 <__android_log_print@plt>
+   1bcb8: 14000007     	b	0x1bcd4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_setGlobalCacheDir+0xc0>
+   1bcbc: b0ffffa1     	adrp	x1, 0x10000
+   1bcc0: 91119821     	add	x1, x1, #0x466
+   1bcc4: b0ffffa2     	adrp	x2, 0x10000
+   1bcc8: 91013042     	add	x2, x2, #0x4c
+   1bccc: 528000c0     	mov	w0, #0x6
+   1bcd0: 94008f70     	bl	0x3fa90 <__android_log_print@plt>
+   1bcd4: 2a1f03e0     	mov	w0, wzr
+   1bcd8: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   1bcdc: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   1bce0: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   1bce4: d65f03c0     	ret
+
+000000000001bce8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached>:
+   1bce8: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+   1bcec: a90167fa     	stp	x26, x25, [sp, #0x10]
+   1bcf0: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   1bcf4: a90357f6     	stp	x22, x21, [sp, #0x30]
+   1bcf8: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   1bcfc: 910003fd     	mov	x29, sp
+   1bd00: 2a0503f5     	mov	w21, w5
+   1bd04: 2a0403f6     	mov	w22, w4
+   1bd08: 2a0303f7     	mov	w23, w3
+   1bd0c: aa0203f3     	mov	x19, x2
+   1bd10: aa0003f4     	mov	x20, x0
+   1bd14: 94008f57     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1bd18: b4000660     	cbz	x0, 0x1bde4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached+0xfc>
+   1bd1c: 90ffffa1     	adrp	x1, 0xf000
+   1bd20: 91388821     	add	x1, x1, #0xe22
+   1bd24: 94008f83     	bl	0x3fb30 <dlsym@plt>
+   1bd28: b40003e0     	cbz	x0, 0x1bda4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached+0xbc>
+   1bd2c: f9400288     	ldr	x8, [x20]
+   1bd30: aa0003f8     	mov	x24, x0
+   1bd34: aa1403e0     	mov	x0, x20
+   1bd38: aa1303e1     	mov	x1, x19
+   1bd3c: f942ad08     	ldr	x8, [x8, #0x558]
+   1bd40: d63f0100     	blr	x8
+   1bd44: f9400288     	ldr	x8, [x20]
+   1bd48: 2a0003f9     	mov	w25, w0
+   1bd4c: aa1403e0     	mov	x0, x20
+   1bd50: aa1303e1     	mov	x1, x19
+   1bd54: aa1f03e2     	mov	x2, xzr
+   1bd58: f942e108     	ldr	x8, [x8, #0x5c0]
+   1bd5c: d63f0100     	blr	x8
+   1bd60: b4000340     	cbz	x0, 0x1bdc8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached+0xe0>
+   1bd64: 2a1903e1     	mov	w1, w25
+   1bd68: 2a1703e2     	mov	w2, w23
+   1bd6c: 2a1603e3     	mov	w3, w22
+   1bd70: 2a1503e4     	mov	w4, w21
+   1bd74: aa0003fa     	mov	x26, x0
+   1bd78: d63f0300     	blr	x24
+   1bd7c: f9400288     	ldr	x8, [x20]
+   1bd80: 2a0003f5     	mov	w21, w0
+   1bd84: aa1403e0     	mov	x0, x20
+   1bd88: aa1303e1     	mov	x1, x19
+   1bd8c: aa1a03e2     	mov	x2, x26
+   1bd90: 52800043     	mov	w3, #0x2
+   1bd94: f9430108     	ldr	x8, [x8, #0x600]
+   1bd98: d63f0100     	blr	x8
+   1bd9c: 120002a0     	and	w0, w21, #0x1
+   1bda0: 14000011     	b	0x1bde4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached+0xfc>
+   1bda4: 94008f37     	bl	0x3fa80 <dlerror@plt>
+   1bda8: aa0003e3     	mov	x3, x0
+   1bdac: b0ffffa1     	adrp	x1, 0x10000
+   1bdb0: 91119821     	add	x1, x1, #0x466
+   1bdb4: b0ffffa2     	adrp	x2, 0x10000
+   1bdb8: 9111d042     	add	x2, x2, #0x474
+   1bdbc: 528000c0     	mov	w0, #0x6
+   1bdc0: 94008f34     	bl	0x3fa90 <__android_log_print@plt>
+   1bdc4: 14000007     	b	0x1bde0 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isModelCached+0xf8>
+   1bdc8: b0ffffa1     	adrp	x1, 0x10000
+   1bdcc: 91119821     	add	x1, x1, #0x466
+   1bdd0: d0ffffa2     	adrp	x2, 0x11000
+   1bdd4: 9101d842     	add	x2, x2, #0x76
+   1bdd8: 528000c0     	mov	w0, #0x6
+   1bddc: 94008f2d     	bl	0x3fa90 <__android_log_print@plt>
+   1bde0: 2a1f03e0     	mov	w0, wzr
+   1bde4: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   1bde8: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   1bdec: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   1bdf0: a94167fa     	ldp	x26, x25, [sp, #0x10]
+   1bdf4: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   1bdf8: d65f03c0     	ret
+
+000000000001bdfc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel>:
+   1bdfc: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+   1be00: a90167fa     	stp	x26, x25, [sp, #0x10]
+   1be04: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   1be08: a90357f6     	stp	x22, x21, [sp, #0x30]
+   1be0c: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   1be10: 910003fd     	mov	x29, sp
+   1be14: 2a0503f5     	mov	w21, w5
+   1be18: 2a0403f6     	mov	w22, w4
+   1be1c: 2a0303f7     	mov	w23, w3
+   1be20: aa0203f3     	mov	x19, x2
+   1be24: aa0003f4     	mov	x20, x0
+   1be28: 94008f12     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1be2c: b4000660     	cbz	x0, 0x1bef8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xfc>
+   1be30: d0ffffa1     	adrp	x1, 0x11000
+   1be34: 911d2421     	add	x1, x1, #0x749
+   1be38: 94008f3e     	bl	0x3fb30 <dlsym@plt>
+   1be3c: b40003e0     	cbz	x0, 0x1beb8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xbc>
+   1be40: f9400288     	ldr	x8, [x20]
+   1be44: aa0003f8     	mov	x24, x0
+   1be48: aa1403e0     	mov	x0, x20
+   1be4c: aa1303e1     	mov	x1, x19
+   1be50: f942ad08     	ldr	x8, [x8, #0x558]
+   1be54: d63f0100     	blr	x8
+   1be58: f9400288     	ldr	x8, [x20]
+   1be5c: 2a0003f9     	mov	w25, w0
+   1be60: aa1403e0     	mov	x0, x20
+   1be64: aa1303e1     	mov	x1, x19
+   1be68: aa1f03e2     	mov	x2, xzr
+   1be6c: f942e108     	ldr	x8, [x8, #0x5c0]
+   1be70: d63f0100     	blr	x8
+   1be74: b4000340     	cbz	x0, 0x1bedc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xe0>
+   1be78: 2a1903e1     	mov	w1, w25
+   1be7c: 2a1703e2     	mov	w2, w23
+   1be80: 2a1603e3     	mov	w3, w22
+   1be84: 2a1503e4     	mov	w4, w21
+   1be88: aa0003fa     	mov	x26, x0
+   1be8c: d63f0300     	blr	x24
+   1be90: f9400288     	ldr	x8, [x20]
+   1be94: 2a0003f5     	mov	w21, w0
+   1be98: aa1403e0     	mov	x0, x20
+   1be9c: aa1303e1     	mov	x1, x19
+   1bea0: aa1a03e2     	mov	x2, x26
+   1bea4: 52800043     	mov	w3, #0x2
+   1bea8: f9430108     	ldr	x8, [x8, #0x600]
+   1beac: d63f0100     	blr	x8
+   1beb0: 120002a0     	and	w0, w21, #0x1
+   1beb4: 14000011     	b	0x1bef8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xfc>
+   1beb8: 94008ef2     	bl	0x3fa80 <dlerror@plt>
+   1bebc: aa0003e3     	mov	x3, x0
+   1bec0: b0ffffa1     	adrp	x1, 0x10000
+   1bec4: 91119821     	add	x1, x1, #0x466
+   1bec8: b0ffffa2     	adrp	x2, 0x10000
+   1becc: 911dc842     	add	x2, x2, #0x772
+   1bed0: 528000c0     	mov	w0, #0x6
+   1bed4: 94008eef     	bl	0x3fa90 <__android_log_print@plt>
+   1bed8: 14000007     	b	0x1bef4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_cacheModel+0xf8>
+   1bedc: b0ffffa1     	adrp	x1, 0x10000
+   1bee0: 91119821     	add	x1, x1, #0x466
+   1bee4: d0ffffa2     	adrp	x2, 0x11000
+   1bee8: 9101d842     	add	x2, x2, #0x76
+   1beec: 528000c0     	mov	w0, #0x6
+   1bef0: 94008ee8     	bl	0x3fa90 <__android_log_print@plt>
+   1bef4: 2a1f03e0     	mov	w0, wzr
+   1bef8: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   1befc: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   1bf00: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   1bf04: a94167fa     	ldp	x26, x25, [sp, #0x10]
+   1bf08: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   1bf0c: d65f03c0     	ret
+
+000000000001bf10 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getManisXpuApiVersion>:
+   1bf10: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1bf14: 910003fd     	mov	x29, sp
+   1bf18: 94008ed6     	bl	0x3fa70 <_Z17loadLibraryHandlev@plt>
+   1bf1c: b40001e0     	cbz	x0, 0x1bf58 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getManisXpuApiVersion+0x48>
+   1bf20: b0ffffa1     	adrp	x1, 0x10000
+   1bf24: 91058821     	add	x1, x1, #0x162
+   1bf28: 94008f02     	bl	0x3fb30 <dlsym@plt>
+   1bf2c: b4000060     	cbz	x0, 0x1bf38 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getManisXpuApiVersion+0x28>
+   1bf30: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1bf34: d61f0000     	br	x0
+   1bf38: 94008ed2     	bl	0x3fa80 <dlerror@plt>
+   1bf3c: aa0003e3     	mov	x3, x0
+   1bf40: b0ffffa1     	adrp	x1, 0x10000
+   1bf44: 91119821     	add	x1, x1, #0x466
+   1bf48: 90ffffa2     	adrp	x2, 0xf000
+   1bf4c: 913da442     	add	x2, x2, #0xf69
+   1bf50: 528000c0     	mov	w0, #0x6
+   1bf54: 94008ecf     	bl	0x3fa90 <__android_log_print@plt>
+   1bf58: 2a1f03e0     	mov	w0, wzr
+   1bf5c: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1bf60: d65f03c0     	ret
+
+000000000001bf64 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_npuIsSupport>:
+   1bf64: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1bf68: 910003fd     	mov	x29, sp
+   1bf6c: 94008eed     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1bf70: 90000188     	adrp	x8, 0x4b000
+   1bf74: 397b8108     	ldrb	w8, [x8, #0xee0]
+   1bf78: 340000a8     	cbz	w8, 0x1bf8c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_npuIsSupport+0x28>
+   1bf7c: b0000188     	adrp	x8, 0x4c000
+   1bf80: 394f9100     	ldrb	w0, [x8, #0x3e4]
+   1bf84: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1bf88: d65f03c0     	ret
+   1bf8c: b0ffffa1     	adrp	x1, 0x10000
+   1bf90: 91119821     	add	x1, x1, #0x466
+   1bf94: 90ffffa2     	adrp	x2, 0xf000
+   1bf98: 9138c042     	add	x2, x2, #0xe30
+   1bf9c: 528000c0     	mov	w0, #0x6
+   1bfa0: 94008ebc     	bl	0x3fa90 <__android_log_print@plt>
+   1bfa4: 2a1f03e0     	mov	w0, wzr
+   1bfa8: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1bfac: d65f03c0     	ret
+
+000000000001bfb0 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDeviceVersion>:
+   1bfb0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1bfb4: f9000bf3     	str	x19, [sp, #0x10]
+   1bfb8: 910003fd     	mov	x29, sp
+   1bfbc: aa0003f3     	mov	x19, x0
+   1bfc0: 94008ed8     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1bfc4: d503201f     	nop
+   1bfc8: 1017f8c1     	adr	x1, #0x2ff18
+   1bfcc: 38401428     	ldrb	w8, [x1], #0x1
+   1bfd0: 35000128     	cbnz	w8, 0x1bff4 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDeviceVersion+0x44>
+   1bfd4: b0ffffa1     	adrp	x1, 0x10000
+   1bfd8: 91119821     	add	x1, x1, #0x466
+   1bfdc: d0ffffa2     	adrp	x2, 0x11000
+   1bfe0: 9117d842     	add	x2, x2, #0x5f6
+   1bfe4: 528000c0     	mov	w0, #0x6
+   1bfe8: 94008eaa     	bl	0x3fa90 <__android_log_print@plt>
+   1bfec: b0ffffa1     	adrp	x1, 0x10000
+   1bff0: 91082821     	add	x1, x1, #0x20a
+   1bff4: f9400268     	ldr	x8, [x19]
+   1bff8: f9429d02     	ldr	x2, [x8, #0x538]
+   1bffc: aa1303e0     	mov	x0, x19
+   1c000: f9400bf3     	ldr	x19, [sp, #0x10]
+   1c004: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1c008: d61f0040     	br	x2
+
+000000000001c00c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion>:
+   1c00c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1c010: f9000bf3     	str	x19, [sp, #0x10]
+   1c014: 910003fd     	mov	x29, sp
+   1c018: aa0003f3     	mov	x19, x0
+   1c01c: 94008ec1     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c020: d503201f     	nop
+   1c024: 1017f5e8     	adr	x8, #0x2febc
+   1c028: 39400109     	ldrb	w9, [x8]
+   1c02c: 34000069     	cbz	w9, 0x1c038 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion+0x2c>
+   1c030: 91040501     	add	x1, x8, #0x101
+   1c034: 14000009     	b	0x1c058 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getClDriverVersion+0x4c>
+   1c038: 90ffffa1     	adrp	x1, 0x10000
+   1c03c: 91119821     	add	x1, x1, #0x466
+   1c040: 90ffffa2     	adrp	x2, 0x10000
+   1c044: 913bf442     	add	x2, x2, #0xefd
+   1c048: 528000c0     	mov	w0, #0x6
+   1c04c: 94008e91     	bl	0x3fa90 <__android_log_print@plt>
+   1c050: 90ffffa1     	adrp	x1, 0x10000
+   1c054: 91082821     	add	x1, x1, #0x20a
+   1c058: f9400268     	ldr	x8, [x19]
+   1c05c: f9429d02     	ldr	x2, [x8, #0x538]
+   1c060: aa1303e0     	mov	x0, x19
+   1c064: f9400bf3     	ldr	x19, [sp, #0x10]
+   1c068: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1c06c: d61f0040     	br	x2
+
+000000000001c070 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isClSupportFp16>:
+   1c070: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1c074: 910003fd     	mov	x29, sp
+   1c078: 94008eaa     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c07c: f0000168     	adrp	x8, 0x4b000
+   1c080: 397b8108     	ldrb	w8, [x8, #0xee0]
+   1c084: 340000a8     	cbz	w8, 0x1c098 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_isClSupportFp16+0x28>
+   1c088: 90000188     	adrp	x8, 0x4c000
+   1c08c: 394f8500     	ldrb	w0, [x8, #0x3e1]
+   1c090: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c094: d65f03c0     	ret
+   1c098: 90ffffa1     	adrp	x1, 0x10000
+   1c09c: 91119821     	add	x1, x1, #0x466
+   1c0a0: b0ffffa2     	adrp	x2, 0x11000
+   1c0a4: 911d5042     	add	x2, x2, #0x754
+   1c0a8: 528000c0     	mov	w0, #0x6
+   1c0ac: 94008e79     	bl	0x3fa90 <__android_log_print@plt>
+   1c0b0: 2a1f03e0     	mov	w0, wzr
+   1c0b4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c0b8: d65f03c0     	ret
+
+000000000001c0bc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion>:
+   1c0bc: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1c0c0: f9000bf3     	str	x19, [sp, #0x10]
+   1c0c4: 910003fd     	mov	x29, sp
+   1c0c8: aa0003f3     	mov	x19, x0
+   1c0cc: 94008e95     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c0d0: d503201f     	nop
+   1c0d4: 1017f068     	adr	x8, #0x2fe0c
+   1c0d8: 39400109     	ldrb	w9, [x8]
+   1c0dc: 34000069     	cbz	w9, 0x1c0e8 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion+0x2c>
+   1c0e0: 91080501     	add	x1, x8, #0x201
+   1c0e4: 14000009     	b	0x1c108 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getApuVersion+0x4c>
+   1c0e8: 90ffffa1     	adrp	x1, 0x10000
+   1c0ec: 91119821     	add	x1, x1, #0x466
+   1c0f0: f0ffff82     	adrp	x2, 0xf000
+   1c0f4: 91349442     	add	x2, x2, #0xd25
+   1c0f8: 528000c0     	mov	w0, #0x6
+   1c0fc: 94008e65     	bl	0x3fa90 <__android_log_print@plt>
+   1c100: 90ffffa1     	adrp	x1, 0x10000
+   1c104: 91082821     	add	x1, x1, #0x20a
+   1c108: f9400268     	ldr	x8, [x19]
+   1c10c: f9429d02     	ldr	x2, [x8, #0x538]
+   1c110: aa1303e0     	mov	x0, x19
+   1c114: f9400bf3     	ldr	x19, [sp, #0x10]
+   1c118: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1c11c: d61f0040     	br	x2
+
+000000000001c120 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getQnnVersion>:
+   1c120: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1c124: f9000bf3     	str	x19, [sp, #0x10]
+   1c128: 910003fd     	mov	x29, sp
+   1c12c: aa0003f3     	mov	x19, x0
+   1c130: 94008e7c     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c134: d503201f     	nop
+   1c138: 1017ed48     	adr	x8, #0x2fda8
+   1c13c: 39400109     	ldrb	w9, [x8]
+   1c140: 34000069     	cbz	w9, 0x1c14c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getQnnVersion+0x2c>
+   1c144: 910c0501     	add	x1, x8, #0x301
+   1c148: 14000009     	b	0x1c16c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getQnnVersion+0x4c>
+   1c14c: 90ffffa1     	adrp	x1, 0x10000
+   1c150: 91119821     	add	x1, x1, #0x466
+   1c154: 90ffffa2     	adrp	x2, 0x10000
+   1c158: 9123dc42     	add	x2, x2, #0x8f7
+   1c15c: 528000c0     	mov	w0, #0x6
+   1c160: 94008e4c     	bl	0x3fa90 <__android_log_print@plt>
+   1c164: 90ffffa1     	adrp	x1, 0x10000
+   1c168: 91082821     	add	x1, x1, #0x20a
+   1c16c: f9400268     	ldr	x8, [x19]
+   1c170: f9429d02     	ldr	x2, [x8, #0x538]
+   1c174: aa1303e0     	mov	x0, x19
+   1c178: f9400bf3     	ldr	x19, [sp, #0x10]
+   1c17c: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1c180: d61f0040     	br	x2
+
+000000000001c184 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_qnnIsSupport>:
+   1c184: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1c188: 910003fd     	mov	x29, sp
+   1c18c: 94008e65     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c190: f0000168     	adrp	x8, 0x4b000
+   1c194: 397b8108     	ldrb	w8, [x8, #0xee0]
+   1c198: 340000a8     	cbz	w8, 0x1c1ac <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_qnnIsSupport+0x28>
+   1c19c: 90000188     	adrp	x8, 0x4c000
+   1c1a0: 394f8d00     	ldrb	w0, [x8, #0x3e3]
+   1c1a4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c1a8: d65f03c0     	ret
+   1c1ac: 90ffffa1     	adrp	x1, 0x10000
+   1c1b0: 91119821     	add	x1, x1, #0x466
+   1c1b4: 90ffffa2     	adrp	x2, 0x10000
+   1c1b8: 91155c42     	add	x2, x2, #0x557
+   1c1bc: 528000c0     	mov	w0, #0x6
+   1c1c0: 94008e34     	bl	0x3fa90 <__android_log_print@plt>
+   1c1c4: 2a1f03e0     	mov	w0, wzr
+   1c1c8: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c1cc: d65f03c0     	ret
+
+000000000001c1d0 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getNpuVersion>:
+   1c1d0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   1c1d4: f9000bf3     	str	x19, [sp, #0x10]
+   1c1d8: 910003fd     	mov	x29, sp
+   1c1dc: aa0003f3     	mov	x19, x0
+   1c1e0: 94008e50     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c1e4: d503201f     	nop
+   1c1e8: 1017e7c8     	adr	x8, #0x2fcf8
+   1c1ec: 39400109     	ldrb	w9, [x8]
+   1c1f0: 34000069     	cbz	w9, 0x1c1fc <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getNpuVersion+0x2c>
+   1c1f4: 91100501     	add	x1, x8, #0x401
+   1c1f8: 14000009     	b	0x1c21c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_getNpuVersion+0x4c>
+   1c1fc: 90ffffa1     	adrp	x1, 0x10000
+   1c200: 91119821     	add	x1, x1, #0x466
+   1c204: b0ffffa2     	adrp	x2, 0x11000
+   1c208: 91068c42     	add	x2, x2, #0x1a3
+   1c20c: 528000c0     	mov	w0, #0x6
+   1c210: 94008e20     	bl	0x3fa90 <__android_log_print@plt>
+   1c214: 90ffffa1     	adrp	x1, 0x10000
+   1c218: 91082821     	add	x1, x1, #0x20a
+   1c21c: f9400268     	ldr	x8, [x19]
+   1c220: f9429d02     	ldr	x2, [x8, #0x538]
+   1c224: aa1303e0     	mov	x0, x19
+   1c228: f9400bf3     	ldr	x19, [sp, #0x10]
+   1c22c: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   1c230: d61f0040     	br	x2
+
+000000000001c234 <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_apuIsSupport>:
+   1c234: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   1c238: 910003fd     	mov	x29, sp
+   1c23c: 94008e39     	bl	0x3fb20 <_Z27ensureManisDeviceInfoLoadedv@plt>
+   1c240: f0000168     	adrp	x8, 0x4b000
+   1c244: 397b8108     	ldrb	w8, [x8, #0xee0]
+   1c248: 340000a8     	cbz	w8, 0x1c25c <Java_com_meitu_mtaimodelsdk_utils_AIModelKitJni_apuIsSupport+0x28>
+   1c24c: 90000188     	adrp	x8, 0x4c000
+   1c250: 394f8900     	ldrb	w0, [x8, #0x3e2]
+   1c254: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c258: d65f03c0     	ret
+   1c25c: 90ffffa1     	adrp	x1, 0x10000
+   1c260: 91119821     	add	x1, x1, #0x466
+   1c264: 90ffffa2     	adrp	x2, 0x10000
+   1c268: 91082c42     	add	x2, x2, #0x20b
+   1c26c: 528000c0     	mov	w0, #0x6
+   1c270: 94008e08     	bl	0x3fa90 <__android_log_print@plt>
+   1c274: 2a1f03e0     	mov	w0, wzr
+   1c278: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   1c27c: d65f03c0     	ret
+
+000000000001c280 <cJSON_GetErrorPtr>:
+   1c280: 90000188     	adrp	x8, 0x4c000
+   1c284: f941f500     	ldr	x0, [x8, #0x3e8]
+   1c288: d65f03c0     	ret
+
+000000000001c28c <cJSON_InitHooks>:
+   1c28c: f0000148     	adrp	x8, 0x47000 <_ZTISt10bad_typeid+0x2290>
+   1c290: f0000149     	adrp	x9, 0x47000 <_ZTISt10bad_typeid+0x2290>
+   1c294: f9453908     	ldr	x8, [x8, #0xa70]
+   1c298: f9453d29     	ldr	x9, [x9, #0xa78]
+   1c29c: b40000c0     	cbz	x0, 0x1c2b4 <cJSON_InitHooks+0x28>
+   1c2a0: a9402c0a     	ldp	x10, x11, [x0]
+   1c2a4: f100015f     	cmp	x10, #0x0
+   1c2a8: 9a8a0129     	csel	x9, x9, x10, eq
+   1c2ac: f100017f     	cmp	x11, #0x0
+   1c2b0: 9a8b0108     	csel	x8, x8, x11, eq
+   1c2b4: f000016a     	adrp	x10, 0x4b000
+   1c2b8: f000016b     	adrp	x11, 0x4b000
+   1c2bc: f9073549     	str	x9, [x10, #0xe68]
+   1c2c0: f9073968     	str	x8, [x11, #0xe70]
+   1c2c4: d65f03c0     	ret
+
+000000000001c2c8 <cJSON_Delete>:
+   1c2c8: b4000420     	cbz	x0, 0x1c34c <cJSON_Delete+0x84>
+   1c2cc: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   1c2d0: f9000bf5     	str	x21, [sp, #0x10]
+   1c2d4: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   1c2d8: 910003fd     	mov	x29, sp
+   1c2dc: aa0003f3     	mov	x19, x0
+   1c2e0: f0000174     	adrp	x20, 0x4b000
+   1c2e4: 14000006     	b	0x1c2fc <cJSON_Delete+0x34>
+   1c2e8: f9473a88     	ldr	x8, [x20, #0xe70]
+   1c2ec: aa1303e0     	mov	x0, x19
+   1c2f0: d63f0100     	blr	x8
+   1c2f4: aa1503f3     	mov	x19, x21
+   1c2f8: b4000255     	cbz	x21, 0x1c340 <cJSON_Delete+0x78>
+   1c2fc: b9401a68     	ldr	w8, [x19, #0x18]
+   1c300: f9400275     	ldr	x21, [x19]
+   1c304: 374000a8     	tbnz	w8, #0x8, 0x1c318 <cJSON_Delete+0x50>
+   1c308: f9400a60     	ldr	x0, [x19, #0x10]
+   1c30c: b4000060     	cbz	x0, 0x1c318 <cJSON_Delete+0x50>
+   1c310: 94008e00     	bl	0x3fb10 <cJSON_Delete@plt>
+   1c314: b9401a68     	ldr	w8, [x19, #0x18]
+   1c318: 374000a8     	tbnz	w8, #0x8, 0x1c32c <cJSON_Delete+0x64>
+   1c31c: f9401260     	ldr	x0, [x19, #0x20]
+   1c320: b4000060     	cbz	x0, 0x1c32c <cJSON_Delete+0x64>
+   1c324: f9473a88     	ldr	x8, [x20, #0xe70]
+   1c328: d63f0100     	blr	x8
+   1c32c: f9401e60     	ldr	x0, [x19, #0x38]
+   1c330: b4fffdc0     	cbz	x0, 0x1c2e8 <cJSON_Delete+0x20>
+   1c334: f9473a88     	ldr	x8, [x20, #0xe70]
+   1c338: d63f0100     	blr	x8
+   1c33c: 17ffffeb     	b	0x1c2e8 <cJSON_Delete+0x20>
+   1c340: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   1c344: f9400bf5     	ldr	x21, [sp, #0x10]
+   1c348: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   1c34c: d65f03c0     	ret
+
+000000000001c350 <cJSON_ParseWithOpts>:
+   1c350: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+   1c354: f9000bf7     	str	x23, [sp, #0x10]
+   1c358: a90257f6     	stp	x22, x21, [sp, #0x20]
+   1c35c: a9034ff4     	stp	x20, x19, [sp, #0x30]
+   1c360: 910003fd     	mov	x29, sp
+   1c364: f0000168     	adrp	x8, 0x4b000
+   1c368: aa0003f5     	mov	x21, x0
+   1c36c: 52800800     	mov	w0, #0x40
+   1c370: f9473508     	ldr	x8, [x8, #0xe68]
+   1c374: 2a0203f4     	mov	w20, w2
+   1c378: aa0103f3     	mov	x19, x1
+   1c37c: d63f0100     	blr	x8
+   1c380: b40001a0     	cbz	x0, 0x1c3b4 <cJSON_ParseWithOpts+0x64>
+   1c384: 6f00e400     	movi	v0.2d, #0000000000000000
+   1c388: 90000197     	adrp	x23, 0x4c000
+   1c38c: f901f6ff     	str	xzr, [x23, #0x3e8]
+   1c390: ad000000     	stp	q0, q0, [x0]
+   1c394: ad010000     	stp	q0, q0, [x0, #0x20]
+   1c398: b4000155     	cbz	x21, 0x1c3c0 <cJSON_ParseWithOpts+0x70>
+   1c39c: d10006a1     	sub	x1, x21, #0x1
+   1c3a0: 38401c28     	ldrb	w8, [x1, #0x1]!
+   1c3a4: 51000508     	sub	w8, w8, #0x1
+   1c3a8: 7100811f     	cmp	w8, #0x20
+   1c3ac: 54ffffa3     	b.lo	0x1c3a0 <cJSON_ParseWithOpts+0x50>
+   1c3b0: 14000005     	b	0x1c3c4 <cJSON_ParseWithOpts+0x74>
+   1c3b4: 90000188     	adrp	x8, 0x4c000
+   1c3b8: f901f51f     	str	xzr, [x8, #0x3e8]
+   1c3bc: 14000019     	b	0x1c420 <cJSON_ParseWithOpts+0xd0>
+   1c3c0: aa1f03e1     	mov	x1, xzr
+   1c3c4: aa0003f6     	mov	x22, x0
+   1c3c8: 9400001b     	bl	0x1c434 <cJSON_ParseWithOpts+0xe4>
+   1c3cc: b40001c0     	cbz	x0, 0x1c404 <cJSON_ParseWithOpts+0xb4>
+   1c3d0: aa0003f5     	mov	x21, x0
+   1c3d4: 34000214     	cbz	w20, 0x1c414 <cJSON_ParseWithOpts+0xc4>
+   1c3d8: d10006b5     	sub	x21, x21, #0x1
+   1c3dc: aa1603e0     	mov	x0, x22
+   1c3e0: 38401ea8     	ldrb	w8, [x21, #0x1]!
+   1c3e4: 51000509     	sub	w9, w8, #0x1
+   1c3e8: 7100813f     	cmp	w9, #0x20
+   1c3ec: 54ffffa3     	b.lo	0x1c3e0 <cJSON_ParseWithOpts+0x90>
+   1c3f0: 34000148     	cbz	w8, 0x1c418 <cJSON_ParseWithOpts+0xc8>
+   1c3f4: 94008dc7     	bl	0x3fb10 <cJSON_Delete@plt>
+   1c3f8: aa1f03e0     	mov	x0, xzr
+   1c3fc: f901f6f5     	str	x21, [x23, #0x3e8]
+   1c400: 14000008     	b	0x1c420 <cJSON_ParseWithOpts+0xd0>
+   1c404: aa1603e0     	mov	x0, x22
+   1c408: 94008dc2     	bl	0x3fb10 <cJSON_Delete@plt>
+   1c40c: aa1f03e0     	mov	x0, xzr
+   1c410: 14000004     	b	0x1c420 <cJSON_ParseWithOpts+0xd0>
+   1c414: aa1603e0     	mov	x0, x22
+   1c418: b4000053     	cbz	x19, 0x1c420 <cJSON_ParseWithOpts+0xd0>
+   1c41c: f9000275     	str	x21, [x19]
+   1c420: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+   1c424: f9400bf7     	ldr	x23, [sp, #0x10]
+   1c428: a94257f6     	ldp	x22, x21, [sp, #0x20]
+   1c42c: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+   1c430: d65f03c0     	ret
+   1c434: fc1d0fe8     	str	d8, [sp, #-0x30]!
+   1c438: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   1c43c: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   1c440: 910043fd     	add	x29, sp, #0x10
+   1c444: b4000401     	cbz	x1, 0x1c4c4 <cJSON_ParseWithOpts+0x174>
+   1c448: aa0103f4     	mov	x20, x1
+   1c44c: aa0003f3     	mov	x19, x0
+   1c450: d503201f     	nop
+   1c454: 70f9f5a1     	adr	x1, #-0xc149
+   1c458: aa1403e0     	mov	x0, x20
+   1c45c: 52800082     	mov	w2, #0x4
+   1c460: 94008dc4     	bl	0x3fb70 <strncmp@plt>
+   1c464: 34000340     	cbz	w0, 0x1c4cc <cJSON_ParseWithOpts+0x17c>
+   1c468: f0ffff81     	adrp	x1, 0xf000
+   1c46c: 9131c421     	add	x1, x1, #0xc71
+   1c470: aa1403e0     	mov	x0, x20
+   1c474: 528000a2     	mov	w2, #0x5
+   1c478: 94008dbe     	bl	0x3fb70 <strncmp@plt>
+   1c47c: 34000300     	cbz	w0, 0x1c4dc <cJSON_ParseWithOpts+0x18c>
+   1c480: 90ffffa1     	adrp	x1, 0x10000
+   1c484: 9121f421     	add	x1, x1, #0x87d
+   1c488: aa1403e0     	mov	x0, x20
+   1c48c: 52800082     	mov	w2, #0x4
+   1c490: 94008db8     	bl	0x3fb70 <strncmp@plt>
+   1c494: 340002a0     	cbz	w0, 0x1c4e8 <cJSON_ParseWithOpts+0x198>
+   1c498: 39400288     	ldrb	w8, [x20]
+   1c49c: 7100b51f     	cmp	w8, #0x2d

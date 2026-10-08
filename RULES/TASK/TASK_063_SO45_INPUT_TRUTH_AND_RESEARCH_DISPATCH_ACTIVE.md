@@ -2,13 +2,13 @@
 STATUS: ACTIVE
 ASSIGNEE: AGY_LEAD
 PRIORITY: P0
-MODIFIED_TIME: 2026-10-08T04:21:23.735552+00:00
+MODIFIED_TIME: 2026-10-08T04:52:16.053278+00:00
 
 ```json
 {
   "schema_version": "2.1.2",
   "task_id": "TASK_063",
-  "revision": 2,
+  "revision": 3,
   "status": "ACTIVE",
   "assignee": "AGY_LEAD",
   "agent_id": "ace29908-a2b0-4777-a070-6bd100509738",
@@ -16,12 +16,12 @@ MODIFIED_TIME: 2026-10-08T04:21:23.735552+00:00
   "mode": "RESEARCH",
   "design_impact": "NONE",
   "dependencies": [],
-  "report_folder": "RULES/REPORT/TASK_063_REPORT_R2",
+  "report_folder": "RULES/REPORT/TASK_063_REPORT_R3",
   "files_allowed": [
-    "scripts/task063_r2/**",
-    ".ai/reconstruction/evidence/TASK_063_R2/**",
-    "RULES/REPORT/TASK_063_REPORT_R2/**",
-    "F:/TOOLS/ghidra_projects/TASK_063_R2/**"
+    "scripts/task063_r3/**",
+    ".ai/reconstruction/evidence/TASK_063_R3/**",
+    "RULES/REPORT/TASK_063_REPORT_R3/**",
+    "F:/TOOLS/ghidra_projects/TASK_063_R3/**"
   ],
   "files_forbidden": [
     "app/**",
@@ -34,7 +34,10 @@ MODIFIED_TIME: 2026-10-08T04:21:23.735552+00:00
     ".ai/state.json",
     "AGENTS.md",
     "scripts/task063/**",
-    "RULES/REPORT/TASK_063_REPORT/**"
+    "RULES/REPORT/TASK_063_REPORT/**",
+    "scripts/task063_r2/**",
+    "RULES/REPORT/TASK_063_REPORT_R2/**",
+    ".ai/reconstruction/evidence/TASK_063_R2/**"
   ],
   "max_fix_cycles": 3,
   "related_error_ids": [
@@ -43,8 +46,8 @@ MODIFIED_TIME: 2026-10-08T04:21:23.735552+00:00
     "ERR-014"
   ],
   "authorization_reference": "Chairman Tony appoints Codex CEO and authorizes AGY SO45 research toward V4, user instruction 2026-10-08",
-  "correction_review": ".ai/ceo/reviews/TASK_063_R1_417dbf52_NEEDS_FIX.md",
-  "supersedes_revision": 1
+  "correction_review": ".ai/ceo/reviews/TASK_063_R2_79d93b4f_NEEDS_FIX.md",
+  "supersedes_revision": 2
 }
 ```
 
@@ -67,7 +70,7 @@ Inputs are read-only: `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\
 5. Provide seven non-overlapping lane input lists matching TASK_064A..G and selection of feature-relevant exported/internal functions for deep recovery. Selection should cover render/kernel/AI+NPU/color+LUT/image/video/runtime/security boundaries of all 45 SO; do not skip non-hair libraries silently. Give stop conditions, unresolved counts and next investigation per target.
 6. Register or reuse an AGY minute heartbeat in this AGY session via `paseo heartbeat create --cron '* * * * *' --timezone Asia/Bangkok --name 'AGY SO45 task scanner' <prompt>` after checking existing owned heartbeat records; prompt is `.ai/ceo/AGY_SCAN_PROMPT.txt`. No max-runs/expiry unless Tony instructs. Record receipt ID/cadence/target/status and actual scan timestamps. Do not use reviewer heartbeat, busy ticks or Actions PID as successful AGY delivery. If runtime cannot register it, report exact error, continue research under CEO dispatch; CEO supplies a fallback supervisor.
 
-## Deliverables — RULES/REPORT/TASK_063_REPORT_R2/
+## Deliverables — RULES/REPORT/TASK_063_REPORT_R3/
 
 - 00_AUDIT_INDEX.md — rule receipt, input/tool hashes, commands, worker lease.
 - 01_MASTER_REPORT.md — actual findings, corrections to 059/060/061/062 claims, residual blockers and readiness for each next lane.
@@ -87,17 +90,18 @@ All 45 actual inputs accounted for once; integrity failures and missing binaries
 Before write: `python -X utf8 -B .ai/ceo/controller.py claim --task-id TASK_063 --agent-id ace29908-a2b0-4777-a070-6bd100509738 --standard-sha <measured lowercase SHA>` (when controller is installed). Renew the same claim/lease during tools and at each resume. CEO owns global state/registry; do not directly edit legacy .ai/state.json. Publish REVIEW_CANDIDATE_AWAITING_CEO first; CEO audit then gives commit/push disposition. Commit only task-owned new paths on `agent/agy/TASK_063` or isolated research branch, never main; preserve all unrelated deletions/untracked evidence. After report, return immediately to exact task scanner; wait around 60s when no eligible task.
 
 
-## Revision 2 — CEO correction order (ACTIVE / execution authorized)
 
-R1 is NEEDS_FIX. Read the full original canonical standard again before this revision and every resume/worker; record actual measured SHA/path/time/identity/new lease fence in 00_AUDIT_INDEX.md. Also read `.ai/ceo/reviews/TASK_063_R1_417dbf52_NEEDS_FIX.md`, `TASK_063_CRITICAL_ANCHOR_ADVISORY.md` and `TASK_063_INPUT_ADVISORY_20261008.md`. Work only in the revision2 JSON scopes. R1 reports/scripts stay frozen; its archive is RULES/REPORT/CEO_SO45_ORCHESTRATION/TASK_063_R1_SNAPSHOT. Do not reuse R1 fencing1009 in R2 metadata. Claim the current TASK_063 revision2 using the controller; it creates a new lease/fence. No permission question to Tony.
+## Revision 3 — focused CEO correction, ACTIVE
 
-Fix the eight numbered CEO findings with real retained commands/raw output. Reuse valid original measurements/body exports; do not rerun all Ghidra inputs just to make counts. Required corrections:
+Read IN FULL F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt before work and every resume; expected SHA256 10968894CDF48A10E64671EB81969E563B40F834A8A8AB16A4ECDC479E9FC85F. Also read AGENTS.md, Docs/rules.md, PROJECT_ERROR.md, ACQUIREMENTS.md, CEO plan, TASK_063_R2_79d93b4f_NEEDS_FIX.md and TASK_063_CEO_SOFTLIGHT_NUMERIC_ADDENDUM.md. Claim exact revision3 using controller before writes, record new lease/fence/read assertion honestly in 00_AUDIT_INDEX.md. R2 token1010 is revoked; R1/R2 scripts/reports frozen. Write only JSON R3 scopes; report RULES/REPORT/TASK_063_REPORT_R3. No product/P0 changes or permission reconfirmation.
 
-1. Parse actual bounded XAPK local headers and every available SO payload. Preserve container SHA/size, header/data offsets, flags/compression, declared/available bounds, payload SHA/CRC versus extracted file, missing tail and status. Prove44 matches by actual bytes, not filename/size or literals. For mfx preserve actual prefix comparison and missing581084 evidence if verified. Label whole container PARTIAL; missing libmtImageKit is absent only in observed set, incomplete tail UNKNOWN. Distinguish app-debug rebuilt47SO from original vendor inputs. Preserve absence/source inference limits.
-2. Per-library evidence table: actual symbol/JNI/address inventory, exact old body/disassembly/log hashes, relevant operation/address anchors, tool exit and sample coverage. Drop hardcoded generic catalog/quality/role/function names. Use NOT_CHECKED/UNKNOWN where unfinished. List real exported/internal targets and caller/asset searches, scoped relevant stop conditions and gap counts derived from actual records. Verified standard/runtime boundaries need justified identity/wrapper consumers, not mandatory full pixel arithmetic.
-3. Reproduce original XOR-decoded shader bytes with original/decoded hashes, real decoder command/raw receipt and line anchors. C1 red channel and alpha=val OBSERVED; upstream exclusion semantic producer UNKNOWN unless traced. C2 literal piecewise formula and alpha1; no unsupported W3C/Photoshop equivalence. Include counterexamples and decoded binary-tail/compile/runtime limitations.
-4. C3 independently dump actual weights/hex/H+V offsets, explain file/RVA/Ghidra base, body load->uniform->shader consumer and units. Distinguish SoftHair versus Aurora blur; document actual defaults/consumer gaps as UNKNOWN. All printed float hex must match bytes. C4 preserve actual SoftHair stage order but keep dye-material config/order/defaults UNKNOWN until real JNI/config/native anchors. Correct function entry versus callsite address.
-5. C5 retain exact performed scan scope and raw model/JNI/loader/asset search results. No architecture/model-runtime/confidence conclusion from strings or a missing name. UNKNOWN is a valid baseline result with precise next targets. Explicitly resolve T3 and prior reviewer001/003/004 findings or carry concrete open gaps; preserve superseded059/060 and NEEDS_FIX062 truth.
-6. Actual command/start/end/exit/tool/input/output hashes for every used proof; timestamps must reflect actual measured actions. Invoke version/help or hash-bind earlier real Ghidra launch log; folder existence is not invocation. Retain real stdout/stderr for inspected symbols/disassembly; intentionally limited output is PARTIAL, not whole-library FALSE. Progress counters derived from measurements; no arbitrary gaps/completion scores or assumed library matches.
+Fix the six specific findings in the current review. Reuse valid original bytes and existing Ghidra bodies; do not rerun broad decompilation or attempt full lane recovery in this baseline task.
 
-Deliver R2 00_AUDIT_INDEX.md,01_MASTER_REPORT.md,02_SO45_INPUT_MANIFEST.csv,03_EXISTING_EVIDENCE_AUDIT.csv,04_SO45_LANE_ASSIGNMENTS.csv,05_CRITICAL_CLAIM_CHECKS.md,06_TOOLCHAIN_AND_HEARTBEAT_RECEIPTS.json,raw/, scripts, PROGRESS.json and COMPLETE.json using revision2. Manifest covers all frozen artifacts and actual code hashes. No product PASS or V4 readiness. CEO checks all critical claims and >=10% ordinary records again after stable >=60s packaging. TASK_064A..G stay PLANNED until acceptance. Submit REVIEW_CANDIDATE_AWAITING_CEO before commit/push and return to minute scanner.
+1. Enforce actual mfx prefix versus container, complete payload/declared size/CRC/flags/method checks; retain header and data bounds, payload hash/CRC and container identity in machine receipt. Current 44+prefix measurements are valid, but generator must actually check them. A small in-memory negative check must show a changed prefix or header CRC does not pass. Do not alter original inputs.
+2. Capture command/start/end/exit, input/tool/output hashes and stdout/stderr for each proof. Keep ALL bytes used to derive bounded disassembly/arithmetic counts. Count instructions separately from text lines; intentional sample termination is PARTIAL. Failed readelf mfx is NOT_CHECKED with actual error, not an empty successful scan. Reuse R2 raw only with exact hash and explicit missing-receipt limits; rerun lightweight commands as needed. Hash Ghidra launcher; version comes from actual metadata/log.
+3. Real own function target records require symbol/value/type/binding/Ndx, excluding UND imports, or a verified internal body entry with source anchor. Imports may be labeled external dependencies only. Choose bounded feature-relevant defined targets; where unresolved, say UNKNOWN and supply exact next caller/asset/loader search. Derive gap counts from enumerated gap records; no capped symbol count as gap total. Record actual historical body/log paths/hashes for all available SO, with NOT_CHECKED for uninspected relevance. Correct LayerFlow actual SHA def2dd35f987a96a336b84d53e9e09445a97194b480f0850560483d8ccc74ca2 /54954 lines. Preserve exact45 lane partition.
+4. Critical proofs: actual APK XOR decoder output/hash/line receipt, exact rational SoftLight comparison, actual native float dumps and body consumers, Aurora raw disassembly. R2 W3C0.134765625 and printed float/hex are correct; do not change them to earlier wrong CEO value. Retain literal shader formula without unsupported named equivalence. CMTFilterSoftHair::FilterToFBO entry GhidraVA0x2344e8, not callsite0x234724. File/RVA/Ghidra address translation needs relevant ELF mapping, not universal fileoffset equivalence. Material defaults/order/producer remain UNKNOWN unless traced.
+5. C5 exact scan scope/counts must derive from retained output. readelf symbol-name/text search is not entire-binary/model-architecture proof; failed inputs are NOT_CHECKED. Model asset presence is OBSERVED with actual hashes. Production loader/model/confidence execution graph UNKNOWN until recovered. Classify download-interruption cause INFERRED/UNKNOWN. Preserve superseded059/060 and NEEDS_FIX062; carry prior001/003/004 and T3 gaps precisely.
+6. Reuse owned minute heartbeat; no duplicate registration. Record actual native run IDs/status/error/scan evidence, distinguish API/CLI listing mismatch, timeout/restart failures and busy ticks from successful scans. Continue authorized research when runtime works; report a real outage honestly.
+
+Publish a coherent R3 package with the same deliverable names, measured provenance and current revision3 COMPLETE.json; PROGRESS.json only on real milestones. All critical claims and >=5/45 ordinary records will be independently reviewed. TASK_064A..G remain PLANNED pending acceptance. Submit REVIEW_CANDIDATE_AWAITING_CEO before owned-branch commit/push and return to60s scanner. This is the final bounded baseline correction within max_fix_cycles3; unresolved tool/input limits should be explicit, not concealed or retried endlessly.

@@ -1,0 +1,365 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libfile_lock_pgl.so
+TOTAL_SAMPLED: 361
+ARITHMETIC_COUNT: 0
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libfile_lock_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000000a0c <.text>:
+     a0c: 90000020     	adrp	x0, 0x4000 <close@plt+0x3100>
+     a10: 913c4000     	add	x0, x0, #0xf10
+     a14: 1400011b     	b	0xe80 <__cxa_finalize@plt>
+     a18: d65f03c0     	ret
+     a1c: 17ffffff     	b	0xa18 <.text+0xc>
+     a20: b4000040     	cbz	x0, 0xa28 <.text+0x1c>
+     a24: d61f0000     	br	x0
+     a28: d65f03c0     	ret
+     a2c: 90000008     	adrp	x8, 0x0
+     a30: 91288108     	add	x8, x8, #0xa20
+     a34: 90000022     	adrp	x2, 0x4000 <close@plt+0x3100>
+     a38: 913c4042     	add	x2, x2, #0xf10
+     a3c: aa0003e1     	mov	x1, x0
+     a40: aa0803e0     	mov	x0, x8
+     a44: 14000113     	b	0xe90 <__cxa_atexit@plt>
+
+0000000000000a48 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile>:
+     a48: d10183ff     	sub	sp, sp, #0x60
+     a4c: a9037bfd     	stp	x29, x30, [sp, #0x30]
+     a50: f90023f5     	str	x21, [sp, #0x40]
+     a54: a9054ff4     	stp	x20, x19, [sp, #0x50]
+     a58: 9100c3fd     	add	x29, sp, #0x30
+     a5c: d53bd055     	mrs	x21, TPIDR_EL0
+     a60: f94016a9     	ldr	x9, [x21, #0x28]
+     a64: 2a0203e8     	mov	w8, w2
+     a68: aa0003f3     	mov	x19, x0
+     a6c: 5280002a     	mov	w10, #0x1
+     a70: 1280000b     	mov	w11, #-0x1
+     a74: 910023e2     	add	x2, sp, #0x8
+     a78: 528000e1     	mov	w1, #0x7
+     a7c: 2a0803e0     	mov	w0, w8
+     a80: f81f83a9     	stur	x9, [x29, #-0x8]
+     a84: a9017fff     	stp	xzr, xzr, [sp, #0x10]
+     a88: b9000bea     	str	w10, [sp, #0x8]
+     a8c: b90023eb     	str	w11, [sp, #0x20]
+     a90: 94000104     	bl	0xea0 <fcntl@plt>
+     a94: 36f80300     	tbz	w0, #0x1f, 0xaf4 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile+0xac>
+     a98: 79c013e3     	ldrsh	w3, [sp, #0x8]
+     a9c: 90000001     	adrp	x1, 0x0
+     aa0: 90000002     	adrp	x2, 0x0
+     aa4: 91222021     	add	x1, x1, #0x888
+     aa8: 91224442     	add	x2, x2, #0x891
+     aac: 52800060     	mov	w0, #0x3
+     ab0: 94000100     	bl	0xeb0 <__android_log_print@plt>
+     ab4: f9400268     	ldr	x8, [x19]
+     ab8: 90000001     	adrp	x1, 0x0
+     abc: 91230821     	add	x1, x1, #0x8c2
+     ac0: aa1303e0     	mov	x0, x19
+     ac4: f9401908     	ldr	x8, [x8, #0x30]
+     ac8: d63f0100     	blr	x8
+     acc: aa0003f4     	mov	x20, x0
+     ad0: 940000fc     	bl	0xec0 <__errno@plt>
+     ad4: b9400000     	ldr	w0, [x0]
+     ad8: 940000fe     	bl	0xed0 <strerror@plt>
+     adc: f9400268     	ldr	x8, [x19]
+     ae0: aa0003e2     	mov	x2, x0
+     ae4: aa1303e0     	mov	x0, x19
+     ae8: aa1403e1     	mov	x1, x20
+     aec: f9403908     	ldr	x8, [x8, #0x70]
+     af0: d63f0100     	blr	x8
+     af4: f94016a8     	ldr	x8, [x21, #0x28]
+     af8: f85f83a9     	ldur	x9, [x29, #-0x8]
+     afc: eb09011f     	cmp	x8, x9
+     b00: 540000c1     	b.ne	0xb18 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFile+0xd0>
+     b04: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+     b08: f94023f5     	ldr	x21, [sp, #0x40]
+     b0c: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+     b10: 910183ff     	add	sp, sp, #0x60
+     b14: d65f03c0     	ret
+     b18: 940000f2     	bl	0xee0 <__stack_chk_fail@plt>
+
+0000000000000b1c <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nUnlockFile>:
+     b1c: d10183ff     	sub	sp, sp, #0x60
+     b20: a9037bfd     	stp	x29, x30, [sp, #0x30]
+     b24: f90023f5     	str	x21, [sp, #0x40]
+     b28: a9054ff4     	stp	x20, x19, [sp, #0x50]
+     b2c: 9100c3fd     	add	x29, sp, #0x30
+     b30: d53bd055     	mrs	x21, TPIDR_EL0
+     b34: f94016a9     	ldr	x9, [x21, #0x28]
+     b38: 2a0203e8     	mov	w8, w2
+     b3c: aa0003f3     	mov	x19, x0
+     b40: 5280004a     	mov	w10, #0x2
+     b44: 1280000b     	mov	w11, #-0x1
+     b48: 910023e2     	add	x2, sp, #0x8
+     b4c: 528000c1     	mov	w1, #0x6
+     b50: 2a0803e0     	mov	w0, w8
+     b54: f81f83a9     	stur	x9, [x29, #-0x8]
+     b58: a9017fff     	stp	xzr, xzr, [sp, #0x10]
+     b5c: b9000bea     	str	w10, [sp, #0x8]
+     b60: b90023eb     	str	w11, [sp, #0x20]
+     b64: 940000cf     	bl	0xea0 <fcntl@plt>
+     b68: 36f80300     	tbz	w0, #0x1f, 0xbc8 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nUnlockFile+0xac>
+     b6c: 79c013e3     	ldrsh	w3, [sp, #0x8]
+     b70: 90000001     	adrp	x1, 0x0
+     b74: 90000002     	adrp	x2, 0x0
+     b78: 91222021     	add	x1, x1, #0x888
+     b7c: 9122a042     	add	x2, x2, #0x8a8
+     b80: 52800060     	mov	w0, #0x3
+     b84: 940000cb     	bl	0xeb0 <__android_log_print@plt>
+     b88: f9400268     	ldr	x8, [x19]
+     b8c: 90000001     	adrp	x1, 0x0
+     b90: 91230821     	add	x1, x1, #0x8c2
+     b94: aa1303e0     	mov	x0, x19
+     b98: f9401908     	ldr	x8, [x8, #0x30]
+     b9c: d63f0100     	blr	x8
+     ba0: aa0003f4     	mov	x20, x0
+     ba4: 940000c7     	bl	0xec0 <__errno@plt>
+     ba8: b9400000     	ldr	w0, [x0]
+     bac: 940000c9     	bl	0xed0 <strerror@plt>
+     bb0: f9400268     	ldr	x8, [x19]
+     bb4: aa0003e2     	mov	x2, x0
+     bb8: aa1303e0     	mov	x0, x19
+     bbc: aa1403e1     	mov	x1, x20
+     bc0: f9403908     	ldr	x8, [x8, #0x70]
+     bc4: d63f0100     	blr	x8
+     bc8: f94016a8     	ldr	x8, [x21, #0x28]
+     bcc: f85f83a9     	ldur	x9, [x29, #-0x8]
+     bd0: eb09011f     	cmp	x8, x9
+     bd4: 540000c1     	b.ne	0xbec <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nUnlockFile+0xd0>
+     bd8: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+     bdc: f94023f5     	ldr	x21, [sp, #0x40]
+     be0: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+     be4: 910183ff     	add	sp, sp, #0x60
+     be8: d65f03c0     	ret
+     bec: 940000bd     	bl	0xee0 <__stack_chk_fail@plt>
+
+0000000000000bf0 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nTryLock>:
+     bf0: d10143ff     	sub	sp, sp, #0x50
+     bf4: a9037bfd     	stp	x29, x30, [sp, #0x30]
+     bf8: f90023f3     	str	x19, [sp, #0x40]
+     bfc: 9100c3fd     	add	x29, sp, #0x30
+     c00: d53bd053     	mrs	x19, TPIDR_EL0
+     c04: f9401668     	ldr	x8, [x19, #0x28]
+     c08: 2a0203e0     	mov	w0, w2
+     c0c: 52800029     	mov	w9, #0x1
+     c10: 1280000a     	mov	w10, #-0x1
+     c14: 910023e2     	add	x2, sp, #0x8
+     c18: 528000c1     	mov	w1, #0x6
+     c1c: f81f83a8     	stur	x8, [x29, #-0x8]
+     c20: a9017fff     	stp	xzr, xzr, [sp, #0x10]
+     c24: b9000be9     	str	w9, [sp, #0x8]
+     c28: b90023ea     	str	w10, [sp, #0x20]
+     c2c: 9400009d     	bl	0xea0 <fcntl@plt>
+     c30: f9401668     	ldr	x8, [x19, #0x28]
+     c34: f85f83a9     	ldur	x9, [x29, #-0x8]
+     c38: eb09011f     	cmp	x8, x9
+     c3c: 540000e1     	b.ne	0xc58 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nTryLock+0x68>
+     c40: f94023f3     	ldr	x19, [sp, #0x40]
+     c44: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+     c48: 2a2003e8     	mvn	w8, w0
+     c4c: 531f7d00     	lsr	w0, w8, #31
+     c50: 910143ff     	add	sp, sp, #0x50
+     c54: d65f03c0     	ret
+     c58: 940000a2     	bl	0xee0 <__stack_chk_fail@plt>
+
+0000000000000c5c <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFileSegment>:
+     c5c: d10183ff     	sub	sp, sp, #0x60
+     c60: a9037bfd     	stp	x29, x30, [sp, #0x30]
+     c64: f90023f5     	str	x21, [sp, #0x40]
+     c68: a9054ff4     	stp	x20, x19, [sp, #0x50]
+     c6c: 9100c3fd     	add	x29, sp, #0x30
+     c70: d53bd055     	mrs	x21, TPIDR_EL0
+     c74: f94016a9     	ldr	x9, [x21, #0x28]
+     c78: 2a0203e8     	mov	w8, w2
+     c7c: aa0003f3     	mov	x19, x0
+     c80: 93407c6a     	sxtw	x10, w3
+     c84: 5280002b     	mov	w11, #0x1
+     c88: 1280000c     	mov	w12, #-0x1
+     c8c: 910023e2     	add	x2, sp, #0x8
+     c90: 528000e1     	mov	w1, #0x7
+     c94: 2a0803e0     	mov	w0, w8
+     c98: f81f83a9     	stur	x9, [x29, #-0x8]
+     c9c: a9012fea     	stp	x10, x11, [sp, #0x10]
+     ca0: b9000beb     	str	w11, [sp, #0x8]
+     ca4: b90023ec     	str	w12, [sp, #0x20]
+     ca8: 9400007e     	bl	0xea0 <fcntl@plt>
+     cac: 36f80300     	tbz	w0, #0x1f, 0xd0c <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFileSegment+0xb0>
+     cb0: 79c013e3     	ldrsh	w3, [sp, #0x8]
+     cb4: 90000001     	adrp	x1, 0x0
+     cb8: 90000002     	adrp	x2, 0x0
+     cbc: 91222021     	add	x1, x1, #0x888
+     cc0: 91224442     	add	x2, x2, #0x891
+     cc4: 52800060     	mov	w0, #0x3
+     cc8: 9400007a     	bl	0xeb0 <__android_log_print@plt>
+     ccc: f9400268     	ldr	x8, [x19]
+     cd0: 90000001     	adrp	x1, 0x0
+     cd4: 91230821     	add	x1, x1, #0x8c2
+     cd8: aa1303e0     	mov	x0, x19
+     cdc: f9401908     	ldr	x8, [x8, #0x30]
+     ce0: d63f0100     	blr	x8
+     ce4: aa0003f4     	mov	x20, x0
+     ce8: 94000076     	bl	0xec0 <__errno@plt>
+     cec: b9400000     	ldr	w0, [x0]
+     cf0: 94000078     	bl	0xed0 <strerror@plt>
+     cf4: f9400268     	ldr	x8, [x19]
+     cf8: aa0003e2     	mov	x2, x0
+     cfc: aa1303e0     	mov	x0, x19
+     d00: aa1403e1     	mov	x1, x20
+     d04: f9403908     	ldr	x8, [x8, #0x70]
+     d08: d63f0100     	blr	x8
+     d0c: f94016a8     	ldr	x8, [x21, #0x28]
+     d10: f85f83a9     	ldur	x9, [x29, #-0x8]
+     d14: eb09011f     	cmp	x8, x9
+     d18: 540000c1     	b.ne	0xd30 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nLockFileSegment+0xd4>
+     d1c: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+     d20: f94023f5     	ldr	x21, [sp, #0x40]
+     d24: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+     d28: 910183ff     	add	sp, sp, #0x60
+     d2c: d65f03c0     	ret
+     d30: 9400006c     	bl	0xee0 <__stack_chk_fail@plt>
+
+0000000000000d34 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nGetFD>:
+     d34: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+     d38: a90157f6     	stp	x22, x21, [sp, #0x10]
+     d3c: a9024ff4     	stp	x20, x19, [sp, #0x20]
+     d40: 910003fd     	mov	x29, sp
+     d44: f9400008     	ldr	x8, [x0]
+     d48: aa0203f5     	mov	x21, x2
+     d4c: aa0203e1     	mov	x1, x2
+     d50: aa1f03e2     	mov	x2, xzr
+     d54: f942a508     	ldr	x8, [x8, #0x548]
+     d58: aa0003f3     	mov	x19, x0
+     d5c: d63f0100     	blr	x8
+     d60: 52800841     	mov	w1, #0x42
+     d64: 72a00101     	movk	w1, #0x8, lsl #16
+     d68: 528036c2     	mov	w2, #0x1b6
+     d6c: aa0003f6     	mov	x22, x0
+     d70: 94000060     	bl	0xef0 <open@plt>
+     d74: f9400268     	ldr	x8, [x19]
+     d78: 2a0003f4     	mov	w20, w0
+     d7c: aa1303e0     	mov	x0, x19
+     d80: aa1503e1     	mov	x1, x21
+     d84: f942a908     	ldr	x8, [x8, #0x550]
+     d88: aa1603e2     	mov	x2, x22
+     d8c: d63f0100     	blr	x8
+     d90: 36f80254     	tbz	w20, #0x1f, 0xdd8 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nGetFD+0xa4>
+     d94: f9400268     	ldr	x8, [x19]
+     d98: 90000001     	adrp	x1, 0x0
+     d9c: 91230821     	add	x1, x1, #0x8c2
+     da0: aa1303e0     	mov	x0, x19
+     da4: f9401908     	ldr	x8, [x8, #0x30]
+     da8: d63f0100     	blr	x8
+     dac: aa0003f4     	mov	x20, x0
+     db0: 94000044     	bl	0xec0 <__errno@plt>
+     db4: b9400000     	ldr	w0, [x0]
+     db8: 94000046     	bl	0xed0 <strerror@plt>
+     dbc: f9400268     	ldr	x8, [x19]
+     dc0: aa0003e2     	mov	x2, x0
+     dc4: aa1303e0     	mov	x0, x19
+     dc8: aa1403e1     	mov	x1, x20
+     dcc: f9403908     	ldr	x8, [x8, #0x70]
+     dd0: d63f0100     	blr	x8
+     dd4: 12800014     	mov	w20, #-0x1
+     dd8: 2a1403e0     	mov	w0, w20
+     ddc: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+     de0: a94157f6     	ldp	x22, x21, [sp, #0x10]
+     de4: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+     de8: d65f03c0     	ret
+
+0000000000000dec <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nRelease>:
+     dec: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+     df0: a9014ff4     	stp	x20, x19, [sp, #0x10]
+     df4: 910003fd     	mov	x29, sp
+     df8: aa0003f3     	mov	x19, x0
+     dfc: 2a0203e0     	mov	w0, w2
+     e00: 94000040     	bl	0xf00 <close@plt>
+     e04: 3100041f     	cmn	w0, #0x1
+     e08: 54000080     	b.eq	0xe18 <Java_com_bykv_vk_openvk_preload_geckox_utils_FileLock_nRelease+0x2c>
+     e0c: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+     e10: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+     e14: d65f03c0     	ret
+     e18: f9400268     	ldr	x8, [x19]
+     e1c: 90000001     	adrp	x1, 0x0
+     e20: 91230821     	add	x1, x1, #0x8c2
+     e24: aa1303e0     	mov	x0, x19
+     e28: f9401908     	ldr	x8, [x8, #0x30]
+     e2c: d63f0100     	blr	x8
+     e30: aa0003f4     	mov	x20, x0
+     e34: 94000023     	bl	0xec0 <__errno@plt>
+     e38: b9400000     	ldr	w0, [x0]
+     e3c: 94000025     	bl	0xed0 <strerror@plt>
+     e40: f9400268     	ldr	x8, [x19]
+     e44: aa0003e2     	mov	x2, x0
+     e48: aa1303e0     	mov	x0, x19
+     e4c: aa1403e1     	mov	x1, x20
+     e50: f9403903     	ldr	x3, [x8, #0x70]
+     e54: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+     e58: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+     e5c: d61f0060     	br	x3
+
+Disassembly of section .plt:
+
+0000000000000e60 <.plt>:
+     e60: a9bf7bf0     	stp	x16, x30, [sp, #-0x10]!
+     e64: b0000030     	adrp	x16, 0x5000
+     e68: f9407611     	ldr	x17, [x16, #0xe8]
+     e6c: 9103a210     	add	x16, x16, #0xe8
+     e70: d61f0220     	br	x17
+     e74: d503201f     	nop
+     e78: d503201f     	nop
+     e7c: d503201f     	nop
+
+0000000000000e80 <__cxa_finalize@plt>:
+     e80: b0000030     	adrp	x16, 0x5000
+     e84: f9407a11     	ldr	x17, [x16, #0xf0]
+     e88: 9103c210     	add	x16, x16, #0xf0
+     e8c: d61f0220     	br	x17
+
+0000000000000e90 <__cxa_atexit@plt>:
+     e90: b0000030     	adrp	x16, 0x5000
+     e94: f9407e11     	ldr	x17, [x16, #0xf8]
+     e98: 9103e210     	add	x16, x16, #0xf8
+     e9c: d61f0220     	br	x17
+
+0000000000000ea0 <fcntl@plt>:
+     ea0: b0000030     	adrp	x16, 0x5000
+     ea4: f9408211     	ldr	x17, [x16, #0x100]
+     ea8: 91040210     	add	x16, x16, #0x100
+     eac: d61f0220     	br	x17
+
+0000000000000eb0 <__android_log_print@plt>:
+     eb0: b0000030     	adrp	x16, 0x5000
+     eb4: f9408611     	ldr	x17, [x16, #0x108]
+     eb8: 91042210     	add	x16, x16, #0x108
+     ebc: d61f0220     	br	x17
+
+0000000000000ec0 <__errno@plt>:
+     ec0: b0000030     	adrp	x16, 0x5000
+     ec4: f9408a11     	ldr	x17, [x16, #0x110]
+     ec8: 91044210     	add	x16, x16, #0x110
+     ecc: d61f0220     	br	x17
+
+0000000000000ed0 <strerror@plt>:
+     ed0: b0000030     	adrp	x16, 0x5000
+     ed4: f9408e11     	ldr	x17, [x16, #0x118]
+     ed8: 91046210     	add	x16, x16, #0x118
+     edc: d61f0220     	br	x17
+
+0000000000000ee0 <__stack_chk_fail@plt>:
+     ee0: b0000030     	adrp	x16, 0x5000
+     ee4: f9409211     	ldr	x17, [x16, #0x120]
+     ee8: 91048210     	add	x16, x16, #0x120
+     eec: d61f0220     	br	x17
+
+0000000000000ef0 <open@plt>:
+     ef0: b0000030     	adrp	x16, 0x5000
+     ef4: f9409611     	ldr	x17, [x16, #0x128]
+     ef8: 9104a210     	add	x16, x16, #0x128
+     efc: d61f0220     	br	x17
+
+0000000000000f00 <close@plt>:
+     f00: b0000030     	adrp	x16, 0x5000
+     f04: f9409a11     	ldr	x17, [x16, #0x130]
+     f08: 9104c210     	add	x16, x16, #0x130
+     f0c: d61f0220     	br	x17

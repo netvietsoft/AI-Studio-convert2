@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 0
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libmanis_npu_adapter.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000071690 <.text>:
+   71690: d503245f     	bti	c
+   71694: d503201f     	nop
+   71698: 10421a40     	adr	x0, #0x84348
+   7169c: 1401f6ad     	b	0xef150 <__cxa_finalize@plt>
+   716a0: d503245f     	bti	c
+   716a4: d65f03c0     	ret
+   716a8: d503245f     	bti	c
+   716ac: 17fffffd     	b	0x716a0 <.text+0x10>
+   716b0: d503245f     	bti	c
+   716b4: b4000060     	cbz	x0, 0x716c0 <.text+0x30>
+   716b8: aa0003f0     	mov	x16, x0
+   716bc: d61f0200     	br	x16
+   716c0: d65f03c0     	ret
+   716c4: d503245f     	bti	c
+   716c8: aa0003e1     	mov	x1, x0
+   716cc: d503201f     	nop
+   716d0: 10ffff00     	adr	x0, #-0x20
+   716d4: d503201f     	nop
+   716d8: 10421842     	adr	x2, #0x84308
+   716dc: 1401f6a1     	b	0xef160 <__cxa_atexit@plt>
+
+00000000000716e0 <_ZN5mizar9NpuArgMax16SkipConstInputOpEv>:
+   716e0: 2a1f03e0     	mov	w0, wzr
+   716e4: d65f03c0     	ret
+
+00000000000716e8 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE>:
+   716e8: d10383ff     	sub	sp, sp, #0xe0
+   716ec: a9087bfd     	stp	x29, x30, [sp, #0x80]
+   716f0: a9096ffc     	stp	x28, x27, [sp, #0x90]
+   716f4: a90a67fa     	stp	x26, x25, [sp, #0xa0]
+   716f8: a90b5ff8     	stp	x24, x23, [sp, #0xb0]
+   716fc: a90c57f6     	stp	x22, x21, [sp, #0xc0]
+   71700: a90d4ff4     	stp	x20, x19, [sp, #0xd0]
+   71704: 910203fd     	add	x29, sp, #0x80
+   71708: f90003e8     	str	x8, [sp]
+   7170c: d53bd048     	mrs	x8, TPIDR_EL0
+   71710: aa0003f5     	mov	x21, x0
+   71714: f90007e8     	str	x8, [sp, #0x8]
+   71718: 52800080     	mov	w0, #0x4
+   7171c: f9401508     	ldr	x8, [x8, #0x28]
+   71720: f81f83a8     	stur	x8, [x29, #-0x8]
+   71724: f9400029     	ldr	x9, [x1]
+   71728: f9401828     	ldr	x8, [x1, #0x30]
+   7172c: f940005c     	ldr	x28, [x2]
+   71730: f9400c36     	ldr	x22, [x1, #0x18]
+   71734: a9412d29     	ldp	x9, x11, [x9, #0x10]
+   71738: b940010a     	ldr	w10, [x8]
+   7173c: f9400508     	ldr	x8, [x8, #0x8]
+   71740: 7100055f     	cmp	w10, #0x1
+   71744: cb090169     	sub	x9, x11, x9
+   71748: 9a9f011b     	csel	x27, x8, xzr, eq
+   7174c: d343fd28     	lsr	x8, x9, #3
+   71750: b9400369     	ldr	w9, [x27]
+   71754: 4b0803ea     	neg	w10, w8
+   71758: 6b0a013f     	cmp	w9, w10
+   7175c: 7a40a920     	ccmp	w9, #0x0, #0x0, ge
+   71760: 7a48b120     	ccmp	w9, w8, #0x0, lt
+   71764: 1a9fb108     	csel	w8, w8, wzr, lt
+   71768: 0b090113     	add	w19, w8, w9
+   7176c: 9401f681     	bl	0xef170 <_Znwm@plt>
+   71770: aa1603fa     	mov	x26, x22
+   71774: b9000013     	str	w19, [x0]
+   71778: f94042c8     	ldr	x8, [x22, #0x80]
+   7177c: 38478f54     	ldrb	w20, [x26, #0x78]!
+   71780: f9000be0     	str	x0, [sp, #0x10]
+   71784: d341fe89     	lsr	x9, x20, #1
+   71788: 7200029f     	tst	w20, #0x1
+   7178c: 9a880137     	csel	x23, x9, x8, eq
+   71790: 910032f3     	add	x19, x23, #0xc
+   71794: b100427f     	cmn	x19, #0x10
+   71798: 54002802     	b.hs	0x71c98 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x5b0>
+   7179c: f1005e7f     	cmp	x19, #0x17
+   717a0: 54000142     	b.hs	0x717c8 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0xe0>
+   717a4: 531f7a68     	lsl	w8, w19, #1
+   717a8: d10083a9     	sub	x9, x29, #0x20
+   717ac: aa0003f9     	mov	x25, x0
+   717b0: b2400138     	orr	x24, x9, #0x1
+   717b4: a93e7fbf     	stp	xzr, xzr, [x29, #-0x20]
+   717b8: f81f03bf     	stur	xzr, [x29, #-0x10]
+   717bc: 381e03a8     	sturb	w8, [x29, #-0x20]
+   717c0: b5000177     	cbnz	x23, 0x717ec <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x104>
+   717c4: 14000011     	b	0x71808 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x120>
+   717c8: b2400e68     	orr	x8, x19, #0xf
+   717cc: 91000519     	add	x25, x8, #0x1
+   717d0: aa1903e0     	mov	x0, x25
+   717d4: 9401f667     	bl	0xef170 <_Znwm@plt>
+   717d8: b2400328     	orr	x8, x25, #0x1
+   717dc: f9400bf9     	ldr	x25, [sp, #0x10]
+   717e0: aa0003f8     	mov	x24, x0
+   717e4: a93e83b3     	stp	x19, x0, [x29, #-0x18]
+   717e8: f81e03a8     	stur	x8, [x29, #-0x20]
+   717ec: f94046c8     	ldr	x8, [x22, #0x88]
+   717f0: 9101e6c9     	add	x9, x22, #0x79
+   717f4: 7200029f     	tst	w20, #0x1
+   717f8: aa1803e0     	mov	x0, x24
+   717fc: aa1703e2     	mov	x2, x23
+   71800: 9a880121     	csel	x1, x9, x8, eq
+   71804: 9401f65f     	bl	0xef180 <memmove@plt>
+   71808: d503201f     	nop
+   7180c: 50f18288     	adr	x8, #-0x1cfae
+   71810: 528f0c2a     	mov	w10, #0x7861
+   71814: f9400108     	ldr	x8, [x8]
+   71818: 8b170309     	add	x9, x24, x23
+   7181c: 72ae6d2a     	movk	w10, #0x7369, lsl #16
+   71820: b900092a     	str	w10, [x9, #0x8]
+   71824: f9000128     	str	x8, [x9]
+   71828: 3900313f     	strb	wzr, [x9, #0xc]
+   7182c: 52800600     	mov	w0, #0x30
+   71830: 9401f650     	bl	0xef170 <_Znwm@plt>
+   71834: d0000448     	adrp	x8, 0xfb000
+   71838: aa0003f7     	mov	x23, x0
+   7183c: 91006018     	add	x24, x0, #0x18
+   71840: f9403508     	ldr	x8, [x8, #0x68]
+   71844: a900fc1f     	stp	xzr, xzr, [x0, #0x8]
+   71848: 91004108     	add	x8, x8, #0x10
+   7184c: f9000008     	str	x8, [x0]
+   71850: d10083a1     	sub	x1, x29, #0x20
+   71854: aa1803e0     	mov	x0, x24
+   71858: 9401f64e     	bl	0xef190 <_ZN4hiai2op5ConstC2ERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE@plt>
+   7185c: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71860: a93d5fb8     	stp	x24, x23, [x29, #-0x30]
+   71864: 36000068     	tbz	w8, #0x0, 0x71870 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x188>
+   71868: f85f03a0     	ldur	x0, [x29, #-0x10]
+   7186c: 9401f64d     	bl	0xef1a0 <_ZdlPv@plt>
+   71870: a9047fff     	stp	xzr, xzr, [sp, #0x40]
+   71874: f9001fff     	str	xzr, [sp, #0x38]
+   71878: 52800080     	mov	w0, #0x4
+   7187c: 9401f63d     	bl	0xef170 <_Znwm@plt>
+   71880: b9400328     	ldr	w8, [x25]
+   71884: f9001fe0     	str	x0, [sp, #0x38]
+   71888: b8004408     	str	w8, [x0], #0x4
+   7188c: a90403e0     	stp	x0, x0, [sp, #0x40]
+   71890: d100c3a0     	sub	x0, x29, #0x30
+   71894: 9100e3e1     	add	x1, sp, #0x38
+   71898: 2a1f03e2     	mov	w2, wzr
+   7189c: 52800063     	mov	w3, #0x3
+   718a0: 2a1f03e4     	mov	w4, wzr
+   718a4: 9401f643     	bl	0xef1b0 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb@plt>
+   718a8: f9401fe0     	ldr	x0, [sp, #0x38]
+   718ac: b4000060     	cbz	x0, 0x718b8 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x1d0>
+   718b0: f90023e0     	str	x0, [sp, #0x40]
+   718b4: 9401f63b     	bl	0xef1a0 <_ZdlPv@plt>
+   718b8: a97d23b3     	ldp	x19, x8, [x29, #-0x30]
+   718bc: a93e23b3     	stp	x19, x8, [x29, #-0x20]
+   718c0: b4000088     	cbz	x8, 0x718d0 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x1e8>
+   718c4: 91002101     	add	x1, x8, #0x8
+   718c8: 52800020     	mov	w0, #0x1
+   718cc: 9401e4d1     	bl	0xeac10 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x84>
+   718d0: a94126a8     	ldp	x8, x9, [x21, #0x10]
+   718d4: eb09011f     	cmp	x8, x9
+   718d8: 540000e2     	b.hs	0x718f4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x20c>
+   718dc: f9000113     	str	x19, [x8]
+   718e0: 9100410a     	add	x10, x8, #0x10
+   718e4: f85e83a9     	ldur	x9, [x29, #-0x18]
+   718e8: f9000509     	str	x9, [x8, #0x8]
+   718ec: f9000aaa     	str	x10, [x21, #0x10]
+   718f0: 14000011     	b	0x71934 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x24c>
+   718f4: 910022a0     	add	x0, x21, #0x8
+   718f8: d10083a1     	sub	x1, x29, #0x20
+   718fc: 9401f631     	bl	0xef1c0 <_ZNSt6__ndk16vectorINS_10shared_ptrIN2ge8OperatorEEENS_9allocatorIS4_EEE21__push_back_slow_pathIS4_EEPS4_OT_@plt>
+   71900: f85e83b7     	ldur	x23, [x29, #-0x18]
+   71904: f9000aa0     	str	x0, [x21, #0x10]
+   71908: b4000177     	cbz	x23, 0x71934 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x24c>
+   7190c: 910022e1     	add	x1, x23, #0x8
+   71910: 92800000     	mov	x0, #-0x1
+   71914: 9401e67b     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71918: b50000e0     	cbnz	x0, 0x71934 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x24c>
+   7191c: f94002e8     	ldr	x8, [x23]
+   71920: aa1703e0     	mov	x0, x23
+   71924: f9400908     	ldr	x8, [x8, #0x10]
+   71928: d63f0100     	blr	x8
+   7192c: aa1703e0     	mov	x0, x23
+   71930: 9401f628     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71934: 3941e2d4     	ldrb	w20, [x22, #0x78]
+   71938: f94042c8     	ldr	x8, [x22, #0x80]
+   7193c: d341fe89     	lsr	x9, x20, #1
+   71940: 7200029f     	tst	w20, #0x1
+   71944: 9a880137     	csel	x23, x9, x8, eq
+   71948: 91001ef3     	add	x19, x23, #0x7
+   7194c: b100427f     	cmn	x19, #0x10
+   71950: 54001b22     	b.hs	0x71cb4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x5cc>
+   71954: f1005e7f     	cmp	x19, #0x17
+   71958: 54000122     	b.hs	0x7197c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x294>
+   7195c: 531f7a68     	lsl	w8, w19, #1
+   71960: d10083a9     	sub	x9, x29, #0x20
+   71964: a93e7fbf     	stp	xzr, xzr, [x29, #-0x20]
+   71968: b2400138     	orr	x24, x9, #0x1
+   7196c: f81f03bf     	stur	xzr, [x29, #-0x10]
+   71970: 381e03a8     	sturb	w8, [x29, #-0x20]
+   71974: b5000177     	cbnz	x23, 0x719a0 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x2b8>
+   71978: 14000011     	b	0x719bc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x2d4>
+   7197c: b2400e68     	orr	x8, x19, #0xf
+   71980: 91000519     	add	x25, x8, #0x1
+   71984: aa1903e0     	mov	x0, x25
+   71988: 9401f5fa     	bl	0xef170 <_Znwm@plt>
+   7198c: b2400328     	orr	x8, x25, #0x1
+   71990: f9400bf9     	ldr	x25, [sp, #0x10]
+   71994: aa0003f8     	mov	x24, x0
+   71998: a93e83b3     	stp	x19, x0, [x29, #-0x18]
+   7199c: f81e03a8     	stur	x8, [x29, #-0x20]
+   719a0: f94046c8     	ldr	x8, [x22, #0x88]
+   719a4: 9101e6c9     	add	x9, x22, #0x79
+   719a8: 7200029f     	tst	w20, #0x1
+   719ac: aa1803e0     	mov	x0, x24
+   719b0: aa1703e2     	mov	x2, x23
+   719b4: 9a880121     	csel	x1, x9, x8, eq
+   719b8: 9401f5f2     	bl	0xef180 <memmove@plt>
+   719bc: 528dace9     	mov	w9, #0x6d67
+   719c0: 528c2bea     	mov	w10, #0x615f
+   719c4: 8b170308     	add	x8, x24, x23
+   719c8: 72af0c29     	movk	w9, #0x7861, lsl #16
+   719cc: 72acee4a     	movk	w10, #0x6772, lsl #16
+   719d0: 39001d1f     	strb	wzr, [x8, #0x7]
+   719d4: b8003109     	stur	w9, [x8, #0x3]
+   719d8: b900010a     	str	w10, [x8]
+   719dc: 52800600     	mov	w0, #0x30
+   719e0: 9401f5e4     	bl	0xef170 <_Znwm@plt>
+   719e4: d0000448     	adrp	x8, 0xfb000
+   719e8: aa0003f7     	mov	x23, x0
+   719ec: 91006018     	add	x24, x0, #0x18
+   719f0: f9403908     	ldr	x8, [x8, #0x70]
+   719f4: a900fc1f     	stp	xzr, xzr, [x0, #0x8]
+   719f8: 91004108     	add	x8, x8, #0x10
+   719fc: f9000008     	str	x8, [x0]
+   71a00: d10083a1     	sub	x1, x29, #0x20
+   71a04: aa1803e0     	mov	x0, x24
+   71a08: 9401f5f6     	bl	0xef1e0 <_ZN4hiai2op10ArgMaxExt2C2ERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE@plt>
+   71a0c: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71a10: a902dff8     	stp	x24, x23, [sp, #0x28]
+   71a14: 36000068     	tbz	w8, #0x0, 0x71a20 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x338>
+   71a18: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71a1c: 9401f5e1     	bl	0xef1a0 <_ZdlPv@plt>
+   71a20: 528f0048     	mov	w8, #0x7802
+   71a24: f9400382     	ldr	x2, [x28]
+   71a28: 381e23bf     	sturb	wzr, [x29, #-0x1e]
+   71a2c: 781e03a8     	sturh	w8, [x29, #-0x20]
+   71a30: d10083a1     	sub	x1, x29, #0x20
+   71a34: aa1803e0     	mov	x0, x24
+   71a38: 9401f5ee     	bl	0xef1f0 <_ZN2ge8Operator8SetInputERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEERKS0_@plt>
+   71a3c: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71a40: 36000068     	tbz	w8, #0x0, 0x71a4c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x364>
+   71a44: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71a48: 9401f5d6     	bl	0xef1a0 <_ZdlPv@plt>
+   71a4c: 528f0c29     	mov	w9, #0x7861
+   71a50: 52800108     	mov	w8, #0x8
+   71a54: f85d03a2     	ldur	x2, [x29, #-0x30]
+   71a58: 72ae6d29     	movk	w9, #0x7369, lsl #16
+   71a5c: 381e03a8     	sturb	w8, [x29, #-0x20]
+   71a60: b81e13a9     	stur	w9, [x29, #-0x1f]
+   71a64: 381e53bf     	sturb	wzr, [x29, #-0x1b]
+   71a68: d10083a1     	sub	x1, x29, #0x20
+   71a6c: aa1803e0     	mov	x0, x24
+   71a70: 9401f5e0     	bl	0xef1f0 <_ZN2ge8Operator8SetInputERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEERKS0_@plt>
+   71a74: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71a78: 36000068     	tbz	w8, #0x0, 0x71a84 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x39c>
+   71a7c: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71a80: 9401f5c8     	bl	0xef1a0 <_ZdlPv@plt>
+   71a84: b9400768     	ldr	w8, [x27, #0x4]
+   71a88: 7100011f     	cmp	w8, #0x0
+   71a8c: 1a9f07e1     	cset	w1, ne
+   71a90: aa1803e0     	mov	x0, x24
+   71a94: 9401f5db     	bl	0xef200 <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb@plt>
+   71a98: 910022e1     	add	x1, x23, #0x8
+   71a9c: 52800020     	mov	w0, #0x1
+   71aa0: a93e5fb8     	stp	x24, x23, [x29, #-0x20]
+   71aa4: 9401e45b     	bl	0xeac10 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x84>
+   71aa8: a94126a8     	ldp	x8, x9, [x21, #0x10]
+   71aac: eb09011f     	cmp	x8, x9
+   71ab0: 54000082     	b.hs	0x71ac0 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x3d8>
+   71ab4: a8815d18     	stp	x24, x23, [x8], #0x10
+   71ab8: f9000aa8     	str	x8, [x21, #0x10]
+   71abc: 14000011     	b	0x71b00 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x418>
+   71ac0: 910022a0     	add	x0, x21, #0x8
+   71ac4: d10083a1     	sub	x1, x29, #0x20
+   71ac8: 9401f5be     	bl	0xef1c0 <_ZNSt6__ndk16vectorINS_10shared_ptrIN2ge8OperatorEEENS_9allocatorIS4_EEE21__push_back_slow_pathIS4_EEPS4_OT_@plt>
+   71acc: f85e83b7     	ldur	x23, [x29, #-0x18]
+   71ad0: f9000aa0     	str	x0, [x21, #0x10]
+   71ad4: b4000177     	cbz	x23, 0x71b00 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x418>
+   71ad8: 910022e1     	add	x1, x23, #0x8
+   71adc: 92800000     	mov	x0, #-0x1
+   71ae0: 9401e608     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71ae4: b50000e0     	cbnz	x0, 0x71b00 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x418>
+   71ae8: f94002e8     	ldr	x8, [x23]
+   71aec: aa1703e0     	mov	x0, x23
+   71af0: f9400908     	ldr	x8, [x8, #0x10]
+   71af4: d63f0100     	blr	x8
+   71af8: aa1703e0     	mov	x0, x23
+   71afc: 9401f5b5     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71b00: 52800600     	mov	w0, #0x30
+   71b04: 9401f59b     	bl	0xef170 <_Znwm@plt>
+   71b08: aa1a03e2     	mov	x2, x26
+   71b0c: aa0003f7     	mov	x23, x0
+   71b10: 9401f5c0     	bl	0xef210 <_ZNSt6__ndk120__shared_ptr_emplaceIN4hiai2op5CastTENS_9allocatorIS3_EEEC2B8ne180000IJRKNS_12basic_stringIcNS_11char_traitsIcEENS4_IcEEEEES5_TnNS_9enable_ifIXntsr7is_sameINT0_10value_typeENS_19__for_overwrite_tagEEE5valueEiE4typeELi0EEES5_DpOT_@plt>
+   71b14: 910062f6     	add	x22, x23, #0x18
+   71b18: 528f0048     	mov	w8, #0x7802
+   71b1c: f94017e2     	ldr	x2, [sp, #0x28]
+   71b20: a901dff6     	stp	x22, x23, [sp, #0x18]
+   71b24: 781e03a8     	sturh	w8, [x29, #-0x20]
+   71b28: 381e23bf     	sturb	wzr, [x29, #-0x1e]
+   71b2c: d10083a1     	sub	x1, x29, #0x20
+   71b30: aa1603e0     	mov	x0, x22
+   71b34: 9401f5af     	bl	0xef1f0 <_ZN2ge8Operator8SetInputERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEERKS0_@plt>
+   71b38: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71b3c: 36000068     	tbz	w8, #0x0, 0x71b48 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x460>
+   71b40: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71b44: 9401f597     	bl	0xef1a0 <_ZdlPv@plt>
+   71b48: aa1603e0     	mov	x0, x22
+   71b4c: 52800061     	mov	w1, #0x3
+   71b50: 9401f5b4     	bl	0xef220 <_ZN4hiai2op5CastT18set_attr_src_dtypeEl@plt>
+   71b54: aa1f03e1     	mov	x1, xzr
+   71b58: 9401f5b6     	bl	0xef230 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl@plt>
+   71b5c: 910022e1     	add	x1, x23, #0x8
+   71b60: 52800020     	mov	w0, #0x1
+   71b64: a93e5fb6     	stp	x22, x23, [x29, #-0x20]
+   71b68: 9401e42a     	bl	0xeac10 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x84>
+   71b6c: a94126a8     	ldp	x8, x9, [x21, #0x10]
+   71b70: eb09011f     	cmp	x8, x9
+   71b74: 54000082     	b.hs	0x71b84 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x49c>
+   71b78: a8815d16     	stp	x22, x23, [x8], #0x10
+   71b7c: f9000aa8     	str	x8, [x21, #0x10]
+   71b80: 14000011     	b	0x71bc4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x4dc>
+   71b84: 910022a0     	add	x0, x21, #0x8
+   71b88: d10083a1     	sub	x1, x29, #0x20
+   71b8c: 9401f58d     	bl	0xef1c0 <_ZNSt6__ndk16vectorINS_10shared_ptrIN2ge8OperatorEEENS_9allocatorIS4_EEE21__push_back_slow_pathIS4_EEPS4_OT_@plt>
+   71b90: f85e83b6     	ldur	x22, [x29, #-0x18]
+   71b94: f9000aa0     	str	x0, [x21, #0x10]
+   71b98: b4000176     	cbz	x22, 0x71bc4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x4dc>
+   71b9c: 910022c1     	add	x1, x22, #0x8
+   71ba0: 92800000     	mov	x0, #-0x1
+   71ba4: 9401e5d7     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71ba8: b50000e0     	cbnz	x0, 0x71bc4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x4dc>
+   71bac: f94002c8     	ldr	x8, [x22]
+   71bb0: aa1603e0     	mov	x0, x22
+   71bb4: f9400908     	ldr	x8, [x8, #0x10]
+   71bb8: d63f0100     	blr	x8
+   71bbc: aa1603e0     	mov	x0, x22
+   71bc0: 9401f584     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71bc4: f94003e0     	ldr	x0, [sp]
+   71bc8: 9401f59e     	bl	0xef240 <_ZN5mizar6StatusC1Ev@plt>
+   71bcc: f94013f4     	ldr	x20, [sp, #0x20]
+   71bd0: b4000174     	cbz	x20, 0x71bfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x514>
+   71bd4: 91002281     	add	x1, x20, #0x8
+   71bd8: 92800000     	mov	x0, #-0x1
+   71bdc: 9401e5c9     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71be0: b50000e0     	cbnz	x0, 0x71bfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x514>
+   71be4: f9400288     	ldr	x8, [x20]
+   71be8: aa1403e0     	mov	x0, x20
+   71bec: f9400908     	ldr	x8, [x8, #0x10]
+   71bf0: d63f0100     	blr	x8
+   71bf4: aa1403e0     	mov	x0, x20
+   71bf8: 9401f576     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71bfc: f9401bf4     	ldr	x20, [sp, #0x30]
+   71c00: b4000174     	cbz	x20, 0x71c2c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x544>
+   71c04: 91002281     	add	x1, x20, #0x8
+   71c08: 92800000     	mov	x0, #-0x1
+   71c0c: 9401e5bd     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71c10: b50000e0     	cbnz	x0, 0x71c2c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x544>
+   71c14: f9400288     	ldr	x8, [x20]
+   71c18: aa1403e0     	mov	x0, x20
+   71c1c: f9400908     	ldr	x8, [x8, #0x10]
+   71c20: d63f0100     	blr	x8
+   71c24: aa1403e0     	mov	x0, x20
+   71c28: 9401f56a     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71c2c: f85d83b4     	ldur	x20, [x29, #-0x28]
+   71c30: b4000174     	cbz	x20, 0x71c5c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x574>
+   71c34: 91002281     	add	x1, x20, #0x8
+   71c38: 92800000     	mov	x0, #-0x1
+   71c3c: 9401e5b1     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71c40: b50000e0     	cbnz	x0, 0x71c5c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x574>
+   71c44: f9400288     	ldr	x8, [x20]
+   71c48: aa1403e0     	mov	x0, x20
+   71c4c: f9400908     	ldr	x8, [x8, #0x10]
+   71c50: d63f0100     	blr	x8
+   71c54: aa1403e0     	mov	x0, x20
+   71c58: 9401f55e     	bl	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   71c5c: aa1903e0     	mov	x0, x25
+   71c60: 9401f550     	bl	0xef1a0 <_ZdlPv@plt>
+   71c64: f94007e8     	ldr	x8, [sp, #0x8]
+   71c68: f9401508     	ldr	x8, [x8, #0x28]
+   71c6c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71c70: eb09011f     	cmp	x8, x9
+   71c74: 54000da1     	b.ne	0x71e28 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x740>
+   71c78: a94d4ff4     	ldp	x20, x19, [sp, #0xd0]
+   71c7c: a94c57f6     	ldp	x22, x21, [sp, #0xc0]
+   71c80: a94b5ff8     	ldp	x24, x23, [sp, #0xb0]
+   71c84: a94a67fa     	ldp	x26, x25, [sp, #0xa0]
+   71c88: a9496ffc     	ldp	x28, x27, [sp, #0x90]
+   71c8c: a9487bfd     	ldp	x29, x30, [sp, #0x80]
+   71c90: 910383ff     	add	sp, sp, #0xe0
+   71c94: d65f03c0     	ret
+   71c98: f94007e8     	ldr	x8, [sp, #0x8]
+   71c9c: f9401508     	ldr	x8, [x8, #0x28]
+   71ca0: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71ca4: eb09011f     	cmp	x8, x9
+   71ca8: 54000c01     	b.ne	0x71e28 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x740>
+   71cac: d10083a0     	sub	x0, x29, #0x20
+   71cb0: 94000224     	bl	0x72540 <_ZN5mizar9NpuArgMaxD0Ev+0x24>
+   71cb4: f94007e8     	ldr	x8, [sp, #0x8]
+   71cb8: f9401508     	ldr	x8, [x8, #0x28]
+   71cbc: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71cc0: eb09011f     	cmp	x8, x9
+   71cc4: 54000b21     	b.ne	0x71e28 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x740>
+   71cc8: d10083a0     	sub	x0, x29, #0x20
+   71ccc: 9400021d     	bl	0x72540 <_ZN5mizar9NpuArgMaxD0Ev+0x24>
+   71cd0: aa0003f4     	mov	x20, x0
+   71cd4: d10083a0     	sub	x0, x29, #0x20
+   71cd8: 940000ad     	bl	0x71f8c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x160>
+   71cdc: 14000044     	b	0x71dec <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x704>
+   71ce0: aa0003f4     	mov	x20, x0
+   71ce4: d10083a0     	sub	x0, x29, #0x20
+   71ce8: 940000a9     	bl	0x71f8c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x160>
+   71cec: 14000042     	b	0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71cf0: aa0003f4     	mov	x20, x0
+   71cf4: d10083a0     	sub	x0, x29, #0x20
+   71cf8: 940000a5     	bl	0x71f8c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x160>
+   71cfc: 14000040     	b	0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71d00: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71d04: aa0003f4     	mov	x20, x0
+   71d08: 36000728     	tbz	w8, #0x0, 0x71dec <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x704>
+   71d0c: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71d10: 9401f524     	bl	0xef1a0 <_ZdlPv@plt>
+   71d14: 14000036     	b	0x71dec <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x704>
+   71d18: aa0003f4     	mov	x20, x0
+   71d1c: aa1703e0     	mov	x0, x23
+   71d20: 9401f520     	bl	0xef1a0 <_ZdlPv@plt>
+   71d24: 14000034     	b	0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71d28: aa0003f4     	mov	x20, x0
+   71d2c: 14000032     	b	0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71d30: aa0003f4     	mov	x20, x0
+   71d34: 14000030     	b	0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71d38: 14000001     	b	0x71d3c <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x654>
+   71d3c: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71d40: aa0003f4     	mov	x20, x0
+   71d44: 36000588     	tbz	w8, #0x0, 0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71d48: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71d4c: 9401f515     	bl	0xef1a0 <_ZdlPv@plt>
+   71d50: 14000029     	b	0x71df4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x70c>
+   71d54: aa0003f4     	mov	x20, x0
+   71d58: aa1703e0     	mov	x0, x23
+   71d5c: 9401f53d     	bl	0xef250 <_ZNSt6__ndk119__shared_weak_countD2Ev@plt>
+   71d60: aa1703e0     	mov	x0, x23
+   71d64: 9401f50f     	bl	0xef1a0 <_ZdlPv@plt>
+   71d68: 14000002     	b	0x71d70 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x688>
+   71d6c: aa0003f4     	mov	x20, x0
+   71d70: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71d74: 36000448     	tbz	w8, #0x0, 0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71d78: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71d7c: 9401f509     	bl	0xef1a0 <_ZdlPv@plt>
+   71d80: 1400001f     	b	0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71d84: f9401fe8     	ldr	x8, [sp, #0x38]
+   71d88: aa0003f4     	mov	x20, x0
+   71d8c: b4000388     	cbz	x8, 0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71d90: aa0803e0     	mov	x0, x8
+   71d94: f90023e8     	str	x8, [sp, #0x40]
+   71d98: 9401f502     	bl	0xef1a0 <_ZdlPv@plt>
+   71d9c: 14000018     	b	0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71da0: aa0003f4     	mov	x20, x0
+   71da4: 14000016     	b	0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71da8: aa0003f4     	mov	x20, x0
+   71dac: aa1703e0     	mov	x0, x23
+   71db0: 9401f528     	bl	0xef250 <_ZNSt6__ndk119__shared_weak_countD2Ev@plt>
+   71db4: aa1703e0     	mov	x0, x23
+   71db8: 9401f4fa     	bl	0xef1a0 <_ZdlPv@plt>
+   71dbc: 14000002     	b	0x71dc4 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x6dc>
+   71dc0: aa0003f4     	mov	x20, x0
+   71dc4: 385e03a8     	ldurb	w8, [x29, #-0x20]
+   71dc8: 360001e8     	tbz	w8, #0x0, 0x71e04 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x71c>
+   71dcc: f85f03a0     	ldur	x0, [x29, #-0x10]
+   71dd0: 9401f4f4     	bl	0xef1a0 <_ZdlPv@plt>
+   71dd4: 1400000c     	b	0x71e04 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x71c>
+   71dd8: aa0003f4     	mov	x20, x0
+   71ddc: 14000008     	b	0x71dfc <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x714>
+   71de0: aa0003f4     	mov	x20, x0
+   71de4: 14000008     	b	0x71e04 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x71c>
+   71de8: aa0003f4     	mov	x20, x0
+   71dec: 910063e0     	add	x0, sp, #0x18
+   71df0: 94000117     	bl	0x7224c <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0xd0>
+   71df4: 9100a3e0     	add	x0, sp, #0x28
+   71df8: 94000129     	bl	0x7229c <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x120>
+   71dfc: d100c3a0     	sub	x0, x29, #0x30
+   71e00: 9400013b     	bl	0x722ec <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x170>
+   71e04: f9400be0     	ldr	x0, [sp, #0x10]
+   71e08: 9401f4e6     	bl	0xef1a0 <_ZdlPv@plt>
+   71e0c: f94007e8     	ldr	x8, [sp, #0x8]
+   71e10: f9401508     	ldr	x8, [x8, #0x28]
+   71e14: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71e18: eb09011f     	cmp	x8, x9
+   71e1c: 54000061     	b.ne	0x71e28 <_ZN5mizar9NpuArgMax3RunERKNS_9NpuOpInfoERKNSt6__ndk16vectorINS4_10shared_ptrIN2ge8OperatorEEENS4_9allocatorIS9_EEEE+0x740>
+   71e20: aa1403e0     	mov	x0, x20
+   71e24: 9401e590     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   71e28: 9401f50e     	bl	0xef260 <__stack_chk_fail@plt>
+
+0000000000071e2c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb>:
+   71e2c: d10283ff     	sub	sp, sp, #0xa0
+   71e30: a9057bfd     	stp	x29, x30, [sp, #0x50]
+   71e34: a90667fa     	stp	x26, x25, [sp, #0x60]
+   71e38: a9075ff8     	stp	x24, x23, [sp, #0x70]
+   71e3c: a90857f6     	stp	x22, x21, [sp, #0x80]
+   71e40: a9094ff4     	stp	x20, x19, [sp, #0x90]
+   71e44: 910143fd     	add	x29, sp, #0x50
+   71e48: d53bd058     	mrs	x24, TPIDR_EL0
+   71e4c: aa0003f5     	mov	x21, x0
+   71e50: 52800100     	mov	w0, #0x8
+   71e54: f9401708     	ldr	x8, [x24, #0x28]
+   71e58: 2a0403f7     	mov	w23, w4
+   71e5c: 2a0303f3     	mov	w19, w3
+   71e60: 2a0203f4     	mov	w20, w2
+   71e64: aa0103f6     	mov	x22, x1
+   71e68: f81f83a8     	stur	x8, [x29, #-0x8]
+   71e6c: a940643a     	ldp	x26, x25, [x1]
+   71e70: 9401f4c0     	bl	0xef170 <_Znwm@plt>
+   71e74: cb1a0328     	sub	x8, x25, x26
+   71e78: f90003e0     	str	x0, [sp]
+   71e7c: 9342fd08     	asr	x8, x8, #2
+   71e80: f8008408     	str	x8, [x0], #0x8
+   71e84: a90083e0     	stp	x0, x0, [sp, #0x8]
+   71e88: d10063a0     	sub	x0, x29, #0x18
+   71e8c: 910003e1     	mov	x1, sp
+   71e90: 9401f4f8     	bl	0xef270 <_ZN2ge5ShapeC1ENSt6__ndk16vectorIlNS1_9allocatorIlEEEE@plt>
+   71e94: f94003e0     	ldr	x0, [sp]
+   71e98: b4000060     	cbz	x0, 0x71ea4 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x78>
+   71e9c: f90007e0     	str	x0, [sp, #0x8]
+   71ea0: 9401f4c0     	bl	0xef1a0 <_ZdlPv@plt>
+   71ea4: 36000117     	tbz	w23, #0x0, 0x71ec4 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x98>
+   71ea8: 9100a3e0     	add	x0, sp, #0x28
+   71eac: 9401f4f5     	bl	0xef280 <_ZN2ge5ShapeC1Ev@plt>
+   71eb0: d10063a0     	sub	x0, x29, #0x18
+   71eb4: 9100a3e1     	add	x1, sp, #0x28
+   71eb8: 9401f4f6     	bl	0xef290 <_ZN2ge5ShapeaSERKS0_@plt>
+   71ebc: 9100a3e0     	add	x0, sp, #0x28
+   71ec0: 9401f4f8     	bl	0xef2a0 <_ZN2ge5ShapeD1Ev@plt>
+   71ec4: 910063e0     	add	x0, sp, #0x18
+   71ec8: d10063a1     	sub	x1, x29, #0x18
+   71ecc: 9401f4f9     	bl	0xef2b0 <_ZN2ge5ShapeC1ERKS0_@plt>
+   71ed0: a94022c2     	ldp	x2, x8, [x22]
+   71ed4: cb020103     	sub	x3, x8, x2
+   71ed8: 910063e1     	add	x1, sp, #0x18
+   71edc: aa1503e0     	mov	x0, x21
+   71ee0: 2a1403e4     	mov	w4, w20
+   71ee4: 2a1303e5     	mov	w5, w19
+   71ee8: 9401f4f6     	bl	0xef2c0 <_ZN5mizar8NpuUtils12SetAttrValueERNSt6__ndk110shared_ptrIN4hiai2op5ConstEEEN2ge5ShapeEPKhmNS8_6FormatENS8_8DataTypeE@plt>
+   71eec: 910063e0     	add	x0, sp, #0x18
+   71ef0: 9401f4ec     	bl	0xef2a0 <_ZN2ge5ShapeD1Ev@plt>
+   71ef4: d10063a0     	sub	x0, x29, #0x18
+   71ef8: 9401f4ea     	bl	0xef2a0 <_ZN2ge5ShapeD1Ev@plt>
+   71efc: f9401708     	ldr	x8, [x24, #0x28]
+   71f00: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71f04: eb09011f     	cmp	x8, x9
+   71f08: 54000321     	b.ne	0x71f6c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x140>
+   71f0c: a9494ff4     	ldp	x20, x19, [sp, #0x90]
+   71f10: a94857f6     	ldp	x22, x21, [sp, #0x80]
+   71f14: a9475ff8     	ldp	x24, x23, [sp, #0x70]
+   71f18: a94667fa     	ldp	x26, x25, [sp, #0x60]
+   71f1c: a9457bfd     	ldp	x29, x30, [sp, #0x50]
+   71f20: 910283ff     	add	sp, sp, #0xa0
+   71f24: d65f03c0     	ret
+   71f28: aa0003f3     	mov	x19, x0
+   71f2c: 9100a3e0     	add	x0, sp, #0x28
+   71f30: 14000004     	b	0x71f40 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x114>
+   71f34: 14000005     	b	0x71f48 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x11c>
+   71f38: aa0003f3     	mov	x19, x0
+   71f3c: 910063e0     	add	x0, sp, #0x18
+   71f40: 9401f4d8     	bl	0xef2a0 <_ZN2ge5ShapeD1Ev@plt>
+   71f44: 14000002     	b	0x71f4c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x120>
+   71f48: aa0003f3     	mov	x19, x0
+   71f4c: d10063a0     	sub	x0, x29, #0x18
+   71f50: 9401f4d4     	bl	0xef2a0 <_ZN2ge5ShapeD1Ev@plt>
+   71f54: f9401708     	ldr	x8, [x24, #0x28]
+   71f58: f85f83a9     	ldur	x9, [x29, #-0x8]
+   71f5c: eb09011f     	cmp	x8, x9
+   71f60: 54000061     	b.ne	0x71f6c <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x140>
+   71f64: aa1303e0     	mov	x0, x19
+   71f68: 9401e53f     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   71f6c: 9401f4bd     	bl	0xef260 <__stack_chk_fail@plt>
+   71f70: f94003e8     	ldr	x8, [sp]
+   71f74: aa0003f3     	mov	x19, x0
+   71f78: b4fffee8     	cbz	x8, 0x71f54 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x128>
+   71f7c: aa0803e0     	mov	x0, x8
+   71f80: f90007e8     	str	x8, [sp, #0x8]
+   71f84: 9401f487     	bl	0xef1a0 <_ZdlPv@plt>
+   71f88: 17fffff3     	b	0x71f54 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x128>
+   71f8c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   71f90: f9000bf3     	str	x19, [sp, #0x10]
+   71f94: 910003fd     	mov	x29, sp
+   71f98: f9400413     	ldr	x19, [x0, #0x8]
+   71f9c: b40000b3     	cbz	x19, 0x71fb0 <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x184>
+   71fa0: 91002261     	add	x1, x19, #0x8
+   71fa4: 92800000     	mov	x0, #-0x1
+   71fa8: 9401e4d6     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   71fac: b4000080     	cbz	x0, 0x71fbc <_ZN5mizar8NpuUtils12SetAttrValueIiEEvRNSt6__ndk110shared_ptrIN4hiai2op5ConstEEENS2_6vectorIT_NS2_9allocatorISA_EEEEN2ge6FormatENSE_8DataTypeEb+0x190>
+   71fb0: f9400bf3     	ldr	x19, [sp, #0x10]
+   71fb4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   71fb8: d65f03c0     	ret
+   71fbc: f9400268     	ldr	x8, [x19]
+   71fc0: aa1303e0     	mov	x0, x19
+   71fc4: f9400908     	ldr	x8, [x8, #0x10]
+   71fc8: d63f0100     	blr	x8
+   71fcc: aa1303e0     	mov	x0, x19
+   71fd0: f9400bf3     	ldr	x19, [sp, #0x10]
+   71fd4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   71fd8: 1401f47e     	b	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+
+0000000000071fdc <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb>:
+   71fdc: d10183ff     	sub	sp, sp, #0x60
+   71fe0: a9047bfd     	stp	x29, x30, [sp, #0x40]
+   71fe4: a9054ff4     	stp	x20, x19, [sp, #0x50]
+   71fe8: 910103fd     	add	x29, sp, #0x40
+   71fec: d53bd054     	mrs	x20, TPIDR_EL0
+   71ff0: aa0003f3     	mov	x19, x0
+   71ff4: 2a0103e0     	mov	w0, w1
+   71ff8: f9401688     	ldr	x8, [x20, #0x28]
+   71ffc: f81f83a8     	stur	x8, [x29, #-0x8]
+   72000: 910063e8     	add	x8, sp, #0x18
+   72004: 9401f4b3     	bl	0xef2d0 <_ZN2ge9AttrValue10CreateFromEb@plt>
+   72008: d503201f     	nop
+   7200c: 10f1d7e9     	adr	x9, #-0x1c504
+   72010: 52800248     	mov	w8, #0x12
+   72014: f9400129     	ldr	x9, [x9]
+   72018: 390003e8     	strb	w8, [sp]
+   7201c: 52800e68     	mov	w8, #0x73
+   72020: 780093e8     	sturh	w8, [sp, #0x9]
+   72024: f80013e9     	stur	x9, [sp, #0x1]
+   72028: 910003e1     	mov	x1, sp
+   7202c: 910063e2     	add	x2, sp, #0x18
+   72030: aa1303e0     	mov	x0, x19
+   72034: 9401f4ab     	bl	0xef2e0 <_ZN2ge8Operator7SetAttrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEONS_9AttrValueE@plt>
+   72038: 394003e8     	ldrb	w8, [sp]
+   7203c: 36000068     	tbz	w8, #0x0, 0x72048 <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb+0x6c>
+   72040: f9400be0     	ldr	x0, [sp, #0x10]
+   72044: 9401f457     	bl	0xef1a0 <_ZdlPv@plt>
+   72048: 910063e0     	add	x0, sp, #0x18
+   7204c: 9401f4a9     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   72050: f9401688     	ldr	x8, [x20, #0x28]
+   72054: f85f83a9     	ldur	x9, [x29, #-0x8]
+   72058: eb09011f     	cmp	x8, x9
+   7205c: 54000261     	b.ne	0x720a8 <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb+0xcc>
+   72060: aa1303e0     	mov	x0, x19
+   72064: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+   72068: a9447bfd     	ldp	x29, x30, [sp, #0x40]
+   7206c: 910183ff     	add	sp, sp, #0x60
+   72070: d65f03c0     	ret
+   72074: 394003e8     	ldrb	w8, [sp]
+   72078: aa0003f3     	mov	x19, x0
+   7207c: 36000068     	tbz	w8, #0x0, 0x72088 <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb+0xac>
+   72080: f9400be0     	ldr	x0, [sp, #0x10]
+   72084: 9401f447     	bl	0xef1a0 <_ZdlPv@plt>
+   72088: 910063e0     	add	x0, sp, #0x18
+   7208c: 9401f499     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   72090: f9401688     	ldr	x8, [x20, #0x28]
+   72094: f85f83a9     	ldur	x9, [x29, #-0x8]
+   72098: eb09011f     	cmp	x8, x9
+   7209c: 54000061     	b.ne	0x720a8 <_ZN4hiai2op10ArgMaxExt218set_attr_keep_dimsEb+0xcc>
+   720a0: aa1303e0     	mov	x0, x19
+   720a4: 9401e4f0     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   720a8: 9401f46e     	bl	0xef260 <__stack_chk_fail@plt>
+
+00000000000720ac <_ZN4hiai2op5CastT18set_attr_src_dtypeEl>:
+   720ac: d10183ff     	sub	sp, sp, #0x60
+   720b0: a9047bfd     	stp	x29, x30, [sp, #0x40]
+   720b4: a9054ff4     	stp	x20, x19, [sp, #0x50]
+   720b8: 910103fd     	add	x29, sp, #0x40
+   720bc: d53bd054     	mrs	x20, TPIDR_EL0
+   720c0: aa0003f3     	mov	x19, x0
+   720c4: aa0103e0     	mov	x0, x1
+   720c8: f9401688     	ldr	x8, [x20, #0x28]
+   720cc: f81f83a8     	stur	x8, [x29, #-0x8]
+   720d0: 910063e8     	add	x8, sp, #0x18
+   720d4: 9401f48b     	bl	0xef300 <_ZN2ge9AttrValue10CreateFromEl@plt>
+   720d8: f0ffff09     	adrp	x9, 0x55000
+   720dc: 912a0129     	add	x9, x9, #0xa80
+   720e0: 52800248     	mov	w8, #0x12
+   720e4: f9400129     	ldr	x9, [x9]
+   720e8: 390003e8     	strb	w8, [sp]
+   720ec: 52800ca8     	mov	w8, #0x65
+   720f0: 780093e8     	sturh	w8, [sp, #0x9]
+   720f4: f80013e9     	stur	x9, [sp, #0x1]
+   720f8: 910003e1     	mov	x1, sp
+   720fc: 910063e2     	add	x2, sp, #0x18
+   72100: aa1303e0     	mov	x0, x19
+   72104: 9401f477     	bl	0xef2e0 <_ZN2ge8Operator7SetAttrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEONS_9AttrValueE@plt>
+   72108: 394003e8     	ldrb	w8, [sp]
+   7210c: 36000068     	tbz	w8, #0x0, 0x72118 <_ZN4hiai2op5CastT18set_attr_src_dtypeEl+0x6c>
+   72110: f9400be0     	ldr	x0, [sp, #0x10]
+   72114: 9401f423     	bl	0xef1a0 <_ZdlPv@plt>
+   72118: 910063e0     	add	x0, sp, #0x18
+   7211c: 9401f475     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   72120: f9401688     	ldr	x8, [x20, #0x28]
+   72124: f85f83a9     	ldur	x9, [x29, #-0x8]
+   72128: eb09011f     	cmp	x8, x9
+   7212c: 54000261     	b.ne	0x72178 <_ZN4hiai2op5CastT18set_attr_src_dtypeEl+0xcc>
+   72130: aa1303e0     	mov	x0, x19
+   72134: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+   72138: a9447bfd     	ldp	x29, x30, [sp, #0x40]
+   7213c: 910183ff     	add	sp, sp, #0x60
+   72140: d65f03c0     	ret
+   72144: 394003e8     	ldrb	w8, [sp]
+   72148: aa0003f3     	mov	x19, x0
+   7214c: 36000068     	tbz	w8, #0x0, 0x72158 <_ZN4hiai2op5CastT18set_attr_src_dtypeEl+0xac>
+   72150: f9400be0     	ldr	x0, [sp, #0x10]
+   72154: 9401f413     	bl	0xef1a0 <_ZdlPv@plt>
+   72158: 910063e0     	add	x0, sp, #0x18
+   7215c: 9401f465     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   72160: f9401688     	ldr	x8, [x20, #0x28]
+   72164: f85f83a9     	ldur	x9, [x29, #-0x8]
+   72168: eb09011f     	cmp	x8, x9
+   7216c: 54000061     	b.ne	0x72178 <_ZN4hiai2op5CastT18set_attr_src_dtypeEl+0xcc>
+   72170: aa1303e0     	mov	x0, x19
+   72174: 9401e4bc     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   72178: 9401f43a     	bl	0xef260 <__stack_chk_fail@plt>
+
+000000000007217c <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl>:
+   7217c: d10183ff     	sub	sp, sp, #0x60
+   72180: a9047bfd     	stp	x29, x30, [sp, #0x40]
+   72184: a9054ff4     	stp	x20, x19, [sp, #0x50]
+   72188: 910103fd     	add	x29, sp, #0x40
+   7218c: d53bd054     	mrs	x20, TPIDR_EL0
+   72190: aa0003f3     	mov	x19, x0
+   72194: aa0103e0     	mov	x0, x1
+   72198: f9401688     	ldr	x8, [x20, #0x28]
+   7219c: f81f83a8     	stur	x8, [x29, #-0x8]
+   721a0: 910063e8     	add	x8, sp, #0x18
+   721a4: 9401f457     	bl	0xef300 <_ZN2ge9AttrValue10CreateFromEl@plt>
+   721a8: d0ffff09     	adrp	x9, 0x54000
+   721ac: 9113ed29     	add	x9, x9, #0x4fb
+   721b0: 52800248     	mov	w8, #0x12
+   721b4: f9400129     	ldr	x9, [x9]
+   721b8: 390003e8     	strb	w8, [sp]
+   721bc: 52800ca8     	mov	w8, #0x65
+   721c0: 780093e8     	sturh	w8, [sp, #0x9]
+   721c4: f80013e9     	stur	x9, [sp, #0x1]
+   721c8: 910003e1     	mov	x1, sp
+   721cc: 910063e2     	add	x2, sp, #0x18
+   721d0: aa1303e0     	mov	x0, x19
+   721d4: 9401f443     	bl	0xef2e0 <_ZN2ge8Operator7SetAttrERKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEONS_9AttrValueE@plt>
+   721d8: 394003e8     	ldrb	w8, [sp]
+   721dc: 36000068     	tbz	w8, #0x0, 0x721e8 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x6c>
+   721e0: f9400be0     	ldr	x0, [sp, #0x10]
+   721e4: 9401f3ef     	bl	0xef1a0 <_ZdlPv@plt>
+   721e8: 910063e0     	add	x0, sp, #0x18
+   721ec: 9401f441     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   721f0: f9401688     	ldr	x8, [x20, #0x28]
+   721f4: f85f83a9     	ldur	x9, [x29, #-0x8]
+   721f8: eb09011f     	cmp	x8, x9
+   721fc: 54000261     	b.ne	0x72248 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0xcc>
+   72200: aa1303e0     	mov	x0, x19
+   72204: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+   72208: a9447bfd     	ldp	x29, x30, [sp, #0x40]
+   7220c: 910183ff     	add	sp, sp, #0x60
+   72210: d65f03c0     	ret
+   72214: 394003e8     	ldrb	w8, [sp]
+   72218: aa0003f3     	mov	x19, x0
+   7221c: 36000068     	tbz	w8, #0x0, 0x72228 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0xac>
+   72220: f9400be0     	ldr	x0, [sp, #0x10]
+   72224: 9401f3df     	bl	0xef1a0 <_ZdlPv@plt>
+   72228: 910063e0     	add	x0, sp, #0x18
+   7222c: 9401f431     	bl	0xef2f0 <_ZN2ge9AttrValueD1Ev@plt>
+   72230: f9401688     	ldr	x8, [x20, #0x28]
+   72234: f85f83a9     	ldur	x9, [x29, #-0x8]
+   72238: eb09011f     	cmp	x8, x9
+   7223c: 54000061     	b.ne	0x72248 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0xcc>
+   72240: aa1303e0     	mov	x0, x19
+   72244: 9401e488     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   72248: 9401f406     	bl	0xef260 <__stack_chk_fail@plt>
+   7224c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   72250: f9000bf3     	str	x19, [sp, #0x10]
+   72254: 910003fd     	mov	x29, sp
+   72258: f9400413     	ldr	x19, [x0, #0x8]
+   7225c: b40000b3     	cbz	x19, 0x72270 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0xf4>
+   72260: 91002261     	add	x1, x19, #0x8
+   72264: 92800000     	mov	x0, #-0x1
+   72268: 9401e426     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   7226c: b4000080     	cbz	x0, 0x7227c <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x100>
+   72270: f9400bf3     	ldr	x19, [sp, #0x10]
+   72274: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   72278: d65f03c0     	ret
+   7227c: f9400268     	ldr	x8, [x19]
+   72280: aa1303e0     	mov	x0, x19
+   72284: f9400908     	ldr	x8, [x8, #0x10]
+   72288: d63f0100     	blr	x8
+   7228c: aa1303e0     	mov	x0, x19
+   72290: f9400bf3     	ldr	x19, [sp, #0x10]
+   72294: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   72298: 1401f3ce     	b	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   7229c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   722a0: f9000bf3     	str	x19, [sp, #0x10]
+   722a4: 910003fd     	mov	x29, sp
+   722a8: f9400413     	ldr	x19, [x0, #0x8]
+   722ac: b40000b3     	cbz	x19, 0x722c0 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x144>
+   722b0: 91002261     	add	x1, x19, #0x8
+   722b4: 92800000     	mov	x0, #-0x1
+   722b8: 9401e412     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   722bc: b4000080     	cbz	x0, 0x722cc <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x150>
+   722c0: f9400bf3     	ldr	x19, [sp, #0x10]
+   722c4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   722c8: d65f03c0     	ret
+   722cc: f9400268     	ldr	x8, [x19]
+   722d0: aa1303e0     	mov	x0, x19
+   722d4: f9400908     	ldr	x8, [x8, #0x10]
+   722d8: d63f0100     	blr	x8
+   722dc: aa1303e0     	mov	x0, x19
+   722e0: f9400bf3     	ldr	x19, [sp, #0x10]
+   722e4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   722e8: 1401f3ba     	b	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+   722ec: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   722f0: f9000bf3     	str	x19, [sp, #0x10]
+   722f4: 910003fd     	mov	x29, sp
+   722f8: f9400413     	ldr	x19, [x0, #0x8]
+   722fc: b40000b3     	cbz	x19, 0x72310 <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x194>
+   72300: 91002261     	add	x1, x19, #0x8
+   72304: 92800000     	mov	x0, #-0x1
+   72308: 9401e3fe     	bl	0xeb300 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x774>
+   7230c: b4000080     	cbz	x0, 0x7231c <_ZN4hiai2op5CastT18set_attr_dst_dtypeEl+0x1a0>
+   72310: f9400bf3     	ldr	x19, [sp, #0x10]
+   72314: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   72318: d65f03c0     	ret
+   7231c: f9400268     	ldr	x8, [x19]
+   72320: aa1303e0     	mov	x0, x19
+   72324: f9400908     	ldr	x8, [x8, #0x10]
+   72328: d63f0100     	blr	x8
+   7232c: aa1303e0     	mov	x0, x19
+   72330: f9400bf3     	ldr	x19, [sp, #0x10]
+   72334: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   72338: 1401f3a6     	b	0xef1d0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+
+000000000007233c <_ZN5mizar25__register__Npu__ArgMax__Ev>:
+   7233c: d100c3ff     	sub	sp, sp, #0x30
+   72340: a9017bfd     	stp	x29, x30, [sp, #0x10]
+   72344: f90013f3     	str	x19, [sp, #0x20]
+   72348: 910043fd     	add	x29, sp, #0x10
+   7234c: d53bd053     	mrs	x19, TPIDR_EL0
+   72350: 91001fe0     	add	x0, sp, #0x7
+   72354: 2a1f03e1     	mov	w1, wzr
+   72358: f9401668     	ldr	x8, [x19, #0x28]
+   7235c: f90007e8     	str	x8, [sp, #0x8]
+   72360: 9401f3f0     	bl	0xef320 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_@plt>
+   72364: f9401668     	ldr	x8, [x19, #0x28]
+   72368: f94007e9     	ldr	x9, [sp, #0x8]
+   7236c: eb09011f     	cmp	x8, x9
+   72370: 540000a1     	b.ne	0x72384 <_ZN5mizar25__register__Npu__ArgMax__Ev+0x48>
+   72374: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+   72378: f94013f3     	ldr	x19, [sp, #0x20]
+   7237c: 9100c3ff     	add	sp, sp, #0x30
+   72380: d65f03c0     	ret
+   72384: 9401f3b7     	bl	0xef260 <__stack_chk_fail@plt>
+
+0000000000072388 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_>:
+   72388: d10203ff     	sub	sp, sp, #0x80
+   7238c: a9047bfd     	stp	x29, x30, [sp, #0x40]
+   72390: a9055ff8     	stp	x24, x23, [sp, #0x50]
+   72394: a90657f6     	stp	x22, x21, [sp, #0x60]
+   72398: a9074ff4     	stp	x20, x19, [sp, #0x70]
+   7239c: 910103fd     	add	x29, sp, #0x40
+   723a0: d53bd056     	mrs	x22, TPIDR_EL0
+   723a4: b0000449     	adrp	x9, 0xfb000
+   723a8: b0000453     	adrp	x19, 0xfb000
+   723ac: f94016c8     	ldr	x8, [x22, #0x28]
+   723b0: f9403d29     	ldr	x9, [x9, #0x78]
+   723b4: 2a0103f4     	mov	w20, w1
+   723b8: f81f83a8     	stur	x8, [x29, #-0x8]
+   723bc: 08dffd28     	ldarb	w8, [x9]
+   723c0: f9404273     	ldr	x19, [x19, #0x80]
+   723c4: 36000868     	tbz	w8, #0x0, 0x724d0 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x148>
+   723c8: aa1303f7     	mov	x23, x19
+   723cc: f8408ee8     	ldr	x8, [x23, #0x8]!
+   723d0: b50000c8     	cbnz	x8, 0x723e8 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x60>
+   723d4: aa1703f5     	mov	x21, x23
+   723d8: 1400000c     	b	0x72408 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x80>
+   723dc: f94002a8     	ldr	x8, [x21]
+   723e0: aa1503f7     	mov	x23, x21
+   723e4: b4000128     	cbz	x8, 0x72408 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x80>
+   723e8: aa0803f5     	mov	x21, x8
+   723ec: b9402108     	ldr	w8, [x8, #0x20]
+   723f0: 6b14011f     	cmp	w8, w20
+   723f4: 54ffff4c     	b.gt	0x723dc <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x54>
+   723f8: 5400030a     	b.ge	0x72458 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0xd0>
+   723fc: f94006a8     	ldr	x8, [x21, #0x8]
+   72400: b5ffff48     	cbnz	x8, 0x723e8 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x60>
+   72404: 910022b7     	add	x23, x21, #0x8
+   72408: 52800c00     	mov	w0, #0x60
+   7240c: aa1503f8     	mov	x24, x21
+   72410: 9401f358     	bl	0xef170 <_Znwm@plt>
+   72414: f900281f     	str	xzr, [x0, #0x50]
+   72418: aa0003f5     	mov	x21, x0
+   7241c: aa0003e1     	mov	x1, x0
+   72420: a9007c1f     	stp	xzr, xzr, [x0]
+   72424: f9000818     	str	x24, [x0, #0x10]
+   72428: f90002e0     	str	x0, [x23]
+   7242c: f9400268     	ldr	x8, [x19]
+   72430: b9002014     	str	w20, [x0, #0x20]
+   72434: f9400108     	ldr	x8, [x8]
+   72438: b4000068     	cbz	x8, 0x72444 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0xbc>
+   7243c: f9000268     	str	x8, [x19]
+   72440: f94002e1     	ldr	x1, [x23]
+   72444: f9400660     	ldr	x0, [x19, #0x8]
+   72448: 94000515     	bl	0x7389c <_ZN4hiai2op5CastT25__required_attr_dst_dtypeEv+0x14c>
+   7244c: f9400a68     	ldr	x8, [x19, #0x10]
+   72450: 91000508     	add	x8, x8, #0x1
+   72454: f9000a68     	str	x8, [x19, #0x10]
+   72458: b0000448     	adrp	x8, 0xfb000
+   7245c: 910003f3     	mov	x19, sp
+   72460: 910003e0     	mov	x0, sp
+   72464: f9404508     	ldr	x8, [x8, #0x88]
+   72468: 9100c2a1     	add	x1, x21, #0x30
+   7246c: f90013f3     	str	x19, [sp, #0x20]
+   72470: 91004108     	add	x8, x8, #0x10
+   72474: f90003e8     	str	x8, [sp]
+   72478: 940005c1     	bl	0x73b7c <_ZNSt6__ndk120__shared_ptr_emplaceIN5mizar9NpuArgMaxENS_9allocatorIS2_EEED0Ev+0x44>
+   7247c: f94013e0     	ldr	x0, [sp, #0x20]
+   72480: eb13001f     	cmp	x0, x19
+   72484: 54000080     	b.eq	0x72494 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x10c>
+   72488: b4000100     	cbz	x0, 0x724a8 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x120>
+   7248c: 528000a8     	mov	w8, #0x5
+   72490: 14000003     	b	0x7249c <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x114>
+   72494: 52800088     	mov	w8, #0x4
+   72498: 910003e0     	mov	x0, sp
+   7249c: f9400009     	ldr	x9, [x0]
+   724a0: f8687928     	ldr	x8, [x9, x8, lsl #3]
+   724a4: d63f0100     	blr	x8
+   724a8: f94016c8     	ldr	x8, [x22, #0x28]
+   724ac: f85f83a9     	ldur	x9, [x29, #-0x8]
+   724b0: eb09011f     	cmp	x8, x9
+   724b4: 54000321     	b.ne	0x72518 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x190>
+   724b8: a9474ff4     	ldp	x20, x19, [sp, #0x70]
+   724bc: a94657f6     	ldp	x22, x21, [sp, #0x60]
+   724c0: a9455ff8     	ldp	x24, x23, [sp, #0x50]
+   724c4: a9447bfd     	ldp	x29, x30, [sp, #0x40]
+   724c8: 910203ff     	add	sp, sp, #0x80
+   724cc: d65f03c0     	ret
+   724d0: b0000440     	adrp	x0, 0xfb000
+   724d4: f9403c00     	ldr	x0, [x0, #0x78]
+   724d8: 9401f396     	bl	0xef330 <__cxa_guard_acquire@plt>
+   724dc: 34fff760     	cbz	w0, 0x723c8 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x40>
+   724e0: aa1303e8     	mov	x8, x19
+   724e4: d503201f     	nop
+   724e8: 100099e0     	adr	x0, #0x133c
+   724ec: d503201f     	nop
+   724f0: 1041a782     	adr	x2, #0x834f0
+   724f4: aa1303e1     	mov	x1, x19
+   724f8: f9000a7f     	str	xzr, [x19, #0x10]
+   724fc: f8008d1f     	str	xzr, [x8, #0x8]!
+   72500: f9000268     	str	x8, [x19]
+   72504: 9401f317     	bl	0xef160 <__cxa_atexit@plt>
+   72508: b0000440     	adrp	x0, 0xfb000
+   7250c: f9403c00     	ldr	x0, [x0, #0x78]
+   72510: 9401f38c     	bl	0xef340 <__cxa_guard_release@plt>
+   72514: 17ffffad     	b	0x723c8 <_ZN5mizar12TypeRegisterINS_12NpuOpBuilderENS_3fbs6OpTypeENS_9NpuArgMaxEJEEC2ES3_+0x40>
+   72518: 9401f352     	bl	0xef260 <__stack_chk_fail@plt>
+
+000000000007251c <_ZN5mizar9NpuArgMaxD0Ev>:
+   7251c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   72520: f9000bf3     	str	x19, [sp, #0x10]
+   72524: 910003fd     	mov	x29, sp
+   72528: aa0003f3     	mov	x19, x0
+   7252c: 9401f389     	bl	0xef350 <_ZN5mizar12NpuOpBuilderD2Ev@plt>
+   72530: aa1303e0     	mov	x0, x19
+   72534: f9400bf3     	ldr	x19, [sp, #0x10]
+   72538: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   7253c: 1401f319     	b	0xef1a0 <_ZdlPv@plt>
+   72540: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   72544: 910003fd     	mov	x29, sp
+   72548: f0ffff00     	adrp	x0, 0x55000
+   7254c: 910ca400     	add	x0, x0, #0x329
+   72550: 94000001     	bl	0x72554 <_ZN5mizar9NpuArgMaxD0Ev+0x38>
+   72554: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   72558: a9014ff4     	stp	x20, x19, [sp, #0x10]
+   7255c: 910003fd     	mov	x29, sp
+   72560: aa0003f4     	mov	x20, x0
+   72564: 52800200     	mov	w0, #0x10
+   72568: 9401f37e     	bl	0xef360 <__cxa_allocate_exception@plt>
+   7256c: aa0003f3     	mov	x19, x0
+   72570: aa1403e1     	mov	x1, x20
+   72574: 9400000c     	bl	0x725a4 <_ZN5mizar9NpuArgMaxD0Ev+0x88>
+   72578: b0000441     	adrp	x1, 0xfb000
+   7257c: b0000442     	adrp	x2, 0xfb000
+   72580: aa1303e0     	mov	x0, x19
+   72584: f9404821     	ldr	x1, [x1, #0x90]
+   72588: f9404c42     	ldr	x2, [x2, #0x98]
+   7258c: 9401f379     	bl	0xef370 <__cxa_throw@plt>
+   72590: aa0003f4     	mov	x20, x0
+   72594: aa1303e0     	mov	x0, x19
+   72598: 9401f37a     	bl	0xef380 <__cxa_free_exception@plt>
+   7259c: aa1403e0     	mov	x0, x20
+   725a0: 9401e3b1     	bl	0xeb464 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x8d8>
+   725a4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   725a8: f9000bf3     	str	x19, [sp, #0x10]
+   725ac: 910003fd     	mov	x29, sp
+   725b0: aa0003f3     	mov	x19, x0
+   725b4: 9401f377     	bl	0xef390 <_ZNSt11logic_errorC2EPKc@plt>
+   725b8: b0000448     	adrp	x8, 0xfb000
+   725bc: f9405108     	ldr	x8, [x8, #0xa0]
+   725c0: 91004108     	add	x8, x8, #0x10
+   725c4: f9000268     	str	x8, [x19]
+   725c8: f9400bf3     	ldr	x19, [sp, #0x10]
+   725cc: a8c27bfd     	ldp	x29, x30, [sp], #0x20

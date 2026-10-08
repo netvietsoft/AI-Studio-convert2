@@ -1,0 +1,267 @@
+{
+  "started_at": "2026-10-08T04:44:28.140807+00:00",
+  "command": "python -X utf8 -B .ai/ceo/reviews/verify_task063_r2_critical.py",
+  "script_sha256": "9fbfe113bf80b2267146479d7258b1c8c2d6fde46ac60cc830455ad21b359a55",
+  "apk": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\com.mt.mtxx.mtxx.apk",
+  "apk_sha256": "9ac88402622c1c8a43cfe0ed2131f54576466269f152e8ab68031178dcffecbd",
+  "shaders": [
+    {
+      "entry": "assets/ARKernelBuiltin/Shaders/MTFilter_HairMaskMix.fs",
+      "raw_sha256": "bd7cf000fd26fea40b623da5d3763405d62b0e75225496abfe912da35c6ee8aa",
+      "decoded_sha256": "614435debd422b0211e8f8540f7a41a84d44c254ac72888d897e3ddc2c86353b",
+      "prior_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\.ai\\reconstruction\\evidence\\TASK_061\\decoded_shaders\\ARKernelBuiltin_Shaders_MTFilter_HairMaskMix.fs",
+      "prior_sha256": "614435debd422b0211e8f8540f7a41a84d44c254ac72888d897e3ddc2c86353b",
+      "byte_equal": true,
+      "decoded_text": "#ifdef GL_ES\nprecision highp  float;\n#else\n#define highp\n#define mediump\n#define lowp\n#endif\nvarying vec2 v_texCoord;\nuniform sampler2D texturesrc;\nuniform sampler2D textureblack;\nvoid main()\n{\n    vec4 src = texture2D(texturesrc,vec2(v_texCoord.x,v_texCoord.y));\n    vec4 black = texture2D(textureblack,vec2(v_texCoord.x,v_texCoord.y));\n    float blackvalue = 1.0 - black.r;\n    float val = src.r;\n    if(black.r > 0.0)\n    {\n        if(src.r > blackvalue)\n        {\n            val = blackvalue;\n        }\n    }\n    gl_FragColor = vec4(val,val,val, val);\\xcfs\\x87",
+      "xor_key": "7c34b93a"
+    },
+    {
+      "entry": "assets/ARKernelBuiltin/Shaders/HairSoft/MTFilter_PsSoftLightr.fs",
+      "raw_sha256": "eab66ebfde124a796a09ddd40d6b359db7b364fb4f5800709aeb4f09eb8ff5e2",
+      "decoded_sha256": "69eb6db94958c599c01f432208dd47d5fd64a397e47b8b6c7ea0163fd1855d14",
+      "prior_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\.ai\\reconstruction\\evidence\\TASK_061\\decoded_shaders\\ARKernelBuiltin_Shaders_HairSoft_MTFilter_PsSoftLightr.fs",
+      "prior_sha256": "69eb6db94958c599c01f432208dd47d5fd64a397e47b8b6c7ea0163fd1855d14",
+      "byte_equal": true,
+      "decoded_text": "#ifdef GL_ES\nprecision highp  float;\n#else\n#define highp\n#define mediump\n#define lowp\n#endif\nvarying vec2 texcoordOut;\nuniform sampler2D s_texture;\nuniform sampler2D overlay_texture;\nuniform float alpha;\n\nfloat SoftLight_Fcn(float A, float B)\n{\n\tfloat C = 0.0;\n\tif (B <= 0.5)\n\t{\n\t\tC = A * B / 0.5 + A * A * ( 1.0 - 2.0 * B);\n\t}\n\telse\n\t{\n\t\tC = A * (1.0 - B) / 0.5 + sqrt(A) * (2.0 * B - 1.0);\n\t}\n\t\n\treturn C;\n}\n\nvoid main()\n{\n\tvec3 src_color = texture2D(s_texture, texcoordOut).rgb;\n\tvec3 overlay_color = texture2D(overlay_texture, texcoordOut).rgb;\n\t\n\tvec3 res_color;\n\tres_color.r = SoftLight_Fcn(src_color.r, overlay_color.r);\n\tres_color.g = SoftLight_Fcn(src_color.g, overlay_color.g);\n\tres_color.b = SoftLight_Fcn(src_color.b, overlay_color.b);\n\t\n\tgl_FragColor = vec4(mix(src_color, res_color, alpha), 1.0);\n}",
+      "xor_key": "7c34b93a"
+    }
+  ],
+  "model_assets": [
+    {
+      "entry": "assets/vlaimodel/libmtface/models/mtface_parsing.bin",
+      "bytes": 584286,
+      "sha256": "b5c17a63430e4b6703729c87868d8a5a8fec92d5f530532dded27a6c1e9e3ee3"
+    },
+    {
+      "entry": "assets/vlaimodel/libmtface/models/mtface_parsing_heavy.bin",
+      "bytes": 1698494,
+      "sha256": "e636eee8be1419058242f0ba8bf7189e84ada4e6e3520c92bdccccc76b6ce6c5"
+    },
+    {
+      "entry": "assets/vlaimodel/libmtface/models/mtface_parsing_light.bin",
+      "bytes": 352774,
+      "sha256": "be83f1396a79ee68a2cf4e7bb3eddda4f095dabcab59d730dbd7c604f46f7bd6"
+    },
+    {
+      "entry": "assets/vlaimodel/libmtskinphone/Models/NE.manis",
+      "bytes": 107026,
+      "sha256": "74572848e192966d56ab312e0e2eb12c3402b3f39d4e6450f60cddefb2d98c3c"
+    }
+  ],
+  "native": {
+    "path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libMTFilterKernel.so",
+    "sha256": "f938fe73095fceba72875d1ab42f8aeb6a9f31f3933831bec070404c0e7ecac4",
+    "tables": {
+      "0x8fd28": [
+        {
+          "offset": "0x8fd28",
+          "float32": 0.0,
+          "bytes_le": "00000000"
+        },
+        {
+          "offset": "0x8fd2c",
+          "float32": 0.0022499999031424522,
+          "bytes_le": "bc74133b"
+        },
+        {
+          "offset": "0x8fd30",
+          "float32": 0.0052559999749064445,
+          "bytes_le": "863aac3b"
+        },
+        {
+          "offset": "0x8fd34",
+          "float32": 0.00827100034803152,
+          "bytes_le": "1783073c"
+        },
+        {
+          "offset": "0x8fd38",
+          "float32": 0.01129900012165308,
+          "bytes_le": "711f393c"
+        }
+      ],
+      "0x8fd3c": [
+        {
+          "offset": "0x8fd3c",
+          "float32": 0.15967600047588348,
+          "bytes_le": "1b82233e"
+        },
+        {
+          "offset": "0x8fd40",
+          "float32": 0.2633480131626129,
+          "bytes_le": "8dd5863e"
+        },
+        {
+          "offset": "0x8fd44",
+          "float32": 0.12211800366640091,
+          "bytes_le": "0119fa3d"
+        },
+        {
+          "offset": "0x8fd48",
+          "float32": 0.030572999268770218,
+          "bytes_le": "3a74fa3c"
+        },
+        {
+          "offset": "0x8fd4c",
+          "float32": 0.004122000187635422,
+          "bytes_le": "d811873b"
+        }
+      ],
+      "0x8fd50": [
+        {
+          "offset": "0x8fd50",
+          "float32": 0.0,
+          "bytes_le": "00000000"
+        },
+        {
+          "offset": "0x8fd54",
+          "float32": 0.002993999980390072,
+          "bytes_le": "fc36443b"
+        },
+        {
+          "offset": "0x8fd58",
+          "float32": 0.00699299992993474,
+          "bytes_le": "8925e53b"
+        },
+        {
+          "offset": "0x8fd5c",
+          "float32": 0.011005000211298466,
+          "bytes_le": "514e343c"
+        },
+        {
+          "offset": "0x8fd60",
+          "float32": 0.015034000389277935,
+          "bytes_le": "2b51763c"
+        }
+      ],
+      "0x8edc4": [
+        {
+          "offset": "0x8edc4",
+          "float32": 0.0,
+          "bytes_le": "00000000"
+        },
+        {
+          "offset": "0x8edc8",
+          "float32": 0.0022499999031424522,
+          "bytes_le": "bc74133b"
+        },
+        {
+          "offset": "0x8edcc",
+          "float32": 0.0052559999749064445,
+          "bytes_le": "863aac3b"
+        },
+        {
+          "offset": "0x8edd0",
+          "float32": 0.00827100034803152,
+          "bytes_le": "1783073c"
+        },
+        {
+          "offset": "0x8edd4",
+          "float32": 0.01129900012165308,
+          "bytes_le": "711f393c"
+        }
+      ],
+      "0x8edd8": [
+        {
+          "offset": "0x8edd8",
+          "float32": 0.15967600047588348,
+          "bytes_le": "1b82233e"
+        },
+        {
+          "offset": "0x8eddc",
+          "float32": 0.2633480131626129,
+          "bytes_le": "8dd5863e"
+        },
+        {
+          "offset": "0x8ede0",
+          "float32": 0.12211800366640091,
+          "bytes_le": "0119fa3d"
+        },
+        {
+          "offset": "0x8ede4",
+          "float32": 0.030572999268770218,
+          "bytes_le": "3a74fa3c"
+        },
+        {
+          "offset": "0x8ede8",
+          "float32": 0.004122000187635422,
+          "bytes_le": "d811873b"
+        }
+      ],
+      "0x8edec": [
+        {
+          "offset": "0x8edec",
+          "float32": 0.0,
+          "bytes_le": "00000000"
+        },
+        {
+          "offset": "0x8edf0",
+          "float32": 0.002993999980390072,
+          "bytes_le": "fc36443b"
+        },
+        {
+          "offset": "0x8edf4",
+          "float32": 0.00699299992993474,
+          "bytes_le": "8925e53b"
+        },
+        {
+          "offset": "0x8edf8",
+          "float32": 0.011005000211298466,
+          "bytes_le": "514e343c"
+        },
+        {
+          "offset": "0x8edfc",
+          "float32": 0.015034000389277935,
+          "bytes_le": "2b51763c"
+        }
+      ]
+    }
+  },
+  "body": {
+    "path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\.ai\\reconstruction\\evidence\\TASK_061\\ghidra_decompiled\\libMTFilterKernel.so_decompiled.txt",
+    "sha256": "60b92fa0235d27cc37d088107f4ad9735fe2d2eecf15047bd36d63dc32a7d3cb",
+    "anchors": {
+      "23492": "FUNCTION: FilterToFBO",
+      "23493": "ADDRESS:  0x002344e8",
+      "23494": "SIZE:     708 bytes",
+      "23495": "SIGNATURE: undefined __thiscall FilterToFBO(int param_1, int param_2, bool param_3)",
+      "23496": "XREFS:",
+      "23497": "  from 0xEntry Point (EXTERNAL)",
+      "23597": "  GrayFilterToFBO(this,**(int **)(this + 0x78),*(int *)(this + 0x100),*(int *)(this + 0xf0),",
+      "23598": "                  *(int *)(this + 0xf4));",
+      "23599": "  HairMaskFilterToFBO(this,*(int *)(this + 0x104),*(int *)(this + 0x110),*(int *)(this + 0xf0),",
+      "23600": "                      *(int *)(this + 0xf4));",
+      "23601": "  BlurHFilterToFBO(this,*(int *)(this + 0x114),*(int *)(this + 0x120),*(int *)(this + 0xe8),",
+      "23602": "                   *(int *)(this + 0xec));",
+      "23603": "  BlurVFilterToFBO(this,*(int *)(this + 0x124),*(int *)(this + 0x130),*(int *)(this + 0xe8),",
+      "23604": "                   *(int *)(this + 0xec));",
+      "23605": "  SoftHairFilterToFBO(this,**(int **)(this + 0x78),*(int *)(this + 0x134),*(int *)(this + 0x148),"
+    }
+  },
+  "math": {
+    "A": "1/16",
+    "B": "3/4",
+    "D": "53/256",
+    "w3c": "69/512",
+    "w3c_decimal": 0.134765625,
+    "shader": "5/32",
+    "shader_decimal": 0.15625,
+    "difference": "11/512"
+  },
+  "aurora": {
+    "path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_assets\\assets\\MTAurora.bundle\\Shaders\\hairmask_blur.fs.spirv",
+    "sha256": "b9366e16d85b29a2f72bfe360ad8cf7a44a2fd451692fc1298e5e6447af6a86e",
+    "tool_sha256": "6c9fb69a0f898628297a3890a8efaa26f4625b9d449b02703d060590ae76887a",
+    "command": [
+      "C:\\Users\\PC.DESKTOP-81LIH38\\AppData\\Local\\Android\\Sdk\\ndk\\26.1.10909125\\shader-tools\\windows-x86_64\\spirv-dis.exe",
+      "--raw-id",
+      "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_assets\\assets\\MTAurora.bundle\\Shaders\\hairmask_blur.fs.spirv"
+    ],
+    "started_at": "2026-10-08T04:44:29.304741+00:00",
+    "ended_at": "2026-10-08T04:44:29.328102+00:00",
+    "exit_code": 0,
+    "stdout_sha256": "89da0fa8184b07040d4635dce015c7132802adea820f13948a06976b7eba17a1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "ended_at": "2026-10-08T04:44:29.328140+00:00",
+  "exit_code": 0
+}

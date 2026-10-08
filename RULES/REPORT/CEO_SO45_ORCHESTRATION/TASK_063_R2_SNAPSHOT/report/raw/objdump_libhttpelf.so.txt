@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhttpelf.so
+TOTAL_SAMPLED: 6683
+ARITHMETIC_COUNT: 5
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libhttpelf.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000005468 <.text>:
+    5468: d503245f     	bti	c
+    546c: d503201f     	nop
+    5470: 10053980     	adr	x0, #0xa730
+    5474: 14001947     	b	0xb990 <__cxa_finalize@plt>
+    5478: d503245f     	bti	c
+    547c: d65f03c0     	ret
+    5480: d503245f     	bti	c
+    5484: 17fffffd     	b	0x5478 <.text+0x10>
+    5488: d503245f     	bti	c
+    548c: b4000060     	cbz	x0, 0x5498 <.text+0x30>
+    5490: aa0003f0     	mov	x16, x0
+    5494: d61f0200     	br	x16
+    5498: d65f03c0     	ret
+    549c: d503245f     	bti	c
+    54a0: aa0003e1     	mov	x1, x0
+    54a4: d503201f     	nop
+    54a8: 10ffff00     	adr	x0, #-0x20
+    54ac: d503201f     	nop
+    54b0: 10053782     	adr	x2, #0xa6f0
+    54b4: 1400193b     	b	0xb9a0 <__cxa_atexit@plt>
+
+00000000000054b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send>:
+    54b8: d10183ff     	sub	sp, sp, #0x60
+    54bc: a9017bfd     	stp	x29, x30, [sp, #0x10]
+    54c0: a90267fa     	stp	x26, x25, [sp, #0x20]
+    54c4: a9035ff8     	stp	x24, x23, [sp, #0x30]
+    54c8: a90457f6     	stp	x22, x21, [sp, #0x40]
+    54cc: a9054ff4     	stp	x20, x19, [sp, #0x50]
+    54d0: 910043fd     	add	x29, sp, #0x10
+    54d4: d53bd059     	mrs	x25, TPIDR_EL0
+    54d8: aa0203f3     	mov	x19, x2
+    54dc: aa0003f4     	mov	x20, x0
+    54e0: f9401728     	ldr	x8, [x25, #0x28]
+    54e4: aa1f03f5     	mov	x21, xzr
+    54e8: 7101ec7f     	cmp	w3, #0x7b
+    54ec: f90007e8     	str	x8, [sp, #0x8]
+    54f0: 5400086d     	b.le	0x55fc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x144>
+    54f4: 7101f47f     	cmp	w3, #0x7d
+    54f8: 54000c6d     	b.le	0x5684 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1cc>
+    54fc: 7101f87f     	cmp	w3, #0x7e
+    5500: 54001380     	b.eq	0x5770 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x2b8>
+    5504: 7102287f     	cmp	w3, #0x8a
+    5508: 54001800     	b.eq	0x5808 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x350>
+    550c: 7102687f     	cmp	w3, #0x9a
+    5510: 540025a1     	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5514: aa1303e0     	mov	x0, x19
+    5518: 940001e4     	bl	0x5ca8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7f0>
+    551c: f9400288     	ldr	x8, [x20]
+    5520: aa0003f3     	mov	x19, x0
+    5524: d503201f     	nop
+    5528: 10fe0521     	adr	x1, #-0x3f5c
+    552c: aa1403e0     	mov	x0, x20
+    5530: f9401908     	ldr	x8, [x8, #0x30]
+    5534: d63f0100     	blr	x8
+    5538: f9400288     	ldr	x8, [x20]
+    553c: b940f261     	ldr	w1, [x19, #0xf0]
+    5540: aa0003f6     	mov	x22, x0
+    5544: aa1403e0     	mov	x0, x20
+    5548: aa1603e2     	mov	x2, x22
+    554c: aa1f03e3     	mov	x3, xzr
+    5550: f942b108     	ldr	x8, [x8, #0x560]
+    5554: d63f0100     	blr	x8
+    5558: b940f268     	ldr	w8, [x19, #0xf0]
+    555c: aa0003f5     	mov	x21, x0
+    5560: 7100051f     	cmp	w8, #0x1
+    5564: 540003cb     	b.lt	0x55dc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x124>
+    5568: aa1f03f7     	mov	x23, xzr
+    556c: 9100427a     	add	x26, x19, #0x10
+    5570: 385f0348     	ldurb	w8, [x26, #-0x10]
+    5574: f9400289     	ldr	x9, [x20]
+    5578: d1003f4b     	sub	x11, x26, #0xf
+    557c: f940034a     	ldr	x10, [x26]
+    5580: aa1403e0     	mov	x0, x20
+    5584: 7200011f     	tst	w8, #0x1
+    5588: f9429d28     	ldr	x8, [x9, #0x538]
+    558c: 9a8a0161     	csel	x1, x11, x10, eq
+    5590: d63f0100     	blr	x8
+    5594: f9400288     	ldr	x8, [x20]
+    5598: aa0003f8     	mov	x24, x0
+    559c: aa1403e0     	mov	x0, x20
+    55a0: aa1503e1     	mov	x1, x21
+    55a4: 2a1703e2     	mov	w2, w23
+    55a8: aa1803e3     	mov	x3, x24
+    55ac: f942b908     	ldr	x8, [x8, #0x570]
+    55b0: d63f0100     	blr	x8
+    55b4: f9400288     	ldr	x8, [x20]
+    55b8: aa1403e0     	mov	x0, x20
+    55bc: aa1803e1     	mov	x1, x24
+    55c0: f9405d08     	ldr	x8, [x8, #0xb8]
+    55c4: d63f0100     	blr	x8
+    55c8: b980f268     	ldrsw	x8, [x19, #0xf0]
+    55cc: 910006f7     	add	x23, x23, #0x1
+    55d0: 9100635a     	add	x26, x26, #0x18
+    55d4: eb0802ff     	cmp	x23, x8
+    55d8: 54fffccb     	b.lt	0x5570 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb8>
+    55dc: f9400288     	ldr	x8, [x20]
+    55e0: aa1403e0     	mov	x0, x20
+    55e4: aa1603e1     	mov	x1, x22
+    55e8: f9405d08     	ldr	x8, [x8, #0xb8]
+    55ec: d63f0100     	blr	x8
+    55f0: aa1303e0     	mov	x0, x19
+    55f4: 94000361     	bl	0x6378 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xec0>
+    55f8: 140000f3     	b	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    55fc: 7101e47f     	cmp	w3, #0x79
+    5600: 5400010c     	b.gt	0x5620 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x168>
+    5604: 7101a87f     	cmp	w3, #0x6a
+    5608: 540006c0     	b.eq	0x56e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x228>
+    560c: 7101ac7f     	cmp	w3, #0x6b
+    5610: 54001da1     	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5614: aa1303e0     	mov	x0, x19
+    5618: 94000130     	bl	0x5ad8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x620>
+    561c: 140000e9     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5620: 7101e87f     	cmp	w3, #0x7a
+    5624: 54000800     	b.eq	0x5724 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x26c>
+    5628: 7101ec7f     	cmp	w3, #0x7b
+    562c: 54001cc1     	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5630: b4001164     	cbz	x4, 0x585c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3a4>
+    5634: f9400288     	ldr	x8, [x20]
+    5638: aa1403e0     	mov	x0, x20
+    563c: aa0403e1     	mov	x1, x4
+    5640: aa1f03e2     	mov	x2, xzr
+    5644: aa0403f5     	mov	x21, x4
+    5648: f942e108     	ldr	x8, [x8, #0x5c0]
+    564c: d63f0100     	blr	x8
+    5650: f9400288     	ldr	x8, [x20]
+    5654: aa0003f6     	mov	x22, x0
+    5658: aa1403e0     	mov	x0, x20
+    565c: aa1503e1     	mov	x1, x21
+    5660: f942ad08     	ldr	x8, [x8, #0x558]
+    5664: d63f0100     	blr	x8
+    5668: 2a0003f4     	mov	w20, w0
+    566c: 94000393     	bl	0x64b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1000>
+    5670: 93407e82     	sxtw	x2, w20
+    5674: aa1603e1     	mov	x1, x22
+    5678: aa0003f5     	mov	x21, x0
+    567c: 940018cd     	bl	0xb9b0 <memcpy@plt>
+    5680: 14000079     	b	0x5864 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3ac>
+    5684: 7101f07f     	cmp	w3, #0x7c
+    5688: 540009a0     	b.eq	0x57bc <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x304>
+    568c: 7101f47f     	cmp	w3, #0x7d
+    5690: 540019a1     	b.ne	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5694: b4000f24     	cbz	x4, 0x5878 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3c0>
+    5698: f9400288     	ldr	x8, [x20]
+    569c: aa1403e0     	mov	x0, x20
+    56a0: aa0403e1     	mov	x1, x4
+    56a4: aa1f03e2     	mov	x2, xzr
+    56a8: aa0403f5     	mov	x21, x4
+    56ac: f942a508     	ldr	x8, [x8, #0x548]
+    56b0: d63f0100     	blr	x8
+    56b4: aa0003f6     	mov	x22, x0
+    56b8: b4001060     	cbz	x0, 0x58c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x40c>
+    56bc: aa1603e0     	mov	x0, x22
+    56c0: 940018c0     	bl	0xb9c0 <strlen@plt>
+    56c4: aa0003f7     	mov	x23, x0
+    56c8: 110006e0     	add	w0, w23, #0x1
+    56cc: 94000379     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    56d0: aa1603e1     	mov	x1, x22
+    56d4: aa0003f8     	mov	x24, x0
+    56d8: 940018be     	bl	0xb9d0 <strcpy@plt>
+    56dc: 1400007e     	b	0x58d4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x41c>
+    56e0: 940000f3     	bl	0x5aac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5f4>
+    56e4: f9400288     	ldr	x8, [x20]
+    56e8: f90003e0     	str	x0, [sp]
+    56ec: aa1403e0     	mov	x0, x20
+    56f0: 52800021     	mov	w1, #0x1
+    56f4: f942d108     	ldr	x8, [x8, #0x5a0]
+    56f8: d63f0100     	blr	x8
+    56fc: f9400288     	ldr	x8, [x20]
+    5700: aa0003f5     	mov	x21, x0
+    5704: 910003e4     	mov	x4, sp
+    5708: aa1403e0     	mov	x0, x20
+    570c: aa1503e1     	mov	x1, x21
+    5710: 2a1f03e2     	mov	w2, wzr
+    5714: f9435108     	ldr	x8, [x8, #0x6a0]
+    5718: 52800023     	mov	w3, #0x1
+    571c: d63f0100     	blr	x8
+    5720: 140000a9     	b	0x59c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x50c>
+    5724: b4000b04     	cbz	x4, 0x5884 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3cc>
+    5728: f9400288     	ldr	x8, [x20]
+    572c: aa1403e0     	mov	x0, x20
+    5730: aa0403e1     	mov	x1, x4
+    5734: aa1f03e2     	mov	x2, xzr
+    5738: aa0403f5     	mov	x21, x4
+    573c: f942a508     	ldr	x8, [x8, #0x548]
+    5740: d63f0100     	blr	x8
+    5744: aa0003f6     	mov	x22, x0
+    5748: b4000de0     	cbz	x0, 0x5904 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x44c>
+    574c: aa1603e0     	mov	x0, x22
+    5750: 9400189c     	bl	0xb9c0 <strlen@plt>
+    5754: aa0003f7     	mov	x23, x0
+    5758: 110006e0     	add	w0, w23, #0x1
+    575c: 94000355     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    5760: aa1603e1     	mov	x1, x22
+    5764: aa0003f8     	mov	x24, x0
+    5768: 9400189a     	bl	0xb9d0 <strcpy@plt>
+    576c: 1400006a     	b	0x5914 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x45c>
+    5770: b4000904     	cbz	x4, 0x5890 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3d8>
+    5774: f9400288     	ldr	x8, [x20]
+    5778: aa1403e0     	mov	x0, x20
+    577c: aa0403e1     	mov	x1, x4
+    5780: aa1f03e2     	mov	x2, xzr
+    5784: aa0403f5     	mov	x21, x4
+    5788: f942a508     	ldr	x8, [x8, #0x548]
+    578c: d63f0100     	blr	x8
+    5790: aa0003f6     	mov	x22, x0
+    5794: b4000d80     	cbz	x0, 0x5944 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x48c>
+    5798: aa1603e0     	mov	x0, x22
+    579c: 94001889     	bl	0xb9c0 <strlen@plt>
+    57a0: aa0003f7     	mov	x23, x0
+    57a4: 110006e0     	add	w0, w23, #0x1
+    57a8: 94000342     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    57ac: aa1603e1     	mov	x1, x22
+    57b0: aa0003f8     	mov	x24, x0
+    57b4: 94001887     	bl	0xb9d0 <strcpy@plt>
+    57b8: 14000067     	b	0x5954 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x49c>
+    57bc: b4000704     	cbz	x4, 0x589c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3e4>
+    57c0: f9400288     	ldr	x8, [x20]
+    57c4: aa1403e0     	mov	x0, x20
+    57c8: aa0403e1     	mov	x1, x4
+    57cc: aa1f03e2     	mov	x2, xzr
+    57d0: aa0403f5     	mov	x21, x4
+    57d4: f942a508     	ldr	x8, [x8, #0x548]
+    57d8: d63f0100     	blr	x8
+    57dc: aa0003f6     	mov	x22, x0
+    57e0: b4000d20     	cbz	x0, 0x5984 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4cc>
+    57e4: aa1603e0     	mov	x0, x22
+    57e8: 94001876     	bl	0xb9c0 <strlen@plt>
+    57ec: aa0003f7     	mov	x23, x0
+    57f0: 110006e0     	add	w0, w23, #0x1
+    57f4: 9400032f     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    57f8: aa1603e1     	mov	x1, x22
+    57fc: aa0003f8     	mov	x24, x0
+    5800: 94001874     	bl	0xb9d0 <strcpy@plt>
+    5804: 14000064     	b	0x5994 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4dc>
+    5808: b4000504     	cbz	x4, 0x58a8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3f0>
+    580c: f9400288     	ldr	x8, [x20]
+    5810: aa1403e0     	mov	x0, x20
+    5814: aa0403e1     	mov	x1, x4
+    5818: aa1f03e2     	mov	x2, xzr
+    581c: aa0403f5     	mov	x21, x4
+    5820: f942e108     	ldr	x8, [x8, #0x5c0]
+    5824: d63f0100     	blr	x8
+    5828: f9400288     	ldr	x8, [x20]
+    582c: aa0003f6     	mov	x22, x0
+    5830: aa1403e0     	mov	x0, x20
+    5834: aa1503e1     	mov	x1, x21
+    5838: f942ad08     	ldr	x8, [x8, #0x558]
+    583c: d63f0100     	blr	x8
+    5840: 2a0003f4     	mov	w20, w0
+    5844: 9400031d     	bl	0x64b8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1000>
+    5848: 93407e82     	sxtw	x2, w20
+    584c: aa1603e1     	mov	x1, x22
+    5850: aa0003f5     	mov	x21, x0
+    5854: 94001857     	bl	0xb9b0 <memcpy@plt>
+    5858: 14000016     	b	0x58b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x3f8>
+    585c: 2a1f03f4     	mov	w20, wzr
+    5860: aa1f03f5     	mov	x21, xzr
+    5864: aa1303e0     	mov	x0, x19
+    5868: aa1503e1     	mov	x1, x21
+    586c: 2a1403e2     	mov	w2, w20
+    5870: 94000080     	bl	0x5a70 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5b8>
+    5874: 14000053     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5878: 2a1f03f7     	mov	w23, wzr
+    587c: aa1f03f8     	mov	x24, xzr
+    5880: 1400001c     	b	0x58f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x438>
+    5884: 2a1f03f7     	mov	w23, wzr
+    5888: aa1f03f8     	mov	x24, xzr
+    588c: 14000029     	b	0x5930 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x478>
+    5890: 2a1f03f7     	mov	w23, wzr
+    5894: aa1f03f8     	mov	x24, xzr
+    5898: 14000036     	b	0x5970 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4b8>
+    589c: 2a1f03f7     	mov	w23, wzr
+    58a0: aa1f03f8     	mov	x24, xzr
+    58a4: 14000043     	b	0x59b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x4f8>
+    58a8: 2a1f03f4     	mov	w20, wzr
+    58ac: aa1f03f5     	mov	x21, xzr
+    58b0: aa1303e0     	mov	x0, x19
+    58b4: aa1503e1     	mov	x1, x21
+    58b8: 2a1403e2     	mov	w2, w20
+    58bc: 94000079     	bl	0x5aa0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5e8>
+    58c0: 14000040     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    58c4: 52800020     	mov	w0, #0x1
+    58c8: 940002fa     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    58cc: aa0003f8     	mov	x24, x0
+    58d0: 2a1f03f7     	mov	w23, wzr
+    58d4: 3837cb1f     	strb	wzr, [x24, w23, sxtw]
+    58d8: aa1403e0     	mov	x0, x20
+    58dc: aa1503e1     	mov	x1, x21
+    58e0: f9400288     	ldr	x8, [x20]
+    58e4: aa1603e2     	mov	x2, x22
+    58e8: f942a908     	ldr	x8, [x8, #0x550]
+    58ec: d63f0100     	blr	x8
+    58f0: aa1303e0     	mov	x0, x19
+    58f4: aa1803e1     	mov	x1, x24
+    58f8: 2a1703e2     	mov	w2, w23
+    58fc: 94000063     	bl	0x5a88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5d0>
+    5900: 14000030     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5904: 52800020     	mov	w0, #0x1
+    5908: 940002ea     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    590c: aa0003f8     	mov	x24, x0
+    5910: 2a1f03f7     	mov	w23, wzr
+    5914: 3837cb1f     	strb	wzr, [x24, w23, sxtw]
+    5918: aa1403e0     	mov	x0, x20
+    591c: aa1503e1     	mov	x1, x21
+    5920: f9400288     	ldr	x8, [x20]
+    5924: aa1603e2     	mov	x2, x22
+    5928: f942a908     	ldr	x8, [x8, #0x550]
+    592c: d63f0100     	blr	x8
+    5930: aa1303e0     	mov	x0, x19
+    5934: aa1803e1     	mov	x1, x24
+    5938: 2a1703e2     	mov	w2, w23
+    593c: 9400004a     	bl	0x5a64 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5ac>
+    5940: 14000020     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5944: 52800020     	mov	w0, #0x1
+    5948: 940002da     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    594c: aa0003f8     	mov	x24, x0
+    5950: 2a1f03f7     	mov	w23, wzr
+    5954: 3837cb1f     	strb	wzr, [x24, w23, sxtw]
+    5958: aa1403e0     	mov	x0, x20
+    595c: aa1503e1     	mov	x1, x21
+    5960: f9400288     	ldr	x8, [x20]
+    5964: aa1603e2     	mov	x2, x22
+    5968: f942a908     	ldr	x8, [x8, #0x550]
+    596c: d63f0100     	blr	x8
+    5970: aa1303e0     	mov	x0, x19
+    5974: aa1803e1     	mov	x1, x24
+    5978: 2a1703e2     	mov	w2, w23
+    597c: 94000046     	bl	0x5a94 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5dc>
+    5980: 14000010     	b	0x59c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x508>
+    5984: 52800020     	mov	w0, #0x1
+    5988: 940002ca     	bl	0x64b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xff8>
+    598c: aa0003f8     	mov	x24, x0
+    5990: 2a1f03f7     	mov	w23, wzr
+    5994: 3837cb1f     	strb	wzr, [x24, w23, sxtw]
+    5998: aa1403e0     	mov	x0, x20
+    599c: aa1503e1     	mov	x1, x21
+    59a0: f9400288     	ldr	x8, [x20]
+    59a4: aa1603e2     	mov	x2, x22
+    59a8: f942a908     	ldr	x8, [x8, #0x550]
+    59ac: d63f0100     	blr	x8
+    59b0: aa1303e0     	mov	x0, x19
+    59b4: aa1803e1     	mov	x1, x24
+    59b8: 2a1703e2     	mov	w2, w23
+    59bc: 94000030     	bl	0x5a7c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5c4>
+    59c0: aa1f03f5     	mov	x21, xzr
+    59c4: f9401728     	ldr	x8, [x25, #0x28]
+    59c8: f94007e9     	ldr	x9, [sp, #0x8]
+    59cc: eb09011f     	cmp	x8, x9
+    59d0: 54000121     	b.ne	0x59f4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x53c>
+    59d4: aa1503e0     	mov	x0, x21
+    59d8: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+    59dc: a94457f6     	ldp	x22, x21, [sp, #0x40]
+    59e0: a9435ff8     	ldp	x24, x23, [sp, #0x30]
+    59e4: a94267fa     	ldp	x26, x25, [sp, #0x20]
+    59e8: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+    59ec: 910183ff     	add	sp, sp, #0x60
+    59f0: d65f03c0     	ret
+    59f4: 940017fb     	bl	0xb9e0 <__stack_chk_fail@plt>
+    59f8: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    59fc: f9000bf3     	str	x19, [sp, #0x10]
+    5a00: 910003fd     	mov	x29, sp
+    5a04: aa0003f3     	mov	x19, x0
+    5a08: f9400000     	ldr	x0, [x0]
+    5a0c: b4000040     	cbz	x0, 0x5a14 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x55c>
+    5a10: 940017f8     	bl	0xb9f0 <_ZdaPv@plt>
+    5a14: f9400a60     	ldr	x0, [x19, #0x10]
+    5a18: b4000040     	cbz	x0, 0x5a20 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x568>
+    5a1c: 940017f5     	bl	0xb9f0 <_ZdaPv@plt>
+    5a20: f9401260     	ldr	x0, [x19, #0x20]
+    5a24: b4000040     	cbz	x0, 0x5a2c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x574>
+    5a28: 940017f2     	bl	0xb9f0 <_ZdaPv@plt>
+    5a2c: f9401a60     	ldr	x0, [x19, #0x30]
+    5a30: b4000040     	cbz	x0, 0x5a38 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x580>
+    5a34: 940017ef     	bl	0xb9f0 <_ZdaPv@plt>
+    5a38: f9402260     	ldr	x0, [x19, #0x40]
+    5a3c: b4000040     	cbz	x0, 0x5a44 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x58c>
+    5a40: 940017ec     	bl	0xb9f0 <_ZdaPv@plt>
+    5a44: f9402a60     	ldr	x0, [x19, #0x50]
+    5a48: b4000080     	cbz	x0, 0x5a58 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x5a0>
+    5a4c: f9400bf3     	ldr	x19, [sp, #0x10]
+    5a50: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    5a54: 140017e7     	b	0xb9f0 <_ZdaPv@plt>
+    5a58: f9400bf3     	ldr	x19, [sp, #0x10]
+    5a5c: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    5a60: d65f03c0     	ret
+    5a64: f9000001     	str	x1, [x0]
+    5a68: b9000802     	str	w2, [x0, #0x8]
+    5a6c: d65f03c0     	ret
+    5a70: f9000801     	str	x1, [x0, #0x10]
+    5a74: b9001802     	str	w2, [x0, #0x18]
+    5a78: d65f03c0     	ret
+    5a7c: f9001001     	str	x1, [x0, #0x20]
+    5a80: b9002802     	str	w2, [x0, #0x28]
+    5a84: d65f03c0     	ret
+    5a88: f9001801     	str	x1, [x0, #0x30]
+    5a8c: b9003802     	str	w2, [x0, #0x38]
+    5a90: d65f03c0     	ret
+    5a94: f9002001     	str	x1, [x0, #0x40]
+    5a98: b9004802     	str	w2, [x0, #0x48]
+    5a9c: d65f03c0     	ret
+    5aa0: f9002801     	str	x1, [x0, #0x50]
+    5aa4: b9005802     	str	w2, [x0, #0x58]
+    5aa8: d65f03c0     	ret
+    5aac: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+    5ab0: 910003fd     	mov	x29, sp
+    5ab4: 52800c00     	mov	w0, #0x60
+    5ab8: 940017d2     	bl	0xba00 <_Znwm@plt>
+    5abc: b900181f     	str	wzr, [x0, #0x18]
+    5ac0: b900281f     	str	wzr, [x0, #0x28]
+    5ac4: b900481f     	str	wzr, [x0, #0x48]
+    5ac8: b900581f     	str	wzr, [x0, #0x58]
+    5acc: b900381f     	str	wzr, [x0, #0x38]
+    5ad0: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+    5ad4: d65f03c0     	ret
+    5ad8: b4000140     	cbz	x0, 0x5b00 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x648>
+    5adc: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    5ae0: f9000bf3     	str	x19, [sp, #0x10]
+    5ae4: 910003fd     	mov	x29, sp
+    5ae8: aa0003f3     	mov	x19, x0
+    5aec: 97ffffc3     	bl	0x59f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x540>
+    5af0: aa1303e0     	mov	x0, x19
+    5af4: f9400bf3     	ldr	x19, [sp, #0x10]
+    5af8: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    5afc: 140017c5     	b	0xba10 <_ZdlPv@plt>
+    5b00: d65f03c0     	ret
+    5b04: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+    5b08: a9015ff8     	stp	x24, x23, [sp, #0x10]
+    5b0c: a90257f6     	stp	x22, x21, [sp, #0x20]
+    5b10: a9034ff4     	stp	x20, x19, [sp, #0x30]
+    5b14: 910003fd     	mov	x29, sp
+    5b18: d10083ff     	sub	sp, sp, #0x20
+    5b1c: d53bd057     	mrs	x23, TPIDR_EL0
+    5b20: aa0803f3     	mov	x19, x8
+    5b24: f94016e8     	ldr	x8, [x23, #0x28]
+    5b28: f81f83a8     	stur	x8, [x29, #-0x8]
+    5b2c: 39400008     	ldrb	w8, [x0]
+    5b30: f9400409     	ldr	x9, [x0, #0x8]
+    5b34: d341fd0a     	lsr	x10, x8, #1
+    5b38: 7200011f     	tst	w8, #0x1
+    5b3c: 9a890156     	csel	x22, x10, x9, eq
+    5b40: 910003ea     	mov	x10, sp
+    5b44: 7200011f     	tst	w8, #0x1
+    5b48: 910042c9     	add	x9, x22, #0x10
+    5b4c: 927ced29     	and	x9, x9, #0xfffffffffffffff0
+    5b50: cb090154     	sub	x20, x10, x9
+    5b54: 9100029f     	mov	sp, x20
+    5b58: f9400808     	ldr	x8, [x0, #0x10]
+    5b5c: aa1603e2     	mov	x2, x22
+    5b60: 9a801515     	csinc	x21, x8, x0, ne
+    5b64: aa1403e0     	mov	x0, x20
+    5b68: aa1503e1     	mov	x1, x21
+    5b6c: 94001791     	bl	0xb9b0 <memcpy@plt>
+    5b70: 710006c8     	subs	w8, w22, #0x1
+    5b74: 38366a9f     	strb	wzr, [x20, x22]
+    5b78: 54000204     	b.mi	0x5bb8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x700>
+    5b7c: aa1f03ea     	mov	x10, xzr
+    5b80: 910006a9     	add	x9, x21, #0x1
+    5b84: 14000006     	b	0x5b9c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6e4>
+    5b88: d1000508     	sub	x8, x8, #0x1
+    5b8c: 91000929     	add	x9, x9, #0x2
+    5b90: eb08015f     	cmp	x10, x8
+    5b94: 9100054a     	add	x10, x10, #0x1
+    5b98: 5400010a     	b.ge	0x5bb8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x700>
+    5b9c: 385ff12b     	ldurb	w11, [x9, #-0x1]
+    5ba0: eb0a011f     	cmp	x8, x10
+    5ba4: 382a6a8b     	strb	w11, [x20, x10]
+    5ba8: 54ffff00     	b.eq	0x5b88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6d0>
+    5bac: 3940012b     	ldrb	w11, [x9]
+    5bb0: 38286a8b     	strb	w11, [x20, x8]
+    5bb4: 17fffff5     	b	0x5b88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x6d0>
+    5bb8: aa1403e0     	mov	x0, x20
+    5bbc: 94001781     	bl	0xb9c0 <strlen@plt>
+    5bc0: b100401f     	cmn	x0, #0x10
+    5bc4: 540004e2     	b.hs	0x5c60 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7a8>
+    5bc8: aa0003f5     	mov	x21, x0
+    5bcc: f1005c1f     	cmp	x0, #0x17
+    5bd0: 540000e2     	b.hs	0x5bec <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x734>
+    5bd4: 531f7aa8     	lsl	w8, w21, #1
+    5bd8: d10083a9     	sub	x9, x29, #0x20
+    5bdc: b2400136     	orr	x22, x9, #0x1
+    5be0: 381e03a8     	sturb	w8, [x29, #-0x20]
+    5be4: b5000135     	cbnz	x21, 0x5c08 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x750>
+    5be8: 1400000c     	b	0x5c18 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x760>
+    5bec: b2400eb8     	orr	x24, x21, #0xf
+    5bf0: 91000700     	add	x0, x24, #0x1
+    5bf4: 94001783     	bl	0xba00 <_Znwm@plt>
+    5bf8: 91000b08     	add	x8, x24, #0x2
+    5bfc: aa0003f6     	mov	x22, x0
+    5c00: a93e83b5     	stp	x21, x0, [x29, #-0x18]
+    5c04: f81e03a8     	stur	x8, [x29, #-0x20]
+    5c08: aa1603e0     	mov	x0, x22
+    5c0c: aa1403e1     	mov	x1, x20
+    5c10: aa1503e2     	mov	x2, x21
+    5c14: 94001767     	bl	0xb9b0 <memcpy@plt>
+    5c18: 38356adf     	strb	wzr, [x22, x21]
+    5c1c: d10083a0     	sub	x0, x29, #0x20
+    5c20: aa1303e8     	mov	x8, x19
+    5c24: 9400077b     	bl	0x7a10 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x2558>
+    5c28: 385e03a8     	ldurb	w8, [x29, #-0x20]
+    5c2c: 36000068     	tbz	w8, #0x0, 0x5c38 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x780>
+    5c30: f85f03a0     	ldur	x0, [x29, #-0x10]
+    5c34: 94001777     	bl	0xba10 <_ZdlPv@plt>
+    5c38: f94016e8     	ldr	x8, [x23, #0x28]
+    5c3c: f85f83a9     	ldur	x9, [x29, #-0x8]
+    5c40: eb09011f     	cmp	x8, x9
+    5c44: 54000301     	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c48: 910003bf     	mov	sp, x29
+    5c4c: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    5c50: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    5c54: a9415ff8     	ldp	x24, x23, [sp, #0x10]
+    5c58: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+    5c5c: d65f03c0     	ret
+    5c60: f94016e8     	ldr	x8, [x23, #0x28]
+    5c64: f85f83a9     	ldur	x9, [x29, #-0x8]
+    5c68: eb09011f     	cmp	x8, x9
+    5c6c: 540001c1     	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c70: d10083a0     	sub	x0, x29, #0x20
+    5c74: 9400023c     	bl	0x6564 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x10ac>
+    5c78: 385e03a8     	ldurb	w8, [x29, #-0x20]
+    5c7c: aa0003f3     	mov	x19, x0
+    5c80: 36000068     	tbz	w8, #0x0, 0x5c8c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7d4>
+    5c84: f85f03a0     	ldur	x0, [x29, #-0x10]
+    5c88: 94001762     	bl	0xba10 <_ZdlPv@plt>
+    5c8c: f94016e8     	ldr	x8, [x23, #0x28]
+    5c90: f85f83a9     	ldur	x9, [x29, #-0x8]
+    5c94: eb09011f     	cmp	x8, x9
+    5c98: 54000061     	b.ne	0x5ca4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x7ec>
+    5c9c: aa1303e0     	mov	x0, x19
+    5ca0: 94000803     	bl	0x7cac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x27f4>
+    5ca4: 9400174f     	bl	0xb9e0 <__stack_chk_fail@plt>
+    5ca8: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+    5cac: a90167fc     	stp	x28, x25, [sp, #0x10]
+    5cb0: a9025ff8     	stp	x24, x23, [sp, #0x20]
+    5cb4: a90357f6     	stp	x22, x21, [sp, #0x30]
+    5cb8: a9044ff4     	stp	x20, x19, [sp, #0x40]
+    5cbc: 910003fd     	mov	x29, sp
+    5cc0: d10643ff     	sub	sp, sp, #0x190
+    5cc4: d53bd058     	mrs	x24, TPIDR_EL0
+    5cc8: aa0003f4     	mov	x20, x0
+    5ccc: d10063a2     	sub	x2, x29, #0x18
+    5cd0: f9401708     	ldr	x8, [x24, #0x28]
+    5cd4: 910003f3     	mov	x19, sp
+    5cd8: d10063b5     	sub	x21, x29, #0x18
+    5cdc: f81f83a8     	stur	x8, [x29, #-0x8]
+    5ce0: f9400800     	ldr	x0, [x0, #0x10]
+    5ce4: b9401a81     	ldr	w1, [x20, #0x18]
+    5ce8: 94000244     	bl	0x65f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1140>
+    5cec: d100e7a9     	sub	x9, x29, #0x39
+    5cf0: aa1f03e8     	mov	x8, xzr
+    5cf4: d503201f     	nop
+    5cf8: 10fdf84a     	adr	x10, #-0x40f8
+    5cfc: 91000529     	add	x9, x9, #0x1
+    5d00: 38686aab     	ldrb	w11, [x21, x8]
+    5d04: 91000508     	add	x8, x8, #0x1
+    5d08: f100411f     	cmp	x8, #0x10
+    5d0c: d344fd6c     	lsr	x12, x11, #4
+    5d10: 92400d6b     	and	x11, x11, #0xf
+    5d14: 386b694b     	ldrb	w11, [x10, x11]
+    5d18: 386c694c     	ldrb	w12, [x10, x12]
+    5d1c: 381ff12c     	sturb	w12, [x9, #-0x1]
+    5d20: 3800252b     	strb	w11, [x9], #0x2
+    5d24: 54fffee1     	b.ne	0x5d00 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x848>
+    5d28: 91032260     	add	x0, x19, #0xc8
+    5d2c: aa1f03e1     	mov	x1, xzr
+    5d30: 381e73bf     	sturb	wzr, [x29, #-0x19]
+    5d34: 9400173b     	bl	0xba20 <gettimeofday@plt>
+    5d38: a94ca668     	ldp	x8, x9, [x19, #0xc8]
+    5d3c: 52807d0a     	mov	w10, #0x3e8
+    5d40: d10277a0     	sub	x0, x29, #0x9d
+    5d44: 52800c81     	mov	w1, #0x64
+    5d48: 9b0a7d08     	mul	x8, x8, x10
+    5d4c: d29ef9ea     	mov	x10, #0xf7cf
+    5d50: d343fd29     	lsr	x9, x9, #3
+    5d54: f2bc6a6a     	movk	x10, #0xe353, lsl #16
+    5d58: f2d374aa     	movk	x10, #0x9ba5, lsl #32
+    5d5c: f2e4188a     	movk	x10, #0x20c4, lsl #48
+    5d60: 9bca7d29     	umulh	x9, x9, x10
+    5d64: 8b491104     	add	x4, x8, x9, lsr #4
+    5d68: 940001d6     	bl	0x64c0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1008>
+    5d6c: f9401281     	ldr	x1, [x20, #0x20]
+    5d70: 2a0003f5     	mov	w21, w0
+    5d74: a90cfe7f     	stp	xzr, xzr, [x19, #0xc8]
+    5d78: f9006e7f     	str	xzr, [x19, #0xd8]
+    5d7c: b4000061     	cbz	x1, 0x5d88 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8d0>
+    5d80: 91032260     	add	x0, x19, #0xc8
+    5d84: 9400172b     	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5d88: f9401a81     	ldr	x1, [x20, #0x30]
+    5d8c: b4000061     	cbz	x1, 0x5d98 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8e0>
+    5d90: 91032260     	add	x0, x19, #0xc8
+    5d94: 94001727     	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5d98: f9402281     	ldr	x1, [x20, #0x40]
+    5d9c: b4000061     	cbz	x1, 0x5da8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x8f0>
+    5da0: 91032260     	add	x0, x19, #0xc8
+    5da4: 94001723     	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5da8: 91032260     	add	x0, x19, #0xc8
+    5dac: d100e7a1     	sub	x1, x29, #0x39
+    5db0: 94001720     	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5db4: 91032260     	add	x0, x19, #0xc8
+    5db8: d10277a1     	sub	x1, x29, #0x9d
+    5dbc: 91032276     	add	x22, x19, #0xc8
+    5dc0: 9400171c     	bl	0xba30 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc@plt>
+    5dc4: 39432268     	ldrb	w8, [x19, #0xc8]
+    5dc8: f9406e69     	ldr	x9, [x19, #0xd8]
+    5dcc: b24002cc     	orr	x12, x22, #0x1
+    5dd0: b940d26a     	ldr	w10, [x19, #0xd0]
+    5dd4: d341fd0b     	lsr	x11, x8, #1
+    5dd8: 7200011f     	tst	w8, #0x1
+    5ddc: 9a890180     	csel	x0, x12, x9, eq
+    5de0: 1a8a0161     	csel	w1, w11, w10, eq
+    5de4: d102b7a2     	sub	x2, x29, #0xad
+    5de8: 94000204     	bl	0x65f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1140>
+    5dec: 9102c268     	add	x8, x19, #0xb0
+    5df0: d102b7a0     	sub	x0, x29, #0xad
+    5df4: 52800201     	mov	w1, #0x10
+    5df8: 940006ae     	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5dfc: 2a1503e0     	mov	w0, w21
+    5e00: 9400050b     	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e04: 2a0003e8     	mov	w8, w0
+    5e08: 910003e9     	mov	x9, sp
+    5e0c: 2a0003f6     	mov	w22, w0
+    5e10: 91003d08     	add	x8, x8, #0xf
+    5e14: 910003f9     	mov	x25, sp
+    5e18: 927c7108     	and	x8, x8, #0x1fffffff0
+    5e1c: cb080137     	sub	x23, x9, x8
+    5e20: 910002ff     	mov	sp, x23
+    5e24: d10277a0     	sub	x0, x29, #0x9d
+    5e28: d10063a2     	sub	x2, x29, #0x18
+    5e2c: 2a1503e1     	mov	w1, w21
+    5e30: aa1703e3     	mov	x3, x23
+    5e34: 94000505     	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5e38: 91026268     	add	x8, x19, #0x98
+    5e3c: aa1703e0     	mov	x0, x23
+    5e40: 2a1603e1     	mov	w1, w22
+    5e44: 9400069b     	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5e48: b9400a80     	ldr	w0, [x20, #0x8]
+    5e4c: 940004f8     	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e50: 2a0003e8     	mov	w8, w0
+    5e54: 910003e9     	mov	x9, sp
+    5e58: 2a0003f5     	mov	w21, w0
+    5e5c: 91003d08     	add	x8, x8, #0xf
+    5e60: 927c7108     	and	x8, x8, #0x1fffffff0
+    5e64: cb080136     	sub	x22, x9, x8
+    5e68: 910002df     	mov	sp, x22
+    5e6c: f9400280     	ldr	x0, [x20]
+    5e70: b9400a81     	ldr	w1, [x20, #0x8]
+    5e74: d503201f     	nop
+    5e78: 70fdeac2     	adr	x2, #-0x42a5
+    5e7c: aa1603e3     	mov	x3, x22
+    5e80: 940004f2     	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5e84: 91020268     	add	x8, x19, #0x80
+    5e88: aa1603e0     	mov	x0, x22
+    5e8c: 2a1503e1     	mov	w1, w21
+    5e90: 94000688     	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5e94: b9405a80     	ldr	w0, [x20, #0x58]
+    5e98: 940004e5     	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5e9c: 2a0003e8     	mov	w8, w0
+    5ea0: 910003e9     	mov	x9, sp
+    5ea4: 2a0003f5     	mov	w21, w0
+    5ea8: 91003d08     	add	x8, x8, #0xf
+    5eac: 927c7108     	and	x8, x8, #0x1fffffff0
+    5eb0: cb080136     	sub	x22, x9, x8
+    5eb4: 910002df     	mov	sp, x22
+    5eb8: f9402a80     	ldr	x0, [x20, #0x50]
+    5ebc: b9405a81     	ldr	w1, [x20, #0x58]
+    5ec0: d10063a2     	sub	x2, x29, #0x18
+    5ec4: aa1603e3     	mov	x3, x22
+    5ec8: 940004e0     	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5ecc: 9101a268     	add	x8, x19, #0x68
+    5ed0: aa1603e0     	mov	x0, x22
+    5ed4: 2a1503e1     	mov	w1, w21
+    5ed8: 94000676     	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5edc: 5285c649     	mov	w9, #0x2e32
+    5ee0: 528000c8     	mov	w8, #0x6
+    5ee4: 72a00609     	movk	w9, #0x30, lsl #16
+    5ee8: 39014268     	strb	w8, [x19, #0x50]
+    5eec: b8051269     	stur	w9, [x19, #0x51]
+    5ef0: 52800060     	mov	w0, #0x3
+    5ef4: 940004ce     	bl	0x722c <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d74>
+    5ef8: 2a0003e9     	mov	w9, w0
+    5efc: 910003ea     	mov	x10, sp
+    5f00: 2a0003f4     	mov	w20, w0
+    5f04: 91003d29     	add	x9, x9, #0xf
+    5f08: 91014268     	add	x8, x19, #0x50
+    5f0c: 927c7129     	and	x9, x9, #0x1fffffff0
+    5f10: b2400108     	orr	x8, x8, #0x1
+    5f14: cb090155     	sub	x21, x10, x9
+    5f18: 910002bf     	mov	sp, x21
+    5f1c: 39414269     	ldrb	w9, [x19, #0x50]
+    5f20: f940326a     	ldr	x10, [x19, #0x60]
+    5f24: b9405a6b     	ldr	w11, [x19, #0x58]
+    5f28: d341fd2c     	lsr	x12, x9, #1
+    5f2c: 7200013f     	tst	w9, #0x1
+    5f30: 9a8a0100     	csel	x0, x8, x10, eq
+    5f34: 1a8b0181     	csel	w1, w12, w11, eq
+    5f38: d503201f     	nop
+    5f3c: 70fde4a2     	adr	x2, #-0x4369
+    5f40: aa1503e3     	mov	x3, x21
+    5f44: 940004c1     	bl	0x7248 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x1d90>
+    5f48: 9100e268     	add	x8, x19, #0x38
+    5f4c: aa1503e0     	mov	x0, x21
+    5f50: 2a1403e1     	mov	w1, w20
+    5f54: 94000657     	bl	0x78b0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x23f8>
+    5f58: 52801f00     	mov	w0, #0xf8
+    5f5c: 940016a9     	bl	0xba00 <_Znwm@plt>
+    5f60: 52800148     	mov	w8, #0xa
+    5f64: 6f00e400     	movi	v0.2d, #0000000000000000
+    5f68: aa0003f4     	mov	x20, x0
+    5f6c: b900f008     	str	w8, [x0, #0xf0]
+    5f70: 52800308     	mov	w8, #0x18
+    5f74: 39002268     	strb	w8, [x19, #0x8]
+    5f78: 528d8b28     	mov	w8, #0x6c59
+    5f7c: 72a9c648     	movk	w8, #0x4e32, lsl #16
+    5f80: 3900567f     	strb	wzr, [x19, #0x15]
+    5f84: b8011268     	stur	w8, [x19, #0x11]
+    5f88: 90ffffe8     	adrp	x8, 0x1000
+    5f8c: 911aa508     	add	x8, x8, #0x6a9
+    5f90: f9400108     	ldr	x8, [x8]
+    5f94: ad008000     	stp	q0, q0, [x0, #0x10]
+    5f98: ad018000     	stp	q0, q0, [x0, #0x30]
+    5f9c: ad028000     	stp	q0, q0, [x0, #0x50]
+    5fa0: ad038000     	stp	q0, q0, [x0, #0x70]
+    5fa4: ad048000     	stp	q0, q0, [x0, #0x90]
+    5fa8: ad058000     	stp	q0, q0, [x0, #0xb0]
+    5fac: ad068000     	stp	q0, q0, [x0, #0xd0]
+    5fb0: 3d800000     	str	q0, [x0]
+    5fb4: f8009268     	stur	x8, [x19, #0x9]
+    5fb8: 91008268     	add	x8, x19, #0x20
+    5fbc: 91002260     	add	x0, x19, #0x8
+    5fc0: 97fffed1     	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    5fc4: 39400288     	ldrb	w8, [x20]
+    5fc8: 36000068     	tbz	w8, #0x0, 0x5fd4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb1c>
+    5fcc: f9400a80     	ldr	x0, [x20, #0x10]
+    5fd0: 94001690     	bl	0xba10 <_ZdlPv@plt>
+    5fd4: 3dc00a60     	ldr	q0, [x19, #0x20]
+    5fd8: f9401a68     	ldr	x8, [x19, #0x30]
+    5fdc: 3d800280     	str	q0, [x20]
+    5fe0: f9000a88     	str	x8, [x20, #0x10]
+    5fe4: 91006280     	add	x0, x20, #0x18
+    5fe8: 9102c261     	add	x1, x19, #0xb0
+    5fec: 94001695     	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    5ff0: d28d8b49     	mov	x9, #0x6c5a
+    5ff4: 52800208     	mov	w8, #0x10
+    5ff8: 3900467f     	strb	wzr, [x19, #0x11]
+    5ffc: f2aa4869     	movk	x9, #0x5243, lsl #16
+    6000: 39002268     	strb	w8, [x19, #0x8]
+    6004: f2cb0629     	movk	x9, #0x5831, lsl #32
+    6008: f2eb2d69     	movk	x9, #0x596b, lsl #48
+    600c: f8009269     	stur	x9, [x19, #0x9]
+    6010: 91008268     	add	x8, x19, #0x20
+    6014: 91002260     	add	x0, x19, #0x8
+    6018: 97fffebb     	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    601c: aa1403f5     	mov	x21, x20
+    6020: 38430ea8     	ldrb	w8, [x21, #0x30]!
+    6024: 36000068     	tbz	w8, #0x0, 0x6030 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xb78>
+    6028: f9402280     	ldr	x0, [x20, #0x40]
+    602c: 94001679     	bl	0xba10 <_ZdlPv@plt>
+    6030: 3dc00a60     	ldr	q0, [x19, #0x20]
+    6034: f9401a68     	ldr	x8, [x19, #0x30]
+    6038: 3d8002a0     	str	q0, [x21]
+    603c: f9000aa8     	str	x8, [x21, #0x10]
+    6040: 91012280     	add	x0, x20, #0x48
+    6044: 91026261     	add	x1, x19, #0x98
+    6048: 9400167e     	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    604c: f0ffffc9     	adrp	x9, 0x1000
+    6050: 91181529     	add	x9, x9, #0x605
+    6054: 528f2c6a     	mov	w10, #0x7963
+    6058: f9400129     	ldr	x9, [x9]
+    605c: 52800308     	mov	w8, #0x18
+    6060: 72ac88ea     	movk	w10, #0x6447, lsl #16
+    6064: 39002268     	strb	w8, [x19, #0x8]
+    6068: b801126a     	stur	w10, [x19, #0x11]
+    606c: f8009269     	stur	x9, [x19, #0x9]
+    6070: 3900567f     	strb	wzr, [x19, #0x15]
+    6074: 91008268     	add	x8, x19, #0x20
+    6078: 91002260     	add	x0, x19, #0x8
+    607c: 97fffea2     	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    6080: aa1403f5     	mov	x21, x20
+    6084: 38460ea8     	ldrb	w8, [x21, #0x60]!
+    6088: 36000068     	tbz	w8, #0x0, 0x6094 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xbdc>
+    608c: f9403a80     	ldr	x0, [x20, #0x70]
+    6090: 94001660     	bl	0xba10 <_ZdlPv@plt>
+    6094: 3dc00a60     	ldr	q0, [x19, #0x20]
+    6098: f9401a68     	ldr	x8, [x19, #0x30]
+    609c: 3d8002a0     	str	q0, [x21]
+    60a0: f9000aa8     	str	x8, [x21, #0x10]
+    60a4: 9101e280     	add	x0, x20, #0x78
+    60a8: 9100e261     	add	x1, x19, #0x38
+    60ac: 94001665     	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    60b0: d28e0c89     	mov	x9, #0x7064
+    60b4: 52800208     	mov	w8, #0x10
+    60b8: 3900467f     	strb	wzr, [x19, #0x11]
+    60bc: f2a8c649     	movk	x9, #0x4632, lsl #16
+    60c0: 39002268     	strb	w8, [x19, #0x8]
+    60c4: f2c8eac9     	movk	x9, #0x4756, lsl #32
+    60c8: f2eb4e09     	movk	x9, #0x5a70, lsl #48
+    60cc: f8009269     	stur	x9, [x19, #0x9]
+    60d0: 91008268     	add	x8, x19, #0x20
+    60d4: 91002260     	add	x0, x19, #0x8
+    60d8: 97fffe8b     	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    60dc: aa1403f5     	mov	x21, x20
+    60e0: 38490ea8     	ldrb	w8, [x21, #0x90]!
+    60e4: 36000068     	tbz	w8, #0x0, 0x60f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xc38>
+    60e8: f9405280     	ldr	x0, [x20, #0xa0]
+    60ec: 94001649     	bl	0xba10 <_ZdlPv@plt>
+    60f0: 3dc00a60     	ldr	q0, [x19, #0x20]
+    60f4: f9401a68     	ldr	x8, [x19, #0x30]
+    60f8: 3d8002a0     	str	q0, [x21]
+    60fc: f9000aa8     	str	x8, [x21, #0x10]
+    6100: 9102a280     	add	x0, x20, #0xa8
+    6104: 91020261     	add	x1, x19, #0x80
+    6108: 9400164e     	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    610c: f0ffffc9     	adrp	x9, 0x1000
+    6110: 91060129     	add	x9, x9, #0x180
+    6114: 528dcc6a     	mov	w10, #0x6e63
+    6118: f9400129     	ldr	x9, [x9]
+    611c: 52800308     	mov	w8, #0x18
+    6120: 72ad8daa     	movk	w10, #0x6c6d, lsl #16
+    6124: 39002268     	strb	w8, [x19, #0x8]
+    6128: b801126a     	stur	w10, [x19, #0x11]
+    612c: f8009269     	stur	x9, [x19, #0x9]
+    6130: 3900567f     	strb	wzr, [x19, #0x15]
+    6134: 91008268     	add	x8, x19, #0x20
+    6138: 91002260     	add	x0, x19, #0x8
+    613c: 97fffe72     	bl	0x5b04 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x64c>
+    6140: aa1403f5     	mov	x21, x20
+    6144: 384c0ea8     	ldrb	w8, [x21, #0xc0]!
+    6148: 36000068     	tbz	w8, #0x0, 0x6154 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xc9c>
+    614c: f9406a80     	ldr	x0, [x20, #0xd0]
+    6150: 94001630     	bl	0xba10 <_ZdlPv@plt>
+    6154: 3dc00a60     	ldr	q0, [x19, #0x20]
+    6158: f9401a68     	ldr	x8, [x19, #0x30]
+    615c: 3d8002a0     	str	q0, [x21]
+    6160: f9000aa8     	str	x8, [x21, #0x10]
+    6164: 91036280     	add	x0, x20, #0xd8
+    6168: 9101a261     	add	x1, x19, #0x68
+    616c: 94001635     	bl	0xba40 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+    6170: 3940e268     	ldrb	w8, [x19, #0x38]
+    6174: 37000408     	tbnz	w8, #0x0, 0x61f4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd3c>
+    6178: 39414268     	ldrb	w8, [x19, #0x50]
+    617c: 37000448     	tbnz	w8, #0x0, 0x6204 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd4c>
+    6180: 3941a268     	ldrb	w8, [x19, #0x68]
+    6184: 37000488     	tbnz	w8, #0x0, 0x6214 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd5c>
+    6188: 39420268     	ldrb	w8, [x19, #0x80]
+    618c: 370004c8     	tbnz	w8, #0x0, 0x6224 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd6c>
+    6190: 39426268     	ldrb	w8, [x19, #0x98]
+    6194: 36000068     	tbz	w8, #0x0, 0x61a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce8>
+    6198: f9405660     	ldr	x0, [x19, #0xa8]
+    619c: 9400161d     	bl	0xba10 <_ZdlPv@plt>
+    61a0: 9100033f     	mov	sp, x25
+    61a4: 3942c268     	ldrb	w8, [x19, #0xb0]
+    61a8: 36000068     	tbz	w8, #0x0, 0x61b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcfc>
+    61ac: f9406260     	ldr	x0, [x19, #0xc0]
+    61b0: 94001618     	bl	0xba10 <_ZdlPv@plt>
+    61b4: 39432268     	ldrb	w8, [x19, #0xc8]
+    61b8: 36000068     	tbz	w8, #0x0, 0x61c4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xd0c>
+    61bc: f9406e60     	ldr	x0, [x19, #0xd8]
+    61c0: 94001614     	bl	0xba10 <_ZdlPv@plt>
+    61c4: f9401708     	ldr	x8, [x24, #0x28]
+    61c8: f85f83a9     	ldur	x9, [x29, #-0x8]
+    61cc: eb09011f     	cmp	x8, x9
+    61d0: 54000d21     	b.ne	0x6374 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xebc>
+    61d4: aa1403e0     	mov	x0, x20
+    61d8: 910003bf     	mov	sp, x29
+    61dc: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+    61e0: a94357f6     	ldp	x22, x21, [sp, #0x30]
+    61e4: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+    61e8: a94167fc     	ldp	x28, x25, [sp, #0x10]
+    61ec: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+    61f0: d65f03c0     	ret
+    61f4: f9402660     	ldr	x0, [x19, #0x48]
+    61f8: 94001606     	bl	0xba10 <_ZdlPv@plt>
+    61fc: 39414268     	ldrb	w8, [x19, #0x50]
+    6200: 3607fc08     	tbz	w8, #0x0, 0x6180 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcc8>
+    6204: f9403260     	ldr	x0, [x19, #0x60]
+    6208: 94001602     	bl	0xba10 <_ZdlPv@plt>
+    620c: 3941a268     	ldrb	w8, [x19, #0x68]
+    6210: 3607fbc8     	tbz	w8, #0x0, 0x6188 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcd0>
+    6214: f9403e60     	ldr	x0, [x19, #0x78]
+    6218: 940015fe     	bl	0xba10 <_ZdlPv@plt>
+    621c: 39420268     	ldrb	w8, [x19, #0x80]
+    6220: 3607fb88     	tbz	w8, #0x0, 0x6190 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xcd8>
+    6224: f9404a60     	ldr	x0, [x19, #0x90]
+    6228: 940015fa     	bl	0xba10 <_ZdlPv@plt>
+    622c: 39426268     	ldrb	w8, [x19, #0x98]
+    6230: 3707fb48     	tbnz	w8, #0x0, 0x6198 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce0>
+    6234: 17ffffdb     	b	0x61a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xce8>
+    6238: 1400001f     	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    623c: 1400001e     	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6240: 1400001d     	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6244: 1400001c     	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    6248: 1400001b     	b	0x62b4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdfc>
+    624c: 14000006     	b	0x6264 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdac>
+    6250: 14000009     	b	0x6274 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdbc>
+    6254: 1400000c     	b	0x6284 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdcc>
+    6258: 1400000f     	b	0x6294 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xddc>
+    625c: 14000012     	b	0x62a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdec>
+    6260: 14000011     	b	0x62a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xdec>
+    6264: aa0003f4     	mov	x20, x0
+    6268: 39414268     	ldrb	w8, [x19, #0x50]
+    626c: 360002e8     	tbz	w8, #0x0, 0x62c8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe10>
+    6270: 1400002c     	b	0x6320 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe68>
+    6274: aa0003f4     	mov	x20, x0
+    6278: 39420268     	ldrb	w8, [x19, #0x80]
+    627c: 360002e8     	tbz	w8, #0x0, 0x62d8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe20>
+    6280: 14000030     	b	0x6340 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe88>
+    6284: aa0003f4     	mov	x20, x0
+    6288: 39426268     	ldrb	w8, [x19, #0x98]
+    628c: 360002a8     	tbz	w8, #0x0, 0x62e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe28>
+    6290: 14000030     	b	0x6350 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe98>
+    6294: aa0003f4     	mov	x20, x0
+    6298: 3942c268     	ldrb	w8, [x19, #0xb0]
+    629c: 36000268     	tbz	w8, #0x0, 0x62e8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe30>
+    62a0: 14000030     	b	0x6360 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xea8>
+    62a4: aa0003f4     	mov	x20, x0
+    62a8: 39432268     	ldrb	w8, [x19, #0xc8]
+    62ac: 37000228     	tbnz	w8, #0x0, 0x62f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe38>
+    62b0: 14000012     	b	0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    62b4: 3940e268     	ldrb	w8, [x19, #0x38]
+    62b8: aa0003f4     	mov	x20, x0
+    62bc: 370002a8     	tbnz	w8, #0x0, 0x6310 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe58>
+    62c0: 39414268     	ldrb	w8, [x19, #0x50]
+    62c4: 370002e8     	tbnz	w8, #0x0, 0x6320 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe68>
+    62c8: 3941a268     	ldrb	w8, [x19, #0x68]
+    62cc: 37000328     	tbnz	w8, #0x0, 0x6330 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe78>
+    62d0: 39420268     	ldrb	w8, [x19, #0x80]
+    62d4: 37000368     	tbnz	w8, #0x0, 0x6340 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe88>
+    62d8: 39426268     	ldrb	w8, [x19, #0x98]
+    62dc: 370003a8     	tbnz	w8, #0x0, 0x6350 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe98>
+    62e0: 3942c268     	ldrb	w8, [x19, #0xb0]
+    62e4: 370003e8     	tbnz	w8, #0x0, 0x6360 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xea8>
+    62e8: 39432268     	ldrb	w8, [x19, #0xc8]
+    62ec: 36000068     	tbz	w8, #0x0, 0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    62f0: f9406e60     	ldr	x0, [x19, #0xd8]
+    62f4: 940015c7     	bl	0xba10 <_ZdlPv@plt>
+    62f8: f9401708     	ldr	x8, [x24, #0x28]
+    62fc: f85f83a9     	ldur	x9, [x29, #-0x8]
+    6300: eb09011f     	cmp	x8, x9
+    6304: 54000381     	b.ne	0x6374 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xebc>
+    6308: aa1403e0     	mov	x0, x20
+    630c: 94000668     	bl	0x7cac <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0x27f4>
+    6310: f9402660     	ldr	x0, [x19, #0x48]
+    6314: 940015bf     	bl	0xba10 <_ZdlPv@plt>
+    6318: 39414268     	ldrb	w8, [x19, #0x50]
+    631c: 3607fd68     	tbz	w8, #0x0, 0x62c8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe10>
+    6320: f9403260     	ldr	x0, [x19, #0x60]
+    6324: 940015bb     	bl	0xba10 <_ZdlPv@plt>
+    6328: 3941a268     	ldrb	w8, [x19, #0x68]
+    632c: 3607fd28     	tbz	w8, #0x0, 0x62d0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe18>
+    6330: f9403e60     	ldr	x0, [x19, #0x78]
+    6334: 940015b7     	bl	0xba10 <_ZdlPv@plt>
+    6338: 39420268     	ldrb	w8, [x19, #0x80]
+    633c: 3607fce8     	tbz	w8, #0x0, 0x62d8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe20>
+    6340: f9404a60     	ldr	x0, [x19, #0x90]
+    6344: 940015b3     	bl	0xba10 <_ZdlPv@plt>
+    6348: 39426268     	ldrb	w8, [x19, #0x98]
+    634c: 3607fca8     	tbz	w8, #0x0, 0x62e0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe28>
+    6350: f9405660     	ldr	x0, [x19, #0xa8]
+    6354: 940015af     	bl	0xba10 <_ZdlPv@plt>
+    6358: 3942c268     	ldrb	w8, [x19, #0xb0]
+    635c: 3607fc68     	tbz	w8, #0x0, 0x62e8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe30>
+    6360: f9406260     	ldr	x0, [x19, #0xc0]
+    6364: 940015ab     	bl	0xba10 <_ZdlPv@plt>
+    6368: 39432268     	ldrb	w8, [x19, #0xc8]
+    636c: 3707fc28     	tbnz	w8, #0x0, 0x62f0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe38>
+    6370: 17ffffe2     	b	0x62f8 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xe40>
+    6374: 9400159b     	bl	0xb9e0 <__stack_chk_fail@plt>
+    6378: b4000140     	cbz	x0, 0x63a0 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xee8>
+    637c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    6380: f9000bf3     	str	x19, [sp, #0x10]
+    6384: 910003fd     	mov	x29, sp
+    6388: aa0003f3     	mov	x19, x0
+    638c: 94000006     	bl	0x63a4 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xeec>
+    6390: aa1303e0     	mov	x0, x19
+    6394: f9400bf3     	ldr	x19, [sp, #0x10]
+    6398: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    639c: 1400159d     	b	0xba10 <_ZdlPv@plt>
+    63a0: d65f03c0     	ret
+    63a4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    63a8: f9000bf3     	str	x19, [sp, #0x10]
+    63ac: 910003fd     	mov	x29, sp
+    63b0: 39436008     	ldrb	w8, [x0, #0xd8]
+    63b4: aa0003f3     	mov	x19, x0
+    63b8: 370002c8     	tbnz	w8, #0x0, 0x6410 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf58>
+    63bc: 39430268     	ldrb	w8, [x19, #0xc0]
+    63c0: 37000308     	tbnz	w8, #0x0, 0x6420 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf68>
+    63c4: 3942a268     	ldrb	w8, [x19, #0xa8]
+    63c8: 37000348     	tbnz	w8, #0x0, 0x6430 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf78>
+    63cc: 39424268     	ldrb	w8, [x19, #0x90]
+    63d0: 37000388     	tbnz	w8, #0x0, 0x6440 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf88>
+    63d4: 3941e268     	ldrb	w8, [x19, #0x78]
+    63d8: 370003c8     	tbnz	w8, #0x0, 0x6450 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xf98>
+    63dc: 39418268     	ldrb	w8, [x19, #0x60]
+    63e0: 37000408     	tbnz	w8, #0x0, 0x6460 <Java_com_meitu_library_httpsign_algorithm_NativeSign_send+0xfa8>
+    63e4: 39412268     	ldrb	w8, [x19, #0x48]

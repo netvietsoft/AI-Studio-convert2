@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 27
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libLayerFlow.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000002b8a50 <.text>:
+  2b8a50: d503245f     	bti	c
+  2b8a54: b00013c0     	adrp	x0, 0x531000 <syscall@plt+0x3fd0>
+  2b8a58: 91010000     	add	x0, x0, #0x40
+  2b8a5c: 1409c5f5     	b	0x52a230 <__cxa_finalize@plt>
+  2b8a60: d503245f     	bti	c
+  2b8a64: d65f03c0     	ret
+  2b8a68: d503245f     	bti	c
+  2b8a6c: 17fffffd     	b	0x2b8a60 <.text+0x10>
+  2b8a70: d503245f     	bti	c
+  2b8a74: b4000060     	cbz	x0, 0x2b8a80 <.text+0x30>
+  2b8a78: aa0003f0     	mov	x16, x0
+  2b8a7c: d61f0200     	br	x16
+  2b8a80: d65f03c0     	ret
+  2b8a84: d503245f     	bti	c
+  2b8a88: aa0003e1     	mov	x1, x0
+  2b8a8c: d503201f     	nop
+  2b8a90: 10ffff00     	adr	x0, #-0x20
+  2b8a94: b00013c2     	adrp	x2, 0x531000 <syscall@plt+0x3fd0>
+  2b8a98: 91010042     	add	x2, x2, #0x40
+  2b8a9c: 1409c5e9     	b	0x52a240 <__cxa_atexit@plt>
+
+00000000002b8aa0 <_ZN11LayerFlowNS10CLayerFlowC2Ev>:
+  2b8aa0: d65f03c0     	ret
+
+00000000002b8aa4 <_ZN11LayerFlowNS10CLayerFlowD2Ev>:
+  2b8aa4: d65f03c0     	ret
+
+00000000002b8aa8 <_ZN11LayerFlowNS10CLayerFlow10helloWorldEv>:
+  2b8aa8: d65f03c0     	ret
+
+00000000002b8aac <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv>:
+  2b8aac: d10303ff     	sub	sp, sp, #0xc0
+  2b8ab0: a90a7bfd     	stp	x29, x30, [sp, #0xa0]
+  2b8ab4: a90b4ff4     	stp	x20, x19, [sp, #0xb0]
+  2b8ab8: 910283fd     	add	x29, sp, #0xa0
+  2b8abc: d53bd054     	mrs	x20, TPIDR_EL0
+  2b8ac0: d503201f     	nop
+  2b8ac4: 3094f581     	adr	x1, #-0xd614f
+  2b8ac8: f9401688     	ldr	x8, [x20, #0x28]
+  2b8acc: aa0003f3     	mov	x19, x0
+  2b8ad0: f81f83a8     	stur	x8, [x29, #-0x8]
+  2b8ad4: f9400008     	ldr	x8, [x0]
+  2b8ad8: f9401908     	ldr	x8, [x8, #0x30]
+  2b8adc: d63f0100     	blr	x8
+  2b8ae0: b40002e0     	cbz	x0, 0x2b8b3c <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv+0x90>
+  2b8ae4: b00013c8     	adrp	x8, 0x531000 <syscall@plt+0x3fd0>
+  2b8ae8: 91012108     	add	x8, x8, #0x48
+  2b8aec: f9400269     	ldr	x9, [x19]
+  2b8af0: ad430500     	ldp	q0, q1, [x8, #0x60]
+  2b8af4: 3dc02102     	ldr	q2, [x8, #0x80]
+  2b8af8: aa0003e1     	mov	x1, x0
+  2b8afc: 910003e2     	mov	x2, sp
+  2b8b00: aa1303e0     	mov	x0, x19
+  2b8b04: 3d8023e2     	str	q2, [sp, #0x80]
+  2b8b08: 528000c3     	mov	w3, #0x6
+  2b8b0c: ad0307e0     	stp	q0, q1, [sp, #0x60]
+  2b8b10: ad410500     	ldp	q0, q1, [x8, #0x20]
+  2b8b14: ad0107e0     	stp	q0, q1, [sp, #0x20]
+  2b8b18: ad420900     	ldp	q0, q2, [x8, #0x40]
+  2b8b1c: ad020be0     	stp	q0, q2, [sp, #0x40]
+  2b8b20: ad400500     	ldp	q0, q1, [x8]
+  2b8b24: f9435d28     	ldr	x8, [x9, #0x6b8]
+  2b8b28: ad0007e0     	stp	q0, q1, [sp]
+  2b8b2c: d63f0100     	blr	x8
+  2b8b30: 37f80100     	tbnz	w0, #0x1f, 0x2b8b50 <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv+0xa4>
+  2b8b34: 2a1f03e0     	mov	w0, wzr
+  2b8b38: 1400000f     	b	0x2b8b74 <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv+0xc8>
+  2b8b3c: b0fff981     	adrp	x1, 0x1e9000
+  2b8b40: 9105dc21     	add	x1, x1, #0x177
+  2b8b44: 90fff9a2     	adrp	x2, 0x1ec000
+  2b8b48: 9123f042     	add	x2, x2, #0x8fc
+  2b8b4c: 14000005     	b	0x2b8b60 <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv+0xb4>
+  2b8b50: b0fff981     	adrp	x1, 0x1e9000
+  2b8b54: 9105dc21     	add	x1, x1, #0x177
+  2b8b58: 90fff9a2     	adrp	x2, 0x1ec000
+  2b8b5c: 91244442     	add	x2, x2, #0x911
+  2b8b60: d503201f     	nop
+  2b8b64: 3094f083     	adr	x3, #-0xd61ef
+  2b8b68: 528000c0     	mov	w0, #0x6
+  2b8b6c: 9409c5b9     	bl	0x52a250 <__android_log_print@plt>
+  2b8b70: 12800000     	mov	w0, #-0x1
+  2b8b74: f9401688     	ldr	x8, [x20, #0x28]
+  2b8b78: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b8b7c: eb09011f     	cmp	x8, x9
+  2b8b80: 540000a1     	b.ne	0x2b8b94 <_ZN11LayerFlowNS16LFAiModelInfoJNI18registerJniMethodsEP7_JNIEnv+0xe8>
+  2b8b84: a94b4ff4     	ldp	x20, x19, [sp, #0xb0]
+  2b8b88: a94a7bfd     	ldp	x29, x30, [sp, #0xa0]
+  2b8b8c: 910303ff     	add	sp, sp, #0xc0
+  2b8b90: d65f03c0     	ret
+  2b8b94: 9409c5b3     	bl	0x52a260 <__stack_chk_fail@plt>
+
+00000000002b8b98 <_ZN11LayerFlowNS16LFAiModelInfoJNI7nCreateEP7_JNIEnvP8_jobject>:
+  2b8b98: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+  2b8b9c: 910003fd     	mov	x29, sp
+  2b8ba0: 52800600     	mov	w0, #0x30
+  2b8ba4: 9409c5b3     	bl	0x52a270 <_Znwm@plt>
+  2b8ba8: 6f00e400     	movi	v0.2d, #0000000000000000
+  2b8bac: ad000000     	stp	q0, q0, [x0]
+  2b8bb0: 3d800800     	str	q0, [x0, #0x20]
+  2b8bb4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+  2b8bb8: d65f03c0     	ret
+
+00000000002b8bbc <_ZN11LayerFlowNS16LFAiModelInfoJNI8nDestroyEP7_JNIEnvP8_jobjectl>:
+  2b8bbc: b40001a2     	cbz	x2, 0x2b8bf0 <_ZN11LayerFlowNS16LFAiModelInfoJNI8nDestroyEP7_JNIEnvP8_jobjectl+0x34>
+  2b8bc0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  2b8bc4: f9000bf3     	str	x19, [sp, #0x10]
+  2b8bc8: 910003fd     	mov	x29, sp
+  2b8bcc: 39406048     	ldrb	w8, [x2, #0x18]
+  2b8bd0: aa0203f3     	mov	x19, x2
+  2b8bd4: 37000108     	tbnz	w8, #0x0, 0x2b8bf4 <_ZN11LayerFlowNS16LFAiModelInfoJNI8nDestroyEP7_JNIEnvP8_jobjectl+0x38>
+  2b8bd8: 39400268     	ldrb	w8, [x19]
+  2b8bdc: 37000148     	tbnz	w8, #0x0, 0x2b8c04 <_ZN11LayerFlowNS16LFAiModelInfoJNI8nDestroyEP7_JNIEnvP8_jobjectl+0x48>
+  2b8be0: aa1303e0     	mov	x0, x19
+  2b8be4: f9400bf3     	ldr	x19, [sp, #0x10]
+  2b8be8: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8bec: 1409c5a5     	b	0x52a280 <_ZdlPv@plt>
+  2b8bf0: d65f03c0     	ret
+  2b8bf4: f9401660     	ldr	x0, [x19, #0x28]
+  2b8bf8: 9409c5a2     	bl	0x52a280 <_ZdlPv@plt>
+  2b8bfc: 39400268     	ldrb	w8, [x19]
+  2b8c00: 3607ff08     	tbz	w8, #0x0, 0x2b8be0 <_ZN11LayerFlowNS16LFAiModelInfoJNI8nDestroyEP7_JNIEnvP8_jobjectl+0x24>
+  2b8c04: f9400a60     	ldr	x0, [x19, #0x10]
+  2b8c08: 9409c59e     	bl	0x52a280 <_ZdlPv@plt>
+  2b8c0c: aa1303e0     	mov	x0, x19
+  2b8c10: f9400bf3     	ldr	x19, [sp, #0x10]
+  2b8c14: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8c18: 1409c59a     	b	0x52a280 <_ZdlPv@plt>
+
+00000000002b8c1c <_ZN11LayerFlowNS16LFAiModelInfoJNI6getKeyEP7_JNIEnvP8_jobjectl>:
+  2b8c1c: aa0203e1     	mov	x1, x2
+  2b8c20: 1409c59c     	b	0x52a290 <_ZN12MTImageKitNS8JniUtils15cString2jStringEP7_JNIEnvRKNSt6__ndk112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEE@plt>
+
+00000000002b8c24 <_ZN11LayerFlowNS16LFAiModelInfoJNI6setKeyEP7_JNIEnvP8_jobjectlP8_jstring>:
+  2b8c24: d10103ff     	sub	sp, sp, #0x40
+  2b8c28: a9027bfd     	stp	x29, x30, [sp, #0x20]
+  2b8c2c: a9034ff4     	stp	x20, x19, [sp, #0x30]
+  2b8c30: 910083fd     	add	x29, sp, #0x20
+  2b8c34: d53bd054     	mrs	x20, TPIDR_EL0
+  2b8c38: aa0303e1     	mov	x1, x3
+  2b8c3c: aa0203f3     	mov	x19, x2
+  2b8c40: f9401688     	ldr	x8, [x20, #0x28]
+  2b8c44: 2a1f03e2     	mov	w2, wzr
+  2b8c48: f81f83a8     	stur	x8, [x29, #-0x8]
+  2b8c4c: 910003e8     	mov	x8, sp
+  2b8c50: 9409c594     	bl	0x52a2a0 <_ZN12MTImageKitNS8JniUtils15jString2cStringEP7_JNIEnvP8_jstringb@plt>
+  2b8c54: 39400268     	ldrb	w8, [x19]
+  2b8c58: 36000068     	tbz	w8, #0x0, 0x2b8c64 <_ZN11LayerFlowNS16LFAiModelInfoJNI6setKeyEP7_JNIEnvP8_jobjectlP8_jstring+0x40>
+  2b8c5c: f9400a60     	ldr	x0, [x19, #0x10]
+  2b8c60: 9409c588     	bl	0x52a280 <_ZdlPv@plt>
+  2b8c64: f9400be8     	ldr	x8, [sp, #0x10]
+  2b8c68: 3dc003e0     	ldr	q0, [sp]
+  2b8c6c: f9000a68     	str	x8, [x19, #0x10]
+  2b8c70: 3d800260     	str	q0, [x19]
+  2b8c74: f9401688     	ldr	x8, [x20, #0x28]
+  2b8c78: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b8c7c: eb09011f     	cmp	x8, x9
+  2b8c80: 540000a1     	b.ne	0x2b8c94 <_ZN11LayerFlowNS16LFAiModelInfoJNI6setKeyEP7_JNIEnvP8_jobjectlP8_jstring+0x70>
+  2b8c84: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+  2b8c88: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+  2b8c8c: 910103ff     	add	sp, sp, #0x40
+  2b8c90: d65f03c0     	ret
+  2b8c94: 9409c573     	bl	0x52a260 <__stack_chk_fail@plt>
+
+00000000002b8c98 <_ZN11LayerFlowNS16LFAiModelInfoJNI16getModuleDirPathEP7_JNIEnvP8_jobjectl>:
+  2b8c98: 91006041     	add	x1, x2, #0x18
+  2b8c9c: 1409c57d     	b	0x52a290 <_ZN12MTImageKitNS8JniUtils15cString2jStringEP7_JNIEnvRKNSt6__ndk112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEE@plt>
+
+00000000002b8ca0 <_ZN11LayerFlowNS16LFAiModelInfoJNI16setModuleDirPathEP7_JNIEnvP8_jobjectlP8_jstring>:
+  2b8ca0: d10143ff     	sub	sp, sp, #0x50
+  2b8ca4: a9027bfd     	stp	x29, x30, [sp, #0x20]
+  2b8ca8: f9001bf5     	str	x21, [sp, #0x30]
+  2b8cac: a9044ff4     	stp	x20, x19, [sp, #0x40]
+  2b8cb0: 910083fd     	add	x29, sp, #0x20
+  2b8cb4: d53bd054     	mrs	x20, TPIDR_EL0
+  2b8cb8: aa0303e1     	mov	x1, x3
+  2b8cbc: aa0203f3     	mov	x19, x2
+  2b8cc0: f9401688     	ldr	x8, [x20, #0x28]
+  2b8cc4: 2a1f03e2     	mov	w2, wzr
+  2b8cc8: f81f83a8     	stur	x8, [x29, #-0x8]
+  2b8ccc: 910003e8     	mov	x8, sp
+  2b8cd0: 9409c574     	bl	0x52a2a0 <_ZN12MTImageKitNS8JniUtils15jString2cStringEP7_JNIEnvP8_jstringb@plt>
+  2b8cd4: aa1303f5     	mov	x21, x19
+  2b8cd8: 38418ea8     	ldrb	w8, [x21, #0x18]!
+  2b8cdc: 36000068     	tbz	w8, #0x0, 0x2b8ce8 <_ZN11LayerFlowNS16LFAiModelInfoJNI16setModuleDirPathEP7_JNIEnvP8_jobjectlP8_jstring+0x48>
+  2b8ce0: f9401660     	ldr	x0, [x19, #0x28]
+  2b8ce4: 9409c567     	bl	0x52a280 <_ZdlPv@plt>
+  2b8ce8: 3dc003e0     	ldr	q0, [sp]
+  2b8cec: f9400be8     	ldr	x8, [sp, #0x10]
+  2b8cf0: 3d8002a0     	str	q0, [x21]
+  2b8cf4: f9000aa8     	str	x8, [x21, #0x10]
+  2b8cf8: f9401688     	ldr	x8, [x20, #0x28]
+  2b8cfc: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b8d00: eb09011f     	cmp	x8, x9
+  2b8d04: 540000c1     	b.ne	0x2b8d1c <_ZN11LayerFlowNS16LFAiModelInfoJNI16setModuleDirPathEP7_JNIEnvP8_jobjectlP8_jstring+0x7c>
+  2b8d08: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+  2b8d0c: f9401bf5     	ldr	x21, [sp, #0x30]
+  2b8d10: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+  2b8d14: 910143ff     	add	sp, sp, #0x50
+  2b8d18: d65f03c0     	ret
+  2b8d1c: 9409c551     	bl	0x52a260 <__stack_chk_fail@plt>
+
+00000000002b8d20 <_ZN11LayerFlowNS18LFAigcCacheDataJNI7nCreateEP7_JNIEnvP7_jclass>:
+  2b8d20: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  2b8d24: f9000bf3     	str	x19, [sp, #0x10]
+  2b8d28: 910003fd     	mov	x29, sp
+  2b8d2c: 52801800     	mov	w0, #0xc0
+  2b8d30: 9409c550     	bl	0x52a270 <_Znwm@plt>
+  2b8d34: 12800008     	mov	w8, #-0x1
+  2b8d38: f900001f     	str	xzr, [x0]
+  2b8d3c: 6f00e400     	movi	v0.2d, #0000000000000000
+  2b8d40: b9000008     	str	w8, [x0]
+  2b8d44: aa0003e8     	mov	x8, x0
+  2b8d48: aa0003f3     	mov	x19, x0
+  2b8d4c: f8050d1f     	str	xzr, [x8, #0x50]!
+  2b8d50: d503201f     	nop
+  2b8d54: 30943061     	adr	x1, #-0xd79f3
+  2b8d58: f9002408     	str	x8, [x0, #0x48]
+  2b8d5c: aa0003e8     	mov	x8, x0
+  2b8d60: f8068d1f     	str	xzr, [x8, #0x68]!
+  2b8d64: d0fff9a2     	adrp	x2, 0x1ee000
+  2b8d68: 9128d842     	add	x2, x2, #0xa36
+  2b8d6c: a905a01f     	stp	xzr, x8, [x0, #0x58]
+  2b8d70: aa0003e8     	mov	x8, x0
+  2b8d74: 3c808000     	stur	q0, [x0, #0x8]
+  2b8d78: aa1303e3     	mov	x3, x19
+  2b8d7c: 3c818000     	stur	q0, [x0, #0x18]
+  2b8d80: 3c828000     	stur	q0, [x0, #0x28]
+  2b8d84: 3c838000     	stur	q0, [x0, #0x38]
+  2b8d88: f900441f     	str	xzr, [x0, #0x88]
+  2b8d8c: f8080d1f     	str	xzr, [x8, #0x80]!
+  2b8d90: a907201f     	stp	xzr, x8, [x0, #0x70]
+  2b8d94: ad048000     	stp	q0, q0, [x0, #0x90]
+  2b8d98: 3d802c00     	str	q0, [x0, #0xb0]
+  2b8d9c: 528000c0     	mov	w0, #0x6
+  2b8da0: 9409c52c     	bl	0x52a250 <__android_log_print@plt>
+  2b8da4: aa1303e0     	mov	x0, x19
+  2b8da8: f9400bf3     	ldr	x19, [sp, #0x10]
+  2b8dac: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8db0: d65f03c0     	ret
+
+00000000002b8db4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI8nDestroyEP7_JNIEnvP7_jclassl>:
+  2b8db4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  2b8db8: f9000bf3     	str	x19, [sp, #0x10]
+  2b8dbc: 910003fd     	mov	x29, sp
+  2b8dc0: aa0203f3     	mov	x19, x2
+  2b8dc4: d503201f     	nop
+  2b8dc8: 30942cc1     	adr	x1, #-0xd7a67
+  2b8dcc: b0fff942     	adrp	x2, 0x1e1000
+  2b8dd0: 910d9c42     	add	x2, x2, #0x367
+  2b8dd4: 528000c0     	mov	w0, #0x6
+  2b8dd8: aa1303e3     	mov	x3, x19
+  2b8ddc: 9409c51d     	bl	0x52a250 <__android_log_print@plt>
+  2b8de0: b40000f3     	cbz	x19, 0x2b8dfc <_ZN11LayerFlowNS18LFAigcCacheDataJNI8nDestroyEP7_JNIEnvP7_jclassl+0x48>
+  2b8de4: aa1303e0     	mov	x0, x19
+  2b8de8: 94000008     	bl	0x2b8e08 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev>
+  2b8dec: aa1303e0     	mov	x0, x19
+  2b8df0: f9400bf3     	ldr	x19, [sp, #0x10]
+  2b8df4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8df8: 1409c522     	b	0x52a280 <_ZdlPv@plt>
+  2b8dfc: f9400bf3     	ldr	x19, [sp, #0x10]
+  2b8e00: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8e04: d65f03c0     	ret
+
+00000000002b8e08 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev>:
+  2b8e08: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  2b8e0c: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  2b8e10: 910003fd     	mov	x29, sp
+  2b8e14: f9405c14     	ldr	x20, [x0, #0xb8]
+  2b8e18: aa0003f3     	mov	x19, x0
+  2b8e1c: b4000174     	cbz	x20, 0x2b8e48 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x40>
+  2b8e20: 91002281     	add	x1, x20, #0x8
+  2b8e24: 92800000     	mov	x0, #-0x1
+  2b8e28: 9409b56e     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8e2c: b50000e0     	cbnz	x0, 0x2b8e48 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x40>
+  2b8e30: f9400288     	ldr	x8, [x20]
+  2b8e34: aa1403e0     	mov	x0, x20
+  2b8e38: f9400908     	ldr	x8, [x8, #0x10]
+  2b8e3c: d63f0100     	blr	x8
+  2b8e40: aa1403e0     	mov	x0, x20
+  2b8e44: 9409c51b     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8e48: f9405674     	ldr	x20, [x19, #0xa8]
+  2b8e4c: b4000174     	cbz	x20, 0x2b8e78 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x70>
+  2b8e50: 91002281     	add	x1, x20, #0x8
+  2b8e54: 92800000     	mov	x0, #-0x1
+  2b8e58: 9409b562     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8e5c: b50000e0     	cbnz	x0, 0x2b8e78 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x70>
+  2b8e60: f9400288     	ldr	x8, [x20]
+  2b8e64: aa1403e0     	mov	x0, x20
+  2b8e68: f9400908     	ldr	x8, [x8, #0x10]
+  2b8e6c: d63f0100     	blr	x8
+  2b8e70: aa1403e0     	mov	x0, x20
+  2b8e74: 9409c50f     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8e78: f9404e74     	ldr	x20, [x19, #0x98]
+  2b8e7c: b4000174     	cbz	x20, 0x2b8ea8 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0xa0>
+  2b8e80: 91002281     	add	x1, x20, #0x8
+  2b8e84: 92800000     	mov	x0, #-0x1
+  2b8e88: 9409b556     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8e8c: b50000e0     	cbnz	x0, 0x2b8ea8 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0xa0>
+  2b8e90: f9400288     	ldr	x8, [x20]
+  2b8e94: aa1403e0     	mov	x0, x20
+  2b8e98: f9400908     	ldr	x8, [x8, #0x10]
+  2b8e9c: d63f0100     	blr	x8
+  2b8ea0: aa1403e0     	mov	x0, x20
+  2b8ea4: 9409c503     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8ea8: f9404261     	ldr	x1, [x19, #0x80]
+  2b8eac: 9101e260     	add	x0, x19, #0x78
+  2b8eb0: 94000bd5     	bl	0x2bbe04 <_ZN11LayerFlowNS18LFAigcCacheDataJNI18registerJniMethodsEP7_JNIEnv+0xe8>
+  2b8eb4: f9403661     	ldr	x1, [x19, #0x68]
+  2b8eb8: 91018260     	add	x0, x19, #0x60
+  2b8ebc: 94000bf2     	bl	0x2bbe84 <_ZN11LayerFlowNS18LFAigcCacheDataJNI18registerJniMethodsEP7_JNIEnv+0x168>
+  2b8ec0: f9402a61     	ldr	x1, [x19, #0x50]
+  2b8ec4: 91012260     	add	x0, x19, #0x48
+  2b8ec8: 94000c23     	bl	0x2bbf54 <_ZN12MTImageKitNS20GazeCorrectCacheDataD2Ev+0x50>
+  2b8ecc: f9402274     	ldr	x20, [x19, #0x40]
+  2b8ed0: b4000174     	cbz	x20, 0x2b8efc <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0xf4>
+  2b8ed4: 91002281     	add	x1, x20, #0x8
+  2b8ed8: 92800000     	mov	x0, #-0x1
+  2b8edc: 9409b541     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8ee0: b50000e0     	cbnz	x0, 0x2b8efc <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0xf4>
+  2b8ee4: f9400288     	ldr	x8, [x20]
+  2b8ee8: aa1403e0     	mov	x0, x20
+  2b8eec: f9400908     	ldr	x8, [x8, #0x10]
+  2b8ef0: d63f0100     	blr	x8
+  2b8ef4: aa1403e0     	mov	x0, x20
+  2b8ef8: 9409c4ee     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8efc: f9401a74     	ldr	x20, [x19, #0x30]
+  2b8f00: b4000174     	cbz	x20, 0x2b8f2c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x124>
+  2b8f04: 91002281     	add	x1, x20, #0x8
+  2b8f08: 92800000     	mov	x0, #-0x1
+  2b8f0c: 9409b535     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8f10: b50000e0     	cbnz	x0, 0x2b8f2c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x124>
+  2b8f14: f9400288     	ldr	x8, [x20]
+  2b8f18: aa1403e0     	mov	x0, x20
+  2b8f1c: f9400908     	ldr	x8, [x8, #0x10]
+  2b8f20: d63f0100     	blr	x8
+  2b8f24: aa1403e0     	mov	x0, x20
+  2b8f28: 9409c4e2     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8f2c: f9401274     	ldr	x20, [x19, #0x20]
+  2b8f30: b40000b4     	cbz	x20, 0x2b8f44 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x13c>
+  2b8f34: 91002281     	add	x1, x20, #0x8
+  2b8f38: 92800000     	mov	x0, #-0x1
+  2b8f3c: 9409b529     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8f40: b4000140     	cbz	x0, 0x2b8f68 <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x160>
+  2b8f44: f9400a73     	ldr	x19, [x19, #0x10]
+  2b8f48: b40000b3     	cbz	x19, 0x2b8f5c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x154>
+  2b8f4c: 91002261     	add	x1, x19, #0x8
+  2b8f50: 92800000     	mov	x0, #-0x1
+  2b8f54: 9409b523     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b8f58: b40001a0     	cbz	x0, 0x2b8f8c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x184>
+  2b8f5c: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  2b8f60: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8f64: d65f03c0     	ret
+  2b8f68: f9400288     	ldr	x8, [x20]
+  2b8f6c: aa1403e0     	mov	x0, x20
+  2b8f70: f9400908     	ldr	x8, [x8, #0x10]
+  2b8f74: d63f0100     	blr	x8
+  2b8f78: aa1403e0     	mov	x0, x20
+  2b8f7c: 9409c4cd     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b8f80: f9400a73     	ldr	x19, [x19, #0x10]
+  2b8f84: b5fffe53     	cbnz	x19, 0x2b8f4c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x144>
+  2b8f88: 17fffff5     	b	0x2b8f5c <_ZN11LayerFlowNS15LFAigcCacheDataD2Ev+0x154>
+  2b8f8c: f9400268     	ldr	x8, [x19]
+  2b8f90: aa1303e0     	mov	x0, x19
+  2b8f94: f9400908     	ldr	x8, [x8, #0x10]
+  2b8f98: d63f0100     	blr	x8
+  2b8f9c: aa1303e0     	mov	x0, x19
+  2b8fa0: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  2b8fa4: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  2b8fa8: 1409c4c2     	b	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+
+00000000002b8fac <_ZN11LayerFlowNS18LFAigcCacheDataJNI15nGetOpenEyeModeEP7_JNIEnvP7_jclassl>:
+  2b8fac: b4000062     	cbz	x2, 0x2b8fb8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI15nGetOpenEyeModeEP7_JNIEnvP7_jclassl+0xc>
+  2b8fb0: b9400040     	ldr	w0, [x2]
+  2b8fb4: d65f03c0     	ret
+  2b8fb8: 12800000     	mov	w0, #-0x1
+  2b8fbc: d65f03c0     	ret
+
+00000000002b8fc0 <_ZN11LayerFlowNS18LFAigcCacheDataJNI15nSetOpenEyeModeEP7_JNIEnvP7_jclassli>:
+  2b8fc0: b4000042     	cbz	x2, 0x2b8fc8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI15nSetOpenEyeModeEP7_JNIEnvP7_jclassli+0x8>
+  2b8fc4: b9000043     	str	w3, [x2]
+  2b8fc8: d65f03c0     	ret
+
+00000000002b8fcc <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl>:
+  2b8fcc: d102c3ff     	sub	sp, sp, #0xb0
+  2b8fd0: a9087bfd     	stp	x29, x30, [sp, #0x80]
+  2b8fd4: a90957f6     	stp	x22, x21, [sp, #0x90]
+  2b8fd8: a90a4ff4     	stp	x20, x19, [sp, #0xa0]
+  2b8fdc: 910203fd     	add	x29, sp, #0x80
+  2b8fe0: d53bd055     	mrs	x21, TPIDR_EL0
+  2b8fe4: aa0203f4     	mov	x20, x2
+  2b8fe8: f94016a8     	ldr	x8, [x21, #0x28]
+  2b8fec: f81f83a8     	stur	x8, [x29, #-0x8]
+  2b8ff0: b4000882     	cbz	x2, 0x2b9100 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x134>
+  2b8ff4: f9400008     	ldr	x8, [x0]
+  2b8ff8: d0fff961     	adrp	x1, 0x1e6000
+  2b8ffc: 91294421     	add	x1, x1, #0xa51
+  2b9000: aa0003f3     	mov	x19, x0
+  2b9004: f9401908     	ldr	x8, [x8, #0x30]
+  2b9008: d63f0100     	blr	x8
+  2b900c: f9400268     	ldr	x8, [x19]
+  2b9010: aa0003e1     	mov	x1, x0
+  2b9014: f90007e0     	str	x0, [sp, #0x8]
+  2b9018: b0fff902     	adrp	x2, 0x1da000
+  2b901c: 91265c42     	add	x2, x2, #0x997
+  2b9020: d0fff983     	adrp	x3, 0x1eb000
+  2b9024: 91212863     	add	x3, x3, #0x84a
+  2b9028: f941c508     	ldr	x8, [x8, #0x388]
+  2b902c: aa1303e0     	mov	x0, x19
+  2b9030: d63f0100     	blr	x8
+  2b9034: b0001488     	adrp	x8, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b9038: 910103e9     	add	x9, sp, #0x40
+  2b903c: 910043f6     	add	x22, sp, #0x10
+  2b9040: f9442908     	ldr	x8, [x8, #0x850]
+  2b9044: f90003e0     	str	x0, [sp]
+  2b9048: f90033e9     	str	x9, [sp, #0x60]
+  2b904c: b0001489     	adrp	x9, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b9050: f9442d29     	ldr	x9, [x9, #0x858]
+  2b9054: 91004108     	add	x8, x8, #0x10
+  2b9058: f9001bf6     	str	x22, [sp, #0x30]
+  2b905c: a90427e8     	stp	x8, x9, [sp, #0x40]
+  2b9060: 900013c8     	adrp	x8, 0x531000 <syscall@plt+0x3fd0>
+  2b9064: 91106108     	add	x8, x8, #0x418
+  2b9068: 910023e9     	add	x9, sp, #0x8
+  2b906c: a90127e8     	stp	x8, x9, [sp, #0x10]
+  2b9070: 910003e8     	mov	x8, sp
+  2b9074: f90013e8     	str	x8, [sp, #0x20]
+  2b9078: 91012281     	add	x1, x20, #0x48
+  2b907c: 910103e2     	add	x2, sp, #0x40
+  2b9080: 910043e3     	add	x3, sp, #0x10
+  2b9084: aa1303e0     	mov	x0, x19
+  2b9088: 94000048     	bl	0x2b91a8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE>
+  2b908c: aa0003f4     	mov	x20, x0
+  2b9090: f9401be0     	ldr	x0, [sp, #0x30]
+  2b9094: eb16001f     	cmp	x0, x22
+  2b9098: 54000080     	b.eq	0x2b90a8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0xdc>
+  2b909c: b4000100     	cbz	x0, 0x2b90bc <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0xf0>
+  2b90a0: 528000a8     	mov	w8, #0x5
+  2b90a4: 14000003     	b	0x2b90b0 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0xe4>
+  2b90a8: 52800088     	mov	w8, #0x4
+  2b90ac: 910043e0     	add	x0, sp, #0x10
+  2b90b0: f9400009     	ldr	x9, [x0]
+  2b90b4: f8687928     	ldr	x8, [x9, x8, lsl #3]
+  2b90b8: d63f0100     	blr	x8
+  2b90bc: f94033e0     	ldr	x0, [sp, #0x60]
+  2b90c0: 910103e8     	add	x8, sp, #0x40
+  2b90c4: eb08001f     	cmp	x0, x8
+  2b90c8: 54000080     	b.eq	0x2b90d8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x10c>
+  2b90cc: b4000100     	cbz	x0, 0x2b90ec <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x120>
+  2b90d0: 528000a8     	mov	w8, #0x5
+  2b90d4: 14000003     	b	0x2b90e0 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x114>
+  2b90d8: 52800088     	mov	w8, #0x4
+  2b90dc: 910103e0     	add	x0, sp, #0x40
+  2b90e0: f9400009     	ldr	x9, [x0]
+  2b90e4: f8687928     	ldr	x8, [x9, x8, lsl #3]
+  2b90e8: d63f0100     	blr	x8
+  2b90ec: f9400268     	ldr	x8, [x19]
+  2b90f0: f94007e1     	ldr	x1, [sp, #0x8]
+  2b90f4: aa1303e0     	mov	x0, x19
+  2b90f8: f9405d08     	ldr	x8, [x8, #0xb8]
+  2b90fc: d63f0100     	blr	x8
+  2b9100: f94016a8     	ldr	x8, [x21, #0x28]
+  2b9104: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b9108: eb09011f     	cmp	x8, x9
+  2b910c: 540004c1     	b.ne	0x2b91a4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x1d8>
+  2b9110: aa1403e0     	mov	x0, x20
+  2b9114: a94a4ff4     	ldp	x20, x19, [sp, #0xa0]
+  2b9118: a94957f6     	ldp	x22, x21, [sp, #0x90]
+  2b911c: a9487bfd     	ldp	x29, x30, [sp, #0x80]
+  2b9120: 9102c3ff     	add	sp, sp, #0xb0
+  2b9124: d65f03c0     	ret
+  2b9128: f9401be8     	ldr	x8, [sp, #0x30]
+  2b912c: aa0003f3     	mov	x19, x0
+  2b9130: eb16011f     	cmp	x8, x22
+  2b9134: 54000081     	b.ne	0x2b9144 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x178>
+  2b9138: 52800089     	mov	w9, #0x4
+  2b913c: 910043e8     	add	x8, sp, #0x10
+  2b9140: 14000003     	b	0x2b914c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x180>
+  2b9144: b40000c8     	cbz	x8, 0x2b915c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x190>
+  2b9148: 528000a9     	mov	w9, #0x5
+  2b914c: f940010a     	ldr	x10, [x8]
+  2b9150: aa0803e0     	mov	x0, x8
+  2b9154: f8697949     	ldr	x9, [x10, x9, lsl #3]
+  2b9158: d63f0120     	blr	x9
+  2b915c: f94033e0     	ldr	x0, [sp, #0x60]
+  2b9160: 910103e8     	add	x8, sp, #0x40
+  2b9164: eb08001f     	cmp	x0, x8
+  2b9168: 54000081     	b.ne	0x2b9178 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x1ac>
+  2b916c: 52800088     	mov	w8, #0x4
+  2b9170: 910103e0     	add	x0, sp, #0x40
+  2b9174: 14000003     	b	0x2b9180 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x1b4>
+  2b9178: b40000a0     	cbz	x0, 0x2b918c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x1c0>
+  2b917c: 528000a8     	mov	w8, #0x5
+  2b9180: f9400009     	ldr	x9, [x0]
+  2b9184: f8687928     	ldr	x8, [x9, x8, lsl #3]
+  2b9188: d63f0100     	blr	x8
+  2b918c: f94016a8     	ldr	x8, [x21, #0x28]
+  2b9190: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b9194: eb09011f     	cmp	x8, x9
+  2b9198: 54000061     	b.ne	0x2b91a4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nGetFaceReshapeAigcCacheEP7_JNIEnvP7_jclassl+0x1d8>
+  2b919c: aa1303e0     	mov	x0, x19
+  2b91a0: 9409b4e9     	bl	0x526544 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa76c>
+  2b91a4: 9409c42f     	bl	0x52a260 <__stack_chk_fail@plt>
+
+00000000002b91a8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE>:
+  2b91a8: d104c3ff     	sub	sp, sp, #0x130
+  2b91ac: a90d7bfd     	stp	x29, x30, [sp, #0xd0]
+  2b91b0: a90e6ffc     	stp	x28, x27, [sp, #0xe0]
+  2b91b4: a90f67fa     	stp	x26, x25, [sp, #0xf0]
+  2b91b8: a9105ff8     	stp	x24, x23, [sp, #0x100]
+  2b91bc: a91157f6     	stp	x22, x21, [sp, #0x110]
+  2b91c0: a9124ff4     	stp	x20, x19, [sp, #0x120]
+  2b91c4: 910343fd     	add	x29, sp, #0xd0
+  2b91c8: a9018be3     	stp	x3, x2, [sp, #0x18]
+  2b91cc: d53bd048     	mrs	x8, TPIDR_EL0
+  2b91d0: aa0003f3     	mov	x19, x0
+  2b91d4: f90007e8     	str	x8, [sp, #0x8]
+  2b91d8: f9401508     	ldr	x8, [x8, #0x28]
+  2b91dc: f81f03a8     	stur	x8, [x29, #-0x10]
+  2b91e0: d100e3a8     	sub	x8, x29, #0x38
+  2b91e4: f8408435     	ldr	x21, [x1], #0x8
+  2b91e8: 91002114     	add	x20, x8, #0x8
+  2b91ec: a93d7fbf     	stp	xzr, xzr, [x29, #-0x30]
+  2b91f0: eb0102bf     	cmp	x21, x1
+  2b91f4: f9000be1     	str	x1, [sp, #0x10]
+  2b91f8: f81c83b4     	stur	x20, [x29, #-0x38]
+  2b91fc: 540000e1     	b.ne	0x2b9218 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x70>
+  2b9200: aa1403e1     	mov	x1, x20
+  2b9204: 140000b2     	b	0x2b94cc <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x324>
+  2b9208: f9400be9     	ldr	x9, [sp, #0x10]
+  2b920c: aa0803f5     	mov	x21, x8
+  2b9210: eb09011f     	cmp	x8, x9
+  2b9214: 540015a0     	b.eq	0x2b94c8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x320>
+  2b9218: f94013e9     	ldr	x9, [sp, #0x20]
+  2b921c: b94022a8     	ldr	w8, [x21, #0x20]
+  2b9220: f81e83b3     	stur	x19, [x29, #-0x18]
+  2b9224: f9401120     	ldr	x0, [x9, #0x20]
+  2b9228: b81e43a8     	stur	w8, [x29, #-0x1c]
+  2b922c: b4001ca0     	cbz	x0, 0x2b95c0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x418>
+  2b9230: f9400008     	ldr	x8, [x0]
+  2b9234: f9401908     	ldr	x8, [x8, #0x30]
+  2b9238: d10063a1     	sub	x1, x29, #0x18
+  2b923c: d10073a2     	sub	x2, x29, #0x1c
+  2b9240: d63f0100     	blr	x8
+  2b9244: a944aaa9     	ldp	x9, x10, [x21, #0x48]
+  2b9248: aa0003fb     	mov	x27, x0
+  2b924c: 3cc282a0     	ldur	q0, [x21, #0x28]
+  2b9250: 3cc382a1     	ldur	q1, [x21, #0x38]
+  2b9254: f9402ea8     	ldr	x8, [x21, #0x58]
+  2b9258: ad0207e0     	stp	q0, q1, [sp, #0x40]
+  2b925c: a9062be9     	stp	x9, x10, [sp, #0x60]
+  2b9260: f9003be8     	str	x8, [sp, #0x70]
+  2b9264: b4000088     	cbz	x8, 0x2b9274 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0xcc>
+  2b9268: 91002101     	add	x1, x8, #0x8
+  2b926c: 52800020     	mov	w0, #0x1
+  2b9270: 9409b450     	bl	0x5263b0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa5d8>
+  2b9274: aa1503e8     	mov	x8, x21
+  2b9278: 38460d09     	ldrb	w9, [x8, #0x60]!
+  2b927c: 370000e9     	tbnz	w9, #0x0, 0x2b9298 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0xf0>
+  2b9280: 3dc00100     	ldr	q0, [x8]
+  2b9284: f9400908     	ldr	x8, [x8, #0x10]
+  2b9288: 910103e9     	add	x9, sp, #0x40
+  2b928c: 3c838120     	stur	q0, [x9, #0x38]
+  2b9290: f8048128     	stur	x8, [x9, #0x48]
+  2b9294: 14000005     	b	0x2b92a8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x100>
+  2b9298: a94686a2     	ldp	x2, x1, [x21, #0x68]
+  2b929c: 910103e8     	add	x8, sp, #0x40
+  2b92a0: 9100e100     	add	x0, x8, #0x38
+  2b92a4: 94000bef     	bl	0x2bc260 <_ZN12MTImageKitNS13ImageCropInfoD2Ev+0x27c>
+  2b92a8: f9400fe8     	ldr	x8, [sp, #0x18]
+  2b92ac: f81e83b3     	stur	x19, [x29, #-0x18]
+  2b92b0: f9401100     	ldr	x0, [x8, #0x20]
+  2b92b4: b4001920     	cbz	x0, 0x2b95d8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x430>
+  2b92b8: f9400008     	ldr	x8, [x0]
+  2b92bc: f9401908     	ldr	x8, [x8, #0x30]
+  2b92c0: d10063a1     	sub	x1, x29, #0x18
+  2b92c4: 910103e2     	add	x2, sp, #0x40
+  2b92c8: d63f0100     	blr	x8
+  2b92cc: 3941e3e8     	ldrb	w8, [sp, #0x78]
+  2b92d0: aa0003fc     	mov	x28, x0
+  2b92d4: 36000068     	tbz	w8, #0x0, 0x2b92e0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x138>
+  2b92d8: f94047e0     	ldr	x0, [sp, #0x88]
+  2b92dc: 9409c3e9     	bl	0x52a280 <_ZdlPv@plt>
+  2b92e0: f9403bf8     	ldr	x24, [sp, #0x70]
+  2b92e4: b40000b8     	cbz	x24, 0x2b92f8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x150>
+  2b92e8: 91002301     	add	x1, x24, #0x8
+  2b92ec: 92800000     	mov	x0, #-0x1
+  2b92f0: 9409b43c     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b92f4: b40002e0     	cbz	x0, 0x2b9350 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1a8>
+  2b92f8: f85d03ab     	ldur	x11, [x29, #-0x30]
+  2b92fc: b40003ab     	cbz	x11, 0x2b9370 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1c8>
+  2b9300: aa1403e8     	mov	x8, x20
+  2b9304: f940116a     	ldr	x10, [x11, #0x20]
+  2b9308: aa0b03e9     	mov	x9, x11
+  2b930c: 9100216b     	add	x11, x11, #0x8
+  2b9310: aa0803ec     	mov	x12, x8
+  2b9314: eb1b015f     	cmp	x10, x27
+  2b9318: 9a8b212b     	csel	x11, x9, x11, hs
+  2b931c: 9a882128     	csel	x8, x9, x8, hs
+  2b9320: f940016b     	ldr	x11, [x11]
+  2b9324: b5ffff0b     	cbnz	x11, 0x2b9304 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x15c>
+  2b9328: eb14011f     	cmp	x8, x20
+  2b932c: 54000220     	b.eq	0x2b9370 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1c8>
+  2b9330: eb1b015f     	cmp	x10, x27
+  2b9334: 9a893189     	csel	x9, x12, x9, lo
+  2b9338: f9401129     	ldr	x9, [x9, #0x20]
+  2b933c: eb09037f     	cmp	x27, x9
+  2b9340: 9a883288     	csel	x8, x20, x8, lo
+  2b9344: eb08029f     	cmp	x20, x8
+  2b9348: 540001a1     	b.ne	0x2b937c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1d4>
+  2b934c: 14000015     	b	0x2b93a0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1f8>
+  2b9350: f9400308     	ldr	x8, [x24]
+  2b9354: aa1803e0     	mov	x0, x24
+  2b9358: f9400908     	ldr	x8, [x8, #0x10]
+  2b935c: d63f0100     	blr	x8
+  2b9360: aa1803e0     	mov	x0, x24
+  2b9364: 9409c3d3     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b9368: f85d03ab     	ldur	x11, [x29, #-0x30]
+  2b936c: b5fffcab     	cbnz	x11, 0x2b9300 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x158>
+  2b9370: aa1403e8     	mov	x8, x20
+  2b9374: eb14029f     	cmp	x20, x20
+  2b9378: 54000140     	b.eq	0x2b93a0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x1f8>
+  2b937c: 90fff900     	adrp	x0, 0x1d9000
+  2b9380: 9124f000     	add	x0, x0, #0x93c
+  2b9384: 528000c1     	mov	w1, #0x6
+  2b9388: 90fff902     	adrp	x2, 0x1d9000
+  2b938c: 91250442     	add	x2, x2, #0x941
+  2b9390: 90fff9a3     	adrp	x3, 0x1ed000
+  2b9394: 912a2063     	add	x3, x3, #0xa88
+  2b9398: 528011e4     	mov	w4, #0x8f
+  2b939c: 9409c3c9     	bl	0x52a2c0 <_ZN12MTImageKitNS8CMTIKLog3logEPKciS2_z@plt>
+  2b93a0: f9400268     	ldr	x8, [x19]
+  2b93a4: f9405508     	ldr	x8, [x8, #0xa8]
+  2b93a8: aa1303e0     	mov	x0, x19
+  2b93ac: aa1c03e1     	mov	x1, x28
+  2b93b0: d63f0100     	blr	x8
+  2b93b4: f9400268     	ldr	x8, [x19]
+  2b93b8: aa0003f8     	mov	x24, x0
+  2b93bc: aa1403f6     	mov	x22, x20
+  2b93c0: f9405508     	ldr	x8, [x8, #0xa8]
+  2b93c4: aa1303e0     	mov	x0, x19
+  2b93c8: aa1b03e1     	mov	x1, x27
+  2b93cc: d63f0100     	blr	x8
+  2b93d0: f85d03a8     	ldur	x8, [x29, #-0x30]
+  2b93d4: aa0003f9     	mov	x25, x0
+  2b93d8: aa1603f4     	mov	x20, x22
+  2b93dc: aa1603f7     	mov	x23, x22
+  2b93e0: b50000a8     	cbnz	x8, 0x2b93f4 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x24c>
+  2b93e4: 1400000d     	b	0x2b9418 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x270>
+  2b93e8: f9400288     	ldr	x8, [x20]
+  2b93ec: aa1403f7     	mov	x23, x20
+  2b93f0: b4000148     	cbz	x8, 0x2b9418 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x270>
+  2b93f4: aa0803f4     	mov	x20, x8
+  2b93f8: f9401108     	ldr	x8, [x8, #0x20]
+  2b93fc: eb08033f     	cmp	x25, x8
+  2b9400: 54ffff43     	b.lo	0x2b93e8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x240>
+  2b9404: eb19011f     	cmp	x8, x25
+  2b9408: 540002e2     	b.hs	0x2b9464 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x2bc>
+  2b940c: f9400688     	ldr	x8, [x20, #0x8]
+  2b9410: b5ffff28     	cbnz	x8, 0x2b93f4 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x24c>
+  2b9414: 91002297     	add	x23, x20, #0x8
+  2b9418: 52800600     	mov	w0, #0x30
+  2b941c: 9409c395     	bl	0x52a270 <_Znwm@plt>
+  2b9420: a9027c19     	stp	x25, xzr, [x0, #0x20]
+  2b9424: aa0003fa     	mov	x26, x0
+  2b9428: aa0003e1     	mov	x1, x0
+  2b942c: a9007c1f     	stp	xzr, xzr, [x0]
+  2b9430: f9000814     	str	x20, [x0, #0x10]
+  2b9434: f90002e0     	str	x0, [x23]
+  2b9438: f85c83a8     	ldur	x8, [x29, #-0x38]
+  2b943c: f9400108     	ldr	x8, [x8]
+  2b9440: b4000068     	cbz	x8, 0x2b944c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x2a4>
+  2b9444: f81c83a8     	stur	x8, [x29, #-0x38]
+  2b9448: f94002e1     	ldr	x1, [x23]
+  2b944c: f85d03a0     	ldur	x0, [x29, #-0x30]
+  2b9450: 94000bbf     	bl	0x2bc34c <_ZN12MTImageKitNS13ImageCropInfoD2Ev+0x368>
+  2b9454: f85d83a8     	ldur	x8, [x29, #-0x28]
+  2b9458: 91000508     	add	x8, x8, #0x1
+  2b945c: f81d83a8     	stur	x8, [x29, #-0x28]
+  2b9460: 14000002     	b	0x2b9468 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x2c0>
+  2b9464: aa1403fa     	mov	x26, x20
+  2b9468: f9001758     	str	x24, [x26, #0x28]
+  2b946c: aa1603f4     	mov	x20, x22
+  2b9470: f9400268     	ldr	x8, [x19]
+  2b9474: f9405d08     	ldr	x8, [x8, #0xb8]
+  2b9478: aa1303e0     	mov	x0, x19
+  2b947c: aa1b03e1     	mov	x1, x27
+  2b9480: d63f0100     	blr	x8
+  2b9484: f9400268     	ldr	x8, [x19]
+  2b9488: f9405d08     	ldr	x8, [x8, #0xb8]
+  2b948c: aa1303e0     	mov	x0, x19
+  2b9490: aa1c03e1     	mov	x1, x28
+  2b9494: d63f0100     	blr	x8
+  2b9498: f94006a9     	ldr	x9, [x21, #0x8]
+  2b949c: b40000a9     	cbz	x9, 0x2b94b0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x308>
+  2b94a0: aa0903e8     	mov	x8, x9
+  2b94a4: f9400129     	ldr	x9, [x9]
+  2b94a8: b5ffffc9     	cbnz	x9, 0x2b94a0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x2f8>
+  2b94ac: 17ffff57     	b	0x2b9208 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x60>
+  2b94b0: f9400aa8     	ldr	x8, [x21, #0x10]
+  2b94b4: f9400109     	ldr	x9, [x8]
+  2b94b8: eb15013f     	cmp	x9, x21
+  2b94bc: aa0803f5     	mov	x21, x8
+  2b94c0: 54ffff81     	b.ne	0x2b94b0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x308>
+  2b94c4: 17ffff51     	b	0x2b9208 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x60>
+  2b94c8: f85c83a1     	ldur	x1, [x29, #-0x38]
+  2b94cc: 9100a3e8     	add	x8, sp, #0x28
+  2b94d0: a9037fff     	stp	xzr, xzr, [sp, #0x30]
+  2b94d4: 91002108     	add	x8, x8, #0x8
+  2b94d8: f90017e8     	str	x8, [sp, #0x28]
+  2b94dc: 9100a3e0     	add	x0, sp, #0x28
+  2b94e0: aa1403e2     	mov	x2, x20
+  2b94e4: 94000c06     	bl	0x2bc4fc <_ZNSt6__ndk13mapIP8_jobjectS2_NS_4lessIS2_EENS_9allocatorINS_4pairIKS2_S2_EEEEE6insertB8ne180000INS_20__map_const_iteratorINS_21__tree_const_iteratorINS_12__value_typeIS2_S2_EEPNS_11__tree_nodeISF_PvEElEEEEEEvT_SM_>
+  2b94e8: 9100a3e1     	add	x1, sp, #0x28
+  2b94ec: aa1303e0     	mov	x0, x19
+  2b94f0: 9409c378     	bl	0x52a2d0 <_ZN12MTImageKitNS8JniUtils9cMap2jMapEP7_JNIEnvNSt6__ndk13mapIP8_jobjectS6_NS3_4lessIS6_EENS3_9allocatorINS3_4pairIKS6_S6_EEEEEE@plt>
+  2b94f4: f9401be1     	ldr	x1, [sp, #0x30]
+  2b94f8: aa0003f5     	mov	x21, x0
+  2b94fc: 9100a3e0     	add	x0, sp, #0x28
+  2b9500: 94000cb4     	bl	0x2bc7d0 <_ZNSt6__ndk16__treeINS_12__value_typeIP8_jobjectS3_EENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE12__find_equalIS3_EERPNS_16__tree_node_baseIPvEENS_21__tree_const_iteratorIS4_PNS_11__tree_nodeIS4_SE_EElEERPNS_15__tree_end_nodeISG_EESH_RKT_+0x1b0>
+  2b9504: f85c83b6     	ldur	x22, [x29, #-0x38]
+  2b9508: eb1402df     	cmp	x22, x20
+  2b950c: 540002a1     	b.ne	0x2b9560 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x3b8>
+  2b9510: f85d03a1     	ldur	x1, [x29, #-0x30]
+  2b9514: d100e3a0     	sub	x0, x29, #0x38
+  2b9518: 94000cae     	bl	0x2bc7d0 <_ZNSt6__ndk16__treeINS_12__value_typeIP8_jobjectS3_EENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE12__find_equalIS3_EERPNS_16__tree_node_baseIPvEENS_21__tree_const_iteratorIS4_PNS_11__tree_nodeIS4_SE_EElEERPNS_15__tree_end_nodeISG_EESH_RKT_+0x1b0>
+  2b951c: f94007e8     	ldr	x8, [sp, #0x8]
+  2b9520: f9401508     	ldr	x8, [x8, #0x28]
+  2b9524: f85f03a9     	ldur	x9, [x29, #-0x10]
+  2b9528: eb09011f     	cmp	x8, x9
+  2b952c: 54000a01     	b.ne	0x2b966c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x4c4>
+  2b9530: aa1503e0     	mov	x0, x21
+  2b9534: a9524ff4     	ldp	x20, x19, [sp, #0x120]
+  2b9538: a95157f6     	ldp	x22, x21, [sp, #0x110]
+  2b953c: a9505ff8     	ldp	x24, x23, [sp, #0x100]
+  2b9540: a94f67fa     	ldp	x26, x25, [sp, #0xf0]
+  2b9544: a94e6ffc     	ldp	x28, x27, [sp, #0xe0]
+  2b9548: a94d7bfd     	ldp	x29, x30, [sp, #0xd0]
+  2b954c: 9104c3ff     	add	sp, sp, #0x130
+  2b9550: d65f03c0     	ret
+  2b9554: eb14011f     	cmp	x8, x20
+  2b9558: aa0803f6     	mov	x22, x8
+  2b955c: 54fffda0     	b.eq	0x2b9510 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x368>
+  2b9560: f9400268     	ldr	x8, [x19]
+  2b9564: f94012c1     	ldr	x1, [x22, #0x20]
+  2b9568: f9405908     	ldr	x8, [x8, #0xb0]
+  2b956c: aa1303e0     	mov	x0, x19
+  2b9570: d63f0100     	blr	x8
+  2b9574: f94016c1     	ldr	x1, [x22, #0x28]
+  2b9578: b40000c1     	cbz	x1, 0x2b9590 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x3e8>
+  2b957c: f9400268     	ldr	x8, [x19]
+  2b9580: f9405908     	ldr	x8, [x8, #0xb0]
+  2b9584: aa1303e0     	mov	x0, x19
+  2b9588: d63f0100     	blr	x8
+  2b958c: f90016df     	str	xzr, [x22, #0x28]
+  2b9590: f94006c9     	ldr	x9, [x22, #0x8]
+  2b9594: b40000a9     	cbz	x9, 0x2b95a8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x400>
+  2b9598: aa0903e8     	mov	x8, x9
+  2b959c: f9400129     	ldr	x9, [x9]
+  2b95a0: b5ffffc9     	cbnz	x9, 0x2b9598 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x3f0>
+  2b95a4: 17ffffec     	b	0x2b9554 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x3ac>
+  2b95a8: f9400ac8     	ldr	x8, [x22, #0x10]
+  2b95ac: f9400109     	ldr	x9, [x8]
+  2b95b0: eb16013f     	cmp	x9, x22
+  2b95b4: aa0803f6     	mov	x22, x8
+  2b95b8: 54ffff81     	b.ne	0x2b95a8 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x400>
+  2b95bc: 17ffffe6     	b	0x2b9554 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x3ac>
+  2b95c0: f94007e8     	ldr	x8, [sp, #0x8]
+  2b95c4: f9401508     	ldr	x8, [x8, #0x28]
+  2b95c8: f85f03a9     	ldur	x9, [x29, #-0x10]
+  2b95cc: eb09011f     	cmp	x8, x9
+  2b95d0: 540004e1     	b.ne	0x2b966c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x4c4>
+  2b95d4: 94000b48     	bl	0x2bc2f4 <_ZN12MTImageKitNS13ImageCropInfoD2Ev+0x310>
+  2b95d8: f94007e8     	ldr	x8, [sp, #0x8]
+  2b95dc: f9401508     	ldr	x8, [x8, #0x28]
+  2b95e0: f85f03a9     	ldur	x9, [x29, #-0x10]
+  2b95e4: eb09011f     	cmp	x8, x9
+  2b95e8: 54000421     	b.ne	0x2b966c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x4c4>
+  2b95ec: 94000b42     	bl	0x2bc2f4 <_ZN12MTImageKitNS13ImageCropInfoD2Ev+0x310>
+  2b95f0: 14000001     	b	0x2b95f4 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x44c>
+  2b95f4: f9401be1     	ldr	x1, [sp, #0x30]
+  2b95f8: aa0003f3     	mov	x19, x0
+  2b95fc: 9100a3e0     	add	x0, sp, #0x28
+  2b9600: 94000c74     	bl	0x2bc7d0 <_ZNSt6__ndk16__treeINS_12__value_typeIP8_jobjectS3_EENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE12__find_equalIS3_EERPNS_16__tree_node_baseIPvEENS_21__tree_const_iteratorIS4_PNS_11__tree_nodeIS4_SE_EElEERPNS_15__tree_end_nodeISG_EESH_RKT_+0x1b0>
+  2b9604: 14000010     	b	0x2b9644 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x49c>
+  2b9608: 910103e8     	add	x8, sp, #0x40
+  2b960c: aa0003f3     	mov	x19, x0
+  2b9610: 9100a100     	add	x0, x8, #0x28
+  2b9614: 940009e8     	bl	0x2bbdb4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI18registerJniMethodsEP7_JNIEnv+0x98>
+  2b9618: 1400000b     	b	0x2b9644 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x49c>
+  2b961c: 14000003     	b	0x2b9628 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x480>
+  2b9620: 14000008     	b	0x2b9640 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x498>
+  2b9624: 14000007     	b	0x2b9640 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x498>
+  2b9628: aa0003f3     	mov	x19, x0
+  2b962c: 910103e0     	add	x0, sp, #0x40
+  2b9630: 94000a6d     	bl	0x2bbfe4 <_ZN12MTImageKitNS13ImageCropInfoD2Ev>
+  2b9634: 14000004     	b	0x2b9644 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x49c>
+  2b9638: 14000002     	b	0x2b9640 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x498>
+  2b963c: 14000001     	b	0x2b9640 <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x498>
+  2b9640: aa0003f3     	mov	x19, x0
+  2b9644: f85d03a1     	ldur	x1, [x29, #-0x30]
+  2b9648: d100e3a0     	sub	x0, x29, #0x38
+  2b964c: 94000c61     	bl	0x2bc7d0 <_ZNSt6__ndk16__treeINS_12__value_typeIP8_jobjectS3_EENS_19__map_value_compareIS3_S4_NS_4lessIS3_EELb1EEENS_9allocatorIS4_EEE12__find_equalIS3_EERPNS_16__tree_node_baseIPvEENS_21__tree_const_iteratorIS4_PNS_11__tree_nodeIS4_SE_EElEERPNS_15__tree_end_nodeISG_EESH_RKT_+0x1b0>
+  2b9650: f94007e8     	ldr	x8, [sp, #0x8]
+  2b9654: f9401508     	ldr	x8, [x8, #0x28]
+  2b9658: f85f03a9     	ldur	x9, [x29, #-0x10]
+  2b965c: eb09011f     	cmp	x8, x9
+  2b9660: 54000061     	b.ne	0x2b966c <_ZN12MTImageKitNS8JniUtils9cMap2jMapIiNS_13ImageCropInfoEEEP8_jobjectP7_JNIEnvRKNSt6__ndk13mapIT_T0_NS7_4lessIS9_EENS7_9allocatorINS7_4pairIKS9_SA_EEEEEERKNS7_8functionIFS4_S6_S9_EEERKNSL_IFS4_S6_SA_EEE+0x4c4>
+  2b9664: aa1303e0     	mov	x0, x19
+  2b9668: 9409b3b7     	bl	0x526544 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa76c>
+  2b966c: 9409c2fd     	bl	0x52a260 <__stack_chk_fail@plt>
+
+00000000002b9670 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject>:
+  2b9670: d103c3ff     	sub	sp, sp, #0xf0
+  2b9674: a9097bfd     	stp	x29, x30, [sp, #0x90]
+  2b9678: a90a6ffc     	stp	x28, x27, [sp, #0xa0]
+  2b967c: a90b67fa     	stp	x26, x25, [sp, #0xb0]
+  2b9680: a90c5ff8     	stp	x24, x23, [sp, #0xc0]
+  2b9684: a90d57f6     	stp	x22, x21, [sp, #0xd0]
+  2b9688: a90e4ff4     	stp	x20, x19, [sp, #0xe0]
+  2b968c: 910243fd     	add	x29, sp, #0x90
+  2b9690: d53bd059     	mrs	x25, TPIDR_EL0
+  2b9694: f9401728     	ldr	x8, [x25, #0x28]
+  2b9698: f81f83a8     	stur	x8, [x29, #-0x8]
+  2b969c: b4000862     	cbz	x2, 0x2b97a8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x138>
+  2b96a0: aa0203f3     	mov	x19, x2
+  2b96a4: aa0003f6     	mov	x22, x0
+  2b96a8: aa0303f5     	mov	x21, x3
+  2b96ac: f8450e61     	ldr	x1, [x19, #0x50]!
+  2b96b0: d1002274     	sub	x20, x19, #0x8
+  2b96b4: aa1403e0     	mov	x0, x20
+  2b96b8: aa0203f7     	mov	x23, x2
+  2b96bc: 94000a26     	bl	0x2bbf54 <_ZN12MTImageKitNS20GazeCorrectCacheDataD2Ev+0x50>
+  2b96c0: a93ffe73     	stp	x19, xzr, [x19, #-0x8]
+  2b96c4: f900067f     	str	xzr, [x19, #0x8]
+  2b96c8: b4000715     	cbz	x21, 0x2b97a8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x138>
+  2b96cc: b0001488     	adrp	x8, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b96d0: b0001489     	adrp	x9, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b96d4: d10103aa     	sub	x10, x29, #0x40
+  2b96d8: f9443108     	ldr	x8, [x8, #0x860]
+  2b96dc: f9443529     	ldr	x9, [x9, #0x868]
+  2b96e0: b000148b     	adrp	x11, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b96e4: f944396b     	ldr	x11, [x11, #0x870]
+  2b96e8: f81e03aa     	stur	x10, [x29, #-0x20]
+  2b96ec: 910083f8     	add	x24, sp, #0x20
+  2b96f0: 91004108     	add	x8, x8, #0x10
+  2b96f4: a93c27a8     	stp	x8, x9, [x29, #-0x40]
+  2b96f8: b0001488     	adrp	x8, 0x54a000 <_ZTINSt6__ndk119basic_istringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEEE+0x1408>
+  2b96fc: 9100416a     	add	x10, x11, #0x10
+  2b9700: f9443d08     	ldr	x8, [x8, #0x878]
+  2b9704: f90023f8     	str	x24, [sp, #0x40]
+  2b9708: a90223ea     	stp	x10, x8, [sp, #0x20]
+  2b970c: 910023e8     	add	x8, sp, #0x8
+  2b9710: d10103a2     	sub	x2, x29, #0x40
+  2b9714: 910083e3     	add	x3, sp, #0x20
+  2b9718: aa1603e0     	mov	x0, x22
+  2b971c: aa1503e1     	mov	x1, x21
+  2b9720: f90003f9     	str	x25, [sp]
+  2b9724: 940000aa     	bl	0x2b99cc <_ZN12MTImageKitNS8JniUtils9jMap2cMapIilEENSt6__ndk13mapIT_T0_NS2_4lessIS4_EENS2_9allocatorINS2_4pairIKS4_S5_EEEEEEP7_JNIEnvP8_jobjectRKNS2_8functionIFS4_SF_SH_EEERKNSI_IFS5_SF_SH_EEE>
+  2b9728: f94023e0     	ldr	x0, [sp, #0x40]
+  2b972c: eb18001f     	cmp	x0, x24
+  2b9730: 54000080     	b.eq	0x2b9740 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0xd0>
+  2b9734: b4000100     	cbz	x0, 0x2b9754 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0xe4>
+  2b9738: 528000a8     	mov	w8, #0x5
+  2b973c: 14000003     	b	0x2b9748 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0xd8>
+  2b9740: 52800088     	mov	w8, #0x4
+  2b9744: 910083e0     	add	x0, sp, #0x20
+  2b9748: f9400009     	ldr	x9, [x0]
+  2b974c: f8687928     	ldr	x8, [x9, x8, lsl #3]
+  2b9750: d63f0100     	blr	x8
+  2b9754: f85e03a0     	ldur	x0, [x29, #-0x20]
+  2b9758: d10103a8     	sub	x8, x29, #0x40
+  2b975c: eb08001f     	cmp	x0, x8
+  2b9760: 54000080     	b.eq	0x2b9770 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x100>
+  2b9764: b4000100     	cbz	x0, 0x2b9784 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x114>
+  2b9768: 528000a8     	mov	w8, #0x5
+  2b976c: 14000003     	b	0x2b9778 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x108>
+  2b9770: 52800088     	mov	w8, #0x4
+  2b9774: d10103a0     	sub	x0, x29, #0x40
+  2b9778: f9400009     	ldr	x9, [x0]
+  2b977c: f8687928     	ldr	x8, [x9, x8, lsl #3]
+  2b9780: d63f0100     	blr	x8
+  2b9784: f94007fa     	ldr	x26, [sp, #0x8]
+  2b9788: 910023e8     	add	x8, sp, #0x8
+  2b978c: 91002119     	add	x25, x8, #0x8
+  2b9790: eb19035f     	cmp	x26, x25
+  2b9794: 54000281     	b.ne	0x2b97e4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x174>
+  2b9798: f9400be1     	ldr	x1, [sp, #0x10]
+  2b979c: 910023e0     	add	x0, sp, #0x8
+  2b97a0: 94000d0e     	bl	0x2bcbd8 <_ZNSt6__ndk110__function6__funcIPFlP7_JNIEnvP8_jobjectENS_9allocatorIS7_EES6_ED0Ev+0x98>
+  2b97a4: f94003f9     	ldr	x25, [sp]
+  2b97a8: f9401728     	ldr	x8, [x25, #0x28]
+  2b97ac: f85f83a9     	ldur	x9, [x29, #-0x8]
+  2b97b0: eb09011f     	cmp	x8, x9
+  2b97b4: 540010a1     	b.ne	0x2b99c8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x358>
+  2b97b8: a94e4ff4     	ldp	x20, x19, [sp, #0xe0]
+  2b97bc: a94d57f6     	ldp	x22, x21, [sp, #0xd0]
+  2b97c0: a94c5ff8     	ldp	x24, x23, [sp, #0xc0]
+  2b97c4: a94b67fa     	ldp	x26, x25, [sp, #0xb0]
+  2b97c8: a94a6ffc     	ldp	x28, x27, [sp, #0xa0]
+  2b97cc: a9497bfd     	ldp	x29, x30, [sp, #0x90]
+  2b97d0: 9103c3ff     	add	sp, sp, #0xf0
+  2b97d4: d65f03c0     	ret
+  2b97d8: eb19011f     	cmp	x8, x25
+  2b97dc: aa0803fa     	mov	x26, x8
+  2b97e0: 54fffdc0     	b.eq	0x2b9798 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x128>
+  2b97e4: f940175b     	ldr	x27, [x26, #0x28]
+  2b97e8: b40008fb     	cbz	x27, 0x2b9904 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x294>
+  2b97ec: f9400268     	ldr	x8, [x19]
+  2b97f0: b9402356     	ldr	w22, [x26, #0x20]
+  2b97f4: aa1303f8     	mov	x24, x19
+  2b97f8: aa1303fc     	mov	x28, x19
+  2b97fc: b50000a8     	cbnz	x8, 0x2b9810 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x1a0>
+  2b9800: 1400000d     	b	0x2b9834 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x1c4>
+  2b9804: f9400388     	ldr	x8, [x28]
+  2b9808: aa1c03f8     	mov	x24, x28
+  2b980c: b4000148     	cbz	x8, 0x2b9834 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x1c4>
+  2b9810: aa0803fc     	mov	x28, x8
+  2b9814: b9402108     	ldr	w8, [x8, #0x20]
+  2b9818: 6b0802df     	cmp	w22, w8
+  2b981c: 54ffff4b     	b.lt	0x2b9804 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x194>
+  2b9820: 6b16011f     	cmp	w8, w22
+  2b9824: 540003aa     	b.ge	0x2b9898 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x228>
+  2b9828: f9400788     	ldr	x8, [x28, #0x8]
+  2b982c: b5ffff28     	cbnz	x8, 0x2b9810 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x1a0>
+  2b9830: 91002398     	add	x24, x28, #0x8
+  2b9834: 52800f00     	mov	w0, #0x78
+  2b9838: 9409c28e     	bl	0x52a270 <_Znwm@plt>
+  2b983c: 6f00e400     	movi	v0.2d, #0000000000000000
+  2b9840: a9007c1f     	stp	xzr, xzr, [x0]
+  2b9844: aa0003f5     	mov	x21, x0
+  2b9848: f900081c     	str	x28, [x0, #0x10]
+  2b984c: aa0003e1     	mov	x1, x0
+  2b9850: b9002016     	str	w22, [x0, #0x20]
+  2b9854: 3c828000     	stur	q0, [x0, #0x28]
+  2b9858: 3c838000     	stur	q0, [x0, #0x38]
+  2b985c: 3c848000     	stur	q0, [x0, #0x48]
+  2b9860: 3c858000     	stur	q0, [x0, #0x58]
+  2b9864: 3c868000     	stur	q0, [x0, #0x68]
+  2b9868: f9000300     	str	x0, [x24]
+  2b986c: f9400288     	ldr	x8, [x20]
+  2b9870: f9400108     	ldr	x8, [x8]
+  2b9874: b4000068     	cbz	x8, 0x2b9880 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x210>
+  2b9878: f9000288     	str	x8, [x20]
+  2b987c: f9400301     	ldr	x1, [x24]
+  2b9880: f9402ae0     	ldr	x0, [x23, #0x50]
+  2b9884: 94000ab2     	bl	0x2bc34c <_ZN12MTImageKitNS13ImageCropInfoD2Ev+0x368>
+  2b9888: f9402ee8     	ldr	x8, [x23, #0x58]
+  2b988c: 91000508     	add	x8, x8, #0x1
+  2b9890: f9002ee8     	str	x8, [x23, #0x58]
+  2b9894: 14000002     	b	0x2b989c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x22c>
+  2b9898: aa1c03f5     	mov	x21, x28
+  2b989c: ad400361     	ldp	q1, q0, [x27]
+  2b98a0: f9401368     	ldr	x8, [x27, #0x20]
+  2b98a4: f90026a8     	str	x8, [x21, #0x48]
+  2b98a8: 3c8382a0     	stur	q0, [x21, #0x38]
+  2b98ac: 3c8282a1     	stur	q1, [x21, #0x28]
+  2b98b0: a942e37c     	ldp	x28, x24, [x27, #0x28]
+  2b98b4: b4000098     	cbz	x24, 0x2b98c4 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x254>
+  2b98b8: 91002301     	add	x1, x24, #0x8
+  2b98bc: 52800020     	mov	w0, #0x1
+  2b98c0: 9409b2bc     	bl	0x5263b0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa5d8>
+  2b98c4: f9402eb6     	ldr	x22, [x21, #0x58]
+  2b98c8: a90562bc     	stp	x28, x24, [x21, #0x50]
+  2b98cc: b4000176     	cbz	x22, 0x2b98f8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x288>
+  2b98d0: 910022c1     	add	x1, x22, #0x8
+  2b98d4: 92800000     	mov	x0, #-0x1
+  2b98d8: 9409b2c2     	bl	0x5263e0 <_ZN11LayerFlowNS19visionStateToStringENS_20VisionDimensionStateE+0xaa608>
+  2b98dc: b50000e0     	cbnz	x0, 0x2b98f8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x288>
+  2b98e0: f94002c8     	ldr	x8, [x22]
+  2b98e4: aa1603e0     	mov	x0, x22
+  2b98e8: f9400908     	ldr	x8, [x8, #0x10]
+  2b98ec: d63f0100     	blr	x8
+  2b98f0: aa1603e0     	mov	x0, x22
+  2b98f4: 9409c26f     	bl	0x52a2b0 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  2b98f8: 910182a0     	add	x0, x21, #0x60
+  2b98fc: 9100e361     	add	x1, x27, #0x38
+  2b9900: 9409c27c     	bl	0x52a2f0 <_ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_@plt>
+  2b9904: f9400749     	ldr	x9, [x26, #0x8]
+  2b9908: b40000a9     	cbz	x9, 0x2b991c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x2ac>
+  2b990c: aa0903e8     	mov	x8, x9
+  2b9910: f9400129     	ldr	x9, [x9]
+  2b9914: b5ffffc9     	cbnz	x9, 0x2b990c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x29c>
+  2b9918: 17ffffb0     	b	0x2b97d8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x168>
+  2b991c: f9400b48     	ldr	x8, [x26, #0x10]
+  2b9920: f9400109     	ldr	x9, [x8]
+  2b9924: eb1a013f     	cmp	x9, x26
+  2b9928: aa0803fa     	mov	x26, x8
+  2b992c: 54ffff81     	b.ne	0x2b991c <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x2ac>
+  2b9930: 17ffffaa     	b	0x2b97d8 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x168>
+  2b9934: f94023e8     	ldr	x8, [sp, #0x40]
+  2b9938: aa0003f3     	mov	x19, x0
+  2b993c: eb18011f     	cmp	x8, x24
+  2b9940: 54000081     	b.ne	0x2b9950 <_ZN11LayerFlowNS18LFAigcCacheDataJNI24nSetFaceReshapeAigcCacheEP7_JNIEnvP7_jclasslP8_jobject+0x2e0>
+  2b9944: 52800089     	mov	w9, #0x4

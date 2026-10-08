@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so
+TOTAL_SAMPLED: 11685
+ARITHMETIC_COUNT: 103
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTGif.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000085c4 <.text>:
+    85c4: d503245f     	bti	c
+    85c8: d503201f     	nop
+    85cc: 100772a0     	adr	x0, #0xee54
+    85d0: 1400292c     	b	0x12a80 <__cxa_finalize@plt>
+    85d4: d503245f     	bti	c
+    85d8: d65f03c0     	ret
+    85dc: d503245f     	bti	c
+    85e0: 17fffffd     	b	0x85d4 <.text+0x10>
+    85e4: d503245f     	bti	c
+    85e8: b4000060     	cbz	x0, 0x85f4 <.text+0x30>
+    85ec: aa0003f0     	mov	x16, x0
+    85f0: d61f0200     	br	x16
+    85f4: d65f03c0     	ret
+    85f8: d503245f     	bti	c
+    85fc: aa0003e1     	mov	x1, x0
+    8600: d503201f     	nop
+    8604: 10ffff00     	adr	x0, #-0x20
+    8608: d503201f     	nop
+    860c: 100770a2     	adr	x2, #0xee14
+    8610: 14002920     	b	0x12a90 <__cxa_atexit@plt>
+
+0000000000008614 <_ZN13FormatConvert15AllocMediaCoderEv>:
+    8614: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+    8618: 910003fd     	mov	x29, sp
+    861c: 52800500     	mov	w0, #0x28
+    8620: 94002920     	bl	0x12aa0 <malloc@plt>
+    8624: b40000a0     	cbz	x0, 0x8638 <_ZN13FormatConvert15AllocMediaCoderEv+0x24>
+    8628: 6f00e400     	movi	v0.2d, #0000000000000000
+    862c: 12800008     	mov	w8, #-0x1
+    8630: b9002008     	str	w8, [x0, #0x20]
+    8634: ad000000     	stp	q0, q0, [x0]
+    8638: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+    863c: d65f03c0     	ret
+
+0000000000008640 <_ZN13FormatConvert18ImageParamsInitialEPNS_12_ImageParamsE>:
+    8640: b4000140     	cbz	x0, 0x8668 <_ZN13FormatConvert18ImageParamsInitialEPNS_12_ImageParamsE+0x28>
+    8644: 12800008     	mov	w8, #-0x1
+    8648: 2900fc1f     	stp	wzr, wzr, [x0, #0x4]
+    864c: b9000008     	str	w8, [x0]
+    8650: 52800028     	mov	w8, #0x1
+    8654: f900081f     	str	xzr, [x0, #0x10]
+    8658: b9001808     	str	w8, [x0, #0x18]
+    865c: f802401f     	stur	xzr, [x0, #0x24]
+    8660: f801c01f     	stur	xzr, [x0, #0x1c]
+    8664: b9002c1f     	str	wzr, [x0, #0x2c]
+    8668: d65f03c0     	ret
+
+000000000000866c <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv>:
+    866c: d101c3ff     	sub	sp, sp, #0x70
+    8670: a9027bfd     	stp	x29, x30, [sp, #0x20]
+    8674: a90367fa     	stp	x26, x25, [sp, #0x30]
+    8678: a9045ff8     	stp	x24, x23, [sp, #0x40]
+    867c: a90557f6     	stp	x22, x21, [sp, #0x50]
+    8680: a9064ff4     	stp	x20, x19, [sp, #0x60]
+    8684: 910083fd     	add	x29, sp, #0x20
+    8688: d53bd057     	mrs	x23, TPIDR_EL0
+    868c: f94016e8     	ldr	x8, [x23, #0x28]
+    8690: f81f83a8     	stur	x8, [x29, #-0x8]
+    8694: b40010e0     	cbz	x0, 0x88b0 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x244>
+    8698: aa0003f3     	mov	x19, x0
+    869c: 94002905     	bl	0x12ab0 <av_packet_alloc@plt>
+    86a0: b940b268     	ldr	w8, [x19, #0xb0]
+    86a4: aa0003f4     	mov	x20, x0
+    86a8: f9000be0     	str	x0, [sp, #0x10]
+    86ac: b4000da0     	cbz	x0, 0x8860 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1f4>
+    86b0: 52801198     	mov	w24, #0x8c
+    86b4: 6a18011f     	tst	w8, w24
+    86b8: 54000dc1     	b.ne	0x8870 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x204>
+    86bc: f0000079     	adrp	x25, 0x17000 <syscall@plt+0x3bf0>
+    86c0: 9104427a     	add	x26, x19, #0x110
+    86c4: aa1403f5     	mov	x21, x20
+    86c8: f943d739     	ldr	x25, [x25, #0x7a8]
+    86cc: 14000006     	b	0x86e4 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x78>
+    86d0: 9102d260     	add	x0, x19, #0xb4
+    86d4: 940028fb     	bl	0x12ac0 <pthread_mutex_unlock@plt>
+    86d8: 3942c268     	ldrb	w8, [x19, #0xb0]
+    86dc: 6a18011f     	tst	w8, w24
+    86e0: 54000c61     	b.ne	0x886c <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x200>
+    86e4: b9800328     	ldrsw	x8, [x25]
+    86e8: f9409269     	ldr	x9, [x19, #0x120]
+    86ec: eb08013f     	cmp	x9, x8
+    86f0: 54000161     	b.ne	0x871c <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0xb0>
+    86f4: 9102d260     	add	x0, x19, #0xb4
+    86f8: 940028f6     	bl	0x12ad0 <pthread_mutex_lock@plt>
+    86fc: b9800328     	ldrsw	x8, [x25]
+    8700: f9409269     	ldr	x9, [x19, #0x120]
+    8704: eb08013f     	cmp	x9, x8
+    8708: 54fffe41     	b.ne	0x86d0 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x64>
+    870c: 91037260     	add	x0, x19, #0xdc
+    8710: 9102d261     	add	x1, x19, #0xb4
+    8714: 940028f3     	bl	0x12ae0 <pthread_cond_wait@plt>
+    8718: 17ffffee     	b	0x86d0 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x64>
+    871c: f9400a68     	ldr	x8, [x19, #0x10]
+    8720: aa1503e1     	mov	x1, x21
+    8724: f9400100     	ldr	x0, [x8]
+    8728: 940028f2     	bl	0x12af0 <av_read_frame@plt>
+    872c: 37f80700     	tbnz	w0, #0x1f, 0x880c <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1a0>
+    8730: f9400a68     	ldr	x8, [x19, #0x10]
+    8734: b94026a9     	ldr	w9, [x21, #0x24]
+    8738: b940210a     	ldr	w10, [x8, #0x20]
+    873c: 6b0a013f     	cmp	w9, w10
+    8740: 540006e1     	b.ne	0x881c <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1b0>
+    8744: f9400900     	ldr	x0, [x8, #0x10]
+    8748: aa1503e1     	mov	x1, x21
+    874c: 940028ed     	bl	0x12b00 <avcodec_send_packet@plt>
+    8750: f9400bf5     	ldr	x21, [sp, #0x10]
+    8754: 2a0003f6     	mov	w22, w0
+    8758: aa1503e0     	mov	x0, x21
+    875c: 940028ed     	bl	0x12b10 <av_packet_unref@plt>
+    8760: 31002edf     	cmn	w22, #0xb
+    8764: 54fffba0     	b.eq	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    8768: 35000616     	cbnz	w22, 0x8828 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1bc>
+    876c: 940028ed     	bl	0x12b20 <av_frame_alloc@plt>
+    8770: f90007e0     	str	x0, [sp, #0x8]
+    8774: b4000620     	cbz	x0, 0x8838 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1cc>
+    8778: f9400a68     	ldr	x8, [x19, #0x10]
+    877c: aa0003e1     	mov	x1, x0
+    8780: f9400900     	ldr	x0, [x8, #0x10]
+    8784: 940028eb     	bl	0x12b30 <avcodec_receive_frame@plt>
+    8788: 31002c1f     	cmn	w0, #0xb
+    878c: 54000640     	b.eq	0x8854 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1e8>
+    8790: 350005c0     	cbnz	w0, 0x8848 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1dc>
+    8794: f94007e0     	ldr	x0, [sp, #0x8]
+    8798: 940028ea     	bl	0x12b40 <av_frame_get_best_effort_timestamp@plt>
+    879c: f94007e8     	ldr	x8, [sp, #0x8]
+    87a0: f9401269     	ldr	x9, [x19, #0x20]
+    87a4: f9004500     	str	x0, [x8, #0x88]
+    87a8: b40000e9     	cbz	x9, 0x87c4 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x158>
+    87ac: 910023e1     	add	x1, sp, #0x8
+    87b0: aa1303e0     	mov	x0, x19
+    87b4: 940028e7     	bl	0x12b50 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame@plt>
+    87b8: 350004e0     	cbnz	w0, 0x8854 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x1e8>
+    87bc: f94007e8     	ldr	x8, [sp, #0x8]
+    87c0: b4fff8c8     	cbz	x8, 0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    87c4: 9102d260     	add	x0, x19, #0xb4
+    87c8: 940028c2     	bl	0x12ad0 <pthread_mutex_lock@plt>
+    87cc: 52800300     	mov	w0, #0x18
+    87d0: 940028e4     	bl	0x12b60 <_Znwm@plt>
+    87d4: f94007e8     	ldr	x8, [sp, #0x8]
+    87d8: f9408a69     	ldr	x9, [x19, #0x110]
+    87dc: f9008a60     	str	x0, [x19, #0x110]
+    87e0: a900a01a     	stp	x26, x8, [x0, #0x8]
+    87e4: f9409268     	ldr	x8, [x19, #0x120]
+    87e8: f9000009     	str	x9, [x0]
+    87ec: f9000520     	str	x0, [x9, #0x8]
+    87f0: 91000508     	add	x8, x8, #0x1
+    87f4: 9102d260     	add	x0, x19, #0xb4
+    87f8: f9009268     	str	x8, [x19, #0x120]
+    87fc: 940028b1     	bl	0x12ac0 <pthread_mutex_unlock@plt>
+    8800: 91037260     	add	x0, x19, #0xdc
+    8804: 940028db     	bl	0x12b70 <pthread_cond_signal@plt>
+    8808: 17ffffb4     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    880c: b940b268     	ldr	w8, [x19, #0xb0]
+    8810: 321d0108     	orr	w8, w8, #0x8
+    8814: b900b268     	str	w8, [x19, #0xb0]
+    8818: 17ffffb0     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    881c: aa1503e0     	mov	x0, x21
+    8820: 940028bc     	bl	0x12b10 <av_packet_unref@plt>
+    8824: 17ffffad     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    8828: b940b268     	ldr	w8, [x19, #0xb0]
+    882c: 32190108     	orr	w8, w8, #0x80
+    8830: b900b268     	str	w8, [x19, #0xb0]
+    8834: 17ffffa9     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    8838: b940b268     	ldr	w8, [x19, #0xb0]
+    883c: 321e0108     	orr	w8, w8, #0x4
+    8840: b900b268     	str	w8, [x19, #0xb0]
+    8844: 17ffffa5     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    8848: b940b268     	ldr	w8, [x19, #0xb0]
+    884c: 32190108     	orr	w8, w8, #0x80
+    8850: b900b268     	str	w8, [x19, #0xb0]
+    8854: 910023e0     	add	x0, sp, #0x8
+    8858: 940028ca     	bl	0x12b80 <av_frame_free@plt>
+    885c: 17ffff9f     	b	0x86d8 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x6c>
+    8860: 321e0108     	orr	w8, w8, #0x4
+    8864: b900b268     	str	w8, [x19, #0xb0]
+    8868: 14000004     	b	0x8878 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x20c>
+    886c: b4000075     	cbz	x21, 0x8878 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x20c>
+    8870: 910043e0     	add	x0, sp, #0x10
+    8874: 940028c7     	bl	0x12b90 <av_packet_free@plt>
+    8878: aa1303e0     	mov	x0, x19
+    887c: 940028c9     	bl	0x12ba0 <_ZN13FormatConvert18VideoFormatTranser6_flushEv@plt>
+    8880: 9102d260     	add	x0, x19, #0xb4
+    8884: 94002893     	bl	0x12ad0 <pthread_mutex_lock@plt>
+    8888: b940b268     	ldr	w8, [x19, #0xb0]
+    888c: 9102d260     	add	x0, x19, #0xb4
+    8890: 321b0108     	orr	w8, w8, #0x20
+    8894: b900b268     	str	w8, [x19, #0xb0]
+    8898: 9400288a     	bl	0x12ac0 <pthread_mutex_unlock@plt>
+    889c: 91037260     	add	x0, x19, #0xdc
+    88a0: 940028b4     	bl	0x12b70 <pthread_cond_signal@plt>
+    88a4: b5000074     	cbnz	x20, 0x88b0 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x244>
+    88a8: aa1303e0     	mov	x0, x19
+    88ac: 940028c1     	bl	0x12bb0 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv@plt>
+    88b0: f94016e8     	ldr	x8, [x23, #0x28]
+    88b4: f85f83a9     	ldur	x9, [x29, #-0x8]
+    88b8: eb09011f     	cmp	x8, x9
+    88bc: 54000121     	b.ne	0x88e0 <_ZN13FormatConvert18VideoFormatTranser24ThreadFunc_Video_DecoderEPv+0x274>
+    88c0: aa1f03e0     	mov	x0, xzr
+    88c4: a9464ff4     	ldp	x20, x19, [sp, #0x60]
+    88c8: a94557f6     	ldp	x22, x21, [sp, #0x50]
+    88cc: a9445ff8     	ldp	x24, x23, [sp, #0x40]
+    88d0: a94367fa     	ldp	x26, x25, [sp, #0x30]
+    88d4: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+    88d8: 9101c3ff     	add	sp, sp, #0x70
+    88dc: d65f03c0     	ret
+    88e0: 940028b8     	bl	0x12bc0 <__stack_chk_fail@plt>
+
+00000000000088e4 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame>:
+    88e4: d10143ff     	sub	sp, sp, #0x50
+    88e8: a9017bfd     	stp	x29, x30, [sp, #0x10]
+    88ec: f90013f7     	str	x23, [sp, #0x20]
+    88f0: a90357f6     	stp	x22, x21, [sp, #0x30]
+    88f4: a9044ff4     	stp	x20, x19, [sp, #0x40]
+    88f8: 910043fd     	add	x29, sp, #0x10
+    88fc: d53bd056     	mrs	x22, TPIDR_EL0
+    8900: f94016c8     	ldr	x8, [x22, #0x28]
+    8904: f90007e8     	str	x8, [sp, #0x8]
+    8908: b4000761     	cbz	x1, 0x89f4 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x110>
+    890c: f9400028     	ldr	x8, [x1]
+    8910: aa0103f3     	mov	x19, x1
+    8914: b4000708     	cbz	x8, 0x89f4 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x110>
+    8918: aa0003f5     	mov	x21, x0
+    891c: 94002881     	bl	0x12b20 <av_frame_alloc@plt>
+    8920: f90003e0     	str	x0, [sp]
+    8924: b4000680     	cbz	x0, 0x89f4 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x110>
+    8928: b94072a8     	ldr	w8, [x21, #0x70]
+    892c: 7100251f     	cmp	w8, #0x9
+    8930: 54000782     	b.hs	0x8a20 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x13c>
+    8934: 2d4e82a1     	ldp	s1, s0, [x21, #0x74]
+    8938: d503201f     	nop
+    893c: 10fec097     	adr	x23, #-0x27f0
+    8940: b9408aa5     	ldr	w5, [x21, #0x88]
+    8944: 91010001     	add	x1, x0, #0x40
+    8948: b8687ae4     	ldr	w4, [x23, x8, lsl #2]
+    894c: aa0003f4     	mov	x20, x0
+    8950: 1e380003     	fcvtzs	w3, s0
+    8954: 1e380022     	fcvtzs	w2, s1
+    8958: 9400289e     	bl	0x12bd0 <av_image_alloc@plt>
+    895c: 37f80400     	tbnz	w0, #0x1f, 0x89dc <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0xf8>
+    8960: f9400288     	ldr	x8, [x20]
+    8964: f94012a0     	ldr	x0, [x21, #0x20]
+    8968: 91010286     	add	x6, x20, #0x40
+    896c: 2a1f03e3     	mov	w3, wzr
+    8970: aa1403e5     	mov	x5, x20
+    8974: f9005a88     	str	x8, [x20, #0xb0]
+    8978: f9400261     	ldr	x1, [x19]
+    897c: b9406c24     	ldr	w4, [x1, #0x6c]
+    8980: 91010022     	add	x2, x1, #0x40
+    8984: 94002897     	bl	0x12be0 <sws_scale@plt>
+    8988: 7100041f     	cmp	w0, #0x1
+    898c: 5400028b     	b.lt	0x89dc <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0xf8>
+    8990: fc4742a0     	ldur	d0, [x21, #0x74]
+    8994: f9400260     	ldr	x0, [x19]
+    8998: b94072a8     	ldr	w8, [x21, #0x70]
+    899c: 0ea1b800     	fcvtzs	v0.2s, v0.2s
+    89a0: f9404409     	ldr	x9, [x0, #0x88]
+    89a4: 7100251f     	cmp	w8, #0x9
+    89a8: f9004689     	str	x9, [x20, #0x88]
+    89ac: fd003680     	str	d0, [x20, #0x68]
+    89b0: 54000382     	b.hs	0x8a20 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x13c>
+    89b4: b8687ae8     	ldr	w8, [x23, x8, lsl #2]
+    89b8: f84b0c09     	ldr	x9, [x0, #0xb0]!
+    89bc: b9007688     	str	w8, [x20, #0x74]
+    89c0: b4000049     	cbz	x9, 0x89c8 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0xe4>
+    89c4: 9400288b     	bl	0x12bf0 <av_freep@plt>
+    89c8: aa1303e0     	mov	x0, x19
+    89cc: 9400286d     	bl	0x12b80 <av_frame_free@plt>
+    89d0: 2a1f03e0     	mov	w0, wzr
+    89d4: f9000274     	str	x20, [x19]
+    89d8: 14000008     	b	0x89f8 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x114>
+    89dc: f84b0e88     	ldr	x8, [x20, #0xb0]!
+    89e0: b4000068     	cbz	x8, 0x89ec <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x108>
+    89e4: aa1403e0     	mov	x0, x20
+    89e8: 94002882     	bl	0x12bf0 <av_freep@plt>
+    89ec: 910003e0     	mov	x0, sp
+    89f0: 94002864     	bl	0x12b80 <av_frame_free@plt>
+    89f4: 12800000     	mov	w0, #-0x1
+    89f8: f94016c8     	ldr	x8, [x22, #0x28]
+    89fc: f94007e9     	ldr	x9, [sp, #0x8]
+    8a00: eb09011f     	cmp	x8, x9
+    8a04: 540001a1     	b.ne	0x8a38 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x154>
+    8a08: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+    8a0c: f94013f7     	ldr	x23, [sp, #0x20]
+    8a10: a94357f6     	ldp	x22, x21, [sp, #0x30]
+    8a14: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+    8a18: 910143ff     	add	sp, sp, #0x50
+    8a1c: d65f03c0     	ret
+    8a20: f94016c8     	ldr	x8, [x22, #0x28]
+    8a24: f94007e9     	ldr	x9, [sp, #0x8]
+    8a28: eb09011f     	cmp	x8, x9
+    8a2c: 54000061     	b.ne	0x8a38 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame+0x154>
+    8a30: 2a1f03e0     	mov	w0, wzr
+    8a34: 94002873     	bl	0x12c00 <exit@plt>
+    8a38: 94002862     	bl	0x12bc0 <__stack_chk_fail@plt>
+
+0000000000008a3c <_ZN13FormatConvert18VideoFormatTranser6_flushEv>:
+    8a3c: d10103ff     	sub	sp, sp, #0x40
+    8a40: a9017bfd     	stp	x29, x30, [sp, #0x10]
+    8a44: a90257f6     	stp	x22, x21, [sp, #0x20]
+    8a48: a9034ff4     	stp	x20, x19, [sp, #0x30]
+    8a4c: 910043fd     	add	x29, sp, #0x10
+    8a50: d53bd054     	mrs	x20, TPIDR_EL0
+    8a54: aa0003f3     	mov	x19, x0
+    8a58: aa1f03e1     	mov	x1, xzr
+    8a5c: f9401688     	ldr	x8, [x20, #0x28]
+    8a60: f90007e8     	str	x8, [sp, #0x8]
+    8a64: f9400809     	ldr	x9, [x0, #0x10]
+    8a68: b940b008     	ldr	w8, [x0, #0xb0]
+    8a6c: f9400920     	ldr	x0, [x9, #0x10]
+    8a70: 321a0108     	orr	w8, w8, #0x40
+    8a74: b900b268     	str	w8, [x19, #0xb0]
+    8a78: 94002822     	bl	0x12b00 <avcodec_send_packet@plt>
+    8a7c: 3942c268     	ldrb	w8, [x19, #0xb0]
+    8a80: 371009e8     	tbnz	w8, #0x2, 0x8bbc <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x180>
+    8a84: f0000075     	adrp	x21, 0x17000 <syscall@plt+0x3bf0>
+    8a88: 91044276     	add	x22, x19, #0x110
+    8a8c: f943d6b5     	ldr	x21, [x21, #0x7a8]
+    8a90: 14000005     	b	0x8aa4 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x68>
+    8a94: 9102d260     	add	x0, x19, #0xb4
+    8a98: 9400280a     	bl	0x12ac0 <pthread_mutex_unlock@plt>
+    8a9c: 3942c268     	ldrb	w8, [x19, #0xb0]
+    8aa0: 371008e8     	tbnz	w8, #0x2, 0x8bbc <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x180>
+    8aa4: b98002a8     	ldrsw	x8, [x21]
+    8aa8: f9409269     	ldr	x9, [x19, #0x120]
+    8aac: eb08013f     	cmp	x9, x8
+    8ab0: 54000161     	b.ne	0x8adc <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0xa0>
+    8ab4: 9102d260     	add	x0, x19, #0xb4
+    8ab8: 94002806     	bl	0x12ad0 <pthread_mutex_lock@plt>
+    8abc: b98002a8     	ldrsw	x8, [x21]
+    8ac0: f9409269     	ldr	x9, [x19, #0x120]
+    8ac4: eb08013f     	cmp	x9, x8
+    8ac8: 54fffe61     	b.ne	0x8a94 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x58>
+    8acc: 91037260     	add	x0, x19, #0xdc
+    8ad0: 9102d261     	add	x1, x19, #0xb4
+    8ad4: 94002803     	bl	0x12ae0 <pthread_cond_wait@plt>
+    8ad8: 17ffffef     	b	0x8a94 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x58>
+    8adc: 94002811     	bl	0x12b20 <av_frame_alloc@plt>
+    8ae0: f90003e0     	str	x0, [sp]
+    8ae4: b4000260     	cbz	x0, 0x8b30 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0xf4>
+    8ae8: f9400a68     	ldr	x8, [x19, #0x10]
+    8aec: aa0003e1     	mov	x1, x0
+    8af0: f9400900     	ldr	x0, [x8, #0x10]
+    8af4: 9400280f     	bl	0x12b30 <avcodec_receive_frame@plt>
+    8af8: 350004c0     	cbnz	w0, 0x8b90 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x154>
+    8afc: f94003e0     	ldr	x0, [sp]
+    8b00: 94002810     	bl	0x12b40 <av_frame_get_best_effort_timestamp@plt>
+    8b04: f94003e8     	ldr	x8, [sp]
+    8b08: f9401269     	ldr	x9, [x19, #0x20]
+    8b0c: f9004500     	str	x0, [x8, #0x88]
+    8b10: b40001c9     	cbz	x9, 0x8b48 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x10c>
+    8b14: 910003e1     	mov	x1, sp
+    8b18: aa1303e0     	mov	x0, x19
+    8b1c: 9400280d     	bl	0x12b50 <_ZN13FormatConvert18VideoFormatTranser13_ImageConvertEPP7AVFrame@plt>
+    8b20: 34000100     	cbz	w0, 0x8b40 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x104>
+    8b24: 910003e0     	mov	x0, sp
+    8b28: 94002816     	bl	0x12b80 <av_frame_free@plt>
+    8b2c: 17ffffdc     	b	0x8a9c <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x60>
+    8b30: b940b268     	ldr	w8, [x19, #0xb0]
+    8b34: 321e0108     	orr	w8, w8, #0x4
+    8b38: b900b268     	str	w8, [x19, #0xb0]
+    8b3c: 17ffffd8     	b	0x8a9c <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x60>
+    8b40: f94003e8     	ldr	x8, [sp]
+    8b44: b4fffac8     	cbz	x8, 0x8a9c <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x60>
+    8b48: 9102d260     	add	x0, x19, #0xb4
+    8b4c: 940027e1     	bl	0x12ad0 <pthread_mutex_lock@plt>
+    8b50: 52800300     	mov	w0, #0x18
+    8b54: 94002803     	bl	0x12b60 <_Znwm@plt>
+    8b58: f94003e8     	ldr	x8, [sp]
+    8b5c: f9408a69     	ldr	x9, [x19, #0x110]
+    8b60: f9008a60     	str	x0, [x19, #0x110]
+    8b64: a900a016     	stp	x22, x8, [x0, #0x8]
+    8b68: f9409268     	ldr	x8, [x19, #0x120]
+    8b6c: f9000009     	str	x9, [x0]
+    8b70: f9000520     	str	x0, [x9, #0x8]
+    8b74: 91000508     	add	x8, x8, #0x1
+    8b78: 9102d260     	add	x0, x19, #0xb4
+    8b7c: f9009268     	str	x8, [x19, #0x120]
+    8b80: 940027d0     	bl	0x12ac0 <pthread_mutex_unlock@plt>
+    8b84: 91037260     	add	x0, x19, #0xdc
+    8b88: 940027fa     	bl	0x12b70 <pthread_cond_signal@plt>
+    8b8c: 17ffffc4     	b	0x8a9c <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x60>
+    8b90: 52961768     	mov	w8, #0xb0bb
+    8b94: 72bbf728     	movk	w8, #0xdfb9, lsl #16
+    8b98: 6b08001f     	cmp	w0, w8
+    8b9c: 540000c0     	b.eq	0x8bb4 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x178>
+    8ba0: 31002c1f     	cmn	w0, #0xb
+    8ba4: 54000080     	b.eq	0x8bb4 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x178>
+    8ba8: b940b268     	ldr	w8, [x19, #0xb0]
+    8bac: 32190108     	orr	w8, w8, #0x80
+    8bb0: b900b268     	str	w8, [x19, #0xb0]
+    8bb4: 910003e0     	mov	x0, sp
+    8bb8: 940027f2     	bl	0x12b80 <av_frame_free@plt>
+    8bbc: f9401688     	ldr	x8, [x20, #0x28]
+    8bc0: f94007e9     	ldr	x9, [sp, #0x8]
+    8bc4: eb09011f     	cmp	x8, x9
+    8bc8: 540000c1     	b.ne	0x8be0 <_ZN13FormatConvert18VideoFormatTranser6_flushEv+0x1a4>
+    8bcc: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    8bd0: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    8bd4: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+    8bd8: 910103ff     	add	sp, sp, #0x40
+    8bdc: d65f03c0     	ret
+    8be0: 940027f8     	bl	0x12bc0 <__stack_chk_fail@plt>
+
+0000000000008be4 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv>:
+    8be4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    8be8: f9000bf3     	str	x19, [sp, #0x10]
+    8bec: 910003fd     	mov	x29, sp
+    8bf0: f9400808     	ldr	x8, [x0, #0x10]
+    8bf4: aa0003f3     	mov	x19, x0
+    8bf8: f9400900     	ldr	x0, [x8, #0x10]
+    8bfc: b4000160     	cbz	x0, 0x8c28 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x44>
+    8c00: 94002804     	bl	0x12c10 <avcodec_is_open@plt>
+    8c04: 34000080     	cbz	w0, 0x8c14 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x30>
+    8c08: f9400a68     	ldr	x8, [x19, #0x10]
+    8c0c: f9400900     	ldr	x0, [x8, #0x10]
+    8c10: 94002804     	bl	0x12c20 <avcodec_close@plt>
+    8c14: f9400a68     	ldr	x8, [x19, #0x10]
+    8c18: 91004100     	add	x0, x8, #0x10
+    8c1c: 94002805     	bl	0x12c30 <avcodec_free_context@plt>
+    8c20: f9400a68     	ldr	x8, [x19, #0x10]
+    8c24: a9017d1f     	stp	xzr, xzr, [x8, #0x10]
+    8c28: f9400e60     	ldr	x0, [x19, #0x18]
+    8c2c: f9400808     	ldr	x8, [x0, #0x10]
+    8c30: b4000188     	cbz	x8, 0x8c60 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x7c>
+    8c34: aa0803e0     	mov	x0, x8
+    8c38: 940027f6     	bl	0x12c10 <avcodec_is_open@plt>
+    8c3c: 34000080     	cbz	w0, 0x8c4c <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x68>
+    8c40: f9400e68     	ldr	x8, [x19, #0x18]
+    8c44: f9400900     	ldr	x0, [x8, #0x10]
+    8c48: 940027f6     	bl	0x12c20 <avcodec_close@plt>
+    8c4c: f9400e68     	ldr	x8, [x19, #0x18]
+    8c50: 91004100     	add	x0, x8, #0x10
+    8c54: 940027f7     	bl	0x12c30 <avcodec_free_context@plt>
+    8c58: f9400e60     	ldr	x0, [x19, #0x18]
+    8c5c: a9017c1f     	stp	xzr, xzr, [x0, #0x10]
+    8c60: f9400008     	ldr	x8, [x0]
+    8c64: b4000048     	cbz	x8, 0x8c6c <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x88>
+    8c68: 940027f6     	bl	0x12c40 <avformat_close_input@plt>
+    8c6c: f9400a60     	ldr	x0, [x19, #0x10]
+    8c70: f9400008     	ldr	x8, [x0]
+    8c74: b4000068     	cbz	x8, 0x8c80 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0x9c>
+    8c78: 940027f2     	bl	0x12c40 <avformat_close_input@plt>
+    8c7c: f9400a60     	ldr	x0, [x19, #0x10]
+    8c80: a941a269     	ldp	x9, x8, [x19, #0x18]
+    8c84: f900041f     	str	xzr, [x0, #0x8]
+    8c88: f900053f     	str	xzr, [x9, #0x8]
+    8c8c: b4000088     	cbz	x8, 0x8c9c <_ZN13FormatConvert18VideoFormatTranser8_releaseEv+0xb8>
+    8c90: aa0803e0     	mov	x0, x8
+    8c94: 940027ef     	bl	0x12c50 <sws_freeContext@plt>
+    8c98: f900127f     	str	xzr, [x19, #0x20]
+    8c9c: 52800028     	mov	w8, #0x1
+    8ca0: 2a1f03e0     	mov	w0, wzr
+    8ca4: b900b268     	str	w8, [x19, #0xb0]
+    8ca8: f9400bf3     	ldr	x19, [sp, #0x10]
+    8cac: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    8cb0: d65f03c0     	ret
+
+0000000000008cb4 <_ZN13FormatConvert18VideoFormatTranserC2Ev>:
+    8cb4: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+    8cb8: a90157f6     	stp	x22, x21, [sp, #0x10]
+    8cbc: a9024ff4     	stp	x20, x19, [sp, #0x20]
+    8cc0: 910003fd     	mov	x29, sp
+    8cc4: 91044013     	add	x19, x0, #0x110
+    8cc8: aa0003f4     	mov	x20, x0
+    8ccc: f900901f     	str	xzr, [x0, #0x120]
+    8cd0: a9114c13     	stp	x19, x19, [x0, #0x110]
+    8cd4: 52800500     	mov	w0, #0x28
+    8cd8: 94002772     	bl	0x12aa0 <malloc@plt>
+    8cdc: b40000a0     	cbz	x0, 0x8cf0 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x3c>
+    8ce0: 6f00e400     	movi	v0.2d, #0000000000000000
+    8ce4: 12800008     	mov	w8, #-0x1
+    8ce8: b9002008     	str	w8, [x0, #0x20]
+    8cec: ad000000     	stp	q0, q0, [x0]
+    8cf0: f9000a80     	str	x0, [x20, #0x10]
+    8cf4: 52800500     	mov	w0, #0x28
+    8cf8: 9400276a     	bl	0x12aa0 <malloc@plt>
+    8cfc: b40000a0     	cbz	x0, 0x8d10 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x5c>
+    8d00: 6f00e400     	movi	v0.2d, #0000000000000000
+    8d04: 12800008     	mov	w8, #-0x1
+    8d08: b9002008     	str	w8, [x0, #0x20]
+    8d0c: ad000000     	stp	q0, q0, [x0]
+    8d10: a901fe80     	stp	x0, xzr, [x20, #0x18]
+    8d14: f900069f     	str	xzr, [x20, #0x8]
+    8d18: a90a7e9f     	stp	xzr, xzr, [x20, #0xa0]
+    8d1c: 91037280     	add	x0, x20, #0xdc
+    8d20: aa1f03e1     	mov	x1, xzr
+    8d24: 940027cf     	bl	0x12c60 <pthread_cond_init@plt>
+    8d28: 9102d280     	add	x0, x20, #0xb4
+    8d2c: aa1f03e1     	mov	x1, xzr
+    8d30: 940027d0     	bl	0x12c70 <pthread_mutex_init@plt>
+    8d34: 2f00e400     	movi	d0, #0000000000000000
+    8d38: 12800008     	mov	w8, #-0x1
+    8d3c: 52800035     	mov	w21, #0x1
+    8d40: b9004288     	str	w8, [x20, #0x40]
+    8d44: b2607fe8     	mov	x8, #-0x100000000
+    8d48: f806c288     	stur	x8, [x20, #0x6c]
+    8d4c: f9409288     	ldr	x8, [x20, #0x120]
+    8d50: f9002a9f     	str	xzr, [x20, #0x50]
+    8d54: f806429f     	stur	xzr, [x20, #0x64]
+    8d58: b9005a95     	str	w21, [x20, #0x58]
+    8d5c: fc044280     	stur	d0, [x20, #0x44]
+    8d60: f805c29f     	stur	xzr, [x20, #0x5c]
+    8d64: fc074280     	stur	d0, [x20, #0x74]
+    8d68: f900429f     	str	xzr, [x20, #0x80]
+    8d6c: b9008a95     	str	w21, [x20, #0x88]
+    8d70: f809429f     	stur	xzr, [x20, #0x94]
+    8d74: f808c29f     	stur	xzr, [x20, #0x8c]
+    8d78: b9009e9f     	str	wzr, [x20, #0x9c]
+    8d7c: b900029f     	str	wzr, [x20]
+    8d80: b40001c8     	cbz	x8, 0x8db8 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x104>
+    8d84: a9510288     	ldp	x8, x0, [x20, #0x110]
+    8d88: f900929f     	str	xzr, [x20, #0x120]
+    8d8c: f9400508     	ldr	x8, [x8, #0x8]
+    8d90: f9400009     	ldr	x9, [x0]
+    8d94: eb13001f     	cmp	x0, x19
+    8d98: f9000528     	str	x8, [x9, #0x8]
+    8d9c: f9000109     	str	x9, [x8]
+    8da0: 540000c0     	b.eq	0x8db8 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x104>
+    8da4: f9400416     	ldr	x22, [x0, #0x8]
+    8da8: 940027b6     	bl	0x12c80 <_ZdlPv@plt>
+    8dac: eb1302df     	cmp	x22, x19
+    8db0: aa1603e0     	mov	x0, x22
+    8db4: 54ffff81     	b.ne	0x8da4 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0xf0>
+    8db8: b900b295     	str	w21, [x20, #0xb0]
+    8dbc: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    8dc0: a94157f6     	ldp	x22, x21, [sp, #0x10]
+    8dc4: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    8dc8: d65f03c0     	ret
+    8dcc: aa0003f4     	mov	x20, x0
+    8dd0: aa1303e0     	mov	x0, x19
+    8dd4: 94000003     	bl	0x8de0 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x12c>
+    8dd8: aa1403e0     	mov	x0, x20
+    8ddc: 940017f1     	bl	0xeda0 <_ZN5mtgif9Video2Gif3runEv+0x3c8>
+    8de0: f9400808     	ldr	x8, [x0, #0x10]
+    8de4: b40002a8     	cbz	x8, 0x8e38 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x184>
+    8de8: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    8dec: a9014ff4     	stp	x20, x19, [sp, #0x10]
+    8df0: 910003fd     	mov	x29, sp
+    8df4: aa0003f3     	mov	x19, x0
+    8df8: f9400400     	ldr	x0, [x0, #0x8]
+    8dfc: f9400268     	ldr	x8, [x19]
+    8e00: f9000a7f     	str	xzr, [x19, #0x10]
+    8e04: f9400009     	ldr	x9, [x0]
+    8e08: eb13001f     	cmp	x0, x19
+    8e0c: f9400508     	ldr	x8, [x8, #0x8]
+    8e10: f9000528     	str	x8, [x9, #0x8]
+    8e14: f9000109     	str	x9, [x8]
+    8e18: 540000c0     	b.eq	0x8e30 <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x17c>
+    8e1c: f9400414     	ldr	x20, [x0, #0x8]
+    8e20: 94002798     	bl	0x12c80 <_ZdlPv@plt>
+    8e24: eb13029f     	cmp	x20, x19
+    8e28: aa1403e0     	mov	x0, x20
+    8e2c: 54ffff81     	b.ne	0x8e1c <_ZN13FormatConvert18VideoFormatTranserC2Ev+0x168>
+    8e30: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+    8e34: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    8e38: d65f03c0     	ret
+
+0000000000008e3c <_ZN13FormatConvert18VideoFormatTranser7prepareEv>:
+    8e3c: 3942c008     	ldrb	w8, [x0, #0xb0]
+    8e40: 37000068     	tbnz	w8, #0x0, 0x8e4c <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0x10>
+    8e44: 12800000     	mov	w0, #-0x1
+    8e48: d65f03c0     	ret
+    8e4c: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+    8e50: f9000bf5     	str	x21, [sp, #0x10]
+    8e54: a9024ff4     	stp	x20, x19, [sp, #0x20]
+    8e58: 910003fd     	mov	x29, sp
+    8e5c: aa0003f3     	mov	x19, x0
+    8e60: 94002790     	bl	0x12ca0 <av_register_all@plt>
+    8e64: 94002793     	bl	0x12cb0 <avformat_network_init@plt>
+    8e68: f9409269     	ldr	x9, [x19, #0x120]
+    8e6c: 92800008     	mov	x8, #-0x1
+    8e70: b9002a7f     	str	wzr, [x19, #0x28]
+    8e74: f9001a68     	str	x8, [x19, #0x30]
+    8e78: f900067f     	str	xzr, [x19, #0x8]
+    8e7c: b40001e9     	cbz	x9, 0x8eb8 <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0x7c>
+    8e80: a9510268     	ldp	x8, x0, [x19, #0x110]
+    8e84: 91044274     	add	x20, x19, #0x110
+    8e88: f900927f     	str	xzr, [x19, #0x120]
+    8e8c: f9400508     	ldr	x8, [x8, #0x8]
+    8e90: f9400009     	ldr	x9, [x0]
+    8e94: eb14001f     	cmp	x0, x20
+    8e98: f9000528     	str	x8, [x9, #0x8]
+    8e9c: f9000109     	str	x9, [x8]
+    8ea0: 540000c0     	b.eq	0x8eb8 <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0x7c>
+    8ea4: f9400415     	ldr	x21, [x0, #0x8]
+    8ea8: 94002776     	bl	0x12c80 <_ZdlPv@plt>
+    8eac: eb1402bf     	cmp	x21, x20
+    8eb0: aa1503e0     	mov	x0, x21
+    8eb4: 54ffff81     	b.ne	0x8ea4 <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0x68>
+    8eb8: aa1303e0     	mov	x0, x19
+    8ebc: 94002781     	bl	0x12cc0 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv@plt>
+    8ec0: 350000e0     	cbnz	w0, 0x8edc <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0xa0>
+    8ec4: aa1303e0     	mov	x0, x19
+    8ec8: 94002782     	bl	0x12cd0 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv@plt>
+    8ecc: 35000080     	cbnz	w0, 0x8edc <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0xa0>
+    8ed0: aa1303e0     	mov	x0, x19
+    8ed4: 94002783     	bl	0x12ce0 <_ZN13FormatConvert18VideoFormatTranser16_SwsMediaInitialEv@plt>
+    8ed8: 34000100     	cbz	w0, 0x8ef8 <_ZN13FormatConvert18VideoFormatTranser7prepareEv+0xbc>
+    8edc: aa1303e0     	mov	x0, x19
+    8ee0: 94002734     	bl	0x12bb0 <_ZN13FormatConvert18VideoFormatTranser8_releaseEv@plt>
+    8ee4: 12800000     	mov	w0, #-0x1
+    8ee8: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    8eec: f9400bf5     	ldr	x21, [sp, #0x10]
+    8ef0: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    8ef4: d65f03c0     	ret
+    8ef8: 52a88f48     	mov	w8, #0x447a0000
+    8efc: bd409a60     	ldr	s0, [x19, #0x98]
+    8f00: b940b269     	ldr	w9, [x19, #0xb0]
+    8f04: 1e270101     	fmov	s1, w8
+    8f08: 1e210800     	fmul	s0, s0, s1
+    8f0c: 1e380008     	fcvtzs	w8, s0
+    8f10: 1e620100     	scvtf	d0, w8
+    8f14: d2c80008     	mov	x8, #0x400000000000
+    8f18: f2e811e8     	movk	x8, #0x408f, lsl #48
+    8f1c: 9e670101     	fmov	d1, x8
+    8f20: d2d09008     	mov	x8, #0x848000000000
+    8f24: f2e825c8     	movk	x8, #0x412e, lsl #48
+    8f28: 1e601820     	fdiv	d0, d1, d0
+    8f2c: 9e670101     	fmov	d1, x8
+    8f30: 1e610800     	fmul	d0, d0, d1
+    8f34: 9e780008     	fcvtzs	x8, d0
+    8f38: f9001e68     	str	x8, [x19, #0x38]
+    8f3c: 321f0128     	orr	w8, w9, #0x2
+    8f40: b900b268     	str	w8, [x19, #0xb0]
+    8f44: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    8f48: f9400bf5     	ldr	x21, [sp, #0x10]
+    8f4c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    8f50: d65f03c0     	ret
+
+0000000000008f54 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv>:
+    8f54: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+    8f58: f9000bf5     	str	x21, [sp, #0x10]
+    8f5c: a9024ff4     	stp	x20, x19, [sp, #0x20]
+    8f60: 910003fd     	mov	x29, sp
+    8f64: aa0003f3     	mov	x19, x0
+    8f68: f9400800     	ldr	x0, [x0, #0x10]
+    8f6c: aa1f03e2     	mov	x2, xzr
+    8f70: f9405261     	ldr	x1, [x19, #0xa0]
+    8f74: aa1f03e3     	mov	x3, xzr
+    8f78: f900041f     	str	xzr, [x0, #0x8]
+    8f7c: 9400275d     	bl	0x12cf0 <avformat_open_input@plt>
+    8f80: f9400a68     	ldr	x8, [x19, #0x10]
+    8f84: 340002a0     	cbz	w0, 0x8fd8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x84>
+    8f88: f9400900     	ldr	x0, [x8, #0x10]
+    8f8c: b40000c0     	cbz	x0, 0x8fa4 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x50>
+    8f90: 94002724     	bl	0x12c20 <avcodec_close@plt>
+    8f94: f9400a68     	ldr	x8, [x19, #0x10]
+    8f98: 91004100     	add	x0, x8, #0x10
+    8f9c: 94002725     	bl	0x12c30 <avcodec_free_context@plt>
+    8fa0: f9400a68     	ldr	x8, [x19, #0x10]
+    8fa4: f9400109     	ldr	x9, [x8]
+    8fa8: b40000a9     	cbz	x9, 0x8fbc <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x68>
+    8fac: aa0803e0     	mov	x0, x8
+    8fb0: 94002724     	bl	0x12c40 <avformat_close_input@plt>
+    8fb4: f9400a68     	ldr	x8, [x19, #0x10]
+    8fb8: f900011f     	str	xzr, [x8]
+    8fbc: 12800000     	mov	w0, #-0x1
+    8fc0: f900051f     	str	xzr, [x8, #0x8]
+    8fc4: b9002100     	str	w0, [x8, #0x20]
+    8fc8: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    8fcc: f9400bf5     	ldr	x21, [sp, #0x10]
+    8fd0: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    8fd4: d65f03c0     	ret
+    8fd8: f9400100     	ldr	x0, [x8]
+    8fdc: aa1f03e1     	mov	x1, xzr
+    8fe0: 94002748     	bl	0x12d00 <avformat_find_stream_info@plt>
+    8fe4: f9400a68     	ldr	x8, [x19, #0x10]
+    8fe8: 37fffd00     	tbnz	w0, #0x1f, 0x8f88 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x34>
+    8fec: f9400114     	ldr	x20, [x8]
+    8ff0: 2a1f03e1     	mov	w1, wzr
+    8ff4: 12800002     	mov	w2, #-0x1
+    8ff8: 12800003     	mov	w3, #-0x1
+    8ffc: aa1f03e4     	mov	x4, xzr
+    9000: 2a1f03e5     	mov	w5, wzr
+    9004: aa1403e0     	mov	x0, x20
+    9008: 94002742     	bl	0x12d10 <av_find_best_stream@plt>
+    900c: f9400a68     	ldr	x8, [x19, #0x10]
+    9010: b9002100     	str	w0, [x8, #0x20]
+    9014: 37fffba0     	tbnz	w0, #0x1f, 0x8f88 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x34>
+    9018: f9401a89     	ldr	x9, [x20, #0x30]
+    901c: f8605935     	ldr	x21, [x9, w0, uxtw #3]
+    9020: f9406aa9     	ldr	x9, [x21, #0xd0]
+    9024: f9000515     	str	x21, [x8, #0x8]
+    9028: b9400520     	ldr	w0, [x9, #0x4]
+    902c: 9400273d     	bl	0x12d20 <avcodec_find_decoder@plt>
+    9030: f9400a68     	ldr	x8, [x19, #0x10]
+    9034: f9000d00     	str	x0, [x8, #0x18]
+    9038: b4fffa80     	cbz	x0, 0x8f88 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x34>
+    903c: 9400273d     	bl	0x12d30 <avcodec_alloc_context3@plt>
+    9040: f9400a68     	ldr	x8, [x19, #0x10]
+    9044: f9000900     	str	x0, [x8, #0x10]
+    9048: b4fffa00     	cbz	x0, 0x8f88 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x34>
+    904c: f9406aa1     	ldr	x1, [x21, #0xd0]
+    9050: 9400273c     	bl	0x12d40 <avcodec_parameters_to_context@plt>
+    9054: f94026a0     	ldr	x0, [x21, #0x48]
+    9058: d503201f     	nop
+    905c: 30fe63e1     	adr	x1, #-0x3383
+    9060: aa1f03e2     	mov	x2, xzr
+    9064: 2a1f03e3     	mov	w3, wzr
+    9068: 9400273a     	bl	0x12d50 <av_dict_get@plt>
+    906c: b4000060     	cbz	x0, 0x9078 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x124>
+    9070: f9400400     	ldr	x0, [x0, #0x8]
+    9074: 9400273b     	bl	0x12d60 <atoi@plt>
+    9078: b9006e60     	str	w0, [x19, #0x6c]
+    907c: f9406aa8     	ldr	x8, [x21, #0xd0]
+    9080: fd401d00     	ldr	d0, [x8, #0x38]
+    9084: b9401d00     	ldr	w0, [x8, #0x1c]
+    9088: f9401109     	ldr	x9, [x8, #0x20]
+    908c: 0e21d800     	scvtf	v0.2s, v0.2s
+    9090: 71004c1f     	cmp	w0, #0x13
+    9094: f9003269     	str	x9, [x19, #0x60]
+    9098: fc044260     	stur	d0, [x19, #0x44]
+    909c: 5400016d     	b.le	0x90c8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x174>
+    90a0: 71005c1f     	cmp	w0, #0x17
+    90a4: 540002ed     	b.le	0x9100 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1ac>
+    90a8: 7100601f     	cmp	w0, #0x18
+    90ac: 540003e0     	b.eq	0x9128 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1d4>
+    90b0: 7100681f     	cmp	w0, #0x1a
+    90b4: 540003e0     	b.eq	0x9130 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1dc>
+    90b8: 7100701f     	cmp	w0, #0x1c
+    90bc: 54000761     	b.ne	0x91a8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x254>
+    90c0: 528000c8     	mov	w8, #0x6
+    90c4: 1400001c     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    90c8: 7100101f     	cmp	w0, #0x4
+    90cc: 540000ec     	b.gt	0x90e8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x194>
+    90d0: 2a0003e8     	mov	w8, w0
+    90d4: 34000300     	cbz	w0, 0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    90d8: 7100101f     	cmp	w0, #0x4
+    90dc: 54000661     	b.ne	0x91a8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x254>
+    90e0: 52800028     	mov	w8, #0x1
+    90e4: 14000014     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    90e8: 7100141f     	cmp	w0, #0x5
+    90ec: 54000160     	b.eq	0x9118 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1c4>
+    90f0: 7100301f     	cmp	w0, #0xc
+    90f4: 540005a1     	b.ne	0x91a8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x254>
+    90f8: 528000a8     	mov	w8, #0x5
+    90fc: 1400000e     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    9100: 7100501f     	cmp	w0, #0x14
+    9104: 540000e0     	b.eq	0x9120 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1cc>
+    9108: 71005c1f     	cmp	w0, #0x17
+    910c: 540004e1     	b.ne	0x91a8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x254>
+    9110: 52800068     	mov	w8, #0x3
+    9114: 14000008     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    9118: 52800048     	mov	w8, #0x2
+    911c: 14000006     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    9120: 52800108     	mov	w8, #0x8
+    9124: 14000004     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    9128: 52800088     	mov	w8, #0x4
+    912c: 14000002     	b	0x9134 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x1e0>
+    9130: 528000e8     	mov	w8, #0x7
+    9134: 294a2aa9     	ldp	w9, w10, [x21, #0x50]
+    9138: 1e380001     	fcvtzs	w1, s0
+    913c: b9405a63     	ldr	w3, [x19, #0x58]
+    9140: b9004268     	str	w8, [x19, #0x40]
+    9144: 1e620121     	scvtf	d1, w9
+    9148: 1e620142     	scvtf	d2, w10
+    914c: 1e621821     	fdiv	d1, d1, d2
+    9150: 5e0c0402     	mov	s2, v0.s[1]
+    9154: 1e380042     	fcvtzs	w2, s2
+    9158: 1e624021     	fcvt	s1, d1
+    915c: bd006a61     	str	s1, [x19, #0x68]
+    9160: 94002704     	bl	0x12d70 <av_image_get_buffer_size@plt>
+    9164: f9400a68     	ldr	x8, [x19, #0x10]
+    9168: f9405262     	ldr	x2, [x19, #0xa0]
+    916c: 2a1f03e3     	mov	w3, wzr
+    9170: b9005e60     	str	w0, [x19, #0x5c]
+    9174: aa1403e0     	mov	x0, x20
+    9178: b9402101     	ldr	w1, [x8, #0x20]
+    917c: 94002701     	bl	0x12d80 <av_dump_format@plt>
+    9180: a9412668     	ldp	x8, x9, [x19, #0x10]
+    9184: aa1f03e2     	mov	x2, xzr
+    9188: f9400900     	ldr	x0, [x8, #0x10]
+    918c: f9400d21     	ldr	x1, [x9, #0x18]
+    9190: 94002700     	bl	0x12d90 <avcodec_open2@plt>
+    9194: 2a0003e8     	mov	w8, w0
+    9198: 2a1f03e0     	mov	w0, wzr
+    919c: 36fff168     	tbz	w8, #0x1f, 0x8fc8 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x74>
+    91a0: f9400a68     	ldr	x8, [x19, #0x10]
+    91a4: 17ffff79     	b	0x8f88 <_ZN13FormatConvert18VideoFormatTranser18_InputMediaInitialEv+0x34>
+    91a8: 2a1f03e0     	mov	w0, wzr
+    91ac: 94002695     	bl	0x12c00 <exit@plt>
+
+00000000000091b0 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv>:
+    91b0: d10143ff     	sub	sp, sp, #0x50
+    91b4: a9017bfd     	stp	x29, x30, [sp, #0x10]
+    91b8: a9025ff8     	stp	x24, x23, [sp, #0x20]
+    91bc: a90357f6     	stp	x22, x21, [sp, #0x30]
+    91c0: a9044ff4     	stp	x20, x19, [sp, #0x40]
+    91c4: 910043fd     	add	x29, sp, #0x10
+    91c8: d53bd058     	mrs	x24, TPIDR_EL0
+    91cc: aa0003f3     	mov	x19, x0
+    91d0: f9401708     	ldr	x8, [x24, #0x28]
+    91d4: f90007e8     	str	x8, [sp, #0x8]
+    91d8: bd407400     	ldr	s0, [x0, #0x74]
+    91dc: 1e202008     	fcmp	s0, #0.0
+    91e0: 54000249     	b.ls	0x9228 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x78>
+    91e4: bd407a61     	ldr	s1, [x19, #0x78]
+    91e8: 1e202028     	fcmp	s1, #0.0
+    91ec: 540001e9     	b.ls	0x9228 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x78>
+    91f0: f9404a68     	ldr	x8, [x19, #0x90]
+    91f4: f10fa11f     	cmp	x8, #0x3e8
+    91f8: 5400022d     	b.le	0x923c <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x8c>
+    91fc: bd409a62     	ldr	s2, [x19, #0x98]
+    9200: 1e202048     	fcmp	s2, #0.0
+    9204: 54000269     	b.ls	0x9250 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0xa0>
+    9208: b9407268     	ldr	w8, [x19, #0x70]
+    920c: 3100051f     	cmn	w8, #0x1
+    9210: 540002a0     	b.eq	0x9264 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0xb4>
+    9214: 52800089     	mov	w9, #0x4
+    9218: 7100251f     	cmp	w8, #0x9
+    921c: b9008a69     	str	w9, [x19, #0x88]
+    9220: 540002e3     	b.lo	0x927c <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0xcc>
+    9224: 14000105     	b	0x9638 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x488>
+    9228: 2d488660     	ldp	s0, s1, [x19, #0x44]
+    922c: 2d0e8660     	stp	s0, s1, [x19, #0x74]
+    9230: f9404a68     	ldr	x8, [x19, #0x90]
+    9234: f10fa11f     	cmp	x8, #0x3e8
+    9238: 54fffe2c     	b.gt	0x91fc <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x4c>
+    923c: f9403268     	ldr	x8, [x19, #0x60]
+    9240: f9004a68     	str	x8, [x19, #0x90]
+    9244: bd409a62     	ldr	s2, [x19, #0x98]
+    9248: 1e202048     	fcmp	s2, #0.0
+    924c: 54fffde8     	b.hi	0x9208 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x58>
+    9250: bd406a62     	ldr	s2, [x19, #0x68]
+    9254: bd009a62     	str	s2, [x19, #0x98]
+    9258: b9407268     	ldr	w8, [x19, #0x70]
+    925c: 3100051f     	cmn	w8, #0x1
+    9260: 54fffda1     	b.ne	0x9214 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x64>
+    9264: b9404268     	ldr	w8, [x19, #0x40]
+    9268: b9007268     	str	w8, [x19, #0x70]
+    926c: 52800089     	mov	w9, #0x4
+    9270: 7100251f     	cmp	w8, #0x9
+    9274: b9008a69     	str	w9, [x19, #0x88]
+    9278: 54001e02     	b.hs	0x9638 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x488>
+    927c: 1e380001     	fcvtzs	w1, s0
+    9280: 1e380022     	fcvtzs	w2, s1
+    9284: d503201f     	nop
+    9288: 10fe7637     	adr	x23, #-0x313c
+    928c: 52800083     	mov	w3, #0x4
+    9290: b8685ae0     	ldr	w0, [x23, w8, uxtw #2]
+    9294: 940026b7     	bl	0x12d70 <av_image_get_buffer_size@plt>
+    9298: b9400268     	ldr	w8, [x19]
+    929c: b9008e60     	str	w0, [x19, #0x8c]
+    92a0: 340015a8     	cbz	w8, 0x9554 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x3a4>
+    92a4: f9400e60     	ldr	x0, [x19, #0x18]
+    92a8: f9405663     	ldr	x3, [x19, #0xa8]
+    92ac: aa1f03e1     	mov	x1, xzr
+    92b0: aa1f03e2     	mov	x2, xzr
+    92b4: f90003ff     	str	xzr, [sp]
+    92b8: 940026ba     	bl	0x12da0 <avformat_alloc_output_context2@plt>
+    92bc: 37f81220     	tbnz	w0, #0x1f, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    92c0: f9400e68     	ldr	x8, [x19, #0x18]
+    92c4: f9405661     	ldr	x1, [x19, #0xa8]
+    92c8: 52800042     	mov	w2, #0x2
+    92cc: f9400114     	ldr	x20, [x8]
+    92d0: 91008280     	add	x0, x20, #0x20
+    92d4: 940026b7     	bl	0x12db0 <avio_open@plt>
+    92d8: 37f81140     	tbnz	w0, #0x1f, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    92dc: f9405675     	ldr	x21, [x19, #0xa8]
+    92e0: aa1503e0     	mov	x0, x21
+    92e4: 940026b7     	bl	0x12dc0 <strlen@plt>
+    92e8: aa0003e2     	mov	x2, x0
+    92ec: 9100e280     	add	x0, x20, #0x38
+    92f0: aa1503e1     	mov	x1, x21
+    92f4: 52808003     	mov	w3, #0x400
+    92f8: 940026b6     	bl	0x12dd0 <__strncpy_chk@plt>
+    92fc: 90ffffe0     	adrp	x0, 0x5000
+    9300: 912ec000     	add	x0, x0, #0xbb0
+    9304: 940026b7     	bl	0x12de0 <avcodec_find_encoder_by_name@plt>
+    9308: f9400e68     	ldr	x8, [x19, #0x18]
+    930c: f9000d00     	str	x0, [x8, #0x18]
+    9310: b4000f80     	cbz	x0, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    9314: aa0003e1     	mov	x1, x0
+    9318: f9400100     	ldr	x0, [x8]
+    931c: 940026b5     	bl	0x12df0 <avformat_new_stream@plt>
+    9320: b4000f00     	cbz	x0, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    9324: 90ffffe8     	adrp	x8, 0x5000
+    9328: f9400e69     	ldr	x9, [x19, #0x18]
+    932c: aa0003f5     	mov	x21, x0
+    9330: fd42ed00     	ldr	d0, [x8, #0x5d8]
+    9334: b9400008     	ldr	w8, [x0]
+    9338: f9000520     	str	x0, [x9, #0x8]
+    933c: fd000c00     	str	d0, [x0, #0x18]
+    9340: f9400d20     	ldr	x0, [x9, #0x18]
+    9344: b9002128     	str	w8, [x9, #0x20]
+    9348: 9400267a     	bl	0x12d30 <avcodec_alloc_context3@plt>
+    934c: f9400e68     	ldr	x8, [x19, #0x18]
+    9350: f9000900     	str	x0, [x8, #0x10]
+    9354: b4000d60     	cbz	x0, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    9358: bd407660     	ldr	s0, [x19, #0x74]
+    935c: aa0003f6     	mov	x22, x0
+    9360: 1e214001     	fneg	s1, s0
+    9364: 1e202008     	fcmp	s0, #0.0
+    9368: 1e204c20     	fcsel	s0, s1, s0, mi
+    936c: 1e380009     	fcvtzs	w9, s0
+    9370: b9007409     	str	w9, [x0, #0x74]
+    9374: bd407a60     	ldr	s0, [x19, #0x78]
+    9378: 1e214001     	fneg	s1, s0
+    937c: 1e202008     	fcmp	s0, #0.0
+    9380: 1e204c20     	fcsel	s0, s1, s0, mi
+    9384: 1e380009     	fcvtzs	w9, s0
+    9388: b9007809     	str	w9, [x0, #0x78]
+    938c: b9407269     	ldr	w9, [x19, #0x70]
+    9390: 7100253f     	cmp	w9, #0x9
+    9394: 54001522     	b.hs	0x9638 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x488>
+    9398: 52a88f4a     	mov	w10, #0x447a0000
+    939c: bd409a60     	ldr	s0, [x19, #0x98]
+    93a0: b8697ae9     	ldr	w9, [x23, x9, lsl #2]
+    93a4: 1e270141     	fmov	s1, w10
+    93a8: f9400d08     	ldr	x8, [x8, #0x18]
+    93ac: 5280078a     	mov	w10, #0x3c
+    93b0: 52801f4b     	mov	w11, #0xfa
+    93b4: b90162ca     	str	w10, [x22, #0x160]
+    93b8: b940110a     	ldr	w10, [x8, #0x10]
+    93bc: 2910a6cb     	stp	w11, w9, [x22, #0x84]
+    93c0: 52807d09     	mov	w9, #0x3e8
+    93c4: 1e210800     	fmul	s0, s0, s1
+    93c8: b9036ac9     	str	w9, [x22, #0x368]
+    93cc: b9401508     	ldr	w8, [x8, #0x14]
+    93d0: b90066c9     	str	w9, [x22, #0x64]
+    93d4: f9404a69     	ldr	x9, [x19, #0x90]
+    93d8: b9000eca     	str	w10, [x22, #0xc]
+    93dc: f9400a8a     	ldr	x10, [x20, #0x10]
+    93e0: b9001ac8     	str	w8, [x22, #0x18]
+    93e4: 1e38000c     	fcvtzs	w12, s0
+    93e8: f9001ec9     	str	x9, [x22, #0x38]
+    93ec: b9036ecc     	str	w12, [x22, #0x36c]
+    93f0: b9006acc     	str	w12, [x22, #0x68]
+    93f4: 3940b149     	ldrb	w9, [x10, #0x2c]
+    93f8: 36300089     	tbz	w9, #0x6, 0x9408 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x258>
+    93fc: b9404ec9     	ldr	w9, [x22, #0x4c]
+    9400: 320a0129     	orr	w9, w9, #0x400000
+    9404: b9004ec9     	str	w9, [x22, #0x4c]
+    9408: 71006d1f     	cmp	w8, #0x1b
+    940c: 540002c1     	b.ne	0x9464 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x2b4>
+    9410: f94012c0     	ldr	x0, [x22, #0x20]
+    9414: 90ffffe1     	adrp	x1, 0x5000
+    9418: 911b7421     	add	x1, x1, #0x6dd
+    941c: 90ffffe2     	adrp	x2, 0x5000
+    9420: 91266c42     	add	x2, x2, #0x99b
+    9424: 2a1f03e3     	mov	w3, wzr
+    9428: 94002676     	bl	0x12e00 <av_opt_set@plt>
+    942c: f94012c0     	ldr	x0, [x22, #0x20]
+    9430: 90ffffe1     	adrp	x1, 0x5000
+    9434: 911a3c21     	add	x1, x1, #0x68f
+    9438: 90ffffe2     	adrp	x2, 0x5000
+    943c: 913aac42     	add	x2, x2, #0xeab
+    9440: 2a1f03e3     	mov	w3, wzr
+    9444: 9400266f     	bl	0x12e00 <av_opt_set@plt>
+    9448: f94012c0     	ldr	x0, [x22, #0x20]
+    944c: 90ffffe1     	adrp	x1, 0x5000
+    9450: 912b1c21     	add	x1, x1, #0xac7
+    9454: 90ffffe2     	adrp	x2, 0x5000
+    9458: 9118e042     	add	x2, x2, #0x638
+    945c: 2a1f03e3     	mov	w3, wzr
+    9460: 94002668     	bl	0x12e00 <av_opt_set@plt>
+    9464: 90ffffe1     	adrp	x1, 0x5000
+    9468: 91207421     	add	x1, x1, #0x81d
+    946c: 90ffffe2     	adrp	x2, 0x5000
+    9470: 91191042     	add	x2, x2, #0x644
+    9474: 910003e0     	mov	x0, sp
+    9478: 2a1f03e3     	mov	w3, wzr
+    947c: 94002665     	bl	0x12e10 <av_dict_set@plt>
+    9480: f9400e68     	ldr	x8, [x19, #0x18]
+    9484: 910003e2     	mov	x2, sp
+    9488: aa1603e0     	mov	x0, x22
+    948c: f9400d01     	ldr	x1, [x8, #0x18]
+    9490: 94002640     	bl	0x12d90 <avcodec_open2@plt>
+    9494: 2a0003f7     	mov	w23, w0
+    9498: 910003e0     	mov	x0, sp
+    949c: 94002661     	bl	0x12e20 <av_dict_free@plt>
+    94a0: 37f80317     	tbnz	w23, #0x1f, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    94a4: f9406aa0     	ldr	x0, [x21, #0xd0]
+    94a8: aa1603e1     	mov	x1, x22
+    94ac: 94002661     	bl	0x12e30 <avcodec_parameters_from_context@plt>
+    94b0: 37f80280     	tbnz	w0, #0x1f, 0x9500 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x350>
+    94b4: f9406aa8     	ldr	x8, [x21, #0xd0]
+    94b8: fd401d00     	ldr	d0, [x8, #0x38]
+    94bc: b9401d00     	ldr	w0, [x8, #0x1c]
+    94c0: f9401109     	ldr	x9, [x8, #0x20]
+    94c4: 0e21d800     	scvtf	v0.2s, v0.2s
+    94c8: 71004c1f     	cmp	w0, #0x13
+    94cc: f9004a69     	str	x9, [x19, #0x90]
+    94d0: fc074260     	stur	d0, [x19, #0x74]
+    94d4: 5400056d     	b.le	0x9580 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x3d0>
+    94d8: 71005c1f     	cmp	w0, #0x17
+    94dc: 540006ed     	b.le	0x95b8 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x408>
+    94e0: 7100601f     	cmp	w0, #0x18
+    94e4: 540007e0     	b.eq	0x95e0 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x430>
+    94e8: 7100681f     	cmp	w0, #0x1a
+    94ec: 540007e0     	b.eq	0x95e8 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x438>
+    94f0: 7100701f     	cmp	w0, #0x1c
+    94f4: 54000a21     	b.ne	0x9638 <_ZN13FormatConvert18VideoFormatTranser19_OutputMediaInitialEv+0x488>
+    94f8: 528000c8     	mov	w8, #0x6

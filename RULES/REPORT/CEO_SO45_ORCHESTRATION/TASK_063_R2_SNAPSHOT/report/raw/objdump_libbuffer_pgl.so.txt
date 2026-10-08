@@ -1,0 +1,670 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so
+TOTAL_SAMPLED: 666
+ARITHMETIC_COUNT: 0
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libbuffer_pgl.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000000fec <.text>:
+     fec: b0000020     	adrp	x0, 0x5000 <mremap@plt+0x36c0>
+     ff0: 91254000     	add	x0, x0, #0x950
+     ff4: 14000213     	b	0x1840 <__cxa_finalize@plt>
+     ff8: d65f03c0     	ret
+     ffc: 17ffffff     	b	0xff8 <.text+0xc>
+    1000: b4000040     	cbz	x0, 0x1008 <.text+0x1c>
+    1004: d61f0000     	br	x0
+    1008: d65f03c0     	ret
+    100c: 90000008     	adrp	x8, 0x1000 <.text+0x14>
+    1010: 91000108     	add	x8, x8, #0x0
+    1014: 90000022     	adrp	x2, 0x5000 <mremap@plt+0x36c0>
+    1018: 91254042     	add	x2, x2, #0x950
+    101c: aa0003e1     	mov	x1, x0
+    1020: aa0803e0     	mov	x0, x8
+    1024: 1400020b     	b	0x1850 <__cxa_atexit@plt>
+
+0000000000001028 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate>:
+    1028: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+    102c: f9000bf7     	str	x23, [sp, #0x10]
+    1030: a90257f6     	stp	x22, x21, [sp, #0x20]
+    1034: a9034ff4     	stp	x20, x19, [sp, #0x30]
+    1038: 910003fd     	mov	x29, sp
+    103c: f9400008     	ldr	x8, [x0]
+    1040: aa0203f7     	mov	x23, x2
+    1044: aa0203e1     	mov	x1, x2
+    1048: aa1f03e2     	mov	x2, xzr
+    104c: f942a508     	ldr	x8, [x8, #0x548]
+    1050: aa0303f5     	mov	x21, x3
+    1054: aa0003f3     	mov	x19, x0
+    1058: d63f0100     	blr	x8
+    105c: 52800841     	mov	w1, #0x42
+    1060: 72a00101     	movk	w1, #0x8, lsl #16
+    1064: 528036c2     	mov	w2, #0x1b6
+    1068: aa0003f4     	mov	x20, x0
+    106c: 940001fd     	bl	0x1860 <open@plt>
+    1070: f9400268     	ldr	x8, [x19]
+    1074: 2a0003f6     	mov	w22, w0
+    1078: aa1303e0     	mov	x0, x19
+    107c: aa1703e1     	mov	x1, x23
+    1080: f942a908     	ldr	x8, [x8, #0x550]
+    1084: aa1403e2     	mov	x2, x20
+    1088: d63f0100     	blr	x8
+    108c: 37f80416     	tbnz	w22, #0x1f, 0x110c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xe4>
+    1090: 52800042     	mov	w2, #0x2
+    1094: 2a1603e0     	mov	w0, w22
+    1098: aa1f03e1     	mov	x1, xzr
+    109c: 940001f5     	bl	0x1870 <lseek@plt>
+    10a0: b100041f     	cmn	x0, #0x1
+    10a4: 54000300     	b.eq	0x1104 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xdc>
+    10a8: f100041f     	cmp	x0, #0x1
+    10ac: 5400024b     	b.lt	0x10f4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xcc>
+    10b0: eb15001f     	cmp	x0, x21
+    10b4: 54000200     	b.eq	0x10f4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xcc>
+    10b8: 2a1603e0     	mov	w0, w22
+    10bc: 940001f1     	bl	0x1880 <close@plt>
+    10c0: f9400268     	ldr	x8, [x19]
+    10c4: f0ffffe1     	adrp	x1, 0x0
+    10c8: 9135b421     	add	x1, x1, #0xd6d
+    10cc: aa1303e0     	mov	x0, x19
+    10d0: f9401908     	ldr	x8, [x8, #0x30]
+    10d4: d63f0100     	blr	x8
+    10d8: f9400268     	ldr	x8, [x19]
+    10dc: f0ffffe2     	adrp	x2, 0x0
+    10e0: aa0003e1     	mov	x1, x0
+    10e4: 91355042     	add	x2, x2, #0xd54
+    10e8: f9403908     	ldr	x8, [x8, #0x70]
+    10ec: aa1303e0     	mov	x0, x19
+    10f0: 14000016     	b	0x1148 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x120>
+    10f4: 2a1603e0     	mov	w0, w22
+    10f8: aa1503e1     	mov	x1, x21
+    10fc: 940001e5     	bl	0x1890 <ftruncate@plt>
+    1100: 34000340     	cbz	w0, 0x1168 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x140>
+    1104: 2a1603e0     	mov	w0, w22
+    1108: 940001de     	bl	0x1880 <close@plt>
+    110c: f9400268     	ldr	x8, [x19]
+    1110: f0ffffe1     	adrp	x1, 0x0
+    1114: 9135b421     	add	x1, x1, #0xd6d
+    1118: aa1303e0     	mov	x0, x19
+    111c: f9401908     	ldr	x8, [x8, #0x30]
+    1120: d63f0100     	blr	x8
+    1124: aa0003f4     	mov	x20, x0
+    1128: 940001de     	bl	0x18a0 <__errno@plt>
+    112c: b9400000     	ldr	w0, [x0]
+    1130: 940001e0     	bl	0x18b0 <strerror@plt>
+    1134: f9400268     	ldr	x8, [x19]
+    1138: aa0003e2     	mov	x2, x0
+    113c: aa1303e0     	mov	x0, x19
+    1140: aa1403e1     	mov	x1, x20
+    1144: f9403908     	ldr	x8, [x8, #0x70]
+    1148: d63f0100     	blr	x8
+    114c: aa1f03f5     	mov	x21, xzr
+    1150: aa1503e0     	mov	x0, x21
+    1154: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    1158: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    115c: f9400bf7     	ldr	x23, [sp, #0x10]
+    1160: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+    1164: d65f03c0     	ret
+    1168: 52800062     	mov	w2, #0x3
+    116c: 52800023     	mov	w3, #0x1
+    1170: aa1f03e0     	mov	x0, xzr
+    1174: aa1503e1     	mov	x1, x21
+    1178: 2a1603e4     	mov	w4, w22
+    117c: aa1f03e5     	mov	x5, xzr
+    1180: 940001d0     	bl	0x18c0 <mmap@plt>
+    1184: aa0003f5     	mov	x21, x0
+    1188: 2a1603e0     	mov	w0, w22
+    118c: 940001bd     	bl	0x1880 <close@plt>
+    1190: b10006bf     	cmn	x21, #0x1
+    1194: 54fffde1     	b.ne	0x1150 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0x128>
+    1198: f0ffffe1     	adrp	x1, 0x0
+    119c: f0ffffe2     	adrp	x2, 0x0
+    11a0: 91360421     	add	x1, x1, #0xd81
+    11a4: 9134bc42     	add	x2, x2, #0xd2f
+    11a8: 52800060     	mov	w0, #0x3
+    11ac: aa1403e3     	mov	x3, x20
+    11b0: 940001c8     	bl	0x18d0 <__android_log_print@plt>
+    11b4: f9400268     	ldr	x8, [x19]
+    11b8: f0ffffe1     	adrp	x1, 0x0
+    11bc: 9135b421     	add	x1, x1, #0xd6d
+    11c0: aa1303e0     	mov	x0, x19
+    11c4: f9401908     	ldr	x8, [x8, #0x30]
+    11c8: d63f0100     	blr	x8
+    11cc: f9400268     	ldr	x8, [x19]
+    11d0: f0ffffe2     	adrp	x2, 0x0
+    11d4: aa0003e1     	mov	x1, x0
+    11d8: 91346042     	add	x2, x2, #0xd18
+    11dc: 17ffffc3     	b	0x10e8 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nCreate+0xc0>
+
+00000000000011e0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nWrite>:
+    11e0: f9400008     	ldr	x8, [x0]
+    11e4: aa0403e1     	mov	x1, x4
+    11e8: f9432107     	ldr	x7, [x8, #0x640]
+    11ec: 8b030048     	add	x8, x2, x3
+    11f0: 2a0503e2     	mov	w2, w5
+    11f4: 2a0603e3     	mov	w3, w6
+    11f8: aa0803e4     	mov	x4, x8
+    11fc: d61f00e0     	br	x7
+
+0000000000001200 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRelease>:
+    1200: aa0303e1     	mov	x1, x3
+    1204: aa0203e0     	mov	x0, x2
+    1208: 140001b6     	b	0x18e0 <munmap@plt>
+
+000000000000120c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nRead>:
+    120c: f9400008     	ldr	x8, [x0]
+    1210: aa0403e1     	mov	x1, x4
+    1214: f9434107     	ldr	x7, [x8, #0x680]
+    1218: 8b030048     	add	x8, x2, x3
+    121c: 2a0503e2     	mov	w2, w5
+    1220: 2a0603e3     	mov	w3, w6
+    1224: aa0803e4     	mov	x4, x8
+    1228: d61f00e0     	br	x7
+
+000000000000122c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nFlush>:
+    122c: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+    1230: f9000bf5     	str	x21, [sp, #0x10]
+    1234: a9024ff4     	stp	x20, x19, [sp, #0x20]
+    1238: 910003fd     	mov	x29, sp
+    123c: aa0203e8     	mov	x8, x2
+    1240: aa0303e1     	mov	x1, x3
+    1244: aa0003f3     	mov	x19, x0
+    1248: 52800082     	mov	w2, #0x4
+    124c: aa0803e0     	mov	x0, x8
+    1250: 940001a8     	bl	0x18f0 <msync@plt>
+    1254: 2a0003f4     	mov	w20, w0
+    1258: 34000220     	cbz	w0, 0x129c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MMapBuffer_nFlush+0x70>
+    125c: f9400268     	ldr	x8, [x19]
+    1260: f0ffffe1     	adrp	x1, 0x0
+    1264: 9135b421     	add	x1, x1, #0xd6d
+    1268: aa1303e0     	mov	x0, x19
+    126c: f9401908     	ldr	x8, [x8, #0x30]
+    1270: d63f0100     	blr	x8
+    1274: aa0003f5     	mov	x21, x0
+    1278: 9400018a     	bl	0x18a0 <__errno@plt>
+    127c: b9400000     	ldr	w0, [x0]
+    1280: 9400018c     	bl	0x18b0 <strerror@plt>
+    1284: f9400268     	ldr	x8, [x19]
+    1288: aa0003e2     	mov	x2, x0
+    128c: aa1303e0     	mov	x0, x19
+    1290: aa1503e1     	mov	x1, x21
+    1294: f9403908     	ldr	x8, [x8, #0x70]
+    1298: d63f0100     	blr	x8
+    129c: 2a1403e0     	mov	w0, w20
+    12a0: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    12a4: f9400bf5     	ldr	x21, [sp, #0x10]
+    12a8: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    12ac: d65f03c0     	ret
+
+00000000000012b0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate>:
+    12b0: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+    12b4: f9000bf7     	str	x23, [sp, #0x10]
+    12b8: a90257f6     	stp	x22, x21, [sp, #0x20]
+    12bc: a9034ff4     	stp	x20, x19, [sp, #0x30]
+    12c0: 910003fd     	mov	x29, sp
+    12c4: f9400008     	ldr	x8, [x0]
+    12c8: aa0003f3     	mov	x19, x0
+    12cc: b7f805a3     	tbnz	x3, #0x3f, 0x1380 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0xd0>
+    12d0: f942a508     	ldr	x8, [x8, #0x548]
+    12d4: aa0203f6     	mov	x22, x2
+    12d8: aa1303e0     	mov	x0, x19
+    12dc: aa0203e1     	mov	x1, x2
+    12e0: aa1f03e2     	mov	x2, xzr
+    12e4: aa0303f5     	mov	x21, x3
+    12e8: d63f0100     	blr	x8
+    12ec: 52800841     	mov	w1, #0x42
+    12f0: 72a00101     	movk	w1, #0x8, lsl #16
+    12f4: 528036c2     	mov	w2, #0x1b6
+    12f8: aa0003f7     	mov	x23, x0
+    12fc: 94000159     	bl	0x1860 <open@plt>
+    1300: f9400268     	ldr	x8, [x19]
+    1304: 2a0003f4     	mov	w20, w0
+    1308: aa1303e0     	mov	x0, x19
+    130c: aa1603e1     	mov	x1, x22
+    1310: f942a908     	ldr	x8, [x8, #0x550]
+    1314: aa1703e2     	mov	x2, x23
+    1318: d63f0100     	blr	x8
+    131c: 37f80574     	tbnz	w20, #0x1f, 0x13c8 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x118>
+    1320: 52800042     	mov	w2, #0x2
+    1324: 2a1403e0     	mov	w0, w20
+    1328: aa1f03e1     	mov	x1, xzr
+    132c: 94000151     	bl	0x1870 <lseek@plt>
+    1330: b100041f     	cmn	x0, #0x1
+    1334: 54000460     	b.eq	0x13c0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x110>
+    1338: aa0003f6     	mov	x22, x0
+    133c: f100041f     	cmp	x0, #0x1
+    1340: 5400038b     	b.lt	0x13b0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x100>
+    1344: eb1502df     	cmp	x22, x21
+    1348: 54000340     	b.eq	0x13b0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x100>
+    134c: 2a1403e0     	mov	w0, w20
+    1350: 9400014c     	bl	0x1880 <close@plt>
+    1354: f9400268     	ldr	x8, [x19]
+    1358: f0ffffe1     	adrp	x1, 0x0
+    135c: 9135b421     	add	x1, x1, #0xd6d
+    1360: aa1303e0     	mov	x0, x19
+    1364: f9401908     	ldr	x8, [x8, #0x30]
+    1368: d63f0100     	blr	x8
+    136c: f9400268     	ldr	x8, [x19]
+    1370: f0ffffe2     	adrp	x2, 0x0
+    1374: aa0003e1     	mov	x1, x0
+    1378: 9136c842     	add	x2, x2, #0xdb2
+    137c: 1400000a     	b	0x13a4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0xf4>
+    1380: f9401908     	ldr	x8, [x8, #0x30]
+    1384: f0ffffe1     	adrp	x1, 0x0
+    1388: 9135b421     	add	x1, x1, #0xd6d
+    138c: aa1303e0     	mov	x0, x19
+    1390: d63f0100     	blr	x8
+    1394: f9400268     	ldr	x8, [x19]
+    1398: f0ffffe2     	adrp	x2, 0x0
+    139c: aa0003e1     	mov	x1, x0
+    13a0: 91368c42     	add	x2, x2, #0xda3
+    13a4: f9403908     	ldr	x8, [x8, #0x70]
+    13a8: aa1303e0     	mov	x0, x19
+    13ac: 14000016     	b	0x1404 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x154>
+    13b0: 2a1403e0     	mov	w0, w20
+    13b4: aa1503e1     	mov	x1, x21
+    13b8: 94000136     	bl	0x1890 <ftruncate@plt>
+    13bc: 34000340     	cbz	w0, 0x1424 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x174>
+    13c0: 2a1403e0     	mov	w0, w20
+    13c4: 9400012f     	bl	0x1880 <close@plt>
+    13c8: f9400268     	ldr	x8, [x19]
+    13cc: f0ffffe1     	adrp	x1, 0x0
+    13d0: 9135b421     	add	x1, x1, #0xd6d
+    13d4: aa1303e0     	mov	x0, x19
+    13d8: f9401908     	ldr	x8, [x8, #0x30]
+    13dc: d63f0100     	blr	x8
+    13e0: aa0003f4     	mov	x20, x0
+    13e4: 9400012f     	bl	0x18a0 <__errno@plt>
+    13e8: b9400000     	ldr	w0, [x0]
+    13ec: 94000131     	bl	0x18b0 <strerror@plt>
+    13f0: f9400268     	ldr	x8, [x19]
+    13f4: aa0003e2     	mov	x2, x0
+    13f8: aa1303e0     	mov	x0, x19
+    13fc: aa1403e1     	mov	x1, x20
+    1400: f9403908     	ldr	x8, [x8, #0x70]
+    1404: d63f0100     	blr	x8
+    1408: aa1f03f5     	mov	x21, xzr
+    140c: aa1503e0     	mov	x0, x21
+    1410: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    1414: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    1418: f9400bf7     	ldr	x23, [sp, #0x10]
+    141c: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+    1420: d65f03c0     	ret
+    1424: 2a1403e0     	mov	w0, w20
+    1428: aa1f03e1     	mov	x1, xzr
+    142c: 2a1f03e2     	mov	w2, wzr
+    1430: 94000110     	bl	0x1870 <lseek@plt>
+    1434: b40001c0     	cbz	x0, 0x146c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x1bc>
+    1438: 2a1403e0     	mov	w0, w20
+    143c: 94000111     	bl	0x1880 <close@plt>
+    1440: f9400268     	ldr	x8, [x19]
+    1444: f0ffffe1     	adrp	x1, 0x0
+    1448: 9135b421     	add	x1, x1, #0xd6d
+    144c: aa1303e0     	mov	x0, x19
+    1450: f9401908     	ldr	x8, [x8, #0x30]
+    1454: d63f0100     	blr	x8
+    1458: f9400268     	ldr	x8, [x19]
+    145c: f0ffffe2     	adrp	x2, 0x0
+    1460: aa0003e1     	mov	x1, x0
+    1464: 91348c42     	add	x2, x2, #0xd23
+    1468: 17ffffcf     	b	0x13a4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0xf4>
+    146c: 52800020     	mov	w0, #0x1
+    1470: aa1503e1     	mov	x1, x21
+    1474: 94000123     	bl	0x1900 <calloc@plt>
+    1478: aa0003f5     	mov	x21, x0
+    147c: b40004a0     	cbz	x0, 0x1510 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x260>
+    1480: b4000276     	cbz	x22, 0x14cc <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x21c>
+    1484: aa1503f7     	mov	x23, x21
+    1488: 14000006     	b	0x14a0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x1f0>
+    148c: 94000105     	bl	0x18a0 <__errno@plt>
+    1490: b9400008     	ldr	w8, [x0]
+    1494: 7100111f     	cmp	w8, #0x4
+    1498: 540005c1     	b.ne	0x1550 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x2a0>
+    149c: b4000196     	cbz	x22, 0x14cc <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x21c>
+    14a0: 92800003     	mov	x3, #-0x1
+    14a4: 2a1403e0     	mov	w0, w20
+    14a8: aa1703e1     	mov	x1, x23
+    14ac: aa1603e2     	mov	x2, x22
+    14b0: 94000118     	bl	0x1910 <__read_chk@plt>
+    14b4: b100041f     	cmn	x0, #0x1
+    14b8: 54fffea0     	b.eq	0x148c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x1dc>
+    14bc: b40004a0     	cbz	x0, 0x1550 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x2a0>
+    14c0: cb0002d6     	sub	x22, x22, x0
+    14c4: 8b0002f7     	add	x23, x23, x0
+    14c8: b5fffed6     	cbnz	x22, 0x14a0 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x1f0>
+    14cc: 2a1403e0     	mov	w0, w20
+    14d0: 940000ec     	bl	0x1880 <close@plt>
+    14d4: 3100041f     	cmn	w0, #0x1
+    14d8: 54fff9a1     	b.ne	0x140c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x15c>
+    14dc: aa1503e0     	mov	x0, x21
+    14e0: 94000110     	bl	0x1920 <free@plt>
+    14e4: f9400268     	ldr	x8, [x19]
+    14e8: f0ffffe1     	adrp	x1, 0x0
+    14ec: 9135b421     	add	x1, x1, #0xd6d
+    14f0: aa1303e0     	mov	x0, x19
+    14f4: f9401908     	ldr	x8, [x8, #0x30]
+    14f8: d63f0100     	blr	x8
+    14fc: f9400268     	ldr	x8, [x19]
+    1500: f0ffffe2     	adrp	x2, 0x0
+    1504: aa0003e1     	mov	x1, x0
+    1508: 91362042     	add	x2, x2, #0xd88
+    150c: 17ffffa6     	b	0x13a4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0xf4>
+    1510: 2a1403e0     	mov	w0, w20
+    1514: 940000db     	bl	0x1880 <close@plt>
+    1518: f9400268     	ldr	x8, [x19]
+    151c: f0ffffe1     	adrp	x1, 0x0
+    1520: 9135b421     	add	x1, x1, #0xd6d
+    1524: aa1303e0     	mov	x0, x19
+    1528: f9401908     	ldr	x8, [x8, #0x30]
+    152c: d63f0100     	blr	x8
+    1530: f9400268     	ldr	x8, [x19]
+    1534: f0ffffe2     	adrp	x2, 0x0
+    1538: aa0003e1     	mov	x1, x0
+    153c: 9134fc42     	add	x2, x2, #0xd3f
+    1540: f9403908     	ldr	x8, [x8, #0x70]
+    1544: aa1303e0     	mov	x0, x19
+    1548: d63f0100     	blr	x8
+    154c: 17ffffb0     	b	0x140c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x15c>
+    1550: 2a1403e0     	mov	w0, w20
+    1554: 940000cb     	bl	0x1880 <close@plt>
+    1558: b4fffbf6     	cbz	x22, 0x14d4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0x224>
+    155c: aa1503e0     	mov	x0, x21
+    1560: 940000f0     	bl	0x1920 <free@plt>
+    1564: f9400268     	ldr	x8, [x19]
+    1568: f0ffffe1     	adrp	x1, 0x0
+    156c: 9135b421     	add	x1, x1, #0xd6d
+    1570: aa1303e0     	mov	x0, x19
+    1574: f9401908     	ldr	x8, [x8, #0x30]
+    1578: d63f0100     	blr	x8
+    157c: f9400268     	ldr	x8, [x19]
+    1580: f0ffffe2     	adrp	x2, 0x0
+    1584: aa0003e1     	mov	x1, x0
+    1588: 91374042     	add	x2, x2, #0xdd0
+    158c: 17ffff86     	b	0x13a4 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nCreate+0xf4>
+
+0000000000001590 <_Z8readFulliPal>:
+    1590: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+    1594: a90157f6     	stp	x22, x21, [sp, #0x10]
+    1598: a9024ff4     	stp	x20, x19, [sp, #0x20]
+    159c: 910003fd     	mov	x29, sp
+    15a0: aa0203f3     	mov	x19, x2
+    15a4: b40002c2     	cbz	x2, 0x15fc <_Z8readFulliPal+0x6c>
+    15a8: aa0103f5     	mov	x21, x1
+    15ac: 2a0003f6     	mov	w22, w0
+    15b0: aa1303f4     	mov	x20, x19
+    15b4: 14000006     	b	0x15cc <_Z8readFulliPal+0x3c>
+    15b8: 940000ba     	bl	0x18a0 <__errno@plt>
+    15bc: b9400008     	ldr	w8, [x0]
+    15c0: 7100111f     	cmp	w8, #0x4
+    15c4: 540001e1     	b.ne	0x1600 <_Z8readFulliPal+0x70>
+    15c8: b40001d4     	cbz	x20, 0x1600 <_Z8readFulliPal+0x70>
+    15cc: 92800003     	mov	x3, #-0x1
+    15d0: 2a1603e0     	mov	w0, w22
+    15d4: aa1503e1     	mov	x1, x21
+    15d8: aa1403e2     	mov	x2, x20
+    15dc: 940000cd     	bl	0x1910 <__read_chk@plt>
+    15e0: b100041f     	cmn	x0, #0x1
+    15e4: 54fffea0     	b.eq	0x15b8 <_Z8readFulliPal+0x28>
+    15e8: b40000c0     	cbz	x0, 0x1600 <_Z8readFulliPal+0x70>
+    15ec: cb000294     	sub	x20, x20, x0
+    15f0: 8b0002b5     	add	x21, x21, x0
+    15f4: b5fffed4     	cbnz	x20, 0x15cc <_Z8readFulliPal+0x3c>
+    15f8: 14000002     	b	0x1600 <_Z8readFulliPal+0x70>
+    15fc: aa1f03f4     	mov	x20, xzr
+    1600: cb140260     	sub	x0, x19, x20
+    1604: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+    1608: a94157f6     	ldp	x22, x21, [sp, #0x10]
+    160c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+    1610: d65f03c0     	ret
+
+0000000000001614 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nWrite>:
+    1614: f9400008     	ldr	x8, [x0]
+    1618: aa0403e1     	mov	x1, x4
+    161c: f9432107     	ldr	x7, [x8, #0x640]
+    1620: 8b030048     	add	x8, x2, x3
+    1624: 2a0503e2     	mov	w2, w5
+    1628: 2a0603e3     	mov	w3, w6
+    162c: aa0803e4     	mov	x4, x8
+    1630: d61f00e0     	br	x7
+
+0000000000001634 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nRead>:
+    1634: f9400008     	ldr	x8, [x0]
+    1638: aa0403e1     	mov	x1, x4
+    163c: f9434107     	ldr	x7, [x8, #0x680]
+    1640: 8b030048     	add	x8, x2, x3
+    1644: 2a0503e2     	mov	w2, w5
+    1648: 2a0603e3     	mov	w3, w6
+    164c: aa0803e4     	mov	x4, x8
+    1650: d61f00e0     	br	x7
+
+0000000000001654 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nRelease>:
+    1654: aa0203e0     	mov	x0, x2
+    1658: 140000b2     	b	0x1920 <free@plt>
+
+000000000000165c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nFlush>:
+    165c: a9bc7bfd     	stp	x29, x30, [sp, #-0x40]!
+    1660: a9015ff8     	stp	x24, x23, [sp, #0x10]
+    1664: a90257f6     	stp	x22, x21, [sp, #0x20]
+    1668: a9034ff4     	stp	x20, x19, [sp, #0x30]
+    166c: 910003fd     	mov	x29, sp
+    1670: f9400008     	ldr	x8, [x0]
+    1674: aa0203f5     	mov	x21, x2
+    1678: aa0303e1     	mov	x1, x3
+    167c: aa1f03e2     	mov	x2, xzr
+    1680: f942a508     	ldr	x8, [x8, #0x548]
+    1684: aa0403f4     	mov	x20, x4
+    1688: aa0303f7     	mov	x23, x3
+    168c: aa0003f3     	mov	x19, x0
+    1690: d63f0100     	blr	x8
+    1694: 52804821     	mov	w1, #0x241
+    1698: 72a00101     	movk	w1, #0x8, lsl #16
+    169c: 528036c2     	mov	w2, #0x1b6
+    16a0: aa0003f8     	mov	x24, x0
+    16a4: 9400006f     	bl	0x1860 <open@plt>
+    16a8: f9400268     	ldr	x8, [x19]
+    16ac: 2a0003f6     	mov	w22, w0
+    16b0: aa1303e0     	mov	x0, x19
+    16b4: aa1703e1     	mov	x1, x23
+    16b8: f942a908     	ldr	x8, [x8, #0x550]
+    16bc: aa1803e2     	mov	x2, x24
+    16c0: d63f0100     	blr	x8
+    16c4: 37f80236     	tbnz	w22, #0x1f, 0x1708 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nFlush+0xac>
+    16c8: 2a1603e0     	mov	w0, w22
+    16cc: aa1503e1     	mov	x1, x21
+    16d0: aa1403e2     	mov	x2, x20
+    16d4: 94000097     	bl	0x1930 <write@plt>
+    16d8: aa0003f5     	mov	x21, x0
+    16dc: 2a1603e0     	mov	w0, w22
+    16e0: 94000068     	bl	0x1880 <close@plt>
+    16e4: eb1402bf     	cmp	x21, x20
+    16e8: 54000101     	b.ne	0x1708 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nFlush+0xac>
+    16ec: 3100041f     	cmn	w0, #0x1
+    16f0: 54000340     	b.eq	0x1758 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nFlush+0xfc>
+    16f4: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    16f8: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    16fc: a9415ff8     	ldp	x24, x23, [sp, #0x10]
+    1700: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+    1704: d65f03c0     	ret
+    1708: f9400268     	ldr	x8, [x19]
+    170c: f0ffffe1     	adrp	x1, 0x0
+    1710: 9135b421     	add	x1, x1, #0xd6d
+    1714: aa1303e0     	mov	x0, x19
+    1718: f9401908     	ldr	x8, [x8, #0x30]
+    171c: d63f0100     	blr	x8
+    1720: aa0003f4     	mov	x20, x0
+    1724: 9400005f     	bl	0x18a0 <__errno@plt>
+    1728: b9400000     	ldr	w0, [x0]
+    172c: 94000061     	bl	0x18b0 <strerror@plt>
+    1730: f9400268     	ldr	x8, [x19]
+    1734: aa0003e2     	mov	x2, x0
+    1738: aa1303e0     	mov	x0, x19
+    173c: aa1403e1     	mov	x1, x20
+    1740: f9403903     	ldr	x3, [x8, #0x70]
+    1744: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+    1748: a94257f6     	ldp	x22, x21, [sp, #0x20]
+    174c: a9415ff8     	ldp	x24, x23, [sp, #0x10]
+    1750: a8c47bfd     	ldp	x29, x30, [sp], #0x40
+    1754: d61f0060     	br	x3
+    1758: f9400268     	ldr	x8, [x19]
+    175c: f0ffffe1     	adrp	x1, 0x0
+    1760: 9135b421     	add	x1, x1, #0xd6d
+    1764: aa1303e0     	mov	x0, x19
+    1768: f9401908     	ldr	x8, [x8, #0x30]
+    176c: d63f0100     	blr	x8
+    1770: f9400268     	ldr	x8, [x19]
+    1774: f0ffffe2     	adrp	x2, 0x0
+    1778: 91378442     	add	x2, x2, #0xde1
+    177c: aa0003e1     	mov	x1, x0
+    1780: f9403903     	ldr	x3, [x8, #0x70]
+    1784: aa1303e0     	mov	x0, x19
+    1788: 17ffffef     	b	0x1744 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MemoryBuffer_nFlush+0xe8>
+
+000000000000178c <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MReMapBuffer_nMReMap>:
+    178c: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+    1790: a9014ff4     	stp	x20, x19, [sp, #0x10]
+    1794: 910003fd     	mov	x29, sp
+    1798: aa0303e1     	mov	x1, x3
+    179c: aa0003f3     	mov	x19, x0
+    17a0: 52800023     	mov	w3, #0x1
+    17a4: aa0203e0     	mov	x0, x2
+    17a8: aa0403e2     	mov	x2, x4
+    17ac: 94000065     	bl	0x1940 <mremap@plt>
+    17b0: b100041f     	cmn	x0, #0x1
+    17b4: 540002a1     	b.ne	0x1808 <Java_com_bykv_vk_openvk_preload_geckox_buffer_impl_MReMapBuffer_nMReMap+0x7c>
+    17b8: f0fffff4     	adrp	x20, 0x0
+    17bc: f0ffffe1     	adrp	x1, 0x0
+    17c0: 91365694     	add	x20, x20, #0xd95
+    17c4: 91360421     	add	x1, x1, #0xd81
+    17c8: 52800060     	mov	w0, #0x3
+    17cc: aa1403e2     	mov	x2, x20
+    17d0: 94000040     	bl	0x18d0 <__android_log_print@plt>
+    17d4: f9400268     	ldr	x8, [x19]
+    17d8: f0ffffe1     	adrp	x1, 0x0
+    17dc: 9135b421     	add	x1, x1, #0xd6d
+    17e0: aa1303e0     	mov	x0, x19
+    17e4: f9401908     	ldr	x8, [x8, #0x30]
+    17e8: d63f0100     	blr	x8
+    17ec: f9400268     	ldr	x8, [x19]
+    17f0: aa0003e1     	mov	x1, x0
+    17f4: aa1303e0     	mov	x0, x19
+    17f8: aa1403e2     	mov	x2, x20
+    17fc: f9403908     	ldr	x8, [x8, #0x70]
+    1800: d63f0100     	blr	x8
+    1804: 2a1f03e0     	mov	w0, wzr
+    1808: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+    180c: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+    1810: d65f03c0     	ret
+
+Disassembly of section .plt:
+
+0000000000001820 <.plt>:
+    1820: a9bf7bf0     	stp	x16, x30, [sp, #-0x10]!
+    1824: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1828: f9459611     	ldr	x17, [x16, #0xb28]
+    182c: 912ca210     	add	x16, x16, #0xb28
+    1830: d61f0220     	br	x17
+    1834: d503201f     	nop
+    1838: d503201f     	nop
+    183c: d503201f     	nop
+
+0000000000001840 <__cxa_finalize@plt>:
+    1840: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1844: f9459a11     	ldr	x17, [x16, #0xb30]
+    1848: 912cc210     	add	x16, x16, #0xb30
+    184c: d61f0220     	br	x17
+
+0000000000001850 <__cxa_atexit@plt>:
+    1850: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1854: f9459e11     	ldr	x17, [x16, #0xb38]
+    1858: 912ce210     	add	x16, x16, #0xb38
+    185c: d61f0220     	br	x17
+
+0000000000001860 <open@plt>:
+    1860: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1864: f945a211     	ldr	x17, [x16, #0xb40]
+    1868: 912d0210     	add	x16, x16, #0xb40
+    186c: d61f0220     	br	x17
+
+0000000000001870 <lseek@plt>:
+    1870: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1874: f945a611     	ldr	x17, [x16, #0xb48]
+    1878: 912d2210     	add	x16, x16, #0xb48
+    187c: d61f0220     	br	x17
+
+0000000000001880 <close@plt>:
+    1880: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1884: f945aa11     	ldr	x17, [x16, #0xb50]
+    1888: 912d4210     	add	x16, x16, #0xb50
+    188c: d61f0220     	br	x17
+
+0000000000001890 <ftruncate@plt>:
+    1890: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1894: f945ae11     	ldr	x17, [x16, #0xb58]
+    1898: 912d6210     	add	x16, x16, #0xb58
+    189c: d61f0220     	br	x17
+
+00000000000018a0 <__errno@plt>:
+    18a0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18a4: f945b211     	ldr	x17, [x16, #0xb60]
+    18a8: 912d8210     	add	x16, x16, #0xb60
+    18ac: d61f0220     	br	x17
+
+00000000000018b0 <strerror@plt>:
+    18b0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18b4: f945b611     	ldr	x17, [x16, #0xb68]
+    18b8: 912da210     	add	x16, x16, #0xb68
+    18bc: d61f0220     	br	x17
+
+00000000000018c0 <mmap@plt>:
+    18c0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18c4: f945ba11     	ldr	x17, [x16, #0xb70]
+    18c8: 912dc210     	add	x16, x16, #0xb70
+    18cc: d61f0220     	br	x17
+
+00000000000018d0 <__android_log_print@plt>:
+    18d0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18d4: f945be11     	ldr	x17, [x16, #0xb78]
+    18d8: 912de210     	add	x16, x16, #0xb78
+    18dc: d61f0220     	br	x17
+
+00000000000018e0 <munmap@plt>:
+    18e0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18e4: f945c211     	ldr	x17, [x16, #0xb80]
+    18e8: 912e0210     	add	x16, x16, #0xb80
+    18ec: d61f0220     	br	x17
+
+00000000000018f0 <msync@plt>:
+    18f0: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    18f4: f945c611     	ldr	x17, [x16, #0xb88]
+    18f8: 912e2210     	add	x16, x16, #0xb88
+    18fc: d61f0220     	br	x17
+
+0000000000001900 <calloc@plt>:
+    1900: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1904: f945ca11     	ldr	x17, [x16, #0xb90]
+    1908: 912e4210     	add	x16, x16, #0xb90
+    190c: d61f0220     	br	x17
+
+0000000000001910 <__read_chk@plt>:
+    1910: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1914: f945ce11     	ldr	x17, [x16, #0xb98]
+    1918: 912e6210     	add	x16, x16, #0xb98
+    191c: d61f0220     	br	x17
+
+0000000000001920 <free@plt>:
+    1920: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1924: f945d211     	ldr	x17, [x16, #0xba0]
+    1928: 912e8210     	add	x16, x16, #0xba0
+    192c: d61f0220     	br	x17
+
+0000000000001930 <write@plt>:
+    1930: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1934: f945d611     	ldr	x17, [x16, #0xba8]
+    1938: 912ea210     	add	x16, x16, #0xba8
+    193c: d61f0220     	br	x17
+
+0000000000001940 <mremap@plt>:
+    1940: 90000030     	adrp	x16, 0x5000 <mremap@plt+0x36c0>
+    1944: f945da11     	ldr	x17, [x16, #0xbb0]
+    1948: 912ec210     	add	x16, x16, #0xbb0
+    194c: d61f0220     	br	x17

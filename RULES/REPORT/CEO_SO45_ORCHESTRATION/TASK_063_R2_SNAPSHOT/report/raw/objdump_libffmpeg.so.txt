@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 274
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libffmpeg.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+0000000000211f20 <.text>:
+  211f20: d503245f     	bti	c
+  211f24: b0002680     	adrp	x0, 0x6e2000 <__system_property_get@plt+0x3270>
+  211f28: 91368000     	add	x0, x0, #0xda0
+  211f2c: 1413157d     	b	0x6d7520 <__cxa_finalize@plt>
+  211f30: d503245f     	bti	c
+  211f34: d65f03c0     	ret
+  211f38: d503245f     	bti	c
+  211f3c: 17fffffd     	b	0x211f30 <.text+0x10>
+  211f40: d503245f     	bti	c
+  211f44: b4000060     	cbz	x0, 0x211f50 <.text+0x30>
+  211f48: aa0003f0     	mov	x16, x0
+  211f4c: d61f0200     	br	x16
+  211f50: d65f03c0     	ret
+  211f54: d503245f     	bti	c
+  211f58: aa0003e1     	mov	x1, x0
+  211f5c: d503201f     	nop
+  211f60: 10ffff00     	adr	x0, #-0x20
+  211f64: b0002682     	adrp	x2, 0x6e2000 <__system_property_get@plt+0x3270>
+  211f68: 91368042     	add	x2, x2, #0xda0
+  211f6c: 14131571     	b	0x6d7530 <__cxa_atexit@plt>
+
+0000000000211f70 <avpriv_strtod>:
+  211f70: f81e0ffe     	str	x30, [sp, #-0x20]!
+  211f74: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  211f78: d287c009     	mov	x9, #0x3e00
+  211f7c: aa0103f3     	mov	x19, x1
+  211f80: aa0003f4     	mov	x20, x0
+  211f84: 52800028     	mov	w8, #0x1
+  211f88: f2c00029     	movk	x9, #0x1, lsl #32
+  211f8c: 3940028a     	ldrb	w10, [x20]
+  211f90: 9aca210b     	lsl	x11, x8, x10
+  211f94: 7100815f     	cmp	w10, #0x20
+  211f98: 8a09016a     	and	x10, x11, x9
+  211f9c: fa409944     	ccmp	x10, #0x0, #0x4, ls
+  211fa0: 54000060     	b.eq	0x211fac <avpriv_strtod+0x3c>
+  211fa4: 91000694     	add	x20, x20, #0x1
+  211fa8: 17fffff9     	b	0x211f8c <avpriv_strtod+0x1c>
+  211fac: 90fff601     	adrp	x1, 0xd1000
+  211fb0: 91251421     	add	x1, x1, #0x945
+  211fb4: aa1403e0     	mov	x0, x20
+  211fb8: 52800102     	mov	w2, #0x8
+  211fbc: 94131689     	bl	0x6d79e0 <av_strncasecmp@plt>
+  211fc0: 34000660     	cbz	w0, 0x21208c <avpriv_strtod+0x11c>
+  211fc4: f0fff4e1     	adrp	x1, 0xb0000
+  211fc8: 91305021     	add	x1, x1, #0xc14
+  211fcc: 94000068     	bl	0x21216c <avpriv_strtod+0x1fc>
+  211fd0: 34000620     	cbz	w0, 0x212094 <avpriv_strtod+0x124>
+  211fd4: b0fff5a1     	adrp	x1, 0xc6000
+  211fd8: 91041c21     	add	x1, x1, #0x107
+  211fdc: 94000067     	bl	0x212178 <avpriv_strtod+0x208>
+  211fe0: 340005e0     	cbz	w0, 0x21209c <avpriv_strtod+0x12c>
+  211fe4: f0fff481     	adrp	x1, 0xa4000
+  211fe8: 9109fc21     	add	x1, x1, #0x27f
+  211fec: 9400005d     	bl	0x212160 <avpriv_strtod+0x1f0>
+  211ff0: 340005a0     	cbz	w0, 0x2120a4 <avpriv_strtod+0x134>
+  211ff4: 90fff641     	adrp	x1, 0xd9000
+  211ff8: 910cbc21     	add	x1, x1, #0x32f
+  211ffc: 9400005f     	bl	0x212178 <avpriv_strtod+0x208>
+  212000: 34000660     	cbz	w0, 0x2120cc <avpriv_strtod+0x15c>
+  212004: d0fff5a1     	adrp	x1, 0xc8000
+  212008: 912bd421     	add	x1, x1, #0xaf5
+  21200c: 94000055     	bl	0x212160 <avpriv_strtod+0x1f0>
+  212010: 34000620     	cbz	w0, 0x2120d4 <avpriv_strtod+0x164>
+  212014: f0fff621     	adrp	x1, 0xd9000
+  212018: 910ce421     	add	x1, x1, #0x339
+  21201c: 94000054     	bl	0x21216c <avpriv_strtod+0x1fc>
+  212020: 34000640     	cbz	w0, 0x2120e8 <avpriv_strtod+0x178>
+  212024: b0fff421     	adrp	x1, 0x97000
+  212028: 91179021     	add	x1, x1, #0x5e4
+  21202c: 9400004d     	bl	0x212160 <avpriv_strtod+0x1f0>
+  212030: 34000580     	cbz	w0, 0x2120e0 <avpriv_strtod+0x170>
+  212034: 90fff4a1     	adrp	x1, 0xa6000
+  212038: 911df021     	add	x1, x1, #0x77c
+  21203c: 94000049     	bl	0x212160 <avpriv_strtod+0x1f0>
+  212040: 34000500     	cbz	w0, 0x2120e0 <avpriv_strtod+0x170>
+  212044: 90fff521     	adrp	x1, 0xb6000
+  212048: 9116d421     	add	x1, x1, #0x5b5
+  21204c: aa1403e0     	mov	x0, x20
+  212050: 52800042     	mov	w2, #0x2
+  212054: 94131663     	bl	0x6d79e0 <av_strncasecmp@plt>
+  212058: 34000540     	cbz	w0, 0x212100 <avpriv_strtod+0x190>
+  21205c: f0fff461     	adrp	x1, 0xa1000
+  212060: 911ac421     	add	x1, x1, #0x6b1
+  212064: 94000042     	bl	0x21216c <avpriv_strtod+0x1fc>
+  212068: 340004c0     	cbz	w0, 0x212100 <avpriv_strtod+0x190>
+  21206c: b0fff421     	adrp	x1, 0x97000
+  212070: 9117a421     	add	x1, x1, #0x5e9
+  212074: 9400003e     	bl	0x21216c <avpriv_strtod+0x1fc>
+  212078: 34000440     	cbz	w0, 0x212100 <avpriv_strtod+0x190>
+  21207c: 910023e1     	add	x1, sp, #0x8
+  212080: aa1403e0     	mov	x0, x20
+  212084: 9413165b     	bl	0x6d79f0 <strtod@plt>
+  212088: 1400000b     	b	0x2120b4 <avpriv_strtod+0x144>
+  21208c: 91002288     	add	x8, x20, #0x8
+  212090: 14000006     	b	0x2120a8 <avpriv_strtod+0x138>
+  212094: 91000e88     	add	x8, x20, #0x3
+  212098: 14000004     	b	0x2120a8 <avpriv_strtod+0x138>
+  21209c: 91002688     	add	x8, x20, #0x9
+  2120a0: 14000002     	b	0x2120a8 <avpriv_strtod+0x138>
+  2120a4: 91001288     	add	x8, x20, #0x4
+  2120a8: d2effe09     	mov	x9, #0x7ff0000000000000
+  2120ac: f90007e8     	str	x8, [sp, #0x8]
+  2120b0: 9e670120     	fmov	d0, x9
+  2120b4: b4000073     	cbz	x19, 0x2120c0 <avpriv_strtod+0x150>
+  2120b8: f94007e8     	ldr	x8, [sp, #0x8]
+  2120bc: f9000268     	str	x8, [x19]
+  2120c0: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  2120c4: f84207fe     	ldr	x30, [sp], #0x20
+  2120c8: d65f03c0     	ret
+  2120cc: 91002688     	add	x8, x20, #0x9
+  2120d0: 14000002     	b	0x2120d8 <avpriv_strtod+0x168>
+  2120d4: 91001288     	add	x8, x20, #0x4
+  2120d8: d2fffe09     	mov	x9, #-0x10000000000000
+  2120dc: 17fffff4     	b	0x2120ac <avpriv_strtod+0x13c>
+  2120e0: 91001280     	add	x0, x20, #0x4
+  2120e4: 14000002     	b	0x2120ec <avpriv_strtod+0x17c>
+  2120e8: 91000e80     	add	x0, x20, #0x3
+  2120ec: 9400000b     	bl	0x212118 <avpriv_strtod+0x1a8>
+  2120f0: d2efff08     	mov	x8, #0x7ff8000000000000
+  2120f4: f90007e0     	str	x0, [sp, #0x8]
+  2120f8: 9e670100     	fmov	d0, x8
+  2120fc: 17ffffee     	b	0x2120b4 <avpriv_strtod+0x144>
+  212100: 910023e1     	add	x1, sp, #0x8
+  212104: aa1403e0     	mov	x0, x20
+  212108: 52800202     	mov	w2, #0x10
+  21210c: 9413163d     	bl	0x6d7a00 <strtoll@plt>
+  212110: 9e620000     	scvtf	d0, x0
+  212114: 17ffffe8     	b	0x2120b4 <avpriv_strtod+0x144>
+  212118: 39400008     	ldrb	w8, [x0]
+  21211c: 7100a11f     	cmp	w8, #0x28
+  212120: 540001e1     	b.ne	0x21215c <avpriv_strtod+0x1ec>
+  212124: 91000808     	add	x8, x0, #0x2
+  212128: 385ff109     	ldurb	w9, [x8, #-0x1]
+  21212c: 121a792a     	and	w10, w9, #0xffffffdf
+  212130: 5101054a     	sub	w10, w10, #0x41
+  212134: 7100695f     	cmp	w10, #0x1a
+  212138: 540000a3     	b.lo	0x21214c <avpriv_strtod+0x1dc>
+  21213c: 5100c12a     	sub	w10, w9, #0x30
+  212140: 71017d3f     	cmp	w9, #0x5f
+  212144: 7a491940     	ccmp	w10, #0x9, #0x0, ne
+  212148: 54000068     	b.hi	0x212154 <avpriv_strtod+0x1e4>
+  21214c: 91000508     	add	x8, x8, #0x1
+  212150: 17fffff6     	b	0x212128 <avpriv_strtod+0x1b8>
+  212154: 7100a53f     	cmp	w9, #0x29
+  212158: 9a800100     	csel	x0, x8, x0, eq
+  21215c: d65f03c0     	ret
+  212160: aa1403e0     	mov	x0, x20
+  212164: 52800082     	mov	w2, #0x4
+  212168: 1413161e     	b	0x6d79e0 <av_strncasecmp@plt>
+  21216c: aa1403e0     	mov	x0, x20
+  212170: 52800062     	mov	w2, #0x3
+  212174: 1413161b     	b	0x6d79e0 <av_strncasecmp@plt>
+  212178: aa1403e0     	mov	x0, x20
+  21217c: 52800122     	mov	w2, #0x9
+  212180: 14131618     	b	0x6d79e0 <av_strncasecmp@plt>
+
+0000000000212184 <av_adts_header_parse>:
+  212184: b40002e0     	cbz	x0, 0x2121e0 <av_adts_header_parse+0x5c>
+  212188: d10203ff     	sub	sp, sp, #0x80
+  21218c: f90033fe     	str	x30, [sp, #0x60]
+  212190: a9074ff4     	stp	x20, x19, [sp, #0x70]
+  212194: b9400008     	ldr	w8, [x0]
+  212198: b8403009     	ldur	w9, [x0, #0x3]
+  21219c: aa0103f4     	mov	x20, x1
+  2121a0: 910063e0     	add	x0, sp, #0x18
+  2121a4: 910003e1     	mov	x1, sp
+  2121a8: aa0203f3     	mov	x19, x2
+  2121ac: b9001be8     	str	w8, [sp, #0x18]
+  2121b0: b801b3e9     	stur	w9, [sp, #0x1b]
+  2121b4: 94131617     	bl	0x6d7a10 <ff_adts_header_parse_buf@plt>
+  2121b8: 37f800c0     	tbnz	w0, #0x1f, 0x2121d0 <av_adts_header_parse+0x4c>
+  2121bc: b94007e8     	ldr	w8, [sp, #0x4]
+  2121c0: 394043e9     	ldrb	w9, [sp, #0x10]
+  2121c4: 2a1f03e0     	mov	w0, wzr
+  2121c8: b9000288     	str	w8, [x20]
+  2121cc: 39000269     	strb	w9, [x19]
+  2121d0: a9474ff4     	ldp	x20, x19, [sp, #0x70]
+  2121d4: f94033fe     	ldr	x30, [sp, #0x60]
+  2121d8: 910203ff     	add	sp, sp, #0x80
+  2121dc: d65f03c0     	ret
+  2121e0: 128002a0     	mov	w0, #-0x16
+  2121e4: d65f03c0     	ret
+
+00000000002121e8 <avpriv_adts_header_parse>:
+  2121e8: a9be57fe     	stp	x30, x21, [sp, #-0x20]!
+  2121ec: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  2121f0: aa0003f3     	mov	x19, x0
+  2121f4: 529636e0     	mov	w0, #0xb1b7
+  2121f8: 72b7d760     	movk	w0, #0xbebb, lsl #16
+  2121fc: b4000333     	cbz	x19, 0x212260 <avpriv_adts_header_parse+0x78>
+  212200: aa0103f4     	mov	x20, x1
+  212204: b40002e1     	cbz	x1, 0x212260 <avpriv_adts_header_parse+0x78>
+  212208: f1001c5f     	cmp	x2, #0x7
+  21220c: 540002a3     	b.lo	0x212260 <avpriv_adts_header_parse+0x78>
+  212210: f9400275     	ldr	x21, [x19]
+  212214: aa1503e1     	mov	x1, x21
+  212218: b50000d5     	cbnz	x21, 0x212230 <avpriv_adts_header_parse+0x48>
+  21221c: 52800300     	mov	w0, #0x18
+  212220: 94131604     	bl	0x6d7a30 <av_mallocz@plt>
+  212224: aa0003e1     	mov	x1, x0
+  212228: f9000260     	str	x0, [x19]
+  21222c: b4000180     	cbz	x0, 0x21225c <avpriv_adts_header_parse+0x74>
+  212230: aa1403e0     	mov	x0, x20
+  212234: 941315f7     	bl	0x6d7a10 <ff_adts_header_parse_buf@plt>
+  212238: 7100001f     	cmp	w0, #0x0
+  21223c: 2a0003f4     	mov	w20, w0
+  212240: 1a80a3e0     	csel	w0, wzr, w0, ge
+  212244: b50000f5     	cbnz	x21, 0x212260 <avpriv_adts_header_parse+0x78>
+  212248: 36f800d4     	tbz	w20, #0x1f, 0x212260 <avpriv_adts_header_parse+0x78>
+  21224c: aa1303e0     	mov	x0, x19
+  212250: 941315fc     	bl	0x6d7a40 <av_freep@plt>
+  212254: 2a1403e0     	mov	w0, w20
+  212258: 14000002     	b	0x212260 <avpriv_adts_header_parse+0x78>
+  21225c: 12800160     	mov	w0, #-0xc
+  212260: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  212264: a8c257fe     	ldp	x30, x21, [sp], #0x20
+  212268: d65f03c0     	ret
+
+000000000021226c <ff_msmpeg4_common_init>:
+  21226c: f81e0ffe     	str	x30, [sp, #-0x20]!
+  212270: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  212274: b958fc08     	ldr	w8, [x0, #0x18fc]
+  212278: aa0003f3     	mov	x19, x0
+  21227c: 51001109     	sub	w9, w8, #0x4
+  212280: 7100093f     	cmp	w9, #0x2
+  212284: 540003a2     	b.hs	0x2122f8 <ff_msmpeg4_common_init+0x8c>
+  212288: d503201f     	nop
+  21228c: 508e1468     	adr	x8, #-0xe3d72
+  212290: 9400014f     	bl	0x2127cc <ff_msmpeg4_pred_dc+0x314>
+  212294: d0fff7d4     	adrp	x20, 0x10c000 <ff_ac3_channel_layout_tab+0xa66>
+  212298: 912bc294     	add	x20, x20, #0xaf0
+  21229c: 91236260     	add	x0, x19, #0x8d8
+  2122a0: 91034261     	add	x1, x19, #0xd0
+  2122a4: 91010282     	add	x2, x20, #0x40
+  2122a8: 941315ee     	bl	0x6d7a60 <ff_init_scantable@plt>
+  2122ac: 91236260     	add	x0, x19, #0x8d8
+  2122b0: 91012261     	add	x1, x19, #0x48
+  2122b4: aa1403e2     	mov	x2, x20
+  2122b8: 941315ea     	bl	0x6d7a60 <ff_init_scantable@plt>
+  2122bc: 91056260     	add	x0, x19, #0x158
+  2122c0: 91020281     	add	x1, x20, #0x80
+  2122c4: 91236262     	add	x2, x19, #0x8d8
+  2122c8: 941315ea     	bl	0x6d7a70 <ff_permute_scantable@plt>
+  2122cc: 91066260     	add	x0, x19, #0x198
+  2122d0: 91030281     	add	x1, x20, #0xc0
+  2122d4: 91236262     	add	x2, x19, #0x8d8
+  2122d8: 941315e6     	bl	0x6d7a70 <ff_permute_scantable@plt>
+  2122dc: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  2122e0: f0002940     	adrp	x0, 0x73d000 <ff_h263_rl_inter+0x20>
+  2122e4: 91384000     	add	x0, x0, #0xe10
+  2122e8: d503201f     	nop
+  2122ec: 100002a1     	adr	x1, #0x54
+  2122f0: f84207fe     	ldr	x30, [sp], #0x20
+  2122f4: 141315e3     	b	0x6d7a80 <pthread_once@plt>
+  2122f8: 71000d1f     	cmp	w8, #0x3
+  2122fc: 540000e1     	b.ne	0x212318 <ff_msmpeg4_common_init+0xac>
+  212300: b9422e68     	ldr	w8, [x19, #0x22c]
+  212304: 34000108     	cbz	w8, 0x212324 <ff_msmpeg4_common_init+0xb8>
+  212308: d503201f     	nop
+  21230c: 508e1268     	adr	x8, #-0xe3db2
+  212310: 9400012f     	bl	0x2127cc <ff_msmpeg4_pred_dc+0x314>
+  212314: 17fffff2     	b	0x2122dc <ff_msmpeg4_common_init+0x70>
+  212318: 7100111f     	cmp	w8, #0x4
+  21231c: 54fffbc2     	b.hs	0x212294 <ff_msmpeg4_common_init+0x28>
+  212320: 17ffffef     	b	0x2122dc <ff_msmpeg4_common_init+0x70>
+  212324: f00028e8     	adrp	x8, 0x731000 <ff_sws_context_class+0x31f0>
+  212328: f00028e9     	adrp	x9, 0x731000 <ff_sws_context_class+0x31f0>
+  21232c: f944f108     	ldr	x8, [x8, #0x9e0]
+  212330: f944f529     	ldr	x9, [x9, #0x9e8]
+  212334: f902da68     	str	x8, [x19, #0x5b0]
+  212338: f902de69     	str	x9, [x19, #0x5b8]
+  21233c: 17ffffe8     	b	0x2122dc <ff_msmpeg4_common_init+0x70>
+  212340: a9be57fe     	stp	x30, x21, [sp, #-0x20]!
+  212344: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  212348: aa1f03f4     	mov	x20, xzr
+  21234c: f0002953     	adrp	x19, 0x73d000 <ff_h263_rl_inter+0x20>
+  212350: 91385273     	add	x19, x19, #0xe14
+  212354: f0002955     	adrp	x21, 0x73d000 <ff_h263_rl_inter+0x20>
+  212358: 910a02b5     	add	x21, x21, #0x280
+  21235c: f11f829f     	cmp	x20, #0x7e0
+  212360: 540000e0     	b.eq	0x21237c <ff_msmpeg4_common_init+0x110>
+  212364: 8b1402a0     	add	x0, x21, x20
+  212368: aa1303e1     	mov	x1, x19
+  21236c: 941315c9     	bl	0x6d7a90 <ff_rl_init@plt>
+  212370: 91054294     	add	x20, x20, #0x150
+  212374: 91061a73     	add	x19, x19, #0x186
+  212378: 17fffff9     	b	0x21235c <ff_msmpeg4_common_init+0xf0>
+  21237c: f00028e8     	adrp	x8, 0x731000 <ff_sws_context_class+0x31f0>
+  212380: f00028ea     	adrp	x10, 0x731000 <ff_sws_context_class+0x31f0>
+  212384: 92801fe9     	mov	x9, #-0x100
+  212388: f944f908     	ldr	x8, [x8, #0x9f0]
+  21238c: f944fd4a     	ldr	x10, [x10, #0x9f8]
+  212390: 1280000b     	mov	w11, #-0x1
+  212394: b000372c     	adrp	x12, 0x8f7000 <ff_cbrt_tab+0x64e78>
+  212398: 9123a18c     	add	x12, x12, #0x8e8
+  21239c: d000372d     	adrp	x13, 0x8f8000 <ff_cbrt_tab+0x65e78>
+  2123a0: 9123a1ad     	add	x13, x13, #0x8e8
+  2123a4: 5280002e     	mov	w14, #0x1
+  2123a8: f104013f     	cmp	x9, #0x100
+  2123ac: 54000620     	b.eq	0x212470 <ff_msmpeg4_common_init+0x204>
+  2123b0: 7100013f     	cmp	w9, #0x0
+  2123b4: 2a1f03ef     	mov	w15, wzr
+  2123b8: 91000501     	add	x1, x8, #0x1
+  2123bc: 5a895531     	cneg	w17, w9, mi
+  2123c0: 91000550     	add	x16, x10, #0x1
+  2123c4: 340000d1     	cbz	w17, 0x2123dc <ff_msmpeg4_common_init+0x170>
+  2123c8: 53017e31     	lsr	w17, w17, #1
+  2123cc: 510005ef     	sub	w15, w15, #0x1
+  2123d0: 91000821     	add	x1, x1, #0x2
+  2123d4: 91000a10     	add	x16, x16, #0x2
+  2123d8: 35ffff91     	cbnz	w17, 0x2123c8 <ff_msmpeg4_common_init+0x15c>
+  2123dc: 4b0f03f1     	neg	w17, w15
+  2123e0: 39400020     	ldrb	w0, [x1]
+  2123e4: 51000523     	sub	w3, w9, #0x1
+  2123e8: 1ad12162     	lsl	w2, w11, w17
+  2123ec: 385ff024     	ldurb	w4, [x1, #-0x1]
+  2123f0: f100013f     	cmp	x9, #0x0
+  2123f4: 1ac02165     	lsl	w5, w11, w0
+  2123f8: 4a030041     	eor	w1, w2, w3
+  2123fc: 1a89b021     	csel	w1, w1, w9, lt
+  212400: 4a2400a4     	eon	w4, w5, w4
+  212404: 3400010f     	cbz	w15, 0x212424 <ff_msmpeg4_common_init+0x1b8>
+  212408: 1ad12082     	lsl	w2, w4, w17
+  21240c: 7100263f     	cmp	w17, #0x9
+  212410: 4b0f0000     	sub	w0, w0, w15
+  212414: 2a010044     	orr	w4, w2, w1
+  212418: 54000063     	b.lo	0x212424 <ff_msmpeg4_common_init+0x1b8>
+  21241c: 2a0405c4     	orr	w4, w14, w4, lsl #1
+  212420: 11000400     	add	w0, w0, #0x1
+  212424: 39400203     	ldrb	w3, [x16]
+  212428: 91040122     	add	x2, x9, #0x100
+  21242c: 385ff210     	ldurb	w16, [x16, #-0x1]
+  212430: 8b020d85     	add	x5, x12, x2, lsl #3
+  212434: 1ac32166     	lsl	w6, w11, w3
+  212438: 290000a4     	stp	w4, w0, [x5]
+  21243c: 4a3000d0     	eon	w16, w6, w16
+  212440: 3400010f     	cbz	w15, 0x212460 <ff_msmpeg4_common_init+0x1f4>
+  212444: 1ad12210     	lsl	w16, w16, w17
+  212448: 7100263f     	cmp	w17, #0x9
+  21244c: 4b0f0063     	sub	w3, w3, w15
+  212450: 2a010210     	orr	w16, w16, w1
+  212454: 54000063     	b.lo	0x212460 <ff_msmpeg4_common_init+0x1f4>
+  212458: 2a1005d0     	orr	w16, w14, w16, lsl #1
+  21245c: 11000463     	add	w3, w3, #0x1
+  212460: 8b020daf     	add	x15, x13, x2, lsl #3
+  212464: 91000529     	add	x9, x9, #0x1
+  212468: 29000df0     	stp	w16, w3, [x15]
+  21246c: 17ffffcf     	b	0x2123a8 <ff_msmpeg4_common_init+0x13c>
+  212470: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  212474: a8c257fe     	ldp	x30, x21, [sp], #0x20
+  212478: d65f03c0     	ret
+
+000000000021247c <ff_msmpeg4_coded_block_pred>:
+  21247c: 8b21c808     	add	x8, x0, w1, sxtw #2
+  212480: b982540b     	ldrsw	x11, [x0, #0x254]
+  212484: f942e809     	ldr	x9, [x0, #0x5d0]
+  212488: b992b108     	ldrsw	x8, [x8, #0x12b0]
+  21248c: cb0b012c     	sub	x12, x9, x11
+  212490: d100050a     	sub	x10, x8, #0x1
+  212494: cb0b010b     	sub	x11, x8, x11
+  212498: 386ac98c     	ldrb	w12, [x12, w10, sxtw]
+  21249c: 386b6920     	ldrb	w0, [x9, x11]
+  2124a0: 6b00019f     	cmp	w12, w0
+  2124a4: 54000041     	b.ne	0x2124ac <ff_msmpeg4_coded_block_pred+0x30>
+  2124a8: 386a6920     	ldrb	w0, [x9, x10]
+  2124ac: 8b080128     	add	x8, x9, x8
+  2124b0: f9000048     	str	x8, [x2]
+  2124b4: d65f03c0     	ret
+
+00000000002124b8 <ff_msmpeg4_pred_dc>:
+  2124b8: a9ba7bfd     	stp	x29, x30, [sp, #-0x60]!
+  2124bc: a9016ffc     	stp	x28, x27, [sp, #0x10]
+  2124c0: a90267fa     	stp	x26, x25, [sp, #0x20]
+  2124c4: a9035ff8     	stp	x24, x23, [sp, #0x30]
+  2124c8: a90457f6     	stp	x22, x21, [sp, #0x40]
+  2124cc: a9054ff4     	stp	x20, x19, [sp, #0x50]
+  2124d0: 8b21c808     	add	x8, x0, w1, sxtw #2
+  2124d4: f942cc09     	ldr	x9, [x0, #0x598]
+  2124d8: 7100103f     	cmp	w1, #0x4
+  2124dc: 5280018b     	mov	w11, #0xc
+  2124e0: aa0303f3     	mov	x19, x3
+  2124e4: 2a0103f5     	mov	w21, w1
+  2124e8: b992b10a     	ldrsw	x10, [x8, #0x12b0]
+  2124ec: b952c908     	ldr	w8, [x8, #0x12c8]
+  2124f0: aa0003f6     	mov	x22, x0
+  2124f4: aa0203f4     	mov	x20, x2
+  2124f8: 8b0a053a     	add	x26, x9, x10, lsl #1
+  2124fc: 52800109     	mov	w9, #0x8
+  212500: 2a2803ea     	mvn	w10, w8
+  212504: 9a8bb129     	csel	x9, x9, x11, lt
+  212508: 4b0803e8     	neg	w8, w8
+  21250c: b8a9681b     	ldrsw	x27, [x0, x9]
+  212510: 78eadb49     	ldrsh	w9, [x26, w10, sxtw #1]
+  212514: 78e8db48     	ldrsh	w8, [x26, w8, sxtw #1]
+  212518: 37080101     	tbnz	w1, #0x1, 0x212538 <ff_msmpeg4_pred_dc+0x80>
+  21251c: b958f6ca     	ldr	w10, [x22, #0x18f4]
+  212520: 340000ca     	cbz	w10, 0x212538 <ff_msmpeg4_pred_dc+0x80>
+  212524: b958feca     	ldr	w10, [x22, #0x18fc]
+  212528: 7100115f     	cmp	w10, #0x4
+  21252c: 5280800a     	mov	w10, #0x400
+  212530: 1a883148     	csel	w8, w10, w8, lo
+  212534: 1a893149     	csel	w9, w10, w9, lo
+  212538: 78dfe34a     	ldursh	w10, [x26, #-0x2]
+  21253c: 7100237f     	cmp	w27, #0x8
+  212540: 54000121     	b.ne	0x212564 <ff_msmpeg4_pred_dc+0xac>
+  212544: 1100114a     	add	w10, w10, #0x4
+  212548: 5280010b     	mov	w11, #0x8
+  21254c: 11001129     	add	w9, w9, #0x4
+  212550: 11001108     	add	w8, w8, #0x4
+  212554: 1acb0d57     	sdiv	w23, w10, w11
+  212558: 1acb0d29     	sdiv	w9, w9, w11
+  21255c: 1acb0d08     	sdiv	w8, w8, w11
+  212560: 14000010     	b	0x2125a0 <ff_msmpeg4_pred_dc+0xe8>
+  212564: f00028eb     	adrp	x11, 0x731000 <ff_sws_context_class+0x31f0>
+  212568: 0b9b054a     	add	w10, w10, w27, asr #1
+  21256c: 0b9b0529     	add	w9, w9, w27, asr #1
+  212570: f945016b     	ldr	x11, [x11, #0xa00]
+  212574: 0b9b0508     	add	w8, w8, w27, asr #1
+  212578: 93407d4a     	sxtw	x10, w10
+  21257c: 93407d29     	sxtw	x9, w9
+  212580: b87b796b     	ldr	w11, [x11, x27, lsl #2]
+  212584: 93407d08     	sxtw	x8, w8
+  212588: 9b0a7d6a     	mul	x10, x11, x10
+  21258c: 9b097d69     	mul	x9, x11, x9
+  212590: 9b087d68     	mul	x8, x11, x8
+  212594: d360fd57     	lsr	x23, x10, #32
+  212598: d360fd29     	lsr	x9, x9, #32
+  21259c: d360fd08     	lsr	x8, x8, #32
+  2125a0: b958feca     	ldr	w10, [x22, #0x18fc]
+  2125a4: 7100115f     	cmp	w10, #0x4
+  2125a8: 54000183     	b.lo	0x2125d8 <ff_msmpeg4_pred_dc+0x120>
+  2125ac: b9590eca     	ldr	w10, [x22, #0x190c]
+  2125b0: 3400024a     	cbz	w10, 0x2125f8 <ff_msmpeg4_pred_dc+0x140>
+  2125b4: 710006bf     	cmp	w21, #0x1
+  2125b8: 54000b40     	b.eq	0x212720 <ff_msmpeg4_pred_dc+0x268>
+  2125bc: 71000ebf     	cmp	w21, #0x3
+  2125c0: 540001c0     	b.eq	0x2125f8 <ff_msmpeg4_pred_dc+0x140>
+  2125c4: 71000abf     	cmp	w21, #0x2
+  2125c8: 54000281     	b.ne	0x212618 <ff_msmpeg4_pred_dc+0x160>
+  2125cc: 52800029     	mov	w9, #0x1
+  2125d0: 2a0803f7     	mov	w23, w8
+  2125d4: 14000054     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  2125d8: 6b0902ea     	subs	w10, w23, w9
+  2125dc: 5a8a554a     	cneg	w10, w10, mi
+  2125e0: 6b080129     	subs	w9, w9, w8
+  2125e4: 5a895529     	cneg	w9, w9, mi
+  2125e8: 6b09015f     	cmp	w10, w9
+  2125ec: 1a9f87e9     	cset	w9, ls
+  2125f0: 1a979117     	csel	w23, w8, w23, ls
+  2125f4: 1400004c     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  2125f8: 6b0902ea     	subs	w10, w23, w9
+  2125fc: 5a8a554a     	cneg	w10, w10, mi
+  212600: 6b080129     	subs	w9, w9, w8
+  212604: 5a895529     	cneg	w9, w9, mi
+  212608: 6b09015f     	cmp	w10, w9
+  21260c: 1a9f27e9     	cset	w9, lo
+  212610: 1a973117     	csel	w23, w8, w23, lo
+  212614: 14000044     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  212618: f940eec8     	ldr	x8, [x22, #0x1d8]
+  21261c: 52800109     	mov	w9, #0x8
+  212620: b942d508     	ldr	w8, [x8, #0x2d4]
+  212624: 9ac82538     	lsr	x24, x9, x8
+  212628: 71000ea9     	subs	w9, w21, #0x3
+  21262c: 540001ac     	b.gt	0x212660 <ff_msmpeg4_pred_dc+0x1a8>
+  212630: b9529acd     	ldr	w13, [x22, #0x1298]
+  212634: b9426ad9     	ldr	w25, [x22, #0x268]
+  212638: f94286cc     	ldr	x12, [x22, #0x508]
+  21263c: b95296cb     	ldr	w11, [x22, #0x1294]
+  212640: 531f79a9     	lsl	w9, w13, #1
+  212644: 1b197f0a     	mul	w10, w24, w25
+  212648: 0b950529     	add	w9, w9, w21, asr #1
+  21264c: 1b097d4a     	mul	w10, w10, w9
+  212650: 2a1503e9     	mov	w9, w21
+  212654: 331f7969     	bfi	w9, w11, #1, #31
+  212658: 8b2ac18a     	add	x10, x12, w10, sxtw
+  21265c: 1400000a     	b	0x212684 <ff_msmpeg4_pred_dc+0x1cc>
+  212660: b94272d9     	ldr	w25, [x22, #0x270]
+  212664: b9529acd     	ldr	w13, [x22, #0x1298]
+  212668: 911422cb     	add	x11, x22, #0x508
+  21266c: f869596b     	ldr	x11, [x11, w9, uxtw #3]
+  212670: b95296c9     	ldr	w9, [x22, #0x1294]
+  212674: 1b197f0a     	mul	w10, w24, w25
+  212678: 1b0d7d4a     	mul	w10, w10, w13
+  21267c: 8b2ac16a     	add	x10, x11, w10, sxtw
+  212680: 2a0903eb     	mov	w11, w9
+  212684: 1b187d29     	mul	w9, w9, w24
+  212688: 531f791c     	lsl	w28, w8, #1
+  21268c: 8b29c15d     	add	x29, x10, w9, sxtw
+  212690: 3400026b     	cbz	w11, 0x2126dc <ff_msmpeg4_pred_dc+0x224>
+  212694: 531d7368     	lsl	w8, w27, #3
+  212698: cb1803a0     	sub	x0, x29, x24
+  21269c: 2a1903e1     	mov	w1, w25
+  2126a0: 2a1803e3     	mov	w3, w24
+  2126a4: 2a0d03f7     	mov	w23, w13
+  2126a8: 1adc2902     	asr	w2, w8, w28
+  2126ac: 9400002f     	bl	0x212768 <ff_msmpeg4_pred_dc+0x2b0>
+  2126b0: 2a1703ed     	mov	w13, w23
+  2126b4: 2a0003f7     	mov	w23, w0
+  2126b8: 340001ad     	cbz	w13, 0x2126ec <ff_msmpeg4_pred_dc+0x234>
+  2126bc: 1b187f28     	mul	w8, w25, w24
+  2126c0: 531d7369     	lsl	w9, w27, #3
+  2126c4: 2a1903e1     	mov	w1, w25
+  2126c8: 2a1803e3     	mov	w3, w24
+  2126cc: 1adc2922     	asr	w2, w9, w28
+  2126d0: cb28c3a0     	sub	x0, x29, w8, sxtw
+  2126d4: 94000025     	bl	0x212768 <ff_msmpeg4_pred_dc+0x2b0>
+  2126d8: 14000008     	b	0x2126f8 <ff_msmpeg4_pred_dc+0x240>
+  2126dc: 13017f68     	asr	w8, w27, #1
+  2126e0: 11100108     	add	w8, w8, #0x400
+  2126e4: 1adb0d17     	sdiv	w23, w8, w27
+  2126e8: 35fffead     	cbnz	w13, 0x2126bc <ff_msmpeg4_pred_dc+0x204>
+  2126ec: 13017f68     	asr	w8, w27, #1
+  2126f0: 11100108     	add	w8, w8, #0x400
+  2126f4: 1adb0d00     	sdiv	w0, w8, w27
+  2126f8: b95806c8     	ldr	w8, [x22, #0x1804]
+  2126fc: 34000128     	cbz	w8, 0x212720 <ff_msmpeg4_pred_dc+0x268>
+  212700: 7100091f     	cmp	w8, #0x2
+  212704: 54000240     	b.eq	0x21274c <ff_msmpeg4_pred_dc+0x294>
+  212708: 7100051f     	cmp	w8, #0x1
+  21270c: 54000281     	b.ne	0x21275c <ff_msmpeg4_pred_dc+0x2a4>
+  212710: 710002bf     	cmp	w21, #0x0
+  212714: 1a9f17e9     	cset	w9, eq
+  212718: 1a970017     	csel	w23, w0, w23, eq
+  21271c: 14000002     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  212720: 2a1f03e9     	mov	w9, wzr
+  212724: b9000269     	str	w9, [x19]
+  212728: 2a1703e0     	mov	w0, w23
+  21272c: f900029a     	str	x26, [x20]
+  212730: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+  212734: a94457f6     	ldp	x22, x21, [sp, #0x40]
+  212738: a9435ff8     	ldp	x24, x23, [sp, #0x30]
+  21273c: a94267fa     	ldp	x26, x25, [sp, #0x20]
+  212740: a9416ffc     	ldp	x28, x27, [sp, #0x10]
+  212744: a8c67bfd     	ldp	x29, x30, [sp], #0x60
+  212748: d65f03c0     	ret
+  21274c: 710002bf     	cmp	w21, #0x0
+  212750: 1a9f07e9     	cset	w9, ne
+  212754: 1a971017     	csel	w23, w0, w23, ne
+  212758: 17fffff3     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  21275c: 52800029     	mov	w9, #0x1
+  212760: 2a0003f7     	mov	w23, w0
+  212764: 17fffff0     	b	0x212724 <ff_msmpeg4_pred_dc+0x26c>
+  212768: 93407c2a     	sxtw	x10, w1
+  21276c: 0aa37c6b     	bic	w11, w3, w3, asr #31
+  212770: aa1f03e9     	mov	x9, xzr
+  212774: 2a1f03e8     	mov	w8, wzr
+  212778: 2a0303ec     	mov	w12, w3
+  21277c: eb0b013f     	cmp	x9, x11
+  212780: 54000160     	b.eq	0x2127ac <ff_msmpeg4_pred_dc+0x2f4>
+  212784: aa0c03ed     	mov	x13, x12
+  212788: aa0003ee     	mov	x14, x0
+  21278c: b40000ad     	cbz	x13, 0x2127a0 <ff_msmpeg4_pred_dc+0x2e8>
+  212790: 384015cf     	ldrb	w15, [x14], #0x1
+  212794: d10005ad     	sub	x13, x13, #0x1
+  212798: 0b0f0108     	add	w8, w8, w15
+  21279c: b5ffffad     	cbnz	x13, 0x212790 <ff_msmpeg4_pred_dc+0x2d8>
+  2127a0: 91000529     	add	x9, x9, #0x1
+  2127a4: 8b0a0000     	add	x0, x0, x10
+  2127a8: 17fffff5     	b	0x21277c <ff_msmpeg4_pred_dc+0x2c4>
+  2127ac: f00028e9     	adrp	x9, 0x731000 <ff_sws_context_class+0x31f0>
+  2127b0: 0b820508     	add	w8, w8, w2, asr #1
+  2127b4: f9450129     	ldr	x9, [x9, #0xa00]
+  2127b8: 93407d08     	sxtw	x8, w8
+  2127bc: b862d929     	ldr	w9, [x9, w2, sxtw #2]
+  2127c0: 9b087d28     	mul	x8, x9, x8
+  2127c4: d360fd00     	lsr	x0, x8, #32
+  2127c8: d65f03c0     	ret
+  2127cc: f902da68     	str	x8, [x19, #0x5b0]
+  2127d0: d503201f     	nop
+  2127d4: 508deb28     	adr	x8, #-0xe429a
+  2127d8: f902de68     	str	x8, [x19, #0x5b8]
+  2127dc: d65f03c0     	ret
+
+00000000002127e0 <ff_mediacodec_surface_ref>:
+  2127e0: f81d0ffe     	str	x30, [sp, #-0x30]!
+  2127e4: a90157f6     	stp	x22, x21, [sp, #0x10]
+  2127e8: a9024ff4     	stp	x20, x19, [sp, #0x20]
+  2127ec: aa0003f6     	mov	x22, x0
+  2127f0: 52800200     	mov	w0, #0x10
+  2127f4: aa0203f3     	mov	x19, x2
+  2127f8: aa0103f5     	mov	x21, x1
+  2127fc: 9413148d     	bl	0x6d7a30 <av_mallocz@plt>
+  212800: aa0003f4     	mov	x20, x0
+  212804: f90007e0     	str	x0, [sp, #0x8]
+  212808: b4000340     	cbz	x0, 0x212870 <ff_mediacodec_surface_ref+0x90>
+  21280c: b4000136     	cbz	x22, 0x212830 <ff_mediacodec_surface_ref+0x50>
+  212810: aa1303e0     	mov	x0, x19
+  212814: 941314af     	bl	0x6d7ad0 <ff_jni_get_env@plt>
+  212818: b40000c0     	cbz	x0, 0x212830 <ff_mediacodec_surface_ref+0x50>
+  21281c: f9400008     	ldr	x8, [x0]
+  212820: aa1603e1     	mov	x1, x22
+  212824: f9405508     	ldr	x8, [x8, #0xa8]
+  212828: d63f0100     	blr	x8
+  21282c: f9000280     	str	x0, [x20]
+  212830: b4000095     	cbz	x21, 0x212840 <ff_mediacodec_surface_ref+0x60>
+  212834: aa1503e0     	mov	x0, x21
+  212838: 941313ee     	bl	0x6d77f0 <ANativeWindow_acquire@plt>
+  21283c: f9000695     	str	x21, [x20, #0x8]
+  212840: f9400288     	ldr	x8, [x20]
+  212844: b5000168     	cbnz	x8, 0x212870 <ff_mediacodec_surface_ref+0x90>
+  212848: f9400688     	ldr	x8, [x20, #0x8]
+  21284c: b5000128     	cbnz	x8, 0x212870 <ff_mediacodec_surface_ref+0x90>
+  212850: d0fff602     	adrp	x2, 0xd4000
+  212854: 910aa442     	add	x2, x2, #0x2a9
+  212858: aa1303e0     	mov	x0, x19
+  21285c: 52800201     	mov	w1, #0x10
+  212860: 941314a0     	bl	0x6d7ae0 <av_log@plt>
+  212864: 910023e0     	add	x0, sp, #0x8
+  212868: 94131476     	bl	0x6d7a40 <av_freep@plt>
+  21286c: f94007f4     	ldr	x20, [sp, #0x8]
+  212870: aa1403e0     	mov	x0, x20
+  212874: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+  212878: a94157f6     	ldp	x22, x21, [sp, #0x10]
+  21287c: f84307fe     	ldr	x30, [sp], #0x30
+  212880: d65f03c0     	ret
+
+0000000000212884 <ff_mediacodec_surface_unref>:
+  212884: b4000240     	cbz	x0, 0x2128cc <ff_mediacodec_surface_unref+0x48>
+  212888: a9bf4ffe     	stp	x30, x19, [sp, #-0x10]!
+  21288c: f9400008     	ldr	x8, [x0]
+  212890: aa0003f3     	mov	x19, x0
+  212894: b4000108     	cbz	x8, 0x2128b4 <ff_mediacodec_surface_unref+0x30>
+  212898: aa0103e0     	mov	x0, x1
+  21289c: 9413148d     	bl	0x6d7ad0 <ff_jni_get_env@plt>
+  2128a0: b40000a0     	cbz	x0, 0x2128b4 <ff_mediacodec_surface_unref+0x30>
+  2128a4: f9400008     	ldr	x8, [x0]
+  2128a8: f9400261     	ldr	x1, [x19]
+  2128ac: f9405908     	ldr	x8, [x8, #0xb0]
+  2128b0: d63f0100     	blr	x8
+  2128b4: f9400660     	ldr	x0, [x19, #0x8]
+  2128b8: b4000040     	cbz	x0, 0x2128c0 <ff_mediacodec_surface_unref+0x3c>
+  2128bc: 941313c5     	bl	0x6d77d0 <ANativeWindow_release@plt>
+  2128c0: aa1303e0     	mov	x0, x19
+  2128c4: 9413148f     	bl	0x6d7b00 <av_free@plt>
+  2128c8: a8c14ffe     	ldp	x30, x19, [sp], #0x10
+  2128cc: 2a1f03e0     	mov	w0, wzr
+  2128d0: d65f03c0     	ret
+
+00000000002128d4 <ff_dovi_configure_ext>:
+  2128d4: f81b0ffe     	str	x30, [sp, #-0x50]!
+  2128d8: a90167fa     	stp	x26, x25, [sp, #0x10]
+  2128dc: a9025ff8     	stp	x24, x23, [sp, #0x20]
+  2128e0: a90357f6     	stp	x22, x21, [sp, #0x30]
+  2128e4: a9044ff4     	stp	x20, x19, [sp, #0x40]
+  2128e8: b9400808     	ldr	w8, [x0, #0x8]
+  2128ec: aa0003f3     	mov	x19, x0
+  2128f0: 34000ee8     	cbz	w8, 0x212acc <ff_dovi_configure_ext+0x1f8>
+  2128f4: 2a0403f6     	mov	w22, w4
+  2128f8: 2a0303f4     	mov	w20, w3
+  2128fc: aa0203f8     	mov	x24, x2
+  212900: aa0103f5     	mov	x21, x1
+  212904: b4000082     	cbz	x2, 0x212914 <ff_dovi_configure_ext+0x40>
+  212908: f9400308     	ldr	x8, [x24]
+  21290c: 8b080319     	add	x25, x24, x8
+  212910: 14000004     	b	0x212920 <ff_dovi_configure_ext+0x4c>
+  212914: 3100051f     	cmn	w8, #0x1
+  212918: 54000da0     	b.eq	0x212acc <ff_dovi_configure_ext+0x1f8>
+  21291c: aa1f03f9     	mov	x25, xzr
+  212920: 71000a9f     	cmp	w20, #0x2
+  212924: 7a431a82     	ccmp	w20, #0x3, #0x2, ne
+  212928: 54000ce8     	b.hi	0x212ac4 <ff_dovi_configure_ext+0x1f0>
+  21292c: b94006a8     	ldr	w8, [x21, #0x4]
+  212930: 71006d1f     	cmp	w8, #0x1b
+  212934: 54000b80     	b.eq	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212938: 7103851f     	cmp	w8, #0xe1
+  21293c: 54000100     	b.eq	0x21295c <ff_dovi_configure_ext+0x88>
+  212940: 7102b51f     	cmp	w8, #0xad
+  212944: 54001761     	b.ne	0x212c30 <ff_dovi_configure_ext+0x35c>
+  212948: b4000438     	cbz	x24, 0x2129cc <ff_dovi_configure_ext+0xf8>
+  21294c: aa1903e0     	mov	x0, x25
+  212950: 94131474     	bl	0x6d7b20 <ff_dovi_guess_profile_hevc@plt>
+  212954: 2a0003f7     	mov	w23, w0
+  212958: 14000002     	b	0x212960 <ff_dovi_configure_ext+0x8c>
+  21295c: 52800157     	mov	w23, #0xa
+  212960: 37f800d6     	tbnz	w22, #0x1f, 0x212978 <ff_dovi_configure_ext+0xa4>
+  212964: 710026ff     	cmp	w23, #0x9
+  212968: 540009e0     	b.eq	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  21296c: b9402ea8     	ldr	w8, [x21, #0x2c]
+  212970: 7100f91f     	cmp	w8, #0x3e
+  212974: 54000981     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212978: 510012e8     	sub	w8, w23, #0x4
+  21297c: 7100191f     	cmp	w8, #0x6
+  212980: 54000928     	b.hi	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212984: 90fff6a9     	adrp	x9, 0xe6000
+  212988: 91154d29     	add	x9, x9, #0x553
+  21298c: 2a1f03fa     	mov	w26, wzr
+  212990: 1000008a     	adr	x10, #0x10
+  212994: 3868692b     	ldrb	w11, [x9, x8]
+  212998: 8b0b094a     	add	x10, x10, x11, lsl #2
+  21299c: d61f0140     	br	x10
+  2129a0: b9400a68     	ldr	w8, [x19, #0x8]
+  2129a4: 7100051f     	cmp	w8, #0x1
+  2129a8: 5400092b     	b.lt	0x212acc <ff_dovi_configure_ext+0x1f8>
+  2129ac: f9400260     	ldr	x0, [x19]
+  2129b0: f0fff462     	adrp	x2, 0xa1000
+  2129b4: 911ad442     	add	x2, x2, #0x6b5
+  2129b8: 52800201     	mov	w1, #0x10
+  2129bc: 94131449     	bl	0x6d7ae0 <av_log@plt>
+  2129c0: 5297d600     	mov	w0, #0xbeb0
+  2129c4: 72b75500     	movk	w0, #0xbaa8, lsl #16
+  2129c8: 14000044     	b	0x212ad8 <ff_dovi_configure_ext+0x204>
+  2129cc: b94072a8     	ldr	w8, [x21, #0x70]
+  2129d0: 71003d1f     	cmp	w8, #0xf
+  2129d4: 540000c0     	b.eq	0x2129ec <ff_dovi_configure_ext+0x118>
+  2129d8: 7100091f     	cmp	w8, #0x2
+  2129dc: 540000c1     	b.ne	0x2129f4 <ff_dovi_configure_ext+0x120>
+  2129e0: b9406ea8     	ldr	w8, [x21, #0x6c]
+  2129e4: 7100091f     	cmp	w8, #0x2
+  2129e8: 54000061     	b.ne	0x2129f4 <ff_dovi_configure_ext+0x120>
+  2129ec: 528000b7     	mov	w23, #0x5
+  2129f0: 17ffffdc     	b	0x212960 <ff_dovi_configure_ext+0x8c>
+  2129f4: 52800117     	mov	w23, #0x8
+  2129f8: 17ffffda     	b	0x212960 <ff_dovi_configure_ext+0x8c>
+  2129fc: b40000b8     	cbz	x24, 0x212a10 <ff_dovi_configure_ext+0x13c>
+  212a00: 39402b28     	ldrb	w8, [x25, #0xa]
+  212a04: 34000068     	cbz	w8, 0x212a10 <ff_dovi_configure_ext+0x13c>
+  212a08: 2a1f03fa     	mov	w26, wzr
+  212a0c: 1400001a     	b	0x212a74 <ff_dovi_configure_ext+0x1a0>
+  212a10: b94072a8     	ldr	w8, [x21, #0x70]
+  212a14: 7100051f     	cmp	w8, #0x1
+  212a18: 54000160     	b.eq	0x212a44 <ff_dovi_configure_ext+0x170>
+  212a1c: 7100251f     	cmp	w8, #0x9
+  212a20: 54000421     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212a24: b9406aa8     	ldr	w8, [x21, #0x68]
+  212a28: 7100251f     	cmp	w8, #0x9
+  212a2c: 540003c1     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212a30: b9406ea8     	ldr	w8, [x21, #0x6c]
+  212a34: 7100411f     	cmp	w8, #0x10
+  212a38: 54000161     	b.ne	0x212a64 <ff_dovi_configure_ext+0x190>
+  212a3c: 5280003a     	mov	w26, #0x1
+  212a40: 1400000d     	b	0x212a74 <ff_dovi_configure_ext+0x1a0>
+  212a44: b9406aa8     	ldr	w8, [x21, #0x68]
+  212a48: 7100051f     	cmp	w8, #0x1
+  212a4c: 540002c1     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212a50: b9406ea8     	ldr	w8, [x21, #0x6c]
+  212a54: 7100051f     	cmp	w8, #0x1
+  212a58: 54000261     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212a5c: 5280005a     	mov	w26, #0x2
+  212a60: 14000005     	b	0x212a74 <ff_dovi_configure_ext+0x1a0>
+  212a64: b9406ea8     	ldr	w8, [x21, #0x6c]
+  212a68: 7100491f     	cmp	w8, #0x12
+  212a6c: 540001c1     	b.ne	0x212aa4 <ff_dovi_configure_ext+0x1d0>
+  212a70: 5280009a     	mov	w26, #0x4
+  212a74: 34000534     	cbz	w20, 0x212b18 <ff_dovi_configure_ext+0x244>
+  212a78: 37f803d6     	tbnz	w22, #0x1f, 0x212af0 <ff_dovi_configure_ext+0x21c>
+  212a7c: 71001eff     	cmp	w23, #0x7
+  212a80: 54000388     	b.hi	0x212af0 <ff_dovi_configure_ext+0x21c>
+  212a84: f9400260     	ldr	x0, [x19]
+  212a88: f0fff522     	adrp	x2, 0xb9000
+  212a8c: 91038442     	add	x2, x2, #0xe1
+  212a90: 52800201     	mov	w1, #0x10
+  212a94: 2a1703e3     	mov	w3, w23
+  212a98: 2a1403e4     	mov	w4, w20
+  212a9c: 94131411     	bl	0x6d7ae0 <av_log@plt>
+  212aa0: 14000009     	b	0x212ac4 <ff_dovi_configure_ext+0x1f0>
+  212aa4: b9400a68     	ldr	w8, [x19, #0x8]
+  212aa8: 7100051f     	cmp	w8, #0x1
+  212aac: 5400010b     	b.lt	0x212acc <ff_dovi_configure_ext+0x1f8>
+  212ab0: f9400260     	ldr	x0, [x19]
+  212ab4: d0fff562     	adrp	x2, 0xc0000
+  212ab8: 91229442     	add	x2, x2, #0x8a5
+  212abc: 52800201     	mov	w1, #0x10
+  212ac0: 94131408     	bl	0x6d7ae0 <av_log@plt>
+  212ac4: 128002a0     	mov	w0, #-0x16
+  212ac8: 14000004     	b	0x212ad8 <ff_dovi_configure_ext+0x204>
+  212acc: 2a1f03e0     	mov	w0, wzr
+  212ad0: 3900527f     	strb	wzr, [x19, #0x14]
+  212ad4: f800c27f     	stur	xzr, [x19, #0xc]
+  212ad8: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+  212adc: a94357f6     	ldp	x22, x21, [sp, #0x30]
+  212ae0: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+  212ae4: a94167fa     	ldp	x26, x25, [sp, #0x10]
+  212ae8: f84507fe     	ldr	x30, [sp], #0x50
+  212aec: d65f03c0     	ret
+  212af0: 71000e9f     	cmp	w20, #0x3
+  212af4: 3a410ac8     	ccmn	w22, #0x1, #0x8, eq
+  212af8: 5400050a     	b.ge	0x212b98 <ff_dovi_configure_ext+0x2c4>
+  212afc: 710022ff     	cmp	w23, #0x8
+  212b00: 540000c1     	b.ne	0x212b18 <ff_dovi_configure_ext+0x244>
+  212b04: f9400260     	ldr	x0, [x19]
+  212b08: 90fff562     	adrp	x2, 0xbe000
+  212b0c: 91081842     	add	x2, x2, #0x206
+  212b10: 52800301     	mov	w1, #0x18
+  212b14: 941313f3     	bl	0x6d7ae0 <av_log@plt>
+  212b18: 694922a4     	ldpsw	x4, x8, [x21, #0x48]
+  212b1c: b9805aa9     	ldrsw	x9, [x21, #0x58]
+  212b20: 9b247d08     	smull	x8, w8, w4
+  212b24: 340000a9     	cbz	w9, 0x212b38 <ff_dovi_configure_ext+0x264>
+  212b28: 9b097d08     	mul	x8, x8, x9
+  212b2c: b9805ea9     	ldrsw	x9, [x21, #0x5c]
+  212b30: 9ac90903     	udiv	x3, x8, x9
+  212b34: 14000003     	b	0x212b40 <ff_dovi_configure_ext+0x26c>
+  212b38: 52800329     	mov	w9, #0x19
+  212b3c: 9b097d03     	mul	x3, x8, x9
+  212b40: b0fff6a8     	adrp	x8, 0xe7000
+  212b44: 912a6108     	add	x8, x8, #0xa98
+  212b48: 52800038     	mov	w24, #0x1
+  212b4c: f1003b1f     	cmp	x24, #0xe
+  212b50: 54000140     	b.eq	0x212b78 <ff_dovi_configure_ext+0x2a4>
+  212b54: f85f8109     	ldur	x9, [x8, #-0x8]
+  212b58: eb09007f     	cmp	x3, x9
+  212b5c: 54000088     	b.hi	0x212b6c <ff_dovi_configure_ext+0x298>
+  212b60: b9400109     	ldr	w9, [x8]
+  212b64: 6b09009f     	cmp	w4, w9
+  212b68: 540002ad     	b.le	0x212bbc <ff_dovi_configure_ext+0x2e8>
+  212b6c: 91000718     	add	x24, x24, #0x1
+  212b70: 91006108     	add	x8, x8, #0x18
+  212b74: 17fffff6     	b	0x212b4c <ff_dovi_configure_ext+0x278>
+  212b78: f9400260     	ldr	x0, [x19]
+  212b7c: 710006df     	cmp	w22, #0x1
+  212b80: 5400014b     	b.lt	0x212ba8 <ff_dovi_configure_ext+0x2d4>
+  212b84: d0fff482     	adrp	x2, 0xa4000
+  212b88: 910a1042     	add	x2, x2, #0x284
+  212b8c: 52800201     	mov	w1, #0x10
+  212b90: 941313d4     	bl	0x6d7ae0 <av_log@plt>
+  212b94: 17ffffcc     	b	0x212ac4 <ff_dovi_configure_ext+0x1f0>
+  212b98: f9400260     	ldr	x0, [x19]
+  212b9c: 90fff5a2     	adrp	x2, 0xc6000
+  212ba0: 91044442     	add	x2, x2, #0x111
+  212ba4: 17ffffc6     	b	0x212abc <ff_dovi_configure_ext+0x1e8>
+  212ba8: 90fff462     	adrp	x2, 0x9e000
+  212bac: 91322042     	add	x2, x2, #0xc88
+  212bb0: 52800301     	mov	w1, #0x18
+  212bb4: 941313cb     	bl	0x6d7ae0 <av_log@plt>
+  212bb8: 528001b8     	mov	w24, #0xd
+  212bbc: 910023e0     	add	x0, sp, #0x8
+  212bc0: 941313dc     	bl	0x6d7b30 <av_dovi_alloc@plt>
+  212bc4: b4000320     	cbz	x0, 0x212c28 <ff_dovi_configure_ext+0x354>
+  212bc8: aa0003f6     	mov	x22, x0
+  212bcc: f94007e4     	ldr	x4, [sp, #0x8]
+  212bd0: 910082a0     	add	x0, x21, #0x20
+  212bd4: 9100a2a1     	add	x1, x21, #0x28
+  212bd8: 528003a2     	mov	w2, #0x1d
+  212bdc: aa1603e3     	mov	x3, x22
+  212be0: 2a1f03e5     	mov	w5, wzr
+  212be4: 941313d7     	bl	0x6d7b40 <av_packet_side_data_add@plt>
+  212be8: b40001c0     	cbz	x0, 0x212c20 <ff_dovi_configure_ext+0x34c>
+  212bec: 52800028     	mov	w8, #0x1
+  212bf0: 39000ad7     	strb	w23, [x22, #0x2]
+  212bf4: 2a1f03e0     	mov	w0, wzr
+  212bf8: 790002c8     	strh	w8, [x22]
+  212bfc: 39000ed8     	strb	w24, [x22, #0x3]
+  212c00: 79000ac8     	strh	w8, [x22, #0x4]
+  212c04: 39001ac8     	strb	w8, [x22, #0x6]
+  212c08: 39001eda     	strb	w26, [x22, #0x7]
+  212c0c: f94002c8     	ldr	x8, [x22]
+  212c10: 390022d4     	strb	w20, [x22, #0x8]
+  212c14: 39005274     	strb	w20, [x19, #0x14]
+  212c18: f800c268     	stur	x8, [x19, #0xc]
+  212c1c: 17ffffaf     	b	0x212ad8 <ff_dovi_configure_ext+0x204>
+  212c20: aa1603e0     	mov	x0, x22
+  212c24: 941313b7     	bl	0x6d7b00 <av_free@plt>
+  212c28: 12800160     	mov	w0, #-0xc
+  212c2c: 17ffffab     	b	0x212ad8 <ff_dovi_configure_ext+0x204>
+  212c30: 90fff402     	adrp	x2, 0x92000
+  212c34: 91160042     	add	x2, x2, #0x580
+  212c38: 90fff5e3     	adrp	x3, 0xce000
+  212c3c: 913e6c63     	add	x3, x3, #0xf9b
+  212c40: 9400069b     	bl	0x2146ac <ff_dovi_rpu_generate+0x19c0>
+  212c44: 52800c45     	mov	w5, #0x62
+  212c48: 941313a6     	bl	0x6d7ae0 <av_log@plt>
+  212c4c: 941313c1     	bl	0x6d7b50 <abort@plt>
+
+0000000000212c50 <ff_dovi_configure>:
+  212c50: f81d0ffe     	str	x30, [sp, #-0x30]!
+  212c54: a90157f6     	stp	x22, x21, [sp, #0x10]
+  212c58: a9024ff4     	stp	x20, x19, [sp, #0x20]
+  212c5c: aa0103f3     	mov	x19, x1
+  212c60: aa0003f5     	mov	x21, x0
+  212c64: 941313bf     	bl	0x6d7b60 <avcodec_parameters_alloc@plt>
+  212c68: f90007e0     	str	x0, [sp, #0x8]
+  212c6c: b4000180     	cbz	x0, 0x212c9c <ff_dovi_configure+0x4c>
+  212c70: aa1303e1     	mov	x1, x19
+  212c74: aa0003f4     	mov	x20, x0
+  212c78: 941313be     	bl	0x6d7b70 <avcodec_parameters_from_context@plt>
+  212c7c: 37f80280     	tbnz	w0, #0x1f, 0x212ccc <ff_dovi_configure+0x7c>
+  212c80: f941aa60     	ldr	x0, [x19, #0x350]
+  212c84: b9435a61     	ldr	w1, [x19, #0x358]
+  212c88: 52800302     	mov	w2, #0x18
+  212c8c: 941313bd     	bl	0x6d7b80 <av_frame_side_data_get_c@plt>
+  212c90: b40000a0     	cbz	x0, 0x212ca4 <ff_dovi_configure+0x54>
+  212c94: f9400402     	ldr	x2, [x0, #0x8]
+  212c98: 14000004     	b	0x212ca8 <ff_dovi_configure+0x58>
+  212c9c: 12800176     	mov	w22, #-0xc
+  212ca0: 1400000e     	b	0x212cd8 <ff_dovi_configure+0x88>
+  212ca4: aa1f03e2     	mov	x2, xzr
+  212ca8: b9420664     	ldr	w4, [x19, #0x204]
+  212cac: aa1503e0     	mov	x0, x21
+  212cb0: aa1403e1     	mov	x1, x20
+  212cb4: 2a1f03e3     	mov	w3, wzr
+  212cb8: 94131396     	bl	0x6d7b10 <ff_dovi_configure_ext@plt>
+  212cbc: 37f80080     	tbnz	w0, #0x1f, 0x212ccc <ff_dovi_configure+0x7c>
+  212cc0: aa1303e0     	mov	x0, x19
+  212cc4: aa1403e1     	mov	x1, x20
+  212cc8: 941313b2     	bl	0x6d7b90 <avcodec_parameters_to_context@plt>
+  212ccc: 2a0003f6     	mov	w22, w0
+  212cd0: 910023e0     	add	x0, sp, #0x8
+  212cd4: 941313b3     	bl	0x6d7ba0 <avcodec_parameters_free@plt>
+  212cd8: 2a1603e0     	mov	w0, w22
+  212cdc: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+  212ce0: a94157f6     	ldp	x22, x21, [sp, #0x10]
+  212ce4: f84307fe     	ldr	x30, [sp], #0x30
+  212ce8: d65f03c0     	ret
+
+0000000000212cec <ff_dovi_rpu_generate>:
+  212cec: d105c3ff     	sub	sp, sp, #0x170
+  212cf0: fd0083e8     	str	d8, [sp, #0x100]
+  212cf4: a9117bfd     	stp	x29, x30, [sp, #0x110]
+  212cf8: a9126ffc     	stp	x28, x27, [sp, #0x120]
+  212cfc: a91367fa     	stp	x26, x25, [sp, #0x130]
+  212d00: a9145ff8     	stp	x24, x23, [sp, #0x140]
+  212d04: a91557f6     	stp	x22, x21, [sp, #0x150]
+  212d08: a9164ff4     	stp	x20, x19, [sp, #0x160]
+  212d0c: 6f00e400     	movi	v0.2d, #0000000000000000
+  212d10: aa0403f5     	mov	x21, x4
+  212d14: aa0303f6     	mov	x22, x3
+  212d18: ad0483e0     	stp	q0, q0, [sp, #0x90]
+  212d1c: b4000161     	cbz	x1, 0x212d48 <ff_dovi_rpu_generate+0x5c>
+  212d20: 39403808     	ldrb	w8, [x0, #0xe]
+  212d24: aa0003f7     	mov	x23, x0
+  212d28: 34009fa8     	cbz	w8, 0x21411c <ff_dovi_rpu_generate+0x1430>
+  212d2c: a9407428     	ldp	x8, x29, [x1]
+  212d30: 2a0203f3     	mov	w19, w2
+  212d34: f9400839     	ldr	x25, [x1, #0x10]
+  212d38: aa0103f8     	mov	x24, x1
+  212d3c: 371000e2     	tbnz	w2, #0x2, 0x212d58 <ff_dovi_rpu_generate+0x6c>
+  212d40: 2a1f03f4     	mov	w20, wzr
+  212d44: 14000008     	b	0x212d64 <ff_dovi_rpu_generate+0x78>
+  212d48: 2a1f03f3     	mov	w19, wzr
+  212d4c: f90002df     	str	xzr, [x22]
+  212d50: b90002bf     	str	wzr, [x21]
+  212d54: 14000494     	b	0x213fa4 <ff_dovi_rpu_generate+0x12b8>
+  212d58: 394052f4     	ldrb	w20, [x23, #0x14]
+  212d5c: 71000a9f     	cmp	w20, #0x2
+  212d60: 54000460     	b.eq	0x212dec <ff_dovi_rpu_generate+0x100>
+  212d64: 8b08031a     	add	x26, x24, x8
+  212d68: 39400343     	ldrb	w3, [x26]
+  212d6c: 7100087f     	cmp	w3, #0x2
+  212d70: 540002e1     	b.ne	0x212dcc <ff_dovi_rpu_generate+0xe0>
+  212d74: 8b1d031b     	add	x27, x24, x29
+  212d78: 39400368     	ldrb	w8, [x27]
+  212d7c: 8b080efc     	add	x28, x23, x8, lsl #3
+  212d80: f9003fe8     	str	x8, [sp, #0x78]
+  212d84: f8450f80     	ldr	x0, [x28, #0x50]!
+  212d88: b50000a0     	cbnz	x0, 0x212d9c <ff_dovi_rpu_generate+0xb0>
+  212d8c: 52828300     	mov	w0, #0x1418
+  212d90: 940004eb     	bl	0x21413c <ff_dovi_rpu_generate+0x1450>
+  212d94: f9000380     	str	x0, [x28]
+  212d98: b4008fa0     	cbz	x0, 0x213f8c <ff_dovi_rpu_generate+0x12a0>
+  212d9c: 71000e9f     	cmp	w20, #0x3
+  212da0: 540002a0     	b.eq	0x212df4 <ff_dovi_rpu_generate+0x108>
+  212da4: 71000a9f     	cmp	w20, #0x2
+  212da8: 54000220     	b.eq	0x212dec <ff_dovi_rpu_generate+0x100>
+  212dac: 7100069f     	cmp	w20, #0x1
+  212db0: 54000061     	b.ne	0x212dbc <ff_dovi_rpu_generate+0xd0>
+  212db4: f9403fe8     	ldr	x8, [sp, #0x78]
+  212db8: 340001e8     	cbz	w8, 0x212df4 <ff_dovi_rpu_generate+0x108>
+  212dbc: b90037f3     	str	w19, [sp, #0x34]
+  212dc0: a903d7f6     	stp	x22, x21, [sp, #0x38]
+  212dc4: b90073ff     	str	wzr, [sp, #0x70]
+  212dc8: 14000013     	b	0x212e14 <ff_dovi_rpu_generate+0x128>
+  212dcc: f94002e0     	ldr	x0, [x23]
+  212dd0: 529636f3     	mov	w19, #0xb1b7
+  212dd4: b0fff4c2     	adrp	x2, 0xab000
+  212dd8: 91245842     	add	x2, x2, #0x916
+  212ddc: 52800201     	mov	w1, #0x10
+  212de0: 72b7d773     	movk	w19, #0xbebb, lsl #16
+  212de4: 9413133f     	bl	0x6d7ae0 <av_log@plt>
+  212de8: 1400046f     	b	0x213fa4 <ff_dovi_rpu_generate+0x12b8>
+  212dec: 128002b3     	mov	w19, #-0x16
+  212df0: 1400046d     	b	0x213fa4 <ff_dovi_rpu_generate+0x12b8>
+  212df4: aa1b03e1     	mov	x1, x27
+  212df8: 52828302     	mov	w2, #0x1418
+  212dfc: b90037f3     	str	w19, [sp, #0x34]
+  212e00: a903d7f6     	stp	x22, x21, [sp, #0x38]
+  212e04: 9413136f     	bl	0x6d7bc0 <memcmp@plt>
+  212e08: 7100001f     	cmp	w0, #0x0
+  212e0c: 1a9f17e8     	cset	w8, eq
+  212e10: b90073e8     	str	w8, [sp, #0x70]
+  212e14: 394052e8     	ldrb	w8, [x23, #0x14]
+  212e18: 71000d1f     	cmp	w8, #0x3
+  212e1c: 540000e1     	b.ne	0x212e38 <ff_dovi_rpu_generate+0x14c>
+  212e20: b9402b08     	ldr	w8, [x24, #0x28]
+  212e24: 340002c8     	cbz	w8, 0x212e7c <ff_dovi_rpu_generate+0x190>
+  212e28: f94022e8     	ldr	x8, [x23, #0x40]
+  212e2c: b40001e8     	cbz	x8, 0x212e68 <ff_dovi_rpu_generate+0x17c>
+  212e30: 52800028     	mov	w8, #0x1
+  212e34: 14000012     	b	0x212e7c <ff_dovi_rpu_generate+0x190>
+  212e38: f9403fe8     	ldr	x8, [sp, #0x78]
+  212e3c: aa1f03f3     	mov	x19, xzr
+  212e40: 910142f6     	add	x22, x23, #0x50
+  212e44: d37d7d15     	ubfiz	x21, x8, #3, #32
+  212e48: f102027f     	cmp	x19, #0x80
+  212e4c: 54fffea0     	b.eq	0x212e20 <ff_dovi_rpu_generate+0x134>

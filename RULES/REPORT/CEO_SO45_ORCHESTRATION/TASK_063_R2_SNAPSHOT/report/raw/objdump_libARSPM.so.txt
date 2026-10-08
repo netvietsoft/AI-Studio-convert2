@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARSPM.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 335
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libARSPM.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000012ca90 <.text>:
+  12ca90: d503245f     	bti	c
+  12ca94: b0001e40     	adrp	x0, 0x4f5000 <syscall@plt+0x3bc0>
+  12ca98: 91114000     	add	x0, x0, #0x450
+  12ca9c: 140f0fc9     	b	0x4f09c0 <__cxa_finalize@plt>
+  12caa0: d503245f     	bti	c
+  12caa4: d65f03c0     	ret
+  12caa8: d503245f     	bti	c
+  12caac: 17fffffd     	b	0x12caa0 <.text+0x10>
+  12cab0: d503245f     	bti	c
+  12cab4: b4000060     	cbz	x0, 0x12cac0 <.text+0x30>
+  12cab8: aa0003f0     	mov	x16, x0
+  12cabc: d61f0200     	br	x16
+  12cac0: d65f03c0     	ret
+  12cac4: d503245f     	bti	c
+  12cac8: aa0003e1     	mov	x1, x0
+  12cacc: d503201f     	nop
+  12cad0: 10ffff00     	adr	x0, #-0x20
+  12cad4: b0001e42     	adrp	x2, 0x4f5000 <syscall@plt+0x3bc0>
+  12cad8: 91114042     	add	x2, x2, #0x450
+  12cadc: 140f0fbd     	b	0x4f09d0 <__cxa_atexit@plt>
+  12cae0: d503245f     	bti	c
+  12cae4: b0001e43     	adrp	x3, 0x4f5000 <syscall@plt+0x3bc0>
+  12cae8: 91114063     	add	x3, x3, #0x450
+  12caec: 140f0fbd     	b	0x4f09e0 <__register_atfork@plt>
+
+000000000012caf0 <_Z19ARSPMImplementationv>:
+  12caf0: 52800020     	mov	w0, #0x1
+  12caf4: d65f03c0     	ret
+
+000000000012caf8 <_Z16ARSPMSetLogLeveli>:
+  12caf8: d65f03c0     	ret
+
+000000000012cafc <_Z14ARSPMSetJavaVMPv>:
+  12cafc: d65f03c0     	ret
+
+000000000012cb00 <_Z24ARSPMCreateSkottieHandlev>:
+  12cb00: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  12cb04: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  12cb08: 910003fd     	mov	x29, sp
+  12cb0c: 52800200     	mov	w0, #0x10
+  12cb10: 940f0fb8     	bl	0x4f09f0 <_Znwm@plt>
+  12cb14: aa0003f3     	mov	x19, x0
+  12cb18: 9400000a     	bl	0x12cb40 <_Z24ARSPMCreateSkottieHandlev+0x40>
+  12cb1c: aa1303e0     	mov	x0, x19
+  12cb20: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  12cb24: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  12cb28: d65f03c0     	ret
+  12cb2c: aa0003f4     	mov	x20, x0
+  12cb30: aa1303e0     	mov	x0, x19
+  12cb34: 940f0fb3     	bl	0x4f0a00 <_ZdlPv@plt>
+  12cb38: aa1403e0     	mov	x0, x20
+  12cb3c: 940f0066     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12cb40: d10103ff     	sub	sp, sp, #0x40
+  12cb44: a9027bfd     	stp	x29, x30, [sp, #0x20]
+  12cb48: a9034ff4     	stp	x20, x19, [sp, #0x30]
+  12cb4c: 910083fd     	add	x29, sp, #0x20
+  12cb50: d53bd054     	mrs	x20, TPIDR_EL0
+  12cb54: aa0003f3     	mov	x19, x0
+  12cb58: f9401688     	ldr	x8, [x20, #0x28]
+  12cb5c: f81f83a8     	stur	x8, [x29, #-0x8]
+  12cb60: a9007c1f     	stp	xzr, xzr, [x0]
+  12cb64: 52800c00     	mov	w0, #0x60
+  12cb68: 940f0fa2     	bl	0x4f09f0 <_Znwm@plt>
+  12cb6c: b0001e48     	adrp	x8, 0x4f5000 <syscall@plt+0x3bc0>
+  12cb70: 9113c108     	add	x8, x8, #0x4f0
+  12cb74: aa0003e9     	mov	x9, x0
+  12cb78: f9000008     	str	x8, [x0]
+  12cb7c: f0fff8c8     	adrp	x8, 0x47000
+  12cb80: 910023e1     	add	x1, sp, #0x8
+  12cb84: 3dc0e500     	ldr	q0, [x8, #0x390]
+  12cb88: d2a7f008     	mov	x8, #0x3f800000
+  12cb8c: a900fc1f     	stp	xzr, xzr, [x0, #0x8]
+  12cb90: f2c00208     	movk	x8, #0x10, lsl #32
+  12cb94: a9027c1f     	stp	xzr, xzr, [x0, #0x20]
+  12cb98: f8018d3f     	str	xzr, [x9, #0x18]!
+  12cb9c: ad018000     	stp	q0, q0, [x0, #0x30]
+  12cba0: a9057c08     	stp	x8, xzr, [x0, #0x50]
+  12cba4: a90083e9     	stp	x9, x0, [sp, #0x8]
+  12cba8: aa1303e0     	mov	x0, x19
+  12cbac: 940011f5     	bl	0x131380 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x15c0>
+  12cbb0: f9400bf3     	ldr	x19, [sp, #0x10]
+  12cbb4: b4000173     	cbz	x19, 0x12cbe0 <_Z24ARSPMCreateSkottieHandlev+0xe0>
+  12cbb8: 91002261     	add	x1, x19, #0x8
+  12cbbc: 92800000     	mov	x0, #-0x1
+  12cbc0: 940effec     	bl	0x4ecb70 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcdb0>
+  12cbc4: b50000e0     	cbnz	x0, 0x12cbe0 <_Z24ARSPMCreateSkottieHandlev+0xe0>
+  12cbc8: f9400268     	ldr	x8, [x19]
+  12cbcc: aa1303e0     	mov	x0, x19
+  12cbd0: f9400908     	ldr	x8, [x8, #0x10]
+  12cbd4: d63f0100     	blr	x8
+  12cbd8: aa1303e0     	mov	x0, x19
+  12cbdc: 940f0f8d     	bl	0x4f0a10 <_ZNSt6__ndk119__shared_weak_count14__release_weakEv@plt>
+  12cbe0: f9401688     	ldr	x8, [x20, #0x28]
+  12cbe4: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12cbe8: eb09011f     	cmp	x8, x9
+  12cbec: 540001c1     	b.ne	0x12cc24 <_Z24ARSPMCreateSkottieHandlev+0x124>
+  12cbf0: a9434ff4     	ldp	x20, x19, [sp, #0x30]
+  12cbf4: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+  12cbf8: 910103ff     	add	sp, sp, #0x40
+  12cbfc: d65f03c0     	ret
+  12cc00: f9401688     	ldr	x8, [x20, #0x28]
+  12cc04: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12cc08: eb09011f     	cmp	x8, x9
+  12cc0c: 540000c1     	b.ne	0x12cc24 <_Z24ARSPMCreateSkottieHandlev+0x124>
+  12cc10: aa0003f4     	mov	x20, x0
+  12cc14: aa1303e0     	mov	x0, x19
+  12cc18: 940011f1     	bl	0x1313dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x161c>
+  12cc1c: aa1403e0     	mov	x0, x20
+  12cc20: 940f002d     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12cc24: 940f0f7f     	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012cc28 <_Z25ARSPMDestroySkottieHandleRPv>:
+  12cc28: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  12cc2c: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  12cc30: 910003fd     	mov	x29, sp
+  12cc34: f9400014     	ldr	x20, [x0]
+  12cc38: b40000f4     	cbz	x20, 0x12cc54 <_Z25ARSPMDestroySkottieHandleRPv+0x2c>
+  12cc3c: aa0003f3     	mov	x19, x0
+  12cc40: aa1403e0     	mov	x0, x20
+  12cc44: 940011e6     	bl	0x1313dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x161c>
+  12cc48: aa1403e0     	mov	x0, x20
+  12cc4c: 940f0f6d     	bl	0x4f0a00 <_ZdlPv@plt>
+  12cc50: f900027f     	str	xzr, [x19]
+  12cc54: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  12cc58: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  12cc5c: d65f03c0     	ret
+
+000000000012cc60 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m>:
+  12cc60: d10243ff     	sub	sp, sp, #0x90
+  12cc64: fd0023e8     	str	d8, [sp, #0x40]
+  12cc68: a904fbfd     	stp	x29, x30, [sp, #0x48]
+  12cc6c: f9002ff9     	str	x25, [sp, #0x58]
+  12cc70: a9065ff8     	stp	x24, x23, [sp, #0x60]
+  12cc74: a90757f6     	stp	x22, x21, [sp, #0x70]
+  12cc78: a9084ff4     	stp	x20, x19, [sp, #0x80]
+  12cc7c: 910123fd     	add	x29, sp, #0x48
+  12cc80: d53bd058     	mrs	x24, TPIDR_EL0
+  12cc84: 2a1f03f3     	mov	w19, wzr
+  12cc88: f9401708     	ldr	x8, [x24, #0x28]
+  12cc8c: 7100045f     	cmp	w2, #0x1
+  12cc90: f81f03a8     	stur	x8, [x29, #-0x10]
+  12cc94: 5400082b     	b.lt	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cc98: 2a0103f5     	mov	w21, w1
+  12cc9c: 7100043f     	cmp	w1, #0x1
+  12cca0: 540007cb     	b.lt	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cca4: aa0303f7     	mov	x23, x3
+  12cca8: b4000783     	cbz	x3, 0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccac: f9400019     	ldr	x25, [x0]
+  12ccb0: b4000759     	cbz	x25, 0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccb4: d37e7ea8     	ubfiz	x8, x21, #2, #32
+  12ccb8: aa0403f6     	mov	x22, x4
+  12ccbc: eb04011f     	cmp	x8, x4
+  12ccc0: 540006c8     	b.hi	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12ccc4: 2a0203e8     	mov	w8, w2
+  12ccc8: 2a0203f4     	mov	w20, w2
+  12cccc: 9bc87ec8     	umulh	x8, x22, x8
+  12ccd0: eb0803ff     	cmp	xzr, x8
+  12ccd4: 54000060     	b.eq	0x12cce0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x80>
+  12ccd8: 2a1f03f3     	mov	w19, wzr
+  12ccdc: 1400002f     	b	0x12cd98 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x138>
+  12cce0: 910043e8     	add	x8, sp, #0x10
+  12cce4: 2a1503e0     	mov	w0, w21
+  12cce8: 2a1403e1     	mov	w1, w20
+  12ccec: 52800082     	mov	w2, #0x4
+  12ccf0: 52800043     	mov	w3, #0x2
+  12ccf4: 1e204008     	fmov	s8, s0
+  12ccf8: 9400ed15     	bl	0x16814c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3838c>
+  12ccfc: 910023e8     	add	x8, sp, #0x8
+  12cd00: 910043e0     	add	x0, sp, #0x10
+  12cd04: aa1703e1     	mov	x1, x23
+  12cd08: aa1603e2     	mov	x2, x22
+  12cd0c: aa1f03e3     	mov	x3, xzr
+  12cd10: 9402f6d2     	bl	0x1ea858 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xbaa98>
+  12cd14: f94007e0     	ldr	x0, [sp, #0x8]
+  12cd18: f100001f     	cmp	x0, #0x0
+  12cd1c: 1a9f07f3     	cset	w19, ne
+  12cd20: b4000340     	cbz	x0, 0x12cd88 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x128>
+  12cd24: 9402f313     	bl	0x1e9970 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9bb0>
+  12cd28: aa0003f6     	mov	x22, x0
+  12cd2c: 2a1f03e0     	mov	w0, wzr
+  12cd30: 9400646a     	bl	0x145ed8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x16118>
+  12cd34: 2d3c07a0     	stp	s0, s1, [x29, #-0x20]
+  12cd38: 2d3d0fa2     	stp	s2, s3, [x29, #-0x18]
+  12cd3c: d10083a1     	sub	x1, x29, #0x20
+  12cd40: aa1603e0     	mov	x0, x22
+  12cd44: 52800022     	mov	w2, #0x1
+  12cd48: 94004bd8     	bl	0x13fca8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfee8>
+  12cd4c: f9400320     	ldr	x0, [x25]
+  12cd50: f9400008     	ldr	x8, [x0]
+  12cd54: b40000c8     	cbz	x8, 0x12cd6c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x10c>
+  12cd58: 1e22c100     	fcvt	d0, s8
+  12cd5c: aa0803e0     	mov	x0, x8
+  12cd60: aa1f03e1     	mov	x1, xzr
+  12cd64: 940cf946     	bl	0x46b27c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b4bc>
+  12cd68: f9400320     	ldr	x0, [x25]
+  12cd6c: 1e2202a0     	scvtf	s0, w21
+  12cd70: 1e220281     	scvtf	s1, w20
+  12cd74: aa1603e1     	mov	x1, x22
+  12cd78: 94000023     	bl	0x12ce04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a4>
+  12cd7c: f94007e0     	ldr	x0, [sp, #0x8]
+  12cd80: 2a1f03e1     	mov	w1, wzr
+  12cd84: 9402f397     	bl	0x1e9be0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9e20>
+  12cd88: 910023e0     	add	x0, sp, #0x8
+  12cd8c: 9400005e     	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12cd90: 910043e0     	add	x0, sp, #0x10
+  12cd94: 9400ebc7     	bl	0x167cb0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x37ef0>
+  12cd98: f9401708     	ldr	x8, [x24, #0x28]
+  12cd9c: f85f03a9     	ldur	x9, [x29, #-0x10]
+  12cda0: eb09011f     	cmp	x8, x9
+  12cda4: 540002e1     	b.ne	0x12ce00 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a0>
+  12cda8: 2a1303e0     	mov	w0, w19
+  12cdac: a9484ff4     	ldp	x20, x19, [sp, #0x80]
+  12cdb0: f9402ff9     	ldr	x25, [sp, #0x58]
+  12cdb4: a94757f6     	ldp	x22, x21, [sp, #0x70]
+  12cdb8: fd4023e8     	ldr	d8, [sp, #0x40]
+  12cdbc: a9465ff8     	ldp	x24, x23, [sp, #0x60]
+  12cdc0: a944fbfd     	ldp	x29, x30, [sp, #0x48]
+  12cdc4: 910243ff     	add	sp, sp, #0x90
+  12cdc8: d65f03c0     	ret
+  12cdcc: aa0003f3     	mov	x19, x0
+  12cdd0: 14000004     	b	0x12cde0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x180>
+  12cdd4: aa0003f3     	mov	x19, x0
+  12cdd8: 910023e0     	add	x0, sp, #0x8
+  12cddc: 9400004a     	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12cde0: 910043e0     	add	x0, sp, #0x10
+  12cde4: 9400ebb3     	bl	0x167cb0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x37ef0>
+  12cde8: f9401708     	ldr	x8, [x24, #0x28]
+  12cdec: f85f03a9     	ldur	x9, [x29, #-0x10]
+  12cdf0: eb09011f     	cmp	x8, x9
+  12cdf4: 54000061     	b.ne	0x12ce00 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a0>
+  12cdf8: aa1303e0     	mov	x0, x19
+  12cdfc: 940effb6     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12ce00: 940f0f08     	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12ce04: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  12ce08: a9014ff4     	stp	x20, x19, [sp, #0x10]
+  12ce0c: 910003fd     	mov	x29, sp
+  12ce10: 2d410c02     	ldp	s2, s3, [x0, #0x8]
+  12ce14: aa0003f3     	mov	x19, x0
+  12ce18: aa0103f4     	mov	x20, x1
+  12ce1c: 1e222000     	fcmp	s0, s2
+  12ce20: 1e230420     	fccmp	s1, s3, #0x0, eq
+  12ce24: 540005a0     	b.eq	0x12ced8 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x278>
+  12ce28: bd401262     	ldr	s2, [x19, #0x10]
+  12ce2c: 1e202048     	fcmp	s2, #0.0
+  12ce30: 5400042d     	b.le	0x12ceb4 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x254>
+  12ce34: bd401663     	ldr	s3, [x19, #0x14]
+  12ce38: 1e202068     	fcmp	s3, #0.0
+  12ce3c: 540003cd     	b.le	0x12ceb4 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x254>
+  12ce40: 1e221804     	fdiv	s4, s0, s2
+  12ce44: 1e2e1006     	fmov	s6, #1.00000000
+  12ce48: b9001e7f     	str	wzr, [x19, #0x1c]
+  12ce4c: b900267f     	str	wzr, [x19, #0x24]
+  12ce50: f9001a7f     	str	xzr, [x19, #0x30]
+  12ce54: 1e231825     	fdiv	s5, s1, s3
+  12ce58: 1e2420a0     	fcmp	s5, s4
+  12ce5c: 1e244ca4     	fcsel	s4, s5, s4, mi
+  12ce60: 1e2c1005     	fmov	s5, #0.50000000
+  12ce64: 1f048042     	fmsub	s2, s2, s4, s0
+  12ce68: 1f048463     	fmsub	s3, s3, s4, s1
+  12ce6c: 1e262080     	fcmp	s4, s6
+  12ce70: bd001a64     	str	s4, [x19, #0x18]
+  12ce74: 1a9f07e8     	cset	w8, ne
+  12ce78: 1e250842     	fmul	s2, s2, s5
+  12ce7c: 1e250863     	fmul	s3, s3, s5
+  12ce80: 1e202048     	fcmp	s2, #0.0
+  12ce84: bd002262     	str	s2, [x19, #0x20]
+  12ce88: 2d050e64     	stp	s4, s3, [x19, #0x28]
+  12ce8c: 1a9f07e9     	cset	w9, ne
+  12ce90: 1e202068     	fcmp	s3, #0.0
+  12ce94: 1a9f0529     	csinc	w9, w9, wzr, eq
+  12ce98: 1e202088     	fcmp	s4, #0.0
+  12ce9c: 2a080528     	orr	w8, w9, w8, lsl #1
+  12cea0: 52a7f009     	mov	w9, #0x3f800000
+  12cea4: b9003a69     	str	w9, [x19, #0x38]
+  12cea8: 321c0109     	orr	w9, w8, #0x10
+  12ceac: 1a881128     	csel	w8, w9, w8, ne
+  12ceb0: 14000008     	b	0x12ced0 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x270>
+  12ceb4: f0fff8c8     	adrp	x8, 0x47000
+  12ceb8: 3dc0e502     	ldr	q2, [x8, #0x390]
+  12cebc: 52a7f008     	mov	w8, #0x3f800000
+  12cec0: b9003a68     	str	w8, [x19, #0x38]
+  12cec4: 52800208     	mov	w8, #0x10
+  12cec8: 3c818262     	stur	q2, [x19, #0x18]
+  12cecc: 3c828262     	stur	q2, [x19, #0x28]
+  12ced0: b9003e68     	str	w8, [x19, #0x3c]
+  12ced4: 2d010660     	stp	s0, s1, [x19, #0x8]
+  12ced8: 91006261     	add	x1, x19, #0x18
+  12cedc: aa1403e0     	mov	x0, x20
+  12cee0: 940035ad     	bl	0x13a594 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa7d4>
+  12cee4: f9400260     	ldr	x0, [x19]
+  12cee8: aa1403e1     	mov	x1, x20
+  12ceec: aa1f03e2     	mov	x2, xzr
+  12cef0: 940cf807     	bl	0x46af0c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b14c>
+  12cef4: f9402260     	ldr	x0, [x19, #0x40]
+  12cef8: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+  12cefc: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  12cf00: 14000bb4     	b	0x12fdd0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x10>
+  12cf04: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+  12cf08: f9000bf3     	str	x19, [sp, #0x10]
+  12cf0c: 910003fd     	mov	x29, sp
+  12cf10: f9400013     	ldr	x19, [x0]
+  12cf14: b4000153     	cbz	x19, 0x12cf3c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2dc>
+  12cf18: 91002261     	add	x1, x19, #0x8
+  12cf1c: 12800000     	mov	w0, #-0x1
+  12cf20: 940efefc     	bl	0x4ecb10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcd50>
+  12cf24: 7100041f     	cmp	w0, #0x1
+  12cf28: 540000a1     	b.ne	0x12cf3c <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2dc>
+  12cf2c: f9400268     	ldr	x8, [x19]
+  12cf30: f9400908     	ldr	x8, [x8, #0x10]
+  12cf34: aa1303e0     	mov	x0, x19
+  12cf38: d63f0100     	blr	x8
+  12cf3c: f9400bf3     	ldr	x19, [sp, #0x10]
+  12cf40: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+  12cf44: d65f03c0     	ret
+  12cf48: 94000c6d     	bl	0x1300fc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33c>
+
+000000000012cf4c <_Z20ARSPMSkottieLoadDataRPvPKciS2_>:
+  12cf4c: d10143ff     	sub	sp, sp, #0x50
+  12cf50: a9027bfd     	stp	x29, x30, [sp, #0x20]
+  12cf54: a90357f6     	stp	x22, x21, [sp, #0x30]
+  12cf58: a9044ff4     	stp	x20, x19, [sp, #0x40]
+  12cf5c: 910083fd     	add	x29, sp, #0x20
+  12cf60: d53bd056     	mrs	x22, TPIDR_EL0
+  12cf64: f94016c8     	ldr	x8, [x22, #0x28]
+  12cf68: f81f83a8     	stur	x8, [x29, #-0x8]
+  12cf6c: f9400008     	ldr	x8, [x0]
+  12cf70: b4000208     	cbz	x8, 0x12cfb0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x64>
+  12cf74: aa0103f3     	mov	x19, x1
+  12cf78: f9400114     	ldr	x20, [x8]
+  12cf7c: 910003e0     	mov	x0, sp
+  12cf80: aa0303e1     	mov	x1, x3
+  12cf84: 93407c55     	sxtw	x21, w2
+  12cf88: 940000c6     	bl	0x12d2a0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x354>
+  12cf8c: 910003e3     	mov	x3, sp
+  12cf90: aa1403e0     	mov	x0, x20
+  12cf94: aa1303e1     	mov	x1, x19
+  12cf98: aa1503e2     	mov	x2, x21
+  12cf9c: 9400001a     	bl	0x12d004 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb8>
+  12cfa0: 394003e8     	ldrb	w8, [sp]
+  12cfa4: 36000068     	tbz	w8, #0x0, 0x12cfb0 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x64>
+  12cfa8: f9400be0     	ldr	x0, [sp, #0x10]
+  12cfac: 940f0e95     	bl	0x4f0a00 <_ZdlPv@plt>
+  12cfb0: f94016c8     	ldr	x8, [x22, #0x28]
+  12cfb4: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12cfb8: eb09011f     	cmp	x8, x9
+  12cfbc: 54000221     	b.ne	0x12d000 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb4>
+  12cfc0: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+  12cfc4: a94357f6     	ldp	x22, x21, [sp, #0x30]
+  12cfc8: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+  12cfcc: 910143ff     	add	sp, sp, #0x50
+  12cfd0: d65f03c0     	ret
+  12cfd4: 394003e8     	ldrb	w8, [sp]
+  12cfd8: aa0003f3     	mov	x19, x0
+  12cfdc: 36000068     	tbz	w8, #0x0, 0x12cfe8 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x9c>
+  12cfe0: f9400be0     	ldr	x0, [sp, #0x10]
+  12cfe4: 940f0e87     	bl	0x4f0a00 <_ZdlPv@plt>
+  12cfe8: f94016c8     	ldr	x8, [x22, #0x28]
+  12cfec: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12cff0: eb09011f     	cmp	x8, x9
+  12cff4: 54000061     	b.ne	0x12d000 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0xb4>
+  12cff8: aa1303e0     	mov	x0, x19
+  12cffc: 940eff36     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d000: 940f0e88     	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12d004: d10383ff     	sub	sp, sp, #0xe0
+  12d008: a90a7bfd     	stp	x29, x30, [sp, #0xa0]
+  12d00c: a90b5ff8     	stp	x24, x23, [sp, #0xb0]
+  12d010: a90c57f6     	stp	x22, x21, [sp, #0xc0]
+  12d014: a90d4ff4     	stp	x20, x19, [sp, #0xd0]
+  12d018: 910283fd     	add	x29, sp, #0xa0
+  12d01c: d53bd057     	mrs	x23, TPIDR_EL0
+  12d020: aa0103f5     	mov	x21, x1
+  12d024: aa0003f3     	mov	x19, x0
+  12d028: f94016e8     	ldr	x8, [x23, #0x28]
+  12d02c: d100c3a0     	sub	x0, x29, #0x30
+  12d030: aa0303e1     	mov	x1, x3
+  12d034: aa0203f4     	mov	x20, x2
+  12d038: f81f83a8     	stur	x8, [x29, #-0x8]
+  12d03c: 9402b07b     	bl	0x1d9228 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9468>
+  12d040: d100a3a8     	sub	x8, x29, #0x28
+  12d044: d100c3a0     	sub	x0, x29, #0x30
+  12d048: 52800021     	mov	w1, #0x1
+  12d04c: 940ce760     	bl	0x466dcc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33700c>
+  12d050: f85d83a8     	ldur	x8, [x29, #-0x28]
+  12d054: a93da3bf     	stp	xzr, x8, [x29, #-0x28]
+  12d058: 910043e8     	add	x8, sp, #0x10
+  12d05c: d10083a0     	sub	x0, x29, #0x20
+  12d060: 52800021     	mov	w1, #0x1
+  12d064: 940ce89e     	bl	0x4672dc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33751c>
+  12d068: f9400be8     	ldr	x8, [sp, #0x10]
+  12d06c: f9000bff     	str	xzr, [sp, #0x10]
+  12d070: f81e83a8     	stur	x8, [x29, #-0x18]
+  12d074: d10043a8     	sub	x8, x29, #0x10
+  12d078: d10063a0     	sub	x0, x29, #0x18
+  12d07c: 94000ba9     	bl	0x12ff20 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x160>
+  12d080: d10063a0     	sub	x0, x29, #0x18
+  12d084: 94000ab7     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d088: 910043e0     	add	x0, sp, #0x10
+  12d08c: 94000ad9     	bl	0x12fbf0 <_Z16ARSPMSkSvgToRGBAPKci+0x510>
+  12d090: d10083a0     	sub	x0, x29, #0x20
+  12d094: 94000ab3     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d098: d100a3a0     	sub	x0, x29, #0x28
+  12d09c: 94000bd0     	bl	0x12ffdc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x21c>
+  12d0a0: d100c3a0     	sub	x0, x29, #0x30
+  12d0a4: 9402b0d5     	bl	0x1d93f8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9638>
+  12d0a8: 910043e0     	add	x0, sp, #0x10
+  12d0ac: 2a1f03e1     	mov	w1, wzr
+  12d0b0: 940cf429     	bl	0x46a154 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a394>
+  12d0b4: 52800800     	mov	w0, #0x40
+  12d0b8: 940f0e4e     	bl	0x4f09f0 <_Znwm@plt>
+  12d0bc: 6f00e400     	movi	v0.2d, #0000000000000000
+  12d0c0: f9402276     	ldr	x22, [x19, #0x40]
+  12d0c4: 90001e48     	adrp	x8, 0x4f5000 <syscall@plt+0x3bc0>
+  12d0c8: 9111a108     	add	x8, x8, #0x468
+  12d0cc: 52800029     	mov	w9, #0x1
+  12d0d0: f81d83bf     	stur	xzr, [x29, #-0x28]
+  12d0d4: a9007c08     	stp	x8, xzr, [x0]
+  12d0d8: b9000809     	str	w9, [x0, #0x8]
+  12d0dc: ad008000     	stp	q0, q0, [x0, #0x10]
+  12d0e0: 3d800c00     	str	q0, [x0, #0x30]
+  12d0e4: f9002260     	str	x0, [x19, #0x40]
+  12d0e8: b4000156     	cbz	x22, 0x12d110 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1c4>
+  12d0ec: 910022c1     	add	x1, x22, #0x8
+  12d0f0: 12800000     	mov	w0, #-0x1
+  12d0f4: 940efe87     	bl	0x4ecb10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcd50>
+  12d0f8: 7100041f     	cmp	w0, #0x1
+  12d0fc: 540000a1     	b.ne	0x12d110 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1c4>
+  12d100: f94002c8     	ldr	x8, [x22]
+  12d104: f9400908     	ldr	x8, [x8, #0x10]
+  12d108: aa1603e0     	mov	x0, x22
+  12d10c: d63f0100     	blr	x8
+  12d110: d100a3a0     	sub	x0, x29, #0x28
+  12d114: 94000bc4     	bl	0x130024 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x264>
+  12d118: f85f03b6     	ldur	x22, [x29, #-0x10]
+  12d11c: b4000096     	cbz	x22, 0x12d12c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x1e0>
+  12d120: 910022c1     	add	x1, x22, #0x8
+  12d124: 52800020     	mov	w0, #0x1
+  12d128: 940efe56     	bl	0x4eca80 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bccc0>
+  12d12c: f90007f6     	str	x22, [sp, #0x8]
+  12d130: 910043e0     	add	x0, sp, #0x10
+  12d134: 910023e1     	add	x1, sp, #0x8
+  12d138: 940cf466     	bl	0x46a2d0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a510>
+  12d13c: f9402278     	ldr	x24, [x19, #0x40]
+  12d140: aa0003f6     	mov	x22, x0
+  12d144: b4000098     	cbz	x24, 0x12d154 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x208>
+  12d148: 91002301     	add	x1, x24, #0x8
+  12d14c: 52800020     	mov	w0, #0x1
+  12d150: 940efe4c     	bl	0x4eca80 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bccc0>
+  12d154: f90003f8     	str	x24, [sp]
+  12d158: 910003e1     	mov	x1, sp
+  12d15c: aa1603e0     	mov	x0, x22
+  12d160: 940cf472     	bl	0x46a328 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a568>
+  12d164: d100a3a8     	sub	x8, x29, #0x28
+  12d168: aa1503e1     	mov	x1, x21
+  12d16c: aa1403e2     	mov	x2, x20
+  12d170: 940cf484     	bl	0x46a380 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a5c0>
+  12d174: f85d83a8     	ldur	x8, [x29, #-0x28]
+  12d178: f9400260     	ldr	x0, [x19]
+  12d17c: f81d83bf     	stur	xzr, [x29, #-0x28]
+  12d180: f9000268     	str	x8, [x19]
+  12d184: b40000a0     	cbz	x0, 0x12d198 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x24c>
+  12d188: 94000dcd     	bl	0x1308bc <_Z21ARSPMSkSvgSegmentPathPvffbf+0xafc>
+  12d18c: f85d83a0     	ldur	x0, [x29, #-0x28]
+  12d190: b4000040     	cbz	x0, 0x12d198 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x24c>
+  12d194: 94000dca     	bl	0x1308bc <_Z21ARSPMSkSvgSegmentPathPvffbf+0xafc>
+  12d198: 910003e0     	mov	x0, sp
+  12d19c: 94000bb4     	bl	0x13006c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2ac>
+  12d1a0: 910023e0     	add	x0, sp, #0x8
+  12d1a4: 94000a6f     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d1a8: 2f00e400     	movi	d0, #0000000000000000
+  12d1ac: f9400268     	ldr	x8, [x19]
+  12d1b0: fd000660     	str	d0, [x19, #0x8]
+  12d1b4: b4000048     	cbz	x8, 0x12d1bc <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x270>
+  12d1b8: fd401900     	ldr	d0, [x8, #0x30]
+  12d1bc: 910043e0     	add	x0, sp, #0x10
+  12d1c0: fd000a60     	str	d0, [x19, #0x10]
+  12d1c4: 940cf3ed     	bl	0x46a178 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a3b8>
+  12d1c8: d10043a0     	sub	x0, x29, #0x10
+  12d1cc: 94000bba     	bl	0x1300b4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2f4>
+  12d1d0: f94016e8     	ldr	x8, [x23, #0x28]
+  12d1d4: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12d1d8: eb09011f     	cmp	x8, x9
+  12d1dc: 54000601     	b.ne	0x12d29c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x350>
+  12d1e0: a94d4ff4     	ldp	x20, x19, [sp, #0xd0]
+  12d1e4: a94c57f6     	ldp	x22, x21, [sp, #0xc0]
+  12d1e8: a94b5ff8     	ldp	x24, x23, [sp, #0xb0]
+  12d1ec: a94a7bfd     	ldp	x29, x30, [sp, #0xa0]
+  12d1f0: 910383ff     	add	sp, sp, #0xe0
+  12d1f4: d65f03c0     	ret
+  12d1f8: aa0003f3     	mov	x19, x0
+  12d1fc: d100a3a0     	sub	x0, x29, #0x28
+  12d200: 94000b89     	bl	0x130024 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x264>
+  12d204: 1400001c     	b	0x12d274 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x328>
+  12d208: aa0003f3     	mov	x19, x0
+  12d20c: 14000018     	b	0x12d26c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x320>
+  12d210: aa0003f3     	mov	x19, x0
+  12d214: 14000018     	b	0x12d274 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x328>
+  12d218: aa0003f3     	mov	x19, x0
+  12d21c: 14000018     	b	0x12d27c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x330>
+  12d220: aa0003f3     	mov	x19, x0
+  12d224: d10063a0     	sub	x0, x29, #0x18
+  12d228: 94000a4e     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d22c: 910043e0     	add	x0, sp, #0x10
+  12d230: 94000a70     	bl	0x12fbf0 <_Z16ARSPMSkSvgToRGBAPKci+0x510>
+  12d234: 14000002     	b	0x12d23c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x2f0>
+  12d238: aa0003f3     	mov	x19, x0
+  12d23c: d10083a0     	sub	x0, x29, #0x20
+  12d240: 94000a48     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d244: d100a3a0     	sub	x0, x29, #0x28
+  12d248: 94000b65     	bl	0x12ffdc <_Z21ARSPMSkSvgSegmentPathPvffbf+0x21c>
+  12d24c: 14000002     	b	0x12d254 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x308>
+  12d250: aa0003f3     	mov	x19, x0
+  12d254: d100c3a0     	sub	x0, x29, #0x30
+  12d258: 9402b068     	bl	0x1d93f8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xa9638>
+  12d25c: 1400000a     	b	0x12d284 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x338>
+  12d260: aa0003f3     	mov	x19, x0
+  12d264: 910003e0     	mov	x0, sp
+  12d268: 94000b81     	bl	0x13006c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2ac>
+  12d26c: 910023e0     	add	x0, sp, #0x8
+  12d270: 94000a3c     	bl	0x12fb60 <_Z16ARSPMSkSvgToRGBAPKci+0x480>
+  12d274: 910043e0     	add	x0, sp, #0x10
+  12d278: 940cf3c0     	bl	0x46a178 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33a3b8>
+  12d27c: d10043a0     	sub	x0, x29, #0x10
+  12d280: 94000b8d     	bl	0x1300b4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x2f4>
+  12d284: f94016e8     	ldr	x8, [x23, #0x28]
+  12d288: f85f83a9     	ldur	x9, [x29, #-0x8]
+  12d28c: eb09011f     	cmp	x8, x9
+  12d290: 54000061     	b.ne	0x12d29c <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x350>
+  12d294: aa1303e0     	mov	x0, x19
+  12d298: 940efe8f     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d29c: 940f0de1     	bl	0x4f0a20 <__stack_chk_fail@plt>
+  12d2a0: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+  12d2a4: a90157f6     	stp	x22, x21, [sp, #0x10]
+  12d2a8: a9024ff4     	stp	x20, x19, [sp, #0x20]
+  12d2ac: 910003fd     	mov	x29, sp
+  12d2b0: aa0003f3     	mov	x19, x0
+  12d2b4: aa0103e0     	mov	x0, x1
+  12d2b8: aa0103f5     	mov	x21, x1
+  12d2bc: 940f0ddd     	bl	0x4f0a30 <strlen@plt>
+  12d2c0: b100401f     	cmn	x0, #0x10
+  12d2c4: 54000302     	b.hs	0x12d324 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3d8>
+  12d2c8: aa0003f4     	mov	x20, x0
+  12d2cc: f1005c1f     	cmp	x0, #0x17
+  12d2d0: 540000a2     	b.hs	0x12d2e4 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x398>
+  12d2d4: 531f7a88     	lsl	w8, w20, #1
+  12d2d8: 38001668     	strb	w8, [x19], #0x1
+  12d2dc: b5000134     	cbnz	x20, 0x12d300 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3b4>
+  12d2e0: 1400000c     	b	0x12d310 <_Z20ARSPMSkottieLoadDataRPvPKciS2_+0x3c4>
+  12d2e4: b2400e96     	orr	x22, x20, #0xf
+  12d2e8: 910006c0     	add	x0, x22, #0x1
+  12d2ec: 940f0dc1     	bl	0x4f09f0 <_Znwm@plt>
+  12d2f0: 91000ac8     	add	x8, x22, #0x2
+  12d2f4: a9008274     	stp	x20, x0, [x19, #0x8]
+  12d2f8: f9000268     	str	x8, [x19]
+  12d2fc: aa0003f3     	mov	x19, x0
+  12d300: aa1303e0     	mov	x0, x19
+  12d304: aa1503e1     	mov	x1, x21
+  12d308: aa1403e2     	mov	x2, x20
+  12d30c: 940f0dcd     	bl	0x4f0a40 <memmove@plt>
+  12d310: 38346a7f     	strb	wzr, [x19, x20]
+  12d314: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+  12d318: a94157f6     	ldp	x22, x21, [sp, #0x10]
+  12d31c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+  12d320: d65f03c0     	ret
+  12d324: aa1303e0     	mov	x0, x19
+  12d328: 94001062     	bl	0x1314b0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x16f0>
+
+000000000012d32c <_Z29ARSPMSkottieGetAnimationWidthRPv>:
+  12d32c: f9400008     	ldr	x8, [x0]
+  12d330: b4000088     	cbz	x8, 0x12d340 <_Z29ARSPMSkottieGetAnimationWidthRPv+0x14>
+  12d334: f9400108     	ldr	x8, [x8]
+  12d338: bd401100     	ldr	s0, [x8, #0x10]
+  12d33c: d65f03c0     	ret
+  12d340: 2f00e400     	movi	d0, #0000000000000000
+  12d344: d65f03c0     	ret
+
+000000000012d348 <_Z30ARSPMSkottieGetAnimationHeightRPv>:
+  12d348: f9400008     	ldr	x8, [x0]
+  12d34c: b4000088     	cbz	x8, 0x12d35c <_Z30ARSPMSkottieGetAnimationHeightRPv+0x14>
+  12d350: f9400108     	ldr	x8, [x8]
+  12d354: bd401500     	ldr	s0, [x8, #0x14]
+  12d358: d65f03c0     	ret
+  12d35c: 2f00e400     	movi	d0, #0000000000000000
+  12d360: d65f03c0     	ret
+
+000000000012d364 <_Z32ARSPMSkottieGetAnimationDurationRPv>:
+  12d364: 2f00e400     	movi	d0, #0000000000000000
+  12d368: f9400008     	ldr	x8, [x0]
+  12d36c: b40000c8     	cbz	x8, 0x12d384 <_Z32ARSPMSkottieGetAnimationDurationRPv+0x20>
+  12d370: f9400108     	ldr	x8, [x8]
+  12d374: f9400108     	ldr	x8, [x8]
+  12d378: b4000068     	cbz	x8, 0x12d384 <_Z32ARSPMSkottieGetAnimationDurationRPv+0x20>
+  12d37c: fd402500     	ldr	d0, [x8, #0x48]
+  12d380: 1e624000     	fcvt	s0, d0
+  12d384: d65f03c0     	ret
+
+000000000012d388 <_Z27ARSPMSkottieGetAnimationFPSRPv>:
+  12d388: 2f00e400     	movi	d0, #0000000000000000
+  12d38c: f9400008     	ldr	x8, [x0]
+  12d390: b40000c8     	cbz	x8, 0x12d3a8 <_Z27ARSPMSkottieGetAnimationFPSRPv+0x20>
+  12d394: f9400108     	ldr	x8, [x8]
+  12d398: f9400108     	ldr	x8, [x8]
+  12d39c: b4000068     	cbz	x8, 0x12d3a8 <_Z27ARSPMSkottieGetAnimationFPSRPv+0x20>
+  12d3a0: fd402900     	ldr	d0, [x8, #0x50]
+  12d3a4: 1e624000     	fcvt	s0, d0
+  12d3a8: d65f03c0     	ret
+
+000000000012d3ac <_Z24ARSPMSkottiAnimationDrawRPvfi>:
+  12d3ac: d10183ff     	sub	sp, sp, #0x60
+  12d3b0: 6d0223e9     	stp	d9, d8, [sp, #0x20]
+  12d3b4: a9037bfd     	stp	x29, x30, [sp, #0x30]
+  12d3b8: f90023f5     	str	x21, [sp, #0x40]
+  12d3bc: a9054ff4     	stp	x20, x19, [sp, #0x50]
+  12d3c0: 9100c3fd     	add	x29, sp, #0x30
+  12d3c4: d53bd054     	mrs	x20, TPIDR_EL0
+  12d3c8: f9401688     	ldr	x8, [x20, #0x28]
+  12d3cc: f9000fe8     	str	x8, [sp, #0x18]
+  12d3d0: f9400015     	ldr	x21, [x0]
+  12d3d4: b4000415     	cbz	x21, 0x12d454 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xa8>
+  12d3d8: f94002a8     	ldr	x8, [x21]
+  12d3dc: 1e204008     	fmov	s8, s0
+  12d3e0: 93407c21     	sxtw	x1, w1
+  12d3e4: 910023e0     	add	x0, sp, #0x8
+  12d3e8: 2d420500     	ldp	s0, s1, [x8, #0x10]
+  12d3ec: 1e380008     	fcvtzs	w8, s0
+  12d3f0: 1e380029     	fcvtzs	w9, s1
+  12d3f4: aa098108     	orr	x8, x8, x9, lsl #32
+  12d3f8: f90007e8     	str	x8, [sp, #0x8]
+  12d3fc: 910043e8     	add	x8, sp, #0x10
+  12d400: 94001184     	bl	0x131a10 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1c50>
+  12d404: f94002b3     	ldr	x19, [x21]
+  12d408: f9400260     	ldr	x0, [x19]
+  12d40c: b40000a0     	cbz	x0, 0x12d420 <_Z24ARSPMSkottiAnimationDrawRPvfi+0x74>
+  12d410: 1e22c100     	fcvt	d0, s8
+  12d414: aa1f03e1     	mov	x1, xzr
+  12d418: 940cf799     	bl	0x46b27c <_Z21ARSPMSkSvgSegmentPathPvffbf+0x33b4bc>
+  12d41c: f94002b3     	ldr	x19, [x21]
+  12d420: 2d422668     	ldp	s8, s9, [x19, #0x10]
+  12d424: f9400be0     	ldr	x0, [sp, #0x10]
+  12d428: 9402f152     	bl	0x1e9970 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9bb0>
+  12d42c: aa0003e1     	mov	x1, x0
+  12d430: 1e204100     	fmov	s0, s8
+  12d434: 1e204121     	fmov	s1, s9
+  12d438: aa1303e0     	mov	x0, x19
+  12d43c: 97fffe72     	bl	0x12ce04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x1a4>
+  12d440: f9400be0     	ldr	x0, [sp, #0x10]
+  12d444: 2a1f03e1     	mov	w1, wzr
+  12d448: 9402f1e6     	bl	0x1e9be0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb9e20>
+  12d44c: 910043e0     	add	x0, sp, #0x10
+  12d450: 97fffead     	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12d454: f9401688     	ldr	x8, [x20, #0x28]
+  12d458: f9400fe9     	ldr	x9, [sp, #0x18]
+  12d45c: eb09011f     	cmp	x8, x9
+  12d460: 54000201     	b.ne	0x12d4a0 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xf4>
+  12d464: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+  12d468: f94023f5     	ldr	x21, [sp, #0x40]
+  12d46c: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+  12d470: 6d4223e9     	ldp	d9, d8, [sp, #0x20]
+  12d474: 910183ff     	add	sp, sp, #0x60
+  12d478: d65f03c0     	ret
+  12d47c: aa0003f3     	mov	x19, x0
+  12d480: 910043e0     	add	x0, sp, #0x10
+  12d484: 97fffea0     	bl	0x12cf04 <_Z30ARSPMSkottiAnimationDrawPixelsRPvfiiS_m+0x2a4>
+  12d488: f9401688     	ldr	x8, [x20, #0x28]
+  12d48c: f9400fe9     	ldr	x9, [sp, #0x18]
+  12d490: eb09011f     	cmp	x8, x9
+  12d494: 54000061     	b.ne	0x12d4a0 <_Z24ARSPMSkottiAnimationDrawRPvfi+0xf4>
+  12d498: aa1303e0     	mov	x0, x19
+  12d49c: 940efe0e     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d4a0: 940f0d60     	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012d4a4 <_Z24ARSPMGetBidiVisualIndexsPKci>:
+  12d4a4: d10183ff     	sub	sp, sp, #0x60
+  12d4a8: a9017bfd     	stp	x29, x30, [sp, #0x10]
+  12d4ac: f90013f9     	str	x25, [sp, #0x20]
+  12d4b0: a9035ff8     	stp	x24, x23, [sp, #0x30]
+  12d4b4: a90457f6     	stp	x22, x21, [sp, #0x40]
+  12d4b8: a9054ff4     	stp	x20, x19, [sp, #0x50]
+  12d4bc: 910043fd     	add	x29, sp, #0x10
+  12d4c0: d53bd055     	mrs	x21, TPIDR_EL0
+  12d4c4: aa0803f3     	mov	x19, x8
+  12d4c8: f94016a8     	ldr	x8, [x21, #0x28]
+  12d4cc: f90007e8     	str	x8, [sp, #0x8]
+  12d4d0: a9007e7f     	stp	xzr, xzr, [x19]
+  12d4d4: f9000a7f     	str	xzr, [x19, #0x10]
+  12d4d8: b40006e0     	cbz	x0, 0x12d5b4 <_Z24ARSPMGetBidiVisualIndexsPKci+0x110>
+  12d4dc: 7100043f     	cmp	w1, #0x1
+  12d4e0: 540006ab     	b.lt	0x12d5b4 <_Z24ARSPMGetBidiVisualIndexsPKci+0x110>
+  12d4e4: 8b214014     	add	x20, x0, w1, uxtw
+  12d4e8: 2a1f03f6     	mov	w22, wzr
+  12d4ec: b27ef3f7     	mov	x23, #0x7ffffffffffffffc
+  12d4f0: 92f80018     	mov	x24, #0x3fffffffffffffff
+  12d4f4: f90003e0     	str	x0, [sp]
+  12d4f8: 910003e0     	mov	x0, sp
+  12d4fc: aa1403e1     	mov	x1, x20
+  12d500: 94001d9d     	bl	0x134b74 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4db4>
+  12d504: a940a269     	ldp	x9, x8, [x19, #0x8]
+  12d508: eb08013f     	cmp	x9, x8
+  12d50c: 54000082     	b.hs	0x12d51c <_Z24ARSPMGetBidiVisualIndexsPKci+0x78>
+  12d510: b8004536     	str	w22, [x9], #0x4
+  12d514: aa0903f9     	mov	x25, x9
+  12d518: 14000022     	b	0x12d5a0 <_Z24ARSPMGetBidiVisualIndexsPKci+0xfc>
+  12d51c: f9400260     	ldr	x0, [x19]
+  12d520: cb00012a     	sub	x10, x9, x0
+  12d524: 9342fd59     	asr	x25, x10, #2
+  12d528: 9100072a     	add	x10, x25, #0x1
+  12d52c: d37efd4b     	lsr	x11, x10, #62
+  12d530: b500058b     	cbnz	x11, 0x12d5e0 <_Z24ARSPMGetBidiVisualIndexsPKci+0x13c>
+  12d534: cb000108     	sub	x8, x8, x0
+  12d538: 9341fd0b     	asr	x11, x8, #1
+  12d53c: eb0a017f     	cmp	x11, x10
+  12d540: 9a8a816a     	csel	x10, x11, x10, hi
+  12d544: eb17011f     	cmp	x8, x23
+  12d548: 9a983141     	csel	x1, x10, x24, lo
+  12d54c: b40000c1     	cbz	x1, 0x12d564 <_Z24ARSPMGetBidiVisualIndexsPKci+0xc0>
+  12d550: 91004260     	add	x0, x19, #0x10
+  12d554: 94000e16     	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12d558: aa0003e8     	mov	x8, x0
+  12d55c: a9402660     	ldp	x0, x9, [x19]
+  12d560: 14000002     	b	0x12d568 <_Z24ARSPMGetBidiVisualIndexsPKci+0xc4>
+  12d564: aa1f03e8     	mov	x8, xzr
+  12d568: 8b19090a     	add	x10, x8, x25, lsl #2
+  12d56c: eb00013f     	cmp	x9, x0
+  12d570: aa0a03f9     	mov	x25, x10
+  12d574: b8004736     	str	w22, [x25], #0x4
+  12d578: 540000a0     	b.eq	0x12d58c <_Z24ARSPMGetBidiVisualIndexsPKci+0xe8>
+  12d57c: b85fcd2b     	ldr	w11, [x9, #-0x4]!
+  12d580: eb00013f     	cmp	x9, x0
+  12d584: b81fcd4b     	str	w11, [x10, #-0x4]!
+  12d588: 54ffffa1     	b.ne	0x12d57c <_Z24ARSPMGetBidiVisualIndexsPKci+0xd8>
+  12d58c: 8b010908     	add	x8, x8, x1, lsl #2
+  12d590: a900666a     	stp	x10, x25, [x19]
+  12d594: f9000a68     	str	x8, [x19, #0x10]
+  12d598: b4000040     	cbz	x0, 0x12d5a0 <_Z24ARSPMGetBidiVisualIndexsPKci+0xfc>
+  12d59c: 940f0d19     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d5a0: f94003e8     	ldr	x8, [sp]
+  12d5a4: 110006d6     	add	w22, w22, #0x1
+  12d5a8: f9000679     	str	x25, [x19, #0x8]
+  12d5ac: eb14011f     	cmp	x8, x20
+  12d5b0: 54fffa43     	b.lo	0x12d4f8 <_Z24ARSPMGetBidiVisualIndexsPKci+0x54>
+  12d5b4: f94016a8     	ldr	x8, [x21, #0x28]
+  12d5b8: f94007e9     	ldr	x9, [sp, #0x8]
+  12d5bc: eb09011f     	cmp	x8, x9
+  12d5c0: 54000361     	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d5c4: a9454ff4     	ldp	x20, x19, [sp, #0x50]
+  12d5c8: f94013f9     	ldr	x25, [sp, #0x20]
+  12d5cc: a94457f6     	ldp	x22, x21, [sp, #0x40]
+  12d5d0: a9435ff8     	ldp	x24, x23, [sp, #0x30]
+  12d5d4: a9417bfd     	ldp	x29, x30, [sp, #0x10]
+  12d5d8: 910183ff     	add	sp, sp, #0x60
+  12d5dc: d65f03c0     	ret
+  12d5e0: f94016a8     	ldr	x8, [x21, #0x28]
+  12d5e4: f94007e9     	ldr	x9, [sp, #0x8]
+  12d5e8: eb09011f     	cmp	x8, x9
+  12d5ec: 54000201     	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d5f0: aa1303e0     	mov	x0, x19
+  12d5f4: 94000de9     	bl	0x130d98 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfd8>
+  12d5f8: 14000002     	b	0x12d600 <_Z24ARSPMGetBidiVisualIndexsPKci+0x15c>
+  12d5fc: 14000001     	b	0x12d600 <_Z24ARSPMGetBidiVisualIndexsPKci+0x15c>
+  12d600: aa0003f4     	mov	x20, x0
+  12d604: f9400260     	ldr	x0, [x19]
+  12d608: b4000060     	cbz	x0, 0x12d614 <_Z24ARSPMGetBidiVisualIndexsPKci+0x170>
+  12d60c: f9000660     	str	x0, [x19, #0x8]
+  12d610: 940f0cfc     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d614: f94016a8     	ldr	x8, [x21, #0x28]
+  12d618: f94007e9     	ldr	x9, [sp, #0x8]
+  12d61c: eb09011f     	cmp	x8, x9
+  12d620: 54000061     	b.ne	0x12d62c <_Z24ARSPMGetBidiVisualIndexsPKci+0x188>
+  12d624: aa1403e0     	mov	x0, x20
+  12d628: 940efdab     	bl	0x4eccd4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x3bcf14>
+  12d62c: 940f0cfd     	bl	0x4f0a20 <__stack_chk_fail@plt>
+
+000000000012d630 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE>:
+  12d630: d10603ff     	sub	sp, sp, #0x180
+  12d634: a9127bfd     	stp	x29, x30, [sp, #0x120]
+  12d638: a9136ffc     	stp	x28, x27, [sp, #0x130]
+  12d63c: a91467fa     	stp	x26, x25, [sp, #0x140]
+  12d640: a9155ff8     	stp	x24, x23, [sp, #0x150]
+  12d644: a91657f6     	stp	x22, x21, [sp, #0x160]
+  12d648: a9174ff4     	stp	x20, x19, [sp, #0x170]
+  12d64c: 910483fd     	add	x29, sp, #0x120
+  12d650: d53bd058     	mrs	x24, TPIDR_EL0
+  12d654: f9401708     	ldr	x8, [x24, #0x28]
+  12d658: f81f03a8     	stur	x8, [x29, #-0x10]
+  12d65c: 34000441     	cbz	w1, 0x12d6e4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xb4>
+  12d660: aa0003f5     	mov	x21, x0
+  12d664: 2a1f03f4     	mov	w20, wzr
+  12d668: a908ffff     	stp	xzr, xzr, [sp, #0x88]
+  12d66c: f9004fff     	str	xzr, [sp, #0x98]
+  12d670: b40007a0     	cbz	x0, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d674: 37f80781     	tbnz	w1, #0x1f, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d678: aa0203f3     	mov	x19, x2
+  12d67c: 2a0103f7     	mov	w23, w1
+  12d680: aa1f03e0     	mov	x0, xzr
+  12d684: 2a1f03e1     	mov	w1, wzr
+  12d688: aa1503e2     	mov	x2, x21
+  12d68c: aa1703e3     	mov	x3, x23
+  12d690: 94001dd6     	bl	0x134de8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x5028>
+  12d694: 2a0003f4     	mov	w20, w0
+  12d698: 7100041f     	cmp	w0, #0x1
+  12d69c: 5400062b     	b.lt	0x12d760 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x130>
+  12d6a0: 2a1403f6     	mov	w22, w20
+  12d6a4: d100a3a0     	sub	x0, x29, #0x28
+  12d6a8: aa1603e1     	mov	x1, x22
+  12d6ac: 94000c96     	bl	0x130904 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xb44>
+  12d6b0: f85d83a0     	ldur	x0, [x29, #-0x28]
+  12d6b4: 2a1403e1     	mov	w1, w20
+  12d6b8: aa1503e2     	mov	x2, x21
+  12d6bc: aa1703e3     	mov	x3, x23
+  12d6c0: 94001dca     	bl	0x134de8 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x5028>
+  12d6c4: 2a0003f5     	mov	w21, w0
+  12d6c8: 6b14001f     	cmp	w0, w20
+  12d6cc: 540002e1     	b.ne	0x12d728 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xf8>
+  12d6d0: 394223e8     	ldrb	w8, [sp, #0x88]
+  12d6d4: 370000c8     	tbnz	w8, #0x0, 0x12d6ec <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xbc>
+  12d6d8: 790117ff     	strh	wzr, [sp, #0x8a]
+  12d6dc: 390223ff     	strb	wzr, [sp, #0x88]
+  12d6e0: 14000006     	b	0x12d6f8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xc8>
+  12d6e4: 2a1f03f4     	mov	w20, wzr
+  12d6e8: 14000023     	b	0x12d774 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x144>
+  12d6ec: f9404fe8     	ldr	x8, [sp, #0x98]
+  12d6f0: 7900011f     	strh	wzr, [x8]
+  12d6f4: f9004bff     	str	xzr, [sp, #0x90]
+  12d6f8: 910223e0     	add	x0, sp, #0x88
+  12d6fc: aa1603e1     	mov	x1, x22
+  12d700: 94000c9e     	bl	0x130978 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xbb8>
+  12d704: a97ddfb6     	ldp	x22, x23, [x29, #-0x28]
+  12d708: eb1702df     	cmp	x22, x23
+  12d70c: 54000100     	b.eq	0x12d72c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xfc>
+  12d710: 794002c1     	ldrh	w1, [x22]
+  12d714: 910223e0     	add	x0, sp, #0x88
+  12d718: 94000cb6     	bl	0x1309f0 <_Z21ARSPMSkSvgSegmentPathPvffbf+0xc30>
+  12d71c: 91000ad6     	add	x22, x22, #0x2
+  12d720: eb1702df     	cmp	x22, x23
+  12d724: 54ffff61     	b.ne	0x12d710 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xe0>
+  12d728: f85d83b6     	ldur	x22, [x29, #-0x28]
+  12d72c: b4000096     	cbz	x22, 0x12d73c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x10c>
+  12d730: aa1603e0     	mov	x0, x22
+  12d734: f81e03b6     	stur	x22, [x29, #-0x20]
+  12d738: 940f0cb2     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d73c: 6b1402bf     	cmp	w21, w20
+  12d740: 54000101     	b.ne	0x12d760 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x130>
+  12d744: 394223e8     	ldrb	w8, [sp, #0x88]
+  12d748: 37000308     	tbnz	w8, #0x0, 0x12d7a8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x178>
+  12d74c: 3cc883e0     	ldur	q0, [sp, #0x88]
+  12d750: f9404fe8     	ldr	x8, [sp, #0x98]
+  12d754: 3d801fe0     	str	q0, [sp, #0x70]
+  12d758: f90043e8     	str	x8, [sp, #0x80]
+  12d75c: 14000016     	b	0x12d7b4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x184>
+  12d760: 2a1f03f4     	mov	w20, wzr
+  12d764: 394223e8     	ldrb	w8, [sp, #0x88]
+  12d768: 36000068     	tbz	w8, #0x0, 0x12d774 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x144>
+  12d76c: f9404fe0     	ldr	x0, [sp, #0x98]
+  12d770: 940f0ca4     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d774: f9401708     	ldr	x8, [x24, #0x28]
+  12d778: f85f03a9     	ldur	x9, [x29, #-0x10]
+  12d77c: eb09011f     	cmp	x8, x9
+  12d780: 540081c1     	b.ne	0x12e7b8 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1188>
+  12d784: 2a1403e0     	mov	w0, w20
+  12d788: a9574ff4     	ldp	x20, x19, [sp, #0x170]
+  12d78c: a95657f6     	ldp	x22, x21, [sp, #0x160]
+  12d790: a9555ff8     	ldp	x24, x23, [sp, #0x150]
+  12d794: a95467fa     	ldp	x26, x25, [sp, #0x140]
+  12d798: a9536ffc     	ldp	x28, x27, [sp, #0x130]
+  12d79c: a9527bfd     	ldp	x29, x30, [sp, #0x120]
+  12d7a0: 910603ff     	add	sp, sp, #0x180
+  12d7a4: d65f03c0     	ret
+  12d7a8: a94907e2     	ldp	x2, x1, [sp, #0x90]
+  12d7ac: 9101c3e0     	add	x0, sp, #0x70
+  12d7b0: 94000f45     	bl	0x1314c4 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x1704>
+  12d7b4: 3941c3e8     	ldrb	w8, [sp, #0x70]
+  12d7b8: a94783e9     	ldp	x9, x0, [sp, #0x78]
+  12d7bc: 9101c3eb     	add	x11, sp, #0x70
+  12d7c0: d341fd0a     	lsr	x10, x8, #1
+  12d7c4: 7200011f     	tst	w8, #0x1
+  12d7c8: b27f016b     	orr	x11, x11, #0x2
+  12d7cc: 9a89014a     	csel	x10, x10, x9, eq
+  12d7d0: 9a800169     	csel	x9, x11, x0, eq
+  12d7d4: b4000aca     	cbz	x10, 0x12d92c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2fc>
+  12d7d8: d37ff94a     	lsl	x10, x10, #1
+  12d7dc: d100094a     	sub	x10, x10, #0x2
+  12d7e0: 3940052b     	ldrb	w11, [x9, #0x1]
+  12d7e4: 91000929     	add	x9, x9, #0x2
+  12d7e8: 53185d6b     	lsl	w11, w11, #8
+  12d7ec: 7118017f     	cmp	w11, #0x600
+  12d7f0: 1a9f17f4     	cset	w20, eq
+  12d7f4: fa401944     	ccmp	x10, #0x0, #0x4, ne
+  12d7f8: d100094a     	sub	x10, x10, #0x2
+  12d7fc: 54ffff21     	b.ne	0x12d7e0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1b0>
+  12d800: 36000048     	tbz	w8, #0x0, 0x12d808 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d8>
+  12d804: 940f0c7f     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d808: 34fffaf4     	cbz	w20, 0x12d764 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x134>
+  12d80c: 394223e8     	ldrb	w8, [sp, #0x88]
+  12d810: f9404be9     	ldr	x9, [sp, #0x90]
+  12d814: a905ffff     	stp	xzr, xzr, [sp, #0x58]
+  12d818: f90037ff     	str	xzr, [sp, #0x68]
+  12d81c: d341fd0a     	lsr	x10, x8, #1
+  12d820: 7200011f     	tst	w8, #0x1
+  12d824: 9a890141     	csel	x1, x10, x9, eq
+  12d828: 910163e0     	add	x0, sp, #0x58
+  12d82c: 940003e4     	bl	0x12e7bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x118c>
+  12d830: 394223e8     	ldrb	w8, [sp, #0x88]
+  12d834: a9492fe9     	ldp	x9, x11, [sp, #0x90]
+  12d838: 910223ec     	add	x12, sp, #0x88
+  12d83c: d341fd0a     	lsr	x10, x8, #1
+  12d840: 7200011f     	tst	w8, #0x1
+  12d844: b27f018c     	orr	x12, x12, #0x2
+  12d848: 9a890148     	csel	x8, x10, x9, eq
+  12d84c: 9a8b0189     	csel	x9, x12, x11, eq
+  12d850: f100011f     	cmp	x8, #0x0
+  12d854: f9002be9     	str	x9, [sp, #0x50]
+  12d858: 5400070d     	b.le	0x12d938 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x308>
+  12d85c: 8b080534     	add	x20, x9, x8, lsl #1
+  12d860: 910163f6     	add	x22, sp, #0x58
+  12d864: b27ef3f7     	mov	x23, #0x7ffffffffffffffc
+  12d868: 92f80019     	mov	x25, #0x3fffffffffffffff
+  12d86c: 910143e0     	add	x0, sp, #0x50
+  12d870: aa1403e1     	mov	x1, x20
+  12d874: 94001ceb     	bl	0x134c20 <_Z21ARSPMSkSvgSegmentPathPvffbf+0x4e60>
+  12d878: a94623e9     	ldp	x9, x8, [sp, #0x60]
+  12d87c: 2a0003f5     	mov	w21, w0
+  12d880: eb08013f     	cmp	x9, x8
+  12d884: 54000082     	b.hs	0x12d894 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x264>
+  12d888: b8004535     	str	w21, [x9], #0x4
+  12d88c: aa0903fa     	mov	x26, x9
+  12d890: 14000022     	b	0x12d918 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2e8>
+  12d894: f9402fe0     	ldr	x0, [sp, #0x58]
+  12d898: cb00012a     	sub	x10, x9, x0
+  12d89c: 9342fd5a     	asr	x26, x10, #2
+  12d8a0: 9100074a     	add	x10, x26, #0x1
+  12d8a4: d37efd4b     	lsr	x11, x10, #62
+  12d8a8: b5006a4b     	cbnz	x11, 0x12e5f0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0xfc0>
+  12d8ac: cb000108     	sub	x8, x8, x0
+  12d8b0: 9341fd0b     	asr	x11, x8, #1
+  12d8b4: eb0a017f     	cmp	x11, x10
+  12d8b8: 9a8a816a     	csel	x10, x11, x10, hi
+  12d8bc: eb17011f     	cmp	x8, x23
+  12d8c0: 9a993141     	csel	x1, x10, x25, lo
+  12d8c4: b40000c1     	cbz	x1, 0x12d8dc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2ac>
+  12d8c8: 910042c0     	add	x0, x22, #0x10
+  12d8cc: 94000d38     	bl	0x130dac <_Z21ARSPMSkSvgSegmentPathPvffbf+0xfec>
+  12d8d0: aa0003e8     	mov	x8, x0
+  12d8d4: a945a7e0     	ldp	x0, x9, [sp, #0x58]
+  12d8d8: 14000002     	b	0x12d8e0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2b0>
+  12d8dc: aa1f03e8     	mov	x8, xzr
+  12d8e0: 8b1a090a     	add	x10, x8, x26, lsl #2
+  12d8e4: eb00013f     	cmp	x9, x0
+  12d8e8: aa0a03fa     	mov	x26, x10
+  12d8ec: b8004755     	str	w21, [x26], #0x4
+  12d8f0: 540000a0     	b.eq	0x12d904 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2d4>
+  12d8f4: b85fcd2b     	ldr	w11, [x9, #-0x4]!
+  12d8f8: eb00013f     	cmp	x9, x0
+  12d8fc: b81fcd4b     	str	w11, [x10, #-0x4]!
+  12d900: 54ffffa1     	b.ne	0x12d8f4 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2c4>
+  12d904: 8b010908     	add	x8, x8, x1, lsl #2
+  12d908: a905ebea     	stp	x10, x26, [sp, #0x58]
+  12d90c: f90037e8     	str	x8, [sp, #0x68]
+  12d910: b4000040     	cbz	x0, 0x12d918 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x2e8>
+  12d914: 940f0c3b     	bl	0x4f0a00 <_ZdlPv@plt>
+  12d918: f9402be8     	ldr	x8, [sp, #0x50]
+  12d91c: f90033fa     	str	x26, [sp, #0x60]
+  12d920: eb14011f     	cmp	x8, x20
+  12d924: 54fffa43     	b.lo	0x12d86c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x23c>
+  12d928: 14000005     	b	0x12d93c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x30c>
+  12d92c: 2a1f03f4     	mov	w20, wzr
+  12d930: 3707f6a8     	tbnz	w8, #0x0, 0x12d804 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d4>
+  12d934: 17ffffb5     	b	0x12d808 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x1d8>
+  12d938: f94033fa     	ldr	x26, [sp, #0x60]
+  12d93c: f9402fe8     	ldr	x8, [sp, #0x58]
+  12d940: a903ffff     	stp	xzr, xzr, [sp, #0x38]
+  12d944: f90027ff     	str	xzr, [sp, #0x48]
+  12d948: cb080348     	sub	x8, x26, x8
+  12d94c: 9342fd01     	asr	x1, x8, #2
+  12d950: 9100e3e0     	add	x0, sp, #0x38
+  12d954: 9400039a     	bl	0x12e7bc <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x118c>
+  12d958: a945d7f9     	ldp	x25, x21, [sp, #0x58]
+  12d95c: eb1902a8     	subs	x8, x21, x25
+  12d960: 540028a0     	b.eq	0x12de74 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x844>
+  12d964: 9342fd08     	asr	x8, x8, #2
+  12d968: aa1f03fb     	mov	x27, xzr
+  12d96c: b27ef3f6     	mov	x22, #0x7ffffffffffffffc
+  12d970: 92f80017     	mov	x23, #0x3fffffffffffffff
+  12d974: b87b7b34     	ldr	w20, [x25, x27, lsl #2]
+  12d978: 51184289     	sub	w9, w20, #0x610
+  12d97c: 2a1403fc     	mov	w28, w20
+  12d980: 71002d3f     	cmp	w9, #0xb
+  12d984: 540000e2     	b.hs	0x12d9a0 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x370>
+  12d988: a94423e9     	ldp	x9, x8, [sp, #0x40]
+  12d98c: eb08013f     	cmp	x9, x8
+  12d990: 540005e2     	b.hs	0x12da4c <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x41c>
+  12d994: b800453c     	str	w28, [x9], #0x4
+  12d998: aa0903f4     	mov	x20, x9
+  12d99c: 140000fd     	b	0x12dd90 <_Z14ARSPMShapeTextPKciRNSt6__ndk16vectorINS2_IjNS1_9allocatorIjEEEENS3_IS5_EEEE+0x760>
+  12d9a0: 511b5a89     	sub	w9, w20, #0x6d6
+  12d9a4: 7100613f     	cmp	w9, #0x18

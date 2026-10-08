@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTFilterKernel.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 650
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libMTFilterKernel.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000be3a0 <.text>:
+   be3a0: d503245f     	bti	c
+   be3a4: d503201f     	nop
+   be3a8: 107d68c0     	adr	x0, #0xfad18
+   be3ac: 1403d7a1     	b	0x1b4230 <__cxa_finalize@plt>
+   be3b0: d503245f     	bti	c
+   be3b4: d65f03c0     	ret
+   be3b8: d503245f     	bti	c
+   be3bc: 17fffffd     	b	0xbe3b0 <.text+0x10>
+   be3c0: d503245f     	bti	c
+   be3c4: b4000060     	cbz	x0, 0xbe3d0 <.text+0x30>
+   be3c8: aa0003f0     	mov	x16, x0
+   be3cc: d61f0200     	br	x16
+   be3d0: d65f03c0     	ret
+   be3d4: d503245f     	bti	c
+   be3d8: aa0003e1     	mov	x1, x0
+   be3dc: d503201f     	nop
+   be3e0: 10ffff00     	adr	x0, #-0x20
+   be3e4: d503201f     	nop
+   be3e8: 107d66c2     	adr	x2, #0xfacd8
+   be3ec: 1403d795     	b	0x1b4240 <__cxa_atexit@plt>
+
+00000000000be3f0 <_Z23registerFaceDataMethodsP7_JNIEnvPv>:
+   be3f0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   be3f4: f9000bf3     	str	x19, [sp, #0x10]
+   be3f8: 910003fd     	mov	x29, sp
+   be3fc: f9400008     	ldr	x8, [x0]
+   be400: d503201f     	nop
+   be404: 50e63061     	adr	x1, #-0x339f2
+   be408: aa0003f3     	mov	x19, x0
+   be40c: f9401908     	ldr	x8, [x8, #0x30]
+   be410: d63f0100     	blr	x8
+   be414: b40001a0     	cbz	x0, 0xbe448 <_Z23registerFaceDataMethodsP7_JNIEnvPv+0x58>
+   be418: f9400268     	ldr	x8, [x19]
+   be41c: aa0003e1     	mov	x1, x0
+   be420: 90000862     	adrp	x2, 0x1ca000
+   be424: 910b6042     	add	x2, x2, #0x2d8
+   be428: aa1303e0     	mov	x0, x19
+   be42c: 52800323     	mov	w3, #0x19
+   be430: f9435d08     	ldr	x8, [x8, #0x6b8]
+   be434: d63f0100     	blr	x8
+   be438: 131f7c00     	asr	w0, w0, #31
+   be43c: f9400bf3     	ldr	x19, [sp, #0x10]
+   be440: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   be444: d65f03c0     	ret
+   be448: 12800000     	mov	w0, #-0x1
+   be44c: f9400bf3     	ldr	x19, [sp, #0x10]
+   be450: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   be454: d65f03c0     	ret
+
+00000000000be458 <_ZN25MTFilterKernelFaceDataJNI6createEP7_JNIEnvP8_jobject>:
+   be458: 52963001     	mov	w1, #0xb180
+   be45c: 52800020     	mov	w0, #0x1
+   be460: 72a00021     	movk	w1, #0x1, lsl #16
+   be464: 1403d77b     	b	0x1b4250 <calloc@plt>
+
+00000000000be468 <_ZN25MTFilterKernelFaceDataJNI8finalizeEP7_JNIEnvP8_jobjectl>:
+   be468: b4000062     	cbz	x2, 0xbe474 <_ZN25MTFilterKernelFaceDataJNI8finalizeEP7_JNIEnvP8_jobjectl+0xc>
+   be46c: aa0203e0     	mov	x0, x2
+   be470: 1403d77c     	b	0x1b4260 <free@plt>
+   be474: d65f03c0     	ret
+
+00000000000be478 <_ZN25MTFilterKernelFaceDataJNI12getFaceCountEP7_JNIEnvP8_jobjectl>:
+   be478: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   be47c: 910003fd     	mov	x29, sp
+   be480: b4000082     	cbz	x2, 0xbe490 <_ZN25MTFilterKernelFaceDataJNI12getFaceCountEP7_JNIEnvP8_jobjectl+0x18>
+   be484: b9400040     	ldr	w0, [x2]
+   be488: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   be48c: d65f03c0     	ret
+   be490: 94001e1e     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be494: 7100141f     	cmp	w0, #0x5
+   be498: 540000ec     	b.gt	0xbe4b4 <_ZN25MTFilterKernelFaceDataJNI12getFaceCountEP7_JNIEnvP8_jobjectl+0x3c>
+   be49c: d0fffde1     	adrp	x1, 0x7c000
+   be4a0: 91093821     	add	x1, x1, #0x24e
+   be4a4: 90fffe02     	adrp	x2, 0x7e000
+   be4a8: 911e3842     	add	x2, x2, #0x78e
+   be4ac: 528000c0     	mov	w0, #0x6
+   be4b0: 9403d770     	bl	0x1b4270 <__android_log_print@plt>
+   be4b4: 2a1f03e0     	mov	w0, wzr
+   be4b8: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   be4bc: d65f03c0     	ret
+
+00000000000be4c0 <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli>:
+   be4c0: d10143ff     	sub	sp, sp, #0x50
+   be4c4: a9027bfd     	stp	x29, x30, [sp, #0x20]
+   be4c8: f9001bf5     	str	x21, [sp, #0x30]
+   be4cc: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   be4d0: 910083fd     	add	x29, sp, #0x20
+   be4d4: d53bd055     	mrs	x21, TPIDR_EL0
+   be4d8: f94016a8     	ldr	x8, [x21, #0x28]
+   be4dc: f81f83a8     	stur	x8, [x29, #-0x8]
+   be4e0: b4000302     	cbz	x2, 0xbe540 <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli+0x80>
+   be4e4: b9400048     	ldr	w8, [x2]
+   be4e8: 6b03011f     	cmp	w8, w3
+   be4ec: 540003cd     	b.le	0xbe564 <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli+0xa4>
+   be4f0: 52856b08     	mov	w8, #0x2b58
+   be4f4: f9400009     	ldr	x9, [x0]
+   be4f8: 52800081     	mov	w1, #0x4
+   be4fc: 9b280868     	smaddl	x8, w3, w8, x2
+   be500: aa0003f3     	mov	x19, x0
+   be504: 3cc18100     	ldur	q0, [x8, #0x18]
+   be508: f942d528     	ldr	x8, [x9, #0x5a8]
+   be50c: 3d8003e0     	str	q0, [sp]
+   be510: d63f0100     	blr	x8
+   be514: f9400268     	ldr	x8, [x19]
+   be518: aa0003f4     	mov	x20, x0
+   be51c: 910003e4     	mov	x4, sp
+   be520: aa1303e0     	mov	x0, x19
+   be524: aa1403e1     	mov	x1, x20
+   be528: 2a1f03e2     	mov	w2, wzr
+   be52c: f9435508     	ldr	x8, [x8, #0x6a8]
+   be530: 52800083     	mov	w3, #0x4
+   be534: d63f0100     	blr	x8
+   be538: aa1403e0     	mov	x0, x20
+   be53c: 1400000b     	b	0xbe568 <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli+0xa8>
+   be540: 94001df2     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be544: 7100141f     	cmp	w0, #0x5
+   be548: 540000ec     	b.gt	0xbe564 <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli+0xa4>
+   be54c: d0fffde1     	adrp	x1, 0x7c000
+   be550: 91093821     	add	x1, x1, #0x24e
+   be554: d0fffd82     	adrp	x2, 0x70000
+   be558: 9119fc42     	add	x2, x2, #0x67f
+   be55c: 528000c0     	mov	w0, #0x6
+   be560: 9403d744     	bl	0x1b4270 <__android_log_print@plt>
+   be564: aa1f03e0     	mov	x0, xzr
+   be568: f94016a8     	ldr	x8, [x21, #0x28]
+   be56c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   be570: eb09011f     	cmp	x8, x9
+   be574: 540000c1     	b.ne	0xbe58c <_ZN25MTFilterKernelFaceDataJNI11getFaceRectEP7_JNIEnvP8_jobjectli+0xcc>
+   be578: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   be57c: f9401bf5     	ldr	x21, [sp, #0x30]
+   be580: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+   be584: 910143ff     	add	sp, sp, #0x50
+   be588: d65f03c0     	ret
+   be58c: 9403d73d     	bl	0x1b4280 <__stack_chk_fail@plt>
+
+00000000000be590 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii>:
+   be590: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+   be594: f9000bfc     	str	x28, [sp, #0x10]
+   be598: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   be59c: a90357f6     	stp	x22, x21, [sp, #0x30]
+   be5a0: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   be5a4: 910003fd     	mov	x29, sp
+   be5a8: d1400bff     	sub	sp, sp, #0x2, lsl #12   // =0x2000
+   be5ac: d13803ff     	sub	sp, sp, #0xe00
+   be5b0: d53bd057     	mrs	x23, TPIDR_EL0
+   be5b4: f94016e8     	ldr	x8, [x23, #0x28]
+   be5b8: f81f83a8     	stur	x8, [x29, #-0x8]
+   be5bc: b4001022     	cbz	x2, 0xbe7c0 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x230>
+   be5c0: b9400048     	ldr	w8, [x2]
+   be5c4: 6b04011f     	cmp	w8, w4
+   be5c8: 540010ed     	b.le	0xbe7e4 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x254>
+   be5cc: 52856b08     	mov	w8, #0x2b58
+   be5d0: aa0003f3     	mov	x19, x0
+   be5d4: 910a83f8     	add	x24, sp, #0x2a0
+   be5d8: 9b280888     	smaddl	x8, w4, w8, x2
+   be5dc: 910a83e0     	add	x0, sp, #0x2a0
+   be5e0: 52856b02     	mov	w2, #0x2b58
+   be5e4: 91045316     	add	x22, x24, #0x114
+   be5e8: 2a0303f4     	mov	w20, w3
+   be5ec: 91003101     	add	x1, x8, #0xc
+   be5f0: 9403d728     	bl	0x1b4290 <memcpy@plt>
+   be5f4: 2a1403e8     	mov	w8, w20
+   be5f8: 7100069f     	cmp	w20, #0x1
+   be5fc: 540010ec     	b.gt	0xbe818 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x288>
+   be600: 340013a8     	cbz	w8, 0xbe874 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x2e4>
+   be604: 7100051f     	cmp	w8, #0x1
+   be608: 54001261     	b.ne	0xbe854 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x2c4>
+   be60c: 3ccf8ec0     	ldr	q0, [x22, #0xf8]!
+   be610: 910067e8     	add	x8, sp, #0x19
+   be614: 3cce0ec1     	ldr	q1, [x22, #0xe0]!
+   be618: 9105e7e9     	add	x9, sp, #0x179
+   be61c: 3cde0ec2     	ldr	q2, [x22, #-0x20]!
+   be620: 3c8083e0     	stur	q0, [sp, #0x8]
+   be624: 3cde0ec3     	ldr	q3, [x22, #-0x20]!
+   be628: 3c8e83e1     	stur	q1, [sp, #0xe8]
+   be62c: 3cde0ec4     	ldr	q4, [x22, #-0x20]!
+   be630: 3c8c83e2     	stur	q2, [sp, #0xc8]
+   be634: 3cde0ec5     	ldr	q5, [x22, #-0x20]!
+   be638: 3c8a83e3     	stur	q3, [sp, #0xa8]
+   be63c: 3cde0ec6     	ldr	q6, [x22, #-0x20]!
+   be640: aa1303e0     	mov	x0, x19
+   be644: adff02c7     	ldp	q7, q0, [x22, #-0x20]!
+   be648: 3cdf02d0     	ldur	q16, [x22, #-0x10]
+   be64c: 528014c1     	mov	w1, #0xa6
+   be650: 3c8483e6     	stur	q6, [sp, #0x48]
+   be654: 3c8383e0     	stur	q0, [sp, #0x38]
+   be658: 3dc016c0     	ldr	q0, [x22, #0x50]
+   be65c: 3c8283e7     	stur	q7, [sp, #0x28]
+   be660: 3dc00ec7     	ldr	q7, [x22, #0x30]
+   be664: 3c8783e0     	stur	q0, [sp, #0x78]
+   be668: 3dc01ec0     	ldr	q0, [x22, #0x70]
+   be66c: 3c8183f0     	stur	q16, [sp, #0x18]
+   be670: 3c8983e0     	stur	q0, [sp, #0x98]
+   be674: 3dc026c0     	ldr	q0, [x22, #0x90]
+   be678: 3c8583e7     	stur	q7, [sp, #0x58]
+   be67c: 3c8b83e0     	stur	q0, [sp, #0xb8]
+   be680: 3dc02ec0     	ldr	q0, [x22, #0xb0]
+   be684: 3c8683e5     	stur	q5, [sp, #0x68]
+   be688: 3c8d83e0     	stur	q0, [sp, #0xd8]
+   be68c: ad468ac0     	ldp	q0, q2, [x22, #0xd0]
+   be690: 3c8883e4     	stur	q4, [sp, #0x88]
+   be694: 3c8f83e0     	stur	q0, [sp, #0xf8]
+   be698: ad4782c3     	ldp	q3, q0, [x22, #0xf0]
+   be69c: 3c8ff103     	stur	q3, [x8, #0xff]
+   be6a0: 910027e8     	add	x8, sp, #0x9
+   be6a4: 3c8ff102     	stur	q2, [x8, #0xff]
+   be6a8: ad488ac1     	ldp	q1, q2, [x22, #0x110]
+   be6ac: 9100e7e8     	add	x8, sp, #0x39
+   be6b0: 3c8ff101     	stur	q1, [x8, #0xff]
+   be6b4: 9100a7e8     	add	x8, sp, #0x29
+   be6b8: 3c8ff100     	stur	q0, [x8, #0xff]
+   be6bc: ad4986c0     	ldp	q0, q1, [x22, #0x130]
+   be6c0: 910127e8     	add	x8, sp, #0x49
+   be6c4: 3c8ff102     	stur	q2, [x8, #0xff]
+   be6c8: 910167e8     	add	x8, sp, #0x59
+   be6cc: 3c8ff100     	stur	q0, [x8, #0xff]
+   be6d0: ad4a8ac0     	ldp	q0, q2, [x22, #0x150]
+   be6d4: 9101a7e8     	add	x8, sp, #0x69
+   be6d8: 3c8ff101     	stur	q1, [x8, #0xff]
+   be6dc: 9101e7e8     	add	x8, sp, #0x79
+   be6e0: 3c8ff100     	stur	q0, [x8, #0xff]
+   be6e4: ad4b86c0     	ldp	q0, q1, [x22, #0x170]
+   be6e8: 910227e8     	add	x8, sp, #0x89
+   be6ec: 3c8ff102     	stur	q2, [x8, #0xff]
+   be6f0: 910267e8     	add	x8, sp, #0x99
+   be6f4: 3c8ff100     	stur	q0, [x8, #0xff]
+   be6f8: ad4c82c3     	ldp	q3, q0, [x22, #0x190]
+   be6fc: 9102e7e8     	add	x8, sp, #0xb9
+   be700: 3c8ff103     	stur	q3, [x8, #0xff]
+   be704: 9102a7e8     	add	x8, sp, #0xa9
+   be708: 3c8ff101     	stur	q1, [x8, #0xff]
+   be70c: ad4d86c2     	ldp	q2, q1, [x22, #0x1b0]
+   be710: 910367e8     	add	x8, sp, #0xd9
+   be714: 3c8ff102     	stur	q2, [x8, #0xff]
+   be718: 910327e8     	add	x8, sp, #0xc9
+   be71c: 3c8ff100     	stur	q0, [x8, #0xff]
+   be720: ad4e82c3     	ldp	q3, q0, [x22, #0x1d0]
+   be724: 9103e7e8     	add	x8, sp, #0xf9
+   be728: 3c8ff103     	stur	q3, [x8, #0xff]
+   be72c: 9103a7e8     	add	x8, sp, #0xe9
+   be730: 3c8ff101     	stur	q1, [x8, #0xff]
+   be734: ad4f8ac1     	ldp	q1, q2, [x22, #0x1f0]
+   be738: 910427e8     	add	x8, sp, #0x109
+   be73c: 3c8ff100     	stur	q0, [x8, #0xff]
+   be740: ad5082c3     	ldp	q3, q0, [x22, #0x210]
+   be744: 910467e8     	add	x8, sp, #0x119
+   be748: 3c8ff101     	stur	q1, [x8, #0xff]
+   be74c: 9104e7e8     	add	x8, sp, #0x139
+   be750: 3c8ff103     	stur	q3, [x8, #0xff]
+   be754: 9104a7e8     	add	x8, sp, #0x129
+   be758: 3c8ff102     	stur	q2, [x8, #0xff]
+   be75c: ad518ac1     	ldp	q1, q2, [x22, #0x230]
+   be760: 910567e8     	add	x8, sp, #0x159
+   be764: 3c8ff101     	stur	q1, [x8, #0xff]
+   be768: 910527e8     	add	x8, sp, #0x149
+   be76c: fd413ac1     	ldr	d1, [x22, #0x270]
+   be770: 3c8ff100     	stur	q0, [x8, #0xff]
+   be774: ad5282c3     	ldp	q3, q0, [x22, #0x250]
+   be778: f9400268     	ldr	x8, [x19]
+   be77c: fd014fe1     	str	d1, [sp, #0x298]
+   be780: 3c8ff123     	stur	q3, [x9, #0xff]
+   be784: 9105a7e9     	add	x9, sp, #0x169
+   be788: f942d508     	ldr	x8, [x8, #0x5a8]
+   be78c: 3c8ff122     	stur	q2, [x9, #0xff]
+   be790: 910627e9     	add	x9, sp, #0x189
+   be794: 3c8ff120     	stur	q0, [x9, #0xff]
+   be798: d63f0100     	blr	x8
+   be79c: f9400268     	ldr	x8, [x19]
+   be7a0: aa0003f4     	mov	x20, x0
+   be7a4: 910023e4     	add	x4, sp, #0x8
+   be7a8: aa1303e0     	mov	x0, x19
+   be7ac: aa1403e1     	mov	x1, x20
+   be7b0: 2a1f03e2     	mov	w2, wzr
+   be7b4: f9435508     	ldr	x8, [x8, #0x6a8]
+   be7b8: 528014c3     	mov	w3, #0xa6
+   be7bc: 14000065     	b	0xbe950 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x3c0>
+   be7c0: 94001d52     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be7c4: 7100141f     	cmp	w0, #0x5
+   be7c8: 540000ec     	b.gt	0xbe7e4 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x254>
+   be7cc: d0fffde1     	adrp	x1, 0x7c000
+   be7d0: 91093821     	add	x1, x1, #0x24e
+   be7d4: d0fffe62     	adrp	x2, 0x8c000
+   be7d8: 9107dc42     	add	x2, x2, #0x1f7
+   be7dc: 528000c0     	mov	w0, #0x6
+   be7e0: 9403d6a4     	bl	0x1b4270 <__android_log_print@plt>
+   be7e4: aa1f03e0     	mov	x0, xzr
+   be7e8: f94016e8     	ldr	x8, [x23, #0x28]
+   be7ec: f85f83a9     	ldur	x9, [x29, #-0x8]
+   be7f0: eb09011f     	cmp	x8, x9
+   be7f4: 540014c1     	b.ne	0xbea8c <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x4fc>
+   be7f8: 91400bff     	add	sp, sp, #0x2, lsl #12   // =0x2000
+   be7fc: 913803ff     	add	sp, sp, #0xe00
+   be800: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   be804: f9400bfc     	ldr	x28, [sp, #0x10]
+   be808: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   be80c: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   be810: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   be814: d65f03c0     	ret
+   be818: 7100091f     	cmp	w8, #0x2
+   be81c: 54000a00     	b.eq	0xbe95c <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x3cc>
+   be820: 71000d1f     	cmp	w8, #0x3
+   be824: 54000181     	b.ne	0xbe854 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x2c4>
+   be828: b95727f6     	ldr	w22, [sp, #0x1724]
+   be82c: 710006df     	cmp	w22, #0x1
+   be830: 54fffdab     	b.lt	0xbe7e4 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x254>
+   be834: d37df2c0     	lsl	x0, x22, #3
+   be838: 531f7ad4     	lsl	w20, w22, #1
+   be83c: 9403d699     	bl	0x1b42a0 <_Znam@plt>
+   be840: 710022df     	cmp	w22, #0x8
+   be844: aa0003f5     	mov	x21, x0
+   be848: 54000a02     	b.hs	0xbe988 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x3f8>
+   be84c: aa1f03e8     	mov	x8, xzr
+   be850: 1400005b     	b	0xbe9bc <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x42c>
+   be854: 94001d2d     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   be858: 7100141f     	cmp	w0, #0x5
+   be85c: 54fffc4c     	b.gt	0xbe7e4 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x254>
+   be860: d0fffde1     	adrp	x1, 0x7c000
+   be864: 91093821     	add	x1, x1, #0x24e
+   be868: d0fffdc2     	adrp	x2, 0x78000
+   be86c: 91236c42     	add	x2, x2, #0x8db
+   be870: 17ffffdb     	b	0xbe7dc <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x24c>
+   be874: 3cc44300     	ldur	q0, [x24, #0x44]
+   be878: 3cc34301     	ldur	q1, [x24, #0x34]
+   be87c: 910a83e8     	add	x8, sp, #0x2a0
+   be880: 3cc64302     	ldur	q2, [x24, #0x64]
+   be884: 9103d108     	add	x8, x8, #0xf4
+   be888: aa1303e0     	mov	x0, x19
+   be88c: 3c8183e0     	stur	q0, [sp, #0x18]
+   be890: 3cc54300     	ldur	q0, [x24, #0x54]
+   be894: 528009c1     	mov	w1, #0x4e
+   be898: 3c8083e1     	stur	q1, [sp, #0x8]
+   be89c: 3cc84301     	ldur	q1, [x24, #0x84]
+   be8a0: 3c8283e0     	stur	q0, [sp, #0x28]
+   be8a4: 3cc74300     	ldur	q0, [x24, #0x74]
+   be8a8: 3c8383e2     	stur	q2, [sp, #0x38]
+   be8ac: 3cca4302     	ldur	q2, [x24, #0xa4]
+   be8b0: 3c8483e0     	stur	q0, [sp, #0x48]
+   be8b4: 3cc94300     	ldur	q0, [x24, #0x94]
+   be8b8: 3c8583e1     	stur	q1, [sp, #0x58]
+   be8bc: 3ccc4301     	ldur	q1, [x24, #0xc4]
+   be8c0: 3c8683e0     	stur	q0, [sp, #0x68]
+   be8c4: 3ccb4300     	ldur	q0, [x24, #0xb4]
+   be8c8: 3c8783e2     	stur	q2, [sp, #0x78]
+   be8cc: 3cce4302     	ldur	q2, [x24, #0xe4]
+   be8d0: 3c8983e1     	stur	q1, [sp, #0x98]
+   be8d4: 3ccf4301     	ldur	q1, [x24, #0xf4]
+   be8d8: 3c8883e0     	stur	q0, [sp, #0x88]
+   be8dc: 3ccd4300     	ldur	q0, [x24, #0xd4]
+   be8e0: 3c8b83e2     	stur	q2, [sp, #0xb8]
+   be8e4: 3c8c83e1     	stur	q1, [sp, #0xc8]
+   be8e8: ad400ac1     	ldp	q1, q2, [x22]
+   be8ec: 3c8a83e0     	stur	q0, [sp, #0xa8]
+   be8f0: 3dc00500     	ldr	q0, [x8, #0x10]
+   be8f4: 910067e8     	add	x8, sp, #0x19
+   be8f8: 3c8d83e0     	stur	q0, [sp, #0xd8]
+   be8fc: 3c8f83e2     	stur	q2, [sp, #0xf8]
+   be900: ad4102c2     	ldp	q2, q0, [x22, #0x20]
+   be904: 3c8e83e1     	stur	q1, [sp, #0xe8]
+   be908: 3c8ff100     	stur	q0, [x8, #0xff]
+   be90c: 910027e8     	add	x8, sp, #0x9
+   be910: 3c8ff102     	stur	q2, [x8, #0xff]
+   be914: f9400268     	ldr	x8, [x19]
+   be918: fd402ac2     	ldr	d2, [x22, #0x50]
+   be91c: 6d4402c1     	ldp	d1, d0, [x22, #0x40]
+   be920: f942d508     	ldr	x8, [x8, #0x5a8]
+   be924: fd009fe2     	str	d2, [sp, #0x138]
+   be928: 6d1283e1     	stp	d1, d0, [sp, #0x128]
+   be92c: d63f0100     	blr	x8
+   be930: f9400268     	ldr	x8, [x19]
+   be934: aa0003f4     	mov	x20, x0
+   be938: 910023e4     	add	x4, sp, #0x8
+   be93c: aa1303e0     	mov	x0, x19
+   be940: aa1403e1     	mov	x1, x20
+   be944: 2a1f03e2     	mov	w2, wzr
+   be948: f9435508     	ldr	x8, [x8, #0x6a8]
+   be94c: 528009c3     	mov	w3, #0x4e
+   be950: d63f0100     	blr	x8
+   be954: aa1403e0     	mov	x0, x20
+   be958: 17ffffa4     	b	0xbe7e8 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x258>
+   be95c: b94893f8     	ldr	w24, [sp, #0x890]
+   be960: 7100071f     	cmp	w24, #0x1
+   be964: 54fff40b     	b.lt	0xbe7e4 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x254>
+   be968: d37df300     	lsl	x0, x24, #3
+   be96c: 531f7b14     	lsl	w20, w24, #1
+   be970: 9403d64c     	bl	0x1b42a0 <_Znam@plt>
+   be974: 7100231f     	cmp	w24, #0x8
+   be978: aa0003f5     	mov	x21, x0
+   be97c: 54000382     	b.hs	0xbe9ec <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x45c>
+   be980: aa1f03e8     	mov	x8, xzr
+   be984: 14000026     	b	0xbea1c <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x48c>
+   be988: 52829589     	mov	w9, #0x14ac
+   be98c: 927d6ec8     	and	x8, x22, #0x7ffffff8
+   be990: 910082aa     	add	x10, x21, #0x20
+   be994: 8b090309     	add	x9, x24, x9
+   be998: aa0803eb     	mov	x11, x8
+   be99c: ad7f0121     	ldp	q1, q0, [x9, #-0x20]
+   be9a0: f100216b     	subs	x11, x11, #0x8
+   be9a4: ad3f0141     	stp	q1, q0, [x10, #-0x20]
+   be9a8: acc20920     	ldp	q0, q2, [x9], #0x40
+   be9ac: ac820940     	stp	q0, q2, [x10], #0x40
+   be9b0: 54ffff61     	b.ne	0xbe99c <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x40c>
+   be9b4: eb16011f     	cmp	x8, x22
+   be9b8: 54000460     	b.eq	0xbea44 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x4b4>
+   be9bc: d37df10a     	lsl	x10, x8, #3
+   be9c0: 910a83e9     	add	x9, sp, #0x2a0
+   be9c4: 5282918b     	mov	w11, #0x148c
+   be9c8: 8b0b0129     	add	x9, x9, x11
+   be9cc: cb0802c8     	sub	x8, x22, x8
+   be9d0: 8b090149     	add	x9, x10, x9
+   be9d4: 8b0a02aa     	add	x10, x21, x10
+   be9d8: fc408520     	ldr	d0, [x9], #0x8
+   be9dc: f1000508     	subs	x8, x8, #0x1
+   be9e0: fc008540     	str	d0, [x10], #0x8
+   be9e4: 54ffffa1     	b.ne	0xbe9d8 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x448>
+   be9e8: 14000017     	b	0xbea44 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x4b4>
+   be9ec: 927d6f08     	and	x8, x24, #0x7ffffff8
+   be9f0: 911412c9     	add	x9, x22, #0x504
+   be9f4: 910082aa     	add	x10, x21, #0x20
+   be9f8: aa0803eb     	mov	x11, x8
+   be9fc: ad7f0121     	ldp	q1, q0, [x9, #-0x20]
+   bea00: f100216b     	subs	x11, x11, #0x8
+   bea04: ad3f0141     	stp	q1, q0, [x10, #-0x20]
+   bea08: acc20920     	ldp	q0, q2, [x9], #0x40
+   bea0c: ac820940     	stp	q0, q2, [x10], #0x40
+   bea10: 54ffff61     	b.ne	0xbe9fc <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x46c>
+   bea14: eb18011f     	cmp	x8, x24
+   bea18: 54000160     	b.eq	0xbea44 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x4b4>
+   bea1c: d37df10a     	lsl	x10, x8, #3
+   bea20: 910a83e9     	add	x9, sp, #0x2a0
+   bea24: cb080308     	sub	x8, x24, x8
+   bea28: 8b090149     	add	x9, x10, x9
+   bea2c: 8b0a02aa     	add	x10, x21, x10
+   bea30: 9117e129     	add	x9, x9, #0x5f8
+   bea34: fc408520     	ldr	d0, [x9], #0x8
+   bea38: f1000508     	subs	x8, x8, #0x1
+   bea3c: fc008540     	str	d0, [x10], #0x8
+   bea40: 54ffffa1     	b.ne	0xbea34 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x4a4>
+   bea44: f9400268     	ldr	x8, [x19]
+   bea48: aa1303e0     	mov	x0, x19
+   bea4c: 2a1403e1     	mov	w1, w20
+   bea50: f942d508     	ldr	x8, [x8, #0x5a8]
+   bea54: d63f0100     	blr	x8
+   bea58: f9400268     	ldr	x8, [x19]
+   bea5c: aa0003f6     	mov	x22, x0
+   bea60: aa1303e0     	mov	x0, x19
+   bea64: aa1603e1     	mov	x1, x22
+   bea68: 2a1f03e2     	mov	w2, wzr
+   bea6c: 2a1403e3     	mov	w3, w20
+   bea70: f9435508     	ldr	x8, [x8, #0x6a8]
+   bea74: aa1503e4     	mov	x4, x21
+   bea78: d63f0100     	blr	x8
+   bea7c: aa1503e0     	mov	x0, x21
+   bea80: 9403d60c     	bl	0x1b42b0 <_ZdaPv@plt>
+   bea84: aa1603e0     	mov	x0, x22
+   bea88: 17ffff58     	b	0xbe7e8 <_ZN25MTFilterKernelFaceDataJNI11getLandmarkEP7_JNIEnvP8_jobjectlii+0x258>
+   bea8c: 9403d5fd     	bl	0x1b4280 <__stack_chk_fail@plt>
+
+00000000000bea90 <_ZN25MTFilterKernelFaceDataJNI14getDetectWidthEP7_JNIEnvP8_jobjectl>:
+   bea90: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   bea94: 910003fd     	mov	x29, sp
+   bea98: b40000a2     	cbz	x2, 0xbeaac <_ZN25MTFilterKernelFaceDataJNI14getDetectWidthEP7_JNIEnvP8_jobjectl+0x1c>
+   bea9c: bd400440     	ldr	s0, [x2, #0x4]
+   beaa0: 1e380000     	fcvtzs	w0, s0
+   beaa4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beaa8: d65f03c0     	ret
+   beaac: 94001c97     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beab0: 7100141f     	cmp	w0, #0x5
+   beab4: 540000ec     	b.gt	0xbead0 <_ZN25MTFilterKernelFaceDataJNI14getDetectWidthEP7_JNIEnvP8_jobjectl+0x40>
+   beab8: d0fffde1     	adrp	x1, 0x7c000
+   beabc: 91093821     	add	x1, x1, #0x24e
+   beac0: b0fffe62     	adrp	x2, 0x8b000
+   beac4: 912e8042     	add	x2, x2, #0xba0
+   beac8: 528000c0     	mov	w0, #0x6
+   beacc: 9403d5e9     	bl	0x1b4270 <__android_log_print@plt>
+   bead0: 2a1f03e0     	mov	w0, wzr
+   bead4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bead8: d65f03c0     	ret
+
+00000000000beadc <_ZN25MTFilterKernelFaceDataJNI15getDetectHeightEP7_JNIEnvP8_jobjectl>:
+   beadc: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   beae0: 910003fd     	mov	x29, sp
+   beae4: b40000a2     	cbz	x2, 0xbeaf8 <_ZN25MTFilterKernelFaceDataJNI15getDetectHeightEP7_JNIEnvP8_jobjectl+0x1c>
+   beae8: bd400840     	ldr	s0, [x2, #0x8]
+   beaec: 1e380000     	fcvtzs	w0, s0
+   beaf0: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beaf4: d65f03c0     	ret
+   beaf8: 94001c84     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beafc: 7100141f     	cmp	w0, #0x5
+   beb00: 540000ec     	b.gt	0xbeb1c <_ZN25MTFilterKernelFaceDataJNI15getDetectHeightEP7_JNIEnvP8_jobjectl+0x40>
+   beb04: d0fffde1     	adrp	x1, 0x7c000
+   beb08: 91093821     	add	x1, x1, #0x24e
+   beb0c: d0fffe62     	adrp	x2, 0x8c000
+   beb10: 91283442     	add	x2, x2, #0xa0d
+   beb14: 528000c0     	mov	w0, #0x6
+   beb18: 9403d5d6     	bl	0x1b4270 <__android_log_print@plt>
+   beb1c: 2a1f03e0     	mov	w0, wzr
+   beb20: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beb24: d65f03c0     	ret
+
+00000000000beb28 <_ZN25MTFilterKernelFaceDataJNI7getRaceEP7_JNIEnvP8_jobjectli>:
+   beb28: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   beb2c: 910003fd     	mov	x29, sp
+   beb30: b40001e2     	cbz	x2, 0xbeb6c <_ZN25MTFilterKernelFaceDataJNI7getRaceEP7_JNIEnvP8_jobjectli+0x44>
+   beb34: b9400048     	ldr	w8, [x2]
+   beb38: 6b03011f     	cmp	w8, w3
+   beb3c: 540002ad     	b.le	0xbeb90 <_ZN25MTFilterKernelFaceDataJNI7getRaceEP7_JNIEnvP8_jobjectli+0x68>
+   beb40: 52856b08     	mov	w8, #0x2b58
+   beb44: 52846909     	mov	w9, #0x2348
+   beb48: 9b280868     	smaddl	x8, w3, w8, x2
+   beb4c: 38696908     	ldrb	w8, [x8, x9]
+   beb50: 34000268     	cbz	w8, 0xbeb9c <_ZN25MTFilterKernelFaceDataJNI7getRaceEP7_JNIEnvP8_jobjectli+0x74>
+   beb54: 93407c68     	sxtw	x8, w3
+   beb58: 52856b09     	mov	w9, #0x2b58
+   beb5c: 9b290908     	smaddl	x8, w8, w9, x2
+   beb60: b9634d00     	ldr	w0, [x8, #0x234c]
+   beb64: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beb68: d65f03c0     	ret
+   beb6c: 94001c67     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beb70: 7100141f     	cmp	w0, #0x5
+   beb74: 540000ec     	b.gt	0xbeb90 <_ZN25MTFilterKernelFaceDataJNI7getRaceEP7_JNIEnvP8_jobjectli+0x68>
+   beb78: d0fffde1     	adrp	x1, 0x7c000
+   beb7c: 91093821     	add	x1, x1, #0x24e
+   beb80: d0fffd82     	adrp	x2, 0x70000
+   beb84: 9119fc42     	add	x2, x2, #0x67f
+   beb88: 528000c0     	mov	w0, #0x6
+   beb8c: 9403d5b9     	bl	0x1b4270 <__android_log_print@plt>
+   beb90: 2a1f03e0     	mov	w0, wzr
+   beb94: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beb98: d65f03c0     	ret
+   beb9c: 12800000     	mov	w0, #-0x1
+   beba0: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beba4: d65f03c0     	ret
+
+00000000000beba8 <_ZN25MTFilterKernelFaceDataJNI9getGenderEP7_JNIEnvP8_jobjectli>:
+   beba8: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   bebac: 910003fd     	mov	x29, sp
+   bebb0: b40001e2     	cbz	x2, 0xbebec <_ZN25MTFilterKernelFaceDataJNI9getGenderEP7_JNIEnvP8_jobjectli+0x44>
+   bebb4: b9400048     	ldr	w8, [x2]
+   bebb8: 6b03011f     	cmp	w8, w3
+   bebbc: 540002ad     	b.le	0xbec10 <_ZN25MTFilterKernelFaceDataJNI9getGenderEP7_JNIEnvP8_jobjectli+0x68>
+   bebc0: 52856b08     	mov	w8, #0x2b58
+   bebc4: 52846709     	mov	w9, #0x2338
+   bebc8: 9b280868     	smaddl	x8, w3, w8, x2
+   bebcc: 38696908     	ldrb	w8, [x8, x9]
+   bebd0: 34000268     	cbz	w8, 0xbec1c <_ZN25MTFilterKernelFaceDataJNI9getGenderEP7_JNIEnvP8_jobjectli+0x74>
+   bebd4: 93407c68     	sxtw	x8, w3
+   bebd8: 52856b09     	mov	w9, #0x2b58
+   bebdc: 9b290908     	smaddl	x8, w8, w9, x2
+   bebe0: b9633d00     	ldr	w0, [x8, #0x233c]
+   bebe4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bebe8: d65f03c0     	ret
+   bebec: 94001c47     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bebf0: 7100141f     	cmp	w0, #0x5
+   bebf4: 540000ec     	b.gt	0xbec10 <_ZN25MTFilterKernelFaceDataJNI9getGenderEP7_JNIEnvP8_jobjectli+0x68>
+   bebf8: d0fffde1     	adrp	x1, 0x7c000
+   bebfc: 91093821     	add	x1, x1, #0x24e
+   bec00: d0fffd82     	adrp	x2, 0x70000
+   bec04: 9119fc42     	add	x2, x2, #0x67f
+   bec08: 528000c0     	mov	w0, #0x6
+   bec0c: 9403d599     	bl	0x1b4270 <__android_log_print@plt>
+   bec10: 2a1f03e0     	mov	w0, wzr
+   bec14: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bec18: d65f03c0     	ret
+   bec1c: 12800000     	mov	w0, #-0x1
+   bec20: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bec24: d65f03c0     	ret
+
+00000000000bec28 <_ZN25MTFilterKernelFaceDataJNI6getAgeEP7_JNIEnvP8_jobjectli>:
+   bec28: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   bec2c: 910003fd     	mov	x29, sp
+   bec30: b40001e2     	cbz	x2, 0xbec6c <_ZN25MTFilterKernelFaceDataJNI6getAgeEP7_JNIEnvP8_jobjectli+0x44>
+   bec34: b9400048     	ldr	w8, [x2]
+   bec38: 6b03011f     	cmp	w8, w3
+   bec3c: 540002ad     	b.le	0xbec90 <_ZN25MTFilterKernelFaceDataJNI6getAgeEP7_JNIEnvP8_jobjectli+0x68>
+   bec40: 52856b08     	mov	w8, #0x2b58
+   bec44: 52846809     	mov	w9, #0x2340
+   bec48: 9b280868     	smaddl	x8, w3, w8, x2
+   bec4c: 38696908     	ldrb	w8, [x8, x9]
+   bec50: 34000268     	cbz	w8, 0xbec9c <_ZN25MTFilterKernelFaceDataJNI6getAgeEP7_JNIEnvP8_jobjectli+0x74>
+   bec54: 93407c68     	sxtw	x8, w3
+   bec58: 52856b09     	mov	w9, #0x2b58
+   bec5c: 9b290908     	smaddl	x8, w8, w9, x2
+   bec60: b9634500     	ldr	w0, [x8, #0x2344]
+   bec64: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bec68: d65f03c0     	ret
+   bec6c: 94001c27     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bec70: 7100141f     	cmp	w0, #0x5
+   bec74: 540000ec     	b.gt	0xbec90 <_ZN25MTFilterKernelFaceDataJNI6getAgeEP7_JNIEnvP8_jobjectli+0x68>
+   bec78: d0fffde1     	adrp	x1, 0x7c000
+   bec7c: 91093821     	add	x1, x1, #0x24e
+   bec80: d0fffe42     	adrp	x2, 0x88000
+   bec84: 9110c042     	add	x2, x2, #0x430
+   bec88: 528000c0     	mov	w0, #0x6
+   bec8c: 9403d579     	bl	0x1b4270 <__android_log_print@plt>
+   bec90: 2a1f03e0     	mov	w0, wzr
+   bec94: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bec98: d65f03c0     	ret
+   bec9c: 12800000     	mov	w0, #-0x1
+   beca0: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   beca4: d65f03c0     	ret
+
+00000000000beca8 <_ZN25MTFilterKernelFaceDataJNI12setFaceCountEP7_JNIEnvP8_jobjectli>:
+   beca8: b4000062     	cbz	x2, 0xbecb4 <_ZN25MTFilterKernelFaceDataJNI12setFaceCountEP7_JNIEnvP8_jobjectli+0xc>
+   becac: b9000043     	str	w3, [x2]
+   becb0: d65f03c0     	ret
+   becb4: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   becb8: 910003fd     	mov	x29, sp
+   becbc: 94001c13     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   becc0: 7100141f     	cmp	w0, #0x5
+   becc4: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   becc8: 540000ec     	b.gt	0xbece4 <_ZN25MTFilterKernelFaceDataJNI12setFaceCountEP7_JNIEnvP8_jobjectli+0x3c>
+   beccc: d0fffde1     	adrp	x1, 0x7c000
+   becd0: 91093821     	add	x1, x1, #0x24e
+   becd4: b0fffd82     	adrp	x2, 0x6f000
+   becd8: 911cd042     	add	x2, x2, #0x734
+   becdc: 528000c0     	mov	w0, #0x6
+   bece0: 1403d564     	b	0x1b4270 <__android_log_print@plt>
+   bece4: d65f03c0     	ret
+
+00000000000bece8 <_ZN25MTFilterKernelFaceDataJNI13setDetectSizeEP7_JNIEnvP8_jobjectlii>:
+   bece8: b40000a2     	cbz	x2, 0xbecfc <_ZN25MTFilterKernelFaceDataJNI13setDetectSizeEP7_JNIEnvP8_jobjectlii+0x14>
+   becec: 1e220060     	scvtf	s0, w3
+   becf0: 1e220081     	scvtf	s1, w4
+   becf4: 2d008440     	stp	s0, s1, [x2, #0x4]
+   becf8: d65f03c0     	ret
+   becfc: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   bed00: 910003fd     	mov	x29, sp
+   bed04: 94001c01     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bed08: 7100141f     	cmp	w0, #0x5
+   bed0c: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   bed10: 540000ec     	b.gt	0xbed2c <_ZN25MTFilterKernelFaceDataJNI13setDetectSizeEP7_JNIEnvP8_jobjectlii+0x44>
+   bed14: d0fffde1     	adrp	x1, 0x7c000
+   bed18: 91093821     	add	x1, x1, #0x24e
+   bed1c: 90fffda2     	adrp	x2, 0x72000
+   bed20: 91397042     	add	x2, x2, #0xe5c
+   bed24: 528000c0     	mov	w0, #0x6
+   bed28: 1403d552     	b	0x1b4270 <__android_log_print@plt>
+   bed2c: d65f03c0     	ret
+
+00000000000bed30 <_ZN25MTFilterKernelFaceDataJNI11setFaceRectEP7_JNIEnvP8_jobjectliP12_jfloatArray>:
+   bed30: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   bed34: a90157f6     	stp	x22, x21, [sp, #0x10]
+   bed38: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   bed3c: 910003fd     	mov	x29, sp
+   bed40: 2a0303f3     	mov	w19, w3
+   bed44: b4000362     	cbz	x2, 0xbedb0 <_ZN25MTFilterKernelFaceDataJNI11setFaceRectEP7_JNIEnvP8_jobjectliP12_jfloatArray+0x80>
+   bed48: 7100267f     	cmp	w19, #0x9
+   bed4c: 5400032c     	b.gt	0xbedb0 <_ZN25MTFilterKernelFaceDataJNI11setFaceRectEP7_JNIEnvP8_jobjectliP12_jfloatArray+0x80>
+   bed50: f9400008     	ldr	x8, [x0]
+   bed54: aa0203f5     	mov	x21, x2
+   bed58: aa0403e1     	mov	x1, x4
+   bed5c: aa1f03e2     	mov	x2, xzr
+   bed60: aa0403f4     	mov	x20, x4
+   bed64: aa0003f6     	mov	x22, x0
+   bed68: f942f508     	ldr	x8, [x8, #0x5e8]
+   bed6c: d63f0100     	blr	x8
+   bed70: 52856b08     	mov	w8, #0x2b58
+   bed74: 3dc00000     	ldr	q0, [x0]
+   bed78: 5280002a     	mov	w10, #0x1
+   bed7c: 9b285668     	smaddl	x8, w19, w8, x21
+   bed80: aa0003e2     	mov	x2, x0
+   bed84: aa1603e0     	mov	x0, x22
+   bed88: aa1403e1     	mov	x1, x20
+   bed8c: 2a1f03e3     	mov	w3, wzr
+   bed90: 3c818100     	stur	q0, [x8, #0x18]
+   bed94: f94002c9     	ldr	x9, [x22]
+   bed98: f9431524     	ldr	x4, [x9, #0x628]
+   bed9c: 3900510a     	strb	w10, [x8, #0x14]
+   beda0: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   beda4: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   beda8: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   bedac: d61f0080     	br	x4
+   bedb0: 94001bd6     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bedb4: 7100141f     	cmp	w0, #0x5
+   bedb8: 5400016c     	b.gt	0xbede4 <_ZN25MTFilterKernelFaceDataJNI11setFaceRectEP7_JNIEnvP8_jobjectliP12_jfloatArray+0xb4>
+   bedbc: d0fffde1     	adrp	x1, 0x7c000
+   bedc0: 91093821     	add	x1, x1, #0x24e
+   bedc4: b0fffd82     	adrp	x2, 0x6f000
+   bedc8: 911e2042     	add	x2, x2, #0x788
+   bedcc: 528000c0     	mov	w0, #0x6
+   bedd0: 2a1303e3     	mov	w3, w19
+   bedd4: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   bedd8: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   beddc: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   bede0: 1403d524     	b	0x1b4270 <__android_log_print@plt>
+   bede4: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   bede8: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   bedec: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   bedf0: d65f03c0     	ret
+
+00000000000bedf4 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray>:
+   bedf4: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+   bedf8: f9000bf9     	str	x25, [sp, #0x10]
+   bedfc: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   bee00: a90357f6     	stp	x22, x21, [sp, #0x30]
+   bee04: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   bee08: 910003fd     	mov	x29, sp
+   bee0c: b40004e2     	cbz	x2, 0xbeea8 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0xb4>
+   bee10: 2a0403f3     	mov	w19, w4
+   bee14: 7100249f     	cmp	w4, #0x9
+   bee18: 540005ac     	b.gt	0xbeecc <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0xd8>
+   bee1c: b4001b65     	cbz	x5, 0xbf188 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x394>
+   bee20: f9400008     	ldr	x8, [x0]
+   bee24: aa0503e1     	mov	x1, x5
+   bee28: 2a0303f9     	mov	w25, w3
+   bee2c: aa0203f8     	mov	x24, x2
+   bee30: aa0003f7     	mov	x23, x0
+   bee34: aa0503f4     	mov	x20, x5
+   bee38: f942ad08     	ldr	x8, [x8, #0x558]
+   bee3c: d63f0100     	blr	x8
+   bee40: 7100041f     	cmp	w0, #0x1
+   bee44: 5400052b     	b.lt	0xbeee8 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0xf4>
+   bee48: f94002e8     	ldr	x8, [x23]
+   bee4c: 2a0003f5     	mov	w21, w0
+   bee50: aa1703e0     	mov	x0, x23
+   bee54: aa1403e1     	mov	x1, x20
+   bee58: aa1f03e2     	mov	x2, xzr
+   bee5c: 93407e76     	sxtw	x22, w19
+   bee60: f942f508     	ldr	x8, [x8, #0x5e8]
+   bee64: d63f0100     	blr	x8
+   bee68: aa0003f3     	mov	x19, x0
+   bee6c: 35000539     	cbnz	w25, 0xbef10 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x11c>
+   bee70: 71013abf     	cmp	w21, #0x4e
+   bee74: 540004e1     	b.ne	0xbef10 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x11c>
+   bee78: 52856b09     	mov	w9, #0x2b58
+   bee7c: 9104e26b     	add	x11, x19, #0x138
+   bee80: aa1803e8     	mov	x8, x24
+   bee84: 9b2962c9     	smaddl	x9, w22, w9, x24
+   bee88: 9101012a     	add	x10, x9, #0x40
+   bee8c: eb0b015f     	cmp	x10, x11
+   bee90: 54000b22     	b.hs	0xbeff4 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x200>
+   bee94: 9105e129     	add	x9, x9, #0x178
+   bee98: eb09027f     	cmp	x19, x9
+   bee9c: 54000ac2     	b.hs	0xbeff4 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x200>
+   beea0: aa1f03e9     	mov	x9, xzr
+   beea4: 1400006a     	b	0xbf04c <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x258>
+   beea8: 94001b98     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beeac: 7100141f     	cmp	w0, #0x5
+   beeb0: 540000ec     	b.gt	0xbeecc <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0xd8>
+   beeb4: d0fffde1     	adrp	x1, 0x7c000
+   beeb8: 91093821     	add	x1, x1, #0x24e
+   beebc: d0fffe62     	adrp	x2, 0x8c000
+   beec0: 913e2c42     	add	x2, x2, #0xf8b
+   beec4: 528000c0     	mov	w0, #0x6
+   beec8: 9403d4ea     	bl	0x1b4270 <__android_log_print@plt>
+   beecc: 2a1f03e0     	mov	w0, wzr
+   beed0: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   beed4: f9400bf9     	ldr	x25, [sp, #0x10]
+   beed8: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   beedc: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   beee0: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   beee4: d65f03c0     	ret
+   beee8: 94001b88     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   beeec: 7100141f     	cmp	w0, #0x5
+   beef0: 540014cc     	b.gt	0xbf188 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x394>
+   beef4: d0fffde1     	adrp	x1, 0x7c000
+   beef8: 91093821     	add	x1, x1, #0x24e
+   beefc: d0fffe42     	adrp	x2, 0x88000
+   bef00: 9111f842     	add	x2, x2, #0x47e
+   bef04: 528000c0     	mov	w0, #0x6
+   bef08: 9403d4da     	bl	0x1b4270 <__android_log_print@plt>
+   bef0c: 1400009f     	b	0xbf188 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x394>
+   bef10: 7100073f     	cmp	w25, #0x1
+   bef14: aa1803e8     	mov	x8, x24
+   bef18: 54000201     	b.ne	0xbef58 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x164>
+   bef1c: 71029abf     	cmp	w21, #0xa6
+   bef20: 540001c1     	b.ne	0xbef58 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x164>
+   bef24: 52856b09     	mov	w9, #0x2b58
+   bef28: 910a626b     	add	x11, x19, #0x298
+   bef2c: aa1403e1     	mov	x1, x20
+   bef30: 9b2922c9     	smaddl	x9, w22, w9, x8
+   bef34: aa1703e0     	mov	x0, x23
+   bef38: 9108612a     	add	x10, x9, #0x218
+   bef3c: eb0b015f     	cmp	x10, x11
+   bef40: 54000a62     	b.hs	0xbf08c <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x298>
+   bef44: 9112c129     	add	x9, x9, #0x4b0
+   bef48: eb09027f     	cmp	x19, x9
+   bef4c: 54000a02     	b.hs	0xbf08c <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x298>
+   bef50: aa1f03e9     	mov	x9, xzr
+   bef54: 1400007b     	b	0xbf140 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x34c>
+   bef58: 71000f3f     	cmp	w25, #0x3
+   bef5c: aa1403e1     	mov	x1, x20
+   bef60: aa1703e0     	mov	x0, x23
+   bef64: 54001200     	b.eq	0xbf1a4 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x3b0>
+   bef68: 71000b3f     	cmp	w25, #0x2
+   bef6c: 54001621     	b.ne	0xbf230 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x43c>
+   bef70: 52856b09     	mov	w9, #0x2b58
+   bef74: 710006bf     	cmp	w21, #0x1
+   bef78: 9b2922ca     	smaddl	x10, w22, w9, x8
+   bef7c: 53017ea9     	lsr	w9, w21, #1
+   bef80: b905fd49     	str	w9, [x10, #0x5fc]
+   bef84: 54000f80     	b.eq	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bef88: 7100053f     	cmp	w9, #0x1
+   bef8c: 1a9f8529     	csinc	w9, w9, wzr, hi
+   bef90: 710042bf     	cmp	w21, #0x10
+   bef94: 54000163     	b.lo	0xbefc0 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x1cc>
+   bef98: 52856b0a     	mov	w10, #0x2b58
+   bef9c: 9b2a22cb     	smaddl	x11, w22, w10, x8
+   befa0: d37df12a     	lsl	x10, x9, #3
+   befa4: 8b0a026c     	add	x12, x19, x10
+   befa8: 9118116b     	add	x11, x11, #0x604
+   befac: eb0c017f     	cmp	x11, x12
+   befb0: 540015e2     	b.hs	0xbf26c <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x478>
+   befb4: 8b0a016a     	add	x10, x11, x10
+   befb8: eb0a027f     	cmp	x19, x10
+   befbc: 54001582     	b.hs	0xbf26c <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x478>
+   befc0: aa1f03ea     	mov	x10, xzr
+   befc4: 52856b0b     	mov	w11, #0x2b58
+   befc8: d37df14c     	lsl	x12, x10, #3
+   befcc: cb0a0129     	sub	x9, x9, x10
+   befd0: 9b2b32cb     	smaddl	x11, w22, w11, x12
+   befd4: 8b08016b     	add	x11, x11, x8
+   befd8: 8b0c0268     	add	x8, x19, x12
+   befdc: 9118116b     	add	x11, x11, #0x604
+   befe0: fc408500     	ldr	d0, [x8], #0x8
+   befe4: f1000529     	subs	x9, x9, #0x1
+   befe8: fc008560     	str	d0, [x11], #0x8
+   befec: 54ffffa1     	b.ne	0xbefe0 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x1ec>
+   beff0: 14000061     	b	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   beff4: 52856b09     	mov	w9, #0x2b58
+   beff8: ad400261     	ldp	q1, q0, [x19]
+   beffc: d503201f     	nop
+   bf000: 9b2922c9     	smaddl	x9, w22, w9, x8
+   bf004: ad020121     	stp	q1, q0, [x9, #0x40]
+   bf008: ad410261     	ldp	q1, q0, [x19, #0x20]
+   bf00c: ad030121     	stp	q1, q0, [x9, #0x60]
+   bf010: ad420261     	ldp	q1, q0, [x19, #0x40]
+   bf014: ad040121     	stp	q1, q0, [x9, #0x80]
+   bf018: ad430261     	ldp	q1, q0, [x19, #0x60]
+   bf01c: ad050121     	stp	q1, q0, [x9, #0xa0]
+   bf020: ad440261     	ldp	q1, q0, [x19, #0x80]
+   bf024: ad060121     	stp	q1, q0, [x9, #0xc0]
+   bf028: ad450261     	ldp	q1, q0, [x19, #0xa0]
+   bf02c: ad070121     	stp	q1, q0, [x9, #0xe0]
+   bf030: ad460261     	ldp	q1, q0, [x19, #0xc0]
+   bf034: ad080121     	stp	q1, q0, [x9, #0x100]
+   bf038: ad470261     	ldp	q1, q0, [x19, #0xe0]
+   bf03c: ad090121     	stp	q1, q0, [x9, #0x120]
+   bf040: ad480261     	ldp	q1, q0, [x19, #0x100]
+   bf044: ad0a0121     	stp	q1, q0, [x9, #0x140]
+   bf048: 52800489     	mov	w9, #0x24
+   bf04c: 52856b0a     	mov	w10, #0x2b58
+   bf050: aa1403e1     	mov	x1, x20
+   bf054: aa1703e0     	mov	x0, x23
+   bf058: 9b2a22ca     	smaddl	x10, w22, w10, x8
+   bf05c: d37df128     	lsl	x8, x9, #3
+   bf060: 91011149     	add	x9, x10, #0x44
+   bf064: 8b08026a     	add	x10, x19, x8
+   bf068: 8b08012b     	add	x11, x9, x8
+   bf06c: 91002108     	add	x8, x8, #0x8
+   bf070: bd400140     	ldr	s0, [x10]
+   bf074: f104e11f     	cmp	x8, #0x138
+   bf078: bc1fc160     	stur	s0, [x11, #-0x4]
+   bf07c: bd400540     	ldr	s0, [x10, #0x4]
+   bf080: bd000160     	str	s0, [x11]
+   bf084: 54ffff01     	b.ne	0xbf064 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x270>
+   bf088: 1400003b     	b	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf08c: 52856b09     	mov	w9, #0x2b58
+   bf090: ad400261     	ldp	q1, q0, [x19]
+   bf094: d503201f     	nop
+   bf098: 9b2922c9     	smaddl	x9, w22, w9, x8
+   bf09c: 91086129     	add	x9, x9, #0x218
+   bf0a0: ad000121     	stp	q1, q0, [x9]
+   bf0a4: ad410261     	ldp	q1, q0, [x19, #0x20]
+   bf0a8: ad010121     	stp	q1, q0, [x9, #0x20]
+   bf0ac: ad420261     	ldp	q1, q0, [x19, #0x40]
+   bf0b0: ad020121     	stp	q1, q0, [x9, #0x40]
+   bf0b4: ad430261     	ldp	q1, q0, [x19, #0x60]
+   bf0b8: ad030121     	stp	q1, q0, [x9, #0x60]
+   bf0bc: ad440261     	ldp	q1, q0, [x19, #0x80]
+   bf0c0: ad040121     	stp	q1, q0, [x9, #0x80]
+   bf0c4: ad450261     	ldp	q1, q0, [x19, #0xa0]
+   bf0c8: ad050121     	stp	q1, q0, [x9, #0xa0]
+   bf0cc: ad460261     	ldp	q1, q0, [x19, #0xc0]
+   bf0d0: ad060121     	stp	q1, q0, [x9, #0xc0]
+   bf0d4: ad470261     	ldp	q1, q0, [x19, #0xe0]
+   bf0d8: ad070121     	stp	q1, q0, [x9, #0xe0]
+   bf0dc: ad480261     	ldp	q1, q0, [x19, #0x100]
+   bf0e0: ad080121     	stp	q1, q0, [x9, #0x100]
+   bf0e4: ad490261     	ldp	q1, q0, [x19, #0x120]
+   bf0e8: ad090121     	stp	q1, q0, [x9, #0x120]
+   bf0ec: ad4a0261     	ldp	q1, q0, [x19, #0x140]
+   bf0f0: ad0a0121     	stp	q1, q0, [x9, #0x140]
+   bf0f4: ad4b0261     	ldp	q1, q0, [x19, #0x160]
+   bf0f8: ad0b0121     	stp	q1, q0, [x9, #0x160]
+   bf0fc: ad4c0261     	ldp	q1, q0, [x19, #0x180]
+   bf100: ad0c0121     	stp	q1, q0, [x9, #0x180]
+   bf104: ad4d0261     	ldp	q1, q0, [x19, #0x1a0]
+   bf108: ad0d0121     	stp	q1, q0, [x9, #0x1a0]
+   bf10c: ad4e0261     	ldp	q1, q0, [x19, #0x1c0]
+   bf110: ad0e0121     	stp	q1, q0, [x9, #0x1c0]
+   bf114: ad4f0261     	ldp	q1, q0, [x19, #0x1e0]
+   bf118: ad0f0121     	stp	q1, q0, [x9, #0x1e0]
+   bf11c: ad500261     	ldp	q1, q0, [x19, #0x200]
+   bf120: ad100121     	stp	q1, q0, [x9, #0x200]
+   bf124: ad510261     	ldp	q1, q0, [x19, #0x220]
+   bf128: ad110121     	stp	q1, q0, [x9, #0x220]
+   bf12c: ad520261     	ldp	q1, q0, [x19, #0x240]
+   bf130: ad120121     	stp	q1, q0, [x9, #0x240]
+   bf134: ad530261     	ldp	q1, q0, [x19, #0x260]
+   bf138: ad130121     	stp	q1, q0, [x9, #0x260]
+   bf13c: 52800a09     	mov	w9, #0x50
+   bf140: 52856b0a     	mov	w10, #0x2b58
+   bf144: 9b2a22ca     	smaddl	x10, w22, w10, x8
+   bf148: d37df128     	lsl	x8, x9, #3
+   bf14c: 91087149     	add	x9, x10, #0x21c
+   bf150: 8b08026a     	add	x10, x19, x8
+   bf154: 8b08012b     	add	x11, x9, x8
+   bf158: 91002108     	add	x8, x8, #0x8
+   bf15c: bd400140     	ldr	s0, [x10]
+   bf160: f10a611f     	cmp	x8, #0x298
+   bf164: bc1fc160     	stur	s0, [x11, #-0x4]
+   bf168: bd400540     	ldr	s0, [x10, #0x4]
+   bf16c: bd000160     	str	s0, [x11]
+   bf170: 54ffff01     	b.ne	0xbf150 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x35c>
+   bf174: f9400008     	ldr	x8, [x0]
+   bf178: aa1303e2     	mov	x2, x19
+   bf17c: 2a1f03e3     	mov	w3, wzr
+   bf180: f9431508     	ldr	x8, [x8, #0x628]
+   bf184: d63f0100     	blr	x8
+   bf188: 52800020     	mov	w0, #0x1
+   bf18c: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   bf190: f9400bf9     	ldr	x25, [sp, #0x10]
+   bf194: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   bf198: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   bf19c: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   bf1a0: d65f03c0     	ret
+   bf1a4: 710006bf     	cmp	w21, #0x1
+   bf1a8: 54fffe60     	b.eq	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf1ac: 53017ea9     	lsr	w9, w21, #1
+   bf1b0: 7100053f     	cmp	w9, #0x1
+   bf1b4: 1a9f852a     	csinc	w10, w9, wzr, hi
+   bf1b8: 710042bf     	cmp	w21, #0x10
+   bf1bc: 54000183     	b.lo	0xbf1ec <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x3f8>
+   bf1c0: 52856b0b     	mov	w11, #0x2b58
+   bf1c4: 5282930d     	mov	w13, #0x1498
+   bf1c8: 9b2b22cc     	smaddl	x12, w22, w11, x8
+   bf1cc: d37df14b     	lsl	x11, x10, #3
+   bf1d0: 8b0d018c     	add	x12, x12, x13
+   bf1d4: 8b0b026d     	add	x13, x19, x11
+   bf1d8: eb0d019f     	cmp	x12, x13
+   bf1dc: 54000682     	b.hs	0xbf2ac <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x4b8>
+   bf1e0: 8b0b018b     	add	x11, x12, x11
+   bf1e4: eb0b027f     	cmp	x19, x11
+   bf1e8: 54000622     	b.hs	0xbf2ac <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x4b8>
+   bf1ec: aa1f03eb     	mov	x11, xzr
+   bf1f0: 52856b0c     	mov	w12, #0x2b58
+   bf1f4: d37df16d     	lsl	x13, x11, #3
+   bf1f8: cb0b014a     	sub	x10, x10, x11
+   bf1fc: 9b2c36ce     	smaddl	x14, w22, w12, x13
+   bf200: 5282930c     	mov	w12, #0x1498
+   bf204: 8b0c010f     	add	x15, x8, x12
+   bf208: 8b0d026c     	add	x12, x19, x13
+   bf20c: 8b0f01cd     	add	x13, x14, x15
+   bf210: fc408580     	ldr	d0, [x12], #0x8
+   bf214: f100054a     	subs	x10, x10, #0x1
+   bf218: fc0085a0     	str	d0, [x13], #0x8
+   bf21c: 54ffffa1     	b.ne	0xbf210 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x41c>
+   bf220: 52856b0a     	mov	w10, #0x2b58
+   bf224: 9b2a22c8     	smaddl	x8, w22, w10, x8
+   bf228: b9149109     	str	w9, [x8, #0x1490]
+   bf22c: 17ffffd2     	b	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf230: 94001ab6     	bl	0xc5d08 <MTRTFILTERKERNEL_GetLogLevel>
+   bf234: 2a0003e8     	mov	w8, w0
+   bf238: aa1403e1     	mov	x1, x20
+   bf23c: aa1703e0     	mov	x0, x23
+   bf240: 7100151f     	cmp	w8, #0x5
+   bf244: 54fff98c     	b.gt	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf248: b0fffde1     	adrp	x1, 0x7c000
+   bf24c: 91093821     	add	x1, x1, #0x24e
+   bf250: 90fffde2     	adrp	x2, 0x7b000
+   bf254: 91026c42     	add	x2, x2, #0x9b
+   bf258: 528000c0     	mov	w0, #0x6
+   bf25c: 9403d405     	bl	0x1b4270 <__android_log_print@plt>
+   bf260: aa1703e0     	mov	x0, x23
+   bf264: aa1403e1     	mov	x1, x20
+   bf268: 17ffffc3     	b	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf26c: 52856b0a     	mov	w10, #0x2b58
+   bf270: 9100826c     	add	x12, x19, #0x20
+   bf274: 9b2a22cb     	smaddl	x11, w22, w10, x8
+   bf278: 927d692a     	and	x10, x9, #0x3ffffff8
+   bf27c: aa0a03ed     	mov	x13, x10
+   bf280: 9118116b     	add	x11, x11, #0x604
+   bf284: ad7f0580     	ldp	q0, q1, [x12, #-0x20]
+   bf288: f10021ad     	subs	x13, x13, #0x8
+   bf28c: acc20983     	ldp	q3, q2, [x12], #0x40
+   bf290: ad000560     	stp	q0, q1, [x11]
+   bf294: ad010963     	stp	q3, q2, [x11, #0x20]
+   bf298: 9101016b     	add	x11, x11, #0x40
+   bf29c: 54ffff41     	b.ne	0xbf284 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x490>
+   bf2a0: eb09015f     	cmp	x10, x9
+   bf2a4: 54fff680     	b.eq	0xbf174 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x380>
+   bf2a8: 17ffff47     	b	0xbefc4 <_ZN25MTFilterKernelFaceDataJNI11setLandmarkEP7_JNIEnvP8_jobjectliiP12_jfloatArray+0x1d0>
+   bf2ac: 52856b0b     	mov	w11, #0x2b58

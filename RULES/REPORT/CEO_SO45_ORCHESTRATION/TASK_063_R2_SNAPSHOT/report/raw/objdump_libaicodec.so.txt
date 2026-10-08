@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 76
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaicodec.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000ce7a0 <.text>:
+   ce7a0: d503245f     	bti	c
+   ce7a4: f0000960     	adrp	x0, 0x1fd000 <syscall@plt+0x3bc0>
+   ce7a8: 91114000     	add	x0, x0, #0x450
+   ce7ac: 14049785     	b	0x1f45c0 <__cxa_finalize@plt>
+   ce7b0: d503245f     	bti	c
+   ce7b4: d65f03c0     	ret
+   ce7b8: d503245f     	bti	c
+   ce7bc: 17fffffd     	b	0xce7b0 <.text+0x10>
+   ce7c0: d503245f     	bti	c
+   ce7c4: b4000060     	cbz	x0, 0xce7d0 <.text+0x30>
+   ce7c8: aa0003f0     	mov	x16, x0
+   ce7cc: d61f0200     	br	x16
+   ce7d0: d65f03c0     	ret
+   ce7d4: d503245f     	bti	c
+   ce7d8: aa0003e1     	mov	x1, x0
+   ce7dc: d503201f     	nop
+   ce7e0: 10ffff00     	adr	x0, #-0x20
+   ce7e4: f0000962     	adrp	x2, 0x1fd000 <syscall@plt+0x3bc0>
+   ce7e8: 91114042     	add	x2, x2, #0x450
+   ce7ec: 14049779     	b	0x1f45d0 <__cxa_atexit@plt>
+
+00000000000ce7f0 <_ZN7MMCodec11AudioStreamC2EPNS_14OutMediaHandleE>:
+   ce7f0: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   ce7f4: a9014ff4     	stp	x20, x19, [sp, #0x10]
+   ce7f8: 910003fd     	mov	x29, sp
+   ce7fc: 90fffcc8     	adrp	x8, 0x66000
+   ce800: d503201f     	nop
+   ce804: 50e1a169     	adr	x9, #-0x3cbd2
+   ce808: 3dc39501     	ldr	q1, [x8, #0xe50]
+   ce80c: ad411123     	ldp	q3, q4, [x9, #0x20]
+   ce810: d2c00c8a     	mov	x10, #0x6400000000
+   ce814: 9104b00c     	add	x12, x0, #0x12c
+   ce818: 6f00e400     	movi	v0.2d, #0000000000000000
+   ce81c: 3c83c001     	stur	q1, [x0, #0x3c]
+   ce820: ad400921     	ldp	q1, q2, [x9]
+   ce824: d503201f     	nop
+   ce828: 50e1a249     	adr	x9, #-0x3cbb6
+   ce82c: f900019f     	str	xzr, [x12]
+   ce830: ad411526     	ldp	q6, q5, [x9, #0x20]
+   ce834: 90fffccc     	adrp	x12, 0x66000
+   ce838: ad401d30     	ldp	q16, q7, [x9]
+   ce83c: 91041009     	add	x9, x0, #0x104
+   ce840: f900012a     	str	x10, [x9]
+   ce844: 90fffcc9     	adrp	x9, 0x66000
+   ce848: 3dc2dd92     	ldr	q18, [x12, #0xb70]
+   ce84c: 3dc36931     	ldr	q17, [x9, #0xda0]
+   ce850: 9104600a     	add	x10, x0, #0x118
+   ce854: 52b7f008     	mov	w8, #-0x40800000
+   ce858: 3d801152     	str	q18, [x10, #0x40]
+   ce85c: 9104a00b     	add	x11, x0, #0x128
+   ce860: 52a7f009     	mov	w9, #0x3f800000
+   ce864: 3d800151     	str	q17, [x10]
+   ce868: d2f7f00a     	mov	x10, #-0x4080000000000000
+   ce86c: aa0003f3     	mov	x19, x0
+   ce870: a916a81f     	stp	xzr, x10, [x0, #0x168]
+   ce874: 52800c8a     	mov	w10, #0x64
+   ce878: b9004c08     	str	w8, [x0, #0x4c]
+   ce87c: 12800008     	mov	w8, #-0x1
+   ce880: f802417f     	stur	xzr, [x11, #0x24]
+   ce884: 3d800560     	str	q0, [x11, #0x10]
+   ce888: 9105600b     	add	x11, x0, #0x158
+   ce88c: b902300a     	str	w10, [x0, #0x230]
+   ce890: 9109400a     	add	x10, x0, #0x250
+   ce894: f9000401     	str	x1, [x0, #0x8]
+   ce898: ad008000     	stp	q0, q0, [x0, #0x10]
+   ce89c: 3c82c000     	stur	q0, [x0, #0x2c]
+   ce8a0: 3d801400     	str	q0, [x0, #0x50]
+   ce8a4: b9006008     	str	w8, [x0, #0x60]
+   ce8a8: 3c864001     	stur	q1, [x0, #0x64]
+   ce8ac: 3c874002     	stur	q2, [x0, #0x74]
+   ce8b0: 3c884003     	stur	q3, [x0, #0x84]
+   ce8b4: 3c894004     	stur	q4, [x0, #0x94]
+   ce8b8: 3c8d4005     	stur	q5, [x0, #0xd4]
+   ce8bc: 3c8c4006     	stur	q6, [x0, #0xc4]
+   ce8c0: 3c8b4007     	stur	q7, [x0, #0xb4]
+   ce8c4: 3c8a4010     	stur	q16, [x0, #0xa4]
+   ce8c8: 3c8e4000     	stur	q0, [x0, #0xe4]
+   ce8cc: 3c8f4000     	stur	q0, [x0, #0xf4]
+   ce8d0: 7902181f     	strh	wzr, [x0, #0x10c]
+   ce8d4: f900881f     	str	xzr, [x0, #0x110]
+   ce8d8: b9012809     	str	w9, [x0, #0x128]
+   ce8dc: 3904d01f     	strb	wzr, [x0, #0x134]
+   ce8e0: 3905201f     	strb	wzr, [x0, #0x148]
+   ce8e4: 3d800960     	str	q0, [x11, #0x20]
+   ce8e8: b9018808     	str	w8, [x0, #0x188]
+   ce8ec: 3c864164     	stur	q4, [x11, #0x64]
+   ce8f0: 3c854163     	stur	q3, [x11, #0x54]
+   ce8f4: 3c844162     	stur	q2, [x11, #0x44]
+   ce8f8: 3c834161     	stur	q1, [x11, #0x34]
+   ce8fc: 3c8a4165     	stur	q5, [x11, #0xa4]
+   ce900: 3c894166     	stur	q6, [x11, #0x94]
+   ce904: 3c884167     	stur	q7, [x11, #0x84]
+   ce908: 3c874170     	stur	q16, [x11, #0x74]
+   ce90c: 3c8b4160     	stur	q0, [x11, #0xb4]
+   ce910: 3c8c4160     	stur	q0, [x11, #0xc4]
+   ce914: b9022c1f     	str	wzr, [x0, #0x22c]
+   ce918: 7904681f     	strh	wzr, [x0, #0x234]
+   ce91c: f9011c1f     	str	xzr, [x0, #0x238]
+   ce920: 3d809011     	str	q17, [x0, #0x240]
+   ce924: b9025009     	str	w9, [x0, #0x250]
+   ce928: f802415f     	stur	xzr, [x10, #0x24]
+   ce92c: f000098a     	adrp	x10, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ce930: 3909701f     	strb	wzr, [x0, #0x25c]
+   ce934: f80fc17f     	stur	xzr, [x11, #0xfc]
+   ce938: 910ae00b     	add	x11, x0, #0x2b8
+   ce93c: 3909c01f     	strb	wzr, [x0, #0x270]
+   ce940: 3d809800     	str	q0, [x0, #0x260]
+   ce944: f901501f     	str	xzr, [x0, #0x2a0]
+   ce948: ad140000     	stp	q0, q0, [x0, #0x280]
+   ce94c: f944294a     	ldr	x10, [x10, #0x850]
+   ce950: f9015409     	str	x9, [x0, #0x2a8]
+   ce954: f901581f     	str	xzr, [x0, #0x2b0]
+   ce958: 9100414a     	add	x10, x10, #0x10
+   ce95c: f901a01f     	str	xzr, [x0, #0x340]
+   ce960: f9015c0a     	str	x10, [x0, #0x2b8]
+   ce964: 5280010a     	mov	w10, #0x8
+   ce968: ad160000     	stp	q0, q0, [x0, #0x2c0]
+   ce96c: ad170000     	stp	q0, q0, [x0, #0x2e0]
+   ce970: ad180000     	stp	q0, q0, [x0, #0x300]
+   ce974: ad190000     	stp	q0, q0, [x0, #0x320]
+   ce978: f901a40a     	str	x10, [x0, #0x348]
+   ce97c: f000098a     	adrp	x10, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ce980: b80c717f     	stur	wzr, [x11, #0xc7]
+   ce984: 5280020b     	mov	w11, #0x10
+   ce988: 3d80dc00     	str	q0, [x0, #0x370]
+   ce98c: f9442d4a     	ldr	x10, [x10, #0x858]
+   ce990: ad1a8000     	stp	q0, q0, [x0, #0x350]
+   ce994: f901c41f     	str	xzr, [x0, #0x388]
+   ce998: 9100414a     	add	x10, x10, #0x10
+   ce99c: b9049008     	str	w8, [x0, #0x490]
+   ce9a0: 91126008     	add	x8, x0, #0x498
+   ce9a4: f901c80a     	str	x10, [x0, #0x390]
+   ce9a8: 910e400a     	add	x10, x0, #0x390
+   ce9ac: ad000100     	stp	q0, q0, [x8]
+   ce9b0: 91130008     	add	x8, x0, #0x4c0
+   ce9b4: f9020c1f     	str	xzr, [x0, #0x418]
+   ce9b8: 3c878140     	stur	q0, [x10, #0x78]
+   ce9bc: 3c868140     	stur	q0, [x10, #0x68]
+   ce9c0: 3c858140     	stur	q0, [x10, #0x58]
+   ce9c4: 3c848140     	stur	q0, [x10, #0x48]
+   ce9c8: 3c838140     	stur	q0, [x10, #0x38]
+   ce9cc: 3c828140     	stur	q0, [x10, #0x28]
+   ce9d0: 3c818140     	stur	q0, [x10, #0x18]
+   ce9d4: 3c808140     	stur	q0, [x10, #0x8]
+   ce9d8: f902100b     	str	x11, [x0, #0x420]
+   ce9dc: b80c715f     	stur	wzr, [x10, #0xc7]
+   ce9e0: 3c8b8140     	stur	q0, [x10, #0xb8]
+   ce9e4: 3c8a8140     	stur	q0, [x10, #0xa8]
+   ce9e8: 3c898140     	stur	q0, [x10, #0x98]
+   ce9ec: 3911801f     	strb	wzr, [x0, #0x460]
+   ce9f0: f902341f     	str	xzr, [x0, #0x468]
+   ce9f4: b904701f     	str	wzr, [x0, #0x470]
+   ce9f8: f9023c1f     	str	xzr, [x0, #0x478]
+   ce9fc: b904801f     	str	wzr, [x0, #0x480]
+   cea00: f902441f     	str	xzr, [x0, #0x488]
+   cea04: 3912501f     	strb	wzr, [x0, #0x494]
+   cea08: 3c808d00     	str	q0, [x8, #0x8]!
+   cea0c: b904b809     	str	w9, [x0, #0x4b8]
+   cea10: f0000989     	adrp	x9, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cea14: f9443129     	ldr	x9, [x9, #0x860]
+   cea18: f9026008     	str	x8, [x0, #0x4c0]
+   cea1c: 91004128     	add	x8, x9, #0x10
+   cea20: f0000989     	adrp	x9, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cea24: f9443529     	ldr	x9, [x9, #0x868]
+   cea28: f9000008     	str	x8, [x0]
+   cea2c: f9026c1f     	str	xzr, [x0, #0x4d8]
+   cea30: b9400128     	ldr	w8, [x9]
+   cea34: 9113a009     	add	x9, x0, #0x4e8
+   cea38: b904e01f     	str	wzr, [x0, #0x4e0]
+   cea3c: f9027c1f     	str	xzr, [x0, #0x4f8]
+   cea40: 7100091f     	cmp	w8, #0x2
+   cea44: 3d800120     	str	q0, [x9]
+   cea48: 5400020c     	b.gt	0xcea88 <_ZN7MMCodec11AudioStreamC2EPNS_14OutMediaHandleE+0x298>
+   cea4c: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cea50: f9443908     	ldr	x8, [x8, #0x870]
+   cea54: b9400914     	ldr	w20, [x8, #0x8]
+   cea58: 940496e2     	bl	0x1f45e0 <pthread_self@plt>
+   cea5c: aa0003e6     	mov	x6, x0
+   cea60: d503201f     	nop
+   cea64: 50d76761     	adr	x1, #-0x51312
+   cea68: b0fffce2     	adrp	x2, 0x6b000
+   cea6c: 91234842     	add	x2, x2, #0x8d2
+   cea70: f0fffd83     	adrp	x3, 0x81000
+   cea74: 911e6063     	add	x3, x3, #0x798
+   cea78: 2a1403e0     	mov	w0, w20
+   cea7c: 52800324     	mov	w4, #0x19
+   cea80: aa1303e5     	mov	x5, x19
+   cea84: 940496db     	bl	0x1f45f0 <__android_log_print@plt>
+   cea88: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cea8c: f9443d08     	ldr	x8, [x8, #0x878]
+   cea90: b9400108     	ldr	w8, [x8]
+   cea94: 7100091f     	cmp	w8, #0x2
+   cea98: 540001ec     	b.gt	0xcead4 <_ZN7MMCodec11AudioStreamC2EPNS_14OutMediaHandleE+0x2e4>
+   cea9c: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceaa0: f9444108     	ldr	x8, [x8, #0x880]
+   ceaa4: f9400914     	ldr	x20, [x8, #0x10]
+   ceaa8: 940496ce     	bl	0x1f45e0 <pthread_self@plt>
+   ceaac: aa0003e6     	mov	x6, x0
+   ceab0: f0fffdc1     	adrp	x1, 0x89000
+   ceab4: 912dbc21     	add	x1, x1, #0xb6f
+   ceab8: f0fffd83     	adrp	x3, 0x81000
+   ceabc: 911e6063     	add	x3, x3, #0x798
+   ceac0: 52800040     	mov	w0, #0x2
+   ceac4: aa1403e2     	mov	x2, x20
+   ceac8: 52800324     	mov	w4, #0x19
+   ceacc: aa1303e5     	mov	x5, x19
+   cead0: 940496cc     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cead4: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+   cead8: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   ceadc: d65f03c0     	ret
+   ceae0: aa0003f4     	mov	x20, x0
+   ceae4: aa1303e0     	mov	x0, x19
+   ceae8: 940496ca     	bl	0x1f4610 <_ZN7MMCodec16ExportStreamBaseD2Ev@plt>
+   ceaec: aa1403e0     	mov	x0, x20
+   ceaf0: 9404857f     	bl	0x1f00ec <_ZN7MMCodec53MediaRecorderWrapperGetEncodePerformanceInfoErrorInfoEPv+0x59470>
+
+00000000000ceaf4 <_ZN7MMCodec11AudioStreamD2Ev>:
+   ceaf4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   ceaf8: a9014ff4     	stp	x20, x19, [sp, #0x10]
+   ceafc: 910003fd     	mov	x29, sp
+   ceb00: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceb04: f0000989     	adrp	x9, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceb08: aa0003f3     	mov	x19, x0
+   ceb0c: f9443508     	ldr	x8, [x8, #0x868]
+   ceb10: f9443129     	ldr	x9, [x9, #0x860]
+   ceb14: b9400108     	ldr	w8, [x8]
+   ceb18: 91004129     	add	x9, x9, #0x10
+   ceb1c: f9000009     	str	x9, [x0]
+   ceb20: 7100091f     	cmp	w8, #0x2
+   ceb24: 5400020c     	b.gt	0xceb64 <_ZN7MMCodec11AudioStreamD2Ev+0x70>
+   ceb28: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceb2c: f9443908     	ldr	x8, [x8, #0x870]
+   ceb30: b9400914     	ldr	w20, [x8, #0x8]
+   ceb34: 940496ab     	bl	0x1f45e0 <pthread_self@plt>
+   ceb38: aa0003e6     	mov	x6, x0
+   ceb3c: d503201f     	nop
+   ceb40: 50d76081     	adr	x1, #-0x513ee
+   ceb44: b0fffce2     	adrp	x2, 0x6b000
+   ceb48: 91234842     	add	x2, x2, #0x8d2
+   ceb4c: f0fffd23     	adrp	x3, 0x75000
+   ceb50: 912c4463     	add	x3, x3, #0xb11
+   ceb54: 2a1403e0     	mov	w0, w20
+   ceb58: 528003a4     	mov	w4, #0x1d
+   ceb5c: aa1303e5     	mov	x5, x19
+   ceb60: 940496a4     	bl	0x1f45f0 <__android_log_print@plt>
+   ceb64: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceb68: f9443d08     	ldr	x8, [x8, #0x878]
+   ceb6c: b9400108     	ldr	w8, [x8]
+   ceb70: 7100091f     	cmp	w8, #0x2
+   ceb74: 540001ec     	b.gt	0xcebb0 <_ZN7MMCodec11AudioStreamD2Ev+0xbc>
+   ceb78: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceb7c: f9444108     	ldr	x8, [x8, #0x880]
+   ceb80: f9400914     	ldr	x20, [x8, #0x10]
+   ceb84: 94049697     	bl	0x1f45e0 <pthread_self@plt>
+   ceb88: aa0003e6     	mov	x6, x0
+   ceb8c: f0fffdc1     	adrp	x1, 0x89000
+   ceb90: 912dbc21     	add	x1, x1, #0xb6f
+   ceb94: f0fffd23     	adrp	x3, 0x75000
+   ceb98: 912c4463     	add	x3, x3, #0xb11
+   ceb9c: 52800040     	mov	w0, #0x2
+   ceba0: aa1403e2     	mov	x2, x20
+   ceba4: 528003a4     	mov	w4, #0x1d
+   ceba8: aa1303e5     	mov	x5, x19
+   cebac: 94049695     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cebb0: aa1303e0     	mov	x0, x19
+   cebb4: a9414ff4     	ldp	x20, x19, [sp, #0x10]
+   cebb8: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   cebbc: 14049695     	b	0x1f4610 <_ZN7MMCodec16ExportStreamBaseD2Ev@plt>
+   cebc0: 94000001     	bl	0xcebc4 <_ZN7MMCodec11AudioStreamD2Ev+0xd0>
+   cebc4: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   cebc8: 910003fd     	mov	x29, sp
+   cebcc: 94049695     	bl	0x1f4620 <__cxa_begin_catch@plt>
+   cebd0: 94049698     	bl	0x1f4630 <_ZSt9terminatev@plt>
+
+00000000000cebd4 <_ZN7MMCodec11AudioStreamD0Ev>:
+   cebd4: a9be7bfd     	stp	x29, x30, [sp, #-0x20]!
+   cebd8: f9000bf3     	str	x19, [sp, #0x10]
+   cebdc: 910003fd     	mov	x29, sp
+   cebe0: aa0003f3     	mov	x19, x0
+   cebe4: 94049697     	bl	0x1f4640 <_ZN7MMCodec11AudioStreamD1Ev@plt>
+   cebe8: aa1303e0     	mov	x0, x19
+   cebec: f9400bf3     	ldr	x19, [sp, #0x10]
+   cebf0: a8c27bfd     	ldp	x29, x30, [sp], #0x20
+   cebf4: 14049697     	b	0x1f4650 <_ZdlPv@plt>
+
+00000000000cebf8 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi>:
+   cebf8: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   cebfc: f9000bf5     	str	x21, [sp, #0x10]
+   cec00: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   cec04: 910003fd     	mov	x29, sp
+   cec08: aa0103f4     	mov	x20, x1
+   cec0c: aa0003f3     	mov	x19, x0
+   cec10: b9049002     	str	w2, [x0, #0x490]
+   cec14: 910a5001     	add	x1, x0, #0x294
+   cec18: aa1403e0     	mov	x0, x20
+   cec1c: 94049691     	bl	0x1f4660 <_ZN7MMCodec10MediaParam20readOutAudioSettingsEPNS_12AudioParam_tE@plt>
+   cec20: 37f80120     	tbnz	w0, #0x1f, 0xcec44 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0x4c>
+   cec24: 910a0261     	add	x1, x19, #0x280
+   cec28: aa1403e0     	mov	x0, x20
+   cec2c: 94049691     	bl	0x1f4670 <_ZN7MMCodec10MediaParam19readInAudioSettingsEPNS_12AudioParam_tE@plt>
+   cec30: 37f805c0     	tbnz	w0, #0x1f, 0xcece8 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0xf0>
+   cec34: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   cec38: f9400bf5     	ldr	x21, [sp, #0x10]
+   cec3c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   cec40: d65f03c0     	ret
+   cec44: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cec48: f9443508     	ldr	x8, [x8, #0x868]
+   cec4c: b9400108     	ldr	w8, [x8]
+   cec50: 7100151f     	cmp	w8, #0x5
+   cec54: 5400024c     	b.gt	0xcec9c <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0xa4>
+   cec58: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cec5c: 2a0003f5     	mov	w21, w0
+   cec60: f9443908     	ldr	x8, [x8, #0x870]
+   cec64: b9401514     	ldr	w20, [x8, #0x14]
+   cec68: 9404965e     	bl	0x1f45e0 <pthread_self@plt>
+   cec6c: aa0003e6     	mov	x6, x0
+   cec70: d503201f     	nop
+   cec74: 50d756e1     	adr	x1, #-0x51522
+   cec78: f0fffd82     	adrp	x2, 0x81000
+   cec7c: 911e9042     	add	x2, x2, #0x7a4
+   cec80: f0fffd63     	adrp	x3, 0x7d000
+   cec84: 911d7c63     	add	x3, x3, #0x75f
+   cec88: 2a1403e0     	mov	w0, w20
+   cec8c: 528004c4     	mov	w4, #0x26
+   cec90: aa1303e5     	mov	x5, x19
+   cec94: 94049657     	bl	0x1f45f0 <__android_log_print@plt>
+   cec98: 2a1503e0     	mov	w0, w21
+   cec9c: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceca0: f9443d08     	ldr	x8, [x8, #0x878]
+   ceca4: b9400108     	ldr	w8, [x8]
+   ceca8: 7100151f     	cmp	w8, #0x5
+   cecac: 54fffc4c     	b.gt	0xcec34 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0x3c>
+   cecb0: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cecb4: 2a0003f5     	mov	w21, w0
+   cecb8: f9444108     	ldr	x8, [x8, #0x880]
+   cecbc: f9401514     	ldr	x20, [x8, #0x28]
+   cecc0: 94049648     	bl	0x1f45e0 <pthread_self@plt>
+   cecc4: aa0003e6     	mov	x6, x0
+   cecc8: f0fffd21     	adrp	x1, 0x75000
+   ceccc: 912c7821     	add	x1, x1, #0xb1e
+   cecd0: f0fffd63     	adrp	x3, 0x7d000
+   cecd4: 911d7c63     	add	x3, x3, #0x75f
+   cecd8: 528000a0     	mov	w0, #0x5
+   cecdc: aa1403e2     	mov	x2, x20
+   cece0: 528004c4     	mov	w4, #0x26
+   cece4: 14000029     	b	0xced88 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0x190>
+   cece8: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cecec: f9443508     	ldr	x8, [x8, #0x868]
+   cecf0: b9400108     	ldr	w8, [x8]
+   cecf4: 7100151f     	cmp	w8, #0x5
+   cecf8: 5400024c     	b.gt	0xced40 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0x148>
+   cecfc: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ced00: 2a0003f5     	mov	w21, w0
+   ced04: f9443908     	ldr	x8, [x8, #0x870]
+   ced08: b9401514     	ldr	w20, [x8, #0x14]
+   ced0c: 94049635     	bl	0x1f45e0 <pthread_self@plt>
+   ced10: aa0003e6     	mov	x6, x0
+   ced14: d503201f     	nop
+   ced18: 50d751c1     	adr	x1, #-0x515c6
+   ced1c: f0fffdc2     	adrp	x2, 0x89000
+   ced20: 912e9842     	add	x2, x2, #0xba6
+   ced24: f0fffd63     	adrp	x3, 0x7d000
+   ced28: 911d7c63     	add	x3, x3, #0x75f
+   ced2c: 2a1403e0     	mov	w0, w20
+   ced30: 52800584     	mov	w4, #0x2c
+   ced34: aa1303e5     	mov	x5, x19
+   ced38: 9404962e     	bl	0x1f45f0 <__android_log_print@plt>
+   ced3c: 2a1503e0     	mov	w0, w21
+   ced40: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ced44: f9443d08     	ldr	x8, [x8, #0x878]
+   ced48: b9400108     	ldr	w8, [x8]
+   ced4c: 7100151f     	cmp	w8, #0x5
+   ced50: 54fff72c     	b.gt	0xcec34 <_ZN7MMCodec11AudioStream4initEPNS_10MediaParamEi+0x3c>
+   ced54: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ced58: 2a0003f5     	mov	w21, w0
+   ced5c: f9444108     	ldr	x8, [x8, #0x880]
+   ced60: f9401514     	ldr	x20, [x8, #0x28]
+   ced64: 9404961f     	bl	0x1f45e0 <pthread_self@plt>
+   ced68: aa0003e6     	mov	x6, x0
+   ced6c: d0fffd61     	adrp	x1, 0x7c000
+   ced70: 910f7c21     	add	x1, x1, #0x3df
+   ced74: f0fffd63     	adrp	x3, 0x7d000
+   ced78: 911d7c63     	add	x3, x3, #0x75f
+   ced7c: 528000a0     	mov	w0, #0x5
+   ced80: aa1403e2     	mov	x2, x20
+   ced84: 52800584     	mov	w4, #0x2c
+   ced88: aa1303e5     	mov	x5, x19
+   ced8c: 9404961d     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   ced90: 2a1503e0     	mov	w0, w21
+   ced94: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   ced98: f9400bf5     	ldr	x21, [sp, #0x10]
+   ced9c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   ceda0: d65f03c0     	ret
+
+00000000000ceda4 <_ZN7MMCodec16ExportStreamBase4initEPNS_10MediaParamEi>:
+   ceda4: aa0003e8     	mov	x8, x0
+   ceda8: 2a1f03e0     	mov	w0, wzr
+   cedac: b9049102     	str	w2, [x8, #0x490]
+   cedb0: d65f03c0     	ret
+
+00000000000cedb4 <_ZN7MMCodec11AudioStream18getMediaStreamTypeEv>:
+   cedb4: 2a1f03e0     	mov	w0, wzr
+   cedb8: d65f03c0     	ret
+
+00000000000cedbc <_ZN7MMCodec11AudioStream12getMediaTypeEv>:
+   cedbc: 52800040     	mov	w0, #0x2
+   cedc0: d65f03c0     	ret
+
+00000000000cedc4 <_ZN7MMCodec11AudioStream10setEncoderEPKc>:
+   cedc4: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   cedc8: f9000bf5     	str	x21, [sp, #0x10]
+   cedcc: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   cedd0: 910003fd     	mov	x29, sp
+   cedd4: aa0003f4     	mov	x20, x0
+   cedd8: aa0103e0     	mov	x0, x1
+   ceddc: aa0103f3     	mov	x19, x1
+   cede0: 94049628     	bl	0x1f4680 <avcodec_find_encoder_by_name@plt>
+   cede4: f9001680     	str	x0, [x20, #0x28]
+   cede8: b40000c0     	cbz	x0, 0xcee00 <_ZN7MMCodec11AudioStream10setEncoderEPKc+0x3c>
+   cedec: 2a1f03e0     	mov	w0, wzr
+   cedf0: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   cedf4: f9400bf5     	ldr	x21, [sp, #0x10]
+   cedf8: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   cedfc: d65f03c0     	ret
+   cee00: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cee04: f9443508     	ldr	x8, [x8, #0x868]
+   cee08: b9400108     	ldr	w8, [x8]
+   cee0c: 7100151f     	cmp	w8, #0x5
+   cee10: 5400022c     	b.gt	0xcee54 <_ZN7MMCodec11AudioStream10setEncoderEPKc+0x90>
+   cee14: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cee18: f9443908     	ldr	x8, [x8, #0x870]
+   cee1c: b9401515     	ldr	w21, [x8, #0x14]
+   cee20: 940495f0     	bl	0x1f45e0 <pthread_self@plt>
+   cee24: aa0003e6     	mov	x6, x0
+   cee28: d503201f     	nop
+   cee2c: 50d74921     	adr	x1, #-0x516da
+   cee30: f0fffdc2     	adrp	x2, 0x89000
+   cee34: 912fa042     	add	x2, x2, #0xbe8
+   cee38: d0fffd03     	adrp	x3, 0x70000
+   cee3c: 913bdc63     	add	x3, x3, #0xef7
+   cee40: 2a1503e0     	mov	w0, w21
+   cee44: 528007c4     	mov	w4, #0x3e
+   cee48: aa1403e5     	mov	x5, x20
+   cee4c: aa1303e7     	mov	x7, x19
+   cee50: 940495e8     	bl	0x1f45f0 <__android_log_print@plt>
+   cee54: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cee58: f9443d08     	ldr	x8, [x8, #0x878]
+   cee5c: b9400108     	ldr	w8, [x8]
+   cee60: 7100151f     	cmp	w8, #0x5
+   cee64: 5400020c     	b.gt	0xceea4 <_ZN7MMCodec11AudioStream10setEncoderEPKc+0xe0>
+   cee68: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cee6c: f9444108     	ldr	x8, [x8, #0x880]
+   cee70: f9401515     	ldr	x21, [x8, #0x28]
+   cee74: 940495db     	bl	0x1f45e0 <pthread_self@plt>
+   cee78: aa0003e6     	mov	x6, x0
+   cee7c: b0fffd61     	adrp	x1, 0x7b000
+   cee80: 91069c21     	add	x1, x1, #0x1a7
+   cee84: d0fffd03     	adrp	x3, 0x70000
+   cee88: 913bdc63     	add	x3, x3, #0xef7
+   cee8c: 528000a0     	mov	w0, #0x5
+   cee90: aa1503e2     	mov	x2, x21
+   cee94: 528007c4     	mov	w4, #0x3e
+   cee98: aa1403e5     	mov	x5, x20
+   cee9c: aa1303e7     	mov	x7, x19
+   ceea0: 940495d8     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   ceea4: 12800b60     	mov	w0, #-0x5c
+   ceea8: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   ceeac: f9400bf5     	ldr	x21, [sp, #0x10]
+   ceeb0: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   ceeb4: d65f03c0     	ret
+
+00000000000ceeb8 <_ZN7MMCodec11AudioStream10setEncoderEi>:
+   ceeb8: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   ceebc: a90157f6     	stp	x22, x21, [sp, #0x10]
+   ceec0: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   ceec4: 910003fd     	mov	x29, sp
+   ceec8: aa0003f3     	mov	x19, x0
+   ceecc: 2a0103e0     	mov	w0, w1
+   ceed0: 2a0103f4     	mov	w20, w1
+   ceed4: 940495ef     	bl	0x1f4690 <avcodec_find_encoder@plt>
+   ceed8: f9001660     	str	x0, [x19, #0x28]
+   ceedc: b40000c0     	cbz	x0, 0xceef4 <_ZN7MMCodec11AudioStream10setEncoderEi+0x3c>
+   ceee0: 2a1f03e0     	mov	w0, wzr
+   ceee4: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   ceee8: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   ceeec: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   ceef0: d65f03c0     	ret
+   ceef4: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   ceef8: f9443508     	ldr	x8, [x8, #0x868]
+   ceefc: b9400108     	ldr	w8, [x8]
+   cef00: 7100151f     	cmp	w8, #0x5
+   cef04: 5400028c     	b.gt	0xcef54 <_ZN7MMCodec11AudioStream10setEncoderEi+0x9c>
+   cef08: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cef0c: f9443908     	ldr	x8, [x8, #0x870]
+   cef10: b9401515     	ldr	w21, [x8, #0x14]
+   cef14: 940495b3     	bl	0x1f45e0 <pthread_self@plt>
+   cef18: aa0003f6     	mov	x22, x0
+   cef1c: 2a1403e0     	mov	w0, w20
+   cef20: 940495e0     	bl	0x1f46a0 <avcodec_get_name@plt>
+   cef24: aa0003e7     	mov	x7, x0
+   cef28: d503201f     	nop
+   cef2c: 50d74121     	adr	x1, #-0x517da
+   cef30: f0fffdc2     	adrp	x2, 0x89000
+   cef34: 912fa042     	add	x2, x2, #0xbe8
+   cef38: d0fffd03     	adrp	x3, 0x70000
+   cef3c: 913bdc63     	add	x3, x3, #0xef7
+   cef40: 2a1503e0     	mov	w0, w21
+   cef44: 52800904     	mov	w4, #0x48
+   cef48: aa1303e5     	mov	x5, x19
+   cef4c: aa1603e6     	mov	x6, x22
+   cef50: 940495a8     	bl	0x1f45f0 <__android_log_print@plt>
+   cef54: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cef58: f9443d08     	ldr	x8, [x8, #0x878]
+   cef5c: b9400108     	ldr	w8, [x8]
+   cef60: 7100151f     	cmp	w8, #0x5
+   cef64: 5400026c     	b.gt	0xcefb0 <_ZN7MMCodec11AudioStream10setEncoderEi+0xf8>
+   cef68: f0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cef6c: f9444108     	ldr	x8, [x8, #0x880]
+   cef70: f9401515     	ldr	x21, [x8, #0x28]
+   cef74: 9404959b     	bl	0x1f45e0 <pthread_self@plt>
+   cef78: aa0003f6     	mov	x22, x0
+   cef7c: 2a1403e0     	mov	w0, w20
+   cef80: 940495c8     	bl	0x1f46a0 <avcodec_get_name@plt>
+   cef84: aa0003e7     	mov	x7, x0
+   cef88: b0fffd61     	adrp	x1, 0x7b000
+   cef8c: 91069c21     	add	x1, x1, #0x1a7
+   cef90: d0fffd03     	adrp	x3, 0x70000
+   cef94: 913bdc63     	add	x3, x3, #0xef7
+   cef98: 528000a0     	mov	w0, #0x5
+   cef9c: aa1503e2     	mov	x2, x21
+   cefa0: 52800904     	mov	w4, #0x48
+   cefa4: aa1303e5     	mov	x5, x19
+   cefa8: aa1603e6     	mov	x6, x22
+   cefac: 94049595     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cefb0: 12800b60     	mov	w0, #-0x5c
+   cefb4: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   cefb8: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   cefbc: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   cefc0: d65f03c0     	ret
+
+00000000000cefc4 <_ZN7MMCodec11AudioStream8setSpeedEf>:
+   cefc4: aa0003e8     	mov	x8, x0
+   cefc8: 2a1f03e0     	mov	w0, wzr
+   cefcc: bd02a900     	str	s0, [x8, #0x2a8]
+   cefd0: d65f03c0     	ret
+
+00000000000cefd4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE>:
+   cefd4: d10203ff     	sub	sp, sp, #0x80
+   cefd8: a9027bfd     	stp	x29, x30, [sp, #0x20]
+   cefdc: a9036ffc     	stp	x28, x27, [sp, #0x30]
+   cefe0: a90467fa     	stp	x26, x25, [sp, #0x40]
+   cefe4: a9055ff8     	stp	x24, x23, [sp, #0x50]
+   cefe8: a90657f6     	stp	x22, x21, [sp, #0x60]
+   cefec: a9074ff4     	stp	x20, x19, [sp, #0x70]
+   ceff0: 910083fd     	add	x29, sp, #0x20
+   ceff4: aa0003f3     	mov	x19, x0
+   ceff8: b4000c81     	cbz	x1, 0xcf188 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x1b4>
+   ceffc: f9401668     	ldr	x8, [x19, #0x28]
+   cf000: f9000a61     	str	x1, [x19, #0x10]
+   cf004: b4001148     	cbz	x8, 0xcf22c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x258>
+   cf008: aa0103e0     	mov	x0, x1
+   cf00c: aa1f03e1     	mov	x1, xzr
+   cf010: 940495a8     	bl	0x1f46b0 <avformat_new_stream@plt>
+   cf014: f9000e60     	str	x0, [x19, #0x18]
+   cf018: b4001200     	cbz	x0, 0xcf258 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x284>
+   cf01c: f942567c     	ldr	x28, [x19, #0x4a8]
+   cf020: b40016bc     	cbz	x28, 0xcf2f4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x320>
+   cf024: d0000995     	adrp	x21, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf028: d0000996     	adrp	x22, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf02c: f94436b5     	ldr	x21, [x21, #0x868]
+   cf030: f9443ed6     	ldr	x22, [x22, #0x878]
+   cf034: 14000003     	b	0xcf040 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x6c>
+   cf038: f940039c     	ldr	x28, [x28]
+   cf03c: b40015bc     	cbz	x28, 0xcf2f0 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x31c>
+   cf040: 39404388     	ldrb	w8, [x28, #0x10]
+   cf044: f940138a     	ldr	x10, [x28, #0x20]
+   cf048: 91004797     	add	x23, x28, #0x11
+   cf04c: 3940a38b     	ldrb	w11, [x28, #0x28]
+   cf050: f9400e69     	ldr	x9, [x19, #0x18]
+   cf054: 9100a794     	add	x20, x28, #0x29
+   cf058: 7200011f     	tst	w8, #0x1
+   cf05c: f9401f88     	ldr	x8, [x28, #0x38]
+   cf060: 2a1f03e3     	mov	w3, wzr
+   cf064: 9a8a02e1     	csel	x1, x23, x10, eq
+   cf068: 7200017f     	tst	w11, #0x1
+   cf06c: 91014120     	add	x0, x9, #0x50
+   cf070: 9a880282     	csel	x2, x20, x8, eq
+   cf074: 94049593     	bl	0x1f46c0 <av_dict_set@plt>
+   cf078: 36fffe00     	tbz	w0, #0x1f, 0xcf038 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x64>
+   cf07c: b94002a8     	ldr	w8, [x21]
+   cf080: 2a0003f8     	mov	w24, w0
+   cf084: 7100151f     	cmp	w8, #0x5
+   cf088: 5400042c     	b.gt	0xcf10c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x138>
+   cf08c: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf090: f9443908     	ldr	x8, [x8, #0x870]
+   cf094: b9401519     	ldr	w25, [x8, #0x14]
+   cf098: 94049552     	bl	0x1f45e0 <pthread_self@plt>
+   cf09c: 39404388     	ldrb	w8, [x28, #0x10]
+   cf0a0: f9401389     	ldr	x9, [x28, #0x20]
+   cf0a4: aa1603fa     	mov	x26, x22
+   cf0a8: 3940a38a     	ldrb	w10, [x28, #0x28]
+   cf0ac: f81f83a0     	stur	x0, [x29, #-0x8]
+   cf0b0: 2a1803e0     	mov	w0, w24
+   cf0b4: 7200011f     	tst	w8, #0x1
+   cf0b8: f9401f88     	ldr	x8, [x28, #0x38]
+   cf0bc: aa1503f6     	mov	x22, x21
+   cf0c0: 9a8902fb     	csel	x27, x23, x9, eq
+   cf0c4: 7200015f     	tst	w10, #0x1
+   cf0c8: 9a880295     	csel	x21, x20, x8, eq
+   cf0cc: 94049581     	bl	0x1f46d0 <_ZN7MMCodec12makeErrorStrEi@plt>
+   cf0d0: f85f83a6     	ldur	x6, [x29, #-0x8]
+   cf0d4: a90003f5     	stp	x21, x0, [sp]
+   cf0d8: 2a1903e0     	mov	w0, w25
+   cf0dc: d503201f     	nop
+   cf0e0: 50d73381     	adr	x1, #-0x5198e
+   cf0e4: d0fffd62     	adrp	x2, 0x7d000
+   cf0e8: 911d9042     	add	x2, x2, #0x764
+   cf0ec: 90fffcc3     	adrp	x3, 0x67000
+   cf0f0: 91080063     	add	x3, x3, #0x200
+   cf0f4: 52800da4     	mov	w4, #0x6d
+   cf0f8: aa1303e5     	mov	x5, x19
+   cf0fc: aa1b03e7     	mov	x7, x27
+   cf100: aa1603f5     	mov	x21, x22
+   cf104: aa1a03f6     	mov	x22, x26
+   cf108: 9404953a     	bl	0x1f45f0 <__android_log_print@plt>
+   cf10c: b94002c8     	ldr	w8, [x22]
+   cf110: 7100151f     	cmp	w8, #0x5
+   cf114: 54fff92c     	b.gt	0xcf038 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x64>
+   cf118: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf11c: f9444108     	ldr	x8, [x8, #0x880]
+   cf120: f9401519     	ldr	x25, [x8, #0x28]
+   cf124: 9404952f     	bl	0x1f45e0 <pthread_self@plt>
+   cf128: 39404388     	ldrb	w8, [x28, #0x10]
+   cf12c: f9401389     	ldr	x9, [x28, #0x20]
+   cf130: aa0003fa     	mov	x26, x0
+   cf134: 3940a38a     	ldrb	w10, [x28, #0x28]
+   cf138: 2a1803e0     	mov	w0, w24
+   cf13c: 7200011f     	tst	w8, #0x1
+   cf140: f9401f88     	ldr	x8, [x28, #0x38]
+   cf144: 9a8902fb     	csel	x27, x23, x9, eq
+   cf148: 7200015f     	tst	w10, #0x1
+   cf14c: 9a880294     	csel	x20, x20, x8, eq
+   cf150: 94049560     	bl	0x1f46d0 <_ZN7MMCodec12makeErrorStrEi@plt>
+   cf154: a90003f4     	stp	x20, x0, [sp]
+   cf158: 528000a0     	mov	w0, #0x5
+   cf15c: b0fffe01     	adrp	x1, 0x90000
+   cf160: 91283821     	add	x1, x1, #0xa0e
+   cf164: aa1903e2     	mov	x2, x25
+   cf168: 90fffcc3     	adrp	x3, 0x67000
+   cf16c: 91080063     	add	x3, x3, #0x200
+   cf170: 52800da4     	mov	w4, #0x6d
+   cf174: aa1303e5     	mov	x5, x19
+   cf178: aa1a03e6     	mov	x6, x26
+   cf17c: aa1b03e7     	mov	x7, x27
+   cf180: 94049520     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cf184: 17ffffad     	b	0xcf038 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x64>
+   cf188: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf18c: f9443508     	ldr	x8, [x8, #0x868]
+   cf190: b9400108     	ldr	w8, [x8]
+   cf194: 7100151f     	cmp	w8, #0x5
+   cf198: 5400020c     	b.gt	0xcf1d8 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x204>
+   cf19c: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf1a0: f9443908     	ldr	x8, [x8, #0x870]
+   cf1a4: b9401514     	ldr	w20, [x8, #0x14]
+   cf1a8: 9404950e     	bl	0x1f45e0 <pthread_self@plt>
+   cf1ac: aa0003e6     	mov	x6, x0
+   cf1b0: d503201f     	nop
+   cf1b4: 50d72ce1     	adr	x1, #-0x51a62
+   cf1b8: 90fffd02     	adrp	x2, 0x6f000
+   cf1bc: 9107d042     	add	x2, x2, #0x1f4
+   cf1c0: 90fffcc3     	adrp	x3, 0x67000
+   cf1c4: 91080063     	add	x3, x3, #0x200
+   cf1c8: 2a1403e0     	mov	w0, w20
+   cf1cc: 52800aa4     	mov	w4, #0x55
+   cf1d0: aa1303e5     	mov	x5, x19
+   cf1d4: 94049507     	bl	0x1f45f0 <__android_log_print@plt>
+   cf1d8: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf1dc: f9443d08     	ldr	x8, [x8, #0x878]
+   cf1e0: b9400108     	ldr	w8, [x8]
+   cf1e4: 7100151f     	cmp	w8, #0x5
+   cf1e8: 54001e2c     	b.gt	0xcf5ac <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x5d8>
+   cf1ec: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf1f0: f9444108     	ldr	x8, [x8, #0x880]
+   cf1f4: f9401514     	ldr	x20, [x8, #0x28]
+   cf1f8: 940494fa     	bl	0x1f45e0 <pthread_self@plt>
+   cf1fc: aa0003e6     	mov	x6, x0
+   cf200: b0fffcc1     	adrp	x1, 0x68000
+   cf204: 910c7021     	add	x1, x1, #0x31c
+   cf208: 90fffcc3     	adrp	x3, 0x67000
+   cf20c: 91080063     	add	x3, x3, #0x200
+   cf210: 528000a0     	mov	w0, #0x5
+   cf214: aa1403e2     	mov	x2, x20
+   cf218: 52800aa4     	mov	w4, #0x55
+   cf21c: aa1303e5     	mov	x5, x19
+   cf220: 940494f8     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cf224: 12800b94     	mov	w20, #-0x5d
+   cf228: 1400021b     	b	0xcfa94 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xac0>
+   cf22c: f0fffd60     	adrp	x0, 0x7e000
+   cf230: 91272000     	add	x0, x0, #0x9c8
+   cf234: 94049513     	bl	0x1f4680 <avcodec_find_encoder_by_name@plt>
+   cf238: f9001660     	str	x0, [x19, #0x28]
+   cf23c: b4001bc0     	cbz	x0, 0xcf5b4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x5e0>
+   cf240: f9400a61     	ldr	x1, [x19, #0x10]
+   cf244: aa0103e0     	mov	x0, x1
+   cf248: aa1f03e1     	mov	x1, xzr
+   cf24c: 94049519     	bl	0x1f46b0 <avformat_new_stream@plt>
+   cf250: f9000e60     	str	x0, [x19, #0x18]
+   cf254: b5ffee40     	cbnz	x0, 0xcf01c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x48>
+   cf258: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf25c: f9443508     	ldr	x8, [x8, #0x868]
+   cf260: b9400108     	ldr	w8, [x8]
+   cf264: 7100151f     	cmp	w8, #0x5
+   cf268: 5400020c     	b.gt	0xcf2a8 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x2d4>
+   cf26c: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf270: f9443908     	ldr	x8, [x8, #0x870]
+   cf274: b9401514     	ldr	w20, [x8, #0x14]
+   cf278: 940494da     	bl	0x1f45e0 <pthread_self@plt>
+   cf27c: aa0003e6     	mov	x6, x0
+   cf280: d503201f     	nop
+   cf284: 50d72661     	adr	x1, #-0x51b32
+   cf288: 90fffd62     	adrp	x2, 0x7b000
+   cf28c: 9107c842     	add	x2, x2, #0x1f2
+   cf290: 90fffcc3     	adrp	x3, 0x67000
+   cf294: 91080063     	add	x3, x3, #0x200
+   cf298: 2a1403e0     	mov	w0, w20
+   cf29c: 52800cc4     	mov	w4, #0x66
+   cf2a0: aa1303e5     	mov	x5, x19
+   cf2a4: 940494d3     	bl	0x1f45f0 <__android_log_print@plt>
+   cf2a8: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf2ac: f9443d08     	ldr	x8, [x8, #0x878]
+   cf2b0: b9400108     	ldr	w8, [x8]
+   cf2b4: 7100151f     	cmp	w8, #0x5
+   cf2b8: 5400176c     	b.gt	0xcf5a4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x5d0>
+   cf2bc: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf2c0: f9444108     	ldr	x8, [x8, #0x880]
+   cf2c4: f9401514     	ldr	x20, [x8, #0x28]
+   cf2c8: 940494c6     	bl	0x1f45e0 <pthread_self@plt>
+   cf2cc: aa0003e6     	mov	x6, x0
+   cf2d0: d0fffd21     	adrp	x1, 0x75000
+   cf2d4: 912dcc21     	add	x1, x1, #0xb73
+   cf2d8: 90fffcc3     	adrp	x3, 0x67000
+   cf2dc: 91080063     	add	x3, x3, #0x200
+   cf2e0: 528000a0     	mov	w0, #0x5
+   cf2e4: aa1403e2     	mov	x2, x20
+   cf2e8: 52800cc4     	mov	w4, #0x66
+   cf2ec: 140000ac     	b	0xcf59c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x5c8>
+   cf2f0: f9400e60     	ldr	x0, [x19, #0x18]
+   cf2f4: d0000998     	adrp	x24, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf2f8: 52800029     	mov	w9, #0x1
+   cf2fc: f9443718     	ldr	x24, [x24, #0x868]
+   cf300: b9429a6a     	ldr	w10, [x19, #0x298]
+   cf304: b9400308     	ldr	w8, [x24]
+   cf308: 29042809     	stp	w9, w10, [x0, #0x20]
+   cf30c: 7100111f     	cmp	w8, #0x4
+   cf310: 54000d2a     	b.ge	0xcf4b4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x4e0>
+   cf314: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf318: aa0003f5     	mov	x21, x0
+   cf31c: f9443908     	ldr	x8, [x8, #0x870]
+   cf320: b9400d14     	ldr	w20, [x8, #0xc]
+   cf324: 940494af     	bl	0x1f45e0 <pthread_self@plt>
+   cf328: b9400aa7     	ldr	w7, [x21, #0x8]
+   cf32c: aa0003e6     	mov	x6, x0
+   cf330: d503201f     	nop
+   cf334: 50d720e1     	adr	x1, #-0x51be2
+   cf338: f0fffd62     	adrp	x2, 0x7e000
+   cf33c: 91274c42     	add	x2, x2, #0x9d3
+   cf340: 90fffcc3     	adrp	x3, 0x67000
+   cf344: 91080063     	add	x3, x3, #0x200
+   cf348: 2a1403e0     	mov	w0, w20
+   cf34c: 52800e44     	mov	w4, #0x72
+   cf350: aa1303e5     	mov	x5, x19
+   cf354: 940494a7     	bl	0x1f45f0 <__android_log_print@plt>
+   cf358: d0000997     	adrp	x23, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf35c: f9443ef7     	ldr	x23, [x23, #0x878]
+   cf360: b94002e8     	ldr	w8, [x23]
+   cf364: 71000d1f     	cmp	w8, #0x3
+   cf368: 54000b0d     	b.le	0xcf4c8 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x4f4>
+   cf36c: f9401660     	ldr	x0, [x19, #0x28]
+   cf370: 940494dc     	bl	0x1f46e0 <avcodec_alloc_context3@plt>
+   cf374: f9001260     	str	x0, [x19, #0x20]
+   cf378: b4000d00     	cbz	x0, 0xcf518 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x544>
+   cf37c: f9400e68     	ldr	x8, [x19, #0x18]
+   cf380: f9401108     	ldr	x8, [x8, #0x20]
+   cf384: f8054008     	stur	x8, [x0, #0x54]
+   cf388: a9422269     	ldp	x9, x8, [x19, #0x20]
+   cf38c: b982a26a     	ldrsw	x10, [x19, #0x2a0]
+   cf390: b9429a6b     	ldr	w11, [x19, #0x298]
+   cf394: f9401d08     	ldr	x8, [x8, #0x38]
+   cf398: 91058120     	add	x0, x9, #0x160
+   cf39c: f9001d2a     	str	x10, [x9, #0x38]
+   cf3a0: b901592b     	str	w11, [x9, #0x158]
+   cf3a4: b9400108     	ldr	w8, [x8]
+   cf3a8: b9015d28     	str	w8, [x9, #0x15c]
+   cf3ac: 940494d1     	bl	0x1f46f0 <av_channel_layout_uninit@plt>
+   cf3b0: f9401268     	ldr	x8, [x19, #0x20]
+   cf3b4: b9429661     	ldr	w1, [x19, #0x294]
+   cf3b8: 91058100     	add	x0, x8, #0x160
+   cf3bc: 940494d1     	bl	0x1f4700 <av_channel_layout_default@plt>
+   cf3c0: f9401268     	ldr	x8, [x19, #0x20]
+   cf3c4: b9415d00     	ldr	w0, [x8, #0x15c]
+   cf3c8: 940494d2     	bl	0x1f4710 <_ZN7MMCodec19getAudioOuterFormatE14AVSampleFormat@plt>
+   cf3cc: 2a0003e8     	mov	w8, w0
+   cf3d0: f9401260     	ldr	x0, [x19, #0x20]
+   cf3d4: f9400a69     	ldr	x9, [x19, #0x10]
+   cf3d8: b9029e68     	str	w8, [x19, #0x29c]
+   cf3dc: b941640a     	ldr	w10, [x0, #0x164]
+   cf3e0: f9400928     	ldr	x8, [x9, #0x10]
+   cf3e4: b902966a     	str	w10, [x19, #0x294]
+   cf3e8: 3940b108     	ldrb	w8, [x8, #0x2c]
+   cf3ec: 36300088     	tbz	w8, #0x6, 0xcf3fc <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x428>
+   cf3f0: b9404008     	ldr	w8, [x0, #0x40]
+   cf3f4: 320a0108     	orr	w8, w8, #0x400000
+   cf3f8: b9004008     	str	w8, [x0, #0x40]
+   cf3fc: f9401661     	ldr	x1, [x19, #0x28]
+   cf400: aa1f03e2     	mov	x2, xzr
+   cf404: 940494c7     	bl	0x1f4720 <avcodec_open2@plt>
+   cf408: f9401261     	ldr	x1, [x19, #0x20]
+   cf40c: 37f81260     	tbnz	w0, #0x1f, 0xcf658 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x684>
+   cf410: f9400e68     	ldr	x8, [x19, #0x18]
+   cf414: f9400900     	ldr	x0, [x8, #0x10]
+   cf418: 940494c6     	bl	0x1f4730 <avcodec_parameters_from_context@plt>
+   cf41c: 37f82300     	tbnz	w0, #0x1f, 0xcf87c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x8a8>
+   cf420: f9401268     	ldr	x8, [x19, #0x20]
+   cf424: b9429e60     	ldr	w0, [x19, #0x29c]
+   cf428: b9417908     	ldr	w8, [x8, #0x178]
+   cf42c: b904e268     	str	w8, [x19, #0x4e0]
+   cf430: 940494c4     	bl	0x1f4740 <_ZN7MMCodec19getAudioInnerFormatENS_19AUDIO_SAMPLE_FORMATE@plt>
+   cf434: b9429662     	ldr	w2, [x19, #0x294]
+   cf438: 2a0003e1     	mov	w1, w0
+   cf43c: 91136260     	add	x0, x19, #0x4d8
+   cf440: 52800023     	mov	w3, #0x1
+   cf444: 940494c3     	bl	0x1f4750 <_ZN7MMCodec8initFifoEPP11AVAudioFifo14AVSampleFormatii@plt>
+   cf448: 37f82640     	tbnz	w0, #0x1f, 0xcf910 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x93c>
+   cf44c: b9428268     	ldr	w8, [x19, #0x280]
+   cf450: b9429669     	ldr	w9, [x19, #0x294]
+   cf454: 2a0003f4     	mov	w20, w0
+   cf458: 6b09011f     	cmp	w8, w9
+   cf45c: 54000121     	b.ne	0xcf480 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x4ac>
+   cf460: b9428a68     	ldr	w8, [x19, #0x288]
+   cf464: b9429e69     	ldr	w9, [x19, #0x29c]
+   cf468: 6b09011f     	cmp	w8, w9
+   cf46c: 540000a1     	b.ne	0xcf480 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x4ac>
+   cf470: b9428668     	ldr	w8, [x19, #0x284]
+   cf474: b9429a69     	ldr	w9, [x19, #0x298]
+   cf478: 6b09011f     	cmp	w8, w9
+   cf47c: 540030c0     	b.eq	0xcfa94 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xac0>
+   cf480: 52800900     	mov	w0, #0x48
+   cf484: 940494b7     	bl	0x1f4760 <_Znwm@plt>
+   cf488: aa0003f5     	mov	x21, x0
+   cf48c: 940494b9     	bl	0x1f4770 <_ZN7MMCodec14FFmpegResampleC1Ev@plt>
+   cf490: b9429e60     	ldr	w0, [x19, #0x29c]
+   cf494: f9027a75     	str	x21, [x19, #0x4f0]
+   cf498: 940494aa     	bl	0x1f4740 <_ZN7MMCodec19getAudioInnerFormatENS_19AUDIO_SAMPLE_FORMATE@plt>
+   cf49c: b9429662     	ldr	w2, [x19, #0x294]
+   cf4a0: b9429a63     	ldr	w3, [x19, #0x298]
+   cf4a4: 2a0003e1     	mov	w1, w0
+   cf4a8: aa1503e0     	mov	x0, x21
+   cf4ac: 940494b5     	bl	0x1f4780 <_ZN7MMCodec14FFmpegResample20setTargetAudioParamsE14AVSampleFormatii@plt>
+   cf4b0: 14000179     	b	0xcfa94 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xac0>
+   cf4b4: d0000997     	adrp	x23, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf4b8: f9443ef7     	ldr	x23, [x23, #0x878]
+   cf4bc: b94002e8     	ldr	w8, [x23]
+   cf4c0: 71000d1f     	cmp	w8, #0x3
+   cf4c4: 54fff54c     	b.gt	0xcf36c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x398>
+   cf4c8: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf4cc: f9444108     	ldr	x8, [x8, #0x880]
+   cf4d0: f9400d14     	ldr	x20, [x8, #0x18]
+   cf4d4: 94049443     	bl	0x1f45e0 <pthread_self@plt>
+   cf4d8: f9400e68     	ldr	x8, [x19, #0x18]
+   cf4dc: aa0003e6     	mov	x6, x0
+   cf4e0: b0fffde1     	adrp	x1, 0x8c000
+   cf4e4: 911b2c21     	add	x1, x1, #0x6cb
+   cf4e8: 90fffcc3     	adrp	x3, 0x67000
+   cf4ec: 91080063     	add	x3, x3, #0x200
+   cf4f0: b9400907     	ldr	w7, [x8, #0x8]
+   cf4f4: 52800060     	mov	w0, #0x3
+   cf4f8: aa1403e2     	mov	x2, x20
+   cf4fc: 52800e44     	mov	w4, #0x72
+   cf500: aa1303e5     	mov	x5, x19
+   cf504: 9404943f     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cf508: f9401660     	ldr	x0, [x19, #0x28]
+   cf50c: 94049475     	bl	0x1f46e0 <avcodec_alloc_context3@plt>
+   cf510: f9001260     	str	x0, [x19, #0x20]
+   cf514: b5fff340     	cbnz	x0, 0xcf37c <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x3a8>
+   cf518: b9400308     	ldr	w8, [x24]
+   cf51c: 7100151f     	cmp	w8, #0x5
+   cf520: 5400020c     	b.gt	0xcf560 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x58c>
+   cf524: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf528: f9443908     	ldr	x8, [x8, #0x870]
+   cf52c: b9401514     	ldr	w20, [x8, #0x14]
+   cf530: 9404942c     	bl	0x1f45e0 <pthread_self@plt>
+   cf534: aa0003e6     	mov	x6, x0
+   cf538: d503201f     	nop
+   cf53c: 50d710a1     	adr	x1, #-0x51dea
+   cf540: 90fffd62     	adrp	x2, 0x7b000
+   cf544: 9108b842     	add	x2, x2, #0x22e
+   cf548: 90fffcc3     	adrp	x3, 0x67000
+   cf54c: 91080063     	add	x3, x3, #0x200
+   cf550: 2a1403e0     	mov	w0, w20
+   cf554: 52800ec4     	mov	w4, #0x76
+   cf558: aa1303e5     	mov	x5, x19
+   cf55c: 94049425     	bl	0x1f45f0 <__android_log_print@plt>
+   cf560: b94002e8     	ldr	w8, [x23]
+   cf564: 7100151f     	cmp	w8, #0x5
+   cf568: 540001ec     	b.gt	0xcf5a4 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x5d0>
+   cf56c: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf570: f9444108     	ldr	x8, [x8, #0x880]
+   cf574: f9401514     	ldr	x20, [x8, #0x28]
+   cf578: 9404941a     	bl	0x1f45e0 <pthread_self@plt>
+   cf57c: aa0003e6     	mov	x6, x0
+   cf580: f0fffd61     	adrp	x1, 0x7e000
+   cf584: 91285021     	add	x1, x1, #0xa14
+   cf588: 90fffcc3     	adrp	x3, 0x67000
+   cf58c: 91080063     	add	x3, x3, #0x200
+   cf590: 528000a0     	mov	w0, #0x5
+   cf594: aa1403e2     	mov	x2, x20
+   cf598: 52800ec4     	mov	w4, #0x76
+   cf59c: aa1303e5     	mov	x5, x19
+   cf5a0: 94049418     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cf5a4: 12800bf4     	mov	w20, #-0x60
+   cf5a8: 1400012f     	b	0xcfa64 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xa90>
+   cf5ac: 12800b94     	mov	w20, #-0x5d
+   cf5b0: 14000139     	b	0xcfa94 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xac0>
+   cf5b4: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf5b8: f9443508     	ldr	x8, [x8, #0x868]
+   cf5bc: b9400108     	ldr	w8, [x8]
+   cf5c0: 7100151f     	cmp	w8, #0x5
+   cf5c4: 5400020c     	b.gt	0xcf604 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x630>
+   cf5c8: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf5cc: f9443908     	ldr	x8, [x8, #0x870]
+   cf5d0: b9401514     	ldr	w20, [x8, #0x14]
+   cf5d4: 94049403     	bl	0x1f45e0 <pthread_self@plt>
+   cf5d8: aa0003e6     	mov	x6, x0
+   cf5dc: d503201f     	nop
+   cf5e0: 50d70b81     	adr	x1, #-0x51e8e
+   cf5e4: d0fffcc2     	adrp	x2, 0x69000
+   cf5e8: 91156842     	add	x2, x2, #0x55a
+   cf5ec: 90fffcc3     	adrp	x3, 0x67000
+   cf5f0: 91080063     	add	x3, x3, #0x200
+   cf5f4: 2a1403e0     	mov	w0, w20
+   cf5f8: 52800be4     	mov	w4, #0x5f
+   cf5fc: aa1303e5     	mov	x5, x19
+   cf600: 940493fc     	bl	0x1f45f0 <__android_log_print@plt>
+   cf604: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf608: f9443d08     	ldr	x8, [x8, #0x878]
+   cf60c: b9400108     	ldr	w8, [x8]
+   cf610: 7100151f     	cmp	w8, #0x5
+   cf614: 540001ec     	b.gt	0xcf650 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x67c>
+   cf618: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf61c: f9444108     	ldr	x8, [x8, #0x880]
+   cf620: f9401514     	ldr	x20, [x8, #0x28]
+   cf624: 940493ef     	bl	0x1f45e0 <pthread_self@plt>
+   cf628: aa0003e6     	mov	x6, x0
+   cf62c: d0fffd81     	adrp	x1, 0x81000
+   cf630: 911f9c21     	add	x1, x1, #0x7e7
+   cf634: 90fffcc3     	adrp	x3, 0x67000
+   cf638: 91080063     	add	x3, x3, #0x200
+   cf63c: 528000a0     	mov	w0, #0x5
+   cf640: aa1403e2     	mov	x2, x20
+   cf644: 52800be4     	mov	w4, #0x5f
+   cf648: aa1303e5     	mov	x5, x19
+   cf64c: 940493ed     	bl	0x1f4600 <_ZN7MMCodec13AICodecGlobal12log_callbackEiPKcz@plt>
+   cf650: 12800b74     	mov	w20, #-0x5c
+   cf654: 14000104     	b	0xcfa64 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0xa90>
+   cf658: f9401676     	ldr	x22, [x19, #0x28]
+   cf65c: b9415c35     	ldr	w21, [x1, #0x15c]
+   cf660: f9401ec8     	ldr	x8, [x22, #0x38]
+   cf664: b9400109     	ldr	w9, [x8]
+   cf668: b9400308     	ldr	w8, [x24]
+   cf66c: 6b0902bf     	cmp	w21, w9
+   cf670: 540005a1     	b.ne	0xcf724 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x750>
+   cf674: 2a0003f4     	mov	w20, w0
+   cf678: 7100151f     	cmp	w8, #0x5
+   cf67c: 540002ac     	b.gt	0xcf6d0 <_ZN7MMCodec11AudioStream5startEP15AVFormatContextPNS_19EncodeConfigureInfoE+0x6fc>
+   cf680: d0000988     	adrp	x8, 0x201000 <_ZTVNSt6__ndk110__function6__funcINS_6__bindIRKNS_8functionIFfffffEEEJRKNS_12placeholders4__phILi1EEERKfSE_SE_EEENS_9allocatorISF_EEFffEEE+0x30>
+   cf684: f9443908     	ldr	x8, [x8, #0x870]
+   cf688: b9401515     	ldr	w21, [x8, #0x14]
+   cf68c: 940493d5     	bl	0x1f45e0 <pthread_self@plt>
+   cf690: b94016c8     	ldr	w8, [x22, #0x14]
+   cf694: aa0003f6     	mov	x22, x0
+   cf698: 2a0803e0     	mov	w0, w8
+   cf69c: 94049401     	bl	0x1f46a0 <avcodec_get_name@plt>
+   cf6a0: aa0003e7     	mov	x7, x0
+   cf6a4: d503201f     	nop
+   cf6a8: 50d70541     	adr	x1, #-0x51f56
+   cf6ac: d0fffda2     	adrp	x2, 0x85000
+   cf6b0: 9113dc42     	add	x2, x2, #0x4f7
+   cf6b4: 90fffcc3     	adrp	x3, 0x67000
+   cf6b8: 91080063     	add	x3, x3, #0x200
+   cf6bc: 2a1503e0     	mov	w0, w21
+   cf6c0: 528012c4     	mov	w4, #0x96
+   cf6c4: aa1303e5     	mov	x5, x19
+   cf6c8: aa1603e6     	mov	x6, x22
+   cf6cc: 940493c9     	bl	0x1f45f0 <__android_log_print@plt>

@@ -1,0 +1,1004 @@
+FILE: F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaidetectionplugin.so
+TOTAL_SAMPLED: 25000
+ARITHMETIC_COUNT: 20
+---
+
+F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libaidetectionplugin.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+000000000003e970 <.text>:
+   3e970: d503245f     	bti	c
+   3e974: d503201f     	nop
+   3e978: 1021a240     	adr	x0, #0x43448
+   3e97c: 1400ebe1     	b	0x79900 <__cxa_finalize@plt>
+   3e980: d503245f     	bti	c
+   3e984: d65f03c0     	ret
+   3e988: d503245f     	bti	c
+   3e98c: 17fffffd     	b	0x3e980 <.text+0x10>
+   3e990: d503245f     	bti	c
+   3e994: b4000060     	cbz	x0, 0x3e9a0 <.text+0x30>
+   3e998: aa0003f0     	mov	x16, x0
+   3e99c: d61f0200     	br	x16
+   3e9a0: d65f03c0     	ret
+   3e9a4: d503245f     	bti	c
+   3e9a8: aa0003e1     	mov	x1, x0
+   3e9ac: d503201f     	nop
+   3e9b0: 10ffff00     	adr	x0, #-0x20
+   3e9b4: d503201f     	nop
+   3e9b8: 1021a042     	adr	x2, #0x43408
+   3e9bc: 1400ebd5     	b	0x79910 <__cxa_atexit@plt>
+
+000000000003e9c0 <AIDetectorDynamicPlugin_ExitFunc>:
+   3e9c0: 2a1f03e0     	mov	w0, wzr
+   3e9c4: d65f03c0     	ret
+
+000000000003e9c8 <AIDetectorDynamicPlugin_InitPlugin>:
+   3e9c8: d10143ff     	sub	sp, sp, #0x50
+   3e9cc: a9037bfd     	stp	x29, x30, [sp, #0x30]
+   3e9d0: f90023f3     	str	x19, [sp, #0x40]
+   3e9d4: 9100c3fd     	add	x29, sp, #0x30
+   3e9d8: d53bd053     	mrs	x19, TPIDR_EL0
+   3e9dc: b0ffff89     	adrp	x9, 0x2f000
+   3e9e0: 910003e1     	mov	x1, sp
+   3e9e4: f9401668     	ldr	x8, [x19, #0x28]
+   3e9e8: fd446120     	ldr	d0, [x9, #0x8c0]
+   3e9ec: 52800069     	mov	w9, #0x3
+   3e9f0: f81f83a8     	stur	x8, [x29, #-0x8]
+   3e9f4: 52800028     	mov	w8, #0x1
+   3e9f8: f940080a     	ldr	x10, [x0, #0x10]
+   3e9fc: b9000be9     	str	w9, [sp, #0x8]
+   3ea00: d503201f     	nop
+   3ea04: 10000509     	adr	x9, #0xa0
+   3ea08: b90023e8     	str	w8, [sp, #0x20]
+   3ea0c: d503201f     	nop
+   3ea10: 100019a8     	adr	x8, #0x334
+   3ea14: d503201f     	nop
+   3ea18: 10f96280     	adr	x0, #-0xd3b0
+   3ea1c: fd0003e0     	str	d0, [sp]
+   3ea20: a90123e9     	stp	x9, x8, [sp, #0x10]
+   3ea24: d63f0140     	blr	x10
+   3ea28: 37f80080     	tbnz	w0, #0x1f, 0x3ea38 <AIDetectorDynamicPlugin_InitPlugin+0x70>
+   3ea2c: 90000220     	adrp	x0, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ea30: f946a000     	ldr	x0, [x0, #0xd40]
+   3ea34: 14000013     	b	0x3ea80 <AIDetectorDynamicPlugin_InitPlugin+0xb8>
+   3ea38: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ea3c: f946a908     	ldr	x8, [x8, #0xd50]
+   3ea40: b9400108     	ldr	w8, [x8]
+   3ea44: 7100151f     	cmp	w8, #0x5
+   3ea48: 540001ac     	b.gt	0x3ea7c <AIDetectorDynamicPlugin_InitPlugin+0xb4>
+   3ea4c: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ea50: d0ffff83     	adrp	x3, 0x30000
+   3ea54: 9122c863     	add	x3, x3, #0x8b2
+   3ea58: f946ad08     	ldr	x8, [x8, #0xd58]
+   3ea5c: d0ffff81     	adrp	x1, 0x30000
+   3ea60: 91011421     	add	x1, x1, #0x45
+   3ea64: b0ffff82     	adrp	x2, 0x2f000
+   3ea68: 912c8442     	add	x2, x2, #0xb21
+   3ea6c: 52800884     	mov	w4, #0x44
+   3ea70: b9401500     	ldr	w0, [x8, #0x14]
+   3ea74: aa0303e5     	mov	x5, x3
+   3ea78: 9400ebaa     	bl	0x79920 <__android_log_print@plt>
+   3ea7c: aa1f03e0     	mov	x0, xzr
+   3ea80: f9401668     	ldr	x8, [x19, #0x28]
+   3ea84: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3ea88: eb09011f     	cmp	x8, x9
+   3ea8c: 540000a1     	b.ne	0x3eaa0 <AIDetectorDynamicPlugin_InitPlugin+0xd8>
+   3ea90: a9437bfd     	ldp	x29, x30, [sp, #0x30]
+   3ea94: f94023f3     	ldr	x19, [sp, #0x40]
+   3ea98: 910143ff     	add	sp, sp, #0x50
+   3ea9c: d65f03c0     	ret
+   3eaa0: 9400eba4     	bl	0x79930 <__stack_chk_fail@plt>
+   3eaa4: d10603ff     	sub	sp, sp, #0x180
+   3eaa8: a9147bfd     	stp	x29, x30, [sp, #0x140]
+   3eaac: a9155ffc     	stp	x28, x23, [sp, #0x150]
+   3eab0: a91657f6     	stp	x22, x21, [sp, #0x160]
+   3eab4: a9174ff4     	stp	x20, x19, [sp, #0x170]
+   3eab8: 910503fd     	add	x29, sp, #0x140
+   3eabc: d53bd056     	mrs	x22, TPIDR_EL0
+   3eac0: 90000234     	adrp	x20, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3eac4: aa0003f3     	mov	x19, x0
+   3eac8: f94016c8     	ldr	x8, [x22, #0x28]
+   3eacc: f946aa94     	ldr	x20, [x20, #0xd50]
+   3ead0: f81f83a8     	stur	x8, [x29, #-0x8]
+   3ead4: b9400288     	ldr	w8, [x20]
+   3ead8: 7100151f     	cmp	w8, #0x5
+   3eadc: 540001ac     	b.gt	0x3eb10 <AIDetectorDynamicPlugin_InitPlugin+0x148>
+   3eae0: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3eae4: d0ffff81     	adrp	x1, 0x30000
+   3eae8: 91011421     	add	x1, x1, #0x45
+   3eaec: f946ad08     	ldr	x8, [x8, #0xd58]
+   3eaf0: f0ffff82     	adrp	x2, 0x31000
+   3eaf4: 91160042     	add	x2, x2, #0x580
+   3eaf8: f0ffff83     	adrp	x3, 0x31000
+   3eafc: 91227063     	add	x3, x3, #0x89c
+   3eb00: 528001e4     	mov	w4, #0xf
+   3eb04: b9401500     	ldr	w0, [x8, #0x14]
+   3eb08: aa1303e5     	mov	x5, x19
+   3eb0c: 9400eb85     	bl	0x79920 <__android_log_print@plt>
+   3eb10: b40000d3     	cbz	x19, 0x3eb28 <AIDetectorDynamicPlugin_InitPlugin+0x160>
+   3eb14: f9400260     	ldr	x0, [x19]
+   3eb18: d503201f     	nop
+   3eb1c: 10f95a61     	adr	x1, #-0xd4b4
+   3eb20: 9400eb88     	bl	0x79940 <strcmp@plt>
+   3eb24: 34000240     	cbz	w0, 0x3eb6c <AIDetectorDynamicPlugin_InitPlugin+0x1a4>
+   3eb28: b9400288     	ldr	w8, [x20]
+   3eb2c: 7100151f     	cmp	w8, #0x5
+   3eb30: 540001ac     	b.gt	0x3eb64 <AIDetectorDynamicPlugin_InitPlugin+0x19c>
+   3eb34: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3eb38: f0ffff83     	adrp	x3, 0x31000
+   3eb3c: 91227063     	add	x3, x3, #0x89c
+   3eb40: f946ad08     	ldr	x8, [x8, #0xd58]
+   3eb44: d0ffff81     	adrp	x1, 0x30000
+   3eb48: 91011421     	add	x1, x1, #0x45
+   3eb4c: d0ffff82     	adrp	x2, 0x30000
+   3eb50: 911c4c42     	add	x2, x2, #0x713
+   3eb54: 52800384     	mov	w4, #0x1c
+   3eb58: b9401500     	ldr	w0, [x8, #0x14]
+   3eb5c: aa0303e5     	mov	x5, x3
+   3eb60: 9400eb70     	bl	0x79920 <__android_log_print@plt>
+   3eb64: aa1f03e0     	mov	x0, xzr
+   3eb68: 14000051     	b	0x3ecac <AIDetectorDynamicPlugin_InitPlugin+0x2e4>
+   3eb6c: d503201f     	nop
+   3eb70: 10253f00     	adr	x0, #0x4a7e0
+   3eb74: 9400eb77     	bl	0x79950 <_ZNSt6__ndk15mutex4lockEv@plt>
+   3eb78: f0000257     	adrp	x23, 0x89000
+   3eb7c: b9437ae8     	ldr	w8, [x23, #0x378]
+   3eb80: 35000068     	cbnz	w8, 0x3eb8c <AIDetectorDynamicPlugin_InitPlugin+0x1c4>
+   3eb84: 9400eb77     	bl	0x79960 <vlai_init@plt>
+   3eb88: b9437ae8     	ldr	w8, [x23, #0x378]
+   3eb8c: 11000508     	add	w8, w8, #0x1
+   3eb90: b9037ae8     	str	w8, [x23, #0x378]
+   3eb94: 52802600     	mov	w0, #0x130
+   3eb98: 9400eb76     	bl	0x79970 <_Znwm@plt>
+   3eb9c: aa0003f3     	mov	x19, x0
+   3eba0: 9400eb78     	bl	0x79980 <_ZN17MMDetectionPlugin10AIDetectorC1Ev@plt>
+   3eba4: 910083e0     	add	x0, sp, #0x20
+   3eba8: 910083f5     	add	x21, sp, #0x20
+   3ebac: 940000f3     	bl	0x3ef78 <AIDetectorDynamicPlugin_InitPlugin+0x5b0>
+   3ebb0: 9400eb78     	bl	0x79990 <pthread_self@plt>
+   3ebb4: aa0003e1     	mov	x1, x0
+   3ebb8: 910042a0     	add	x0, x21, #0x10
+   3ebbc: 94000138     	bl	0x3f09c <AIDetectorDynamicPlugin_InitPlugin+0x6d4>
+   3ebc0: b9400288     	ldr	w8, [x20]
+   3ebc4: 7100151f     	cmp	w8, #0x5
+   3ebc8: 540003cc     	b.gt	0x3ec40 <AIDetectorDynamicPlugin_InitPlugin+0x278>
+   3ebcc: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ebd0: 910083e9     	add	x9, sp, #0x20
+   3ebd4: f946ad08     	ldr	x8, [x8, #0xd58]
+   3ebd8: b9437af4     	ldr	w20, [x23, #0x378]
+   3ebdc: b9401515     	ldr	w21, [x8, #0x14]
+   3ebe0: 910023e8     	add	x8, sp, #0x8
+   3ebe4: 91006120     	add	x0, x9, #0x18
+   3ebe8: 910023f7     	add	x23, sp, #0x8
+   3ebec: 9400eb6d     	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3ebf0: 394023e8     	ldrb	w8, [sp, #0x8]
+   3ebf4: f9400fe9     	ldr	x9, [sp, #0x18]
+   3ebf8: b24002ea     	orr	x10, x23, #0x1
+   3ebfc: 7200011f     	tst	w8, #0x1
+   3ec00: 9a890147     	csel	x7, x10, x9, eq
+   3ec04: d0ffff81     	adrp	x1, 0x30000
+   3ec08: 91011421     	add	x1, x1, #0x45
+   3ec0c: d0ffff82     	adrp	x2, 0x30000
+   3ec10: 91394c42     	add	x2, x2, #0xe53
+   3ec14: f0ffff83     	adrp	x3, 0x31000
+   3ec18: 91227063     	add	x3, x3, #0x89c
+   3ec1c: 2a1503e0     	mov	w0, w21
+   3ec20: 52800324     	mov	w4, #0x19
+   3ec24: 2a1403e5     	mov	w5, w20
+   3ec28: aa1303e6     	mov	x6, x19
+   3ec2c: 9400eb3d     	bl	0x79920 <__android_log_print@plt>
+   3ec30: 394023e8     	ldrb	w8, [sp, #0x8]
+   3ec34: 36000068     	tbz	w8, #0x0, 0x3ec40 <AIDetectorDynamicPlugin_InitPlugin+0x278>
+   3ec38: f9400fe0     	ldr	x0, [sp, #0x18]
+   3ec3c: 9400eb5d     	bl	0x799b0 <_ZdlPv@plt>
+   3ec40: 90000234     	adrp	x20, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ec44: 910083f5     	add	x21, sp, #0x20
+   3ec48: f946b294     	ldr	x20, [x20, #0xd60]
+   3ec4c: f9400288     	ldr	x8, [x20]
+   3ec50: a9442a89     	ldp	x9, x10, [x20, #0x40]
+   3ec54: f90013e8     	str	x8, [sp, #0x20]
+   3ec58: f85e8108     	ldur	x8, [x8, #-0x18]
+   3ec5c: f8286aa9     	str	x9, [x21, x8]
+   3ec60: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ec64: f946b508     	ldr	x8, [x8, #0xd68]
+   3ec68: 3941e3e9     	ldrb	w9, [sp, #0x78]
+   3ec6c: 91004108     	add	x8, x8, #0x10
+   3ec70: a90323ea     	stp	x10, x8, [sp, #0x30]
+   3ec74: 36000069     	tbz	w9, #0x0, 0x3ec80 <AIDetectorDynamicPlugin_InitPlugin+0x2b8>
+   3ec78: f94047e0     	ldr	x0, [sp, #0x88]
+   3ec7c: 9400eb4d     	bl	0x799b0 <_ZdlPv@plt>
+   3ec80: 910062a0     	add	x0, x21, #0x18
+   3ec84: 9400eb4f     	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec88: 910083e0     	add	x0, sp, #0x20
+   3ec8c: 91002281     	add	x1, x20, #0x8
+   3ec90: 9400eb50     	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec94: 910202a0     	add	x0, x21, #0x80
+   3ec98: 9400eb52     	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3ec9c: d503201f     	nop
+   3eca0: 10253580     	adr	x0, #0x4a6b0
+   3eca4: 9400eb53     	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3eca8: aa1303e0     	mov	x0, x19
+   3ecac: f94016c8     	ldr	x8, [x22, #0x28]
+   3ecb0: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3ecb4: eb09011f     	cmp	x8, x9
+   3ecb8: 54000441     	b.ne	0x3ed40 <AIDetectorDynamicPlugin_InitPlugin+0x378>
+   3ecbc: a9574ff4     	ldp	x20, x19, [sp, #0x170]
+   3ecc0: a95657f6     	ldp	x22, x21, [sp, #0x160]
+   3ecc4: a9555ffc     	ldp	x28, x23, [sp, #0x150]
+   3ecc8: a9547bfd     	ldp	x29, x30, [sp, #0x140]
+   3eccc: 910603ff     	add	sp, sp, #0x180
+   3ecd0: d65f03c0     	ret
+   3ecd4: 14000011     	b	0x3ed18 <AIDetectorDynamicPlugin_InitPlugin+0x350>
+   3ecd8: 394023e8     	ldrb	w8, [sp, #0x8]
+   3ecdc: aa0003f4     	mov	x20, x0
+   3ece0: 360000c8     	tbz	w8, #0x0, 0x3ecf8 <AIDetectorDynamicPlugin_InitPlugin+0x330>
+   3ece4: f9400fe0     	ldr	x0, [sp, #0x18]
+   3ece8: 9400eb32     	bl	0x799b0 <_ZdlPv@plt>
+   3ecec: 14000003     	b	0x3ecf8 <AIDetectorDynamicPlugin_InitPlugin+0x330>
+   3ecf0: 14000001     	b	0x3ecf4 <AIDetectorDynamicPlugin_InitPlugin+0x32c>
+   3ecf4: aa0003f4     	mov	x20, x0
+   3ecf8: 910083e0     	add	x0, sp, #0x20
+   3ecfc: 9400eb41     	bl	0x79a00 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3ed00: 14000007     	b	0x3ed1c <AIDetectorDynamicPlugin_InitPlugin+0x354>
+   3ed04: 14000005     	b	0x3ed18 <AIDetectorDynamicPlugin_InitPlugin+0x350>
+   3ed08: aa0003f4     	mov	x20, x0
+   3ed0c: aa1303e0     	mov	x0, x19
+   3ed10: 9400eb28     	bl	0x799b0 <_ZdlPv@plt>
+   3ed14: 14000002     	b	0x3ed1c <AIDetectorDynamicPlugin_InitPlugin+0x354>
+   3ed18: aa0003f4     	mov	x20, x0
+   3ed1c: d503201f     	nop
+   3ed20: 10253180     	adr	x0, #0x4a630
+   3ed24: 9400eb33     	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3ed28: f94016c8     	ldr	x8, [x22, #0x28]
+   3ed2c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3ed30: eb09011f     	cmp	x8, x9
+   3ed34: 54000061     	b.ne	0x3ed40 <AIDetectorDynamicPlugin_InitPlugin+0x378>
+   3ed38: aa1403e0     	mov	x0, x20
+   3ed3c: 9400dbb6     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3ed40: 9400eafc     	bl	0x79930 <__stack_chk_fail@plt>
+   3ed44: d10603ff     	sub	sp, sp, #0x180
+   3ed48: a9147bfd     	stp	x29, x30, [sp, #0x140]
+   3ed4c: a9155ffc     	stp	x28, x23, [sp, #0x150]
+   3ed50: a91657f6     	stp	x22, x21, [sp, #0x160]
+   3ed54: a9174ff4     	stp	x20, x19, [sp, #0x170]
+   3ed58: 910503fd     	add	x29, sp, #0x140
+   3ed5c: d53bd056     	mrs	x22, TPIDR_EL0
+   3ed60: f94016c8     	ldr	x8, [x22, #0x28]
+   3ed64: f81f83a8     	stur	x8, [x29, #-0x8]
+   3ed68: b4000a40     	cbz	x0, 0x3eeb0 <AIDetectorDynamicPlugin_InitPlugin+0x4e8>
+   3ed6c: aa0003f3     	mov	x19, x0
+   3ed70: d503201f     	nop
+   3ed74: 10252ee0     	adr	x0, #0x4a5dc
+   3ed78: 9400eaf6     	bl	0x79950 <_ZNSt6__ndk15mutex4lockEv@plt>
+   3ed7c: f9400268     	ldr	x8, [x19]
+   3ed80: aa1303e0     	mov	x0, x19
+   3ed84: f9400508     	ldr	x8, [x8, #0x8]
+   3ed88: d63f0100     	blr	x8
+   3ed8c: f0000254     	adrp	x20, 0x89000
+   3ed90: b9437a88     	ldr	w8, [x20, #0x378]
+   3ed94: 51000508     	sub	w8, w8, #0x1
+   3ed98: b9037a88     	str	w8, [x20, #0x378]
+   3ed9c: 910083e0     	add	x0, sp, #0x20
+   3eda0: 910083f5     	add	x21, sp, #0x20
+   3eda4: 94000075     	bl	0x3ef78 <AIDetectorDynamicPlugin_InitPlugin+0x5b0>
+   3eda8: 9400eafa     	bl	0x79990 <pthread_self@plt>
+   3edac: aa0003e1     	mov	x1, x0
+   3edb0: 910042a0     	add	x0, x21, #0x10
+   3edb4: 940000ba     	bl	0x3f09c <AIDetectorDynamicPlugin_InitPlugin+0x6d4>
+   3edb8: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3edbc: f946a908     	ldr	x8, [x8, #0xd50]
+   3edc0: b9400108     	ldr	w8, [x8]
+   3edc4: 7100151f     	cmp	w8, #0x5
+   3edc8: 540003cc     	b.gt	0x3ee40 <AIDetectorDynamicPlugin_InitPlugin+0x478>
+   3edcc: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3edd0: 910083e9     	add	x9, sp, #0x20
+   3edd4: f946ad08     	ldr	x8, [x8, #0xd58]
+   3edd8: b9437a94     	ldr	w20, [x20, #0x378]
+   3eddc: b9401515     	ldr	w21, [x8, #0x14]
+   3ede0: 910023e8     	add	x8, sp, #0x8
+   3ede4: 91006120     	add	x0, x9, #0x18
+   3ede8: 910023f7     	add	x23, sp, #0x8
+   3edec: 9400eaed     	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3edf0: 394023e8     	ldrb	w8, [sp, #0x8]
+   3edf4: f9400fe9     	ldr	x9, [sp, #0x18]
+   3edf8: b24002ea     	orr	x10, x23, #0x1
+   3edfc: 7200011f     	tst	w8, #0x1
+   3ee00: 9a890147     	csel	x7, x10, x9, eq
+   3ee04: d0ffff81     	adrp	x1, 0x30000
+   3ee08: 91011421     	add	x1, x1, #0x45
+   3ee0c: b0ffff82     	adrp	x2, 0x2f000
+   3ee10: 913a7042     	add	x2, x2, #0xe9c
+   3ee14: f0ffff83     	adrp	x3, 0x31000
+   3ee18: 9122b463     	add	x3, x3, #0x8ad
+   3ee1c: 2a1503e0     	mov	w0, w21
+   3ee20: 528004e4     	mov	w4, #0x27
+   3ee24: 2a1403e5     	mov	w5, w20
+   3ee28: aa1303e6     	mov	x6, x19
+   3ee2c: 9400eabd     	bl	0x79920 <__android_log_print@plt>
+   3ee30: 394023e8     	ldrb	w8, [sp, #0x8]
+   3ee34: 36000068     	tbz	w8, #0x0, 0x3ee40 <AIDetectorDynamicPlugin_InitPlugin+0x478>
+   3ee38: f9400fe0     	ldr	x0, [sp, #0x18]
+   3ee3c: 9400eadd     	bl	0x799b0 <_ZdlPv@plt>
+   3ee40: 90000233     	adrp	x19, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ee44: 910083f4     	add	x20, sp, #0x20
+   3ee48: f946b273     	ldr	x19, [x19, #0xd60]
+   3ee4c: f9400268     	ldr	x8, [x19]
+   3ee50: a9442a69     	ldp	x9, x10, [x19, #0x40]
+   3ee54: f90013e8     	str	x8, [sp, #0x20]
+   3ee58: f85e8108     	ldur	x8, [x8, #-0x18]
+   3ee5c: f8286a89     	str	x9, [x20, x8]
+   3ee60: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ee64: f946b508     	ldr	x8, [x8, #0xd68]
+   3ee68: 3941e3e9     	ldrb	w9, [sp, #0x78]
+   3ee6c: 91004108     	add	x8, x8, #0x10
+   3ee70: a90323ea     	stp	x10, x8, [sp, #0x30]
+   3ee74: 36000069     	tbz	w9, #0x0, 0x3ee80 <AIDetectorDynamicPlugin_InitPlugin+0x4b8>
+   3ee78: f94047e0     	ldr	x0, [sp, #0x88]
+   3ee7c: 9400eacd     	bl	0x799b0 <_ZdlPv@plt>
+   3ee80: 91006280     	add	x0, x20, #0x18
+   3ee84: 9400eacf     	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee88: 910083e0     	add	x0, sp, #0x20
+   3ee8c: 91002261     	add	x1, x19, #0x8
+   3ee90: 9400ead0     	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee94: 91020280     	add	x0, x20, #0x80
+   3ee98: 9400ead2     	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3ee9c: d503201f     	nop
+   3eea0: 10252580     	adr	x0, #0x4a4b0
+   3eea4: 9400ead3     	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3eea8: 2a1f03e0     	mov	w0, wzr
+   3eeac: 14000013     	b	0x3eef8 <AIDetectorDynamicPlugin_InitPlugin+0x530>
+   3eeb0: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3eeb4: f946a908     	ldr	x8, [x8, #0xd50]
+   3eeb8: b9400108     	ldr	w8, [x8]
+   3eebc: 7100151f     	cmp	w8, #0x5
+   3eec0: 540001ac     	b.gt	0x3eef4 <AIDetectorDynamicPlugin_InitPlugin+0x52c>
+   3eec4: 90000228     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3eec8: f0ffff83     	adrp	x3, 0x31000
+   3eecc: 9122b463     	add	x3, x3, #0x8ad
+   3eed0: f946ad08     	ldr	x8, [x8, #0xd58]
+   3eed4: d0ffff81     	adrp	x1, 0x30000
+   3eed8: 91011421     	add	x1, x1, #0x45
+   3eedc: d0ffff82     	adrp	x2, 0x30000
+   3eee0: 911c4c42     	add	x2, x2, #0x713
+   3eee4: 528005a4     	mov	w4, #0x2d
+   3eee8: b9401500     	ldr	w0, [x8, #0x14]
+   3eeec: aa0303e5     	mov	x5, x3
+   3eef0: 9400ea8c     	bl	0x79920 <__android_log_print@plt>
+   3eef4: 12800000     	mov	w0, #-0x1
+   3eef8: f94016c8     	ldr	x8, [x22, #0x28]
+   3eefc: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3ef00: eb09011f     	cmp	x8, x9
+   3ef04: 54000381     	b.ne	0x3ef74 <AIDetectorDynamicPlugin_InitPlugin+0x5ac>
+   3ef08: a9574ff4     	ldp	x20, x19, [sp, #0x170]
+   3ef0c: a95657f6     	ldp	x22, x21, [sp, #0x160]
+   3ef10: a9555ffc     	ldp	x28, x23, [sp, #0x150]
+   3ef14: a9547bfd     	ldp	x29, x30, [sp, #0x140]
+   3ef18: 910603ff     	add	sp, sp, #0x180
+   3ef1c: d65f03c0     	ret
+   3ef20: 394023e8     	ldrb	w8, [sp, #0x8]
+   3ef24: aa0003f3     	mov	x19, x0
+   3ef28: 360000c8     	tbz	w8, #0x0, 0x3ef40 <AIDetectorDynamicPlugin_InitPlugin+0x578>
+   3ef2c: f9400fe0     	ldr	x0, [sp, #0x18]
+   3ef30: 9400eaa0     	bl	0x799b0 <_ZdlPv@plt>
+   3ef34: 14000003     	b	0x3ef40 <AIDetectorDynamicPlugin_InitPlugin+0x578>
+   3ef38: 14000001     	b	0x3ef3c <AIDetectorDynamicPlugin_InitPlugin+0x574>
+   3ef3c: aa0003f3     	mov	x19, x0
+   3ef40: 910083e0     	add	x0, sp, #0x20
+   3ef44: 9400eaaf     	bl	0x79a00 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3ef48: 14000002     	b	0x3ef50 <AIDetectorDynamicPlugin_InitPlugin+0x588>
+   3ef4c: aa0003f3     	mov	x19, x0
+   3ef50: d503201f     	nop
+   3ef54: 10251fe0     	adr	x0, #0x4a3fc
+   3ef58: 9400eaa6     	bl	0x799f0 <_ZNSt6__ndk15mutex6unlockEv@plt>
+   3ef5c: f94016c8     	ldr	x8, [x22, #0x28]
+   3ef60: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3ef64: eb09011f     	cmp	x8, x9
+   3ef68: 54000061     	b.ne	0x3ef74 <AIDetectorDynamicPlugin_InitPlugin+0x5ac>
+   3ef6c: aa1303e0     	mov	x0, x19
+   3ef70: 9400db29     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3ef74: 9400ea6f     	bl	0x79930 <__stack_chk_fail@plt>
+   3ef78: a9bb7bfd     	stp	x29, x30, [sp, #-0x50]!
+   3ef7c: a90167fa     	stp	x26, x25, [sp, #0x10]
+   3ef80: a9025ff8     	stp	x24, x23, [sp, #0x20]
+   3ef84: a90357f6     	stp	x22, x21, [sp, #0x30]
+   3ef88: a9044ff4     	stp	x20, x19, [sp, #0x40]
+   3ef8c: 910003fd     	mov	x29, sp
+   3ef90: 90000237     	adrp	x23, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ef94: 90000236     	adrp	x22, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3ef98: aa0003f4     	mov	x20, x0
+   3ef9c: f946baf7     	ldr	x23, [x23, #0xd70]
+   3efa0: f946b2d6     	ldr	x22, [x22, #0xd60]
+   3efa4: aa0003fa     	mov	x26, x0
+   3efa8: aa0003f3     	mov	x19, x0
+   3efac: f9400ac8     	ldr	x8, [x22, #0x10]
+   3efb0: 9101a2f8     	add	x24, x23, #0x68
+   3efb4: 910102f9     	add	x25, x23, #0x40
+   3efb8: f8080e98     	str	x24, [x20, #0x80]!
+   3efbc: f9400ec9     	ldr	x9, [x22, #0x18]
+   3efc0: f8010f59     	str	x25, [x26, #0x10]!
+   3efc4: f9000008     	str	x8, [x0]
+   3efc8: f85e8108     	ldur	x8, [x8, #-0x18]
+   3efcc: f900041f     	str	xzr, [x0, #0x8]
+   3efd0: f8286809     	str	x9, [x0, x8]
+   3efd4: f9400008     	ldr	x8, [x0]
+   3efd8: f85e8108     	ldur	x8, [x8, #-0x18]
+   3efdc: 8b080015     	add	x21, x0, x8
+   3efe0: 91006001     	add	x1, x0, #0x18
+   3efe4: aa1503e0     	mov	x0, x21
+   3efe8: 9400ea8a     	bl	0x79a10 <_ZNSt6__ndk18ios_base4initEPv@plt>
+   3efec: f94012c9     	ldr	x9, [x22, #0x20]
+   3eff0: 12800008     	mov	w8, #-0x1
+   3eff4: f90046bf     	str	xzr, [x21, #0x88]
+   3eff8: b90092a8     	str	w8, [x21, #0x90]
+   3effc: f94006ca     	ldr	x10, [x22, #0x8]
+   3f000: f94016c8     	ldr	x8, [x22, #0x28]
+   3f004: f9000a69     	str	x9, [x19, #0x10]
+   3f008: f85e8129     	ldur	x9, [x9, #-0x18]
+   3f00c: f8296b48     	str	x8, [x26, x9]
+   3f010: f9401ac9     	ldr	x9, [x22, #0x30]
+   3f014: f900026a     	str	x10, [x19]
+   3f018: f85e8148     	ldur	x8, [x10, #-0x18]
+   3f01c: 910062ea     	add	x10, x23, #0x18
+   3f020: f8286a69     	str	x9, [x19, x8]
+   3f024: f900026a     	str	x10, [x19]
+   3f028: f9004278     	str	x24, [x19, #0x80]
+   3f02c: f9000a79     	str	x25, [x19, #0x10]
+   3f030: 91006260     	add	x0, x19, #0x18
+   3f034: 9400ea7b     	bl	0x79a20 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEEC2Ev@plt>
+   3f038: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f03c: 6f00e400     	movi	v0.2d, #0000000000000000
+   3f040: f946b508     	ldr	x8, [x8, #0xd68]
+   3f044: 91004108     	add	x8, x8, #0x10
+   3f048: f9000e68     	str	x8, [x19, #0x18]
+   3f04c: 52800308     	mov	w8, #0x18
+   3f050: 3c858260     	stur	q0, [x19, #0x58]
+   3f054: 3c868260     	stur	q0, [x19, #0x68]
+   3f058: b9007a68     	str	w8, [x19, #0x78]
+   3f05c: a9444ff4     	ldp	x20, x19, [sp, #0x40]
+   3f060: a94357f6     	ldp	x22, x21, [sp, #0x30]
+   3f064: a9425ff8     	ldp	x24, x23, [sp, #0x20]
+   3f068: a94167fa     	ldp	x26, x25, [sp, #0x10]
+   3f06c: a8c57bfd     	ldp	x29, x30, [sp], #0x50
+   3f070: d65f03c0     	ret
+   3f074: aa0003f5     	mov	x21, x0
+   3f078: 910022c1     	add	x1, x22, #0x8
+   3f07c: aa1303e0     	mov	x0, x19
+   3f080: 9400ea54     	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f084: 14000002     	b	0x3f08c <AIDetectorDynamicPlugin_InitPlugin+0x6c4>
+   3f088: aa0003f5     	mov	x21, x0
+   3f08c: aa1403e0     	mov	x0, x20
+   3f090: 9400ea54     	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f094: aa1503e0     	mov	x0, x21
+   3f098: 9400dadf     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3f09c: d10683ff     	sub	sp, sp, #0x1a0
+   3f0a0: a9147bfd     	stp	x29, x30, [sp, #0x140]
+   3f0a4: f900abfc     	str	x28, [sp, #0x150]
+   3f0a8: a91667fa     	stp	x26, x25, [sp, #0x160]
+   3f0ac: a9175ff8     	stp	x24, x23, [sp, #0x170]
+   3f0b0: a91857f6     	stp	x22, x21, [sp, #0x180]
+   3f0b4: a9194ff4     	stp	x20, x19, [sp, #0x190]
+   3f0b8: 910503fd     	add	x29, sp, #0x140
+   3f0bc: d53bd057     	mrs	x23, TPIDR_EL0
+   3f0c0: f0000216     	adrp	x22, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f0c4: f0000219     	adrp	x25, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f0c8: f946bed6     	ldr	x22, [x22, #0xd78]
+   3f0cc: f94016e8     	ldr	x8, [x23, #0x28]
+   3f0d0: f946c339     	ldr	x25, [x25, #0xd80]
+   3f0d4: 9100c3f8     	add	x24, sp, #0x30
+   3f0d8: aa0103f4     	mov	x20, x1
+   3f0dc: aa0003f3     	mov	x19, x0
+   3f0e0: f81f83a8     	stur	x8, [x29, #-0x8]
+   3f0e4: a940a728     	ldp	x8, x9, [x25, #0x8]
+   3f0e8: 910102da     	add	x26, x22, #0x40
+   3f0ec: f90053fa     	str	x26, [sp, #0xa0]
+   3f0f0: f9001be8     	str	x8, [sp, #0x30]
+   3f0f4: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f0f8: f8286b09     	str	x9, [x24, x8]
+   3f0fc: f9401be8     	ldr	x8, [sp, #0x30]
+   3f100: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f104: 8b080315     	add	x21, x24, x8
+   3f108: 91002301     	add	x1, x24, #0x8
+   3f10c: aa1503e0     	mov	x0, x21
+   3f110: 9400ea40     	bl	0x79a10 <_ZNSt6__ndk18ios_base4initEPv@plt>
+   3f114: 12800008     	mov	w8, #-0x1
+   3f118: 910062c9     	add	x9, x22, #0x18
+   3f11c: f90046bf     	str	xzr, [x21, #0x88]
+   3f120: b90092a8     	str	w8, [x21, #0x90]
+   3f124: f9001be9     	str	x9, [sp, #0x30]
+   3f128: f90053fa     	str	x26, [sp, #0xa0]
+   3f12c: 91002300     	add	x0, x24, #0x8
+   3f130: 9400ea3c     	bl	0x79a20 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEEC2Ev@plt>
+   3f134: f000021a     	adrp	x26, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f138: 6f00e400     	movi	v0.2d, #0000000000000000
+   3f13c: f946b75a     	ldr	x26, [x26, #0xd68]
+   3f140: f9401be9     	ldr	x9, [sp, #0x30]
+   3f144: 91004348     	add	x8, x26, #0x10
+   3f148: f9001fe8     	str	x8, [sp, #0x38]
+   3f14c: 52800208     	mov	w8, #0x10
+   3f150: 3c8783e0     	stur	q0, [sp, #0x78]
+   3f154: 3c8883e0     	stur	q0, [sp, #0x88]
+   3f158: b9009be8     	str	w8, [sp, #0x98]
+   3f15c: f85e8136     	ldur	x22, [x9, #-0x18]
+   3f160: 9400ea34     	bl	0x79a30 <_ZNSt6__ndk16locale7classicEv@plt>
+   3f164: 9100c3e8     	add	x8, sp, #0x30
+   3f168: aa0003f5     	mov	x21, x0
+   3f16c: 8b160116     	add	x22, x8, x22
+   3f170: 910083e8     	add	x8, sp, #0x20
+   3f174: aa1603e0     	mov	x0, x22
+   3f178: 9400ea32     	bl	0x79a40 <_ZNKSt6__ndk18ios_base6getlocEv@plt>
+   3f17c: 910023e8     	add	x8, sp, #0x8
+   3f180: aa1603e0     	mov	x0, x22
+   3f184: aa1503e1     	mov	x1, x21
+   3f188: 9400ea32     	bl	0x79a50 <_ZNSt6__ndk18ios_base5imbueERKNS_6localeE@plt>
+   3f18c: 910023e0     	add	x0, sp, #0x8
+   3f190: 9400ea34     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f194: f94016d6     	ldr	x22, [x22, #0x28]
+   3f198: b40001d6     	cbz	x22, 0x3f1d0 <AIDetectorDynamicPlugin_InitPlugin+0x808>
+   3f19c: f94002c8     	ldr	x8, [x22]
+   3f1a0: f9400908     	ldr	x8, [x8, #0x10]
+   3f1a4: aa1603e0     	mov	x0, x22
+   3f1a8: aa1503e1     	mov	x1, x21
+   3f1ac: d63f0100     	blr	x8
+   3f1b0: 9100a3e0     	add	x0, sp, #0x28
+   3f1b4: 910022c1     	add	x1, x22, #0x8
+   3f1b8: 9400ea2e     	bl	0x79a70 <_ZNSt6__ndk16localeC1ERKS0_@plt>
+   3f1bc: 910022c0     	add	x0, x22, #0x8
+   3f1c0: aa1503e1     	mov	x1, x21
+   3f1c4: 9400ea2f     	bl	0x79a80 <_ZNSt6__ndk16localeaSERKS0_@plt>
+   3f1c8: 9100a3e0     	add	x0, sp, #0x28
+   3f1cc: 9400ea25     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f1d0: 910083e0     	add	x0, sp, #0x20
+   3f1d4: 9400ea23     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f1d8: 9100c3e0     	add	x0, sp, #0x30
+   3f1dc: aa1403e1     	mov	x1, x20
+   3f1e0: 9400ea2c     	bl	0x79a90 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEElsEl@plt>
+   3f1e4: 910023e8     	add	x8, sp, #0x8
+   3f1e8: 91002300     	add	x0, x24, #0x8
+   3f1ec: 910023f4     	add	x20, sp, #0x8
+   3f1f0: 9400e9ec     	bl	0x799a0 <_ZNKSt6__ndk115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE3strEv@plt>
+   3f1f4: 394023e8     	ldrb	w8, [sp, #0x8]
+   3f1f8: a94127ea     	ldp	x10, x9, [sp, #0x10]
+   3f1fc: b240028c     	orr	x12, x20, #0x1
+   3f200: d341fd0b     	lsr	x11, x8, #1
+   3f204: 7200011f     	tst	w8, #0x1
+   3f208: 9a890181     	csel	x1, x12, x9, eq
+   3f20c: 9a8a0162     	csel	x2, x11, x10, eq
+   3f210: aa1303e0     	mov	x0, x19
+   3f214: 94000087     	bl	0x3f430 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x7c>
+   3f218: 394023e8     	ldrb	w8, [sp, #0x8]
+   3f21c: aa0003f3     	mov	x19, x0
+   3f220: 36000068     	tbz	w8, #0x0, 0x3f22c <AIDetectorDynamicPlugin_InitPlugin+0x864>
+   3f224: f9400fe0     	ldr	x0, [sp, #0x18]
+   3f228: 9400e9e2     	bl	0x799b0 <_ZdlPv@plt>
+   3f22c: f9400328     	ldr	x8, [x25]
+   3f230: f9400f29     	ldr	x9, [x25, #0x18]
+   3f234: 9100c3ea     	add	x10, sp, #0x30
+   3f238: f9001be8     	str	x8, [sp, #0x30]
+   3f23c: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f240: f8286949     	str	x9, [x10, x8]
+   3f244: 91004349     	add	x9, x26, #0x10
+   3f248: 3941e3e8     	ldrb	w8, [sp, #0x78]
+   3f24c: f9001fe9     	str	x9, [sp, #0x38]
+   3f250: 36000068     	tbz	w8, #0x0, 0x3f25c <AIDetectorDynamicPlugin_InitPlugin+0x894>
+   3f254: f94047e0     	ldr	x0, [sp, #0x88]
+   3f258: 9400e9d6     	bl	0x799b0 <_ZdlPv@plt>
+   3f25c: 91002300     	add	x0, x24, #0x8
+   3f260: 9400e9d8     	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f264: 9100c3e0     	add	x0, sp, #0x30
+   3f268: 91002321     	add	x1, x25, #0x8
+   3f26c: 9400ea0d     	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f270: 9101c300     	add	x0, x24, #0x70
+   3f274: 9400e9db     	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f278: f94016e8     	ldr	x8, [x23, #0x28]
+   3f27c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f280: eb09011f     	cmp	x8, x9
+   3f284: 540004e1     	b.ne	0x3f320 <AIDetectorDynamicPlugin_InitPlugin+0x958>
+   3f288: aa1303e0     	mov	x0, x19
+   3f28c: a9594ff4     	ldp	x20, x19, [sp, #0x190]
+   3f290: f940abfc     	ldr	x28, [sp, #0x150]
+   3f294: a95857f6     	ldp	x22, x21, [sp, #0x180]
+   3f298: a9575ff8     	ldp	x24, x23, [sp, #0x170]
+   3f29c: a95667fa     	ldp	x26, x25, [sp, #0x160]
+   3f2a0: a9547bfd     	ldp	x29, x30, [sp, #0x140]
+   3f2a4: 910683ff     	add	sp, sp, #0x1a0
+   3f2a8: d65f03c0     	ret
+   3f2ac: 394023e8     	ldrb	w8, [sp, #0x8]
+   3f2b0: aa0003f3     	mov	x19, x0
+   3f2b4: 36000268     	tbz	w8, #0x0, 0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2b8: f9400fe0     	ldr	x0, [sp, #0x18]
+   3f2bc: 9400e9bd     	bl	0x799b0 <_ZdlPv@plt>
+   3f2c0: 14000010     	b	0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2c4: 1400000e     	b	0x3f2fc <AIDetectorDynamicPlugin_InitPlugin+0x934>
+   3f2c8: aa0003f3     	mov	x19, x0
+   3f2cc: 9100c3e0     	add	x0, sp, #0x30
+   3f2d0: 91002321     	add	x1, x25, #0x8
+   3f2d4: 9400e9f3     	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f2d8: 14000002     	b	0x3f2e0 <AIDetectorDynamicPlugin_InitPlugin+0x918>
+   3f2dc: aa0003f3     	mov	x19, x0
+   3f2e0: 9101c300     	add	x0, x24, #0x70
+   3f2e4: 9400e9bf     	bl	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f2e8: 14000008     	b	0x3f308 <AIDetectorDynamicPlugin_InitPlugin+0x940>
+   3f2ec: aa0003f3     	mov	x19, x0
+   3f2f0: 910083e0     	add	x0, sp, #0x20
+   3f2f4: 9400e9db     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f2f8: 14000002     	b	0x3f300 <AIDetectorDynamicPlugin_InitPlugin+0x938>
+   3f2fc: aa0003f3     	mov	x19, x0
+   3f300: 9100c3e0     	add	x0, sp, #0x30
+   3f304: 9400e9eb     	bl	0x79ab0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev@plt>
+   3f308: f94016e8     	ldr	x8, [x23, #0x28]
+   3f30c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f310: eb09011f     	cmp	x8, x9
+   3f314: 54000061     	b.ne	0x3f320 <AIDetectorDynamicPlugin_InitPlugin+0x958>
+   3f318: aa1303e0     	mov	x0, x19
+   3f31c: 9400da3e     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3f320: 9400e984     	bl	0x79930 <__stack_chk_fail@plt>
+
+000000000003f324 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev>:
+   3f324: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   3f328: f9000bf5     	str	x21, [sp, #0x10]
+   3f32c: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   3f330: 910003fd     	mov	x29, sp
+   3f334: f0000215     	adrp	x21, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f338: f0000209     	adrp	x9, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f33c: aa0003f4     	mov	x20, x0
+   3f340: f946b2b5     	ldr	x21, [x21, #0xd60]
+   3f344: aa0003f3     	mov	x19, x0
+   3f348: f94002a8     	ldr	x8, [x21]
+   3f34c: a9442eaa     	ldp	x10, x11, [x21, #0x40]
+   3f350: f9000008     	str	x8, [x0]
+   3f354: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f358: f946b529     	ldr	x9, [x9, #0xd68]
+   3f35c: f828680a     	str	x10, [x0, x8]
+   3f360: 91004128     	add	x8, x9, #0x10
+   3f364: f8018e88     	str	x8, [x20, #0x18]!
+   3f368: 39410288     	ldrb	w8, [x20, #0x40]
+   3f36c: f81f828b     	stur	x11, [x20, #-0x8]
+   3f370: 36000068     	tbz	w8, #0x0, 0x3f37c <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x58>
+   3f374: f9403660     	ldr	x0, [x19, #0x68]
+   3f378: 9400e98e     	bl	0x799b0 <_ZdlPv@plt>
+   3f37c: aa1403e0     	mov	x0, x20
+   3f380: 9400e990     	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f384: 910022a1     	add	x1, x21, #0x8
+   3f388: aa1303e0     	mov	x0, x19
+   3f38c: 9400e991     	bl	0x799d0 <_ZNSt6__ndk114basic_iostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f390: 91020260     	add	x0, x19, #0x80
+   3f394: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   3f398: f9400bf5     	ldr	x21, [sp, #0x10]
+   3f39c: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   3f3a0: 1400e990     	b	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f3a4: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   3f3a8: 910003fd     	mov	x29, sp
+   3f3ac: 9400e9c5     	bl	0x79ac0 <__cxa_begin_catch@plt>
+   3f3b0: 9400e9c8     	bl	0x79ad0 <_ZSt9terminatev@plt>
+
+000000000003f3b4 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev>:
+   3f3b4: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   3f3b8: f9000bf5     	str	x21, [sp, #0x10]
+   3f3bc: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   3f3c0: 910003fd     	mov	x29, sp
+   3f3c4: f0000215     	adrp	x21, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f3c8: f0000209     	adrp	x9, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f3cc: aa0003f4     	mov	x20, x0
+   3f3d0: f946c2b5     	ldr	x21, [x21, #0xd80]
+   3f3d4: aa0003f3     	mov	x19, x0
+   3f3d8: f94002a8     	ldr	x8, [x21]
+   3f3dc: f9400eaa     	ldr	x10, [x21, #0x18]
+   3f3e0: f9000008     	str	x8, [x0]
+   3f3e4: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f3e8: f946b529     	ldr	x9, [x9, #0xd68]
+   3f3ec: f828680a     	str	x10, [x0, x8]
+   3f3f0: 91004128     	add	x8, x9, #0x10
+   3f3f4: f8008e88     	str	x8, [x20, #0x8]!
+   3f3f8: 39410288     	ldrb	w8, [x20, #0x40]
+   3f3fc: 36000068     	tbz	w8, #0x0, 0x3f408 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x54>
+   3f400: f9402e60     	ldr	x0, [x19, #0x58]
+   3f404: 9400e96b     	bl	0x799b0 <_ZdlPv@plt>
+   3f408: aa1403e0     	mov	x0, x20
+   3f40c: 9400e96d     	bl	0x799c0 <_ZNSt6__ndk115basic_streambufIcNS_11char_traitsIcEEED2Ev@plt>
+   3f410: 910022a1     	add	x1, x21, #0x8
+   3f414: aa1303e0     	mov	x0, x19
+   3f418: 9400e9a2     	bl	0x79aa0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEED2Ev@plt>
+   3f41c: 9101c260     	add	x0, x19, #0x70
+   3f420: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   3f424: f9400bf5     	ldr	x21, [sp, #0x10]
+   3f428: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   3f42c: 1400e96d     	b	0x799e0 <_ZNSt6__ndk19basic_iosIcNS_11char_traitsIcEEED2Ev@plt>
+   3f430: d101c3ff     	sub	sp, sp, #0x70
+   3f434: a9027bfd     	stp	x29, x30, [sp, #0x20]
+   3f438: a90367fa     	stp	x26, x25, [sp, #0x30]
+   3f43c: a9045ff8     	stp	x24, x23, [sp, #0x40]
+   3f440: a90557f6     	stp	x22, x21, [sp, #0x50]
+   3f444: a9064ff4     	stp	x20, x19, [sp, #0x60]
+   3f448: 910083fd     	add	x29, sp, #0x20
+   3f44c: d53bd058     	mrs	x24, TPIDR_EL0
+   3f450: aa0203f5     	mov	x21, x2
+   3f454: aa0103f4     	mov	x20, x1
+   3f458: f9401708     	ldr	x8, [x24, #0x28]
+   3f45c: aa0003f3     	mov	x19, x0
+   3f460: f81f83a8     	stur	x8, [x29, #-0x8]
+   3f464: 910003e0     	mov	x0, sp
+   3f468: aa1303e1     	mov	x1, x19
+   3f46c: 9400e99d     	bl	0x79ae0 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryC1ERS3_@plt>
+   3f470: 394003e8     	ldrb	w8, [sp]
+   3f474: 34000568     	cbz	w8, 0x3f520 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x16c>
+   3f478: f9400268     	ldr	x8, [x19]
+   3f47c: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f480: 8b080264     	add	x4, x19, x8
+   3f484: b9409085     	ldr	w5, [x4, #0x90]
+   3f488: f9401496     	ldr	x22, [x4, #0x28]
+   3f48c: b9400899     	ldr	w25, [x4, #0x8]
+   3f490: 310004bf     	cmn	w5, #0x1
+   3f494: 54000261     	b.ne	0x3f4e0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x12c>
+   3f498: 910043e8     	add	x8, sp, #0x10
+   3f49c: aa0403e0     	mov	x0, x4
+   3f4a0: aa0403fa     	mov	x26, x4
+   3f4a4: 9400e967     	bl	0x79a40 <_ZNKSt6__ndk18ios_base6getlocEv@plt>
+   3f4a8: f0000201     	adrp	x1, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f4ac: 910043e0     	add	x0, sp, #0x10
+   3f4b0: f946c421     	ldr	x1, [x1, #0xd88]
+   3f4b4: 9400e98f     	bl	0x79af0 <_ZNKSt6__ndk16locale9use_facetERNS0_2idE@plt>
+   3f4b8: f9400008     	ldr	x8, [x0]
+   3f4bc: f9401d08     	ldr	x8, [x8, #0x38]
+   3f4c0: 52800401     	mov	w1, #0x20
+   3f4c4: d63f0100     	blr	x8
+   3f4c8: 2a0003f7     	mov	w23, w0
+   3f4cc: 910043e0     	add	x0, sp, #0x10
+   3f4d0: 9400e964     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f4d4: 12001ee5     	and	w5, w23, #0xff
+   3f4d8: aa1a03e4     	mov	x4, x26
+   3f4dc: b9009345     	str	w5, [x26, #0x90]
+   3f4e0: 52801608     	mov	w8, #0xb0
+   3f4e4: 8b150283     	add	x3, x20, x21
+   3f4e8: 0a080328     	and	w8, w25, w8
+   3f4ec: 7100811f     	cmp	w8, #0x20
+   3f4f0: 9a940062     	csel	x2, x3, x20, eq
+   3f4f4: aa1603e0     	mov	x0, x22
+   3f4f8: aa1403e1     	mov	x1, x20
+   3f4fc: 94000033     	bl	0x3f5c8 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x214>
+   3f500: b5000100     	cbnz	x0, 0x3f520 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x16c>
+   3f504: f9400268     	ldr	x8, [x19]
+   3f508: 528000a9     	mov	w9, #0x5
+   3f50c: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f510: 8b080260     	add	x0, x19, x8
+   3f514: b9402008     	ldr	w8, [x0, #0x20]
+   3f518: 2a090101     	orr	w1, w8, w9
+   3f51c: 9400e979     	bl	0x79b00 <_ZNSt6__ndk18ios_base5clearEj@plt>
+   3f520: 910003e0     	mov	x0, sp
+   3f524: 9400e97b     	bl	0x79b10 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+   3f528: f9401708     	ldr	x8, [x24, #0x28]
+   3f52c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f530: eb09011f     	cmp	x8, x9
+   3f534: 54000461     	b.ne	0x3f5c0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x20c>
+   3f538: aa1303e0     	mov	x0, x19
+   3f53c: a9464ff4     	ldp	x20, x19, [sp, #0x60]
+   3f540: a94557f6     	ldp	x22, x21, [sp, #0x50]
+   3f544: a9445ff8     	ldp	x24, x23, [sp, #0x40]
+   3f548: a94367fa     	ldp	x26, x25, [sp, #0x30]
+   3f54c: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+   3f550: 9101c3ff     	add	sp, sp, #0x70
+   3f554: d65f03c0     	ret
+   3f558: 14000005     	b	0x3f56c <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x1b8>
+   3f55c: aa0003f4     	mov	x20, x0
+   3f560: 910043e0     	add	x0, sp, #0x10
+   3f564: 9400e93f     	bl	0x79a60 <_ZNSt6__ndk16localeD1Ev@plt>
+   3f568: 14000002     	b	0x3f570 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x1bc>
+   3f56c: aa0003f4     	mov	x20, x0
+   3f570: 910003e0     	mov	x0, sp
+   3f574: 9400e967     	bl	0x79b10 <_ZNSt6__ndk113basic_ostreamIcNS_11char_traitsIcEEE6sentryD1Ev@plt>
+   3f578: 14000002     	b	0x3f580 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x1cc>
+   3f57c: aa0003f4     	mov	x20, x0
+   3f580: aa1403e0     	mov	x0, x20
+   3f584: 9400e94f     	bl	0x79ac0 <__cxa_begin_catch@plt>
+   3f588: f9400268     	ldr	x8, [x19]
+   3f58c: f85e8108     	ldur	x8, [x8, #-0x18]
+   3f590: 8b080260     	add	x0, x19, x8
+   3f594: 9400e963     	bl	0x79b20 <_ZNSt6__ndk18ios_base33__set_badbit_and_consider_rethrowEv@plt>
+   3f598: 9400e966     	bl	0x79b30 <__cxa_end_catch@plt>
+   3f59c: 17ffffe3     	b	0x3f528 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x174>
+   3f5a0: aa0003f3     	mov	x19, x0
+   3f5a4: 9400e963     	bl	0x79b30 <__cxa_end_catch@plt>
+   3f5a8: f9401708     	ldr	x8, [x24, #0x28]
+   3f5ac: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f5b0: eb09011f     	cmp	x8, x9
+   3f5b4: 54000061     	b.ne	0x3f5c0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x20c>
+   3f5b8: aa1303e0     	mov	x0, x19
+   3f5bc: 9400d996     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3f5c0: 9400e8dc     	bl	0x79930 <__stack_chk_fail@plt>
+   3f5c4: 97ffff78     	bl	0x3f3a4 <_ZNSt6__ndk118basic_stringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x80>
+   3f5c8: d10203ff     	sub	sp, sp, #0x80
+   3f5cc: a9027bfd     	stp	x29, x30, [sp, #0x20]
+   3f5d0: f9001bfb     	str	x27, [sp, #0x30]
+   3f5d4: a90467fa     	stp	x26, x25, [sp, #0x40]
+   3f5d8: a9055ff8     	stp	x24, x23, [sp, #0x50]
+   3f5dc: a90657f6     	stp	x22, x21, [sp, #0x60]
+   3f5e0: a9074ff4     	stp	x20, x19, [sp, #0x70]
+   3f5e4: 910083fd     	add	x29, sp, #0x20
+   3f5e8: d53bd05a     	mrs	x26, TPIDR_EL0
+   3f5ec: aa0003f3     	mov	x19, x0
+   3f5f0: f9401748     	ldr	x8, [x26, #0x28]
+   3f5f4: f81f83a8     	stur	x8, [x29, #-0x8]
+   3f5f8: b4000900     	cbz	x0, 0x3f718 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x364>
+   3f5fc: f9400c88     	ldr	x8, [x4, #0x18]
+   3f600: cb010069     	sub	x9, x3, x1
+   3f604: cb010059     	sub	x25, x2, x1
+   3f608: 2a0503f8     	mov	w24, w5
+   3f60c: aa0403f4     	mov	x20, x4
+   3f610: aa0303f6     	mov	x22, x3
+   3f614: eb090108     	subs	x8, x8, x9
+   3f618: aa0203f5     	mov	x21, x2
+   3f61c: 9a9fc117     	csel	x23, x8, xzr, gt
+   3f620: f100073f     	cmp	x25, #0x1
+   3f624: 5400010b     	b.lt	0x3f644 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x290>
+   3f628: f9400268     	ldr	x8, [x19]
+   3f62c: aa1303e0     	mov	x0, x19
+   3f630: aa1903e2     	mov	x2, x25
+   3f634: f9403108     	ldr	x8, [x8, #0x60]
+   3f638: d63f0100     	blr	x8
+   3f63c: eb19001f     	cmp	x0, x25
+   3f640: 540006a1     	b.ne	0x3f714 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x360>
+   3f644: f10006ff     	cmp	x23, #0x1
+   3f648: 540004cb     	b.lt	0x3f6e0 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x32c>
+   3f64c: f1005eff     	cmp	x23, #0x17
+   3f650: 540000c2     	b.hs	0x3f668 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x2b4>
+   3f654: 531f7ae8     	lsl	w8, w23, #1
+   3f658: 910003e9     	mov	x9, sp
+   3f65c: b2400139     	orr	x25, x9, #0x1
+   3f660: 390003e8     	strb	w8, [sp]
+   3f664: 14000008     	b	0x3f684 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x2d0>
+   3f668: b2400efb     	orr	x27, x23, #0xf
+   3f66c: 91000760     	add	x0, x27, #0x1
+   3f670: 9400e8c0     	bl	0x79970 <_Znwm@plt>
+   3f674: 91000b68     	add	x8, x27, #0x2
+   3f678: aa0003f9     	mov	x25, x0
+   3f67c: a90083f7     	stp	x23, x0, [sp, #0x8]
+   3f680: f90003e8     	str	x8, [sp]
+   3f684: aa1903e0     	mov	x0, x25
+   3f688: 2a1803e1     	mov	w1, w24
+   3f68c: aa1703e2     	mov	x2, x23
+   3f690: 9400e92c     	bl	0x79b40 <memset@plt>
+   3f694: 38376b3f     	strb	wzr, [x25, x23]
+   3f698: f9400269     	ldr	x9, [x19]
+   3f69c: 910003eb     	mov	x11, sp
+   3f6a0: 394003e8     	ldrb	w8, [sp]
+   3f6a4: f9400bea     	ldr	x10, [sp, #0x10]
+   3f6a8: b240016b     	orr	x11, x11, #0x1
+   3f6ac: 7200011f     	tst	w8, #0x1
+   3f6b0: f9403128     	ldr	x8, [x9, #0x60]
+   3f6b4: 9a8a0161     	csel	x1, x11, x10, eq
+   3f6b8: aa1303e0     	mov	x0, x19
+   3f6bc: aa1703e2     	mov	x2, x23
+   3f6c0: d63f0100     	blr	x8
+   3f6c4: 394003e8     	ldrb	w8, [sp]
+   3f6c8: aa0003f8     	mov	x24, x0
+   3f6cc: 36000068     	tbz	w8, #0x0, 0x3f6d8 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x324>
+   3f6d0: f9400be0     	ldr	x0, [sp, #0x10]
+   3f6d4: 9400e8b7     	bl	0x799b0 <_ZdlPv@plt>
+   3f6d8: eb17031f     	cmp	x24, x23
+   3f6dc: 540001c1     	b.ne	0x3f714 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x360>
+   3f6e0: cb1502d6     	sub	x22, x22, x21
+   3f6e4: f10006df     	cmp	x22, #0x1
+   3f6e8: 5400012b     	b.lt	0x3f70c <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x358>
+   3f6ec: f9400268     	ldr	x8, [x19]
+   3f6f0: aa1303e0     	mov	x0, x19
+   3f6f4: aa1503e1     	mov	x1, x21
+   3f6f8: aa1603e2     	mov	x2, x22
+   3f6fc: f9403108     	ldr	x8, [x8, #0x60]
+   3f700: d63f0100     	blr	x8
+   3f704: eb16001f     	cmp	x0, x22
+   3f708: 54000061     	b.ne	0x3f714 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x360>
+   3f70c: f9000e9f     	str	xzr, [x20, #0x18]
+   3f710: 14000002     	b	0x3f718 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x364>
+   3f714: aa1f03f3     	mov	x19, xzr
+   3f718: f9401748     	ldr	x8, [x26, #0x28]
+   3f71c: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f720: eb09011f     	cmp	x8, x9
+   3f724: 540002a1     	b.ne	0x3f778 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x3c4>
+   3f728: aa1303e0     	mov	x0, x19
+   3f72c: a9474ff4     	ldp	x20, x19, [sp, #0x70]
+   3f730: f9401bfb     	ldr	x27, [sp, #0x30]
+   3f734: a94657f6     	ldp	x22, x21, [sp, #0x60]
+   3f738: a9455ff8     	ldp	x24, x23, [sp, #0x50]
+   3f73c: a94467fa     	ldp	x26, x25, [sp, #0x40]
+   3f740: a9427bfd     	ldp	x29, x30, [sp, #0x20]
+   3f744: 910203ff     	add	sp, sp, #0x80
+   3f748: d65f03c0     	ret
+   3f74c: 394003e8     	ldrb	w8, [sp]
+   3f750: aa0003f3     	mov	x19, x0
+   3f754: 36000068     	tbz	w8, #0x0, 0x3f760 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x3ac>
+   3f758: f9400be0     	ldr	x0, [sp, #0x10]
+   3f75c: 9400e895     	bl	0x799b0 <_ZdlPv@plt>
+   3f760: f9401748     	ldr	x8, [x26, #0x28]
+   3f764: f85f83a9     	ldur	x9, [x29, #-0x8]
+   3f768: eb09011f     	cmp	x8, x9
+   3f76c: 54000061     	b.ne	0x3f778 <_ZNSt6__ndk119basic_ostringstreamIcNS_11char_traitsIcEENS_9allocatorIcEEED1Ev+0x3c4>
+   3f770: aa1303e0     	mov	x0, x19
+   3f774: 9400d928     	bl	0x75c14 <_ZN17MMDetectionPlugin18ExAnySegmentModule14runExtraDetectEPKNS_21_ExtraDetectionOptionEPKNS_14DetectionFrameER24vlai_graphics_env_handleNSt6__ndk16vectorINS9_10shared_ptrINS_15DetectionResultEEENS9_9allocatorISD_EEEERSG_+0xc74>
+   3f778: 9400e86e     	bl	0x79930 <__stack_chk_fail@plt>
+   3f77c: f0000200     	adrp	x0, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f780: d503201f     	nop
+   3f784: 1024de61     	adr	x1, #0x49bcc
+   3f788: f946c800     	ldr	x0, [x0, #0xd90]
+   3f78c: d503201f     	nop
+   3f790: 10213182     	adr	x2, #0x42630
+   3f794: 1400e85f     	b	0x79910 <__cxa_atexit@plt>
+
+000000000003f798 <_ZN17MMDetectionPlugin11_getClassIDEPKc>:
+   3f798: a9bd7bfd     	stp	x29, x30, [sp, #-0x30]!
+   3f79c: a90157f6     	stp	x22, x21, [sp, #0x10]
+   3f7a0: a9024ff4     	stp	x20, x19, [sp, #0x20]
+   3f7a4: 910003fd     	mov	x29, sp
+   3f7a8: b4000700     	cbz	x0, 0x3f888 <_ZN17MMDetectionPlugin11_getClassIDEPKc+0xf0>
+   3f7ac: d0000248     	adrp	x8, 0x89000
+   3f7b0: aa0003f3     	mov	x19, x0
+   3f7b4: b9439900     	ldr	w0, [x8, #0x398]
+   3f7b8: 9400e8ea     	bl	0x79b60 <pthread_getspecific@plt>
+   3f7bc: aa0003f4     	mov	x20, x0
+   3f7c0: b50000c0     	cbnz	x0, 0x3f7d8 <_ZN17MMDetectionPlugin11_getClassIDEPKc+0x40>
+   3f7c4: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f7c8: f946cd08     	ldr	x8, [x8, #0xd98]
+   3f7cc: f9400100     	ldr	x0, [x8]
+   3f7d0: 9400e8e8     	bl	0x79b70 <_ZN17MMDetectionPlugin9JniHelper8cacheEnvEP7_JavaVM@plt>
+   3f7d4: aa0003f4     	mov	x20, x0
+   3f7d8: f9400288     	ldr	x8, [x20]
+   3f7dc: aa1403e0     	mov	x0, x20
+   3f7e0: aa1303e1     	mov	x1, x19
+   3f7e4: f9429d08     	ldr	x8, [x8, #0x538]
+   3f7e8: d63f0100     	blr	x8
+   3f7ec: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f7f0: f0000209     	adrp	x9, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f7f4: aa0003f5     	mov	x21, x0
+   3f7f8: f946d108     	ldr	x8, [x8, #0xda0]
+   3f7fc: f946d529     	ldr	x9, [x9, #0xda8]
+   3f800: aa1403e0     	mov	x0, x20
+   3f804: aa1503e3     	mov	x3, x21
+   3f808: f9400101     	ldr	x1, [x8]
+   3f80c: f9400122     	ldr	x2, [x9]
+   3f810: 9400e8dc     	bl	0x79b80 <_ZN7_JNIEnv16CallObjectMethodEP8_jobjectP10_jmethodIDz@plt>
+   3f814: aa0003f6     	mov	x22, x0
+   3f818: b50002c0     	cbnz	x0, 0x3f870 <_ZN17MMDetectionPlugin11_getClassIDEPKc+0xd8>
+   3f81c: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f820: f946a908     	ldr	x8, [x8, #0xd50]
+   3f824: b9400108     	ldr	w8, [x8]
+   3f828: 7100151f     	cmp	w8, #0x5
+   3f82c: 540001ac     	b.gt	0x3f860 <_ZN17MMDetectionPlugin11_getClassIDEPKc+0xc8>
+   3f830: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f834: d503201f     	nop
+   3f838: 30f84061     	adr	x1, #-0xf7f3
+   3f83c: f946ad08     	ldr	x8, [x8, #0xd58]
+   3f840: 90ffff82     	adrp	x2, 0x2f000
+   3f844: 91232042     	add	x2, x2, #0x8c8
+   3f848: b0ffff83     	adrp	x3, 0x30000
+   3f84c: 91157c63     	add	x3, x3, #0x55f
+   3f850: 52800324     	mov	w4, #0x19
+   3f854: b9401500     	ldr	w0, [x8, #0x14]
+   3f858: aa1303e5     	mov	x5, x19
+   3f85c: 9400e831     	bl	0x79920 <__android_log_print@plt>
+   3f860: f9400288     	ldr	x8, [x20]
+   3f864: aa1403e0     	mov	x0, x20
+   3f868: f9404508     	ldr	x8, [x8, #0x88]
+   3f86c: d63f0100     	blr	x8
+   3f870: f9400288     	ldr	x8, [x20]
+   3f874: aa1403e0     	mov	x0, x20
+   3f878: aa1503e1     	mov	x1, x21
+   3f87c: f9405d08     	ldr	x8, [x8, #0xb8]
+   3f880: d63f0100     	blr	x8
+   3f884: 14000002     	b	0x3f88c <_ZN17MMDetectionPlugin11_getClassIDEPKc+0xf4>
+   3f888: aa1f03f6     	mov	x22, xzr
+   3f88c: aa1603e0     	mov	x0, x22
+   3f890: a9424ff4     	ldp	x20, x19, [sp, #0x20]
+   3f894: a94157f6     	ldp	x22, x21, [sp, #0x10]
+   3f898: a8c37bfd     	ldp	x29, x30, [sp], #0x30
+   3f89c: d65f03c0     	ret
+
+000000000003f8a0 <_ZN17MMDetectionPlugin9JniHelper6getEnvEv>:
+   3f8a0: a9bf7bfd     	stp	x29, x30, [sp, #-0x10]!
+   3f8a4: 910003fd     	mov	x29, sp
+   3f8a8: d0000248     	adrp	x8, 0x89000
+   3f8ac: b9439900     	ldr	w0, [x8, #0x398]
+   3f8b0: 9400e8ac     	bl	0x79b60 <pthread_getspecific@plt>
+   3f8b4: b4000060     	cbz	x0, 0x3f8c0 <_ZN17MMDetectionPlugin9JniHelper6getEnvEv+0x20>
+   3f8b8: a8c17bfd     	ldp	x29, x30, [sp], #0x10
+   3f8bc: d65f03c0     	ret
+   3f8c0: f0000208     	adrp	x8, 0x82000 <_ZTIN17MMDetectionPlugin10FaceModuleE+0x10>
+   3f8c4: f946cd08     	ldr	x8, [x8, #0xd98]
