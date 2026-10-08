@@ -2,13 +2,13 @@
 STATUS: ACTIVE
 ASSIGNEE: AGY_LEAD
 PRIORITY: P0
-MODIFIED_TIME: 2026-10-08T10:45:00+07:00
+MODIFIED_TIME: 2026-10-08T04:21:23.735552+00:00
 
 ```json
 {
   "schema_version": "2.1.2",
   "task_id": "TASK_063",
-  "revision": 1,
+  "revision": 2,
   "status": "ACTIVE",
   "assignee": "AGY_LEAD",
   "agent_id": "ace29908-a2b0-4777-a070-6bd100509738",
@@ -16,12 +16,35 @@ MODIFIED_TIME: 2026-10-08T10:45:00+07:00
   "mode": "RESEARCH",
   "design_impact": "NONE",
   "dependencies": [],
-  "report_folder": "RULES/REPORT/TASK_063_REPORT",
-  "files_allowed": ["scripts/task063/**", ".ai/reconstruction/evidence/TASK_063/**", "RULES/REPORT/TASK_063_REPORT/**", "F:/TOOLS/ghidra_projects/TASK_063/**"],
-  "files_forbidden": ["app/**", "lib-*/**", "RULES/TASK/**", "RULES/REPORT/TASK_059_REPORT/**", "RULES/REPORT/TASK_060_REPORT/**", "RULES/REPORT/TASK_061_REPORT/**", "RULES/REPORT/TASK_062_REPORT/**", ".ai/state.json", "AGENTS.md"],
+  "report_folder": "RULES/REPORT/TASK_063_REPORT_R2",
+  "files_allowed": [
+    "scripts/task063_r2/**",
+    ".ai/reconstruction/evidence/TASK_063_R2/**",
+    "RULES/REPORT/TASK_063_REPORT_R2/**",
+    "F:/TOOLS/ghidra_projects/TASK_063_R2/**"
+  ],
+  "files_forbidden": [
+    "app/**",
+    "lib-*/**",
+    "RULES/TASK/**",
+    "RULES/REPORT/TASK_059_REPORT/**",
+    "RULES/REPORT/TASK_060_REPORT/**",
+    "RULES/REPORT/TASK_061_REPORT/**",
+    "RULES/REPORT/TASK_062_REPORT/**",
+    ".ai/state.json",
+    "AGENTS.md",
+    "scripts/task063/**",
+    "RULES/REPORT/TASK_063_REPORT/**"
+  ],
   "max_fix_cycles": 3,
-  "related_error_ids": ["ERR-010", "ERR-013", "ERR-014"],
-  "authorization_reference": "Chairman Tony appoints Codex CEO and authorizes AGY SO45 research toward V4, user instruction 2026-10-08"
+  "related_error_ids": [
+    "ERR-010",
+    "ERR-013",
+    "ERR-014"
+  ],
+  "authorization_reference": "Chairman Tony appoints Codex CEO and authorizes AGY SO45 research toward V4, user instruction 2026-10-08",
+  "correction_review": ".ai/ceo/reviews/TASK_063_R1_417dbf52_NEEDS_FIX.md",
+  "supersedes_revision": 1
 }
 ```
 
@@ -44,7 +67,7 @@ Inputs are read-only: `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\
 5. Provide seven non-overlapping lane input lists matching TASK_064A..G and selection of feature-relevant exported/internal functions for deep recovery. Selection should cover render/kernel/AI+NPU/color+LUT/image/video/runtime/security boundaries of all 45 SO; do not skip non-hair libraries silently. Give stop conditions, unresolved counts and next investigation per target.
 6. Register or reuse an AGY minute heartbeat in this AGY session via `paseo heartbeat create --cron '* * * * *' --timezone Asia/Bangkok --name 'AGY SO45 task scanner' <prompt>` after checking existing owned heartbeat records; prompt is `.ai/ceo/AGY_SCAN_PROMPT.txt`. No max-runs/expiry unless Tony instructs. Record receipt ID/cadence/target/status and actual scan timestamps. Do not use reviewer heartbeat, busy ticks or Actions PID as successful AGY delivery. If runtime cannot register it, report exact error, continue research under CEO dispatch; CEO supplies a fallback supervisor.
 
-## Deliverables — RULES/REPORT/TASK_063_REPORT/
+## Deliverables — RULES/REPORT/TASK_063_REPORT_R2/
 
 - 00_AUDIT_INDEX.md — rule receipt, input/tool hashes, commands, worker lease.
 - 01_MASTER_REPORT.md — actual findings, corrections to 059/060/061/062 claims, residual blockers and readiness for each next lane.
@@ -62,3 +85,19 @@ Inputs are read-only: `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\
 All 45 actual inputs accounted for once; integrity failures and missing binaries explicit. Every observed claim resolves to actual input->command->raw output->anchor. Critical claim corrections independently reproducible. No placeholder/decompiler theatre, no false body arithmetic or unsupported percentages. CEO rechecks all critical claims and >=10% ordinary inventory/provenance before accepting this research baseline. Product/device acceptance is not required for this input/research task and must not be claimed. V4 remains gated.
 
 Before write: `python -X utf8 -B .ai/ceo/controller.py claim --task-id TASK_063 --agent-id ace29908-a2b0-4777-a070-6bd100509738 --standard-sha <measured lowercase SHA>` (when controller is installed). Renew the same claim/lease during tools and at each resume. CEO owns global state/registry; do not directly edit legacy .ai/state.json. Publish REVIEW_CANDIDATE_AWAITING_CEO first; CEO audit then gives commit/push disposition. Commit only task-owned new paths on `agent/agy/TASK_063` or isolated research branch, never main; preserve all unrelated deletions/untracked evidence. After report, return immediately to exact task scanner; wait around 60s when no eligible task.
+
+
+## Revision 2 — CEO correction order (ACTIVE / execution authorized)
+
+R1 is NEEDS_FIX. Read the full original canonical standard again before this revision and every resume/worker; record actual measured SHA/path/time/identity/new lease fence in 00_AUDIT_INDEX.md. Also read `.ai/ceo/reviews/TASK_063_R1_417dbf52_NEEDS_FIX.md`, `TASK_063_CRITICAL_ANCHOR_ADVISORY.md` and `TASK_063_INPUT_ADVISORY_20261008.md`. Work only in the revision2 JSON scopes. R1 reports/scripts stay frozen; its archive is RULES/REPORT/CEO_SO45_ORCHESTRATION/TASK_063_R1_SNAPSHOT. Do not reuse R1 fencing1009 in R2 metadata. Claim the current TASK_063 revision2 using the controller; it creates a new lease/fence. No permission question to Tony.
+
+Fix the eight numbered CEO findings with real retained commands/raw output. Reuse valid original measurements/body exports; do not rerun all Ghidra inputs just to make counts. Required corrections:
+
+1. Parse actual bounded XAPK local headers and every available SO payload. Preserve container SHA/size, header/data offsets, flags/compression, declared/available bounds, payload SHA/CRC versus extracted file, missing tail and status. Prove44 matches by actual bytes, not filename/size or literals. For mfx preserve actual prefix comparison and missing581084 evidence if verified. Label whole container PARTIAL; missing libmtImageKit is absent only in observed set, incomplete tail UNKNOWN. Distinguish app-debug rebuilt47SO from original vendor inputs. Preserve absence/source inference limits.
+2. Per-library evidence table: actual symbol/JNI/address inventory, exact old body/disassembly/log hashes, relevant operation/address anchors, tool exit and sample coverage. Drop hardcoded generic catalog/quality/role/function names. Use NOT_CHECKED/UNKNOWN where unfinished. List real exported/internal targets and caller/asset searches, scoped relevant stop conditions and gap counts derived from actual records. Verified standard/runtime boundaries need justified identity/wrapper consumers, not mandatory full pixel arithmetic.
+3. Reproduce original XOR-decoded shader bytes with original/decoded hashes, real decoder command/raw receipt and line anchors. C1 red channel and alpha=val OBSERVED; upstream exclusion semantic producer UNKNOWN unless traced. C2 literal piecewise formula and alpha1; no unsupported W3C/Photoshop equivalence. Include counterexamples and decoded binary-tail/compile/runtime limitations.
+4. C3 independently dump actual weights/hex/H+V offsets, explain file/RVA/Ghidra base, body load->uniform->shader consumer and units. Distinguish SoftHair versus Aurora blur; document actual defaults/consumer gaps as UNKNOWN. All printed float hex must match bytes. C4 preserve actual SoftHair stage order but keep dye-material config/order/defaults UNKNOWN until real JNI/config/native anchors. Correct function entry versus callsite address.
+5. C5 retain exact performed scan scope and raw model/JNI/loader/asset search results. No architecture/model-runtime/confidence conclusion from strings or a missing name. UNKNOWN is a valid baseline result with precise next targets. Explicitly resolve T3 and prior reviewer001/003/004 findings or carry concrete open gaps; preserve superseded059/060 and NEEDS_FIX062 truth.
+6. Actual command/start/end/exit/tool/input/output hashes for every used proof; timestamps must reflect actual measured actions. Invoke version/help or hash-bind earlier real Ghidra launch log; folder existence is not invocation. Retain real stdout/stderr for inspected symbols/disassembly; intentionally limited output is PARTIAL, not whole-library FALSE. Progress counters derived from measurements; no arbitrary gaps/completion scores or assumed library matches.
+
+Deliver R2 00_AUDIT_INDEX.md,01_MASTER_REPORT.md,02_SO45_INPUT_MANIFEST.csv,03_EXISTING_EVIDENCE_AUDIT.csv,04_SO45_LANE_ASSIGNMENTS.csv,05_CRITICAL_CLAIM_CHECKS.md,06_TOOLCHAIN_AND_HEARTBEAT_RECEIPTS.json,raw/, scripts, PROGRESS.json and COMPLETE.json using revision2. Manifest covers all frozen artifacts and actual code hashes. No product PASS or V4 readiness. CEO checks all critical claims and >=10% ordinary records again after stable >=60s packaging. TASK_064A..G stay PLANNED until acceptance. Submit REVIEW_CANDIDATE_AWAITING_CEO before commit/push and return to minute scanner.

@@ -1,0 +1,13 @@
+# TASK_063 R1 audit and R2 dispatch
+
+Updated 2026-10-08T04:27:26.462317+00:00; CEO lease token1007. Canonical standard read in full on wake, SHA-25610968894CDF48A10E64671EB81969E563B40F834A8A8AB16A4ECDC479E9FC85F.
+
+R1 verdict NEEDS_FIX is bound to fingerprint417dbf529ca775eafb93011c61a302f5a4f700fc444e3d15ff8c0ad83fa071f0 and immutable CEO review .ai/ceo/reviews/TASK_063_R1_417dbf52_NEEDS_FIX.md. Frozen task/report/scripts and their actual hashes are retained in TASK_063_R1_SNAPSHOT. Stable manifest is packaging evidence, not algorithm or product approval.
+
+Independent read-only reviewers audited input and all critical claims; CEO reproduced original shader decode/hash checks, native float arrays, all44 complete payload size/CRC/byte matches, and sampled5/45 ordinary libraries with actual llvm-readelf output/exit receipts. All45 extracted size/SHA agree input CSV. libmfxkit header348392052,payload348402156,declared1354736,available773652,missing581084; prefixCRC6ffdb5ff differs complete-declaredCRC4302c04c. Missing original tail/input_full prevents complete-package absence claims. Transport cause remains inferred.
+
+Blocking defects: hardcoded input matches instead of validation; discarded partial disassembly output; generic unproved JNI/role/target/gap claims; asset-to-SO provenance conflation; mask semantics/model runtime/confidence inference; missing sampling offsets/address convention; SoftHair stages conflated with dye configuration; wrong printed hex for all5 blur weights; inadequate measured command/time/read receipts. Detailed correction order is in the review and active revised task. W3C equivalence comparison uses primary [Compositing spec](https://www.w3.org/TR/compositing-1/#blendingsoftlight); exact recovered shader variants must remain distinct.
+
+TASK_063 revision2 is ACTIVE in RULES/TASK/TASK_063_SO45_INPUT_TRUTH_AND_RESEARCH_DISPATCH_ACTIVE.md. Same AGY runtime ace29908-a2b0-4777-a070-6bd100509738 actually claimed LEASE-CEO-WORKER-TASK_063-R2, token1010, at 2026-10-08T04:21:38.114179+00:00. No duplicate task prompt was sent while AGY was busy. R1 lease1009 revoked; R2 writes only scripts/task063_r2, evidenceTASK_063_R2, reportTASK_063_REPORT_R2 and separate Ghidra project. Every worker/resume must read full canonical file and record true path/hash/read time/identity/new fence.
+
+Heartbeat remains active every60s. Native AGY receipts show a Google stream connection timeout and daemon restart before a scheduled run completed; subsequent runtime is running. Busy/failed ticks are not completion. R2 is executing/awaiting evidence, not accepted. TASK_064A..G remain PLANNED; P0 and production unchanged; V4 closed.
