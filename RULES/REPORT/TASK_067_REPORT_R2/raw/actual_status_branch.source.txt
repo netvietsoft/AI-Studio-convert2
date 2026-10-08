@@ -1,0 +1,6 @@
+                if ce["complete"]:
+                    c_status = "EXACT_PAYLOAD_MATCH"
+                    trunc_note = "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)"
+                else:
+                    c_status = "PARTIAL_CONTAINER_TRUNCATED"
+                    trunc_note = f"Container interrupted before EOF. On-disk size {info['bytes']} B matches container prefix (bytes {c_data}..{c_data+c_avail}). Deficit: {ce['missing_bytes']} B missing ({ce['missing_bytes']/c_decl*100:.2f}% data loss). Tail UNKNOWN."

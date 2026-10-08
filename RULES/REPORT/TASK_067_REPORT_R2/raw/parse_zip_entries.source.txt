@@ -1,0 +1,42 @@
+def parse_zip_entries(zip_path: Path):
+    entries = {}
+    with open(zip_path, "rb") as f:
+        data = f.read()
+    
+    offset = 0
+    while True:
+        idx = data.find(b"PK\x03\x04", offset)
+        if idx < 0:
+            break
+        offset = idx + 4
+        if idx + 30 > len(data):
+            break
+        
+        sig, version, flags, method, mtime, mdate, crc, compressed, declared, nlen, elen = struct.unpack_from("<IHHHHHIIIHH", data, idx)
+        nameend = idx + 30 + nlen
+        begin = nameend + elen
+        if nameend > len(data) or begin > len(data):
+            continue
+        
+        name = data[idx+30:nameend].decode("utf-8", errors="replace")
+        if name.startswith("lib/arm64-v8a/") and name.endswith(".so"):
+            so_name = Path(name).name
+            available_bytes = min(declared, len(data) - begin)
+            payload_data = data[begin:begin+available_bytes]
+            complete = (begin + declared <= len(data)) and (available_bytes == declared)
+            
+            entries[so_name] = {
+                "header_offset": idx,
+                "data_offset": begin,
+                "flags": flags,
+                "method": method,
+                "declared_bytes": declared,
+                "available_bytes": available_bytes,
+                "complete": complete,
+                "missing_bytes": declared - available_bytes,
+                "declared_crc32": f"0x{crc:08x}",
+                "available_crc32": f"0x{crc32_bytes(payload_data):08x}",
+                "available_sha256": sha256_bytes(payload_data),
+                "payload_bytes": payload_data
+            }
+    return entries, len(data), sha256_bytes(data)
