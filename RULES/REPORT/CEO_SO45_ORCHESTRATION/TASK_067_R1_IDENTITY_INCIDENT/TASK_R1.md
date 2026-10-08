@@ -2,13 +2,13 @@
 STATUS: ACTIVE
 ASSIGNEE: 7de71900-89f8-4633-97a9-3efaf42ea6b8
 PRIORITY: P0
-MODIFIED_TIME: 2026-10-08T05:26:16.228346+00:00
+MODIFIED_TIME: 2026-10-08T05:18:59.048417+00:00
 
 ```json
 {
   "schema_version": "2.1.2",
   "task_id": "TASK_067",
-  "revision": 2,
+  "revision": 1,
   "status": "ACTIVE",
   "assignee": "7de71900-89f8-4633-97a9-3efaf42ea6b8",
   "agent_id": "7de71900-89f8-4633-97a9-3efaf42ea6b8",
@@ -16,11 +16,11 @@ MODIFIED_TIME: 2026-10-08T05:26:16.228346+00:00
   "mode": "DIAGNOSTIC",
   "design_impact": "NONE",
   "dependencies": [],
-  "report_folder": "RULES/REPORT/TASK_067_REPORT_R2",
+  "report_folder": "RULES/REPORT/TASK_067_REPORT",
   "files_allowed": [
-    "scripts/task067_diagnostic_r2/**",
-    ".ai/reconstruction/evidence/TASK_067_R2/**",
-    "RULES/REPORT/TASK_067_REPORT_R2/**"
+    "scripts/task067_diagnostic/**",
+    ".ai/reconstruction/evidence/TASK_067/**",
+    "RULES/REPORT/TASK_067_REPORT/**"
   ],
   "files_forbidden": [
     "app/**",
@@ -33,10 +33,7 @@ MODIFIED_TIME: 2026-10-08T05:26:16.228346+00:00
     ".ai/state.json",
     "AGENTS.md",
     "PROJECT_ERROR.md",
-    "ACQUIREMENTS.md",
-    "scripts/task067_diagnostic/**",
-    "RULES/REPORT/TASK_067_REPORT/**",
-    ".ai/reconstruction/evidence/TASK_067/**"
+    "ACQUIREMENTS.md"
   ],
   "max_fix_cycles": 1,
   "max_minutes": 45,
@@ -48,10 +45,7 @@ MODIFIED_TIME: 2026-10-08T05:26:16.228346+00:00
     "review_file": ".ai/ceo/reviews/TASK_063_R3_2041a6a2_NEEDS_FIX.md"
   },
   "execution_engine": "codex/gpt-6.1-sol",
-  "baseline_replacement_authorized": false,
-  "claim_binding_required": true,
-  "native_session_id": "01a119f1-f400-7441-8b7a-26375ae0f459",
-  "revision_reason": "Actor identity handoff; no diagnostic attempt completed and no budget increase"
+  "baseline_replacement_authorized": false
 }
 ```
 
@@ -73,11 +67,6 @@ TASK067 acceptance validates diagnostic evidence only. It neither accepts TASK06
 
 ## Deliverables and independent review
 
-In RULES/REPORT/TASK_067_REPORT_R2:00_AUDIT_INDEX.md,01_MASTER_REPORT.md (causes/counterexamples/repair recommendation/limits),02_DIAGNOSTIC_RESULTS.json (cases and measured old/reference outcomes),03_REMEDIATION_RECOMMENDATION.md (minimal proposed diff/steps only, not applied to R3),raw/ actual stdout/stderr/proof logs,PROGRESS.json andCOMPLETE.json. Scripts only scripts/task067_diagnostic_r2/**; supplementary evidence only .ai/reconstruction/evidence/TASK_067_R2/**. Use a small meaningful regression check for these demonstrated failures, not test-green theatre. No full45 inventory/lane CSV deliverables. COMPLETE follows2.1.2 protocol: exact task/revision/status COMPLETE/standard_sha256, files relative report-path SHA map excluding COMPLETE/volatile PROGRESS, code_files list of actually executed repo-relative scripts. Every observed result binds original input -> actual command or pure computation -> retained output -> anchor, with OBSERVED/INFERRED/UNKNOWN separated.
+In RULES/REPORT/TASK_067_REPORT:00_AUDIT_INDEX.md,01_MASTER_REPORT.md (causes/counterexamples/repair recommendation/limits),02_DIAGNOSTIC_RESULTS.json (cases and measured old/reference outcomes),03_REMEDIATION_RECOMMENDATION.md (minimal proposed diff/steps only, not applied to R3),raw/ actual stdout/stderr/proof logs,PROGRESS.json andCOMPLETE.json. Scripts only scripts/task067_diagnostic/**; supplementary evidence only .ai/reconstruction/evidence/TASK_067/**. Use a small meaningful regression check for these demonstrated failures, not test-green theatre. No full45 inventory/lane CSV deliverables. COMPLETE follows2.1.2 protocol: exact task/revision/status COMPLETE/standard_sha256, files relative report-path SHA map excluding COMPLETE/volatile PROGRESS, code_files list of actually executed repo-relative scripts. Every observed result binds original input -> actual command or pure computation -> retained output -> anchor, with OBSERVED/INFERRED/UNKNOWN separated.
 
 PROGRESS only on actual milestone, approximately60s while a long command runs. Identify yourself honestly as Codex diagnostic worker in the AGY coordination team; Antigravity lead is a separate session with unstable connectivity. No simulated agents/PID claims. Existing CEO native heartbeat supervises this worker; do not create another heartbeat. Submit REVIEW_CANDIDATE_AWAITING_CEO before commit/push; only independently reviewed exact snapshot may authorize task-owned branch publication. Preserve unrelated primary-workspace changes. After submission return to eligible exact task scanner; no modifications to blocked063 or PLANNED064–066.
-
-
-## Revision2 actor binding, not another diagnostic retry
-
-R1 lease1012 was claimed by Antigravity lead using this worker ID; that assertion is invalid and revoked. Actual Codex read-only boot confirms no claim or writes. CEO independently binds external Paseo worker ID 7de71900-89f8-4633-97a9-3efaf42ea6b8 to actual CODEX_THREAD_ID 01a119f1-f400-7441-8b7a-26375ae0f459. These are different identifier types for the same verified persistent agent, not interchangeable IDs. Use the external Paseo ID for controller claim; record both. Task remains a single bounded diagnostic attempt, not a budget reset. Old paths/fence are forbidden. CEO-delivered dispatch token is required with --dispatch-token; it is not in this task. Do not infer/copy another identity from metadata or log the token in reports. Wait for the actual CEO assignment carrying the token before claim.

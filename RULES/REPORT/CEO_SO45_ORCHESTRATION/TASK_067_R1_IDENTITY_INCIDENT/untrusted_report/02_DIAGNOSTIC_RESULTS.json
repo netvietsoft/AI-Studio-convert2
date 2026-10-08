@@ -1,0 +1,938 @@
+{
+  "task_id": "TASK_067",
+  "revision": 1,
+  "executed_at": "2026-10-08T05:26:07.557943+00:00",
+  "standard_sha256": "10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f",
+  "investigation_1": {
+    "container_size_bytes": 349175808,
+    "container_sha256": "dc896b5429cc3265c3d2639a38d4e76bbff3cf819cfe3b63b006048a7712c0d7",
+    "positive_controls": [
+      "libaicodec.so",
+      "libmfxkit.so"
+    ],
+    "test_cases": [
+      {
+        "case_id": "TC-1-POS-COMPLETE",
+        "description": "Positive control: Complete SO (libaicodec.so) with matching bytes, size, and CRC32",
+        "target_library": "libaicodec.so",
+        "mutation_applied": "NONE (Original container bytes)",
+        "r3_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "trunc_note": "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)",
+          "byte_match_computed": true
+        },
+        "reference_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "valid": true,
+          "entry_name": "lib/arm64-v8a/libaicodec.so",
+          "declared_bytes": 2107800,
+          "available_bytes": 2107800,
+          "declared_crc": "0xfa0a92e3",
+          "actual_crc": "0xfa0a92e3",
+          "sha256": "f957a5b290991053f65943356816e837ae5a9d996fa0b2809fc89f680fc8a3cc",
+          "note": "Fully validated: header constraints, size, CRC32, and byte-for-byte disk match satisfied"
+        },
+        "evaluation": "Both agree on EXACT_PAYLOAD_MATCH. However, R3 achieved this fortuitously via ce['complete'] without actually gating on CRC or byte_match."
+      },
+      {
+        "case_id": "TC-2-POS-PARTIAL",
+        "description": "Positive control: Interrupted SO prefix (libmfxkit.so) matching available container bytes",
+        "target_library": "libmfxkit.so",
+        "mutation_applied": "NONE (Original container prefix)",
+        "r3_output": {
+          "status": "PARTIAL_CONTAINER_TRUNCATED",
+          "trunc_note": "Container interrupted before EOF. On-disk size 773652 B matches container prefix (bytes 348402156..349175808). Deficit: 581084 B missing (42.89% data loss). Tail UNKNOWN.",
+          "byte_match_computed": true
+        },
+        "reference_output": {
+          "status": "PARTIAL_CONTAINER_TRUNCATED",
+          "valid": true,
+          "entry_name": "lib/arm64-v8a/libmfxkit.so",
+          "declared_bytes": 1354736,
+          "available_bytes": 773652,
+          "missing_bytes": 581084,
+          "deficit_pct": 42.89278501494018,
+          "declared_crc": "0x4302c04c",
+          "partial_crc": "0x6ffdb5ff",
+          "prefix_sha256": "78923a90997d34c5dd51215a6cd2bc26c9731806fd9037e4aa71fd3873d3bb4f",
+          "note": "Container truncated at EOF. Available prefix (773652 B) matches on-disk prefix byte-for-byte. Deficit: 581084 B missing. Complete CRC unverifiable without missing tail."
+        },
+        "evaluation": "Both classify as PARTIAL_CONTAINER_TRUNCATED. Reference explicitly validates that truncation coincides with container EOF and prefix matches on-disk bytes, without claiming whole-file CRC match."
+      },
+      {
+        "case_id": "TC-3-NEG-PAYLOAD-CORRUPTION",
+        "description": "Negative control: 1 byte flipped in container payload of libaicodec.so",
+        "target_library": "libaicodec.so",
+        "mutation_applied": "Flipped bit at payload offset 308507116 (byte 0 of payload)",
+        "r3_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "trunc_note": "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)",
+          "byte_match_computed": false
+        },
+        "reference_output": {
+          "status": "CORRUPTED_CRC",
+          "reason": "Calculated CRC 0xb658dff4 != declared CRC 0xfa0a92e3",
+          "valid": false,
+          "declared_crc": "0xfa0a92e3",
+          "actual_crc": "0xb658dff4"
+        },
+        "evaluation": "CRITICAL BUG DEMONSTRATED: R3 classifies as EXACT_PAYLOAD_MATCH despite byte mismatch! R3 computed byte_match=False but ignored it in branching logic. Reference classifier correctly rejects with CORRUPTED_CRC and PAYLOAD_MISMATCH."
+      },
+      {
+        "case_id": "TC-4-NEG-HEADER-CRC-CORRUPTION",
+        "description": "Negative control: Declared CRC32 bit flipped in local file header of libaicodec.so",
+        "target_library": "libaicodec.so",
+        "mutation_applied": "Flipped bit at header offset 308494490 (declared CRC byte 0)",
+        "r3_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "trunc_note": "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)",
+          "byte_match_computed": true
+        },
+        "reference_output": {
+          "status": "CORRUPTED_CRC",
+          "reason": "Calculated CRC 0xfa0a92e3 != declared CRC 0xfa0a92e2",
+          "valid": false,
+          "declared_crc": "0xfa0a92e2",
+          "actual_crc": "0xfa0a92e3"
+        },
+        "evaluation": "CRITICAL BUG DEMONSTRATED: R3 accepts corrupted declared CRC and still declares EXACT_PAYLOAD_MATCH. Reference classifier correctly rejects with CORRUPTED_CRC."
+      },
+      {
+        "case_id": "TC-5-NEG-UNSUPPORTED-COMPRESSION",
+        "description": "Negative control: Compression method changed to 8 (Deflate) in header of libaicodec.so",
+        "target_library": "libaicodec.so",
+        "mutation_applied": "Set method byte at header offset 308494484 to 8",
+        "r3_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "trunc_note": "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)",
+          "byte_match_computed": true
+        },
+        "reference_output": {
+          "status": "UNSUPPORTED_COMPRESSION",
+          "reason": "Compression method 8 != 0 (STORED required for direct payload equality)",
+          "valid": false,
+          "entry_name": "lib/arm64-v8a/libaicodec.so"
+        },
+        "evaluation": "CRITICAL BUG DEMONSTRATED: R3 does not check compression method. If compressed bytes were stored, it would still classify them as EXACT_PAYLOAD_MATCH. Reference rejects with UNSUPPORTED_COMPRESSION."
+      },
+      {
+        "case_id": "TC-6-NEG-UNSUPPORTED-FLAGS",
+        "description": "Negative control: General purpose flag bit 3 (data descriptor) enabled on libaicodec.so",
+        "target_library": "libaicodec.so",
+        "mutation_applied": "Set flag byte at header offset 308494482 to 0x08",
+        "r3_output": {
+          "status": "EXACT_PAYLOAD_MATCH",
+          "trunc_note": "None (Fully bounded ELF64, declared size/CRC/payload match container byte-for-byte)",
+          "byte_match_computed": true
+        },
+        "reference_output": {
+          "status": "UNSUPPORTED_FLAGS",
+          "reason": "Non-zero flags 0x0008 (bit 3 data descriptor / encryption not supported for raw payload comparison)",
+          "valid": false,
+          "entry_name": "lib/arm64-v8a/libaicodec.so"
+        },
+        "evaluation": "CRITICAL BUG DEMONSTRATED: R3 ignores header flags. Reference rejects with UNSUPPORTED_FLAGS."
+      },
+      {
+        "case_id": "TC-7-NEG-PREFIX-CORRUPTION",
+        "description": "Negative control: 1 byte flipped in container prefix of truncated libmfxkit.so",
+        "target_library": "libmfxkit.so",
+        "mutation_applied": "Flipped bit at prefix offset 348402156 (byte 0 of mfx prefix)",
+        "r3_output": {
+          "status": "PARTIAL_CONTAINER_TRUNCATED",
+          "trunc_note": "Container interrupted before EOF. On-disk size 773652 B matches container prefix (bytes 348402156..349175808). Deficit: 581084 B missing (42.89% data loss). Tail UNKNOWN.",
+          "byte_match_computed": false
+        },
+        "reference_output": {
+          "status": "PAYLOAD_MISMATCH",
+          "reason": "Available container prefix bytes do not match on-disk file prefix",
+          "valid": false
+        },
+        "evaluation": "CRITICAL BUG DEMONSTRATED: R3 classifies corrupted prefix as PARTIAL_CONTAINER_TRUNCATED and claims 'On-disk size 773652 B matches container prefix' even though byte_match is False! Reference classifier correctly detects prefix mismatch and rejects with PAYLOAD_MISMATCH."
+      }
+    ],
+    "summary": "In all 5 negative test cases, R3 status logic failed to reject corrupted or invalid inputs. The root cause is line 660 (if ce['complete']), which ignores byte_match, CRC, flags, and method. The unified diagnostic reference classifier successfully passes both positive controls and rejects all 5 negative controls with specific diagnostic failure statuses."
+  },
+  "investigation_2": {
+    "recounted_samples": [
+      {
+        "file_name": "objdump_libaicodec.so.stdout.txt",
+        "total_lines": 1500,
+        "sha256": "0d03663f36c05ef4b1c4e79a210d57e58c91857a2e7eab969882480ae7ec412d",
+        "r3_regex_matched_count": 0,
+        "corrected_regex_instruction_count": 1470,
+        "corrected_arithmetic_count": 8,
+        "labels_count": 13,
+        "headers_count": 2,
+        "blank_lines_count": 15,
+        "unknown_lines_count": 0,
+        "representative_lines": {
+          "r3_failing_instruction_lines": [
+            {
+              "line_no": 7,
+              "raw": "   ce7a0:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            },
+            {
+              "line_no": 8,
+              "raw": "   ce7a4:      \tadrp\tx0, 0x1fd000 <syscall@plt+0x3bc0>",
+              "parsed_mnemonic": "adrp"
+            },
+            {
+              "line_no": 9,
+              "raw": "   ce7a8:      \tadd\tx0, x0, #0x450",
+              "parsed_mnemonic": "add"
+            },
+            {
+              "line_no": 10,
+              "raw": "   ce7ac:      \tb\t0x1f45c0 <__cxa_finalize@plt>",
+              "parsed_mnemonic": "b"
+            },
+            {
+              "line_no": 11,
+              "raw": "   ce7b0:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            }
+          ],
+          "arithmetic_instruction_lines": [
+            {
+              "line_no": 1293,
+              "raw": "   cfb58:      \tsdiv\tw24, w24, w8",
+              "parsed_mnemonic": "sdiv"
+            },
+            {
+              "line_no": 1295,
+              "raw": "   cfb60:      \tsdiv\tw24, w24, w0",
+              "parsed_mnemonic": "sdiv"
+            },
+            {
+              "line_no": 1302,
+              "raw": "   cfb7c:      \tfadd\ts1, s0, s1",
+              "parsed_mnemonic": "fadd"
+            },
+            {
+              "line_no": 1303,
+              "raw": "   cfb80:      \tfabs\ts1, s1",
+              "parsed_mnemonic": "fabs"
+            },
+            {
+              "line_no": 1306,
+              "raw": "   cfb8c:      \tscvtf\ts1, w24",
+              "parsed_mnemonic": "scvtf"
+            }
+          ],
+          "label_lines": [
+            {
+              "line_no": 6,
+              "raw": "00000000000ce7a0 <.text>:",
+              "symbol": ".text"
+            },
+            {
+              "line_no": 28,
+              "raw": "00000000000ce7f0 <_ZN7MMCodec11AudioStreamC2EPNS_14OutMediaHandleE>:",
+              "symbol": "_ZN7MMCodec11AudioStreamC2EPNS_14OutMediaHandleE"
+            },
+            {
+              "line_no": 223,
+              "raw": "00000000000ceaf4 <_ZN7MMCodec11AudioStreamD2Ev>:",
+              "symbol": "_ZN7MMCodec11AudioStreamD2Ev"
+            }
+          ],
+          "header_lines": [
+            {
+              "line_no": 2,
+              "raw": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libaicodec.so:\tfile format elf64-littleaarch64"
+            },
+            {
+              "line_no": 4,
+              "raw": "Disassembly of section .text:"
+            }
+          ]
+        }
+      },
+      {
+        "file_name": "objdump_libaidetectionplugin.so.stdout.txt",
+        "total_lines": 1500,
+        "sha256": "32e83d6db7f9950b97aea09744744b0b8c66a0279a72e1398eda4ec93f07ace2",
+        "r3_regex_matched_count": 0,
+        "corrected_regex_instruction_count": 1464,
+        "corrected_arithmetic_count": 0,
+        "labels_count": 16,
+        "headers_count": 2,
+        "blank_lines_count": 18,
+        "unknown_lines_count": 0,
+        "representative_lines": {
+          "r3_failing_instruction_lines": [
+            {
+              "line_no": 7,
+              "raw": "   3e970:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            },
+            {
+              "line_no": 8,
+              "raw": "   3e974:      \tnop",
+              "parsed_mnemonic": "nop"
+            },
+            {
+              "line_no": 9,
+              "raw": "   3e978:      \tadr\tx0, #0x43448",
+              "parsed_mnemonic": "adr"
+            },
+            {
+              "line_no": 10,
+              "raw": "   3e97c:      \tb\t0x79900 <__cxa_finalize@plt>",
+              "parsed_mnemonic": "b"
+            },
+            {
+              "line_no": 11,
+              "raw": "   3e980:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            }
+          ],
+          "arithmetic_instruction_lines": [],
+          "label_lines": [
+            {
+              "line_no": 6,
+              "raw": "000000000003e970 <.text>:",
+              "symbol": ".text"
+            },
+            {
+              "line_no": 28,
+              "raw": "000000000003e9c0 <AIDetectorDynamicPlugin_ExitFunc>:",
+              "symbol": "AIDetectorDynamicPlugin_ExitFunc"
+            },
+            {
+              "line_no": 32,
+              "raw": "000000000003e9c8 <AIDetectorDynamicPlugin_InitPlugin>:",
+              "symbol": "AIDetectorDynamicPlugin_InitPlugin"
+            }
+          ],
+          "header_lines": [
+            {
+              "line_no": 2,
+              "raw": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libaidetectionplugin.so:\tfile format elf64-littleaarch64"
+            },
+            {
+              "line_no": 4,
+              "raw": "Disassembly of section .text:"
+            }
+          ]
+        }
+      },
+      {
+        "file_name": "objdump_libPVGColorFunctions.so.stdout.txt",
+        "total_lines": 1500,
+        "sha256": "dcdb3ea9931482d35462a4f7c87ab713c0c8b3cacdddbc2a61e7c94a3ebdb155",
+        "r3_regex_matched_count": 0,
+        "corrected_regex_instruction_count": 1450,
+        "corrected_arithmetic_count": 0,
+        "labels_count": 23,
+        "headers_count": 2,
+        "blank_lines_count": 25,
+        "unknown_lines_count": 0,
+        "representative_lines": {
+          "r3_failing_instruction_lines": [
+            {
+              "line_no": 7,
+              "raw": "   20ad0:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            },
+            {
+              "line_no": 8,
+              "raw": "   20ad4:      \tnop",
+              "parsed_mnemonic": "nop"
+            },
+            {
+              "line_no": 9,
+              "raw": "   20ad8:      \tadr\tx0, #0x3cb48",
+              "parsed_mnemonic": "adr"
+            },
+            {
+              "line_no": 10,
+              "raw": "   20adc:      \tb\t0x58c00 <__cxa_finalize@plt>",
+              "parsed_mnemonic": "b"
+            },
+            {
+              "line_no": 11,
+              "raw": "   20ae0:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            }
+          ],
+          "arithmetic_instruction_lines": [],
+          "label_lines": [
+            {
+              "line_no": 6,
+              "raw": "0000000000020ad0 <.text>:",
+              "symbol": ".text"
+            },
+            {
+              "line_no": 28,
+              "raw": "0000000000020b20 <_ZN8PVGCOLOR14queryPVGReturnENS_9PVGReturnE>:",
+              "symbol": "_ZN8PVGCOLOR14queryPVGReturnENS_9PVGReturnE"
+            },
+            {
+              "line_no": 34,
+              "raw": "0000000000020b30 <_ZN8PVGCOLOR17PVGColorFunctionsC2EiiNS_14PVGPixelFormatEiiS1_>:",
+              "symbol": "_ZN8PVGCOLOR17PVGColorFunctionsC2EiiNS_14PVGPixelFormatEiiS1_"
+            }
+          ],
+          "header_lines": [
+            {
+              "line_no": 2,
+              "raw": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libPVGColorFunctions.so:\tfile format elf64-littleaarch64"
+            },
+            {
+              "line_no": 4,
+              "raw": "Disassembly of section .text:"
+            }
+          ]
+        }
+      },
+      {
+        "file_name": "objdump_libMTLReportTool.so.stdout.txt",
+        "total_lines": 1500,
+        "sha256": "f356213dc3e2ba2353ce18a73cba4e3680c033ffaa85422210274f0a59720434",
+        "r3_regex_matched_count": 0,
+        "corrected_regex_instruction_count": 1466,
+        "corrected_arithmetic_count": 0,
+        "labels_count": 15,
+        "headers_count": 2,
+        "blank_lines_count": 17,
+        "unknown_lines_count": 0,
+        "representative_lines": {
+          "r3_failing_instruction_lines": [
+            {
+              "line_no": 7,
+              "raw": "    7d90:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            },
+            {
+              "line_no": 8,
+              "raw": "    7d94:      \tnop",
+              "parsed_mnemonic": "nop"
+            },
+            {
+              "line_no": 9,
+              "raw": "    7d98:      \tadr\tx0, #0xd048",
+              "parsed_mnemonic": "adr"
+            },
+            {
+              "line_no": 10,
+              "raw": "    7d9c:      \tb\t0x10730 <__cxa_finalize@plt>",
+              "parsed_mnemonic": "b"
+            },
+            {
+              "line_no": 11,
+              "raw": "    7da0:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            }
+          ],
+          "arithmetic_instruction_lines": [],
+          "label_lines": [
+            {
+              "line_no": 6,
+              "raw": "0000000000007d90 <.text>:",
+              "symbol": ".text"
+            },
+            {
+              "line_no": 171,
+              "raw": "000000000000801c <_ZN13MTLReportTool9Interface4ImplC2Ev>:",
+              "symbol": "_ZN13MTLReportTool9Interface4ImplC2Ev"
+            },
+            {
+              "line_no": 174,
+              "raw": "0000000000008020 <_ZN13MTLReportTool9Interface4ImplD2Ev>:",
+              "symbol": "_ZN13MTLReportTool9Interface4ImplD2Ev"
+            }
+          ],
+          "header_lines": [
+            {
+              "line_no": 2,
+              "raw": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libMTLReportTool.so:\tfile format elf64-littleaarch64"
+            },
+            {
+              "line_no": 4,
+              "raw": "Disassembly of section .text:"
+            }
+          ]
+        }
+      },
+      {
+        "file_name": "objdump_libManis.so.stdout.txt",
+        "total_lines": 1500,
+        "sha256": "8152a0715d246765408e21cab8f8c323491e42737de9c9957bd6b7bae95dfb60",
+        "r3_regex_matched_count": 0,
+        "corrected_regex_instruction_count": 1494,
+        "corrected_arithmetic_count": 0,
+        "labels_count": 1,
+        "headers_count": 2,
+        "blank_lines_count": 3,
+        "unknown_lines_count": 0,
+        "representative_lines": {
+          "r3_failing_instruction_lines": [
+            {
+              "line_no": 7,
+              "raw": "  32be00:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            },
+            {
+              "line_no": 8,
+              "raw": "  32be04:      \tadrp\tx0, 0x95d000 <_ZNSt6__ndk16__sortIRNS_6__lessImmEEPmEEvT0_S5_T_@plt+0x3e30>",
+              "parsed_mnemonic": "adrp"
+            },
+            {
+              "line_no": 9,
+              "raw": "  32be08:      \tadd\tx0, x0, #0x1e0",
+              "parsed_mnemonic": "add"
+            },
+            {
+              "line_no": 10,
+              "raw": "  32be0c:      \tb\t0x9578c0 <__cxa_finalize@plt>",
+              "parsed_mnemonic": "b"
+            },
+            {
+              "line_no": 11,
+              "raw": "  32be10:      \tbti\tc",
+              "parsed_mnemonic": "bti"
+            }
+          ],
+          "arithmetic_instruction_lines": [],
+          "label_lines": [
+            {
+              "line_no": 6,
+              "raw": "000000000032be00 <.text>:",
+              "symbol": ".text"
+            }
+          ],
+          "header_lines": [
+            {
+              "line_no": 2,
+              "raw": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libManis.so:\tfile format elf64-littleaarch64"
+            },
+            {
+              "line_no": 4,
+              "raw": "Disassembly of section .text:"
+            }
+          ]
+        }
+      }
+    ],
+    "r3_buggy_regex": "^[ ]*[0-9a-f]+:\\s+[0-9a-f]{8}\\s+([a-z0-9.]+)",
+    "corrected_regex": "^\\s*[0-9a-f]+:\\s+([a-z][a-z0-9.]*)\\b",
+    "root_cause_explanation": "In scripts/task063_r3/generate_deliverables_r3.py, command execution used objdump with '--no-show-raw-insn'. This flag omits the 8-hex raw instruction word from output. However, INS_RE at line 143 explicitly required '[0-9a-f]{8}\\s+' between the address colon and the instruction mnemonic. Consequently, the regex failed to match any instruction lines across all 44 intact libraries, causing R3 to falsely report 0 instructions and 0 arithmetic.",
+    "command_receipt_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "DurableCommandExecutionReceipt",
+      "description": "Standardized schema for recording binary tool execution, full outputs, and retained samples",
+      "type": "object",
+      "required": [
+        "command",
+        "working_directory",
+        "started_at",
+        "ended_at",
+        "duration_ms",
+        "exit_code",
+        "tool_metadata",
+        "input_files",
+        "stdout_provenance",
+        "stderr_provenance"
+      ],
+      "properties": {
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Exact argument array passed to subprocess"
+        },
+        "working_directory": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_ms": {
+          "type": "number"
+        },
+        "exit_code": {
+          "type": "integer"
+        },
+        "tool_metadata": {
+          "type": "object",
+          "required": [
+            "path",
+            "sha256",
+            "version"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        },
+        "input_files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "bytes": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "stdout_provenance": {
+          "type": "object",
+          "required": [
+            "full_bytes",
+            "full_sha256",
+            "retained_path",
+            "retained_bytes",
+            "retained_sha256",
+            "retention_policy"
+          ],
+          "properties": {
+            "full_bytes": {
+              "type": "integer"
+            },
+            "full_sha256": {
+              "type": "string"
+            },
+            "retained_path": {
+              "type": "string"
+            },
+            "retained_bytes": {
+              "type": "integer"
+            },
+            "retained_sha256": {
+              "type": "string"
+            },
+            "retention_policy": {
+              "type": "string",
+              "enum": [
+                "FULL",
+                "HEAD_1500_LINES",
+                "TAIL",
+                "SAMPLED"
+              ]
+            }
+          }
+        },
+        "stderr_provenance": {
+          "type": "object",
+          "required": [
+            "retained_path",
+            "bytes",
+            "sha256"
+          ],
+          "properties": {
+            "retained_path": {
+              "type": "string"
+            },
+            "bytes": {
+              "type": "integer"
+            },
+            "sha256": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "investigation_3": {
+    "softlight_shader": {
+      "apk_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\com.mt.mtxx.mtxx.apk",
+      "entry_path": "assets/ARKernelBuiltin/Shaders/HairSoft/MTFilter_PsSoftLightr.fs",
+      "raw_bytes_len": 812,
+      "raw_sha256": "eab66ebfde124a796a09ddd40d6b359db7b364fb4f5800709aeb4f09eb8ff5e2",
+      "xor_key_hex": "7c34b93a",
+      "decoded_bytes_len": 812,
+      "decoded_sha256": "69eb6db94958c599c01f432208dd47d5fd64a397e47b8b6c7ea0163fd1855d14",
+      "actual_function_name": "SoftLight_Fcn",
+      "r3_claimed_function_name": "blendColor",
+      "actual_lines_13_26": [
+        "float SoftLight_Fcn(float A, float B)",
+        "{",
+        "\tfloat C = 0.0;",
+        "\tif (B <= 0.5)",
+        "\t{",
+        "\t\tC = A * B / 0.5 + A * A * ( 1.0 - 2.0 * B);",
+        "\t}",
+        "\telse",
+        "\t{",
+        "\t\tC = A * (1.0 - B) / 0.5 + sqrt(A) * (2.0 * B - 1.0);",
+        "\t}",
+        "\t",
+        "\treturn C;",
+        "}"
+      ],
+      "r3_claimed_block": "highp float blendColor(highp float a, highp float b)\n{\n    highp float c = 0.0;\n    if (b <= 0.5)\n    {\n        c = 2.0 * a * b + a * a * (1.0 - 2.0 * b);\n    }\n    else\n    {\n        c = 2.0 * a * (1.0 - b) + sqrt(a) * (2.0 * b - 1.0);\n    }\n    return c;\n}",
+      "discrepancies": [
+        "Function name altered: SoftLight_Fcn -> blendColor",
+        "Parameter types altered: float -> highp float",
+        "Parameter names altered: A, B -> a, b",
+        "Variable types altered: float C -> highp float c",
+        "Branch 1 expression rewritten: A * B / 0.5 -> 2.0 * a * b",
+        "Branch 2 expression rewritten: A * (1.0 - B) / 0.5 -> 2.0 * a * (1.0 - b)",
+        "R3 falsely labeled rewritten/invented block as 'Verbatim Shader Formulation (lines 13-26)'"
+      ],
+      "rational_math": {
+        "test_inputs": {
+          "A": "1/16",
+          "B": "3/4"
+        },
+        "w3c_D_A": "53/256",
+        "w3c_softlight": "69/512",
+        "w3c_decimal": 0.134765625,
+        "meitu_shader": "5/32",
+        "meitu_decimal": 0.15625,
+        "exact_difference": "11/512",
+        "difference_decimal": 0.021484375,
+        "w3c_equivalence_disproven": true
+      }
+    },
+    "model_asset_paths": {
+      "actual_ne_path": "assets/vlaimodel/libmtskinphone/Models/NE.manis",
+      "actual_ne_exists_in_apk": true,
+      "actual_ne_bytes": 107026,
+      "actual_ne_sha256": "74572848e192966d56ab312e0e2eb12c3402b3f39d4e6450f60cddefb2d98c3c",
+      "false_reported_ne_path": "assets/vlaimodel/libmtface/models/NE.manis",
+      "false_reported_ne_exists_in_apk": false,
+      "mtface_parsing_models_found": [
+        {
+          "entry": "assets/vlaimodel/libmtface/models/mtface_parsing.bin",
+          "bytes": 584286,
+          "sha256": "b5c17a63430e4b6703729c87868d8a5a8fec92d5f530532dded27a6c1e9e3ee3"
+        },
+        {
+          "entry": "assets/vlaimodel/libmtface/models/mtface_parsing_heavy.bin",
+          "bytes": 1698494,
+          "sha256": "e636eee8be1419058242f0ba8bf7189e84ada4e6e3520c92bdccccc76b6ce6c5"
+        },
+        {
+          "entry": "assets/vlaimodel/libmtface/models/mtface_parsing_light.bin",
+          "bytes": 352774,
+          "sha256": "be83f1396a79ee68a2cf4e7bb3eddda4f095dabcab59d730dbd7c604f46f7bd6"
+        }
+      ],
+      "path_conclusion": "NE.manis resides exclusively at assets/vlaimodel/libmtskinphone/Models/NE.manis. The path reported in R3 (assets/vlaimodel/libmtface/models/NE.manis) does not exist."
+    },
+    "libmanis_symbols": {
+      "readelf_file": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\RULES\\REPORT\\TASK_063_REPORT_R3\\raw\\readelf_libManis.so.stdout.txt",
+      "total_symbols_parsed": 642,
+      "total_defined_symbols_count": 303,
+      "manis_keyword_all_count": 288,
+      "manis_keyword_defined_count": 288,
+      "manis_keyword_import_count": 0,
+      "non_manis_defined_count": 15,
+      "sample_non_manis_defined_symbols": [
+        "_ZTVNSt6__ndk110__function6__funcIPFvPKfPfiiiiENS_9allocatorIS6_EES5_EE",
+        "SetGlobalCacheDir",
+        "_ZTVNSt6__ndk110__function6__funcIPFmPKhmS3_jPhENS_9allocatorIS6_EES5_EE",
+        "_ZTVNSt6__ndk120__shared_ptr_pointerIPhNS_14default_deleteIA_hEENS_9allocatorIhEEEE",
+        "_ZTVNSt6__ndk110__function6__funcIPFvPKhPhiiiENS_9allocatorIS6_EES5_EE"
+      ],
+      "r3_claim": "303 defined symbols mentioning Manis",
+      "actual_ground_truth": "Exactly 288 defined symbols mention Manis. 303 is the total defined symbol count (including 15 symbols that do not mention Manis)."
+    },
+    "ghidra_toolchain": {
+      "properties_path": "F:\\TOOLS\\ghidra_12.1.4_PUBLIC\\Ghidra\\application.properties",
+      "sha256": "e84c26b08545eee63d24a1a8a4dd7905e4209538e2e7192093877c435c64eb67",
+      "parsed_properties": {
+        "application.name": "Ghidra",
+        "application.version": "12.1.4",
+        "application.release.name": "PUBLIC",
+        "application.build.date": "2026-Sep-21 1613 UTC",
+        "application.revision.ghidra": "8b6bbb857accdfa20dc5b2f5dea471178c2e9fbc",
+        "application.layout.version": "3"
+      },
+      "synthesized_version_string": "12.1.4_PUBLIC (Build: 2026-Sep-21 1613 UTC, Rev: 8b6bbb857accdfa20dc5b2f5dea471178c2e9fbc)",
+      "r3_hardcoded_literal": "12.1.4_PUBLIC (Build: 2026-Sep-21 1613 UTC, Rev: 8b6bbb857accdfa20dc5b2f5dea471178c2e9fbc)",
+      "matches_parsed": true
+    },
+    "native_schedules": [
+      {
+        "schedule_id": "068c797c",
+        "path": "C:\\Users\\PC.DESKTOP-81LIH38\\.paseo\\schedules\\068c797c.json",
+        "sha256": "72e6f00111ada30e8a0d54d046e36621c997965c5b032c5f8e4c8b8a1cc49ffa",
+        "status": "active",
+        "target": {
+          "type": "agent",
+          "agentId": "ace29908-a2b0-4777-a070-6bd100509738"
+        },
+        "cron": null,
+        "recent_runs": [
+          {
+            "run_id": "e1c3cfec-7c7c-4fdc-83f8-e38a9729b5f5",
+            "scheduledFor": "2026-10-08T05:16:00.000Z",
+            "startedAt": "2026-10-08T05:16:00.850Z",
+            "endedAt": "2026-10-08T05:16:27.164Z",
+            "status": "failed",
+            "error_summary": "### THÔNG BÁO QUÉT NHIỆM VỤ (TASK SCANNER HEARTBEAT)\n- **Chuẩn mực gốc:** [`Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`](file:///F:/CONVERT/com.mt.mtxx.mtxx/CONVERT2/Development_Wo"
+          },
+          {
+            "run_id": "45201342-a8bf-4ae3-917b-5e4c51411b97",
+            "scheduledFor": "2026-10-08T05:17:00.000Z",
+            "startedAt": "2026-10-08T05:17:00.869Z",
+            "endedAt": "2026-10-08T05:17:52.870Z",
+            "status": "failed",
+            "error_summary": "### BÁO CÁO NHẬN PHÁN QUYẾT REVIEW CEO & TRẠNG THÁI TASK SCANNER\n**Kính gửi:** Chủ tịch Tony & Codex CEO Orchestrator (`c835368f-e9f9-41b6-88ee-8cd104245fa8`)  \n**Thực hiện bởi:** AGY Execution Lead ("
+          },
+          {
+            "run_id": "2a5e0616-6b03-4589-9135-3b59cd5157f2",
+            "scheduledFor": "2026-10-08T05:18:00.000Z",
+            "startedAt": "2026-10-08T05:18:00.829Z",
+            "endedAt": "2026-10-08T05:18:27.652Z",
+            "status": "failed",
+            "error_summary": "### THÔNG BÁO QUÉT NHIỆM VỤ (TASK SCANNER HEARTBEAT)\n- **Chuẩn mực gốc:** [`Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`](file:///F:/CONVERT/com.mt.mtxx.mtxx/CONVERT2/Development_Wo"
+          },
+          {
+            "run_id": "f26ada40-1eaa-4269-b4bb-b86c11ebb7e8",
+            "scheduledFor": "2026-10-08T05:19:00.000Z",
+            "startedAt": "2026-10-08T05:19:00.769Z",
+            "endedAt": "2026-10-08T05:23:12.805Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "99292ea3-7012-42ab-a3eb-1d1647fec85e",
+            "scheduledFor": "2026-10-08T05:24:00.000Z",
+            "startedAt": "2026-10-08T05:24:00.204Z",
+            "endedAt": null,
+            "status": "running",
+            "error_summary": null
+          }
+        ]
+      },
+      {
+        "schedule_id": "9ed2909e",
+        "path": "C:\\Users\\PC.DESKTOP-81LIH38\\.paseo\\schedules\\9ed2909e.json",
+        "sha256": "f324a856e2cba3e785669f55999f6c2cb980e2d2f46ca69b2a7414656ece0cdf",
+        "status": "active",
+        "target": {
+          "type": "agent",
+          "agentId": "c835368f-e9f9-41b6-88ee-8cd104245fa8"
+        },
+        "cron": null,
+        "recent_runs": [
+          {
+            "run_id": "b50f1667-8c1c-4cf3-adfa-159495327664",
+            "scheduledFor": "2026-10-08T04:55:00.000Z",
+            "startedAt": "2026-10-08T04:55:00.474Z",
+            "endedAt": "2026-10-08T04:56:13.116Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "cacabef0-ba8c-43b0-862f-b2c1082bf89c",
+            "scheduledFor": "2026-10-08T04:57:00.000Z",
+            "startedAt": "2026-10-08T04:57:00.764Z",
+            "endedAt": "2026-10-08T04:59:50.328Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "d2b63a50-f4a1-46c8-bd9a-f9a512c4ef1c",
+            "scheduledFor": "2026-10-08T05:00:00.000Z",
+            "startedAt": "2026-10-08T05:00:00.640Z",
+            "endedAt": "2026-10-08T05:02:08.985Z",
+            "status": "failed",
+            "error_summary": "Daemon restarted before the scheduled run completed"
+          },
+          {
+            "run_id": "733fa9b7-30e8-4060-b474-2f250fd3ae7d",
+            "scheduledFor": "2026-10-08T05:03:00.000Z",
+            "startedAt": "2026-10-08T05:03:00.737Z",
+            "endedAt": "2026-10-08T05:08:36.533Z",
+            "status": "failed",
+            "error_summary": "Daemon restarted before the scheduled run completed"
+          },
+          {
+            "run_id": "427e509c-7ac9-4455-ad57-8c5e213b739c",
+            "scheduledFor": "2026-10-08T05:09:00.000Z",
+            "startedAt": "2026-10-08T05:09:00.982Z",
+            "endedAt": null,
+            "status": "running",
+            "error_summary": null
+          }
+        ]
+      },
+      {
+        "schedule_id": "baf57b95",
+        "path": "C:\\Users\\PC.DESKTOP-81LIH38\\.paseo\\schedules\\baf57b95.json",
+        "sha256": "fc0061ebd724ee4f2a86e957b4ff273ecfc1fa8496011e4dcfe3a8eb3df573c8",
+        "status": "completed",
+        "target": {
+          "type": "agent",
+          "agentId": "811ffbb7-43ee-4f48-93ce-b25072f4540c"
+        },
+        "cron": null,
+        "recent_runs": [
+          {
+            "run_id": "d2904087-54f6-4247-85e7-263f1fa3fd5f",
+            "scheduledFor": "2026-10-07T05:02:00.000Z",
+            "startedAt": "2026-10-07T05:02:00.484Z",
+            "endedAt": "2026-10-07T05:02:07.021Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "9d198fe8-8b3f-43f0-adc8-86d6f3a1ceaa",
+            "scheduledFor": "2026-10-07T05:03:00.000Z",
+            "startedAt": "2026-10-07T05:03:00.487Z",
+            "endedAt": "2026-10-07T05:03:05.977Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "1682d4a0-df67-46e4-a056-0600e54e355b",
+            "scheduledFor": "2026-10-07T05:04:00.000Z",
+            "startedAt": "2026-10-07T05:04:00.063Z",
+            "endedAt": "2026-10-07T05:04:06.910Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "83516be2-2a9f-4673-96af-f3cae21356f1",
+            "scheduledFor": "2026-10-07T05:05:00.000Z",
+            "startedAt": "2026-10-07T05:05:00.806Z",
+            "endedAt": "2026-10-07T05:05:08.056Z",
+            "status": "succeeded",
+            "error_summary": null
+          },
+          {
+            "run_id": "bb78687d-ea08-4fe4-a912-cfcadbe06b9e",
+            "scheduledFor": "2026-10-07T05:06:00.000Z",
+            "startedAt": "2026-10-07T05:06:00.686Z",
+            "endedAt": "2026-10-07T05:06:07.870Z",
+            "status": "succeeded",
+            "error_summary": null
+          }
+        ]
+      }
+    ]
+  }
+}

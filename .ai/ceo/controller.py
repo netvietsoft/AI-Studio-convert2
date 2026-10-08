@@ -11,6 +11,7 @@ import contextlib
 import datetime as dt
 import fnmatch
 import hashlib
+import hmac
 import json
 import os
 from pathlib import Path
@@ -475,13 +476,13 @@ class Controller:
             self.event(state, "CEO_LEASE_RENEWED", expiry=target["expiry"], fencing_token=lease["fencing_token"])
             return {"lease_id": CEO_LEASE, "expiry": target["expiry"], "fencing_token": target["fencing_token"]}
 
-    def claim(self, task_id, agent_id, standard_sha):
+    def claim(self, task_id, agent_id, standard_sha, dispatch_token=None):
         with self.transaction() as (registry, state):
             if self.end_requested():
                 raise ControlError("END_AGENT_SESSION")
             tasks = self.tasks()
             try:
-                return self._claim(task_id, agent_id, standard_sha, registry, state, tasks)
+                return self._claim(task_id, agent_id, standard_sha, registry, state, tasks, dispatch_token)
             except ControlError as exc:
                 self.event(state, "CLAIM_BLOCKED", task_id, agent_id=agent_id, reason=str(exc))
                 state.setdefault("claim_failures", {})[f"{task_id}:{agent_id}"] = {
@@ -489,7 +490,7 @@ class Controller:
                 # Return persisted failure; raising inside transaction would skip the save.
                 return {"status": "BLOCKED", "task_id": task_id, "reason": str(exc)}
 
-    def _claim(self, task_id, agent_id, standard_sha, registry, state, tasks):
+    def _claim(self, task_id, agent_id, standard_sha, registry, state, tasks, dispatch_token=None):
         meta = tasks.get(task_id)
         if meta is None or meta["status"] != "ACTIVE":
             raise ControlError("TASK_NOT_ACTIVE_OR_NOT_SELECTED")
@@ -505,6 +506,15 @@ class Controller:
             assigned = agent_id in allowed_ids
         if not assigned:
             raise ControlError("TASK_ASSIGNEE_MISMATCH")
+        binding = self.config.get("claim_bindings", {}).get(agent_id)
+        if meta.get("claim_binding_required") and not binding:
+            raise ControlError("CEO_DISPATCH_BINDING_MISSING")
+        if binding:
+            if binding.get("task_id") != task_id or binding.get("revision") != meta["revision"]:
+                raise ControlError("CEO_DISPATCH_BINDING_STALE")
+            supplied = hashlib.sha256((dispatch_token or "").encode("utf-8")).hexdigest()
+            if not dispatch_token or not hmac.compare_digest(supplied, binding.get("token_sha256", "")):
+                raise ControlError("CEO_DISPATCH_BINDING_REQUIRED")
         if self.accepted(task_id, state, tasks):
             raise ControlError("TASK_ALREADY_CEO_ACCEPTED")
         if self.dependency_failures(meta, state, tasks):
@@ -519,12 +529,16 @@ class Controller:
             raise ControlError("FORBIDDEN_OR_FROZEN_WORKER_SCOPE")
         key = f"{task_id}:r{meta['revision']}"
         existing = state["claims"].get(key)
+        if existing and existing.get("status") == "REVOKED":
+            raise ControlError("REVOKED_CLAIM_REQUIRES_CEO_HANDOFF")
         if existing and existing.get("agent_id") != agent_id:
             raise ControlError("CLAIM_OWNED_BY_OTHER_AGENT_REQUIRES_CEO_HANDOFF")
         if existing and existing.get("task_sha") != meta["_task_sha"]:
             raise ControlError("TASK_CHANGED_WITHOUT_REVISION_REQUIRES_CEO_HANDOFF")
         lease_id = existing["lease_id"] if existing else f"LEASE-CEO-WORKER-{task_id}-R{meta['revision']}"
         matches = [x for x in registry.get("active_locks", []) if x.get("lease_id") == lease_id]
+        if matches and any(x.get("status") == "REVOKED" for x in matches):
+            raise ControlError("REVOKED_LEASE_REQUIRES_CEO_HANDOFF")
         if matches and (len(matches) != 1 or not existing or matches[0].get("agent_id") != agent_id or
                         matches[0].get("fencing_token") != existing.get("fencing_token")):
             raise ControlError("WORKER_LEASE_IDENTITY_OR_FENCE_MISMATCH")
@@ -555,6 +569,7 @@ class Controller:
         registry.update(updated)
         claim = {"task_id": task_id, "revision": meta["revision"], "agent_id": agent_id,
                  "lease_id": lease_id, "fencing_token": fencing, "task_sha": meta["_task_sha"],
+                 "dispatch_binding_verified": bool(binding),
                  "expiry": expiry, "standard_read_ack": {"path": str(self.root / STANDARD),
                     "sha256": required_sha, "acknowledged_at": iso(self.clock()),
                     "meaning": "Agent assertion of reading; hash verification is not proof of reading"}}
@@ -610,6 +625,7 @@ def main(argv=None):
     claim.add_argument("--task-id", required=True)
     claim.add_argument("--agent-id", required=True)
     claim.add_argument("--standard-sha", required=True)
+    claim.add_argument("--dispatch-token", help="CEO-delivered binding for workers that require it; never stored in results")
     ack = commands.add_parser("ack-review")
     ack.add_argument("--task-id", required=True)
     ack.add_argument("--fingerprint", required=True)
@@ -619,7 +635,7 @@ def main(argv=None):
     try:
         c = Controller(args.root)
         if args.command == "claim":
-            result = c.claim(args.task_id, args.agent_id, args.standard_sha)
+            result = c.claim(args.task_id, args.agent_id, args.standard_sha, args.dispatch_token)
         elif args.command == "ack-review":
             result = c.ack_review(args.task_id, args.fingerprint, args.disposition, args.review_file)
         else:

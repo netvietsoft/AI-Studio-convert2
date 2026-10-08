@@ -1,6 +1,7 @@
 """Offline governance regressions; no production, real task, registry or AGY-state writes."""
 import concurrent.futures
 import copy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -11,6 +12,40 @@ from controller import CEO_LEASE, STANDARD, Controller, ControlError, file_sha, 
 
 
 class ControllerTests(unittest.TestCase):
+    def test_revoked_claim_cannot_reactivate_old_fence(self):
+        self.task()
+        self.controller.claim('TASK_063', 'lead', self.standard_sha)
+        state = self.controller.read_json(self.controller.state_path)
+        state['claims']['TASK_063:r1'].update(status='REVOKED', expiry=0)
+        self.json('.ai/ceo/state.json', state)
+        before = file_sha(self.controller.registry)
+        result = self.controller.claim('TASK_063', 'lead', self.standard_sha)
+        self.assertEqual(result['reason'], 'REVOKED_CLAIM_REQUIRES_CEO_HANDOFF')
+        self.assertEqual(file_sha(self.controller.registry), before)
+
+    def test_dispatch_binding_cannot_be_inferred_from_public_agent_id(self):
+        self.task(assignee='lane-a', claim_binding_required=True)
+        token = 'offline-only-worker-dispatch'
+        self.config['claim_bindings'] = {'lane-a': {'task_id':'TASK_063','revision':1,
+            'token_sha256':hashlib.sha256(token.encode()).hexdigest()}}
+        self.json('.ai/ceo/config.json', self.config)
+        c = Controller(self.root, clock=lambda: self.now)
+        for supplied in (None, 'another-workers-token'):
+            self.assertEqual(c.claim('TASK_063','lane-a',self.standard_sha,supplied)['reason'], 'CEO_DISPATCH_BINDING_REQUIRED')
+        result = c.claim('TASK_063','lane-a',self.standard_sha,token)
+        self.assertEqual(result['status'],'CLAIMED')
+        self.assertTrue(result['dispatch_binding_verified'])
+        self.assertNotIn(token,json.dumps(result))
+
+    def test_dispatch_binding_is_specific_to_task_revision(self):
+        self.task(revision=2,assignee='lane-a',claim_binding_required=True)
+        token='offline-stale-dispatch'
+        self.config['claim_bindings']={'lane-a':{'task_id':'TASK_063','revision':1,
+            'token_sha256':hashlib.sha256(token.encode()).hexdigest()}}
+        self.json('.ai/ceo/config.json',self.config)
+        c=Controller(self.root,clock=lambda:self.now)
+        self.assertEqual(c.claim('TASK_063','lane-a',self.standard_sha,token)['reason'],'CEO_DISPATCH_BINDING_STALE')
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

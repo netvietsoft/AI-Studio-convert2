@@ -1,0 +1,8 @@
+case_id,target,mutation,r3_status,r3_byte_match,ref_status,ref_valid
+TC-1-POS-COMPLETE,libaicodec.so,"NONE (Original container bytes)",EXACT_PAYLOAD_MATCH,True,EXACT_PAYLOAD_MATCH,True
+TC-2-POS-PARTIAL,libmfxkit.so,"NONE (Original container prefix)",PARTIAL_CONTAINER_TRUNCATED,True,PARTIAL_CONTAINER_TRUNCATED,True
+TC-3-NEG-PAYLOAD-CORRUPTION,libaicodec.so,"Flipped bit at payload offset 308507116 (byte 0 of payload)",EXACT_PAYLOAD_MATCH,False,CORRUPTED_CRC,False
+TC-4-NEG-HEADER-CRC-CORRUPTION,libaicodec.so,"Flipped bit at header offset 308494490 (declared CRC byte 0)",EXACT_PAYLOAD_MATCH,True,CORRUPTED_CRC,False
+TC-5-NEG-UNSUPPORTED-COMPRESSION,libaicodec.so,"Set method byte at header offset 308494484 to 8",EXACT_PAYLOAD_MATCH,True,UNSUPPORTED_COMPRESSION,False
+TC-6-NEG-UNSUPPORTED-FLAGS,libaicodec.so,"Set flag byte at header offset 308494482 to 0x08",EXACT_PAYLOAD_MATCH,True,UNSUPPORTED_FLAGS,False
+TC-7-NEG-PREFIX-CORRUPTION,libmfxkit.so,"Flipped bit at prefix offset 348402156 (byte 0 of mfx prefix)",PARTIAL_CONTAINER_TRUNCATED,False,PAYLOAD_MISMATCH,False
