@@ -1,0 +1,7 @@
+# TASK_193 R2 audit index
+
+I fully reread the canonical Standard at `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt` and verified SHA-256 `10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f` before claiming or writing. I also reread `AGENTS.md`, `Docs/rules.md`, `.ai/ceo/SO45_TO_V4_PLAN.md`, project memory, task, manifest and controller state/locks/END. R2 task SHA-256 `555ee794be1651ef718d83df662269c11aef8a31a23ab71343194b750d7bcb66`; target manifest SHA-256 `44c08dc8cb67c4e3dec44dbd29726602dcd74e5be771d8ba926252c7d8e95d44`.
+
+Lease `LEASE-CEO-WORKER-TASK_193-R2` was claimed by `/root/so45_mtfilter_next`, revision 2, fence `1227`. This package is an overlay correcting only 60 `selected_zero_index` fields in the R1 summary. R1 `COMPLETE.json` SHA-256 `043a7b9232dd43630b3cf3bd9155c3bc37492e9d19230017f2f36780e49799d5` and R1 `WORKER_VERIFICATION.json` SHA-256 `df46aa0a024a4de4750d21931fca6814c805622224e4a4b6d048bf404271ab6c` remain unchanged. CEO review SHA-256 `bcad460333000d0129037deb702c6228ae6554e0cc7f88b560e2b6229719762e` records independent verifier and fresh replay of 60 original rows, 3 transient corrections and 3 rollback checks.
+
+`CORRECTION_DELTA.json` records each old/new value and canonical hash of all other row fields. `WORKER_VERIFICATION_CORRECTED.json` retains the R1 schema and all other values. `COMPLETE.json` seals all fixed R2 report/code files.
