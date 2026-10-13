@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.1.2",
+  "task_id": "TASK_149",
+  "revision": 1,
+  "program_name": "libfntvcrash.so",
+  "image_base": "0x100000",
+  "generated_at": "2026-10-13T05:30:47.895440800Z",
+  "targets": [
+    {
+      "index": 1,
+      "symbol": "JNI_OnLoad",
+      "elf_va": "0x923c",
+      "database_va": "0x10923c",
+      "size_bytes": 304,
+      "expected_source_sha256": "8d39cb0cce229c37803a159358a142b00a6fd0cfee65094dd21c940d816bcd07",
+      "ghidra_memory_sha256": "8d39cb0cce229c37803a159358a142b00a6fd0cfee65094dd21c940d816bcd07",
+      "source_bytes_match": true,
+      "instruction_count_observed": 76,
+      "decompile_success": true,
+      "elapsed_ms": 44.3867,
+      "error": "",
+      "pseudocode": "\r\nundefined4 JNI_OnLoad(long *param_1)\r\n\r\n{\r\n  long lVar1;\r\n  char cVar2;\r\n  int iVar3;\r\n  long lVar4;\r\n  undefined4 uVar5;\r\n  long *local_50;\r\n  long local_48;\r\n  \r\n  lVar1 = tpidr_el0;\r\n  local_48 = *(long *)(lVar1 + 0x28);\r\n  if (param_1 != (long *)0x0) {\r\n    uVar5 = 0x10006;\r\n    iVar3 = (**(code **)(*param_1 + 0x30))(param_1,&local_50,0x10006);\r\n    if ((((iVar3 == 0) && (local_50 != (long *)0x0)) && (*local_50 != 0)) &&\r\n       ((lVar4 = (**(code **)(*local_50 + 0x30))(local_50,\"cn/fly/tools/xcrash/NativeHandler\"),\r\n        lVar4 != 0 &&\r\n        (iVar3 = (**(code **)(*local_50 + 0x6b8))(local_50,lVar4,&PTR_s_nativeInit_00115600,7),\r\n        iVar3 == 0)))) {\r\n      DAT_00117388 = param_1;\r\n      DAT_00117370 = (**(code **)(*local_50 + 0xa8))(local_50,lVar4);\r\n      cVar2 = FUN_0010c984(*local_50,local_50);\r\n      if (cVar2 == '\\0') {\r\n        if (DAT_00117370 != 0) goto LAB_00109290;\r\n      }\r\n      else {\r\n        FUN_0010cbe8(*local_50,local_50);\r\n      }\r\n      DAT_00117370 = 0;\r\n      goto LAB_00109290;\r\n    }\r\n  }\r\n  uVar5 = 0xffffffff;\r\nLAB_00109290:\r\n  if (*(long *)(lVar1 + 0x28) != local_48) {\r\n                    /* WARNING: Subroutine does not return */\r\n    __stack_chk_fail();\r\n  }\r\n  return uVar5;\r\n}\r\n\r\n",
+      "instructions": ["0010923c: sub sp,sp,#0x50", "00109240: stp x29,x30,[sp, #0x10]", "00109244: stp x24,x23,[sp, #0x20]", "00109248: stp x22,x21,[sp, #0x30]", "0010924c: stp x20,x19,[sp, #0x40]", "00109250: add x29,sp,#0x10", "00109254: mrs x23,tpidr_el0", "00109258: ldr x8,[x23, #0x28]", "0010925c: str x8,[sp, #0x8]", "00109260: cbz x0,0x0010928c", "00109264: ldr x8,[x0]", "00109268: mov w2,#0x6", "0010926c: mov w19,#0x6", "00109270: mov x1,sp", "00109274: movk w2,#0x1, LSL #16", "00109278: mov x20,x0", "0010927c: ldr x8,[x8, #0x30]", "00109280: movk w19,#0x1, LSL #16", "00109284: blr x8", "00109288: cbz w0,0x001092bc", "0010928c: mov w19,#0xffffffff", "00109290: ldr x8,[x23, #0x28]", "00109294: ldr x9,[sp, #0x8]", "00109298: cmp x8,x9", "0010929c: b.ne 0x00109368", "001092a0: mov w0,w19", "001092a4: ldp x20,x19,[sp, #0x40]", "001092a8: ldp x22,x21,[sp, #0x30]", "001092ac: ldp x24,x23,[sp, #0x20]", "001092b0: ldp x29,x30,[sp, #0x10]", "001092b4: add sp,sp,#0x50", "001092b8: ret", "001092bc: ldr x0,[sp]", "001092c0: cbz x0,0x0010928c", "001092c4: ldr x8,[x0]", "001092c8: cbz x8,0x0010928c", "001092cc: ldr x8,[x8, #0x30]", "001092d0: adrp x1,0x102000", "001092d4: add x1,x1,#0x508", "001092d8: blr x8", "001092dc: cbz x0,0x0010928c", "001092e0: mov x22,x0", "001092e4: ldr x0,[sp]", "001092e8: nop", "001092ec: adr x2,0x115600", "001092f0: mov x1,x22", "001092f4: mov w3,#0x7", "001092f8: ldr x8,[x0]", "001092fc: ldr x8,[x8, #0x6b8]", "00109300: blr x8", "00109304: cbnz w0,0x0010928c", "00109308: ldr x21,[sp]", "0010930c: adrp x24,0x117000", "00109310: add x24,x24,#0x370", "00109314: str x20,[x24, #0x18]", "00109318: mov x1,x22", "0010931c: ldr x8,[x21]", "00109320: mov x0,x21", "00109324: ldr x8,[x8, #0xa8]", "00109328: blr x8", "0010932c: str x0,[x24]", "00109330: mov x0,x21", "00109334: ldr x8,[x21]", "00109338: bl 0x0010c984", "0010933c: tst w0,#0xff", "00109340: adrp x20,0x117000", "00109344: b.eq 0x0010935c", "00109348: ldr x8,[x21]", "0010934c: mov x0,x21", "00109350: bl 0x0010cbe8", "00109354: str xzr,[x20, #0x370]", "00109358: b 0x00109290", "0010935c: ldr x8,[x20, #0x370]", "00109360: cbnz x8,0x00109290", "00109364: b 0x00109354", "00109368: bl 0x0010d110"],
+      "calls": ["00109284 -> INDIRECT", "001092d8 -> INDIRECT", "00109300 -> INDIRECT", "00109328 -> INDIRECT", "00109338 -> 0010c984 [FUN_0010c984]", "00109350 -> 0010cbe8 [FUN_0010cbe8]", "00109368 -> 0010d110 [__stack_chk_fail]"]
+    }
+  ]
+}

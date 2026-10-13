@@ -1,0 +1,133 @@
+{
+  "task_id": "TASK_179",
+  "revision": 1,
+  "original_source_body_sha256": "fc4cf89d6b719a3d8d73009a57a1e755ca9ce11dda3bdd03da45c5b869053404",
+  "branch_and_return_edges": [
+    {
+      "from": "0x328e0",
+      "mnemonic": "b.lt",
+      "operand": "#0x32b48",
+      "target": "0x32b48",
+      "fallthrough": "0x328e4"
+    },
+    {
+      "from": "0x328f0",
+      "mnemonic": "b.lo",
+      "operand": "#0x32ab8",
+      "target": "0x32ab8",
+      "fallthrough": "0x328f4"
+    },
+    {
+      "from": "0x32938",
+      "mnemonic": "tbnz",
+      "operand": "w15, #0, #0x32ab8",
+      "target": "0x32ab8",
+      "fallthrough": "0x3293c"
+    },
+    {
+      "from": "0x32940",
+      "mnemonic": "tbnz",
+      "operand": "w10, #0, #0x32ab8",
+      "target": "0x32ab8",
+      "fallthrough": "0x32944"
+    },
+    {
+      "from": "0x32948",
+      "mnemonic": "tbnz",
+      "operand": "w10, #0, #0x32ab8",
+      "target": "0x32ab8",
+      "fallthrough": "0x3294c"
+    },
+    {
+      "from": "0x32ab0",
+      "mnemonic": "b.ne",
+      "operand": "#0x329a8",
+      "target": "0x329a8",
+      "fallthrough": "0x32ab4"
+    },
+    {
+      "from": "0x32b44",
+      "mnemonic": "b.ne",
+      "operand": "#0x32ae0",
+      "target": "0x32ae0",
+      "fallthrough": "0x32b48"
+    },
+    {
+      "from": "0x32b48",
+      "mnemonic": "ret",
+      "operand": "",
+      "target": null,
+      "fallthrough": null
+    }
+  ],
+  "basic_blocks": [
+    {
+      "entry": "0x328dc",
+      "end_exclusive": "0x328e4",
+      "instruction_count": 2,
+      "last_instruction": "b.lt #0x32b48"
+    },
+    {
+      "entry": "0x328e4",
+      "end_exclusive": "0x328f4",
+      "instruction_count": 4,
+      "last_instruction": "b.lo #0x32ab8"
+    },
+    {
+      "entry": "0x328f4",
+      "end_exclusive": "0x3293c",
+      "instruction_count": 18,
+      "last_instruction": "tbnz w15, #0, #0x32ab8"
+    },
+    {
+      "entry": "0x3293c",
+      "end_exclusive": "0x32944",
+      "instruction_count": 2,
+      "last_instruction": "tbnz w10, #0, #0x32ab8"
+    },
+    {
+      "entry": "0x32944",
+      "end_exclusive": "0x3294c",
+      "instruction_count": 2,
+      "last_instruction": "tbnz w10, #0, #0x32ab8"
+    },
+    {
+      "entry": "0x3294c",
+      "end_exclusive": "0x329a8",
+      "instruction_count": 23,
+      "last_instruction": "mov x13, x1"
+    },
+    {
+      "entry": "0x329a8",
+      "end_exclusive": "0x32ab4",
+      "instruction_count": 67,
+      "last_instruction": "b.ne #0x329a8"
+    },
+    {
+      "entry": "0x32ab4",
+      "end_exclusive": "0x32ab8",
+      "instruction_count": 1,
+      "last_instruction": "mov x0, x10"
+    },
+    {
+      "entry": "0x32ab8",
+      "end_exclusive": "0x32ae0",
+      "instruction_count": 10,
+      "last_instruction": "mov w17, #-0x124c"
+    },
+    {
+      "entry": "0x32ae0",
+      "end_exclusive": "0x32b48",
+      "instruction_count": 26,
+      "last_instruction": "b.ne #0x32ae0"
+    },
+    {
+      "entry": "0x32b48",
+      "end_exclusive": "0x32b4c",
+      "instruction_count": 1,
+      "last_instruction": "ret"
+    }
+  ],
+  "source_grounded": true,
+  "dynamic_edge_behavior_verified": false
+}
