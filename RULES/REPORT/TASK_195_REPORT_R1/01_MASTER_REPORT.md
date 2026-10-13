@@ -1,0 +1,7 @@
+# TASK_195 R1 — ImageCodec nonexport FDE indices 64..127
+
+**Result: PARTIAL static research, 64 pinned candidate ranges processed.** The original SO, FDE/PT_LOAD bodies and all 6,349 AArch64 source positions were verified. A byte-verified private analyzed Ghidra project produced 64 nonempty C-like outputs and effective p-code at 6,349 positions (22,264 operations). A deterministic spread check independently read 794/6,349 source positions (12.51%).
+
+Pre-existing function bodies cover all FDE bytes in 53/64 candidates; 11 have 114 missing analyzed instruction positions. A transient full-FDE metadata pass recovered p-code/C-like evidence for those 11 in a private read-only Ghidra process. Same-session metadata rollback views were stale; a separate fresh read-only Ghidra session reproduced the original function names, starts, body bitmaps and memory hashes for 11/11. Original and private project files remained 9/9 byte-identical to the prior sealed receipt.
+
+CALL_SITES.json records 404 original AArch64 BL-family static instruction sites with source word/address. These are syntactic call sites; indirect destinations and runtime behavior remain unverified. FDE boundaries are candidates, not proven unique source functions. This slice is 64 of 6,655 nonexport FDE candidates; 6,527 lie beyond index 127. No product behavior, binary equivalence, image/pixel parity, Phase PASS, all-45-SO completion, V4 or P7 readiness is claimed. No new import, production edit, commit or push. Independent CEO review is pending.

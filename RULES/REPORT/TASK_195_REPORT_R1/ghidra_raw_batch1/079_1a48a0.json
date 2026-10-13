@@ -1,0 +1,19 @@
+{
+  "task_id": "TASK_195", "revision": 1,
+  "generated_at": "2026-10-13T12:09:43.122481500Z",
+  "index": 79, "elf_va": "0x1a48a0", "database_va": "0x2a48a0",
+  "size_bytes": 20, "ghidra_memory_sha256": "a69e2b8cc437acfd536b1a40aefca8332bc6e97ff728d35ee7b8b12c6e26e184",
+  "instruction_slots": 5, "ghidra_instruction_count": 5, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 10,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_002a48a0", "function_start": "0x2a48a0", "function_body_min": "0x2a48a0", "function_body_max": "0x2a48b3", "function_body_total_address_count": 20,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 20, "fde_byte_membership_bits": "11111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 14, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_002a48a0(void)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  undefined8 uVar2;\r\n  \r\n  uVar1 = FUN_002a48b4(\"basic_string\");\r\n  uVar2 = __cxa_allocate_exception(0x10);\r\n  FUN_002a4904(uVar2,uVar1);\r\n  uVar1 = __cxa_throw(uVar2,&std::out_of_range::typeinfo,std::out_of_range::~out_of_range);\r\n  __cxa_free_exception(uVar2);\r\n                    /* WARNING: Subroutine does not return */\r\n  FUN_005bebfc(uVar1);\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x2a48a0", "assembly": "stp x29,x30,[sp, #-0x10]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40e8, 8)", "(unique, 0x74100, 8) COPY (register, 0x40f0, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xfffffffffffffff0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x2a48a4", "assembly": "mov x29,sp", "pcode_ops": ["(register, 0x40e8, 8) COPY (register, 0x8, 8)"]},
+    {"database_va": "0x2a48a8", "assembly": "nop", "pcode_ops": []},
+    {"database_va": "0x2a48ac", "assembly": "adr x0,0x1c03f6", "pcode_ops": ["(register, 0x4000, 8) COPY (const, 0x1c03f6, 8)"]},
+    {"database_va": "0x2a48b0", "assembly": "bl 0x002a48b4", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x2a48b0, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x2a48b4, 8)"]}
+  ]
+}
