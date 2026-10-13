@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.1.2",
+  "task_id": "TASK_149",
+  "revision": 1,
+  "program_name": "libffavc.so",
+  "image_base": "0x100000",
+  "generated_at": "2026-10-13T05:31:34.270370600Z",
+  "targets": [
+    {
+      "index": 1,
+      "symbol": "_ZN5ffavc14DecoderFactory9GetHandleEv",
+      "elf_va": "0x564a8",
+      "database_va": "0x1564a8",
+      "size_bytes": 88,
+      "expected_source_sha256": "53a84f9dfe34f66ef56d88c6f83e238394d788a21318cb9fa2270d7384d56ad6",
+      "ghidra_memory_sha256": "53a84f9dfe34f66ef56d88c6f83e238394d788a21318cb9fa2270d7384d56ad6",
+      "source_bytes_match": true,
+      "instruction_count_observed": 22,
+      "decompile_success": true,
+      "elapsed_ms": 38.2036,
+      "error": "",
+      "pseudocode": "\r\n/* ffavc::DecoderFactory::GetHandle() */\r\n\r\nundefined8 * ffavc::DecoderFactory::GetHandle(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if (((DAT_00222e58 & 1) == 0) && (iVar1 = FUN_001e223c(&DAT_00222e58), iVar1 != 0)) {\r\n    DAT_00222e50 = &PTR_FUN_00205d68;\r\n    FUN_001e2380(&DAT_00222e58);\r\n  }\r\n  return &DAT_00222e50;\r\n}\r\n\r\n",
+      "instructions": ["001564a8: stp x29,x30,[sp, #-0x10]!", "001564ac: mov x29,sp", "001564b0: nop", "001564b4: adr x8,0x222e58", "001564b8: ldarb w8,[x8]", "001564bc: tbz w8,#0x0,0x001564d0", "001564c0: nop", "001564c4: adr x0,0x222e50", "001564c8: ldp x29,x30,[sp], #0x10", "001564cc: ret", "001564d0: nop", "001564d4: adr x0,0x222e58", "001564d8: bl 0x001e223c", "001564dc: cbz w0,0x001564c0", "001564e0: adrp x8,0x222000", "001564e4: adrp x9,0x205000", "001564e8: add x9,x9,#0xd68", "001564ec: nop", "001564f0: adr x0,0x222e58", "001564f4: str x9,[x8, #0xe50]", "001564f8: bl 0x001e2380", "001564fc: b 0x001564c0"],
+      "calls": ["001564d8 -> 001e223c [FUN_001e223c]", "001564f8 -> 001e2380 [FUN_001e2380]"]
+    },
+    {
+      "index": 2,
+      "symbol": "Java_org_ffavc_DecoderFactory_GetHandle",
+      "elf_va": "0x56548",
+      "database_va": "0x156548",
+      "size_bytes": 4,
+      "expected_source_sha256": "d4c6553ae18a58da3e6c5b315bb7fb463fb5e0fd64e0b9d63ba2b17525eccd09",
+      "ghidra_memory_sha256": "d4c6553ae18a58da3e6c5b315bb7fb463fb5e0fd64e0b9d63ba2b17525eccd09",
+      "source_bytes_match": true,
+      "instruction_count_observed": 1,
+      "decompile_success": true,
+      "elapsed_ms": 2.686,
+      "error": "",
+      "pseudocode": "\r\nvoid ffavc::DecoderFactory::Java_org_ffavc_DecoderFactory_GetHandle(void)\r\n\r\n{\r\n  GetHandle();\r\n  return;\r\n}\r\n\r\n",
+      "instructions": ["00156548: b 0x002017b0"],
+      "calls": []
+    }
+  ]
+}

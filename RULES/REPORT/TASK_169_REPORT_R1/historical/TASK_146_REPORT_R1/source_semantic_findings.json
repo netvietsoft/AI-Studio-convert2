@@ -1,0 +1,261 @@
+{
+  "schema_version": "2.1.2",
+  "task_id": "TASK_146",
+  "revision": 1,
+  "generated_at": "2026-10-13T05:13:28.480757Z",
+  "lease_id": "LEASE-CEO-WORKER-TASK_146-R1",
+  "fencing_token": 1174,
+  "source_sha256": "ef8d1581038778b72abca3ca8fd5046e49fd44e0465871b023647fe42a582262",
+  "small_body_instructions": {
+    "nGetHairCleanAlpha": {
+      "va": "0x2d1138",
+      "file_offset": "0x2d1138",
+      "raw_hex": "400040fdc0035fd6",
+      "instructions": [
+        "ldr d0, [x2]",
+        "ret"
+      ]
+    },
+    "nSetHairCleanAlpha": {
+      "va": "0x2d1140",
+      "file_offset": "0x2d1140",
+      "raw_hex": "400000fdc0035fd6",
+      "instructions": [
+        "str d0, [x2]",
+        "ret"
+      ]
+    },
+    "needFace": {
+      "va": "0x3f94f4",
+      "file_offset": "0x3f94f4",
+      "raw_hex": "20008052c0035fd6",
+      "instructions": [
+        "mov w0, #1",
+        "ret"
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "L1",
+      "classification": "OBSERVED",
+      "statement": "The selected JNI hair-clean-alpha get/set bodies each have two source instructions: load or store the double register d0 at the pointer in x2, then return.",
+      "anchors": {
+        "get": {
+          "va": "0x2d1138",
+          "file_offset": "0x2d1138",
+          "raw_hex": "400040fdc0035fd6",
+          "instructions": [
+            "ldr d0, [x2]",
+            "ret"
+          ]
+        },
+        "set": {
+          "va": "0x2d1140",
+          "file_offset": "0x2d1140",
+          "raw_hex": "400000fdc0035fd6",
+          "instructions": [
+            "str d0, [x2]",
+            "ret"
+          ]
+        }
+      },
+      "limits": "These two bodies contain no clamp or validity check; caller-side validation, pointer meaning, and range are unknown."
+    },
+    {
+      "id": "L2",
+      "classification": "OBSERVED",
+      "statement": "CLFDenseHairProcessor::needFace is a two-instruction constant-one return body in this SO.",
+      "anchors": {
+        "va": "0x3f94f4",
+        "file_offset": "0x3f94f4",
+        "raw_hex": "20008052c0035fd6",
+        "instructions": [
+          "mov w0, #1",
+          "ret"
+        ]
+      },
+      "limits": "This specific method does not establish overall face-dependency behavior in external modules."
+    },
+    {
+      "id": "L3",
+      "classification": "OBSERVED",
+      "statement": "The 12,980-byte CLFDenseHairProcessor::applyLayer body decodes to 3,245 AArch64 instructions and includes source/PLT/GOT/relocation-backed calls to hair mask, dye material/alpha, hair effect, AI request, and renderer methods.",
+      "anchors": {
+        "va": "0x3f94fc",
+        "source_body_sha256": "ab9fb919f6ba063263dcd29d8eaa157e0eb3615d3adb6741769aa89f1618c5e9",
+        "call_resolution_counts": {
+          "DIRECT_PLT_GOT_RELOCATION_VERIFIED": 243,
+          "DIRECT_UNMAPPED": 79,
+          "DIRECT_DEFINED_SYMBOL": 59,
+          "INDIRECT_UNVERIFIED": 30
+        },
+        "selected_verified_calls": {
+          "CMTIKHairFilter21setDyeHairRenderAlpha": [
+            {
+              "callsite_va": "0x3facf8",
+              "mnemonic": "bl",
+              "operand": "#0x52b680",
+              "target_va": "0x52b680",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter21setDyeHairRenderAlphaEf"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c1a8"
+            },
+            {
+              "callsite_va": "0x3fb9c0",
+              "mnemonic": "bl",
+              "operand": "#0x52b680",
+              "target_va": "0x52b680",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter21setDyeHairRenderAlphaEf"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c1a8"
+            }
+          ],
+          "CMTIKHairFilter16setHairMaskImage": [
+            {
+              "callsite_va": "0x3fb7d8",
+              "mnemonic": "bl",
+              "operand": "#0x52b6b0",
+              "target_va": "0x52b6b0",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter16setHairMaskImageENSt6__ndk110shared_ptrINS_5ImageEEEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c1c0"
+            }
+          ],
+          "CMTIKHairFilter22setDyeHairMaterialInfo": [
+            {
+              "callsite_va": "0x3fb938",
+              "mnemonic": "bl",
+              "operand": "#0x52b6d0",
+              "target_va": "0x52b6d0",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter22setDyeHairMaterialInfoENS_11DyeHairInfoEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c1d0"
+            }
+          ],
+          "CMTIKHairFilter15applyHairEffect": [
+            {
+              "callsite_va": "0x3fa714",
+              "mnemonic": "bl",
+              "operand": "#0x52b640",
+              "target_va": "0x52b640",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter15applyHairEffectEiNSt6__ndk110shared_ptrINS_5ImageEEE"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c188"
+            }
+          ],
+          "CMTIKHairFilter18hairColorAIRequest": [
+            {
+              "callsite_va": "0x3facb0",
+              "mnemonic": "bl",
+              "operand": "#0x52b670",
+              "target_va": "0x52b670",
+              "callee_names": [
+                "_ZN12MTImageKitNS15CMTIKHairFilter18hairColorAIRequestEiNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54c1a0"
+            }
+          ],
+          "CMTIKManager13processRender": [
+            {
+              "callsite_va": "0x3f9f8c",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            },
+            {
+              "callsite_va": "0x3fa138",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            },
+            {
+              "callsite_va": "0x3fa18c",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            },
+            {
+              "callsite_va": "0x3fa974",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            },
+            {
+              "callsite_va": "0x3fad0c",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            },
+            {
+              "callsite_va": "0x3fb9d4",
+              "mnemonic": "bl",
+              "operand": "#0x52aac0",
+              "target_va": "0x52aac0",
+              "callee_names": [
+                "_ZN12MTImageKitNS12CMTIKManager13processRenderEb"
+              ],
+              "resolution": "DIRECT_PLT_GOT_RELOCATION_VERIFIED",
+              "got_offset": "0x54bbc8"
+            }
+          ]
+        }
+      },
+      "limits": "Callsite presence does not prove branch execution, parameter meanings, GPU formula, or pixels. Thirty indirect call targets remain unresolved in this body."
+    },
+    {
+      "id": "L4",
+      "classification": "BLOCKED_INPUT",
+      "statement": "libmtImageKit.so is DT_NEEDED but absent from the current SO45 directory; selected CMTIKHairFilter calls are undefined imports in libLayerFlow.so.",
+      "anchors": {
+        "dependency": "libmtImageKit.so",
+        "required_undefined_fragments": [
+          "CMTIKHairFilter21setDyeHairRenderAlpha",
+          "CMTIKHairFilter16setHairMaskImage",
+          "CMTIKHairFilter22setDyeHairMaterialInfo",
+          "CMTIKHairFilter15applyHairEffect",
+          "CMTIKHairFilter18hairColorAIRequest",
+          "CMTIKManager13processRender"
+        ]
+      },
+      "limits": "Absence is limited to this 45-SO input set; the provider may exist in another original distribution."
+    }
+  ],
+  "external_pixel_or_model_math_recovered": false
+}
