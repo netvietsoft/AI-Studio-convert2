@@ -1,0 +1,24 @@
+{
+  "task_id": "TASK_183", "revision": 1,
+  "generated_at": "2026-10-13T09:47:15.332239700Z",
+  "index": 51, "elf_va": "0x12904", "database_va": "0x112904",
+  "size_bytes": 48, "ghidra_memory_sha256": "3a93b66333036de47d3c8bab19ff2804403a94c6bfa9d306a1e6113bd2d3a3a2",
+  "instruction_slots": 12, "ghidra_instruction_count": 12, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 46,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_RANGE_UNPROVEN", "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00112904", "function_start": "0x112904", "function_body_min": "0x112904", "function_body_max": "0x112933",
+  "decompile_elapsed_ms": 3, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nchar * FUN_00112904(int param_1)\r\n\r\n{\r\n  if (param_1 + 2U < 0x62) {\r\n    return &DAT_001063bc + *(int *)(&DAT_001063bc + (ulong)(param_1 + 2U) * 4);\r\n  }\r\n  return \"unknown register\";\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x112904", "assembly": "bti c", "pcode_ops": []},
+    {"database_va": "0x112908", "assembly": "add w8,w0,#0x2", "pcode_ops": ["(unique, 0x22e00, 4) COPY (const, 0x2, 4)", "(register, 0x105, 1) INT_CARRY (register, 0x4000, 4) , (unique, 0x22e00, 4)", "(register, 0x106, 1) INT_SCARRY (register, 0x4000, 4) , (unique, 0x22e00, 4)", "(unique, 0x23000, 4) INT_ADD (register, 0x4000, 4) , (unique, 0x22e00, 4)", "(register, 0x107, 1) INT_SLESS (unique, 0x23000, 4) , (const, 0x0, 4)", "(register, 0x108, 1) INT_EQUAL (unique, 0x23000, 4) , (const, 0x0, 4)", "(register, 0x4040, 8) INT_ZEXT (unique, 0x23000, 4)"]},
+    {"database_va": "0x11290c", "assembly": "cmp w8,#0x61", "pcode_ops": ["(unique, 0x38b00, 4) COPY (const, 0x61, 4)", "(register, 0x105, 1) INT_LESSEQUAL (const, 0x61, 4) , (register, 0x4040, 4)", "(register, 0x106, 1) INT_SBORROW (register, 0x4040, 4) , (const, 0x61, 4)", "(unique, 0x38d00, 4) INT_SUB (register, 0x4040, 4) , (unique, 0x38b00, 4)", "(register, 0x107, 1) INT_SLESS (unique, 0x38d00, 4) , (const, 0x0, 4)", "(register, 0x108, 1) INT_EQUAL (unique, 0x38d00, 4) , (const, 0x0, 4)", "(register, 0x100, 1) COPY (register, 0x107, 1)", "(register, 0x101, 1) COPY (register, 0x108, 1)", "(register, 0x102, 1) COPY (register, 0x105, 1)", "(register, 0x103, 1) COPY (register, 0x106, 1)"]},
+    {"database_va": "0x112910", "assembly": "b.hi 0x00112928", "pcode_ops": ["(unique, 0x1b00, 1) BOOL_NEGATE (register, 0x101, 1)", "(unique, 0x1d00, 1) BOOL_AND (register, 0x102, 1) , (unique, 0x1b00, 1)", " ---  CBRANCH (ram, 0x112928, 8) , (unique, 0x1d00, 1)"]},
+    {"database_va": "0x112914", "assembly": "nop", "pcode_ops": []},
+    {"database_va": "0x112918", "assembly": "adr x9,0x1063bc", "pcode_ops": ["(register, 0x4048, 8) COPY (const, 0x1063bc, 8)"]},
+    {"database_va": "0x11291c", "assembly": "ldrsw x8,[x9, w8, UXTW #0x2]", "pcode_ops": ["(unique, 0xab00, 8) INT_ZEXT (register, 0x4040, 4)", "(unique, 0xd900, 8) COPY (unique, 0xab00, 8)", "(unique, 0xd900, 8) INT_LEFT (unique, 0xd900, 8) , (const, 0x2, 8)", "(unique, 0xe400, 8) INT_ADD (register, 0x4048, 8) , (unique, 0xd900, 8)", "(unique, 0x4d200, 4) LOAD (const, 0x1b1, 8) , (unique, 0xe400, 8)", "(register, 0x4040, 8) INT_SEXT (unique, 0x4d200, 4)"]},
+    {"database_va": "0x112920", "assembly": "add x0,x9,x8", "pcode_ops": ["(unique, 0x24000, 8) COPY (register, 0x4040, 8)", "(register, 0x105, 1) INT_CARRY (register, 0x4048, 8) , (unique, 0x24000, 8)", "(register, 0x106, 1) INT_SCARRY (register, 0x4048, 8) , (unique, 0x24000, 8)", "(unique, 0x24200, 8) INT_ADD (register, 0x4048, 8) , (unique, 0x24000, 8)", "(register, 0x107, 1) INT_SLESS (unique, 0x24200, 8) , (const, 0x0, 8)", "(register, 0x108, 1) INT_EQUAL (unique, 0x24200, 8) , (const, 0x0, 8)", "(register, 0x4000, 8) COPY (unique, 0x24200, 8)"]},
+    {"database_va": "0x112924", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]},
+    {"database_va": "0x112928", "assembly": "adrp x0,0x105000", "pcode_ops": ["(register, 0x4000, 8) COPY (const, 0x105000, 8)"]},
+    {"database_va": "0x11292c", "assembly": "add x0,x0,#0xe14", "pcode_ops": ["(unique, 0x23600, 8) COPY (const, 0xe14, 8)", "(register, 0x105, 1) INT_CARRY (register, 0x4000, 8) , (unique, 0x23600, 8)", "(register, 0x106, 1) INT_SCARRY (register, 0x4000, 8) , (unique, 0x23600, 8)", "(unique, 0x23800, 8) INT_ADD (register, 0x4000, 8) , (unique, 0x23600, 8)", "(register, 0x107, 1) INT_SLESS (unique, 0x23800, 8) , (const, 0x0, 8)", "(register, 0x108, 1) INT_EQUAL (unique, 0x23800, 8) , (const, 0x0, 8)", "(register, 0x4000, 8) COPY (unique, 0x23800, 8)"]},
+    {"database_va": "0x112930", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

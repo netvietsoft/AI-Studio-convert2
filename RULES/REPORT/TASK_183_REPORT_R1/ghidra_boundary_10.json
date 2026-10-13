@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK_183", "revision": 1, "index": 10,
+  "generated_at": "2026-10-13T09:49:12.554300500Z",
+  "elf_va": "0xe724", "size_bytes": 80,
+  "memory_sha256": "f629ed5510c08e0a84ba8de78c755467f3a12e61f3de620dae26771549583088", "memory_unchanged_after_rollback": true,
+  "old_function_body_end": "0x10e75f", "old_analyzed_instruction_slots": 15,
+  "temporary_old_function_removed": true, "temporary_full_fde_function_created": true,
+  "full_fde_instruction_count": 20, "full_fde_pcode_ops": 37,
+  "decompile_elapsed_ms": 69, "c_like_nonempty": true, "error": "", "c_like_text": "\r\nvoid task183_full_fde_candidate_10(undefined8 param_1)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  \r\n  uVar1 = __cxa_allocate_exception(0x10);\r\n  FUN_0010e774(uVar1,param_1);\r\n                    /* WARNING: Subroutine does not return */\r\n  __cxa_throw(uVar1,&std::length_error::typeinfo,std::length_error::~length_error);\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x10e724", "assembly": "stp x29,x30,[sp, #-0x20]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40e8, 8)", "(unique, 0x74100, 8) COPY (register, 0x40f0, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xffffffffffffffe0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x10e728", "assembly": "stp x20,x19,[sp, #0x10]", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40a0, 8)", "(unique, 0x74100, 8) COPY (register, 0x4098, 8)", "(unique, 0xf000, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xf000, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (unique, 0xf000, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x10e72c", "assembly": "mov x29,sp", "pcode_ops": ["(register, 0x40e8, 8) COPY (register, 0x8, 8)"]},
+    {"database_va": "0x10e730", "assembly": "mov x20,x0", "pcode_ops": ["(register, 0x40a0, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x10e734", "assembly": "mov w0,#0x10", "pcode_ops": ["(register, 0x4000, 8) COPY (const, 0x10, 8)"]},
+    {"database_va": "0x10e738", "assembly": "bl 0x00113340", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x10e738, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x113340, 8)"]},
+    {"database_va": "0x10e73c", "assembly": "mov x19,x0", "pcode_ops": ["(register, 0x4098, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x10e740", "assembly": "mov x1,x20", "pcode_ops": ["(register, 0x4008, 8) COPY (register, 0x40a0, 8)"]},
+    {"database_va": "0x10e744", "assembly": "bl 0x0010e774", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x10e744, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x10e774, 8)"]},
+    {"database_va": "0x10e748", "assembly": "adrp x1,0x117000", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0x117000, 8)"]},
+    {"database_va": "0x10e74c", "assembly": "adrp x2,0x117000", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x117000, 8)"]},
+    {"database_va": "0x10e750", "assembly": "mov x0,x19", "pcode_ops": ["(register, 0x4000, 8) COPY (register, 0x4098, 8)"]},
+    {"database_va": "0x10e754", "assembly": "ldr x1,[x1, #0x7d0]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4008, 8) , (const, 0x7d0, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x10e758", "assembly": "ldr x2,[x2, #0x7d8]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4010, 8) , (const, 0x7d8, 8)", "(register, 0x4010, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x10e75c", "assembly": "bl 0x00113350", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x10e75c, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x113350, 8)"]},
+    {"database_va": "0x10e760", "assembly": "mov x20,x0", "pcode_ops": ["(register, 0x40a0, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x10e764", "assembly": "mov x0,x19", "pcode_ops": ["(register, 0x4000, 8) COPY (register, 0x4098, 8)"]},
+    {"database_va": "0x10e768", "assembly": "bl 0x00113360", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x10e768, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x113360, 8)"]},
+    {"database_va": "0x10e76c", "assembly": "mov x0,x20", "pcode_ops": ["(register, 0x4000, 8) COPY (register, 0x40a0, 8)"]},
+    {"database_va": "0x10e770", "assembly": "bl 0x0010eda0", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x10e770, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x10eda0, 8)"]}
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "task_id": "TASK_183",
+  "revision": 1,
+  "only_candidate_index": 10,
+  "lease_id": "LEASE-CEO-WORKER-TASK_183-R1",
+  "fencing_token": 1212,
+  "reason": "FDE 80 bytes versus pre-existing Ghidra function 60 bytes",
+  "script_sha256": "ffe1cc236ec820ed413e4d1e20aed1f69ecf0aed7c46a1af5b3305fbf3572272",
+  "command": [
+    "F:\\TOOLS\\ghidra_12.1.4_PUBLIC\\support\\analyzeHeadless.bat",
+    "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\RESEARCH_WORK\\TASK_183_R1\\ghidra_project",
+    "SmallLib153",
+    "-process",
+    "libMTGif.so",
+    "-noanalysis",
+    "-readOnly",
+    "-max-cpu",
+    "1",
+    "-scriptPath",
+    "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\scripts\\task_183_codex_internal",
+    "-postScript",
+    "RepairBoundary183.java",
+    "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\RULES\\REPORT\\TASK_183_REPORT_R1\\ghidra_boundary_10.json"
+  ],
+  "max_cpu": 1,
+  "max_heap": "1G",
+  "max_process_seconds": 1200,
+  "max_decompile_seconds": 10,
+  "started_at": "2026-10-13T09:48:57.371047Z",
+  "status": "OUTPUT_READY",
+  "ended_at": "2026-10-13T09:49:12.895659Z",
+  "elapsed_seconds": 15.516,
+  "exit_code": 0,
+  "stdout_sha256": "06dc8a5007e05ba80b26ebd3c4edbd30d565e3fc1d1fe417a73ce0ba38fd2049",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result_sha256": "a7444deabf61bbbf6e6ca29ef8645693b9bcfa46663abd10e93adf062fa41101",
+  "observed": {
+    "full_fde_instruction_count": 20,
+    "full_fde_pcode_ops": 37,
+    "c_like_nonempty": true,
+    "error": ""
+  }
+}

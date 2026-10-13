@@ -1,0 +1,16 @@
+{
+  "task_id": "TASK_183", "revision": 1,
+  "generated_at": "2026-10-13T09:58:41.455981700Z",
+  "index": 29, "elf_va": "0xf758", "database_va": "0x10f758",
+  "size_bytes": 16, "ghidra_memory_sha256": "3e7b3cb57e98770ba0bbacd55843ec82663f9257b7eb1244fa6b3f2f14fb0004",
+  "instruction_slots": 4, "ghidra_instruction_count": 4, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 14,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_RANGE_UNPROVEN", "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_0010f758", "function_start": "0x10f758", "function_body_min": "0x10f758", "function_body_max": "0x10f767",
+  "decompile_elapsed_ms": 1, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_0010f758(undefined8 param_1,long param_2,int param_3)\r\n\r\n{\r\n  *(undefined8 *)(param_2 + (long)param_3 * 8 + -0xe0) = param_1;\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x10f758", "assembly": "bti c", "pcode_ops": []},
+    {"database_va": "0x10f75c", "assembly": "add x8,x0,w1, SXTW  #0x3", "pcode_ops": ["(unique, 0xb800, 8) INT_SEXT (register, 0x4008, 4)", "(unique, 0xba00, 8) COPY (unique, 0xb800, 8)", "(unique, 0xba00, 8) INT_LEFT (unique, 0xba00, 8) , (const, 0x3, 8)", "(unique, 0x22700, 8) COPY (unique, 0xba00, 8)", "(register, 0x105, 1) INT_CARRY (register, 0x4000, 8) , (unique, 0x22700, 8)", "(register, 0x106, 1) INT_SCARRY (register, 0x4000, 8) , (unique, 0x22700, 8)", "(unique, 0x22900, 8) INT_ADD (register, 0x4000, 8) , (unique, 0x22700, 8)", "(register, 0x107, 1) INT_SLESS (unique, 0x22900, 8) , (const, 0x0, 8)", "(register, 0x108, 1) INT_EQUAL (unique, 0x22900, 8) , (const, 0x0, 8)", "(register, 0x4040, 8) COPY (unique, 0x22900, 8)"]},
+    {"database_va": "0x10f760", "assembly": "stur d0,[x8, #-0xe0]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4040, 8) , (const, 0xffffffffffffff20, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xcc00, 8) , (register, 0x5000, 8)"]},
+    {"database_va": "0x10f764", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

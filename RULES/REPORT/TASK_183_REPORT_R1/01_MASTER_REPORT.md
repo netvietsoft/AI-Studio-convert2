@@ -1,0 +1,7 @@
+# TASK_183 R1 — MTGif nonexport unwind candidates
+
+**Result: PARTIAL static research with all 51 pinned candidates processed.** The original `libMTGif.so` SHA-256 and all 51 exact nonexport `.eh_frame` FDE ranges were rechecked against original PT_LOAD bytes. All 3,990 AArch64 instruction words and 13,120 Ghidra p-code operations at 3,990 positions are present. All 51 candidates have nonempty Ghidra C-like text. A deterministic spread check independently re-read 504/3,990 (12.63%) instruction words, positions and p-code hashes. Source/project provenance, raw commands/logs and per-candidate JSON are in this package. No fresh import or prior export rerun occurred.
+
+For 50 candidates, the pre-existing Ghidra function body matches the FDE byte range. Candidate #10 at ELF VA `0xe724` has an 80-byte FDE, but its pre-existing function ends after 60 bytes. A transient full-FDE function in the owned project copy recovered instruction/p-code positions **20/20**, then rolled back. Its C-like still omits the five-instruction exception tail at `0xe760..0xe770` after a noreturn throw. Therefore C-like output is nonempty **51/51**, but whole-FDE C-like representation is unproven for #10 and may omit optimized/unreachable operations elsewhere. The FDE starts are candidate boundaries, not a proven complete internal-function census.
+
+No function behavior, binary equivalence, image/pixel parity, product integration, Phase PASS, all-45-SO completion or V4 readiness is claimed. Independent CEO review is pending.
