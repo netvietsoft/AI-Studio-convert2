@@ -1,0 +1,15 @@
+# TASK_200 R1 - bounded final PVGColorFunctions nonexport FDE slice
+
+The exact zero-based VA-sorted nonexport FDE slice **640..671** contains 32 ranges, 3,615 AArch64 instruction positions and 14,460 original bytes in pinned `libPVGColorFunctions.so`. No index in this slice exceeds 4,096 bytes. Earlier index 505 remains unanalysed and index 506 remains PARTIAL in TASK_194; index 556 and five boundary-PARTIAL rows in TASK_196 remain open; indices 620 and 625 remain PARTIAL in TASK_198. The ELF has 753 FDE ranges, 81 defined nonzero-size function export starts and 672 nonexport FDE candidates. This slice is the last 32 VA-sorted nonexport candidates; prior exclusions and partial boundaries remain unsolved. FDE ranges are unwind metadata, not proof of unique complete source functions. No one-instruction FDE candidates occur in this slice.
+
+All 32 original FDE ranges, PT_LOAD translations and body SHA-256 values match the manifest; Capstone decoded 3,615/3,615 positions. The accepted TASK_198 analyzed Ghidra project was copied byte-for-byte to private scratch and all nine project file hashes matched before and after two sequential read-only headless runs. The runs used `-max-cpu 1`, a configured 1 GiB heap, no fresh import, a 20-minute cap per process and 10 seconds per decompile. Raw command, log and candidate outputs are retained.
+
+Ghidra memory SHA matches 32/32 original bodies. Listing coverage is **3,615/3,615** positions; p-code appears on **3,420/3,615** positions, with 12,074 operations. C-like text exists for 32/32 original Ghidra function objects; **32/32** have whole-byte Ghidra function-body membership exactly equal to the corresponding FDE range. **0** rows have missing FDE body bytes and **0** have extra Ghidra body bytes. Boundary classifications: `{'GHIDRA_BODY_EQUALS_FDE_RANGE': 32}`. Gap rows, if any:
+
+None in this slice.
+
+No FDE body bytes are missing from Ghidra function bodies in this slice. No other function metadata was removed, and no transient function correction was attempted. Full per-byte membership bitmaps, body/missing/extra ranges, instruction and p-code text, C-like text/hash, calls and failures are preserved per row in the raw NDJSON.
+
+The task verifier independently reparsed the original ELF and rechecked all 32 FDE/PT_LOAD/body hashes, all 3,615 source Capstone positions, all 32 Ghidra memory hashes and per-byte body membership claims, 3,615 Ghidra slot records and 32 C-like hashes. Its 508 distinct spread source-word checks cover 14.05% of instruction positions; each sampled source word is recorded. This is an internal consistency check of the preserved Ghidra output; the CEO has not yet independently replayed Ghidra.
+
+Research disposition: **BOUNDED_STATIC_FDE_MATCH** for this exact FDE candidate slice. Dynamic behavior, call semantics, pixel/device parity, product Phase PASS, V4/P7 and completion of all 45 SOs are unestablished. `PROJECT_ERROR.md` and `ACQUIREMENTS.md` were consulted but this lease does not permit edits to them. No AGY, self-review, commit or push occurred.
