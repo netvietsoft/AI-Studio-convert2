@@ -1,0 +1,26 @@
+{
+  "task_id": "TASK_188", "revision": 1,
+  "generated_at": "2026-10-13T11:03:49.598715300Z",
+  "index": 33, "elf_va": "0x8c98", "database_va": "0x108c98",
+  "size_bytes": 52, "ghidra_memory_sha256": "bc9e9d43c6657f011be098c470a7e57dd1d8bfebd76e7df2637f057e8035857a",
+  "instruction_slots": 13, "ghidra_instruction_count": 13, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 24,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00108c98", "function_start": "0x108c98", "function_body_min": "0x108c98", "function_body_max": "0x108ccb", "function_body_total_address_count": 52,
+  "fde_byte_membership_count": 52, "fde_byte_membership_bits": "1111111111111111111111111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 6, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_00108c98(void)\r\n\r\n{\r\n  bad_array_new_length *this;\r\n  \r\n  this = (bad_array_new_length *)__cxa_allocate_exception(8);\r\n  std::bad_array_new_length::bad_array_new_length(this);\r\n                    /* WARNING: Subroutine does not return */\r\n  __cxa_throw(this,&std::bad_array_new_length::typeinfo,\r\n              std::bad_array_new_length::~bad_array_new_length);\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x108c98", "assembly": "stp x29,x30,[sp, #-0x20]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40e8, 8)", "(unique, 0x74100, 8) COPY (register, 0x40f0, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xffffffffffffffe0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x108c9c", "assembly": "str x19,[sp, #0x10]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xc300, 8) , (register, 0x4098, 8)"]},
+    {"database_va": "0x108ca0", "assembly": "mov x29,sp", "pcode_ops": ["(register, 0x40e8, 8) COPY (register, 0x8, 8)"]},
+    {"database_va": "0x108ca4", "assembly": "mov w0,#0x8", "pcode_ops": ["(register, 0x4000, 8) COPY (const, 0x8, 8)"]},
+    {"database_va": "0x108ca8", "assembly": "bl 0x001107b0", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x108ca8, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x1107b0, 8)"]},
+    {"database_va": "0x108cac", "assembly": "mov x19,x0", "pcode_ops": ["(register, 0x4098, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x108cb0", "assembly": "bl 0x00110a60", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x108cb0, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x110a60, 8)"]},
+    {"database_va": "0x108cb4", "assembly": "adrp x1,0x115000", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0x115000, 8)"]},
+    {"database_va": "0x108cb8", "assembly": "adrp x2,0x115000", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x115000, 8)"]},
+    {"database_va": "0x108cbc", "assembly": "mov x0,x19", "pcode_ops": ["(register, 0x4000, 8) COPY (register, 0x4098, 8)"]},
+    {"database_va": "0x108cc0", "assembly": "ldr x1,[x1, #0x1c0]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4008, 8) , (const, 0x1c0, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x108cc4", "assembly": "ldr x2,[x2, #0x1c8]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4010, 8) , (const, 0x1c8, 8)", "(register, 0x4010, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x108cc8", "assembly": "bl 0x001107c0", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x108cc8, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x1107c0, 8)"]}
+  ]
+}
