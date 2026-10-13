@@ -1,0 +1,5 @@
+# TASK_204 R2 — corrected p-code coverage
+
+**Result: PARTIAL static research.** The immutable R1 evidence has **10,943 instruction listings**, of which **10,746 positions have at least one emitted p-code operation** and **197 have an empty p-code list**. The **37,532 total p-code operations** and 127 nonempty C-like outputs remain unchanged. Empty listings are 24 NOP, 96 BTI, 29 PACIASP, 46 AUTIASP, one AUTIB1716 and one AUTIA1716. Of 1,382 deterministic spread listings, 1,332 have nonempty p-code (12.40% of all 10,746 nonempty positions).
+
+The 173 BTI/PAC/AUT empty records need machine-level interpretation; their semantics are not established by empty p-code or C-like text alone. Original source words, FDE/PT_LOAD mappings, 540 direct/77 indirect calls, 123 original full-body memberships, four transient boundary assumptions with fresh-session rollback proof, nine project hashes and all 314 R1 manifest hashes remain unchanged. This overlay corrects coverage labels only. It does not establish full unique functions, functional/pixel parity, all-45-SO completion, Phase PASS, V4 or P7 readiness. Independent CEO review is pending.

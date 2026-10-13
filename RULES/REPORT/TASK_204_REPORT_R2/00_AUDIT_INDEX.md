@@ -1,0 +1,5 @@
+# TASK_204 R2 audit index
+
+Canonical Standard fully reread: `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`; SHA-256 `10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f`. R2 task SHA-256 `5a72c775e94aabc3888023e913655d7058257d667e2e8ca4dcaced2d64bdcce0`; target manifest SHA-256 `548a3f83bf498b047d34dd77e707c00d3644d1c8780eef4e71d8e43802874793`. Worker `/root/so45_mtfilter_next`; lease `LEASE-CEO-WORKER-TASK_204-R2`; fencing token `1243`.
+
+Immutable R1 COMPLETE SHA-256 `edbbc77985569a49089745f51c672b807cc428bab307566c697551e49de7b710` and CEO NEEDS_FIX review SHA-256 `c41315ed4cd882867982b3de7f16f832d3ef5b343ad26ed05c4769fca0b4d391`. R1 inventory rehashed: 288 report, 11 code, 15 scratch. Every original/effective Ghidra instruction-p-code record was reparsed from the 127 pinned R1 raw candidates and four corrected overlays. `CORRECTED_COVERAGE.json` gives all per-candidate and empty-position records. `R1_TO_R2_DELTA.json` names corrected labels and unchanged critical claims.

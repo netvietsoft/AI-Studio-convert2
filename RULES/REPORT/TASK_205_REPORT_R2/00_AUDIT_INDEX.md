@@ -1,0 +1,7 @@
+# TASK_205 R2 — audit index
+
+Canonical Standard read in full: `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`; SHA-256 `10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f`. AGENTS.md, Docs/rules.md, SO45_TO_V4_PLAN.md, config/state/locks/END and exact R2 task read. R2 task SHA `aa2ea858233747e6c128a43e1f60b1d72dcc41a2a5f4c19bbc16a416c4a53e09`; target manifest SHA `fb7fc5d6f7ef0bb067a0989263bffc60b75a1be40e3ac2c39b9c7759b8666d12`. Valid lease `LEASE-CEO-WORKER-TASK_205-R2`, fence `1242`.
+
+Immutable R1 seal SHA `d1d03840795c96e092241be72ce9c3bf6d8939c44660898ceb39825384cc8fac` and CEO review fingerprint `61976a1abb5c257fa3e159a8f0ee85bfc0d3182533bc85e509e5aa1389788cdf`. Rehashed all 280 R1 report files, 9 code files and 14 scratch files, plus original SO, review and archived task. Replayed 126 effective raw instruction arrays against 126 original source arrays; two R1 corrections used as the effective arrays. `CORRECTED_COVERAGE.json` identifies all six empty NOP p-code positions; `R1_TO_R2_DELTA.json` maps each overclaim to the corrected interpretation.
+
+This overlay is PARTIAL static research. The FDE ranges and C-like text do not prove unique source-function boundaries or runtime behavior. Two full-FDE metadata reconstructions remain transient assumptions, with R1's fresh-session rollback evidence retained. R1 evidence and original source remain immutable. No Ghidra rerun, production edit, commit or push.
