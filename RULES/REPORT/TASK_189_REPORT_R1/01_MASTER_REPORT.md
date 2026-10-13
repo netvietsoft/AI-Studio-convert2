@@ -1,0 +1,7 @@
+# TASK_189 R1 — MTFilterKernel nonexport FDE indices 128..191
+
+**Result: PARTIAL static research, 64 pinned candidate ranges processed.** The original SO, each unwind FDE/PT_LOAD body and all 8,415 AArch64 instruction positions were checked. On a byte-verified private analyzed Ghidra project, effective p-code covers 8,415 positions (26,277 operations), with 64 nonempty C-like texts. A deterministic spread check re-read 1,039/8,415 source positions (12.35%).
+
+Pre-existing Ghidra function bodies cover every FDE byte in 50/64 candidates. Fourteen have truncated/discontinuous metadata and 446 missing analyzed instruction positions, with no other-function overlap. A transient full-FDE metadata pass recovered those 14 instruction/p-code sets in the private read-only project. The first correction attempt failed a same-session rollback metadata check at candidate #167 and is preserved with its raw log; the retry also observed a stale same-session metadata view. A separate fresh read-only Ghidra process reproduced the original function names, starts, body bitmaps and source-memory hashes for all 14 after rollback. These are boundary-limited reconstructions, not verified unique functions or behavior.
+
+This slice is 64 of 511 nonexport FDE candidates, after the distinct first 128 accepted in TASK_187; 319 candidates lie outside these two slices. No product behavior, binary equivalence, image/pixel parity, Phase PASS, all-45-SO completion, V4 or P7 readiness is claimed. No new import, production edit, commit or push. Independent CEO review is pending.
