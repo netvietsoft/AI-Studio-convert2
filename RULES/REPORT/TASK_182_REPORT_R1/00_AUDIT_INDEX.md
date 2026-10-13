@@ -1,0 +1,7 @@
+# TASK_182 R1 audit index
+
+Canonical standard fully read: `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt` SHA-256 `10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f`. Exact TASK_182 R1 SHA-256 `8990e1b96ffa8867ec84270288450ce726f185bbbf1212614d3c43e07a28074b`. Lease `LEASE-CEO-WORKER-TASK_182-R1`, fencing token `1210`. Real Codex worker `/root/so45_dexvmp_correction`, no AGY.
+
+Original `F:\CONVERT\com.mt.mtxx.mtxx\SOURCE\extracted_native_libs\lib\arm64-v8a\libglide-webp.so` SHA-256 `2f7f38acc0d294a3333069aa8a3c07e69d4bc0a64f162215578bd55dbe1a4486`; original export `WebPConvertRGBA32ToUV_C` ELF VA `0x328dc`, size 624 bytes, body SHA-256 `fc4cf89d6b719a3d8d73009a57a1e755ca9ce11dda3bdd03da45c5b869053404`. Original source, historical TASK_175 p-code/TASK_179 scalar-tail receipt and original TASK_155 analyzed project were read-only. The source project was copied by exact file hash to `RESEARCH_WORK/TASK_182_R1`; no fresh import.
+
+One bounded vector-only Ghidra command, raw stdout/stderr/result, exact project copy hashes and elapsed time are in `vector_probe_command.json` and adjacent log/result files. `vector_source_evidence.json` records all 90 source words, `historical_vector_pcode.txt` the 999 prior source-aligned p-code operations, and `simd_landmark_verification.json` 23 instruction anchors plus 10 spread source-word rechecks. C-like/behavior conclusions are explicitly limited in the master report.

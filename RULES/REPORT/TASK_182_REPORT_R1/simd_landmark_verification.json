@@ -1,0 +1,100 @@
+{
+  "source_body_sha256": "fc4cf89d6b719a3d8d73009a57a1e755ca9ce11dda3bdd03da45c5b869053404",
+  "source_instruction_count": 90,
+  "source_instructions_reverified": 90,
+  "key_instruction_landmarks": {
+    "0x32958": "mov w11, #-0x25f7",
+    "0x3295c": "mov w12, #-0x4a89",
+    "0x32964": "mov w13, #0x7080",
+    "0x32968": "mov w10, #0x2020000",
+    "0x32970": "mov w11, #-0x5e34",
+    "0x32978": "mov w12, #-0x124c",
+    "0x32980": "movi v0.4s, #1, lsl #8",
+    "0x32984": "movi v1.2d, #0x0000ff000000ff",
+    "0x329a8": "ld4 {v16.8h, v17.8h, v18.8h, v19.8h}, [x0], #64",
+    "0x329bc": "mul v22.4s, v22.4s, v2.4s",
+    "0x329c8": "mla v22.4s, v23.4s, v3.4s",
+    "0x329dc": "umlal v22.4s, v18.4h, v4.4h",
+    "0x329ec": "mla v28.4s, v23.4s, v6.4s",
+    "0x329fc": "mla v28.4s, v26.4s, v7.4s",
+    "0x32a04": "sshr v21.4s, v18.4s, #0x12",
+    "0x32a08": "cmlt v18.4s, v18.4s, #0",
+    "0x32a1c": "cmhi v26.4s, v0.4s, v21.4s",
+    "0x32a80": "xtn v18.4h, v18.4s",
+    "0x32a9c": "xtn v17.8b, v18.8h",
+    "0x32aa0": "str d17, [x13], #8",
+    "0x32aa8": "xtn v16.8b, v16.8h",
+    "0x32aac": "str d16, [x12], #8",
+    "0x32ab0": "b.ne #0x329a8"
+  },
+  "key_instruction_landmarks_verified": 23,
+  "historical_pcode_ops_verified": 999,
+  "spread_sample_count": 10,
+  "spread_sample_fraction": 0.1111111111111111,
+  "spread_samples": [
+    {
+      "index": 0,
+      "elf_va": "0x3294c",
+      "source_word_hex_le": "09094092",
+      "capstone": "and x9, x8, #7"
+    },
+    {
+      "index": 10,
+      "elf_va": "0x32974",
+      "source_word_hex_le": "830d044e",
+      "capstone": "dup v3.4s, w12"
+    },
+    {
+      "index": 20,
+      "elf_va": "0x3299c",
+      "source_word_hex_le": "eb0309aa",
+      "capstone": "mov x11, x9"
+    },
+    {
+      "index": 30,
+      "elf_va": "0x329c4",
+      "source_word_hex_le": "b59ea24e",
+      "capstone": "mul v21.4s, v21.4s, v2.4s"
+    },
+    {
+      "index": 40,
+      "elf_va": "0x329ec",
+      "source_word_hex_le": "fc96a64e",
+      "capstone": "mla v28.4s, v23.4s, v6.4s"
+    },
+    {
+      "index": 49,
+      "elf_va": "0x32a10",
+      "source_word_hex_le": "9087a54e",
+      "capstone": "add v16.4s, v28.4s, v5.4s"
+    },
+    {
+      "index": 59,
+      "elf_va": "0x32a38",
+      "source_word_hex_le": "521e7a4e",
+      "capstone": "bic v18.16b, v18.16b, v26.16b"
+    },
+    {
+      "index": 69,
+      "elf_va": "0x32a60",
+      "source_word_hex_le": "735a206e",
+      "capstone": "mvn v19.16b, v19.16b"
+    },
+    {
+      "index": 79,
+      "elf_va": "0x32a88",
+      "source_word_hex_le": "731e214e",
+      "capstone": "and v19.16b, v19.16b, v1.16b"
+    },
+    {
+      "index": 89,
+      "elf_va": "0x32ab0",
+      "source_word_hex_le": "c1f7ff54",
+      "capstone": "b.ne #0x329a8"
+    }
+  ],
+  "new_vector_probe_decompile_completed": false,
+  "new_vector_probe_c_like_nonempty": false,
+  "new_vector_probe_error": "\nRecoverable Error: Unable to find unique hash for varnode",
+  "runtime_behavior_verified": false
+}

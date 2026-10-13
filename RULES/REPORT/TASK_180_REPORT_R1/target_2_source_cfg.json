@@ -1,0 +1,673 @@
+{
+  "task_id": "TASK_180",
+  "target_index": 2,
+  "symbol": "_ZN11CMTImageGif12DecreaseBpp2EPv",
+  "original_so_sha256": "a896d526a7ee74611ffd9a611b797c65505e60b4c60ff27fab75ecabbe69a134",
+  "elf_va": "0xaf70",
+  "database_va": "0x10af70",
+  "pt_load_file_offset": "0xaf70",
+  "source_body_sha256": "ddf810863bebba50608b23ed2ebd85303ea37db4386eb842f08d060b9a3ff3ab",
+  "source_bytes": 1452,
+  "capstone_instruction_count": 363,
+  "block_count": 18,
+  "blocks": [
+    {
+      "start": "0x10af70",
+      "end_exclusive": "0x10afe8",
+      "instruction_count": 30,
+      "raw_assembly": [
+        "0x10af70: sub sp, sp, #0xd0",
+        "0x10af74: stp x29, x30, [sp, #0x70]",
+        "0x10af78: stp x28, x27, [sp, #0x80]",
+        "0x10af7c: stp x26, x25, [sp, #0x90]",
+        "0x10af80: stp x24, x23, [sp, #0xa0]",
+        "0x10af84: stp x22, x21, [sp, #0xb0]",
+        "0x10af88: stp x20, x19, [sp, #0xc0]",
+        "0x10af8c: add x29, sp, #0x70",
+        "0x10af90: mrs x8, tpidr_el0",
+        "0x10af94: str x8, [sp, #8]",
+        "0x10af98: ldr x8, [x8, #0x28]",
+        "0x10af9c: stur x8, [x29, #-8]",
+        "0x10afa0: ldr w25, [x0, #4]",
+        "0x10afa4: ldp x28, x22, [x0, #0x30]",
+        "0x10afa8: ldp w24, w19, [x0, #0xc]",
+        "0x10afac: add w8, w25, w25, lsl #1",
+        "0x10afb0: str x0, [sp]",
+        "0x10afb4: ldr x20, [x0, #0x40]",
+        "0x10afb8: add w8, w8, #6",
+        "0x10afbc: sbfiz x23, x8, #2, #0x20",
+        "0x10afc0: cmp w8, #0",
+        "0x10afc4: csinv x0, x23, xzr, ge",
+        "0x10afc8: bl #0x1130e0",
+        "0x10afcc: mov w1, wzr",
+        "0x10afd0: mov x2, x23",
+        "0x10afd4: mov x21, x0",
+        "0x10afd8: bl #0x1130b0",
+        "0x10afdc: cmp w24, w19",
+        "0x10afe0: stur w19, [x29, #-0x28]",
+        "0x10afe4: b.ge #0x10b4b0"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b4b0",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10afe8",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10afe8",
+      "end_exclusive": "0x10b014",
+      "instruction_count": 11,
+      "raw_assembly": [
+        "0x10afe8: mov w23, #0xd40",
+        "0x10afec: adrp x8, #0x106000",
+        "0x10aff0: add x9, x21, #0x18",
+        "0x10aff4: movk w23, #3, lsl #16",
+        "0x10aff8: ldr q29, [x8, #0x170]",
+        "0x10affc: mov w19, #0xff",
+        "0x10b000: dup v28.4s, w23",
+        "0x10b004: str x9, [sp, #0x28]",
+        "0x10b008: str q29, [sp, #0x10]",
+        "0x10b00c: str q28, [sp, #0x30]",
+        "0x10b010: b #0x10b028"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b028",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b014",
+      "end_exclusive": "0x10b028",
+      "instruction_count": 5,
+      "raw_assembly": [
+        "0x10b014: ldp w8, w24, [x29, #-0x28]",
+        "0x10b018: mov x22, x15",
+        "0x10b01c: add w24, w24, #1",
+        "0x10b020: cmp w24, w8",
+        "0x10b024: b.eq #0x10b4b0"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b4b0",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b028",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b028",
+      "end_exclusive": "0x10b0f4",
+      "instruction_count": 51,
+      "raw_assembly": [
+        "0x10b028: ldrb w8, [x22]",
+        "0x10b02c: ldr w9, [x21, #0xc]",
+        "0x10b030: mov x0, x22",
+        "0x10b034: stur w24, [x29, #-0x24]",
+        "0x10b038: mov x1, x20",
+        "0x10b03c: add w8, w9, w8",
+        "0x10b040: bic w8, w8, w8, asr #31",
+        "0x10b044: cmp w8, #0xff",
+        "0x10b048: csel w27, w8, w19, lt",
+        "0x10b04c: ldrb w8, [x22, #1]",
+        "0x10b050: strb w27, [x22]",
+        "0x10b054: ldr w9, [x21, #0x10]",
+        "0x10b058: add w8, w9, w8",
+        "0x10b05c: bic w8, w8, w8, asr #31",
+        "0x10b060: cmp w8, #0xff",
+        "0x10b064: csel w24, w8, w19, lt",
+        "0x10b068: ldrb w8, [x22, #2]",
+        "0x10b06c: strb w24, [x22, #1]",
+        "0x10b070: ldr w9, [x21, #0x14]",
+        "0x10b074: strb w27, [x22]",
+        "0x10b078: add w8, w9, w8",
+        "0x10b07c: bic w8, w8, w8, asr #31",
+        "0x10b080: cmp w8, #0xff",
+        "0x10b084: csel w26, w8, w19, lt",
+        "0x10b088: strb w26, [x22, #2]",
+        "0x10b08c: bl #0x113070",
+        "0x10b090: and x8, x0, #0xff",
+        "0x10b094: strb w0, [x28], #1",
+        "0x10b098: add x8, x8, w0, uxtb #1",
+        "0x10b09c: ldrb w9, [x22, #1]",
+        "0x10b0a0: ldrb w11, [x22, #2]",
+        "0x10b0a4: ldrb w13, [x22]",
+        "0x10b0a8: cmp w25, #2",
+        "0x10b0ac: add x15, x22, #4",
+        "0x10b0b0: add x8, x20, x8",
+        "0x10b0b4: ldrb w10, [x8, #1]",
+        "0x10b0b8: ldrb w12, [x8, #2]",
+        "0x10b0bc: ldrb w14, [x8]",
+        "0x10b0c0: sub w8, w9, w10",
+        "0x10b0c4: sub w9, w11, w12",
+        "0x10b0c8: sub w11, w13, w14",
+        "0x10b0cc: asr w10, w8, #4",
+        "0x10b0d0: asr w12, w9, #4",
+        "0x10b0d4: asr w13, w11, #2",
+        "0x10b0d8: stp w10, w12, [x21, #0x1c]",
+        "0x10b0dc: asr w10, w8, #2",
+        "0x10b0e0: asr w12, w11, #4",
+        "0x10b0e4: stp w13, w10, [x21, #0xc]",
+        "0x10b0e8: asr w10, w9, #2",
+        "0x10b0ec: stp w10, w12, [x21, #0x14]",
+        "0x10b0f0: b.lt #0x10b014"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b014",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b0f4",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b0f4",
+      "end_exclusive": "0x10b12c",
+      "instruction_count": 14,
+      "raw_assembly": [
+        "0x10b0f4: lsl w10, w9, #3",
+        "0x10b0f8: movi v27.4s, #0x20",
+        "0x10b0fc: lsl w16, w8, #3",
+        "0x10b100: ldr q28, [sp, #0x30]",
+        "0x10b104: ldr q29, [sp, #0x10]",
+        "0x10b108: and w14, w0, #0xff",
+        "0x10b10c: sub w13, w10, w9",
+        "0x10b110: ldr x9, [sp, #0x28]",
+        "0x10b114: sub w16, w16, w8",
+        "0x10b118: mov w8, #1",
+        "0x10b11c: mov w2, #2",
+        "0x10b120: mov w3, #3",
+        "0x10b124: sub x4, x29, #0x20",
+        "0x10b128: b #0x10b1c8"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b1c8",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b12c",
+      "end_exclusive": "0x10b1c8",
+      "instruction_count": 39,
+      "raw_assembly": [
+        "0x10b12c: mov w11, w14",
+        "0x10b130: strb w14, [x28], #1",
+        "0x10b134: add x11, x11, w14, uxtw #1",
+        "0x10b138: mov x15, x10",
+        "0x10b13c: ldrb w16, [x22, #5]",
+        "0x10b140: add w8, w8, #1",
+        "0x10b144: add x12, x20, x11",
+        "0x10b148: ldrb w11, [x15], #4",
+        "0x10b14c: ldrb w13, [x12]",
+        "0x10b150: ldrb w17, [x12, #1]",
+        "0x10b154: ldrb w12, [x12, #2]",
+        "0x10b158: cmp w8, w25",
+        "0x10b15c: sub w11, w11, w13",
+        "0x10b160: sub w13, w16, w17",
+        "0x10b164: ldrb w16, [x22, #6]",
+        "0x10b168: fmov s0, w11",
+        "0x10b16c: mov x22, x10",
+        "0x10b170: sub w16, w16, w12",
+        "0x10b174: asr w12, w11, #4",
+        "0x10b178: asr w1, w16, #4",
+        "0x10b17c: mov v0.s[1], w13",
+        "0x10b180: str w12, [x9, #0xc]!",
+        "0x10b184: ldp w17, w0, [x9, #-8]",
+        "0x10b188: ldur q1, [x9, #-0x18]",
+        "0x10b18c: mov v0.s[2], w16",
+        "0x10b190: add w17, w17, w13, asr #2",
+        "0x10b194: add w0, w0, w16, asr #2",
+        "0x10b198: stp w17, w0, [x9, #-8]",
+        "0x10b19c: lsl w17, w13, #3",
+        "0x10b1a0: asr w13, w13, #4",
+        "0x10b1a4: lsl w0, w16, #3",
+        "0x10b1a8: mov v0.s[3], w11",
+        "0x10b1ac: sub w16, w17, w11",
+        "0x10b1b0: stp w13, w1, [x9, #4]",
+        "0x10b1b4: sub w13, w0, w11",
+        "0x10b1b8: sshl v0.4s, v0.4s, v29.4s",
+        "0x10b1bc: add v0.4s, v1.4s, v0.4s",
+        "0x10b1c0: stur q0, [x9, #-0x18]",
+        "0x10b1c4: b.eq #0x10b014"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b014",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b1c8",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b1c8",
+      "end_exclusive": "0x10b264",
+      "instruction_count": 39,
+      "raw_assembly": [
+        "0x10b1c8: ldrb w10, [x22, #4]",
+        "0x10b1cc: add w10, w12, w10",
+        "0x10b1d0: ldrb w12, [x22, #5]",
+        "0x10b1d4: bic w10, w10, w10, asr #31",
+        "0x10b1d8: cmp w10, #0xff",
+        "0x10b1dc: csel w10, w10, w19, lt",
+        "0x10b1e0: strb w10, [x22, #4]",
+        "0x10b1e4: ldr w17, [x9, #4]",
+        "0x10b1e8: add w12, w17, w12",
+        "0x10b1ec: ldrb w17, [x22, #6]",
+        "0x10b1f0: bic w12, w12, w12, asr #31",
+        "0x10b1f4: cmp w12, #0xff",
+        "0x10b1f8: csel w12, w12, w19, lt",
+        "0x10b1fc: strb w12, [x22, #5]",
+        "0x10b200: add w12, w12, w16, asr #4",
+        "0x10b204: ldr w0, [x9, #8]",
+        "0x10b208: bic w12, w12, w12, asr #31",
+        "0x10b20c: add w17, w0, w17",
+        "0x10b210: lsl w0, w11, #3",
+        "0x10b214: bic w17, w17, w17, asr #31",
+        "0x10b218: sub w11, w0, w11",
+        "0x10b21c: cmp w17, #0xff",
+        "0x10b220: add w10, w10, w11, asr #4",
+        "0x10b224: csel w11, w17, w19, lt",
+        "0x10b228: bic w10, w10, w10, asr #31",
+        "0x10b22c: add w11, w11, w13, asr #4",
+        "0x10b230: cmp w10, #0xff",
+        "0x10b234: bic w13, w11, w11, asr #31",
+        "0x10b238: csel w11, w10, w19, lo",
+        "0x10b23c: cmp w12, #0xff",
+        "0x10b240: mov x10, x15",
+        "0x10b244: csel w12, w12, w19, lo",
+        "0x10b248: cmp w13, #0xff",
+        "0x10b24c: strb w11, [x22, #4]",
+        "0x10b250: csel w13, w13, w19, lo",
+        "0x10b254: cmp w11, w27, uxtb",
+        "0x10b258: strb w12, [x22, #5]",
+        "0x10b25c: strb w13, [x22, #6]",
+        "0x10b260: b.ne #0x10b27c"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b27c",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b264",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b264",
+      "end_exclusive": "0x10b270",
+      "instruction_count": 3,
+      "raw_assembly": [
+        "0x10b264: and w15, w24, #0xff",
+        "0x10b268: cmp w15, w12, uxtb",
+        "0x10b26c: b.ne #0x10b27c"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b27c",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b270",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b270",
+      "end_exclusive": "0x10b27c",
+      "instruction_count": 3,
+      "raw_assembly": [
+        "0x10b270: and w15, w26, #0xff",
+        "0x10b274: cmp w15, w13, uxtb",
+        "0x10b278: b.eq #0x10b12c"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b12c",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b27c",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b27c",
+      "end_exclusive": "0x10b298",
+      "instruction_count": 7,
+      "raw_assembly": [
+        "0x10b27c: movi v1.2d, #0000000000000000",
+        "0x10b280: movi v4.2d, #0000000000000000",
+        "0x10b284: mov x14, xzr",
+        "0x10b288: dup v0.16b, w11",
+        "0x10b28c: dup v2.16b, w12",
+        "0x10b290: dup v3.16b, w13",
+        "0x10b294: mov v5.16b, v28.16b"
+      ],
+      "out_edges": [
+        {
+          "kind": "fallthrough",
+          "to": "0x10b298",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b298",
+      "end_exclusive": "0x10b454",
+      "instruction_count": 111,
+      "raw_assembly": [
+        "0x10b298: add x15, x20, x14",
+        "0x10b29c: add x14, x14, #0x60",
+        "0x10b2a0: ldp q6, q7, [x15]",
+        "0x10b2a4: ldr q18, [x15, #0x20]",
+        "0x10b2a8: ldp q17, q16, [x15, #0x30]",
+        "0x10b2ac: ldr q19, [x15, #0x50]",
+        "0x10b2b0: cmp w14, #0x300",
+        "0x10b2b4: zip1 v20.16b, v6.16b, v17.16b",
+        "0x10b2b8: zip2 v6.16b, v6.16b, v17.16b",
+        "0x10b2bc: zip2 v17.16b, v7.16b, v16.16b",
+        "0x10b2c0: zip1 v7.16b, v7.16b, v16.16b",
+        "0x10b2c4: zip1 v16.16b, v18.16b, v19.16b",
+        "0x10b2c8: zip2 v18.16b, v18.16b, v19.16b",
+        "0x10b2cc: zip1 v19.16b, v20.16b, v17.16b",
+        "0x10b2d0: zip2 v17.16b, v20.16b, v17.16b",
+        "0x10b2d4: zip2 v20.16b, v6.16b, v16.16b",
+        "0x10b2d8: zip1 v21.16b, v7.16b, v18.16b",
+        "0x10b2dc: zip1 v6.16b, v6.16b, v16.16b",
+        "0x10b2e0: zip2 v7.16b, v7.16b, v18.16b",
+        "0x10b2e4: zip1 v16.16b, v19.16b, v20.16b",
+        "0x10b2e8: zip2 v18.16b, v19.16b, v20.16b",
+        "0x10b2ec: zip2 v19.16b, v17.16b, v21.16b",
+        "0x10b2f0: zip1 v17.16b, v17.16b, v21.16b",
+        "0x10b2f4: zip1 v20.16b, v6.16b, v7.16b",
+        "0x10b2f8: zip2 v6.16b, v6.16b, v7.16b",
+        "0x10b2fc: zip1 v7.16b, v16.16b, v19.16b",
+        "0x10b300: zip2 v16.16b, v16.16b, v19.16b",
+        "0x10b304: zip2 v19.16b, v18.16b, v20.16b",
+        "0x10b308: zip1 v21.16b, v17.16b, v6.16b",
+        "0x10b30c: zip1 v18.16b, v18.16b, v20.16b",
+        "0x10b310: zip2 v6.16b, v17.16b, v6.16b",
+        "0x10b314: zip1 v17.16b, v7.16b, v19.16b",
+        "0x10b318: zip1 v20.16b, v16.16b, v21.16b",
+        "0x10b31c: zip2 v7.16b, v7.16b, v19.16b",
+        "0x10b320: zip1 v22.16b, v18.16b, v6.16b",
+        "0x10b324: zip2 v16.16b, v16.16b, v21.16b",
+        "0x10b328: zip2 v6.16b, v18.16b, v6.16b",
+        "0x10b32c: uabd v17.16b, v17.16b, v0.16b",
+        "0x10b330: uabd v20.16b, v20.16b, v2.16b",
+        "0x10b334: uabd v7.16b, v7.16b, v0.16b",
+        "0x10b338: uabd v22.16b, v22.16b, v3.16b",
+        "0x10b33c: uabd v16.16b, v16.16b, v2.16b",
+        "0x10b340: uabd v6.16b, v6.16b, v3.16b",
+        "0x10b344: umull v23.8h, v17.8b, v17.8b",
+        "0x10b348: umull v24.8h, v20.8b, v20.8b",
+        "0x10b34c: umull2 v17.8h, v17.16b, v17.16b",
+        "0x10b350: umull v25.8h, v22.8b, v22.8b",
+        "0x10b354: umull2 v19.8h, v20.16b, v20.16b",
+        "0x10b358: umull2 v18.8h, v22.16b, v22.16b",
+        "0x10b35c: uaddl v26.4s, v24.4h, v23.4h",
+        "0x10b360: uaddl2 v20.4s, v24.8h, v23.8h",
+        "0x10b364: umull v24.8h, v7.8b, v7.8b",
+        "0x10b368: uaddl v22.4s, v19.4h, v17.4h",
+        "0x10b36c: uaddl2 v17.4s, v19.8h, v17.8h",
+        "0x10b370: umull v19.8h, v16.8b, v16.8b",
+        "0x10b374: umull2 v7.8h, v7.16b, v7.16b",
+        "0x10b378: umull2 v16.8h, v16.16b, v16.16b",
+        "0x10b37c: uaddw v21.4s, v26.4s, v25.4h",
+        "0x10b380: uaddw2 v20.4s, v20.4s, v25.8h",
+        "0x10b384: uaddw v22.4s, v22.4s, v18.4h",
+        "0x10b388: uaddw2 v17.4s, v17.4s, v18.8h",
+        "0x10b38c: cmhi v23.4s, v5.4s, v21.4s",
+        "0x10b390: umin v5.4s, v5.4s, v21.4s",
+        "0x10b394: mov v21.16b, v1.16b",
+        "0x10b398: bit v4.16b, v1.16b, v23.16b",
+        "0x10b39c: orr v21.4s, #4",
+        "0x10b3a0: cmhi v23.4s, v5.4s, v20.4s",
+        "0x10b3a4: umin v5.4s, v5.4s, v20.4s",
+        "0x10b3a8: mov v20.16b, v1.16b",
+        "0x10b3ac: bit v4.16b, v21.16b, v23.16b",
+        "0x10b3b0: umull v21.8h, v6.8b, v6.8b",
+        "0x10b3b4: uaddl v23.4s, v19.4h, v24.4h",
+        "0x10b3b8: umin v18.4s, v5.4s, v22.4s",
+        "0x10b3bc: orr v20.4s, #8",
+        "0x10b3c0: cmhi v5.4s, v5.4s, v22.4s",
+        "0x10b3c4: mov v22.16b, v1.16b",
+        "0x10b3c8: uaddl2 v19.4s, v19.8h, v24.8h",
+        "0x10b3cc: umull2 v6.8h, v6.16b, v6.16b",
+        "0x10b3d0: bit v4.16b, v20.16b, v5.16b",
+        "0x10b3d4: uaddw v23.4s, v23.4s, v21.4h",
+        "0x10b3d8: uaddl v20.4s, v16.4h, v7.4h",
+        "0x10b3dc: umin v5.4s, v18.4s, v17.4s",
+        "0x10b3e0: orr v22.4s, #0xc",
+        "0x10b3e4: cmhi v17.4s, v18.4s, v17.4s",
+        "0x10b3e8: mov v18.16b, v1.16b",
+        "0x10b3ec: uaddw2 v19.4s, v19.4s, v21.8h",
+        "0x10b3f0: mov v21.16b, v1.16b",
+        "0x10b3f4: uaddl2 v7.4s, v16.8h, v7.8h",
+        "0x10b3f8: bit v4.16b, v22.16b, v17.16b",
+        "0x10b3fc: uaddw v20.4s, v20.4s, v6.4h",
+        "0x10b400: umin v17.4s, v5.4s, v23.4s",
+        "0x10b404: orr v18.4s, #0x10",
+        "0x10b408: cmhi v5.4s, v5.4s, v23.4s",
+        "0x10b40c: orr v21.4s, #0x14",
+        "0x10b410: uaddw2 v6.4s, v7.4s, v6.8h",
+        "0x10b414: bit v4.16b, v18.16b, v5.16b",
+        "0x10b418: umin v5.4s, v17.4s, v19.4s",
+        "0x10b41c: cmhi v16.4s, v17.4s, v19.4s",
+        "0x10b420: mov v17.16b, v1.16b",
+        "0x10b424: bit v4.16b, v21.16b, v16.16b",
+        "0x10b428: orr v17.4s, #0x18",
+        "0x10b42c: cmhi v16.4s, v5.4s, v20.4s",
+        "0x10b430: umin v5.4s, v5.4s, v20.4s",
+        "0x10b434: bit v4.16b, v17.16b, v16.16b",
+        "0x10b438: add v16.4s, v1.4s, v27.4s",
+        "0x10b43c: orr v1.4s, #0x1c",
+        "0x10b440: cmhi v7.4s, v5.4s, v6.4s",
+        "0x10b444: umin v5.4s, v5.4s, v6.4s",
+        "0x10b448: bit v4.16b, v1.16b, v7.16b",
+        "0x10b44c: mov v1.16b, v16.16b",
+        "0x10b450: b.ne #0x10b298"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b298",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b454",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b454",
+      "end_exclusive": "0x10b4b0",
+      "instruction_count": 23,
+      "raw_assembly": [
+        "0x10b454: fmov w15, s5",
+        "0x10b458: mov w14, v5.s[1]",
+        "0x10b45c: stur q4, [x29, #-0x20]",
+        "0x10b460: mov w16, v5.s[2]",
+        "0x10b464: mov w17, v5.s[3]",
+        "0x10b468: mov w27, w11",
+        "0x10b46c: mov w24, w12",
+        "0x10b470: mov w26, w13",
+        "0x10b474: cmp w15, w23",
+        "0x10b478: csel w15, w15, w23, lo",
+        "0x10b47c: cmp w14, w15",
+        "0x10b480: csel w14, w14, w15, lo",
+        "0x10b484: cset w15, lo",
+        "0x10b488: cmp w16, w14",
+        "0x10b48c: csel w14, w16, w14, lo",
+        "0x10b490: csel w15, w2, w15, lo",
+        "0x10b494: cmp w17, w14",
+        "0x10b498: csel w14, w3, w15, lo",
+        "0x10b49c: orr x15, x4, x14, lsl #2",
+        "0x10b4a0: ldr w15, [x15]",
+        "0x10b4a4: add w14, w15, w14",
+        "0x10b4a8: and w14, w14, #0xff",
+        "0x10b4ac: b #0x10b12c"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b12c",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b4b0",
+      "end_exclusive": "0x10b4c4",
+      "instruction_count": 5,
+      "raw_assembly": [
+        "0x10b4b0: mov x0, x21",
+        "0x10b4b4: bl #0x1130f0",
+        "0x10b4b8: ldr x8, [sp]",
+        "0x10b4bc: ldr w8, [x8]",
+        "0x10b4c0: cbnz w8, #0x10b4fc"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b4fc",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b4c4",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b4c4",
+      "end_exclusive": "0x10b4d8",
+      "instruction_count": 5,
+      "raw_assembly": [
+        "0x10b4c4: ldr x8, [sp, #8]",
+        "0x10b4c8: ldr x8, [x8, #0x28]",
+        "0x10b4cc: ldur x9, [x29, #-8]",
+        "0x10b4d0: cmp x8, x9",
+        "0x10b4d4: b.ne #0x10b518"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b518",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b4d8",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b4d8",
+      "end_exclusive": "0x10b4fc",
+      "instruction_count": 9,
+      "raw_assembly": [
+        "0x10b4d8: mov x0, xzr",
+        "0x10b4dc: ldp x20, x19, [sp, #0xc0]",
+        "0x10b4e0: ldp x22, x21, [sp, #0xb0]",
+        "0x10b4e4: ldp x24, x23, [sp, #0xa0]",
+        "0x10b4e8: ldp x26, x25, [sp, #0x90]",
+        "0x10b4ec: ldp x28, x27, [sp, #0x80]",
+        "0x10b4f0: ldp x29, x30, [sp, #0x70]",
+        "0x10b4f4: add sp, sp, #0xd0",
+        "0x10b4f8: ret "
+      ],
+      "out_edges": []
+    },
+    {
+      "start": "0x10b4fc",
+      "end_exclusive": "0x10b510",
+      "instruction_count": 5,
+      "raw_assembly": [
+        "0x10b4fc: ldr x8, [sp, #8]",
+        "0x10b500: ldr x8, [x8, #0x28]",
+        "0x10b504: ldur x9, [x29, #-8]",
+        "0x10b508: cmp x8, x9",
+        "0x10b50c: b.ne #0x10b518"
+      ],
+      "out_edges": [
+        {
+          "kind": "branch",
+          "to": "0x10b518",
+          "inside_body": true
+        },
+        {
+          "kind": "fallthrough",
+          "to": "0x10b510",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b510",
+      "end_exclusive": "0x10b518",
+      "instruction_count": 2,
+      "raw_assembly": [
+        "0x10b510: mov x0, xzr",
+        "0x10b514: bl #0x113100"
+      ],
+      "out_edges": [
+        {
+          "kind": "fallthrough",
+          "to": "0x10b518",
+          "inside_body": true
+        }
+      ]
+    },
+    {
+      "start": "0x10b518",
+      "end_exclusive": "0x10b51c",
+      "instruction_count": 1,
+      "raw_assembly": [
+        "0x10b518: bl #0x112bc0"
+      ],
+      "out_edges": []
+    }
+  ]
+}
