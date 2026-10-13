@@ -1,0 +1,58 @@
+0x65aea8: ldr w8, [sp]
+0x65aeac: sub x10, x6, w7, uxtw
+0x65aeb0: and x10, x10, #0xfffffffffffffff0
+0x65aeb4: mov w9, w7
+0x65aeb8: mov x11, x0
+0x65aebc: add x12, x0, x5
+0x65aec0: add x13, x0, x5, lsl #1
+0x65aec4: ld2 {v0.16b, v1.16b}, [x11], #32
+0x65aec8: ld2 {v2.16b, v3.16b}, [x12], #32
+0x65aecc: ld2 {v4.16b, v5.16b}, [x13], #32
+0x65aed0: urhadd v20.16b, v0.16b, v2.16b
+0x65aed4: urhadd v22.16b, v2.16b, v4.16b
+0x65aed8: subs w9, w9, #0x10
+0x65aedc: urhadd v21.16b, v1.16b, v3.16b
+0x65aee0: urhadd v23.16b, v3.16b, v5.16b
+0x65aee4: ld2 {v0.16b, v1.16b}, [x11], #32
+0x65aee8: ld2 {v2.16b, v3.16b}, [x12], #32
+0x65aeec: ld2 {v4.16b, v5.16b}, [x13], #32
+0x65aef0: urhadd v30.16b, v0.16b, v2.16b
+0x65aef4: urhadd v31.16b, v2.16b, v4.16b
+0x65aef8: ext v24.16b, v20.16b, v30.16b, #1
+0x65aefc: ext v25.16b, v22.16b, v31.16b, #1
+0x65af00: urhadd v16.16b, v20.16b, v21.16b
+0x65af04: urhadd v18.16b, v22.16b, v23.16b
+0x65af08: urhadd v17.16b, v21.16b, v24.16b
+0x65af0c: urhadd v19.16b, v23.16b, v25.16b
+0x65af10: st1 {v16.16b}, [x1], #16
+0x65af14: st1 {v18.16b}, [x3], #16
+0x65af18: st1 {v17.16b}, [x2], #16
+0x65af1c: st1 {v19.16b}, [x4], #16
+0x65af20: b.le #0x65af70
+0x65af24: subs w9, w9, #0x10
+0x65af28: urhadd v21.16b, v1.16b, v3.16b
+0x65af2c: urhadd v23.16b, v3.16b, v5.16b
+0x65af30: ld2 {v0.16b, v1.16b}, [x11], #32
+0x65af34: ld2 {v2.16b, v3.16b}, [x12], #32
+0x65af38: ld2 {v4.16b, v5.16b}, [x13], #32
+0x65af3c: urhadd v20.16b, v0.16b, v2.16b
+0x65af40: urhadd v22.16b, v2.16b, v4.16b
+0x65af44: ext v24.16b, v30.16b, v20.16b, #1
+0x65af48: ext v25.16b, v31.16b, v22.16b, #1
+0x65af4c: urhadd v16.16b, v30.16b, v21.16b
+0x65af50: urhadd v18.16b, v31.16b, v23.16b
+0x65af54: urhadd v17.16b, v21.16b, v24.16b
+0x65af58: urhadd v19.16b, v23.16b, v25.16b
+0x65af5c: st1 {v16.16b}, [x1], #16
+0x65af60: st1 {v18.16b}, [x3], #16
+0x65af64: st1 {v17.16b}, [x2], #16
+0x65af68: st1 {v19.16b}, [x4], #16
+0x65af6c: b.gt #0x65aed8
+0x65af70: subs w8, w8, #1
+0x65af74: add x0, x0, x5, lsl #1
+0x65af78: add x1, x1, x10
+0x65af7c: add x2, x2, x10
+0x65af80: add x3, x3, x10
+0x65af84: add x4, x4, x10
+0x65af88: b.gt #0x65aeb4
+0x65af8c: ret
