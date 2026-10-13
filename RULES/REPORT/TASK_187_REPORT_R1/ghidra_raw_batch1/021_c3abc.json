@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK_187", "revision": 1,
+  "generated_at": "2026-10-13T10:13:38.509850300Z",
+  "index": 21, "elf_va": "0xc3abc", "database_va": "0x1c3abc",
+  "size_bytes": 32, "ghidra_memory_sha256": "4811de96b4b3cb34ffa94d89da0582cb848100122b41c3b80f7355aca13f712c",
+  "instruction_slots": 8, "ghidra_instruction_count": 8, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 12,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "_INIT_2", "function_start": "0x1c3abc", "function_body_min": "0x1c3abc", "function_body_max": "0x1c3adb", "function_body_total_address_count": 32,
+  "fde_byte_membership_count": 32, "fde_byte_membership_bits": "11111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 5, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid _INIT_2(void)\r\n\r\n{\r\n  _g_relativePathPlatform = 0;\r\n  __cxa_atexit(std::__ndk1::\r\n               basic_string<char,std::__ndk1::char_traits<char>,std::__ndk1::allocator<char>>::\r\n               ~basic_string,&MTFilterKernel::g_relativePathPlatform,&PTR_LOOP_002b90c0);\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x1c3abc", "assembly": "adrp x1,0x2c5000", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0x2c5000, 8)"]},
+    {"database_va": "0x1c3ac0", "assembly": "adrp x0,0x2c5000", "pcode_ops": ["(register, 0x4000, 8) COPY (const, 0x2c5000, 8)"]},
+    {"database_va": "0x1c3ac4", "assembly": "nop", "pcode_ops": []},
+    {"database_va": "0x1c3ac8", "assembly": "adr x2,0x2b90c0", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x2b90c0, 8)"]},
+    {"database_va": "0x1c3acc", "assembly": "ldr x1,[x1, #0x418]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4008, 8) , (const, 0x418, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x1c3ad0", "assembly": "ldr x0,[x0, #0x420]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4000, 8) , (const, 0x420, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x1c3ad4", "assembly": "strh wzr,[x1]", "pcode_ops": ["(unique, 0xc700, 8) COPY (register, 0x4008, 8)", "(unique, 0x600, 4) COPY (const, 0x0, 4)", "(unique, 0x74b00, 4) COPY (unique, 0x600, 4)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xc700, 8) , (unique, 0x74b00, 2)"]},
+    {"database_va": "0x1c3ad8", "assembly": "b 0x002b4240", "pcode_ops": [" ---  BRANCH (ram, 0x2b4240, 8)"]}
+  ]
+}
