@@ -1,0 +1,5 @@
+# TASK_201 R2 — corrected MTFilter candidate census
+
+**Result: 376 selected distinct FDE candidates out of 511; 135 remain unselected.** Five immutable manifest selections contain 128 + 64 + 60 + 62 + 62 = 376 distinct global zero-based nonexport FDE indices. The remainder is 127 tail indices 384..510 plus eight earlier/current exclusions [201, 211, 216, 235, 293, 304, 349, 362]. R1 reported 129 by omitting six prior exclusions. The older TASK_197 residual count is historical and also inaccurate; its sealed report remains unchanged.
+
+The 62 TASK_201 target rows and body hashes are identical in R1 and R2 after JSON parsing. All 376 selections were checked against the original SO FDE/dynsym/PT_LOAD census and body hashes. R1 extraction evidence remains the same research candidate: seven full-FDE boundary assumptions, two oversized current exclusions and no proven unique functions or behavior. CEO independent review of the corrected package is pending. No Ghidra rerun, production edit, commit, push, Phase PASS, all-45-SO completion, V4 or P7 claim.
