@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK_222", "revision": 1,
+  "generated_at": "2026-10-15T09:15:12.428564200Z",
+  "index": 847, "elf_va": "0x219e10", "database_va": "0x319e10",
+  "size_bytes": 4, "ghidra_memory_sha256": "3bc1b4243601990b82149f54b0b5371c6ae24fbe01da364b23d87a617577b7af",
+  "instruction_slots": 1, "ghidra_instruction_count": 1, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 1,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "thunk_FUN_0031f250", "function_start": "0x319e10", "function_body_min": "0x319e10", "function_body_max": "0x319e13", "function_body_total_address_count": 4,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 4, "fde_byte_membership_bits": "1111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 9, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid thunk_FUN_0031f250(long param_1)\r\n\r\n{\r\n  char cVar1;\r\n  bool bVar2;\r\n  long lVar3;\r\n  long *plVar4;\r\n  \r\n  FUN_00338dd0((long *)(param_1 + 8));\r\n  lVar3 = *(long *)(param_1 + 8);\r\n  if (lVar3 == 4) {\r\n    plVar4 = *(long **)(param_1 + 0x10);\r\n    do {\r\n      lVar3 = *plVar4;\r\n      cVar1 = '\\x01';\r\n      bVar2 = (bool)ExclusiveMonitorPass(plVar4,0x10);\r\n      if (bVar2) {\r\n        *plVar4 = lVar3 + -1;\r\n        cVar1 = ExclusiveMonitorsStatus();\r\n      }\r\n    } while (cVar1 != '\\0');\r\n    if (lVar3 + -1 == 0) {\r\n      DataMemoryBarrier(2,1);\r\n      FUN_003154e8();\r\n    }\r\n  }\r\n  else if (lVar3 == 3) {\r\n    plVar4 = *(long **)(param_1 + 0x10);\r\n    do {\r\n      lVar3 = *plVar4;\r\n      cVar1 = '\\x01';\r\n      bVar2 = (bool)ExclusiveMonitorPass(plVar4,0x10);\r\n      if (bVar2) {\r\n        *plVar4 = lVar3 + -1;\r\n        cVar1 = ExclusiveMonitorsStatus();\r\n      }\r\n    } while (cVar1 != '\\0');\r\n    if (lVar3 + -1 == 0) {\r\n      DataMemoryBarrier(2,1);\r\n      FUN_00315154();\r\n    }\r\n  }\r\n  FUN_003389f0(param_1 + 0x18);\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x319e10", "assembly": "b 0x0031f250", "pcode_ops": [" ---  BRANCH (ram, 0x31f250, 8)"]}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK_222", "revision": 1,
+  "generated_at": "2026-10-15T09:15:12.367052700Z",
+  "index": 843, "elf_va": "0x219b84", "database_va": "0x319b84",
+  "size_bytes": 4, "ghidra_memory_sha256": "4330e075c029f16c8e67f167ad6f937c01dd19c85fb39e0dbf8acba5d70805d0",
+  "instruction_slots": 1, "ghidra_instruction_count": 1, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 1,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "thunk_FUN_00319544", "function_start": "0x319b84", "function_body_min": "0x319b84", "function_body_max": "0x319b87", "function_body_total_address_count": 4,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 4, "fde_byte_membership_bits": "1111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 17, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid thunk_FUN_00319544(byte *param_1)\r\n\r\n{\r\n  byte bVar1;\r\n  ulong uVar2;\r\n  undefined8 *__ptr;\r\n  long *plVar3;\r\n  \r\n  bVar1 = *param_1;\r\n  if (bVar1 != 0xc && (bVar1 & 0xf) != 10) {\r\n    if ((bVar1 & 0xf) == 0xb) {\r\n      (*(code *)**(undefined8 **)(param_1 + 0x10))(*(undefined8 *)(param_1 + 8));\r\n      if (*(long *)(*(long *)(param_1 + 0x10) + 8) != 0) {\r\n        __rust_dealloc(*(void **)(param_1 + 8));\r\n        return;\r\n      }\r\n    }\r\n    else {\r\n      switch(bVar1) {\r\n      case 3:\r\n        if ((param_1[8] != 0) && (uVar2 = *(ulong *)(param_1 + 0x10), (uVar2 & 3) == 1)) {\r\n          __ptr = (undefined8 *)(uVar2 - 1);\r\n          plVar3 = (long *)(uVar2 + 7);\r\n          (**(code **)*plVar3)(*__ptr);\r\nLAB_0031963c:\r\n          if (*(long *)(*plVar3 + 8) != 0) {\r\n            __rust_dealloc((void *)*__ptr);\r\n          }\r\n          __rust_dealloc(__ptr);\r\n          return;\r\n        }\r\n        break;\r\n      case 5:\r\n        uVar2 = *(ulong *)(param_1 + 8);\r\n        if ((uVar2 & 3) == 1) {\r\n          __ptr = (undefined8 *)(uVar2 - 1);\r\n          plVar3 = (long *)(uVar2 + 7);\r\n          (**(code **)*plVar3)(*__ptr);\r\n          goto LAB_0031963c;\r\n        }\r\n        break;\r\n      case 6:\r\n      case 7:\r\n        if (*(long *)(param_1 + 8) != 0) {\r\n          __rust_dealloc(*(void **)(param_1 + 0x10));\r\n          return;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x319b84", "assembly": "b 0x00319544", "pcode_ops": [" ---  BRANCH (ram, 0x319544, 8)"]}
+  ]
+}
