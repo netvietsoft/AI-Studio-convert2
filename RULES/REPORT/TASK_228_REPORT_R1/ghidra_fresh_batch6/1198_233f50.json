@@ -1,0 +1,20 @@
+{
+  "task_id": "TASK_228", "revision": 1,
+  "generated_at": "2026-10-15T09:40:49.781170300Z",
+  "index": 1198, "elf_va": "0x233f50", "database_va": "0x333f50",
+  "size_bytes": 24, "ghidra_memory_sha256": "1a4fee8b4d75d7420dc2f6065e8245d44de0a06c253b27e18423d2129131ec63",
+  "instruction_slots": 6, "ghidra_instruction_count": 6, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 10,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00333f50", "function_start": "0x333f50", "function_body_min": "0x333f50", "function_body_max": "0x333f67", "function_body_total_address_count": 24,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 24, "fde_byte_membership_bits": "111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 3, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_00333f50(void *param_1)\r\n\r\n{\r\n  if (param_1 != (void *)0x0) {\r\n    __rust_dealloc(param_1);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x333f50", "assembly": "cbz x0,0x00333f64", "pcode_ops": ["(unique, 0x31700, 1) INT_EQUAL (register, 0x4000, 8) , (const, 0x0, 8)", " ---  CBRANCH (ram, 0x333f64, 8) , (unique, 0x31700, 1)"]},
+    {"database_va": "0x333f54", "assembly": "mov w1,#0x1e50", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0x1e50, 8)"]},
+    {"database_va": "0x333f58", "assembly": "mov w2,#0x10", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x10, 8)"]},
+    {"database_va": "0x333f5c", "assembly": "movk w1,#0x3, LSL #16", "pcode_ops": ["(unique, 0x53800, 4) INT_AND (register, 0x4008, 4) , (const, 0xffff, 4)", "(unique, 0x53800, 4) INT_OR (unique, 0x53800, 4) , (const, 0x30000, 4)", "(register, 0x4008, 8) INT_ZEXT (unique, 0x53800, 4)"]},
+    {"database_va": "0x333f60", "assembly": "b 0x005c3790", "pcode_ops": [" ---  BRANCH (ram, 0x5c3790, 8)"]},
+    {"database_va": "0x333f64", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

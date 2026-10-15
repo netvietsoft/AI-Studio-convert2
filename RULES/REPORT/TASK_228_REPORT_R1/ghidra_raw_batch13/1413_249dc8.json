@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK_228", "revision": 1,
+  "generated_at": "2026-10-15T09:37:26.767509100Z",
+  "index": 1413, "elf_va": "0x249dc8", "database_va": "0x349dc8",
+  "size_bytes": 4, "ghidra_memory_sha256": "be1160a78aca6d5c319be0c445db5250ce78a6110b5121f53918db38e58cb203",
+  "instruction_slots": 1, "ghidra_instruction_count": 1, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 1,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "thunk_FUN_0031b958", "function_start": "0x349dc8", "function_body_min": "0x349dc8", "function_body_max": "0x349dcb", "function_body_total_address_count": 4,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 4, "fde_byte_membership_bits": "1111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 28, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid thunk_FUN_0031b958(long *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  bool bVar2;\r\n  ulong uVar3;\r\n  long *plVar4;\r\n  long lVar5;\r\n  long lVar6;\r\n  long lVar7;\r\n  \r\n  lVar7 = param_1[1];\r\n  lVar6 = param_1[4];\r\n  uVar3 = *param_1 - lVar7;\r\n  *param_1 = (long)\"gif.ski\";\r\n  param_1[1] = (long)\"gif.ski\";\r\n  if (uVar3 == 0) {\r\n    lVar7 = param_1[3];\r\n    if (lVar7 == 0) {\r\n      return;\r\n    }\r\n  }\r\n  else {\r\n    lVar7 = *(long *)(lVar6 + 8) + ((ulong)(lVar7 - *(long *)(lVar6 + 8)) / 0x18) * 0x18;\r\n    lVar6 = lVar7 + (uVar3 / 0x18) * 0x18;\r\n    do {\r\n      plVar4 = *(long **)(lVar7 + 0x10);\r\n      lVar7 = lVar7 + 0x18;\r\n      do {\r\n        lVar5 = *plVar4;\r\n        cVar1 = '\\x01';\r\n        bVar2 = (bool)ExclusiveMonitorPass(plVar4,0x10);\r\n        if (bVar2) {\r\n          *plVar4 = lVar5 + -1;\r\n          cVar1 = ExclusiveMonitorsStatus();\r\n        }\r\n      } while (cVar1 != '\\0');\r\n      if (lVar5 + -1 == 0) {\r\n        DataMemoryBarrier(2,1);\r\n        FUN_00315750();\r\n      }\r\n    } while (lVar7 != lVar6);\r\n    lVar7 = param_1[3];\r\n    if (lVar7 == 0) {\r\n      return;\r\n    }\r\n    lVar6 = param_1[4];\r\n  }\r\n  lVar5 = *(long *)(lVar6 + 0x10);\r\n  if (param_1[2] != lVar5) {\r\n    memmove((void *)(*(long *)(lVar6 + 8) + lVar5 * 0x18),\r\n            (void *)(*(long *)(lVar6 + 8) + param_1[2] * 0x18),lVar7 * 0x18);\r\n    lVar7 = param_1[3];\r\n  }\r\n  *(long *)(lVar6 + 0x10) = lVar7 + lVar5;\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x349dc8", "assembly": "b 0x0031b958", "pcode_ops": [" ---  BRANCH (ram, 0x31b958, 8)"]}
+  ]
+}

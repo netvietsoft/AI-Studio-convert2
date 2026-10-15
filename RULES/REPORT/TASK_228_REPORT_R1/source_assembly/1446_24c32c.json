@@ -1,0 +1,66 @@
+{
+  "index": 1446,
+  "selected_zero_index": 1445,
+  "elf_va": "0x24c32c",
+  "size_bytes": 40,
+  "end_exclusive": "0x24c354",
+  "file_offset": "0x24c32c",
+  "source_body_sha256": "1b4121e662037ad693abac845cf496aea34f871350fb92f3872a242ee26eb18e",
+  "instruction_slots": 10,
+  "capstone_decoded_slots": 10,
+  "fde_exact_match": true,
+  "other_fde_overlap": [],
+  "export_body_overlap": [],
+  "instructions": [
+    {
+      "elf_va": "0x24c32c",
+      "word_hex": "080040f9",
+      "assembly": "ldr x8, [x0]"
+    },
+    {
+      "elf_va": "0x24c330",
+      "word_hex": "080100b4",
+      "assembly": "cbz x8, #0x24c350"
+    },
+    {
+      "elf_va": "0x24c334",
+      "word_hex": "097d5fc8",
+      "assembly": "ldxr x9, [x8]"
+    },
+    {
+      "elf_va": "0x24c338",
+      "word_hex": "290500f1",
+      "assembly": "subs x9, x9, #1"
+    },
+    {
+      "elf_va": "0x24c33c",
+      "word_hex": "09fd0ac8",
+      "assembly": "stlxr w10, x9, [x8]"
+    },
+    {
+      "elf_va": "0x24c340",
+      "word_hex": "aaffff35",
+      "assembly": "cbnz w10, #0x24c334"
+    },
+    {
+      "elf_va": "0x24c344",
+      "word_hex": "61000054",
+      "assembly": "b.ne #0x24c350"
+    },
+    {
+      "elf_va": "0x24c348",
+      "word_hex": "bf3903d5",
+      "assembly": "dmb ishld"
+    },
+    {
+      "elf_va": "0x24c34c",
+      "word_hex": "8824ff17",
+      "assembly": "b #0x21556c"
+    },
+    {
+      "elf_va": "0x24c350",
+      "word_hex": "c0035fd6",
+      "assembly": "ret"
+    }
+  ]
+}
