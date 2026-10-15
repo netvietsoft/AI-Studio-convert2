@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK_235", "revision": 1,
+  "generated_at": "2026-10-15T10:13:08.734596300Z",
+  "index": 2902, "elf_va": "0x2e16c8", "database_va": "0x3e16c8",
+  "size_bytes": 4, "ghidra_memory_sha256": "6356c93e9c1c22ea5e11a82f1d6e7dbadb476087bed4584edcfb74b447a7cab0",
+  "instruction_slots": 1, "ghidra_instruction_count": 1, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 1,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "thunk_FUN_003e360c", "function_start": "0x3e16c8", "function_body_min": "0x3e16c8", "function_body_max": "0x3e16cb", "function_body_total_address_count": 4,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 4, "fde_byte_membership_bits": "1111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 9, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid thunk_FUN_003e360c(ulong *param_1)\r\n\r\n{\r\n  undefined8 *__ptr;\r\n  ulong uVar1;\r\n  \r\n  if ((void *)param_1[1] == (void *)0x0) {\r\n    uVar1 = *param_1;\r\n    if ((uVar1 & 3) == 1) {\r\n      __ptr = (undefined8 *)(uVar1 - 1);\r\n      (*(code *)**(undefined8 **)(uVar1 + 7))(*__ptr);\r\n      if (*(long *)(*(long *)(uVar1 + 7) + 8) != 0) {\r\n        __rust_dealloc((void *)*__ptr);\r\n      }\r\n      __rust_dealloc(__ptr);\r\n      return;\r\n    }\r\n  }\r\n  else if (*param_1 != 0) {\r\n    __rust_dealloc((void *)param_1[1]);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x3e16c8", "assembly": "b 0x003e360c", "pcode_ops": [" ---  BRANCH (ram, 0x3e360c, 8)"]}
+  ]
+}

@@ -1,0 +1,3 @@
+# TASK_235 R1 — libPVGImageCodec.so bounded internal candidates
+
+**PARTIAL static research.** Exact 510 pinned nonexport FDE candidates revalidated against the original SO: 75,556 bytes / 18,889 AArch64 instruction words. Ghidra produced 510 raw rows, 510 nonempty C-like texts, 18,087/18,889 listing positions, 61,881 p-code operations. Full FDE body membership appears in 408/510 rows; 0 rows overlap another Ghidra function. Earlier oversized image candidates 555, 1542, 1586, 1620, 1623, 1626, 1830, 1912, 2293 and current 2775, 2776 remain pending. These are observed outputs, not proven source-function boundaries or recovered algorithm behavior. No native/device equivalence, product Phase PASS, V4 or P7 is claimed. Independent CEO review and commit/push remain pending.
