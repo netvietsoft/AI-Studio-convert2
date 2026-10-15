@@ -1,0 +1,23 @@
+{
+  "task_id": "TASK_227", "revision": 1,
+  "generated_at": "2026-10-15T09:33:54.848689700Z",
+  "index": 697, "elf_va": "0x11d704", "database_va": "0x21d704",
+  "size_bytes": 36, "ghidra_memory_sha256": "eb238863d667e1aa244ec3ba4d80438d2320e7de9f2ceeb2bfbd9d06c2559ad5",
+  "instruction_slots": 9, "ghidra_instruction_count": 9, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 23,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_0021d704", "function_start": "0x21d704", "function_body_min": "0x21d704", "function_body_max": "0x21d727", "function_body_total_address_count": 36,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 36, "fde_byte_membership_bits": "111111111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 4, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_0021d704(undefined8 param_1,undefined8 param_2,_jobject *param_3)\r\n\r\n{\r\n  PVGGlobal *this;\r\n  \r\n  this = (PVGGlobal *)PVG::PVGGlobal::getInstance();\r\n  PVG::PVGGlobal::setAndroidContext(this,param_3);\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x21d704", "assembly": "stp x29,x30,[sp, #-0x20]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40e8, 8)", "(unique, 0x74100, 8) COPY (register, 0x40f0, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xffffffffffffffe0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x21d708", "assembly": "str x19,[sp, #0x10]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xc300, 8) , (register, 0x4098, 8)"]},
+    {"database_va": "0x21d70c", "assembly": "mov x29,sp", "pcode_ops": ["(register, 0x40e8, 8) COPY (register, 0x8, 8)"]},
+    {"database_va": "0x21d710", "assembly": "mov x19,x2", "pcode_ops": ["(register, 0x4098, 8) COPY (register, 0x4010, 8)"]},
+    {"database_va": "0x21d714", "assembly": "bl 0x00232e90", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x21d714, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x232e90, 8)"]},
+    {"database_va": "0x21d718", "assembly": "mov x1,x19", "pcode_ops": ["(register, 0x4008, 8) COPY (register, 0x4098, 8)"]},
+    {"database_va": "0x21d71c", "assembly": "ldr x19,[sp, #0x10]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", "(register, 0x4098, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x21d720", "assembly": "ldp x29,x30,[sp], #0x20", "pcode_ops": ["(unique, 0xf200, 8) COPY (register, 0x8, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0x20, 8)", "(unique, 0x48500, 8) LOAD (const, 0x1b1, 8) , (unique, 0xf200, 8)", "(unique, 0x48600, 8) INT_ADD (unique, 0xf200, 8) , (const, 0x8, 8)", "(unique, 0x48800, 8) LOAD (const, 0x1b1, 8) , (unique, 0x48600, 8)", "(register, 0x40e8, 8) COPY (unique, 0x48500, 8)", "(register, 0x40f0, 8) COPY (unique, 0x48800, 8)"]},
+    {"database_va": "0x21d724", "assembly": "b 0x002341e0", "pcode_ops": [" ---  BRANCH (ram, 0x2341e0, 8)"]}
+  ]
+}
