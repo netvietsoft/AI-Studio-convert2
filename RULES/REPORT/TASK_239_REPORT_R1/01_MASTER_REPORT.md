@@ -1,0 +1,7 @@
+# TASK_239 R1 — oversized ImageCodec internal candidates
+
+The 11 exact nonexport FDE candidates cover 86,800 original bytes and 21,700 independently verified ARM64 words. Three had full pre-existing Ghidra body membership; eight had partial/discontiguous membership. A rollback-only full-FDE metadata pass covered all eight, and fresh-session checks showed original function membership again and copied project file hashes stayed unchanged. The correction output records `same_session_function_metadata_restored=false` for all eight; restoration is supported by the separate fresh sessions, not by same-session metadata inspection. Nine candidates have nonempty static C-like output. The two largest, global zero-based indices **3134** and **3285**, hit the 15-second decompile limit even after full-FDE reconstruction and remain incomplete.
+
+The first correction command produced no rows because a copied script retained the previous task’s six-row guard; its log and receipt remain in the package. The corrected eight-row retry produced all eight records. All eleven later fresh-session records matched the original Ghidra membership, and copied project file hashes stayed unchanged.
+
+**Research result: PARTIAL.** Static FDE ranges and Ghidra C-like text do not establish exact source-function boundaries or behavioral parity. No production code was changed, no Phase PASS or V4 release is claimed.

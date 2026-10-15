@@ -1,0 +1,5 @@
+# TASK_239 R1 audit index
+
+Canonical Standard fully read: `F:\CONVERT\com.mt.mtxx.mtxx\CONVERT2\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt`; SHA-256 `10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f`. Task SHA-256 `f6cfa8329bf2f64073ce082b6ababf7099be9ad1c7e975078e6fc438096828b5`; manifest SHA-256 `a2cf8b101fd929561bec02f947f00fe02e04b79ac7b3cb390c6ab1538e79044e`. Worker `/root/audit_208`, lease `LEASE-CEO-WORKER-TASK_239-R1`, fence `1278`.
+
+All 11 original ELF FDE/PT_LOAD bodies and all 21,700 ARM64 words were independently rechecked. Every candidate (100%, exceeding the 10% provenance sample) was rechecked against its raw and fresh-session Ghidra output. All 8 task-owned source files are SHA-256 pinned in `COMPLETE.json` under `code_files`. See `source_project_index.json`, `source_assembly/`, per-batch receipts/logs, `ghidra_correction_retry/`, and `candidate_evidence.json`. The failed initial correction attempt and successful retry are both retained.
