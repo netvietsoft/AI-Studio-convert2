@@ -1,0 +1,24 @@
+{
+  "task_id": "TASK_213", "revision": 1,
+  "generated_at": "2026-10-15T08:30:07.187617100Z",
+  "index": 95, "elf_va": "0x7938c", "database_va": "0x17938c",
+  "size_bytes": 40, "ghidra_memory_sha256": "86fa03a3ff2e8562c8e3bea03b37f7b25d9899c54c165a7633a8309565d6a35d",
+  "instruction_slots": 10, "ghidra_instruction_count": 10, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 30,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_0017938c", "function_start": "0x17938c", "function_body_min": "0x17938c", "function_body_max": "0x1793b3", "function_body_total_address_count": 40,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 40, "fde_byte_membership_bits": "1111111111111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 3, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_0017938c(long param_1,undefined8 *param_2)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 uVar3;\r\n  undefined8 uVar4;\r\n  undefined8 uVar5;\r\n  \r\n  *param_2 = &PTR_FUN_00239570;\r\n  uVar1 = *(undefined8 *)(param_1 + 0x28);\r\n  uVar3 = *(undefined8 *)(param_1 + 0x20);\r\n  uVar2 = *(undefined8 *)(param_1 + 0x18);\r\n  uVar5 = *(undefined8 *)(param_1 + 0x10);\r\n  uVar4 = *(undefined8 *)(param_1 + 8);\r\n  param_2[6] = *(undefined8 *)(param_1 + 0x30);\r\n  param_2[5] = uVar1;\r\n  param_2[4] = uVar3;\r\n  param_2[3] = uVar2;\r\n  param_2[2] = uVar5;\r\n  param_2[1] = uVar4;\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x17938c", "assembly": "adrp x8,0x239000", "pcode_ops": ["(register, 0x4040, 8) COPY (const, 0x239000, 8)"]},
+    {"database_va": "0x179390", "assembly": "add x8,x8,#0x570", "pcode_ops": ["(unique, 0x23600, 8) COPY (const, 0x570, 8)", "(register, 0x105, 1) INT_CARRY (register, 0x4040, 8) , (unique, 0x23600, 8)", "(register, 0x106, 1) INT_SCARRY (register, 0x4040, 8) , (unique, 0x23600, 8)", "(unique, 0x23800, 8) INT_ADD (register, 0x4040, 8) , (unique, 0x23600, 8)", "(register, 0x107, 1) INT_SLESS (unique, 0x23800, 8) , (const, 0x0, 8)", "(register, 0x108, 1) INT_EQUAL (unique, 0x23800, 8) , (const, 0x0, 8)", "(register, 0x4040, 8) COPY (unique, 0x23800, 8)"]},
+    {"database_va": "0x179394", "assembly": "str x8,[x1]", "pcode_ops": ["(unique, 0xc900, 8) COPY (register, 0x4008, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xc900, 8) , (register, 0x4040, 8)"]},
+    {"database_va": "0x179398", "assembly": "ldur q0,[x0, #0x28]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4000, 8) , (const, 0x28, 8)", "(register, 0x5000, 16) LOAD (const, 0x1b1, 8) , (unique, 0xcc00, 8)", "(register, 0x5010, 8) COPY (const, 0x0, 8)", "(register, 0x5018, 8) COPY (const, 0x0, 8)"]},
+    {"database_va": "0x17939c", "assembly": "ldur q1,[x0, #0x18]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4000, 8) , (const, 0x18, 8)", "(register, 0x5020, 16) LOAD (const, 0x1b1, 8) , (unique, 0xcc00, 8)", "(register, 0x5030, 8) COPY (const, 0x0, 8)", "(register, 0x5038, 8) COPY (const, 0x0, 8)"]},
+    {"database_va": "0x1793a0", "assembly": "ldur q2,[x0, #0x8]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4000, 8) , (const, 0x8, 8)", "(register, 0x5040, 16) LOAD (const, 0x1b1, 8) , (unique, 0xcc00, 8)", "(register, 0x5050, 8) COPY (const, 0x0, 8)", "(register, 0x5058, 8) COPY (const, 0x0, 8)"]},
+    {"database_va": "0x1793a4", "assembly": "stur q0,[x1, #0x28]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4008, 8) , (const, 0x28, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xcc00, 8) , (register, 0x5000, 16)"]},
+    {"database_va": "0x1793a8", "assembly": "stur q1,[x1, #0x18]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4008, 8) , (const, 0x18, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xcc00, 8) , (register, 0x5020, 16)"]},
+    {"database_va": "0x1793ac", "assembly": "stur q2,[x1, #0x8]", "pcode_ops": ["(unique, 0xcc00, 8) INT_ADD (register, 0x4008, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xcc00, 8) , (register, 0x5040, 16)"]},
+    {"database_va": "0x1793b0", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

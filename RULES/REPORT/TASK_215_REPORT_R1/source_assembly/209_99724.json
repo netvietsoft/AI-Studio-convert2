@@ -1,0 +1,108 @@
+{
+  "task_id": "TASK_215",
+  "revision": 1,
+  "global_index": 209,
+  "elf_va": "0x99724",
+  "size_bytes": 64,
+  "file_offset": "0x99724",
+  "source_body_sha256": "9f5ace3d9915aae57ae7c11aafb98bbb891193bf07deb18396d64581a2c9be0a",
+  "instruction_slots": 16,
+  "decoded_slots": 16,
+  "other_fde_overlap": [],
+  "export_body_overlap": [],
+  "call_sites": [
+    {
+      "elf_va": "0x99738",
+      "word_hex": "9a680294",
+      "assembly": "bl #0x1339a0"
+    },
+    {
+      "elf_va": "0x99750",
+      "word_hex": "00013fd6",
+      "assembly": "blr x8"
+    }
+  ],
+  "instructions": [
+    {
+      "elf_va": "0x99724",
+      "word_hex": "fd7bbea9",
+      "assembly": "stp x29, x30, [sp, #-0x20]!"
+    },
+    {
+      "elf_va": "0x99728",
+      "word_hex": "f30b00f9",
+      "assembly": "str x19, [sp, #0x10]"
+    },
+    {
+      "elf_va": "0x9972c",
+      "word_hex": "fd030091",
+      "assembly": "mov x29, sp"
+    },
+    {
+      "elf_va": "0x99730",
+      "word_hex": "f30301aa",
+      "assembly": "mov x19, x1"
+    },
+    {
+      "elf_va": "0x99734",
+      "word_hex": "400000b4",
+      "assembly": "cbz x0, #0x9973c"
+    },
+    {
+      "elf_va": "0x99738",
+      "word_hex": "9a680294",
+      "assembly": "bl #0x1339a0"
+    },
+    {
+      "elf_va": "0x9973c",
+      "word_hex": "f30000b4",
+      "assembly": "cbz x19, #0x99758"
+    },
+    {
+      "elf_va": "0x99740",
+      "word_hex": "600240f9",
+      "assembly": "ldr x0, [x19]"
+    },
+    {
+      "elf_va": "0x99744",
+      "word_hex": "a00000b4",
+      "assembly": "cbz x0, #0x99758"
+    },
+    {
+      "elf_va": "0x99748",
+      "word_hex": "080040f9",
+      "assembly": "ldr x8, [x0]"
+    },
+    {
+      "elf_va": "0x9974c",
+      "word_hex": "080540f9",
+      "assembly": "ldr x8, [x8, #8]"
+    },
+    {
+      "elf_va": "0x99750",
+      "word_hex": "00013fd6",
+      "assembly": "blr x8"
+    },
+    {
+      "elf_va": "0x99754",
+      "word_hex": "7f0200f9",
+      "assembly": "str xzr, [x19]"
+    },
+    {
+      "elf_va": "0x99758",
+      "word_hex": "f30b40f9",
+      "assembly": "ldr x19, [sp, #0x10]"
+    },
+    {
+      "elf_va": "0x9975c",
+      "word_hex": "fd7bc2a8",
+      "assembly": "ldp x29, x30, [sp], #0x20"
+    },
+    {
+      "elf_va": "0x99760",
+      "word_hex": "c0035fd6",
+      "assembly": "ret"
+    }
+  ],
+  "boundary_classification": "FDE_CANDIDATE_NOT_PROVEN_FUNCTION"
+}
