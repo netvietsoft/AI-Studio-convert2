@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK_231", "revision": 1,
+  "generated_at": "2026-10-15T10:02:04.443972400Z",
+  "index": 1734, "elf_va": "0x26df3c", "database_va": "0x36df3c",
+  "size_bytes": 4, "ghidra_memory_sha256": "eef7daf663649d43a1233fd980f9e892e7c66369465777e7916ec6f80ce79ebb",
+  "instruction_slots": 1, "ghidra_instruction_count": 1, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 1,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "thunk_FUN_00370854", "function_start": "0x36df3c", "function_body_min": "0x36df3c", "function_body_max": "0x36df3f", "function_body_total_address_count": 4,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 4, "fde_byte_membership_bits": "1111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 27, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nlong thunk_FUN_00370854(long *param_1)\r\n\r\n{\r\n  long *plVar1;\r\n  code *pcVar2;\r\n  undefined1 uVar3;\r\n  long lVar4;\r\n  long lVar5;\r\n  undefined8 uStack_38;\r\n  \r\n  plVar1 = param_1 + 1;\r\n  uVar3 = <flate2::mem::FlushCompress_as_flate2::zio::Flush>::sync();\r\n  uStack_38 = <flate2::mem::Compress_as_flate2::zio::Ops>::run_vec\r\n                        (plVar1,&DAT_001d093e,0,param_1 + 4,uVar3);\r\n  if ((int)uStack_38 != 2) {\r\n    core::result::unwrap_failed(&DAT_001d0913,0x2b,&uStack_38,&PTR_FUN_005d0138,&PTR_DAT_005d0158);\r\n                    /* WARNING: Does not return */\r\n    pcVar2 = (code *)SoftwareBreakpoint(1,0x37096c);\r\n    (*pcVar2)();\r\n  }\r\n  while( true ) {\r\n    lVar4 = FUN_00370ce8(param_1);\r\n    if (lVar4 != 0) {\r\n      return lVar4;\r\n    }\r\n    lVar4 = flate2::mem::Decompress::total_out(plVar1);\r\n    uVar3 = <flate2::mem::FlushCompress_as_flate2::zio::Flush>::none();\r\n    uStack_38 = <flate2::mem::Compress_as_flate2::zio::Ops>::run_vec\r\n                          (plVar1,&DAT_001d093e,0,param_1 + 4,uVar3);\r\n    if ((int)uStack_38 != 2) break;\r\n    lVar5 = flate2::mem::Decompress::total_out(plVar1);\r\n    if (lVar4 == lVar5) {\r\n      if (*param_1 != 0) {\r\n        return 0;\r\n      }\r\n                    /* WARNING: Subroutine does not return */\r\n      core::panicking::panic(&DAT_001d0991,0x2b,&PTR_DAT_005d0188);\r\n    }\r\n  }\r\n  core::result::unwrap_failed(&DAT_001d0913,0x2b,&uStack_38,&PTR_FUN_005d0138,&PTR_DAT_005d0170);\r\n                    /* WARNING: Does not return */\r\n  pcVar2 = (code *)SoftwareBreakpoint(1,0x37093c);\r\n  (*pcVar2)();\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x36df3c", "assembly": "b 0x00370854", "pcode_ops": [" ---  BRANCH (ram, 0x370854, 8)"]}
+  ]
+}

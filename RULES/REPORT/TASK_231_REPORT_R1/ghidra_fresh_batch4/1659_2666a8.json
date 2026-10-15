@@ -1,0 +1,28 @@
+{
+  "task_id": "TASK_231", "revision": 1,
+  "generated_at": "2026-10-15T10:01:33.488399500Z",
+  "index": 1659, "elf_va": "0x2666a8", "database_va": "0x3666a8",
+  "size_bytes": 56, "ghidra_memory_sha256": "1dc60b87f742d74e6f86a68699291bc2ea601dd3a42ee1ff1ac612ba9ecbacda",
+  "instruction_slots": 14, "ghidra_instruction_count": 14, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 31,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_003666a8", "function_start": "0x3666a8", "function_body_min": "0x3666a8", "function_body_max": "0x3666df", "function_body_total_address_count": 56,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 56, "fde_byte_membership_bits": "11111111111111111111111111111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 3, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_003666a8(long *param_1)\r\n\r\n{\r\n  long *__ptr;\r\n  \r\n  __ptr = (long *)*param_1;\r\n  if (*__ptr != 0) {\r\n    __rust_dealloc((void *)__ptr[1]);\r\n    __ptr = (long *)*param_1;\r\n  }\r\n  __rust_dealloc(__ptr);\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x3666a8", "assembly": "stp x30,x19,[sp, #-0x10]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40f0, 8)", "(unique, 0x74100, 8) COPY (register, 0x4098, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xfffffffffffffff0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x3666ac", "assembly": "mov x19,x0", "pcode_ops": ["(register, 0x4098, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x3666b0", "assembly": "ldr x0,[x0]", "pcode_ops": ["(unique, 0xc900, 8) COPY (register, 0x4000, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc900, 8)"]},
+    {"database_va": "0x3666b4", "assembly": "ldr x1,[x0]", "pcode_ops": ["(unique, 0xc900, 8) COPY (register, 0x4000, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc900, 8)"]},
+    {"database_va": "0x3666b8", "assembly": "cbz x1,0x003666d0", "pcode_ops": ["(unique, 0x31700, 1) INT_EQUAL (register, 0x4008, 8) , (const, 0x0, 8)", " ---  CBRANCH (ram, 0x3666d0, 8) , (unique, 0x31700, 1)"]},
+    {"database_va": "0x3666bc", "assembly": "mvn x8,x1", "pcode_ops": ["(register, 0x4040, 8) INT_NEGATE (register, 0x4008, 8)"]},
+    {"database_va": "0x3666c0", "assembly": "ldr x0,[x0, #0x8]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4000, 8) , (const, 0x8, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x3666c4", "assembly": "lsr x2,x8,#0x3f", "pcode_ops": ["(register, 0x4010, 8) INT_RIGHT (register, 0x4040, 8) , (const, 0x3f, 8)"]},
+    {"database_va": "0x3666c8", "assembly": "bl 0x005c3790", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x3666c8, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x5c3790, 8)"]},
+    {"database_va": "0x3666cc", "assembly": "ldr x0,[x19]", "pcode_ops": ["(unique, 0xc900, 8) COPY (register, 0x4098, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc900, 8)"]},
+    {"database_va": "0x3666d0", "assembly": "mov w1,#0x18", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0x18, 8)"]},
+    {"database_va": "0x3666d4", "assembly": "mov w2,#0x8", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x8, 8)"]},
+    {"database_va": "0x3666d8", "assembly": "ldp x30,x19,[sp], #0x10", "pcode_ops": ["(unique, 0xf200, 8) COPY (register, 0x8, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", "(unique, 0x48500, 8) LOAD (const, 0x1b1, 8) , (unique, 0xf200, 8)", "(unique, 0x48600, 8) INT_ADD (unique, 0xf200, 8) , (const, 0x8, 8)", "(unique, 0x48800, 8) LOAD (const, 0x1b1, 8) , (unique, 0x48600, 8)", "(register, 0x40f0, 8) COPY (unique, 0x48500, 8)", "(register, 0x4098, 8) COPY (unique, 0x48800, 8)"]},
+    {"database_va": "0x3666dc", "assembly": "b 0x005c3790", "pcode_ops": [" ---  BRANCH (ram, 0x5c3790, 8)"]}
+  ]
+}

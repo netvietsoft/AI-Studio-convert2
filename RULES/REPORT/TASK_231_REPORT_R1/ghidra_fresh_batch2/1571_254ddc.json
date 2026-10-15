@@ -1,0 +1,26 @@
+{
+  "task_id": "TASK_231", "revision": 1,
+  "generated_at": "2026-10-15T10:01:01.265927900Z",
+  "index": 1571, "elf_va": "0x254ddc", "database_va": "0x354ddc",
+  "size_bytes": 48, "ghidra_memory_sha256": "14d95de77632b5e142826de5c91bed79eb4fe18c9e120ebbf586771ee1069619",
+  "instruction_slots": 12, "ghidra_instruction_count": 12, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 28,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00354ddc", "function_start": "0x354ddc", "function_body_min": "0x354ddc", "function_body_max": "0x354e0b", "function_body_total_address_count": 48,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 48, "fde_byte_membership_bits": "111111111111111111111111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 60, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_00354ddc(long param_1)\r\n\r\n{\r\n  if (*(long *)(param_1 + 0x18) != 0) {\r\n    __rust_dealloc(*(void **)(param_1 + 0x10));\r\n  }\r\n  __rust_dealloc(*(void **)(param_1 + 0x40));\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x354ddc", "assembly": "stp x30,x19,[sp, #-0x10]!", "pcode_ops": ["(unique, 0x74000, 8) COPY (register, 0x40f0, 8)", "(unique, 0x74100, 8) COPY (register, 0x4098, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0xfffffffffffffff0, 8)", " ---  STORE (const, 0x1b1, 8) , (register, 0x8, 8) , (unique, 0x74000, 8)", "(unique, 0x74200, 8) INT_ADD (register, 0x8, 8) , (const, 0x8, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x74200, 8) , (unique, 0x74100, 8)"]},
+    {"database_va": "0x354de0", "assembly": "mov x19,x0", "pcode_ops": ["(register, 0x4098, 8) COPY (register, 0x4000, 8)"]},
+    {"database_va": "0x354de4", "assembly": "ldr x1,[x0, #0x18]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4000, 8) , (const, 0x18, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x354de8", "assembly": "cbz x1,0x00354df8", "pcode_ops": ["(unique, 0x31700, 1) INT_EQUAL (register, 0x4008, 8) , (const, 0x0, 8)", " ---  CBRANCH (ram, 0x354df8, 8) , (unique, 0x31700, 1)"]},
+    {"database_va": "0x354dec", "assembly": "ldr x0,[x19, #0x10]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4098, 8) , (const, 0x10, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x354df0", "assembly": "mov w2,#0x1", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x1, 8)"]},
+    {"database_va": "0x354df4", "assembly": "bl 0x005c3790", "pcode_ops": ["(register, 0x40f0, 8) INT_ADD (const, 0x354df4, 8) , (const, 0x4, 8)", " ---  CALL (ram, 0x5c3790, 8)"]},
+    {"database_va": "0x354df8", "assembly": "ldr x0,[x19, #0x40]", "pcode_ops": ["(unique, 0xc300, 8) INT_ADD (register, 0x4098, 8) , (const, 0x40, 8)", "(register, 0x4000, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc300, 8)"]},
+    {"database_va": "0x354dfc", "assembly": "mov w1,#0xab08", "pcode_ops": ["(register, 0x4008, 8) COPY (const, 0xab08, 8)"]},
+    {"database_va": "0x354e00", "assembly": "mov w2,#0x8", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x8, 8)"]},
+    {"database_va": "0x354e04", "assembly": "ldp x30,x19,[sp], #0x10", "pcode_ops": ["(unique, 0xf200, 8) COPY (register, 0x8, 8)", "(register, 0x8, 8) INT_ADD (register, 0x8, 8) , (const, 0x10, 8)", "(unique, 0x48500, 8) LOAD (const, 0x1b1, 8) , (unique, 0xf200, 8)", "(unique, 0x48600, 8) INT_ADD (unique, 0xf200, 8) , (const, 0x8, 8)", "(unique, 0x48800, 8) LOAD (const, 0x1b1, 8) , (unique, 0x48600, 8)", "(register, 0x40f0, 8) COPY (unique, 0x48500, 8)", "(register, 0x4098, 8) COPY (unique, 0x48800, 8)"]},
+    {"database_va": "0x354e08", "assembly": "b 0x005c3790", "pcode_ops": [" ---  BRANCH (ram, 0x5c3790, 8)"]}
+  ]
+}

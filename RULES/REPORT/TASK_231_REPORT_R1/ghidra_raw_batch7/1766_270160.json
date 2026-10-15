@@ -1,0 +1,18 @@
+{
+  "task_id": "TASK_231", "revision": 1,
+  "generated_at": "2026-10-15T09:57:21.155807200Z",
+  "index": 1766, "elf_va": "0x270160", "database_va": "0x370160",
+  "size_bytes": 16, "ghidra_memory_sha256": "1aae22d42d4f9d7eaeed99433036de75880e1b70ecbfc56de88f932835621101",
+  "instruction_slots": 4, "ghidra_instruction_count": 4, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 6,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00370160", "function_start": "0x370160", "function_body_min": "0x370160", "function_body_max": "0x37016f", "function_body_total_address_count": 16,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 16, "fde_byte_membership_bits": "1111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 8, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nvoid FUN_00370160(void *param_1,long param_2)\r\n\r\n{\r\n  if (param_2 != 0) {\r\n    __rust_dealloc(param_1);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x370160", "assembly": "cbz x1,0x0037016c", "pcode_ops": ["(unique, 0x31700, 1) INT_EQUAL (register, 0x4008, 8) , (const, 0x0, 8)", " ---  CBRANCH (ram, 0x37016c, 8) , (unique, 0x31700, 1)"]},
+    {"database_va": "0x370164", "assembly": "mov w2,#0x1", "pcode_ops": ["(register, 0x4010, 8) COPY (const, 0x1, 8)"]},
+    {"database_va": "0x370168", "assembly": "b 0x005c3790", "pcode_ops": [" ---  BRANCH (ram, 0x5c3790, 8)"]},
+    {"database_va": "0x37016c", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

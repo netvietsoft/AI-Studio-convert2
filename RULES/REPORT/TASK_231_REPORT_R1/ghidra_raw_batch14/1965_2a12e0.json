@@ -1,0 +1,17 @@
+{
+  "task_id": "TASK_231", "revision": 1,
+  "generated_at": "2026-10-15T09:58:57.236766600Z",
+  "index": 1965, "elf_va": "0x2a12e0", "database_va": "0x3a12e0",
+  "size_bytes": 12, "ghidra_memory_sha256": "e2d637298ec8a3533ab444c5a011c473a7202f621d392e45b7910434b588fb30",
+  "instruction_slots": 3, "ghidra_instruction_count": 3, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 5,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_003a12e0", "function_start": "0x3a12e0", "function_body_min": "0x3a12e0", "function_body_max": "0x3a12eb", "function_body_total_address_count": 12,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 12, "fde_byte_membership_bits": "111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 6, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\nint FUN_003a12e0(uint param_1,undefined8 *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = fputc(param_1 & 0xff,(FILE *)*param_2);\r\n  return iVar1;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x3a12e0", "assembly": "ldr x1,[x1]", "pcode_ops": ["(unique, 0xc900, 8) COPY (register, 0x4008, 8)", "(register, 0x4008, 8) LOAD (const, 0x1b1, 8) , (unique, 0xc900, 8)"]},
+    {"database_va": "0x3a12e4", "assembly": "and w0,w0,#0xff", "pcode_ops": ["(unique, 0x24400, 4) INT_AND (register, 0x4000, 4) , (const, 0xff, 4)", "(register, 0x4000, 8) INT_ZEXT (unique, 0x24400, 4)"]},
+    {"database_va": "0x3a12e8", "assembly": "b 0x005c4af0", "pcode_ops": [" ---  BRANCH (ram, 0x5c4af0, 8)"]}
+  ]
+}

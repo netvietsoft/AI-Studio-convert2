@@ -1,0 +1,91 @@
+{
+  "index": 1952,
+  "selected_zero_index": 1951,
+  "elf_va": "0x2962c8",
+  "size_bytes": 60,
+  "end_exclusive": "0x296304",
+  "file_offset": "0x2962c8",
+  "source_body_sha256": "df8bc5d7ee59327c0ad66af800ebf33cbe1fb055daf2a0922e748afa31085e20",
+  "instruction_slots": 15,
+  "capstone_decoded_slots": 15,
+  "fde_exact_match": true,
+  "other_fde_overlap": [],
+  "export_body_overlap": [],
+  "instructions": [
+    {
+      "elf_va": "0x2962c8",
+      "word_hex": "000440fd",
+      "assembly": "ldr d0, [x0, #8]"
+    },
+    {
+      "elf_va": "0x2962cc",
+      "word_hex": "210440fd",
+      "assembly": "ldr d1, [x1, #8]"
+    },
+    {
+      "elf_va": "0x2962d0",
+      "word_hex": "88f1ffb0",
+      "assembly": "adrp x8, #0xc7000"
+    },
+    {
+      "elf_va": "0x2962d4",
+      "word_hex": "03b547fd",
+      "assembly": "ldr d3, [x8, #0xf68]"
+    },
+    {
+      "elf_va": "0x2962d8",
+      "word_hex": "02d4e17e",
+      "assembly": "fabd d2, d0, d1"
+    },
+    {
+      "elf_va": "0x2962dc",
+      "word_hex": "4020631e",
+      "assembly": "fcmp d2, d3"
+    },
+    {
+      "elf_va": "0x2962e0",
+      "word_hex": "6c000054",
+      "assembly": "b.gt #0x2962ec"
+    },
+    {
+      "elf_va": "0x2962e4",
+      "word_hex": "000840fd",
+      "assembly": "ldr d0, [x0, #0x10]"
+    },
+    {
+      "elf_va": "0x2962e8",
+      "word_hex": "210840fd",
+      "assembly": "ldr d1, [x1, #0x10]"
+    },
+    {
+      "elf_va": "0x2962ec",
+      "word_hex": "0020611e",
+      "assembly": "fcmp d0, d1"
+    },
+    {
+      "elf_va": "0x2962f0",
+      "word_hex": "e8579f1a",
+      "assembly": "cset w8, mi"
+    },
+    {
+      "elf_va": "0x2962f4",
+      "word_hex": "1f010071",
+      "assembly": "cmp w8, #0"
+    },
+    {
+      "elf_va": "0x2962f8",
+      "word_hex": "08008012",
+      "assembly": "mov w8, #-1"
+    },
+    {
+      "elf_va": "0x2962fc",
+      "word_hex": "0015885a",
+      "assembly": "cneg w0, w8, eq"
+    },
+    {
+      "elf_va": "0x296300",
+      "word_hex": "c0035fd6",
+      "assembly": "ret"
+    }
+  ]
+}
