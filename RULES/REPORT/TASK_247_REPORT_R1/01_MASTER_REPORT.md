@@ -1,0 +1,9 @@
+# TASK_247 R1 — ImageCodec FDE465 corrective CFG/IR research
+
+Status: **BOUNDED_PARTIAL_IR_RESEARCH_CANDIDATE**, awaiting independent CEO review.
+
+The pinned original `libPVGImageCodec.so` SHA-256 `7745f3a95ec533332c96aff8d8d8c11d18e3011109741562bf3b319d3842fb1b` and executable ELF PT_LOAD/FDE identify zero-based nonexport FDE index 465 at VA `0x1ebdd8`, 2,780 bytes / 695 AArch64 words, body SHA-256 `2ee0e7f90483583800b9d2f7e93ff3f73456d991585e00cc7d211af010db3cca`. All words were decoded and an independent source-stream reread checked the complete body plus 70/695 spread word positions. The conservative byte-anchored CFG has 23 blocks and 18 branch sites; indirect edges, call effects, and source boundaries remain unproven.
+
+TASK_211's first decompile and targeted retry both report `Unable to find unique hash for varnode`; their raw bytes and hashes are referenced in `source_and_prior_receipt.json`. A separate read-only, 1-CPU/1-GiB Ghidra session tried `firstpass`, `register`, and `normalize`, each capped at 15 seconds. All three completed, but **none produced C-like text**. The initial HighFunction script had a Java import compile error; its raw command/log is retained under `high_ir/`. After the owned-script import correction, a fresh bounded session produced 2,262 normalized high-IR ops mapped to 468/695 distinct original word addresses. The 227 addresses absent from this optimized IR are explicitly listed in `high_ir_source_mapping.json`; this address absence does not prove their behavior is absent.
+
+Ghidra's existing body spans all 2,780 FDE bytes, but no whole-function C-like recovery or executable algorithm was achieved. `source_cfg.json` and `high_ir_source_mapping.json` are static evidence, not C++ source or codec-equivalence proof. Runtime/device parity, product Phase PASS and V4 readiness remain unproven. No product/source file was edited; no commit, push or self-review was performed.
