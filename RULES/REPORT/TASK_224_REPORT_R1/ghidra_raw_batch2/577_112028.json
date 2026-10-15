@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK_224", "revision": 1,
+  "generated_at": "2026-10-15T09:26:36.468412700Z",
+  "index": 577, "elf_va": "0x112028", "database_va": "0x212028",
+  "size_bytes": 28, "ghidra_memory_sha256": "bb075c1fd0524985854c854af3e14c8b7e7045b9cf64168a3de09c6d0bfac37e",
+  "instruction_slots": 7, "ghidra_instruction_count": 7, "missing_analyzed_instruction_count": 0, "ghidra_pcode_ops": 27,
+  "boundary_classification": "EXACT_GHIDRA_FUNCTION_START_FDE_BOUNDARY_UNPROVEN", "existing_exact_function_start": true, "existing_function_contains_nonstart": false, "temporary_function_created_and_rolled_back": false,
+  "function_name": "FUN_00212028", "function_start": "0x212028", "function_body_min": "0x212028", "function_body_max": "0x212043", "function_body_total_address_count": 28,
+  "extra_body_address_count": 0, "extra_body_ranges": [],
+  "fde_byte_membership_count": 28, "fde_byte_membership_bits": "1111111111111111111111111111", "fde_byte_membership_transitions": 0, "fde_missing_body_ranges": [], "other_function_byte_count": 0,
+  "decompile_elapsed_ms": 5, "c_like_nonempty": true, "decompile_error": "", "c_like_text": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00212028(undefined8 *param_1)\r\n\r\n{\r\n  undefined8 uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 uVar3;\r\n  undefined8 uVar4;\r\n  undefined8 uVar5;\r\n  undefined8 uVar6;\r\n  undefined8 uVar7;\r\n  \r\n  uVar7 = uRam0000000000240cbc;\r\n  uVar6 = _DAT_00240cb4;\r\n  uVar5 = _DAT_00240ca4;\r\n  uVar4 = uRam0000000000240c9c;\r\n  uVar3 = _DAT_00240c94;\r\n  uVar2 = uRam0000000000240c8c;\r\n  uVar1 = _DAT_00240c84;\r\n  param_1[5] = uRam0000000000240cac;\r\n  param_1[4] = uVar5;\r\n  param_1[7] = uVar7;\r\n  param_1[6] = uVar6;\r\n  param_1[1] = uVar2;\r\n  *param_1 = uVar1;\r\n  param_1[3] = uVar4;\r\n  param_1[2] = uVar3;\r\n  return;\r\n}\r\n\r\n",
+  "instruction_pcode": [
+    {"database_va": "0x212028", "assembly": "nop", "pcode_ops": []},
+    {"database_va": "0x21202c", "assembly": "adr x8,0x240c84", "pcode_ops": ["(register, 0x4040, 8) COPY (const, 0x240c84, 8)"]},
+    {"database_va": "0x212030", "assembly": "ldp q1,q0,[x8, #0x20]", "pcode_ops": ["(unique, 0xf000, 8) INT_ADD (register, 0x4040, 8) , (const, 0x20, 8)", "(register, 0x5020, 16) LOAD (const, 0x1b1, 8) , (unique, 0xf000, 8)", "(register, 0x5030, 8) COPY (const, 0x0, 8)", "(register, 0x5038, 8) COPY (const, 0x0, 8)", "(unique, 0x1a2000, 8) INT_ADD (unique, 0xf000, 8) , (const, 0x10, 8)", "(register, 0x5000, 16) LOAD (const, 0x1b1, 8) , (unique, 0x1a2000, 8)", "(register, 0x5010, 8) COPY (const, 0x0, 8)", "(register, 0x5018, 8) COPY (const, 0x0, 8)"]},
+    {"database_va": "0x212034", "assembly": "ldp q2,q3,[x8]", "pcode_ops": ["(unique, 0xf100, 8) COPY (register, 0x4040, 8)", "(register, 0x5040, 16) LOAD (const, 0x1b1, 8) , (unique, 0xf100, 8)", "(register, 0x5050, 8) COPY (const, 0x0, 8)", "(register, 0x5058, 8) COPY (const, 0x0, 8)", "(unique, 0x1a2000, 8) INT_ADD (unique, 0xf100, 8) , (const, 0x10, 8)", "(register, 0x5060, 16) LOAD (const, 0x1b1, 8) , (unique, 0x1a2000, 8)", "(register, 0x5070, 8) COPY (const, 0x0, 8)", "(register, 0x5078, 8) COPY (const, 0x0, 8)"]},
+    {"database_va": "0x212038", "assembly": "stp q1,q0,[x0, #0x20]", "pcode_ops": ["(unique, 0xf000, 8) INT_ADD (register, 0x4000, 8) , (const, 0x20, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xf000, 8) , (register, 0x5020, 16)", "(unique, 0x282400, 8) INT_ADD (unique, 0xf000, 8) , (const, 0x10, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x282400, 8) , (register, 0x5000, 16)"]},
+    {"database_va": "0x21203c", "assembly": "stp q2,q3,[x0]", "pcode_ops": ["(unique, 0xf100, 8) COPY (register, 0x4000, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0xf100, 8) , (register, 0x5040, 16)", "(unique, 0x282400, 8) INT_ADD (unique, 0xf100, 8) , (const, 0x10, 8)", " ---  STORE (const, 0x1b1, 8) , (unique, 0x282400, 8) , (register, 0x5060, 16)"]},
+    {"database_va": "0x212040", "assembly": "ret", "pcode_ops": ["(register, 0x0, 8) COPY (register, 0x40f0, 8)", " ---  RETURN (register, 0x0, 8)"]}
+  ]
+}

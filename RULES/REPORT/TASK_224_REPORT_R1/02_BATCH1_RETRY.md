@@ -1,0 +1,3 @@
+﻿# TASK_224 batch 1 retry
+
+The first bounded Ghidra invocation returned zero target rows because the new task-owned Java script had a UTF-8 BOM. Ghidra's Java compiler rejected the imports before decompilation. The failed invocation is preserved as `ghidra_batch1_attempt1_command.json`, `ghidra_batch1_attempt1_stdout.log`, and `ghidra_batch1_attempt1_stderr.log`. The BOM was removed from `scripts/task_224_codex_internal/ExtractInternal224.java`; the same 32 pinned targets then yielded 32 raw rows in the successful `ghidra_batch1_command.json` receipt. No source ELF or private Ghidra project bytes were changed.
