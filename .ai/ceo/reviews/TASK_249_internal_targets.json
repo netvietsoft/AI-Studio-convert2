@@ -1,0 +1,41 @@
+{
+  "schema_version": "2.1.2",
+  "task_id": "TASK_249",
+  "revision": 1,
+  "classification": "UNRESOLVED_GAP_INSIDE_CANDIDATE_FDE_NOT_A_PROVEN_FUNCTION",
+  "source_library": "libPVGCodec.so",
+  "source_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libPVGCodec.so",
+  "source_sha256": "4fa5f275c8ddecf7caa960c812108ec9e801365bfe5bc9cf38598233bc449ffc",
+  "candidate_fde": {
+    "start_va": "0xA8B08",
+    "end_va_exclusive": "0xAF68C",
+    "size_bytes": 27524,
+    "body_sha256": "7c65b7edc58d97da61177d6c07fe5579bf950074592f79dc0bb6d4499e904fb5"
+  },
+  "target_gap": {
+    "start_va": "0xaf040",
+    "end_va_exclusive": "0xaf688",
+    "size_bytes": 1608,
+    "instruction_words": 402,
+    "file_offset": "0xaf040",
+    "mapping": {
+      "segment_vaddr": 0,
+      "segment_offset": 0,
+      "file_offset": 716864,
+      "filesz": 1266000
+    },
+    "sha256": "f825653da2ed819fd5334f4103037f4466fcf8655080e5ec84c56a684569c54b"
+  },
+  "parent_task": "TASK_248",
+  "parent_revision": 1,
+  "parent_fingerprint": "be8a7a0b846450c2e72dc438b0ea43d172e008330beb017a435d45d62c50422b",
+  "parent_complete_sha256": "972cbcd11ef23838f9577223285d44dace18b2e20daac8572b3421b7d7e21668",
+  "parent_task_sha256": "037fd12b7a89944c44bb07520a7a7b0d41e88fab54bad3f459abcdeacbc7a71b",
+  "parent_target_manifest_sha256": "f82ab134d8431e825622e31574324679eff9045b1b2660acd87961670a7ab7ee",
+  "parent_review_sha256": "d29fd72fbff0c5281d42b260815fb3fc96aeae036f13c4be24826408571775fa",
+  "limits": [
+    "FDE is not proof of source-function boundary",
+    "no C-like count unless exact function boundary and full body coverage are independently proven",
+    "CFG/IR/disassembly are not C-like bodies or runtime behavior"
+  ]
+}

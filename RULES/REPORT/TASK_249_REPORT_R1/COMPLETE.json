@@ -1,0 +1,107 @@
+{
+  "schema_version": "2.1.2",
+  "task_id": "TASK_249",
+  "revision": 1,
+  "status": "COMPLETE",
+  "semantic_disposition": "PARTIAL_GAP_DISASSEMBLED_NO_FUNCTION_RECOVERED",
+  "generated_at": "2026-10-16T00:23:24.741930+00:00",
+  "standard_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\Development_Workspace_Standard_V2.1_Design_Gated 29-9-2026.txt",
+  "standard_sha256": "10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f",
+  "task_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\RULES\\TASK\\TASK_249_SO45_PVGCODEC_GAP_RECOVERY_ACTIVE.md",
+  "task_sha256": "4f5ec07747c381257116461979fa5fced279911b19a0f2f3aa0e5348e339ae0e",
+  "target_manifest_path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2\\.ai\\ceo\\reviews\\TASK_249_internal_targets.json",
+  "target_manifest_sha256": "29890e85a5c7677cabf51a20dcbc3fe34b9531fc12ceadb1e25476d9b81c1f27",
+  "lease_id": "LEASE-CEO-WORKER-TASK_249-R1",
+  "agent_id": "/root/pvg_gap_decode",
+  "fencing_token": 1289,
+  "lease_expiry": "2026-10-16T01:40:58.234061+00:00",
+  "canonical_read_acknowledgment_utc": "2026-10-16T00:12:23.802078+00:00",
+  "source_library": {
+    "path": "F:\\CONVERT\\com.mt.mtxx.mtxx\\SOURCE\\extracted_native_libs\\lib\\arm64-v8a\\libPVGCodec.so",
+    "sha256": "4fa5f275c8ddecf7caa960c812108ec9e801365bfe5bc9cf38598233bc449ffc",
+    "bytes": 1283760
+  },
+  "candidate_fde": {
+    "start_va": "0xa8b08",
+    "end_va_exclusive": "0xaf68c",
+    "size_bytes": 27524,
+    "sha256": "7c65b7edc58d97da61177d6c07fe5579bf950074592f79dc0bb6d4499e904fb5",
+    "source_boundary_proven": false
+  },
+  "target_gap": {
+    "start_va": "0xaf040",
+    "end_va_exclusive": "0xaf688",
+    "file_offset": "0xaf040",
+    "size_bytes": 1608,
+    "sha256": "f825653da2ed819fd5334f4103037f4466fcf8655080e5ec84c56a684569c54b",
+    "arm64_words": 402,
+    "source_words_independently_decoded": 402
+  },
+  "ghidra": {
+    "version": "12.1.4",
+    "mode": "-noanalysis -readOnly; max CPU 1; heap cap 1G",
+    "exit_code": 0,
+    "defined_gap_instructions": 0,
+    "function_body_member_words": 0,
+    "external_flow_references_into_gap": 0,
+    "project_baseline_files_verified_unchanged": 9
+  },
+  "control_flow": {
+    "internal_direct_branch_sites": 129,
+    "direct_branch_sites_exiting_gap": 1,
+    "direct_call_sites": 49,
+    "direct_incoming_branch_sites_from_elsewhere_in_candidate_fde": 0,
+    "unresolved_indirect_edges": 0,
+    "possible_return_continuation_from_0xaf03c": true
+  },
+  "lsda": {
+    "callsite_rows": 184,
+    "rows_with_landing_pad": 167,
+    "unique_landing_pad_addresses": 128,
+    "landing_pads_inside_gap": true,
+    "action_nonzero_rows": 0,
+    "raw_bytes_sha256": "5dcd212050b4b4ae1f92f8304a46aa19bac6d7b3b4f63826a4f4f6575595faa8"
+  },
+  "c_like_bodies_recovered": 0,
+  "pcode_gap_addresses_mapped": 0,
+  "pcode_gap_words_absent_from_prior_optimized_ir": 402,
+  "ordinary_provenance_records_relied_on": 0,
+  "ordinary_records_rechecked": 0,
+  "targeted_words_rehashed_and_decoded": 402,
+  "review_state": "REVIEW_CANDIDATE_AWAITING_CEO",
+  "independent_ceo_review_required": true,
+  "commit_performed": false,
+  "push_performed": false,
+  "limitations": [
+    "candidate FDE does not prove source function boundary",
+    "static cleanup/landing-pad interpretation only",
+    "no C-like body recovered",
+    "source behavior/runtime not tested",
+    "IR address absence is not reachability proof"
+  ],
+  "files": {
+    "00_AUDIT_INDEX.md": "5a55b35e71b80ac876bc384e66305c9ed6f8c8d65d8609985deadc581c3a4749",
+    "01_MASTER_REPORT.md": "3d48c14b854955522ef67f9c96a763527b61038d949286a05aa6b81c7e161124",
+    "ghidra/attempt_xref_array_error.exit_code.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+    "ghidra/attempt_xref_array_error.stderr.log": "b0a6ba61885faabc92d6213ad090d87398bdc8076a11e9c9a51de6296ee01809",
+    "ghidra/attempt_xref_array_error.stdout.log": "92b1fb8dcfc9d0fceab11e9264ac1ad09699ff8af5c7a340fc119b5e9da47c8b",
+    "ghidra/command.json": "5d341a6e7704ad1326e05e3ec33f85d7d6847084a6a9ef6a50f1193a68077eb1",
+    "ghidra/exit_code.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+    "ghidra/gap_listing.json": "29a6890a031e5cadc430a8562735512e32f86db0178a2a20a8bd1cfdfdc6fe89",
+    "ghidra/stderr.log": "b0a6ba61885faabc92d6213ad090d87398bdc8076a11e9c9a51de6296ee01809",
+    "ghidra/stdout.log": "5bffc2da9bb575f29a4eaf3213bf35f7ab6fc7e81982166843bb2f3e24a3828f",
+    "source/c_like_gap.json": "c11c4e8ad9f7675f7e2811992f1a00313697c5ff0a122499038df5379470d691",
+    "source/capstone_disassembly.txt": "ae62f69fafe23ad1610e5e961c6f80ba942cb279a9d507b2d35283ae4e86308c",
+    "source/eh_lsda_summary.json": "08db9ee1d629fb64f2e80556a9865433f0fa5672a2c4978063c6c99a9dd7b0f7",
+    "source/incoming_fde_edges.json": "8d40f6f8ff97a0fd72339cc6f72b0e9fa8f6667d7230c9cf602f8fc705c0884d",
+    "source/lsda_callsite_evidence.json": "30f844d4f02b31b8a9efcb690b7999c7125094d8d3016e80a025eb8bc5948a3d",
+    "source/pcode_gap.json": "5656f8959e1a8a652d0d9ea44ac179682339fa6f85728aa1f7fa85ba9669c54c",
+    "source/word_edge_ledger.json": "8df548c42783077d00fcb268ccc4b2df28010ee0d2287f8290f98af07fe66dd0"
+  },
+  "code_files": {
+    "scripts/task_249_codex_internal/GapListing249.java": "6afdc88dde7396ddc7bd768ebf4b0fa0fff7463887e3f994a08fa2b2b4a6a796",
+    "scripts/task_249_codex_internal/seal_report.py": "37647f45b67869316f8c82b8324072f5fc8a0e602e32d9bf39e4985f44ac37c2",
+    "scripts/task_249_codex_internal/verify_gap.py": "503e822169e6b250420fc5d693a8652913fbbb99a4fc43dc000da581f6891d6f"
+  },
+  "complete_sha256_note": "COMPLETE.json is the sole report file excluded from files because self-hashing is undefined; all other report and code artifacts are SHA-256 bound."
+}

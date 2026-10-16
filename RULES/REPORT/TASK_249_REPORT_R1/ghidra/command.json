@@ -1,0 +1,83 @@
+{
+  "task_id": "TASK_249",
+  "revision": 1,
+  "lease_id": "LEASE-CEO-WORKER-TASK_249-R1",
+  "fencing_token": 1289,
+  "canonical_standard_sha256": "10968894cdf48a10e64671eb81969e563b40f834a8a8ab16a4ecdc479e9fc85f",
+  "operation": "list-only membership/instructions in exact gap plus 16-byte edges; no decompile, no analysis",
+  "executable": "F:\\TOOLS\\ghidra_12.1.4_PUBLIC\\support\\analyzeHeadless.bat",
+  "working_directory": "F:\\CONVERT\\com.mt.mtxx.mtxx\\CONVERT2",
+  "environment": {
+    "JAVA_TOOL_OPTIONS": "-Xmx1G"
+  },
+  "arguments": [
+    "RESEARCH_WORK/TASK_248_R1/ghidra_project",
+    "Task158",
+    "-process",
+    "libPVGCodec.so",
+    "-noanalysis",
+    "-readOnly",
+    "-max-cpu",
+    "1",
+    "-scriptPath",
+    "scripts/task_249_codex_internal",
+    "-postScript",
+    "GapListing249.java",
+    "RULES/REPORT/TASK_249_REPORT_R1/ghidra/gap_listing.json"
+  ],
+  "script_sha256": "6afdc88dde7396ddc7bd768ebf4b0fa0fff7463887e3f994a08fa2b2b4a6a796",
+  "exit_code": 0,
+  "elapsed_seconds_approx": 11.7,
+  "stdout_path": "RULES/REPORT/TASK_249_REPORT_R1/ghidra/stdout.log",
+  "stderr_path": "RULES/REPORT/TASK_249_REPORT_R1/ghidra/stderr.log",
+  "project_baseline_receipt": "TASK_248_REPORT_R1/source_and_prior_receipt.json original_project_file_hashes",
+  "project_files_before_after": {
+    "Task158.gpr": {
+      "baseline_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "current_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    "Task158.rep/idata/00/00000000.prp": {
+      "baseline_sha256": "38e1dfd457828bd0dd12bd3e7534b5fa8799bfb36d98ca7256cf495f7f7152c1",
+      "current_sha256": "38e1dfd457828bd0dd12bd3e7534b5fa8799bfb36d98ca7256cf495f7f7152c1",
+      "unchanged": true
+    },
+    "Task158.rep/idata/00/~00000000.db/db.1.gbf": {
+      "baseline_sha256": "ff76345ee0a861480c761d51e54620d989653fbc023821f20b0e886753a64dcd",
+      "current_sha256": "ff76345ee0a861480c761d51e54620d989653fbc023821f20b0e886753a64dcd",
+      "unchanged": true
+    },
+    "Task158.rep/idata/~index.bak": {
+      "baseline_sha256": "94cc1279a16264dcdf8d29b534d0659f7db56f4a1aa8e9d5db6d612ccd8731e1",
+      "current_sha256": "94cc1279a16264dcdf8d29b534d0659f7db56f4a1aa8e9d5db6d612ccd8731e1",
+      "unchanged": true
+    },
+    "Task158.rep/idata/~index.dat": {
+      "baseline_sha256": "94cc1279a16264dcdf8d29b534d0659f7db56f4a1aa8e9d5db6d612ccd8731e1",
+      "current_sha256": "94cc1279a16264dcdf8d29b534d0659f7db56f4a1aa8e9d5db6d612ccd8731e1",
+      "unchanged": true
+    },
+    "Task158.rep/project.prp": {
+      "baseline_sha256": "707a3cb045a460c72ed934ae9c2dffb65b043e5f7dc0d6279a578de7c645cd4b",
+      "current_sha256": "707a3cb045a460c72ed934ae9c2dffb65b043e5f7dc0d6279a578de7c645cd4b",
+      "unchanged": true
+    },
+    "Task158.rep/user/~index.dat": {
+      "baseline_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "current_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "unchanged": true
+    },
+    "Task158.rep/versioned/~index.bak": {
+      "baseline_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "current_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "unchanged": true
+    },
+    "Task158.rep/versioned/~index.dat": {
+      "baseline_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "current_sha256": "afed071b228a87fbbb18d8bf39667792d6912c1d1ad2ea2f4f41dac320db8b2f",
+      "unchanged": true
+    }
+  },
+  "limits": "Digest comparison covers the listed TASK_248 baseline project files; invocation was explicitly -readOnly.",
+  "stderr_capture_note": "stderr.log preserves the PowerShell native-command ErrorRecord wrapper plus JVM Picked up JAVA_TOOL_OPTIONS notices. The successful final native launcher status is the separately captured $LASTEXITCODE=0; its stdout contains the exact script summary. An intermediate xref compile failure is retained separately in attempt_xref_array_error.*."
+}
